@@ -21,9 +21,7 @@ import (
 	"github.com/aspyrmedia/pulumi-fortios/provider/pkg/version"
 	"github.com/aspyrmedia/terraform-provider-fortios/fortios"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 )
 
 // all of the token components used below.
@@ -32,16 +30,17 @@ const (
 	// registries for nodejs and python:
 	mainPkg = "fortios"
 	// modules:
-	mainMod = "index" // the fortios module
+	mainMod      = "index" // the fortios module
+	antivirusMod = "antivirus"
 )
 
 // preConfigureCallback is called before the providerConfigure function of the underlying provider.
 // It should validate that the provider can be configured, and provide actionable errors in the case
 // it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
 // for example `stringValue(vars, "accessKey")`.
-func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
-	return nil
-}
+// func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
+// 	return nil
+// }
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
@@ -54,12 +53,12 @@ func Provider() tfbridge.ProviderInfo {
 		Name: "fortios",
 		// DisplayName is a way to be able to change the casing of the provider
 		// name when being displayed on the Pulumi registry
-		DisplayName: "",
+		DisplayName: "Fortinet FortiOS",
 		// The default publisher for all packages is Pulumi.
 		// Change this to your personal name (or a company name) that you
 		// would like to be shown in the Pulumi Registry if this package is published
 		// there.
-		Publisher: "Pulumi",
+		Publisher: "Aspyrmedia",
 		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
 		// if this package is published there.
 		//
@@ -69,7 +68,7 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "",
+		PluginDownloadURL: "https://github.com/aspyrmedia/pulumi-fortios/releases/download/v${VERSION}",
 		Description:       "A Pulumi package for creating and managing fortios cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
@@ -80,7 +79,7 @@ func Provider() tfbridge.ProviderInfo {
 		Repository: "https://github.com/aspyrmedia/pulumi-fortios",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
-		GitHubOrg: "",
+		GitHubOrg: "fortinetdev",
 		Config:    map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
@@ -91,8 +90,8 @@ func Provider() tfbridge.ProviderInfo {
 			// 	},
 			// },
 		},
-		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
+		// PreConfigureCallback: preConfigureCallback,
+		Resources: map[string]*tfbridge.ResourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
@@ -105,13 +104,32 @@ func Provider() tfbridge.ProviderInfo {
 			// 		"tags": {Type: tfbridge.MakeType(mainPkg, "Tags")},
 			// 	},
 			// },
+			"fortios_alertemail_setting": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "alertEmailSetting"),
+			},
+			"fortios_antivirus_heuristic": {
+				Tok: tfbridge.MakeResource(mainPkg, antivirusMod, "antivirusHeuristic"),
+			},
+			"fortios_antivirus_profile": {
+				Tok: tfbridge.MakeResource(mainPkg, antivirusMod, "antivirusProfile"),
+			},
+			"fortios_antivirus_quarantine": {
+				Tok: tfbridge.MakeResource(mainPkg, antivirusMod, "antivirusQuarantine"),
+			},
+			"fortios_antivirus_settings": {
+				Tok: tfbridge.MakeResource(mainPkg, antivirusMod, "antivirusSettings"),
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example
 			// is below.
 			// "aws_ami": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAmi")},
+			"fortios_firewall_DoSpolicy": {
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getFirewallDoSpolicy"),
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
+			PackageName: "@aspyrmedia/pulumi-fortios",
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",
@@ -126,6 +144,7 @@ func Provider() tfbridge.ProviderInfo {
 			//Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
+			PackageName: "aspyrmedia_fortios",
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
@@ -133,7 +152,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
+				fmt.Sprintf("github.com/aspyrmedia/pulumi-%[1]s/sdk/", mainPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,
@@ -141,6 +160,7 @@ func Provider() tfbridge.ProviderInfo {
 			GenerateResourceContainerTypes: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
+			RootNamespace: "Aspyrmedia",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},

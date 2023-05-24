@@ -1,5 +1,6 @@
 {
     "name": "fortios",
+    "displayName": "Fortinet FortiOS",
     "description": "A Pulumi package for creating and managing fortios cloud resources.",
     "keywords": [
         "pulumi",
@@ -8,9 +9,10 @@
     ],
     "homepage": "https://www.pulumi.com",
     "license": "Apache-2.0",
-    "attribution": "This Pulumi package is based on the [`fortios` Terraform Provider](https://github.com/terraform-providers/terraform-provider-fortios).",
+    "attribution": "This Pulumi package is based on the [`fortios` Terraform Provider](https://github.com/fortinetdev/terraform-provider-fortios).",
     "repository": "https://github.com/aspyrmedia/pulumi-fortios",
-    "publisher": "Pulumi",
+    "pluginDownloadURL": "https://github.com/aspyrmedia/pulumi-fortios/releases/download/v${VERSION}",
+    "publisher": "Aspyrmedia",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },
@@ -20,12 +22,13 @@
             "namespaces": null,
             "packageReferences": {
                 "Pulumi": "3.*"
-            }
+            },
+            "rootNamespace": "Aspyrmedia"
         },
         "go": {
             "generateExtraInputTypes": true,
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+            "importBasePath": "github.com/aspyrmedia/pulumi-fortios/sdk/go/fortios"
         },
         "nodejs": {
             "compatibility": "tfbridge20",
@@ -38,13 +41,14 @@
             },
             "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing fortios cloud resources.",
-            "packageName": "",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-fortios)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-fortios` repo](https://github.com/aspyrmedia/pulumi-fortios/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-fortios` repo](https://github.com/terraform-providers/terraform-provider-fortios/issues).",
+            "packageName": "@aspyrmedia/pulumi-fortios",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/fortinetdev/terraform-provider-fortios)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-fortios` repo](https://github.com/aspyrmedia/pulumi-fortios/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-fortios` repo](https://github.com/fortinetdev/terraform-provider-fortios/issues).",
             "typescriptVersion": ""
         },
         "python": {
             "compatibility": "tfbridge20",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-fortios)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-fortios` repo](https://github.com/aspyrmedia/pulumi-fortios/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-fortios` repo](https://github.com/terraform-providers/terraform-provider-fortios/issues).",
+            "packageName": "aspyrmedia_fortios",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/fortinetdev/terraform-provider-fortios)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-fortios` repo](https://github.com/aspyrmedia/pulumi-fortios/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-fortios` repo](https://github.com/fortinetdev/terraform-provider-fortios/issues).",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
@@ -109,6 +113,1560 @@
             },
             "vdom": {
                 "type": "string"
+            }
+        }
+    },
+    "types": {
+        "fortios:antivirus/antivirusProfileCifs:antivirusProfileCifs": {
+            "properties": {
+                "archiveBlock": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "archiveLog": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "avScan": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "emulator": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "externalBlocklist": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortiai": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortindr": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortisandbox": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "options": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "outbreakPrevention": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "quarantine": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "archiveBlock",
+                        "archiveLog",
+                        "avScan",
+                        "emulator",
+                        "externalBlocklist",
+                        "fortiai",
+                        "fortindr",
+                        "fortisandbox",
+                        "options",
+                        "outbreakPrevention",
+                        "quarantine"
+                    ]
+                }
+            }
+        },
+        "fortios:antivirus/antivirusProfileContentDisarm:antivirusProfileContentDisarm": {
+            "properties": {
+                "coverPage": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "detectOnly": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "errorAction": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "officeAction": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "officeDde": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "officeEmbed": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "officeHylink": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "officeLinked": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "officeMacro": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "originalFileDestination": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pdfActForm": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pdfActGotor": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pdfActJava": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pdfActLaunch": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pdfActMovie": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pdfActSound": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pdfEmbedfile": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pdfHyperlink": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pdfJavacode": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "coverPage",
+                        "detectOnly",
+                        "errorAction",
+                        "officeAction",
+                        "officeDde",
+                        "officeEmbed",
+                        "officeHylink",
+                        "officeLinked",
+                        "officeMacro",
+                        "originalFileDestination",
+                        "pdfActForm",
+                        "pdfActGotor",
+                        "pdfActJava",
+                        "pdfActLaunch",
+                        "pdfActMovie",
+                        "pdfActSound",
+                        "pdfEmbedfile",
+                        "pdfHyperlink",
+                        "pdfJavacode"
+                    ]
+                }
+            }
+        },
+        "fortios:antivirus/antivirusProfileExternalBlocklist:antivirusProfileExternalBlocklist": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "name"
+                    ]
+                }
+            }
+        },
+        "fortios:antivirus/antivirusProfileFtp:antivirusProfileFtp": {
+            "properties": {
+                "archiveBlock": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "archiveLog": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "avScan": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "emulator": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "externalBlocklist": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortiai": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortindr": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortisandbox": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "options": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "outbreakPrevention": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "quarantine": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "archiveBlock",
+                        "archiveLog",
+                        "avScan",
+                        "emulator",
+                        "externalBlocklist",
+                        "fortiai",
+                        "fortindr",
+                        "fortisandbox",
+                        "options",
+                        "outbreakPrevention",
+                        "quarantine"
+                    ]
+                }
+            }
+        },
+        "fortios:antivirus/antivirusProfileHttp:antivirusProfileHttp": {
+            "properties": {
+                "archiveBlock": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "archiveLog": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "avScan": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "contentDisarm": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "emulator": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "externalBlocklist": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortiai": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortindr": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortisandbox": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "options": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "outbreakPrevention": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "quarantine": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "unknownContentEncoding": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "archiveBlock",
+                        "archiveLog",
+                        "avScan",
+                        "contentDisarm",
+                        "emulator",
+                        "externalBlocklist",
+                        "fortiai",
+                        "fortindr",
+                        "fortisandbox",
+                        "options",
+                        "outbreakPrevention",
+                        "quarantine",
+                        "unknownContentEncoding"
+                    ]
+                }
+            }
+        },
+        "fortios:antivirus/antivirusProfileImap:antivirusProfileImap": {
+            "properties": {
+                "archiveBlock": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "archiveLog": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "avScan": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "contentDisarm": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "emulator": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "executables": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "externalBlocklist": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortiai": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortindr": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortisandbox": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "options": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "outbreakPrevention": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "quarantine": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "archiveBlock",
+                        "archiveLog",
+                        "avScan",
+                        "contentDisarm",
+                        "emulator",
+                        "executables",
+                        "externalBlocklist",
+                        "fortiai",
+                        "fortindr",
+                        "fortisandbox",
+                        "options",
+                        "outbreakPrevention",
+                        "quarantine"
+                    ]
+                }
+            }
+        },
+        "fortios:antivirus/antivirusProfileMapi:antivirusProfileMapi": {
+            "properties": {
+                "archiveBlock": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "archiveLog": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "avScan": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "emulator": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "executables": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "externalBlocklist": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortiai": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortindr": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortisandbox": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "options": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "outbreakPrevention": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "quarantine": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "archiveBlock",
+                        "archiveLog",
+                        "avScan",
+                        "emulator",
+                        "executables",
+                        "externalBlocklist",
+                        "fortiai",
+                        "fortindr",
+                        "fortisandbox",
+                        "options",
+                        "outbreakPrevention",
+                        "quarantine"
+                    ]
+                }
+            }
+        },
+        "fortios:antivirus/antivirusProfileNacQuar:antivirusProfileNacQuar": {
+            "properties": {
+                "expiry": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "infected": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "log": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "expiry",
+                        "infected",
+                        "log"
+                    ]
+                }
+            }
+        },
+        "fortios:antivirus/antivirusProfileNntp:antivirusProfileNntp": {
+            "properties": {
+                "archiveBlock": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "archiveLog": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "avScan": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "emulator": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "externalBlocklist": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortiai": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortindr": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortisandbox": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "options": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "outbreakPrevention": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "quarantine": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "archiveBlock",
+                        "archiveLog",
+                        "avScan",
+                        "emulator",
+                        "externalBlocklist",
+                        "fortiai",
+                        "fortindr",
+                        "fortisandbox",
+                        "options",
+                        "outbreakPrevention",
+                        "quarantine"
+                    ]
+                }
+            }
+        },
+        "fortios:antivirus/antivirusProfileOutbreakPrevention:antivirusProfileOutbreakPrevention": {
+            "properties": {
+                "externalBlocklist": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ftgdService": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "externalBlocklist",
+                        "ftgdService"
+                    ]
+                }
+            }
+        },
+        "fortios:antivirus/antivirusProfilePop3:antivirusProfilePop3": {
+            "properties": {
+                "archiveBlock": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "archiveLog": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "avScan": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "contentDisarm": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "emulator": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "executables": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "externalBlocklist": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortiai": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortindr": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortisandbox": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "options": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "outbreakPrevention": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "quarantine": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "archiveBlock",
+                        "archiveLog",
+                        "avScan",
+                        "contentDisarm",
+                        "emulator",
+                        "executables",
+                        "externalBlocklist",
+                        "fortiai",
+                        "fortindr",
+                        "fortisandbox",
+                        "options",
+                        "outbreakPrevention",
+                        "quarantine"
+                    ]
+                }
+            }
+        },
+        "fortios:antivirus/antivirusProfileSmb:antivirusProfileSmb": {
+            "properties": {
+                "archiveBlock": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "archiveLog": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "emulator": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "options": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "outbreakPrevention": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "archiveBlock",
+                        "archiveLog",
+                        "emulator",
+                        "options",
+                        "outbreakPrevention"
+                    ]
+                }
+            }
+        },
+        "fortios:antivirus/antivirusProfileSmtp:antivirusProfileSmtp": {
+            "properties": {
+                "archiveBlock": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "archiveLog": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "avScan": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "contentDisarm": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "emulator": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "executables": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "externalBlocklist": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortiai": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortindr": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortisandbox": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "options": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "outbreakPrevention": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "quarantine": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "archiveBlock",
+                        "archiveLog",
+                        "avScan",
+                        "contentDisarm",
+                        "emulator",
+                        "executables",
+                        "externalBlocklist",
+                        "fortiai",
+                        "fortindr",
+                        "fortisandbox",
+                        "options",
+                        "outbreakPrevention",
+                        "quarantine"
+                    ]
+                }
+            }
+        },
+        "fortios:antivirus/antivirusProfileSsh:antivirusProfileSsh": {
+            "properties": {
+                "archiveBlock": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "archiveLog": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "avScan": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "emulator": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "externalBlocklist": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortiai": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortindr": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "fortisandbox": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "options": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "outbreakPrevention": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "quarantine": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "archiveBlock",
+                        "archiveLog",
+                        "avScan",
+                        "emulator",
+                        "externalBlocklist",
+                        "fortiai",
+                        "fortindr",
+                        "fortisandbox",
+                        "options",
+                        "outbreakPrevention",
+                        "quarantine"
+                    ]
+                }
+            }
+        },
+        "fortios:index/getFirewallDoSpolicyAnomaly:getFirewallDoSpolicyAnomaly": {
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "log": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "quarantine": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "quarantineExpiry": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "quarantineLog": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "threshold": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "thresholddefault": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "action",
+                "log",
+                "name",
+                "quarantine",
+                "quarantineExpiry",
+                "quarantineLog",
+                "status",
+                "threshold",
+                "thresholddefault"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "fortios:index/getFirewallDoSpolicyDstaddr:getFirewallDoSpolicyDstaddr": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "fortios:index/getFirewallDoSpolicyService:getFirewallDoSpolicyService": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "fortios:index/getFirewallDoSpolicySrcaddr:getFirewallDoSpolicySrcaddr": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
             }
         }
     },
@@ -232,6 +1790,1225 @@
             },
             "vdom": {
                 "type": "string"
+            }
+        }
+    },
+    "resources": {
+        "fortios:antivirus/antivirusHeuristic:antivirusHeuristic": {
+            "properties": {
+                "mode": {
+                    "type": "string"
+                },
+                "vdomparam": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "mode"
+            ],
+            "inputProperties": {
+                "mode": {
+                    "type": "string"
+                },
+                "vdomparam": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering antivirusHeuristic resources.\n",
+                "properties": {
+                    "mode": {
+                        "type": "string"
+                    },
+                    "vdomparam": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fortios:antivirus/antivirusProfile:antivirusProfile": {
+            "properties": {
+                "analyticsAcceptFiletype": {
+                    "type": "integer"
+                },
+                "analyticsBlFiletype": {
+                    "type": "integer"
+                },
+                "analyticsDb": {
+                    "type": "string"
+                },
+                "analyticsIgnoreFiletype": {
+                    "type": "integer"
+                },
+                "analyticsMaxUpload": {
+                    "type": "integer"
+                },
+                "analyticsWlFiletype": {
+                    "type": "integer"
+                },
+                "avBlockLog": {
+                    "type": "string"
+                },
+                "avVirusLog": {
+                    "type": "string"
+                },
+                "cifs": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileCifs:antivirusProfileCifs"
+                },
+                "comment": {
+                    "type": "string"
+                },
+                "contentDisarm": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileContentDisarm:antivirusProfileContentDisarm"
+                },
+                "dynamicSortSubtable": {
+                    "type": "string"
+                },
+                "emsThreatFeed": {
+                    "type": "string"
+                },
+                "extendedLog": {
+                    "type": "string"
+                },
+                "externalBlocklistEnableAll": {
+                    "type": "string"
+                },
+                "externalBlocklists": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileExternalBlocklist:antivirusProfileExternalBlocklist"
+                    }
+                },
+                "featureSet": {
+                    "type": "string"
+                },
+                "fortiaiErrorAction": {
+                    "type": "string"
+                },
+                "fortiaiTimeoutAction": {
+                    "type": "string"
+                },
+                "fortindrErrorAction": {
+                    "type": "string"
+                },
+                "fortindrTimeoutAction": {
+                    "type": "string"
+                },
+                "fortisandboxErrorAction": {
+                    "type": "string"
+                },
+                "fortisandboxMaxUpload": {
+                    "type": "integer"
+                },
+                "fortisandboxMode": {
+                    "type": "string"
+                },
+                "fortisandboxTimeoutAction": {
+                    "type": "string"
+                },
+                "ftgdAnalytics": {
+                    "type": "string"
+                },
+                "ftp": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileFtp:antivirusProfileFtp"
+                },
+                "http": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileHttp:antivirusProfileHttp"
+                },
+                "imap": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileImap:antivirusProfileImap"
+                },
+                "inspectionMode": {
+                    "type": "string"
+                },
+                "mapi": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileMapi:antivirusProfileMapi"
+                },
+                "mobileMalwareDb": {
+                    "type": "string"
+                },
+                "nacQuar": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileNacQuar:antivirusProfileNacQuar"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nntp": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileNntp:antivirusProfileNntp"
+                },
+                "outbreakPrevention": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileOutbreakPrevention:antivirusProfileOutbreakPrevention"
+                },
+                "outbreakPreventionArchiveScan": {
+                    "type": "string"
+                },
+                "pop3": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfilePop3:antivirusProfilePop3"
+                },
+                "replacemsgGroup": {
+                    "type": "string"
+                },
+                "scanMode": {
+                    "type": "string"
+                },
+                "smb": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileSmb:antivirusProfileSmb"
+                },
+                "smtp": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileSmtp:antivirusProfileSmtp"
+                },
+                "ssh": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileSsh:antivirusProfileSsh"
+                },
+                "vdomparam": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "analyticsAcceptFiletype",
+                "analyticsBlFiletype",
+                "analyticsDb",
+                "analyticsIgnoreFiletype",
+                "analyticsMaxUpload",
+                "analyticsWlFiletype",
+                "avBlockLog",
+                "avVirusLog",
+                "cifs",
+                "contentDisarm",
+                "emsThreatFeed",
+                "extendedLog",
+                "externalBlocklistEnableAll",
+                "featureSet",
+                "fortiaiErrorAction",
+                "fortiaiTimeoutAction",
+                "fortindrErrorAction",
+                "fortindrTimeoutAction",
+                "fortisandboxErrorAction",
+                "fortisandboxMaxUpload",
+                "fortisandboxMode",
+                "fortisandboxTimeoutAction",
+                "ftgdAnalytics",
+                "ftp",
+                "http",
+                "imap",
+                "inspectionMode",
+                "mapi",
+                "mobileMalwareDb",
+                "nacQuar",
+                "name",
+                "nntp",
+                "outbreakPrevention",
+                "outbreakPreventionArchiveScan",
+                "pop3",
+                "replacemsgGroup",
+                "scanMode",
+                "smb",
+                "smtp",
+                "ssh"
+            ],
+            "inputProperties": {
+                "analyticsAcceptFiletype": {
+                    "type": "integer"
+                },
+                "analyticsBlFiletype": {
+                    "type": "integer"
+                },
+                "analyticsDb": {
+                    "type": "string"
+                },
+                "analyticsIgnoreFiletype": {
+                    "type": "integer"
+                },
+                "analyticsMaxUpload": {
+                    "type": "integer"
+                },
+                "analyticsWlFiletype": {
+                    "type": "integer"
+                },
+                "avBlockLog": {
+                    "type": "string"
+                },
+                "avVirusLog": {
+                    "type": "string"
+                },
+                "cifs": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileCifs:antivirusProfileCifs"
+                },
+                "comment": {
+                    "type": "string"
+                },
+                "contentDisarm": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileContentDisarm:antivirusProfileContentDisarm"
+                },
+                "dynamicSortSubtable": {
+                    "type": "string"
+                },
+                "emsThreatFeed": {
+                    "type": "string"
+                },
+                "extendedLog": {
+                    "type": "string"
+                },
+                "externalBlocklistEnableAll": {
+                    "type": "string"
+                },
+                "externalBlocklists": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileExternalBlocklist:antivirusProfileExternalBlocklist"
+                    }
+                },
+                "featureSet": {
+                    "type": "string"
+                },
+                "fortiaiErrorAction": {
+                    "type": "string"
+                },
+                "fortiaiTimeoutAction": {
+                    "type": "string"
+                },
+                "fortindrErrorAction": {
+                    "type": "string"
+                },
+                "fortindrTimeoutAction": {
+                    "type": "string"
+                },
+                "fortisandboxErrorAction": {
+                    "type": "string"
+                },
+                "fortisandboxMaxUpload": {
+                    "type": "integer"
+                },
+                "fortisandboxMode": {
+                    "type": "string"
+                },
+                "fortisandboxTimeoutAction": {
+                    "type": "string"
+                },
+                "ftgdAnalytics": {
+                    "type": "string"
+                },
+                "ftp": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileFtp:antivirusProfileFtp"
+                },
+                "http": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileHttp:antivirusProfileHttp"
+                },
+                "imap": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileImap:antivirusProfileImap"
+                },
+                "inspectionMode": {
+                    "type": "string"
+                },
+                "mapi": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileMapi:antivirusProfileMapi"
+                },
+                "mobileMalwareDb": {
+                    "type": "string"
+                },
+                "nacQuar": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileNacQuar:antivirusProfileNacQuar"
+                },
+                "name": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                },
+                "nntp": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileNntp:antivirusProfileNntp"
+                },
+                "outbreakPrevention": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileOutbreakPrevention:antivirusProfileOutbreakPrevention"
+                },
+                "outbreakPreventionArchiveScan": {
+                    "type": "string"
+                },
+                "pop3": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfilePop3:antivirusProfilePop3"
+                },
+                "replacemsgGroup": {
+                    "type": "string"
+                },
+                "scanMode": {
+                    "type": "string"
+                },
+                "smb": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileSmb:antivirusProfileSmb"
+                },
+                "smtp": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileSmtp:antivirusProfileSmtp"
+                },
+                "ssh": {
+                    "$ref": "#/types/fortios:antivirus/antivirusProfileSsh:antivirusProfileSsh"
+                },
+                "vdomparam": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering antivirusProfile resources.\n",
+                "properties": {
+                    "analyticsAcceptFiletype": {
+                        "type": "integer"
+                    },
+                    "analyticsBlFiletype": {
+                        "type": "integer"
+                    },
+                    "analyticsDb": {
+                        "type": "string"
+                    },
+                    "analyticsIgnoreFiletype": {
+                        "type": "integer"
+                    },
+                    "analyticsMaxUpload": {
+                        "type": "integer"
+                    },
+                    "analyticsWlFiletype": {
+                        "type": "integer"
+                    },
+                    "avBlockLog": {
+                        "type": "string"
+                    },
+                    "avVirusLog": {
+                        "type": "string"
+                    },
+                    "cifs": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileCifs:antivirusProfileCifs"
+                    },
+                    "comment": {
+                        "type": "string"
+                    },
+                    "contentDisarm": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileContentDisarm:antivirusProfileContentDisarm"
+                    },
+                    "dynamicSortSubtable": {
+                        "type": "string"
+                    },
+                    "emsThreatFeed": {
+                        "type": "string"
+                    },
+                    "extendedLog": {
+                        "type": "string"
+                    },
+                    "externalBlocklistEnableAll": {
+                        "type": "string"
+                    },
+                    "externalBlocklists": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fortios:antivirus/antivirusProfileExternalBlocklist:antivirusProfileExternalBlocklist"
+                        }
+                    },
+                    "featureSet": {
+                        "type": "string"
+                    },
+                    "fortiaiErrorAction": {
+                        "type": "string"
+                    },
+                    "fortiaiTimeoutAction": {
+                        "type": "string"
+                    },
+                    "fortindrErrorAction": {
+                        "type": "string"
+                    },
+                    "fortindrTimeoutAction": {
+                        "type": "string"
+                    },
+                    "fortisandboxErrorAction": {
+                        "type": "string"
+                    },
+                    "fortisandboxMaxUpload": {
+                        "type": "integer"
+                    },
+                    "fortisandboxMode": {
+                        "type": "string"
+                    },
+                    "fortisandboxTimeoutAction": {
+                        "type": "string"
+                    },
+                    "ftgdAnalytics": {
+                        "type": "string"
+                    },
+                    "ftp": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileFtp:antivirusProfileFtp"
+                    },
+                    "http": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileHttp:antivirusProfileHttp"
+                    },
+                    "imap": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileImap:antivirusProfileImap"
+                    },
+                    "inspectionMode": {
+                        "type": "string"
+                    },
+                    "mapi": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileMapi:antivirusProfileMapi"
+                    },
+                    "mobileMalwareDb": {
+                        "type": "string"
+                    },
+                    "nacQuar": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileNacQuar:antivirusProfileNacQuar"
+                    },
+                    "name": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    },
+                    "nntp": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileNntp:antivirusProfileNntp"
+                    },
+                    "outbreakPrevention": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileOutbreakPrevention:antivirusProfileOutbreakPrevention"
+                    },
+                    "outbreakPreventionArchiveScan": {
+                        "type": "string"
+                    },
+                    "pop3": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfilePop3:antivirusProfilePop3"
+                    },
+                    "replacemsgGroup": {
+                        "type": "string"
+                    },
+                    "scanMode": {
+                        "type": "string"
+                    },
+                    "smb": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileSmb:antivirusProfileSmb"
+                    },
+                    "smtp": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileSmtp:antivirusProfileSmtp"
+                    },
+                    "ssh": {
+                        "$ref": "#/types/fortios:antivirus/antivirusProfileSsh:antivirusProfileSsh"
+                    },
+                    "vdomparam": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fortios:antivirus/antivirusQuarantine:antivirusQuarantine": {
+            "properties": {
+                "agelimit": {
+                    "type": "integer"
+                },
+                "destination": {
+                    "type": "string"
+                },
+                "dropBlocked": {
+                    "type": "string"
+                },
+                "dropHeuristic": {
+                    "type": "string"
+                },
+                "dropInfected": {
+                    "type": "string"
+                },
+                "dropMachineLearning": {
+                    "type": "string"
+                },
+                "lowspace": {
+                    "type": "string"
+                },
+                "maxfilesize": {
+                    "type": "integer"
+                },
+                "quarantineQuota": {
+                    "type": "integer"
+                },
+                "storeBlocked": {
+                    "type": "string"
+                },
+                "storeHeuristic": {
+                    "type": "string"
+                },
+                "storeInfected": {
+                    "type": "string"
+                },
+                "storeMachineLearning": {
+                    "type": "string"
+                },
+                "vdomparam": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "agelimit",
+                "destination",
+                "dropBlocked",
+                "dropHeuristic",
+                "dropInfected",
+                "dropMachineLearning",
+                "lowspace",
+                "maxfilesize",
+                "quarantineQuota",
+                "storeBlocked",
+                "storeHeuristic",
+                "storeInfected",
+                "storeMachineLearning"
+            ],
+            "inputProperties": {
+                "agelimit": {
+                    "type": "integer"
+                },
+                "destination": {
+                    "type": "string"
+                },
+                "dropBlocked": {
+                    "type": "string"
+                },
+                "dropHeuristic": {
+                    "type": "string"
+                },
+                "dropInfected": {
+                    "type": "string"
+                },
+                "dropMachineLearning": {
+                    "type": "string"
+                },
+                "lowspace": {
+                    "type": "string"
+                },
+                "maxfilesize": {
+                    "type": "integer"
+                },
+                "quarantineQuota": {
+                    "type": "integer"
+                },
+                "storeBlocked": {
+                    "type": "string"
+                },
+                "storeHeuristic": {
+                    "type": "string"
+                },
+                "storeInfected": {
+                    "type": "string"
+                },
+                "storeMachineLearning": {
+                    "type": "string"
+                },
+                "vdomparam": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering antivirusQuarantine resources.\n",
+                "properties": {
+                    "agelimit": {
+                        "type": "integer"
+                    },
+                    "destination": {
+                        "type": "string"
+                    },
+                    "dropBlocked": {
+                        "type": "string"
+                    },
+                    "dropHeuristic": {
+                        "type": "string"
+                    },
+                    "dropInfected": {
+                        "type": "string"
+                    },
+                    "dropMachineLearning": {
+                        "type": "string"
+                    },
+                    "lowspace": {
+                        "type": "string"
+                    },
+                    "maxfilesize": {
+                        "type": "integer"
+                    },
+                    "quarantineQuota": {
+                        "type": "integer"
+                    },
+                    "storeBlocked": {
+                        "type": "string"
+                    },
+                    "storeHeuristic": {
+                        "type": "string"
+                    },
+                    "storeInfected": {
+                        "type": "string"
+                    },
+                    "storeMachineLearning": {
+                        "type": "string"
+                    },
+                    "vdomparam": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fortios:antivirus/antivirusSettings:antivirusSettings": {
+            "properties": {
+                "cacheCleanResult": {
+                    "type": "string"
+                },
+                "cacheInfectedResult": {
+                    "type": "string"
+                },
+                "defaultDb": {
+                    "type": "string"
+                },
+                "grayware": {
+                    "type": "string"
+                },
+                "machineLearningDetection": {
+                    "type": "string"
+                },
+                "overrideTimeout": {
+                    "type": "integer"
+                },
+                "useExtremeDb": {
+                    "type": "string"
+                },
+                "vdomparam": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "cacheCleanResult",
+                "cacheInfectedResult",
+                "defaultDb",
+                "grayware",
+                "machineLearningDetection",
+                "overrideTimeout",
+                "useExtremeDb"
+            ],
+            "inputProperties": {
+                "cacheCleanResult": {
+                    "type": "string"
+                },
+                "cacheInfectedResult": {
+                    "type": "string"
+                },
+                "defaultDb": {
+                    "type": "string"
+                },
+                "grayware": {
+                    "type": "string"
+                },
+                "machineLearningDetection": {
+                    "type": "string"
+                },
+                "overrideTimeout": {
+                    "type": "integer"
+                },
+                "useExtremeDb": {
+                    "type": "string"
+                },
+                "vdomparam": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering antivirusSettings resources.\n",
+                "properties": {
+                    "cacheCleanResult": {
+                        "type": "string"
+                    },
+                    "cacheInfectedResult": {
+                        "type": "string"
+                    },
+                    "defaultDb": {
+                        "type": "string"
+                    },
+                    "grayware": {
+                        "type": "string"
+                    },
+                    "machineLearningDetection": {
+                        "type": "string"
+                    },
+                    "overrideTimeout": {
+                        "type": "integer"
+                    },
+                    "useExtremeDb": {
+                        "type": "string"
+                    },
+                    "vdomparam": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fortios:index/alertEmailSetting:alertEmailSetting": {
+            "properties": {
+                "adminLoginLogs": {
+                    "type": "string"
+                },
+                "alertInterval": {
+                    "type": "integer"
+                },
+                "amcInterfaceBypassMode": {
+                    "type": "string"
+                },
+                "antivirusLogs": {
+                    "type": "string"
+                },
+                "configurationChangesLogs": {
+                    "type": "string"
+                },
+                "criticalInterval": {
+                    "type": "integer"
+                },
+                "debugInterval": {
+                    "type": "integer"
+                },
+                "emailInterval": {
+                    "type": "integer"
+                },
+                "emergencyInterval": {
+                    "type": "integer"
+                },
+                "errorInterval": {
+                    "type": "integer"
+                },
+                "fdsLicenseExpiringDays": {
+                    "type": "integer"
+                },
+                "fdsLicenseExpiringWarning": {
+                    "type": "string"
+                },
+                "fdsUpdateLogs": {
+                    "type": "string"
+                },
+                "filterMode": {
+                    "type": "string"
+                },
+                "fipsCcErrors": {
+                    "type": "string"
+                },
+                "firewallAuthenticationFailureLogs": {
+                    "type": "string"
+                },
+                "fortiguardLogQuotaWarning": {
+                    "type": "string"
+                },
+                "fssoDisconnectLogs": {
+                    "type": "string"
+                },
+                "haLogs": {
+                    "type": "string"
+                },
+                "informationInterval": {
+                    "type": "integer"
+                },
+                "ipsLogs": {
+                    "type": "string"
+                },
+                "ipsecErrorsLogs": {
+                    "type": "string"
+                },
+                "localDiskUsage": {
+                    "type": "integer"
+                },
+                "logDiskUsageWarning": {
+                    "type": "string"
+                },
+                "mailto1": {
+                    "type": "string"
+                },
+                "mailto2": {
+                    "type": "string"
+                },
+                "mailto3": {
+                    "type": "string"
+                },
+                "notificationInterval": {
+                    "type": "integer"
+                },
+                "pppErrorsLogs": {
+                    "type": "string"
+                },
+                "severity": {
+                    "type": "string"
+                },
+                "sshLogs": {
+                    "type": "string"
+                },
+                "sslvpnAuthenticationErrorsLogs": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "vdomparam": {
+                    "type": "string"
+                },
+                "violationTrafficLogs": {
+                    "type": "string"
+                },
+                "warningInterval": {
+                    "type": "integer"
+                },
+                "webfilterLogs": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "adminLoginLogs",
+                "alertInterval",
+                "amcInterfaceBypassMode",
+                "antivirusLogs",
+                "configurationChangesLogs",
+                "criticalInterval",
+                "debugInterval",
+                "emailInterval",
+                "emergencyInterval",
+                "errorInterval",
+                "fdsLicenseExpiringDays",
+                "fdsLicenseExpiringWarning",
+                "fdsUpdateLogs",
+                "filterMode",
+                "fipsCcErrors",
+                "firewallAuthenticationFailureLogs",
+                "fortiguardLogQuotaWarning",
+                "fssoDisconnectLogs",
+                "haLogs",
+                "informationInterval",
+                "ipsLogs",
+                "ipsecErrorsLogs",
+                "localDiskUsage",
+                "logDiskUsageWarning",
+                "mailto1",
+                "mailto2",
+                "mailto3",
+                "notificationInterval",
+                "pppErrorsLogs",
+                "severity",
+                "sshLogs",
+                "sslvpnAuthenticationErrorsLogs",
+                "username",
+                "violationTrafficLogs",
+                "warningInterval",
+                "webfilterLogs"
+            ],
+            "inputProperties": {
+                "adminLoginLogs": {
+                    "type": "string"
+                },
+                "alertInterval": {
+                    "type": "integer"
+                },
+                "amcInterfaceBypassMode": {
+                    "type": "string"
+                },
+                "antivirusLogs": {
+                    "type": "string"
+                },
+                "configurationChangesLogs": {
+                    "type": "string"
+                },
+                "criticalInterval": {
+                    "type": "integer"
+                },
+                "debugInterval": {
+                    "type": "integer"
+                },
+                "emailInterval": {
+                    "type": "integer"
+                },
+                "emergencyInterval": {
+                    "type": "integer"
+                },
+                "errorInterval": {
+                    "type": "integer"
+                },
+                "fdsLicenseExpiringDays": {
+                    "type": "integer"
+                },
+                "fdsLicenseExpiringWarning": {
+                    "type": "string"
+                },
+                "fdsUpdateLogs": {
+                    "type": "string"
+                },
+                "filterMode": {
+                    "type": "string"
+                },
+                "fipsCcErrors": {
+                    "type": "string"
+                },
+                "firewallAuthenticationFailureLogs": {
+                    "type": "string"
+                },
+                "fortiguardLogQuotaWarning": {
+                    "type": "string"
+                },
+                "fssoDisconnectLogs": {
+                    "type": "string"
+                },
+                "haLogs": {
+                    "type": "string"
+                },
+                "informationInterval": {
+                    "type": "integer"
+                },
+                "ipsLogs": {
+                    "type": "string"
+                },
+                "ipsecErrorsLogs": {
+                    "type": "string"
+                },
+                "localDiskUsage": {
+                    "type": "integer"
+                },
+                "logDiskUsageWarning": {
+                    "type": "string"
+                },
+                "mailto1": {
+                    "type": "string"
+                },
+                "mailto2": {
+                    "type": "string"
+                },
+                "mailto3": {
+                    "type": "string"
+                },
+                "notificationInterval": {
+                    "type": "integer"
+                },
+                "pppErrorsLogs": {
+                    "type": "string"
+                },
+                "severity": {
+                    "type": "string"
+                },
+                "sshLogs": {
+                    "type": "string"
+                },
+                "sslvpnAuthenticationErrorsLogs": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "vdomparam": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                },
+                "violationTrafficLogs": {
+                    "type": "string"
+                },
+                "warningInterval": {
+                    "type": "integer"
+                },
+                "webfilterLogs": {
+                    "type": "string"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering alertEmailSetting resources.\n",
+                "properties": {
+                    "adminLoginLogs": {
+                        "type": "string"
+                    },
+                    "alertInterval": {
+                        "type": "integer"
+                    },
+                    "amcInterfaceBypassMode": {
+                        "type": "string"
+                    },
+                    "antivirusLogs": {
+                        "type": "string"
+                    },
+                    "configurationChangesLogs": {
+                        "type": "string"
+                    },
+                    "criticalInterval": {
+                        "type": "integer"
+                    },
+                    "debugInterval": {
+                        "type": "integer"
+                    },
+                    "emailInterval": {
+                        "type": "integer"
+                    },
+                    "emergencyInterval": {
+                        "type": "integer"
+                    },
+                    "errorInterval": {
+                        "type": "integer"
+                    },
+                    "fdsLicenseExpiringDays": {
+                        "type": "integer"
+                    },
+                    "fdsLicenseExpiringWarning": {
+                        "type": "string"
+                    },
+                    "fdsUpdateLogs": {
+                        "type": "string"
+                    },
+                    "filterMode": {
+                        "type": "string"
+                    },
+                    "fipsCcErrors": {
+                        "type": "string"
+                    },
+                    "firewallAuthenticationFailureLogs": {
+                        "type": "string"
+                    },
+                    "fortiguardLogQuotaWarning": {
+                        "type": "string"
+                    },
+                    "fssoDisconnectLogs": {
+                        "type": "string"
+                    },
+                    "haLogs": {
+                        "type": "string"
+                    },
+                    "informationInterval": {
+                        "type": "integer"
+                    },
+                    "ipsLogs": {
+                        "type": "string"
+                    },
+                    "ipsecErrorsLogs": {
+                        "type": "string"
+                    },
+                    "localDiskUsage": {
+                        "type": "integer"
+                    },
+                    "logDiskUsageWarning": {
+                        "type": "string"
+                    },
+                    "mailto1": {
+                        "type": "string"
+                    },
+                    "mailto2": {
+                        "type": "string"
+                    },
+                    "mailto3": {
+                        "type": "string"
+                    },
+                    "notificationInterval": {
+                        "type": "integer"
+                    },
+                    "pppErrorsLogs": {
+                        "type": "string"
+                    },
+                    "severity": {
+                        "type": "string"
+                    },
+                    "sshLogs": {
+                        "type": "string"
+                    },
+                    "sslvpnAuthenticationErrorsLogs": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "vdomparam": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    },
+                    "violationTrafficLogs": {
+                        "type": "string"
+                    },
+                    "warningInterval": {
+                        "type": "integer"
+                    },
+                    "webfilterLogs": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "fortios:index/getFirewallDoSpolicy:getFirewallDoSpolicy": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getFirewallDoSpolicy.\n",
+                "properties": {
+                    "policyid": {
+                        "type": "integer"
+                    },
+                    "vdomparam": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "policyid"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getFirewallDoSpolicy.\n",
+                "properties": {
+                    "anomalies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fortios:index/getFirewallDoSpolicyAnomaly:getFirewallDoSpolicyAnomaly"
+                        }
+                    },
+                    "comments": {
+                        "type": "string"
+                    },
+                    "dstaddrs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fortios:index/getFirewallDoSpolicyDstaddr:getFirewallDoSpolicyDstaddr"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "interface": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "policyid": {
+                        "type": "integer"
+                    },
+                    "services": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fortios:index/getFirewallDoSpolicyService:getFirewallDoSpolicyService"
+                        }
+                    },
+                    "srcaddrs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fortios:index/getFirewallDoSpolicySrcaddr:getFirewallDoSpolicySrcaddr"
+                        }
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "vdomparam": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "anomalies",
+                    "comments",
+                    "dstaddrs",
+                    "interface",
+                    "name",
+                    "policyid",
+                    "services",
+                    "srcaddrs",
+                    "status",
+                    "id"
+                ]
             }
         }
     }
