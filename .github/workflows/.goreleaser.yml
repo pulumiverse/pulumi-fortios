@@ -10,7 +10,7 @@ before:
 
 builds:
   - binary: pulumi-resource-fortios
-    dir: ../../provider
+    dir: ./provider
     main: ./cmd/pulumi-resource-fortios/
     ldflags:
       # The line below MUST align with the module in current provider/go.mod
