@@ -50,7 +50,7 @@ jobs:
       - name: Set PreRelease Version
         run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v2
+        uses: goreleaser/goreleaser-action@v4
         with:
           args: -p 3 release --clean
           version: latest
@@ -92,7 +92,7 @@ jobs:
         with:
           python-version: ${{matrix.pythonversion}}
       - name: Build SDK
-        run: make build_${{ matrix.language }}_sdk
+        run: make build_${{ matrix.language }}
       - name: Check worktree clean
         run: |
           git update-index -q --refresh
