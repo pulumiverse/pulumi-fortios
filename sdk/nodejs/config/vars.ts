@@ -13,7 +13,7 @@ const __config = new pulumi.Config("fortios");
 export declare const cabundlecontent: string | undefined;
 Object.defineProperty(exports, "cabundlecontent", {
     get() {
-        return __config.get("cabundlecontent");
+        return __config.get("cabundlecontent") ?? utilities.getEnv("FORTIOS_CA_CABUNDLECONTENT");
     },
     enumerable: true,
 });
@@ -24,7 +24,7 @@ Object.defineProperty(exports, "cabundlecontent", {
 export declare const cabundlefile: string | undefined;
 Object.defineProperty(exports, "cabundlefile", {
     get() {
-        return __config.get("cabundlefile");
+        return __config.get("cabundlefile") ?? utilities.getEnv("FORTIOS_CA_CABUNDLE");
     },
     enumerable: true,
 });
@@ -35,7 +35,7 @@ Object.defineProperty(exports, "cabundlefile", {
 export declare const cacert: string | undefined;
 Object.defineProperty(exports, "cacert", {
     get() {
-        return __config.get("cacert");
+        return __config.get("cacert") ?? utilities.getEnv("FORTIOS_CA_CACERT");
     },
     enumerable: true,
 });
@@ -46,7 +46,7 @@ Object.defineProperty(exports, "cacert", {
 export declare const clientcert: string | undefined;
 Object.defineProperty(exports, "clientcert", {
     get() {
-        return __config.get("clientcert");
+        return __config.get("clientcert") ?? utilities.getEnv("FORTIOS_CA_CLIENTCERT");
     },
     enumerable: true,
 });
@@ -57,7 +57,7 @@ Object.defineProperty(exports, "clientcert", {
 export declare const clientkey: string | undefined;
 Object.defineProperty(exports, "clientkey", {
     get() {
-        return __config.get("clientkey");
+        return __config.get("clientkey") ?? utilities.getEnv("FORTIOS_CA_CLIENTKEY");
     },
     enumerable: true,
 });
@@ -68,7 +68,7 @@ Object.defineProperty(exports, "clientkey", {
 export declare const fmgCabundlefile: string | undefined;
 Object.defineProperty(exports, "fmgCabundlefile", {
     get() {
-        return __config.get("fmgCabundlefile");
+        return __config.get("fmgCabundlefile") ?? utilities.getEnv("FORTIOS_FMG_CABUNDLE");
     },
     enumerable: true,
 });
@@ -79,7 +79,7 @@ Object.defineProperty(exports, "fmgCabundlefile", {
 export declare const fmgHostname: string | undefined;
 Object.defineProperty(exports, "fmgHostname", {
     get() {
-        return __config.get("fmgHostname");
+        return __config.get("fmgHostname") ?? utilities.getEnv("FORTIOS_FMG_HOSTNAME");
     },
     enumerable: true,
 });
@@ -87,7 +87,7 @@ Object.defineProperty(exports, "fmgHostname", {
 export declare const fmgInsecure: boolean | undefined;
 Object.defineProperty(exports, "fmgInsecure", {
     get() {
-        return __config.getObject<boolean>("fmgInsecure");
+        return __config.getObject<boolean>("fmgInsecure") ?? utilities.getEnvBoolean("FORTIOS_FMG_INSECURE");
     },
     enumerable: true,
 });
@@ -95,7 +95,7 @@ Object.defineProperty(exports, "fmgInsecure", {
 export declare const fmgPasswd: string | undefined;
 Object.defineProperty(exports, "fmgPasswd", {
     get() {
-        return __config.get("fmgPasswd");
+        return __config.get("fmgPasswd") ?? utilities.getEnv("FORTIOS_FMG_PASSWORD");
     },
     enumerable: true,
 });
@@ -103,7 +103,7 @@ Object.defineProperty(exports, "fmgPasswd", {
 export declare const fmgUsername: string | undefined;
 Object.defineProperty(exports, "fmgUsername", {
     get() {
-        return __config.get("fmgUsername");
+        return __config.get("fmgUsername") ?? utilities.getEnv("FORTIOS_FMG_USERNAME");
     },
     enumerable: true,
 });
@@ -114,7 +114,7 @@ Object.defineProperty(exports, "fmgUsername", {
 export declare const hostname: string | undefined;
 Object.defineProperty(exports, "hostname", {
     get() {
-        return __config.get("hostname");
+        return __config.get("hostname") ?? utilities.getEnv("FORTIOS_ACCESS_HOSTNAME");
     },
     enumerable: true,
 });
@@ -125,7 +125,7 @@ Object.defineProperty(exports, "hostname", {
 export declare const httpProxy: string | undefined;
 Object.defineProperty(exports, "httpProxy", {
     get() {
-        return __config.get("httpProxy");
+        return __config.get("httpProxy") ?? utilities.getEnv("FORTIOS_HTTP_PROXY");
     },
     enumerable: true,
 });
@@ -133,7 +133,7 @@ Object.defineProperty(exports, "httpProxy", {
 export declare const insecure: boolean | undefined;
 Object.defineProperty(exports, "insecure", {
     get() {
-        return __config.getObject<boolean>("insecure");
+        return __config.getObject<boolean>("insecure") ?? utilities.getEnvBoolean("FORTIOS_INSECURE");
     },
     enumerable: true,
 });
@@ -144,7 +144,7 @@ Object.defineProperty(exports, "insecure", {
 export declare const peerauth: string | undefined;
 Object.defineProperty(exports, "peerauth", {
     get() {
-        return __config.get("peerauth");
+        return __config.get("peerauth") ?? utilities.getEnv("FORTIOS_CA_PEERAUTH");
     },
     enumerable: true,
 });
@@ -152,7 +152,7 @@ Object.defineProperty(exports, "peerauth", {
 export declare const token: string | undefined;
 Object.defineProperty(exports, "token", {
     get() {
-        return __config.get("token");
+        return __config.get("token") ?? utilities.getEnv("FORTIOS_ACCESS_TOKEN");
     },
     enumerable: true,
 });
@@ -160,7 +160,7 @@ Object.defineProperty(exports, "token", {
 export declare const vdom: string | undefined;
 Object.defineProperty(exports, "vdom", {
     get() {
-        return __config.get("vdom");
+        return __config.get("vdom") ?? utilities.getEnv("FORTIOS_VDOM");
     },
     enumerable: true,
 });

@@ -15,12 +15,11 @@
 package main
 
 import (
-	fortios "github.com/aspyrmedia/pulumi-fortios/provider"
-	"github.com/aspyrmedia/pulumi-fortios/provider/pkg/version"
+	fortios "github.com/pulumiverse/pulumi-fortios/provider"
+	"github.com/pulumiverse/pulumi-fortios/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
-)
+	)
 
 func main() {
-	// Modify the path to point to the new provider
 	tfgen.Main("fortios", version.Version, fortios.Provider())
-}
+	}

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Aspyrmedia.Fortios
+namespace Pulumiverse.Fortios
 {
     /// <summary>
     /// The provider type for the fortios package. By default, resources use package-wide configuration
@@ -109,7 +109,13 @@ namespace Aspyrmedia.Fortios
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github.com/aspyrmedia/pulumi-fortios/releases/download/v${VERSION}",
+                PluginDownloadURL = "github://api.github.com/pulumiverse/pulumi-fortios",
+                AdditionalSecretOutputs =
+                {
+                    "clientkey",
+                    "fmgPasswd",
+                    "token",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -144,11 +150,21 @@ namespace Aspyrmedia.Fortios
         [Input("clientcert")]
         public Input<string>? Clientcert { get; set; }
 
+        [Input("clientkey")]
+        private Input<string>? _clientkey;
+
         /// <summary>
         /// User private key
         /// </summary>
-        [Input("clientkey")]
-        public Input<string>? Clientkey { get; set; }
+        public Input<string>? Clientkey
+        {
+            get => _clientkey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientkey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// CA Bundle file
@@ -166,7 +182,16 @@ namespace Aspyrmedia.Fortios
         public Input<bool>? FmgInsecure { get; set; }
 
         [Input("fmgPasswd")]
-        public Input<string>? FmgPasswd { get; set; }
+        private Input<string>? _fmgPasswd;
+        public Input<string>? FmgPasswd
+        {
+            get => _fmgPasswd;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _fmgPasswd = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("fmgUsername")]
         public Input<string>? FmgUsername { get; set; }
@@ -193,13 +218,38 @@ namespace Aspyrmedia.Fortios
         public Input<string>? Peerauth { get; set; }
 
         [Input("token")]
-        public Input<string>? Token { get; set; }
+        private Input<string>? _token;
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("vdom")]
         public Input<string>? Vdom { get; set; }
 
         public ProviderArgs()
         {
+            Cabundlecontent = Utilities.GetEnv("FORTIOS_CA_CABUNDLECONTENT");
+            Cabundlefile = Utilities.GetEnv("FORTIOS_CA_CABUNDLE");
+            Cacert = Utilities.GetEnv("FORTIOS_CA_CACERT");
+            Clientcert = Utilities.GetEnv("FORTIOS_CA_CLIENTCERT");
+            Clientkey = Utilities.GetEnv("FORTIOS_CA_CLIENTKEY");
+            FmgCabundlefile = Utilities.GetEnv("FORTIOS_FMG_CABUNDLE");
+            FmgHostname = Utilities.GetEnv("FORTIOS_FMG_HOSTNAME");
+            FmgInsecure = Utilities.GetEnvBoolean("FORTIOS_FMG_INSECURE");
+            FmgPasswd = Utilities.GetEnv("FORTIOS_FMG_PASSWORD");
+            FmgUsername = Utilities.GetEnv("FORTIOS_FMG_USERNAME");
+            Hostname = Utilities.GetEnv("FORTIOS_ACCESS_HOSTNAME");
+            HttpProxy = Utilities.GetEnv("FORTIOS_HTTP_PROXY");
+            Insecure = Utilities.GetEnvBoolean("FORTIOS_INSECURE");
+            Peerauth = Utilities.GetEnv("FORTIOS_CA_PEERAUTH");
+            Token = Utilities.GetEnv("FORTIOS_ACCESS_TOKEN");
+            Vdom = Utilities.GetEnv("FORTIOS_VDOM");
         }
         public static new ProviderArgs Empty => new ProviderArgs();
     }

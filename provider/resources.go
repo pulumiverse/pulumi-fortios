@@ -17,154 +17,93 @@ package fortios
 import (
 	"fmt"
 	"path/filepath"
+	"strings"
 
-	"github.com/aspyrmedia/pulumi-fortios/provider/pkg/version"
-	"github.com/aspyrmedia/terraform-provider-fortios/fortios"
+	"github.com/ettle/strcase"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/pulumiverse/pulumi-fortios/provider/pkg/version"
+	"github.com/terraform-providers/terraform-provider-fortios/fortios"
 )
 
 // all of the token components used below.
 const (
 	// This variable controls the default name of the package in the package
-	// registries for nodejs and python:
-	mainPkg = "fortios"
-	// modules:
-	mainMod                           = "index" // the fortios module
-	antivirusMod                      = "antivirus"
-	applicationMod                    = "application"
-	authenticationMod                 = "authentication"
-	automationMod                     = "automation"
-	certificateMod                    = "certificate"
-	cifsMod                           = "cifs"
-	credentialstoreMod                = "credentialstore"
-	dlpMod                            = "dlp"
-	dnsfilterMod                      = "dnsfilter"
-	dpdkMod                           = "dpdk"
-	emailfilterMod                    = "emailfilter"
-	endpointcontrolMod                = "endpointcontrol"
-	extendercontrollerMod             = "extendercontroller"
-	extensioncontrollerMod            = "extensioncontroller"
-	filefilterMod                     = "filefilter"
-	firewallMod                       = "firewall"
-	firewallconsolidatedMod           = "firewallconsolidated"
-	firewallipmacbindingMod           = "firewallipmacbinding"
-	firewallscheduleMod               = "firewallschedule"
-	firewallserviceMod                = "firewallservice"
-	firewallshaperMod                 = "firewallshaper"
-	firewallsshMod                    = "firewallssh"
-	firewallsslMod                    = "firewallssl"
-	firewallwildcardfqdnMod           = "firewallwildcardfqdn"
-	fmgMod                            = "fmg"
-	ftpproxyMod                       = "ftpproxy"
-	icapMod                           = "icap"
-	ipsMod                            = "ips"
-	jsonMod                           = "json"
-	logMod                            = "log"
-	logdiskMod                        = "logdisk"
-	logfortianalyzer2Mod              = "logfortianalyzer2"
-	logfortianalyzer3Mod              = "logfortianalyzer3"
-	logfortianalyzerMod               = "logfortianalyzer"
-	logfortianalyzercloudMod          = "logfortianalyzercloud"
-	logfortiguardMod                  = "logfortiguard"
-	logmemoryMod                      = "logmemory"
-	lognulldeviceMod                  = "lognulldevice"
-	logsyslogd2Mod                    = "logsyslogd2"
-	logsyslogd3Mod                    = "logsyslogd3"
-	logsyslogd4Mod                    = "logsyslogd4"
-	logsyslogdMod                     = "logsyslogd"
-	logtacacsaccounting2Mod           = "logtacacsaccounting2"
-	logtacacsaccounting3Mod           = "logtacacsaccounting3"
-	logtacacsaccountingMod            = "logtacacsaccounting"
-	logwebtrendsMod                   = "logwebtrends"
-	networkingMod                     = "networking"
-	nsxtMod                           = "nsxt"
-	reportMod                         = "report"
-	routerMod                         = "router"
-	routerbgpMod                      = "routerbgp"
-	routerospf6Mod                    = "routerospf6"
-	routerospfMod                     = "routerospf"
-	sctpfilterMod                     = "sctpfilter"
-	spamfilterMod                     = "spamfilter"
-	sshfilterMod                      = "sshfilter"
-	switchcontrollerMod               = "switchcontroller"
-	switchcontrollerautoconfigMod     = "switchcontrollerautoconfig"
-	switchcontrollerinitialconfigMod  = "switchcontrollerinitialconfig"
-	switchcontrollerptpMod            = "switchcontrollerptp"
-	switchcontrollerqosMod            = "switchcontrollerqos"
-	switchcontrollersecuritypolicyMod = "switchcontrollersecuritypolicy"
-	system3gmodemMod                  = "system3gmodem"
-	systemMod                         = "system"
-	systemautoupdateMod               = "systemautoupdate"
-	systemdhcp6Mod                    = "systemdhcp6"
-	systemdhcpMod                     = "systemdhcp"
-	systemlldpMod                     = "systemlldp"
-	systemreplacemsgMod               = "systemreplacemsg"
-	systemsnmpMod                     = "systemsnmp"
-	userMod                           = "user"
-	videofilterMod                    = "videofilter"
-	voipMod                           = "voip"
-	vpnMod                            = "vpn"
-	vpncertificateMod                 = "vpncertificate"
-	vpnipsecMod                       = "vpnipsec"
-	vpnsslMod                         = "vpnssl"
-	vpnsslwebMod                      = "vpnsslweb"
-	wafMod                            = "waf"
-	wanoptMod                         = "wanopt"
-	webfilterMod                      = "webfilter"
-	webproxyMod                       = "webproxy"
-	wirelesscontrollerMod             = "wirelesscontroller"
-	wirelesscontrollerhotspot20Mod    = "wirelesscontrollerhotspot20"
-	ipmaskMod                         = "ipmask"
+	mainMod = "index" // the fortios module
 )
+
+func convertName(name string) string {
+	idx := strings.Index(name, "_")
+	contract.Assertf(idx > 0 && idx < len(name)-1, "Invalid snake case name %s", name)
+	name = name[idx+1:]
+	contract.Assertf(len(name) > 0, "Invalid snake case name %s", name)
+	return strcase.ToPascal(name)
+}
+
+func makeDataSource(mod string, name string) tokens.ModuleMember {
+	name = convertName(name)
+	return tfbridge.MakeDataSource("fortios", mod, "get"+name)
+}
+
+func makeResource(mod string, res string) tokens.Type {
+	return tfbridge.MakeResource("fortios", mod, convertName(res))
+}
 
 // preConfigureCallback is called before the providerConfigure function of the underlying provider.
 // It should validate that the provider can be configured, and provide actionable errors in the case
 // it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
 // for example `stringValue(vars, "accessKey")`.
-// func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
-// 	return nil
-// }
+func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
+	return nil
+}
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
 	p := shimv2.NewProvider(fortios.Provider())
-
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:    p,
 		Name: "fortios",
 		// DisplayName is a way to be able to change the casing of the provider
 		// name when being displayed on the Pulumi registry
-		DisplayName: "Fortinet FortiOS",
+		DisplayName: "Fortios",
 		// The default publisher for all packages is Pulumi.
 		// Change this to your personal name (or a company name) that you
 		// would like to be shown in the Pulumi Registry if this package is published
 		// there.
-		Publisher: "Aspyrmedia",
+		Publisher: "pulumiverse",
 		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
 		// if this package is published there.
 		//
 		// You may host a logo on a domain you control or add an SVG logo for your package
 		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL: "",
+		LogoURL: "https://raw.githubusercontent.com/pulumiverse/pulumi-fortios/main/docs/fortios.png",
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "https://github.com/aspyrmedia/pulumi-fortios/releases/download/v${VERSION}",
-		Description:       "A Pulumi package for creating and managing fortios cloud resources.",
+		PluginDownloadURL: "github://api.github.com/pulumiverse/pulumi-fortios",
+		Description:       "A Pulumi package for creating and managing Fortios resources",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
 		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
-		Keywords:   []string{"pulumi", "fortios", "category/cloud"},
+		Keywords: []string{
+			"pulumi",
+			"fortios",
+			"category/cloud",
+		},
 		License:    "Apache-2.0",
-		Homepage:   "https://www.pulumi.com",
-		Repository: "https://github.com/aspyrmedia/pulumi-fortios",
+		Homepage:   "https://github.com/pulumiverse/pulumi-fortios",
+		Repository: "https://github.com/pulumiverse/pulumi-fortios",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
+		Version:   version.Version,
 		GitHubOrg: "fortinetdev",
-		Config:    map[string]*tfbridge.SchemaInfo{
+		Config: map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
@@ -173,5329 +112,2772 @@ func Provider() tfbridge.ProviderInfo {
 			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
 			// 	},
 			// },
+			"hostname": {
+				MarkAsOptional: tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_ACCESS_HOSTNAME"},
+				},
+			},
+			"token": {
+				MarkAsOptional: tfbridge.True(),
+				Secret:         tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_ACCESS_TOKEN"},
+				},
+			},
+			"insecure": {
+				MarkAsOptional: tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_INSECURE"},
+				},
+			},
+			"cabundlefile": {
+				MarkAsOptional: tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_CA_CABUNDLE"},
+				},
+			},
+			"cabundlecontent": {
+				MarkAsOptional: tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_CA_CABUNDLECONTENT"},
+				},
+			},
+			"http_proxy": {
+				MarkAsOptional: tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_HTTP_PROXY"},
+				},
+			},
+			"peerauth": {
+				MarkAsOptional: tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_CA_PEERAUTH"},
+				},
+			},
+			"cacert": {
+				MarkAsOptional: tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_CA_CACERT"},
+				},
+			},
+			"clientcert": {
+				MarkAsOptional: tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_CA_CLIENTCERT"},
+				},
+			},
+			"clientkey": {
+				MarkAsOptional: tfbridge.True(),
+				Secret:         tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_CA_CLIENTKEY"},
+				},
+			},
+			"vdom": {
+				MarkAsOptional: tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_VDOM"},
+				},
+			},
+			"fmg_hostname": {
+				MarkAsOptional: tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_FMG_HOSTNAME"},
+				},
+			},
+			"fmg_username": {
+				MarkAsOptional: tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_FMG_USERNAME"},
+				},
+			},
+			"fmg_passwd": {
+				MarkAsOptional: tfbridge.True(),
+				Secret:         tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_FMG_PASSWORD"},
+				},
+			},
+			"fmg_insecure": {
+				MarkAsOptional: tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_FMG_INSECURE"},
+				},
+			},
+			"fmg_cabundlefile": {
+				MarkAsOptional: tfbridge.True(),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"FORTIOS_FMG_CABUNDLE"},
+				},
+			},
 		},
-		// PreConfigureCallback: preConfigureCallback,
+		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
 			//
-			// "aws_iam_role": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IamRole")}
+			// "aws_iam_role": {Tok: makeResource(mainMod(mainMod, "aws_iam_role")}
 			//
 			// "aws_acm_certificate": {
-			// 	Tok: tfbridge.MakeResource(mainPkg, mainMod, "Certificate"),
+			// 	Tok: Tok: makeResource(mainMod(mainMod, "aws_acm_certificate"),
 			// 	Fields: map[string]*tfbridge.SchemaInfo{
-			// 		"tags": {Type: tfbridge.MakeType(mainPkg, "Tags")},
+			// 		"tags": {Type: tfbridge.MakeType("fortios", "Tags")},
 			// 	},
 			// },
 			"fortios_alertemail_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "alertEmailSetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# FortiOS Alert Email Setting Resource"),
-				},
+				Tok: makeResource(mainMod, "fortios_alertemail_setting"),
 			},
 			"fortios_antivirus_heuristic": {
-				Tok: tfbridge.MakeResource(mainPkg, antivirusMod, "antivirusHeuristic"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# antivirus - heuristic"),
-				},
+				Tok: makeResource(mainMod, "fortios_antivirus_heuristic"),
 			},
 			"fortios_antivirus_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, antivirusMod, "antivirusProfile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# antivirus - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_antivirus_profile"),
 			},
 			"fortios_antivirus_quarantine": {
-				Tok: tfbridge.MakeResource(mainPkg, antivirusMod, "antivirusQuarantine"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# antivirus - quarantine"),
-				},
+				Tok: makeResource(mainMod, "fortios_antivirus_quarantine"),
 			},
 			"fortios_antivirus_settings": {
-				Tok: tfbridge.MakeResource(mainPkg, antivirusMod, "antivirusSettings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# antivirus - settings"),
-				},
+				Tok: makeResource(mainMod, "fortios_antivirus_settings"),
 			},
 			"fortios_application_custom": {
-				Tok: tfbridge.MakeResource(mainPkg, applicationMod, "custom"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# application - custom"),
-				},
+				Tok: makeResource(mainMod, "fortios_application_custom"),
 			},
 			"fortios_application_group": {
-				Tok: tfbridge.MakeResource(mainPkg, applicationMod, "group"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# application - group"),
-				},
+				Tok: makeResource(mainMod, "fortios_application_group"),
 			},
 			"fortios_application_list": {
-				Tok: tfbridge.MakeResource(mainPkg, applicationMod, "list"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# application - list"),
-				},
+				Tok: makeResource(mainMod, "fortios_application_list"),
 			},
 			"fortios_application_name": {
-				Tok: tfbridge.MakeResource(mainPkg, applicationMod, "name"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# application - name"),
-				},
+				Tok: makeResource(mainMod, "fortios_application_name"),
 			},
 			"fortios_application_rulesettings": {
-				Tok: tfbridge.MakeResource(mainPkg, applicationMod, "rulesettings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# application - rulesettings"),
-				},
+				Tok: makeResource(mainMod, "fortios_application_rulesettings"),
 			},
 			"fortios_authentication_rule": {
-				Tok: tfbridge.MakeResource(mainPkg, authenticationMod, "rule"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# authentication - rule"),
-				},
+				Tok: makeResource(mainMod, "fortios_authentication_rule"),
 			},
 			"fortios_authentication_scheme": {
-				Tok: tfbridge.MakeResource(mainPkg, authenticationMod, "scheme"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# authentication - scheme"),
-				},
+				Tok: makeResource(mainMod, "fortios_authentication_scheme"),
 			},
 			"fortios_authentication_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, authenticationMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# authentication - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_authentication_setting"),
 			},
 			"fortios_automation_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, automationMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# automation - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_automation_setting"),
 			},
 			"fortios_certificate_ca": {
-				Tok: tfbridge.MakeResource(mainPkg, certificateMod, "ca"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# certificate - ca"),
-				},
+				Tok: makeResource(mainMod, "fortios_certificate_ca"),
 			},
 			"fortios_certificate_crl": {
-				Tok: tfbridge.MakeResource(mainPkg, certificateMod, "crl"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# certificate - crl"),
-				},
+				Tok: makeResource(mainMod, "fortios_certificate_crl"),
 			},
 			"fortios_certificate_local": {
-				Tok: tfbridge.MakeResource(mainPkg, certificateMod, "local"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# certificate - local"),
-				},
+				Tok: makeResource(mainMod, "fortios_certificate_local"),
 			},
 			"fortios_certificate_remote": {
-				Tok: tfbridge.MakeResource(mainPkg, certificateMod, "remote"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# certificate - remote"),
-				},
+				Tok: makeResource(mainMod, "fortios_certificate_remote"),
 			},
 			"fortios_cifs_domaincontroller": {
-				Tok: tfbridge.MakeResource(mainPkg, cifsMod, "domaincontroller"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# cifs - domaincontroller"),
-				},
+				Tok: makeResource(mainMod, "fortios_cifs_domaincontroller"),
 			},
 			"fortios_cifs_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, cifsMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# cifs - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_cifs_profile"),
 			},
 			"fortios_credentialstore_domaincontroller": {
-				Tok: tfbridge.MakeResource(mainPkg, credentialstoreMod, "domaincontroller"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# credentialstore - domaincontroller"),
-				},
+				Tok: makeResource(mainMod, "fortios_credentialstore_domaincontroller"),
 			},
 			"fortios_dlp_datatype": {
-				Tok: tfbridge.MakeResource(mainPkg, dlpMod, "datatype"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# dlp - datatype"),
-				},
+				Tok: makeResource(mainMod, "fortios_dlp_datatype"),
 			},
 			"fortios_dlp_dictionary": {
-				Tok: tfbridge.MakeResource(mainPkg, dlpMod, "dictionary"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# dlp - dictionary"),
-				},
+				Tok: makeResource(mainMod, "fortios_dlp_dictionary"),
 			},
 			"fortios_dlp_filepattern": {
-				Tok: tfbridge.MakeResource(mainPkg, dlpMod, "filepattern"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# dlp - filepattern"),
-				},
+				Tok: makeResource(mainMod, "fortios_dlp_filepattern"),
 			},
 			"fortios_dlp_fpdocsource": {
-				Tok: tfbridge.MakeResource(mainPkg, dlpMod, "fpdocsource"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# dlp - fpdocsource"),
-				},
+				Tok: makeResource(mainMod, "fortios_dlp_fpdocsource"),
 			},
 			"fortios_dlp_fpsensitivity": {
-				Tok: tfbridge.MakeResource(mainPkg, dlpMod, "fpsensitivity"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# dlp - fpsensitivity"),
-				},
+				Tok: makeResource(mainMod, "fortios_dlp_fpsensitivity"),
 			},
 			"fortios_dlp_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, dlpMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# dlp - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_dlp_profile"),
 			},
 			"fortios_dlp_sensitivity": {
-				Tok: tfbridge.MakeResource(mainPkg, dlpMod, "sensitivity"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# dlp - sensitivity"),
-				},
+				Tok: makeResource(mainMod, "fortios_dlp_sensitivity"),
 			},
 			"fortios_dlp_sensor": {
-				Tok: tfbridge.MakeResource(mainPkg, dlpMod, "sensor"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# dlp - sensor"),
-				},
+				Tok: makeResource(mainMod, "fortios_dlp_sensor"),
 			},
 			"fortios_dlp_settings": {
-				Tok: tfbridge.MakeResource(mainPkg, dlpMod, "settings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# dlp - settings"),
-				},
+				Tok: makeResource(mainMod, "fortios_dlp_settings"),
 			},
 			"fortios_dnsfilter_domainfilter": {
-				Tok: tfbridge.MakeResource(mainPkg, dnsfilterMod, "domainfilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# dnsfilter - domainfilter"),
-				},
+				Tok: makeResource(mainMod, "fortios_dnsfilter_domainfilter"),
 			},
 			"fortios_dnsfilter_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, dnsfilterMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# dnsfilter - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_dnsfilter_profile"),
 			},
 			"fortios_dpdk_cpus": {
-				Tok: tfbridge.MakeResource(mainPkg, dpdkMod, "cpus"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# dpdk - cpus"),
-				},
+				Tok: makeResource(mainMod, "fortios_dpdk_cpus"),
 			},
 			"fortios_dpdk_global": {
-				Tok: tfbridge.MakeResource(mainPkg, dpdkMod, "global"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# dpdk - global"),
-				},
+				Tok: makeResource(mainMod, "fortios_dpdk_global"),
 			},
 			"fortios_emailfilter_blockallowlist": {
-				Tok: tfbridge.MakeResource(mainPkg, emailfilterMod, "blockallowlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# emailfilter - blockallowlist"),
-				},
+				Tok: makeResource(mainMod, "fortios_emailfilter_blockallowlist"),
 			},
 			"fortios_emailfilter_bwl": {
-				Tok: tfbridge.MakeResource(mainPkg, emailfilterMod, "bwl"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# emailfilter - bwl"),
-				},
+				Tok: makeResource(mainMod, "fortios_emailfilter_bwl"),
 			},
 			"fortios_emailfilter_bword": {
-				Tok: tfbridge.MakeResource(mainPkg, emailfilterMod, "bword"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# emailfilter - bword"),
-				},
+				Tok: makeResource(mainMod, "fortios_emailfilter_bword"),
 			},
 			"fortios_emailfilter_dnsbl": {
-				Tok: tfbridge.MakeResource(mainPkg, emailfilterMod, "dnsbl"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# emailfilter - dnsbl"),
-				},
+				Tok: makeResource(mainMod, "fortios_emailfilter_dnsbl"),
 			},
 			"fortios_emailfilter_fortishield": {
-				Tok: tfbridge.MakeResource(mainPkg, emailfilterMod, "fortishield"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# emailfilter - fortishield"),
-				},
+				Tok: makeResource(mainMod, "fortios_emailfilter_fortishield"),
 			},
 			"fortios_emailfilter_iptrust": {
-				Tok: tfbridge.MakeResource(mainPkg, emailfilterMod, "iptrust"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# emailfilter - iptrust"),
-				},
+				Tok: makeResource(mainMod, "fortios_emailfilter_iptrust"),
 			},
 			"fortios_emailfilter_mheader": {
-				Tok: tfbridge.MakeResource(mainPkg, emailfilterMod, "mheader"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# emailfilter - mheader"),
-				},
+				Tok: makeResource(mainMod, "fortios_emailfilter_mheader"),
 			},
 			"fortios_emailfilter_options": {
-				Tok: tfbridge.MakeResource(mainPkg, emailfilterMod, "options"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# emailfilter - options"),
-				},
+				Tok: makeResource(mainMod, "fortios_emailfilter_options"),
 			},
 			"fortios_emailfilter_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, emailfilterMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# emailfilter - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_emailfilter_profile"),
 			},
 			"fortios_endpointcontrol_client": {
-				Tok: tfbridge.MakeResource(mainPkg, endpointcontrolMod, "client"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# endpointcontrol - client"),
-				},
+				Tok: makeResource(mainMod, "fortios_endpointcontrol_client"),
 			},
 			"fortios_endpointcontrol_fctems": {
-				Tok: tfbridge.MakeResource(mainPkg, endpointcontrolMod, "fctems"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# endpointcontrol - fctems"),
-				},
+				Tok: makeResource(mainMod, "fortios_endpointcontrol_fctems"),
 			},
 			"fortios_endpointcontrol_forticlientems": {
-				Tok: tfbridge.MakeResource(mainPkg, endpointcontrolMod, "forticlientems"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# endpointcontrol - forticlientems"),
-				},
+				Tok: makeResource(mainMod, "fortios_endpointcontrol_forticlientems"),
 			},
 			"fortios_endpointcontrol_forticlientregistrationsync": {
-				Tok: tfbridge.MakeResource(mainPkg, endpointcontrolMod, "forticlientregistrationsync"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# endpointcontrol - forticlientregistrationsync"),
-				},
+				Tok: makeResource(mainMod, "fortios_endpointcontrol_forticlientregistrationsync"),
 			},
 			"fortios_endpointcontrol_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, endpointcontrolMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# endpointcontrol - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_endpointcontrol_profile"),
 			},
 			"fortios_endpointcontrol_registeredforticlient": {
-				Tok: tfbridge.MakeResource(mainPkg, endpointcontrolMod, "registeredforticlient"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# endpointcontrol - registeredforticlient"),
-				},
+				Tok: makeResource(mainMod, "fortios_endpointcontrol_registeredforticlient"),
 			},
 			"fortios_endpointcontrol_settings": {
-				Tok: tfbridge.MakeResource(mainPkg, endpointcontrolMod, "settings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# endpointcontrol - settings"),
-				},
+				Tok: makeResource(mainMod, "fortios_endpointcontrol_settings"),
 			},
 			"fortios_extendercontroller_dataplan": {
-				Tok: tfbridge.MakeResource(mainPkg, extendercontrollerMod, "dataplan"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# extendercontroller - dataplan"),
-				},
+				Tok: makeResource(mainMod, "fortios_extendercontroller_dataplan"),
 			},
 			"fortios_extendercontroller_extender": {
-				Tok: tfbridge.MakeResource(mainPkg, extendercontrollerMod, "extender"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# extendercontroller - extender"),
-				},
+				Tok: makeResource(mainMod, "fortios_extendercontroller_extender"),
 			},
 			"fortios_extendercontroller_extender1": {
-				Tok: tfbridge.MakeResource(mainPkg, extendercontrollerMod, "extender1"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# extendercontroller - extender1"),
-				},
+				Tok: makeResource(mainMod, "fortios_extendercontroller_extender1"),
 			},
 			"fortios_extendercontroller_extenderprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, extendercontrollerMod, "extenderprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# extendercontroller - extenderprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_extendercontroller_extenderprofile"),
 			},
 			"fortios_extensioncontroller_dataplan": {
-				Tok: tfbridge.MakeResource(mainPkg, extensioncontrollerMod, "dataplan"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# extensioncontroller - dataplan"),
-				},
+				Tok: makeResource(mainMod, "fortios_extensioncontroller_dataplan"),
 			},
 			"fortios_extensioncontroller_extender": {
-				Tok: tfbridge.MakeResource(mainPkg, extensioncontrollerMod, "extender"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# extensioncontroller - extender"),
-				},
+				Tok: makeResource(mainMod, "fortios_extensioncontroller_extender"),
 			},
 			"fortios_extensioncontroller_extenderprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, extensioncontrollerMod, "extenderprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# extensioncontroller - extenderprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_extensioncontroller_extenderprofile"),
 			},
 			"fortios_extensioncontroller_fortigate": {
-				Tok: tfbridge.MakeResource(mainPkg, extensioncontrollerMod, "fortigate"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# extensioncontroller - fortigate"),
-				},
+				Tok: makeResource(mainMod, "fortios_extensioncontroller_fortigate"),
 			},
 			"fortios_extensioncontroller_fortigateprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, extensioncontrollerMod, "fortigateprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# extensioncontroller - fortigateprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_extensioncontroller_fortigateprofile"),
 			},
 			"fortios_filefilter_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, filefilterMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# filefilter - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_filefilter_profile"),
 			},
 			"fortios_firewall_DoSpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "DoSpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - DoSpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_DoSpolicy"),
 			},
 			"fortios_firewall_DoSpolicy6": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "DoSpolicy6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - DoSpolicy6"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_DoSpolicy6"),
 			},
 			"fortios_firewall_accessproxy": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "accessproxy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - accessproxy"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_accessproxy"),
 			},
 			"fortios_firewall_accessproxy6": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "accessproxy6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - accessproxy6"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_accessproxy6"),
 			},
 			"fortios_firewall_accessproxysshclientcert": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "accessproxysshclientcert"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - accessproxysshclientcert"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_accessproxysshclientcert"),
 			},
 			"fortios_firewall_accessproxyvirtualhost": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "accessproxyvirtualhost"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - accessproxyvirtualhost"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_accessproxyvirtualhost"),
 			},
 			"fortios_firewall_address": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "address"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - address"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_address"),
 			},
 			"fortios_firewall_address6": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "address6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - address6"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_address6"),
 			},
 			"fortios_firewall_address6template": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "address6template"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - address6template"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_address6template"),
 			},
 			"fortios_firewall_addrgrp": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "addrgrp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - addrgrp"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_addrgrp"),
 			},
 			"fortios_firewall_addrgrp6": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "addrgrp6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - addrgrp6"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_addrgrp6"),
 			},
 			"fortios_firewall_authportal": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "authportal"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - authportal"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_authportal"),
 			},
 			"fortios_firewall_centralsnatmap": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "centralsnatmap"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - centralsnatmap"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_centralsnatmap"),
 			},
 			"fortios_firewall_centralsnatmap_move": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "centralsnatmap_move"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - centralsnatmap_move"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_centralsnatmap_move"),
 			},
 			"fortios_firewall_centralsnatmap_sort": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "centralsnatmap_sort"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - centralsnatmap_sort"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_centralsnatmap_sort"),
 			},
 			"fortios_firewall_city": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "city"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - city"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_city"),
 			},
 			"fortios_firewall_country": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "country"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - country"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_country"),
 			},
 			"fortios_firewall_decryptedtrafficmirror": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "decryptedtrafficmirror"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - decryptedtrafficmirror"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_decryptedtrafficmirror"),
 			},
 			"fortios_firewall_dnstranslation": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "dnstranslation"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - dnstranslation"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_dnstranslation"),
 			},
 			"fortios_firewall_global": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "global"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - global"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_global"),
 			},
 			"fortios_firewall_identitybasedroute": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "identitybasedroute"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - identitybasedroute"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_identitybasedroute"),
 			},
 			"fortios_firewall_interfacepolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "interfacepolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - interfacepolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_interfacepolicy"),
 			},
 			"fortios_firewall_interfacepolicy6": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "interfacepolicy6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - interfacepolicy6"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_interfacepolicy6"),
 			},
 			"fortios_firewall_internetservice": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetservice"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservice"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetservice"),
 			},
 			"fortios_firewall_internetserviceaddition": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetserviceaddition"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetserviceaddition"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetserviceaddition"),
 			},
 			"fortios_firewall_internetserviceappend": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetserviceappend"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetserviceappend"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetserviceappend"),
 			},
 			"fortios_firewall_internetservicebotnet": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetservicebotnet"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicebotnet"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetservicebotnet"),
 			},
 			"fortios_firewall_internetservicecustom": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetservicecustom"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicecustom"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetservicecustom"),
 			},
 			"fortios_firewall_internetservicecustomgroup": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetservicecustomgroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicecustomgroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetservicecustomgroup"),
 			},
 			"fortios_firewall_internetservicedefinition": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetservicedefinition"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicedefinition"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetservicedefinition"),
 			},
 			"fortios_firewall_internetserviceextension": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetserviceextension"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetserviceextension"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetserviceextension"),
 			},
 			"fortios_firewall_internetservicegroup": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetservicegroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicegroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetservicegroup"),
 			},
 			"fortios_firewall_internetserviceipblreason": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetserviceipblreason"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetserviceipblreason"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetserviceipblreason"),
 			},
 			"fortios_firewall_internetserviceipblvendor": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetserviceipblvendor"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetserviceipblvendor"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetserviceipblvendor"),
 			},
 			"fortios_firewall_internetservicelist": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetservicelist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicelist"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetservicelist"),
 			},
 			"fortios_firewall_internetservicename": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetservicename"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicename"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetservicename"),
 			},
 			"fortios_firewall_internetserviceowner": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetserviceowner"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetserviceowner"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetserviceowner"),
 			},
 			"fortios_firewall_internetservicereputation": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "internetservicereputation"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicereputation"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_internetservicereputation"),
 			},
 			"fortios_firewall_ippool": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "ippool"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - ippool"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_ippool"),
 			},
 			"fortios_firewall_ippool6": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "ippool6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - ippool6"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_ippool6"),
 			},
 			"fortios_firewall_iptranslation": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "iptranslation"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - iptranslation"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_iptranslation"),
 			},
 			"fortios_firewall_ipv6ehfilter": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "ipv6ehfilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - ipv6ehfilter"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_ipv6ehfilter"),
 			},
 			"fortios_firewall_ldbmonitor": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "ldbmonitor"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - ldbmonitor"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_ldbmonitor"),
 			},
 			"fortios_firewall_localinpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "localinpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - localinpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_localinpolicy"),
 			},
 			"fortios_firewall_localinpolicy6": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "localinpolicy6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - localinpolicy6"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_localinpolicy6"),
 			},
 			"fortios_firewall_multicastaddress": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "multicastaddress"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - multicastaddress"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_multicastaddress"),
 			},
 			"fortios_firewall_multicastaddress6": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "multicastaddress6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - multicastaddress6"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_multicastaddress6"),
 			},
 			"fortios_firewall_multicastpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "multicastpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - multicastpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_multicastpolicy"),
 			},
 			"fortios_firewall_multicastpolicy6": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "multicastpolicy6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - multicastpolicy6"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_multicastpolicy6"),
 			},
 			"fortios_firewall_networkservicedynamic": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "networkservicedynamic"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - networkservicedynamic"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_networkservicedynamic"),
 			},
 			"fortios_firewall_object_address": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "object_address"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - object_address"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_object_address"),
 			},
 			"fortios_firewall_object_addressgroup": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "object_addressgroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - object_addressgroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_object_addressgroup"),
 			},
 			"fortios_firewall_object_ippool": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "object_ippool"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - object_ippool"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_object_ippool"),
 			},
 			"fortios_firewall_object_service": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "object_service"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - object_service"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_object_service"),
 			},
 			"fortios_firewall_object_servicecategory": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "object_servicecategory"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - object_servicecategory"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_object_servicecategory"),
 			},
 			"fortios_firewall_object_servicegroup": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "object_servicegroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - object_servicegroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_object_servicegroup"),
 			},
 			"fortios_firewall_object_vip": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "object_vip"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - object_vip"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_object_vip"),
 			},
 			"fortios_firewall_object_vipgroup": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "object_vipgroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - object_vipgroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_object_vipgroup"),
 			},
 			"fortios_firewall_policy": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "policy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - policy"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_policy"),
 			},
 			"fortios_firewall_policy46": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "policy46"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - policy46"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_policy46"),
 			},
 			"fortios_firewall_policy6": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "policy6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - policy6"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_policy6"),
 			},
 			"fortios_firewall_policy64": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "policy64"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - policy64"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_policy64"),
 			},
 			"fortios_firewall_profilegroup": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "profilegroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - profilegroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_profilegroup"),
 			},
 			"fortios_firewall_profileprotocoloptions": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "profileprotocoloptions"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - profileprotocoloptions"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_profileprotocoloptions"),
 			},
 			"fortios_firewall_proxyaddress": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "proxyaddress"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - proxyaddress"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_proxyaddress"),
 			},
 			"fortios_firewall_proxyaddrgrp": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "proxyaddrgrp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - proxyaddrgrp"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_proxyaddrgrp"),
 			},
 			"fortios_firewall_proxypolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "proxypolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - proxypolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_proxypolicy"),
 			},
 			"fortios_firewall_proxypolicy_move": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "proxypolicy_move"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - proxypolicy_move"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_proxypolicy_move"),
 			},
 			"fortios_firewall_proxypolicy_sort": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "proxypolicy_sort"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - proxypolicy_sort"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_proxypolicy_sort"),
 			},
 			"fortios_firewall_region": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "region"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - region"),
-				},
-			},
-			"fortios_firewall_security_policy": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "security_policy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - security_policy"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_region"),
 			},
 			"fortios_firewall_security_policyseq": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "security_policyseq"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - security_policyseq"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_security_policyseq"),
 			},
 			"fortios_firewall_security_policysort": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "security_policysort"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - security_policysort"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_security_policysort"),
 			},
 			"fortios_firewall_securitypolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "securitypolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - securitypolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_securitypolicy"),
 			},
 			"fortios_firewall_shapingpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "shapingpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - shapingpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_shapingpolicy"),
 			},
 			"fortios_firewall_shapingprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "shapingprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - shapingprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_shapingprofile"),
 			},
 			"fortios_firewall_sniffer": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "sniffer"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - sniffer"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_sniffer"),
 			},
 			"fortios_firewall_sslserver": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "sslserver"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - sslserver"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_sslserver"),
 			},
 			"fortios_firewall_sslsshprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "sslsshprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - sslsshprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_sslsshprofile"),
 			},
 			"fortios_firewall_trafficclass": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "trafficclass"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - trafficclass"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_trafficclass"),
 			},
 			"fortios_firewall_ttlpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "ttlpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - ttlpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_ttlpolicy"),
 			},
 			"fortios_firewall_vendormac": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "vendormac"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - vendormac"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_vendormac"),
 			},
 			"fortios_firewall_vip": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "vip"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - vip"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_vip"),
 			},
 			"fortios_firewall_vip46": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "vip46"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - vip46"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_vip46"),
 			},
 			"fortios_firewall_vip6": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "vip6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - vip6"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_vip6"),
 			},
 			"fortios_firewall_vip64": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "vip64"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - vip64"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_vip64"),
 			},
 			"fortios_firewall_vipgrp": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "vipgrp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - vipgrp"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_vipgrp"),
 			},
 			"fortios_firewall_vipgrp46": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "vipgrp46"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - vipgrp46"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_vipgrp46"),
 			},
 			"fortios_firewall_vipgrp6": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "vipgrp6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - vipgrp6"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_vipgrp6"),
 			},
 			"fortios_firewall_vipgrp64": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallMod, "vipgrp64"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - vipgrp64"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewall_vipgrp64"),
 			},
 			"fortios_firewallconsolidated_policy": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallconsolidatedMod, "policy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallconsolidated - policy"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallconsolidated_policy"),
 			},
 			"fortios_firewallipmacbinding_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallipmacbindingMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallipmacbinding - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallipmacbinding_setting"),
 			},
 			"fortios_firewallipmacbinding_table": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallipmacbindingMod, "table"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallipmacbinding - table"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallipmacbinding_table"),
 			},
 			"fortios_firewallschedule_group": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallscheduleMod, "group"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallschedule - group"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallschedule_group"),
 			},
 			"fortios_firewallschedule_onetime": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallscheduleMod, "onetime"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallschedule - onetime"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallschedule_onetime"),
 			},
 			"fortios_firewallschedule_recurring": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallscheduleMod, "recurring"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallschedule - recurring"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallschedule_recurring"),
 			},
 			"fortios_firewallservice_category": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallserviceMod, "category"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallservice - category"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallservice_category"),
 			},
 			"fortios_firewallservice_custom": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallserviceMod, "custom"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallservice - custom"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallservice_custom"),
 			},
 			"fortios_firewallservice_group": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallserviceMod, "group"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallservice - group"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallservice_group"),
 			},
 			"fortios_firewallshaper_peripshaper": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallshaperMod, "peripshaper"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallshaper - peripshaper"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallshaper_peripshaper"),
 			},
 			"fortios_firewallshaper_trafficshaper": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallshaperMod, "trafficshaper"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallshaper - trafficshaper"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallshaper_trafficshaper"),
 			},
 			"fortios_firewallssh_hostkey": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallsshMod, "hostkey"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallssh - hostkey"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallssh_hostkey"),
 			},
 			"fortios_firewallssh_localca": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallsshMod, "localca"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallssh - localca"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallssh_localca"),
 			},
 			"fortios_firewallssh_localkey": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallsshMod, "localkey"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallssh - localkey"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallssh_localkey"),
 			},
 			"fortios_firewallssh_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallsshMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallssh - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallssh_setting"),
 			},
 			"fortios_firewallssl_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallsslMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallssl - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallssl_setting"),
 			},
 			"fortios_firewallwildcardfqdn_custom": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallwildcardfqdnMod, "custom"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallwildcardfqdn - custom"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallwildcardfqdn_custom"),
 			},
 			"fortios_firewallwildcardfqdn_group": {
-				Tok: tfbridge.MakeResource(mainPkg, firewallwildcardfqdnMod, "group"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallwildcardfqdn - group"),
-				},
+				Tok: makeResource(mainMod, "fortios_firewallwildcardfqdn_group"),
 			},
 			"fortios_fmg_devicemanager_device": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "devicemanager_device"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - devicemanager_device"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_devicemanager_device"),
 			},
 			"fortios_fmg_devicemanager_install_device": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "devicemanager_install_device"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - devicemanager_install_device"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_devicemanager_install_device"),
 			},
 			"fortios_fmg_devicemanager_install_policypackage": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "devicemanager_install_policypackage"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - devicemanager_install_policypackage"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_devicemanager_install_policypackage"),
 			},
 			"fortios_fmg_devicemanager_script": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "devicemanager_script"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - devicemanager_script"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_devicemanager_script"),
 			},
 			"fortios_fmg_devicemanager_script_execute": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "devicemanager_script_execute"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - devicemanager_script_execute"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_devicemanager_script_execute"),
 			},
 			"fortios_fmg_firewall_object_address": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "firewall_object_address"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - firewall_object_address"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_firewall_object_address"),
 			},
 			"fortios_fmg_firewall_object_ippool": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "firewall_object_ippool"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - firewall_object_ippool"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_firewall_object_ippool"),
 			},
 			"fortios_fmg_firewall_object_service": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "firewall_object_service"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - firewall_object_service"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_firewall_object_service"),
 			},
 			"fortios_fmg_firewall_object_vip": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "firewall_object_vip"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - firewall_object_vip"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_firewall_object_vip"),
 			},
 			"fortios_fmg_firewall_security_policy": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "firewall_security_policy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - firewall_security_policy"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_firewall_security_policy"),
 			},
 			"fortios_fmg_firewall_security_policypackage": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "firewall_security_policypackage"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - firewall_security_policypackage"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_firewall_security_policypackage"),
 			},
 			"fortios_fmg_jsonrpc_request": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "jsonrpc_request"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - jsonrpc_request"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_jsonrpc_request"),
 			},
 			"fortios_fmg_object_adom_revision": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "object_adom_revision"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - object_adom_revision"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_object_adom_revision"),
 			},
 			"fortios_fmg_system_admin": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "system_admin"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - system_admin"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_system_admin"),
 			},
 			"fortios_fmg_system_admin_profiles": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "system_admin_profiles"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - system_admin_profiles"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_system_admin_profiles"),
 			},
 			"fortios_fmg_system_admin_user": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "system_admin_user"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - system_admin_user"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_system_admin_user"),
 			},
 			"fortios_fmg_system_adom": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "system_adom"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - system_adom"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_system_adom"),
 			},
 			"fortios_fmg_system_dns": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "system_dns"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - system_dns"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_system_dns"),
 			},
 			"fortios_fmg_system_global": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "system_global"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - system_global"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_system_global"),
 			},
 			"fortios_fmg_system_license_forticare": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "system_license_forticare"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - system_license_forticare"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_system_license_forticare"),
 			},
 			"fortios_fmg_system_license_vm": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "system_license_vm"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - system_license_vm"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_system_license_vm"),
 			},
 			"fortios_fmg_system_network_interface": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "system_network_interface"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - system_network_interface"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_system_network_interface"),
 			},
 			"fortios_fmg_system_network_route": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "system_network_route"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - system_network_route"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_system_network_route"),
 			},
 			"fortios_fmg_system_ntp": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "system_ntp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - system_ntp"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_system_ntp"),
 			},
 			"fortios_fmg_system_syslogserver": {
-				Tok: tfbridge.MakeResource(mainPkg, fmgMod, "system_syslogserver"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# fmg - system_syslogserver"),
-				},
+				Tok: makeResource(mainMod, "fortios_fmg_system_syslogserver"),
 			},
 			"fortios_ftpproxy_explicit": {
-				Tok: tfbridge.MakeResource(mainPkg, ftpproxyMod, "explicit"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# ftpproxy - explicit"),
-				},
+				Tok: makeResource(mainMod, "fortios_ftpproxy_explicit"),
 			},
 			"fortios_icap_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, icapMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# icap - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_icap_profile"),
 			},
 			"fortios_icap_server": {
-				Tok: tfbridge.MakeResource(mainPkg, icapMod, "server"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# icap - server"),
-				},
+				Tok: makeResource(mainMod, "fortios_icap_server"),
 			},
 			"fortios_icap_servergroup": {
-				Tok: tfbridge.MakeResource(mainPkg, icapMod, "servergroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# icap - servergroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_icap_servergroup"),
 			},
 			"fortios_ips_custom": {
-				Tok: tfbridge.MakeResource(mainPkg, ipsMod, "custom"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# ips - custom"),
-				},
+				Tok: makeResource(mainMod, "fortios_ips_custom"),
 			},
 			"fortios_ips_decoder": {
-				Tok: tfbridge.MakeResource(mainPkg, ipsMod, "decoder"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# ips - decoder"),
-				},
+				Tok: makeResource(mainMod, "fortios_ips_decoder"),
 			},
 			"fortios_ips_global": {
-				Tok: tfbridge.MakeResource(mainPkg, ipsMod, "global"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# ips - global"),
-				},
+				Tok: makeResource(mainMod, "fortios_ips_global"),
 			},
 			"fortios_ips_rule": {
-				Tok: tfbridge.MakeResource(mainPkg, ipsMod, "rule"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# ips - rule"),
-				},
+				Tok: makeResource(mainMod, "fortios_ips_rule"),
 			},
 			"fortios_ips_rulesettings": {
-				Tok: tfbridge.MakeResource(mainPkg, ipsMod, "rulesettings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# ips - rulesettings"),
-				},
+				Tok: makeResource(mainMod, "fortios_ips_rulesettings"),
 			},
 			"fortios_ips_sensor": {
-				Tok: tfbridge.MakeResource(mainPkg, ipsMod, "sensor"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# ips - sensor"),
-				},
+				Tok: makeResource(mainMod, "fortios_ips_sensor"),
 			},
 			"fortios_ips_settings": {
-				Tok: tfbridge.MakeResource(mainPkg, ipsMod, "settings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# ips - settings"),
-				},
+				Tok: makeResource(mainMod, "fortios_ips_settings"),
 			},
 			"fortios_ips_viewmap": {
-				Tok: tfbridge.MakeResource(mainPkg, ipsMod, "viewmap"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# ips - viewmap"),
-				},
+				Tok: makeResource(mainMod, "fortios_ips_viewmap"),
 			},
 			"fortios_json_generic_api": {
-				Tok: tfbridge.MakeResource(mainPkg, jsonMod, "generic_api"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# json - generic_api"),
-				},
+				Tok: makeResource(mainMod, "fortios_json_generic_api"),
 			},
 			"fortios_log_customfield": {
-				Tok: tfbridge.MakeResource(mainPkg, logMod, "customfield"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# log - customfield"),
-				},
+				Tok: makeResource(mainMod, "fortios_log_customfield"),
 			},
 			"fortios_log_eventfilter": {
-				Tok: tfbridge.MakeResource(mainPkg, logMod, "eventfilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# log - eventfilter"),
-				},
-			},
-			"fortios_log_fortianalyzer_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logMod, "fortianalyzer_setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# log - fortianalyzer_setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_log_eventfilter"),
 			},
 			"fortios_log_guidisplay": {
-				Tok: tfbridge.MakeResource(mainPkg, logMod, "guidisplay"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# log - guidisplay"),
-				},
+				Tok: makeResource(mainMod, "fortios_log_guidisplay"),
 			},
 			"fortios_log_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# log - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_log_setting"),
 			},
 			"fortios_log_syslog_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logMod, "syslog_setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# log - syslog_setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_log_syslog_setting"),
 			},
 			"fortios_log_threatweight": {
-				Tok: tfbridge.MakeResource(mainPkg, logMod, "threatweight"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# log - threatweight"),
-				},
+				Tok: makeResource(mainMod, "fortios_log_threatweight"),
 			},
 			"fortios_logdisk_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logdiskMod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logdisk - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logdisk_filter"),
 			},
 			"fortios_logdisk_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logdiskMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logdisk - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logdisk_setting"),
 			},
 			"fortios_logfortianalyzer2_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzer2Mod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzer2 - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzer2_filter"),
 			},
 			"fortios_logfortianalyzer2_overridefilter": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzer2Mod, "overridefilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzer2 - overridefilter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzer2_overridefilter"),
 			},
 			"fortios_logfortianalyzer2_overridesetting": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzer2Mod, "overridesetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzer2 - overridesetting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzer2_overridesetting"),
 			},
 			"fortios_logfortianalyzer2_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzer2Mod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzer2 - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzer2_setting"),
 			},
 			"fortios_logfortianalyzer3_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzer3Mod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzer3 - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzer3_filter"),
 			},
 			"fortios_logfortianalyzer3_overridefilter": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzer3Mod, "overridefilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzer3 - overridefilter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzer3_overridefilter"),
 			},
 			"fortios_logfortianalyzer3_overridesetting": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzer3Mod, "overridesetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzer3 - overridesetting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzer3_overridesetting"),
 			},
 			"fortios_logfortianalyzer3_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzer3Mod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzer3 - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzer3_setting"),
 			},
 			"fortios_logfortianalyzer_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzerMod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzer - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzer_filter"),
 			},
 			"fortios_logfortianalyzer_overridefilter": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzerMod, "overridefilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzer - overridefilter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzer_overridefilter"),
 			},
 			"fortios_logfortianalyzer_overridesetting": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzerMod, "overridesetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzer - overridesetting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzer_overridesetting"),
 			},
 			"fortios_logfortianalyzer_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzerMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzer - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzer_setting"),
 			},
 			"fortios_logfortianalyzercloud_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzercloudMod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzercloud - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzercloud_filter"),
 			},
 			"fortios_logfortianalyzercloud_overridefilter": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzercloudMod, "overridefilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzercloud - overridefilter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzercloud_overridefilter"),
 			},
 			"fortios_logfortianalyzercloud_overridesetting": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzercloudMod, "overridesetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzercloud - overridesetting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzercloud_overridesetting"),
 			},
 			"fortios_logfortianalyzercloud_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortianalyzercloudMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortianalyzercloud - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortianalyzercloud_setting"),
 			},
 			"fortios_logfortiguard_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortiguardMod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortiguard - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortiguard_filter"),
 			},
 			"fortios_logfortiguard_overridefilter": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortiguardMod, "overridefilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortiguard - overridefilter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortiguard_overridefilter"),
 			},
 			"fortios_logfortiguard_overridesetting": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortiguardMod, "overridesetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortiguard - overridesetting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortiguard_overridesetting"),
 			},
 			"fortios_logfortiguard_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logfortiguardMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logfortiguard - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logfortiguard_setting"),
 			},
 			"fortios_logmemory_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logmemoryMod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logmemory - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logmemory_filter"),
 			},
 			"fortios_logmemory_globalsetting": {
-				Tok: tfbridge.MakeResource(mainPkg, logmemoryMod, "globalsetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logmemory - globalsetting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logmemory_globalsetting"),
 			},
 			"fortios_logmemory_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logmemoryMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logmemory - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logmemory_setting"),
 			},
 			"fortios_lognulldevice_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, lognulldeviceMod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# lognulldevice - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_lognulldevice_filter"),
 			},
 			"fortios_lognulldevice_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, lognulldeviceMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# lognulldevice - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_lognulldevice_setting"),
 			},
 			"fortios_logsyslogd2_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogd2Mod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd2 - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd2_filter"),
 			},
 			"fortios_logsyslogd2_overridefilter": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogd2Mod, "overridefilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd2 - overridefilter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd2_overridefilter"),
 			},
 			"fortios_logsyslogd2_overridesetting": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogd2Mod, "overridesetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd2 - overridesetting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd2_overridesetting"),
 			},
 			"fortios_logsyslogd2_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogd2Mod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd2 - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd2_setting"),
 			},
 			"fortios_logsyslogd3_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogd3Mod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd3 - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd3_filter"),
 			},
 			"fortios_logsyslogd3_overridefilter": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogd3Mod, "overridefilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd3 - overridefilter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd3_overridefilter"),
 			},
 			"fortios_logsyslogd3_overridesetting": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogd3Mod, "overridesetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd3 - overridesetting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd3_overridesetting"),
 			},
 			"fortios_logsyslogd3_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogd3Mod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd3 - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd3_setting"),
 			},
 			"fortios_logsyslogd4_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogd4Mod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd4 - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd4_filter"),
 			},
 			"fortios_logsyslogd4_overridefilter": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogd4Mod, "overridefilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd4 - overridefilter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd4_overridefilter"),
 			},
 			"fortios_logsyslogd4_overridesetting": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogd4Mod, "overridesetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd4 - overridesetting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd4_overridesetting"),
 			},
 			"fortios_logsyslogd4_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogd4Mod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd4 - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd4_setting"),
 			},
 			"fortios_logsyslogd_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogdMod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd_filter"),
 			},
 			"fortios_logsyslogd_overridefilter": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogdMod, "overridefilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd - overridefilter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd_overridefilter"),
 			},
 			"fortios_logsyslogd_overridesetting": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogdMod, "overridesetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd - overridesetting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd_overridesetting"),
 			},
 			"fortios_logsyslogd_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logsyslogdMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logsyslogd - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logsyslogd_setting"),
 			},
 			"fortios_logtacacsaccounting2_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logtacacsaccounting2Mod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logtacacsaccounting2 - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logtacacsaccounting2_filter"),
 			},
 			"fortios_logtacacsaccounting2_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logtacacsaccounting2Mod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logtacacsaccounting2 - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logtacacsaccounting2_setting"),
 			},
 			"fortios_logtacacsaccounting3_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logtacacsaccounting3Mod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logtacacsaccounting3 - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logtacacsaccounting3_filter"),
 			},
 			"fortios_logtacacsaccounting3_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logtacacsaccounting3Mod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logtacacsaccounting3 - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logtacacsaccounting3_setting"),
 			},
 			"fortios_logtacacsaccounting_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logtacacsaccountingMod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logtacacsaccounting - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logtacacsaccounting_filter"),
 			},
 			"fortios_logtacacsaccounting_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logtacacsaccountingMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logtacacsaccounting - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logtacacsaccounting_setting"),
 			},
 			"fortios_logwebtrends_filter": {
-				Tok: tfbridge.MakeResource(mainPkg, logwebtrendsMod, "filter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logwebtrends - filter"),
-				},
+				Tok: makeResource(mainMod, "fortios_logwebtrends_filter"),
 			},
 			"fortios_logwebtrends_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, logwebtrendsMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# logwebtrends - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_logwebtrends_setting"),
 			},
 			"fortios_networking_interface_port": {
-				Tok: tfbridge.MakeResource(mainPkg, networkingMod, "interface_port"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# networking - interface_port"),
-				},
+				Tok: makeResource(mainMod, "fortios_networking_interface_port"),
 			},
 			"fortios_networking_route_static": {
-				Tok: tfbridge.MakeResource(mainPkg, networkingMod, "route_static"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# networking - route_static"),
-				},
+				Tok: makeResource(mainMod, "fortios_networking_route_static"),
 			},
 			"fortios_nsxt_servicechain": {
-				Tok: tfbridge.MakeResource(mainPkg, nsxtMod, "servicechain"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# nsxt - servicechain"),
-				},
+				Tok: makeResource(mainMod, "fortios_nsxt_servicechain"),
 			},
 			"fortios_nsxt_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, nsxtMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# nsxt - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_nsxt_setting"),
 			},
 			"fortios_report_chart": {
-				Tok: tfbridge.MakeResource(mainPkg, reportMod, "chart"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# report - chart"),
-				},
+				Tok: makeResource(mainMod, "fortios_report_chart"),
 			},
 			"fortios_report_dataset": {
-				Tok: tfbridge.MakeResource(mainPkg, reportMod, "dataset"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# report - dataset"),
-				},
+				Tok: makeResource(mainMod, "fortios_report_dataset"),
 			},
 			"fortios_report_layout": {
-				Tok: tfbridge.MakeResource(mainPkg, reportMod, "layout"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# report - layout"),
-				},
+				Tok: makeResource(mainMod, "fortios_report_layout"),
 			},
 			"fortios_report_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, reportMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# report - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_report_setting"),
 			},
 			"fortios_report_style": {
-				Tok: tfbridge.MakeResource(mainPkg, reportMod, "style"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# report - style"),
-				},
+				Tok: makeResource(mainMod, "fortios_report_style"),
 			},
 			"fortios_report_theme": {
-				Tok: tfbridge.MakeResource(mainPkg, reportMod, "theme"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# report - theme"),
-				},
+				Tok: makeResource(mainMod, "fortios_report_theme"),
 			},
 			"fortios_router_accesslist": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "accesslist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - accesslist"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_accesslist"),
 			},
 			"fortios_router_accesslist6": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "accesslist6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - accesslist6"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_accesslist6"),
 			},
 			"fortios_router_aspathlist": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "aspathlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - aspathlist"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_aspathlist"),
 			},
 			"fortios_router_authpath": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "authpath"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - authpath"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_authpath"),
 			},
 			"fortios_router_bfd": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "bfd"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - bfd"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_bfd"),
 			},
 			"fortios_router_bfd6": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "bfd6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - bfd6"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_bfd6"),
 			},
 			"fortios_router_bgp": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "bgp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - bgp"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_bgp"),
 			},
 			"fortios_router_communitylist": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "communitylist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - communitylist"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_communitylist"),
 			},
 			"fortios_router_isis": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "isis"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - isis"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_isis"),
 			},
 			"fortios_router_keychain": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "keychain"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - keychain"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_keychain"),
 			},
 			"fortios_router_multicast": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "multicast"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - multicast"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_multicast"),
 			},
 			"fortios_router_multicast6": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "multicast6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - multicast6"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_multicast6"),
 			},
 			"fortios_router_multicastflow": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "multicastflow"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - multicastflow"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_multicastflow"),
 			},
 			"fortios_router_ospf": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "ospf"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - ospf"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_ospf"),
 			},
 			"fortios_router_ospf6": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "ospf6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - ospf6"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_ospf6"),
 			},
 			"fortios_router_policy": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "policy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - policy"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_policy"),
 			},
 			"fortios_router_policy6": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "policy6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - policy6"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_policy6"),
 			},
 			"fortios_router_prefixlist": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "prefixlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - prefixlist"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_prefixlist"),
 			},
 			"fortios_router_prefixlist6": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "prefixlist6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - prefixlist6"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_prefixlist6"),
 			},
 			"fortios_router_rip": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "rip"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - rip"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_rip"),
 			},
 			"fortios_router_ripng": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "ripng"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - ripng"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_ripng"),
 			},
 			"fortios_router_routemap": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "routemap"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - routemap"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_routemap"),
 			},
 			"fortios_router_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_setting"),
 			},
 			"fortios_router_static": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "static"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - static"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_static"),
 			},
 			"fortios_router_static6": {
-				Tok: tfbridge.MakeResource(mainPkg, routerMod, "static6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - static6"),
-				},
+				Tok: makeResource(mainMod, "fortios_router_static6"),
 			},
 			"fortios_routerbgp_neighbor": {
-				Tok: tfbridge.MakeResource(mainPkg, routerbgpMod, "neighbor"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# routerbgp - neighbor"),
-				},
+				Tok: makeResource(mainMod, "fortios_routerbgp_neighbor"),
 			},
 			"fortios_routerbgp_network": {
-				Tok: tfbridge.MakeResource(mainPkg, routerbgpMod, "network"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# routerbgp - network"),
-				},
+				Tok: makeResource(mainMod, "fortios_routerbgp_network"),
 			},
 			"fortios_routerbgp_network6": {
-				Tok: tfbridge.MakeResource(mainPkg, routerbgpMod, "network6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# routerbgp - network6"),
-				},
+				Tok: makeResource(mainMod, "fortios_routerbgp_network6"),
 			},
 			"fortios_routerospf6_ospf6interface": {
-				Tok: tfbridge.MakeResource(mainPkg, routerospf6Mod, "ospf6interface"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# routerospf6 - ospf6interface"),
-				},
+				Tok: makeResource(mainMod, "fortios_routerospf6_ospf6interface"),
 			},
 			"fortios_routerospf_neighbor": {
-				Tok: tfbridge.MakeResource(mainPkg, routerospfMod, "neighbor"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# routerospf - neighbor"),
-				},
+				Tok: makeResource(mainMod, "fortios_routerospf_neighbor"),
 			},
 			"fortios_routerospf_network": {
-				Tok: tfbridge.MakeResource(mainPkg, routerospfMod, "network"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# routerospf - network"),
-				},
+				Tok: makeResource(mainMod, "fortios_routerospf_network"),
 			},
 			"fortios_routerospf_ospfinterface": {
-				Tok: tfbridge.MakeResource(mainPkg, routerospfMod, "ospfinterface"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# routerospf - ospfinterface"),
-				},
+				Tok: makeResource(mainMod, "fortios_routerospf_ospfinterface"),
 			},
 			"fortios_sctpfilter_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, sctpfilterMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# sctpfilter - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_sctpfilter_profile"),
 			},
 			"fortios_spamfilter_bwl": {
-				Tok: tfbridge.MakeResource(mainPkg, spamfilterMod, "bwl"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# spamfilter - bwl"),
-				},
+				Tok: makeResource(mainMod, "fortios_spamfilter_bwl"),
 			},
 			"fortios_spamfilter_bword": {
-				Tok: tfbridge.MakeResource(mainPkg, spamfilterMod, "bword"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# spamfilter - bword"),
-				},
+				Tok: makeResource(mainMod, "fortios_spamfilter_bword"),
 			},
 			"fortios_spamfilter_dnsbl": {
-				Tok: tfbridge.MakeResource(mainPkg, spamfilterMod, "dnsbl"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# spamfilter - dnsbl"),
-				},
+				Tok: makeResource(mainMod, "fortios_spamfilter_dnsbl"),
 			},
 			"fortios_spamfilter_fortishield": {
-				Tok: tfbridge.MakeResource(mainPkg, spamfilterMod, "fortishield"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# spamfilter - fortishield"),
-				},
+				Tok: makeResource(mainMod, "fortios_spamfilter_fortishield"),
 			},
 			"fortios_spamfilter_iptrust": {
-				Tok: tfbridge.MakeResource(mainPkg, spamfilterMod, "iptrust"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# spamfilter - iptrust"),
-				},
+				Tok: makeResource(mainMod, "fortios_spamfilter_iptrust"),
 			},
 			"fortios_spamfilter_mheader": {
-				Tok: tfbridge.MakeResource(mainPkg, spamfilterMod, "mheader"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# spamfilter - mheader"),
-				},
+				Tok: makeResource(mainMod, "fortios_spamfilter_mheader"),
 			},
 			"fortios_spamfilter_options": {
-				Tok: tfbridge.MakeResource(mainPkg, spamfilterMod, "options"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# spamfilter - options"),
-				},
+				Tok: makeResource(mainMod, "fortios_spamfilter_options"),
 			},
 			"fortios_spamfilter_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, spamfilterMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# spamfilter - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_spamfilter_profile"),
 			},
 			"fortios_sshfilter_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, sshfilterMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# sshfilter - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_sshfilter_profile"),
 			},
 			"fortios_switchcontroller_8021Xsettings": {
-				// Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "8021Xsettings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - 8021Xsettings"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_8021Xsettings"),
 			},
 			"fortios_switchcontroller_customcommand": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "customcommand"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - customcommand"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_customcommand"),
 			},
 			"fortios_switchcontroller_dynamicportpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "dynamicportpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - dynamicportpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_dynamicportpolicy"),
 			},
 			"fortios_switchcontroller_flowtracking": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "flowtracking"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - flowtracking"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_flowtracking"),
 			},
 			"fortios_switchcontroller_fortilinksettings": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "fortilinksettings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - fortilinksettings"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_fortilinksettings"),
 			},
 			"fortios_switchcontroller_global": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "global"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - global"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_global"),
 			},
 			"fortios_switchcontroller_igmpsnooping": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "igmpsnooping"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - igmpsnooping"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_igmpsnooping"),
 			},
 			"fortios_switchcontroller_lldpprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "lldpprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - lldpprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_lldpprofile"),
 			},
 			"fortios_switchcontroller_lldpsettings": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "lldpsettings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - lldpsettings"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_lldpsettings"),
 			},
 			"fortios_switchcontroller_location": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "location"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - location"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_location"),
 			},
 			"fortios_switchcontroller_macsyncsettings": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "macsyncsettings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - macsyncsettings"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_macsyncsettings"),
 			},
 			"fortios_switchcontroller_managedswitch": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "managedswitch"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - managedswitch"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_managedswitch"),
 			},
 			"fortios_switchcontroller_nacdevice": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "nacdevice"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - nacdevice"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_nacdevice"),
 			},
 			"fortios_switchcontroller_nacsettings": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "nacsettings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - nacsettings"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_nacsettings"),
 			},
 			"fortios_switchcontroller_networkmonitorsettings": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "networkmonitorsettings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - networkmonitorsettings"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_networkmonitorsettings"),
 			},
 			"fortios_switchcontroller_portpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "portpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - portpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_portpolicy"),
 			},
 			"fortios_switchcontroller_quarantine": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "quarantine"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - quarantine"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_quarantine"),
 			},
 			"fortios_switchcontroller_remotelog": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "remotelog"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - remotelog"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_remotelog"),
 			},
 			"fortios_switchcontroller_sflow": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "sflow"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - sflow"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_sflow"),
 			},
 			"fortios_switchcontroller_snmpcommunity": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "snmpcommunity"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - snmpcommunity"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_snmpcommunity"),
 			},
 			"fortios_switchcontroller_snmpsysinfo": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "snmpsysinfo"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - snmpsysinfo"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_snmpsysinfo"),
 			},
 			"fortios_switchcontroller_snmptrapthreshold": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "snmptrapthreshold"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - snmptrapthreshold"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_snmptrapthreshold"),
 			},
 			"fortios_switchcontroller_snmpuser": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "snmpuser"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - snmpuser"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_snmpuser"),
 			},
 			"fortios_switchcontroller_stormcontrol": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "stormcontrol"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - stormcontrol"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_stormcontrol"),
 			},
 			"fortios_switchcontroller_stormcontrolpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "stormcontrolpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - stormcontrolpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_stormcontrolpolicy"),
 			},
 			"fortios_switchcontroller_stpinstance": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "stpinstance"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - stpinstance"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_stpinstance"),
 			},
 			"fortios_switchcontroller_stpsettings": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "stpsettings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - stpsettings"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_stpsettings"),
 			},
 			"fortios_switchcontroller_switchgroup": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "switchgroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - switchgroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_switchgroup"),
 			},
 			"fortios_switchcontroller_switchinterfacetag": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "switchinterfacetag"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - switchinterfacetag"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_switchinterfacetag"),
 			},
 			"fortios_switchcontroller_switchlog": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "switchlog"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - switchlog"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_switchlog"),
 			},
 			"fortios_switchcontroller_switchprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "switchprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - switchprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_switchprofile"),
 			},
 			"fortios_switchcontroller_system": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "system"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - system"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_system"),
 			},
 			"fortios_switchcontroller_trafficpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "trafficpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - trafficpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_trafficpolicy"),
 			},
 			"fortios_switchcontroller_trafficsniffer": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "trafficsniffer"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - trafficsniffer"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_trafficsniffer"),
 			},
 			"fortios_switchcontroller_virtualportpool": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "virtualportpool"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - virtualportpool"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_virtualportpool"),
 			},
 			"fortios_switchcontroller_vlan": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "vlan"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - vlan"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_vlan"),
 			},
 			"fortios_switchcontroller_vlanpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerMod, "vlanpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontroller - vlanpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontroller_vlanpolicy"),
 			},
 			"fortios_switchcontrollerautoconfig_custom": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerautoconfigMod, "custom"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollerautoconfig - custom"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollerautoconfig_custom"),
 			},
 			"fortios_switchcontrollerautoconfig_default": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerautoconfigMod, "default"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollerautoconfig - default"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollerautoconfig_default"),
 			},
 			"fortios_switchcontrollerautoconfig_policy": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerautoconfigMod, "policy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollerautoconfig - policy"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollerautoconfig_policy"),
 			},
 			"fortios_switchcontrollerinitialconfig_template": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerinitialconfigMod, "template"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollerinitialconfig - template"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollerinitialconfig_template"),
 			},
 			"fortios_switchcontrollerinitialconfig_vlans": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerinitialconfigMod, "vlans"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollerinitialconfig - vlans"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollerinitialconfig_vlans"),
 			},
 			"fortios_switchcontrollerptp_policy": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerptpMod, "policy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollerptp - policy"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollerptp_policy"),
 			},
 			"fortios_switchcontrollerptp_settings": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerptpMod, "settings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollerptp - settings"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollerptp_settings"),
 			},
 			"fortios_switchcontrollerqos_dot1pmap": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerqosMod, "dot1pmap"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollerqos - dot1pmap"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollerqos_dot1pmap"),
 			},
 			"fortios_switchcontrollerqos_ipdscpmap": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerqosMod, "ipdscpmap"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollerqos - ipdscpmap"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollerqos_ipdscpmap"),
 			},
 			"fortios_switchcontrollerqos_qospolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerqosMod, "qospolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollerqos - qospolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollerqos_qospolicy"),
 			},
 			"fortios_switchcontrollerqos_queuepolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollerqosMod, "queuepolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollerqos - queuepolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollerqos_queuepolicy"),
 			},
 			"fortios_switchcontrollersecuritypolicy_8021X": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollersecuritypolicyMod, "8021X"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollersecuritypolicy - 8021X"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollersecuritypolicy_8021X"),
 			},
 			"fortios_switchcontrollersecuritypolicy_captiveportal": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollersecuritypolicyMod, "captiveportal"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollersecuritypolicy - captiveportal"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollersecuritypolicy_captiveportal"),
 			},
 			"fortios_switchcontrollersecuritypolicy_localaccess": {
-				Tok: tfbridge.MakeResource(mainPkg, switchcontrollersecuritypolicyMod, "localaccess"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# switchcontrollersecuritypolicy - localaccess"),
-				},
+				Tok: makeResource(mainMod, "fortios_switchcontrollersecuritypolicy_localaccess"),
 			},
 			"fortios_system3gmodem_custom": {
-				Tok: tfbridge.MakeResource(mainPkg, system3gmodemMod, "custom"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system3gmodem - custom"),
-				},
+				Tok: makeResource(mainMod, "fortios_system3gmodem_custom"),
 			},
 			"fortios_system_accprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "accprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - accprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_accprofile"),
 			},
 			"fortios_system_acme": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "acme"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - acme"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_acme"),
 			},
 			"fortios_system_admin": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "admin"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - admin"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_admin"),
 			},
 			"fortios_system_admin_administrator": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "admin_administrator"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - admin_administrator"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_admin_administrator"),
 			},
 			"fortios_system_admin_profiles": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "admin_profiles"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - admin_profiles"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_admin_profiles"),
 			},
 			"fortios_system_affinityinterrupt": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "affinityinterrupt"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - affinityinterrupt"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_affinityinterrupt"),
 			},
 			"fortios_system_affinitypacketredistribution": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "affinitypacketredistribution"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - affinitypacketredistribution"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_affinitypacketredistribution"),
 			},
 			"fortios_system_alarm": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "alarm"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - alarm"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_alarm"),
 			},
 			"fortios_system_alias": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "alias"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - alias"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_alias"),
 			},
 			"fortios_system_apiuser": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "apiuser"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - apiuser"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_apiuser"),
 			},
 			"fortios_system_apiuser_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "apiuser_setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - apiuser_setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_apiuser_setting"),
 			},
 			"fortios_system_arptable": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "arptable"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - arptable"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_arptable"),
 			},
 			"fortios_system_autoinstall": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "autoinstall"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - autoinstall"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_autoinstall"),
 			},
 			"fortios_system_automationaction": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "automationaction"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - automationaction"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_automationaction"),
 			},
 			"fortios_system_automationdestination": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "automationdestination"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - automationdestination"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_automationdestination"),
 			},
 			"fortios_system_automationstitch": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "automationstitch"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - automationstitch"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_automationstitch"),
 			},
 			"fortios_system_automationtrigger": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "automationtrigger"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - automationtrigger"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_automationtrigger"),
 			},
 			"fortios_system_autoscript": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "autoscript"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - autoscript"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_autoscript"),
 			},
 			"fortios_system_centralmanagement": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "centralmanagement"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - centralmanagement"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_centralmanagement"),
 			},
 			"fortios_system_clustersync": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "clustersync"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - clustersync"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_clustersync"),
 			},
 			"fortios_system_console": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "console"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - console"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_console"),
 			},
 			"fortios_system_csf": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "csf"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - csf"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_csf"),
 			},
 			"fortios_system_customlanguage": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "customlanguage"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - customlanguage"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_customlanguage"),
 			},
 			"fortios_system_ddns": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ddns"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ddns"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ddns"),
 			},
 			"fortios_system_dedicatedmgmt": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "dedicatedmgmt"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - dedicatedmgmt"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_dedicatedmgmt"),
 			},
 			"fortios_system_dns": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "dns"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - dns"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_dns"),
 			},
 			"fortios_system_dns64": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "dns64"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - dns64"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_dns64"),
 			},
 			"fortios_system_dnsdatabase": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "dnsdatabase"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - dnsdatabase"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_dnsdatabase"),
 			},
 			"fortios_system_dnsserver": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "dnsserver"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - dnsserver"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_dnsserver"),
 			},
 			"fortios_system_dscpbasedpriority": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "dscpbasedpriority"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - dscpbasedpriority"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_dscpbasedpriority"),
 			},
 			"fortios_system_emailserver": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "emailserver"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - emailserver"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_emailserver"),
 			},
 			"fortios_system_externalresource": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "externalresource"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - externalresource"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_externalresource"),
 			},
 			"fortios_system_federatedupgrade": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "federatedupgrade"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - federatedupgrade"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_federatedupgrade"),
 			},
 			"fortios_system_fipscc": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "fipscc"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fipscc"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_fipscc"),
 			},
 			"fortios_system_fm": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "fm"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fm"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_fm"),
 			},
 			"fortios_system_fortiai": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "fortiai"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fortiai"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_fortiai"),
 			},
 			"fortios_system_fortiguard": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "fortiguard"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fortiguard"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_fortiguard"),
 			},
 			"fortios_system_fortimanager": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "fortimanager"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fortimanager"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_fortimanager"),
 			},
 			"fortios_system_fortindr": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "fortindr"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fortindr"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_fortindr"),
 			},
 			"fortios_system_fortisandbox": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "fortisandbox"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fortisandbox"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_fortisandbox"),
 			},
 			"fortios_system_fssopolling": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "fssopolling"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fssopolling"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_fssopolling"),
 			},
 			"fortios_system_ftmpush": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ftmpush"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ftmpush"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ftmpush"),
 			},
 			"fortios_system_geneve": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "geneve"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - geneve"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_geneve"),
 			},
 			"fortios_system_geoipcountry": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "geoipcountry"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - geoipcountry"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_geoipcountry"),
 			},
 			"fortios_system_geoipoverride": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "geoipoverride"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - geoipoverride"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_geoipoverride"),
 			},
 			"fortios_system_global": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "global"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - global"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_global"),
 			},
 			"fortios_system_gretunnel": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "gretunnel"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - gretunnel"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_gretunnel"),
 			},
 			"fortios_system_ha": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ha"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ha"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ha"),
 			},
 			"fortios_system_hamonitor": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "hamonitor"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - hamonitor"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_hamonitor"),
 			},
 			"fortios_system_ike": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ike"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ike"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ike"),
 			},
 			"fortios_system_interface": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "interface"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - interface"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_interface"),
 			},
 			"fortios_system_ipam": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ipam"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ipam"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ipam"),
 			},
 			"fortios_system_ipiptunnel": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ipiptunnel"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ipiptunnel"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ipiptunnel"),
 			},
 			"fortios_system_ips": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ips"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ips"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ips"),
 			},
 			"fortios_system_ipsecaggregate": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ipsecaggregate"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ipsecaggregate"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ipsecaggregate"),
 			},
 			"fortios_system_ipsurlfilterdns": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ipsurlfilterdns"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ipsurlfilterdns"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ipsurlfilterdns"),
 			},
 			"fortios_system_ipsurlfilterdns6": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ipsurlfilterdns6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ipsurlfilterdns6"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ipsurlfilterdns6"),
 			},
 			"fortios_system_ipv6neighborcache": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ipv6neighborcache"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ipv6neighborcache"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ipv6neighborcache"),
 			},
 			"fortios_system_ipv6tunnel": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ipv6tunnel"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ipv6tunnel"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ipv6tunnel"),
 			},
 			"fortios_system_license_forticare": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "license_forticare"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - license_forticare"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_license_forticare"),
 			},
 			"fortios_system_license_vdom": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "license_vdom"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - license_vdom"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_license_vdom"),
 			},
 			"fortios_system_license_vm": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "license_vm"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - license_vm"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_license_vm"),
 			},
 			"fortios_system_linkmonitor": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "linkmonitor"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - linkmonitor"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_linkmonitor"),
 			},
 			"fortios_system_ltemodem": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ltemodem"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ltemodem"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ltemodem"),
 			},
 			"fortios_system_macaddresstable": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "macaddresstable"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - macaddresstable"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_macaddresstable"),
 			},
 			"fortios_system_managementtunnel": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "managementtunnel"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - managementtunnel"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_managementtunnel"),
 			},
 			"fortios_system_mobiletunnel": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "mobiletunnel"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - mobiletunnel"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_mobiletunnel"),
 			},
 			"fortios_system_modem": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "modem"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - modem"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_modem"),
 			},
 			"fortios_system_nat64": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "nat64"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - nat64"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_nat64"),
 			},
 			"fortios_system_ndproxy": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ndproxy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ndproxy"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ndproxy"),
 			},
 			"fortios_system_netflow": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "netflow"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - netflow"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_netflow"),
 			},
 			"fortios_system_networkvisibility": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "networkvisibility"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - networkvisibility"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_networkvisibility"),
 			},
 			"fortios_system_npu": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "npu"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - npu"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_npu"),
 			},
 			"fortios_system_ntp": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ntp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ntp"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ntp"),
 			},
 			"fortios_system_objecttagging": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "objecttagging"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - objecttagging"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_objecttagging"),
 			},
 			"fortios_system_passwordpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "passwordpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - passwordpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_passwordpolicy"),
 			},
 			"fortios_system_passwordpolicyguestadmin": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "passwordpolicyguestadmin"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - passwordpolicyguestadmin"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_passwordpolicyguestadmin"),
 			},
 			"fortios_system_physicalswitch": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "physicalswitch"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - physicalswitch"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_physicalswitch"),
 			},
 			"fortios_system_pppoeinterface": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "pppoeinterface"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - pppoeinterface"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_pppoeinterface"),
 			},
 			"fortios_system_proberesponse": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "proberesponse"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - proberesponse"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_proberesponse"),
 			},
 			"fortios_system_proxyarp": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "proxyarp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - proxyarp"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_proxyarp"),
 			},
 			"fortios_system_ptp": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ptp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ptp"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ptp"),
 			},
 			"fortios_system_replacemsggroup": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "replacemsggroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - replacemsggroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_replacemsggroup"),
 			},
 			"fortios_system_replacemsgimage": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "replacemsgimage"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - replacemsgimage"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_replacemsgimage"),
 			},
 			"fortios_system_resourcelimits": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "resourcelimits"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - resourcelimits"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_resourcelimits"),
 			},
 			"fortios_system_saml": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "saml"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - saml"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_saml"),
 			},
 			"fortios_system_sdnconnector": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "sdnconnector"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sdnconnector"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_sdnconnector"),
 			},
 			"fortios_system_sdwan": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "sdwan"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sdwan"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_sdwan"),
 			},
 			"fortios_system_sessionhelper": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "sessionhelper"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sessionhelper"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_sessionhelper"),
 			},
 			"fortios_system_sessionttl": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "sessionttl"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sessionttl"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_sessionttl"),
 			},
 			"fortios_system_setting_dns": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "setting_dns"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - setting_dns"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_setting_dns"),
 			},
 			"fortios_system_setting_global": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "setting_global"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - setting_global"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_setting_global"),
 			},
 			"fortios_system_setting_ntp": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "setting_ntp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - setting_ntp"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_setting_ntp"),
 			},
 			"fortios_system_settings": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "settings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - settings"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_settings"),
 			},
 			"fortios_system_sflow": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "sflow"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sflow"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_sflow"),
 			},
 			"fortios_system_sittunnel": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "sittunnel"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sittunnel"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_sittunnel"),
 			},
 			"fortios_system_smsserver": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "smsserver"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - smsserver"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_smsserver"),
 			},
 			"fortios_system_speedtestschedule": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "speedtestschedule"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - speedtestschedule"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_speedtestschedule"),
 			},
 			"fortios_system_speedtestserver": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "speedtestserver"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - speedtestserver"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_speedtestserver"),
 			},
 			"fortios_system_ssoadmin": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ssoadmin"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ssoadmin"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ssoadmin"),
 			},
 			"fortios_system_ssoforticloudadmin": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "ssoforticloudadmin"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ssoforticloudadmin"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_ssoforticloudadmin"),
 			},
 			"fortios_system_standalonecluster": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "standalonecluster"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - standalonecluster"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_standalonecluster"),
 			},
 			"fortios_system_storage": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "storage"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - storage"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_storage"),
 			},
 			"fortios_system_stp": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "stp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - stp"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_stp"),
 			},
 			"fortios_system_switchinterface": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "switchinterface"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - switchinterface"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_switchinterface"),
 			},
 			"fortios_system_tosbasedpriority": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "tosbasedpriority"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - tosbasedpriority"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_tosbasedpriority"),
 			},
 			"fortios_system_vdom": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "vdom"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vdom"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_vdom"),
 			},
 			"fortios_system_vdom_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "vdom_setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vdom_setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_vdom_setting"),
 			},
 			"fortios_system_vdomdns": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "vdomdns"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vdomdns"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_vdomdns"),
 			},
 			"fortios_system_vdomexception": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "vdomexception"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vdomexception"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_vdomexception"),
 			},
 			"fortios_system_vdomlink": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "vdomlink"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vdomlink"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_vdomlink"),
 			},
 			"fortios_system_vdomnetflow": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "vdomnetflow"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vdomnetflow"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_vdomnetflow"),
 			},
 			"fortios_system_vdomproperty": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "vdomproperty"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vdomproperty"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_vdomproperty"),
 			},
 			"fortios_system_vdomradiusserver": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "vdomradiusserver"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vdomradiusserver"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_vdomradiusserver"),
 			},
 			"fortios_system_vdomsflow": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "vdomsflow"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vdomsflow"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_vdomsflow"),
 			},
 			"fortios_system_virtualswitch": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "virtualswitch"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - virtualswitch"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_virtualswitch"),
 			},
 			"fortios_system_virtualwanlink": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "virtualwanlink"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - virtualwanlink"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_virtualwanlink"),
 			},
 			"fortios_system_virtualwirepair": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "virtualwirepair"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - virtualwirepair"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_virtualwirepair"),
 			},
 			"fortios_system_vnetunnel": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "vnetunnel"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vnetunnel"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_vnetunnel"),
 			},
 			"fortios_system_vxlan": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "vxlan"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vxlan"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_vxlan"),
 			},
 			"fortios_system_wccp": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "wccp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - wccp"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_wccp"),
 			},
 			"fortios_system_zone": {
-				Tok: tfbridge.MakeResource(mainPkg, systemMod, "zone"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - zone"),
-				},
+				Tok: makeResource(mainMod, "fortios_system_zone"),
 			},
 			"fortios_systemautoupdate_pushupdate": {
-				Tok: tfbridge.MakeResource(mainPkg, systemautoupdateMod, "pushupdate"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemautoupdate - pushupdate"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemautoupdate_pushupdate"),
 			},
 			"fortios_systemautoupdate_schedule": {
-				Tok: tfbridge.MakeResource(mainPkg, systemautoupdateMod, "schedule"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemautoupdate - schedule"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemautoupdate_schedule"),
 			},
 			"fortios_systemautoupdate_tunneling": {
-				Tok: tfbridge.MakeResource(mainPkg, systemautoupdateMod, "tunneling"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemautoupdate - tunneling"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemautoupdate_tunneling"),
 			},
 			"fortios_systemdhcp6_server": {
-				Tok: tfbridge.MakeResource(mainPkg, systemdhcp6Mod, "server"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemdhcp6 - server"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemdhcp6_server"),
 			},
 			"fortios_systemdhcp_server": {
-				Tok: tfbridge.MakeResource(mainPkg, systemdhcpMod, "server"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemdhcp - server"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemdhcp_server"),
 			},
 			"fortios_systemlldp_networkpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, systemlldpMod, "networkpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemlldp - networkpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemlldp_networkpolicy"),
 			},
 			"fortios_systemreplacemsg_admin": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "admin"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - admin"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_admin"),
 			},
 			"fortios_systemreplacemsg_alertmail": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "alertmail"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - alertmail"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_alertmail"),
 			},
 			"fortios_systemreplacemsg_auth": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "auth"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - auth"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_auth"),
 			},
 			"fortios_systemreplacemsg_automation": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "automation"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - automation"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_automation"),
 			},
 			"fortios_systemreplacemsg_devicedetectionportal": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "devicedetectionportal"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - devicedetectionportal"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_devicedetectionportal"),
 			},
 			"fortios_systemreplacemsg_ec": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "ec"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - ec"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_ec"),
 			},
 			"fortios_systemreplacemsg_fortiguardwf": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "fortiguardwf"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - fortiguardwf"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_fortiguardwf"),
 			},
 			"fortios_systemreplacemsg_ftp": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "ftp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - ftp"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_ftp"),
 			},
 			"fortios_systemreplacemsg_http": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "http"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - http"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_http"),
 			},
 			"fortios_systemreplacemsg_icap": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "icap"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - icap"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_icap"),
 			},
 			"fortios_systemreplacemsg_mail": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "mail"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - mail"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_mail"),
 			},
 			"fortios_systemreplacemsg_nacquar": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "nacquar"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - nacquar"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_nacquar"),
 			},
 			"fortios_systemreplacemsg_nntp": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "nntp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - nntp"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_nntp"),
 			},
 			"fortios_systemreplacemsg_spam": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "spam"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - spam"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_spam"),
 			},
 			"fortios_systemreplacemsg_sslvpn": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "sslvpn"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - sslvpn"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_sslvpn"),
 			},
 			"fortios_systemreplacemsg_trafficquota": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "trafficquota"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - trafficquota"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_trafficquota"),
 			},
 			"fortios_systemreplacemsg_utm": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "utm"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - utm"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_utm"),
 			},
 			"fortios_systemreplacemsg_webproxy": {
-				Tok: tfbridge.MakeResource(mainPkg, systemreplacemsgMod, "webproxy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemreplacemsg - webproxy"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemreplacemsg_webproxy"),
 			},
 			"fortios_systemsnmp_community": {
-				Tok: tfbridge.MakeResource(mainPkg, systemsnmpMod, "community"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemsnmp - community"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemsnmp_community"),
 			},
 			"fortios_systemsnmp_mibview": {
-				Tok: tfbridge.MakeResource(mainPkg, systemsnmpMod, "mibview"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemsnmp - mibview"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemsnmp_mibview"),
 			},
 			"fortios_systemsnmp_sysinfo": {
-				Tok: tfbridge.MakeResource(mainPkg, systemsnmpMod, "sysinfo"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemsnmp - sysinfo"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemsnmp_sysinfo"),
 			},
 			"fortios_systemsnmp_user": {
-				Tok: tfbridge.MakeResource(mainPkg, systemsnmpMod, "user"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemsnmp - user"),
-				},
+				Tok: makeResource(mainMod, "fortios_systemsnmp_user"),
 			},
 			"fortios_user_adgrp": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "adgrp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - adgrp"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_adgrp"),
 			},
 			"fortios_user_certificate": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "certificate"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - certificate"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_certificate"),
 			},
 			"fortios_user_device": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "device"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - device"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_device"),
 			},
 			"fortios_user_deviceaccesslist": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "deviceaccesslist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - deviceaccesslist"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_deviceaccesslist"),
 			},
 			"fortios_user_devicecategory": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "devicecategory"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - devicecategory"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_devicecategory"),
 			},
 			"fortios_user_devicegroup": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "devicegroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - devicegroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_devicegroup"),
 			},
 			"fortios_user_domaincontroller": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "domaincontroller"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - domaincontroller"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_domaincontroller"),
 			},
 			"fortios_user_exchange": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "exchange"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - exchange"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_exchange"),
 			},
 			"fortios_user_fortitoken": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "fortitoken"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - fortitoken"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_fortitoken"),
 			},
 			"fortios_user_fsso": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "fsso"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - fsso"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_fsso"),
 			},
 			"fortios_user_fssopolling": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "fssopolling"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - fssopolling"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_fssopolling"),
 			},
 			"fortios_user_group": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "group"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - group"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_group"),
 			},
 			"fortios_user_krbkeytab": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "krbkeytab"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - krbkeytab"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_krbkeytab"),
 			},
 			"fortios_user_ldap": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "ldap"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - ldap"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_ldap"),
 			},
 			"fortios_user_local": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "local"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - local"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_local"),
 			},
 			"fortios_user_nacpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "nacpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - nacpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_nacpolicy"),
 			},
 			"fortios_user_passwordpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "passwordpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - passwordpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_passwordpolicy"),
 			},
 			"fortios_user_peer": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "peer"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - peer"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_peer"),
 			},
 			"fortios_user_peergrp": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "peergrp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - peergrp"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_peergrp"),
 			},
 			"fortios_user_pop3": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "pop3"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - pop3"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_pop3"),
 			},
 			"fortios_user_quarantine": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "quarantine"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - quarantine"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_quarantine"),
 			},
 			"fortios_user_radius": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "radius"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - radius"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_radius"),
 			},
 			"fortios_user_saml": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "saml"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - saml"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_saml"),
 			},
 			"fortios_user_securityexemptlist": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "securityexemptlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - securityexemptlist"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_securityexemptlist"),
 			},
 			"fortios_user_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_setting"),
 			},
 			"fortios_user_tacacs": {
-				Tok: tfbridge.MakeResource(mainPkg, userMod, "tacacs"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - tacacs"),
-				},
+				Tok: makeResource(mainMod, "fortios_user_tacacs"),
 			},
 			"fortios_videofilter_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, videofilterMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# videofilter - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_videofilter_profile"),
 			},
 			"fortios_videofilter_youtubechannelfilter": {
-				Tok: tfbridge.MakeResource(mainPkg, videofilterMod, "youtubechannelfilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# videofilter - youtubechannelfilter"),
-				},
+				Tok: makeResource(mainMod, "fortios_videofilter_youtubechannelfilter"),
 			},
 			"fortios_videofilter_youtubekey": {
-				Tok: tfbridge.MakeResource(mainPkg, videofilterMod, "youtubekey"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# videofilter - youtubekey"),
-				},
+				Tok: makeResource(mainMod, "fortios_videofilter_youtubekey"),
 			},
 			"fortios_voip_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, voipMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# voip - profile"),
-				},
-			},
-			"fortios_vpn_ipsec_phase1interface": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnMod, "ipsec_phase1interface"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpn - ipsec_phase1interface"),
-				},
-			},
-			"fortios_vpn_ipsec_phase2interface": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnMod, "ipsec_phase2interface"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpn - ipsec_phase2interface"),
-				},
+				Tok: makeResource(mainMod, "fortios_voip_profile"),
 			},
 			"fortios_vpn_l2tp": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnMod, "l2tp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpn - l2tp"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpn_l2tp"),
 			},
 			"fortios_vpn_ocvpn": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnMod, "ocvpn"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpn - ocvpn"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpn_ocvpn"),
 			},
 			"fortios_vpn_pptp": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnMod, "pptp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpn - pptp"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpn_pptp"),
 			},
 			"fortios_vpncertificate_ca": {
-				Tok: tfbridge.MakeResource(mainPkg, vpncertificateMod, "ca"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpncertificate - ca"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpncertificate_ca"),
 			},
 			"fortios_vpncertificate_crl": {
-				Tok: tfbridge.MakeResource(mainPkg, vpncertificateMod, "crl"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpncertificate - crl"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpncertificate_crl"),
 			},
 			"fortios_vpncertificate_local": {
-				Tok: tfbridge.MakeResource(mainPkg, vpncertificateMod, "local"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpncertificate - local"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpncertificate_local"),
 			},
 			"fortios_vpncertificate_ocspserver": {
-				Tok: tfbridge.MakeResource(mainPkg, vpncertificateMod, "ocspserver"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpncertificate - ocspserver"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpncertificate_ocspserver"),
 			},
 			"fortios_vpncertificate_remote": {
-				Tok: tfbridge.MakeResource(mainPkg, vpncertificateMod, "remote"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpncertificate - remote"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpncertificate_remote"),
 			},
 			"fortios_vpncertificate_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, vpncertificateMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpncertificate - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpncertificate_setting"),
 			},
 			"fortios_vpnipsec_concentrator": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnipsecMod, "concentrator"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnipsec - concentrator"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnipsec_concentrator"),
 			},
 			"fortios_vpnipsec_fec": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnipsecMod, "fec"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnipsec - fec"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnipsec_fec"),
 			},
 			"fortios_vpnipsec_forticlient": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnipsecMod, "forticlient"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnipsec - forticlient"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnipsec_forticlient"),
 			},
 			"fortios_vpnipsec_manualkey": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnipsecMod, "manualkey"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnipsec - manualkey"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnipsec_manualkey"),
 			},
 			"fortios_vpnipsec_manualkeyinterface": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnipsecMod, "manualkeyinterface"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnipsec - manualkeyinterface"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnipsec_manualkeyinterface"),
 			},
 			"fortios_vpnipsec_phase1": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnipsecMod, "phase1"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnipsec - phase1"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnipsec_phase1"),
 			},
 			"fortios_vpnipsec_phase1interface": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnipsecMod, "phase1interface"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnipsec - phase1interface"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnipsec_phase1interface"),
 			},
 			"fortios_vpnipsec_phase2": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnipsecMod, "phase2"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnipsec - phase2"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnipsec_phase2"),
 			},
 			"fortios_vpnipsec_phase2interface": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnipsecMod, "phase2interface"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnipsec - phase2interface"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnipsec_phase2interface"),
 			},
 			"fortios_vpnssl_client": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnsslMod, "client"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnssl - client"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnssl_client"),
 			},
 			"fortios_vpnssl_settings": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnsslMod, "settings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnssl - settings"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnssl_settings"),
 			},
 			"fortios_vpnsslweb_hostchecksoftware": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnsslwebMod, "hostchecksoftware"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnsslweb - hostchecksoftware"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnsslweb_hostchecksoftware"),
 			},
 			"fortios_vpnsslweb_portal": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnsslwebMod, "portal"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnsslweb - portal"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnsslweb_portal"),
 			},
 			"fortios_vpnsslweb_realm": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnsslwebMod, "realm"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnsslweb - realm"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnsslweb_realm"),
 			},
 			"fortios_vpnsslweb_userbookmark": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnsslwebMod, "userbookmark"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnsslweb - userbookmark"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnsslweb_userbookmark"),
 			},
 			"fortios_vpnsslweb_usergroupbookmark": {
-				Tok: tfbridge.MakeResource(mainPkg, vpnsslwebMod, "usergroupbookmark"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# vpnsslweb - usergroupbookmark"),
-				},
+				Tok: makeResource(mainMod, "fortios_vpnsslweb_usergroupbookmark"),
 			},
 			"fortios_waf_mainclass": {
-				Tok: tfbridge.MakeResource(mainPkg, wafMod, "mainclass"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# waf - mainclass"),
-				},
+				Tok: makeResource(mainMod, "fortios_waf_mainclass"),
 			},
 			"fortios_waf_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, wafMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# waf - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_waf_profile"),
 			},
 			"fortios_waf_signature": {
-				Tok: tfbridge.MakeResource(mainPkg, wafMod, "signature"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# waf - signature"),
-				},
+				Tok: makeResource(mainMod, "fortios_waf_signature"),
 			},
 			"fortios_waf_subclass": {
-				Tok: tfbridge.MakeResource(mainPkg, wafMod, "subclass"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# waf - subclass"),
-				},
+				Tok: makeResource(mainMod, "fortios_waf_subclass"),
 			},
 			"fortios_wanopt_authgroup": {
-				Tok: tfbridge.MakeResource(mainPkg, wanoptMod, "authgroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wanopt - authgroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_wanopt_authgroup"),
 			},
 			"fortios_wanopt_cacheservice": {
-				Tok: tfbridge.MakeResource(mainPkg, wanoptMod, "cacheservice"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wanopt - cacheservice"),
-				},
+				Tok: makeResource(mainMod, "fortios_wanopt_cacheservice"),
 			},
 			"fortios_wanopt_contentdeliverynetworkrule": {
-				Tok: tfbridge.MakeResource(mainPkg, wanoptMod, "contentdeliverynetworkrule"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wanopt - contentdeliverynetworkrule"),
-				},
+				Tok: makeResource(mainMod, "fortios_wanopt_contentdeliverynetworkrule"),
 			},
 			"fortios_wanopt_peer": {
-				Tok: tfbridge.MakeResource(mainPkg, wanoptMod, "peer"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wanopt - peer"),
-				},
+				Tok: makeResource(mainMod, "fortios_wanopt_peer"),
 			},
 			"fortios_wanopt_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, wanoptMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wanopt - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wanopt_profile"),
 			},
 			"fortios_wanopt_remotestorage": {
-				Tok: tfbridge.MakeResource(mainPkg, wanoptMod, "remotestorage"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wanopt - remotestorage"),
-				},
+				Tok: makeResource(mainMod, "fortios_wanopt_remotestorage"),
 			},
 			"fortios_wanopt_settings": {
-				Tok: tfbridge.MakeResource(mainPkg, wanoptMod, "settings"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wanopt - settings"),
-				},
+				Tok: makeResource(mainMod, "fortios_wanopt_settings"),
 			},
 			"fortios_wanopt_webcache": {
-				Tok: tfbridge.MakeResource(mainPkg, wanoptMod, "webcache"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wanopt - webcache"),
-				},
+				Tok: makeResource(mainMod, "fortios_wanopt_webcache"),
 			},
 			"fortios_webfilter_content": {
-				Tok: tfbridge.MakeResource(mainPkg, webfilterMod, "content"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webfilter - content"),
-				},
+				Tok: makeResource(mainMod, "fortios_webfilter_content"),
 			},
 			"fortios_webfilter_contentheader": {
-				Tok: tfbridge.MakeResource(mainPkg, webfilterMod, "contentheader"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webfilter - contentheader"),
-				},
+				Tok: makeResource(mainMod, "fortios_webfilter_contentheader"),
 			},
 			"fortios_webfilter_fortiguard": {
-				Tok: tfbridge.MakeResource(mainPkg, webfilterMod, "fortiguard"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webfilter - fortiguard"),
-				},
+				Tok: makeResource(mainMod, "fortios_webfilter_fortiguard"),
 			},
 			"fortios_webfilter_ftgdlocalcat": {
-				Tok: tfbridge.MakeResource(mainPkg, webfilterMod, "ftgdlocalcat"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webfilter - ftgdlocalcat"),
-				},
+				Tok: makeResource(mainMod, "fortios_webfilter_ftgdlocalcat"),
 			},
 			"fortios_webfilter_ftgdlocalrating": {
-				Tok: tfbridge.MakeResource(mainPkg, webfilterMod, "ftgdlocalrating"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webfilter - ftgdlocalrating"),
-				},
+				Tok: makeResource(mainMod, "fortios_webfilter_ftgdlocalrating"),
 			},
 			"fortios_webfilter_ipsurlfiltercachesetting": {
-				Tok: tfbridge.MakeResource(mainPkg, webfilterMod, "ipsurlfiltercachesetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webfilter - ipsurlfiltercachesetting"),
-				},
+				Tok: makeResource(mainMod, "fortios_webfilter_ipsurlfiltercachesetting"),
 			},
 			"fortios_webfilter_ipsurlfiltersetting": {
-				Tok: tfbridge.MakeResource(mainPkg, webfilterMod, "ipsurlfiltersetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webfilter - ipsurlfiltersetting"),
-				},
+				Tok: makeResource(mainMod, "fortios_webfilter_ipsurlfiltersetting"),
 			},
 			"fortios_webfilter_ipsurlfiltersetting6": {
-				Tok: tfbridge.MakeResource(mainPkg, webfilterMod, "ipsurlfiltersetting6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webfilter - ipsurlfiltersetting6"),
-				},
+				Tok: makeResource(mainMod, "fortios_webfilter_ipsurlfiltersetting6"),
 			},
 			"fortios_webfilter_override": {
-				Tok: tfbridge.MakeResource(mainPkg, webfilterMod, "override"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webfilter - override"),
-				},
+				Tok: makeResource(mainMod, "fortios_webfilter_override"),
 			},
 			"fortios_webfilter_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, webfilterMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webfilter - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_webfilter_profile"),
 			},
 			"fortios_webfilter_searchengine": {
-				Tok: tfbridge.MakeResource(mainPkg, webfilterMod, "searchengine"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webfilter - searchengine"),
-				},
+				Tok: makeResource(mainMod, "fortios_webfilter_searchengine"),
 			},
 			"fortios_webfilter_urlfilter": {
-				Tok: tfbridge.MakeResource(mainPkg, webfilterMod, "urlfilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webfilter - urlfilter"),
-				},
+				Tok: makeResource(mainMod, "fortios_webfilter_urlfilter"),
 			},
 			"fortios_webproxy_debugurl": {
-				Tok: tfbridge.MakeResource(mainPkg, webproxyMod, "debugurl"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webproxy - debugurl"),
-				},
+				Tok: makeResource(mainMod, "fortios_webproxy_debugurl"),
 			},
 			"fortios_webproxy_explicit": {
-				Tok: tfbridge.MakeResource(mainPkg, webproxyMod, "explicit"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webproxy - explicit"),
-				},
+				Tok: makeResource(mainMod, "fortios_webproxy_explicit"),
 			},
 			"fortios_webproxy_forwardserver": {
-				Tok: tfbridge.MakeResource(mainPkg, webproxyMod, "forwardserver"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webproxy - forwardserver"),
-				},
+				Tok: makeResource(mainMod, "fortios_webproxy_forwardserver"),
 			},
 			"fortios_webproxy_forwardservergroup": {
-				Tok: tfbridge.MakeResource(mainPkg, webproxyMod, "forwardservergroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webproxy - forwardservergroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_webproxy_forwardservergroup"),
 			},
 			"fortios_webproxy_global": {
-				Tok: tfbridge.MakeResource(mainPkg, webproxyMod, "global"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webproxy - global"),
-				},
+				Tok: makeResource(mainMod, "fortios_webproxy_global"),
 			},
 			"fortios_webproxy_profile": {
-				Tok: tfbridge.MakeResource(mainPkg, webproxyMod, "profile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webproxy - profile"),
-				},
+				Tok: makeResource(mainMod, "fortios_webproxy_profile"),
 			},
 			"fortios_webproxy_urlmatch": {
-				Tok: tfbridge.MakeResource(mainPkg, webproxyMod, "urlmatch"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webproxy - urlmatch"),
-				},
+				Tok: makeResource(mainMod, "fortios_webproxy_urlmatch"),
 			},
 			"fortios_webproxy_wisp": {
-				Tok: tfbridge.MakeResource(mainPkg, webproxyMod, "wisp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# webproxy - wisp"),
-				},
+				Tok: makeResource(mainMod, "fortios_webproxy_wisp"),
 			},
 			"fortios_wirelesscontroller_accesscontrollist": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "accesscontrollist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - accesscontrollist"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_accesscontrollist"),
 			},
 			"fortios_wirelesscontroller_address": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "address"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - address"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_address"),
 			},
 			"fortios_wirelesscontroller_addrgrp": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "addrgrp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - addrgrp"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_addrgrp"),
 			},
 			"fortios_wirelesscontroller_apcfgprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "apcfgprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - apcfgprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_apcfgprofile"),
 			},
 			"fortios_wirelesscontroller_apstatus": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "apstatus"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - apstatus"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_apstatus"),
 			},
 			"fortios_wirelesscontroller_arrpprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "arrpprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - arrpprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_arrpprofile"),
 			},
 			"fortios_wirelesscontroller_bleprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "bleprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - bleprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_bleprofile"),
 			},
 			"fortios_wirelesscontroller_bonjourprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "bonjourprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - bonjourprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_bonjourprofile"),
 			},
 			"fortios_wirelesscontroller_global": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "global"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - global"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_global"),
 			},
 			"fortios_wirelesscontroller_intercontroller": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "intercontroller"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - intercontroller"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_intercontroller"),
 			},
 			"fortios_wirelesscontroller_log": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "log"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - log"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_log"),
 			},
 			"fortios_wirelesscontroller_mpskprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "mpskprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - mpskprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_mpskprofile"),
 			},
 			"fortios_wirelesscontroller_nacprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "nacprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - nacprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_nacprofile"),
 			},
 			"fortios_wirelesscontroller_qosprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "qosprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - qosprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_qosprofile"),
 			},
 			"fortios_wirelesscontroller_region": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "region"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - region"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_region"),
 			},
 			"fortios_wirelesscontroller_setting": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "setting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - setting"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_setting"),
 			},
 			"fortios_wirelesscontroller_snmp": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "snmp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - snmp"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_snmp"),
 			},
 			"fortios_wirelesscontroller_ssidpolicy": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "ssidpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - ssidpolicy"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_ssidpolicy"),
 			},
 			"fortios_wirelesscontroller_syslogprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "syslogprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - syslogprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_syslogprofile"),
 			},
 			"fortios_wirelesscontroller_timers": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "timers"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - timers"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_timers"),
 			},
 			"fortios_wirelesscontroller_utmprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "utmprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - utmprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_utmprofile"),
 			},
 			"fortios_wirelesscontroller_vap": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "vap"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - vap"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_vap"),
 			},
 			"fortios_wirelesscontroller_vapgroup": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "vapgroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - vapgroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_vapgroup"),
 			},
 			"fortios_wirelesscontroller_wagprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "wagprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - wagprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_wagprofile"),
 			},
 			"fortios_wirelesscontroller_widsprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "widsprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - widsprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_widsprofile"),
 			},
 			"fortios_wirelesscontroller_wtp": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "wtp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - wtp"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_wtp"),
 			},
 			"fortios_wirelesscontroller_wtpgroup": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "wtpgroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - wtpgroup"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_wtpgroup"),
 			},
 			"fortios_wirelesscontroller_wtpprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerMod, "wtpprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontroller - wtpprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontroller_wtpprofile"),
 			},
 			"fortios_wirelesscontrollerhotspot20_anqp3gppcellular": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "anqp3gppcellular"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - anqp3gppcellular"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_anqp3gppcellular"),
 			},
 			"fortios_wirelesscontrollerhotspot20_anqpipaddresstype": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "anqpipaddresstype"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - anqpipaddresstype"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_anqpipaddresstype"),
 			},
 			"fortios_wirelesscontrollerhotspot20_anqpnairealm": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "anqpnairealm"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - anqpnairealm"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_anqpnairealm"),
 			},
 			"fortios_wirelesscontrollerhotspot20_anqpnetworkauthtype": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "anqpnetworkauthtype"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - anqpnetworkauthtype"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_anqpnetworkauthtype"),
 			},
 			"fortios_wirelesscontrollerhotspot20_anqproamingconsortium": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "anqproamingconsortium"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - anqproamingconsortium"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_anqproamingconsortium"),
 			},
 			"fortios_wirelesscontrollerhotspot20_anqpvenuename": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "anqpvenuename"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - anqpvenuename"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_anqpvenuename"),
 			},
 			"fortios_wirelesscontrollerhotspot20_anqpvenueurl": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "anqpvenueurl"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - anqpvenueurl"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_anqpvenueurl"),
 			},
 			"fortios_wirelesscontrollerhotspot20_h2qpadviceofcharge": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "h2qpadviceofcharge"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - h2qpadviceofcharge"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_h2qpadviceofcharge"),
 			},
 			"fortios_wirelesscontrollerhotspot20_h2qpconncapability": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "h2qpconncapability"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - h2qpconncapability"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_h2qpconncapability"),
 			},
 			"fortios_wirelesscontrollerhotspot20_h2qpoperatorname": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "h2qpoperatorname"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - h2qpoperatorname"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_h2qpoperatorname"),
 			},
 			"fortios_wirelesscontrollerhotspot20_h2qposuprovider": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "h2qposuprovider"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - h2qposuprovider"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_h2qposuprovider"),
 			},
 			"fortios_wirelesscontrollerhotspot20_h2qposuprovidernai": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "h2qposuprovidernai"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - h2qposuprovidernai"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_h2qposuprovidernai"),
 			},
 			"fortios_wirelesscontrollerhotspot20_h2qptermsandconditions": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "h2qptermsandconditions"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - h2qptermsandconditions"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_h2qptermsandconditions"),
 			},
 			"fortios_wirelesscontrollerhotspot20_h2qpwanmetric": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "h2qpwanmetric"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - h2qpwanmetric"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_h2qpwanmetric"),
 			},
 			"fortios_wirelesscontrollerhotspot20_hsprofile": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "hsprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - hsprofile"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_hsprofile"),
 			},
 			"fortios_wirelesscontrollerhotspot20_icon": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "icon"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - icon"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_icon"),
 			},
 			"fortios_wirelesscontrollerhotspot20_qosmap": {
-				Tok: tfbridge.MakeResource(mainPkg, wirelesscontrollerhotspot20Mod, "qosmap"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# wirelesscontrollerhotspot20 - qosmap"),
-				},
+				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_qosmap"),
 			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example
 			// is below.
-			// "aws_ami": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getgetAmi")},
+			// "aws_ami": {Tok: makeDataSource(mainMod, "aws_ami")},
 			"fortios_firewall_DoSpolicy": {
-				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getFirewallDoSpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - DoSpolicy"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_DoSpolicy"),
 			},
 			"fortios_firewall_DoSpolicy6": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getDoSpolicy6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - DoSpolicy6"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_DoSpolicy6"),
 			},
 			"fortios_firewall_DoSpolicy6list": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getDoSpolicy6list"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - DoSpolicy6list"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_DoSpolicy6list"),
 			},
 			"fortios_firewall_DoSpolicylist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getDoSpolicylist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - DoSpolicylist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_DoSpolicylist"),
 			},
 			"fortios_firewall_address": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getaddress"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - address"),
-				},
-				// Fields: map[string]*tfbridge.SchemaInfo{
-				// 	addressFssoGroup: {
+				Tok: makeDataSource(mainMod, "fortios_firewall_address"),
 			},
 			"fortios_firewall_address6": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getaddress6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - address6"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_address6"),
 			},
 			"fortios_firewall_address6list": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getaddress6list"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - address6list"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_address6list"),
 			},
 			"fortios_firewall_address6template": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getaddress6template"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - address6template"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_address6template"),
 			},
 			"fortios_firewall_address6templatelist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getaddress6templatelist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - address6templatelist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_address6templatelist"),
 			},
 			"fortios_firewall_addresslist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getaddresslist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - addresslist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_addresslist"),
 			},
 			"fortios_firewall_addrgrp": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getaddrgrp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - addrgrp"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_addrgrp"),
 			},
 			"fortios_firewall_addrgrp6": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getaddrgrp6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - addrgrp6"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_addrgrp6"),
 			},
 			"fortios_firewall_addrgrp6list": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getaddrgrp6list"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - addrgrp6list"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_addrgrp6list"),
 			},
 			"fortios_firewall_addrgrplist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getaddrgrplist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - addrgrplist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_addrgrplist"),
 			},
 			"fortios_firewall_centralsnatmap": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getcentralsnatmap"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - centralsnatmap"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_centralsnatmap"),
 			},
 			"fortios_firewall_centralsnatmaplist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getcentralsnatmaplist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - centralsnatmaplist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_centralsnatmaplist"),
 			},
 			"fortios_firewall_internetservice": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getinternetservice"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservice"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_internetservice"),
 			},
 			"fortios_firewall_internetservicecustom": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getinternetservicecustom"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicecustom"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_internetservicecustom"),
 			},
 			"fortios_firewall_internetservicecustomgroup": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getinternetservicecustomgroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicecustomgroup"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_internetservicecustomgroup"),
 			},
 			"fortios_firewall_internetservicecustomgrouplist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getinternetservicecustomgrouplist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicecustomgrouplist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_internetservicecustomgrouplist"),
 			},
 			"fortios_firewall_internetservicecustomlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getinternetservicecustomlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicecustomlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_internetservicecustomlist"),
 			},
 			"fortios_firewall_internetservicedefinition": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getinternetservicedefinition"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicedefinition"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_internetservicedefinition"),
 			},
 			"fortios_firewall_internetservicedefinitionlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getinternetservicedefinitionlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicedefinitionlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_internetservicedefinitionlist"),
 			},
 			"fortios_firewall_internetserviceextension": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getinternetserviceextension"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetserviceextension"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_internetserviceextension"),
 			},
 			"fortios_firewall_internetserviceextensionlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getinternetserviceextensionlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetserviceextensionlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_internetserviceextensionlist"),
 			},
 			"fortios_firewall_internetservicegroup": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getinternetservicegroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicegroup"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_internetservicegroup"),
 			},
 			"fortios_firewall_internetservicegrouplist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getinternetservicegrouplist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicegrouplist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_internetservicegrouplist"),
 			},
 			"fortios_firewall_internetservicelist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getinternetservicelist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - internetservicelist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_internetservicelist"),
 			},
 			"fortios_firewall_ipv6ehfilter": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getipv6ehfilter"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - ipv6ehfilter"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_ipv6ehfilter"),
 			},
 			"fortios_firewall_multicastaddress": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getmulticastaddress"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - multicastaddress"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_multicastaddress"),
 			},
 			"fortios_firewall_multicastaddress6": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getmulticastaddress6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - multicastaddress6"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_multicastaddress6"),
 			},
 			"fortios_firewall_multicastaddress6list": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getmulticastaddress6list"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - multicastaddress6list"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_multicastaddress6list"),
 			},
 			"fortios_firewall_multicastaddresslist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getmulticastaddresslist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - multicastaddresslist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_multicastaddresslist"),
 			},
 			"fortios_firewall_policy": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - policy"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_policy"),
 			},
 			"fortios_firewall_policy46": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getpolicy46"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - policy46"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_policy46"),
 			},
 			"fortios_firewall_policy46list": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getpolicy46list"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - policy46list"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_policy46list"),
 			},
 			"fortios_firewall_policy6": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getpolicy6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - policy6"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_policy6"),
 			},
 			"fortios_firewall_policy64": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getpolicy64"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - policy64"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_policy64"),
 			},
 			"fortios_firewall_policy64list": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getpolicy64list"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - policy64list"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_policy64list"),
 			},
 			"fortios_firewall_policy6list": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getpolicy6list"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - policy6list"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_policy6list"),
 			},
 			"fortios_firewall_policylist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getpolicylist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - policylist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_policylist"),
 			},
 			"fortios_firewall_profileprotocoloptions": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getprofileprotocoloptions"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - profileprotocoloptions"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_profileprotocoloptions"),
 			},
 			"fortios_firewall_profileprotocoloptionslist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getprofileprotocoloptionslist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - profileprotocoloptionslist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_profileprotocoloptionslist"),
 			},
 			"fortios_firewall_proxyaddress": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getproxyaddress"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - proxyaddress"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_proxyaddress"),
 			},
 			"fortios_firewall_proxyaddresslist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getproxyaddresslist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - proxyaddresslist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_proxyaddresslist"),
 			},
 			"fortios_firewall_proxyaddrgrp": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getproxyaddrgrp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - proxyaddrgrp"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_proxyaddrgrp"),
 			},
 			"fortios_firewall_proxyaddrgrplist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getproxyaddrgrplist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - proxyaddrgrplist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_proxyaddrgrplist"),
 			},
 			"fortios_firewall_proxypolicy": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getproxypolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - proxypolicy"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_proxypolicy"),
 			},
 			"fortios_firewall_proxypolicylist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallMod, "getproxypolicylist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewall - proxypolicylist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewall_proxypolicylist"),
 			},
 			"fortios_firewallconsolidated_policy": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallconsolidatedMod, "getpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallconsolidated - policy"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallconsolidated_policy"),
 			},
 			"fortios_firewallconsolidated_policylist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallconsolidatedMod, "getpolicylist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallconsolidated - policylist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallconsolidated_policylist"),
 			},
 			"fortios_firewallschedule_group": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallscheduleMod, "getgroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallschedule - group"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallschedule_group"),
 			},
 			"fortios_firewallschedule_grouplist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallscheduleMod, "getgrouplist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallschedule - grouplist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallschedule_grouplist"),
 			},
 			"fortios_firewallschedule_onetime": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallscheduleMod, "getonetime"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallschedule - onetime"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallschedule_onetime"),
 			},
 			"fortios_firewallschedule_onetimelist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallscheduleMod, "getonetimelist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallschedule - onetimelist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallschedule_onetimelist"),
 			},
 			"fortios_firewallschedule_recurring": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallscheduleMod, "getrecurring"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallschedule - recurring"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallschedule_recurring"),
 			},
 			"fortios_firewallschedule_recurringlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallscheduleMod, "getrecurringlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallschedule - recurringlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallschedule_recurringlist"),
 			},
 			"fortios_firewallservice_category": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallserviceMod, "getcategory"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallservice - category"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallservice_category"),
 			},
 			"fortios_firewallservice_categorylist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallserviceMod, "getcategorylist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallservice - categorylist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallservice_categorylist"),
 			},
 			"fortios_firewallservice_custom": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallserviceMod, "getcustom"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallservice - custom"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallservice_custom"),
 			},
 			"fortios_firewallservice_customlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallserviceMod, "getcustomlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallservice - customlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallservice_customlist"),
 			},
 			"fortios_firewallservice_group": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallserviceMod, "getgroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallservice - group"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallservice_group"),
 			},
 			"fortios_firewallservice_grouplist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallserviceMod, "getgrouplist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallservice - grouplist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallservice_grouplist"),
 			},
 			"fortios_firewallshaper_peripshaper": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallshaperMod, "getperipshaper"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallshaper - peripshaper"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallshaper_peripshaper"),
 			},
 			"fortios_firewallshaper_peripshaperlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallshaperMod, "getperipshaperlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallshaper - peripshaperlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallshaper_peripshaperlist"),
 			},
 			"fortios_firewallshaper_trafficshaper": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallshaperMod, "gettrafficshaper"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallshaper - trafficshaper"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallshaper_trafficshaper"),
 			},
 			"fortios_firewallshaper_trafficshaperlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallshaperMod, "gettrafficshaperlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallshaper - trafficshaperlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallshaper_trafficshaperlist"),
 			},
 			"fortios_firewallwildcardfqdn_custom": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallwildcardfqdnMod, "getcustom"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallwildcardfqdn - custom"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallwildcardfqdn_custom"),
 			},
 			"fortios_firewallwildcardfqdn_customlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallwildcardfqdnMod, "getcustomlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallwildcardfqdn - customlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallwildcardfqdn_customlist"),
 			},
 			"fortios_firewallwildcardfqdn_group": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallwildcardfqdnMod, "getgroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallwildcardfqdn - group"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallwildcardfqdn_group"),
 			},
 			"fortios_firewallwildcardfqdn_grouplist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, firewallwildcardfqdnMod, "getgrouplist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# firewallwildcardfqdn - grouplist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_firewallwildcardfqdn_grouplist"),
 			},
 			"fortios_ipmask_cidr": {
-				Tok: tfbridge.MakeDataSource(mainPkg, ipmaskMod, "getcidr"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# ipmask - cidr"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_ipmask_cidr"),
 			},
 			"fortios_json_generic_api": {
-				Tok: tfbridge.MakeDataSource(mainPkg, jsonMod, "getgeneric_api"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# json - generic_api"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_json_generic_api"),
 			},
 			"fortios_router_accesslist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getaccesslist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - accesslist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_accesslist"),
 			},
 			"fortios_router_accesslist6": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getaccesslist6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - accesslist6"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_accesslist6"),
 			},
 			"fortios_router_accesslist6list": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getaccesslist6list"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - accesslist6list"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_accesslist6list"),
 			},
 			"fortios_router_accesslistlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getaccesslistlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - accesslistlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_accesslistlist"),
 			},
 			"fortios_router_aspathlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getaspathlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - aspathlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_aspathlist"),
 			},
 			"fortios_router_aspathlistlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getaspathlistlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - aspathlistlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_aspathlistlist"),
 			},
 			"fortios_router_authpath": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getauthpath"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - authpath"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_authpath"),
 			},
 			"fortios_router_authpathlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getauthpathlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - authpathlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_authpathlist"),
 			},
 			"fortios_router_bfd": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getbfd"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - bfd"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_bfd"),
 			},
 			"fortios_router_bfd6": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getbfd6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - bfd6"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_bfd6"),
 			},
 			"fortios_router_bgp": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getbgp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - bgp"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_bgp"),
 			},
 			"fortios_router_communitylist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getcommunitylist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - communitylist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_communitylist"),
 			},
 			"fortios_router_communitylistlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getcommunitylistlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - communitylistlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_communitylistlist"),
 			},
 			"fortios_router_isis": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getisis"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - isis"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_isis"),
 			},
 			"fortios_router_keychain": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getkeychain"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - keychain"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_keychain"),
 			},
 			"fortios_router_keychainlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getkeychainlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - keychainlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_keychainlist"),
 			},
 			"fortios_router_multicast": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getmulticast"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - multicast"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_multicast"),
 			},
 			"fortios_router_multicast6": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getmulticast6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - multicast6"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_multicast6"),
 			},
 			"fortios_router_multicastflow": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getmulticastflow"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - multicastflow"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_multicastflow"),
 			},
 			"fortios_router_multicastflowlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getmulticastflowlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - multicastflowlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_multicastflowlist"),
 			},
 			"fortios_router_ospf": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getospf"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - ospf"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_ospf"),
 			},
 			"fortios_router_ospf6": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getospf6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - ospf6"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_ospf6"),
 			},
 			"fortios_router_policy": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - policy"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_policy"),
 			},
 			"fortios_router_policy6": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getpolicy6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - policy6"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_policy6"),
 			},
 			"fortios_router_policy6list": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getpolicy6list"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - policy6list"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_policy6list"),
 			},
 			"fortios_router_policylist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getpolicylist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - policylist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_policylist"),
 			},
 			"fortios_router_prefixlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getprefixlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - prefixlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_prefixlist"),
 			},
 			"fortios_router_prefixlist6": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getprefixlist6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - prefixlist6"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_prefixlist6"),
 			},
 			"fortios_router_prefixlist6list": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getprefixlist6list"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - prefixlist6list"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_prefixlist6list"),
 			},
 			"fortios_router_prefixlistlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getprefixlistlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - prefixlistlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_prefixlistlist"),
 			},
 			"fortios_router_rip": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getrip"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - rip"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_rip"),
 			},
 			"fortios_router_ripng": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getripng"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - ripng"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_ripng"),
 			},
 			"fortios_router_routemap": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getroutemap"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - routemap"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_routemap"),
 			},
 			"fortios_router_routemaplist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getroutemaplist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - routemaplist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_routemaplist"),
 			},
 			"fortios_router_setting": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getsetting"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - setting"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_setting"),
 			},
 			"fortios_router_static": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getstatic"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - static"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_static"),
 			},
 			"fortios_router_static6": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getstatic6"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - static6"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_static6"),
 			},
 			"fortios_router_static6list": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getstatic6list"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - static6list"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_static6list"),
 			},
 			"fortios_router_staticlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerMod, "getstaticlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# router - staticlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_router_staticlist"),
 			},
 			"fortios_routerbgp_neighbor": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerbgpMod, "getneighbor"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# routerbgp - neighbor"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_routerbgp_neighbor"),
 			},
 			"fortios_routerbgp_neighborlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, routerbgpMod, "getneighborlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# routerbgp - neighborlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_routerbgp_neighborlist"),
 			},
 			"fortios_system_accprofile": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getaccprofile"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - accprofile"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_accprofile"),
 			},
 			"fortios_system_accprofilelist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getaccprofilelist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - accprofilelist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_accprofilelist"),
 			},
 			"fortios_system_admin": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getadmin"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - admin"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_admin"),
 			},
 			"fortios_system_adminlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getadminlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - adminlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_adminlist"),
 			},
 			"fortios_system_alias": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getalias"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - alias"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_alias"),
 			},
 			"fortios_system_aliaslist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getaliaslist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - aliaslist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_aliaslist"),
 			},
 			"fortios_system_apiuser": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getapiuser"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - apiuser"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_apiuser"),
 			},
 			"fortios_system_apiuserlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getapiuserlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - apiuserlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_apiuserlist"),
 			},
 			"fortios_system_arptable": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getarptable"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - arptable"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_arptable"),
 			},
 			"fortios_system_arptablelist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getarptablelist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - arptablelist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_arptablelist"),
 			},
 			"fortios_system_autoinstall": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getautoinstall"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - autoinstall"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_autoinstall"),
 			},
 			"fortios_system_automationaction": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getautomationaction"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - automationaction"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_automationaction"),
 			},
 			"fortios_system_automationactionlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getautomationactionlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - automationactionlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_automationactionlist"),
 			},
 			"fortios_system_automationdestination": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getautomationdestination"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - automationdestination"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_automationdestination"),
 			},
 			"fortios_system_automationdestinationlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getautomationdestinationlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - automationdestinationlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_automationdestinationlist"),
 			},
 			"fortios_system_automationtrigger": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getautomationtrigger"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - automationtrigger"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_automationtrigger"),
 			},
 			"fortios_system_automationtriggerlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getautomationtriggerlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - automationtriggerlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_automationtriggerlist"),
 			},
 			"fortios_system_autoscript": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getautoscript"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - autoscript"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_autoscript"),
 			},
 			"fortios_system_autoscriptlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getautoscriptlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - autoscriptlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_autoscriptlist"),
 			},
 			"fortios_system_centralmanagement": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getcentralmanagement"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - centralmanagement"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_centralmanagement"),
 			},
 			"fortios_system_clustersync": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getclustersync"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - clustersync"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_clustersync"),
 			},
 			"fortios_system_clustersynclist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getclustersynclist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - clustersynclist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_clustersynclist"),
 			},
 			"fortios_system_console": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getconsole"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - console"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_console"),
 			},
 			"fortios_system_csf": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getcsf"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - csf"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_csf"),
 			},
 			"fortios_system_ddns": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getddns"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ddns"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_ddns"),
 			},
 			"fortios_system_ddnslist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getddnslist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ddnslist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_ddnslist"),
 			},
 			"fortios_system_dns": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getdns"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - dns"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_dns"),
 			},
 			"fortios_system_dnsdatabase": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getdnsdatabase"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - dnsdatabase"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_dnsdatabase"),
 			},
 			"fortios_system_dnsdatabaselist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getdnsdatabaselist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - dnsdatabaselist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_dnsdatabaselist"),
 			},
 			"fortios_system_dnsserver": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getdnsserver"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - dnsserver"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_dnsserver"),
 			},
 			"fortios_system_dnsserverlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getdnsserverlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - dnsserverlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_dnsserverlist"),
 			},
 			"fortios_system_dscpbasedpriority": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getdscpbasedpriority"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - dscpbasedpriority"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_dscpbasedpriority"),
 			},
 			"fortios_system_dscpbasedprioritylist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getdscpbasedprioritylist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - dscpbasedprioritylist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_dscpbasedprioritylist"),
 			},
 			"fortios_system_emailserver": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getemailserver"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - emailserver"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_emailserver"),
 			},
 			"fortios_system_externalresource": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getexternalresource"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - externalresource"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_externalresource"),
 			},
 			"fortios_system_externalresourcelist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getexternalresourcelist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - externalresourcelist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_externalresourcelist"),
 			},
 			"fortios_system_fipscc": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getfipscc"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fipscc"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_fipscc"),
 			},
 			"fortios_system_fm": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getfm"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fm"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_fm"),
 			},
 			"fortios_system_fortiguard": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getfortiguard"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fortiguard"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_fortiguard"),
 			},
 			"fortios_system_fortimanager": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getfortimanager"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fortimanager"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_fortimanager"),
 			},
 			"fortios_system_fortisandbox": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getfortisandbox"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fortisandbox"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_fortisandbox"),
 			},
 			"fortios_system_fssopolling": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getfssopolling"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - fssopolling"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_fssopolling"),
 			},
 			"fortios_system_ftmpush": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getftmpush"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ftmpush"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_ftmpush"),
 			},
 			"fortios_system_global": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getglobal"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - global"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_global"),
 			},
 			"fortios_system_gretunnel": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getgretunnel"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - gretunnel"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_gretunnel"),
 			},
 			"fortios_system_gretunnellist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getgretunnellist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - gretunnellist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_gretunnellist"),
 			},
 			"fortios_system_ha": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getha"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ha"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_ha"),
 			},
 			"fortios_system_hamonitor": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "gethamonitor"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - hamonitor"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_hamonitor"),
 			},
 			"fortios_system_interface": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getinterface"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - interface"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_interface"),
 			},
 			"fortios_system_interfacelist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getinterfacelist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - interfacelist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_interfacelist"),
 			},
 			"fortios_system_ipiptunnel": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getipiptunnel"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ipiptunnel"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_ipiptunnel"),
 			},
 			"fortios_system_ipiptunnellist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getipiptunnellist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ipiptunnellist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_ipiptunnellist"),
 			},
 			"fortios_system_ipv6neighborcache": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getipv6neighborcache"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ipv6neighborcache"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_ipv6neighborcache"),
 			},
 			"fortios_system_ipv6neighborcachelist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getipv6neighborcachelist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ipv6neighborcachelist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_ipv6neighborcachelist"),
 			},
 			"fortios_system_ipv6tunnel": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getipv6tunnel"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ipv6tunnel"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_ipv6tunnel"),
 			},
 			"fortios_system_ipv6tunnellist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getipv6tunnellist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ipv6tunnellist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_ipv6tunnellist"),
 			},
 			"fortios_system_linkmonitor": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getlinkmonitor"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - linkmonitor"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_linkmonitor"),
 			},
 			"fortios_system_linkmonitorlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getlinkmonitorlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - linkmonitorlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_linkmonitorlist"),
 			},
 			"fortios_system_managementtunnel": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getmanagementtunnel"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - managementtunnel"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_managementtunnel"),
 			},
 			"fortios_system_mobiletunnel": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getmobiletunnel"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - mobiletunnel"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_mobiletunnel"),
 			},
 			"fortios_system_mobiletunnellist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getmobiletunnellist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - mobiletunnellist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_mobiletunnellist"),
 			},
 			"fortios_system_nat64": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getnat64"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - nat64"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_nat64"),
 			},
 			"fortios_system_ndproxy": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getndproxy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ndproxy"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_ndproxy"),
 			},
 			"fortios_system_netflow": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getnetflow"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - netflow"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_netflow"),
 			},
 			"fortios_system_networkvisibility": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getnetworkvisibility"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - networkvisibility"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_networkvisibility"),
 			},
 			"fortios_system_ntp": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getntp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - ntp"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_ntp"),
 			},
 			"fortios_system_objecttagging": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getobjecttagging"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - objecttagging"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_objecttagging"),
 			},
 			"fortios_system_objecttagginglist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getobjecttagginglist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - objecttagginglist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_objecttagginglist"),
 			},
 			"fortios_system_passwordpolicy": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getpasswordpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - passwordpolicy"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_passwordpolicy"),
 			},
 			"fortios_system_passwordpolicyguestadmin": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getpasswordpolicyguestadmin"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - passwordpolicyguestadmin"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_passwordpolicyguestadmin"),
 			},
 			"fortios_system_pppoeinterface": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getpppoeinterface"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - pppoeinterface"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_pppoeinterface"),
 			},
 			"fortios_system_pppoeinterfacelist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getpppoeinterfacelist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - pppoeinterfacelist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_pppoeinterfacelist"),
 			},
 			"fortios_system_proberesponse": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getproberesponse"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - proberesponse"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_proberesponse"),
 			},
 			"fortios_system_proxyarp": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getproxyarp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - proxyarp"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_proxyarp"),
 			},
 			"fortios_system_proxyarplist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getproxyarplist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - proxyarplist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_proxyarplist"),
 			},
 			"fortios_system_replacemsggroup": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getreplacemsggroup"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - replacemsggroup"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_replacemsggroup"),
 			},
 			"fortios_system_replacemsggrouplist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getreplacemsggrouplist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - replacemsggrouplist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_replacemsggrouplist"),
 			},
 			"fortios_system_replacemsgimage": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getreplacemsgimage"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - replacemsgimage"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_replacemsgimage"),
 			},
 			"fortios_system_replacemsgimagelist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getreplacemsgimagelist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - replacemsgimagelist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_replacemsgimagelist"),
 			},
 			"fortios_system_resourcelimits": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getresourcelimits"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - resourcelimits"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_resourcelimits"),
 			},
 			"fortios_system_sdnconnector": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getsdnconnector"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sdnconnector"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_sdnconnector"),
 			},
 			"fortios_system_sdnconnectorlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getsdnconnectorlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sdnconnectorlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_sdnconnectorlist"),
 			},
 			"fortios_system_sessionhelper": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getsessionhelper"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sessionhelper"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_sessionhelper"),
 			},
 			"fortios_system_sessionhelperlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getsessionhelperlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sessionhelperlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_sessionhelperlist"),
 			},
 			"fortios_system_sessionttl": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getsessionttl"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sessionttl"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_sessionttl"),
 			},
 			"fortios_system_sflow": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getsflow"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sflow"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_sflow"),
 			},
 			"fortios_system_sittunnel": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getsittunnel"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sittunnel"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_sittunnel"),
 			},
 			"fortios_system_sittunnellist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getsittunnellist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - sittunnellist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_sittunnellist"),
 			},
 			"fortios_system_smsserver": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getsmsserver"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - smsserver"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_smsserver"),
 			},
 			"fortios_system_smsserverlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getsmsserverlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - smsserverlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_smsserverlist"),
 			},
 			"fortios_system_tosbasedpriority": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "gettosbasedpriority"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - tosbasedpriority"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_tosbasedpriority"),
 			},
 			"fortios_system_tosbasedprioritylist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "gettosbasedprioritylist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - tosbasedprioritylist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_tosbasedprioritylist"),
 			},
 			"fortios_system_vdomexception": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getvdomexception"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vdomexception"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_vdomexception"),
 			},
 			"fortios_system_vdomexceptionlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getvdomexceptionlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vdomexceptionlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_vdomexceptionlist"),
 			},
 			"fortios_system_vdomnetflow": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getvdomnetflow"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vdomnetflow"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_vdomnetflow"),
 			},
 			"fortios_system_vdomsflow": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getvdomsflow"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vdomsflow"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_vdomsflow"),
 			},
 			"fortios_system_virtualwanlink": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getvirtualwanlink"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - virtualwanlink"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_virtualwanlink"),
 			},
 			"fortios_system_vxlan": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getvxlan"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vxlan"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_vxlan"),
 			},
 			"fortios_system_vxlanlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getvxlanlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - vxlanlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_vxlanlist"),
 			},
 			"fortios_system_wccp": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getwccp"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - wccp"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_wccp"),
 			},
 			"fortios_system_wccplist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getwccplist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - wccplist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_wccplist"),
 			},
 			"fortios_system_zone": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getzone"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - zone"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_zone"),
 			},
 			"fortios_system_zonelist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemMod, "getzonelist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# system - zonelist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_system_zonelist"),
 			},
 			"fortios_systemautoupdate_pushupdate": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemautoupdateMod, "getpushupdate"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemautoupdate - pushupdate"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_systemautoupdate_pushupdate"),
 			},
 			"fortios_systemautoupdate_schedule": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemautoupdateMod, "getschedule"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemautoupdate - schedule"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_systemautoupdate_schedule"),
 			},
 			"fortios_systemautoupdate_tunneling": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemautoupdateMod, "gettunneling"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemautoupdate - tunneling"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_systemautoupdate_tunneling"),
 			},
 			"fortios_systemdhcp_server": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemdhcpMod, "getserver"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemdhcp - server"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_systemdhcp_server"),
 			},
 			"fortios_systemdhcp_serverlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemdhcpMod, "getserverlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemdhcp - serverlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_systemdhcp_serverlist"),
 			},
 			"fortios_systemlldp_networkpolicy": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemlldpMod, "getnetworkpolicy"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemlldp - networkpolicy"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_systemlldp_networkpolicy"),
 			},
 			"fortios_systemlldp_networkpolicylist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemlldpMod, "getnetworkpolicylist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemlldp - networkpolicylist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_systemlldp_networkpolicylist"),
 			},
 			"fortios_systemsnmp_community": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemsnmpMod, "getcommunity"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemsnmp - community"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_systemsnmp_community"),
 			},
 			"fortios_systemsnmp_communitylist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemsnmpMod, "getcommunitylist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemsnmp - communitylist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_systemsnmp_communitylist"),
 			},
 			"fortios_systemsnmp_sysinfo": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemsnmpMod, "getsysinfo"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemsnmp - sysinfo"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_systemsnmp_sysinfo"),
 			},
 			"fortios_systemsnmp_user": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemsnmpMod, "getuser"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemsnmp - user"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_systemsnmp_user"),
 			},
 			"fortios_systemsnmp_userlist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, systemsnmpMod, "getuserlist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# systemsnmp - userlist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_systemsnmp_userlist"),
 			},
 			"fortios_user_saml": {
-				Tok: tfbridge.MakeDataSource(mainPkg, userMod, "getsaml"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - saml"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_user_saml"),
 			},
 			"fortios_user_samllist": {
-				Tok: tfbridge.MakeDataSource(mainPkg, userMod, "getsamllist"),
-				Docs: &tfbridge.DocInfo{
-					Markdown: []byte("# user - samllist"),
-				},
+				Tok: makeDataSource(mainMod, "fortios_user_samllist"),
 			},
 		},
+		IgnoreMappings: []string{
+			"fortios_vpn_ipsec_phase1interface", // deprecated
+			"fortios_vpn_ipsec_phase2interface", // deprecated
+			"fortios_log_fortianalyzer_setting", // deprecated
+			"fortios_firewall_security_policy",  // deprecated
+		},
 		JavaScript: &tfbridge.JavaScriptInfo{
-			PackageName: "@aspyrmedia/pulumi-fortios",
+			PackageName: "@pulumiverse/fortios",
+
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",
@@ -5510,7 +2892,8 @@ func Provider() tfbridge.ProviderInfo {
 			//Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
-			PackageName: "aspyrmedia_fortios",
+			PackageName: "pulumiverse_fortios",
+
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
@@ -5518,18 +2901,22 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/aspyrmedia/pulumi-%[1]s/sdk/", mainPkg),
+				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", "fortios"),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
-				mainPkg,
+				"fortios",
 			),
 			GenerateResourceContainerTypes: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
-			RootNamespace: "Aspyrmedia",
+			RootNamespace: "Pulumiverse",
+
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
+		},
+		Java: &tfbridge.JavaInfo{
+			BasePackage: "com.pulumiverse",
 		},
 	}
 

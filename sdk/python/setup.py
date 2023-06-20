@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'fortios', PLUGIN_VERSION, '--server', 'https://github.com/aspyrmedia/pulumi-fortios/releases/download/v${VERSION}'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'fortios', PLUGIN_VERSION, '--server', 'github://api.github.com/pulumiverse/pulumi-fortios'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
@@ -37,23 +37,24 @@ def readme():
         return "fortios Pulumi Package - Development Version"
 
 
-setup(name='aspyrmedia_fortios',
+setup(name='pulumiverse_fortios',
+      python_requires='>=3.7',
       version=VERSION,
-      description="A Pulumi package for creating and managing fortios cloud resources.",
+      description="A Pulumi package for creating and managing Fortios resources",
       long_description=readme(),
       long_description_content_type='text/markdown',
       cmdclass={
           'install': InstallPluginCommand,
       },
       keywords='pulumi fortios category/cloud',
-      url='https://www.pulumi.com',
+      url='https://github.com/pulumiverse/pulumi-fortios',
       project_urls={
-          'Repository': 'https://github.com/aspyrmedia/pulumi-fortios'
+          'Repository': 'https://github.com/pulumiverse/pulumi-fortios'
       },
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'aspyrmedia_fortios': [
+          'pulumiverse_fortios': [
               'py.typed',
               'pulumi-plugin.json',
           ]

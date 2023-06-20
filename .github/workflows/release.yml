@@ -3,8 +3,13 @@ on:
   push:
     tags:
       - v*.*.*
+
+# New way of setting Github token permissions instead of a Personal Access Token
+# Source: https://github.blog/changelog/2021-04-20-github-actions-control-permissions-for-github_token/
+permissions:
+  contents: write
+
 env:
-  # THIS GITHUB_TOKEN IS A REQUIREMENT TO BE ABLE TO WRITE TO GH RELEASES
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # IF YOU NEED TO PUBLISH A NPM PACKAGE THEN ENSURE A NPM_TOKEN SECRET IS SET
   # AND PUBLISH_NPM: TRUE. IF YOU WANT TO PUBLISH TO A PRIVATE NPM REGISTRY
@@ -18,7 +23,7 @@ env:
   # NPM REGISTRY THEN ENSURE THE NPM_REGISTRY_URL IS CHANGED
   NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
   NUGET_FEED_URL: https://api.nuget.org/v3/index.json
-  PUBLISH_NUGET: false
+  PUBLISH_NUGET: true
   # IF YOU NEED TO PUBLISH A PYPI PACKAGE THEN ENSURE AN PYPI_API_TOKEN
   # SECRET IS SET AND PUBLISH_PYPI: TRUE. IF YOU WANT TO PUBLISH TO AN ALTERNATIVE
   # PYPI REGISTRY THEN ENSURE THE PYPI_REPOSITORY_URL IS SET. IF YOU ARE USING AN API_TOKEN THEN
@@ -26,39 +31,37 @@ env:
   # NEED TO CHANGE TO USE THE CORRECT PASSWORD
   PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
   PYPI_USERNAME: "__token__"
-  PYPI_REPOSITORY_URL: ""
   PUBLISH_PYPI: true
 jobs:
   publish_binary:
     name: publish
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-      - name: Unshallow clone for tags
-        run: git fetch --prune --unshallow --tags
-      - name: Install Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: ${{matrix.goversion}}
-      - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.5.0
-        with:
-          repo: pulumi/pulumictl
-      - name: Set PreRelease Version
-        run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v4
-        with:
-          args: -p 3 release --clean
-          version: latest
+    - name: Checkout Repo
+      uses: actions/checkout@v3
+      with:
+        # https://github.com/actions/checkout#Fetch-all-history-for-all-tags-and-branches
+        fetch-depth: 0
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{matrix.goversion}}
+    - name: Install pulumictl
+      uses: jaxxstorm/action-install-gh-release@v1.5.0
+      with:
+        repo: pulumi/pulumictl
+    - name: Set PreRelease Version
+      run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
+    - name: Run GoReleaser
+      uses: goreleaser/goreleaser-action@v2
+      with:
+        args: -p 3 release --rm-dist
+        version: latest
     strategy:
       fail-fast: true
       matrix:
         goversion:
-          - 1.18.x
+          - 1.20.x
   publish_sdk:
     name: Publish SDKs
     runs-on: ubuntu-latest
@@ -86,7 +89,7 @@ jobs:
       - name: Setup DotNet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: ${{matrix.dotnetversion}}
+          dotnet-version: ${{matrix.dotnetverson}}
       - name: Setup Python
         uses: actions/setup-python@v1
         with:
@@ -126,13 +129,14 @@ jobs:
         dotnetversion:
           - 3.1.301
         goversion:
-          - 1.18.x
+          - 1.20.x
         language:
           - nodejs
           - python
           - dotnet
           - go
         nodeversion:
-          - 14.x
+          - 16.x
         pythonversion:
           - "3.9"
+

@@ -1,4 +1,4 @@
-module github.com/aspyrmedia/pulumi-fortios/sdk
+module github.com/pulumiverse/pulumi-fortios/sdk
 
 go 1.17
 

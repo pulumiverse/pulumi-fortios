@@ -1,1 +1,1 @@
-A Pulumi package for creating and managing fortios cloud resources.
+A Pulumi package for creating and managing Fortios resources

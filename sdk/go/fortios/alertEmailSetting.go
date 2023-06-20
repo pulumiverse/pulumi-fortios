@@ -10,522 +10,802 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-type AlertEmailSetting struct {
+// Configure alert email settings.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fortios.NewAlertemailSetting(ctx, "trname", &fortios.AlertemailSettingArgs{
+//				AdminLoginLogs:           pulumi.String("disable"),
+//				AlertInterval:            pulumi.Int(2),
+//				AmcInterfaceBypassMode:   pulumi.String("disable"),
+//				AntivirusLogs:            pulumi.String("disable"),
+//				ConfigurationChangesLogs: pulumi.String("disable"),
+//				CriticalInterval:         pulumi.Int(3),
+//				DebugInterval:            pulumi.Int(60),
+//				EmailInterval:            pulumi.Int(5),
+//				EmergencyInterval:        pulumi.Int(1),
+//				ErrorInterval:            pulumi.Int(5),
+//				FdsLicenseExpiringDays:   pulumi.Int(15),
+//				InformationInterval:      pulumi.Int(30),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// # Alertemail Setting can be imported using any of these accepted formats
+//
+// ```sh
+//
+//	$ pulumi import fortios:index/alertemailSetting:AlertemailSetting labelname AlertemailSetting
+//
+// ```
+//
+//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+//
+// ```sh
+//
+//	$ pulumi import fortios:index/alertemailSetting:AlertemailSetting labelname AlertemailSetting
+//
+// ```
+//
+//	$ unset "FORTIOS_IMPORT_TABLE"
+type AlertemailSetting struct {
 	pulumi.CustomResourceState
 
-	AdminLoginLogs                    pulumi.StringOutput    `pulumi:"adminLoginLogs"`
-	AlertInterval                     pulumi.IntOutput       `pulumi:"alertInterval"`
-	AmcInterfaceBypassMode            pulumi.StringOutput    `pulumi:"amcInterfaceBypassMode"`
-	AntivirusLogs                     pulumi.StringOutput    `pulumi:"antivirusLogs"`
-	ConfigurationChangesLogs          pulumi.StringOutput    `pulumi:"configurationChangesLogs"`
-	CriticalInterval                  pulumi.IntOutput       `pulumi:"criticalInterval"`
-	DebugInterval                     pulumi.IntOutput       `pulumi:"debugInterval"`
-	EmailInterval                     pulumi.IntOutput       `pulumi:"emailInterval"`
-	EmergencyInterval                 pulumi.IntOutput       `pulumi:"emergencyInterval"`
-	ErrorInterval                     pulumi.IntOutput       `pulumi:"errorInterval"`
-	FdsLicenseExpiringDays            pulumi.IntOutput       `pulumi:"fdsLicenseExpiringDays"`
-	FdsLicenseExpiringWarning         pulumi.StringOutput    `pulumi:"fdsLicenseExpiringWarning"`
-	FdsUpdateLogs                     pulumi.StringOutput    `pulumi:"fdsUpdateLogs"`
-	FilterMode                        pulumi.StringOutput    `pulumi:"filterMode"`
-	FipsCcErrors                      pulumi.StringOutput    `pulumi:"fipsCcErrors"`
-	FirewallAuthenticationFailureLogs pulumi.StringOutput    `pulumi:"firewallAuthenticationFailureLogs"`
-	FortiguardLogQuotaWarning         pulumi.StringOutput    `pulumi:"fortiguardLogQuotaWarning"`
-	FssoDisconnectLogs                pulumi.StringOutput    `pulumi:"fssoDisconnectLogs"`
-	HaLogs                            pulumi.StringOutput    `pulumi:"haLogs"`
-	InformationInterval               pulumi.IntOutput       `pulumi:"informationInterval"`
-	IpsLogs                           pulumi.StringOutput    `pulumi:"ipsLogs"`
-	IpsecErrorsLogs                   pulumi.StringOutput    `pulumi:"ipsecErrorsLogs"`
-	LocalDiskUsage                    pulumi.IntOutput       `pulumi:"localDiskUsage"`
-	LogDiskUsageWarning               pulumi.StringOutput    `pulumi:"logDiskUsageWarning"`
-	Mailto1                           pulumi.StringOutput    `pulumi:"mailto1"`
-	Mailto2                           pulumi.StringOutput    `pulumi:"mailto2"`
-	Mailto3                           pulumi.StringOutput    `pulumi:"mailto3"`
-	NotificationInterval              pulumi.IntOutput       `pulumi:"notificationInterval"`
-	PppErrorsLogs                     pulumi.StringOutput    `pulumi:"pppErrorsLogs"`
-	Severity                          pulumi.StringOutput    `pulumi:"severity"`
-	SshLogs                           pulumi.StringOutput    `pulumi:"sshLogs"`
-	SslvpnAuthenticationErrorsLogs    pulumi.StringOutput    `pulumi:"sslvpnAuthenticationErrorsLogs"`
-	Username                          pulumi.StringOutput    `pulumi:"username"`
-	Vdomparam                         pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	ViolationTrafficLogs              pulumi.StringOutput    `pulumi:"violationTrafficLogs"`
-	WarningInterval                   pulumi.IntOutput       `pulumi:"warningInterval"`
-	WebfilterLogs                     pulumi.StringOutput    `pulumi:"webfilterLogs"`
+	// Enable/disable administrator login/logout logs in alert email. Valid values: `enable`, `disable`.
+	AdminLoginLogs pulumi.StringOutput `pulumi:"adminLoginLogs"`
+	// Alert alert interval in minutes.
+	AlertInterval pulumi.IntOutput `pulumi:"alertInterval"`
+	// Enable/disable Fortinet Advanced Mezzanine Card (AMC) interface bypass mode logs in alert email. Valid values: `enable`, `disable`.
+	AmcInterfaceBypassMode pulumi.StringOutput `pulumi:"amcInterfaceBypassMode"`
+	// Enable/disable antivirus logs in alert email. Valid values: `enable`, `disable`.
+	AntivirusLogs pulumi.StringOutput `pulumi:"antivirusLogs"`
+	// Enable/disable configuration change logs in alert email. Valid values: `enable`, `disable`.
+	ConfigurationChangesLogs pulumi.StringOutput `pulumi:"configurationChangesLogs"`
+	// Critical alert interval in minutes.
+	CriticalInterval pulumi.IntOutput `pulumi:"criticalInterval"`
+	// Debug alert interval in minutes.
+	DebugInterval pulumi.IntOutput `pulumi:"debugInterval"`
+	// Interval between sending alert emails (1 - 99999 min, default = 5).
+	EmailInterval pulumi.IntOutput `pulumi:"emailInterval"`
+	// Emergency alert interval in minutes.
+	EmergencyInterval pulumi.IntOutput `pulumi:"emergencyInterval"`
+	// Error alert interval in minutes.
+	ErrorInterval pulumi.IntOutput `pulumi:"errorInterval"`
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	FdsLicenseExpiringDays pulumi.IntOutput `pulumi:"fdsLicenseExpiringDays"`
+	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
+	FdsLicenseExpiringWarning pulumi.StringOutput `pulumi:"fdsLicenseExpiringWarning"`
+	// Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+	FdsUpdateLogs pulumi.StringOutput `pulumi:"fdsUpdateLogs"`
+	// How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
+	FilterMode pulumi.StringOutput `pulumi:"filterMode"`
+	// Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
+	FipsCcErrors pulumi.StringOutput `pulumi:"fipsCcErrors"`
+	// Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
+	FirewallAuthenticationFailureLogs pulumi.StringOutput `pulumi:"firewallAuthenticationFailureLogs"`
+	// Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
+	FortiguardLogQuotaWarning pulumi.StringOutput `pulumi:"fortiguardLogQuotaWarning"`
+	// Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+	FssoDisconnectLogs pulumi.StringOutput `pulumi:"fssoDisconnectLogs"`
+	// Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+	HaLogs pulumi.StringOutput `pulumi:"haLogs"`
+	// Information alert interval in minutes.
+	InformationInterval pulumi.IntOutput `pulumi:"informationInterval"`
+	// Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+	IpsLogs pulumi.StringOutput `pulumi:"ipsLogs"`
+	// Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+	IpsecErrorsLogs pulumi.StringOutput `pulumi:"ipsecErrorsLogs"`
+	// Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
+	LocalDiskUsage pulumi.IntOutput `pulumi:"localDiskUsage"`
+	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
+	LogDiskUsageWarning pulumi.StringOutput `pulumi:"logDiskUsageWarning"`
+	// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+	Mailto1 pulumi.StringOutput `pulumi:"mailto1"`
+	// Optional second email address to send alert email to (max. 64 characters).
+	Mailto2 pulumi.StringOutput `pulumi:"mailto2"`
+	// Optional third email address to send alert email to (max. 64 characters).
+	Mailto3 pulumi.StringOutput `pulumi:"mailto3"`
+	// Notification alert interval in minutes.
+	NotificationInterval pulumi.IntOutput `pulumi:"notificationInterval"`
+	// Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+	PppErrorsLogs pulumi.StringOutput `pulumi:"pppErrorsLogs"`
+	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	Severity pulumi.StringOutput `pulumi:"severity"`
+	// Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
+	SshLogs pulumi.StringOutput `pulumi:"sshLogs"`
+	// Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
+	SslvpnAuthenticationErrorsLogs pulumi.StringOutput `pulumi:"sslvpnAuthenticationErrorsLogs"`
+	// Name that appears in the From: field of alert emails (max. 36 characters).
+	Username pulumi.StringOutput `pulumi:"username"`
+	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
+	ViolationTrafficLogs pulumi.StringOutput `pulumi:"violationTrafficLogs"`
+	// Warning alert interval in minutes.
+	WarningInterval pulumi.IntOutput `pulumi:"warningInterval"`
+	// Enable/disable web filter logs in alert email. Valid values: `enable`, `disable`.
+	WebfilterLogs pulumi.StringOutput `pulumi:"webfilterLogs"`
 }
 
-// NewAlertEmailSetting registers a new resource with the given unique name, arguments, and options.
-func NewAlertEmailSetting(ctx *pulumi.Context,
-	name string, args *AlertEmailSettingArgs, opts ...pulumi.ResourceOption) (*AlertEmailSetting, error) {
+// NewAlertemailSetting registers a new resource with the given unique name, arguments, and options.
+func NewAlertemailSetting(ctx *pulumi.Context,
+	name string, args *AlertemailSettingArgs, opts ...pulumi.ResourceOption) (*AlertemailSetting, error) {
 	if args == nil {
-		args = &AlertEmailSettingArgs{}
+		args = &AlertemailSettingArgs{}
 	}
 
 	opts = pkgResourceDefaultOpts(opts)
-	var resource AlertEmailSetting
-	err := ctx.RegisterResource("fortios:index/alertEmailSetting:alertEmailSetting", name, args, &resource, opts...)
+	var resource AlertemailSetting
+	err := ctx.RegisterResource("fortios:index/alertemailSetting:AlertemailSetting", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetAlertEmailSetting gets an existing AlertEmailSetting resource's state with the given name, ID, and optional
+// GetAlertemailSetting gets an existing AlertemailSetting resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetAlertEmailSetting(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *AlertEmailSettingState, opts ...pulumi.ResourceOption) (*AlertEmailSetting, error) {
-	var resource AlertEmailSetting
-	err := ctx.ReadResource("fortios:index/alertEmailSetting:alertEmailSetting", name, id, state, &resource, opts...)
+func GetAlertemailSetting(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *AlertemailSettingState, opts ...pulumi.ResourceOption) (*AlertemailSetting, error) {
+	var resource AlertemailSetting
+	err := ctx.ReadResource("fortios:index/alertemailSetting:AlertemailSetting", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering AlertEmailSetting resources.
-type alertEmailSettingState struct {
-	AdminLoginLogs                    *string `pulumi:"adminLoginLogs"`
-	AlertInterval                     *int    `pulumi:"alertInterval"`
-	AmcInterfaceBypassMode            *string `pulumi:"amcInterfaceBypassMode"`
-	AntivirusLogs                     *string `pulumi:"antivirusLogs"`
-	ConfigurationChangesLogs          *string `pulumi:"configurationChangesLogs"`
-	CriticalInterval                  *int    `pulumi:"criticalInterval"`
-	DebugInterval                     *int    `pulumi:"debugInterval"`
-	EmailInterval                     *int    `pulumi:"emailInterval"`
-	EmergencyInterval                 *int    `pulumi:"emergencyInterval"`
-	ErrorInterval                     *int    `pulumi:"errorInterval"`
-	FdsLicenseExpiringDays            *int    `pulumi:"fdsLicenseExpiringDays"`
-	FdsLicenseExpiringWarning         *string `pulumi:"fdsLicenseExpiringWarning"`
-	FdsUpdateLogs                     *string `pulumi:"fdsUpdateLogs"`
-	FilterMode                        *string `pulumi:"filterMode"`
-	FipsCcErrors                      *string `pulumi:"fipsCcErrors"`
+// Input properties used for looking up and filtering AlertemailSetting resources.
+type alertemailSettingState struct {
+	// Enable/disable administrator login/logout logs in alert email. Valid values: `enable`, `disable`.
+	AdminLoginLogs *string `pulumi:"adminLoginLogs"`
+	// Alert alert interval in minutes.
+	AlertInterval *int `pulumi:"alertInterval"`
+	// Enable/disable Fortinet Advanced Mezzanine Card (AMC) interface bypass mode logs in alert email. Valid values: `enable`, `disable`.
+	AmcInterfaceBypassMode *string `pulumi:"amcInterfaceBypassMode"`
+	// Enable/disable antivirus logs in alert email. Valid values: `enable`, `disable`.
+	AntivirusLogs *string `pulumi:"antivirusLogs"`
+	// Enable/disable configuration change logs in alert email. Valid values: `enable`, `disable`.
+	ConfigurationChangesLogs *string `pulumi:"configurationChangesLogs"`
+	// Critical alert interval in minutes.
+	CriticalInterval *int `pulumi:"criticalInterval"`
+	// Debug alert interval in minutes.
+	DebugInterval *int `pulumi:"debugInterval"`
+	// Interval between sending alert emails (1 - 99999 min, default = 5).
+	EmailInterval *int `pulumi:"emailInterval"`
+	// Emergency alert interval in minutes.
+	EmergencyInterval *int `pulumi:"emergencyInterval"`
+	// Error alert interval in minutes.
+	ErrorInterval *int `pulumi:"errorInterval"`
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	FdsLicenseExpiringDays *int `pulumi:"fdsLicenseExpiringDays"`
+	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
+	FdsLicenseExpiringWarning *string `pulumi:"fdsLicenseExpiringWarning"`
+	// Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+	FdsUpdateLogs *string `pulumi:"fdsUpdateLogs"`
+	// How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
+	FilterMode *string `pulumi:"filterMode"`
+	// Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
+	FipsCcErrors *string `pulumi:"fipsCcErrors"`
+	// Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
 	FirewallAuthenticationFailureLogs *string `pulumi:"firewallAuthenticationFailureLogs"`
-	FortiguardLogQuotaWarning         *string `pulumi:"fortiguardLogQuotaWarning"`
-	FssoDisconnectLogs                *string `pulumi:"fssoDisconnectLogs"`
-	HaLogs                            *string `pulumi:"haLogs"`
-	InformationInterval               *int    `pulumi:"informationInterval"`
-	IpsLogs                           *string `pulumi:"ipsLogs"`
-	IpsecErrorsLogs                   *string `pulumi:"ipsecErrorsLogs"`
-	LocalDiskUsage                    *int    `pulumi:"localDiskUsage"`
-	LogDiskUsageWarning               *string `pulumi:"logDiskUsageWarning"`
-	Mailto1                           *string `pulumi:"mailto1"`
-	Mailto2                           *string `pulumi:"mailto2"`
-	Mailto3                           *string `pulumi:"mailto3"`
-	NotificationInterval              *int    `pulumi:"notificationInterval"`
-	PppErrorsLogs                     *string `pulumi:"pppErrorsLogs"`
-	Severity                          *string `pulumi:"severity"`
-	SshLogs                           *string `pulumi:"sshLogs"`
-	SslvpnAuthenticationErrorsLogs    *string `pulumi:"sslvpnAuthenticationErrorsLogs"`
-	Username                          *string `pulumi:"username"`
-	Vdomparam                         *string `pulumi:"vdomparam"`
-	ViolationTrafficLogs              *string `pulumi:"violationTrafficLogs"`
-	WarningInterval                   *int    `pulumi:"warningInterval"`
-	WebfilterLogs                     *string `pulumi:"webfilterLogs"`
+	// Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
+	FortiguardLogQuotaWarning *string `pulumi:"fortiguardLogQuotaWarning"`
+	// Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+	FssoDisconnectLogs *string `pulumi:"fssoDisconnectLogs"`
+	// Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+	HaLogs *string `pulumi:"haLogs"`
+	// Information alert interval in minutes.
+	InformationInterval *int `pulumi:"informationInterval"`
+	// Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+	IpsLogs *string `pulumi:"ipsLogs"`
+	// Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+	IpsecErrorsLogs *string `pulumi:"ipsecErrorsLogs"`
+	// Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
+	LocalDiskUsage *int `pulumi:"localDiskUsage"`
+	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
+	LogDiskUsageWarning *string `pulumi:"logDiskUsageWarning"`
+	// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+	Mailto1 *string `pulumi:"mailto1"`
+	// Optional second email address to send alert email to (max. 64 characters).
+	Mailto2 *string `pulumi:"mailto2"`
+	// Optional third email address to send alert email to (max. 64 characters).
+	Mailto3 *string `pulumi:"mailto3"`
+	// Notification alert interval in minutes.
+	NotificationInterval *int `pulumi:"notificationInterval"`
+	// Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+	PppErrorsLogs *string `pulumi:"pppErrorsLogs"`
+	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	Severity *string `pulumi:"severity"`
+	// Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
+	SshLogs *string `pulumi:"sshLogs"`
+	// Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
+	SslvpnAuthenticationErrorsLogs *string `pulumi:"sslvpnAuthenticationErrorsLogs"`
+	// Name that appears in the From: field of alert emails (max. 36 characters).
+	Username *string `pulumi:"username"`
+	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam *string `pulumi:"vdomparam"`
+	// Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
+	ViolationTrafficLogs *string `pulumi:"violationTrafficLogs"`
+	// Warning alert interval in minutes.
+	WarningInterval *int `pulumi:"warningInterval"`
+	// Enable/disable web filter logs in alert email. Valid values: `enable`, `disable`.
+	WebfilterLogs *string `pulumi:"webfilterLogs"`
 }
 
-type AlertEmailSettingState struct {
-	AdminLoginLogs                    pulumi.StringPtrInput
-	AlertInterval                     pulumi.IntPtrInput
-	AmcInterfaceBypassMode            pulumi.StringPtrInput
-	AntivirusLogs                     pulumi.StringPtrInput
-	ConfigurationChangesLogs          pulumi.StringPtrInput
-	CriticalInterval                  pulumi.IntPtrInput
-	DebugInterval                     pulumi.IntPtrInput
-	EmailInterval                     pulumi.IntPtrInput
-	EmergencyInterval                 pulumi.IntPtrInput
-	ErrorInterval                     pulumi.IntPtrInput
-	FdsLicenseExpiringDays            pulumi.IntPtrInput
-	FdsLicenseExpiringWarning         pulumi.StringPtrInput
-	FdsUpdateLogs                     pulumi.StringPtrInput
-	FilterMode                        pulumi.StringPtrInput
-	FipsCcErrors                      pulumi.StringPtrInput
+type AlertemailSettingState struct {
+	// Enable/disable administrator login/logout logs in alert email. Valid values: `enable`, `disable`.
+	AdminLoginLogs pulumi.StringPtrInput
+	// Alert alert interval in minutes.
+	AlertInterval pulumi.IntPtrInput
+	// Enable/disable Fortinet Advanced Mezzanine Card (AMC) interface bypass mode logs in alert email. Valid values: `enable`, `disable`.
+	AmcInterfaceBypassMode pulumi.StringPtrInput
+	// Enable/disable antivirus logs in alert email. Valid values: `enable`, `disable`.
+	AntivirusLogs pulumi.StringPtrInput
+	// Enable/disable configuration change logs in alert email. Valid values: `enable`, `disable`.
+	ConfigurationChangesLogs pulumi.StringPtrInput
+	// Critical alert interval in minutes.
+	CriticalInterval pulumi.IntPtrInput
+	// Debug alert interval in minutes.
+	DebugInterval pulumi.IntPtrInput
+	// Interval between sending alert emails (1 - 99999 min, default = 5).
+	EmailInterval pulumi.IntPtrInput
+	// Emergency alert interval in minutes.
+	EmergencyInterval pulumi.IntPtrInput
+	// Error alert interval in minutes.
+	ErrorInterval pulumi.IntPtrInput
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	FdsLicenseExpiringDays pulumi.IntPtrInput
+	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
+	FdsLicenseExpiringWarning pulumi.StringPtrInput
+	// Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+	FdsUpdateLogs pulumi.StringPtrInput
+	// How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
+	FilterMode pulumi.StringPtrInput
+	// Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
+	FipsCcErrors pulumi.StringPtrInput
+	// Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
 	FirewallAuthenticationFailureLogs pulumi.StringPtrInput
-	FortiguardLogQuotaWarning         pulumi.StringPtrInput
-	FssoDisconnectLogs                pulumi.StringPtrInput
-	HaLogs                            pulumi.StringPtrInput
-	InformationInterval               pulumi.IntPtrInput
-	IpsLogs                           pulumi.StringPtrInput
-	IpsecErrorsLogs                   pulumi.StringPtrInput
-	LocalDiskUsage                    pulumi.IntPtrInput
-	LogDiskUsageWarning               pulumi.StringPtrInput
-	Mailto1                           pulumi.StringPtrInput
-	Mailto2                           pulumi.StringPtrInput
-	Mailto3                           pulumi.StringPtrInput
-	NotificationInterval              pulumi.IntPtrInput
-	PppErrorsLogs                     pulumi.StringPtrInput
-	Severity                          pulumi.StringPtrInput
-	SshLogs                           pulumi.StringPtrInput
-	SslvpnAuthenticationErrorsLogs    pulumi.StringPtrInput
-	Username                          pulumi.StringPtrInput
-	Vdomparam                         pulumi.StringPtrInput
-	ViolationTrafficLogs              pulumi.StringPtrInput
-	WarningInterval                   pulumi.IntPtrInput
-	WebfilterLogs                     pulumi.StringPtrInput
+	// Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
+	FortiguardLogQuotaWarning pulumi.StringPtrInput
+	// Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+	FssoDisconnectLogs pulumi.StringPtrInput
+	// Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+	HaLogs pulumi.StringPtrInput
+	// Information alert interval in minutes.
+	InformationInterval pulumi.IntPtrInput
+	// Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+	IpsLogs pulumi.StringPtrInput
+	// Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+	IpsecErrorsLogs pulumi.StringPtrInput
+	// Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
+	LocalDiskUsage pulumi.IntPtrInput
+	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
+	LogDiskUsageWarning pulumi.StringPtrInput
+	// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+	Mailto1 pulumi.StringPtrInput
+	// Optional second email address to send alert email to (max. 64 characters).
+	Mailto2 pulumi.StringPtrInput
+	// Optional third email address to send alert email to (max. 64 characters).
+	Mailto3 pulumi.StringPtrInput
+	// Notification alert interval in minutes.
+	NotificationInterval pulumi.IntPtrInput
+	// Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+	PppErrorsLogs pulumi.StringPtrInput
+	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	Severity pulumi.StringPtrInput
+	// Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
+	SshLogs pulumi.StringPtrInput
+	// Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
+	SslvpnAuthenticationErrorsLogs pulumi.StringPtrInput
+	// Name that appears in the From: field of alert emails (max. 36 characters).
+	Username pulumi.StringPtrInput
+	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput
+	// Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
+	ViolationTrafficLogs pulumi.StringPtrInput
+	// Warning alert interval in minutes.
+	WarningInterval pulumi.IntPtrInput
+	// Enable/disable web filter logs in alert email. Valid values: `enable`, `disable`.
+	WebfilterLogs pulumi.StringPtrInput
 }
 
-func (AlertEmailSettingState) ElementType() reflect.Type {
-	return reflect.TypeOf((*alertEmailSettingState)(nil)).Elem()
+func (AlertemailSettingState) ElementType() reflect.Type {
+	return reflect.TypeOf((*alertemailSettingState)(nil)).Elem()
 }
 
-type alertEmailSettingArgs struct {
-	AdminLoginLogs                    *string `pulumi:"adminLoginLogs"`
-	AlertInterval                     *int    `pulumi:"alertInterval"`
-	AmcInterfaceBypassMode            *string `pulumi:"amcInterfaceBypassMode"`
-	AntivirusLogs                     *string `pulumi:"antivirusLogs"`
-	ConfigurationChangesLogs          *string `pulumi:"configurationChangesLogs"`
-	CriticalInterval                  *int    `pulumi:"criticalInterval"`
-	DebugInterval                     *int    `pulumi:"debugInterval"`
-	EmailInterval                     *int    `pulumi:"emailInterval"`
-	EmergencyInterval                 *int    `pulumi:"emergencyInterval"`
-	ErrorInterval                     *int    `pulumi:"errorInterval"`
-	FdsLicenseExpiringDays            *int    `pulumi:"fdsLicenseExpiringDays"`
-	FdsLicenseExpiringWarning         *string `pulumi:"fdsLicenseExpiringWarning"`
-	FdsUpdateLogs                     *string `pulumi:"fdsUpdateLogs"`
-	FilterMode                        *string `pulumi:"filterMode"`
-	FipsCcErrors                      *string `pulumi:"fipsCcErrors"`
+type alertemailSettingArgs struct {
+	// Enable/disable administrator login/logout logs in alert email. Valid values: `enable`, `disable`.
+	AdminLoginLogs *string `pulumi:"adminLoginLogs"`
+	// Alert alert interval in minutes.
+	AlertInterval *int `pulumi:"alertInterval"`
+	// Enable/disable Fortinet Advanced Mezzanine Card (AMC) interface bypass mode logs in alert email. Valid values: `enable`, `disable`.
+	AmcInterfaceBypassMode *string `pulumi:"amcInterfaceBypassMode"`
+	// Enable/disable antivirus logs in alert email. Valid values: `enable`, `disable`.
+	AntivirusLogs *string `pulumi:"antivirusLogs"`
+	// Enable/disable configuration change logs in alert email. Valid values: `enable`, `disable`.
+	ConfigurationChangesLogs *string `pulumi:"configurationChangesLogs"`
+	// Critical alert interval in minutes.
+	CriticalInterval *int `pulumi:"criticalInterval"`
+	// Debug alert interval in minutes.
+	DebugInterval *int `pulumi:"debugInterval"`
+	// Interval between sending alert emails (1 - 99999 min, default = 5).
+	EmailInterval *int `pulumi:"emailInterval"`
+	// Emergency alert interval in minutes.
+	EmergencyInterval *int `pulumi:"emergencyInterval"`
+	// Error alert interval in minutes.
+	ErrorInterval *int `pulumi:"errorInterval"`
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	FdsLicenseExpiringDays *int `pulumi:"fdsLicenseExpiringDays"`
+	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
+	FdsLicenseExpiringWarning *string `pulumi:"fdsLicenseExpiringWarning"`
+	// Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+	FdsUpdateLogs *string `pulumi:"fdsUpdateLogs"`
+	// How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
+	FilterMode *string `pulumi:"filterMode"`
+	// Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
+	FipsCcErrors *string `pulumi:"fipsCcErrors"`
+	// Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
 	FirewallAuthenticationFailureLogs *string `pulumi:"firewallAuthenticationFailureLogs"`
-	FortiguardLogQuotaWarning         *string `pulumi:"fortiguardLogQuotaWarning"`
-	FssoDisconnectLogs                *string `pulumi:"fssoDisconnectLogs"`
-	HaLogs                            *string `pulumi:"haLogs"`
-	InformationInterval               *int    `pulumi:"informationInterval"`
-	IpsLogs                           *string `pulumi:"ipsLogs"`
-	IpsecErrorsLogs                   *string `pulumi:"ipsecErrorsLogs"`
-	LocalDiskUsage                    *int    `pulumi:"localDiskUsage"`
-	LogDiskUsageWarning               *string `pulumi:"logDiskUsageWarning"`
-	Mailto1                           *string `pulumi:"mailto1"`
-	Mailto2                           *string `pulumi:"mailto2"`
-	Mailto3                           *string `pulumi:"mailto3"`
-	NotificationInterval              *int    `pulumi:"notificationInterval"`
-	PppErrorsLogs                     *string `pulumi:"pppErrorsLogs"`
-	Severity                          *string `pulumi:"severity"`
-	SshLogs                           *string `pulumi:"sshLogs"`
-	SslvpnAuthenticationErrorsLogs    *string `pulumi:"sslvpnAuthenticationErrorsLogs"`
-	Username                          *string `pulumi:"username"`
-	Vdomparam                         *string `pulumi:"vdomparam"`
-	ViolationTrafficLogs              *string `pulumi:"violationTrafficLogs"`
-	WarningInterval                   *int    `pulumi:"warningInterval"`
-	WebfilterLogs                     *string `pulumi:"webfilterLogs"`
+	// Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
+	FortiguardLogQuotaWarning *string `pulumi:"fortiguardLogQuotaWarning"`
+	// Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+	FssoDisconnectLogs *string `pulumi:"fssoDisconnectLogs"`
+	// Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+	HaLogs *string `pulumi:"haLogs"`
+	// Information alert interval in minutes.
+	InformationInterval *int `pulumi:"informationInterval"`
+	// Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+	IpsLogs *string `pulumi:"ipsLogs"`
+	// Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+	IpsecErrorsLogs *string `pulumi:"ipsecErrorsLogs"`
+	// Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
+	LocalDiskUsage *int `pulumi:"localDiskUsage"`
+	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
+	LogDiskUsageWarning *string `pulumi:"logDiskUsageWarning"`
+	// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+	Mailto1 *string `pulumi:"mailto1"`
+	// Optional second email address to send alert email to (max. 64 characters).
+	Mailto2 *string `pulumi:"mailto2"`
+	// Optional third email address to send alert email to (max. 64 characters).
+	Mailto3 *string `pulumi:"mailto3"`
+	// Notification alert interval in minutes.
+	NotificationInterval *int `pulumi:"notificationInterval"`
+	// Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+	PppErrorsLogs *string `pulumi:"pppErrorsLogs"`
+	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	Severity *string `pulumi:"severity"`
+	// Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
+	SshLogs *string `pulumi:"sshLogs"`
+	// Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
+	SslvpnAuthenticationErrorsLogs *string `pulumi:"sslvpnAuthenticationErrorsLogs"`
+	// Name that appears in the From: field of alert emails (max. 36 characters).
+	Username *string `pulumi:"username"`
+	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam *string `pulumi:"vdomparam"`
+	// Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
+	ViolationTrafficLogs *string `pulumi:"violationTrafficLogs"`
+	// Warning alert interval in minutes.
+	WarningInterval *int `pulumi:"warningInterval"`
+	// Enable/disable web filter logs in alert email. Valid values: `enable`, `disable`.
+	WebfilterLogs *string `pulumi:"webfilterLogs"`
 }
 
-// The set of arguments for constructing a AlertEmailSetting resource.
-type AlertEmailSettingArgs struct {
-	AdminLoginLogs                    pulumi.StringPtrInput
-	AlertInterval                     pulumi.IntPtrInput
-	AmcInterfaceBypassMode            pulumi.StringPtrInput
-	AntivirusLogs                     pulumi.StringPtrInput
-	ConfigurationChangesLogs          pulumi.StringPtrInput
-	CriticalInterval                  pulumi.IntPtrInput
-	DebugInterval                     pulumi.IntPtrInput
-	EmailInterval                     pulumi.IntPtrInput
-	EmergencyInterval                 pulumi.IntPtrInput
-	ErrorInterval                     pulumi.IntPtrInput
-	FdsLicenseExpiringDays            pulumi.IntPtrInput
-	FdsLicenseExpiringWarning         pulumi.StringPtrInput
-	FdsUpdateLogs                     pulumi.StringPtrInput
-	FilterMode                        pulumi.StringPtrInput
-	FipsCcErrors                      pulumi.StringPtrInput
+// The set of arguments for constructing a AlertemailSetting resource.
+type AlertemailSettingArgs struct {
+	// Enable/disable administrator login/logout logs in alert email. Valid values: `enable`, `disable`.
+	AdminLoginLogs pulumi.StringPtrInput
+	// Alert alert interval in minutes.
+	AlertInterval pulumi.IntPtrInput
+	// Enable/disable Fortinet Advanced Mezzanine Card (AMC) interface bypass mode logs in alert email. Valid values: `enable`, `disable`.
+	AmcInterfaceBypassMode pulumi.StringPtrInput
+	// Enable/disable antivirus logs in alert email. Valid values: `enable`, `disable`.
+	AntivirusLogs pulumi.StringPtrInput
+	// Enable/disable configuration change logs in alert email. Valid values: `enable`, `disable`.
+	ConfigurationChangesLogs pulumi.StringPtrInput
+	// Critical alert interval in minutes.
+	CriticalInterval pulumi.IntPtrInput
+	// Debug alert interval in minutes.
+	DebugInterval pulumi.IntPtrInput
+	// Interval between sending alert emails (1 - 99999 min, default = 5).
+	EmailInterval pulumi.IntPtrInput
+	// Emergency alert interval in minutes.
+	EmergencyInterval pulumi.IntPtrInput
+	// Error alert interval in minutes.
+	ErrorInterval pulumi.IntPtrInput
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	FdsLicenseExpiringDays pulumi.IntPtrInput
+	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
+	FdsLicenseExpiringWarning pulumi.StringPtrInput
+	// Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+	FdsUpdateLogs pulumi.StringPtrInput
+	// How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
+	FilterMode pulumi.StringPtrInput
+	// Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
+	FipsCcErrors pulumi.StringPtrInput
+	// Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
 	FirewallAuthenticationFailureLogs pulumi.StringPtrInput
-	FortiguardLogQuotaWarning         pulumi.StringPtrInput
-	FssoDisconnectLogs                pulumi.StringPtrInput
-	HaLogs                            pulumi.StringPtrInput
-	InformationInterval               pulumi.IntPtrInput
-	IpsLogs                           pulumi.StringPtrInput
-	IpsecErrorsLogs                   pulumi.StringPtrInput
-	LocalDiskUsage                    pulumi.IntPtrInput
-	LogDiskUsageWarning               pulumi.StringPtrInput
-	Mailto1                           pulumi.StringPtrInput
-	Mailto2                           pulumi.StringPtrInput
-	Mailto3                           pulumi.StringPtrInput
-	NotificationInterval              pulumi.IntPtrInput
-	PppErrorsLogs                     pulumi.StringPtrInput
-	Severity                          pulumi.StringPtrInput
-	SshLogs                           pulumi.StringPtrInput
-	SslvpnAuthenticationErrorsLogs    pulumi.StringPtrInput
-	Username                          pulumi.StringPtrInput
-	Vdomparam                         pulumi.StringPtrInput
-	ViolationTrafficLogs              pulumi.StringPtrInput
-	WarningInterval                   pulumi.IntPtrInput
-	WebfilterLogs                     pulumi.StringPtrInput
+	// Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
+	FortiguardLogQuotaWarning pulumi.StringPtrInput
+	// Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+	FssoDisconnectLogs pulumi.StringPtrInput
+	// Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+	HaLogs pulumi.StringPtrInput
+	// Information alert interval in minutes.
+	InformationInterval pulumi.IntPtrInput
+	// Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+	IpsLogs pulumi.StringPtrInput
+	// Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+	IpsecErrorsLogs pulumi.StringPtrInput
+	// Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
+	LocalDiskUsage pulumi.IntPtrInput
+	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
+	LogDiskUsageWarning pulumi.StringPtrInput
+	// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+	Mailto1 pulumi.StringPtrInput
+	// Optional second email address to send alert email to (max. 64 characters).
+	Mailto2 pulumi.StringPtrInput
+	// Optional third email address to send alert email to (max. 64 characters).
+	Mailto3 pulumi.StringPtrInput
+	// Notification alert interval in minutes.
+	NotificationInterval pulumi.IntPtrInput
+	// Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+	PppErrorsLogs pulumi.StringPtrInput
+	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	Severity pulumi.StringPtrInput
+	// Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
+	SshLogs pulumi.StringPtrInput
+	// Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
+	SslvpnAuthenticationErrorsLogs pulumi.StringPtrInput
+	// Name that appears in the From: field of alert emails (max. 36 characters).
+	Username pulumi.StringPtrInput
+	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput
+	// Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
+	ViolationTrafficLogs pulumi.StringPtrInput
+	// Warning alert interval in minutes.
+	WarningInterval pulumi.IntPtrInput
+	// Enable/disable web filter logs in alert email. Valid values: `enable`, `disable`.
+	WebfilterLogs pulumi.StringPtrInput
 }
 
-func (AlertEmailSettingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*alertEmailSettingArgs)(nil)).Elem()
+func (AlertemailSettingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*alertemailSettingArgs)(nil)).Elem()
 }
 
-type AlertEmailSettingInput interface {
+type AlertemailSettingInput interface {
 	pulumi.Input
 
-	ToAlertEmailSettingOutput() AlertEmailSettingOutput
-	ToAlertEmailSettingOutputWithContext(ctx context.Context) AlertEmailSettingOutput
+	ToAlertemailSettingOutput() AlertemailSettingOutput
+	ToAlertemailSettingOutputWithContext(ctx context.Context) AlertemailSettingOutput
 }
 
-func (*AlertEmailSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((**AlertEmailSetting)(nil)).Elem()
+func (*AlertemailSetting) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertemailSetting)(nil)).Elem()
 }
 
-func (i *AlertEmailSetting) ToAlertEmailSettingOutput() AlertEmailSettingOutput {
-	return i.ToAlertEmailSettingOutputWithContext(context.Background())
+func (i *AlertemailSetting) ToAlertemailSettingOutput() AlertemailSettingOutput {
+	return i.ToAlertemailSettingOutputWithContext(context.Background())
 }
 
-func (i *AlertEmailSetting) ToAlertEmailSettingOutputWithContext(ctx context.Context) AlertEmailSettingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertEmailSettingOutput)
+func (i *AlertemailSetting) ToAlertemailSettingOutputWithContext(ctx context.Context) AlertemailSettingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertemailSettingOutput)
 }
 
-// AlertEmailSettingArrayInput is an input type that accepts AlertEmailSettingArray and AlertEmailSettingArrayOutput values.
-// You can construct a concrete instance of `AlertEmailSettingArrayInput` via:
+// AlertemailSettingArrayInput is an input type that accepts AlertemailSettingArray and AlertemailSettingArrayOutput values.
+// You can construct a concrete instance of `AlertemailSettingArrayInput` via:
 //
-//	AlertEmailSettingArray{ AlertEmailSettingArgs{...} }
-type AlertEmailSettingArrayInput interface {
+//	AlertemailSettingArray{ AlertemailSettingArgs{...} }
+type AlertemailSettingArrayInput interface {
 	pulumi.Input
 
-	ToAlertEmailSettingArrayOutput() AlertEmailSettingArrayOutput
-	ToAlertEmailSettingArrayOutputWithContext(context.Context) AlertEmailSettingArrayOutput
+	ToAlertemailSettingArrayOutput() AlertemailSettingArrayOutput
+	ToAlertemailSettingArrayOutputWithContext(context.Context) AlertemailSettingArrayOutput
 }
 
-type AlertEmailSettingArray []AlertEmailSettingInput
+type AlertemailSettingArray []AlertemailSettingInput
 
-func (AlertEmailSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*AlertEmailSetting)(nil)).Elem()
+func (AlertemailSettingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*AlertemailSetting)(nil)).Elem()
 }
 
-func (i AlertEmailSettingArray) ToAlertEmailSettingArrayOutput() AlertEmailSettingArrayOutput {
-	return i.ToAlertEmailSettingArrayOutputWithContext(context.Background())
+func (i AlertemailSettingArray) ToAlertemailSettingArrayOutput() AlertemailSettingArrayOutput {
+	return i.ToAlertemailSettingArrayOutputWithContext(context.Background())
 }
 
-func (i AlertEmailSettingArray) ToAlertEmailSettingArrayOutputWithContext(ctx context.Context) AlertEmailSettingArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertEmailSettingArrayOutput)
+func (i AlertemailSettingArray) ToAlertemailSettingArrayOutputWithContext(ctx context.Context) AlertemailSettingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertemailSettingArrayOutput)
 }
 
-// AlertEmailSettingMapInput is an input type that accepts AlertEmailSettingMap and AlertEmailSettingMapOutput values.
-// You can construct a concrete instance of `AlertEmailSettingMapInput` via:
+// AlertemailSettingMapInput is an input type that accepts AlertemailSettingMap and AlertemailSettingMapOutput values.
+// You can construct a concrete instance of `AlertemailSettingMapInput` via:
 //
-//	AlertEmailSettingMap{ "key": AlertEmailSettingArgs{...} }
-type AlertEmailSettingMapInput interface {
+//	AlertemailSettingMap{ "key": AlertemailSettingArgs{...} }
+type AlertemailSettingMapInput interface {
 	pulumi.Input
 
-	ToAlertEmailSettingMapOutput() AlertEmailSettingMapOutput
-	ToAlertEmailSettingMapOutputWithContext(context.Context) AlertEmailSettingMapOutput
+	ToAlertemailSettingMapOutput() AlertemailSettingMapOutput
+	ToAlertemailSettingMapOutputWithContext(context.Context) AlertemailSettingMapOutput
 }
 
-type AlertEmailSettingMap map[string]AlertEmailSettingInput
+type AlertemailSettingMap map[string]AlertemailSettingInput
 
-func (AlertEmailSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*AlertEmailSetting)(nil)).Elem()
+func (AlertemailSettingMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*AlertemailSetting)(nil)).Elem()
 }
 
-func (i AlertEmailSettingMap) ToAlertEmailSettingMapOutput() AlertEmailSettingMapOutput {
-	return i.ToAlertEmailSettingMapOutputWithContext(context.Background())
+func (i AlertemailSettingMap) ToAlertemailSettingMapOutput() AlertemailSettingMapOutput {
+	return i.ToAlertemailSettingMapOutputWithContext(context.Background())
 }
 
-func (i AlertEmailSettingMap) ToAlertEmailSettingMapOutputWithContext(ctx context.Context) AlertEmailSettingMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertEmailSettingMapOutput)
+func (i AlertemailSettingMap) ToAlertemailSettingMapOutputWithContext(ctx context.Context) AlertemailSettingMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertemailSettingMapOutput)
 }
 
-type AlertEmailSettingOutput struct{ *pulumi.OutputState }
+type AlertemailSettingOutput struct{ *pulumi.OutputState }
 
-func (AlertEmailSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AlertEmailSetting)(nil)).Elem()
+func (AlertemailSettingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertemailSetting)(nil)).Elem()
 }
 
-func (o AlertEmailSettingOutput) ToAlertEmailSettingOutput() AlertEmailSettingOutput {
+func (o AlertemailSettingOutput) ToAlertemailSettingOutput() AlertemailSettingOutput {
 	return o
 }
 
-func (o AlertEmailSettingOutput) ToAlertEmailSettingOutputWithContext(ctx context.Context) AlertEmailSettingOutput {
+func (o AlertemailSettingOutput) ToAlertemailSettingOutputWithContext(ctx context.Context) AlertemailSettingOutput {
 	return o
 }
 
-func (o AlertEmailSettingOutput) AdminLoginLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.AdminLoginLogs }).(pulumi.StringOutput)
+// Enable/disable administrator login/logout logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) AdminLoginLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.AdminLoginLogs }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) AlertInterval() pulumi.IntOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.IntOutput { return v.AlertInterval }).(pulumi.IntOutput)
+// Alert alert interval in minutes.
+func (o AlertemailSettingOutput) AlertInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.IntOutput { return v.AlertInterval }).(pulumi.IntOutput)
 }
 
-func (o AlertEmailSettingOutput) AmcInterfaceBypassMode() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.AmcInterfaceBypassMode }).(pulumi.StringOutput)
+// Enable/disable Fortinet Advanced Mezzanine Card (AMC) interface bypass mode logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) AmcInterfaceBypassMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.AmcInterfaceBypassMode }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) AntivirusLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.AntivirusLogs }).(pulumi.StringOutput)
+// Enable/disable antivirus logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) AntivirusLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.AntivirusLogs }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) ConfigurationChangesLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.ConfigurationChangesLogs }).(pulumi.StringOutput)
+// Enable/disable configuration change logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) ConfigurationChangesLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.ConfigurationChangesLogs }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) CriticalInterval() pulumi.IntOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.IntOutput { return v.CriticalInterval }).(pulumi.IntOutput)
+// Critical alert interval in minutes.
+func (o AlertemailSettingOutput) CriticalInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.IntOutput { return v.CriticalInterval }).(pulumi.IntOutput)
 }
 
-func (o AlertEmailSettingOutput) DebugInterval() pulumi.IntOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.IntOutput { return v.DebugInterval }).(pulumi.IntOutput)
+// Debug alert interval in minutes.
+func (o AlertemailSettingOutput) DebugInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.IntOutput { return v.DebugInterval }).(pulumi.IntOutput)
 }
 
-func (o AlertEmailSettingOutput) EmailInterval() pulumi.IntOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.IntOutput { return v.EmailInterval }).(pulumi.IntOutput)
+// Interval between sending alert emails (1 - 99999 min, default = 5).
+func (o AlertemailSettingOutput) EmailInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.IntOutput { return v.EmailInterval }).(pulumi.IntOutput)
 }
 
-func (o AlertEmailSettingOutput) EmergencyInterval() pulumi.IntOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.IntOutput { return v.EmergencyInterval }).(pulumi.IntOutput)
+// Emergency alert interval in minutes.
+func (o AlertemailSettingOutput) EmergencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.IntOutput { return v.EmergencyInterval }).(pulumi.IntOutput)
 }
 
-func (o AlertEmailSettingOutput) ErrorInterval() pulumi.IntOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.IntOutput { return v.ErrorInterval }).(pulumi.IntOutput)
+// Error alert interval in minutes.
+func (o AlertemailSettingOutput) ErrorInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.IntOutput { return v.ErrorInterval }).(pulumi.IntOutput)
 }
 
-func (o AlertEmailSettingOutput) FdsLicenseExpiringDays() pulumi.IntOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.IntOutput { return v.FdsLicenseExpiringDays }).(pulumi.IntOutput)
+// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+func (o AlertemailSettingOutput) FdsLicenseExpiringDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.IntOutput { return v.FdsLicenseExpiringDays }).(pulumi.IntOutput)
 }
 
-func (o AlertEmailSettingOutput) FdsLicenseExpiringWarning() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.FdsLicenseExpiringWarning }).(pulumi.StringOutput)
+// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) FdsLicenseExpiringWarning() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.FdsLicenseExpiringWarning }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) FdsUpdateLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.FdsUpdateLogs }).(pulumi.StringOutput)
+// Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) FdsUpdateLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.FdsUpdateLogs }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) FilterMode() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.FilterMode }).(pulumi.StringOutput)
+// How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
+func (o AlertemailSettingOutput) FilterMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.FilterMode }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) FipsCcErrors() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.FipsCcErrors }).(pulumi.StringOutput)
+// Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) FipsCcErrors() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.FipsCcErrors }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) FirewallAuthenticationFailureLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.FirewallAuthenticationFailureLogs }).(pulumi.StringOutput)
+// Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) FirewallAuthenticationFailureLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.FirewallAuthenticationFailureLogs }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) FortiguardLogQuotaWarning() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.FortiguardLogQuotaWarning }).(pulumi.StringOutput)
+// Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) FortiguardLogQuotaWarning() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.FortiguardLogQuotaWarning }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) FssoDisconnectLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.FssoDisconnectLogs }).(pulumi.StringOutput)
+// Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) FssoDisconnectLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.FssoDisconnectLogs }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) HaLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.HaLogs }).(pulumi.StringOutput)
+// Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) HaLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.HaLogs }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) InformationInterval() pulumi.IntOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.IntOutput { return v.InformationInterval }).(pulumi.IntOutput)
+// Information alert interval in minutes.
+func (o AlertemailSettingOutput) InformationInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.IntOutput { return v.InformationInterval }).(pulumi.IntOutput)
 }
 
-func (o AlertEmailSettingOutput) IpsLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.IpsLogs }).(pulumi.StringOutput)
+// Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) IpsLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.IpsLogs }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) IpsecErrorsLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.IpsecErrorsLogs }).(pulumi.StringOutput)
+// Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) IpsecErrorsLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.IpsecErrorsLogs }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) LocalDiskUsage() pulumi.IntOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.IntOutput { return v.LocalDiskUsage }).(pulumi.IntOutput)
+// Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
+func (o AlertemailSettingOutput) LocalDiskUsage() pulumi.IntOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.IntOutput { return v.LocalDiskUsage }).(pulumi.IntOutput)
 }
 
-func (o AlertEmailSettingOutput) LogDiskUsageWarning() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.LogDiskUsageWarning }).(pulumi.StringOutput)
+// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) LogDiskUsageWarning() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.LogDiskUsageWarning }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) Mailto1() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.Mailto1 }).(pulumi.StringOutput)
+// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+func (o AlertemailSettingOutput) Mailto1() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.Mailto1 }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) Mailto2() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.Mailto2 }).(pulumi.StringOutput)
+// Optional second email address to send alert email to (max. 64 characters).
+func (o AlertemailSettingOutput) Mailto2() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.Mailto2 }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) Mailto3() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.Mailto3 }).(pulumi.StringOutput)
+// Optional third email address to send alert email to (max. 64 characters).
+func (o AlertemailSettingOutput) Mailto3() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.Mailto3 }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) NotificationInterval() pulumi.IntOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.IntOutput { return v.NotificationInterval }).(pulumi.IntOutput)
+// Notification alert interval in minutes.
+func (o AlertemailSettingOutput) NotificationInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.IntOutput { return v.NotificationInterval }).(pulumi.IntOutput)
 }
 
-func (o AlertEmailSettingOutput) PppErrorsLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.PppErrorsLogs }).(pulumi.StringOutput)
+// Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) PppErrorsLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.PppErrorsLogs }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) Severity() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.Severity }).(pulumi.StringOutput)
+// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+func (o AlertemailSettingOutput) Severity() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.Severity }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) SshLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.SshLogs }).(pulumi.StringOutput)
+// Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) SshLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.SshLogs }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) SslvpnAuthenticationErrorsLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.SslvpnAuthenticationErrorsLogs }).(pulumi.StringOutput)
+// Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) SslvpnAuthenticationErrorsLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.SslvpnAuthenticationErrorsLogs }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+// Name that appears in the From: field of alert emails (max. 36 characters).
+func (o AlertemailSettingOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+func (o AlertemailSettingOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-func (o AlertEmailSettingOutput) ViolationTrafficLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.ViolationTrafficLogs }).(pulumi.StringOutput)
+// Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) ViolationTrafficLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.ViolationTrafficLogs }).(pulumi.StringOutput)
 }
 
-func (o AlertEmailSettingOutput) WarningInterval() pulumi.IntOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.IntOutput { return v.WarningInterval }).(pulumi.IntOutput)
+// Warning alert interval in minutes.
+func (o AlertemailSettingOutput) WarningInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.IntOutput { return v.WarningInterval }).(pulumi.IntOutput)
 }
 
-func (o AlertEmailSettingOutput) WebfilterLogs() pulumi.StringOutput {
-	return o.ApplyT(func(v *AlertEmailSetting) pulumi.StringOutput { return v.WebfilterLogs }).(pulumi.StringOutput)
+// Enable/disable web filter logs in alert email. Valid values: `enable`, `disable`.
+func (o AlertemailSettingOutput) WebfilterLogs() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertemailSetting) pulumi.StringOutput { return v.WebfilterLogs }).(pulumi.StringOutput)
 }
 
-type AlertEmailSettingArrayOutput struct{ *pulumi.OutputState }
+type AlertemailSettingArrayOutput struct{ *pulumi.OutputState }
 
-func (AlertEmailSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*AlertEmailSetting)(nil)).Elem()
+func (AlertemailSettingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*AlertemailSetting)(nil)).Elem()
 }
 
-func (o AlertEmailSettingArrayOutput) ToAlertEmailSettingArrayOutput() AlertEmailSettingArrayOutput {
+func (o AlertemailSettingArrayOutput) ToAlertemailSettingArrayOutput() AlertemailSettingArrayOutput {
 	return o
 }
 
-func (o AlertEmailSettingArrayOutput) ToAlertEmailSettingArrayOutputWithContext(ctx context.Context) AlertEmailSettingArrayOutput {
+func (o AlertemailSettingArrayOutput) ToAlertemailSettingArrayOutputWithContext(ctx context.Context) AlertemailSettingArrayOutput {
 	return o
 }
 
-func (o AlertEmailSettingArrayOutput) Index(i pulumi.IntInput) AlertEmailSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AlertEmailSetting {
-		return vs[0].([]*AlertEmailSetting)[vs[1].(int)]
-	}).(AlertEmailSettingOutput)
+func (o AlertemailSettingArrayOutput) Index(i pulumi.IntInput) AlertemailSettingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AlertemailSetting {
+		return vs[0].([]*AlertemailSetting)[vs[1].(int)]
+	}).(AlertemailSettingOutput)
 }
 
-type AlertEmailSettingMapOutput struct{ *pulumi.OutputState }
+type AlertemailSettingMapOutput struct{ *pulumi.OutputState }
 
-func (AlertEmailSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*AlertEmailSetting)(nil)).Elem()
+func (AlertemailSettingMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*AlertemailSetting)(nil)).Elem()
 }
 
-func (o AlertEmailSettingMapOutput) ToAlertEmailSettingMapOutput() AlertEmailSettingMapOutput {
+func (o AlertemailSettingMapOutput) ToAlertemailSettingMapOutput() AlertemailSettingMapOutput {
 	return o
 }
 
-func (o AlertEmailSettingMapOutput) ToAlertEmailSettingMapOutputWithContext(ctx context.Context) AlertEmailSettingMapOutput {
+func (o AlertemailSettingMapOutput) ToAlertemailSettingMapOutputWithContext(ctx context.Context) AlertemailSettingMapOutput {
 	return o
 }
 
-func (o AlertEmailSettingMapOutput) MapIndex(k pulumi.StringInput) AlertEmailSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AlertEmailSetting {
-		return vs[0].(map[string]*AlertEmailSetting)[vs[1].(string)]
-	}).(AlertEmailSettingOutput)
+func (o AlertemailSettingMapOutput) MapIndex(k pulumi.StringInput) AlertemailSettingOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AlertemailSetting {
+		return vs[0].(map[string]*AlertemailSetting)[vs[1].(string)]
+	}).(AlertemailSettingOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*AlertEmailSettingInput)(nil)).Elem(), &AlertEmailSetting{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AlertEmailSettingArrayInput)(nil)).Elem(), AlertEmailSettingArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AlertEmailSettingMapInput)(nil)).Elem(), AlertEmailSettingMap{})
-	pulumi.RegisterOutputType(AlertEmailSettingOutput{})
-	pulumi.RegisterOutputType(AlertEmailSettingArrayOutput{})
-	pulumi.RegisterOutputType(AlertEmailSettingMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertemailSettingInput)(nil)).Elem(), &AlertemailSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertemailSettingArrayInput)(nil)).Elem(), AlertemailSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertemailSettingMapInput)(nil)).Elem(), AlertemailSettingMap{})
+	pulumi.RegisterOutputType(AlertemailSettingOutput{})
+	pulumi.RegisterOutputType(AlertemailSettingArrayOutput{})
+	pulumi.RegisterOutputType(AlertemailSettingMapOutput{})
 }

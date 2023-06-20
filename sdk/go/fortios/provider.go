@@ -50,6 +50,69 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
+	if args.Cabundlecontent == nil {
+		args.Cabundlecontent = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_CA_CABUNDLECONTENT").(string))
+	}
+	if args.Cabundlefile == nil {
+		args.Cabundlefile = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_CA_CABUNDLE").(string))
+	}
+	if args.Cacert == nil {
+		args.Cacert = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_CA_CACERT").(string))
+	}
+	if args.Clientcert == nil {
+		args.Clientcert = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_CA_CLIENTCERT").(string))
+	}
+	if args.Clientkey == nil {
+		args.Clientkey = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_CA_CLIENTKEY").(string))
+	}
+	if args.FmgCabundlefile == nil {
+		args.FmgCabundlefile = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_CABUNDLE").(string))
+	}
+	if args.FmgHostname == nil {
+		args.FmgHostname = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_HOSTNAME").(string))
+	}
+	if args.FmgInsecure == nil {
+		args.FmgInsecure = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "FORTIOS_FMG_INSECURE").(bool))
+	}
+	if args.FmgPasswd == nil {
+		args.FmgPasswd = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_PASSWORD").(string))
+	}
+	if args.FmgUsername == nil {
+		args.FmgUsername = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_USERNAME").(string))
+	}
+	if args.Hostname == nil {
+		args.Hostname = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_ACCESS_HOSTNAME").(string))
+	}
+	if args.HttpProxy == nil {
+		args.HttpProxy = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_HTTP_PROXY").(string))
+	}
+	if args.Insecure == nil {
+		args.Insecure = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "FORTIOS_INSECURE").(bool))
+	}
+	if args.Peerauth == nil {
+		args.Peerauth = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_CA_PEERAUTH").(string))
+	}
+	if args.Token == nil {
+		args.Token = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_ACCESS_TOKEN").(string))
+	}
+	if args.Vdom == nil {
+		args.Vdom = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_VDOM").(string))
+	}
+	if args.Clientkey != nil {
+		args.Clientkey = pulumi.ToSecret(args.Clientkey).(pulumi.StringPtrInput)
+	}
+	if args.FmgPasswd != nil {
+		args.FmgPasswd = pulumi.ToSecret(args.FmgPasswd).(pulumi.StringPtrInput)
+	}
+	if args.Token != nil {
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"clientkey",
+		"fmgPasswd",
+		"token",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:fortios", name, args, &resource, opts...)

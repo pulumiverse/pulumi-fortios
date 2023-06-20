@@ -19,15 +19,15 @@ package main
 import (
 	_ "embed"
 
-	fortios "github.com/aspyrmedia/pulumi-fortios/provider"
-	"github.com/aspyrmedia/pulumi-fortios/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumiverse/pulumi-fortios/provider/pkg/version"
+	fortios "github.com/pulumiverse/pulumi-fortios/provider"
 )
 
 //go:embed schema-embed.json
 var pulumiSchema []byte
 
 func main() {
-	// Modify the path to point to the new provider
 	tfbridge.Main("fortios", version.Version, fortios.Provider(), pulumiSchema)
+	
 }

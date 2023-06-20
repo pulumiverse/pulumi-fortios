@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Aspyrmedia.Fortios
+namespace Pulumiverse.Fortios
 {
     public static class Config
     {
@@ -30,9 +30,9 @@ namespace Aspyrmedia.Fortios
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("fortios");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("fortios");
 
-        private static readonly __Value<string?> _cabundlecontent = new __Value<string?>(() => __config.Get("cabundlecontent"));
+        private static readonly __Value<string?> _cabundlecontent = new __Value<string?>(() => __config.Get("cabundlecontent") ?? Utilities.GetEnv("FORTIOS_CA_CABUNDLECONTENT"));
         /// <summary>
         /// CA Bundle file content
         /// </summary>
@@ -42,7 +42,7 @@ namespace Aspyrmedia.Fortios
             set => _cabundlecontent.Set(value);
         }
 
-        private static readonly __Value<string?> _cabundlefile = new __Value<string?>(() => __config.Get("cabundlefile"));
+        private static readonly __Value<string?> _cabundlefile = new __Value<string?>(() => __config.Get("cabundlefile") ?? Utilities.GetEnv("FORTIOS_CA_CABUNDLE"));
         /// <summary>
         /// CA Bundle file
         /// </summary>
@@ -52,7 +52,7 @@ namespace Aspyrmedia.Fortios
             set => _cabundlefile.Set(value);
         }
 
-        private static readonly __Value<string?> _cacert = new __Value<string?>(() => __config.Get("cacert"));
+        private static readonly __Value<string?> _cacert = new __Value<string?>(() => __config.Get("cacert") ?? Utilities.GetEnv("FORTIOS_CA_CACERT"));
         /// <summary>
         /// CA certtificate(Optional)
         /// </summary>
@@ -62,7 +62,7 @@ namespace Aspyrmedia.Fortios
             set => _cacert.Set(value);
         }
 
-        private static readonly __Value<string?> _clientcert = new __Value<string?>(() => __config.Get("clientcert"));
+        private static readonly __Value<string?> _clientcert = new __Value<string?>(() => __config.Get("clientcert") ?? Utilities.GetEnv("FORTIOS_CA_CLIENTCERT"));
         /// <summary>
         /// User certificate
         /// </summary>
@@ -72,7 +72,7 @@ namespace Aspyrmedia.Fortios
             set => _clientcert.Set(value);
         }
 
-        private static readonly __Value<string?> _clientkey = new __Value<string?>(() => __config.Get("clientkey"));
+        private static readonly __Value<string?> _clientkey = new __Value<string?>(() => __config.Get("clientkey") ?? Utilities.GetEnv("FORTIOS_CA_CLIENTKEY"));
         /// <summary>
         /// User private key
         /// </summary>
@@ -82,7 +82,7 @@ namespace Aspyrmedia.Fortios
             set => _clientkey.Set(value);
         }
 
-        private static readonly __Value<string?> _fmgCabundlefile = new __Value<string?>(() => __config.Get("fmgCabundlefile"));
+        private static readonly __Value<string?> _fmgCabundlefile = new __Value<string?>(() => __config.Get("fmgCabundlefile") ?? Utilities.GetEnv("FORTIOS_FMG_CABUNDLE"));
         /// <summary>
         /// CA Bundle file
         /// </summary>
@@ -92,7 +92,7 @@ namespace Aspyrmedia.Fortios
             set => _fmgCabundlefile.Set(value);
         }
 
-        private static readonly __Value<string?> _fmgHostname = new __Value<string?>(() => __config.Get("fmgHostname"));
+        private static readonly __Value<string?> _fmgHostname = new __Value<string?>(() => __config.Get("fmgHostname") ?? Utilities.GetEnv("FORTIOS_FMG_HOSTNAME"));
         /// <summary>
         /// Hostname/IP address of the FortiManager to connect to
         /// </summary>
@@ -102,28 +102,28 @@ namespace Aspyrmedia.Fortios
             set => _fmgHostname.Set(value);
         }
 
-        private static readonly __Value<bool?> _fmgInsecure = new __Value<bool?>(() => __config.GetBoolean("fmgInsecure"));
+        private static readonly __Value<bool?> _fmgInsecure = new __Value<bool?>(() => __config.GetBoolean("fmgInsecure") ?? Utilities.GetEnvBoolean("FORTIOS_FMG_INSECURE"));
         public static bool? FmgInsecure
         {
             get => _fmgInsecure.Get();
             set => _fmgInsecure.Set(value);
         }
 
-        private static readonly __Value<string?> _fmgPasswd = new __Value<string?>(() => __config.Get("fmgPasswd"));
+        private static readonly __Value<string?> _fmgPasswd = new __Value<string?>(() => __config.Get("fmgPasswd") ?? Utilities.GetEnv("FORTIOS_FMG_PASSWORD"));
         public static string? FmgPasswd
         {
             get => _fmgPasswd.Get();
             set => _fmgPasswd.Set(value);
         }
 
-        private static readonly __Value<string?> _fmgUsername = new __Value<string?>(() => __config.Get("fmgUsername"));
+        private static readonly __Value<string?> _fmgUsername = new __Value<string?>(() => __config.Get("fmgUsername") ?? Utilities.GetEnv("FORTIOS_FMG_USERNAME"));
         public static string? FmgUsername
         {
             get => _fmgUsername.Get();
             set => _fmgUsername.Set(value);
         }
 
-        private static readonly __Value<string?> _hostname = new __Value<string?>(() => __config.Get("hostname"));
+        private static readonly __Value<string?> _hostname = new __Value<string?>(() => __config.Get("hostname") ?? Utilities.GetEnv("FORTIOS_ACCESS_HOSTNAME"));
         /// <summary>
         /// The hostname/IP address of the FortiOS to be connected
         /// </summary>
@@ -133,7 +133,7 @@ namespace Aspyrmedia.Fortios
             set => _hostname.Set(value);
         }
 
-        private static readonly __Value<string?> _httpProxy = new __Value<string?>(() => __config.Get("httpProxy"));
+        private static readonly __Value<string?> _httpProxy = new __Value<string?>(() => __config.Get("httpProxy") ?? Utilities.GetEnv("FORTIOS_HTTP_PROXY"));
         /// <summary>
         /// HTTP proxy address
         /// </summary>
@@ -143,14 +143,14 @@ namespace Aspyrmedia.Fortios
             set => _httpProxy.Set(value);
         }
 
-        private static readonly __Value<bool?> _insecure = new __Value<bool?>(() => __config.GetBoolean("insecure"));
+        private static readonly __Value<bool?> _insecure = new __Value<bool?>(() => __config.GetBoolean("insecure") ?? Utilities.GetEnvBoolean("FORTIOS_INSECURE"));
         public static bool? Insecure
         {
             get => _insecure.Get();
             set => _insecure.Set(value);
         }
 
-        private static readonly __Value<string?> _peerauth = new __Value<string?>(() => __config.Get("peerauth"));
+        private static readonly __Value<string?> _peerauth = new __Value<string?>(() => __config.Get("peerauth") ?? Utilities.GetEnv("FORTIOS_CA_PEERAUTH"));
         /// <summary>
         /// Enable/disable peer authentication, can be 'enable' or 'disable'
         /// </summary>
@@ -160,14 +160,14 @@ namespace Aspyrmedia.Fortios
             set => _peerauth.Set(value);
         }
 
-        private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token"));
+        private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token") ?? Utilities.GetEnv("FORTIOS_ACCESS_TOKEN"));
         public static string? Token
         {
             get => _token.Get();
             set => _token.Set(value);
         }
 
-        private static readonly __Value<string?> _vdom = new __Value<string?>(() => __config.Get("vdom"));
+        private static readonly __Value<string?> _vdom = new __Value<string?>(() => __config.Get("vdom") ?? Utilities.GetEnv("FORTIOS_VDOM"));
         public static string? Vdom
         {
             get => _vdom.Get();
