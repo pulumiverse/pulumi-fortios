@@ -5,39 +5,6369 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./alertEmailSetting";
-export * from "./getFirewallDoSpolicy";
-export * from "./provider";
+export { AlertemailSettingArgs, AlertemailSettingState } from "./alertemailSetting";
+export type AlertemailSetting = import("./alertemailSetting").AlertemailSetting;
+export const AlertemailSetting: typeof import("./alertemailSetting").AlertemailSetting = null as any;
+utilities.lazyLoad(exports, ["AlertemailSetting"], () => require("./alertemailSetting"));
+
+export { AntivirusHeuristicArgs, AntivirusHeuristicState } from "./antivirusHeuristic";
+export type AntivirusHeuristic = import("./antivirusHeuristic").AntivirusHeuristic;
+export const AntivirusHeuristic: typeof import("./antivirusHeuristic").AntivirusHeuristic = null as any;
+utilities.lazyLoad(exports, ["AntivirusHeuristic"], () => require("./antivirusHeuristic"));
+
+export { AntivirusProfileArgs, AntivirusProfileState } from "./antivirusProfile";
+export type AntivirusProfile = import("./antivirusProfile").AntivirusProfile;
+export const AntivirusProfile: typeof import("./antivirusProfile").AntivirusProfile = null as any;
+utilities.lazyLoad(exports, ["AntivirusProfile"], () => require("./antivirusProfile"));
+
+export { AntivirusQuarantineArgs, AntivirusQuarantineState } from "./antivirusQuarantine";
+export type AntivirusQuarantine = import("./antivirusQuarantine").AntivirusQuarantine;
+export const AntivirusQuarantine: typeof import("./antivirusQuarantine").AntivirusQuarantine = null as any;
+utilities.lazyLoad(exports, ["AntivirusQuarantine"], () => require("./antivirusQuarantine"));
+
+export { AntivirusSettingsArgs, AntivirusSettingsState } from "./antivirusSettings";
+export type AntivirusSettings = import("./antivirusSettings").AntivirusSettings;
+export const AntivirusSettings: typeof import("./antivirusSettings").AntivirusSettings = null as any;
+utilities.lazyLoad(exports, ["AntivirusSettings"], () => require("./antivirusSettings"));
+
+export { ApplicationCustomArgs, ApplicationCustomState } from "./applicationCustom";
+export type ApplicationCustom = import("./applicationCustom").ApplicationCustom;
+export const ApplicationCustom: typeof import("./applicationCustom").ApplicationCustom = null as any;
+utilities.lazyLoad(exports, ["ApplicationCustom"], () => require("./applicationCustom"));
+
+export { ApplicationGroupArgs, ApplicationGroupState } from "./applicationGroup";
+export type ApplicationGroup = import("./applicationGroup").ApplicationGroup;
+export const ApplicationGroup: typeof import("./applicationGroup").ApplicationGroup = null as any;
+utilities.lazyLoad(exports, ["ApplicationGroup"], () => require("./applicationGroup"));
+
+export { ApplicationListArgs, ApplicationListState } from "./applicationList";
+export type ApplicationList = import("./applicationList").ApplicationList;
+export const ApplicationList: typeof import("./applicationList").ApplicationList = null as any;
+utilities.lazyLoad(exports, ["ApplicationList"], () => require("./applicationList"));
+
+export { ApplicationNameArgs, ApplicationNameState } from "./applicationName";
+export type ApplicationName = import("./applicationName").ApplicationName;
+export const ApplicationName: typeof import("./applicationName").ApplicationName = null as any;
+utilities.lazyLoad(exports, ["ApplicationName"], () => require("./applicationName"));
+
+export { ApplicationRulesettingsArgs, ApplicationRulesettingsState } from "./applicationRulesettings";
+export type ApplicationRulesettings = import("./applicationRulesettings").ApplicationRulesettings;
+export const ApplicationRulesettings: typeof import("./applicationRulesettings").ApplicationRulesettings = null as any;
+utilities.lazyLoad(exports, ["ApplicationRulesettings"], () => require("./applicationRulesettings"));
+
+export { AuthenticationRuleArgs, AuthenticationRuleState } from "./authenticationRule";
+export type AuthenticationRule = import("./authenticationRule").AuthenticationRule;
+export const AuthenticationRule: typeof import("./authenticationRule").AuthenticationRule = null as any;
+utilities.lazyLoad(exports, ["AuthenticationRule"], () => require("./authenticationRule"));
+
+export { AuthenticationSchemeArgs, AuthenticationSchemeState } from "./authenticationScheme";
+export type AuthenticationScheme = import("./authenticationScheme").AuthenticationScheme;
+export const AuthenticationScheme: typeof import("./authenticationScheme").AuthenticationScheme = null as any;
+utilities.lazyLoad(exports, ["AuthenticationScheme"], () => require("./authenticationScheme"));
+
+export { AuthenticationSettingArgs, AuthenticationSettingState } from "./authenticationSetting";
+export type AuthenticationSetting = import("./authenticationSetting").AuthenticationSetting;
+export const AuthenticationSetting: typeof import("./authenticationSetting").AuthenticationSetting = null as any;
+utilities.lazyLoad(exports, ["AuthenticationSetting"], () => require("./authenticationSetting"));
+
+export { AutomationSettingArgs, AutomationSettingState } from "./automationSetting";
+export type AutomationSetting = import("./automationSetting").AutomationSetting;
+export const AutomationSetting: typeof import("./automationSetting").AutomationSetting = null as any;
+utilities.lazyLoad(exports, ["AutomationSetting"], () => require("./automationSetting"));
+
+export { CertificateCaArgs, CertificateCaState } from "./certificateCa";
+export type CertificateCa = import("./certificateCa").CertificateCa;
+export const CertificateCa: typeof import("./certificateCa").CertificateCa = null as any;
+utilities.lazyLoad(exports, ["CertificateCa"], () => require("./certificateCa"));
+
+export { CertificateCrlArgs, CertificateCrlState } from "./certificateCrl";
+export type CertificateCrl = import("./certificateCrl").CertificateCrl;
+export const CertificateCrl: typeof import("./certificateCrl").CertificateCrl = null as any;
+utilities.lazyLoad(exports, ["CertificateCrl"], () => require("./certificateCrl"));
+
+export { CertificateLocalArgs, CertificateLocalState } from "./certificateLocal";
+export type CertificateLocal = import("./certificateLocal").CertificateLocal;
+export const CertificateLocal: typeof import("./certificateLocal").CertificateLocal = null as any;
+utilities.lazyLoad(exports, ["CertificateLocal"], () => require("./certificateLocal"));
+
+export { CertificateRemoteArgs, CertificateRemoteState } from "./certificateRemote";
+export type CertificateRemote = import("./certificateRemote").CertificateRemote;
+export const CertificateRemote: typeof import("./certificateRemote").CertificateRemote = null as any;
+utilities.lazyLoad(exports, ["CertificateRemote"], () => require("./certificateRemote"));
+
+export { CifsDomaincontrollerArgs, CifsDomaincontrollerState } from "./cifsDomaincontroller";
+export type CifsDomaincontroller = import("./cifsDomaincontroller").CifsDomaincontroller;
+export const CifsDomaincontroller: typeof import("./cifsDomaincontroller").CifsDomaincontroller = null as any;
+utilities.lazyLoad(exports, ["CifsDomaincontroller"], () => require("./cifsDomaincontroller"));
+
+export { CifsProfileArgs, CifsProfileState } from "./cifsProfile";
+export type CifsProfile = import("./cifsProfile").CifsProfile;
+export const CifsProfile: typeof import("./cifsProfile").CifsProfile = null as any;
+utilities.lazyLoad(exports, ["CifsProfile"], () => require("./cifsProfile"));
+
+export { CredentialstoreDomaincontrollerArgs, CredentialstoreDomaincontrollerState } from "./credentialstoreDomaincontroller";
+export type CredentialstoreDomaincontroller = import("./credentialstoreDomaincontroller").CredentialstoreDomaincontroller;
+export const CredentialstoreDomaincontroller: typeof import("./credentialstoreDomaincontroller").CredentialstoreDomaincontroller = null as any;
+utilities.lazyLoad(exports, ["CredentialstoreDomaincontroller"], () => require("./credentialstoreDomaincontroller"));
+
+export { DlpDatatypeArgs, DlpDatatypeState } from "./dlpDatatype";
+export type DlpDatatype = import("./dlpDatatype").DlpDatatype;
+export const DlpDatatype: typeof import("./dlpDatatype").DlpDatatype = null as any;
+utilities.lazyLoad(exports, ["DlpDatatype"], () => require("./dlpDatatype"));
+
+export { DlpDictionaryArgs, DlpDictionaryState } from "./dlpDictionary";
+export type DlpDictionary = import("./dlpDictionary").DlpDictionary;
+export const DlpDictionary: typeof import("./dlpDictionary").DlpDictionary = null as any;
+utilities.lazyLoad(exports, ["DlpDictionary"], () => require("./dlpDictionary"));
+
+export { DlpFilepatternArgs, DlpFilepatternState } from "./dlpFilepattern";
+export type DlpFilepattern = import("./dlpFilepattern").DlpFilepattern;
+export const DlpFilepattern: typeof import("./dlpFilepattern").DlpFilepattern = null as any;
+utilities.lazyLoad(exports, ["DlpFilepattern"], () => require("./dlpFilepattern"));
+
+export { DlpFpdocsourceArgs, DlpFpdocsourceState } from "./dlpFpdocsource";
+export type DlpFpdocsource = import("./dlpFpdocsource").DlpFpdocsource;
+export const DlpFpdocsource: typeof import("./dlpFpdocsource").DlpFpdocsource = null as any;
+utilities.lazyLoad(exports, ["DlpFpdocsource"], () => require("./dlpFpdocsource"));
+
+export { DlpFpsensitivityArgs, DlpFpsensitivityState } from "./dlpFpsensitivity";
+export type DlpFpsensitivity = import("./dlpFpsensitivity").DlpFpsensitivity;
+export const DlpFpsensitivity: typeof import("./dlpFpsensitivity").DlpFpsensitivity = null as any;
+utilities.lazyLoad(exports, ["DlpFpsensitivity"], () => require("./dlpFpsensitivity"));
+
+export { DlpProfileArgs, DlpProfileState } from "./dlpProfile";
+export type DlpProfile = import("./dlpProfile").DlpProfile;
+export const DlpProfile: typeof import("./dlpProfile").DlpProfile = null as any;
+utilities.lazyLoad(exports, ["DlpProfile"], () => require("./dlpProfile"));
+
+export { DlpSensitivityArgs, DlpSensitivityState } from "./dlpSensitivity";
+export type DlpSensitivity = import("./dlpSensitivity").DlpSensitivity;
+export const DlpSensitivity: typeof import("./dlpSensitivity").DlpSensitivity = null as any;
+utilities.lazyLoad(exports, ["DlpSensitivity"], () => require("./dlpSensitivity"));
+
+export { DlpSensorArgs, DlpSensorState } from "./dlpSensor";
+export type DlpSensor = import("./dlpSensor").DlpSensor;
+export const DlpSensor: typeof import("./dlpSensor").DlpSensor = null as any;
+utilities.lazyLoad(exports, ["DlpSensor"], () => require("./dlpSensor"));
+
+export { DlpSettingsArgs, DlpSettingsState } from "./dlpSettings";
+export type DlpSettings = import("./dlpSettings").DlpSettings;
+export const DlpSettings: typeof import("./dlpSettings").DlpSettings = null as any;
+utilities.lazyLoad(exports, ["DlpSettings"], () => require("./dlpSettings"));
+
+export { DnsfilterDomainfilterArgs, DnsfilterDomainfilterState } from "./dnsfilterDomainfilter";
+export type DnsfilterDomainfilter = import("./dnsfilterDomainfilter").DnsfilterDomainfilter;
+export const DnsfilterDomainfilter: typeof import("./dnsfilterDomainfilter").DnsfilterDomainfilter = null as any;
+utilities.lazyLoad(exports, ["DnsfilterDomainfilter"], () => require("./dnsfilterDomainfilter"));
+
+export { DnsfilterProfileArgs, DnsfilterProfileState } from "./dnsfilterProfile";
+export type DnsfilterProfile = import("./dnsfilterProfile").DnsfilterProfile;
+export const DnsfilterProfile: typeof import("./dnsfilterProfile").DnsfilterProfile = null as any;
+utilities.lazyLoad(exports, ["DnsfilterProfile"], () => require("./dnsfilterProfile"));
+
+export { DpdkCpusArgs, DpdkCpusState } from "./dpdkCpus";
+export type DpdkCpus = import("./dpdkCpus").DpdkCpus;
+export const DpdkCpus: typeof import("./dpdkCpus").DpdkCpus = null as any;
+utilities.lazyLoad(exports, ["DpdkCpus"], () => require("./dpdkCpus"));
+
+export { DpdkGlobalArgs, DpdkGlobalState } from "./dpdkGlobal";
+export type DpdkGlobal = import("./dpdkGlobal").DpdkGlobal;
+export const DpdkGlobal: typeof import("./dpdkGlobal").DpdkGlobal = null as any;
+utilities.lazyLoad(exports, ["DpdkGlobal"], () => require("./dpdkGlobal"));
+
+export { EmailfilterBlockallowlistArgs, EmailfilterBlockallowlistState } from "./emailfilterBlockallowlist";
+export type EmailfilterBlockallowlist = import("./emailfilterBlockallowlist").EmailfilterBlockallowlist;
+export const EmailfilterBlockallowlist: typeof import("./emailfilterBlockallowlist").EmailfilterBlockallowlist = null as any;
+utilities.lazyLoad(exports, ["EmailfilterBlockallowlist"], () => require("./emailfilterBlockallowlist"));
+
+export { EmailfilterBwlArgs, EmailfilterBwlState } from "./emailfilterBwl";
+export type EmailfilterBwl = import("./emailfilterBwl").EmailfilterBwl;
+export const EmailfilterBwl: typeof import("./emailfilterBwl").EmailfilterBwl = null as any;
+utilities.lazyLoad(exports, ["EmailfilterBwl"], () => require("./emailfilterBwl"));
+
+export { EmailfilterBwordArgs, EmailfilterBwordState } from "./emailfilterBword";
+export type EmailfilterBword = import("./emailfilterBword").EmailfilterBword;
+export const EmailfilterBword: typeof import("./emailfilterBword").EmailfilterBword = null as any;
+utilities.lazyLoad(exports, ["EmailfilterBword"], () => require("./emailfilterBword"));
+
+export { EmailfilterDnsblArgs, EmailfilterDnsblState } from "./emailfilterDnsbl";
+export type EmailfilterDnsbl = import("./emailfilterDnsbl").EmailfilterDnsbl;
+export const EmailfilterDnsbl: typeof import("./emailfilterDnsbl").EmailfilterDnsbl = null as any;
+utilities.lazyLoad(exports, ["EmailfilterDnsbl"], () => require("./emailfilterDnsbl"));
+
+export { EmailfilterFortishieldArgs, EmailfilterFortishieldState } from "./emailfilterFortishield";
+export type EmailfilterFortishield = import("./emailfilterFortishield").EmailfilterFortishield;
+export const EmailfilterFortishield: typeof import("./emailfilterFortishield").EmailfilterFortishield = null as any;
+utilities.lazyLoad(exports, ["EmailfilterFortishield"], () => require("./emailfilterFortishield"));
+
+export { EmailfilterIptrustArgs, EmailfilterIptrustState } from "./emailfilterIptrust";
+export type EmailfilterIptrust = import("./emailfilterIptrust").EmailfilterIptrust;
+export const EmailfilterIptrust: typeof import("./emailfilterIptrust").EmailfilterIptrust = null as any;
+utilities.lazyLoad(exports, ["EmailfilterIptrust"], () => require("./emailfilterIptrust"));
+
+export { EmailfilterMheaderArgs, EmailfilterMheaderState } from "./emailfilterMheader";
+export type EmailfilterMheader = import("./emailfilterMheader").EmailfilterMheader;
+export const EmailfilterMheader: typeof import("./emailfilterMheader").EmailfilterMheader = null as any;
+utilities.lazyLoad(exports, ["EmailfilterMheader"], () => require("./emailfilterMheader"));
+
+export { EmailfilterOptionsArgs, EmailfilterOptionsState } from "./emailfilterOptions";
+export type EmailfilterOptions = import("./emailfilterOptions").EmailfilterOptions;
+export const EmailfilterOptions: typeof import("./emailfilterOptions").EmailfilterOptions = null as any;
+utilities.lazyLoad(exports, ["EmailfilterOptions"], () => require("./emailfilterOptions"));
+
+export { EmailfilterProfileArgs, EmailfilterProfileState } from "./emailfilterProfile";
+export type EmailfilterProfile = import("./emailfilterProfile").EmailfilterProfile;
+export const EmailfilterProfile: typeof import("./emailfilterProfile").EmailfilterProfile = null as any;
+utilities.lazyLoad(exports, ["EmailfilterProfile"], () => require("./emailfilterProfile"));
+
+export { EndpointcontrolClientArgs, EndpointcontrolClientState } from "./endpointcontrolClient";
+export type EndpointcontrolClient = import("./endpointcontrolClient").EndpointcontrolClient;
+export const EndpointcontrolClient: typeof import("./endpointcontrolClient").EndpointcontrolClient = null as any;
+utilities.lazyLoad(exports, ["EndpointcontrolClient"], () => require("./endpointcontrolClient"));
+
+export { EndpointcontrolFctemsArgs, EndpointcontrolFctemsState } from "./endpointcontrolFctems";
+export type EndpointcontrolFctems = import("./endpointcontrolFctems").EndpointcontrolFctems;
+export const EndpointcontrolFctems: typeof import("./endpointcontrolFctems").EndpointcontrolFctems = null as any;
+utilities.lazyLoad(exports, ["EndpointcontrolFctems"], () => require("./endpointcontrolFctems"));
+
+export { EndpointcontrolForticlientemsArgs, EndpointcontrolForticlientemsState } from "./endpointcontrolForticlientems";
+export type EndpointcontrolForticlientems = import("./endpointcontrolForticlientems").EndpointcontrolForticlientems;
+export const EndpointcontrolForticlientems: typeof import("./endpointcontrolForticlientems").EndpointcontrolForticlientems = null as any;
+utilities.lazyLoad(exports, ["EndpointcontrolForticlientems"], () => require("./endpointcontrolForticlientems"));
+
+export { EndpointcontrolForticlientregistrationsyncArgs, EndpointcontrolForticlientregistrationsyncState } from "./endpointcontrolForticlientregistrationsync";
+export type EndpointcontrolForticlientregistrationsync = import("./endpointcontrolForticlientregistrationsync").EndpointcontrolForticlientregistrationsync;
+export const EndpointcontrolForticlientregistrationsync: typeof import("./endpointcontrolForticlientregistrationsync").EndpointcontrolForticlientregistrationsync = null as any;
+utilities.lazyLoad(exports, ["EndpointcontrolForticlientregistrationsync"], () => require("./endpointcontrolForticlientregistrationsync"));
+
+export { EndpointcontrolProfileArgs, EndpointcontrolProfileState } from "./endpointcontrolProfile";
+export type EndpointcontrolProfile = import("./endpointcontrolProfile").EndpointcontrolProfile;
+export const EndpointcontrolProfile: typeof import("./endpointcontrolProfile").EndpointcontrolProfile = null as any;
+utilities.lazyLoad(exports, ["EndpointcontrolProfile"], () => require("./endpointcontrolProfile"));
+
+export { EndpointcontrolRegisteredforticlientArgs, EndpointcontrolRegisteredforticlientState } from "./endpointcontrolRegisteredforticlient";
+export type EndpointcontrolRegisteredforticlient = import("./endpointcontrolRegisteredforticlient").EndpointcontrolRegisteredforticlient;
+export const EndpointcontrolRegisteredforticlient: typeof import("./endpointcontrolRegisteredforticlient").EndpointcontrolRegisteredforticlient = null as any;
+utilities.lazyLoad(exports, ["EndpointcontrolRegisteredforticlient"], () => require("./endpointcontrolRegisteredforticlient"));
+
+export { EndpointcontrolSettingsArgs, EndpointcontrolSettingsState } from "./endpointcontrolSettings";
+export type EndpointcontrolSettings = import("./endpointcontrolSettings").EndpointcontrolSettings;
+export const EndpointcontrolSettings: typeof import("./endpointcontrolSettings").EndpointcontrolSettings = null as any;
+utilities.lazyLoad(exports, ["EndpointcontrolSettings"], () => require("./endpointcontrolSettings"));
+
+export { ExtendercontrollerDataplanArgs, ExtendercontrollerDataplanState } from "./extendercontrollerDataplan";
+export type ExtendercontrollerDataplan = import("./extendercontrollerDataplan").ExtendercontrollerDataplan;
+export const ExtendercontrollerDataplan: typeof import("./extendercontrollerDataplan").ExtendercontrollerDataplan = null as any;
+utilities.lazyLoad(exports, ["ExtendercontrollerDataplan"], () => require("./extendercontrollerDataplan"));
+
+export { ExtendercontrollerExtenderArgs, ExtendercontrollerExtenderState } from "./extendercontrollerExtender";
+export type ExtendercontrollerExtender = import("./extendercontrollerExtender").ExtendercontrollerExtender;
+export const ExtendercontrollerExtender: typeof import("./extendercontrollerExtender").ExtendercontrollerExtender = null as any;
+utilities.lazyLoad(exports, ["ExtendercontrollerExtender"], () => require("./extendercontrollerExtender"));
+
+export { ExtendercontrollerExtender1Args, ExtendercontrollerExtender1State } from "./extendercontrollerExtender1";
+export type ExtendercontrollerExtender1 = import("./extendercontrollerExtender1").ExtendercontrollerExtender1;
+export const ExtendercontrollerExtender1: typeof import("./extendercontrollerExtender1").ExtendercontrollerExtender1 = null as any;
+utilities.lazyLoad(exports, ["ExtendercontrollerExtender1"], () => require("./extendercontrollerExtender1"));
+
+export { ExtendercontrollerExtenderprofileArgs, ExtendercontrollerExtenderprofileState } from "./extendercontrollerExtenderprofile";
+export type ExtendercontrollerExtenderprofile = import("./extendercontrollerExtenderprofile").ExtendercontrollerExtenderprofile;
+export const ExtendercontrollerExtenderprofile: typeof import("./extendercontrollerExtenderprofile").ExtendercontrollerExtenderprofile = null as any;
+utilities.lazyLoad(exports, ["ExtendercontrollerExtenderprofile"], () => require("./extendercontrollerExtenderprofile"));
+
+export { ExtensioncontrollerDataplanArgs, ExtensioncontrollerDataplanState } from "./extensioncontrollerDataplan";
+export type ExtensioncontrollerDataplan = import("./extensioncontrollerDataplan").ExtensioncontrollerDataplan;
+export const ExtensioncontrollerDataplan: typeof import("./extensioncontrollerDataplan").ExtensioncontrollerDataplan = null as any;
+utilities.lazyLoad(exports, ["ExtensioncontrollerDataplan"], () => require("./extensioncontrollerDataplan"));
+
+export { ExtensioncontrollerExtenderArgs, ExtensioncontrollerExtenderState } from "./extensioncontrollerExtender";
+export type ExtensioncontrollerExtender = import("./extensioncontrollerExtender").ExtensioncontrollerExtender;
+export const ExtensioncontrollerExtender: typeof import("./extensioncontrollerExtender").ExtensioncontrollerExtender = null as any;
+utilities.lazyLoad(exports, ["ExtensioncontrollerExtender"], () => require("./extensioncontrollerExtender"));
+
+export { ExtensioncontrollerExtenderprofileArgs, ExtensioncontrollerExtenderprofileState } from "./extensioncontrollerExtenderprofile";
+export type ExtensioncontrollerExtenderprofile = import("./extensioncontrollerExtenderprofile").ExtensioncontrollerExtenderprofile;
+export const ExtensioncontrollerExtenderprofile: typeof import("./extensioncontrollerExtenderprofile").ExtensioncontrollerExtenderprofile = null as any;
+utilities.lazyLoad(exports, ["ExtensioncontrollerExtenderprofile"], () => require("./extensioncontrollerExtenderprofile"));
+
+export { ExtensioncontrollerFortigateArgs, ExtensioncontrollerFortigateState } from "./extensioncontrollerFortigate";
+export type ExtensioncontrollerFortigate = import("./extensioncontrollerFortigate").ExtensioncontrollerFortigate;
+export const ExtensioncontrollerFortigate: typeof import("./extensioncontrollerFortigate").ExtensioncontrollerFortigate = null as any;
+utilities.lazyLoad(exports, ["ExtensioncontrollerFortigate"], () => require("./extensioncontrollerFortigate"));
+
+export { ExtensioncontrollerFortigateprofileArgs, ExtensioncontrollerFortigateprofileState } from "./extensioncontrollerFortigateprofile";
+export type ExtensioncontrollerFortigateprofile = import("./extensioncontrollerFortigateprofile").ExtensioncontrollerFortigateprofile;
+export const ExtensioncontrollerFortigateprofile: typeof import("./extensioncontrollerFortigateprofile").ExtensioncontrollerFortigateprofile = null as any;
+utilities.lazyLoad(exports, ["ExtensioncontrollerFortigateprofile"], () => require("./extensioncontrollerFortigateprofile"));
+
+export { FilefilterProfileArgs, FilefilterProfileState } from "./filefilterProfile";
+export type FilefilterProfile = import("./filefilterProfile").FilefilterProfile;
+export const FilefilterProfile: typeof import("./filefilterProfile").FilefilterProfile = null as any;
+utilities.lazyLoad(exports, ["FilefilterProfile"], () => require("./filefilterProfile"));
+
+export { FirewallAccessproxyArgs, FirewallAccessproxyState } from "./firewallAccessproxy";
+export type FirewallAccessproxy = import("./firewallAccessproxy").FirewallAccessproxy;
+export const FirewallAccessproxy: typeof import("./firewallAccessproxy").FirewallAccessproxy = null as any;
+utilities.lazyLoad(exports, ["FirewallAccessproxy"], () => require("./firewallAccessproxy"));
+
+export { FirewallAccessproxy6Args, FirewallAccessproxy6State } from "./firewallAccessproxy6";
+export type FirewallAccessproxy6 = import("./firewallAccessproxy6").FirewallAccessproxy6;
+export const FirewallAccessproxy6: typeof import("./firewallAccessproxy6").FirewallAccessproxy6 = null as any;
+utilities.lazyLoad(exports, ["FirewallAccessproxy6"], () => require("./firewallAccessproxy6"));
+
+export { FirewallAccessproxysshclientcertArgs, FirewallAccessproxysshclientcertState } from "./firewallAccessproxysshclientcert";
+export type FirewallAccessproxysshclientcert = import("./firewallAccessproxysshclientcert").FirewallAccessproxysshclientcert;
+export const FirewallAccessproxysshclientcert: typeof import("./firewallAccessproxysshclientcert").FirewallAccessproxysshclientcert = null as any;
+utilities.lazyLoad(exports, ["FirewallAccessproxysshclientcert"], () => require("./firewallAccessproxysshclientcert"));
+
+export { FirewallAccessproxyvirtualhostArgs, FirewallAccessproxyvirtualhostState } from "./firewallAccessproxyvirtualhost";
+export type FirewallAccessproxyvirtualhost = import("./firewallAccessproxyvirtualhost").FirewallAccessproxyvirtualhost;
+export const FirewallAccessproxyvirtualhost: typeof import("./firewallAccessproxyvirtualhost").FirewallAccessproxyvirtualhost = null as any;
+utilities.lazyLoad(exports, ["FirewallAccessproxyvirtualhost"], () => require("./firewallAccessproxyvirtualhost"));
+
+export { FirewallAddressArgs, FirewallAddressState } from "./firewallAddress";
+export type FirewallAddress = import("./firewallAddress").FirewallAddress;
+export const FirewallAddress: typeof import("./firewallAddress").FirewallAddress = null as any;
+utilities.lazyLoad(exports, ["FirewallAddress"], () => require("./firewallAddress"));
+
+export { FirewallAddress6Args, FirewallAddress6State } from "./firewallAddress6";
+export type FirewallAddress6 = import("./firewallAddress6").FirewallAddress6;
+export const FirewallAddress6: typeof import("./firewallAddress6").FirewallAddress6 = null as any;
+utilities.lazyLoad(exports, ["FirewallAddress6"], () => require("./firewallAddress6"));
+
+export { FirewallAddress6templateArgs, FirewallAddress6templateState } from "./firewallAddress6template";
+export type FirewallAddress6template = import("./firewallAddress6template").FirewallAddress6template;
+export const FirewallAddress6template: typeof import("./firewallAddress6template").FirewallAddress6template = null as any;
+utilities.lazyLoad(exports, ["FirewallAddress6template"], () => require("./firewallAddress6template"));
+
+export { FirewallAddrgrpArgs, FirewallAddrgrpState } from "./firewallAddrgrp";
+export type FirewallAddrgrp = import("./firewallAddrgrp").FirewallAddrgrp;
+export const FirewallAddrgrp: typeof import("./firewallAddrgrp").FirewallAddrgrp = null as any;
+utilities.lazyLoad(exports, ["FirewallAddrgrp"], () => require("./firewallAddrgrp"));
+
+export { FirewallAddrgrp6Args, FirewallAddrgrp6State } from "./firewallAddrgrp6";
+export type FirewallAddrgrp6 = import("./firewallAddrgrp6").FirewallAddrgrp6;
+export const FirewallAddrgrp6: typeof import("./firewallAddrgrp6").FirewallAddrgrp6 = null as any;
+utilities.lazyLoad(exports, ["FirewallAddrgrp6"], () => require("./firewallAddrgrp6"));
+
+export { FirewallAuthportalArgs, FirewallAuthportalState } from "./firewallAuthportal";
+export type FirewallAuthportal = import("./firewallAuthportal").FirewallAuthportal;
+export const FirewallAuthportal: typeof import("./firewallAuthportal").FirewallAuthportal = null as any;
+utilities.lazyLoad(exports, ["FirewallAuthportal"], () => require("./firewallAuthportal"));
+
+export { FirewallCentralsnatmapArgs, FirewallCentralsnatmapState } from "./firewallCentralsnatmap";
+export type FirewallCentralsnatmap = import("./firewallCentralsnatmap").FirewallCentralsnatmap;
+export const FirewallCentralsnatmap: typeof import("./firewallCentralsnatmap").FirewallCentralsnatmap = null as any;
+utilities.lazyLoad(exports, ["FirewallCentralsnatmap"], () => require("./firewallCentralsnatmap"));
+
+export { FirewallCentralsnatmapMoveArgs, FirewallCentralsnatmapMoveState } from "./firewallCentralsnatmapMove";
+export type FirewallCentralsnatmapMove = import("./firewallCentralsnatmapMove").FirewallCentralsnatmapMove;
+export const FirewallCentralsnatmapMove: typeof import("./firewallCentralsnatmapMove").FirewallCentralsnatmapMove = null as any;
+utilities.lazyLoad(exports, ["FirewallCentralsnatmapMove"], () => require("./firewallCentralsnatmapMove"));
+
+export { FirewallCentralsnatmapSortArgs, FirewallCentralsnatmapSortState } from "./firewallCentralsnatmapSort";
+export type FirewallCentralsnatmapSort = import("./firewallCentralsnatmapSort").FirewallCentralsnatmapSort;
+export const FirewallCentralsnatmapSort: typeof import("./firewallCentralsnatmapSort").FirewallCentralsnatmapSort = null as any;
+utilities.lazyLoad(exports, ["FirewallCentralsnatmapSort"], () => require("./firewallCentralsnatmapSort"));
+
+export { FirewallCityArgs, FirewallCityState } from "./firewallCity";
+export type FirewallCity = import("./firewallCity").FirewallCity;
+export const FirewallCity: typeof import("./firewallCity").FirewallCity = null as any;
+utilities.lazyLoad(exports, ["FirewallCity"], () => require("./firewallCity"));
+
+export { FirewallCountryArgs, FirewallCountryState } from "./firewallCountry";
+export type FirewallCountry = import("./firewallCountry").FirewallCountry;
+export const FirewallCountry: typeof import("./firewallCountry").FirewallCountry = null as any;
+utilities.lazyLoad(exports, ["FirewallCountry"], () => require("./firewallCountry"));
+
+export { FirewallDecryptedtrafficmirrorArgs, FirewallDecryptedtrafficmirrorState } from "./firewallDecryptedtrafficmirror";
+export type FirewallDecryptedtrafficmirror = import("./firewallDecryptedtrafficmirror").FirewallDecryptedtrafficmirror;
+export const FirewallDecryptedtrafficmirror: typeof import("./firewallDecryptedtrafficmirror").FirewallDecryptedtrafficmirror = null as any;
+utilities.lazyLoad(exports, ["FirewallDecryptedtrafficmirror"], () => require("./firewallDecryptedtrafficmirror"));
+
+export { FirewallDnstranslationArgs, FirewallDnstranslationState } from "./firewallDnstranslation";
+export type FirewallDnstranslation = import("./firewallDnstranslation").FirewallDnstranslation;
+export const FirewallDnstranslation: typeof import("./firewallDnstranslation").FirewallDnstranslation = null as any;
+utilities.lazyLoad(exports, ["FirewallDnstranslation"], () => require("./firewallDnstranslation"));
+
+export { FirewallDoSpolicyArgs, FirewallDoSpolicyState } from "./firewallDoSpolicy";
+export type FirewallDoSpolicy = import("./firewallDoSpolicy").FirewallDoSpolicy;
+export const FirewallDoSpolicy: typeof import("./firewallDoSpolicy").FirewallDoSpolicy = null as any;
+utilities.lazyLoad(exports, ["FirewallDoSpolicy"], () => require("./firewallDoSpolicy"));
+
+export { FirewallDoSpolicy6Args, FirewallDoSpolicy6State } from "./firewallDoSpolicy6";
+export type FirewallDoSpolicy6 = import("./firewallDoSpolicy6").FirewallDoSpolicy6;
+export const FirewallDoSpolicy6: typeof import("./firewallDoSpolicy6").FirewallDoSpolicy6 = null as any;
+utilities.lazyLoad(exports, ["FirewallDoSpolicy6"], () => require("./firewallDoSpolicy6"));
+
+export { FirewallGlobalArgs, FirewallGlobalState } from "./firewallGlobal";
+export type FirewallGlobal = import("./firewallGlobal").FirewallGlobal;
+export const FirewallGlobal: typeof import("./firewallGlobal").FirewallGlobal = null as any;
+utilities.lazyLoad(exports, ["FirewallGlobal"], () => require("./firewallGlobal"));
+
+export { FirewallIdentitybasedrouteArgs, FirewallIdentitybasedrouteState } from "./firewallIdentitybasedroute";
+export type FirewallIdentitybasedroute = import("./firewallIdentitybasedroute").FirewallIdentitybasedroute;
+export const FirewallIdentitybasedroute: typeof import("./firewallIdentitybasedroute").FirewallIdentitybasedroute = null as any;
+utilities.lazyLoad(exports, ["FirewallIdentitybasedroute"], () => require("./firewallIdentitybasedroute"));
+
+export { FirewallInterfacepolicyArgs, FirewallInterfacepolicyState } from "./firewallInterfacepolicy";
+export type FirewallInterfacepolicy = import("./firewallInterfacepolicy").FirewallInterfacepolicy;
+export const FirewallInterfacepolicy: typeof import("./firewallInterfacepolicy").FirewallInterfacepolicy = null as any;
+utilities.lazyLoad(exports, ["FirewallInterfacepolicy"], () => require("./firewallInterfacepolicy"));
+
+export { FirewallInterfacepolicy6Args, FirewallInterfacepolicy6State } from "./firewallInterfacepolicy6";
+export type FirewallInterfacepolicy6 = import("./firewallInterfacepolicy6").FirewallInterfacepolicy6;
+export const FirewallInterfacepolicy6: typeof import("./firewallInterfacepolicy6").FirewallInterfacepolicy6 = null as any;
+utilities.lazyLoad(exports, ["FirewallInterfacepolicy6"], () => require("./firewallInterfacepolicy6"));
+
+export { FirewallInternetserviceArgs, FirewallInternetserviceState } from "./firewallInternetservice";
+export type FirewallInternetservice = import("./firewallInternetservice").FirewallInternetservice;
+export const FirewallInternetservice: typeof import("./firewallInternetservice").FirewallInternetservice = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetservice"], () => require("./firewallInternetservice"));
+
+export { FirewallInternetserviceadditionArgs, FirewallInternetserviceadditionState } from "./firewallInternetserviceaddition";
+export type FirewallInternetserviceaddition = import("./firewallInternetserviceaddition").FirewallInternetserviceaddition;
+export const FirewallInternetserviceaddition: typeof import("./firewallInternetserviceaddition").FirewallInternetserviceaddition = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetserviceaddition"], () => require("./firewallInternetserviceaddition"));
+
+export { FirewallInternetserviceappendArgs, FirewallInternetserviceappendState } from "./firewallInternetserviceappend";
+export type FirewallInternetserviceappend = import("./firewallInternetserviceappend").FirewallInternetserviceappend;
+export const FirewallInternetserviceappend: typeof import("./firewallInternetserviceappend").FirewallInternetserviceappend = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetserviceappend"], () => require("./firewallInternetserviceappend"));
+
+export { FirewallInternetservicebotnetArgs, FirewallInternetservicebotnetState } from "./firewallInternetservicebotnet";
+export type FirewallInternetservicebotnet = import("./firewallInternetservicebotnet").FirewallInternetservicebotnet;
+export const FirewallInternetservicebotnet: typeof import("./firewallInternetservicebotnet").FirewallInternetservicebotnet = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetservicebotnet"], () => require("./firewallInternetservicebotnet"));
+
+export { FirewallInternetservicecustomArgs, FirewallInternetservicecustomState } from "./firewallInternetservicecustom";
+export type FirewallInternetservicecustom = import("./firewallInternetservicecustom").FirewallInternetservicecustom;
+export const FirewallInternetservicecustom: typeof import("./firewallInternetservicecustom").FirewallInternetservicecustom = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetservicecustom"], () => require("./firewallInternetservicecustom"));
+
+export { FirewallInternetservicecustomgroupArgs, FirewallInternetservicecustomgroupState } from "./firewallInternetservicecustomgroup";
+export type FirewallInternetservicecustomgroup = import("./firewallInternetservicecustomgroup").FirewallInternetservicecustomgroup;
+export const FirewallInternetservicecustomgroup: typeof import("./firewallInternetservicecustomgroup").FirewallInternetservicecustomgroup = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetservicecustomgroup"], () => require("./firewallInternetservicecustomgroup"));
+
+export { FirewallInternetservicedefinitionArgs, FirewallInternetservicedefinitionState } from "./firewallInternetservicedefinition";
+export type FirewallInternetservicedefinition = import("./firewallInternetservicedefinition").FirewallInternetservicedefinition;
+export const FirewallInternetservicedefinition: typeof import("./firewallInternetservicedefinition").FirewallInternetservicedefinition = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetservicedefinition"], () => require("./firewallInternetservicedefinition"));
+
+export { FirewallInternetserviceextensionArgs, FirewallInternetserviceextensionState } from "./firewallInternetserviceextension";
+export type FirewallInternetserviceextension = import("./firewallInternetserviceextension").FirewallInternetserviceextension;
+export const FirewallInternetserviceextension: typeof import("./firewallInternetserviceextension").FirewallInternetserviceextension = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetserviceextension"], () => require("./firewallInternetserviceextension"));
+
+export { FirewallInternetservicegroupArgs, FirewallInternetservicegroupState } from "./firewallInternetservicegroup";
+export type FirewallInternetservicegroup = import("./firewallInternetservicegroup").FirewallInternetservicegroup;
+export const FirewallInternetservicegroup: typeof import("./firewallInternetservicegroup").FirewallInternetservicegroup = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetservicegroup"], () => require("./firewallInternetservicegroup"));
+
+export { FirewallInternetserviceipblreasonArgs, FirewallInternetserviceipblreasonState } from "./firewallInternetserviceipblreason";
+export type FirewallInternetserviceipblreason = import("./firewallInternetserviceipblreason").FirewallInternetserviceipblreason;
+export const FirewallInternetserviceipblreason: typeof import("./firewallInternetserviceipblreason").FirewallInternetserviceipblreason = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetserviceipblreason"], () => require("./firewallInternetserviceipblreason"));
+
+export { FirewallInternetserviceipblvendorArgs, FirewallInternetserviceipblvendorState } from "./firewallInternetserviceipblvendor";
+export type FirewallInternetserviceipblvendor = import("./firewallInternetserviceipblvendor").FirewallInternetserviceipblvendor;
+export const FirewallInternetserviceipblvendor: typeof import("./firewallInternetserviceipblvendor").FirewallInternetserviceipblvendor = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetserviceipblvendor"], () => require("./firewallInternetserviceipblvendor"));
+
+export { FirewallInternetservicelistArgs, FirewallInternetservicelistState } from "./firewallInternetservicelist";
+export type FirewallInternetservicelist = import("./firewallInternetservicelist").FirewallInternetservicelist;
+export const FirewallInternetservicelist: typeof import("./firewallInternetservicelist").FirewallInternetservicelist = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetservicelist"], () => require("./firewallInternetservicelist"));
+
+export { FirewallInternetservicenameArgs, FirewallInternetservicenameState } from "./firewallInternetservicename";
+export type FirewallInternetservicename = import("./firewallInternetservicename").FirewallInternetservicename;
+export const FirewallInternetservicename: typeof import("./firewallInternetservicename").FirewallInternetservicename = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetservicename"], () => require("./firewallInternetservicename"));
+
+export { FirewallInternetserviceownerArgs, FirewallInternetserviceownerState } from "./firewallInternetserviceowner";
+export type FirewallInternetserviceowner = import("./firewallInternetserviceowner").FirewallInternetserviceowner;
+export const FirewallInternetserviceowner: typeof import("./firewallInternetserviceowner").FirewallInternetserviceowner = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetserviceowner"], () => require("./firewallInternetserviceowner"));
+
+export { FirewallInternetservicereputationArgs, FirewallInternetservicereputationState } from "./firewallInternetservicereputation";
+export type FirewallInternetservicereputation = import("./firewallInternetservicereputation").FirewallInternetservicereputation;
+export const FirewallInternetservicereputation: typeof import("./firewallInternetservicereputation").FirewallInternetservicereputation = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetservicereputation"], () => require("./firewallInternetservicereputation"));
+
+export { FirewallIppoolArgs, FirewallIppoolState } from "./firewallIppool";
+export type FirewallIppool = import("./firewallIppool").FirewallIppool;
+export const FirewallIppool: typeof import("./firewallIppool").FirewallIppool = null as any;
+utilities.lazyLoad(exports, ["FirewallIppool"], () => require("./firewallIppool"));
+
+export { FirewallIppool6Args, FirewallIppool6State } from "./firewallIppool6";
+export type FirewallIppool6 = import("./firewallIppool6").FirewallIppool6;
+export const FirewallIppool6: typeof import("./firewallIppool6").FirewallIppool6 = null as any;
+utilities.lazyLoad(exports, ["FirewallIppool6"], () => require("./firewallIppool6"));
+
+export { FirewallIptranslationArgs, FirewallIptranslationState } from "./firewallIptranslation";
+export type FirewallIptranslation = import("./firewallIptranslation").FirewallIptranslation;
+export const FirewallIptranslation: typeof import("./firewallIptranslation").FirewallIptranslation = null as any;
+utilities.lazyLoad(exports, ["FirewallIptranslation"], () => require("./firewallIptranslation"));
+
+export { FirewallIpv6ehfilterArgs, FirewallIpv6ehfilterState } from "./firewallIpv6ehfilter";
+export type FirewallIpv6ehfilter = import("./firewallIpv6ehfilter").FirewallIpv6ehfilter;
+export const FirewallIpv6ehfilter: typeof import("./firewallIpv6ehfilter").FirewallIpv6ehfilter = null as any;
+utilities.lazyLoad(exports, ["FirewallIpv6ehfilter"], () => require("./firewallIpv6ehfilter"));
+
+export { FirewallLdbmonitorArgs, FirewallLdbmonitorState } from "./firewallLdbmonitor";
+export type FirewallLdbmonitor = import("./firewallLdbmonitor").FirewallLdbmonitor;
+export const FirewallLdbmonitor: typeof import("./firewallLdbmonitor").FirewallLdbmonitor = null as any;
+utilities.lazyLoad(exports, ["FirewallLdbmonitor"], () => require("./firewallLdbmonitor"));
+
+export { FirewallLocalinpolicyArgs, FirewallLocalinpolicyState } from "./firewallLocalinpolicy";
+export type FirewallLocalinpolicy = import("./firewallLocalinpolicy").FirewallLocalinpolicy;
+export const FirewallLocalinpolicy: typeof import("./firewallLocalinpolicy").FirewallLocalinpolicy = null as any;
+utilities.lazyLoad(exports, ["FirewallLocalinpolicy"], () => require("./firewallLocalinpolicy"));
+
+export { FirewallLocalinpolicy6Args, FirewallLocalinpolicy6State } from "./firewallLocalinpolicy6";
+export type FirewallLocalinpolicy6 = import("./firewallLocalinpolicy6").FirewallLocalinpolicy6;
+export const FirewallLocalinpolicy6: typeof import("./firewallLocalinpolicy6").FirewallLocalinpolicy6 = null as any;
+utilities.lazyLoad(exports, ["FirewallLocalinpolicy6"], () => require("./firewallLocalinpolicy6"));
+
+export { FirewallMulticastaddressArgs, FirewallMulticastaddressState } from "./firewallMulticastaddress";
+export type FirewallMulticastaddress = import("./firewallMulticastaddress").FirewallMulticastaddress;
+export const FirewallMulticastaddress: typeof import("./firewallMulticastaddress").FirewallMulticastaddress = null as any;
+utilities.lazyLoad(exports, ["FirewallMulticastaddress"], () => require("./firewallMulticastaddress"));
+
+export { FirewallMulticastaddress6Args, FirewallMulticastaddress6State } from "./firewallMulticastaddress6";
+export type FirewallMulticastaddress6 = import("./firewallMulticastaddress6").FirewallMulticastaddress6;
+export const FirewallMulticastaddress6: typeof import("./firewallMulticastaddress6").FirewallMulticastaddress6 = null as any;
+utilities.lazyLoad(exports, ["FirewallMulticastaddress6"], () => require("./firewallMulticastaddress6"));
+
+export { FirewallMulticastpolicyArgs, FirewallMulticastpolicyState } from "./firewallMulticastpolicy";
+export type FirewallMulticastpolicy = import("./firewallMulticastpolicy").FirewallMulticastpolicy;
+export const FirewallMulticastpolicy: typeof import("./firewallMulticastpolicy").FirewallMulticastpolicy = null as any;
+utilities.lazyLoad(exports, ["FirewallMulticastpolicy"], () => require("./firewallMulticastpolicy"));
+
+export { FirewallMulticastpolicy6Args, FirewallMulticastpolicy6State } from "./firewallMulticastpolicy6";
+export type FirewallMulticastpolicy6 = import("./firewallMulticastpolicy6").FirewallMulticastpolicy6;
+export const FirewallMulticastpolicy6: typeof import("./firewallMulticastpolicy6").FirewallMulticastpolicy6 = null as any;
+utilities.lazyLoad(exports, ["FirewallMulticastpolicy6"], () => require("./firewallMulticastpolicy6"));
+
+export { FirewallNetworkservicedynamicArgs, FirewallNetworkservicedynamicState } from "./firewallNetworkservicedynamic";
+export type FirewallNetworkservicedynamic = import("./firewallNetworkservicedynamic").FirewallNetworkservicedynamic;
+export const FirewallNetworkservicedynamic: typeof import("./firewallNetworkservicedynamic").FirewallNetworkservicedynamic = null as any;
+utilities.lazyLoad(exports, ["FirewallNetworkservicedynamic"], () => require("./firewallNetworkservicedynamic"));
+
+export { FirewallObjectAddressArgs, FirewallObjectAddressState } from "./firewallObjectAddress";
+export type FirewallObjectAddress = import("./firewallObjectAddress").FirewallObjectAddress;
+export const FirewallObjectAddress: typeof import("./firewallObjectAddress").FirewallObjectAddress = null as any;
+utilities.lazyLoad(exports, ["FirewallObjectAddress"], () => require("./firewallObjectAddress"));
+
+export { FirewallObjectAddressgroupArgs, FirewallObjectAddressgroupState } from "./firewallObjectAddressgroup";
+export type FirewallObjectAddressgroup = import("./firewallObjectAddressgroup").FirewallObjectAddressgroup;
+export const FirewallObjectAddressgroup: typeof import("./firewallObjectAddressgroup").FirewallObjectAddressgroup = null as any;
+utilities.lazyLoad(exports, ["FirewallObjectAddressgroup"], () => require("./firewallObjectAddressgroup"));
+
+export { FirewallObjectIppoolArgs, FirewallObjectIppoolState } from "./firewallObjectIppool";
+export type FirewallObjectIppool = import("./firewallObjectIppool").FirewallObjectIppool;
+export const FirewallObjectIppool: typeof import("./firewallObjectIppool").FirewallObjectIppool = null as any;
+utilities.lazyLoad(exports, ["FirewallObjectIppool"], () => require("./firewallObjectIppool"));
+
+export { FirewallObjectServiceArgs, FirewallObjectServiceState } from "./firewallObjectService";
+export type FirewallObjectService = import("./firewallObjectService").FirewallObjectService;
+export const FirewallObjectService: typeof import("./firewallObjectService").FirewallObjectService = null as any;
+utilities.lazyLoad(exports, ["FirewallObjectService"], () => require("./firewallObjectService"));
+
+export { FirewallObjectServicecategoryArgs, FirewallObjectServicecategoryState } from "./firewallObjectServicecategory";
+export type FirewallObjectServicecategory = import("./firewallObjectServicecategory").FirewallObjectServicecategory;
+export const FirewallObjectServicecategory: typeof import("./firewallObjectServicecategory").FirewallObjectServicecategory = null as any;
+utilities.lazyLoad(exports, ["FirewallObjectServicecategory"], () => require("./firewallObjectServicecategory"));
+
+export { FirewallObjectServicegroupArgs, FirewallObjectServicegroupState } from "./firewallObjectServicegroup";
+export type FirewallObjectServicegroup = import("./firewallObjectServicegroup").FirewallObjectServicegroup;
+export const FirewallObjectServicegroup: typeof import("./firewallObjectServicegroup").FirewallObjectServicegroup = null as any;
+utilities.lazyLoad(exports, ["FirewallObjectServicegroup"], () => require("./firewallObjectServicegroup"));
+
+export { FirewallObjectVipArgs, FirewallObjectVipState } from "./firewallObjectVip";
+export type FirewallObjectVip = import("./firewallObjectVip").FirewallObjectVip;
+export const FirewallObjectVip: typeof import("./firewallObjectVip").FirewallObjectVip = null as any;
+utilities.lazyLoad(exports, ["FirewallObjectVip"], () => require("./firewallObjectVip"));
+
+export { FirewallObjectVipgroupArgs, FirewallObjectVipgroupState } from "./firewallObjectVipgroup";
+export type FirewallObjectVipgroup = import("./firewallObjectVipgroup").FirewallObjectVipgroup;
+export const FirewallObjectVipgroup: typeof import("./firewallObjectVipgroup").FirewallObjectVipgroup = null as any;
+utilities.lazyLoad(exports, ["FirewallObjectVipgroup"], () => require("./firewallObjectVipgroup"));
+
+export { FirewallPolicyArgs, FirewallPolicyState } from "./firewallPolicy";
+export type FirewallPolicy = import("./firewallPolicy").FirewallPolicy;
+export const FirewallPolicy: typeof import("./firewallPolicy").FirewallPolicy = null as any;
+utilities.lazyLoad(exports, ["FirewallPolicy"], () => require("./firewallPolicy"));
+
+export { FirewallPolicy46Args, FirewallPolicy46State } from "./firewallPolicy46";
+export type FirewallPolicy46 = import("./firewallPolicy46").FirewallPolicy46;
+export const FirewallPolicy46: typeof import("./firewallPolicy46").FirewallPolicy46 = null as any;
+utilities.lazyLoad(exports, ["FirewallPolicy46"], () => require("./firewallPolicy46"));
+
+export { FirewallPolicy6Args, FirewallPolicy6State } from "./firewallPolicy6";
+export type FirewallPolicy6 = import("./firewallPolicy6").FirewallPolicy6;
+export const FirewallPolicy6: typeof import("./firewallPolicy6").FirewallPolicy6 = null as any;
+utilities.lazyLoad(exports, ["FirewallPolicy6"], () => require("./firewallPolicy6"));
+
+export { FirewallPolicy64Args, FirewallPolicy64State } from "./firewallPolicy64";
+export type FirewallPolicy64 = import("./firewallPolicy64").FirewallPolicy64;
+export const FirewallPolicy64: typeof import("./firewallPolicy64").FirewallPolicy64 = null as any;
+utilities.lazyLoad(exports, ["FirewallPolicy64"], () => require("./firewallPolicy64"));
+
+export { FirewallProfilegroupArgs, FirewallProfilegroupState } from "./firewallProfilegroup";
+export type FirewallProfilegroup = import("./firewallProfilegroup").FirewallProfilegroup;
+export const FirewallProfilegroup: typeof import("./firewallProfilegroup").FirewallProfilegroup = null as any;
+utilities.lazyLoad(exports, ["FirewallProfilegroup"], () => require("./firewallProfilegroup"));
+
+export { FirewallProfileprotocoloptionsArgs, FirewallProfileprotocoloptionsState } from "./firewallProfileprotocoloptions";
+export type FirewallProfileprotocoloptions = import("./firewallProfileprotocoloptions").FirewallProfileprotocoloptions;
+export const FirewallProfileprotocoloptions: typeof import("./firewallProfileprotocoloptions").FirewallProfileprotocoloptions = null as any;
+utilities.lazyLoad(exports, ["FirewallProfileprotocoloptions"], () => require("./firewallProfileprotocoloptions"));
+
+export { FirewallProxyaddressArgs, FirewallProxyaddressState } from "./firewallProxyaddress";
+export type FirewallProxyaddress = import("./firewallProxyaddress").FirewallProxyaddress;
+export const FirewallProxyaddress: typeof import("./firewallProxyaddress").FirewallProxyaddress = null as any;
+utilities.lazyLoad(exports, ["FirewallProxyaddress"], () => require("./firewallProxyaddress"));
+
+export { FirewallProxyaddrgrpArgs, FirewallProxyaddrgrpState } from "./firewallProxyaddrgrp";
+export type FirewallProxyaddrgrp = import("./firewallProxyaddrgrp").FirewallProxyaddrgrp;
+export const FirewallProxyaddrgrp: typeof import("./firewallProxyaddrgrp").FirewallProxyaddrgrp = null as any;
+utilities.lazyLoad(exports, ["FirewallProxyaddrgrp"], () => require("./firewallProxyaddrgrp"));
+
+export { FirewallProxypolicyArgs, FirewallProxypolicyState } from "./firewallProxypolicy";
+export type FirewallProxypolicy = import("./firewallProxypolicy").FirewallProxypolicy;
+export const FirewallProxypolicy: typeof import("./firewallProxypolicy").FirewallProxypolicy = null as any;
+utilities.lazyLoad(exports, ["FirewallProxypolicy"], () => require("./firewallProxypolicy"));
+
+export { FirewallProxypolicyMoveArgs, FirewallProxypolicyMoveState } from "./firewallProxypolicyMove";
+export type FirewallProxypolicyMove = import("./firewallProxypolicyMove").FirewallProxypolicyMove;
+export const FirewallProxypolicyMove: typeof import("./firewallProxypolicyMove").FirewallProxypolicyMove = null as any;
+utilities.lazyLoad(exports, ["FirewallProxypolicyMove"], () => require("./firewallProxypolicyMove"));
+
+export { FirewallProxypolicySortArgs, FirewallProxypolicySortState } from "./firewallProxypolicySort";
+export type FirewallProxypolicySort = import("./firewallProxypolicySort").FirewallProxypolicySort;
+export const FirewallProxypolicySort: typeof import("./firewallProxypolicySort").FirewallProxypolicySort = null as any;
+utilities.lazyLoad(exports, ["FirewallProxypolicySort"], () => require("./firewallProxypolicySort"));
+
+export { FirewallRegionArgs, FirewallRegionState } from "./firewallRegion";
+export type FirewallRegion = import("./firewallRegion").FirewallRegion;
+export const FirewallRegion: typeof import("./firewallRegion").FirewallRegion = null as any;
+utilities.lazyLoad(exports, ["FirewallRegion"], () => require("./firewallRegion"));
+
+export { FirewallSecurityPolicyseqArgs, FirewallSecurityPolicyseqState } from "./firewallSecurityPolicyseq";
+export type FirewallSecurityPolicyseq = import("./firewallSecurityPolicyseq").FirewallSecurityPolicyseq;
+export const FirewallSecurityPolicyseq: typeof import("./firewallSecurityPolicyseq").FirewallSecurityPolicyseq = null as any;
+utilities.lazyLoad(exports, ["FirewallSecurityPolicyseq"], () => require("./firewallSecurityPolicyseq"));
+
+export { FirewallSecurityPolicysortArgs, FirewallSecurityPolicysortState } from "./firewallSecurityPolicysort";
+export type FirewallSecurityPolicysort = import("./firewallSecurityPolicysort").FirewallSecurityPolicysort;
+export const FirewallSecurityPolicysort: typeof import("./firewallSecurityPolicysort").FirewallSecurityPolicysort = null as any;
+utilities.lazyLoad(exports, ["FirewallSecurityPolicysort"], () => require("./firewallSecurityPolicysort"));
+
+export { FirewallSecuritypolicyArgs, FirewallSecuritypolicyState } from "./firewallSecuritypolicy";
+export type FirewallSecuritypolicy = import("./firewallSecuritypolicy").FirewallSecuritypolicy;
+export const FirewallSecuritypolicy: typeof import("./firewallSecuritypolicy").FirewallSecuritypolicy = null as any;
+utilities.lazyLoad(exports, ["FirewallSecuritypolicy"], () => require("./firewallSecuritypolicy"));
+
+export { FirewallShapingpolicyArgs, FirewallShapingpolicyState } from "./firewallShapingpolicy";
+export type FirewallShapingpolicy = import("./firewallShapingpolicy").FirewallShapingpolicy;
+export const FirewallShapingpolicy: typeof import("./firewallShapingpolicy").FirewallShapingpolicy = null as any;
+utilities.lazyLoad(exports, ["FirewallShapingpolicy"], () => require("./firewallShapingpolicy"));
+
+export { FirewallShapingprofileArgs, FirewallShapingprofileState } from "./firewallShapingprofile";
+export type FirewallShapingprofile = import("./firewallShapingprofile").FirewallShapingprofile;
+export const FirewallShapingprofile: typeof import("./firewallShapingprofile").FirewallShapingprofile = null as any;
+utilities.lazyLoad(exports, ["FirewallShapingprofile"], () => require("./firewallShapingprofile"));
+
+export { FirewallSnifferArgs, FirewallSnifferState } from "./firewallSniffer";
+export type FirewallSniffer = import("./firewallSniffer").FirewallSniffer;
+export const FirewallSniffer: typeof import("./firewallSniffer").FirewallSniffer = null as any;
+utilities.lazyLoad(exports, ["FirewallSniffer"], () => require("./firewallSniffer"));
+
+export { FirewallSslserverArgs, FirewallSslserverState } from "./firewallSslserver";
+export type FirewallSslserver = import("./firewallSslserver").FirewallSslserver;
+export const FirewallSslserver: typeof import("./firewallSslserver").FirewallSslserver = null as any;
+utilities.lazyLoad(exports, ["FirewallSslserver"], () => require("./firewallSslserver"));
+
+export { FirewallSslsshprofileArgs, FirewallSslsshprofileState } from "./firewallSslsshprofile";
+export type FirewallSslsshprofile = import("./firewallSslsshprofile").FirewallSslsshprofile;
+export const FirewallSslsshprofile: typeof import("./firewallSslsshprofile").FirewallSslsshprofile = null as any;
+utilities.lazyLoad(exports, ["FirewallSslsshprofile"], () => require("./firewallSslsshprofile"));
+
+export { FirewallTrafficclassArgs, FirewallTrafficclassState } from "./firewallTrafficclass";
+export type FirewallTrafficclass = import("./firewallTrafficclass").FirewallTrafficclass;
+export const FirewallTrafficclass: typeof import("./firewallTrafficclass").FirewallTrafficclass = null as any;
+utilities.lazyLoad(exports, ["FirewallTrafficclass"], () => require("./firewallTrafficclass"));
+
+export { FirewallTtlpolicyArgs, FirewallTtlpolicyState } from "./firewallTtlpolicy";
+export type FirewallTtlpolicy = import("./firewallTtlpolicy").FirewallTtlpolicy;
+export const FirewallTtlpolicy: typeof import("./firewallTtlpolicy").FirewallTtlpolicy = null as any;
+utilities.lazyLoad(exports, ["FirewallTtlpolicy"], () => require("./firewallTtlpolicy"));
+
+export { FirewallVendormacArgs, FirewallVendormacState } from "./firewallVendormac";
+export type FirewallVendormac = import("./firewallVendormac").FirewallVendormac;
+export const FirewallVendormac: typeof import("./firewallVendormac").FirewallVendormac = null as any;
+utilities.lazyLoad(exports, ["FirewallVendormac"], () => require("./firewallVendormac"));
+
+export { FirewallVipArgs, FirewallVipState } from "./firewallVip";
+export type FirewallVip = import("./firewallVip").FirewallVip;
+export const FirewallVip: typeof import("./firewallVip").FirewallVip = null as any;
+utilities.lazyLoad(exports, ["FirewallVip"], () => require("./firewallVip"));
+
+export { FirewallVip46Args, FirewallVip46State } from "./firewallVip46";
+export type FirewallVip46 = import("./firewallVip46").FirewallVip46;
+export const FirewallVip46: typeof import("./firewallVip46").FirewallVip46 = null as any;
+utilities.lazyLoad(exports, ["FirewallVip46"], () => require("./firewallVip46"));
+
+export { FirewallVip6Args, FirewallVip6State } from "./firewallVip6";
+export type FirewallVip6 = import("./firewallVip6").FirewallVip6;
+export const FirewallVip6: typeof import("./firewallVip6").FirewallVip6 = null as any;
+utilities.lazyLoad(exports, ["FirewallVip6"], () => require("./firewallVip6"));
+
+export { FirewallVip64Args, FirewallVip64State } from "./firewallVip64";
+export type FirewallVip64 = import("./firewallVip64").FirewallVip64;
+export const FirewallVip64: typeof import("./firewallVip64").FirewallVip64 = null as any;
+utilities.lazyLoad(exports, ["FirewallVip64"], () => require("./firewallVip64"));
+
+export { FirewallVipgrpArgs, FirewallVipgrpState } from "./firewallVipgrp";
+export type FirewallVipgrp = import("./firewallVipgrp").FirewallVipgrp;
+export const FirewallVipgrp: typeof import("./firewallVipgrp").FirewallVipgrp = null as any;
+utilities.lazyLoad(exports, ["FirewallVipgrp"], () => require("./firewallVipgrp"));
+
+export { FirewallVipgrp46Args, FirewallVipgrp46State } from "./firewallVipgrp46";
+export type FirewallVipgrp46 = import("./firewallVipgrp46").FirewallVipgrp46;
+export const FirewallVipgrp46: typeof import("./firewallVipgrp46").FirewallVipgrp46 = null as any;
+utilities.lazyLoad(exports, ["FirewallVipgrp46"], () => require("./firewallVipgrp46"));
+
+export { FirewallVipgrp6Args, FirewallVipgrp6State } from "./firewallVipgrp6";
+export type FirewallVipgrp6 = import("./firewallVipgrp6").FirewallVipgrp6;
+export const FirewallVipgrp6: typeof import("./firewallVipgrp6").FirewallVipgrp6 = null as any;
+utilities.lazyLoad(exports, ["FirewallVipgrp6"], () => require("./firewallVipgrp6"));
+
+export { FirewallVipgrp64Args, FirewallVipgrp64State } from "./firewallVipgrp64";
+export type FirewallVipgrp64 = import("./firewallVipgrp64").FirewallVipgrp64;
+export const FirewallVipgrp64: typeof import("./firewallVipgrp64").FirewallVipgrp64 = null as any;
+utilities.lazyLoad(exports, ["FirewallVipgrp64"], () => require("./firewallVipgrp64"));
+
+export { FirewallconsolidatedPolicyArgs, FirewallconsolidatedPolicyState } from "./firewallconsolidatedPolicy";
+export type FirewallconsolidatedPolicy = import("./firewallconsolidatedPolicy").FirewallconsolidatedPolicy;
+export const FirewallconsolidatedPolicy: typeof import("./firewallconsolidatedPolicy").FirewallconsolidatedPolicy = null as any;
+utilities.lazyLoad(exports, ["FirewallconsolidatedPolicy"], () => require("./firewallconsolidatedPolicy"));
+
+export { FirewallipmacbindingSettingArgs, FirewallipmacbindingSettingState } from "./firewallipmacbindingSetting";
+export type FirewallipmacbindingSetting = import("./firewallipmacbindingSetting").FirewallipmacbindingSetting;
+export const FirewallipmacbindingSetting: typeof import("./firewallipmacbindingSetting").FirewallipmacbindingSetting = null as any;
+utilities.lazyLoad(exports, ["FirewallipmacbindingSetting"], () => require("./firewallipmacbindingSetting"));
+
+export { FirewallipmacbindingTableArgs, FirewallipmacbindingTableState } from "./firewallipmacbindingTable";
+export type FirewallipmacbindingTable = import("./firewallipmacbindingTable").FirewallipmacbindingTable;
+export const FirewallipmacbindingTable: typeof import("./firewallipmacbindingTable").FirewallipmacbindingTable = null as any;
+utilities.lazyLoad(exports, ["FirewallipmacbindingTable"], () => require("./firewallipmacbindingTable"));
+
+export { FirewallscheduleGroupArgs, FirewallscheduleGroupState } from "./firewallscheduleGroup";
+export type FirewallscheduleGroup = import("./firewallscheduleGroup").FirewallscheduleGroup;
+export const FirewallscheduleGroup: typeof import("./firewallscheduleGroup").FirewallscheduleGroup = null as any;
+utilities.lazyLoad(exports, ["FirewallscheduleGroup"], () => require("./firewallscheduleGroup"));
+
+export { FirewallscheduleOnetimeArgs, FirewallscheduleOnetimeState } from "./firewallscheduleOnetime";
+export type FirewallscheduleOnetime = import("./firewallscheduleOnetime").FirewallscheduleOnetime;
+export const FirewallscheduleOnetime: typeof import("./firewallscheduleOnetime").FirewallscheduleOnetime = null as any;
+utilities.lazyLoad(exports, ["FirewallscheduleOnetime"], () => require("./firewallscheduleOnetime"));
+
+export { FirewallscheduleRecurringArgs, FirewallscheduleRecurringState } from "./firewallscheduleRecurring";
+export type FirewallscheduleRecurring = import("./firewallscheduleRecurring").FirewallscheduleRecurring;
+export const FirewallscheduleRecurring: typeof import("./firewallscheduleRecurring").FirewallscheduleRecurring = null as any;
+utilities.lazyLoad(exports, ["FirewallscheduleRecurring"], () => require("./firewallscheduleRecurring"));
+
+export { FirewallserviceCategoryArgs, FirewallserviceCategoryState } from "./firewallserviceCategory";
+export type FirewallserviceCategory = import("./firewallserviceCategory").FirewallserviceCategory;
+export const FirewallserviceCategory: typeof import("./firewallserviceCategory").FirewallserviceCategory = null as any;
+utilities.lazyLoad(exports, ["FirewallserviceCategory"], () => require("./firewallserviceCategory"));
+
+export { FirewallserviceCustomArgs, FirewallserviceCustomState } from "./firewallserviceCustom";
+export type FirewallserviceCustom = import("./firewallserviceCustom").FirewallserviceCustom;
+export const FirewallserviceCustom: typeof import("./firewallserviceCustom").FirewallserviceCustom = null as any;
+utilities.lazyLoad(exports, ["FirewallserviceCustom"], () => require("./firewallserviceCustom"));
+
+export { FirewallserviceGroupArgs, FirewallserviceGroupState } from "./firewallserviceGroup";
+export type FirewallserviceGroup = import("./firewallserviceGroup").FirewallserviceGroup;
+export const FirewallserviceGroup: typeof import("./firewallserviceGroup").FirewallserviceGroup = null as any;
+utilities.lazyLoad(exports, ["FirewallserviceGroup"], () => require("./firewallserviceGroup"));
+
+export { FirewallshaperPeripshaperArgs, FirewallshaperPeripshaperState } from "./firewallshaperPeripshaper";
+export type FirewallshaperPeripshaper = import("./firewallshaperPeripshaper").FirewallshaperPeripshaper;
+export const FirewallshaperPeripshaper: typeof import("./firewallshaperPeripshaper").FirewallshaperPeripshaper = null as any;
+utilities.lazyLoad(exports, ["FirewallshaperPeripshaper"], () => require("./firewallshaperPeripshaper"));
+
+export { FirewallshaperTrafficshaperArgs, FirewallshaperTrafficshaperState } from "./firewallshaperTrafficshaper";
+export type FirewallshaperTrafficshaper = import("./firewallshaperTrafficshaper").FirewallshaperTrafficshaper;
+export const FirewallshaperTrafficshaper: typeof import("./firewallshaperTrafficshaper").FirewallshaperTrafficshaper = null as any;
+utilities.lazyLoad(exports, ["FirewallshaperTrafficshaper"], () => require("./firewallshaperTrafficshaper"));
+
+export { FirewallsshHostkeyArgs, FirewallsshHostkeyState } from "./firewallsshHostkey";
+export type FirewallsshHostkey = import("./firewallsshHostkey").FirewallsshHostkey;
+export const FirewallsshHostkey: typeof import("./firewallsshHostkey").FirewallsshHostkey = null as any;
+utilities.lazyLoad(exports, ["FirewallsshHostkey"], () => require("./firewallsshHostkey"));
+
+export { FirewallsshLocalcaArgs, FirewallsshLocalcaState } from "./firewallsshLocalca";
+export type FirewallsshLocalca = import("./firewallsshLocalca").FirewallsshLocalca;
+export const FirewallsshLocalca: typeof import("./firewallsshLocalca").FirewallsshLocalca = null as any;
+utilities.lazyLoad(exports, ["FirewallsshLocalca"], () => require("./firewallsshLocalca"));
+
+export { FirewallsshLocalkeyArgs, FirewallsshLocalkeyState } from "./firewallsshLocalkey";
+export type FirewallsshLocalkey = import("./firewallsshLocalkey").FirewallsshLocalkey;
+export const FirewallsshLocalkey: typeof import("./firewallsshLocalkey").FirewallsshLocalkey = null as any;
+utilities.lazyLoad(exports, ["FirewallsshLocalkey"], () => require("./firewallsshLocalkey"));
+
+export { FirewallsshSettingArgs, FirewallsshSettingState } from "./firewallsshSetting";
+export type FirewallsshSetting = import("./firewallsshSetting").FirewallsshSetting;
+export const FirewallsshSetting: typeof import("./firewallsshSetting").FirewallsshSetting = null as any;
+utilities.lazyLoad(exports, ["FirewallsshSetting"], () => require("./firewallsshSetting"));
+
+export { FirewallsslSettingArgs, FirewallsslSettingState } from "./firewallsslSetting";
+export type FirewallsslSetting = import("./firewallsslSetting").FirewallsslSetting;
+export const FirewallsslSetting: typeof import("./firewallsslSetting").FirewallsslSetting = null as any;
+utilities.lazyLoad(exports, ["FirewallsslSetting"], () => require("./firewallsslSetting"));
+
+export { FirewallwildcardfqdnCustomArgs, FirewallwildcardfqdnCustomState } from "./firewallwildcardfqdnCustom";
+export type FirewallwildcardfqdnCustom = import("./firewallwildcardfqdnCustom").FirewallwildcardfqdnCustom;
+export const FirewallwildcardfqdnCustom: typeof import("./firewallwildcardfqdnCustom").FirewallwildcardfqdnCustom = null as any;
+utilities.lazyLoad(exports, ["FirewallwildcardfqdnCustom"], () => require("./firewallwildcardfqdnCustom"));
+
+export { FirewallwildcardfqdnGroupArgs, FirewallwildcardfqdnGroupState } from "./firewallwildcardfqdnGroup";
+export type FirewallwildcardfqdnGroup = import("./firewallwildcardfqdnGroup").FirewallwildcardfqdnGroup;
+export const FirewallwildcardfqdnGroup: typeof import("./firewallwildcardfqdnGroup").FirewallwildcardfqdnGroup = null as any;
+utilities.lazyLoad(exports, ["FirewallwildcardfqdnGroup"], () => require("./firewallwildcardfqdnGroup"));
+
+export { FmgDevicemanagerDeviceArgs, FmgDevicemanagerDeviceState } from "./fmgDevicemanagerDevice";
+export type FmgDevicemanagerDevice = import("./fmgDevicemanagerDevice").FmgDevicemanagerDevice;
+export const FmgDevicemanagerDevice: typeof import("./fmgDevicemanagerDevice").FmgDevicemanagerDevice = null as any;
+utilities.lazyLoad(exports, ["FmgDevicemanagerDevice"], () => require("./fmgDevicemanagerDevice"));
+
+export { FmgDevicemanagerInstallDeviceArgs, FmgDevicemanagerInstallDeviceState } from "./fmgDevicemanagerInstallDevice";
+export type FmgDevicemanagerInstallDevice = import("./fmgDevicemanagerInstallDevice").FmgDevicemanagerInstallDevice;
+export const FmgDevicemanagerInstallDevice: typeof import("./fmgDevicemanagerInstallDevice").FmgDevicemanagerInstallDevice = null as any;
+utilities.lazyLoad(exports, ["FmgDevicemanagerInstallDevice"], () => require("./fmgDevicemanagerInstallDevice"));
+
+export { FmgDevicemanagerInstallPolicypackageArgs, FmgDevicemanagerInstallPolicypackageState } from "./fmgDevicemanagerInstallPolicypackage";
+export type FmgDevicemanagerInstallPolicypackage = import("./fmgDevicemanagerInstallPolicypackage").FmgDevicemanagerInstallPolicypackage;
+export const FmgDevicemanagerInstallPolicypackage: typeof import("./fmgDevicemanagerInstallPolicypackage").FmgDevicemanagerInstallPolicypackage = null as any;
+utilities.lazyLoad(exports, ["FmgDevicemanagerInstallPolicypackage"], () => require("./fmgDevicemanagerInstallPolicypackage"));
+
+export { FmgDevicemanagerScriptArgs, FmgDevicemanagerScriptState } from "./fmgDevicemanagerScript";
+export type FmgDevicemanagerScript = import("./fmgDevicemanagerScript").FmgDevicemanagerScript;
+export const FmgDevicemanagerScript: typeof import("./fmgDevicemanagerScript").FmgDevicemanagerScript = null as any;
+utilities.lazyLoad(exports, ["FmgDevicemanagerScript"], () => require("./fmgDevicemanagerScript"));
+
+export { FmgDevicemanagerScriptExecuteArgs, FmgDevicemanagerScriptExecuteState } from "./fmgDevicemanagerScriptExecute";
+export type FmgDevicemanagerScriptExecute = import("./fmgDevicemanagerScriptExecute").FmgDevicemanagerScriptExecute;
+export const FmgDevicemanagerScriptExecute: typeof import("./fmgDevicemanagerScriptExecute").FmgDevicemanagerScriptExecute = null as any;
+utilities.lazyLoad(exports, ["FmgDevicemanagerScriptExecute"], () => require("./fmgDevicemanagerScriptExecute"));
+
+export { FmgFirewallObjectAddressArgs, FmgFirewallObjectAddressState } from "./fmgFirewallObjectAddress";
+export type FmgFirewallObjectAddress = import("./fmgFirewallObjectAddress").FmgFirewallObjectAddress;
+export const FmgFirewallObjectAddress: typeof import("./fmgFirewallObjectAddress").FmgFirewallObjectAddress = null as any;
+utilities.lazyLoad(exports, ["FmgFirewallObjectAddress"], () => require("./fmgFirewallObjectAddress"));
+
+export { FmgFirewallObjectIppoolArgs, FmgFirewallObjectIppoolState } from "./fmgFirewallObjectIppool";
+export type FmgFirewallObjectIppool = import("./fmgFirewallObjectIppool").FmgFirewallObjectIppool;
+export const FmgFirewallObjectIppool: typeof import("./fmgFirewallObjectIppool").FmgFirewallObjectIppool = null as any;
+utilities.lazyLoad(exports, ["FmgFirewallObjectIppool"], () => require("./fmgFirewallObjectIppool"));
+
+export { FmgFirewallObjectServiceArgs, FmgFirewallObjectServiceState } from "./fmgFirewallObjectService";
+export type FmgFirewallObjectService = import("./fmgFirewallObjectService").FmgFirewallObjectService;
+export const FmgFirewallObjectService: typeof import("./fmgFirewallObjectService").FmgFirewallObjectService = null as any;
+utilities.lazyLoad(exports, ["FmgFirewallObjectService"], () => require("./fmgFirewallObjectService"));
+
+export { FmgFirewallObjectVipArgs, FmgFirewallObjectVipState } from "./fmgFirewallObjectVip";
+export type FmgFirewallObjectVip = import("./fmgFirewallObjectVip").FmgFirewallObjectVip;
+export const FmgFirewallObjectVip: typeof import("./fmgFirewallObjectVip").FmgFirewallObjectVip = null as any;
+utilities.lazyLoad(exports, ["FmgFirewallObjectVip"], () => require("./fmgFirewallObjectVip"));
+
+export { FmgFirewallSecurityPolicyArgs, FmgFirewallSecurityPolicyState } from "./fmgFirewallSecurityPolicy";
+export type FmgFirewallSecurityPolicy = import("./fmgFirewallSecurityPolicy").FmgFirewallSecurityPolicy;
+export const FmgFirewallSecurityPolicy: typeof import("./fmgFirewallSecurityPolicy").FmgFirewallSecurityPolicy = null as any;
+utilities.lazyLoad(exports, ["FmgFirewallSecurityPolicy"], () => require("./fmgFirewallSecurityPolicy"));
+
+export { FmgFirewallSecurityPolicypackageArgs, FmgFirewallSecurityPolicypackageState } from "./fmgFirewallSecurityPolicypackage";
+export type FmgFirewallSecurityPolicypackage = import("./fmgFirewallSecurityPolicypackage").FmgFirewallSecurityPolicypackage;
+export const FmgFirewallSecurityPolicypackage: typeof import("./fmgFirewallSecurityPolicypackage").FmgFirewallSecurityPolicypackage = null as any;
+utilities.lazyLoad(exports, ["FmgFirewallSecurityPolicypackage"], () => require("./fmgFirewallSecurityPolicypackage"));
+
+export { FmgJsonrpcRequestArgs, FmgJsonrpcRequestState } from "./fmgJsonrpcRequest";
+export type FmgJsonrpcRequest = import("./fmgJsonrpcRequest").FmgJsonrpcRequest;
+export const FmgJsonrpcRequest: typeof import("./fmgJsonrpcRequest").FmgJsonrpcRequest = null as any;
+utilities.lazyLoad(exports, ["FmgJsonrpcRequest"], () => require("./fmgJsonrpcRequest"));
+
+export { FmgObjectAdomRevisionArgs, FmgObjectAdomRevisionState } from "./fmgObjectAdomRevision";
+export type FmgObjectAdomRevision = import("./fmgObjectAdomRevision").FmgObjectAdomRevision;
+export const FmgObjectAdomRevision: typeof import("./fmgObjectAdomRevision").FmgObjectAdomRevision = null as any;
+utilities.lazyLoad(exports, ["FmgObjectAdomRevision"], () => require("./fmgObjectAdomRevision"));
+
+export { FmgSystemAdminArgs, FmgSystemAdminState } from "./fmgSystemAdmin";
+export type FmgSystemAdmin = import("./fmgSystemAdmin").FmgSystemAdmin;
+export const FmgSystemAdmin: typeof import("./fmgSystemAdmin").FmgSystemAdmin = null as any;
+utilities.lazyLoad(exports, ["FmgSystemAdmin"], () => require("./fmgSystemAdmin"));
+
+export { FmgSystemAdminProfilesArgs, FmgSystemAdminProfilesState } from "./fmgSystemAdminProfiles";
+export type FmgSystemAdminProfiles = import("./fmgSystemAdminProfiles").FmgSystemAdminProfiles;
+export const FmgSystemAdminProfiles: typeof import("./fmgSystemAdminProfiles").FmgSystemAdminProfiles = null as any;
+utilities.lazyLoad(exports, ["FmgSystemAdminProfiles"], () => require("./fmgSystemAdminProfiles"));
+
+export { FmgSystemAdminUserArgs, FmgSystemAdminUserState } from "./fmgSystemAdminUser";
+export type FmgSystemAdminUser = import("./fmgSystemAdminUser").FmgSystemAdminUser;
+export const FmgSystemAdminUser: typeof import("./fmgSystemAdminUser").FmgSystemAdminUser = null as any;
+utilities.lazyLoad(exports, ["FmgSystemAdminUser"], () => require("./fmgSystemAdminUser"));
+
+export { FmgSystemAdomArgs, FmgSystemAdomState } from "./fmgSystemAdom";
+export type FmgSystemAdom = import("./fmgSystemAdom").FmgSystemAdom;
+export const FmgSystemAdom: typeof import("./fmgSystemAdom").FmgSystemAdom = null as any;
+utilities.lazyLoad(exports, ["FmgSystemAdom"], () => require("./fmgSystemAdom"));
+
+export { FmgSystemDnsArgs, FmgSystemDnsState } from "./fmgSystemDns";
+export type FmgSystemDns = import("./fmgSystemDns").FmgSystemDns;
+export const FmgSystemDns: typeof import("./fmgSystemDns").FmgSystemDns = null as any;
+utilities.lazyLoad(exports, ["FmgSystemDns"], () => require("./fmgSystemDns"));
+
+export { FmgSystemGlobalArgs, FmgSystemGlobalState } from "./fmgSystemGlobal";
+export type FmgSystemGlobal = import("./fmgSystemGlobal").FmgSystemGlobal;
+export const FmgSystemGlobal: typeof import("./fmgSystemGlobal").FmgSystemGlobal = null as any;
+utilities.lazyLoad(exports, ["FmgSystemGlobal"], () => require("./fmgSystemGlobal"));
+
+export { FmgSystemLicenseForticareArgs, FmgSystemLicenseForticareState } from "./fmgSystemLicenseForticare";
+export type FmgSystemLicenseForticare = import("./fmgSystemLicenseForticare").FmgSystemLicenseForticare;
+export const FmgSystemLicenseForticare: typeof import("./fmgSystemLicenseForticare").FmgSystemLicenseForticare = null as any;
+utilities.lazyLoad(exports, ["FmgSystemLicenseForticare"], () => require("./fmgSystemLicenseForticare"));
+
+export { FmgSystemLicenseVmArgs, FmgSystemLicenseVmState } from "./fmgSystemLicenseVm";
+export type FmgSystemLicenseVm = import("./fmgSystemLicenseVm").FmgSystemLicenseVm;
+export const FmgSystemLicenseVm: typeof import("./fmgSystemLicenseVm").FmgSystemLicenseVm = null as any;
+utilities.lazyLoad(exports, ["FmgSystemLicenseVm"], () => require("./fmgSystemLicenseVm"));
+
+export { FmgSystemNetworkInterfaceArgs, FmgSystemNetworkInterfaceState } from "./fmgSystemNetworkInterface";
+export type FmgSystemNetworkInterface = import("./fmgSystemNetworkInterface").FmgSystemNetworkInterface;
+export const FmgSystemNetworkInterface: typeof import("./fmgSystemNetworkInterface").FmgSystemNetworkInterface = null as any;
+utilities.lazyLoad(exports, ["FmgSystemNetworkInterface"], () => require("./fmgSystemNetworkInterface"));
+
+export { FmgSystemNetworkRouteArgs, FmgSystemNetworkRouteState } from "./fmgSystemNetworkRoute";
+export type FmgSystemNetworkRoute = import("./fmgSystemNetworkRoute").FmgSystemNetworkRoute;
+export const FmgSystemNetworkRoute: typeof import("./fmgSystemNetworkRoute").FmgSystemNetworkRoute = null as any;
+utilities.lazyLoad(exports, ["FmgSystemNetworkRoute"], () => require("./fmgSystemNetworkRoute"));
+
+export { FmgSystemNtpArgs, FmgSystemNtpState } from "./fmgSystemNtp";
+export type FmgSystemNtp = import("./fmgSystemNtp").FmgSystemNtp;
+export const FmgSystemNtp: typeof import("./fmgSystemNtp").FmgSystemNtp = null as any;
+utilities.lazyLoad(exports, ["FmgSystemNtp"], () => require("./fmgSystemNtp"));
+
+export { FmgSystemSyslogserverArgs, FmgSystemSyslogserverState } from "./fmgSystemSyslogserver";
+export type FmgSystemSyslogserver = import("./fmgSystemSyslogserver").FmgSystemSyslogserver;
+export const FmgSystemSyslogserver: typeof import("./fmgSystemSyslogserver").FmgSystemSyslogserver = null as any;
+utilities.lazyLoad(exports, ["FmgSystemSyslogserver"], () => require("./fmgSystemSyslogserver"));
+
+export { FtpproxyExplicitArgs, FtpproxyExplicitState } from "./ftpproxyExplicit";
+export type FtpproxyExplicit = import("./ftpproxyExplicit").FtpproxyExplicit;
+export const FtpproxyExplicit: typeof import("./ftpproxyExplicit").FtpproxyExplicit = null as any;
+utilities.lazyLoad(exports, ["FtpproxyExplicit"], () => require("./ftpproxyExplicit"));
+
+export { GetFirewallAddressArgs, GetFirewallAddressResult, GetFirewallAddressOutputArgs } from "./getFirewallAddress";
+export const getFirewallAddress: typeof import("./getFirewallAddress").getFirewallAddress = null as any;
+export const getFirewallAddressOutput: typeof import("./getFirewallAddress").getFirewallAddressOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallAddress","getFirewallAddressOutput"], () => require("./getFirewallAddress"));
+
+export { GetFirewallAddress6Args, GetFirewallAddress6Result, GetFirewallAddress6OutputArgs } from "./getFirewallAddress6";
+export const getFirewallAddress6: typeof import("./getFirewallAddress6").getFirewallAddress6 = null as any;
+export const getFirewallAddress6Output: typeof import("./getFirewallAddress6").getFirewallAddress6Output = null as any;
+utilities.lazyLoad(exports, ["getFirewallAddress6","getFirewallAddress6Output"], () => require("./getFirewallAddress6"));
+
+export { GetFirewallAddress6listArgs, GetFirewallAddress6listResult, GetFirewallAddress6listOutputArgs } from "./getFirewallAddress6list";
+export const getFirewallAddress6list: typeof import("./getFirewallAddress6list").getFirewallAddress6list = null as any;
+export const getFirewallAddress6listOutput: typeof import("./getFirewallAddress6list").getFirewallAddress6listOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallAddress6list","getFirewallAddress6listOutput"], () => require("./getFirewallAddress6list"));
+
+export { GetFirewallAddress6templateArgs, GetFirewallAddress6templateResult, GetFirewallAddress6templateOutputArgs } from "./getFirewallAddress6template";
+export const getFirewallAddress6template: typeof import("./getFirewallAddress6template").getFirewallAddress6template = null as any;
+export const getFirewallAddress6templateOutput: typeof import("./getFirewallAddress6template").getFirewallAddress6templateOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallAddress6template","getFirewallAddress6templateOutput"], () => require("./getFirewallAddress6template"));
+
+export { GetFirewallAddress6templatelistArgs, GetFirewallAddress6templatelistResult, GetFirewallAddress6templatelistOutputArgs } from "./getFirewallAddress6templatelist";
+export const getFirewallAddress6templatelist: typeof import("./getFirewallAddress6templatelist").getFirewallAddress6templatelist = null as any;
+export const getFirewallAddress6templatelistOutput: typeof import("./getFirewallAddress6templatelist").getFirewallAddress6templatelistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallAddress6templatelist","getFirewallAddress6templatelistOutput"], () => require("./getFirewallAddress6templatelist"));
+
+export { GetFirewallAddresslistArgs, GetFirewallAddresslistResult, GetFirewallAddresslistOutputArgs } from "./getFirewallAddresslist";
+export const getFirewallAddresslist: typeof import("./getFirewallAddresslist").getFirewallAddresslist = null as any;
+export const getFirewallAddresslistOutput: typeof import("./getFirewallAddresslist").getFirewallAddresslistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallAddresslist","getFirewallAddresslistOutput"], () => require("./getFirewallAddresslist"));
+
+export { GetFirewallAddrgrpArgs, GetFirewallAddrgrpResult, GetFirewallAddrgrpOutputArgs } from "./getFirewallAddrgrp";
+export const getFirewallAddrgrp: typeof import("./getFirewallAddrgrp").getFirewallAddrgrp = null as any;
+export const getFirewallAddrgrpOutput: typeof import("./getFirewallAddrgrp").getFirewallAddrgrpOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallAddrgrp","getFirewallAddrgrpOutput"], () => require("./getFirewallAddrgrp"));
+
+export { GetFirewallAddrgrp6Args, GetFirewallAddrgrp6Result, GetFirewallAddrgrp6OutputArgs } from "./getFirewallAddrgrp6";
+export const getFirewallAddrgrp6: typeof import("./getFirewallAddrgrp6").getFirewallAddrgrp6 = null as any;
+export const getFirewallAddrgrp6Output: typeof import("./getFirewallAddrgrp6").getFirewallAddrgrp6Output = null as any;
+utilities.lazyLoad(exports, ["getFirewallAddrgrp6","getFirewallAddrgrp6Output"], () => require("./getFirewallAddrgrp6"));
+
+export { GetFirewallAddrgrp6listArgs, GetFirewallAddrgrp6listResult, GetFirewallAddrgrp6listOutputArgs } from "./getFirewallAddrgrp6list";
+export const getFirewallAddrgrp6list: typeof import("./getFirewallAddrgrp6list").getFirewallAddrgrp6list = null as any;
+export const getFirewallAddrgrp6listOutput: typeof import("./getFirewallAddrgrp6list").getFirewallAddrgrp6listOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallAddrgrp6list","getFirewallAddrgrp6listOutput"], () => require("./getFirewallAddrgrp6list"));
+
+export { GetFirewallAddrgrplistArgs, GetFirewallAddrgrplistResult, GetFirewallAddrgrplistOutputArgs } from "./getFirewallAddrgrplist";
+export const getFirewallAddrgrplist: typeof import("./getFirewallAddrgrplist").getFirewallAddrgrplist = null as any;
+export const getFirewallAddrgrplistOutput: typeof import("./getFirewallAddrgrplist").getFirewallAddrgrplistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallAddrgrplist","getFirewallAddrgrplistOutput"], () => require("./getFirewallAddrgrplist"));
+
+export { GetFirewallCentralsnatmapArgs, GetFirewallCentralsnatmapResult, GetFirewallCentralsnatmapOutputArgs } from "./getFirewallCentralsnatmap";
+export const getFirewallCentralsnatmap: typeof import("./getFirewallCentralsnatmap").getFirewallCentralsnatmap = null as any;
+export const getFirewallCentralsnatmapOutput: typeof import("./getFirewallCentralsnatmap").getFirewallCentralsnatmapOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallCentralsnatmap","getFirewallCentralsnatmapOutput"], () => require("./getFirewallCentralsnatmap"));
+
+export { GetFirewallCentralsnatmaplistArgs, GetFirewallCentralsnatmaplistResult, GetFirewallCentralsnatmaplistOutputArgs } from "./getFirewallCentralsnatmaplist";
+export const getFirewallCentralsnatmaplist: typeof import("./getFirewallCentralsnatmaplist").getFirewallCentralsnatmaplist = null as any;
+export const getFirewallCentralsnatmaplistOutput: typeof import("./getFirewallCentralsnatmaplist").getFirewallCentralsnatmaplistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallCentralsnatmaplist","getFirewallCentralsnatmaplistOutput"], () => require("./getFirewallCentralsnatmaplist"));
+
+export { GetFirewallDoSpolicyArgs, GetFirewallDoSpolicyResult, GetFirewallDoSpolicyOutputArgs } from "./getFirewallDoSpolicy";
+export const getFirewallDoSpolicy: typeof import("./getFirewallDoSpolicy").getFirewallDoSpolicy = null as any;
+export const getFirewallDoSpolicyOutput: typeof import("./getFirewallDoSpolicy").getFirewallDoSpolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallDoSpolicy","getFirewallDoSpolicyOutput"], () => require("./getFirewallDoSpolicy"));
+
+export { GetFirewallDoSpolicy6Args, GetFirewallDoSpolicy6Result, GetFirewallDoSpolicy6OutputArgs } from "./getFirewallDoSpolicy6";
+export const getFirewallDoSpolicy6: typeof import("./getFirewallDoSpolicy6").getFirewallDoSpolicy6 = null as any;
+export const getFirewallDoSpolicy6Output: typeof import("./getFirewallDoSpolicy6").getFirewallDoSpolicy6Output = null as any;
+utilities.lazyLoad(exports, ["getFirewallDoSpolicy6","getFirewallDoSpolicy6Output"], () => require("./getFirewallDoSpolicy6"));
+
+export { GetFirewallDoSpolicy6listArgs, GetFirewallDoSpolicy6listResult, GetFirewallDoSpolicy6listOutputArgs } from "./getFirewallDoSpolicy6list";
+export const getFirewallDoSpolicy6list: typeof import("./getFirewallDoSpolicy6list").getFirewallDoSpolicy6list = null as any;
+export const getFirewallDoSpolicy6listOutput: typeof import("./getFirewallDoSpolicy6list").getFirewallDoSpolicy6listOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallDoSpolicy6list","getFirewallDoSpolicy6listOutput"], () => require("./getFirewallDoSpolicy6list"));
+
+export { GetFirewallDoSpolicylistArgs, GetFirewallDoSpolicylistResult, GetFirewallDoSpolicylistOutputArgs } from "./getFirewallDoSpolicylist";
+export const getFirewallDoSpolicylist: typeof import("./getFirewallDoSpolicylist").getFirewallDoSpolicylist = null as any;
+export const getFirewallDoSpolicylistOutput: typeof import("./getFirewallDoSpolicylist").getFirewallDoSpolicylistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallDoSpolicylist","getFirewallDoSpolicylistOutput"], () => require("./getFirewallDoSpolicylist"));
+
+export { GetFirewallInternetserviceArgs, GetFirewallInternetserviceResult, GetFirewallInternetserviceOutputArgs } from "./getFirewallInternetservice";
+export const getFirewallInternetservice: typeof import("./getFirewallInternetservice").getFirewallInternetservice = null as any;
+export const getFirewallInternetserviceOutput: typeof import("./getFirewallInternetservice").getFirewallInternetserviceOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallInternetservice","getFirewallInternetserviceOutput"], () => require("./getFirewallInternetservice"));
+
+export { GetFirewallInternetservicecustomArgs, GetFirewallInternetservicecustomResult, GetFirewallInternetservicecustomOutputArgs } from "./getFirewallInternetservicecustom";
+export const getFirewallInternetservicecustom: typeof import("./getFirewallInternetservicecustom").getFirewallInternetservicecustom = null as any;
+export const getFirewallInternetservicecustomOutput: typeof import("./getFirewallInternetservicecustom").getFirewallInternetservicecustomOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallInternetservicecustom","getFirewallInternetservicecustomOutput"], () => require("./getFirewallInternetservicecustom"));
+
+export { GetFirewallInternetservicecustomgroupArgs, GetFirewallInternetservicecustomgroupResult, GetFirewallInternetservicecustomgroupOutputArgs } from "./getFirewallInternetservicecustomgroup";
+export const getFirewallInternetservicecustomgroup: typeof import("./getFirewallInternetservicecustomgroup").getFirewallInternetservicecustomgroup = null as any;
+export const getFirewallInternetservicecustomgroupOutput: typeof import("./getFirewallInternetservicecustomgroup").getFirewallInternetservicecustomgroupOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallInternetservicecustomgroup","getFirewallInternetservicecustomgroupOutput"], () => require("./getFirewallInternetservicecustomgroup"));
+
+export { GetFirewallInternetservicecustomgrouplistArgs, GetFirewallInternetservicecustomgrouplistResult, GetFirewallInternetservicecustomgrouplistOutputArgs } from "./getFirewallInternetservicecustomgrouplist";
+export const getFirewallInternetservicecustomgrouplist: typeof import("./getFirewallInternetservicecustomgrouplist").getFirewallInternetservicecustomgrouplist = null as any;
+export const getFirewallInternetservicecustomgrouplistOutput: typeof import("./getFirewallInternetservicecustomgrouplist").getFirewallInternetservicecustomgrouplistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallInternetservicecustomgrouplist","getFirewallInternetservicecustomgrouplistOutput"], () => require("./getFirewallInternetservicecustomgrouplist"));
+
+export { GetFirewallInternetservicecustomlistArgs, GetFirewallInternetservicecustomlistResult, GetFirewallInternetservicecustomlistOutputArgs } from "./getFirewallInternetservicecustomlist";
+export const getFirewallInternetservicecustomlist: typeof import("./getFirewallInternetservicecustomlist").getFirewallInternetservicecustomlist = null as any;
+export const getFirewallInternetservicecustomlistOutput: typeof import("./getFirewallInternetservicecustomlist").getFirewallInternetservicecustomlistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallInternetservicecustomlist","getFirewallInternetservicecustomlistOutput"], () => require("./getFirewallInternetservicecustomlist"));
+
+export { GetFirewallInternetservicedefinitionArgs, GetFirewallInternetservicedefinitionResult, GetFirewallInternetservicedefinitionOutputArgs } from "./getFirewallInternetservicedefinition";
+export const getFirewallInternetservicedefinition: typeof import("./getFirewallInternetservicedefinition").getFirewallInternetservicedefinition = null as any;
+export const getFirewallInternetservicedefinitionOutput: typeof import("./getFirewallInternetservicedefinition").getFirewallInternetservicedefinitionOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallInternetservicedefinition","getFirewallInternetservicedefinitionOutput"], () => require("./getFirewallInternetservicedefinition"));
+
+export { GetFirewallInternetservicedefinitionlistArgs, GetFirewallInternetservicedefinitionlistResult, GetFirewallInternetservicedefinitionlistOutputArgs } from "./getFirewallInternetservicedefinitionlist";
+export const getFirewallInternetservicedefinitionlist: typeof import("./getFirewallInternetservicedefinitionlist").getFirewallInternetservicedefinitionlist = null as any;
+export const getFirewallInternetservicedefinitionlistOutput: typeof import("./getFirewallInternetservicedefinitionlist").getFirewallInternetservicedefinitionlistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallInternetservicedefinitionlist","getFirewallInternetservicedefinitionlistOutput"], () => require("./getFirewallInternetservicedefinitionlist"));
+
+export { GetFirewallInternetserviceextensionArgs, GetFirewallInternetserviceextensionResult, GetFirewallInternetserviceextensionOutputArgs } from "./getFirewallInternetserviceextension";
+export const getFirewallInternetserviceextension: typeof import("./getFirewallInternetserviceextension").getFirewallInternetserviceextension = null as any;
+export const getFirewallInternetserviceextensionOutput: typeof import("./getFirewallInternetserviceextension").getFirewallInternetserviceextensionOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallInternetserviceextension","getFirewallInternetserviceextensionOutput"], () => require("./getFirewallInternetserviceextension"));
+
+export { GetFirewallInternetserviceextensionlistArgs, GetFirewallInternetserviceextensionlistResult, GetFirewallInternetserviceextensionlistOutputArgs } from "./getFirewallInternetserviceextensionlist";
+export const getFirewallInternetserviceextensionlist: typeof import("./getFirewallInternetserviceextensionlist").getFirewallInternetserviceextensionlist = null as any;
+export const getFirewallInternetserviceextensionlistOutput: typeof import("./getFirewallInternetserviceextensionlist").getFirewallInternetserviceextensionlistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallInternetserviceextensionlist","getFirewallInternetserviceextensionlistOutput"], () => require("./getFirewallInternetserviceextensionlist"));
+
+export { GetFirewallInternetservicegroupArgs, GetFirewallInternetservicegroupResult, GetFirewallInternetservicegroupOutputArgs } from "./getFirewallInternetservicegroup";
+export const getFirewallInternetservicegroup: typeof import("./getFirewallInternetservicegroup").getFirewallInternetservicegroup = null as any;
+export const getFirewallInternetservicegroupOutput: typeof import("./getFirewallInternetservicegroup").getFirewallInternetservicegroupOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallInternetservicegroup","getFirewallInternetservicegroupOutput"], () => require("./getFirewallInternetservicegroup"));
+
+export { GetFirewallInternetservicegrouplistArgs, GetFirewallInternetservicegrouplistResult, GetFirewallInternetservicegrouplistOutputArgs } from "./getFirewallInternetservicegrouplist";
+export const getFirewallInternetservicegrouplist: typeof import("./getFirewallInternetservicegrouplist").getFirewallInternetservicegrouplist = null as any;
+export const getFirewallInternetservicegrouplistOutput: typeof import("./getFirewallInternetservicegrouplist").getFirewallInternetservicegrouplistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallInternetservicegrouplist","getFirewallInternetservicegrouplistOutput"], () => require("./getFirewallInternetservicegrouplist"));
+
+export { GetFirewallInternetservicelistArgs, GetFirewallInternetservicelistResult, GetFirewallInternetservicelistOutputArgs } from "./getFirewallInternetservicelist";
+export const getFirewallInternetservicelist: typeof import("./getFirewallInternetservicelist").getFirewallInternetservicelist = null as any;
+export const getFirewallInternetservicelistOutput: typeof import("./getFirewallInternetservicelist").getFirewallInternetservicelistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallInternetservicelist","getFirewallInternetservicelistOutput"], () => require("./getFirewallInternetservicelist"));
+
+export { GetFirewallIpv6ehfilterArgs, GetFirewallIpv6ehfilterResult, GetFirewallIpv6ehfilterOutputArgs } from "./getFirewallIpv6ehfilter";
+export const getFirewallIpv6ehfilter: typeof import("./getFirewallIpv6ehfilter").getFirewallIpv6ehfilter = null as any;
+export const getFirewallIpv6ehfilterOutput: typeof import("./getFirewallIpv6ehfilter").getFirewallIpv6ehfilterOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallIpv6ehfilter","getFirewallIpv6ehfilterOutput"], () => require("./getFirewallIpv6ehfilter"));
+
+export { GetFirewallMulticastaddressArgs, GetFirewallMulticastaddressResult, GetFirewallMulticastaddressOutputArgs } from "./getFirewallMulticastaddress";
+export const getFirewallMulticastaddress: typeof import("./getFirewallMulticastaddress").getFirewallMulticastaddress = null as any;
+export const getFirewallMulticastaddressOutput: typeof import("./getFirewallMulticastaddress").getFirewallMulticastaddressOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallMulticastaddress","getFirewallMulticastaddressOutput"], () => require("./getFirewallMulticastaddress"));
+
+export { GetFirewallMulticastaddress6Args, GetFirewallMulticastaddress6Result, GetFirewallMulticastaddress6OutputArgs } from "./getFirewallMulticastaddress6";
+export const getFirewallMulticastaddress6: typeof import("./getFirewallMulticastaddress6").getFirewallMulticastaddress6 = null as any;
+export const getFirewallMulticastaddress6Output: typeof import("./getFirewallMulticastaddress6").getFirewallMulticastaddress6Output = null as any;
+utilities.lazyLoad(exports, ["getFirewallMulticastaddress6","getFirewallMulticastaddress6Output"], () => require("./getFirewallMulticastaddress6"));
+
+export { GetFirewallMulticastaddress6listArgs, GetFirewallMulticastaddress6listResult, GetFirewallMulticastaddress6listOutputArgs } from "./getFirewallMulticastaddress6list";
+export const getFirewallMulticastaddress6list: typeof import("./getFirewallMulticastaddress6list").getFirewallMulticastaddress6list = null as any;
+export const getFirewallMulticastaddress6listOutput: typeof import("./getFirewallMulticastaddress6list").getFirewallMulticastaddress6listOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallMulticastaddress6list","getFirewallMulticastaddress6listOutput"], () => require("./getFirewallMulticastaddress6list"));
+
+export { GetFirewallMulticastaddresslistArgs, GetFirewallMulticastaddresslistResult, GetFirewallMulticastaddresslistOutputArgs } from "./getFirewallMulticastaddresslist";
+export const getFirewallMulticastaddresslist: typeof import("./getFirewallMulticastaddresslist").getFirewallMulticastaddresslist = null as any;
+export const getFirewallMulticastaddresslistOutput: typeof import("./getFirewallMulticastaddresslist").getFirewallMulticastaddresslistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallMulticastaddresslist","getFirewallMulticastaddresslistOutput"], () => require("./getFirewallMulticastaddresslist"));
+
+export { GetFirewallPolicyArgs, GetFirewallPolicyResult, GetFirewallPolicyOutputArgs } from "./getFirewallPolicy";
+export const getFirewallPolicy: typeof import("./getFirewallPolicy").getFirewallPolicy = null as any;
+export const getFirewallPolicyOutput: typeof import("./getFirewallPolicy").getFirewallPolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallPolicy","getFirewallPolicyOutput"], () => require("./getFirewallPolicy"));
+
+export { GetFirewallPolicy46Args, GetFirewallPolicy46Result, GetFirewallPolicy46OutputArgs } from "./getFirewallPolicy46";
+export const getFirewallPolicy46: typeof import("./getFirewallPolicy46").getFirewallPolicy46 = null as any;
+export const getFirewallPolicy46Output: typeof import("./getFirewallPolicy46").getFirewallPolicy46Output = null as any;
+utilities.lazyLoad(exports, ["getFirewallPolicy46","getFirewallPolicy46Output"], () => require("./getFirewallPolicy46"));
+
+export { GetFirewallPolicy46listArgs, GetFirewallPolicy46listResult, GetFirewallPolicy46listOutputArgs } from "./getFirewallPolicy46list";
+export const getFirewallPolicy46list: typeof import("./getFirewallPolicy46list").getFirewallPolicy46list = null as any;
+export const getFirewallPolicy46listOutput: typeof import("./getFirewallPolicy46list").getFirewallPolicy46listOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallPolicy46list","getFirewallPolicy46listOutput"], () => require("./getFirewallPolicy46list"));
+
+export { GetFirewallPolicy6Args, GetFirewallPolicy6Result, GetFirewallPolicy6OutputArgs } from "./getFirewallPolicy6";
+export const getFirewallPolicy6: typeof import("./getFirewallPolicy6").getFirewallPolicy6 = null as any;
+export const getFirewallPolicy6Output: typeof import("./getFirewallPolicy6").getFirewallPolicy6Output = null as any;
+utilities.lazyLoad(exports, ["getFirewallPolicy6","getFirewallPolicy6Output"], () => require("./getFirewallPolicy6"));
+
+export { GetFirewallPolicy64Args, GetFirewallPolicy64Result, GetFirewallPolicy64OutputArgs } from "./getFirewallPolicy64";
+export const getFirewallPolicy64: typeof import("./getFirewallPolicy64").getFirewallPolicy64 = null as any;
+export const getFirewallPolicy64Output: typeof import("./getFirewallPolicy64").getFirewallPolicy64Output = null as any;
+utilities.lazyLoad(exports, ["getFirewallPolicy64","getFirewallPolicy64Output"], () => require("./getFirewallPolicy64"));
+
+export { GetFirewallPolicy64listArgs, GetFirewallPolicy64listResult, GetFirewallPolicy64listOutputArgs } from "./getFirewallPolicy64list";
+export const getFirewallPolicy64list: typeof import("./getFirewallPolicy64list").getFirewallPolicy64list = null as any;
+export const getFirewallPolicy64listOutput: typeof import("./getFirewallPolicy64list").getFirewallPolicy64listOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallPolicy64list","getFirewallPolicy64listOutput"], () => require("./getFirewallPolicy64list"));
+
+export { GetFirewallPolicy6listArgs, GetFirewallPolicy6listResult, GetFirewallPolicy6listOutputArgs } from "./getFirewallPolicy6list";
+export const getFirewallPolicy6list: typeof import("./getFirewallPolicy6list").getFirewallPolicy6list = null as any;
+export const getFirewallPolicy6listOutput: typeof import("./getFirewallPolicy6list").getFirewallPolicy6listOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallPolicy6list","getFirewallPolicy6listOutput"], () => require("./getFirewallPolicy6list"));
+
+export { GetFirewallPolicylistArgs, GetFirewallPolicylistResult, GetFirewallPolicylistOutputArgs } from "./getFirewallPolicylist";
+export const getFirewallPolicylist: typeof import("./getFirewallPolicylist").getFirewallPolicylist = null as any;
+export const getFirewallPolicylistOutput: typeof import("./getFirewallPolicylist").getFirewallPolicylistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallPolicylist","getFirewallPolicylistOutput"], () => require("./getFirewallPolicylist"));
+
+export { GetFirewallProfileprotocoloptionsArgs, GetFirewallProfileprotocoloptionsResult, GetFirewallProfileprotocoloptionsOutputArgs } from "./getFirewallProfileprotocoloptions";
+export const getFirewallProfileprotocoloptions: typeof import("./getFirewallProfileprotocoloptions").getFirewallProfileprotocoloptions = null as any;
+export const getFirewallProfileprotocoloptionsOutput: typeof import("./getFirewallProfileprotocoloptions").getFirewallProfileprotocoloptionsOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallProfileprotocoloptions","getFirewallProfileprotocoloptionsOutput"], () => require("./getFirewallProfileprotocoloptions"));
+
+export { GetFirewallProfileprotocoloptionslistArgs, GetFirewallProfileprotocoloptionslistResult, GetFirewallProfileprotocoloptionslistOutputArgs } from "./getFirewallProfileprotocoloptionslist";
+export const getFirewallProfileprotocoloptionslist: typeof import("./getFirewallProfileprotocoloptionslist").getFirewallProfileprotocoloptionslist = null as any;
+export const getFirewallProfileprotocoloptionslistOutput: typeof import("./getFirewallProfileprotocoloptionslist").getFirewallProfileprotocoloptionslistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallProfileprotocoloptionslist","getFirewallProfileprotocoloptionslistOutput"], () => require("./getFirewallProfileprotocoloptionslist"));
+
+export { GetFirewallProxyaddressArgs, GetFirewallProxyaddressResult, GetFirewallProxyaddressOutputArgs } from "./getFirewallProxyaddress";
+export const getFirewallProxyaddress: typeof import("./getFirewallProxyaddress").getFirewallProxyaddress = null as any;
+export const getFirewallProxyaddressOutput: typeof import("./getFirewallProxyaddress").getFirewallProxyaddressOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallProxyaddress","getFirewallProxyaddressOutput"], () => require("./getFirewallProxyaddress"));
+
+export { GetFirewallProxyaddresslistArgs, GetFirewallProxyaddresslistResult, GetFirewallProxyaddresslistOutputArgs } from "./getFirewallProxyaddresslist";
+export const getFirewallProxyaddresslist: typeof import("./getFirewallProxyaddresslist").getFirewallProxyaddresslist = null as any;
+export const getFirewallProxyaddresslistOutput: typeof import("./getFirewallProxyaddresslist").getFirewallProxyaddresslistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallProxyaddresslist","getFirewallProxyaddresslistOutput"], () => require("./getFirewallProxyaddresslist"));
+
+export { GetFirewallProxyaddrgrpArgs, GetFirewallProxyaddrgrpResult, GetFirewallProxyaddrgrpOutputArgs } from "./getFirewallProxyaddrgrp";
+export const getFirewallProxyaddrgrp: typeof import("./getFirewallProxyaddrgrp").getFirewallProxyaddrgrp = null as any;
+export const getFirewallProxyaddrgrpOutput: typeof import("./getFirewallProxyaddrgrp").getFirewallProxyaddrgrpOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallProxyaddrgrp","getFirewallProxyaddrgrpOutput"], () => require("./getFirewallProxyaddrgrp"));
+
+export { GetFirewallProxyaddrgrplistArgs, GetFirewallProxyaddrgrplistResult, GetFirewallProxyaddrgrplistOutputArgs } from "./getFirewallProxyaddrgrplist";
+export const getFirewallProxyaddrgrplist: typeof import("./getFirewallProxyaddrgrplist").getFirewallProxyaddrgrplist = null as any;
+export const getFirewallProxyaddrgrplistOutput: typeof import("./getFirewallProxyaddrgrplist").getFirewallProxyaddrgrplistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallProxyaddrgrplist","getFirewallProxyaddrgrplistOutput"], () => require("./getFirewallProxyaddrgrplist"));
+
+export { GetFirewallProxypolicyArgs, GetFirewallProxypolicyResult, GetFirewallProxypolicyOutputArgs } from "./getFirewallProxypolicy";
+export const getFirewallProxypolicy: typeof import("./getFirewallProxypolicy").getFirewallProxypolicy = null as any;
+export const getFirewallProxypolicyOutput: typeof import("./getFirewallProxypolicy").getFirewallProxypolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallProxypolicy","getFirewallProxypolicyOutput"], () => require("./getFirewallProxypolicy"));
+
+export { GetFirewallProxypolicylistArgs, GetFirewallProxypolicylistResult, GetFirewallProxypolicylistOutputArgs } from "./getFirewallProxypolicylist";
+export const getFirewallProxypolicylist: typeof import("./getFirewallProxypolicylist").getFirewallProxypolicylist = null as any;
+export const getFirewallProxypolicylistOutput: typeof import("./getFirewallProxypolicylist").getFirewallProxypolicylistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallProxypolicylist","getFirewallProxypolicylistOutput"], () => require("./getFirewallProxypolicylist"));
+
+export { GetFirewallconsolidatedPolicyArgs, GetFirewallconsolidatedPolicyResult, GetFirewallconsolidatedPolicyOutputArgs } from "./getFirewallconsolidatedPolicy";
+export const getFirewallconsolidatedPolicy: typeof import("./getFirewallconsolidatedPolicy").getFirewallconsolidatedPolicy = null as any;
+export const getFirewallconsolidatedPolicyOutput: typeof import("./getFirewallconsolidatedPolicy").getFirewallconsolidatedPolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallconsolidatedPolicy","getFirewallconsolidatedPolicyOutput"], () => require("./getFirewallconsolidatedPolicy"));
+
+export { GetFirewallconsolidatedPolicylistArgs, GetFirewallconsolidatedPolicylistResult, GetFirewallconsolidatedPolicylistOutputArgs } from "./getFirewallconsolidatedPolicylist";
+export const getFirewallconsolidatedPolicylist: typeof import("./getFirewallconsolidatedPolicylist").getFirewallconsolidatedPolicylist = null as any;
+export const getFirewallconsolidatedPolicylistOutput: typeof import("./getFirewallconsolidatedPolicylist").getFirewallconsolidatedPolicylistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallconsolidatedPolicylist","getFirewallconsolidatedPolicylistOutput"], () => require("./getFirewallconsolidatedPolicylist"));
+
+export { GetFirewallscheduleGroupArgs, GetFirewallscheduleGroupResult, GetFirewallscheduleGroupOutputArgs } from "./getFirewallscheduleGroup";
+export const getFirewallscheduleGroup: typeof import("./getFirewallscheduleGroup").getFirewallscheduleGroup = null as any;
+export const getFirewallscheduleGroupOutput: typeof import("./getFirewallscheduleGroup").getFirewallscheduleGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallscheduleGroup","getFirewallscheduleGroupOutput"], () => require("./getFirewallscheduleGroup"));
+
+export { GetFirewallscheduleGrouplistArgs, GetFirewallscheduleGrouplistResult, GetFirewallscheduleGrouplistOutputArgs } from "./getFirewallscheduleGrouplist";
+export const getFirewallscheduleGrouplist: typeof import("./getFirewallscheduleGrouplist").getFirewallscheduleGrouplist = null as any;
+export const getFirewallscheduleGrouplistOutput: typeof import("./getFirewallscheduleGrouplist").getFirewallscheduleGrouplistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallscheduleGrouplist","getFirewallscheduleGrouplistOutput"], () => require("./getFirewallscheduleGrouplist"));
+
+export { GetFirewallscheduleOnetimeArgs, GetFirewallscheduleOnetimeResult, GetFirewallscheduleOnetimeOutputArgs } from "./getFirewallscheduleOnetime";
+export const getFirewallscheduleOnetime: typeof import("./getFirewallscheduleOnetime").getFirewallscheduleOnetime = null as any;
+export const getFirewallscheduleOnetimeOutput: typeof import("./getFirewallscheduleOnetime").getFirewallscheduleOnetimeOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallscheduleOnetime","getFirewallscheduleOnetimeOutput"], () => require("./getFirewallscheduleOnetime"));
+
+export { GetFirewallscheduleOnetimelistArgs, GetFirewallscheduleOnetimelistResult, GetFirewallscheduleOnetimelistOutputArgs } from "./getFirewallscheduleOnetimelist";
+export const getFirewallscheduleOnetimelist: typeof import("./getFirewallscheduleOnetimelist").getFirewallscheduleOnetimelist = null as any;
+export const getFirewallscheduleOnetimelistOutput: typeof import("./getFirewallscheduleOnetimelist").getFirewallscheduleOnetimelistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallscheduleOnetimelist","getFirewallscheduleOnetimelistOutput"], () => require("./getFirewallscheduleOnetimelist"));
+
+export { GetFirewallscheduleRecurringArgs, GetFirewallscheduleRecurringResult, GetFirewallscheduleRecurringOutputArgs } from "./getFirewallscheduleRecurring";
+export const getFirewallscheduleRecurring: typeof import("./getFirewallscheduleRecurring").getFirewallscheduleRecurring = null as any;
+export const getFirewallscheduleRecurringOutput: typeof import("./getFirewallscheduleRecurring").getFirewallscheduleRecurringOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallscheduleRecurring","getFirewallscheduleRecurringOutput"], () => require("./getFirewallscheduleRecurring"));
+
+export { GetFirewallscheduleRecurringlistArgs, GetFirewallscheduleRecurringlistResult, GetFirewallscheduleRecurringlistOutputArgs } from "./getFirewallscheduleRecurringlist";
+export const getFirewallscheduleRecurringlist: typeof import("./getFirewallscheduleRecurringlist").getFirewallscheduleRecurringlist = null as any;
+export const getFirewallscheduleRecurringlistOutput: typeof import("./getFirewallscheduleRecurringlist").getFirewallscheduleRecurringlistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallscheduleRecurringlist","getFirewallscheduleRecurringlistOutput"], () => require("./getFirewallscheduleRecurringlist"));
+
+export { GetFirewallserviceCategoryArgs, GetFirewallserviceCategoryResult, GetFirewallserviceCategoryOutputArgs } from "./getFirewallserviceCategory";
+export const getFirewallserviceCategory: typeof import("./getFirewallserviceCategory").getFirewallserviceCategory = null as any;
+export const getFirewallserviceCategoryOutput: typeof import("./getFirewallserviceCategory").getFirewallserviceCategoryOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallserviceCategory","getFirewallserviceCategoryOutput"], () => require("./getFirewallserviceCategory"));
+
+export { GetFirewallserviceCategorylistArgs, GetFirewallserviceCategorylistResult, GetFirewallserviceCategorylistOutputArgs } from "./getFirewallserviceCategorylist";
+export const getFirewallserviceCategorylist: typeof import("./getFirewallserviceCategorylist").getFirewallserviceCategorylist = null as any;
+export const getFirewallserviceCategorylistOutput: typeof import("./getFirewallserviceCategorylist").getFirewallserviceCategorylistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallserviceCategorylist","getFirewallserviceCategorylistOutput"], () => require("./getFirewallserviceCategorylist"));
+
+export { GetFirewallserviceCustomArgs, GetFirewallserviceCustomResult, GetFirewallserviceCustomOutputArgs } from "./getFirewallserviceCustom";
+export const getFirewallserviceCustom: typeof import("./getFirewallserviceCustom").getFirewallserviceCustom = null as any;
+export const getFirewallserviceCustomOutput: typeof import("./getFirewallserviceCustom").getFirewallserviceCustomOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallserviceCustom","getFirewallserviceCustomOutput"], () => require("./getFirewallserviceCustom"));
+
+export { GetFirewallserviceCustomlistArgs, GetFirewallserviceCustomlistResult, GetFirewallserviceCustomlistOutputArgs } from "./getFirewallserviceCustomlist";
+export const getFirewallserviceCustomlist: typeof import("./getFirewallserviceCustomlist").getFirewallserviceCustomlist = null as any;
+export const getFirewallserviceCustomlistOutput: typeof import("./getFirewallserviceCustomlist").getFirewallserviceCustomlistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallserviceCustomlist","getFirewallserviceCustomlistOutput"], () => require("./getFirewallserviceCustomlist"));
+
+export { GetFirewallserviceGroupArgs, GetFirewallserviceGroupResult, GetFirewallserviceGroupOutputArgs } from "./getFirewallserviceGroup";
+export const getFirewallserviceGroup: typeof import("./getFirewallserviceGroup").getFirewallserviceGroup = null as any;
+export const getFirewallserviceGroupOutput: typeof import("./getFirewallserviceGroup").getFirewallserviceGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallserviceGroup","getFirewallserviceGroupOutput"], () => require("./getFirewallserviceGroup"));
+
+export { GetFirewallserviceGrouplistArgs, GetFirewallserviceGrouplistResult, GetFirewallserviceGrouplistOutputArgs } from "./getFirewallserviceGrouplist";
+export const getFirewallserviceGrouplist: typeof import("./getFirewallserviceGrouplist").getFirewallserviceGrouplist = null as any;
+export const getFirewallserviceGrouplistOutput: typeof import("./getFirewallserviceGrouplist").getFirewallserviceGrouplistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallserviceGrouplist","getFirewallserviceGrouplistOutput"], () => require("./getFirewallserviceGrouplist"));
+
+export { GetFirewallshaperPeripshaperArgs, GetFirewallshaperPeripshaperResult, GetFirewallshaperPeripshaperOutputArgs } from "./getFirewallshaperPeripshaper";
+export const getFirewallshaperPeripshaper: typeof import("./getFirewallshaperPeripshaper").getFirewallshaperPeripshaper = null as any;
+export const getFirewallshaperPeripshaperOutput: typeof import("./getFirewallshaperPeripshaper").getFirewallshaperPeripshaperOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallshaperPeripshaper","getFirewallshaperPeripshaperOutput"], () => require("./getFirewallshaperPeripshaper"));
+
+export { GetFirewallshaperPeripshaperlistArgs, GetFirewallshaperPeripshaperlistResult, GetFirewallshaperPeripshaperlistOutputArgs } from "./getFirewallshaperPeripshaperlist";
+export const getFirewallshaperPeripshaperlist: typeof import("./getFirewallshaperPeripshaperlist").getFirewallshaperPeripshaperlist = null as any;
+export const getFirewallshaperPeripshaperlistOutput: typeof import("./getFirewallshaperPeripshaperlist").getFirewallshaperPeripshaperlistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallshaperPeripshaperlist","getFirewallshaperPeripshaperlistOutput"], () => require("./getFirewallshaperPeripshaperlist"));
+
+export { GetFirewallshaperTrafficshaperArgs, GetFirewallshaperTrafficshaperResult, GetFirewallshaperTrafficshaperOutputArgs } from "./getFirewallshaperTrafficshaper";
+export const getFirewallshaperTrafficshaper: typeof import("./getFirewallshaperTrafficshaper").getFirewallshaperTrafficshaper = null as any;
+export const getFirewallshaperTrafficshaperOutput: typeof import("./getFirewallshaperTrafficshaper").getFirewallshaperTrafficshaperOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallshaperTrafficshaper","getFirewallshaperTrafficshaperOutput"], () => require("./getFirewallshaperTrafficshaper"));
+
+export { GetFirewallshaperTrafficshaperlistArgs, GetFirewallshaperTrafficshaperlistResult, GetFirewallshaperTrafficshaperlistOutputArgs } from "./getFirewallshaperTrafficshaperlist";
+export const getFirewallshaperTrafficshaperlist: typeof import("./getFirewallshaperTrafficshaperlist").getFirewallshaperTrafficshaperlist = null as any;
+export const getFirewallshaperTrafficshaperlistOutput: typeof import("./getFirewallshaperTrafficshaperlist").getFirewallshaperTrafficshaperlistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallshaperTrafficshaperlist","getFirewallshaperTrafficshaperlistOutput"], () => require("./getFirewallshaperTrafficshaperlist"));
+
+export { GetFirewallwildcardfqdnCustomArgs, GetFirewallwildcardfqdnCustomResult, GetFirewallwildcardfqdnCustomOutputArgs } from "./getFirewallwildcardfqdnCustom";
+export const getFirewallwildcardfqdnCustom: typeof import("./getFirewallwildcardfqdnCustom").getFirewallwildcardfqdnCustom = null as any;
+export const getFirewallwildcardfqdnCustomOutput: typeof import("./getFirewallwildcardfqdnCustom").getFirewallwildcardfqdnCustomOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallwildcardfqdnCustom","getFirewallwildcardfqdnCustomOutput"], () => require("./getFirewallwildcardfqdnCustom"));
+
+export { GetFirewallwildcardfqdnCustomlistArgs, GetFirewallwildcardfqdnCustomlistResult, GetFirewallwildcardfqdnCustomlistOutputArgs } from "./getFirewallwildcardfqdnCustomlist";
+export const getFirewallwildcardfqdnCustomlist: typeof import("./getFirewallwildcardfqdnCustomlist").getFirewallwildcardfqdnCustomlist = null as any;
+export const getFirewallwildcardfqdnCustomlistOutput: typeof import("./getFirewallwildcardfqdnCustomlist").getFirewallwildcardfqdnCustomlistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallwildcardfqdnCustomlist","getFirewallwildcardfqdnCustomlistOutput"], () => require("./getFirewallwildcardfqdnCustomlist"));
+
+export { GetFirewallwildcardfqdnGroupArgs, GetFirewallwildcardfqdnGroupResult, GetFirewallwildcardfqdnGroupOutputArgs } from "./getFirewallwildcardfqdnGroup";
+export const getFirewallwildcardfqdnGroup: typeof import("./getFirewallwildcardfqdnGroup").getFirewallwildcardfqdnGroup = null as any;
+export const getFirewallwildcardfqdnGroupOutput: typeof import("./getFirewallwildcardfqdnGroup").getFirewallwildcardfqdnGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallwildcardfqdnGroup","getFirewallwildcardfqdnGroupOutput"], () => require("./getFirewallwildcardfqdnGroup"));
+
+export { GetFirewallwildcardfqdnGrouplistArgs, GetFirewallwildcardfqdnGrouplistResult, GetFirewallwildcardfqdnGrouplistOutputArgs } from "./getFirewallwildcardfqdnGrouplist";
+export const getFirewallwildcardfqdnGrouplist: typeof import("./getFirewallwildcardfqdnGrouplist").getFirewallwildcardfqdnGrouplist = null as any;
+export const getFirewallwildcardfqdnGrouplistOutput: typeof import("./getFirewallwildcardfqdnGrouplist").getFirewallwildcardfqdnGrouplistOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewallwildcardfqdnGrouplist","getFirewallwildcardfqdnGrouplistOutput"], () => require("./getFirewallwildcardfqdnGrouplist"));
+
+export { GetIpmaskCidrArgs, GetIpmaskCidrResult, GetIpmaskCidrOutputArgs } from "./getIpmaskCidr";
+export const getIpmaskCidr: typeof import("./getIpmaskCidr").getIpmaskCidr = null as any;
+export const getIpmaskCidrOutput: typeof import("./getIpmaskCidr").getIpmaskCidrOutput = null as any;
+utilities.lazyLoad(exports, ["getIpmaskCidr","getIpmaskCidrOutput"], () => require("./getIpmaskCidr"));
+
+export { GetJsonGenericApiArgs, GetJsonGenericApiResult, GetJsonGenericApiOutputArgs } from "./getJsonGenericApi";
+export const getJsonGenericApi: typeof import("./getJsonGenericApi").getJsonGenericApi = null as any;
+export const getJsonGenericApiOutput: typeof import("./getJsonGenericApi").getJsonGenericApiOutput = null as any;
+utilities.lazyLoad(exports, ["getJsonGenericApi","getJsonGenericApiOutput"], () => require("./getJsonGenericApi"));
+
+export { GetRouterAccesslistArgs, GetRouterAccesslistResult, GetRouterAccesslistOutputArgs } from "./getRouterAccesslist";
+export const getRouterAccesslist: typeof import("./getRouterAccesslist").getRouterAccesslist = null as any;
+export const getRouterAccesslistOutput: typeof import("./getRouterAccesslist").getRouterAccesslistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterAccesslist","getRouterAccesslistOutput"], () => require("./getRouterAccesslist"));
+
+export { GetRouterAccesslist6Args, GetRouterAccesslist6Result, GetRouterAccesslist6OutputArgs } from "./getRouterAccesslist6";
+export const getRouterAccesslist6: typeof import("./getRouterAccesslist6").getRouterAccesslist6 = null as any;
+export const getRouterAccesslist6Output: typeof import("./getRouterAccesslist6").getRouterAccesslist6Output = null as any;
+utilities.lazyLoad(exports, ["getRouterAccesslist6","getRouterAccesslist6Output"], () => require("./getRouterAccesslist6"));
+
+export { GetRouterAccesslist6listArgs, GetRouterAccesslist6listResult, GetRouterAccesslist6listOutputArgs } from "./getRouterAccesslist6list";
+export const getRouterAccesslist6list: typeof import("./getRouterAccesslist6list").getRouterAccesslist6list = null as any;
+export const getRouterAccesslist6listOutput: typeof import("./getRouterAccesslist6list").getRouterAccesslist6listOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterAccesslist6list","getRouterAccesslist6listOutput"], () => require("./getRouterAccesslist6list"));
+
+export { GetRouterAccesslistlistArgs, GetRouterAccesslistlistResult, GetRouterAccesslistlistOutputArgs } from "./getRouterAccesslistlist";
+export const getRouterAccesslistlist: typeof import("./getRouterAccesslistlist").getRouterAccesslistlist = null as any;
+export const getRouterAccesslistlistOutput: typeof import("./getRouterAccesslistlist").getRouterAccesslistlistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterAccesslistlist","getRouterAccesslistlistOutput"], () => require("./getRouterAccesslistlist"));
+
+export { GetRouterAspathlistArgs, GetRouterAspathlistResult, GetRouterAspathlistOutputArgs } from "./getRouterAspathlist";
+export const getRouterAspathlist: typeof import("./getRouterAspathlist").getRouterAspathlist = null as any;
+export const getRouterAspathlistOutput: typeof import("./getRouterAspathlist").getRouterAspathlistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterAspathlist","getRouterAspathlistOutput"], () => require("./getRouterAspathlist"));
+
+export { GetRouterAspathlistlistArgs, GetRouterAspathlistlistResult, GetRouterAspathlistlistOutputArgs } from "./getRouterAspathlistlist";
+export const getRouterAspathlistlist: typeof import("./getRouterAspathlistlist").getRouterAspathlistlist = null as any;
+export const getRouterAspathlistlistOutput: typeof import("./getRouterAspathlistlist").getRouterAspathlistlistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterAspathlistlist","getRouterAspathlistlistOutput"], () => require("./getRouterAspathlistlist"));
+
+export { GetRouterAuthpathArgs, GetRouterAuthpathResult, GetRouterAuthpathOutputArgs } from "./getRouterAuthpath";
+export const getRouterAuthpath: typeof import("./getRouterAuthpath").getRouterAuthpath = null as any;
+export const getRouterAuthpathOutput: typeof import("./getRouterAuthpath").getRouterAuthpathOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterAuthpath","getRouterAuthpathOutput"], () => require("./getRouterAuthpath"));
+
+export { GetRouterAuthpathlistArgs, GetRouterAuthpathlistResult, GetRouterAuthpathlistOutputArgs } from "./getRouterAuthpathlist";
+export const getRouterAuthpathlist: typeof import("./getRouterAuthpathlist").getRouterAuthpathlist = null as any;
+export const getRouterAuthpathlistOutput: typeof import("./getRouterAuthpathlist").getRouterAuthpathlistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterAuthpathlist","getRouterAuthpathlistOutput"], () => require("./getRouterAuthpathlist"));
+
+export { GetRouterBfdArgs, GetRouterBfdResult, GetRouterBfdOutputArgs } from "./getRouterBfd";
+export const getRouterBfd: typeof import("./getRouterBfd").getRouterBfd = null as any;
+export const getRouterBfdOutput: typeof import("./getRouterBfd").getRouterBfdOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterBfd","getRouterBfdOutput"], () => require("./getRouterBfd"));
+
+export { GetRouterBfd6Args, GetRouterBfd6Result, GetRouterBfd6OutputArgs } from "./getRouterBfd6";
+export const getRouterBfd6: typeof import("./getRouterBfd6").getRouterBfd6 = null as any;
+export const getRouterBfd6Output: typeof import("./getRouterBfd6").getRouterBfd6Output = null as any;
+utilities.lazyLoad(exports, ["getRouterBfd6","getRouterBfd6Output"], () => require("./getRouterBfd6"));
+
+export { GetRouterBgpArgs, GetRouterBgpResult, GetRouterBgpOutputArgs } from "./getRouterBgp";
+export const getRouterBgp: typeof import("./getRouterBgp").getRouterBgp = null as any;
+export const getRouterBgpOutput: typeof import("./getRouterBgp").getRouterBgpOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterBgp","getRouterBgpOutput"], () => require("./getRouterBgp"));
+
+export { GetRouterCommunitylistArgs, GetRouterCommunitylistResult, GetRouterCommunitylistOutputArgs } from "./getRouterCommunitylist";
+export const getRouterCommunitylist: typeof import("./getRouterCommunitylist").getRouterCommunitylist = null as any;
+export const getRouterCommunitylistOutput: typeof import("./getRouterCommunitylist").getRouterCommunitylistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterCommunitylist","getRouterCommunitylistOutput"], () => require("./getRouterCommunitylist"));
+
+export { GetRouterCommunitylistlistArgs, GetRouterCommunitylistlistResult, GetRouterCommunitylistlistOutputArgs } from "./getRouterCommunitylistlist";
+export const getRouterCommunitylistlist: typeof import("./getRouterCommunitylistlist").getRouterCommunitylistlist = null as any;
+export const getRouterCommunitylistlistOutput: typeof import("./getRouterCommunitylistlist").getRouterCommunitylistlistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterCommunitylistlist","getRouterCommunitylistlistOutput"], () => require("./getRouterCommunitylistlist"));
+
+export { GetRouterIsisArgs, GetRouterIsisResult, GetRouterIsisOutputArgs } from "./getRouterIsis";
+export const getRouterIsis: typeof import("./getRouterIsis").getRouterIsis = null as any;
+export const getRouterIsisOutput: typeof import("./getRouterIsis").getRouterIsisOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterIsis","getRouterIsisOutput"], () => require("./getRouterIsis"));
+
+export { GetRouterKeychainArgs, GetRouterKeychainResult, GetRouterKeychainOutputArgs } from "./getRouterKeychain";
+export const getRouterKeychain: typeof import("./getRouterKeychain").getRouterKeychain = null as any;
+export const getRouterKeychainOutput: typeof import("./getRouterKeychain").getRouterKeychainOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterKeychain","getRouterKeychainOutput"], () => require("./getRouterKeychain"));
+
+export { GetRouterKeychainlistArgs, GetRouterKeychainlistResult, GetRouterKeychainlistOutputArgs } from "./getRouterKeychainlist";
+export const getRouterKeychainlist: typeof import("./getRouterKeychainlist").getRouterKeychainlist = null as any;
+export const getRouterKeychainlistOutput: typeof import("./getRouterKeychainlist").getRouterKeychainlistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterKeychainlist","getRouterKeychainlistOutput"], () => require("./getRouterKeychainlist"));
+
+export { GetRouterMulticastArgs, GetRouterMulticastResult, GetRouterMulticastOutputArgs } from "./getRouterMulticast";
+export const getRouterMulticast: typeof import("./getRouterMulticast").getRouterMulticast = null as any;
+export const getRouterMulticastOutput: typeof import("./getRouterMulticast").getRouterMulticastOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterMulticast","getRouterMulticastOutput"], () => require("./getRouterMulticast"));
+
+export { GetRouterMulticast6Args, GetRouterMulticast6Result, GetRouterMulticast6OutputArgs } from "./getRouterMulticast6";
+export const getRouterMulticast6: typeof import("./getRouterMulticast6").getRouterMulticast6 = null as any;
+export const getRouterMulticast6Output: typeof import("./getRouterMulticast6").getRouterMulticast6Output = null as any;
+utilities.lazyLoad(exports, ["getRouterMulticast6","getRouterMulticast6Output"], () => require("./getRouterMulticast6"));
+
+export { GetRouterMulticastflowArgs, GetRouterMulticastflowResult, GetRouterMulticastflowOutputArgs } from "./getRouterMulticastflow";
+export const getRouterMulticastflow: typeof import("./getRouterMulticastflow").getRouterMulticastflow = null as any;
+export const getRouterMulticastflowOutput: typeof import("./getRouterMulticastflow").getRouterMulticastflowOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterMulticastflow","getRouterMulticastflowOutput"], () => require("./getRouterMulticastflow"));
+
+export { GetRouterMulticastflowlistArgs, GetRouterMulticastflowlistResult, GetRouterMulticastflowlistOutputArgs } from "./getRouterMulticastflowlist";
+export const getRouterMulticastflowlist: typeof import("./getRouterMulticastflowlist").getRouterMulticastflowlist = null as any;
+export const getRouterMulticastflowlistOutput: typeof import("./getRouterMulticastflowlist").getRouterMulticastflowlistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterMulticastflowlist","getRouterMulticastflowlistOutput"], () => require("./getRouterMulticastflowlist"));
+
+export { GetRouterOspfArgs, GetRouterOspfResult, GetRouterOspfOutputArgs } from "./getRouterOspf";
+export const getRouterOspf: typeof import("./getRouterOspf").getRouterOspf = null as any;
+export const getRouterOspfOutput: typeof import("./getRouterOspf").getRouterOspfOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterOspf","getRouterOspfOutput"], () => require("./getRouterOspf"));
+
+export { GetRouterOspf6Args, GetRouterOspf6Result, GetRouterOspf6OutputArgs } from "./getRouterOspf6";
+export const getRouterOspf6: typeof import("./getRouterOspf6").getRouterOspf6 = null as any;
+export const getRouterOspf6Output: typeof import("./getRouterOspf6").getRouterOspf6Output = null as any;
+utilities.lazyLoad(exports, ["getRouterOspf6","getRouterOspf6Output"], () => require("./getRouterOspf6"));
+
+export { GetRouterPolicyArgs, GetRouterPolicyResult, GetRouterPolicyOutputArgs } from "./getRouterPolicy";
+export const getRouterPolicy: typeof import("./getRouterPolicy").getRouterPolicy = null as any;
+export const getRouterPolicyOutput: typeof import("./getRouterPolicy").getRouterPolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterPolicy","getRouterPolicyOutput"], () => require("./getRouterPolicy"));
+
+export { GetRouterPolicy6Args, GetRouterPolicy6Result, GetRouterPolicy6OutputArgs } from "./getRouterPolicy6";
+export const getRouterPolicy6: typeof import("./getRouterPolicy6").getRouterPolicy6 = null as any;
+export const getRouterPolicy6Output: typeof import("./getRouterPolicy6").getRouterPolicy6Output = null as any;
+utilities.lazyLoad(exports, ["getRouterPolicy6","getRouterPolicy6Output"], () => require("./getRouterPolicy6"));
+
+export { GetRouterPolicy6listArgs, GetRouterPolicy6listResult, GetRouterPolicy6listOutputArgs } from "./getRouterPolicy6list";
+export const getRouterPolicy6list: typeof import("./getRouterPolicy6list").getRouterPolicy6list = null as any;
+export const getRouterPolicy6listOutput: typeof import("./getRouterPolicy6list").getRouterPolicy6listOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterPolicy6list","getRouterPolicy6listOutput"], () => require("./getRouterPolicy6list"));
+
+export { GetRouterPolicylistArgs, GetRouterPolicylistResult, GetRouterPolicylistOutputArgs } from "./getRouterPolicylist";
+export const getRouterPolicylist: typeof import("./getRouterPolicylist").getRouterPolicylist = null as any;
+export const getRouterPolicylistOutput: typeof import("./getRouterPolicylist").getRouterPolicylistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterPolicylist","getRouterPolicylistOutput"], () => require("./getRouterPolicylist"));
+
+export { GetRouterPrefixlistArgs, GetRouterPrefixlistResult, GetRouterPrefixlistOutputArgs } from "./getRouterPrefixlist";
+export const getRouterPrefixlist: typeof import("./getRouterPrefixlist").getRouterPrefixlist = null as any;
+export const getRouterPrefixlistOutput: typeof import("./getRouterPrefixlist").getRouterPrefixlistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterPrefixlist","getRouterPrefixlistOutput"], () => require("./getRouterPrefixlist"));
+
+export { GetRouterPrefixlist6Args, GetRouterPrefixlist6Result, GetRouterPrefixlist6OutputArgs } from "./getRouterPrefixlist6";
+export const getRouterPrefixlist6: typeof import("./getRouterPrefixlist6").getRouterPrefixlist6 = null as any;
+export const getRouterPrefixlist6Output: typeof import("./getRouterPrefixlist6").getRouterPrefixlist6Output = null as any;
+utilities.lazyLoad(exports, ["getRouterPrefixlist6","getRouterPrefixlist6Output"], () => require("./getRouterPrefixlist6"));
+
+export { GetRouterPrefixlist6listArgs, GetRouterPrefixlist6listResult, GetRouterPrefixlist6listOutputArgs } from "./getRouterPrefixlist6list";
+export const getRouterPrefixlist6list: typeof import("./getRouterPrefixlist6list").getRouterPrefixlist6list = null as any;
+export const getRouterPrefixlist6listOutput: typeof import("./getRouterPrefixlist6list").getRouterPrefixlist6listOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterPrefixlist6list","getRouterPrefixlist6listOutput"], () => require("./getRouterPrefixlist6list"));
+
+export { GetRouterPrefixlistlistArgs, GetRouterPrefixlistlistResult, GetRouterPrefixlistlistOutputArgs } from "./getRouterPrefixlistlist";
+export const getRouterPrefixlistlist: typeof import("./getRouterPrefixlistlist").getRouterPrefixlistlist = null as any;
+export const getRouterPrefixlistlistOutput: typeof import("./getRouterPrefixlistlist").getRouterPrefixlistlistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterPrefixlistlist","getRouterPrefixlistlistOutput"], () => require("./getRouterPrefixlistlist"));
+
+export { GetRouterRipArgs, GetRouterRipResult, GetRouterRipOutputArgs } from "./getRouterRip";
+export const getRouterRip: typeof import("./getRouterRip").getRouterRip = null as any;
+export const getRouterRipOutput: typeof import("./getRouterRip").getRouterRipOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterRip","getRouterRipOutput"], () => require("./getRouterRip"));
+
+export { GetRouterRipngArgs, GetRouterRipngResult, GetRouterRipngOutputArgs } from "./getRouterRipng";
+export const getRouterRipng: typeof import("./getRouterRipng").getRouterRipng = null as any;
+export const getRouterRipngOutput: typeof import("./getRouterRipng").getRouterRipngOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterRipng","getRouterRipngOutput"], () => require("./getRouterRipng"));
+
+export { GetRouterRoutemapArgs, GetRouterRoutemapResult, GetRouterRoutemapOutputArgs } from "./getRouterRoutemap";
+export const getRouterRoutemap: typeof import("./getRouterRoutemap").getRouterRoutemap = null as any;
+export const getRouterRoutemapOutput: typeof import("./getRouterRoutemap").getRouterRoutemapOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterRoutemap","getRouterRoutemapOutput"], () => require("./getRouterRoutemap"));
+
+export { GetRouterRoutemaplistArgs, GetRouterRoutemaplistResult, GetRouterRoutemaplistOutputArgs } from "./getRouterRoutemaplist";
+export const getRouterRoutemaplist: typeof import("./getRouterRoutemaplist").getRouterRoutemaplist = null as any;
+export const getRouterRoutemaplistOutput: typeof import("./getRouterRoutemaplist").getRouterRoutemaplistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterRoutemaplist","getRouterRoutemaplistOutput"], () => require("./getRouterRoutemaplist"));
+
+export { GetRouterSettingArgs, GetRouterSettingResult, GetRouterSettingOutputArgs } from "./getRouterSetting";
+export const getRouterSetting: typeof import("./getRouterSetting").getRouterSetting = null as any;
+export const getRouterSettingOutput: typeof import("./getRouterSetting").getRouterSettingOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterSetting","getRouterSettingOutput"], () => require("./getRouterSetting"));
+
+export { GetRouterStaticArgs, GetRouterStaticResult, GetRouterStaticOutputArgs } from "./getRouterStatic";
+export const getRouterStatic: typeof import("./getRouterStatic").getRouterStatic = null as any;
+export const getRouterStaticOutput: typeof import("./getRouterStatic").getRouterStaticOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterStatic","getRouterStaticOutput"], () => require("./getRouterStatic"));
+
+export { GetRouterStatic6Args, GetRouterStatic6Result, GetRouterStatic6OutputArgs } from "./getRouterStatic6";
+export const getRouterStatic6: typeof import("./getRouterStatic6").getRouterStatic6 = null as any;
+export const getRouterStatic6Output: typeof import("./getRouterStatic6").getRouterStatic6Output = null as any;
+utilities.lazyLoad(exports, ["getRouterStatic6","getRouterStatic6Output"], () => require("./getRouterStatic6"));
+
+export { GetRouterStatic6listArgs, GetRouterStatic6listResult, GetRouterStatic6listOutputArgs } from "./getRouterStatic6list";
+export const getRouterStatic6list: typeof import("./getRouterStatic6list").getRouterStatic6list = null as any;
+export const getRouterStatic6listOutput: typeof import("./getRouterStatic6list").getRouterStatic6listOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterStatic6list","getRouterStatic6listOutput"], () => require("./getRouterStatic6list"));
+
+export { GetRouterStaticlistArgs, GetRouterStaticlistResult, GetRouterStaticlistOutputArgs } from "./getRouterStaticlist";
+export const getRouterStaticlist: typeof import("./getRouterStaticlist").getRouterStaticlist = null as any;
+export const getRouterStaticlistOutput: typeof import("./getRouterStaticlist").getRouterStaticlistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterStaticlist","getRouterStaticlistOutput"], () => require("./getRouterStaticlist"));
+
+export { GetRouterbgpNeighborArgs, GetRouterbgpNeighborResult, GetRouterbgpNeighborOutputArgs } from "./getRouterbgpNeighbor";
+export const getRouterbgpNeighbor: typeof import("./getRouterbgpNeighbor").getRouterbgpNeighbor = null as any;
+export const getRouterbgpNeighborOutput: typeof import("./getRouterbgpNeighbor").getRouterbgpNeighborOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterbgpNeighbor","getRouterbgpNeighborOutput"], () => require("./getRouterbgpNeighbor"));
+
+export { GetRouterbgpNeighborlistArgs, GetRouterbgpNeighborlistResult, GetRouterbgpNeighborlistOutputArgs } from "./getRouterbgpNeighborlist";
+export const getRouterbgpNeighborlist: typeof import("./getRouterbgpNeighborlist").getRouterbgpNeighborlist = null as any;
+export const getRouterbgpNeighborlistOutput: typeof import("./getRouterbgpNeighborlist").getRouterbgpNeighborlistOutput = null as any;
+utilities.lazyLoad(exports, ["getRouterbgpNeighborlist","getRouterbgpNeighborlistOutput"], () => require("./getRouterbgpNeighborlist"));
+
+export { GetSystemAccprofileArgs, GetSystemAccprofileResult, GetSystemAccprofileOutputArgs } from "./getSystemAccprofile";
+export const getSystemAccprofile: typeof import("./getSystemAccprofile").getSystemAccprofile = null as any;
+export const getSystemAccprofileOutput: typeof import("./getSystemAccprofile").getSystemAccprofileOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAccprofile","getSystemAccprofileOutput"], () => require("./getSystemAccprofile"));
+
+export { GetSystemAccprofilelistArgs, GetSystemAccprofilelistResult, GetSystemAccprofilelistOutputArgs } from "./getSystemAccprofilelist";
+export const getSystemAccprofilelist: typeof import("./getSystemAccprofilelist").getSystemAccprofilelist = null as any;
+export const getSystemAccprofilelistOutput: typeof import("./getSystemAccprofilelist").getSystemAccprofilelistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAccprofilelist","getSystemAccprofilelistOutput"], () => require("./getSystemAccprofilelist"));
+
+export { GetSystemAdminArgs, GetSystemAdminResult, GetSystemAdminOutputArgs } from "./getSystemAdmin";
+export const getSystemAdmin: typeof import("./getSystemAdmin").getSystemAdmin = null as any;
+export const getSystemAdminOutput: typeof import("./getSystemAdmin").getSystemAdminOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAdmin","getSystemAdminOutput"], () => require("./getSystemAdmin"));
+
+export { GetSystemAdminlistArgs, GetSystemAdminlistResult, GetSystemAdminlistOutputArgs } from "./getSystemAdminlist";
+export const getSystemAdminlist: typeof import("./getSystemAdminlist").getSystemAdminlist = null as any;
+export const getSystemAdminlistOutput: typeof import("./getSystemAdminlist").getSystemAdminlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAdminlist","getSystemAdminlistOutput"], () => require("./getSystemAdminlist"));
+
+export { GetSystemAliasArgs, GetSystemAliasResult, GetSystemAliasOutputArgs } from "./getSystemAlias";
+export const getSystemAlias: typeof import("./getSystemAlias").getSystemAlias = null as any;
+export const getSystemAliasOutput: typeof import("./getSystemAlias").getSystemAliasOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAlias","getSystemAliasOutput"], () => require("./getSystemAlias"));
+
+export { GetSystemAliaslistArgs, GetSystemAliaslistResult, GetSystemAliaslistOutputArgs } from "./getSystemAliaslist";
+export const getSystemAliaslist: typeof import("./getSystemAliaslist").getSystemAliaslist = null as any;
+export const getSystemAliaslistOutput: typeof import("./getSystemAliaslist").getSystemAliaslistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAliaslist","getSystemAliaslistOutput"], () => require("./getSystemAliaslist"));
+
+export { GetSystemApiuserArgs, GetSystemApiuserResult, GetSystemApiuserOutputArgs } from "./getSystemApiuser";
+export const getSystemApiuser: typeof import("./getSystemApiuser").getSystemApiuser = null as any;
+export const getSystemApiuserOutput: typeof import("./getSystemApiuser").getSystemApiuserOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemApiuser","getSystemApiuserOutput"], () => require("./getSystemApiuser"));
+
+export { GetSystemApiuserlistArgs, GetSystemApiuserlistResult, GetSystemApiuserlistOutputArgs } from "./getSystemApiuserlist";
+export const getSystemApiuserlist: typeof import("./getSystemApiuserlist").getSystemApiuserlist = null as any;
+export const getSystemApiuserlistOutput: typeof import("./getSystemApiuserlist").getSystemApiuserlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemApiuserlist","getSystemApiuserlistOutput"], () => require("./getSystemApiuserlist"));
+
+export { GetSystemArptableArgs, GetSystemArptableResult, GetSystemArptableOutputArgs } from "./getSystemArptable";
+export const getSystemArptable: typeof import("./getSystemArptable").getSystemArptable = null as any;
+export const getSystemArptableOutput: typeof import("./getSystemArptable").getSystemArptableOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemArptable","getSystemArptableOutput"], () => require("./getSystemArptable"));
+
+export { GetSystemArptablelistArgs, GetSystemArptablelistResult, GetSystemArptablelistOutputArgs } from "./getSystemArptablelist";
+export const getSystemArptablelist: typeof import("./getSystemArptablelist").getSystemArptablelist = null as any;
+export const getSystemArptablelistOutput: typeof import("./getSystemArptablelist").getSystemArptablelistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemArptablelist","getSystemArptablelistOutput"], () => require("./getSystemArptablelist"));
+
+export { GetSystemAutoinstallArgs, GetSystemAutoinstallResult, GetSystemAutoinstallOutputArgs } from "./getSystemAutoinstall";
+export const getSystemAutoinstall: typeof import("./getSystemAutoinstall").getSystemAutoinstall = null as any;
+export const getSystemAutoinstallOutput: typeof import("./getSystemAutoinstall").getSystemAutoinstallOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAutoinstall","getSystemAutoinstallOutput"], () => require("./getSystemAutoinstall"));
+
+export { GetSystemAutomationactionArgs, GetSystemAutomationactionResult, GetSystemAutomationactionOutputArgs } from "./getSystemAutomationaction";
+export const getSystemAutomationaction: typeof import("./getSystemAutomationaction").getSystemAutomationaction = null as any;
+export const getSystemAutomationactionOutput: typeof import("./getSystemAutomationaction").getSystemAutomationactionOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAutomationaction","getSystemAutomationactionOutput"], () => require("./getSystemAutomationaction"));
+
+export { GetSystemAutomationactionlistArgs, GetSystemAutomationactionlistResult, GetSystemAutomationactionlistOutputArgs } from "./getSystemAutomationactionlist";
+export const getSystemAutomationactionlist: typeof import("./getSystemAutomationactionlist").getSystemAutomationactionlist = null as any;
+export const getSystemAutomationactionlistOutput: typeof import("./getSystemAutomationactionlist").getSystemAutomationactionlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAutomationactionlist","getSystemAutomationactionlistOutput"], () => require("./getSystemAutomationactionlist"));
+
+export { GetSystemAutomationdestinationArgs, GetSystemAutomationdestinationResult, GetSystemAutomationdestinationOutputArgs } from "./getSystemAutomationdestination";
+export const getSystemAutomationdestination: typeof import("./getSystemAutomationdestination").getSystemAutomationdestination = null as any;
+export const getSystemAutomationdestinationOutput: typeof import("./getSystemAutomationdestination").getSystemAutomationdestinationOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAutomationdestination","getSystemAutomationdestinationOutput"], () => require("./getSystemAutomationdestination"));
+
+export { GetSystemAutomationdestinationlistArgs, GetSystemAutomationdestinationlistResult, GetSystemAutomationdestinationlistOutputArgs } from "./getSystemAutomationdestinationlist";
+export const getSystemAutomationdestinationlist: typeof import("./getSystemAutomationdestinationlist").getSystemAutomationdestinationlist = null as any;
+export const getSystemAutomationdestinationlistOutput: typeof import("./getSystemAutomationdestinationlist").getSystemAutomationdestinationlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAutomationdestinationlist","getSystemAutomationdestinationlistOutput"], () => require("./getSystemAutomationdestinationlist"));
+
+export { GetSystemAutomationtriggerArgs, GetSystemAutomationtriggerResult, GetSystemAutomationtriggerOutputArgs } from "./getSystemAutomationtrigger";
+export const getSystemAutomationtrigger: typeof import("./getSystemAutomationtrigger").getSystemAutomationtrigger = null as any;
+export const getSystemAutomationtriggerOutput: typeof import("./getSystemAutomationtrigger").getSystemAutomationtriggerOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAutomationtrigger","getSystemAutomationtriggerOutput"], () => require("./getSystemAutomationtrigger"));
+
+export { GetSystemAutomationtriggerlistArgs, GetSystemAutomationtriggerlistResult, GetSystemAutomationtriggerlistOutputArgs } from "./getSystemAutomationtriggerlist";
+export const getSystemAutomationtriggerlist: typeof import("./getSystemAutomationtriggerlist").getSystemAutomationtriggerlist = null as any;
+export const getSystemAutomationtriggerlistOutput: typeof import("./getSystemAutomationtriggerlist").getSystemAutomationtriggerlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAutomationtriggerlist","getSystemAutomationtriggerlistOutput"], () => require("./getSystemAutomationtriggerlist"));
+
+export { GetSystemAutoscriptArgs, GetSystemAutoscriptResult, GetSystemAutoscriptOutputArgs } from "./getSystemAutoscript";
+export const getSystemAutoscript: typeof import("./getSystemAutoscript").getSystemAutoscript = null as any;
+export const getSystemAutoscriptOutput: typeof import("./getSystemAutoscript").getSystemAutoscriptOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAutoscript","getSystemAutoscriptOutput"], () => require("./getSystemAutoscript"));
+
+export { GetSystemAutoscriptlistArgs, GetSystemAutoscriptlistResult, GetSystemAutoscriptlistOutputArgs } from "./getSystemAutoscriptlist";
+export const getSystemAutoscriptlist: typeof import("./getSystemAutoscriptlist").getSystemAutoscriptlist = null as any;
+export const getSystemAutoscriptlistOutput: typeof import("./getSystemAutoscriptlist").getSystemAutoscriptlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemAutoscriptlist","getSystemAutoscriptlistOutput"], () => require("./getSystemAutoscriptlist"));
+
+export { GetSystemCentralmanagementArgs, GetSystemCentralmanagementResult, GetSystemCentralmanagementOutputArgs } from "./getSystemCentralmanagement";
+export const getSystemCentralmanagement: typeof import("./getSystemCentralmanagement").getSystemCentralmanagement = null as any;
+export const getSystemCentralmanagementOutput: typeof import("./getSystemCentralmanagement").getSystemCentralmanagementOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemCentralmanagement","getSystemCentralmanagementOutput"], () => require("./getSystemCentralmanagement"));
+
+export { GetSystemClustersyncArgs, GetSystemClustersyncResult, GetSystemClustersyncOutputArgs } from "./getSystemClustersync";
+export const getSystemClustersync: typeof import("./getSystemClustersync").getSystemClustersync = null as any;
+export const getSystemClustersyncOutput: typeof import("./getSystemClustersync").getSystemClustersyncOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemClustersync","getSystemClustersyncOutput"], () => require("./getSystemClustersync"));
+
+export { GetSystemClustersynclistArgs, GetSystemClustersynclistResult, GetSystemClustersynclistOutputArgs } from "./getSystemClustersynclist";
+export const getSystemClustersynclist: typeof import("./getSystemClustersynclist").getSystemClustersynclist = null as any;
+export const getSystemClustersynclistOutput: typeof import("./getSystemClustersynclist").getSystemClustersynclistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemClustersynclist","getSystemClustersynclistOutput"], () => require("./getSystemClustersynclist"));
+
+export { GetSystemConsoleArgs, GetSystemConsoleResult, GetSystemConsoleOutputArgs } from "./getSystemConsole";
+export const getSystemConsole: typeof import("./getSystemConsole").getSystemConsole = null as any;
+export const getSystemConsoleOutput: typeof import("./getSystemConsole").getSystemConsoleOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemConsole","getSystemConsoleOutput"], () => require("./getSystemConsole"));
+
+export { GetSystemCsfArgs, GetSystemCsfResult, GetSystemCsfOutputArgs } from "./getSystemCsf";
+export const getSystemCsf: typeof import("./getSystemCsf").getSystemCsf = null as any;
+export const getSystemCsfOutput: typeof import("./getSystemCsf").getSystemCsfOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemCsf","getSystemCsfOutput"], () => require("./getSystemCsf"));
+
+export { GetSystemDdnsArgs, GetSystemDdnsResult, GetSystemDdnsOutputArgs } from "./getSystemDdns";
+export const getSystemDdns: typeof import("./getSystemDdns").getSystemDdns = null as any;
+export const getSystemDdnsOutput: typeof import("./getSystemDdns").getSystemDdnsOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemDdns","getSystemDdnsOutput"], () => require("./getSystemDdns"));
+
+export { GetSystemDdnslistArgs, GetSystemDdnslistResult, GetSystemDdnslistOutputArgs } from "./getSystemDdnslist";
+export const getSystemDdnslist: typeof import("./getSystemDdnslist").getSystemDdnslist = null as any;
+export const getSystemDdnslistOutput: typeof import("./getSystemDdnslist").getSystemDdnslistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemDdnslist","getSystemDdnslistOutput"], () => require("./getSystemDdnslist"));
+
+export { GetSystemDnsArgs, GetSystemDnsResult, GetSystemDnsOutputArgs } from "./getSystemDns";
+export const getSystemDns: typeof import("./getSystemDns").getSystemDns = null as any;
+export const getSystemDnsOutput: typeof import("./getSystemDns").getSystemDnsOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemDns","getSystemDnsOutput"], () => require("./getSystemDns"));
+
+export { GetSystemDnsdatabaseArgs, GetSystemDnsdatabaseResult, GetSystemDnsdatabaseOutputArgs } from "./getSystemDnsdatabase";
+export const getSystemDnsdatabase: typeof import("./getSystemDnsdatabase").getSystemDnsdatabase = null as any;
+export const getSystemDnsdatabaseOutput: typeof import("./getSystemDnsdatabase").getSystemDnsdatabaseOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemDnsdatabase","getSystemDnsdatabaseOutput"], () => require("./getSystemDnsdatabase"));
+
+export { GetSystemDnsdatabaselistArgs, GetSystemDnsdatabaselistResult, GetSystemDnsdatabaselistOutputArgs } from "./getSystemDnsdatabaselist";
+export const getSystemDnsdatabaselist: typeof import("./getSystemDnsdatabaselist").getSystemDnsdatabaselist = null as any;
+export const getSystemDnsdatabaselistOutput: typeof import("./getSystemDnsdatabaselist").getSystemDnsdatabaselistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemDnsdatabaselist","getSystemDnsdatabaselistOutput"], () => require("./getSystemDnsdatabaselist"));
+
+export { GetSystemDnsserverArgs, GetSystemDnsserverResult, GetSystemDnsserverOutputArgs } from "./getSystemDnsserver";
+export const getSystemDnsserver: typeof import("./getSystemDnsserver").getSystemDnsserver = null as any;
+export const getSystemDnsserverOutput: typeof import("./getSystemDnsserver").getSystemDnsserverOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemDnsserver","getSystemDnsserverOutput"], () => require("./getSystemDnsserver"));
+
+export { GetSystemDnsserverlistArgs, GetSystemDnsserverlistResult, GetSystemDnsserverlistOutputArgs } from "./getSystemDnsserverlist";
+export const getSystemDnsserverlist: typeof import("./getSystemDnsserverlist").getSystemDnsserverlist = null as any;
+export const getSystemDnsserverlistOutput: typeof import("./getSystemDnsserverlist").getSystemDnsserverlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemDnsserverlist","getSystemDnsserverlistOutput"], () => require("./getSystemDnsserverlist"));
+
+export { GetSystemDscpbasedpriorityArgs, GetSystemDscpbasedpriorityResult, GetSystemDscpbasedpriorityOutputArgs } from "./getSystemDscpbasedpriority";
+export const getSystemDscpbasedpriority: typeof import("./getSystemDscpbasedpriority").getSystemDscpbasedpriority = null as any;
+export const getSystemDscpbasedpriorityOutput: typeof import("./getSystemDscpbasedpriority").getSystemDscpbasedpriorityOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemDscpbasedpriority","getSystemDscpbasedpriorityOutput"], () => require("./getSystemDscpbasedpriority"));
+
+export { GetSystemDscpbasedprioritylistArgs, GetSystemDscpbasedprioritylistResult, GetSystemDscpbasedprioritylistOutputArgs } from "./getSystemDscpbasedprioritylist";
+export const getSystemDscpbasedprioritylist: typeof import("./getSystemDscpbasedprioritylist").getSystemDscpbasedprioritylist = null as any;
+export const getSystemDscpbasedprioritylistOutput: typeof import("./getSystemDscpbasedprioritylist").getSystemDscpbasedprioritylistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemDscpbasedprioritylist","getSystemDscpbasedprioritylistOutput"], () => require("./getSystemDscpbasedprioritylist"));
+
+export { GetSystemEmailserverArgs, GetSystemEmailserverResult, GetSystemEmailserverOutputArgs } from "./getSystemEmailserver";
+export const getSystemEmailserver: typeof import("./getSystemEmailserver").getSystemEmailserver = null as any;
+export const getSystemEmailserverOutput: typeof import("./getSystemEmailserver").getSystemEmailserverOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemEmailserver","getSystemEmailserverOutput"], () => require("./getSystemEmailserver"));
+
+export { GetSystemExternalresourceArgs, GetSystemExternalresourceResult, GetSystemExternalresourceOutputArgs } from "./getSystemExternalresource";
+export const getSystemExternalresource: typeof import("./getSystemExternalresource").getSystemExternalresource = null as any;
+export const getSystemExternalresourceOutput: typeof import("./getSystemExternalresource").getSystemExternalresourceOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemExternalresource","getSystemExternalresourceOutput"], () => require("./getSystemExternalresource"));
+
+export { GetSystemExternalresourcelistArgs, GetSystemExternalresourcelistResult, GetSystemExternalresourcelistOutputArgs } from "./getSystemExternalresourcelist";
+export const getSystemExternalresourcelist: typeof import("./getSystemExternalresourcelist").getSystemExternalresourcelist = null as any;
+export const getSystemExternalresourcelistOutput: typeof import("./getSystemExternalresourcelist").getSystemExternalresourcelistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemExternalresourcelist","getSystemExternalresourcelistOutput"], () => require("./getSystemExternalresourcelist"));
+
+export { GetSystemFipsccArgs, GetSystemFipsccResult, GetSystemFipsccOutputArgs } from "./getSystemFipscc";
+export const getSystemFipscc: typeof import("./getSystemFipscc").getSystemFipscc = null as any;
+export const getSystemFipsccOutput: typeof import("./getSystemFipscc").getSystemFipsccOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemFipscc","getSystemFipsccOutput"], () => require("./getSystemFipscc"));
+
+export { GetSystemFmArgs, GetSystemFmResult, GetSystemFmOutputArgs } from "./getSystemFm";
+export const getSystemFm: typeof import("./getSystemFm").getSystemFm = null as any;
+export const getSystemFmOutput: typeof import("./getSystemFm").getSystemFmOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemFm","getSystemFmOutput"], () => require("./getSystemFm"));
+
+export { GetSystemFortiguardArgs, GetSystemFortiguardResult, GetSystemFortiguardOutputArgs } from "./getSystemFortiguard";
+export const getSystemFortiguard: typeof import("./getSystemFortiguard").getSystemFortiguard = null as any;
+export const getSystemFortiguardOutput: typeof import("./getSystemFortiguard").getSystemFortiguardOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemFortiguard","getSystemFortiguardOutput"], () => require("./getSystemFortiguard"));
+
+export { GetSystemFortimanagerArgs, GetSystemFortimanagerResult, GetSystemFortimanagerOutputArgs } from "./getSystemFortimanager";
+export const getSystemFortimanager: typeof import("./getSystemFortimanager").getSystemFortimanager = null as any;
+export const getSystemFortimanagerOutput: typeof import("./getSystemFortimanager").getSystemFortimanagerOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemFortimanager","getSystemFortimanagerOutput"], () => require("./getSystemFortimanager"));
+
+export { GetSystemFortisandboxArgs, GetSystemFortisandboxResult, GetSystemFortisandboxOutputArgs } from "./getSystemFortisandbox";
+export const getSystemFortisandbox: typeof import("./getSystemFortisandbox").getSystemFortisandbox = null as any;
+export const getSystemFortisandboxOutput: typeof import("./getSystemFortisandbox").getSystemFortisandboxOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemFortisandbox","getSystemFortisandboxOutput"], () => require("./getSystemFortisandbox"));
+
+export { GetSystemFssopollingArgs, GetSystemFssopollingResult, GetSystemFssopollingOutputArgs } from "./getSystemFssopolling";
+export const getSystemFssopolling: typeof import("./getSystemFssopolling").getSystemFssopolling = null as any;
+export const getSystemFssopollingOutput: typeof import("./getSystemFssopolling").getSystemFssopollingOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemFssopolling","getSystemFssopollingOutput"], () => require("./getSystemFssopolling"));
+
+export { GetSystemFtmpushArgs, GetSystemFtmpushResult, GetSystemFtmpushOutputArgs } from "./getSystemFtmpush";
+export const getSystemFtmpush: typeof import("./getSystemFtmpush").getSystemFtmpush = null as any;
+export const getSystemFtmpushOutput: typeof import("./getSystemFtmpush").getSystemFtmpushOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemFtmpush","getSystemFtmpushOutput"], () => require("./getSystemFtmpush"));
+
+export { GetSystemGlobalArgs, GetSystemGlobalResult, GetSystemGlobalOutputArgs } from "./getSystemGlobal";
+export const getSystemGlobal: typeof import("./getSystemGlobal").getSystemGlobal = null as any;
+export const getSystemGlobalOutput: typeof import("./getSystemGlobal").getSystemGlobalOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemGlobal","getSystemGlobalOutput"], () => require("./getSystemGlobal"));
+
+export { GetSystemGretunnelArgs, GetSystemGretunnelResult, GetSystemGretunnelOutputArgs } from "./getSystemGretunnel";
+export const getSystemGretunnel: typeof import("./getSystemGretunnel").getSystemGretunnel = null as any;
+export const getSystemGretunnelOutput: typeof import("./getSystemGretunnel").getSystemGretunnelOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemGretunnel","getSystemGretunnelOutput"], () => require("./getSystemGretunnel"));
+
+export { GetSystemGretunnellistArgs, GetSystemGretunnellistResult, GetSystemGretunnellistOutputArgs } from "./getSystemGretunnellist";
+export const getSystemGretunnellist: typeof import("./getSystemGretunnellist").getSystemGretunnellist = null as any;
+export const getSystemGretunnellistOutput: typeof import("./getSystemGretunnellist").getSystemGretunnellistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemGretunnellist","getSystemGretunnellistOutput"], () => require("./getSystemGretunnellist"));
+
+export { GetSystemHaArgs, GetSystemHaResult, GetSystemHaOutputArgs } from "./getSystemHa";
+export const getSystemHa: typeof import("./getSystemHa").getSystemHa = null as any;
+export const getSystemHaOutput: typeof import("./getSystemHa").getSystemHaOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemHa","getSystemHaOutput"], () => require("./getSystemHa"));
+
+export { GetSystemHamonitorArgs, GetSystemHamonitorResult, GetSystemHamonitorOutputArgs } from "./getSystemHamonitor";
+export const getSystemHamonitor: typeof import("./getSystemHamonitor").getSystemHamonitor = null as any;
+export const getSystemHamonitorOutput: typeof import("./getSystemHamonitor").getSystemHamonitorOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemHamonitor","getSystemHamonitorOutput"], () => require("./getSystemHamonitor"));
+
+export { GetSystemInterfaceArgs, GetSystemInterfaceResult, GetSystemInterfaceOutputArgs } from "./getSystemInterface";
+export const getSystemInterface: typeof import("./getSystemInterface").getSystemInterface = null as any;
+export const getSystemInterfaceOutput: typeof import("./getSystemInterface").getSystemInterfaceOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemInterface","getSystemInterfaceOutput"], () => require("./getSystemInterface"));
+
+export { GetSystemInterfacelistArgs, GetSystemInterfacelistResult, GetSystemInterfacelistOutputArgs } from "./getSystemInterfacelist";
+export const getSystemInterfacelist: typeof import("./getSystemInterfacelist").getSystemInterfacelist = null as any;
+export const getSystemInterfacelistOutput: typeof import("./getSystemInterfacelist").getSystemInterfacelistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemInterfacelist","getSystemInterfacelistOutput"], () => require("./getSystemInterfacelist"));
+
+export { GetSystemIpiptunnelArgs, GetSystemIpiptunnelResult, GetSystemIpiptunnelOutputArgs } from "./getSystemIpiptunnel";
+export const getSystemIpiptunnel: typeof import("./getSystemIpiptunnel").getSystemIpiptunnel = null as any;
+export const getSystemIpiptunnelOutput: typeof import("./getSystemIpiptunnel").getSystemIpiptunnelOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemIpiptunnel","getSystemIpiptunnelOutput"], () => require("./getSystemIpiptunnel"));
+
+export { GetSystemIpiptunnellistArgs, GetSystemIpiptunnellistResult, GetSystemIpiptunnellistOutputArgs } from "./getSystemIpiptunnellist";
+export const getSystemIpiptunnellist: typeof import("./getSystemIpiptunnellist").getSystemIpiptunnellist = null as any;
+export const getSystemIpiptunnellistOutput: typeof import("./getSystemIpiptunnellist").getSystemIpiptunnellistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemIpiptunnellist","getSystemIpiptunnellistOutput"], () => require("./getSystemIpiptunnellist"));
+
+export { GetSystemIpv6neighborcacheArgs, GetSystemIpv6neighborcacheResult, GetSystemIpv6neighborcacheOutputArgs } from "./getSystemIpv6neighborcache";
+export const getSystemIpv6neighborcache: typeof import("./getSystemIpv6neighborcache").getSystemIpv6neighborcache = null as any;
+export const getSystemIpv6neighborcacheOutput: typeof import("./getSystemIpv6neighborcache").getSystemIpv6neighborcacheOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemIpv6neighborcache","getSystemIpv6neighborcacheOutput"], () => require("./getSystemIpv6neighborcache"));
+
+export { GetSystemIpv6neighborcachelistArgs, GetSystemIpv6neighborcachelistResult, GetSystemIpv6neighborcachelistOutputArgs } from "./getSystemIpv6neighborcachelist";
+export const getSystemIpv6neighborcachelist: typeof import("./getSystemIpv6neighborcachelist").getSystemIpv6neighborcachelist = null as any;
+export const getSystemIpv6neighborcachelistOutput: typeof import("./getSystemIpv6neighborcachelist").getSystemIpv6neighborcachelistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemIpv6neighborcachelist","getSystemIpv6neighborcachelistOutput"], () => require("./getSystemIpv6neighborcachelist"));
+
+export { GetSystemIpv6tunnelArgs, GetSystemIpv6tunnelResult, GetSystemIpv6tunnelOutputArgs } from "./getSystemIpv6tunnel";
+export const getSystemIpv6tunnel: typeof import("./getSystemIpv6tunnel").getSystemIpv6tunnel = null as any;
+export const getSystemIpv6tunnelOutput: typeof import("./getSystemIpv6tunnel").getSystemIpv6tunnelOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemIpv6tunnel","getSystemIpv6tunnelOutput"], () => require("./getSystemIpv6tunnel"));
+
+export { GetSystemIpv6tunnellistArgs, GetSystemIpv6tunnellistResult, GetSystemIpv6tunnellistOutputArgs } from "./getSystemIpv6tunnellist";
+export const getSystemIpv6tunnellist: typeof import("./getSystemIpv6tunnellist").getSystemIpv6tunnellist = null as any;
+export const getSystemIpv6tunnellistOutput: typeof import("./getSystemIpv6tunnellist").getSystemIpv6tunnellistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemIpv6tunnellist","getSystemIpv6tunnellistOutput"], () => require("./getSystemIpv6tunnellist"));
+
+export { GetSystemLinkmonitorArgs, GetSystemLinkmonitorResult, GetSystemLinkmonitorOutputArgs } from "./getSystemLinkmonitor";
+export const getSystemLinkmonitor: typeof import("./getSystemLinkmonitor").getSystemLinkmonitor = null as any;
+export const getSystemLinkmonitorOutput: typeof import("./getSystemLinkmonitor").getSystemLinkmonitorOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemLinkmonitor","getSystemLinkmonitorOutput"], () => require("./getSystemLinkmonitor"));
+
+export { GetSystemLinkmonitorlistArgs, GetSystemLinkmonitorlistResult, GetSystemLinkmonitorlistOutputArgs } from "./getSystemLinkmonitorlist";
+export const getSystemLinkmonitorlist: typeof import("./getSystemLinkmonitorlist").getSystemLinkmonitorlist = null as any;
+export const getSystemLinkmonitorlistOutput: typeof import("./getSystemLinkmonitorlist").getSystemLinkmonitorlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemLinkmonitorlist","getSystemLinkmonitorlistOutput"], () => require("./getSystemLinkmonitorlist"));
+
+export { GetSystemManagementtunnelArgs, GetSystemManagementtunnelResult, GetSystemManagementtunnelOutputArgs } from "./getSystemManagementtunnel";
+export const getSystemManagementtunnel: typeof import("./getSystemManagementtunnel").getSystemManagementtunnel = null as any;
+export const getSystemManagementtunnelOutput: typeof import("./getSystemManagementtunnel").getSystemManagementtunnelOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemManagementtunnel","getSystemManagementtunnelOutput"], () => require("./getSystemManagementtunnel"));
+
+export { GetSystemMobiletunnelArgs, GetSystemMobiletunnelResult, GetSystemMobiletunnelOutputArgs } from "./getSystemMobiletunnel";
+export const getSystemMobiletunnel: typeof import("./getSystemMobiletunnel").getSystemMobiletunnel = null as any;
+export const getSystemMobiletunnelOutput: typeof import("./getSystemMobiletunnel").getSystemMobiletunnelOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemMobiletunnel","getSystemMobiletunnelOutput"], () => require("./getSystemMobiletunnel"));
+
+export { GetSystemMobiletunnellistArgs, GetSystemMobiletunnellistResult, GetSystemMobiletunnellistOutputArgs } from "./getSystemMobiletunnellist";
+export const getSystemMobiletunnellist: typeof import("./getSystemMobiletunnellist").getSystemMobiletunnellist = null as any;
+export const getSystemMobiletunnellistOutput: typeof import("./getSystemMobiletunnellist").getSystemMobiletunnellistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemMobiletunnellist","getSystemMobiletunnellistOutput"], () => require("./getSystemMobiletunnellist"));
+
+export { GetSystemNat64Args, GetSystemNat64Result, GetSystemNat64OutputArgs } from "./getSystemNat64";
+export const getSystemNat64: typeof import("./getSystemNat64").getSystemNat64 = null as any;
+export const getSystemNat64Output: typeof import("./getSystemNat64").getSystemNat64Output = null as any;
+utilities.lazyLoad(exports, ["getSystemNat64","getSystemNat64Output"], () => require("./getSystemNat64"));
+
+export { GetSystemNdproxyArgs, GetSystemNdproxyResult, GetSystemNdproxyOutputArgs } from "./getSystemNdproxy";
+export const getSystemNdproxy: typeof import("./getSystemNdproxy").getSystemNdproxy = null as any;
+export const getSystemNdproxyOutput: typeof import("./getSystemNdproxy").getSystemNdproxyOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemNdproxy","getSystemNdproxyOutput"], () => require("./getSystemNdproxy"));
+
+export { GetSystemNetflowArgs, GetSystemNetflowResult, GetSystemNetflowOutputArgs } from "./getSystemNetflow";
+export const getSystemNetflow: typeof import("./getSystemNetflow").getSystemNetflow = null as any;
+export const getSystemNetflowOutput: typeof import("./getSystemNetflow").getSystemNetflowOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemNetflow","getSystemNetflowOutput"], () => require("./getSystemNetflow"));
+
+export { GetSystemNetworkvisibilityArgs, GetSystemNetworkvisibilityResult, GetSystemNetworkvisibilityOutputArgs } from "./getSystemNetworkvisibility";
+export const getSystemNetworkvisibility: typeof import("./getSystemNetworkvisibility").getSystemNetworkvisibility = null as any;
+export const getSystemNetworkvisibilityOutput: typeof import("./getSystemNetworkvisibility").getSystemNetworkvisibilityOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemNetworkvisibility","getSystemNetworkvisibilityOutput"], () => require("./getSystemNetworkvisibility"));
+
+export { GetSystemNtpArgs, GetSystemNtpResult, GetSystemNtpOutputArgs } from "./getSystemNtp";
+export const getSystemNtp: typeof import("./getSystemNtp").getSystemNtp = null as any;
+export const getSystemNtpOutput: typeof import("./getSystemNtp").getSystemNtpOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemNtp","getSystemNtpOutput"], () => require("./getSystemNtp"));
+
+export { GetSystemObjecttaggingArgs, GetSystemObjecttaggingResult, GetSystemObjecttaggingOutputArgs } from "./getSystemObjecttagging";
+export const getSystemObjecttagging: typeof import("./getSystemObjecttagging").getSystemObjecttagging = null as any;
+export const getSystemObjecttaggingOutput: typeof import("./getSystemObjecttagging").getSystemObjecttaggingOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemObjecttagging","getSystemObjecttaggingOutput"], () => require("./getSystemObjecttagging"));
+
+export { GetSystemObjecttagginglistArgs, GetSystemObjecttagginglistResult, GetSystemObjecttagginglistOutputArgs } from "./getSystemObjecttagginglist";
+export const getSystemObjecttagginglist: typeof import("./getSystemObjecttagginglist").getSystemObjecttagginglist = null as any;
+export const getSystemObjecttagginglistOutput: typeof import("./getSystemObjecttagginglist").getSystemObjecttagginglistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemObjecttagginglist","getSystemObjecttagginglistOutput"], () => require("./getSystemObjecttagginglist"));
+
+export { GetSystemPasswordpolicyArgs, GetSystemPasswordpolicyResult, GetSystemPasswordpolicyOutputArgs } from "./getSystemPasswordpolicy";
+export const getSystemPasswordpolicy: typeof import("./getSystemPasswordpolicy").getSystemPasswordpolicy = null as any;
+export const getSystemPasswordpolicyOutput: typeof import("./getSystemPasswordpolicy").getSystemPasswordpolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemPasswordpolicy","getSystemPasswordpolicyOutput"], () => require("./getSystemPasswordpolicy"));
+
+export { GetSystemPasswordpolicyguestadminArgs, GetSystemPasswordpolicyguestadminResult, GetSystemPasswordpolicyguestadminOutputArgs } from "./getSystemPasswordpolicyguestadmin";
+export const getSystemPasswordpolicyguestadmin: typeof import("./getSystemPasswordpolicyguestadmin").getSystemPasswordpolicyguestadmin = null as any;
+export const getSystemPasswordpolicyguestadminOutput: typeof import("./getSystemPasswordpolicyguestadmin").getSystemPasswordpolicyguestadminOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemPasswordpolicyguestadmin","getSystemPasswordpolicyguestadminOutput"], () => require("./getSystemPasswordpolicyguestadmin"));
+
+export { GetSystemPppoeinterfaceArgs, GetSystemPppoeinterfaceResult, GetSystemPppoeinterfaceOutputArgs } from "./getSystemPppoeinterface";
+export const getSystemPppoeinterface: typeof import("./getSystemPppoeinterface").getSystemPppoeinterface = null as any;
+export const getSystemPppoeinterfaceOutput: typeof import("./getSystemPppoeinterface").getSystemPppoeinterfaceOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemPppoeinterface","getSystemPppoeinterfaceOutput"], () => require("./getSystemPppoeinterface"));
+
+export { GetSystemPppoeinterfacelistArgs, GetSystemPppoeinterfacelistResult, GetSystemPppoeinterfacelistOutputArgs } from "./getSystemPppoeinterfacelist";
+export const getSystemPppoeinterfacelist: typeof import("./getSystemPppoeinterfacelist").getSystemPppoeinterfacelist = null as any;
+export const getSystemPppoeinterfacelistOutput: typeof import("./getSystemPppoeinterfacelist").getSystemPppoeinterfacelistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemPppoeinterfacelist","getSystemPppoeinterfacelistOutput"], () => require("./getSystemPppoeinterfacelist"));
+
+export { GetSystemProberesponseArgs, GetSystemProberesponseResult, GetSystemProberesponseOutputArgs } from "./getSystemProberesponse";
+export const getSystemProberesponse: typeof import("./getSystemProberesponse").getSystemProberesponse = null as any;
+export const getSystemProberesponseOutput: typeof import("./getSystemProberesponse").getSystemProberesponseOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemProberesponse","getSystemProberesponseOutput"], () => require("./getSystemProberesponse"));
+
+export { GetSystemProxyarpArgs, GetSystemProxyarpResult, GetSystemProxyarpOutputArgs } from "./getSystemProxyarp";
+export const getSystemProxyarp: typeof import("./getSystemProxyarp").getSystemProxyarp = null as any;
+export const getSystemProxyarpOutput: typeof import("./getSystemProxyarp").getSystemProxyarpOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemProxyarp","getSystemProxyarpOutput"], () => require("./getSystemProxyarp"));
+
+export { GetSystemProxyarplistArgs, GetSystemProxyarplistResult, GetSystemProxyarplistOutputArgs } from "./getSystemProxyarplist";
+export const getSystemProxyarplist: typeof import("./getSystemProxyarplist").getSystemProxyarplist = null as any;
+export const getSystemProxyarplistOutput: typeof import("./getSystemProxyarplist").getSystemProxyarplistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemProxyarplist","getSystemProxyarplistOutput"], () => require("./getSystemProxyarplist"));
+
+export { GetSystemReplacemsggroupArgs, GetSystemReplacemsggroupResult, GetSystemReplacemsggroupOutputArgs } from "./getSystemReplacemsggroup";
+export const getSystemReplacemsggroup: typeof import("./getSystemReplacemsggroup").getSystemReplacemsggroup = null as any;
+export const getSystemReplacemsggroupOutput: typeof import("./getSystemReplacemsggroup").getSystemReplacemsggroupOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemReplacemsggroup","getSystemReplacemsggroupOutput"], () => require("./getSystemReplacemsggroup"));
+
+export { GetSystemReplacemsggrouplistArgs, GetSystemReplacemsggrouplistResult, GetSystemReplacemsggrouplistOutputArgs } from "./getSystemReplacemsggrouplist";
+export const getSystemReplacemsggrouplist: typeof import("./getSystemReplacemsggrouplist").getSystemReplacemsggrouplist = null as any;
+export const getSystemReplacemsggrouplistOutput: typeof import("./getSystemReplacemsggrouplist").getSystemReplacemsggrouplistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemReplacemsggrouplist","getSystemReplacemsggrouplistOutput"], () => require("./getSystemReplacemsggrouplist"));
+
+export { GetSystemReplacemsgimageArgs, GetSystemReplacemsgimageResult, GetSystemReplacemsgimageOutputArgs } from "./getSystemReplacemsgimage";
+export const getSystemReplacemsgimage: typeof import("./getSystemReplacemsgimage").getSystemReplacemsgimage = null as any;
+export const getSystemReplacemsgimageOutput: typeof import("./getSystemReplacemsgimage").getSystemReplacemsgimageOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemReplacemsgimage","getSystemReplacemsgimageOutput"], () => require("./getSystemReplacemsgimage"));
+
+export { GetSystemReplacemsgimagelistArgs, GetSystemReplacemsgimagelistResult, GetSystemReplacemsgimagelistOutputArgs } from "./getSystemReplacemsgimagelist";
+export const getSystemReplacemsgimagelist: typeof import("./getSystemReplacemsgimagelist").getSystemReplacemsgimagelist = null as any;
+export const getSystemReplacemsgimagelistOutput: typeof import("./getSystemReplacemsgimagelist").getSystemReplacemsgimagelistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemReplacemsgimagelist","getSystemReplacemsgimagelistOutput"], () => require("./getSystemReplacemsgimagelist"));
+
+export { GetSystemResourcelimitsArgs, GetSystemResourcelimitsResult, GetSystemResourcelimitsOutputArgs } from "./getSystemResourcelimits";
+export const getSystemResourcelimits: typeof import("./getSystemResourcelimits").getSystemResourcelimits = null as any;
+export const getSystemResourcelimitsOutput: typeof import("./getSystemResourcelimits").getSystemResourcelimitsOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemResourcelimits","getSystemResourcelimitsOutput"], () => require("./getSystemResourcelimits"));
+
+export { GetSystemSdnconnectorArgs, GetSystemSdnconnectorResult, GetSystemSdnconnectorOutputArgs } from "./getSystemSdnconnector";
+export const getSystemSdnconnector: typeof import("./getSystemSdnconnector").getSystemSdnconnector = null as any;
+export const getSystemSdnconnectorOutput: typeof import("./getSystemSdnconnector").getSystemSdnconnectorOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemSdnconnector","getSystemSdnconnectorOutput"], () => require("./getSystemSdnconnector"));
+
+export { GetSystemSdnconnectorlistArgs, GetSystemSdnconnectorlistResult, GetSystemSdnconnectorlistOutputArgs } from "./getSystemSdnconnectorlist";
+export const getSystemSdnconnectorlist: typeof import("./getSystemSdnconnectorlist").getSystemSdnconnectorlist = null as any;
+export const getSystemSdnconnectorlistOutput: typeof import("./getSystemSdnconnectorlist").getSystemSdnconnectorlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemSdnconnectorlist","getSystemSdnconnectorlistOutput"], () => require("./getSystemSdnconnectorlist"));
+
+export { GetSystemSessionhelperArgs, GetSystemSessionhelperResult, GetSystemSessionhelperOutputArgs } from "./getSystemSessionhelper";
+export const getSystemSessionhelper: typeof import("./getSystemSessionhelper").getSystemSessionhelper = null as any;
+export const getSystemSessionhelperOutput: typeof import("./getSystemSessionhelper").getSystemSessionhelperOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemSessionhelper","getSystemSessionhelperOutput"], () => require("./getSystemSessionhelper"));
+
+export { GetSystemSessionhelperlistArgs, GetSystemSessionhelperlistResult, GetSystemSessionhelperlistOutputArgs } from "./getSystemSessionhelperlist";
+export const getSystemSessionhelperlist: typeof import("./getSystemSessionhelperlist").getSystemSessionhelperlist = null as any;
+export const getSystemSessionhelperlistOutput: typeof import("./getSystemSessionhelperlist").getSystemSessionhelperlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemSessionhelperlist","getSystemSessionhelperlistOutput"], () => require("./getSystemSessionhelperlist"));
+
+export { GetSystemSessionttlArgs, GetSystemSessionttlResult, GetSystemSessionttlOutputArgs } from "./getSystemSessionttl";
+export const getSystemSessionttl: typeof import("./getSystemSessionttl").getSystemSessionttl = null as any;
+export const getSystemSessionttlOutput: typeof import("./getSystemSessionttl").getSystemSessionttlOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemSessionttl","getSystemSessionttlOutput"], () => require("./getSystemSessionttl"));
+
+export { GetSystemSflowArgs, GetSystemSflowResult, GetSystemSflowOutputArgs } from "./getSystemSflow";
+export const getSystemSflow: typeof import("./getSystemSflow").getSystemSflow = null as any;
+export const getSystemSflowOutput: typeof import("./getSystemSflow").getSystemSflowOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemSflow","getSystemSflowOutput"], () => require("./getSystemSflow"));
+
+export { GetSystemSittunnelArgs, GetSystemSittunnelResult, GetSystemSittunnelOutputArgs } from "./getSystemSittunnel";
+export const getSystemSittunnel: typeof import("./getSystemSittunnel").getSystemSittunnel = null as any;
+export const getSystemSittunnelOutput: typeof import("./getSystemSittunnel").getSystemSittunnelOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemSittunnel","getSystemSittunnelOutput"], () => require("./getSystemSittunnel"));
+
+export { GetSystemSittunnellistArgs, GetSystemSittunnellistResult, GetSystemSittunnellistOutputArgs } from "./getSystemSittunnellist";
+export const getSystemSittunnellist: typeof import("./getSystemSittunnellist").getSystemSittunnellist = null as any;
+export const getSystemSittunnellistOutput: typeof import("./getSystemSittunnellist").getSystemSittunnellistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemSittunnellist","getSystemSittunnellistOutput"], () => require("./getSystemSittunnellist"));
+
+export { GetSystemSmsserverArgs, GetSystemSmsserverResult, GetSystemSmsserverOutputArgs } from "./getSystemSmsserver";
+export const getSystemSmsserver: typeof import("./getSystemSmsserver").getSystemSmsserver = null as any;
+export const getSystemSmsserverOutput: typeof import("./getSystemSmsserver").getSystemSmsserverOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemSmsserver","getSystemSmsserverOutput"], () => require("./getSystemSmsserver"));
+
+export { GetSystemSmsserverlistArgs, GetSystemSmsserverlistResult, GetSystemSmsserverlistOutputArgs } from "./getSystemSmsserverlist";
+export const getSystemSmsserverlist: typeof import("./getSystemSmsserverlist").getSystemSmsserverlist = null as any;
+export const getSystemSmsserverlistOutput: typeof import("./getSystemSmsserverlist").getSystemSmsserverlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemSmsserverlist","getSystemSmsserverlistOutput"], () => require("./getSystemSmsserverlist"));
+
+export { GetSystemTosbasedpriorityArgs, GetSystemTosbasedpriorityResult, GetSystemTosbasedpriorityOutputArgs } from "./getSystemTosbasedpriority";
+export const getSystemTosbasedpriority: typeof import("./getSystemTosbasedpriority").getSystemTosbasedpriority = null as any;
+export const getSystemTosbasedpriorityOutput: typeof import("./getSystemTosbasedpriority").getSystemTosbasedpriorityOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemTosbasedpriority","getSystemTosbasedpriorityOutput"], () => require("./getSystemTosbasedpriority"));
+
+export { GetSystemTosbasedprioritylistArgs, GetSystemTosbasedprioritylistResult, GetSystemTosbasedprioritylistOutputArgs } from "./getSystemTosbasedprioritylist";
+export const getSystemTosbasedprioritylist: typeof import("./getSystemTosbasedprioritylist").getSystemTosbasedprioritylist = null as any;
+export const getSystemTosbasedprioritylistOutput: typeof import("./getSystemTosbasedprioritylist").getSystemTosbasedprioritylistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemTosbasedprioritylist","getSystemTosbasedprioritylistOutput"], () => require("./getSystemTosbasedprioritylist"));
+
+export { GetSystemVdomexceptionArgs, GetSystemVdomexceptionResult, GetSystemVdomexceptionOutputArgs } from "./getSystemVdomexception";
+export const getSystemVdomexception: typeof import("./getSystemVdomexception").getSystemVdomexception = null as any;
+export const getSystemVdomexceptionOutput: typeof import("./getSystemVdomexception").getSystemVdomexceptionOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemVdomexception","getSystemVdomexceptionOutput"], () => require("./getSystemVdomexception"));
+
+export { GetSystemVdomexceptionlistArgs, GetSystemVdomexceptionlistResult, GetSystemVdomexceptionlistOutputArgs } from "./getSystemVdomexceptionlist";
+export const getSystemVdomexceptionlist: typeof import("./getSystemVdomexceptionlist").getSystemVdomexceptionlist = null as any;
+export const getSystemVdomexceptionlistOutput: typeof import("./getSystemVdomexceptionlist").getSystemVdomexceptionlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemVdomexceptionlist","getSystemVdomexceptionlistOutput"], () => require("./getSystemVdomexceptionlist"));
+
+export { GetSystemVdomnetflowArgs, GetSystemVdomnetflowResult, GetSystemVdomnetflowOutputArgs } from "./getSystemVdomnetflow";
+export const getSystemVdomnetflow: typeof import("./getSystemVdomnetflow").getSystemVdomnetflow = null as any;
+export const getSystemVdomnetflowOutput: typeof import("./getSystemVdomnetflow").getSystemVdomnetflowOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemVdomnetflow","getSystemVdomnetflowOutput"], () => require("./getSystemVdomnetflow"));
+
+export { GetSystemVdomsflowArgs, GetSystemVdomsflowResult, GetSystemVdomsflowOutputArgs } from "./getSystemVdomsflow";
+export const getSystemVdomsflow: typeof import("./getSystemVdomsflow").getSystemVdomsflow = null as any;
+export const getSystemVdomsflowOutput: typeof import("./getSystemVdomsflow").getSystemVdomsflowOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemVdomsflow","getSystemVdomsflowOutput"], () => require("./getSystemVdomsflow"));
+
+export { GetSystemVirtualwanlinkArgs, GetSystemVirtualwanlinkResult, GetSystemVirtualwanlinkOutputArgs } from "./getSystemVirtualwanlink";
+export const getSystemVirtualwanlink: typeof import("./getSystemVirtualwanlink").getSystemVirtualwanlink = null as any;
+export const getSystemVirtualwanlinkOutput: typeof import("./getSystemVirtualwanlink").getSystemVirtualwanlinkOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemVirtualwanlink","getSystemVirtualwanlinkOutput"], () => require("./getSystemVirtualwanlink"));
+
+export { GetSystemVxlanArgs, GetSystemVxlanResult, GetSystemVxlanOutputArgs } from "./getSystemVxlan";
+export const getSystemVxlan: typeof import("./getSystemVxlan").getSystemVxlan = null as any;
+export const getSystemVxlanOutput: typeof import("./getSystemVxlan").getSystemVxlanOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemVxlan","getSystemVxlanOutput"], () => require("./getSystemVxlan"));
+
+export { GetSystemVxlanlistArgs, GetSystemVxlanlistResult, GetSystemVxlanlistOutputArgs } from "./getSystemVxlanlist";
+export const getSystemVxlanlist: typeof import("./getSystemVxlanlist").getSystemVxlanlist = null as any;
+export const getSystemVxlanlistOutput: typeof import("./getSystemVxlanlist").getSystemVxlanlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemVxlanlist","getSystemVxlanlistOutput"], () => require("./getSystemVxlanlist"));
+
+export { GetSystemWccpArgs, GetSystemWccpResult, GetSystemWccpOutputArgs } from "./getSystemWccp";
+export const getSystemWccp: typeof import("./getSystemWccp").getSystemWccp = null as any;
+export const getSystemWccpOutput: typeof import("./getSystemWccp").getSystemWccpOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemWccp","getSystemWccpOutput"], () => require("./getSystemWccp"));
+
+export { GetSystemWccplistArgs, GetSystemWccplistResult, GetSystemWccplistOutputArgs } from "./getSystemWccplist";
+export const getSystemWccplist: typeof import("./getSystemWccplist").getSystemWccplist = null as any;
+export const getSystemWccplistOutput: typeof import("./getSystemWccplist").getSystemWccplistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemWccplist","getSystemWccplistOutput"], () => require("./getSystemWccplist"));
+
+export { GetSystemZoneArgs, GetSystemZoneResult, GetSystemZoneOutputArgs } from "./getSystemZone";
+export const getSystemZone: typeof import("./getSystemZone").getSystemZone = null as any;
+export const getSystemZoneOutput: typeof import("./getSystemZone").getSystemZoneOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemZone","getSystemZoneOutput"], () => require("./getSystemZone"));
+
+export { GetSystemZonelistArgs, GetSystemZonelistResult, GetSystemZonelistOutputArgs } from "./getSystemZonelist";
+export const getSystemZonelist: typeof import("./getSystemZonelist").getSystemZonelist = null as any;
+export const getSystemZonelistOutput: typeof import("./getSystemZonelist").getSystemZonelistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemZonelist","getSystemZonelistOutput"], () => require("./getSystemZonelist"));
+
+export { GetSystemautoupdatePushupdateArgs, GetSystemautoupdatePushupdateResult, GetSystemautoupdatePushupdateOutputArgs } from "./getSystemautoupdatePushupdate";
+export const getSystemautoupdatePushupdate: typeof import("./getSystemautoupdatePushupdate").getSystemautoupdatePushupdate = null as any;
+export const getSystemautoupdatePushupdateOutput: typeof import("./getSystemautoupdatePushupdate").getSystemautoupdatePushupdateOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemautoupdatePushupdate","getSystemautoupdatePushupdateOutput"], () => require("./getSystemautoupdatePushupdate"));
+
+export { GetSystemautoupdateScheduleArgs, GetSystemautoupdateScheduleResult, GetSystemautoupdateScheduleOutputArgs } from "./getSystemautoupdateSchedule";
+export const getSystemautoupdateSchedule: typeof import("./getSystemautoupdateSchedule").getSystemautoupdateSchedule = null as any;
+export const getSystemautoupdateScheduleOutput: typeof import("./getSystemautoupdateSchedule").getSystemautoupdateScheduleOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemautoupdateSchedule","getSystemautoupdateScheduleOutput"], () => require("./getSystemautoupdateSchedule"));
+
+export { GetSystemautoupdateTunnelingArgs, GetSystemautoupdateTunnelingResult, GetSystemautoupdateTunnelingOutputArgs } from "./getSystemautoupdateTunneling";
+export const getSystemautoupdateTunneling: typeof import("./getSystemautoupdateTunneling").getSystemautoupdateTunneling = null as any;
+export const getSystemautoupdateTunnelingOutput: typeof import("./getSystemautoupdateTunneling").getSystemautoupdateTunnelingOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemautoupdateTunneling","getSystemautoupdateTunnelingOutput"], () => require("./getSystemautoupdateTunneling"));
+
+export { GetSystemdhcpServerArgs, GetSystemdhcpServerResult, GetSystemdhcpServerOutputArgs } from "./getSystemdhcpServer";
+export const getSystemdhcpServer: typeof import("./getSystemdhcpServer").getSystemdhcpServer = null as any;
+export const getSystemdhcpServerOutput: typeof import("./getSystemdhcpServer").getSystemdhcpServerOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemdhcpServer","getSystemdhcpServerOutput"], () => require("./getSystemdhcpServer"));
+
+export { GetSystemdhcpServerlistArgs, GetSystemdhcpServerlistResult, GetSystemdhcpServerlistOutputArgs } from "./getSystemdhcpServerlist";
+export const getSystemdhcpServerlist: typeof import("./getSystemdhcpServerlist").getSystemdhcpServerlist = null as any;
+export const getSystemdhcpServerlistOutput: typeof import("./getSystemdhcpServerlist").getSystemdhcpServerlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemdhcpServerlist","getSystemdhcpServerlistOutput"], () => require("./getSystemdhcpServerlist"));
+
+export { GetSystemlldpNetworkpolicyArgs, GetSystemlldpNetworkpolicyResult, GetSystemlldpNetworkpolicyOutputArgs } from "./getSystemlldpNetworkpolicy";
+export const getSystemlldpNetworkpolicy: typeof import("./getSystemlldpNetworkpolicy").getSystemlldpNetworkpolicy = null as any;
+export const getSystemlldpNetworkpolicyOutput: typeof import("./getSystemlldpNetworkpolicy").getSystemlldpNetworkpolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemlldpNetworkpolicy","getSystemlldpNetworkpolicyOutput"], () => require("./getSystemlldpNetworkpolicy"));
+
+export { GetSystemlldpNetworkpolicylistArgs, GetSystemlldpNetworkpolicylistResult, GetSystemlldpNetworkpolicylistOutputArgs } from "./getSystemlldpNetworkpolicylist";
+export const getSystemlldpNetworkpolicylist: typeof import("./getSystemlldpNetworkpolicylist").getSystemlldpNetworkpolicylist = null as any;
+export const getSystemlldpNetworkpolicylistOutput: typeof import("./getSystemlldpNetworkpolicylist").getSystemlldpNetworkpolicylistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemlldpNetworkpolicylist","getSystemlldpNetworkpolicylistOutput"], () => require("./getSystemlldpNetworkpolicylist"));
+
+export { GetSystemsnmpCommunityArgs, GetSystemsnmpCommunityResult, GetSystemsnmpCommunityOutputArgs } from "./getSystemsnmpCommunity";
+export const getSystemsnmpCommunity: typeof import("./getSystemsnmpCommunity").getSystemsnmpCommunity = null as any;
+export const getSystemsnmpCommunityOutput: typeof import("./getSystemsnmpCommunity").getSystemsnmpCommunityOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemsnmpCommunity","getSystemsnmpCommunityOutput"], () => require("./getSystemsnmpCommunity"));
+
+export { GetSystemsnmpCommunitylistArgs, GetSystemsnmpCommunitylistResult, GetSystemsnmpCommunitylistOutputArgs } from "./getSystemsnmpCommunitylist";
+export const getSystemsnmpCommunitylist: typeof import("./getSystemsnmpCommunitylist").getSystemsnmpCommunitylist = null as any;
+export const getSystemsnmpCommunitylistOutput: typeof import("./getSystemsnmpCommunitylist").getSystemsnmpCommunitylistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemsnmpCommunitylist","getSystemsnmpCommunitylistOutput"], () => require("./getSystemsnmpCommunitylist"));
+
+export { GetSystemsnmpSysinfoArgs, GetSystemsnmpSysinfoResult, GetSystemsnmpSysinfoOutputArgs } from "./getSystemsnmpSysinfo";
+export const getSystemsnmpSysinfo: typeof import("./getSystemsnmpSysinfo").getSystemsnmpSysinfo = null as any;
+export const getSystemsnmpSysinfoOutput: typeof import("./getSystemsnmpSysinfo").getSystemsnmpSysinfoOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemsnmpSysinfo","getSystemsnmpSysinfoOutput"], () => require("./getSystemsnmpSysinfo"));
+
+export { GetSystemsnmpUserArgs, GetSystemsnmpUserResult, GetSystemsnmpUserOutputArgs } from "./getSystemsnmpUser";
+export const getSystemsnmpUser: typeof import("./getSystemsnmpUser").getSystemsnmpUser = null as any;
+export const getSystemsnmpUserOutput: typeof import("./getSystemsnmpUser").getSystemsnmpUserOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemsnmpUser","getSystemsnmpUserOutput"], () => require("./getSystemsnmpUser"));
+
+export { GetSystemsnmpUserlistArgs, GetSystemsnmpUserlistResult, GetSystemsnmpUserlistOutputArgs } from "./getSystemsnmpUserlist";
+export const getSystemsnmpUserlist: typeof import("./getSystemsnmpUserlist").getSystemsnmpUserlist = null as any;
+export const getSystemsnmpUserlistOutput: typeof import("./getSystemsnmpUserlist").getSystemsnmpUserlistOutput = null as any;
+utilities.lazyLoad(exports, ["getSystemsnmpUserlist","getSystemsnmpUserlistOutput"], () => require("./getSystemsnmpUserlist"));
+
+export { GetUserSamlArgs, GetUserSamlResult, GetUserSamlOutputArgs } from "./getUserSaml";
+export const getUserSaml: typeof import("./getUserSaml").getUserSaml = null as any;
+export const getUserSamlOutput: typeof import("./getUserSaml").getUserSamlOutput = null as any;
+utilities.lazyLoad(exports, ["getUserSaml","getUserSamlOutput"], () => require("./getUserSaml"));
+
+export { GetUserSamllistArgs, GetUserSamllistResult, GetUserSamllistOutputArgs } from "./getUserSamllist";
+export const getUserSamllist: typeof import("./getUserSamllist").getUserSamllist = null as any;
+export const getUserSamllistOutput: typeof import("./getUserSamllist").getUserSamllistOutput = null as any;
+utilities.lazyLoad(exports, ["getUserSamllist","getUserSamllistOutput"], () => require("./getUserSamllist"));
+
+export { IcapProfileArgs, IcapProfileState } from "./icapProfile";
+export type IcapProfile = import("./icapProfile").IcapProfile;
+export const IcapProfile: typeof import("./icapProfile").IcapProfile = null as any;
+utilities.lazyLoad(exports, ["IcapProfile"], () => require("./icapProfile"));
+
+export { IcapServerArgs, IcapServerState } from "./icapServer";
+export type IcapServer = import("./icapServer").IcapServer;
+export const IcapServer: typeof import("./icapServer").IcapServer = null as any;
+utilities.lazyLoad(exports, ["IcapServer"], () => require("./icapServer"));
+
+export { IcapServergroupArgs, IcapServergroupState } from "./icapServergroup";
+export type IcapServergroup = import("./icapServergroup").IcapServergroup;
+export const IcapServergroup: typeof import("./icapServergroup").IcapServergroup = null as any;
+utilities.lazyLoad(exports, ["IcapServergroup"], () => require("./icapServergroup"));
+
+export { IpsCustomArgs, IpsCustomState } from "./ipsCustom";
+export type IpsCustom = import("./ipsCustom").IpsCustom;
+export const IpsCustom: typeof import("./ipsCustom").IpsCustom = null as any;
+utilities.lazyLoad(exports, ["IpsCustom"], () => require("./ipsCustom"));
+
+export { IpsDecoderArgs, IpsDecoderState } from "./ipsDecoder";
+export type IpsDecoder = import("./ipsDecoder").IpsDecoder;
+export const IpsDecoder: typeof import("./ipsDecoder").IpsDecoder = null as any;
+utilities.lazyLoad(exports, ["IpsDecoder"], () => require("./ipsDecoder"));
+
+export { IpsGlobalArgs, IpsGlobalState } from "./ipsGlobal";
+export type IpsGlobal = import("./ipsGlobal").IpsGlobal;
+export const IpsGlobal: typeof import("./ipsGlobal").IpsGlobal = null as any;
+utilities.lazyLoad(exports, ["IpsGlobal"], () => require("./ipsGlobal"));
+
+export { IpsRuleArgs, IpsRuleState } from "./ipsRule";
+export type IpsRule = import("./ipsRule").IpsRule;
+export const IpsRule: typeof import("./ipsRule").IpsRule = null as any;
+utilities.lazyLoad(exports, ["IpsRule"], () => require("./ipsRule"));
+
+export { IpsRulesettingsArgs, IpsRulesettingsState } from "./ipsRulesettings";
+export type IpsRulesettings = import("./ipsRulesettings").IpsRulesettings;
+export const IpsRulesettings: typeof import("./ipsRulesettings").IpsRulesettings = null as any;
+utilities.lazyLoad(exports, ["IpsRulesettings"], () => require("./ipsRulesettings"));
+
+export { IpsSensorArgs, IpsSensorState } from "./ipsSensor";
+export type IpsSensor = import("./ipsSensor").IpsSensor;
+export const IpsSensor: typeof import("./ipsSensor").IpsSensor = null as any;
+utilities.lazyLoad(exports, ["IpsSensor"], () => require("./ipsSensor"));
+
+export { IpsSettingsArgs, IpsSettingsState } from "./ipsSettings";
+export type IpsSettings = import("./ipsSettings").IpsSettings;
+export const IpsSettings: typeof import("./ipsSettings").IpsSettings = null as any;
+utilities.lazyLoad(exports, ["IpsSettings"], () => require("./ipsSettings"));
+
+export { IpsViewmapArgs, IpsViewmapState } from "./ipsViewmap";
+export type IpsViewmap = import("./ipsViewmap").IpsViewmap;
+export const IpsViewmap: typeof import("./ipsViewmap").IpsViewmap = null as any;
+utilities.lazyLoad(exports, ["IpsViewmap"], () => require("./ipsViewmap"));
+
+export { JsonGenericApiArgs, JsonGenericApiState } from "./jsonGenericApi";
+export type JsonGenericApi = import("./jsonGenericApi").JsonGenericApi;
+export const JsonGenericApi: typeof import("./jsonGenericApi").JsonGenericApi = null as any;
+utilities.lazyLoad(exports, ["JsonGenericApi"], () => require("./jsonGenericApi"));
+
+export { LogCustomfieldArgs, LogCustomfieldState } from "./logCustomfield";
+export type LogCustomfield = import("./logCustomfield").LogCustomfield;
+export const LogCustomfield: typeof import("./logCustomfield").LogCustomfield = null as any;
+utilities.lazyLoad(exports, ["LogCustomfield"], () => require("./logCustomfield"));
+
+export { LogEventfilterArgs, LogEventfilterState } from "./logEventfilter";
+export type LogEventfilter = import("./logEventfilter").LogEventfilter;
+export const LogEventfilter: typeof import("./logEventfilter").LogEventfilter = null as any;
+utilities.lazyLoad(exports, ["LogEventfilter"], () => require("./logEventfilter"));
+
+export { LogGuidisplayArgs, LogGuidisplayState } from "./logGuidisplay";
+export type LogGuidisplay = import("./logGuidisplay").LogGuidisplay;
+export const LogGuidisplay: typeof import("./logGuidisplay").LogGuidisplay = null as any;
+utilities.lazyLoad(exports, ["LogGuidisplay"], () => require("./logGuidisplay"));
+
+export { LogSettingArgs, LogSettingState } from "./logSetting";
+export type LogSetting = import("./logSetting").LogSetting;
+export const LogSetting: typeof import("./logSetting").LogSetting = null as any;
+utilities.lazyLoad(exports, ["LogSetting"], () => require("./logSetting"));
+
+export { LogSyslogSettingArgs, LogSyslogSettingState } from "./logSyslogSetting";
+export type LogSyslogSetting = import("./logSyslogSetting").LogSyslogSetting;
+export const LogSyslogSetting: typeof import("./logSyslogSetting").LogSyslogSetting = null as any;
+utilities.lazyLoad(exports, ["LogSyslogSetting"], () => require("./logSyslogSetting"));
+
+export { LogThreatweightArgs, LogThreatweightState } from "./logThreatweight";
+export type LogThreatweight = import("./logThreatweight").LogThreatweight;
+export const LogThreatweight: typeof import("./logThreatweight").LogThreatweight = null as any;
+utilities.lazyLoad(exports, ["LogThreatweight"], () => require("./logThreatweight"));
+
+export { LogdiskFilterArgs, LogdiskFilterState } from "./logdiskFilter";
+export type LogdiskFilter = import("./logdiskFilter").LogdiskFilter;
+export const LogdiskFilter: typeof import("./logdiskFilter").LogdiskFilter = null as any;
+utilities.lazyLoad(exports, ["LogdiskFilter"], () => require("./logdiskFilter"));
+
+export { LogdiskSettingArgs, LogdiskSettingState } from "./logdiskSetting";
+export type LogdiskSetting = import("./logdiskSetting").LogdiskSetting;
+export const LogdiskSetting: typeof import("./logdiskSetting").LogdiskSetting = null as any;
+utilities.lazyLoad(exports, ["LogdiskSetting"], () => require("./logdiskSetting"));
+
+export { Logfortianalyzer2FilterArgs, Logfortianalyzer2FilterState } from "./logfortianalyzer2Filter";
+export type Logfortianalyzer2Filter = import("./logfortianalyzer2Filter").Logfortianalyzer2Filter;
+export const Logfortianalyzer2Filter: typeof import("./logfortianalyzer2Filter").Logfortianalyzer2Filter = null as any;
+utilities.lazyLoad(exports, ["Logfortianalyzer2Filter"], () => require("./logfortianalyzer2Filter"));
+
+export { Logfortianalyzer2OverridefilterArgs, Logfortianalyzer2OverridefilterState } from "./logfortianalyzer2Overridefilter";
+export type Logfortianalyzer2Overridefilter = import("./logfortianalyzer2Overridefilter").Logfortianalyzer2Overridefilter;
+export const Logfortianalyzer2Overridefilter: typeof import("./logfortianalyzer2Overridefilter").Logfortianalyzer2Overridefilter = null as any;
+utilities.lazyLoad(exports, ["Logfortianalyzer2Overridefilter"], () => require("./logfortianalyzer2Overridefilter"));
+
+export { Logfortianalyzer2OverridesettingArgs, Logfortianalyzer2OverridesettingState } from "./logfortianalyzer2Overridesetting";
+export type Logfortianalyzer2Overridesetting = import("./logfortianalyzer2Overridesetting").Logfortianalyzer2Overridesetting;
+export const Logfortianalyzer2Overridesetting: typeof import("./logfortianalyzer2Overridesetting").Logfortianalyzer2Overridesetting = null as any;
+utilities.lazyLoad(exports, ["Logfortianalyzer2Overridesetting"], () => require("./logfortianalyzer2Overridesetting"));
+
+export { Logfortianalyzer2SettingArgs, Logfortianalyzer2SettingState } from "./logfortianalyzer2Setting";
+export type Logfortianalyzer2Setting = import("./logfortianalyzer2Setting").Logfortianalyzer2Setting;
+export const Logfortianalyzer2Setting: typeof import("./logfortianalyzer2Setting").Logfortianalyzer2Setting = null as any;
+utilities.lazyLoad(exports, ["Logfortianalyzer2Setting"], () => require("./logfortianalyzer2Setting"));
+
+export { Logfortianalyzer3FilterArgs, Logfortianalyzer3FilterState } from "./logfortianalyzer3Filter";
+export type Logfortianalyzer3Filter = import("./logfortianalyzer3Filter").Logfortianalyzer3Filter;
+export const Logfortianalyzer3Filter: typeof import("./logfortianalyzer3Filter").Logfortianalyzer3Filter = null as any;
+utilities.lazyLoad(exports, ["Logfortianalyzer3Filter"], () => require("./logfortianalyzer3Filter"));
+
+export { Logfortianalyzer3OverridefilterArgs, Logfortianalyzer3OverridefilterState } from "./logfortianalyzer3Overridefilter";
+export type Logfortianalyzer3Overridefilter = import("./logfortianalyzer3Overridefilter").Logfortianalyzer3Overridefilter;
+export const Logfortianalyzer3Overridefilter: typeof import("./logfortianalyzer3Overridefilter").Logfortianalyzer3Overridefilter = null as any;
+utilities.lazyLoad(exports, ["Logfortianalyzer3Overridefilter"], () => require("./logfortianalyzer3Overridefilter"));
+
+export { Logfortianalyzer3OverridesettingArgs, Logfortianalyzer3OverridesettingState } from "./logfortianalyzer3Overridesetting";
+export type Logfortianalyzer3Overridesetting = import("./logfortianalyzer3Overridesetting").Logfortianalyzer3Overridesetting;
+export const Logfortianalyzer3Overridesetting: typeof import("./logfortianalyzer3Overridesetting").Logfortianalyzer3Overridesetting = null as any;
+utilities.lazyLoad(exports, ["Logfortianalyzer3Overridesetting"], () => require("./logfortianalyzer3Overridesetting"));
+
+export { Logfortianalyzer3SettingArgs, Logfortianalyzer3SettingState } from "./logfortianalyzer3Setting";
+export type Logfortianalyzer3Setting = import("./logfortianalyzer3Setting").Logfortianalyzer3Setting;
+export const Logfortianalyzer3Setting: typeof import("./logfortianalyzer3Setting").Logfortianalyzer3Setting = null as any;
+utilities.lazyLoad(exports, ["Logfortianalyzer3Setting"], () => require("./logfortianalyzer3Setting"));
+
+export { LogfortianalyzerFilterArgs, LogfortianalyzerFilterState } from "./logfortianalyzerFilter";
+export type LogfortianalyzerFilter = import("./logfortianalyzerFilter").LogfortianalyzerFilter;
+export const LogfortianalyzerFilter: typeof import("./logfortianalyzerFilter").LogfortianalyzerFilter = null as any;
+utilities.lazyLoad(exports, ["LogfortianalyzerFilter"], () => require("./logfortianalyzerFilter"));
+
+export { LogfortianalyzerOverridefilterArgs, LogfortianalyzerOverridefilterState } from "./logfortianalyzerOverridefilter";
+export type LogfortianalyzerOverridefilter = import("./logfortianalyzerOverridefilter").LogfortianalyzerOverridefilter;
+export const LogfortianalyzerOverridefilter: typeof import("./logfortianalyzerOverridefilter").LogfortianalyzerOverridefilter = null as any;
+utilities.lazyLoad(exports, ["LogfortianalyzerOverridefilter"], () => require("./logfortianalyzerOverridefilter"));
+
+export { LogfortianalyzerOverridesettingArgs, LogfortianalyzerOverridesettingState } from "./logfortianalyzerOverridesetting";
+export type LogfortianalyzerOverridesetting = import("./logfortianalyzerOverridesetting").LogfortianalyzerOverridesetting;
+export const LogfortianalyzerOverridesetting: typeof import("./logfortianalyzerOverridesetting").LogfortianalyzerOverridesetting = null as any;
+utilities.lazyLoad(exports, ["LogfortianalyzerOverridesetting"], () => require("./logfortianalyzerOverridesetting"));
+
+export { LogfortianalyzerSettingArgs, LogfortianalyzerSettingState } from "./logfortianalyzerSetting";
+export type LogfortianalyzerSetting = import("./logfortianalyzerSetting").LogfortianalyzerSetting;
+export const LogfortianalyzerSetting: typeof import("./logfortianalyzerSetting").LogfortianalyzerSetting = null as any;
+utilities.lazyLoad(exports, ["LogfortianalyzerSetting"], () => require("./logfortianalyzerSetting"));
+
+export { LogfortianalyzercloudFilterArgs, LogfortianalyzercloudFilterState } from "./logfortianalyzercloudFilter";
+export type LogfortianalyzercloudFilter = import("./logfortianalyzercloudFilter").LogfortianalyzercloudFilter;
+export const LogfortianalyzercloudFilter: typeof import("./logfortianalyzercloudFilter").LogfortianalyzercloudFilter = null as any;
+utilities.lazyLoad(exports, ["LogfortianalyzercloudFilter"], () => require("./logfortianalyzercloudFilter"));
+
+export { LogfortianalyzercloudOverridefilterArgs, LogfortianalyzercloudOverridefilterState } from "./logfortianalyzercloudOverridefilter";
+export type LogfortianalyzercloudOverridefilter = import("./logfortianalyzercloudOverridefilter").LogfortianalyzercloudOverridefilter;
+export const LogfortianalyzercloudOverridefilter: typeof import("./logfortianalyzercloudOverridefilter").LogfortianalyzercloudOverridefilter = null as any;
+utilities.lazyLoad(exports, ["LogfortianalyzercloudOverridefilter"], () => require("./logfortianalyzercloudOverridefilter"));
+
+export { LogfortianalyzercloudOverridesettingArgs, LogfortianalyzercloudOverridesettingState } from "./logfortianalyzercloudOverridesetting";
+export type LogfortianalyzercloudOverridesetting = import("./logfortianalyzercloudOverridesetting").LogfortianalyzercloudOverridesetting;
+export const LogfortianalyzercloudOverridesetting: typeof import("./logfortianalyzercloudOverridesetting").LogfortianalyzercloudOverridesetting = null as any;
+utilities.lazyLoad(exports, ["LogfortianalyzercloudOverridesetting"], () => require("./logfortianalyzercloudOverridesetting"));
+
+export { LogfortianalyzercloudSettingArgs, LogfortianalyzercloudSettingState } from "./logfortianalyzercloudSetting";
+export type LogfortianalyzercloudSetting = import("./logfortianalyzercloudSetting").LogfortianalyzercloudSetting;
+export const LogfortianalyzercloudSetting: typeof import("./logfortianalyzercloudSetting").LogfortianalyzercloudSetting = null as any;
+utilities.lazyLoad(exports, ["LogfortianalyzercloudSetting"], () => require("./logfortianalyzercloudSetting"));
+
+export { LogfortiguardFilterArgs, LogfortiguardFilterState } from "./logfortiguardFilter";
+export type LogfortiguardFilter = import("./logfortiguardFilter").LogfortiguardFilter;
+export const LogfortiguardFilter: typeof import("./logfortiguardFilter").LogfortiguardFilter = null as any;
+utilities.lazyLoad(exports, ["LogfortiguardFilter"], () => require("./logfortiguardFilter"));
+
+export { LogfortiguardOverridefilterArgs, LogfortiguardOverridefilterState } from "./logfortiguardOverridefilter";
+export type LogfortiguardOverridefilter = import("./logfortiguardOverridefilter").LogfortiguardOverridefilter;
+export const LogfortiguardOverridefilter: typeof import("./logfortiguardOverridefilter").LogfortiguardOverridefilter = null as any;
+utilities.lazyLoad(exports, ["LogfortiguardOverridefilter"], () => require("./logfortiguardOverridefilter"));
+
+export { LogfortiguardOverridesettingArgs, LogfortiguardOverridesettingState } from "./logfortiguardOverridesetting";
+export type LogfortiguardOverridesetting = import("./logfortiguardOverridesetting").LogfortiguardOverridesetting;
+export const LogfortiguardOverridesetting: typeof import("./logfortiguardOverridesetting").LogfortiguardOverridesetting = null as any;
+utilities.lazyLoad(exports, ["LogfortiguardOverridesetting"], () => require("./logfortiguardOverridesetting"));
+
+export { LogfortiguardSettingArgs, LogfortiguardSettingState } from "./logfortiguardSetting";
+export type LogfortiguardSetting = import("./logfortiguardSetting").LogfortiguardSetting;
+export const LogfortiguardSetting: typeof import("./logfortiguardSetting").LogfortiguardSetting = null as any;
+utilities.lazyLoad(exports, ["LogfortiguardSetting"], () => require("./logfortiguardSetting"));
+
+export { LogmemoryFilterArgs, LogmemoryFilterState } from "./logmemoryFilter";
+export type LogmemoryFilter = import("./logmemoryFilter").LogmemoryFilter;
+export const LogmemoryFilter: typeof import("./logmemoryFilter").LogmemoryFilter = null as any;
+utilities.lazyLoad(exports, ["LogmemoryFilter"], () => require("./logmemoryFilter"));
+
+export { LogmemoryGlobalsettingArgs, LogmemoryGlobalsettingState } from "./logmemoryGlobalsetting";
+export type LogmemoryGlobalsetting = import("./logmemoryGlobalsetting").LogmemoryGlobalsetting;
+export const LogmemoryGlobalsetting: typeof import("./logmemoryGlobalsetting").LogmemoryGlobalsetting = null as any;
+utilities.lazyLoad(exports, ["LogmemoryGlobalsetting"], () => require("./logmemoryGlobalsetting"));
+
+export { LogmemorySettingArgs, LogmemorySettingState } from "./logmemorySetting";
+export type LogmemorySetting = import("./logmemorySetting").LogmemorySetting;
+export const LogmemorySetting: typeof import("./logmemorySetting").LogmemorySetting = null as any;
+utilities.lazyLoad(exports, ["LogmemorySetting"], () => require("./logmemorySetting"));
+
+export { LognulldeviceFilterArgs, LognulldeviceFilterState } from "./lognulldeviceFilter";
+export type LognulldeviceFilter = import("./lognulldeviceFilter").LognulldeviceFilter;
+export const LognulldeviceFilter: typeof import("./lognulldeviceFilter").LognulldeviceFilter = null as any;
+utilities.lazyLoad(exports, ["LognulldeviceFilter"], () => require("./lognulldeviceFilter"));
+
+export { LognulldeviceSettingArgs, LognulldeviceSettingState } from "./lognulldeviceSetting";
+export type LognulldeviceSetting = import("./lognulldeviceSetting").LognulldeviceSetting;
+export const LognulldeviceSetting: typeof import("./lognulldeviceSetting").LognulldeviceSetting = null as any;
+utilities.lazyLoad(exports, ["LognulldeviceSetting"], () => require("./lognulldeviceSetting"));
+
+export { Logsyslogd2FilterArgs, Logsyslogd2FilterState } from "./logsyslogd2Filter";
+export type Logsyslogd2Filter = import("./logsyslogd2Filter").Logsyslogd2Filter;
+export const Logsyslogd2Filter: typeof import("./logsyslogd2Filter").Logsyslogd2Filter = null as any;
+utilities.lazyLoad(exports, ["Logsyslogd2Filter"], () => require("./logsyslogd2Filter"));
+
+export { Logsyslogd2OverridefilterArgs, Logsyslogd2OverridefilterState } from "./logsyslogd2Overridefilter";
+export type Logsyslogd2Overridefilter = import("./logsyslogd2Overridefilter").Logsyslogd2Overridefilter;
+export const Logsyslogd2Overridefilter: typeof import("./logsyslogd2Overridefilter").Logsyslogd2Overridefilter = null as any;
+utilities.lazyLoad(exports, ["Logsyslogd2Overridefilter"], () => require("./logsyslogd2Overridefilter"));
+
+export { Logsyslogd2OverridesettingArgs, Logsyslogd2OverridesettingState } from "./logsyslogd2Overridesetting";
+export type Logsyslogd2Overridesetting = import("./logsyslogd2Overridesetting").Logsyslogd2Overridesetting;
+export const Logsyslogd2Overridesetting: typeof import("./logsyslogd2Overridesetting").Logsyslogd2Overridesetting = null as any;
+utilities.lazyLoad(exports, ["Logsyslogd2Overridesetting"], () => require("./logsyslogd2Overridesetting"));
+
+export { Logsyslogd2SettingArgs, Logsyslogd2SettingState } from "./logsyslogd2Setting";
+export type Logsyslogd2Setting = import("./logsyslogd2Setting").Logsyslogd2Setting;
+export const Logsyslogd2Setting: typeof import("./logsyslogd2Setting").Logsyslogd2Setting = null as any;
+utilities.lazyLoad(exports, ["Logsyslogd2Setting"], () => require("./logsyslogd2Setting"));
+
+export { Logsyslogd3FilterArgs, Logsyslogd3FilterState } from "./logsyslogd3Filter";
+export type Logsyslogd3Filter = import("./logsyslogd3Filter").Logsyslogd3Filter;
+export const Logsyslogd3Filter: typeof import("./logsyslogd3Filter").Logsyslogd3Filter = null as any;
+utilities.lazyLoad(exports, ["Logsyslogd3Filter"], () => require("./logsyslogd3Filter"));
+
+export { Logsyslogd3OverridefilterArgs, Logsyslogd3OverridefilterState } from "./logsyslogd3Overridefilter";
+export type Logsyslogd3Overridefilter = import("./logsyslogd3Overridefilter").Logsyslogd3Overridefilter;
+export const Logsyslogd3Overridefilter: typeof import("./logsyslogd3Overridefilter").Logsyslogd3Overridefilter = null as any;
+utilities.lazyLoad(exports, ["Logsyslogd3Overridefilter"], () => require("./logsyslogd3Overridefilter"));
+
+export { Logsyslogd3OverridesettingArgs, Logsyslogd3OverridesettingState } from "./logsyslogd3Overridesetting";
+export type Logsyslogd3Overridesetting = import("./logsyslogd3Overridesetting").Logsyslogd3Overridesetting;
+export const Logsyslogd3Overridesetting: typeof import("./logsyslogd3Overridesetting").Logsyslogd3Overridesetting = null as any;
+utilities.lazyLoad(exports, ["Logsyslogd3Overridesetting"], () => require("./logsyslogd3Overridesetting"));
+
+export { Logsyslogd3SettingArgs, Logsyslogd3SettingState } from "./logsyslogd3Setting";
+export type Logsyslogd3Setting = import("./logsyslogd3Setting").Logsyslogd3Setting;
+export const Logsyslogd3Setting: typeof import("./logsyslogd3Setting").Logsyslogd3Setting = null as any;
+utilities.lazyLoad(exports, ["Logsyslogd3Setting"], () => require("./logsyslogd3Setting"));
+
+export { Logsyslogd4FilterArgs, Logsyslogd4FilterState } from "./logsyslogd4Filter";
+export type Logsyslogd4Filter = import("./logsyslogd4Filter").Logsyslogd4Filter;
+export const Logsyslogd4Filter: typeof import("./logsyslogd4Filter").Logsyslogd4Filter = null as any;
+utilities.lazyLoad(exports, ["Logsyslogd4Filter"], () => require("./logsyslogd4Filter"));
+
+export { Logsyslogd4OverridefilterArgs, Logsyslogd4OverridefilterState } from "./logsyslogd4Overridefilter";
+export type Logsyslogd4Overridefilter = import("./logsyslogd4Overridefilter").Logsyslogd4Overridefilter;
+export const Logsyslogd4Overridefilter: typeof import("./logsyslogd4Overridefilter").Logsyslogd4Overridefilter = null as any;
+utilities.lazyLoad(exports, ["Logsyslogd4Overridefilter"], () => require("./logsyslogd4Overridefilter"));
+
+export { Logsyslogd4OverridesettingArgs, Logsyslogd4OverridesettingState } from "./logsyslogd4Overridesetting";
+export type Logsyslogd4Overridesetting = import("./logsyslogd4Overridesetting").Logsyslogd4Overridesetting;
+export const Logsyslogd4Overridesetting: typeof import("./logsyslogd4Overridesetting").Logsyslogd4Overridesetting = null as any;
+utilities.lazyLoad(exports, ["Logsyslogd4Overridesetting"], () => require("./logsyslogd4Overridesetting"));
+
+export { Logsyslogd4SettingArgs, Logsyslogd4SettingState } from "./logsyslogd4Setting";
+export type Logsyslogd4Setting = import("./logsyslogd4Setting").Logsyslogd4Setting;
+export const Logsyslogd4Setting: typeof import("./logsyslogd4Setting").Logsyslogd4Setting = null as any;
+utilities.lazyLoad(exports, ["Logsyslogd4Setting"], () => require("./logsyslogd4Setting"));
+
+export { LogsyslogdFilterArgs, LogsyslogdFilterState } from "./logsyslogdFilter";
+export type LogsyslogdFilter = import("./logsyslogdFilter").LogsyslogdFilter;
+export const LogsyslogdFilter: typeof import("./logsyslogdFilter").LogsyslogdFilter = null as any;
+utilities.lazyLoad(exports, ["LogsyslogdFilter"], () => require("./logsyslogdFilter"));
+
+export { LogsyslogdOverridefilterArgs, LogsyslogdOverridefilterState } from "./logsyslogdOverridefilter";
+export type LogsyslogdOverridefilter = import("./logsyslogdOverridefilter").LogsyslogdOverridefilter;
+export const LogsyslogdOverridefilter: typeof import("./logsyslogdOverridefilter").LogsyslogdOverridefilter = null as any;
+utilities.lazyLoad(exports, ["LogsyslogdOverridefilter"], () => require("./logsyslogdOverridefilter"));
+
+export { LogsyslogdOverridesettingArgs, LogsyslogdOverridesettingState } from "./logsyslogdOverridesetting";
+export type LogsyslogdOverridesetting = import("./logsyslogdOverridesetting").LogsyslogdOverridesetting;
+export const LogsyslogdOverridesetting: typeof import("./logsyslogdOverridesetting").LogsyslogdOverridesetting = null as any;
+utilities.lazyLoad(exports, ["LogsyslogdOverridesetting"], () => require("./logsyslogdOverridesetting"));
+
+export { LogsyslogdSettingArgs, LogsyslogdSettingState } from "./logsyslogdSetting";
+export type LogsyslogdSetting = import("./logsyslogdSetting").LogsyslogdSetting;
+export const LogsyslogdSetting: typeof import("./logsyslogdSetting").LogsyslogdSetting = null as any;
+utilities.lazyLoad(exports, ["LogsyslogdSetting"], () => require("./logsyslogdSetting"));
+
+export { Logtacacsaccounting2FilterArgs, Logtacacsaccounting2FilterState } from "./logtacacsaccounting2Filter";
+export type Logtacacsaccounting2Filter = import("./logtacacsaccounting2Filter").Logtacacsaccounting2Filter;
+export const Logtacacsaccounting2Filter: typeof import("./logtacacsaccounting2Filter").Logtacacsaccounting2Filter = null as any;
+utilities.lazyLoad(exports, ["Logtacacsaccounting2Filter"], () => require("./logtacacsaccounting2Filter"));
+
+export { Logtacacsaccounting2SettingArgs, Logtacacsaccounting2SettingState } from "./logtacacsaccounting2Setting";
+export type Logtacacsaccounting2Setting = import("./logtacacsaccounting2Setting").Logtacacsaccounting2Setting;
+export const Logtacacsaccounting2Setting: typeof import("./logtacacsaccounting2Setting").Logtacacsaccounting2Setting = null as any;
+utilities.lazyLoad(exports, ["Logtacacsaccounting2Setting"], () => require("./logtacacsaccounting2Setting"));
+
+export { Logtacacsaccounting3FilterArgs, Logtacacsaccounting3FilterState } from "./logtacacsaccounting3Filter";
+export type Logtacacsaccounting3Filter = import("./logtacacsaccounting3Filter").Logtacacsaccounting3Filter;
+export const Logtacacsaccounting3Filter: typeof import("./logtacacsaccounting3Filter").Logtacacsaccounting3Filter = null as any;
+utilities.lazyLoad(exports, ["Logtacacsaccounting3Filter"], () => require("./logtacacsaccounting3Filter"));
+
+export { Logtacacsaccounting3SettingArgs, Logtacacsaccounting3SettingState } from "./logtacacsaccounting3Setting";
+export type Logtacacsaccounting3Setting = import("./logtacacsaccounting3Setting").Logtacacsaccounting3Setting;
+export const Logtacacsaccounting3Setting: typeof import("./logtacacsaccounting3Setting").Logtacacsaccounting3Setting = null as any;
+utilities.lazyLoad(exports, ["Logtacacsaccounting3Setting"], () => require("./logtacacsaccounting3Setting"));
+
+export { LogtacacsaccountingFilterArgs, LogtacacsaccountingFilterState } from "./logtacacsaccountingFilter";
+export type LogtacacsaccountingFilter = import("./logtacacsaccountingFilter").LogtacacsaccountingFilter;
+export const LogtacacsaccountingFilter: typeof import("./logtacacsaccountingFilter").LogtacacsaccountingFilter = null as any;
+utilities.lazyLoad(exports, ["LogtacacsaccountingFilter"], () => require("./logtacacsaccountingFilter"));
+
+export { LogtacacsaccountingSettingArgs, LogtacacsaccountingSettingState } from "./logtacacsaccountingSetting";
+export type LogtacacsaccountingSetting = import("./logtacacsaccountingSetting").LogtacacsaccountingSetting;
+export const LogtacacsaccountingSetting: typeof import("./logtacacsaccountingSetting").LogtacacsaccountingSetting = null as any;
+utilities.lazyLoad(exports, ["LogtacacsaccountingSetting"], () => require("./logtacacsaccountingSetting"));
+
+export { LogwebtrendsFilterArgs, LogwebtrendsFilterState } from "./logwebtrendsFilter";
+export type LogwebtrendsFilter = import("./logwebtrendsFilter").LogwebtrendsFilter;
+export const LogwebtrendsFilter: typeof import("./logwebtrendsFilter").LogwebtrendsFilter = null as any;
+utilities.lazyLoad(exports, ["LogwebtrendsFilter"], () => require("./logwebtrendsFilter"));
+
+export { LogwebtrendsSettingArgs, LogwebtrendsSettingState } from "./logwebtrendsSetting";
+export type LogwebtrendsSetting = import("./logwebtrendsSetting").LogwebtrendsSetting;
+export const LogwebtrendsSetting: typeof import("./logwebtrendsSetting").LogwebtrendsSetting = null as any;
+utilities.lazyLoad(exports, ["LogwebtrendsSetting"], () => require("./logwebtrendsSetting"));
+
+export { NetworkingInterfacePortArgs, NetworkingInterfacePortState } from "./networkingInterfacePort";
+export type NetworkingInterfacePort = import("./networkingInterfacePort").NetworkingInterfacePort;
+export const NetworkingInterfacePort: typeof import("./networkingInterfacePort").NetworkingInterfacePort = null as any;
+utilities.lazyLoad(exports, ["NetworkingInterfacePort"], () => require("./networkingInterfacePort"));
+
+export { NetworkingRouteStaticArgs, NetworkingRouteStaticState } from "./networkingRouteStatic";
+export type NetworkingRouteStatic = import("./networkingRouteStatic").NetworkingRouteStatic;
+export const NetworkingRouteStatic: typeof import("./networkingRouteStatic").NetworkingRouteStatic = null as any;
+utilities.lazyLoad(exports, ["NetworkingRouteStatic"], () => require("./networkingRouteStatic"));
+
+export { NsxtServicechainArgs, NsxtServicechainState } from "./nsxtServicechain";
+export type NsxtServicechain = import("./nsxtServicechain").NsxtServicechain;
+export const NsxtServicechain: typeof import("./nsxtServicechain").NsxtServicechain = null as any;
+utilities.lazyLoad(exports, ["NsxtServicechain"], () => require("./nsxtServicechain"));
+
+export { NsxtSettingArgs, NsxtSettingState } from "./nsxtSetting";
+export type NsxtSetting = import("./nsxtSetting").NsxtSetting;
+export const NsxtSetting: typeof import("./nsxtSetting").NsxtSetting = null as any;
+utilities.lazyLoad(exports, ["NsxtSetting"], () => require("./nsxtSetting"));
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { ReportChartArgs, ReportChartState } from "./reportChart";
+export type ReportChart = import("./reportChart").ReportChart;
+export const ReportChart: typeof import("./reportChart").ReportChart = null as any;
+utilities.lazyLoad(exports, ["ReportChart"], () => require("./reportChart"));
+
+export { ReportDatasetArgs, ReportDatasetState } from "./reportDataset";
+export type ReportDataset = import("./reportDataset").ReportDataset;
+export const ReportDataset: typeof import("./reportDataset").ReportDataset = null as any;
+utilities.lazyLoad(exports, ["ReportDataset"], () => require("./reportDataset"));
+
+export { ReportLayoutArgs, ReportLayoutState } from "./reportLayout";
+export type ReportLayout = import("./reportLayout").ReportLayout;
+export const ReportLayout: typeof import("./reportLayout").ReportLayout = null as any;
+utilities.lazyLoad(exports, ["ReportLayout"], () => require("./reportLayout"));
+
+export { ReportSettingArgs, ReportSettingState } from "./reportSetting";
+export type ReportSetting = import("./reportSetting").ReportSetting;
+export const ReportSetting: typeof import("./reportSetting").ReportSetting = null as any;
+utilities.lazyLoad(exports, ["ReportSetting"], () => require("./reportSetting"));
+
+export { ReportStyleArgs, ReportStyleState } from "./reportStyle";
+export type ReportStyle = import("./reportStyle").ReportStyle;
+export const ReportStyle: typeof import("./reportStyle").ReportStyle = null as any;
+utilities.lazyLoad(exports, ["ReportStyle"], () => require("./reportStyle"));
+
+export { ReportThemeArgs, ReportThemeState } from "./reportTheme";
+export type ReportTheme = import("./reportTheme").ReportTheme;
+export const ReportTheme: typeof import("./reportTheme").ReportTheme = null as any;
+utilities.lazyLoad(exports, ["ReportTheme"], () => require("./reportTheme"));
+
+export { RouterAccesslistArgs, RouterAccesslistState } from "./routerAccesslist";
+export type RouterAccesslist = import("./routerAccesslist").RouterAccesslist;
+export const RouterAccesslist: typeof import("./routerAccesslist").RouterAccesslist = null as any;
+utilities.lazyLoad(exports, ["RouterAccesslist"], () => require("./routerAccesslist"));
+
+export { RouterAccesslist6Args, RouterAccesslist6State } from "./routerAccesslist6";
+export type RouterAccesslist6 = import("./routerAccesslist6").RouterAccesslist6;
+export const RouterAccesslist6: typeof import("./routerAccesslist6").RouterAccesslist6 = null as any;
+utilities.lazyLoad(exports, ["RouterAccesslist6"], () => require("./routerAccesslist6"));
+
+export { RouterAspathlistArgs, RouterAspathlistState } from "./routerAspathlist";
+export type RouterAspathlist = import("./routerAspathlist").RouterAspathlist;
+export const RouterAspathlist: typeof import("./routerAspathlist").RouterAspathlist = null as any;
+utilities.lazyLoad(exports, ["RouterAspathlist"], () => require("./routerAspathlist"));
+
+export { RouterAuthpathArgs, RouterAuthpathState } from "./routerAuthpath";
+export type RouterAuthpath = import("./routerAuthpath").RouterAuthpath;
+export const RouterAuthpath: typeof import("./routerAuthpath").RouterAuthpath = null as any;
+utilities.lazyLoad(exports, ["RouterAuthpath"], () => require("./routerAuthpath"));
+
+export { RouterBfdArgs, RouterBfdState } from "./routerBfd";
+export type RouterBfd = import("./routerBfd").RouterBfd;
+export const RouterBfd: typeof import("./routerBfd").RouterBfd = null as any;
+utilities.lazyLoad(exports, ["RouterBfd"], () => require("./routerBfd"));
+
+export { RouterBfd6Args, RouterBfd6State } from "./routerBfd6";
+export type RouterBfd6 = import("./routerBfd6").RouterBfd6;
+export const RouterBfd6: typeof import("./routerBfd6").RouterBfd6 = null as any;
+utilities.lazyLoad(exports, ["RouterBfd6"], () => require("./routerBfd6"));
+
+export { RouterBgpArgs, RouterBgpState } from "./routerBgp";
+export type RouterBgp = import("./routerBgp").RouterBgp;
+export const RouterBgp: typeof import("./routerBgp").RouterBgp = null as any;
+utilities.lazyLoad(exports, ["RouterBgp"], () => require("./routerBgp"));
+
+export { RouterCommunitylistArgs, RouterCommunitylistState } from "./routerCommunitylist";
+export type RouterCommunitylist = import("./routerCommunitylist").RouterCommunitylist;
+export const RouterCommunitylist: typeof import("./routerCommunitylist").RouterCommunitylist = null as any;
+utilities.lazyLoad(exports, ["RouterCommunitylist"], () => require("./routerCommunitylist"));
+
+export { RouterIsisArgs, RouterIsisState } from "./routerIsis";
+export type RouterIsis = import("./routerIsis").RouterIsis;
+export const RouterIsis: typeof import("./routerIsis").RouterIsis = null as any;
+utilities.lazyLoad(exports, ["RouterIsis"], () => require("./routerIsis"));
+
+export { RouterKeychainArgs, RouterKeychainState } from "./routerKeychain";
+export type RouterKeychain = import("./routerKeychain").RouterKeychain;
+export const RouterKeychain: typeof import("./routerKeychain").RouterKeychain = null as any;
+utilities.lazyLoad(exports, ["RouterKeychain"], () => require("./routerKeychain"));
+
+export { RouterMulticastArgs, RouterMulticastState } from "./routerMulticast";
+export type RouterMulticast = import("./routerMulticast").RouterMulticast;
+export const RouterMulticast: typeof import("./routerMulticast").RouterMulticast = null as any;
+utilities.lazyLoad(exports, ["RouterMulticast"], () => require("./routerMulticast"));
+
+export { RouterMulticast6Args, RouterMulticast6State } from "./routerMulticast6";
+export type RouterMulticast6 = import("./routerMulticast6").RouterMulticast6;
+export const RouterMulticast6: typeof import("./routerMulticast6").RouterMulticast6 = null as any;
+utilities.lazyLoad(exports, ["RouterMulticast6"], () => require("./routerMulticast6"));
+
+export { RouterMulticastflowArgs, RouterMulticastflowState } from "./routerMulticastflow";
+export type RouterMulticastflow = import("./routerMulticastflow").RouterMulticastflow;
+export const RouterMulticastflow: typeof import("./routerMulticastflow").RouterMulticastflow = null as any;
+utilities.lazyLoad(exports, ["RouterMulticastflow"], () => require("./routerMulticastflow"));
+
+export { RouterOspfArgs, RouterOspfState } from "./routerOspf";
+export type RouterOspf = import("./routerOspf").RouterOspf;
+export const RouterOspf: typeof import("./routerOspf").RouterOspf = null as any;
+utilities.lazyLoad(exports, ["RouterOspf"], () => require("./routerOspf"));
+
+export { RouterOspf6Args, RouterOspf6State } from "./routerOspf6";
+export type RouterOspf6 = import("./routerOspf6").RouterOspf6;
+export const RouterOspf6: typeof import("./routerOspf6").RouterOspf6 = null as any;
+utilities.lazyLoad(exports, ["RouterOspf6"], () => require("./routerOspf6"));
+
+export { RouterPolicyArgs, RouterPolicyState } from "./routerPolicy";
+export type RouterPolicy = import("./routerPolicy").RouterPolicy;
+export const RouterPolicy: typeof import("./routerPolicy").RouterPolicy = null as any;
+utilities.lazyLoad(exports, ["RouterPolicy"], () => require("./routerPolicy"));
+
+export { RouterPolicy6Args, RouterPolicy6State } from "./routerPolicy6";
+export type RouterPolicy6 = import("./routerPolicy6").RouterPolicy6;
+export const RouterPolicy6: typeof import("./routerPolicy6").RouterPolicy6 = null as any;
+utilities.lazyLoad(exports, ["RouterPolicy6"], () => require("./routerPolicy6"));
+
+export { RouterPrefixlistArgs, RouterPrefixlistState } from "./routerPrefixlist";
+export type RouterPrefixlist = import("./routerPrefixlist").RouterPrefixlist;
+export const RouterPrefixlist: typeof import("./routerPrefixlist").RouterPrefixlist = null as any;
+utilities.lazyLoad(exports, ["RouterPrefixlist"], () => require("./routerPrefixlist"));
+
+export { RouterPrefixlist6Args, RouterPrefixlist6State } from "./routerPrefixlist6";
+export type RouterPrefixlist6 = import("./routerPrefixlist6").RouterPrefixlist6;
+export const RouterPrefixlist6: typeof import("./routerPrefixlist6").RouterPrefixlist6 = null as any;
+utilities.lazyLoad(exports, ["RouterPrefixlist6"], () => require("./routerPrefixlist6"));
+
+export { RouterRipArgs, RouterRipState } from "./routerRip";
+export type RouterRip = import("./routerRip").RouterRip;
+export const RouterRip: typeof import("./routerRip").RouterRip = null as any;
+utilities.lazyLoad(exports, ["RouterRip"], () => require("./routerRip"));
+
+export { RouterRipngArgs, RouterRipngState } from "./routerRipng";
+export type RouterRipng = import("./routerRipng").RouterRipng;
+export const RouterRipng: typeof import("./routerRipng").RouterRipng = null as any;
+utilities.lazyLoad(exports, ["RouterRipng"], () => require("./routerRipng"));
+
+export { RouterRoutemapArgs, RouterRoutemapState } from "./routerRoutemap";
+export type RouterRoutemap = import("./routerRoutemap").RouterRoutemap;
+export const RouterRoutemap: typeof import("./routerRoutemap").RouterRoutemap = null as any;
+utilities.lazyLoad(exports, ["RouterRoutemap"], () => require("./routerRoutemap"));
+
+export { RouterSettingArgs, RouterSettingState } from "./routerSetting";
+export type RouterSetting = import("./routerSetting").RouterSetting;
+export const RouterSetting: typeof import("./routerSetting").RouterSetting = null as any;
+utilities.lazyLoad(exports, ["RouterSetting"], () => require("./routerSetting"));
+
+export { RouterStaticArgs, RouterStaticState } from "./routerStatic";
+export type RouterStatic = import("./routerStatic").RouterStatic;
+export const RouterStatic: typeof import("./routerStatic").RouterStatic = null as any;
+utilities.lazyLoad(exports, ["RouterStatic"], () => require("./routerStatic"));
+
+export { RouterStatic6Args, RouterStatic6State } from "./routerStatic6";
+export type RouterStatic6 = import("./routerStatic6").RouterStatic6;
+export const RouterStatic6: typeof import("./routerStatic6").RouterStatic6 = null as any;
+utilities.lazyLoad(exports, ["RouterStatic6"], () => require("./routerStatic6"));
+
+export { RouterbgpNeighborArgs, RouterbgpNeighborState } from "./routerbgpNeighbor";
+export type RouterbgpNeighbor = import("./routerbgpNeighbor").RouterbgpNeighbor;
+export const RouterbgpNeighbor: typeof import("./routerbgpNeighbor").RouterbgpNeighbor = null as any;
+utilities.lazyLoad(exports, ["RouterbgpNeighbor"], () => require("./routerbgpNeighbor"));
+
+export { RouterbgpNetworkArgs, RouterbgpNetworkState } from "./routerbgpNetwork";
+export type RouterbgpNetwork = import("./routerbgpNetwork").RouterbgpNetwork;
+export const RouterbgpNetwork: typeof import("./routerbgpNetwork").RouterbgpNetwork = null as any;
+utilities.lazyLoad(exports, ["RouterbgpNetwork"], () => require("./routerbgpNetwork"));
+
+export { RouterbgpNetwork6Args, RouterbgpNetwork6State } from "./routerbgpNetwork6";
+export type RouterbgpNetwork6 = import("./routerbgpNetwork6").RouterbgpNetwork6;
+export const RouterbgpNetwork6: typeof import("./routerbgpNetwork6").RouterbgpNetwork6 = null as any;
+utilities.lazyLoad(exports, ["RouterbgpNetwork6"], () => require("./routerbgpNetwork6"));
+
+export { Routerospf6Ospf6interfaceArgs, Routerospf6Ospf6interfaceState } from "./routerospf6Ospf6interface";
+export type Routerospf6Ospf6interface = import("./routerospf6Ospf6interface").Routerospf6Ospf6interface;
+export const Routerospf6Ospf6interface: typeof import("./routerospf6Ospf6interface").Routerospf6Ospf6interface = null as any;
+utilities.lazyLoad(exports, ["Routerospf6Ospf6interface"], () => require("./routerospf6Ospf6interface"));
+
+export { RouterospfNeighborArgs, RouterospfNeighborState } from "./routerospfNeighbor";
+export type RouterospfNeighbor = import("./routerospfNeighbor").RouterospfNeighbor;
+export const RouterospfNeighbor: typeof import("./routerospfNeighbor").RouterospfNeighbor = null as any;
+utilities.lazyLoad(exports, ["RouterospfNeighbor"], () => require("./routerospfNeighbor"));
+
+export { RouterospfNetworkArgs, RouterospfNetworkState } from "./routerospfNetwork";
+export type RouterospfNetwork = import("./routerospfNetwork").RouterospfNetwork;
+export const RouterospfNetwork: typeof import("./routerospfNetwork").RouterospfNetwork = null as any;
+utilities.lazyLoad(exports, ["RouterospfNetwork"], () => require("./routerospfNetwork"));
+
+export { RouterospfOspfinterfaceArgs, RouterospfOspfinterfaceState } from "./routerospfOspfinterface";
+export type RouterospfOspfinterface = import("./routerospfOspfinterface").RouterospfOspfinterface;
+export const RouterospfOspfinterface: typeof import("./routerospfOspfinterface").RouterospfOspfinterface = null as any;
+utilities.lazyLoad(exports, ["RouterospfOspfinterface"], () => require("./routerospfOspfinterface"));
+
+export { SctpfilterProfileArgs, SctpfilterProfileState } from "./sctpfilterProfile";
+export type SctpfilterProfile = import("./sctpfilterProfile").SctpfilterProfile;
+export const SctpfilterProfile: typeof import("./sctpfilterProfile").SctpfilterProfile = null as any;
+utilities.lazyLoad(exports, ["SctpfilterProfile"], () => require("./sctpfilterProfile"));
+
+export { SpamfilterBwlArgs, SpamfilterBwlState } from "./spamfilterBwl";
+export type SpamfilterBwl = import("./spamfilterBwl").SpamfilterBwl;
+export const SpamfilterBwl: typeof import("./spamfilterBwl").SpamfilterBwl = null as any;
+utilities.lazyLoad(exports, ["SpamfilterBwl"], () => require("./spamfilterBwl"));
+
+export { SpamfilterBwordArgs, SpamfilterBwordState } from "./spamfilterBword";
+export type SpamfilterBword = import("./spamfilterBword").SpamfilterBword;
+export const SpamfilterBword: typeof import("./spamfilterBword").SpamfilterBword = null as any;
+utilities.lazyLoad(exports, ["SpamfilterBword"], () => require("./spamfilterBword"));
+
+export { SpamfilterDnsblArgs, SpamfilterDnsblState } from "./spamfilterDnsbl";
+export type SpamfilterDnsbl = import("./spamfilterDnsbl").SpamfilterDnsbl;
+export const SpamfilterDnsbl: typeof import("./spamfilterDnsbl").SpamfilterDnsbl = null as any;
+utilities.lazyLoad(exports, ["SpamfilterDnsbl"], () => require("./spamfilterDnsbl"));
+
+export { SpamfilterFortishieldArgs, SpamfilterFortishieldState } from "./spamfilterFortishield";
+export type SpamfilterFortishield = import("./spamfilterFortishield").SpamfilterFortishield;
+export const SpamfilterFortishield: typeof import("./spamfilterFortishield").SpamfilterFortishield = null as any;
+utilities.lazyLoad(exports, ["SpamfilterFortishield"], () => require("./spamfilterFortishield"));
+
+export { SpamfilterIptrustArgs, SpamfilterIptrustState } from "./spamfilterIptrust";
+export type SpamfilterIptrust = import("./spamfilterIptrust").SpamfilterIptrust;
+export const SpamfilterIptrust: typeof import("./spamfilterIptrust").SpamfilterIptrust = null as any;
+utilities.lazyLoad(exports, ["SpamfilterIptrust"], () => require("./spamfilterIptrust"));
+
+export { SpamfilterMheaderArgs, SpamfilterMheaderState } from "./spamfilterMheader";
+export type SpamfilterMheader = import("./spamfilterMheader").SpamfilterMheader;
+export const SpamfilterMheader: typeof import("./spamfilterMheader").SpamfilterMheader = null as any;
+utilities.lazyLoad(exports, ["SpamfilterMheader"], () => require("./spamfilterMheader"));
+
+export { SpamfilterOptionsArgs, SpamfilterOptionsState } from "./spamfilterOptions";
+export type SpamfilterOptions = import("./spamfilterOptions").SpamfilterOptions;
+export const SpamfilterOptions: typeof import("./spamfilterOptions").SpamfilterOptions = null as any;
+utilities.lazyLoad(exports, ["SpamfilterOptions"], () => require("./spamfilterOptions"));
+
+export { SpamfilterProfileArgs, SpamfilterProfileState } from "./spamfilterProfile";
+export type SpamfilterProfile = import("./spamfilterProfile").SpamfilterProfile;
+export const SpamfilterProfile: typeof import("./spamfilterProfile").SpamfilterProfile = null as any;
+utilities.lazyLoad(exports, ["SpamfilterProfile"], () => require("./spamfilterProfile"));
+
+export { SshfilterProfileArgs, SshfilterProfileState } from "./sshfilterProfile";
+export type SshfilterProfile = import("./sshfilterProfile").SshfilterProfile;
+export const SshfilterProfile: typeof import("./sshfilterProfile").SshfilterProfile = null as any;
+utilities.lazyLoad(exports, ["SshfilterProfile"], () => require("./sshfilterProfile"));
+
+export { Switchcontroller8021XsettingsArgs, Switchcontroller8021XsettingsState } from "./switchcontroller8021Xsettings";
+export type Switchcontroller8021Xsettings = import("./switchcontroller8021Xsettings").Switchcontroller8021Xsettings;
+export const Switchcontroller8021Xsettings: typeof import("./switchcontroller8021Xsettings").Switchcontroller8021Xsettings = null as any;
+utilities.lazyLoad(exports, ["Switchcontroller8021Xsettings"], () => require("./switchcontroller8021Xsettings"));
+
+export { SwitchcontrollerCustomcommandArgs, SwitchcontrollerCustomcommandState } from "./switchcontrollerCustomcommand";
+export type SwitchcontrollerCustomcommand = import("./switchcontrollerCustomcommand").SwitchcontrollerCustomcommand;
+export const SwitchcontrollerCustomcommand: typeof import("./switchcontrollerCustomcommand").SwitchcontrollerCustomcommand = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerCustomcommand"], () => require("./switchcontrollerCustomcommand"));
+
+export { SwitchcontrollerDynamicportpolicyArgs, SwitchcontrollerDynamicportpolicyState } from "./switchcontrollerDynamicportpolicy";
+export type SwitchcontrollerDynamicportpolicy = import("./switchcontrollerDynamicportpolicy").SwitchcontrollerDynamicportpolicy;
+export const SwitchcontrollerDynamicportpolicy: typeof import("./switchcontrollerDynamicportpolicy").SwitchcontrollerDynamicportpolicy = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerDynamicportpolicy"], () => require("./switchcontrollerDynamicportpolicy"));
+
+export { SwitchcontrollerFlowtrackingArgs, SwitchcontrollerFlowtrackingState } from "./switchcontrollerFlowtracking";
+export type SwitchcontrollerFlowtracking = import("./switchcontrollerFlowtracking").SwitchcontrollerFlowtracking;
+export const SwitchcontrollerFlowtracking: typeof import("./switchcontrollerFlowtracking").SwitchcontrollerFlowtracking = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerFlowtracking"], () => require("./switchcontrollerFlowtracking"));
+
+export { SwitchcontrollerFortilinksettingsArgs, SwitchcontrollerFortilinksettingsState } from "./switchcontrollerFortilinksettings";
+export type SwitchcontrollerFortilinksettings = import("./switchcontrollerFortilinksettings").SwitchcontrollerFortilinksettings;
+export const SwitchcontrollerFortilinksettings: typeof import("./switchcontrollerFortilinksettings").SwitchcontrollerFortilinksettings = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerFortilinksettings"], () => require("./switchcontrollerFortilinksettings"));
+
+export { SwitchcontrollerGlobalArgs, SwitchcontrollerGlobalState } from "./switchcontrollerGlobal";
+export type SwitchcontrollerGlobal = import("./switchcontrollerGlobal").SwitchcontrollerGlobal;
+export const SwitchcontrollerGlobal: typeof import("./switchcontrollerGlobal").SwitchcontrollerGlobal = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerGlobal"], () => require("./switchcontrollerGlobal"));
+
+export { SwitchcontrollerIgmpsnoopingArgs, SwitchcontrollerIgmpsnoopingState } from "./switchcontrollerIgmpsnooping";
+export type SwitchcontrollerIgmpsnooping = import("./switchcontrollerIgmpsnooping").SwitchcontrollerIgmpsnooping;
+export const SwitchcontrollerIgmpsnooping: typeof import("./switchcontrollerIgmpsnooping").SwitchcontrollerIgmpsnooping = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerIgmpsnooping"], () => require("./switchcontrollerIgmpsnooping"));
+
+export { SwitchcontrollerLldpprofileArgs, SwitchcontrollerLldpprofileState } from "./switchcontrollerLldpprofile";
+export type SwitchcontrollerLldpprofile = import("./switchcontrollerLldpprofile").SwitchcontrollerLldpprofile;
+export const SwitchcontrollerLldpprofile: typeof import("./switchcontrollerLldpprofile").SwitchcontrollerLldpprofile = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerLldpprofile"], () => require("./switchcontrollerLldpprofile"));
+
+export { SwitchcontrollerLldpsettingsArgs, SwitchcontrollerLldpsettingsState } from "./switchcontrollerLldpsettings";
+export type SwitchcontrollerLldpsettings = import("./switchcontrollerLldpsettings").SwitchcontrollerLldpsettings;
+export const SwitchcontrollerLldpsettings: typeof import("./switchcontrollerLldpsettings").SwitchcontrollerLldpsettings = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerLldpsettings"], () => require("./switchcontrollerLldpsettings"));
+
+export { SwitchcontrollerLocationArgs, SwitchcontrollerLocationState } from "./switchcontrollerLocation";
+export type SwitchcontrollerLocation = import("./switchcontrollerLocation").SwitchcontrollerLocation;
+export const SwitchcontrollerLocation: typeof import("./switchcontrollerLocation").SwitchcontrollerLocation = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerLocation"], () => require("./switchcontrollerLocation"));
+
+export { SwitchcontrollerMacsyncsettingsArgs, SwitchcontrollerMacsyncsettingsState } from "./switchcontrollerMacsyncsettings";
+export type SwitchcontrollerMacsyncsettings = import("./switchcontrollerMacsyncsettings").SwitchcontrollerMacsyncsettings;
+export const SwitchcontrollerMacsyncsettings: typeof import("./switchcontrollerMacsyncsettings").SwitchcontrollerMacsyncsettings = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerMacsyncsettings"], () => require("./switchcontrollerMacsyncsettings"));
+
+export { SwitchcontrollerManagedswitchArgs, SwitchcontrollerManagedswitchState } from "./switchcontrollerManagedswitch";
+export type SwitchcontrollerManagedswitch = import("./switchcontrollerManagedswitch").SwitchcontrollerManagedswitch;
+export const SwitchcontrollerManagedswitch: typeof import("./switchcontrollerManagedswitch").SwitchcontrollerManagedswitch = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerManagedswitch"], () => require("./switchcontrollerManagedswitch"));
+
+export { SwitchcontrollerNacdeviceArgs, SwitchcontrollerNacdeviceState } from "./switchcontrollerNacdevice";
+export type SwitchcontrollerNacdevice = import("./switchcontrollerNacdevice").SwitchcontrollerNacdevice;
+export const SwitchcontrollerNacdevice: typeof import("./switchcontrollerNacdevice").SwitchcontrollerNacdevice = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerNacdevice"], () => require("./switchcontrollerNacdevice"));
+
+export { SwitchcontrollerNacsettingsArgs, SwitchcontrollerNacsettingsState } from "./switchcontrollerNacsettings";
+export type SwitchcontrollerNacsettings = import("./switchcontrollerNacsettings").SwitchcontrollerNacsettings;
+export const SwitchcontrollerNacsettings: typeof import("./switchcontrollerNacsettings").SwitchcontrollerNacsettings = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerNacsettings"], () => require("./switchcontrollerNacsettings"));
+
+export { SwitchcontrollerNetworkmonitorsettingsArgs, SwitchcontrollerNetworkmonitorsettingsState } from "./switchcontrollerNetworkmonitorsettings";
+export type SwitchcontrollerNetworkmonitorsettings = import("./switchcontrollerNetworkmonitorsettings").SwitchcontrollerNetworkmonitorsettings;
+export const SwitchcontrollerNetworkmonitorsettings: typeof import("./switchcontrollerNetworkmonitorsettings").SwitchcontrollerNetworkmonitorsettings = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerNetworkmonitorsettings"], () => require("./switchcontrollerNetworkmonitorsettings"));
+
+export { SwitchcontrollerPortpolicyArgs, SwitchcontrollerPortpolicyState } from "./switchcontrollerPortpolicy";
+export type SwitchcontrollerPortpolicy = import("./switchcontrollerPortpolicy").SwitchcontrollerPortpolicy;
+export const SwitchcontrollerPortpolicy: typeof import("./switchcontrollerPortpolicy").SwitchcontrollerPortpolicy = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerPortpolicy"], () => require("./switchcontrollerPortpolicy"));
+
+export { SwitchcontrollerQuarantineArgs, SwitchcontrollerQuarantineState } from "./switchcontrollerQuarantine";
+export type SwitchcontrollerQuarantine = import("./switchcontrollerQuarantine").SwitchcontrollerQuarantine;
+export const SwitchcontrollerQuarantine: typeof import("./switchcontrollerQuarantine").SwitchcontrollerQuarantine = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerQuarantine"], () => require("./switchcontrollerQuarantine"));
+
+export { SwitchcontrollerRemotelogArgs, SwitchcontrollerRemotelogState } from "./switchcontrollerRemotelog";
+export type SwitchcontrollerRemotelog = import("./switchcontrollerRemotelog").SwitchcontrollerRemotelog;
+export const SwitchcontrollerRemotelog: typeof import("./switchcontrollerRemotelog").SwitchcontrollerRemotelog = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerRemotelog"], () => require("./switchcontrollerRemotelog"));
+
+export { SwitchcontrollerSflowArgs, SwitchcontrollerSflowState } from "./switchcontrollerSflow";
+export type SwitchcontrollerSflow = import("./switchcontrollerSflow").SwitchcontrollerSflow;
+export const SwitchcontrollerSflow: typeof import("./switchcontrollerSflow").SwitchcontrollerSflow = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerSflow"], () => require("./switchcontrollerSflow"));
+
+export { SwitchcontrollerSnmpcommunityArgs, SwitchcontrollerSnmpcommunityState } from "./switchcontrollerSnmpcommunity";
+export type SwitchcontrollerSnmpcommunity = import("./switchcontrollerSnmpcommunity").SwitchcontrollerSnmpcommunity;
+export const SwitchcontrollerSnmpcommunity: typeof import("./switchcontrollerSnmpcommunity").SwitchcontrollerSnmpcommunity = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerSnmpcommunity"], () => require("./switchcontrollerSnmpcommunity"));
+
+export { SwitchcontrollerSnmpsysinfoArgs, SwitchcontrollerSnmpsysinfoState } from "./switchcontrollerSnmpsysinfo";
+export type SwitchcontrollerSnmpsysinfo = import("./switchcontrollerSnmpsysinfo").SwitchcontrollerSnmpsysinfo;
+export const SwitchcontrollerSnmpsysinfo: typeof import("./switchcontrollerSnmpsysinfo").SwitchcontrollerSnmpsysinfo = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerSnmpsysinfo"], () => require("./switchcontrollerSnmpsysinfo"));
+
+export { SwitchcontrollerSnmptrapthresholdArgs, SwitchcontrollerSnmptrapthresholdState } from "./switchcontrollerSnmptrapthreshold";
+export type SwitchcontrollerSnmptrapthreshold = import("./switchcontrollerSnmptrapthreshold").SwitchcontrollerSnmptrapthreshold;
+export const SwitchcontrollerSnmptrapthreshold: typeof import("./switchcontrollerSnmptrapthreshold").SwitchcontrollerSnmptrapthreshold = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerSnmptrapthreshold"], () => require("./switchcontrollerSnmptrapthreshold"));
+
+export { SwitchcontrollerSnmpuserArgs, SwitchcontrollerSnmpuserState } from "./switchcontrollerSnmpuser";
+export type SwitchcontrollerSnmpuser = import("./switchcontrollerSnmpuser").SwitchcontrollerSnmpuser;
+export const SwitchcontrollerSnmpuser: typeof import("./switchcontrollerSnmpuser").SwitchcontrollerSnmpuser = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerSnmpuser"], () => require("./switchcontrollerSnmpuser"));
+
+export { SwitchcontrollerStormcontrolArgs, SwitchcontrollerStormcontrolState } from "./switchcontrollerStormcontrol";
+export type SwitchcontrollerStormcontrol = import("./switchcontrollerStormcontrol").SwitchcontrollerStormcontrol;
+export const SwitchcontrollerStormcontrol: typeof import("./switchcontrollerStormcontrol").SwitchcontrollerStormcontrol = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerStormcontrol"], () => require("./switchcontrollerStormcontrol"));
+
+export { SwitchcontrollerStormcontrolpolicyArgs, SwitchcontrollerStormcontrolpolicyState } from "./switchcontrollerStormcontrolpolicy";
+export type SwitchcontrollerStormcontrolpolicy = import("./switchcontrollerStormcontrolpolicy").SwitchcontrollerStormcontrolpolicy;
+export const SwitchcontrollerStormcontrolpolicy: typeof import("./switchcontrollerStormcontrolpolicy").SwitchcontrollerStormcontrolpolicy = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerStormcontrolpolicy"], () => require("./switchcontrollerStormcontrolpolicy"));
+
+export { SwitchcontrollerStpinstanceArgs, SwitchcontrollerStpinstanceState } from "./switchcontrollerStpinstance";
+export type SwitchcontrollerStpinstance = import("./switchcontrollerStpinstance").SwitchcontrollerStpinstance;
+export const SwitchcontrollerStpinstance: typeof import("./switchcontrollerStpinstance").SwitchcontrollerStpinstance = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerStpinstance"], () => require("./switchcontrollerStpinstance"));
+
+export { SwitchcontrollerStpsettingsArgs, SwitchcontrollerStpsettingsState } from "./switchcontrollerStpsettings";
+export type SwitchcontrollerStpsettings = import("./switchcontrollerStpsettings").SwitchcontrollerStpsettings;
+export const SwitchcontrollerStpsettings: typeof import("./switchcontrollerStpsettings").SwitchcontrollerStpsettings = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerStpsettings"], () => require("./switchcontrollerStpsettings"));
+
+export { SwitchcontrollerSwitchgroupArgs, SwitchcontrollerSwitchgroupState } from "./switchcontrollerSwitchgroup";
+export type SwitchcontrollerSwitchgroup = import("./switchcontrollerSwitchgroup").SwitchcontrollerSwitchgroup;
+export const SwitchcontrollerSwitchgroup: typeof import("./switchcontrollerSwitchgroup").SwitchcontrollerSwitchgroup = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerSwitchgroup"], () => require("./switchcontrollerSwitchgroup"));
+
+export { SwitchcontrollerSwitchinterfacetagArgs, SwitchcontrollerSwitchinterfacetagState } from "./switchcontrollerSwitchinterfacetag";
+export type SwitchcontrollerSwitchinterfacetag = import("./switchcontrollerSwitchinterfacetag").SwitchcontrollerSwitchinterfacetag;
+export const SwitchcontrollerSwitchinterfacetag: typeof import("./switchcontrollerSwitchinterfacetag").SwitchcontrollerSwitchinterfacetag = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerSwitchinterfacetag"], () => require("./switchcontrollerSwitchinterfacetag"));
+
+export { SwitchcontrollerSwitchlogArgs, SwitchcontrollerSwitchlogState } from "./switchcontrollerSwitchlog";
+export type SwitchcontrollerSwitchlog = import("./switchcontrollerSwitchlog").SwitchcontrollerSwitchlog;
+export const SwitchcontrollerSwitchlog: typeof import("./switchcontrollerSwitchlog").SwitchcontrollerSwitchlog = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerSwitchlog"], () => require("./switchcontrollerSwitchlog"));
+
+export { SwitchcontrollerSwitchprofileArgs, SwitchcontrollerSwitchprofileState } from "./switchcontrollerSwitchprofile";
+export type SwitchcontrollerSwitchprofile = import("./switchcontrollerSwitchprofile").SwitchcontrollerSwitchprofile;
+export const SwitchcontrollerSwitchprofile: typeof import("./switchcontrollerSwitchprofile").SwitchcontrollerSwitchprofile = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerSwitchprofile"], () => require("./switchcontrollerSwitchprofile"));
+
+export { SwitchcontrollerSystemArgs, SwitchcontrollerSystemState } from "./switchcontrollerSystem";
+export type SwitchcontrollerSystem = import("./switchcontrollerSystem").SwitchcontrollerSystem;
+export const SwitchcontrollerSystem: typeof import("./switchcontrollerSystem").SwitchcontrollerSystem = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerSystem"], () => require("./switchcontrollerSystem"));
+
+export { SwitchcontrollerTrafficpolicyArgs, SwitchcontrollerTrafficpolicyState } from "./switchcontrollerTrafficpolicy";
+export type SwitchcontrollerTrafficpolicy = import("./switchcontrollerTrafficpolicy").SwitchcontrollerTrafficpolicy;
+export const SwitchcontrollerTrafficpolicy: typeof import("./switchcontrollerTrafficpolicy").SwitchcontrollerTrafficpolicy = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerTrafficpolicy"], () => require("./switchcontrollerTrafficpolicy"));
+
+export { SwitchcontrollerTrafficsnifferArgs, SwitchcontrollerTrafficsnifferState } from "./switchcontrollerTrafficsniffer";
+export type SwitchcontrollerTrafficsniffer = import("./switchcontrollerTrafficsniffer").SwitchcontrollerTrafficsniffer;
+export const SwitchcontrollerTrafficsniffer: typeof import("./switchcontrollerTrafficsniffer").SwitchcontrollerTrafficsniffer = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerTrafficsniffer"], () => require("./switchcontrollerTrafficsniffer"));
+
+export { SwitchcontrollerVirtualportpoolArgs, SwitchcontrollerVirtualportpoolState } from "./switchcontrollerVirtualportpool";
+export type SwitchcontrollerVirtualportpool = import("./switchcontrollerVirtualportpool").SwitchcontrollerVirtualportpool;
+export const SwitchcontrollerVirtualportpool: typeof import("./switchcontrollerVirtualportpool").SwitchcontrollerVirtualportpool = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerVirtualportpool"], () => require("./switchcontrollerVirtualportpool"));
+
+export { SwitchcontrollerVlanArgs, SwitchcontrollerVlanState } from "./switchcontrollerVlan";
+export type SwitchcontrollerVlan = import("./switchcontrollerVlan").SwitchcontrollerVlan;
+export const SwitchcontrollerVlan: typeof import("./switchcontrollerVlan").SwitchcontrollerVlan = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerVlan"], () => require("./switchcontrollerVlan"));
+
+export { SwitchcontrollerVlanpolicyArgs, SwitchcontrollerVlanpolicyState } from "./switchcontrollerVlanpolicy";
+export type SwitchcontrollerVlanpolicy = import("./switchcontrollerVlanpolicy").SwitchcontrollerVlanpolicy;
+export const SwitchcontrollerVlanpolicy: typeof import("./switchcontrollerVlanpolicy").SwitchcontrollerVlanpolicy = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerVlanpolicy"], () => require("./switchcontrollerVlanpolicy"));
+
+export { SwitchcontrollerautoconfigCustomArgs, SwitchcontrollerautoconfigCustomState } from "./switchcontrollerautoconfigCustom";
+export type SwitchcontrollerautoconfigCustom = import("./switchcontrollerautoconfigCustom").SwitchcontrollerautoconfigCustom;
+export const SwitchcontrollerautoconfigCustom: typeof import("./switchcontrollerautoconfigCustom").SwitchcontrollerautoconfigCustom = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerautoconfigCustom"], () => require("./switchcontrollerautoconfigCustom"));
+
+export { SwitchcontrollerautoconfigDefaultArgs, SwitchcontrollerautoconfigDefaultState } from "./switchcontrollerautoconfigDefault";
+export type SwitchcontrollerautoconfigDefault = import("./switchcontrollerautoconfigDefault").SwitchcontrollerautoconfigDefault;
+export const SwitchcontrollerautoconfigDefault: typeof import("./switchcontrollerautoconfigDefault").SwitchcontrollerautoconfigDefault = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerautoconfigDefault"], () => require("./switchcontrollerautoconfigDefault"));
+
+export { SwitchcontrollerautoconfigPolicyArgs, SwitchcontrollerautoconfigPolicyState } from "./switchcontrollerautoconfigPolicy";
+export type SwitchcontrollerautoconfigPolicy = import("./switchcontrollerautoconfigPolicy").SwitchcontrollerautoconfigPolicy;
+export const SwitchcontrollerautoconfigPolicy: typeof import("./switchcontrollerautoconfigPolicy").SwitchcontrollerautoconfigPolicy = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerautoconfigPolicy"], () => require("./switchcontrollerautoconfigPolicy"));
+
+export { SwitchcontrollerinitialconfigTemplateArgs, SwitchcontrollerinitialconfigTemplateState } from "./switchcontrollerinitialconfigTemplate";
+export type SwitchcontrollerinitialconfigTemplate = import("./switchcontrollerinitialconfigTemplate").SwitchcontrollerinitialconfigTemplate;
+export const SwitchcontrollerinitialconfigTemplate: typeof import("./switchcontrollerinitialconfigTemplate").SwitchcontrollerinitialconfigTemplate = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerinitialconfigTemplate"], () => require("./switchcontrollerinitialconfigTemplate"));
+
+export { SwitchcontrollerinitialconfigVlansArgs, SwitchcontrollerinitialconfigVlansState } from "./switchcontrollerinitialconfigVlans";
+export type SwitchcontrollerinitialconfigVlans = import("./switchcontrollerinitialconfigVlans").SwitchcontrollerinitialconfigVlans;
+export const SwitchcontrollerinitialconfigVlans: typeof import("./switchcontrollerinitialconfigVlans").SwitchcontrollerinitialconfigVlans = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerinitialconfigVlans"], () => require("./switchcontrollerinitialconfigVlans"));
+
+export { SwitchcontrollerptpPolicyArgs, SwitchcontrollerptpPolicyState } from "./switchcontrollerptpPolicy";
+export type SwitchcontrollerptpPolicy = import("./switchcontrollerptpPolicy").SwitchcontrollerptpPolicy;
+export const SwitchcontrollerptpPolicy: typeof import("./switchcontrollerptpPolicy").SwitchcontrollerptpPolicy = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerptpPolicy"], () => require("./switchcontrollerptpPolicy"));
+
+export { SwitchcontrollerptpSettingsArgs, SwitchcontrollerptpSettingsState } from "./switchcontrollerptpSettings";
+export type SwitchcontrollerptpSettings = import("./switchcontrollerptpSettings").SwitchcontrollerptpSettings;
+export const SwitchcontrollerptpSettings: typeof import("./switchcontrollerptpSettings").SwitchcontrollerptpSettings = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerptpSettings"], () => require("./switchcontrollerptpSettings"));
+
+export { SwitchcontrollerqosDot1pmapArgs, SwitchcontrollerqosDot1pmapState } from "./switchcontrollerqosDot1pmap";
+export type SwitchcontrollerqosDot1pmap = import("./switchcontrollerqosDot1pmap").SwitchcontrollerqosDot1pmap;
+export const SwitchcontrollerqosDot1pmap: typeof import("./switchcontrollerqosDot1pmap").SwitchcontrollerqosDot1pmap = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerqosDot1pmap"], () => require("./switchcontrollerqosDot1pmap"));
+
+export { SwitchcontrollerqosIpdscpmapArgs, SwitchcontrollerqosIpdscpmapState } from "./switchcontrollerqosIpdscpmap";
+export type SwitchcontrollerqosIpdscpmap = import("./switchcontrollerqosIpdscpmap").SwitchcontrollerqosIpdscpmap;
+export const SwitchcontrollerqosIpdscpmap: typeof import("./switchcontrollerqosIpdscpmap").SwitchcontrollerqosIpdscpmap = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerqosIpdscpmap"], () => require("./switchcontrollerqosIpdscpmap"));
+
+export { SwitchcontrollerqosQospolicyArgs, SwitchcontrollerqosQospolicyState } from "./switchcontrollerqosQospolicy";
+export type SwitchcontrollerqosQospolicy = import("./switchcontrollerqosQospolicy").SwitchcontrollerqosQospolicy;
+export const SwitchcontrollerqosQospolicy: typeof import("./switchcontrollerqosQospolicy").SwitchcontrollerqosQospolicy = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerqosQospolicy"], () => require("./switchcontrollerqosQospolicy"));
+
+export { SwitchcontrollerqosQueuepolicyArgs, SwitchcontrollerqosQueuepolicyState } from "./switchcontrollerqosQueuepolicy";
+export type SwitchcontrollerqosQueuepolicy = import("./switchcontrollerqosQueuepolicy").SwitchcontrollerqosQueuepolicy;
+export const SwitchcontrollerqosQueuepolicy: typeof import("./switchcontrollerqosQueuepolicy").SwitchcontrollerqosQueuepolicy = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollerqosQueuepolicy"], () => require("./switchcontrollerqosQueuepolicy"));
+
+export { Switchcontrollersecuritypolicy8021XArgs, Switchcontrollersecuritypolicy8021XState } from "./switchcontrollersecuritypolicy8021X";
+export type Switchcontrollersecuritypolicy8021X = import("./switchcontrollersecuritypolicy8021X").Switchcontrollersecuritypolicy8021X;
+export const Switchcontrollersecuritypolicy8021X: typeof import("./switchcontrollersecuritypolicy8021X").Switchcontrollersecuritypolicy8021X = null as any;
+utilities.lazyLoad(exports, ["Switchcontrollersecuritypolicy8021X"], () => require("./switchcontrollersecuritypolicy8021X"));
+
+export { SwitchcontrollersecuritypolicyCaptiveportalArgs, SwitchcontrollersecuritypolicyCaptiveportalState } from "./switchcontrollersecuritypolicyCaptiveportal";
+export type SwitchcontrollersecuritypolicyCaptiveportal = import("./switchcontrollersecuritypolicyCaptiveportal").SwitchcontrollersecuritypolicyCaptiveportal;
+export const SwitchcontrollersecuritypolicyCaptiveportal: typeof import("./switchcontrollersecuritypolicyCaptiveportal").SwitchcontrollersecuritypolicyCaptiveportal = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollersecuritypolicyCaptiveportal"], () => require("./switchcontrollersecuritypolicyCaptiveportal"));
+
+export { SwitchcontrollersecuritypolicyLocalaccessArgs, SwitchcontrollersecuritypolicyLocalaccessState } from "./switchcontrollersecuritypolicyLocalaccess";
+export type SwitchcontrollersecuritypolicyLocalaccess = import("./switchcontrollersecuritypolicyLocalaccess").SwitchcontrollersecuritypolicyLocalaccess;
+export const SwitchcontrollersecuritypolicyLocalaccess: typeof import("./switchcontrollersecuritypolicyLocalaccess").SwitchcontrollersecuritypolicyLocalaccess = null as any;
+utilities.lazyLoad(exports, ["SwitchcontrollersecuritypolicyLocalaccess"], () => require("./switchcontrollersecuritypolicyLocalaccess"));
+
+export { System3gmodemCustomArgs, System3gmodemCustomState } from "./system3gmodemCustom";
+export type System3gmodemCustom = import("./system3gmodemCustom").System3gmodemCustom;
+export const System3gmodemCustom: typeof import("./system3gmodemCustom").System3gmodemCustom = null as any;
+utilities.lazyLoad(exports, ["System3gmodemCustom"], () => require("./system3gmodemCustom"));
+
+export { SystemAccprofileArgs, SystemAccprofileState } from "./systemAccprofile";
+export type SystemAccprofile = import("./systemAccprofile").SystemAccprofile;
+export const SystemAccprofile: typeof import("./systemAccprofile").SystemAccprofile = null as any;
+utilities.lazyLoad(exports, ["SystemAccprofile"], () => require("./systemAccprofile"));
+
+export { SystemAcmeArgs, SystemAcmeState } from "./systemAcme";
+export type SystemAcme = import("./systemAcme").SystemAcme;
+export const SystemAcme: typeof import("./systemAcme").SystemAcme = null as any;
+utilities.lazyLoad(exports, ["SystemAcme"], () => require("./systemAcme"));
+
+export { SystemAdminArgs, SystemAdminState } from "./systemAdmin";
+export type SystemAdmin = import("./systemAdmin").SystemAdmin;
+export const SystemAdmin: typeof import("./systemAdmin").SystemAdmin = null as any;
+utilities.lazyLoad(exports, ["SystemAdmin"], () => require("./systemAdmin"));
+
+export { SystemAdminAdministratorArgs, SystemAdminAdministratorState } from "./systemAdminAdministrator";
+export type SystemAdminAdministrator = import("./systemAdminAdministrator").SystemAdminAdministrator;
+export const SystemAdminAdministrator: typeof import("./systemAdminAdministrator").SystemAdminAdministrator = null as any;
+utilities.lazyLoad(exports, ["SystemAdminAdministrator"], () => require("./systemAdminAdministrator"));
+
+export { SystemAdminProfilesArgs, SystemAdminProfilesState } from "./systemAdminProfiles";
+export type SystemAdminProfiles = import("./systemAdminProfiles").SystemAdminProfiles;
+export const SystemAdminProfiles: typeof import("./systemAdminProfiles").SystemAdminProfiles = null as any;
+utilities.lazyLoad(exports, ["SystemAdminProfiles"], () => require("./systemAdminProfiles"));
+
+export { SystemAffinityinterruptArgs, SystemAffinityinterruptState } from "./systemAffinityinterrupt";
+export type SystemAffinityinterrupt = import("./systemAffinityinterrupt").SystemAffinityinterrupt;
+export const SystemAffinityinterrupt: typeof import("./systemAffinityinterrupt").SystemAffinityinterrupt = null as any;
+utilities.lazyLoad(exports, ["SystemAffinityinterrupt"], () => require("./systemAffinityinterrupt"));
+
+export { SystemAffinitypacketredistributionArgs, SystemAffinitypacketredistributionState } from "./systemAffinitypacketredistribution";
+export type SystemAffinitypacketredistribution = import("./systemAffinitypacketredistribution").SystemAffinitypacketredistribution;
+export const SystemAffinitypacketredistribution: typeof import("./systemAffinitypacketredistribution").SystemAffinitypacketredistribution = null as any;
+utilities.lazyLoad(exports, ["SystemAffinitypacketredistribution"], () => require("./systemAffinitypacketredistribution"));
+
+export { SystemAlarmArgs, SystemAlarmState } from "./systemAlarm";
+export type SystemAlarm = import("./systemAlarm").SystemAlarm;
+export const SystemAlarm: typeof import("./systemAlarm").SystemAlarm = null as any;
+utilities.lazyLoad(exports, ["SystemAlarm"], () => require("./systemAlarm"));
+
+export { SystemAliasArgs, SystemAliasState } from "./systemAlias";
+export type SystemAlias = import("./systemAlias").SystemAlias;
+export const SystemAlias: typeof import("./systemAlias").SystemAlias = null as any;
+utilities.lazyLoad(exports, ["SystemAlias"], () => require("./systemAlias"));
+
+export { SystemApiuserArgs, SystemApiuserState } from "./systemApiuser";
+export type SystemApiuser = import("./systemApiuser").SystemApiuser;
+export const SystemApiuser: typeof import("./systemApiuser").SystemApiuser = null as any;
+utilities.lazyLoad(exports, ["SystemApiuser"], () => require("./systemApiuser"));
+
+export { SystemApiuserSettingArgs, SystemApiuserSettingState } from "./systemApiuserSetting";
+export type SystemApiuserSetting = import("./systemApiuserSetting").SystemApiuserSetting;
+export const SystemApiuserSetting: typeof import("./systemApiuserSetting").SystemApiuserSetting = null as any;
+utilities.lazyLoad(exports, ["SystemApiuserSetting"], () => require("./systemApiuserSetting"));
+
+export { SystemArptableArgs, SystemArptableState } from "./systemArptable";
+export type SystemArptable = import("./systemArptable").SystemArptable;
+export const SystemArptable: typeof import("./systemArptable").SystemArptable = null as any;
+utilities.lazyLoad(exports, ["SystemArptable"], () => require("./systemArptable"));
+
+export { SystemAutoinstallArgs, SystemAutoinstallState } from "./systemAutoinstall";
+export type SystemAutoinstall = import("./systemAutoinstall").SystemAutoinstall;
+export const SystemAutoinstall: typeof import("./systemAutoinstall").SystemAutoinstall = null as any;
+utilities.lazyLoad(exports, ["SystemAutoinstall"], () => require("./systemAutoinstall"));
+
+export { SystemAutomationactionArgs, SystemAutomationactionState } from "./systemAutomationaction";
+export type SystemAutomationaction = import("./systemAutomationaction").SystemAutomationaction;
+export const SystemAutomationaction: typeof import("./systemAutomationaction").SystemAutomationaction = null as any;
+utilities.lazyLoad(exports, ["SystemAutomationaction"], () => require("./systemAutomationaction"));
+
+export { SystemAutomationdestinationArgs, SystemAutomationdestinationState } from "./systemAutomationdestination";
+export type SystemAutomationdestination = import("./systemAutomationdestination").SystemAutomationdestination;
+export const SystemAutomationdestination: typeof import("./systemAutomationdestination").SystemAutomationdestination = null as any;
+utilities.lazyLoad(exports, ["SystemAutomationdestination"], () => require("./systemAutomationdestination"));
+
+export { SystemAutomationstitchArgs, SystemAutomationstitchState } from "./systemAutomationstitch";
+export type SystemAutomationstitch = import("./systemAutomationstitch").SystemAutomationstitch;
+export const SystemAutomationstitch: typeof import("./systemAutomationstitch").SystemAutomationstitch = null as any;
+utilities.lazyLoad(exports, ["SystemAutomationstitch"], () => require("./systemAutomationstitch"));
+
+export { SystemAutomationtriggerArgs, SystemAutomationtriggerState } from "./systemAutomationtrigger";
+export type SystemAutomationtrigger = import("./systemAutomationtrigger").SystemAutomationtrigger;
+export const SystemAutomationtrigger: typeof import("./systemAutomationtrigger").SystemAutomationtrigger = null as any;
+utilities.lazyLoad(exports, ["SystemAutomationtrigger"], () => require("./systemAutomationtrigger"));
+
+export { SystemAutoscriptArgs, SystemAutoscriptState } from "./systemAutoscript";
+export type SystemAutoscript = import("./systemAutoscript").SystemAutoscript;
+export const SystemAutoscript: typeof import("./systemAutoscript").SystemAutoscript = null as any;
+utilities.lazyLoad(exports, ["SystemAutoscript"], () => require("./systemAutoscript"));
+
+export { SystemCentralmanagementArgs, SystemCentralmanagementState } from "./systemCentralmanagement";
+export type SystemCentralmanagement = import("./systemCentralmanagement").SystemCentralmanagement;
+export const SystemCentralmanagement: typeof import("./systemCentralmanagement").SystemCentralmanagement = null as any;
+utilities.lazyLoad(exports, ["SystemCentralmanagement"], () => require("./systemCentralmanagement"));
+
+export { SystemClustersyncArgs, SystemClustersyncState } from "./systemClustersync";
+export type SystemClustersync = import("./systemClustersync").SystemClustersync;
+export const SystemClustersync: typeof import("./systemClustersync").SystemClustersync = null as any;
+utilities.lazyLoad(exports, ["SystemClustersync"], () => require("./systemClustersync"));
+
+export { SystemConsoleArgs, SystemConsoleState } from "./systemConsole";
+export type SystemConsole = import("./systemConsole").SystemConsole;
+export const SystemConsole: typeof import("./systemConsole").SystemConsole = null as any;
+utilities.lazyLoad(exports, ["SystemConsole"], () => require("./systemConsole"));
+
+export { SystemCsfArgs, SystemCsfState } from "./systemCsf";
+export type SystemCsf = import("./systemCsf").SystemCsf;
+export const SystemCsf: typeof import("./systemCsf").SystemCsf = null as any;
+utilities.lazyLoad(exports, ["SystemCsf"], () => require("./systemCsf"));
+
+export { SystemCustomlanguageArgs, SystemCustomlanguageState } from "./systemCustomlanguage";
+export type SystemCustomlanguage = import("./systemCustomlanguage").SystemCustomlanguage;
+export const SystemCustomlanguage: typeof import("./systemCustomlanguage").SystemCustomlanguage = null as any;
+utilities.lazyLoad(exports, ["SystemCustomlanguage"], () => require("./systemCustomlanguage"));
+
+export { SystemDdnsArgs, SystemDdnsState } from "./systemDdns";
+export type SystemDdns = import("./systemDdns").SystemDdns;
+export const SystemDdns: typeof import("./systemDdns").SystemDdns = null as any;
+utilities.lazyLoad(exports, ["SystemDdns"], () => require("./systemDdns"));
+
+export { SystemDedicatedmgmtArgs, SystemDedicatedmgmtState } from "./systemDedicatedmgmt";
+export type SystemDedicatedmgmt = import("./systemDedicatedmgmt").SystemDedicatedmgmt;
+export const SystemDedicatedmgmt: typeof import("./systemDedicatedmgmt").SystemDedicatedmgmt = null as any;
+utilities.lazyLoad(exports, ["SystemDedicatedmgmt"], () => require("./systemDedicatedmgmt"));
+
+export { SystemDnsArgs, SystemDnsState } from "./systemDns";
+export type SystemDns = import("./systemDns").SystemDns;
+export const SystemDns: typeof import("./systemDns").SystemDns = null as any;
+utilities.lazyLoad(exports, ["SystemDns"], () => require("./systemDns"));
+
+export { SystemDns64Args, SystemDns64State } from "./systemDns64";
+export type SystemDns64 = import("./systemDns64").SystemDns64;
+export const SystemDns64: typeof import("./systemDns64").SystemDns64 = null as any;
+utilities.lazyLoad(exports, ["SystemDns64"], () => require("./systemDns64"));
+
+export { SystemDnsdatabaseArgs, SystemDnsdatabaseState } from "./systemDnsdatabase";
+export type SystemDnsdatabase = import("./systemDnsdatabase").SystemDnsdatabase;
+export const SystemDnsdatabase: typeof import("./systemDnsdatabase").SystemDnsdatabase = null as any;
+utilities.lazyLoad(exports, ["SystemDnsdatabase"], () => require("./systemDnsdatabase"));
+
+export { SystemDnsserverArgs, SystemDnsserverState } from "./systemDnsserver";
+export type SystemDnsserver = import("./systemDnsserver").SystemDnsserver;
+export const SystemDnsserver: typeof import("./systemDnsserver").SystemDnsserver = null as any;
+utilities.lazyLoad(exports, ["SystemDnsserver"], () => require("./systemDnsserver"));
+
+export { SystemDscpbasedpriorityArgs, SystemDscpbasedpriorityState } from "./systemDscpbasedpriority";
+export type SystemDscpbasedpriority = import("./systemDscpbasedpriority").SystemDscpbasedpriority;
+export const SystemDscpbasedpriority: typeof import("./systemDscpbasedpriority").SystemDscpbasedpriority = null as any;
+utilities.lazyLoad(exports, ["SystemDscpbasedpriority"], () => require("./systemDscpbasedpriority"));
+
+export { SystemEmailserverArgs, SystemEmailserverState } from "./systemEmailserver";
+export type SystemEmailserver = import("./systemEmailserver").SystemEmailserver;
+export const SystemEmailserver: typeof import("./systemEmailserver").SystemEmailserver = null as any;
+utilities.lazyLoad(exports, ["SystemEmailserver"], () => require("./systemEmailserver"));
+
+export { SystemExternalresourceArgs, SystemExternalresourceState } from "./systemExternalresource";
+export type SystemExternalresource = import("./systemExternalresource").SystemExternalresource;
+export const SystemExternalresource: typeof import("./systemExternalresource").SystemExternalresource = null as any;
+utilities.lazyLoad(exports, ["SystemExternalresource"], () => require("./systemExternalresource"));
+
+export { SystemFederatedupgradeArgs, SystemFederatedupgradeState } from "./systemFederatedupgrade";
+export type SystemFederatedupgrade = import("./systemFederatedupgrade").SystemFederatedupgrade;
+export const SystemFederatedupgrade: typeof import("./systemFederatedupgrade").SystemFederatedupgrade = null as any;
+utilities.lazyLoad(exports, ["SystemFederatedupgrade"], () => require("./systemFederatedupgrade"));
+
+export { SystemFipsccArgs, SystemFipsccState } from "./systemFipscc";
+export type SystemFipscc = import("./systemFipscc").SystemFipscc;
+export const SystemFipscc: typeof import("./systemFipscc").SystemFipscc = null as any;
+utilities.lazyLoad(exports, ["SystemFipscc"], () => require("./systemFipscc"));
+
+export { SystemFmArgs, SystemFmState } from "./systemFm";
+export type SystemFm = import("./systemFm").SystemFm;
+export const SystemFm: typeof import("./systemFm").SystemFm = null as any;
+utilities.lazyLoad(exports, ["SystemFm"], () => require("./systemFm"));
+
+export { SystemFortiaiArgs, SystemFortiaiState } from "./systemFortiai";
+export type SystemFortiai = import("./systemFortiai").SystemFortiai;
+export const SystemFortiai: typeof import("./systemFortiai").SystemFortiai = null as any;
+utilities.lazyLoad(exports, ["SystemFortiai"], () => require("./systemFortiai"));
+
+export { SystemFortiguardArgs, SystemFortiguardState } from "./systemFortiguard";
+export type SystemFortiguard = import("./systemFortiguard").SystemFortiguard;
+export const SystemFortiguard: typeof import("./systemFortiguard").SystemFortiguard = null as any;
+utilities.lazyLoad(exports, ["SystemFortiguard"], () => require("./systemFortiguard"));
+
+export { SystemFortimanagerArgs, SystemFortimanagerState } from "./systemFortimanager";
+export type SystemFortimanager = import("./systemFortimanager").SystemFortimanager;
+export const SystemFortimanager: typeof import("./systemFortimanager").SystemFortimanager = null as any;
+utilities.lazyLoad(exports, ["SystemFortimanager"], () => require("./systemFortimanager"));
+
+export { SystemFortindrArgs, SystemFortindrState } from "./systemFortindr";
+export type SystemFortindr = import("./systemFortindr").SystemFortindr;
+export const SystemFortindr: typeof import("./systemFortindr").SystemFortindr = null as any;
+utilities.lazyLoad(exports, ["SystemFortindr"], () => require("./systemFortindr"));
+
+export { SystemFortisandboxArgs, SystemFortisandboxState } from "./systemFortisandbox";
+export type SystemFortisandbox = import("./systemFortisandbox").SystemFortisandbox;
+export const SystemFortisandbox: typeof import("./systemFortisandbox").SystemFortisandbox = null as any;
+utilities.lazyLoad(exports, ["SystemFortisandbox"], () => require("./systemFortisandbox"));
+
+export { SystemFssopollingArgs, SystemFssopollingState } from "./systemFssopolling";
+export type SystemFssopolling = import("./systemFssopolling").SystemFssopolling;
+export const SystemFssopolling: typeof import("./systemFssopolling").SystemFssopolling = null as any;
+utilities.lazyLoad(exports, ["SystemFssopolling"], () => require("./systemFssopolling"));
+
+export { SystemFtmpushArgs, SystemFtmpushState } from "./systemFtmpush";
+export type SystemFtmpush = import("./systemFtmpush").SystemFtmpush;
+export const SystemFtmpush: typeof import("./systemFtmpush").SystemFtmpush = null as any;
+utilities.lazyLoad(exports, ["SystemFtmpush"], () => require("./systemFtmpush"));
+
+export { SystemGeneveArgs, SystemGeneveState } from "./systemGeneve";
+export type SystemGeneve = import("./systemGeneve").SystemGeneve;
+export const SystemGeneve: typeof import("./systemGeneve").SystemGeneve = null as any;
+utilities.lazyLoad(exports, ["SystemGeneve"], () => require("./systemGeneve"));
+
+export { SystemGeoipcountryArgs, SystemGeoipcountryState } from "./systemGeoipcountry";
+export type SystemGeoipcountry = import("./systemGeoipcountry").SystemGeoipcountry;
+export const SystemGeoipcountry: typeof import("./systemGeoipcountry").SystemGeoipcountry = null as any;
+utilities.lazyLoad(exports, ["SystemGeoipcountry"], () => require("./systemGeoipcountry"));
+
+export { SystemGeoipoverrideArgs, SystemGeoipoverrideState } from "./systemGeoipoverride";
+export type SystemGeoipoverride = import("./systemGeoipoverride").SystemGeoipoverride;
+export const SystemGeoipoverride: typeof import("./systemGeoipoverride").SystemGeoipoverride = null as any;
+utilities.lazyLoad(exports, ["SystemGeoipoverride"], () => require("./systemGeoipoverride"));
+
+export { SystemGlobalArgs, SystemGlobalState } from "./systemGlobal";
+export type SystemGlobal = import("./systemGlobal").SystemGlobal;
+export const SystemGlobal: typeof import("./systemGlobal").SystemGlobal = null as any;
+utilities.lazyLoad(exports, ["SystemGlobal"], () => require("./systemGlobal"));
+
+export { SystemGretunnelArgs, SystemGretunnelState } from "./systemGretunnel";
+export type SystemGretunnel = import("./systemGretunnel").SystemGretunnel;
+export const SystemGretunnel: typeof import("./systemGretunnel").SystemGretunnel = null as any;
+utilities.lazyLoad(exports, ["SystemGretunnel"], () => require("./systemGretunnel"));
+
+export { SystemHaArgs, SystemHaState } from "./systemHa";
+export type SystemHa = import("./systemHa").SystemHa;
+export const SystemHa: typeof import("./systemHa").SystemHa = null as any;
+utilities.lazyLoad(exports, ["SystemHa"], () => require("./systemHa"));
+
+export { SystemHamonitorArgs, SystemHamonitorState } from "./systemHamonitor";
+export type SystemHamonitor = import("./systemHamonitor").SystemHamonitor;
+export const SystemHamonitor: typeof import("./systemHamonitor").SystemHamonitor = null as any;
+utilities.lazyLoad(exports, ["SystemHamonitor"], () => require("./systemHamonitor"));
+
+export { SystemIkeArgs, SystemIkeState } from "./systemIke";
+export type SystemIke = import("./systemIke").SystemIke;
+export const SystemIke: typeof import("./systemIke").SystemIke = null as any;
+utilities.lazyLoad(exports, ["SystemIke"], () => require("./systemIke"));
+
+export { SystemInterfaceArgs, SystemInterfaceState } from "./systemInterface";
+export type SystemInterface = import("./systemInterface").SystemInterface;
+export const SystemInterface: typeof import("./systemInterface").SystemInterface = null as any;
+utilities.lazyLoad(exports, ["SystemInterface"], () => require("./systemInterface"));
+
+export { SystemIpamArgs, SystemIpamState } from "./systemIpam";
+export type SystemIpam = import("./systemIpam").SystemIpam;
+export const SystemIpam: typeof import("./systemIpam").SystemIpam = null as any;
+utilities.lazyLoad(exports, ["SystemIpam"], () => require("./systemIpam"));
+
+export { SystemIpiptunnelArgs, SystemIpiptunnelState } from "./systemIpiptunnel";
+export type SystemIpiptunnel = import("./systemIpiptunnel").SystemIpiptunnel;
+export const SystemIpiptunnel: typeof import("./systemIpiptunnel").SystemIpiptunnel = null as any;
+utilities.lazyLoad(exports, ["SystemIpiptunnel"], () => require("./systemIpiptunnel"));
+
+export { SystemIpsArgs, SystemIpsState } from "./systemIps";
+export type SystemIps = import("./systemIps").SystemIps;
+export const SystemIps: typeof import("./systemIps").SystemIps = null as any;
+utilities.lazyLoad(exports, ["SystemIps"], () => require("./systemIps"));
+
+export { SystemIpsecaggregateArgs, SystemIpsecaggregateState } from "./systemIpsecaggregate";
+export type SystemIpsecaggregate = import("./systemIpsecaggregate").SystemIpsecaggregate;
+export const SystemIpsecaggregate: typeof import("./systemIpsecaggregate").SystemIpsecaggregate = null as any;
+utilities.lazyLoad(exports, ["SystemIpsecaggregate"], () => require("./systemIpsecaggregate"));
+
+export { SystemIpsurlfilterdnsArgs, SystemIpsurlfilterdnsState } from "./systemIpsurlfilterdns";
+export type SystemIpsurlfilterdns = import("./systemIpsurlfilterdns").SystemIpsurlfilterdns;
+export const SystemIpsurlfilterdns: typeof import("./systemIpsurlfilterdns").SystemIpsurlfilterdns = null as any;
+utilities.lazyLoad(exports, ["SystemIpsurlfilterdns"], () => require("./systemIpsurlfilterdns"));
+
+export { SystemIpsurlfilterdns6Args, SystemIpsurlfilterdns6State } from "./systemIpsurlfilterdns6";
+export type SystemIpsurlfilterdns6 = import("./systemIpsurlfilterdns6").SystemIpsurlfilterdns6;
+export const SystemIpsurlfilterdns6: typeof import("./systemIpsurlfilterdns6").SystemIpsurlfilterdns6 = null as any;
+utilities.lazyLoad(exports, ["SystemIpsurlfilterdns6"], () => require("./systemIpsurlfilterdns6"));
+
+export { SystemIpv6neighborcacheArgs, SystemIpv6neighborcacheState } from "./systemIpv6neighborcache";
+export type SystemIpv6neighborcache = import("./systemIpv6neighborcache").SystemIpv6neighborcache;
+export const SystemIpv6neighborcache: typeof import("./systemIpv6neighborcache").SystemIpv6neighborcache = null as any;
+utilities.lazyLoad(exports, ["SystemIpv6neighborcache"], () => require("./systemIpv6neighborcache"));
+
+export { SystemIpv6tunnelArgs, SystemIpv6tunnelState } from "./systemIpv6tunnel";
+export type SystemIpv6tunnel = import("./systemIpv6tunnel").SystemIpv6tunnel;
+export const SystemIpv6tunnel: typeof import("./systemIpv6tunnel").SystemIpv6tunnel = null as any;
+utilities.lazyLoad(exports, ["SystemIpv6tunnel"], () => require("./systemIpv6tunnel"));
+
+export { SystemLicenseForticareArgs, SystemLicenseForticareState } from "./systemLicenseForticare";
+export type SystemLicenseForticare = import("./systemLicenseForticare").SystemLicenseForticare;
+export const SystemLicenseForticare: typeof import("./systemLicenseForticare").SystemLicenseForticare = null as any;
+utilities.lazyLoad(exports, ["SystemLicenseForticare"], () => require("./systemLicenseForticare"));
+
+export { SystemLicenseVdomArgs, SystemLicenseVdomState } from "./systemLicenseVdom";
+export type SystemLicenseVdom = import("./systemLicenseVdom").SystemLicenseVdom;
+export const SystemLicenseVdom: typeof import("./systemLicenseVdom").SystemLicenseVdom = null as any;
+utilities.lazyLoad(exports, ["SystemLicenseVdom"], () => require("./systemLicenseVdom"));
+
+export { SystemLicenseVmArgs, SystemLicenseVmState } from "./systemLicenseVm";
+export type SystemLicenseVm = import("./systemLicenseVm").SystemLicenseVm;
+export const SystemLicenseVm: typeof import("./systemLicenseVm").SystemLicenseVm = null as any;
+utilities.lazyLoad(exports, ["SystemLicenseVm"], () => require("./systemLicenseVm"));
+
+export { SystemLinkmonitorArgs, SystemLinkmonitorState } from "./systemLinkmonitor";
+export type SystemLinkmonitor = import("./systemLinkmonitor").SystemLinkmonitor;
+export const SystemLinkmonitor: typeof import("./systemLinkmonitor").SystemLinkmonitor = null as any;
+utilities.lazyLoad(exports, ["SystemLinkmonitor"], () => require("./systemLinkmonitor"));
+
+export { SystemLtemodemArgs, SystemLtemodemState } from "./systemLtemodem";
+export type SystemLtemodem = import("./systemLtemodem").SystemLtemodem;
+export const SystemLtemodem: typeof import("./systemLtemodem").SystemLtemodem = null as any;
+utilities.lazyLoad(exports, ["SystemLtemodem"], () => require("./systemLtemodem"));
+
+export { SystemMacaddresstableArgs, SystemMacaddresstableState } from "./systemMacaddresstable";
+export type SystemMacaddresstable = import("./systemMacaddresstable").SystemMacaddresstable;
+export const SystemMacaddresstable: typeof import("./systemMacaddresstable").SystemMacaddresstable = null as any;
+utilities.lazyLoad(exports, ["SystemMacaddresstable"], () => require("./systemMacaddresstable"));
+
+export { SystemManagementtunnelArgs, SystemManagementtunnelState } from "./systemManagementtunnel";
+export type SystemManagementtunnel = import("./systemManagementtunnel").SystemManagementtunnel;
+export const SystemManagementtunnel: typeof import("./systemManagementtunnel").SystemManagementtunnel = null as any;
+utilities.lazyLoad(exports, ["SystemManagementtunnel"], () => require("./systemManagementtunnel"));
+
+export { SystemMobiletunnelArgs, SystemMobiletunnelState } from "./systemMobiletunnel";
+export type SystemMobiletunnel = import("./systemMobiletunnel").SystemMobiletunnel;
+export const SystemMobiletunnel: typeof import("./systemMobiletunnel").SystemMobiletunnel = null as any;
+utilities.lazyLoad(exports, ["SystemMobiletunnel"], () => require("./systemMobiletunnel"));
+
+export { SystemModemArgs, SystemModemState } from "./systemModem";
+export type SystemModem = import("./systemModem").SystemModem;
+export const SystemModem: typeof import("./systemModem").SystemModem = null as any;
+utilities.lazyLoad(exports, ["SystemModem"], () => require("./systemModem"));
+
+export { SystemNat64Args, SystemNat64State } from "./systemNat64";
+export type SystemNat64 = import("./systemNat64").SystemNat64;
+export const SystemNat64: typeof import("./systemNat64").SystemNat64 = null as any;
+utilities.lazyLoad(exports, ["SystemNat64"], () => require("./systemNat64"));
+
+export { SystemNdproxyArgs, SystemNdproxyState } from "./systemNdproxy";
+export type SystemNdproxy = import("./systemNdproxy").SystemNdproxy;
+export const SystemNdproxy: typeof import("./systemNdproxy").SystemNdproxy = null as any;
+utilities.lazyLoad(exports, ["SystemNdproxy"], () => require("./systemNdproxy"));
+
+export { SystemNetflowArgs, SystemNetflowState } from "./systemNetflow";
+export type SystemNetflow = import("./systemNetflow").SystemNetflow;
+export const SystemNetflow: typeof import("./systemNetflow").SystemNetflow = null as any;
+utilities.lazyLoad(exports, ["SystemNetflow"], () => require("./systemNetflow"));
+
+export { SystemNetworkvisibilityArgs, SystemNetworkvisibilityState } from "./systemNetworkvisibility";
+export type SystemNetworkvisibility = import("./systemNetworkvisibility").SystemNetworkvisibility;
+export const SystemNetworkvisibility: typeof import("./systemNetworkvisibility").SystemNetworkvisibility = null as any;
+utilities.lazyLoad(exports, ["SystemNetworkvisibility"], () => require("./systemNetworkvisibility"));
+
+export { SystemNpuArgs, SystemNpuState } from "./systemNpu";
+export type SystemNpu = import("./systemNpu").SystemNpu;
+export const SystemNpu: typeof import("./systemNpu").SystemNpu = null as any;
+utilities.lazyLoad(exports, ["SystemNpu"], () => require("./systemNpu"));
+
+export { SystemNtpArgs, SystemNtpState } from "./systemNtp";
+export type SystemNtp = import("./systemNtp").SystemNtp;
+export const SystemNtp: typeof import("./systemNtp").SystemNtp = null as any;
+utilities.lazyLoad(exports, ["SystemNtp"], () => require("./systemNtp"));
+
+export { SystemObjecttaggingArgs, SystemObjecttaggingState } from "./systemObjecttagging";
+export type SystemObjecttagging = import("./systemObjecttagging").SystemObjecttagging;
+export const SystemObjecttagging: typeof import("./systemObjecttagging").SystemObjecttagging = null as any;
+utilities.lazyLoad(exports, ["SystemObjecttagging"], () => require("./systemObjecttagging"));
+
+export { SystemPasswordpolicyArgs, SystemPasswordpolicyState } from "./systemPasswordpolicy";
+export type SystemPasswordpolicy = import("./systemPasswordpolicy").SystemPasswordpolicy;
+export const SystemPasswordpolicy: typeof import("./systemPasswordpolicy").SystemPasswordpolicy = null as any;
+utilities.lazyLoad(exports, ["SystemPasswordpolicy"], () => require("./systemPasswordpolicy"));
+
+export { SystemPasswordpolicyguestadminArgs, SystemPasswordpolicyguestadminState } from "./systemPasswordpolicyguestadmin";
+export type SystemPasswordpolicyguestadmin = import("./systemPasswordpolicyguestadmin").SystemPasswordpolicyguestadmin;
+export const SystemPasswordpolicyguestadmin: typeof import("./systemPasswordpolicyguestadmin").SystemPasswordpolicyguestadmin = null as any;
+utilities.lazyLoad(exports, ["SystemPasswordpolicyguestadmin"], () => require("./systemPasswordpolicyguestadmin"));
+
+export { SystemPhysicalswitchArgs, SystemPhysicalswitchState } from "./systemPhysicalswitch";
+export type SystemPhysicalswitch = import("./systemPhysicalswitch").SystemPhysicalswitch;
+export const SystemPhysicalswitch: typeof import("./systemPhysicalswitch").SystemPhysicalswitch = null as any;
+utilities.lazyLoad(exports, ["SystemPhysicalswitch"], () => require("./systemPhysicalswitch"));
+
+export { SystemPppoeinterfaceArgs, SystemPppoeinterfaceState } from "./systemPppoeinterface";
+export type SystemPppoeinterface = import("./systemPppoeinterface").SystemPppoeinterface;
+export const SystemPppoeinterface: typeof import("./systemPppoeinterface").SystemPppoeinterface = null as any;
+utilities.lazyLoad(exports, ["SystemPppoeinterface"], () => require("./systemPppoeinterface"));
+
+export { SystemProberesponseArgs, SystemProberesponseState } from "./systemProberesponse";
+export type SystemProberesponse = import("./systemProberesponse").SystemProberesponse;
+export const SystemProberesponse: typeof import("./systemProberesponse").SystemProberesponse = null as any;
+utilities.lazyLoad(exports, ["SystemProberesponse"], () => require("./systemProberesponse"));
+
+export { SystemProxyarpArgs, SystemProxyarpState } from "./systemProxyarp";
+export type SystemProxyarp = import("./systemProxyarp").SystemProxyarp;
+export const SystemProxyarp: typeof import("./systemProxyarp").SystemProxyarp = null as any;
+utilities.lazyLoad(exports, ["SystemProxyarp"], () => require("./systemProxyarp"));
+
+export { SystemPtpArgs, SystemPtpState } from "./systemPtp";
+export type SystemPtp = import("./systemPtp").SystemPtp;
+export const SystemPtp: typeof import("./systemPtp").SystemPtp = null as any;
+utilities.lazyLoad(exports, ["SystemPtp"], () => require("./systemPtp"));
+
+export { SystemReplacemsggroupArgs, SystemReplacemsggroupState } from "./systemReplacemsggroup";
+export type SystemReplacemsggroup = import("./systemReplacemsggroup").SystemReplacemsggroup;
+export const SystemReplacemsggroup: typeof import("./systemReplacemsggroup").SystemReplacemsggroup = null as any;
+utilities.lazyLoad(exports, ["SystemReplacemsggroup"], () => require("./systemReplacemsggroup"));
+
+export { SystemReplacemsgimageArgs, SystemReplacemsgimageState } from "./systemReplacemsgimage";
+export type SystemReplacemsgimage = import("./systemReplacemsgimage").SystemReplacemsgimage;
+export const SystemReplacemsgimage: typeof import("./systemReplacemsgimage").SystemReplacemsgimage = null as any;
+utilities.lazyLoad(exports, ["SystemReplacemsgimage"], () => require("./systemReplacemsgimage"));
+
+export { SystemResourcelimitsArgs, SystemResourcelimitsState } from "./systemResourcelimits";
+export type SystemResourcelimits = import("./systemResourcelimits").SystemResourcelimits;
+export const SystemResourcelimits: typeof import("./systemResourcelimits").SystemResourcelimits = null as any;
+utilities.lazyLoad(exports, ["SystemResourcelimits"], () => require("./systemResourcelimits"));
+
+export { SystemSamlArgs, SystemSamlState } from "./systemSaml";
+export type SystemSaml = import("./systemSaml").SystemSaml;
+export const SystemSaml: typeof import("./systemSaml").SystemSaml = null as any;
+utilities.lazyLoad(exports, ["SystemSaml"], () => require("./systemSaml"));
+
+export { SystemSdnconnectorArgs, SystemSdnconnectorState } from "./systemSdnconnector";
+export type SystemSdnconnector = import("./systemSdnconnector").SystemSdnconnector;
+export const SystemSdnconnector: typeof import("./systemSdnconnector").SystemSdnconnector = null as any;
+utilities.lazyLoad(exports, ["SystemSdnconnector"], () => require("./systemSdnconnector"));
+
+export { SystemSdwanArgs, SystemSdwanState } from "./systemSdwan";
+export type SystemSdwan = import("./systemSdwan").SystemSdwan;
+export const SystemSdwan: typeof import("./systemSdwan").SystemSdwan = null as any;
+utilities.lazyLoad(exports, ["SystemSdwan"], () => require("./systemSdwan"));
+
+export { SystemSessionhelperArgs, SystemSessionhelperState } from "./systemSessionhelper";
+export type SystemSessionhelper = import("./systemSessionhelper").SystemSessionhelper;
+export const SystemSessionhelper: typeof import("./systemSessionhelper").SystemSessionhelper = null as any;
+utilities.lazyLoad(exports, ["SystemSessionhelper"], () => require("./systemSessionhelper"));
+
+export { SystemSessionttlArgs, SystemSessionttlState } from "./systemSessionttl";
+export type SystemSessionttl = import("./systemSessionttl").SystemSessionttl;
+export const SystemSessionttl: typeof import("./systemSessionttl").SystemSessionttl = null as any;
+utilities.lazyLoad(exports, ["SystemSessionttl"], () => require("./systemSessionttl"));
+
+export { SystemSettingDnsArgs, SystemSettingDnsState } from "./systemSettingDns";
+export type SystemSettingDns = import("./systemSettingDns").SystemSettingDns;
+export const SystemSettingDns: typeof import("./systemSettingDns").SystemSettingDns = null as any;
+utilities.lazyLoad(exports, ["SystemSettingDns"], () => require("./systemSettingDns"));
+
+export { SystemSettingGlobalArgs, SystemSettingGlobalState } from "./systemSettingGlobal";
+export type SystemSettingGlobal = import("./systemSettingGlobal").SystemSettingGlobal;
+export const SystemSettingGlobal: typeof import("./systemSettingGlobal").SystemSettingGlobal = null as any;
+utilities.lazyLoad(exports, ["SystemSettingGlobal"], () => require("./systemSettingGlobal"));
+
+export { SystemSettingNtpArgs, SystemSettingNtpState } from "./systemSettingNtp";
+export type SystemSettingNtp = import("./systemSettingNtp").SystemSettingNtp;
+export const SystemSettingNtp: typeof import("./systemSettingNtp").SystemSettingNtp = null as any;
+utilities.lazyLoad(exports, ["SystemSettingNtp"], () => require("./systemSettingNtp"));
+
+export { SystemSettingsArgs, SystemSettingsState } from "./systemSettings";
+export type SystemSettings = import("./systemSettings").SystemSettings;
+export const SystemSettings: typeof import("./systemSettings").SystemSettings = null as any;
+utilities.lazyLoad(exports, ["SystemSettings"], () => require("./systemSettings"));
+
+export { SystemSflowArgs, SystemSflowState } from "./systemSflow";
+export type SystemSflow = import("./systemSflow").SystemSflow;
+export const SystemSflow: typeof import("./systemSflow").SystemSflow = null as any;
+utilities.lazyLoad(exports, ["SystemSflow"], () => require("./systemSflow"));
+
+export { SystemSittunnelArgs, SystemSittunnelState } from "./systemSittunnel";
+export type SystemSittunnel = import("./systemSittunnel").SystemSittunnel;
+export const SystemSittunnel: typeof import("./systemSittunnel").SystemSittunnel = null as any;
+utilities.lazyLoad(exports, ["SystemSittunnel"], () => require("./systemSittunnel"));
+
+export { SystemSmsserverArgs, SystemSmsserverState } from "./systemSmsserver";
+export type SystemSmsserver = import("./systemSmsserver").SystemSmsserver;
+export const SystemSmsserver: typeof import("./systemSmsserver").SystemSmsserver = null as any;
+utilities.lazyLoad(exports, ["SystemSmsserver"], () => require("./systemSmsserver"));
+
+export { SystemSpeedtestscheduleArgs, SystemSpeedtestscheduleState } from "./systemSpeedtestschedule";
+export type SystemSpeedtestschedule = import("./systemSpeedtestschedule").SystemSpeedtestschedule;
+export const SystemSpeedtestschedule: typeof import("./systemSpeedtestschedule").SystemSpeedtestschedule = null as any;
+utilities.lazyLoad(exports, ["SystemSpeedtestschedule"], () => require("./systemSpeedtestschedule"));
+
+export { SystemSpeedtestserverArgs, SystemSpeedtestserverState } from "./systemSpeedtestserver";
+export type SystemSpeedtestserver = import("./systemSpeedtestserver").SystemSpeedtestserver;
+export const SystemSpeedtestserver: typeof import("./systemSpeedtestserver").SystemSpeedtestserver = null as any;
+utilities.lazyLoad(exports, ["SystemSpeedtestserver"], () => require("./systemSpeedtestserver"));
+
+export { SystemSsoadminArgs, SystemSsoadminState } from "./systemSsoadmin";
+export type SystemSsoadmin = import("./systemSsoadmin").SystemSsoadmin;
+export const SystemSsoadmin: typeof import("./systemSsoadmin").SystemSsoadmin = null as any;
+utilities.lazyLoad(exports, ["SystemSsoadmin"], () => require("./systemSsoadmin"));
+
+export { SystemSsoforticloudadminArgs, SystemSsoforticloudadminState } from "./systemSsoforticloudadmin";
+export type SystemSsoforticloudadmin = import("./systemSsoforticloudadmin").SystemSsoforticloudadmin;
+export const SystemSsoforticloudadmin: typeof import("./systemSsoforticloudadmin").SystemSsoforticloudadmin = null as any;
+utilities.lazyLoad(exports, ["SystemSsoforticloudadmin"], () => require("./systemSsoforticloudadmin"));
+
+export { SystemStandaloneclusterArgs, SystemStandaloneclusterState } from "./systemStandalonecluster";
+export type SystemStandalonecluster = import("./systemStandalonecluster").SystemStandalonecluster;
+export const SystemStandalonecluster: typeof import("./systemStandalonecluster").SystemStandalonecluster = null as any;
+utilities.lazyLoad(exports, ["SystemStandalonecluster"], () => require("./systemStandalonecluster"));
+
+export { SystemStorageArgs, SystemStorageState } from "./systemStorage";
+export type SystemStorage = import("./systemStorage").SystemStorage;
+export const SystemStorage: typeof import("./systemStorage").SystemStorage = null as any;
+utilities.lazyLoad(exports, ["SystemStorage"], () => require("./systemStorage"));
+
+export { SystemStpArgs, SystemStpState } from "./systemStp";
+export type SystemStp = import("./systemStp").SystemStp;
+export const SystemStp: typeof import("./systemStp").SystemStp = null as any;
+utilities.lazyLoad(exports, ["SystemStp"], () => require("./systemStp"));
+
+export { SystemSwitchinterfaceArgs, SystemSwitchinterfaceState } from "./systemSwitchinterface";
+export type SystemSwitchinterface = import("./systemSwitchinterface").SystemSwitchinterface;
+export const SystemSwitchinterface: typeof import("./systemSwitchinterface").SystemSwitchinterface = null as any;
+utilities.lazyLoad(exports, ["SystemSwitchinterface"], () => require("./systemSwitchinterface"));
+
+export { SystemTosbasedpriorityArgs, SystemTosbasedpriorityState } from "./systemTosbasedpriority";
+export type SystemTosbasedpriority = import("./systemTosbasedpriority").SystemTosbasedpriority;
+export const SystemTosbasedpriority: typeof import("./systemTosbasedpriority").SystemTosbasedpriority = null as any;
+utilities.lazyLoad(exports, ["SystemTosbasedpriority"], () => require("./systemTosbasedpriority"));
+
+export { SystemVdomArgs, SystemVdomState } from "./systemVdom";
+export type SystemVdom = import("./systemVdom").SystemVdom;
+export const SystemVdom: typeof import("./systemVdom").SystemVdom = null as any;
+utilities.lazyLoad(exports, ["SystemVdom"], () => require("./systemVdom"));
+
+export { SystemVdomSettingArgs, SystemVdomSettingState } from "./systemVdomSetting";
+export type SystemVdomSetting = import("./systemVdomSetting").SystemVdomSetting;
+export const SystemVdomSetting: typeof import("./systemVdomSetting").SystemVdomSetting = null as any;
+utilities.lazyLoad(exports, ["SystemVdomSetting"], () => require("./systemVdomSetting"));
+
+export { SystemVdomdnsArgs, SystemVdomdnsState } from "./systemVdomdns";
+export type SystemVdomdns = import("./systemVdomdns").SystemVdomdns;
+export const SystemVdomdns: typeof import("./systemVdomdns").SystemVdomdns = null as any;
+utilities.lazyLoad(exports, ["SystemVdomdns"], () => require("./systemVdomdns"));
+
+export { SystemVdomexceptionArgs, SystemVdomexceptionState } from "./systemVdomexception";
+export type SystemVdomexception = import("./systemVdomexception").SystemVdomexception;
+export const SystemVdomexception: typeof import("./systemVdomexception").SystemVdomexception = null as any;
+utilities.lazyLoad(exports, ["SystemVdomexception"], () => require("./systemVdomexception"));
+
+export { SystemVdomlinkArgs, SystemVdomlinkState } from "./systemVdomlink";
+export type SystemVdomlink = import("./systemVdomlink").SystemVdomlink;
+export const SystemVdomlink: typeof import("./systemVdomlink").SystemVdomlink = null as any;
+utilities.lazyLoad(exports, ["SystemVdomlink"], () => require("./systemVdomlink"));
+
+export { SystemVdomnetflowArgs, SystemVdomnetflowState } from "./systemVdomnetflow";
+export type SystemVdomnetflow = import("./systemVdomnetflow").SystemVdomnetflow;
+export const SystemVdomnetflow: typeof import("./systemVdomnetflow").SystemVdomnetflow = null as any;
+utilities.lazyLoad(exports, ["SystemVdomnetflow"], () => require("./systemVdomnetflow"));
+
+export { SystemVdompropertyArgs, SystemVdompropertyState } from "./systemVdomproperty";
+export type SystemVdomproperty = import("./systemVdomproperty").SystemVdomproperty;
+export const SystemVdomproperty: typeof import("./systemVdomproperty").SystemVdomproperty = null as any;
+utilities.lazyLoad(exports, ["SystemVdomproperty"], () => require("./systemVdomproperty"));
+
+export { SystemVdomradiusserverArgs, SystemVdomradiusserverState } from "./systemVdomradiusserver";
+export type SystemVdomradiusserver = import("./systemVdomradiusserver").SystemVdomradiusserver;
+export const SystemVdomradiusserver: typeof import("./systemVdomradiusserver").SystemVdomradiusserver = null as any;
+utilities.lazyLoad(exports, ["SystemVdomradiusserver"], () => require("./systemVdomradiusserver"));
+
+export { SystemVdomsflowArgs, SystemVdomsflowState } from "./systemVdomsflow";
+export type SystemVdomsflow = import("./systemVdomsflow").SystemVdomsflow;
+export const SystemVdomsflow: typeof import("./systemVdomsflow").SystemVdomsflow = null as any;
+utilities.lazyLoad(exports, ["SystemVdomsflow"], () => require("./systemVdomsflow"));
+
+export { SystemVirtualswitchArgs, SystemVirtualswitchState } from "./systemVirtualswitch";
+export type SystemVirtualswitch = import("./systemVirtualswitch").SystemVirtualswitch;
+export const SystemVirtualswitch: typeof import("./systemVirtualswitch").SystemVirtualswitch = null as any;
+utilities.lazyLoad(exports, ["SystemVirtualswitch"], () => require("./systemVirtualswitch"));
+
+export { SystemVirtualwanlinkArgs, SystemVirtualwanlinkState } from "./systemVirtualwanlink";
+export type SystemVirtualwanlink = import("./systemVirtualwanlink").SystemVirtualwanlink;
+export const SystemVirtualwanlink: typeof import("./systemVirtualwanlink").SystemVirtualwanlink = null as any;
+utilities.lazyLoad(exports, ["SystemVirtualwanlink"], () => require("./systemVirtualwanlink"));
+
+export { SystemVirtualwirepairArgs, SystemVirtualwirepairState } from "./systemVirtualwirepair";
+export type SystemVirtualwirepair = import("./systemVirtualwirepair").SystemVirtualwirepair;
+export const SystemVirtualwirepair: typeof import("./systemVirtualwirepair").SystemVirtualwirepair = null as any;
+utilities.lazyLoad(exports, ["SystemVirtualwirepair"], () => require("./systemVirtualwirepair"));
+
+export { SystemVnetunnelArgs, SystemVnetunnelState } from "./systemVnetunnel";
+export type SystemVnetunnel = import("./systemVnetunnel").SystemVnetunnel;
+export const SystemVnetunnel: typeof import("./systemVnetunnel").SystemVnetunnel = null as any;
+utilities.lazyLoad(exports, ["SystemVnetunnel"], () => require("./systemVnetunnel"));
+
+export { SystemVxlanArgs, SystemVxlanState } from "./systemVxlan";
+export type SystemVxlan = import("./systemVxlan").SystemVxlan;
+export const SystemVxlan: typeof import("./systemVxlan").SystemVxlan = null as any;
+utilities.lazyLoad(exports, ["SystemVxlan"], () => require("./systemVxlan"));
+
+export { SystemWccpArgs, SystemWccpState } from "./systemWccp";
+export type SystemWccp = import("./systemWccp").SystemWccp;
+export const SystemWccp: typeof import("./systemWccp").SystemWccp = null as any;
+utilities.lazyLoad(exports, ["SystemWccp"], () => require("./systemWccp"));
+
+export { SystemZoneArgs, SystemZoneState } from "./systemZone";
+export type SystemZone = import("./systemZone").SystemZone;
+export const SystemZone: typeof import("./systemZone").SystemZone = null as any;
+utilities.lazyLoad(exports, ["SystemZone"], () => require("./systemZone"));
+
+export { SystemautoupdatePushupdateArgs, SystemautoupdatePushupdateState } from "./systemautoupdatePushupdate";
+export type SystemautoupdatePushupdate = import("./systemautoupdatePushupdate").SystemautoupdatePushupdate;
+export const SystemautoupdatePushupdate: typeof import("./systemautoupdatePushupdate").SystemautoupdatePushupdate = null as any;
+utilities.lazyLoad(exports, ["SystemautoupdatePushupdate"], () => require("./systemautoupdatePushupdate"));
+
+export { SystemautoupdateScheduleArgs, SystemautoupdateScheduleState } from "./systemautoupdateSchedule";
+export type SystemautoupdateSchedule = import("./systemautoupdateSchedule").SystemautoupdateSchedule;
+export const SystemautoupdateSchedule: typeof import("./systemautoupdateSchedule").SystemautoupdateSchedule = null as any;
+utilities.lazyLoad(exports, ["SystemautoupdateSchedule"], () => require("./systemautoupdateSchedule"));
+
+export { SystemautoupdateTunnelingArgs, SystemautoupdateTunnelingState } from "./systemautoupdateTunneling";
+export type SystemautoupdateTunneling = import("./systemautoupdateTunneling").SystemautoupdateTunneling;
+export const SystemautoupdateTunneling: typeof import("./systemautoupdateTunneling").SystemautoupdateTunneling = null as any;
+utilities.lazyLoad(exports, ["SystemautoupdateTunneling"], () => require("./systemautoupdateTunneling"));
+
+export { Systemdhcp6ServerArgs, Systemdhcp6ServerState } from "./systemdhcp6Server";
+export type Systemdhcp6Server = import("./systemdhcp6Server").Systemdhcp6Server;
+export const Systemdhcp6Server: typeof import("./systemdhcp6Server").Systemdhcp6Server = null as any;
+utilities.lazyLoad(exports, ["Systemdhcp6Server"], () => require("./systemdhcp6Server"));
+
+export { SystemdhcpServerArgs, SystemdhcpServerState } from "./systemdhcpServer";
+export type SystemdhcpServer = import("./systemdhcpServer").SystemdhcpServer;
+export const SystemdhcpServer: typeof import("./systemdhcpServer").SystemdhcpServer = null as any;
+utilities.lazyLoad(exports, ["SystemdhcpServer"], () => require("./systemdhcpServer"));
+
+export { SystemlldpNetworkpolicyArgs, SystemlldpNetworkpolicyState } from "./systemlldpNetworkpolicy";
+export type SystemlldpNetworkpolicy = import("./systemlldpNetworkpolicy").SystemlldpNetworkpolicy;
+export const SystemlldpNetworkpolicy: typeof import("./systemlldpNetworkpolicy").SystemlldpNetworkpolicy = null as any;
+utilities.lazyLoad(exports, ["SystemlldpNetworkpolicy"], () => require("./systemlldpNetworkpolicy"));
+
+export { SystemreplacemsgAdminArgs, SystemreplacemsgAdminState } from "./systemreplacemsgAdmin";
+export type SystemreplacemsgAdmin = import("./systemreplacemsgAdmin").SystemreplacemsgAdmin;
+export const SystemreplacemsgAdmin: typeof import("./systemreplacemsgAdmin").SystemreplacemsgAdmin = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgAdmin"], () => require("./systemreplacemsgAdmin"));
+
+export { SystemreplacemsgAlertmailArgs, SystemreplacemsgAlertmailState } from "./systemreplacemsgAlertmail";
+export type SystemreplacemsgAlertmail = import("./systemreplacemsgAlertmail").SystemreplacemsgAlertmail;
+export const SystemreplacemsgAlertmail: typeof import("./systemreplacemsgAlertmail").SystemreplacemsgAlertmail = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgAlertmail"], () => require("./systemreplacemsgAlertmail"));
+
+export { SystemreplacemsgAuthArgs, SystemreplacemsgAuthState } from "./systemreplacemsgAuth";
+export type SystemreplacemsgAuth = import("./systemreplacemsgAuth").SystemreplacemsgAuth;
+export const SystemreplacemsgAuth: typeof import("./systemreplacemsgAuth").SystemreplacemsgAuth = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgAuth"], () => require("./systemreplacemsgAuth"));
+
+export { SystemreplacemsgAutomationArgs, SystemreplacemsgAutomationState } from "./systemreplacemsgAutomation";
+export type SystemreplacemsgAutomation = import("./systemreplacemsgAutomation").SystemreplacemsgAutomation;
+export const SystemreplacemsgAutomation: typeof import("./systemreplacemsgAutomation").SystemreplacemsgAutomation = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgAutomation"], () => require("./systemreplacemsgAutomation"));
+
+export { SystemreplacemsgDevicedetectionportalArgs, SystemreplacemsgDevicedetectionportalState } from "./systemreplacemsgDevicedetectionportal";
+export type SystemreplacemsgDevicedetectionportal = import("./systemreplacemsgDevicedetectionportal").SystemreplacemsgDevicedetectionportal;
+export const SystemreplacemsgDevicedetectionportal: typeof import("./systemreplacemsgDevicedetectionportal").SystemreplacemsgDevicedetectionportal = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgDevicedetectionportal"], () => require("./systemreplacemsgDevicedetectionportal"));
+
+export { SystemreplacemsgEcArgs, SystemreplacemsgEcState } from "./systemreplacemsgEc";
+export type SystemreplacemsgEc = import("./systemreplacemsgEc").SystemreplacemsgEc;
+export const SystemreplacemsgEc: typeof import("./systemreplacemsgEc").SystemreplacemsgEc = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgEc"], () => require("./systemreplacemsgEc"));
+
+export { SystemreplacemsgFortiguardwfArgs, SystemreplacemsgFortiguardwfState } from "./systemreplacemsgFortiguardwf";
+export type SystemreplacemsgFortiguardwf = import("./systemreplacemsgFortiguardwf").SystemreplacemsgFortiguardwf;
+export const SystemreplacemsgFortiguardwf: typeof import("./systemreplacemsgFortiguardwf").SystemreplacemsgFortiguardwf = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgFortiguardwf"], () => require("./systemreplacemsgFortiguardwf"));
+
+export { SystemreplacemsgFtpArgs, SystemreplacemsgFtpState } from "./systemreplacemsgFtp";
+export type SystemreplacemsgFtp = import("./systemreplacemsgFtp").SystemreplacemsgFtp;
+export const SystemreplacemsgFtp: typeof import("./systemreplacemsgFtp").SystemreplacemsgFtp = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgFtp"], () => require("./systemreplacemsgFtp"));
+
+export { SystemreplacemsgHttpArgs, SystemreplacemsgHttpState } from "./systemreplacemsgHttp";
+export type SystemreplacemsgHttp = import("./systemreplacemsgHttp").SystemreplacemsgHttp;
+export const SystemreplacemsgHttp: typeof import("./systemreplacemsgHttp").SystemreplacemsgHttp = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgHttp"], () => require("./systemreplacemsgHttp"));
+
+export { SystemreplacemsgIcapArgs, SystemreplacemsgIcapState } from "./systemreplacemsgIcap";
+export type SystemreplacemsgIcap = import("./systemreplacemsgIcap").SystemreplacemsgIcap;
+export const SystemreplacemsgIcap: typeof import("./systemreplacemsgIcap").SystemreplacemsgIcap = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgIcap"], () => require("./systemreplacemsgIcap"));
+
+export { SystemreplacemsgMailArgs, SystemreplacemsgMailState } from "./systemreplacemsgMail";
+export type SystemreplacemsgMail = import("./systemreplacemsgMail").SystemreplacemsgMail;
+export const SystemreplacemsgMail: typeof import("./systemreplacemsgMail").SystemreplacemsgMail = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgMail"], () => require("./systemreplacemsgMail"));
+
+export { SystemreplacemsgNacquarArgs, SystemreplacemsgNacquarState } from "./systemreplacemsgNacquar";
+export type SystemreplacemsgNacquar = import("./systemreplacemsgNacquar").SystemreplacemsgNacquar;
+export const SystemreplacemsgNacquar: typeof import("./systemreplacemsgNacquar").SystemreplacemsgNacquar = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgNacquar"], () => require("./systemreplacemsgNacquar"));
+
+export { SystemreplacemsgNntpArgs, SystemreplacemsgNntpState } from "./systemreplacemsgNntp";
+export type SystemreplacemsgNntp = import("./systemreplacemsgNntp").SystemreplacemsgNntp;
+export const SystemreplacemsgNntp: typeof import("./systemreplacemsgNntp").SystemreplacemsgNntp = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgNntp"], () => require("./systemreplacemsgNntp"));
+
+export { SystemreplacemsgSpamArgs, SystemreplacemsgSpamState } from "./systemreplacemsgSpam";
+export type SystemreplacemsgSpam = import("./systemreplacemsgSpam").SystemreplacemsgSpam;
+export const SystemreplacemsgSpam: typeof import("./systemreplacemsgSpam").SystemreplacemsgSpam = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgSpam"], () => require("./systemreplacemsgSpam"));
+
+export { SystemreplacemsgSslvpnArgs, SystemreplacemsgSslvpnState } from "./systemreplacemsgSslvpn";
+export type SystemreplacemsgSslvpn = import("./systemreplacemsgSslvpn").SystemreplacemsgSslvpn;
+export const SystemreplacemsgSslvpn: typeof import("./systemreplacemsgSslvpn").SystemreplacemsgSslvpn = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgSslvpn"], () => require("./systemreplacemsgSslvpn"));
+
+export { SystemreplacemsgTrafficquotaArgs, SystemreplacemsgTrafficquotaState } from "./systemreplacemsgTrafficquota";
+export type SystemreplacemsgTrafficquota = import("./systemreplacemsgTrafficquota").SystemreplacemsgTrafficquota;
+export const SystemreplacemsgTrafficquota: typeof import("./systemreplacemsgTrafficquota").SystemreplacemsgTrafficquota = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgTrafficquota"], () => require("./systemreplacemsgTrafficquota"));
+
+export { SystemreplacemsgUtmArgs, SystemreplacemsgUtmState } from "./systemreplacemsgUtm";
+export type SystemreplacemsgUtm = import("./systemreplacemsgUtm").SystemreplacemsgUtm;
+export const SystemreplacemsgUtm: typeof import("./systemreplacemsgUtm").SystemreplacemsgUtm = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgUtm"], () => require("./systemreplacemsgUtm"));
+
+export { SystemreplacemsgWebproxyArgs, SystemreplacemsgWebproxyState } from "./systemreplacemsgWebproxy";
+export type SystemreplacemsgWebproxy = import("./systemreplacemsgWebproxy").SystemreplacemsgWebproxy;
+export const SystemreplacemsgWebproxy: typeof import("./systemreplacemsgWebproxy").SystemreplacemsgWebproxy = null as any;
+utilities.lazyLoad(exports, ["SystemreplacemsgWebproxy"], () => require("./systemreplacemsgWebproxy"));
+
+export { SystemsnmpCommunityArgs, SystemsnmpCommunityState } from "./systemsnmpCommunity";
+export type SystemsnmpCommunity = import("./systemsnmpCommunity").SystemsnmpCommunity;
+export const SystemsnmpCommunity: typeof import("./systemsnmpCommunity").SystemsnmpCommunity = null as any;
+utilities.lazyLoad(exports, ["SystemsnmpCommunity"], () => require("./systemsnmpCommunity"));
+
+export { SystemsnmpMibviewArgs, SystemsnmpMibviewState } from "./systemsnmpMibview";
+export type SystemsnmpMibview = import("./systemsnmpMibview").SystemsnmpMibview;
+export const SystemsnmpMibview: typeof import("./systemsnmpMibview").SystemsnmpMibview = null as any;
+utilities.lazyLoad(exports, ["SystemsnmpMibview"], () => require("./systemsnmpMibview"));
+
+export { SystemsnmpSysinfoArgs, SystemsnmpSysinfoState } from "./systemsnmpSysinfo";
+export type SystemsnmpSysinfo = import("./systemsnmpSysinfo").SystemsnmpSysinfo;
+export const SystemsnmpSysinfo: typeof import("./systemsnmpSysinfo").SystemsnmpSysinfo = null as any;
+utilities.lazyLoad(exports, ["SystemsnmpSysinfo"], () => require("./systemsnmpSysinfo"));
+
+export { SystemsnmpUserArgs, SystemsnmpUserState } from "./systemsnmpUser";
+export type SystemsnmpUser = import("./systemsnmpUser").SystemsnmpUser;
+export const SystemsnmpUser: typeof import("./systemsnmpUser").SystemsnmpUser = null as any;
+utilities.lazyLoad(exports, ["SystemsnmpUser"], () => require("./systemsnmpUser"));
+
+export { UserAdgrpArgs, UserAdgrpState } from "./userAdgrp";
+export type UserAdgrp = import("./userAdgrp").UserAdgrp;
+export const UserAdgrp: typeof import("./userAdgrp").UserAdgrp = null as any;
+utilities.lazyLoad(exports, ["UserAdgrp"], () => require("./userAdgrp"));
+
+export { UserCertificateArgs, UserCertificateState } from "./userCertificate";
+export type UserCertificate = import("./userCertificate").UserCertificate;
+export const UserCertificate: typeof import("./userCertificate").UserCertificate = null as any;
+utilities.lazyLoad(exports, ["UserCertificate"], () => require("./userCertificate"));
+
+export { UserDeviceArgs, UserDeviceState } from "./userDevice";
+export type UserDevice = import("./userDevice").UserDevice;
+export const UserDevice: typeof import("./userDevice").UserDevice = null as any;
+utilities.lazyLoad(exports, ["UserDevice"], () => require("./userDevice"));
+
+export { UserDeviceaccesslistArgs, UserDeviceaccesslistState } from "./userDeviceaccesslist";
+export type UserDeviceaccesslist = import("./userDeviceaccesslist").UserDeviceaccesslist;
+export const UserDeviceaccesslist: typeof import("./userDeviceaccesslist").UserDeviceaccesslist = null as any;
+utilities.lazyLoad(exports, ["UserDeviceaccesslist"], () => require("./userDeviceaccesslist"));
+
+export { UserDevicecategoryArgs, UserDevicecategoryState } from "./userDevicecategory";
+export type UserDevicecategory = import("./userDevicecategory").UserDevicecategory;
+export const UserDevicecategory: typeof import("./userDevicecategory").UserDevicecategory = null as any;
+utilities.lazyLoad(exports, ["UserDevicecategory"], () => require("./userDevicecategory"));
+
+export { UserDevicegroupArgs, UserDevicegroupState } from "./userDevicegroup";
+export type UserDevicegroup = import("./userDevicegroup").UserDevicegroup;
+export const UserDevicegroup: typeof import("./userDevicegroup").UserDevicegroup = null as any;
+utilities.lazyLoad(exports, ["UserDevicegroup"], () => require("./userDevicegroup"));
+
+export { UserDomaincontrollerArgs, UserDomaincontrollerState } from "./userDomaincontroller";
+export type UserDomaincontroller = import("./userDomaincontroller").UserDomaincontroller;
+export const UserDomaincontroller: typeof import("./userDomaincontroller").UserDomaincontroller = null as any;
+utilities.lazyLoad(exports, ["UserDomaincontroller"], () => require("./userDomaincontroller"));
+
+export { UserExchangeArgs, UserExchangeState } from "./userExchange";
+export type UserExchange = import("./userExchange").UserExchange;
+export const UserExchange: typeof import("./userExchange").UserExchange = null as any;
+utilities.lazyLoad(exports, ["UserExchange"], () => require("./userExchange"));
+
+export { UserFortitokenArgs, UserFortitokenState } from "./userFortitoken";
+export type UserFortitoken = import("./userFortitoken").UserFortitoken;
+export const UserFortitoken: typeof import("./userFortitoken").UserFortitoken = null as any;
+utilities.lazyLoad(exports, ["UserFortitoken"], () => require("./userFortitoken"));
+
+export { UserFssoArgs, UserFssoState } from "./userFsso";
+export type UserFsso = import("./userFsso").UserFsso;
+export const UserFsso: typeof import("./userFsso").UserFsso = null as any;
+utilities.lazyLoad(exports, ["UserFsso"], () => require("./userFsso"));
+
+export { UserFssopollingArgs, UserFssopollingState } from "./userFssopolling";
+export type UserFssopolling = import("./userFssopolling").UserFssopolling;
+export const UserFssopolling: typeof import("./userFssopolling").UserFssopolling = null as any;
+utilities.lazyLoad(exports, ["UserFssopolling"], () => require("./userFssopolling"));
+
+export { UserGroupArgs, UserGroupState } from "./userGroup";
+export type UserGroup = import("./userGroup").UserGroup;
+export const UserGroup: typeof import("./userGroup").UserGroup = null as any;
+utilities.lazyLoad(exports, ["UserGroup"], () => require("./userGroup"));
+
+export { UserKrbkeytabArgs, UserKrbkeytabState } from "./userKrbkeytab";
+export type UserKrbkeytab = import("./userKrbkeytab").UserKrbkeytab;
+export const UserKrbkeytab: typeof import("./userKrbkeytab").UserKrbkeytab = null as any;
+utilities.lazyLoad(exports, ["UserKrbkeytab"], () => require("./userKrbkeytab"));
+
+export { UserLdapArgs, UserLdapState } from "./userLdap";
+export type UserLdap = import("./userLdap").UserLdap;
+export const UserLdap: typeof import("./userLdap").UserLdap = null as any;
+utilities.lazyLoad(exports, ["UserLdap"], () => require("./userLdap"));
+
+export { UserLocalArgs, UserLocalState } from "./userLocal";
+export type UserLocal = import("./userLocal").UserLocal;
+export const UserLocal: typeof import("./userLocal").UserLocal = null as any;
+utilities.lazyLoad(exports, ["UserLocal"], () => require("./userLocal"));
+
+export { UserNacpolicyArgs, UserNacpolicyState } from "./userNacpolicy";
+export type UserNacpolicy = import("./userNacpolicy").UserNacpolicy;
+export const UserNacpolicy: typeof import("./userNacpolicy").UserNacpolicy = null as any;
+utilities.lazyLoad(exports, ["UserNacpolicy"], () => require("./userNacpolicy"));
+
+export { UserPasswordpolicyArgs, UserPasswordpolicyState } from "./userPasswordpolicy";
+export type UserPasswordpolicy = import("./userPasswordpolicy").UserPasswordpolicy;
+export const UserPasswordpolicy: typeof import("./userPasswordpolicy").UserPasswordpolicy = null as any;
+utilities.lazyLoad(exports, ["UserPasswordpolicy"], () => require("./userPasswordpolicy"));
+
+export { UserPeerArgs, UserPeerState } from "./userPeer";
+export type UserPeer = import("./userPeer").UserPeer;
+export const UserPeer: typeof import("./userPeer").UserPeer = null as any;
+utilities.lazyLoad(exports, ["UserPeer"], () => require("./userPeer"));
+
+export { UserPeergrpArgs, UserPeergrpState } from "./userPeergrp";
+export type UserPeergrp = import("./userPeergrp").UserPeergrp;
+export const UserPeergrp: typeof import("./userPeergrp").UserPeergrp = null as any;
+utilities.lazyLoad(exports, ["UserPeergrp"], () => require("./userPeergrp"));
+
+export { UserPop3Args, UserPop3State } from "./userPop3";
+export type UserPop3 = import("./userPop3").UserPop3;
+export const UserPop3: typeof import("./userPop3").UserPop3 = null as any;
+utilities.lazyLoad(exports, ["UserPop3"], () => require("./userPop3"));
+
+export { UserQuarantineArgs, UserQuarantineState } from "./userQuarantine";
+export type UserQuarantine = import("./userQuarantine").UserQuarantine;
+export const UserQuarantine: typeof import("./userQuarantine").UserQuarantine = null as any;
+utilities.lazyLoad(exports, ["UserQuarantine"], () => require("./userQuarantine"));
+
+export { UserRadiusArgs, UserRadiusState } from "./userRadius";
+export type UserRadius = import("./userRadius").UserRadius;
+export const UserRadius: typeof import("./userRadius").UserRadius = null as any;
+utilities.lazyLoad(exports, ["UserRadius"], () => require("./userRadius"));
+
+export { UserSamlArgs, UserSamlState } from "./userSaml";
+export type UserSaml = import("./userSaml").UserSaml;
+export const UserSaml: typeof import("./userSaml").UserSaml = null as any;
+utilities.lazyLoad(exports, ["UserSaml"], () => require("./userSaml"));
+
+export { UserSecurityexemptlistArgs, UserSecurityexemptlistState } from "./userSecurityexemptlist";
+export type UserSecurityexemptlist = import("./userSecurityexemptlist").UserSecurityexemptlist;
+export const UserSecurityexemptlist: typeof import("./userSecurityexemptlist").UserSecurityexemptlist = null as any;
+utilities.lazyLoad(exports, ["UserSecurityexemptlist"], () => require("./userSecurityexemptlist"));
+
+export { UserSettingArgs, UserSettingState } from "./userSetting";
+export type UserSetting = import("./userSetting").UserSetting;
+export const UserSetting: typeof import("./userSetting").UserSetting = null as any;
+utilities.lazyLoad(exports, ["UserSetting"], () => require("./userSetting"));
+
+export { UserTacacsArgs, UserTacacsState } from "./userTacacs";
+export type UserTacacs = import("./userTacacs").UserTacacs;
+export const UserTacacs: typeof import("./userTacacs").UserTacacs = null as any;
+utilities.lazyLoad(exports, ["UserTacacs"], () => require("./userTacacs"));
+
+export { VideofilterProfileArgs, VideofilterProfileState } from "./videofilterProfile";
+export type VideofilterProfile = import("./videofilterProfile").VideofilterProfile;
+export const VideofilterProfile: typeof import("./videofilterProfile").VideofilterProfile = null as any;
+utilities.lazyLoad(exports, ["VideofilterProfile"], () => require("./videofilterProfile"));
+
+export { VideofilterYoutubechannelfilterArgs, VideofilterYoutubechannelfilterState } from "./videofilterYoutubechannelfilter";
+export type VideofilterYoutubechannelfilter = import("./videofilterYoutubechannelfilter").VideofilterYoutubechannelfilter;
+export const VideofilterYoutubechannelfilter: typeof import("./videofilterYoutubechannelfilter").VideofilterYoutubechannelfilter = null as any;
+utilities.lazyLoad(exports, ["VideofilterYoutubechannelfilter"], () => require("./videofilterYoutubechannelfilter"));
+
+export { VideofilterYoutubekeyArgs, VideofilterYoutubekeyState } from "./videofilterYoutubekey";
+export type VideofilterYoutubekey = import("./videofilterYoutubekey").VideofilterYoutubekey;
+export const VideofilterYoutubekey: typeof import("./videofilterYoutubekey").VideofilterYoutubekey = null as any;
+utilities.lazyLoad(exports, ["VideofilterYoutubekey"], () => require("./videofilterYoutubekey"));
+
+export { VoipProfileArgs, VoipProfileState } from "./voipProfile";
+export type VoipProfile = import("./voipProfile").VoipProfile;
+export const VoipProfile: typeof import("./voipProfile").VoipProfile = null as any;
+utilities.lazyLoad(exports, ["VoipProfile"], () => require("./voipProfile"));
+
+export { VpnL2tpArgs, VpnL2tpState } from "./vpnL2tp";
+export type VpnL2tp = import("./vpnL2tp").VpnL2tp;
+export const VpnL2tp: typeof import("./vpnL2tp").VpnL2tp = null as any;
+utilities.lazyLoad(exports, ["VpnL2tp"], () => require("./vpnL2tp"));
+
+export { VpnOcvpnArgs, VpnOcvpnState } from "./vpnOcvpn";
+export type VpnOcvpn = import("./vpnOcvpn").VpnOcvpn;
+export const VpnOcvpn: typeof import("./vpnOcvpn").VpnOcvpn = null as any;
+utilities.lazyLoad(exports, ["VpnOcvpn"], () => require("./vpnOcvpn"));
+
+export { VpnPptpArgs, VpnPptpState } from "./vpnPptp";
+export type VpnPptp = import("./vpnPptp").VpnPptp;
+export const VpnPptp: typeof import("./vpnPptp").VpnPptp = null as any;
+utilities.lazyLoad(exports, ["VpnPptp"], () => require("./vpnPptp"));
+
+export { VpncertificateCaArgs, VpncertificateCaState } from "./vpncertificateCa";
+export type VpncertificateCa = import("./vpncertificateCa").VpncertificateCa;
+export const VpncertificateCa: typeof import("./vpncertificateCa").VpncertificateCa = null as any;
+utilities.lazyLoad(exports, ["VpncertificateCa"], () => require("./vpncertificateCa"));
+
+export { VpncertificateCrlArgs, VpncertificateCrlState } from "./vpncertificateCrl";
+export type VpncertificateCrl = import("./vpncertificateCrl").VpncertificateCrl;
+export const VpncertificateCrl: typeof import("./vpncertificateCrl").VpncertificateCrl = null as any;
+utilities.lazyLoad(exports, ["VpncertificateCrl"], () => require("./vpncertificateCrl"));
+
+export { VpncertificateLocalArgs, VpncertificateLocalState } from "./vpncertificateLocal";
+export type VpncertificateLocal = import("./vpncertificateLocal").VpncertificateLocal;
+export const VpncertificateLocal: typeof import("./vpncertificateLocal").VpncertificateLocal = null as any;
+utilities.lazyLoad(exports, ["VpncertificateLocal"], () => require("./vpncertificateLocal"));
+
+export { VpncertificateOcspserverArgs, VpncertificateOcspserverState } from "./vpncertificateOcspserver";
+export type VpncertificateOcspserver = import("./vpncertificateOcspserver").VpncertificateOcspserver;
+export const VpncertificateOcspserver: typeof import("./vpncertificateOcspserver").VpncertificateOcspserver = null as any;
+utilities.lazyLoad(exports, ["VpncertificateOcspserver"], () => require("./vpncertificateOcspserver"));
+
+export { VpncertificateRemoteArgs, VpncertificateRemoteState } from "./vpncertificateRemote";
+export type VpncertificateRemote = import("./vpncertificateRemote").VpncertificateRemote;
+export const VpncertificateRemote: typeof import("./vpncertificateRemote").VpncertificateRemote = null as any;
+utilities.lazyLoad(exports, ["VpncertificateRemote"], () => require("./vpncertificateRemote"));
+
+export { VpncertificateSettingArgs, VpncertificateSettingState } from "./vpncertificateSetting";
+export type VpncertificateSetting = import("./vpncertificateSetting").VpncertificateSetting;
+export const VpncertificateSetting: typeof import("./vpncertificateSetting").VpncertificateSetting = null as any;
+utilities.lazyLoad(exports, ["VpncertificateSetting"], () => require("./vpncertificateSetting"));
+
+export { VpnipsecConcentratorArgs, VpnipsecConcentratorState } from "./vpnipsecConcentrator";
+export type VpnipsecConcentrator = import("./vpnipsecConcentrator").VpnipsecConcentrator;
+export const VpnipsecConcentrator: typeof import("./vpnipsecConcentrator").VpnipsecConcentrator = null as any;
+utilities.lazyLoad(exports, ["VpnipsecConcentrator"], () => require("./vpnipsecConcentrator"));
+
+export { VpnipsecFecArgs, VpnipsecFecState } from "./vpnipsecFec";
+export type VpnipsecFec = import("./vpnipsecFec").VpnipsecFec;
+export const VpnipsecFec: typeof import("./vpnipsecFec").VpnipsecFec = null as any;
+utilities.lazyLoad(exports, ["VpnipsecFec"], () => require("./vpnipsecFec"));
+
+export { VpnipsecForticlientArgs, VpnipsecForticlientState } from "./vpnipsecForticlient";
+export type VpnipsecForticlient = import("./vpnipsecForticlient").VpnipsecForticlient;
+export const VpnipsecForticlient: typeof import("./vpnipsecForticlient").VpnipsecForticlient = null as any;
+utilities.lazyLoad(exports, ["VpnipsecForticlient"], () => require("./vpnipsecForticlient"));
+
+export { VpnipsecManualkeyArgs, VpnipsecManualkeyState } from "./vpnipsecManualkey";
+export type VpnipsecManualkey = import("./vpnipsecManualkey").VpnipsecManualkey;
+export const VpnipsecManualkey: typeof import("./vpnipsecManualkey").VpnipsecManualkey = null as any;
+utilities.lazyLoad(exports, ["VpnipsecManualkey"], () => require("./vpnipsecManualkey"));
+
+export { VpnipsecManualkeyinterfaceArgs, VpnipsecManualkeyinterfaceState } from "./vpnipsecManualkeyinterface";
+export type VpnipsecManualkeyinterface = import("./vpnipsecManualkeyinterface").VpnipsecManualkeyinterface;
+export const VpnipsecManualkeyinterface: typeof import("./vpnipsecManualkeyinterface").VpnipsecManualkeyinterface = null as any;
+utilities.lazyLoad(exports, ["VpnipsecManualkeyinterface"], () => require("./vpnipsecManualkeyinterface"));
+
+export { VpnipsecPhase1Args, VpnipsecPhase1State } from "./vpnipsecPhase1";
+export type VpnipsecPhase1 = import("./vpnipsecPhase1").VpnipsecPhase1;
+export const VpnipsecPhase1: typeof import("./vpnipsecPhase1").VpnipsecPhase1 = null as any;
+utilities.lazyLoad(exports, ["VpnipsecPhase1"], () => require("./vpnipsecPhase1"));
+
+export { VpnipsecPhase1interfaceArgs, VpnipsecPhase1interfaceState } from "./vpnipsecPhase1interface";
+export type VpnipsecPhase1interface = import("./vpnipsecPhase1interface").VpnipsecPhase1interface;
+export const VpnipsecPhase1interface: typeof import("./vpnipsecPhase1interface").VpnipsecPhase1interface = null as any;
+utilities.lazyLoad(exports, ["VpnipsecPhase1interface"], () => require("./vpnipsecPhase1interface"));
+
+export { VpnipsecPhase2Args, VpnipsecPhase2State } from "./vpnipsecPhase2";
+export type VpnipsecPhase2 = import("./vpnipsecPhase2").VpnipsecPhase2;
+export const VpnipsecPhase2: typeof import("./vpnipsecPhase2").VpnipsecPhase2 = null as any;
+utilities.lazyLoad(exports, ["VpnipsecPhase2"], () => require("./vpnipsecPhase2"));
+
+export { VpnipsecPhase2interfaceArgs, VpnipsecPhase2interfaceState } from "./vpnipsecPhase2interface";
+export type VpnipsecPhase2interface = import("./vpnipsecPhase2interface").VpnipsecPhase2interface;
+export const VpnipsecPhase2interface: typeof import("./vpnipsecPhase2interface").VpnipsecPhase2interface = null as any;
+utilities.lazyLoad(exports, ["VpnipsecPhase2interface"], () => require("./vpnipsecPhase2interface"));
+
+export { VpnsslClientArgs, VpnsslClientState } from "./vpnsslClient";
+export type VpnsslClient = import("./vpnsslClient").VpnsslClient;
+export const VpnsslClient: typeof import("./vpnsslClient").VpnsslClient = null as any;
+utilities.lazyLoad(exports, ["VpnsslClient"], () => require("./vpnsslClient"));
+
+export { VpnsslSettingsArgs, VpnsslSettingsState } from "./vpnsslSettings";
+export type VpnsslSettings = import("./vpnsslSettings").VpnsslSettings;
+export const VpnsslSettings: typeof import("./vpnsslSettings").VpnsslSettings = null as any;
+utilities.lazyLoad(exports, ["VpnsslSettings"], () => require("./vpnsslSettings"));
+
+export { VpnsslwebHostchecksoftwareArgs, VpnsslwebHostchecksoftwareState } from "./vpnsslwebHostchecksoftware";
+export type VpnsslwebHostchecksoftware = import("./vpnsslwebHostchecksoftware").VpnsslwebHostchecksoftware;
+export const VpnsslwebHostchecksoftware: typeof import("./vpnsslwebHostchecksoftware").VpnsslwebHostchecksoftware = null as any;
+utilities.lazyLoad(exports, ["VpnsslwebHostchecksoftware"], () => require("./vpnsslwebHostchecksoftware"));
+
+export { VpnsslwebPortalArgs, VpnsslwebPortalState } from "./vpnsslwebPortal";
+export type VpnsslwebPortal = import("./vpnsslwebPortal").VpnsslwebPortal;
+export const VpnsslwebPortal: typeof import("./vpnsslwebPortal").VpnsslwebPortal = null as any;
+utilities.lazyLoad(exports, ["VpnsslwebPortal"], () => require("./vpnsslwebPortal"));
+
+export { VpnsslwebRealmArgs, VpnsslwebRealmState } from "./vpnsslwebRealm";
+export type VpnsslwebRealm = import("./vpnsslwebRealm").VpnsslwebRealm;
+export const VpnsslwebRealm: typeof import("./vpnsslwebRealm").VpnsslwebRealm = null as any;
+utilities.lazyLoad(exports, ["VpnsslwebRealm"], () => require("./vpnsslwebRealm"));
+
+export { VpnsslwebUserbookmarkArgs, VpnsslwebUserbookmarkState } from "./vpnsslwebUserbookmark";
+export type VpnsslwebUserbookmark = import("./vpnsslwebUserbookmark").VpnsslwebUserbookmark;
+export const VpnsslwebUserbookmark: typeof import("./vpnsslwebUserbookmark").VpnsslwebUserbookmark = null as any;
+utilities.lazyLoad(exports, ["VpnsslwebUserbookmark"], () => require("./vpnsslwebUserbookmark"));
+
+export { VpnsslwebUsergroupbookmarkArgs, VpnsslwebUsergroupbookmarkState } from "./vpnsslwebUsergroupbookmark";
+export type VpnsslwebUsergroupbookmark = import("./vpnsslwebUsergroupbookmark").VpnsslwebUsergroupbookmark;
+export const VpnsslwebUsergroupbookmark: typeof import("./vpnsslwebUsergroupbookmark").VpnsslwebUsergroupbookmark = null as any;
+utilities.lazyLoad(exports, ["VpnsslwebUsergroupbookmark"], () => require("./vpnsslwebUsergroupbookmark"));
+
+export { WafMainclassArgs, WafMainclassState } from "./wafMainclass";
+export type WafMainclass = import("./wafMainclass").WafMainclass;
+export const WafMainclass: typeof import("./wafMainclass").WafMainclass = null as any;
+utilities.lazyLoad(exports, ["WafMainclass"], () => require("./wafMainclass"));
+
+export { WafProfileArgs, WafProfileState } from "./wafProfile";
+export type WafProfile = import("./wafProfile").WafProfile;
+export const WafProfile: typeof import("./wafProfile").WafProfile = null as any;
+utilities.lazyLoad(exports, ["WafProfile"], () => require("./wafProfile"));
+
+export { WafSignatureArgs, WafSignatureState } from "./wafSignature";
+export type WafSignature = import("./wafSignature").WafSignature;
+export const WafSignature: typeof import("./wafSignature").WafSignature = null as any;
+utilities.lazyLoad(exports, ["WafSignature"], () => require("./wafSignature"));
+
+export { WafSubclassArgs, WafSubclassState } from "./wafSubclass";
+export type WafSubclass = import("./wafSubclass").WafSubclass;
+export const WafSubclass: typeof import("./wafSubclass").WafSubclass = null as any;
+utilities.lazyLoad(exports, ["WafSubclass"], () => require("./wafSubclass"));
+
+export { WanoptAuthgroupArgs, WanoptAuthgroupState } from "./wanoptAuthgroup";
+export type WanoptAuthgroup = import("./wanoptAuthgroup").WanoptAuthgroup;
+export const WanoptAuthgroup: typeof import("./wanoptAuthgroup").WanoptAuthgroup = null as any;
+utilities.lazyLoad(exports, ["WanoptAuthgroup"], () => require("./wanoptAuthgroup"));
+
+export { WanoptCacheserviceArgs, WanoptCacheserviceState } from "./wanoptCacheservice";
+export type WanoptCacheservice = import("./wanoptCacheservice").WanoptCacheservice;
+export const WanoptCacheservice: typeof import("./wanoptCacheservice").WanoptCacheservice = null as any;
+utilities.lazyLoad(exports, ["WanoptCacheservice"], () => require("./wanoptCacheservice"));
+
+export { WanoptContentdeliverynetworkruleArgs, WanoptContentdeliverynetworkruleState } from "./wanoptContentdeliverynetworkrule";
+export type WanoptContentdeliverynetworkrule = import("./wanoptContentdeliverynetworkrule").WanoptContentdeliverynetworkrule;
+export const WanoptContentdeliverynetworkrule: typeof import("./wanoptContentdeliverynetworkrule").WanoptContentdeliverynetworkrule = null as any;
+utilities.lazyLoad(exports, ["WanoptContentdeliverynetworkrule"], () => require("./wanoptContentdeliverynetworkrule"));
+
+export { WanoptPeerArgs, WanoptPeerState } from "./wanoptPeer";
+export type WanoptPeer = import("./wanoptPeer").WanoptPeer;
+export const WanoptPeer: typeof import("./wanoptPeer").WanoptPeer = null as any;
+utilities.lazyLoad(exports, ["WanoptPeer"], () => require("./wanoptPeer"));
+
+export { WanoptProfileArgs, WanoptProfileState } from "./wanoptProfile";
+export type WanoptProfile = import("./wanoptProfile").WanoptProfile;
+export const WanoptProfile: typeof import("./wanoptProfile").WanoptProfile = null as any;
+utilities.lazyLoad(exports, ["WanoptProfile"], () => require("./wanoptProfile"));
+
+export { WanoptRemotestorageArgs, WanoptRemotestorageState } from "./wanoptRemotestorage";
+export type WanoptRemotestorage = import("./wanoptRemotestorage").WanoptRemotestorage;
+export const WanoptRemotestorage: typeof import("./wanoptRemotestorage").WanoptRemotestorage = null as any;
+utilities.lazyLoad(exports, ["WanoptRemotestorage"], () => require("./wanoptRemotestorage"));
+
+export { WanoptSettingsArgs, WanoptSettingsState } from "./wanoptSettings";
+export type WanoptSettings = import("./wanoptSettings").WanoptSettings;
+export const WanoptSettings: typeof import("./wanoptSettings").WanoptSettings = null as any;
+utilities.lazyLoad(exports, ["WanoptSettings"], () => require("./wanoptSettings"));
+
+export { WanoptWebcacheArgs, WanoptWebcacheState } from "./wanoptWebcache";
+export type WanoptWebcache = import("./wanoptWebcache").WanoptWebcache;
+export const WanoptWebcache: typeof import("./wanoptWebcache").WanoptWebcache = null as any;
+utilities.lazyLoad(exports, ["WanoptWebcache"], () => require("./wanoptWebcache"));
+
+export { WebfilterContentArgs, WebfilterContentState } from "./webfilterContent";
+export type WebfilterContent = import("./webfilterContent").WebfilterContent;
+export const WebfilterContent: typeof import("./webfilterContent").WebfilterContent = null as any;
+utilities.lazyLoad(exports, ["WebfilterContent"], () => require("./webfilterContent"));
+
+export { WebfilterContentheaderArgs, WebfilterContentheaderState } from "./webfilterContentheader";
+export type WebfilterContentheader = import("./webfilterContentheader").WebfilterContentheader;
+export const WebfilterContentheader: typeof import("./webfilterContentheader").WebfilterContentheader = null as any;
+utilities.lazyLoad(exports, ["WebfilterContentheader"], () => require("./webfilterContentheader"));
+
+export { WebfilterFortiguardArgs, WebfilterFortiguardState } from "./webfilterFortiguard";
+export type WebfilterFortiguard = import("./webfilterFortiguard").WebfilterFortiguard;
+export const WebfilterFortiguard: typeof import("./webfilterFortiguard").WebfilterFortiguard = null as any;
+utilities.lazyLoad(exports, ["WebfilterFortiguard"], () => require("./webfilterFortiguard"));
+
+export { WebfilterFtgdlocalcatArgs, WebfilterFtgdlocalcatState } from "./webfilterFtgdlocalcat";
+export type WebfilterFtgdlocalcat = import("./webfilterFtgdlocalcat").WebfilterFtgdlocalcat;
+export const WebfilterFtgdlocalcat: typeof import("./webfilterFtgdlocalcat").WebfilterFtgdlocalcat = null as any;
+utilities.lazyLoad(exports, ["WebfilterFtgdlocalcat"], () => require("./webfilterFtgdlocalcat"));
+
+export { WebfilterFtgdlocalratingArgs, WebfilterFtgdlocalratingState } from "./webfilterFtgdlocalrating";
+export type WebfilterFtgdlocalrating = import("./webfilterFtgdlocalrating").WebfilterFtgdlocalrating;
+export const WebfilterFtgdlocalrating: typeof import("./webfilterFtgdlocalrating").WebfilterFtgdlocalrating = null as any;
+utilities.lazyLoad(exports, ["WebfilterFtgdlocalrating"], () => require("./webfilterFtgdlocalrating"));
+
+export { WebfilterIpsurlfiltercachesettingArgs, WebfilterIpsurlfiltercachesettingState } from "./webfilterIpsurlfiltercachesetting";
+export type WebfilterIpsurlfiltercachesetting = import("./webfilterIpsurlfiltercachesetting").WebfilterIpsurlfiltercachesetting;
+export const WebfilterIpsurlfiltercachesetting: typeof import("./webfilterIpsurlfiltercachesetting").WebfilterIpsurlfiltercachesetting = null as any;
+utilities.lazyLoad(exports, ["WebfilterIpsurlfiltercachesetting"], () => require("./webfilterIpsurlfiltercachesetting"));
+
+export { WebfilterIpsurlfiltersettingArgs, WebfilterIpsurlfiltersettingState } from "./webfilterIpsurlfiltersetting";
+export type WebfilterIpsurlfiltersetting = import("./webfilterIpsurlfiltersetting").WebfilterIpsurlfiltersetting;
+export const WebfilterIpsurlfiltersetting: typeof import("./webfilterIpsurlfiltersetting").WebfilterIpsurlfiltersetting = null as any;
+utilities.lazyLoad(exports, ["WebfilterIpsurlfiltersetting"], () => require("./webfilterIpsurlfiltersetting"));
+
+export { WebfilterIpsurlfiltersetting6Args, WebfilterIpsurlfiltersetting6State } from "./webfilterIpsurlfiltersetting6";
+export type WebfilterIpsurlfiltersetting6 = import("./webfilterIpsurlfiltersetting6").WebfilterIpsurlfiltersetting6;
+export const WebfilterIpsurlfiltersetting6: typeof import("./webfilterIpsurlfiltersetting6").WebfilterIpsurlfiltersetting6 = null as any;
+utilities.lazyLoad(exports, ["WebfilterIpsurlfiltersetting6"], () => require("./webfilterIpsurlfiltersetting6"));
+
+export { WebfilterOverrideArgs, WebfilterOverrideState } from "./webfilterOverride";
+export type WebfilterOverride = import("./webfilterOverride").WebfilterOverride;
+export const WebfilterOverride: typeof import("./webfilterOverride").WebfilterOverride = null as any;
+utilities.lazyLoad(exports, ["WebfilterOverride"], () => require("./webfilterOverride"));
+
+export { WebfilterProfileArgs, WebfilterProfileState } from "./webfilterProfile";
+export type WebfilterProfile = import("./webfilterProfile").WebfilterProfile;
+export const WebfilterProfile: typeof import("./webfilterProfile").WebfilterProfile = null as any;
+utilities.lazyLoad(exports, ["WebfilterProfile"], () => require("./webfilterProfile"));
+
+export { WebfilterSearchengineArgs, WebfilterSearchengineState } from "./webfilterSearchengine";
+export type WebfilterSearchengine = import("./webfilterSearchengine").WebfilterSearchengine;
+export const WebfilterSearchengine: typeof import("./webfilterSearchengine").WebfilterSearchengine = null as any;
+utilities.lazyLoad(exports, ["WebfilterSearchengine"], () => require("./webfilterSearchengine"));
+
+export { WebfilterUrlfilterArgs, WebfilterUrlfilterState } from "./webfilterUrlfilter";
+export type WebfilterUrlfilter = import("./webfilterUrlfilter").WebfilterUrlfilter;
+export const WebfilterUrlfilter: typeof import("./webfilterUrlfilter").WebfilterUrlfilter = null as any;
+utilities.lazyLoad(exports, ["WebfilterUrlfilter"], () => require("./webfilterUrlfilter"));
+
+export { WebproxyDebugurlArgs, WebproxyDebugurlState } from "./webproxyDebugurl";
+export type WebproxyDebugurl = import("./webproxyDebugurl").WebproxyDebugurl;
+export const WebproxyDebugurl: typeof import("./webproxyDebugurl").WebproxyDebugurl = null as any;
+utilities.lazyLoad(exports, ["WebproxyDebugurl"], () => require("./webproxyDebugurl"));
+
+export { WebproxyExplicitArgs, WebproxyExplicitState } from "./webproxyExplicit";
+export type WebproxyExplicit = import("./webproxyExplicit").WebproxyExplicit;
+export const WebproxyExplicit: typeof import("./webproxyExplicit").WebproxyExplicit = null as any;
+utilities.lazyLoad(exports, ["WebproxyExplicit"], () => require("./webproxyExplicit"));
+
+export { WebproxyForwardserverArgs, WebproxyForwardserverState } from "./webproxyForwardserver";
+export type WebproxyForwardserver = import("./webproxyForwardserver").WebproxyForwardserver;
+export const WebproxyForwardserver: typeof import("./webproxyForwardserver").WebproxyForwardserver = null as any;
+utilities.lazyLoad(exports, ["WebproxyForwardserver"], () => require("./webproxyForwardserver"));
+
+export { WebproxyForwardservergroupArgs, WebproxyForwardservergroupState } from "./webproxyForwardservergroup";
+export type WebproxyForwardservergroup = import("./webproxyForwardservergroup").WebproxyForwardservergroup;
+export const WebproxyForwardservergroup: typeof import("./webproxyForwardservergroup").WebproxyForwardservergroup = null as any;
+utilities.lazyLoad(exports, ["WebproxyForwardservergroup"], () => require("./webproxyForwardservergroup"));
+
+export { WebproxyGlobalArgs, WebproxyGlobalState } from "./webproxyGlobal";
+export type WebproxyGlobal = import("./webproxyGlobal").WebproxyGlobal;
+export const WebproxyGlobal: typeof import("./webproxyGlobal").WebproxyGlobal = null as any;
+utilities.lazyLoad(exports, ["WebproxyGlobal"], () => require("./webproxyGlobal"));
+
+export { WebproxyProfileArgs, WebproxyProfileState } from "./webproxyProfile";
+export type WebproxyProfile = import("./webproxyProfile").WebproxyProfile;
+export const WebproxyProfile: typeof import("./webproxyProfile").WebproxyProfile = null as any;
+utilities.lazyLoad(exports, ["WebproxyProfile"], () => require("./webproxyProfile"));
+
+export { WebproxyUrlmatchArgs, WebproxyUrlmatchState } from "./webproxyUrlmatch";
+export type WebproxyUrlmatch = import("./webproxyUrlmatch").WebproxyUrlmatch;
+export const WebproxyUrlmatch: typeof import("./webproxyUrlmatch").WebproxyUrlmatch = null as any;
+utilities.lazyLoad(exports, ["WebproxyUrlmatch"], () => require("./webproxyUrlmatch"));
+
+export { WebproxyWispArgs, WebproxyWispState } from "./webproxyWisp";
+export type WebproxyWisp = import("./webproxyWisp").WebproxyWisp;
+export const WebproxyWisp: typeof import("./webproxyWisp").WebproxyWisp = null as any;
+utilities.lazyLoad(exports, ["WebproxyWisp"], () => require("./webproxyWisp"));
+
+export { WirelesscontrollerAccesscontrollistArgs, WirelesscontrollerAccesscontrollistState } from "./wirelesscontrollerAccesscontrollist";
+export type WirelesscontrollerAccesscontrollist = import("./wirelesscontrollerAccesscontrollist").WirelesscontrollerAccesscontrollist;
+export const WirelesscontrollerAccesscontrollist: typeof import("./wirelesscontrollerAccesscontrollist").WirelesscontrollerAccesscontrollist = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerAccesscontrollist"], () => require("./wirelesscontrollerAccesscontrollist"));
+
+export { WirelesscontrollerAddressArgs, WirelesscontrollerAddressState } from "./wirelesscontrollerAddress";
+export type WirelesscontrollerAddress = import("./wirelesscontrollerAddress").WirelesscontrollerAddress;
+export const WirelesscontrollerAddress: typeof import("./wirelesscontrollerAddress").WirelesscontrollerAddress = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerAddress"], () => require("./wirelesscontrollerAddress"));
+
+export { WirelesscontrollerAddrgrpArgs, WirelesscontrollerAddrgrpState } from "./wirelesscontrollerAddrgrp";
+export type WirelesscontrollerAddrgrp = import("./wirelesscontrollerAddrgrp").WirelesscontrollerAddrgrp;
+export const WirelesscontrollerAddrgrp: typeof import("./wirelesscontrollerAddrgrp").WirelesscontrollerAddrgrp = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerAddrgrp"], () => require("./wirelesscontrollerAddrgrp"));
+
+export { WirelesscontrollerApcfgprofileArgs, WirelesscontrollerApcfgprofileState } from "./wirelesscontrollerApcfgprofile";
+export type WirelesscontrollerApcfgprofile = import("./wirelesscontrollerApcfgprofile").WirelesscontrollerApcfgprofile;
+export const WirelesscontrollerApcfgprofile: typeof import("./wirelesscontrollerApcfgprofile").WirelesscontrollerApcfgprofile = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerApcfgprofile"], () => require("./wirelesscontrollerApcfgprofile"));
+
+export { WirelesscontrollerApstatusArgs, WirelesscontrollerApstatusState } from "./wirelesscontrollerApstatus";
+export type WirelesscontrollerApstatus = import("./wirelesscontrollerApstatus").WirelesscontrollerApstatus;
+export const WirelesscontrollerApstatus: typeof import("./wirelesscontrollerApstatus").WirelesscontrollerApstatus = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerApstatus"], () => require("./wirelesscontrollerApstatus"));
+
+export { WirelesscontrollerArrpprofileArgs, WirelesscontrollerArrpprofileState } from "./wirelesscontrollerArrpprofile";
+export type WirelesscontrollerArrpprofile = import("./wirelesscontrollerArrpprofile").WirelesscontrollerArrpprofile;
+export const WirelesscontrollerArrpprofile: typeof import("./wirelesscontrollerArrpprofile").WirelesscontrollerArrpprofile = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerArrpprofile"], () => require("./wirelesscontrollerArrpprofile"));
+
+export { WirelesscontrollerBleprofileArgs, WirelesscontrollerBleprofileState } from "./wirelesscontrollerBleprofile";
+export type WirelesscontrollerBleprofile = import("./wirelesscontrollerBleprofile").WirelesscontrollerBleprofile;
+export const WirelesscontrollerBleprofile: typeof import("./wirelesscontrollerBleprofile").WirelesscontrollerBleprofile = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerBleprofile"], () => require("./wirelesscontrollerBleprofile"));
+
+export { WirelesscontrollerBonjourprofileArgs, WirelesscontrollerBonjourprofileState } from "./wirelesscontrollerBonjourprofile";
+export type WirelesscontrollerBonjourprofile = import("./wirelesscontrollerBonjourprofile").WirelesscontrollerBonjourprofile;
+export const WirelesscontrollerBonjourprofile: typeof import("./wirelesscontrollerBonjourprofile").WirelesscontrollerBonjourprofile = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerBonjourprofile"], () => require("./wirelesscontrollerBonjourprofile"));
+
+export { WirelesscontrollerGlobalArgs, WirelesscontrollerGlobalState } from "./wirelesscontrollerGlobal";
+export type WirelesscontrollerGlobal = import("./wirelesscontrollerGlobal").WirelesscontrollerGlobal;
+export const WirelesscontrollerGlobal: typeof import("./wirelesscontrollerGlobal").WirelesscontrollerGlobal = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerGlobal"], () => require("./wirelesscontrollerGlobal"));
+
+export { WirelesscontrollerIntercontrollerArgs, WirelesscontrollerIntercontrollerState } from "./wirelesscontrollerIntercontroller";
+export type WirelesscontrollerIntercontroller = import("./wirelesscontrollerIntercontroller").WirelesscontrollerIntercontroller;
+export const WirelesscontrollerIntercontroller: typeof import("./wirelesscontrollerIntercontroller").WirelesscontrollerIntercontroller = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerIntercontroller"], () => require("./wirelesscontrollerIntercontroller"));
+
+export { WirelesscontrollerLogArgs, WirelesscontrollerLogState } from "./wirelesscontrollerLog";
+export type WirelesscontrollerLog = import("./wirelesscontrollerLog").WirelesscontrollerLog;
+export const WirelesscontrollerLog: typeof import("./wirelesscontrollerLog").WirelesscontrollerLog = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerLog"], () => require("./wirelesscontrollerLog"));
+
+export { WirelesscontrollerMpskprofileArgs, WirelesscontrollerMpskprofileState } from "./wirelesscontrollerMpskprofile";
+export type WirelesscontrollerMpskprofile = import("./wirelesscontrollerMpskprofile").WirelesscontrollerMpskprofile;
+export const WirelesscontrollerMpskprofile: typeof import("./wirelesscontrollerMpskprofile").WirelesscontrollerMpskprofile = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerMpskprofile"], () => require("./wirelesscontrollerMpskprofile"));
+
+export { WirelesscontrollerNacprofileArgs, WirelesscontrollerNacprofileState } from "./wirelesscontrollerNacprofile";
+export type WirelesscontrollerNacprofile = import("./wirelesscontrollerNacprofile").WirelesscontrollerNacprofile;
+export const WirelesscontrollerNacprofile: typeof import("./wirelesscontrollerNacprofile").WirelesscontrollerNacprofile = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerNacprofile"], () => require("./wirelesscontrollerNacprofile"));
+
+export { WirelesscontrollerQosprofileArgs, WirelesscontrollerQosprofileState } from "./wirelesscontrollerQosprofile";
+export type WirelesscontrollerQosprofile = import("./wirelesscontrollerQosprofile").WirelesscontrollerQosprofile;
+export const WirelesscontrollerQosprofile: typeof import("./wirelesscontrollerQosprofile").WirelesscontrollerQosprofile = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerQosprofile"], () => require("./wirelesscontrollerQosprofile"));
+
+export { WirelesscontrollerRegionArgs, WirelesscontrollerRegionState } from "./wirelesscontrollerRegion";
+export type WirelesscontrollerRegion = import("./wirelesscontrollerRegion").WirelesscontrollerRegion;
+export const WirelesscontrollerRegion: typeof import("./wirelesscontrollerRegion").WirelesscontrollerRegion = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerRegion"], () => require("./wirelesscontrollerRegion"));
+
+export { WirelesscontrollerSettingArgs, WirelesscontrollerSettingState } from "./wirelesscontrollerSetting";
+export type WirelesscontrollerSetting = import("./wirelesscontrollerSetting").WirelesscontrollerSetting;
+export const WirelesscontrollerSetting: typeof import("./wirelesscontrollerSetting").WirelesscontrollerSetting = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerSetting"], () => require("./wirelesscontrollerSetting"));
+
+export { WirelesscontrollerSnmpArgs, WirelesscontrollerSnmpState } from "./wirelesscontrollerSnmp";
+export type WirelesscontrollerSnmp = import("./wirelesscontrollerSnmp").WirelesscontrollerSnmp;
+export const WirelesscontrollerSnmp: typeof import("./wirelesscontrollerSnmp").WirelesscontrollerSnmp = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerSnmp"], () => require("./wirelesscontrollerSnmp"));
+
+export { WirelesscontrollerSsidpolicyArgs, WirelesscontrollerSsidpolicyState } from "./wirelesscontrollerSsidpolicy";
+export type WirelesscontrollerSsidpolicy = import("./wirelesscontrollerSsidpolicy").WirelesscontrollerSsidpolicy;
+export const WirelesscontrollerSsidpolicy: typeof import("./wirelesscontrollerSsidpolicy").WirelesscontrollerSsidpolicy = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerSsidpolicy"], () => require("./wirelesscontrollerSsidpolicy"));
+
+export { WirelesscontrollerSyslogprofileArgs, WirelesscontrollerSyslogprofileState } from "./wirelesscontrollerSyslogprofile";
+export type WirelesscontrollerSyslogprofile = import("./wirelesscontrollerSyslogprofile").WirelesscontrollerSyslogprofile;
+export const WirelesscontrollerSyslogprofile: typeof import("./wirelesscontrollerSyslogprofile").WirelesscontrollerSyslogprofile = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerSyslogprofile"], () => require("./wirelesscontrollerSyslogprofile"));
+
+export { WirelesscontrollerTimersArgs, WirelesscontrollerTimersState } from "./wirelesscontrollerTimers";
+export type WirelesscontrollerTimers = import("./wirelesscontrollerTimers").WirelesscontrollerTimers;
+export const WirelesscontrollerTimers: typeof import("./wirelesscontrollerTimers").WirelesscontrollerTimers = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerTimers"], () => require("./wirelesscontrollerTimers"));
+
+export { WirelesscontrollerUtmprofileArgs, WirelesscontrollerUtmprofileState } from "./wirelesscontrollerUtmprofile";
+export type WirelesscontrollerUtmprofile = import("./wirelesscontrollerUtmprofile").WirelesscontrollerUtmprofile;
+export const WirelesscontrollerUtmprofile: typeof import("./wirelesscontrollerUtmprofile").WirelesscontrollerUtmprofile = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerUtmprofile"], () => require("./wirelesscontrollerUtmprofile"));
+
+export { WirelesscontrollerVapArgs, WirelesscontrollerVapState } from "./wirelesscontrollerVap";
+export type WirelesscontrollerVap = import("./wirelesscontrollerVap").WirelesscontrollerVap;
+export const WirelesscontrollerVap: typeof import("./wirelesscontrollerVap").WirelesscontrollerVap = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerVap"], () => require("./wirelesscontrollerVap"));
+
+export { WirelesscontrollerVapgroupArgs, WirelesscontrollerVapgroupState } from "./wirelesscontrollerVapgroup";
+export type WirelesscontrollerVapgroup = import("./wirelesscontrollerVapgroup").WirelesscontrollerVapgroup;
+export const WirelesscontrollerVapgroup: typeof import("./wirelesscontrollerVapgroup").WirelesscontrollerVapgroup = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerVapgroup"], () => require("./wirelesscontrollerVapgroup"));
+
+export { WirelesscontrollerWagprofileArgs, WirelesscontrollerWagprofileState } from "./wirelesscontrollerWagprofile";
+export type WirelesscontrollerWagprofile = import("./wirelesscontrollerWagprofile").WirelesscontrollerWagprofile;
+export const WirelesscontrollerWagprofile: typeof import("./wirelesscontrollerWagprofile").WirelesscontrollerWagprofile = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerWagprofile"], () => require("./wirelesscontrollerWagprofile"));
+
+export { WirelesscontrollerWidsprofileArgs, WirelesscontrollerWidsprofileState } from "./wirelesscontrollerWidsprofile";
+export type WirelesscontrollerWidsprofile = import("./wirelesscontrollerWidsprofile").WirelesscontrollerWidsprofile;
+export const WirelesscontrollerWidsprofile: typeof import("./wirelesscontrollerWidsprofile").WirelesscontrollerWidsprofile = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerWidsprofile"], () => require("./wirelesscontrollerWidsprofile"));
+
+export { WirelesscontrollerWtpArgs, WirelesscontrollerWtpState } from "./wirelesscontrollerWtp";
+export type WirelesscontrollerWtp = import("./wirelesscontrollerWtp").WirelesscontrollerWtp;
+export const WirelesscontrollerWtp: typeof import("./wirelesscontrollerWtp").WirelesscontrollerWtp = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerWtp"], () => require("./wirelesscontrollerWtp"));
+
+export { WirelesscontrollerWtpgroupArgs, WirelesscontrollerWtpgroupState } from "./wirelesscontrollerWtpgroup";
+export type WirelesscontrollerWtpgroup = import("./wirelesscontrollerWtpgroup").WirelesscontrollerWtpgroup;
+export const WirelesscontrollerWtpgroup: typeof import("./wirelesscontrollerWtpgroup").WirelesscontrollerWtpgroup = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerWtpgroup"], () => require("./wirelesscontrollerWtpgroup"));
+
+export { WirelesscontrollerWtpprofileArgs, WirelesscontrollerWtpprofileState } from "./wirelesscontrollerWtpprofile";
+export type WirelesscontrollerWtpprofile = import("./wirelesscontrollerWtpprofile").WirelesscontrollerWtpprofile;
+export const WirelesscontrollerWtpprofile: typeof import("./wirelesscontrollerWtpprofile").WirelesscontrollerWtpprofile = null as any;
+utilities.lazyLoad(exports, ["WirelesscontrollerWtpprofile"], () => require("./wirelesscontrollerWtpprofile"));
+
+export { Wirelesscontrollerhotspot20Anqp3gppcellularArgs, Wirelesscontrollerhotspot20Anqp3gppcellularState } from "./wirelesscontrollerhotspot20Anqp3gppcellular";
+export type Wirelesscontrollerhotspot20Anqp3gppcellular = import("./wirelesscontrollerhotspot20Anqp3gppcellular").Wirelesscontrollerhotspot20Anqp3gppcellular;
+export const Wirelesscontrollerhotspot20Anqp3gppcellular: typeof import("./wirelesscontrollerhotspot20Anqp3gppcellular").Wirelesscontrollerhotspot20Anqp3gppcellular = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20Anqp3gppcellular"], () => require("./wirelesscontrollerhotspot20Anqp3gppcellular"));
+
+export { Wirelesscontrollerhotspot20AnqpipaddresstypeArgs, Wirelesscontrollerhotspot20AnqpipaddresstypeState } from "./wirelesscontrollerhotspot20Anqpipaddresstype";
+export type Wirelesscontrollerhotspot20Anqpipaddresstype = import("./wirelesscontrollerhotspot20Anqpipaddresstype").Wirelesscontrollerhotspot20Anqpipaddresstype;
+export const Wirelesscontrollerhotspot20Anqpipaddresstype: typeof import("./wirelesscontrollerhotspot20Anqpipaddresstype").Wirelesscontrollerhotspot20Anqpipaddresstype = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20Anqpipaddresstype"], () => require("./wirelesscontrollerhotspot20Anqpipaddresstype"));
+
+export { Wirelesscontrollerhotspot20AnqpnairealmArgs, Wirelesscontrollerhotspot20AnqpnairealmState } from "./wirelesscontrollerhotspot20Anqpnairealm";
+export type Wirelesscontrollerhotspot20Anqpnairealm = import("./wirelesscontrollerhotspot20Anqpnairealm").Wirelesscontrollerhotspot20Anqpnairealm;
+export const Wirelesscontrollerhotspot20Anqpnairealm: typeof import("./wirelesscontrollerhotspot20Anqpnairealm").Wirelesscontrollerhotspot20Anqpnairealm = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20Anqpnairealm"], () => require("./wirelesscontrollerhotspot20Anqpnairealm"));
+
+export { Wirelesscontrollerhotspot20AnqpnetworkauthtypeArgs, Wirelesscontrollerhotspot20AnqpnetworkauthtypeState } from "./wirelesscontrollerhotspot20Anqpnetworkauthtype";
+export type Wirelesscontrollerhotspot20Anqpnetworkauthtype = import("./wirelesscontrollerhotspot20Anqpnetworkauthtype").Wirelesscontrollerhotspot20Anqpnetworkauthtype;
+export const Wirelesscontrollerhotspot20Anqpnetworkauthtype: typeof import("./wirelesscontrollerhotspot20Anqpnetworkauthtype").Wirelesscontrollerhotspot20Anqpnetworkauthtype = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20Anqpnetworkauthtype"], () => require("./wirelesscontrollerhotspot20Anqpnetworkauthtype"));
+
+export { Wirelesscontrollerhotspot20AnqproamingconsortiumArgs, Wirelesscontrollerhotspot20AnqproamingconsortiumState } from "./wirelesscontrollerhotspot20Anqproamingconsortium";
+export type Wirelesscontrollerhotspot20Anqproamingconsortium = import("./wirelesscontrollerhotspot20Anqproamingconsortium").Wirelesscontrollerhotspot20Anqproamingconsortium;
+export const Wirelesscontrollerhotspot20Anqproamingconsortium: typeof import("./wirelesscontrollerhotspot20Anqproamingconsortium").Wirelesscontrollerhotspot20Anqproamingconsortium = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20Anqproamingconsortium"], () => require("./wirelesscontrollerhotspot20Anqproamingconsortium"));
+
+export { Wirelesscontrollerhotspot20AnqpvenuenameArgs, Wirelesscontrollerhotspot20AnqpvenuenameState } from "./wirelesscontrollerhotspot20Anqpvenuename";
+export type Wirelesscontrollerhotspot20Anqpvenuename = import("./wirelesscontrollerhotspot20Anqpvenuename").Wirelesscontrollerhotspot20Anqpvenuename;
+export const Wirelesscontrollerhotspot20Anqpvenuename: typeof import("./wirelesscontrollerhotspot20Anqpvenuename").Wirelesscontrollerhotspot20Anqpvenuename = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20Anqpvenuename"], () => require("./wirelesscontrollerhotspot20Anqpvenuename"));
+
+export { Wirelesscontrollerhotspot20AnqpvenueurlArgs, Wirelesscontrollerhotspot20AnqpvenueurlState } from "./wirelesscontrollerhotspot20Anqpvenueurl";
+export type Wirelesscontrollerhotspot20Anqpvenueurl = import("./wirelesscontrollerhotspot20Anqpvenueurl").Wirelesscontrollerhotspot20Anqpvenueurl;
+export const Wirelesscontrollerhotspot20Anqpvenueurl: typeof import("./wirelesscontrollerhotspot20Anqpvenueurl").Wirelesscontrollerhotspot20Anqpvenueurl = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20Anqpvenueurl"], () => require("./wirelesscontrollerhotspot20Anqpvenueurl"));
+
+export { Wirelesscontrollerhotspot20H2qpadviceofchargeArgs, Wirelesscontrollerhotspot20H2qpadviceofchargeState } from "./wirelesscontrollerhotspot20H2qpadviceofcharge";
+export type Wirelesscontrollerhotspot20H2qpadviceofcharge = import("./wirelesscontrollerhotspot20H2qpadviceofcharge").Wirelesscontrollerhotspot20H2qpadviceofcharge;
+export const Wirelesscontrollerhotspot20H2qpadviceofcharge: typeof import("./wirelesscontrollerhotspot20H2qpadviceofcharge").Wirelesscontrollerhotspot20H2qpadviceofcharge = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20H2qpadviceofcharge"], () => require("./wirelesscontrollerhotspot20H2qpadviceofcharge"));
+
+export { Wirelesscontrollerhotspot20H2qpconncapabilityArgs, Wirelesscontrollerhotspot20H2qpconncapabilityState } from "./wirelesscontrollerhotspot20H2qpconncapability";
+export type Wirelesscontrollerhotspot20H2qpconncapability = import("./wirelesscontrollerhotspot20H2qpconncapability").Wirelesscontrollerhotspot20H2qpconncapability;
+export const Wirelesscontrollerhotspot20H2qpconncapability: typeof import("./wirelesscontrollerhotspot20H2qpconncapability").Wirelesscontrollerhotspot20H2qpconncapability = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20H2qpconncapability"], () => require("./wirelesscontrollerhotspot20H2qpconncapability"));
+
+export { Wirelesscontrollerhotspot20H2qpoperatornameArgs, Wirelesscontrollerhotspot20H2qpoperatornameState } from "./wirelesscontrollerhotspot20H2qpoperatorname";
+export type Wirelesscontrollerhotspot20H2qpoperatorname = import("./wirelesscontrollerhotspot20H2qpoperatorname").Wirelesscontrollerhotspot20H2qpoperatorname;
+export const Wirelesscontrollerhotspot20H2qpoperatorname: typeof import("./wirelesscontrollerhotspot20H2qpoperatorname").Wirelesscontrollerhotspot20H2qpoperatorname = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20H2qpoperatorname"], () => require("./wirelesscontrollerhotspot20H2qpoperatorname"));
+
+export { Wirelesscontrollerhotspot20H2qposuproviderArgs, Wirelesscontrollerhotspot20H2qposuproviderState } from "./wirelesscontrollerhotspot20H2qposuprovider";
+export type Wirelesscontrollerhotspot20H2qposuprovider = import("./wirelesscontrollerhotspot20H2qposuprovider").Wirelesscontrollerhotspot20H2qposuprovider;
+export const Wirelesscontrollerhotspot20H2qposuprovider: typeof import("./wirelesscontrollerhotspot20H2qposuprovider").Wirelesscontrollerhotspot20H2qposuprovider = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20H2qposuprovider"], () => require("./wirelesscontrollerhotspot20H2qposuprovider"));
+
+export { Wirelesscontrollerhotspot20H2qposuprovidernaiArgs, Wirelesscontrollerhotspot20H2qposuprovidernaiState } from "./wirelesscontrollerhotspot20H2qposuprovidernai";
+export type Wirelesscontrollerhotspot20H2qposuprovidernai = import("./wirelesscontrollerhotspot20H2qposuprovidernai").Wirelesscontrollerhotspot20H2qposuprovidernai;
+export const Wirelesscontrollerhotspot20H2qposuprovidernai: typeof import("./wirelesscontrollerhotspot20H2qposuprovidernai").Wirelesscontrollerhotspot20H2qposuprovidernai = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20H2qposuprovidernai"], () => require("./wirelesscontrollerhotspot20H2qposuprovidernai"));
+
+export { Wirelesscontrollerhotspot20H2qptermsandconditionsArgs, Wirelesscontrollerhotspot20H2qptermsandconditionsState } from "./wirelesscontrollerhotspot20H2qptermsandconditions";
+export type Wirelesscontrollerhotspot20H2qptermsandconditions = import("./wirelesscontrollerhotspot20H2qptermsandconditions").Wirelesscontrollerhotspot20H2qptermsandconditions;
+export const Wirelesscontrollerhotspot20H2qptermsandconditions: typeof import("./wirelesscontrollerhotspot20H2qptermsandconditions").Wirelesscontrollerhotspot20H2qptermsandconditions = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20H2qptermsandconditions"], () => require("./wirelesscontrollerhotspot20H2qptermsandconditions"));
+
+export { Wirelesscontrollerhotspot20H2qpwanmetricArgs, Wirelesscontrollerhotspot20H2qpwanmetricState } from "./wirelesscontrollerhotspot20H2qpwanmetric";
+export type Wirelesscontrollerhotspot20H2qpwanmetric = import("./wirelesscontrollerhotspot20H2qpwanmetric").Wirelesscontrollerhotspot20H2qpwanmetric;
+export const Wirelesscontrollerhotspot20H2qpwanmetric: typeof import("./wirelesscontrollerhotspot20H2qpwanmetric").Wirelesscontrollerhotspot20H2qpwanmetric = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20H2qpwanmetric"], () => require("./wirelesscontrollerhotspot20H2qpwanmetric"));
+
+export { Wirelesscontrollerhotspot20HsprofileArgs, Wirelesscontrollerhotspot20HsprofileState } from "./wirelesscontrollerhotspot20Hsprofile";
+export type Wirelesscontrollerhotspot20Hsprofile = import("./wirelesscontrollerhotspot20Hsprofile").Wirelesscontrollerhotspot20Hsprofile;
+export const Wirelesscontrollerhotspot20Hsprofile: typeof import("./wirelesscontrollerhotspot20Hsprofile").Wirelesscontrollerhotspot20Hsprofile = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20Hsprofile"], () => require("./wirelesscontrollerhotspot20Hsprofile"));
+
+export { Wirelesscontrollerhotspot20IconArgs, Wirelesscontrollerhotspot20IconState } from "./wirelesscontrollerhotspot20Icon";
+export type Wirelesscontrollerhotspot20Icon = import("./wirelesscontrollerhotspot20Icon").Wirelesscontrollerhotspot20Icon;
+export const Wirelesscontrollerhotspot20Icon: typeof import("./wirelesscontrollerhotspot20Icon").Wirelesscontrollerhotspot20Icon = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20Icon"], () => require("./wirelesscontrollerhotspot20Icon"));
+
+export { Wirelesscontrollerhotspot20QosmapArgs, Wirelesscontrollerhotspot20QosmapState } from "./wirelesscontrollerhotspot20Qosmap";
+export type Wirelesscontrollerhotspot20Qosmap = import("./wirelesscontrollerhotspot20Qosmap").Wirelesscontrollerhotspot20Qosmap;
+export const Wirelesscontrollerhotspot20Qosmap: typeof import("./wirelesscontrollerhotspot20Qosmap").Wirelesscontrollerhotspot20Qosmap = null as any;
+utilities.lazyLoad(exports, ["Wirelesscontrollerhotspot20Qosmap"], () => require("./wirelesscontrollerhotspot20Qosmap"));
+
 
 // Export sub-modules:
-import * as antivirus from "./antivirus";
 import * as config from "./config";
 import * as types from "./types";
 
 export {
-    antivirus,
     config,
     types,
 };
-
-// Import resources to register:
-import { AlertEmailSetting } from "./alertEmailSetting";
 
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "fortios:index/alertEmailSetting:alertEmailSetting":
-                return new AlertEmailSetting(name, <any>undefined, { urn })
+            case "fortios:index/alertemailSetting:AlertemailSetting":
+                return new AlertemailSetting(name, <any>undefined, { urn })
+            case "fortios:index/antivirusHeuristic:AntivirusHeuristic":
+                return new AntivirusHeuristic(name, <any>undefined, { urn })
+            case "fortios:index/antivirusProfile:AntivirusProfile":
+                return new AntivirusProfile(name, <any>undefined, { urn })
+            case "fortios:index/antivirusQuarantine:AntivirusQuarantine":
+                return new AntivirusQuarantine(name, <any>undefined, { urn })
+            case "fortios:index/antivirusSettings:AntivirusSettings":
+                return new AntivirusSettings(name, <any>undefined, { urn })
+            case "fortios:index/applicationCustom:ApplicationCustom":
+                return new ApplicationCustom(name, <any>undefined, { urn })
+            case "fortios:index/applicationGroup:ApplicationGroup":
+                return new ApplicationGroup(name, <any>undefined, { urn })
+            case "fortios:index/applicationList:ApplicationList":
+                return new ApplicationList(name, <any>undefined, { urn })
+            case "fortios:index/applicationName:ApplicationName":
+                return new ApplicationName(name, <any>undefined, { urn })
+            case "fortios:index/applicationRulesettings:ApplicationRulesettings":
+                return new ApplicationRulesettings(name, <any>undefined, { urn })
+            case "fortios:index/authenticationRule:AuthenticationRule":
+                return new AuthenticationRule(name, <any>undefined, { urn })
+            case "fortios:index/authenticationScheme:AuthenticationScheme":
+                return new AuthenticationScheme(name, <any>undefined, { urn })
+            case "fortios:index/authenticationSetting:AuthenticationSetting":
+                return new AuthenticationSetting(name, <any>undefined, { urn })
+            case "fortios:index/automationSetting:AutomationSetting":
+                return new AutomationSetting(name, <any>undefined, { urn })
+            case "fortios:index/certificateCa:CertificateCa":
+                return new CertificateCa(name, <any>undefined, { urn })
+            case "fortios:index/certificateCrl:CertificateCrl":
+                return new CertificateCrl(name, <any>undefined, { urn })
+            case "fortios:index/certificateLocal:CertificateLocal":
+                return new CertificateLocal(name, <any>undefined, { urn })
+            case "fortios:index/certificateRemote:CertificateRemote":
+                return new CertificateRemote(name, <any>undefined, { urn })
+            case "fortios:index/cifsDomaincontroller:CifsDomaincontroller":
+                return new CifsDomaincontroller(name, <any>undefined, { urn })
+            case "fortios:index/cifsProfile:CifsProfile":
+                return new CifsProfile(name, <any>undefined, { urn })
+            case "fortios:index/credentialstoreDomaincontroller:CredentialstoreDomaincontroller":
+                return new CredentialstoreDomaincontroller(name, <any>undefined, { urn })
+            case "fortios:index/dlpDatatype:DlpDatatype":
+                return new DlpDatatype(name, <any>undefined, { urn })
+            case "fortios:index/dlpDictionary:DlpDictionary":
+                return new DlpDictionary(name, <any>undefined, { urn })
+            case "fortios:index/dlpFilepattern:DlpFilepattern":
+                return new DlpFilepattern(name, <any>undefined, { urn })
+            case "fortios:index/dlpFpdocsource:DlpFpdocsource":
+                return new DlpFpdocsource(name, <any>undefined, { urn })
+            case "fortios:index/dlpFpsensitivity:DlpFpsensitivity":
+                return new DlpFpsensitivity(name, <any>undefined, { urn })
+            case "fortios:index/dlpProfile:DlpProfile":
+                return new DlpProfile(name, <any>undefined, { urn })
+            case "fortios:index/dlpSensitivity:DlpSensitivity":
+                return new DlpSensitivity(name, <any>undefined, { urn })
+            case "fortios:index/dlpSensor:DlpSensor":
+                return new DlpSensor(name, <any>undefined, { urn })
+            case "fortios:index/dlpSettings:DlpSettings":
+                return new DlpSettings(name, <any>undefined, { urn })
+            case "fortios:index/dnsfilterDomainfilter:DnsfilterDomainfilter":
+                return new DnsfilterDomainfilter(name, <any>undefined, { urn })
+            case "fortios:index/dnsfilterProfile:DnsfilterProfile":
+                return new DnsfilterProfile(name, <any>undefined, { urn })
+            case "fortios:index/dpdkCpus:DpdkCpus":
+                return new DpdkCpus(name, <any>undefined, { urn })
+            case "fortios:index/dpdkGlobal:DpdkGlobal":
+                return new DpdkGlobal(name, <any>undefined, { urn })
+            case "fortios:index/emailfilterBlockallowlist:EmailfilterBlockallowlist":
+                return new EmailfilterBlockallowlist(name, <any>undefined, { urn })
+            case "fortios:index/emailfilterBwl:EmailfilterBwl":
+                return new EmailfilterBwl(name, <any>undefined, { urn })
+            case "fortios:index/emailfilterBword:EmailfilterBword":
+                return new EmailfilterBword(name, <any>undefined, { urn })
+            case "fortios:index/emailfilterDnsbl:EmailfilterDnsbl":
+                return new EmailfilterDnsbl(name, <any>undefined, { urn })
+            case "fortios:index/emailfilterFortishield:EmailfilterFortishield":
+                return new EmailfilterFortishield(name, <any>undefined, { urn })
+            case "fortios:index/emailfilterIptrust:EmailfilterIptrust":
+                return new EmailfilterIptrust(name, <any>undefined, { urn })
+            case "fortios:index/emailfilterMheader:EmailfilterMheader":
+                return new EmailfilterMheader(name, <any>undefined, { urn })
+            case "fortios:index/emailfilterOptions:EmailfilterOptions":
+                return new EmailfilterOptions(name, <any>undefined, { urn })
+            case "fortios:index/emailfilterProfile:EmailfilterProfile":
+                return new EmailfilterProfile(name, <any>undefined, { urn })
+            case "fortios:index/endpointcontrolClient:EndpointcontrolClient":
+                return new EndpointcontrolClient(name, <any>undefined, { urn })
+            case "fortios:index/endpointcontrolFctems:EndpointcontrolFctems":
+                return new EndpointcontrolFctems(name, <any>undefined, { urn })
+            case "fortios:index/endpointcontrolForticlientems:EndpointcontrolForticlientems":
+                return new EndpointcontrolForticlientems(name, <any>undefined, { urn })
+            case "fortios:index/endpointcontrolForticlientregistrationsync:EndpointcontrolForticlientregistrationsync":
+                return new EndpointcontrolForticlientregistrationsync(name, <any>undefined, { urn })
+            case "fortios:index/endpointcontrolProfile:EndpointcontrolProfile":
+                return new EndpointcontrolProfile(name, <any>undefined, { urn })
+            case "fortios:index/endpointcontrolRegisteredforticlient:EndpointcontrolRegisteredforticlient":
+                return new EndpointcontrolRegisteredforticlient(name, <any>undefined, { urn })
+            case "fortios:index/endpointcontrolSettings:EndpointcontrolSettings":
+                return new EndpointcontrolSettings(name, <any>undefined, { urn })
+            case "fortios:index/extendercontrollerDataplan:ExtendercontrollerDataplan":
+                return new ExtendercontrollerDataplan(name, <any>undefined, { urn })
+            case "fortios:index/extendercontrollerExtender1:ExtendercontrollerExtender1":
+                return new ExtendercontrollerExtender1(name, <any>undefined, { urn })
+            case "fortios:index/extendercontrollerExtender:ExtendercontrollerExtender":
+                return new ExtendercontrollerExtender(name, <any>undefined, { urn })
+            case "fortios:index/extendercontrollerExtenderprofile:ExtendercontrollerExtenderprofile":
+                return new ExtendercontrollerExtenderprofile(name, <any>undefined, { urn })
+            case "fortios:index/extensioncontrollerDataplan:ExtensioncontrollerDataplan":
+                return new ExtensioncontrollerDataplan(name, <any>undefined, { urn })
+            case "fortios:index/extensioncontrollerExtender:ExtensioncontrollerExtender":
+                return new ExtensioncontrollerExtender(name, <any>undefined, { urn })
+            case "fortios:index/extensioncontrollerExtenderprofile:ExtensioncontrollerExtenderprofile":
+                return new ExtensioncontrollerExtenderprofile(name, <any>undefined, { urn })
+            case "fortios:index/extensioncontrollerFortigate:ExtensioncontrollerFortigate":
+                return new ExtensioncontrollerFortigate(name, <any>undefined, { urn })
+            case "fortios:index/extensioncontrollerFortigateprofile:ExtensioncontrollerFortigateprofile":
+                return new ExtensioncontrollerFortigateprofile(name, <any>undefined, { urn })
+            case "fortios:index/filefilterProfile:FilefilterProfile":
+                return new FilefilterProfile(name, <any>undefined, { urn })
+            case "fortios:index/firewallAccessproxy6:FirewallAccessproxy6":
+                return new FirewallAccessproxy6(name, <any>undefined, { urn })
+            case "fortios:index/firewallAccessproxy:FirewallAccessproxy":
+                return new FirewallAccessproxy(name, <any>undefined, { urn })
+            case "fortios:index/firewallAccessproxysshclientcert:FirewallAccessproxysshclientcert":
+                return new FirewallAccessproxysshclientcert(name, <any>undefined, { urn })
+            case "fortios:index/firewallAccessproxyvirtualhost:FirewallAccessproxyvirtualhost":
+                return new FirewallAccessproxyvirtualhost(name, <any>undefined, { urn })
+            case "fortios:index/firewallAddress6:FirewallAddress6":
+                return new FirewallAddress6(name, <any>undefined, { urn })
+            case "fortios:index/firewallAddress6template:FirewallAddress6template":
+                return new FirewallAddress6template(name, <any>undefined, { urn })
+            case "fortios:index/firewallAddress:FirewallAddress":
+                return new FirewallAddress(name, <any>undefined, { urn })
+            case "fortios:index/firewallAddrgrp6:FirewallAddrgrp6":
+                return new FirewallAddrgrp6(name, <any>undefined, { urn })
+            case "fortios:index/firewallAddrgrp:FirewallAddrgrp":
+                return new FirewallAddrgrp(name, <any>undefined, { urn })
+            case "fortios:index/firewallAuthportal:FirewallAuthportal":
+                return new FirewallAuthportal(name, <any>undefined, { urn })
+            case "fortios:index/firewallCentralsnatmap:FirewallCentralsnatmap":
+                return new FirewallCentralsnatmap(name, <any>undefined, { urn })
+            case "fortios:index/firewallCentralsnatmapMove:FirewallCentralsnatmapMove":
+                return new FirewallCentralsnatmapMove(name, <any>undefined, { urn })
+            case "fortios:index/firewallCentralsnatmapSort:FirewallCentralsnatmapSort":
+                return new FirewallCentralsnatmapSort(name, <any>undefined, { urn })
+            case "fortios:index/firewallCity:FirewallCity":
+                return new FirewallCity(name, <any>undefined, { urn })
+            case "fortios:index/firewallCountry:FirewallCountry":
+                return new FirewallCountry(name, <any>undefined, { urn })
+            case "fortios:index/firewallDecryptedtrafficmirror:FirewallDecryptedtrafficmirror":
+                return new FirewallDecryptedtrafficmirror(name, <any>undefined, { urn })
+            case "fortios:index/firewallDnstranslation:FirewallDnstranslation":
+                return new FirewallDnstranslation(name, <any>undefined, { urn })
+            case "fortios:index/firewallDoSpolicy6:FirewallDoSpolicy6":
+                return new FirewallDoSpolicy6(name, <any>undefined, { urn })
+            case "fortios:index/firewallDoSpolicy:FirewallDoSpolicy":
+                return new FirewallDoSpolicy(name, <any>undefined, { urn })
+            case "fortios:index/firewallGlobal:FirewallGlobal":
+                return new FirewallGlobal(name, <any>undefined, { urn })
+            case "fortios:index/firewallIdentitybasedroute:FirewallIdentitybasedroute":
+                return new FirewallIdentitybasedroute(name, <any>undefined, { urn })
+            case "fortios:index/firewallInterfacepolicy6:FirewallInterfacepolicy6":
+                return new FirewallInterfacepolicy6(name, <any>undefined, { urn })
+            case "fortios:index/firewallInterfacepolicy:FirewallInterfacepolicy":
+                return new FirewallInterfacepolicy(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetservice:FirewallInternetservice":
+                return new FirewallInternetservice(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetserviceaddition:FirewallInternetserviceaddition":
+                return new FirewallInternetserviceaddition(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetserviceappend:FirewallInternetserviceappend":
+                return new FirewallInternetserviceappend(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetservicebotnet:FirewallInternetservicebotnet":
+                return new FirewallInternetservicebotnet(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetservicecustom:FirewallInternetservicecustom":
+                return new FirewallInternetservicecustom(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetservicecustomgroup:FirewallInternetservicecustomgroup":
+                return new FirewallInternetservicecustomgroup(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetservicedefinition:FirewallInternetservicedefinition":
+                return new FirewallInternetservicedefinition(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetserviceextension:FirewallInternetserviceextension":
+                return new FirewallInternetserviceextension(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetservicegroup:FirewallInternetservicegroup":
+                return new FirewallInternetservicegroup(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetserviceipblreason:FirewallInternetserviceipblreason":
+                return new FirewallInternetserviceipblreason(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetserviceipblvendor:FirewallInternetserviceipblvendor":
+                return new FirewallInternetserviceipblvendor(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetservicelist:FirewallInternetservicelist":
+                return new FirewallInternetservicelist(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetservicename:FirewallInternetservicename":
+                return new FirewallInternetservicename(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetserviceowner:FirewallInternetserviceowner":
+                return new FirewallInternetserviceowner(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetservicereputation:FirewallInternetservicereputation":
+                return new FirewallInternetservicereputation(name, <any>undefined, { urn })
+            case "fortios:index/firewallIppool6:FirewallIppool6":
+                return new FirewallIppool6(name, <any>undefined, { urn })
+            case "fortios:index/firewallIppool:FirewallIppool":
+                return new FirewallIppool(name, <any>undefined, { urn })
+            case "fortios:index/firewallIptranslation:FirewallIptranslation":
+                return new FirewallIptranslation(name, <any>undefined, { urn })
+            case "fortios:index/firewallIpv6ehfilter:FirewallIpv6ehfilter":
+                return new FirewallIpv6ehfilter(name, <any>undefined, { urn })
+            case "fortios:index/firewallLdbmonitor:FirewallLdbmonitor":
+                return new FirewallLdbmonitor(name, <any>undefined, { urn })
+            case "fortios:index/firewallLocalinpolicy6:FirewallLocalinpolicy6":
+                return new FirewallLocalinpolicy6(name, <any>undefined, { urn })
+            case "fortios:index/firewallLocalinpolicy:FirewallLocalinpolicy":
+                return new FirewallLocalinpolicy(name, <any>undefined, { urn })
+            case "fortios:index/firewallMulticastaddress6:FirewallMulticastaddress6":
+                return new FirewallMulticastaddress6(name, <any>undefined, { urn })
+            case "fortios:index/firewallMulticastaddress:FirewallMulticastaddress":
+                return new FirewallMulticastaddress(name, <any>undefined, { urn })
+            case "fortios:index/firewallMulticastpolicy6:FirewallMulticastpolicy6":
+                return new FirewallMulticastpolicy6(name, <any>undefined, { urn })
+            case "fortios:index/firewallMulticastpolicy:FirewallMulticastpolicy":
+                return new FirewallMulticastpolicy(name, <any>undefined, { urn })
+            case "fortios:index/firewallNetworkservicedynamic:FirewallNetworkservicedynamic":
+                return new FirewallNetworkservicedynamic(name, <any>undefined, { urn })
+            case "fortios:index/firewallObjectAddress:FirewallObjectAddress":
+                return new FirewallObjectAddress(name, <any>undefined, { urn })
+            case "fortios:index/firewallObjectAddressgroup:FirewallObjectAddressgroup":
+                return new FirewallObjectAddressgroup(name, <any>undefined, { urn })
+            case "fortios:index/firewallObjectIppool:FirewallObjectIppool":
+                return new FirewallObjectIppool(name, <any>undefined, { urn })
+            case "fortios:index/firewallObjectService:FirewallObjectService":
+                return new FirewallObjectService(name, <any>undefined, { urn })
+            case "fortios:index/firewallObjectServicecategory:FirewallObjectServicecategory":
+                return new FirewallObjectServicecategory(name, <any>undefined, { urn })
+            case "fortios:index/firewallObjectServicegroup:FirewallObjectServicegroup":
+                return new FirewallObjectServicegroup(name, <any>undefined, { urn })
+            case "fortios:index/firewallObjectVip:FirewallObjectVip":
+                return new FirewallObjectVip(name, <any>undefined, { urn })
+            case "fortios:index/firewallObjectVipgroup:FirewallObjectVipgroup":
+                return new FirewallObjectVipgroup(name, <any>undefined, { urn })
+            case "fortios:index/firewallPolicy46:FirewallPolicy46":
+                return new FirewallPolicy46(name, <any>undefined, { urn })
+            case "fortios:index/firewallPolicy64:FirewallPolicy64":
+                return new FirewallPolicy64(name, <any>undefined, { urn })
+            case "fortios:index/firewallPolicy6:FirewallPolicy6":
+                return new FirewallPolicy6(name, <any>undefined, { urn })
+            case "fortios:index/firewallPolicy:FirewallPolicy":
+                return new FirewallPolicy(name, <any>undefined, { urn })
+            case "fortios:index/firewallProfilegroup:FirewallProfilegroup":
+                return new FirewallProfilegroup(name, <any>undefined, { urn })
+            case "fortios:index/firewallProfileprotocoloptions:FirewallProfileprotocoloptions":
+                return new FirewallProfileprotocoloptions(name, <any>undefined, { urn })
+            case "fortios:index/firewallProxyaddress:FirewallProxyaddress":
+                return new FirewallProxyaddress(name, <any>undefined, { urn })
+            case "fortios:index/firewallProxyaddrgrp:FirewallProxyaddrgrp":
+                return new FirewallProxyaddrgrp(name, <any>undefined, { urn })
+            case "fortios:index/firewallProxypolicy:FirewallProxypolicy":
+                return new FirewallProxypolicy(name, <any>undefined, { urn })
+            case "fortios:index/firewallProxypolicyMove:FirewallProxypolicyMove":
+                return new FirewallProxypolicyMove(name, <any>undefined, { urn })
+            case "fortios:index/firewallProxypolicySort:FirewallProxypolicySort":
+                return new FirewallProxypolicySort(name, <any>undefined, { urn })
+            case "fortios:index/firewallRegion:FirewallRegion":
+                return new FirewallRegion(name, <any>undefined, { urn })
+            case "fortios:index/firewallSecurityPolicyseq:FirewallSecurityPolicyseq":
+                return new FirewallSecurityPolicyseq(name, <any>undefined, { urn })
+            case "fortios:index/firewallSecurityPolicysort:FirewallSecurityPolicysort":
+                return new FirewallSecurityPolicysort(name, <any>undefined, { urn })
+            case "fortios:index/firewallSecuritypolicy:FirewallSecuritypolicy":
+                return new FirewallSecuritypolicy(name, <any>undefined, { urn })
+            case "fortios:index/firewallShapingpolicy:FirewallShapingpolicy":
+                return new FirewallShapingpolicy(name, <any>undefined, { urn })
+            case "fortios:index/firewallShapingprofile:FirewallShapingprofile":
+                return new FirewallShapingprofile(name, <any>undefined, { urn })
+            case "fortios:index/firewallSniffer:FirewallSniffer":
+                return new FirewallSniffer(name, <any>undefined, { urn })
+            case "fortios:index/firewallSslserver:FirewallSslserver":
+                return new FirewallSslserver(name, <any>undefined, { urn })
+            case "fortios:index/firewallSslsshprofile:FirewallSslsshprofile":
+                return new FirewallSslsshprofile(name, <any>undefined, { urn })
+            case "fortios:index/firewallTrafficclass:FirewallTrafficclass":
+                return new FirewallTrafficclass(name, <any>undefined, { urn })
+            case "fortios:index/firewallTtlpolicy:FirewallTtlpolicy":
+                return new FirewallTtlpolicy(name, <any>undefined, { urn })
+            case "fortios:index/firewallVendormac:FirewallVendormac":
+                return new FirewallVendormac(name, <any>undefined, { urn })
+            case "fortios:index/firewallVip46:FirewallVip46":
+                return new FirewallVip46(name, <any>undefined, { urn })
+            case "fortios:index/firewallVip64:FirewallVip64":
+                return new FirewallVip64(name, <any>undefined, { urn })
+            case "fortios:index/firewallVip6:FirewallVip6":
+                return new FirewallVip6(name, <any>undefined, { urn })
+            case "fortios:index/firewallVip:FirewallVip":
+                return new FirewallVip(name, <any>undefined, { urn })
+            case "fortios:index/firewallVipgrp46:FirewallVipgrp46":
+                return new FirewallVipgrp46(name, <any>undefined, { urn })
+            case "fortios:index/firewallVipgrp64:FirewallVipgrp64":
+                return new FirewallVipgrp64(name, <any>undefined, { urn })
+            case "fortios:index/firewallVipgrp6:FirewallVipgrp6":
+                return new FirewallVipgrp6(name, <any>undefined, { urn })
+            case "fortios:index/firewallVipgrp:FirewallVipgrp":
+                return new FirewallVipgrp(name, <any>undefined, { urn })
+            case "fortios:index/firewallconsolidatedPolicy:FirewallconsolidatedPolicy":
+                return new FirewallconsolidatedPolicy(name, <any>undefined, { urn })
+            case "fortios:index/firewallipmacbindingSetting:FirewallipmacbindingSetting":
+                return new FirewallipmacbindingSetting(name, <any>undefined, { urn })
+            case "fortios:index/firewallipmacbindingTable:FirewallipmacbindingTable":
+                return new FirewallipmacbindingTable(name, <any>undefined, { urn })
+            case "fortios:index/firewallscheduleGroup:FirewallscheduleGroup":
+                return new FirewallscheduleGroup(name, <any>undefined, { urn })
+            case "fortios:index/firewallscheduleOnetime:FirewallscheduleOnetime":
+                return new FirewallscheduleOnetime(name, <any>undefined, { urn })
+            case "fortios:index/firewallscheduleRecurring:FirewallscheduleRecurring":
+                return new FirewallscheduleRecurring(name, <any>undefined, { urn })
+            case "fortios:index/firewallserviceCategory:FirewallserviceCategory":
+                return new FirewallserviceCategory(name, <any>undefined, { urn })
+            case "fortios:index/firewallserviceCustom:FirewallserviceCustom":
+                return new FirewallserviceCustom(name, <any>undefined, { urn })
+            case "fortios:index/firewallserviceGroup:FirewallserviceGroup":
+                return new FirewallserviceGroup(name, <any>undefined, { urn })
+            case "fortios:index/firewallshaperPeripshaper:FirewallshaperPeripshaper":
+                return new FirewallshaperPeripshaper(name, <any>undefined, { urn })
+            case "fortios:index/firewallshaperTrafficshaper:FirewallshaperTrafficshaper":
+                return new FirewallshaperTrafficshaper(name, <any>undefined, { urn })
+            case "fortios:index/firewallsshHostkey:FirewallsshHostkey":
+                return new FirewallsshHostkey(name, <any>undefined, { urn })
+            case "fortios:index/firewallsshLocalca:FirewallsshLocalca":
+                return new FirewallsshLocalca(name, <any>undefined, { urn })
+            case "fortios:index/firewallsshLocalkey:FirewallsshLocalkey":
+                return new FirewallsshLocalkey(name, <any>undefined, { urn })
+            case "fortios:index/firewallsshSetting:FirewallsshSetting":
+                return new FirewallsshSetting(name, <any>undefined, { urn })
+            case "fortios:index/firewallsslSetting:FirewallsslSetting":
+                return new FirewallsslSetting(name, <any>undefined, { urn })
+            case "fortios:index/firewallwildcardfqdnCustom:FirewallwildcardfqdnCustom":
+                return new FirewallwildcardfqdnCustom(name, <any>undefined, { urn })
+            case "fortios:index/firewallwildcardfqdnGroup:FirewallwildcardfqdnGroup":
+                return new FirewallwildcardfqdnGroup(name, <any>undefined, { urn })
+            case "fortios:index/fmgDevicemanagerDevice:FmgDevicemanagerDevice":
+                return new FmgDevicemanagerDevice(name, <any>undefined, { urn })
+            case "fortios:index/fmgDevicemanagerInstallDevice:FmgDevicemanagerInstallDevice":
+                return new FmgDevicemanagerInstallDevice(name, <any>undefined, { urn })
+            case "fortios:index/fmgDevicemanagerInstallPolicypackage:FmgDevicemanagerInstallPolicypackage":
+                return new FmgDevicemanagerInstallPolicypackage(name, <any>undefined, { urn })
+            case "fortios:index/fmgDevicemanagerScript:FmgDevicemanagerScript":
+                return new FmgDevicemanagerScript(name, <any>undefined, { urn })
+            case "fortios:index/fmgDevicemanagerScriptExecute:FmgDevicemanagerScriptExecute":
+                return new FmgDevicemanagerScriptExecute(name, <any>undefined, { urn })
+            case "fortios:index/fmgFirewallObjectAddress:FmgFirewallObjectAddress":
+                return new FmgFirewallObjectAddress(name, <any>undefined, { urn })
+            case "fortios:index/fmgFirewallObjectIppool:FmgFirewallObjectIppool":
+                return new FmgFirewallObjectIppool(name, <any>undefined, { urn })
+            case "fortios:index/fmgFirewallObjectService:FmgFirewallObjectService":
+                return new FmgFirewallObjectService(name, <any>undefined, { urn })
+            case "fortios:index/fmgFirewallObjectVip:FmgFirewallObjectVip":
+                return new FmgFirewallObjectVip(name, <any>undefined, { urn })
+            case "fortios:index/fmgFirewallSecurityPolicy:FmgFirewallSecurityPolicy":
+                return new FmgFirewallSecurityPolicy(name, <any>undefined, { urn })
+            case "fortios:index/fmgFirewallSecurityPolicypackage:FmgFirewallSecurityPolicypackage":
+                return new FmgFirewallSecurityPolicypackage(name, <any>undefined, { urn })
+            case "fortios:index/fmgJsonrpcRequest:FmgJsonrpcRequest":
+                return new FmgJsonrpcRequest(name, <any>undefined, { urn })
+            case "fortios:index/fmgObjectAdomRevision:FmgObjectAdomRevision":
+                return new FmgObjectAdomRevision(name, <any>undefined, { urn })
+            case "fortios:index/fmgSystemAdmin:FmgSystemAdmin":
+                return new FmgSystemAdmin(name, <any>undefined, { urn })
+            case "fortios:index/fmgSystemAdminProfiles:FmgSystemAdminProfiles":
+                return new FmgSystemAdminProfiles(name, <any>undefined, { urn })
+            case "fortios:index/fmgSystemAdminUser:FmgSystemAdminUser":
+                return new FmgSystemAdminUser(name, <any>undefined, { urn })
+            case "fortios:index/fmgSystemAdom:FmgSystemAdom":
+                return new FmgSystemAdom(name, <any>undefined, { urn })
+            case "fortios:index/fmgSystemDns:FmgSystemDns":
+                return new FmgSystemDns(name, <any>undefined, { urn })
+            case "fortios:index/fmgSystemGlobal:FmgSystemGlobal":
+                return new FmgSystemGlobal(name, <any>undefined, { urn })
+            case "fortios:index/fmgSystemLicenseForticare:FmgSystemLicenseForticare":
+                return new FmgSystemLicenseForticare(name, <any>undefined, { urn })
+            case "fortios:index/fmgSystemLicenseVm:FmgSystemLicenseVm":
+                return new FmgSystemLicenseVm(name, <any>undefined, { urn })
+            case "fortios:index/fmgSystemNetworkInterface:FmgSystemNetworkInterface":
+                return new FmgSystemNetworkInterface(name, <any>undefined, { urn })
+            case "fortios:index/fmgSystemNetworkRoute:FmgSystemNetworkRoute":
+                return new FmgSystemNetworkRoute(name, <any>undefined, { urn })
+            case "fortios:index/fmgSystemNtp:FmgSystemNtp":
+                return new FmgSystemNtp(name, <any>undefined, { urn })
+            case "fortios:index/fmgSystemSyslogserver:FmgSystemSyslogserver":
+                return new FmgSystemSyslogserver(name, <any>undefined, { urn })
+            case "fortios:index/ftpproxyExplicit:FtpproxyExplicit":
+                return new FtpproxyExplicit(name, <any>undefined, { urn })
+            case "fortios:index/icapProfile:IcapProfile":
+                return new IcapProfile(name, <any>undefined, { urn })
+            case "fortios:index/icapServer:IcapServer":
+                return new IcapServer(name, <any>undefined, { urn })
+            case "fortios:index/icapServergroup:IcapServergroup":
+                return new IcapServergroup(name, <any>undefined, { urn })
+            case "fortios:index/ipsCustom:IpsCustom":
+                return new IpsCustom(name, <any>undefined, { urn })
+            case "fortios:index/ipsDecoder:IpsDecoder":
+                return new IpsDecoder(name, <any>undefined, { urn })
+            case "fortios:index/ipsGlobal:IpsGlobal":
+                return new IpsGlobal(name, <any>undefined, { urn })
+            case "fortios:index/ipsRule:IpsRule":
+                return new IpsRule(name, <any>undefined, { urn })
+            case "fortios:index/ipsRulesettings:IpsRulesettings":
+                return new IpsRulesettings(name, <any>undefined, { urn })
+            case "fortios:index/ipsSensor:IpsSensor":
+                return new IpsSensor(name, <any>undefined, { urn })
+            case "fortios:index/ipsSettings:IpsSettings":
+                return new IpsSettings(name, <any>undefined, { urn })
+            case "fortios:index/ipsViewmap:IpsViewmap":
+                return new IpsViewmap(name, <any>undefined, { urn })
+            case "fortios:index/jsonGenericApi:JsonGenericApi":
+                return new JsonGenericApi(name, <any>undefined, { urn })
+            case "fortios:index/logCustomfield:LogCustomfield":
+                return new LogCustomfield(name, <any>undefined, { urn })
+            case "fortios:index/logEventfilter:LogEventfilter":
+                return new LogEventfilter(name, <any>undefined, { urn })
+            case "fortios:index/logGuidisplay:LogGuidisplay":
+                return new LogGuidisplay(name, <any>undefined, { urn })
+            case "fortios:index/logSetting:LogSetting":
+                return new LogSetting(name, <any>undefined, { urn })
+            case "fortios:index/logSyslogSetting:LogSyslogSetting":
+                return new LogSyslogSetting(name, <any>undefined, { urn })
+            case "fortios:index/logThreatweight:LogThreatweight":
+                return new LogThreatweight(name, <any>undefined, { urn })
+            case "fortios:index/logdiskFilter:LogdiskFilter":
+                return new LogdiskFilter(name, <any>undefined, { urn })
+            case "fortios:index/logdiskSetting:LogdiskSetting":
+                return new LogdiskSetting(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzer2Filter:Logfortianalyzer2Filter":
+                return new Logfortianalyzer2Filter(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzer2Overridefilter:Logfortianalyzer2Overridefilter":
+                return new Logfortianalyzer2Overridefilter(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzer2Overridesetting:Logfortianalyzer2Overridesetting":
+                return new Logfortianalyzer2Overridesetting(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzer2Setting:Logfortianalyzer2Setting":
+                return new Logfortianalyzer2Setting(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzer3Filter:Logfortianalyzer3Filter":
+                return new Logfortianalyzer3Filter(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzer3Overridefilter:Logfortianalyzer3Overridefilter":
+                return new Logfortianalyzer3Overridefilter(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzer3Overridesetting:Logfortianalyzer3Overridesetting":
+                return new Logfortianalyzer3Overridesetting(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzer3Setting:Logfortianalyzer3Setting":
+                return new Logfortianalyzer3Setting(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzerFilter:LogfortianalyzerFilter":
+                return new LogfortianalyzerFilter(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzerOverridefilter:LogfortianalyzerOverridefilter":
+                return new LogfortianalyzerOverridefilter(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzerOverridesetting:LogfortianalyzerOverridesetting":
+                return new LogfortianalyzerOverridesetting(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzerSetting:LogfortianalyzerSetting":
+                return new LogfortianalyzerSetting(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzercloudFilter:LogfortianalyzercloudFilter":
+                return new LogfortianalyzercloudFilter(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzercloudOverridefilter:LogfortianalyzercloudOverridefilter":
+                return new LogfortianalyzercloudOverridefilter(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzercloudOverridesetting:LogfortianalyzercloudOverridesetting":
+                return new LogfortianalyzercloudOverridesetting(name, <any>undefined, { urn })
+            case "fortios:index/logfortianalyzercloudSetting:LogfortianalyzercloudSetting":
+                return new LogfortianalyzercloudSetting(name, <any>undefined, { urn })
+            case "fortios:index/logfortiguardFilter:LogfortiguardFilter":
+                return new LogfortiguardFilter(name, <any>undefined, { urn })
+            case "fortios:index/logfortiguardOverridefilter:LogfortiguardOverridefilter":
+                return new LogfortiguardOverridefilter(name, <any>undefined, { urn })
+            case "fortios:index/logfortiguardOverridesetting:LogfortiguardOverridesetting":
+                return new LogfortiguardOverridesetting(name, <any>undefined, { urn })
+            case "fortios:index/logfortiguardSetting:LogfortiguardSetting":
+                return new LogfortiguardSetting(name, <any>undefined, { urn })
+            case "fortios:index/logmemoryFilter:LogmemoryFilter":
+                return new LogmemoryFilter(name, <any>undefined, { urn })
+            case "fortios:index/logmemoryGlobalsetting:LogmemoryGlobalsetting":
+                return new LogmemoryGlobalsetting(name, <any>undefined, { urn })
+            case "fortios:index/logmemorySetting:LogmemorySetting":
+                return new LogmemorySetting(name, <any>undefined, { urn })
+            case "fortios:index/lognulldeviceFilter:LognulldeviceFilter":
+                return new LognulldeviceFilter(name, <any>undefined, { urn })
+            case "fortios:index/lognulldeviceSetting:LognulldeviceSetting":
+                return new LognulldeviceSetting(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogd2Filter:Logsyslogd2Filter":
+                return new Logsyslogd2Filter(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogd2Overridefilter:Logsyslogd2Overridefilter":
+                return new Logsyslogd2Overridefilter(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogd2Overridesetting:Logsyslogd2Overridesetting":
+                return new Logsyslogd2Overridesetting(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogd2Setting:Logsyslogd2Setting":
+                return new Logsyslogd2Setting(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogd3Filter:Logsyslogd3Filter":
+                return new Logsyslogd3Filter(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogd3Overridefilter:Logsyslogd3Overridefilter":
+                return new Logsyslogd3Overridefilter(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogd3Overridesetting:Logsyslogd3Overridesetting":
+                return new Logsyslogd3Overridesetting(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogd3Setting:Logsyslogd3Setting":
+                return new Logsyslogd3Setting(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogd4Filter:Logsyslogd4Filter":
+                return new Logsyslogd4Filter(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogd4Overridefilter:Logsyslogd4Overridefilter":
+                return new Logsyslogd4Overridefilter(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogd4Overridesetting:Logsyslogd4Overridesetting":
+                return new Logsyslogd4Overridesetting(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogd4Setting:Logsyslogd4Setting":
+                return new Logsyslogd4Setting(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogdFilter:LogsyslogdFilter":
+                return new LogsyslogdFilter(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogdOverridefilter:LogsyslogdOverridefilter":
+                return new LogsyslogdOverridefilter(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogdOverridesetting:LogsyslogdOverridesetting":
+                return new LogsyslogdOverridesetting(name, <any>undefined, { urn })
+            case "fortios:index/logsyslogdSetting:LogsyslogdSetting":
+                return new LogsyslogdSetting(name, <any>undefined, { urn })
+            case "fortios:index/logtacacsaccounting2Filter:Logtacacsaccounting2Filter":
+                return new Logtacacsaccounting2Filter(name, <any>undefined, { urn })
+            case "fortios:index/logtacacsaccounting2Setting:Logtacacsaccounting2Setting":
+                return new Logtacacsaccounting2Setting(name, <any>undefined, { urn })
+            case "fortios:index/logtacacsaccounting3Filter:Logtacacsaccounting3Filter":
+                return new Logtacacsaccounting3Filter(name, <any>undefined, { urn })
+            case "fortios:index/logtacacsaccounting3Setting:Logtacacsaccounting3Setting":
+                return new Logtacacsaccounting3Setting(name, <any>undefined, { urn })
+            case "fortios:index/logtacacsaccountingFilter:LogtacacsaccountingFilter":
+                return new LogtacacsaccountingFilter(name, <any>undefined, { urn })
+            case "fortios:index/logtacacsaccountingSetting:LogtacacsaccountingSetting":
+                return new LogtacacsaccountingSetting(name, <any>undefined, { urn })
+            case "fortios:index/logwebtrendsFilter:LogwebtrendsFilter":
+                return new LogwebtrendsFilter(name, <any>undefined, { urn })
+            case "fortios:index/logwebtrendsSetting:LogwebtrendsSetting":
+                return new LogwebtrendsSetting(name, <any>undefined, { urn })
+            case "fortios:index/networkingInterfacePort:NetworkingInterfacePort":
+                return new NetworkingInterfacePort(name, <any>undefined, { urn })
+            case "fortios:index/networkingRouteStatic:NetworkingRouteStatic":
+                return new NetworkingRouteStatic(name, <any>undefined, { urn })
+            case "fortios:index/nsxtServicechain:NsxtServicechain":
+                return new NsxtServicechain(name, <any>undefined, { urn })
+            case "fortios:index/nsxtSetting:NsxtSetting":
+                return new NsxtSetting(name, <any>undefined, { urn })
+            case "fortios:index/reportChart:ReportChart":
+                return new ReportChart(name, <any>undefined, { urn })
+            case "fortios:index/reportDataset:ReportDataset":
+                return new ReportDataset(name, <any>undefined, { urn })
+            case "fortios:index/reportLayout:ReportLayout":
+                return new ReportLayout(name, <any>undefined, { urn })
+            case "fortios:index/reportSetting:ReportSetting":
+                return new ReportSetting(name, <any>undefined, { urn })
+            case "fortios:index/reportStyle:ReportStyle":
+                return new ReportStyle(name, <any>undefined, { urn })
+            case "fortios:index/reportTheme:ReportTheme":
+                return new ReportTheme(name, <any>undefined, { urn })
+            case "fortios:index/routerAccesslist6:RouterAccesslist6":
+                return new RouterAccesslist6(name, <any>undefined, { urn })
+            case "fortios:index/routerAccesslist:RouterAccesslist":
+                return new RouterAccesslist(name, <any>undefined, { urn })
+            case "fortios:index/routerAspathlist:RouterAspathlist":
+                return new RouterAspathlist(name, <any>undefined, { urn })
+            case "fortios:index/routerAuthpath:RouterAuthpath":
+                return new RouterAuthpath(name, <any>undefined, { urn })
+            case "fortios:index/routerBfd6:RouterBfd6":
+                return new RouterBfd6(name, <any>undefined, { urn })
+            case "fortios:index/routerBfd:RouterBfd":
+                return new RouterBfd(name, <any>undefined, { urn })
+            case "fortios:index/routerBgp:RouterBgp":
+                return new RouterBgp(name, <any>undefined, { urn })
+            case "fortios:index/routerCommunitylist:RouterCommunitylist":
+                return new RouterCommunitylist(name, <any>undefined, { urn })
+            case "fortios:index/routerIsis:RouterIsis":
+                return new RouterIsis(name, <any>undefined, { urn })
+            case "fortios:index/routerKeychain:RouterKeychain":
+                return new RouterKeychain(name, <any>undefined, { urn })
+            case "fortios:index/routerMulticast6:RouterMulticast6":
+                return new RouterMulticast6(name, <any>undefined, { urn })
+            case "fortios:index/routerMulticast:RouterMulticast":
+                return new RouterMulticast(name, <any>undefined, { urn })
+            case "fortios:index/routerMulticastflow:RouterMulticastflow":
+                return new RouterMulticastflow(name, <any>undefined, { urn })
+            case "fortios:index/routerOspf6:RouterOspf6":
+                return new RouterOspf6(name, <any>undefined, { urn })
+            case "fortios:index/routerOspf:RouterOspf":
+                return new RouterOspf(name, <any>undefined, { urn })
+            case "fortios:index/routerPolicy6:RouterPolicy6":
+                return new RouterPolicy6(name, <any>undefined, { urn })
+            case "fortios:index/routerPolicy:RouterPolicy":
+                return new RouterPolicy(name, <any>undefined, { urn })
+            case "fortios:index/routerPrefixlist6:RouterPrefixlist6":
+                return new RouterPrefixlist6(name, <any>undefined, { urn })
+            case "fortios:index/routerPrefixlist:RouterPrefixlist":
+                return new RouterPrefixlist(name, <any>undefined, { urn })
+            case "fortios:index/routerRip:RouterRip":
+                return new RouterRip(name, <any>undefined, { urn })
+            case "fortios:index/routerRipng:RouterRipng":
+                return new RouterRipng(name, <any>undefined, { urn })
+            case "fortios:index/routerRoutemap:RouterRoutemap":
+                return new RouterRoutemap(name, <any>undefined, { urn })
+            case "fortios:index/routerSetting:RouterSetting":
+                return new RouterSetting(name, <any>undefined, { urn })
+            case "fortios:index/routerStatic6:RouterStatic6":
+                return new RouterStatic6(name, <any>undefined, { urn })
+            case "fortios:index/routerStatic:RouterStatic":
+                return new RouterStatic(name, <any>undefined, { urn })
+            case "fortios:index/routerbgpNeighbor:RouterbgpNeighbor":
+                return new RouterbgpNeighbor(name, <any>undefined, { urn })
+            case "fortios:index/routerbgpNetwork6:RouterbgpNetwork6":
+                return new RouterbgpNetwork6(name, <any>undefined, { urn })
+            case "fortios:index/routerbgpNetwork:RouterbgpNetwork":
+                return new RouterbgpNetwork(name, <any>undefined, { urn })
+            case "fortios:index/routerospf6Ospf6interface:Routerospf6Ospf6interface":
+                return new Routerospf6Ospf6interface(name, <any>undefined, { urn })
+            case "fortios:index/routerospfNeighbor:RouterospfNeighbor":
+                return new RouterospfNeighbor(name, <any>undefined, { urn })
+            case "fortios:index/routerospfNetwork:RouterospfNetwork":
+                return new RouterospfNetwork(name, <any>undefined, { urn })
+            case "fortios:index/routerospfOspfinterface:RouterospfOspfinterface":
+                return new RouterospfOspfinterface(name, <any>undefined, { urn })
+            case "fortios:index/sctpfilterProfile:SctpfilterProfile":
+                return new SctpfilterProfile(name, <any>undefined, { urn })
+            case "fortios:index/spamfilterBwl:SpamfilterBwl":
+                return new SpamfilterBwl(name, <any>undefined, { urn })
+            case "fortios:index/spamfilterBword:SpamfilterBword":
+                return new SpamfilterBword(name, <any>undefined, { urn })
+            case "fortios:index/spamfilterDnsbl:SpamfilterDnsbl":
+                return new SpamfilterDnsbl(name, <any>undefined, { urn })
+            case "fortios:index/spamfilterFortishield:SpamfilterFortishield":
+                return new SpamfilterFortishield(name, <any>undefined, { urn })
+            case "fortios:index/spamfilterIptrust:SpamfilterIptrust":
+                return new SpamfilterIptrust(name, <any>undefined, { urn })
+            case "fortios:index/spamfilterMheader:SpamfilterMheader":
+                return new SpamfilterMheader(name, <any>undefined, { urn })
+            case "fortios:index/spamfilterOptions:SpamfilterOptions":
+                return new SpamfilterOptions(name, <any>undefined, { urn })
+            case "fortios:index/spamfilterProfile:SpamfilterProfile":
+                return new SpamfilterProfile(name, <any>undefined, { urn })
+            case "fortios:index/sshfilterProfile:SshfilterProfile":
+                return new SshfilterProfile(name, <any>undefined, { urn })
+            case "fortios:index/switchcontroller8021Xsettings:Switchcontroller8021Xsettings":
+                return new Switchcontroller8021Xsettings(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerCustomcommand:SwitchcontrollerCustomcommand":
+                return new SwitchcontrollerCustomcommand(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerDynamicportpolicy:SwitchcontrollerDynamicportpolicy":
+                return new SwitchcontrollerDynamicportpolicy(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerFlowtracking:SwitchcontrollerFlowtracking":
+                return new SwitchcontrollerFlowtracking(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerFortilinksettings:SwitchcontrollerFortilinksettings":
+                return new SwitchcontrollerFortilinksettings(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerGlobal:SwitchcontrollerGlobal":
+                return new SwitchcontrollerGlobal(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerIgmpsnooping:SwitchcontrollerIgmpsnooping":
+                return new SwitchcontrollerIgmpsnooping(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerLldpprofile:SwitchcontrollerLldpprofile":
+                return new SwitchcontrollerLldpprofile(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerLldpsettings:SwitchcontrollerLldpsettings":
+                return new SwitchcontrollerLldpsettings(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerLocation:SwitchcontrollerLocation":
+                return new SwitchcontrollerLocation(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerMacsyncsettings:SwitchcontrollerMacsyncsettings":
+                return new SwitchcontrollerMacsyncsettings(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerManagedswitch:SwitchcontrollerManagedswitch":
+                return new SwitchcontrollerManagedswitch(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerNacdevice:SwitchcontrollerNacdevice":
+                return new SwitchcontrollerNacdevice(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerNacsettings:SwitchcontrollerNacsettings":
+                return new SwitchcontrollerNacsettings(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerNetworkmonitorsettings:SwitchcontrollerNetworkmonitorsettings":
+                return new SwitchcontrollerNetworkmonitorsettings(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerPortpolicy:SwitchcontrollerPortpolicy":
+                return new SwitchcontrollerPortpolicy(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerQuarantine:SwitchcontrollerQuarantine":
+                return new SwitchcontrollerQuarantine(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerRemotelog:SwitchcontrollerRemotelog":
+                return new SwitchcontrollerRemotelog(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerSflow:SwitchcontrollerSflow":
+                return new SwitchcontrollerSflow(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerSnmpcommunity:SwitchcontrollerSnmpcommunity":
+                return new SwitchcontrollerSnmpcommunity(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerSnmpsysinfo:SwitchcontrollerSnmpsysinfo":
+                return new SwitchcontrollerSnmpsysinfo(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerSnmptrapthreshold:SwitchcontrollerSnmptrapthreshold":
+                return new SwitchcontrollerSnmptrapthreshold(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerSnmpuser:SwitchcontrollerSnmpuser":
+                return new SwitchcontrollerSnmpuser(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerStormcontrol:SwitchcontrollerStormcontrol":
+                return new SwitchcontrollerStormcontrol(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerStormcontrolpolicy:SwitchcontrollerStormcontrolpolicy":
+                return new SwitchcontrollerStormcontrolpolicy(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerStpinstance:SwitchcontrollerStpinstance":
+                return new SwitchcontrollerStpinstance(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerStpsettings:SwitchcontrollerStpsettings":
+                return new SwitchcontrollerStpsettings(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerSwitchgroup:SwitchcontrollerSwitchgroup":
+                return new SwitchcontrollerSwitchgroup(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerSwitchinterfacetag:SwitchcontrollerSwitchinterfacetag":
+                return new SwitchcontrollerSwitchinterfacetag(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerSwitchlog:SwitchcontrollerSwitchlog":
+                return new SwitchcontrollerSwitchlog(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerSwitchprofile:SwitchcontrollerSwitchprofile":
+                return new SwitchcontrollerSwitchprofile(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerSystem:SwitchcontrollerSystem":
+                return new SwitchcontrollerSystem(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerTrafficpolicy:SwitchcontrollerTrafficpolicy":
+                return new SwitchcontrollerTrafficpolicy(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerTrafficsniffer:SwitchcontrollerTrafficsniffer":
+                return new SwitchcontrollerTrafficsniffer(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerVirtualportpool:SwitchcontrollerVirtualportpool":
+                return new SwitchcontrollerVirtualportpool(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerVlan:SwitchcontrollerVlan":
+                return new SwitchcontrollerVlan(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerVlanpolicy:SwitchcontrollerVlanpolicy":
+                return new SwitchcontrollerVlanpolicy(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerautoconfigCustom:SwitchcontrollerautoconfigCustom":
+                return new SwitchcontrollerautoconfigCustom(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerautoconfigDefault:SwitchcontrollerautoconfigDefault":
+                return new SwitchcontrollerautoconfigDefault(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerautoconfigPolicy:SwitchcontrollerautoconfigPolicy":
+                return new SwitchcontrollerautoconfigPolicy(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerinitialconfigTemplate:SwitchcontrollerinitialconfigTemplate":
+                return new SwitchcontrollerinitialconfigTemplate(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerinitialconfigVlans:SwitchcontrollerinitialconfigVlans":
+                return new SwitchcontrollerinitialconfigVlans(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerptpPolicy:SwitchcontrollerptpPolicy":
+                return new SwitchcontrollerptpPolicy(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerptpSettings:SwitchcontrollerptpSettings":
+                return new SwitchcontrollerptpSettings(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerqosDot1pmap:SwitchcontrollerqosDot1pmap":
+                return new SwitchcontrollerqosDot1pmap(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerqosIpdscpmap:SwitchcontrollerqosIpdscpmap":
+                return new SwitchcontrollerqosIpdscpmap(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerqosQospolicy:SwitchcontrollerqosQospolicy":
+                return new SwitchcontrollerqosQospolicy(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollerqosQueuepolicy:SwitchcontrollerqosQueuepolicy":
+                return new SwitchcontrollerqosQueuepolicy(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollersecuritypolicy8021X:Switchcontrollersecuritypolicy8021X":
+                return new Switchcontrollersecuritypolicy8021X(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollersecuritypolicyCaptiveportal:SwitchcontrollersecuritypolicyCaptiveportal":
+                return new SwitchcontrollersecuritypolicyCaptiveportal(name, <any>undefined, { urn })
+            case "fortios:index/switchcontrollersecuritypolicyLocalaccess:SwitchcontrollersecuritypolicyLocalaccess":
+                return new SwitchcontrollersecuritypolicyLocalaccess(name, <any>undefined, { urn })
+            case "fortios:index/system3gmodemCustom:System3gmodemCustom":
+                return new System3gmodemCustom(name, <any>undefined, { urn })
+            case "fortios:index/systemAccprofile:SystemAccprofile":
+                return new SystemAccprofile(name, <any>undefined, { urn })
+            case "fortios:index/systemAcme:SystemAcme":
+                return new SystemAcme(name, <any>undefined, { urn })
+            case "fortios:index/systemAdmin:SystemAdmin":
+                return new SystemAdmin(name, <any>undefined, { urn })
+            case "fortios:index/systemAdminAdministrator:SystemAdminAdministrator":
+                return new SystemAdminAdministrator(name, <any>undefined, { urn })
+            case "fortios:index/systemAdminProfiles:SystemAdminProfiles":
+                return new SystemAdminProfiles(name, <any>undefined, { urn })
+            case "fortios:index/systemAffinityinterrupt:SystemAffinityinterrupt":
+                return new SystemAffinityinterrupt(name, <any>undefined, { urn })
+            case "fortios:index/systemAffinitypacketredistribution:SystemAffinitypacketredistribution":
+                return new SystemAffinitypacketredistribution(name, <any>undefined, { urn })
+            case "fortios:index/systemAlarm:SystemAlarm":
+                return new SystemAlarm(name, <any>undefined, { urn })
+            case "fortios:index/systemAlias:SystemAlias":
+                return new SystemAlias(name, <any>undefined, { urn })
+            case "fortios:index/systemApiuser:SystemApiuser":
+                return new SystemApiuser(name, <any>undefined, { urn })
+            case "fortios:index/systemApiuserSetting:SystemApiuserSetting":
+                return new SystemApiuserSetting(name, <any>undefined, { urn })
+            case "fortios:index/systemArptable:SystemArptable":
+                return new SystemArptable(name, <any>undefined, { urn })
+            case "fortios:index/systemAutoinstall:SystemAutoinstall":
+                return new SystemAutoinstall(name, <any>undefined, { urn })
+            case "fortios:index/systemAutomationaction:SystemAutomationaction":
+                return new SystemAutomationaction(name, <any>undefined, { urn })
+            case "fortios:index/systemAutomationdestination:SystemAutomationdestination":
+                return new SystemAutomationdestination(name, <any>undefined, { urn })
+            case "fortios:index/systemAutomationstitch:SystemAutomationstitch":
+                return new SystemAutomationstitch(name, <any>undefined, { urn })
+            case "fortios:index/systemAutomationtrigger:SystemAutomationtrigger":
+                return new SystemAutomationtrigger(name, <any>undefined, { urn })
+            case "fortios:index/systemAutoscript:SystemAutoscript":
+                return new SystemAutoscript(name, <any>undefined, { urn })
+            case "fortios:index/systemCentralmanagement:SystemCentralmanagement":
+                return new SystemCentralmanagement(name, <any>undefined, { urn })
+            case "fortios:index/systemClustersync:SystemClustersync":
+                return new SystemClustersync(name, <any>undefined, { urn })
+            case "fortios:index/systemConsole:SystemConsole":
+                return new SystemConsole(name, <any>undefined, { urn })
+            case "fortios:index/systemCsf:SystemCsf":
+                return new SystemCsf(name, <any>undefined, { urn })
+            case "fortios:index/systemCustomlanguage:SystemCustomlanguage":
+                return new SystemCustomlanguage(name, <any>undefined, { urn })
+            case "fortios:index/systemDdns:SystemDdns":
+                return new SystemDdns(name, <any>undefined, { urn })
+            case "fortios:index/systemDedicatedmgmt:SystemDedicatedmgmt":
+                return new SystemDedicatedmgmt(name, <any>undefined, { urn })
+            case "fortios:index/systemDns64:SystemDns64":
+                return new SystemDns64(name, <any>undefined, { urn })
+            case "fortios:index/systemDns:SystemDns":
+                return new SystemDns(name, <any>undefined, { urn })
+            case "fortios:index/systemDnsdatabase:SystemDnsdatabase":
+                return new SystemDnsdatabase(name, <any>undefined, { urn })
+            case "fortios:index/systemDnsserver:SystemDnsserver":
+                return new SystemDnsserver(name, <any>undefined, { urn })
+            case "fortios:index/systemDscpbasedpriority:SystemDscpbasedpriority":
+                return new SystemDscpbasedpriority(name, <any>undefined, { urn })
+            case "fortios:index/systemEmailserver:SystemEmailserver":
+                return new SystemEmailserver(name, <any>undefined, { urn })
+            case "fortios:index/systemExternalresource:SystemExternalresource":
+                return new SystemExternalresource(name, <any>undefined, { urn })
+            case "fortios:index/systemFederatedupgrade:SystemFederatedupgrade":
+                return new SystemFederatedupgrade(name, <any>undefined, { urn })
+            case "fortios:index/systemFipscc:SystemFipscc":
+                return new SystemFipscc(name, <any>undefined, { urn })
+            case "fortios:index/systemFm:SystemFm":
+                return new SystemFm(name, <any>undefined, { urn })
+            case "fortios:index/systemFortiai:SystemFortiai":
+                return new SystemFortiai(name, <any>undefined, { urn })
+            case "fortios:index/systemFortiguard:SystemFortiguard":
+                return new SystemFortiguard(name, <any>undefined, { urn })
+            case "fortios:index/systemFortimanager:SystemFortimanager":
+                return new SystemFortimanager(name, <any>undefined, { urn })
+            case "fortios:index/systemFortindr:SystemFortindr":
+                return new SystemFortindr(name, <any>undefined, { urn })
+            case "fortios:index/systemFortisandbox:SystemFortisandbox":
+                return new SystemFortisandbox(name, <any>undefined, { urn })
+            case "fortios:index/systemFssopolling:SystemFssopolling":
+                return new SystemFssopolling(name, <any>undefined, { urn })
+            case "fortios:index/systemFtmpush:SystemFtmpush":
+                return new SystemFtmpush(name, <any>undefined, { urn })
+            case "fortios:index/systemGeneve:SystemGeneve":
+                return new SystemGeneve(name, <any>undefined, { urn })
+            case "fortios:index/systemGeoipcountry:SystemGeoipcountry":
+                return new SystemGeoipcountry(name, <any>undefined, { urn })
+            case "fortios:index/systemGeoipoverride:SystemGeoipoverride":
+                return new SystemGeoipoverride(name, <any>undefined, { urn })
+            case "fortios:index/systemGlobal:SystemGlobal":
+                return new SystemGlobal(name, <any>undefined, { urn })
+            case "fortios:index/systemGretunnel:SystemGretunnel":
+                return new SystemGretunnel(name, <any>undefined, { urn })
+            case "fortios:index/systemHa:SystemHa":
+                return new SystemHa(name, <any>undefined, { urn })
+            case "fortios:index/systemHamonitor:SystemHamonitor":
+                return new SystemHamonitor(name, <any>undefined, { urn })
+            case "fortios:index/systemIke:SystemIke":
+                return new SystemIke(name, <any>undefined, { urn })
+            case "fortios:index/systemInterface:SystemInterface":
+                return new SystemInterface(name, <any>undefined, { urn })
+            case "fortios:index/systemIpam:SystemIpam":
+                return new SystemIpam(name, <any>undefined, { urn })
+            case "fortios:index/systemIpiptunnel:SystemIpiptunnel":
+                return new SystemIpiptunnel(name, <any>undefined, { urn })
+            case "fortios:index/systemIps:SystemIps":
+                return new SystemIps(name, <any>undefined, { urn })
+            case "fortios:index/systemIpsecaggregate:SystemIpsecaggregate":
+                return new SystemIpsecaggregate(name, <any>undefined, { urn })
+            case "fortios:index/systemIpsurlfilterdns6:SystemIpsurlfilterdns6":
+                return new SystemIpsurlfilterdns6(name, <any>undefined, { urn })
+            case "fortios:index/systemIpsurlfilterdns:SystemIpsurlfilterdns":
+                return new SystemIpsurlfilterdns(name, <any>undefined, { urn })
+            case "fortios:index/systemIpv6neighborcache:SystemIpv6neighborcache":
+                return new SystemIpv6neighborcache(name, <any>undefined, { urn })
+            case "fortios:index/systemIpv6tunnel:SystemIpv6tunnel":
+                return new SystemIpv6tunnel(name, <any>undefined, { urn })
+            case "fortios:index/systemLicenseForticare:SystemLicenseForticare":
+                return new SystemLicenseForticare(name, <any>undefined, { urn })
+            case "fortios:index/systemLicenseVdom:SystemLicenseVdom":
+                return new SystemLicenseVdom(name, <any>undefined, { urn })
+            case "fortios:index/systemLicenseVm:SystemLicenseVm":
+                return new SystemLicenseVm(name, <any>undefined, { urn })
+            case "fortios:index/systemLinkmonitor:SystemLinkmonitor":
+                return new SystemLinkmonitor(name, <any>undefined, { urn })
+            case "fortios:index/systemLtemodem:SystemLtemodem":
+                return new SystemLtemodem(name, <any>undefined, { urn })
+            case "fortios:index/systemMacaddresstable:SystemMacaddresstable":
+                return new SystemMacaddresstable(name, <any>undefined, { urn })
+            case "fortios:index/systemManagementtunnel:SystemManagementtunnel":
+                return new SystemManagementtunnel(name, <any>undefined, { urn })
+            case "fortios:index/systemMobiletunnel:SystemMobiletunnel":
+                return new SystemMobiletunnel(name, <any>undefined, { urn })
+            case "fortios:index/systemModem:SystemModem":
+                return new SystemModem(name, <any>undefined, { urn })
+            case "fortios:index/systemNat64:SystemNat64":
+                return new SystemNat64(name, <any>undefined, { urn })
+            case "fortios:index/systemNdproxy:SystemNdproxy":
+                return new SystemNdproxy(name, <any>undefined, { urn })
+            case "fortios:index/systemNetflow:SystemNetflow":
+                return new SystemNetflow(name, <any>undefined, { urn })
+            case "fortios:index/systemNetworkvisibility:SystemNetworkvisibility":
+                return new SystemNetworkvisibility(name, <any>undefined, { urn })
+            case "fortios:index/systemNpu:SystemNpu":
+                return new SystemNpu(name, <any>undefined, { urn })
+            case "fortios:index/systemNtp:SystemNtp":
+                return new SystemNtp(name, <any>undefined, { urn })
+            case "fortios:index/systemObjecttagging:SystemObjecttagging":
+                return new SystemObjecttagging(name, <any>undefined, { urn })
+            case "fortios:index/systemPasswordpolicy:SystemPasswordpolicy":
+                return new SystemPasswordpolicy(name, <any>undefined, { urn })
+            case "fortios:index/systemPasswordpolicyguestadmin:SystemPasswordpolicyguestadmin":
+                return new SystemPasswordpolicyguestadmin(name, <any>undefined, { urn })
+            case "fortios:index/systemPhysicalswitch:SystemPhysicalswitch":
+                return new SystemPhysicalswitch(name, <any>undefined, { urn })
+            case "fortios:index/systemPppoeinterface:SystemPppoeinterface":
+                return new SystemPppoeinterface(name, <any>undefined, { urn })
+            case "fortios:index/systemProberesponse:SystemProberesponse":
+                return new SystemProberesponse(name, <any>undefined, { urn })
+            case "fortios:index/systemProxyarp:SystemProxyarp":
+                return new SystemProxyarp(name, <any>undefined, { urn })
+            case "fortios:index/systemPtp:SystemPtp":
+                return new SystemPtp(name, <any>undefined, { urn })
+            case "fortios:index/systemReplacemsggroup:SystemReplacemsggroup":
+                return new SystemReplacemsggroup(name, <any>undefined, { urn })
+            case "fortios:index/systemReplacemsgimage:SystemReplacemsgimage":
+                return new SystemReplacemsgimage(name, <any>undefined, { urn })
+            case "fortios:index/systemResourcelimits:SystemResourcelimits":
+                return new SystemResourcelimits(name, <any>undefined, { urn })
+            case "fortios:index/systemSaml:SystemSaml":
+                return new SystemSaml(name, <any>undefined, { urn })
+            case "fortios:index/systemSdnconnector:SystemSdnconnector":
+                return new SystemSdnconnector(name, <any>undefined, { urn })
+            case "fortios:index/systemSdwan:SystemSdwan":
+                return new SystemSdwan(name, <any>undefined, { urn })
+            case "fortios:index/systemSessionhelper:SystemSessionhelper":
+                return new SystemSessionhelper(name, <any>undefined, { urn })
+            case "fortios:index/systemSessionttl:SystemSessionttl":
+                return new SystemSessionttl(name, <any>undefined, { urn })
+            case "fortios:index/systemSettingDns:SystemSettingDns":
+                return new SystemSettingDns(name, <any>undefined, { urn })
+            case "fortios:index/systemSettingGlobal:SystemSettingGlobal":
+                return new SystemSettingGlobal(name, <any>undefined, { urn })
+            case "fortios:index/systemSettingNtp:SystemSettingNtp":
+                return new SystemSettingNtp(name, <any>undefined, { urn })
+            case "fortios:index/systemSettings:SystemSettings":
+                return new SystemSettings(name, <any>undefined, { urn })
+            case "fortios:index/systemSflow:SystemSflow":
+                return new SystemSflow(name, <any>undefined, { urn })
+            case "fortios:index/systemSittunnel:SystemSittunnel":
+                return new SystemSittunnel(name, <any>undefined, { urn })
+            case "fortios:index/systemSmsserver:SystemSmsserver":
+                return new SystemSmsserver(name, <any>undefined, { urn })
+            case "fortios:index/systemSpeedtestschedule:SystemSpeedtestschedule":
+                return new SystemSpeedtestschedule(name, <any>undefined, { urn })
+            case "fortios:index/systemSpeedtestserver:SystemSpeedtestserver":
+                return new SystemSpeedtestserver(name, <any>undefined, { urn })
+            case "fortios:index/systemSsoadmin:SystemSsoadmin":
+                return new SystemSsoadmin(name, <any>undefined, { urn })
+            case "fortios:index/systemSsoforticloudadmin:SystemSsoforticloudadmin":
+                return new SystemSsoforticloudadmin(name, <any>undefined, { urn })
+            case "fortios:index/systemStandalonecluster:SystemStandalonecluster":
+                return new SystemStandalonecluster(name, <any>undefined, { urn })
+            case "fortios:index/systemStorage:SystemStorage":
+                return new SystemStorage(name, <any>undefined, { urn })
+            case "fortios:index/systemStp:SystemStp":
+                return new SystemStp(name, <any>undefined, { urn })
+            case "fortios:index/systemSwitchinterface:SystemSwitchinterface":
+                return new SystemSwitchinterface(name, <any>undefined, { urn })
+            case "fortios:index/systemTosbasedpriority:SystemTosbasedpriority":
+                return new SystemTosbasedpriority(name, <any>undefined, { urn })
+            case "fortios:index/systemVdom:SystemVdom":
+                return new SystemVdom(name, <any>undefined, { urn })
+            case "fortios:index/systemVdomSetting:SystemVdomSetting":
+                return new SystemVdomSetting(name, <any>undefined, { urn })
+            case "fortios:index/systemVdomdns:SystemVdomdns":
+                return new SystemVdomdns(name, <any>undefined, { urn })
+            case "fortios:index/systemVdomexception:SystemVdomexception":
+                return new SystemVdomexception(name, <any>undefined, { urn })
+            case "fortios:index/systemVdomlink:SystemVdomlink":
+                return new SystemVdomlink(name, <any>undefined, { urn })
+            case "fortios:index/systemVdomnetflow:SystemVdomnetflow":
+                return new SystemVdomnetflow(name, <any>undefined, { urn })
+            case "fortios:index/systemVdomproperty:SystemVdomproperty":
+                return new SystemVdomproperty(name, <any>undefined, { urn })
+            case "fortios:index/systemVdomradiusserver:SystemVdomradiusserver":
+                return new SystemVdomradiusserver(name, <any>undefined, { urn })
+            case "fortios:index/systemVdomsflow:SystemVdomsflow":
+                return new SystemVdomsflow(name, <any>undefined, { urn })
+            case "fortios:index/systemVirtualswitch:SystemVirtualswitch":
+                return new SystemVirtualswitch(name, <any>undefined, { urn })
+            case "fortios:index/systemVirtualwanlink:SystemVirtualwanlink":
+                return new SystemVirtualwanlink(name, <any>undefined, { urn })
+            case "fortios:index/systemVirtualwirepair:SystemVirtualwirepair":
+                return new SystemVirtualwirepair(name, <any>undefined, { urn })
+            case "fortios:index/systemVnetunnel:SystemVnetunnel":
+                return new SystemVnetunnel(name, <any>undefined, { urn })
+            case "fortios:index/systemVxlan:SystemVxlan":
+                return new SystemVxlan(name, <any>undefined, { urn })
+            case "fortios:index/systemWccp:SystemWccp":
+                return new SystemWccp(name, <any>undefined, { urn })
+            case "fortios:index/systemZone:SystemZone":
+                return new SystemZone(name, <any>undefined, { urn })
+            case "fortios:index/systemautoupdatePushupdate:SystemautoupdatePushupdate":
+                return new SystemautoupdatePushupdate(name, <any>undefined, { urn })
+            case "fortios:index/systemautoupdateSchedule:SystemautoupdateSchedule":
+                return new SystemautoupdateSchedule(name, <any>undefined, { urn })
+            case "fortios:index/systemautoupdateTunneling:SystemautoupdateTunneling":
+                return new SystemautoupdateTunneling(name, <any>undefined, { urn })
+            case "fortios:index/systemdhcp6Server:Systemdhcp6Server":
+                return new Systemdhcp6Server(name, <any>undefined, { urn })
+            case "fortios:index/systemdhcpServer:SystemdhcpServer":
+                return new SystemdhcpServer(name, <any>undefined, { urn })
+            case "fortios:index/systemlldpNetworkpolicy:SystemlldpNetworkpolicy":
+                return new SystemlldpNetworkpolicy(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgAdmin:SystemreplacemsgAdmin":
+                return new SystemreplacemsgAdmin(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgAlertmail:SystemreplacemsgAlertmail":
+                return new SystemreplacemsgAlertmail(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgAuth:SystemreplacemsgAuth":
+                return new SystemreplacemsgAuth(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgAutomation:SystemreplacemsgAutomation":
+                return new SystemreplacemsgAutomation(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgDevicedetectionportal:SystemreplacemsgDevicedetectionportal":
+                return new SystemreplacemsgDevicedetectionportal(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgEc:SystemreplacemsgEc":
+                return new SystemreplacemsgEc(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgFortiguardwf:SystemreplacemsgFortiguardwf":
+                return new SystemreplacemsgFortiguardwf(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgFtp:SystemreplacemsgFtp":
+                return new SystemreplacemsgFtp(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgHttp:SystemreplacemsgHttp":
+                return new SystemreplacemsgHttp(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgIcap:SystemreplacemsgIcap":
+                return new SystemreplacemsgIcap(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgMail:SystemreplacemsgMail":
+                return new SystemreplacemsgMail(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgNacquar:SystemreplacemsgNacquar":
+                return new SystemreplacemsgNacquar(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgNntp:SystemreplacemsgNntp":
+                return new SystemreplacemsgNntp(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgSpam:SystemreplacemsgSpam":
+                return new SystemreplacemsgSpam(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgSslvpn:SystemreplacemsgSslvpn":
+                return new SystemreplacemsgSslvpn(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgTrafficquota:SystemreplacemsgTrafficquota":
+                return new SystemreplacemsgTrafficquota(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgUtm:SystemreplacemsgUtm":
+                return new SystemreplacemsgUtm(name, <any>undefined, { urn })
+            case "fortios:index/systemreplacemsgWebproxy:SystemreplacemsgWebproxy":
+                return new SystemreplacemsgWebproxy(name, <any>undefined, { urn })
+            case "fortios:index/systemsnmpCommunity:SystemsnmpCommunity":
+                return new SystemsnmpCommunity(name, <any>undefined, { urn })
+            case "fortios:index/systemsnmpMibview:SystemsnmpMibview":
+                return new SystemsnmpMibview(name, <any>undefined, { urn })
+            case "fortios:index/systemsnmpSysinfo:SystemsnmpSysinfo":
+                return new SystemsnmpSysinfo(name, <any>undefined, { urn })
+            case "fortios:index/systemsnmpUser:SystemsnmpUser":
+                return new SystemsnmpUser(name, <any>undefined, { urn })
+            case "fortios:index/userAdgrp:UserAdgrp":
+                return new UserAdgrp(name, <any>undefined, { urn })
+            case "fortios:index/userCertificate:UserCertificate":
+                return new UserCertificate(name, <any>undefined, { urn })
+            case "fortios:index/userDevice:UserDevice":
+                return new UserDevice(name, <any>undefined, { urn })
+            case "fortios:index/userDeviceaccesslist:UserDeviceaccesslist":
+                return new UserDeviceaccesslist(name, <any>undefined, { urn })
+            case "fortios:index/userDevicecategory:UserDevicecategory":
+                return new UserDevicecategory(name, <any>undefined, { urn })
+            case "fortios:index/userDevicegroup:UserDevicegroup":
+                return new UserDevicegroup(name, <any>undefined, { urn })
+            case "fortios:index/userDomaincontroller:UserDomaincontroller":
+                return new UserDomaincontroller(name, <any>undefined, { urn })
+            case "fortios:index/userExchange:UserExchange":
+                return new UserExchange(name, <any>undefined, { urn })
+            case "fortios:index/userFortitoken:UserFortitoken":
+                return new UserFortitoken(name, <any>undefined, { urn })
+            case "fortios:index/userFsso:UserFsso":
+                return new UserFsso(name, <any>undefined, { urn })
+            case "fortios:index/userFssopolling:UserFssopolling":
+                return new UserFssopolling(name, <any>undefined, { urn })
+            case "fortios:index/userGroup:UserGroup":
+                return new UserGroup(name, <any>undefined, { urn })
+            case "fortios:index/userKrbkeytab:UserKrbkeytab":
+                return new UserKrbkeytab(name, <any>undefined, { urn })
+            case "fortios:index/userLdap:UserLdap":
+                return new UserLdap(name, <any>undefined, { urn })
+            case "fortios:index/userLocal:UserLocal":
+                return new UserLocal(name, <any>undefined, { urn })
+            case "fortios:index/userNacpolicy:UserNacpolicy":
+                return new UserNacpolicy(name, <any>undefined, { urn })
+            case "fortios:index/userPasswordpolicy:UserPasswordpolicy":
+                return new UserPasswordpolicy(name, <any>undefined, { urn })
+            case "fortios:index/userPeer:UserPeer":
+                return new UserPeer(name, <any>undefined, { urn })
+            case "fortios:index/userPeergrp:UserPeergrp":
+                return new UserPeergrp(name, <any>undefined, { urn })
+            case "fortios:index/userPop3:UserPop3":
+                return new UserPop3(name, <any>undefined, { urn })
+            case "fortios:index/userQuarantine:UserQuarantine":
+                return new UserQuarantine(name, <any>undefined, { urn })
+            case "fortios:index/userRadius:UserRadius":
+                return new UserRadius(name, <any>undefined, { urn })
+            case "fortios:index/userSaml:UserSaml":
+                return new UserSaml(name, <any>undefined, { urn })
+            case "fortios:index/userSecurityexemptlist:UserSecurityexemptlist":
+                return new UserSecurityexemptlist(name, <any>undefined, { urn })
+            case "fortios:index/userSetting:UserSetting":
+                return new UserSetting(name, <any>undefined, { urn })
+            case "fortios:index/userTacacs:UserTacacs":
+                return new UserTacacs(name, <any>undefined, { urn })
+            case "fortios:index/videofilterProfile:VideofilterProfile":
+                return new VideofilterProfile(name, <any>undefined, { urn })
+            case "fortios:index/videofilterYoutubechannelfilter:VideofilterYoutubechannelfilter":
+                return new VideofilterYoutubechannelfilter(name, <any>undefined, { urn })
+            case "fortios:index/videofilterYoutubekey:VideofilterYoutubekey":
+                return new VideofilterYoutubekey(name, <any>undefined, { urn })
+            case "fortios:index/voipProfile:VoipProfile":
+                return new VoipProfile(name, <any>undefined, { urn })
+            case "fortios:index/vpnL2tp:VpnL2tp":
+                return new VpnL2tp(name, <any>undefined, { urn })
+            case "fortios:index/vpnOcvpn:VpnOcvpn":
+                return new VpnOcvpn(name, <any>undefined, { urn })
+            case "fortios:index/vpnPptp:VpnPptp":
+                return new VpnPptp(name, <any>undefined, { urn })
+            case "fortios:index/vpncertificateCa:VpncertificateCa":
+                return new VpncertificateCa(name, <any>undefined, { urn })
+            case "fortios:index/vpncertificateCrl:VpncertificateCrl":
+                return new VpncertificateCrl(name, <any>undefined, { urn })
+            case "fortios:index/vpncertificateLocal:VpncertificateLocal":
+                return new VpncertificateLocal(name, <any>undefined, { urn })
+            case "fortios:index/vpncertificateOcspserver:VpncertificateOcspserver":
+                return new VpncertificateOcspserver(name, <any>undefined, { urn })
+            case "fortios:index/vpncertificateRemote:VpncertificateRemote":
+                return new VpncertificateRemote(name, <any>undefined, { urn })
+            case "fortios:index/vpncertificateSetting:VpncertificateSetting":
+                return new VpncertificateSetting(name, <any>undefined, { urn })
+            case "fortios:index/vpnipsecConcentrator:VpnipsecConcentrator":
+                return new VpnipsecConcentrator(name, <any>undefined, { urn })
+            case "fortios:index/vpnipsecFec:VpnipsecFec":
+                return new VpnipsecFec(name, <any>undefined, { urn })
+            case "fortios:index/vpnipsecForticlient:VpnipsecForticlient":
+                return new VpnipsecForticlient(name, <any>undefined, { urn })
+            case "fortios:index/vpnipsecManualkey:VpnipsecManualkey":
+                return new VpnipsecManualkey(name, <any>undefined, { urn })
+            case "fortios:index/vpnipsecManualkeyinterface:VpnipsecManualkeyinterface":
+                return new VpnipsecManualkeyinterface(name, <any>undefined, { urn })
+            case "fortios:index/vpnipsecPhase1:VpnipsecPhase1":
+                return new VpnipsecPhase1(name, <any>undefined, { urn })
+            case "fortios:index/vpnipsecPhase1interface:VpnipsecPhase1interface":
+                return new VpnipsecPhase1interface(name, <any>undefined, { urn })
+            case "fortios:index/vpnipsecPhase2:VpnipsecPhase2":
+                return new VpnipsecPhase2(name, <any>undefined, { urn })
+            case "fortios:index/vpnipsecPhase2interface:VpnipsecPhase2interface":
+                return new VpnipsecPhase2interface(name, <any>undefined, { urn })
+            case "fortios:index/vpnsslClient:VpnsslClient":
+                return new VpnsslClient(name, <any>undefined, { urn })
+            case "fortios:index/vpnsslSettings:VpnsslSettings":
+                return new VpnsslSettings(name, <any>undefined, { urn })
+            case "fortios:index/vpnsslwebHostchecksoftware:VpnsslwebHostchecksoftware":
+                return new VpnsslwebHostchecksoftware(name, <any>undefined, { urn })
+            case "fortios:index/vpnsslwebPortal:VpnsslwebPortal":
+                return new VpnsslwebPortal(name, <any>undefined, { urn })
+            case "fortios:index/vpnsslwebRealm:VpnsslwebRealm":
+                return new VpnsslwebRealm(name, <any>undefined, { urn })
+            case "fortios:index/vpnsslwebUserbookmark:VpnsslwebUserbookmark":
+                return new VpnsslwebUserbookmark(name, <any>undefined, { urn })
+            case "fortios:index/vpnsslwebUsergroupbookmark:VpnsslwebUsergroupbookmark":
+                return new VpnsslwebUsergroupbookmark(name, <any>undefined, { urn })
+            case "fortios:index/wafMainclass:WafMainclass":
+                return new WafMainclass(name, <any>undefined, { urn })
+            case "fortios:index/wafProfile:WafProfile":
+                return new WafProfile(name, <any>undefined, { urn })
+            case "fortios:index/wafSignature:WafSignature":
+                return new WafSignature(name, <any>undefined, { urn })
+            case "fortios:index/wafSubclass:WafSubclass":
+                return new WafSubclass(name, <any>undefined, { urn })
+            case "fortios:index/wanoptAuthgroup:WanoptAuthgroup":
+                return new WanoptAuthgroup(name, <any>undefined, { urn })
+            case "fortios:index/wanoptCacheservice:WanoptCacheservice":
+                return new WanoptCacheservice(name, <any>undefined, { urn })
+            case "fortios:index/wanoptContentdeliverynetworkrule:WanoptContentdeliverynetworkrule":
+                return new WanoptContentdeliverynetworkrule(name, <any>undefined, { urn })
+            case "fortios:index/wanoptPeer:WanoptPeer":
+                return new WanoptPeer(name, <any>undefined, { urn })
+            case "fortios:index/wanoptProfile:WanoptProfile":
+                return new WanoptProfile(name, <any>undefined, { urn })
+            case "fortios:index/wanoptRemotestorage:WanoptRemotestorage":
+                return new WanoptRemotestorage(name, <any>undefined, { urn })
+            case "fortios:index/wanoptSettings:WanoptSettings":
+                return new WanoptSettings(name, <any>undefined, { urn })
+            case "fortios:index/wanoptWebcache:WanoptWebcache":
+                return new WanoptWebcache(name, <any>undefined, { urn })
+            case "fortios:index/webfilterContent:WebfilterContent":
+                return new WebfilterContent(name, <any>undefined, { urn })
+            case "fortios:index/webfilterContentheader:WebfilterContentheader":
+                return new WebfilterContentheader(name, <any>undefined, { urn })
+            case "fortios:index/webfilterFortiguard:WebfilterFortiguard":
+                return new WebfilterFortiguard(name, <any>undefined, { urn })
+            case "fortios:index/webfilterFtgdlocalcat:WebfilterFtgdlocalcat":
+                return new WebfilterFtgdlocalcat(name, <any>undefined, { urn })
+            case "fortios:index/webfilterFtgdlocalrating:WebfilterFtgdlocalrating":
+                return new WebfilterFtgdlocalrating(name, <any>undefined, { urn })
+            case "fortios:index/webfilterIpsurlfiltercachesetting:WebfilterIpsurlfiltercachesetting":
+                return new WebfilterIpsurlfiltercachesetting(name, <any>undefined, { urn })
+            case "fortios:index/webfilterIpsurlfiltersetting6:WebfilterIpsurlfiltersetting6":
+                return new WebfilterIpsurlfiltersetting6(name, <any>undefined, { urn })
+            case "fortios:index/webfilterIpsurlfiltersetting:WebfilterIpsurlfiltersetting":
+                return new WebfilterIpsurlfiltersetting(name, <any>undefined, { urn })
+            case "fortios:index/webfilterOverride:WebfilterOverride":
+                return new WebfilterOverride(name, <any>undefined, { urn })
+            case "fortios:index/webfilterProfile:WebfilterProfile":
+                return new WebfilterProfile(name, <any>undefined, { urn })
+            case "fortios:index/webfilterSearchengine:WebfilterSearchengine":
+                return new WebfilterSearchengine(name, <any>undefined, { urn })
+            case "fortios:index/webfilterUrlfilter:WebfilterUrlfilter":
+                return new WebfilterUrlfilter(name, <any>undefined, { urn })
+            case "fortios:index/webproxyDebugurl:WebproxyDebugurl":
+                return new WebproxyDebugurl(name, <any>undefined, { urn })
+            case "fortios:index/webproxyExplicit:WebproxyExplicit":
+                return new WebproxyExplicit(name, <any>undefined, { urn })
+            case "fortios:index/webproxyForwardserver:WebproxyForwardserver":
+                return new WebproxyForwardserver(name, <any>undefined, { urn })
+            case "fortios:index/webproxyForwardservergroup:WebproxyForwardservergroup":
+                return new WebproxyForwardservergroup(name, <any>undefined, { urn })
+            case "fortios:index/webproxyGlobal:WebproxyGlobal":
+                return new WebproxyGlobal(name, <any>undefined, { urn })
+            case "fortios:index/webproxyProfile:WebproxyProfile":
+                return new WebproxyProfile(name, <any>undefined, { urn })
+            case "fortios:index/webproxyUrlmatch:WebproxyUrlmatch":
+                return new WebproxyUrlmatch(name, <any>undefined, { urn })
+            case "fortios:index/webproxyWisp:WebproxyWisp":
+                return new WebproxyWisp(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerAccesscontrollist:WirelesscontrollerAccesscontrollist":
+                return new WirelesscontrollerAccesscontrollist(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerAddress:WirelesscontrollerAddress":
+                return new WirelesscontrollerAddress(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerAddrgrp:WirelesscontrollerAddrgrp":
+                return new WirelesscontrollerAddrgrp(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerApcfgprofile:WirelesscontrollerApcfgprofile":
+                return new WirelesscontrollerApcfgprofile(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerApstatus:WirelesscontrollerApstatus":
+                return new WirelesscontrollerApstatus(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerArrpprofile:WirelesscontrollerArrpprofile":
+                return new WirelesscontrollerArrpprofile(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerBleprofile:WirelesscontrollerBleprofile":
+                return new WirelesscontrollerBleprofile(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerBonjourprofile:WirelesscontrollerBonjourprofile":
+                return new WirelesscontrollerBonjourprofile(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerGlobal:WirelesscontrollerGlobal":
+                return new WirelesscontrollerGlobal(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerIntercontroller:WirelesscontrollerIntercontroller":
+                return new WirelesscontrollerIntercontroller(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerLog:WirelesscontrollerLog":
+                return new WirelesscontrollerLog(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerMpskprofile:WirelesscontrollerMpskprofile":
+                return new WirelesscontrollerMpskprofile(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerNacprofile:WirelesscontrollerNacprofile":
+                return new WirelesscontrollerNacprofile(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerQosprofile:WirelesscontrollerQosprofile":
+                return new WirelesscontrollerQosprofile(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerRegion:WirelesscontrollerRegion":
+                return new WirelesscontrollerRegion(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerSetting:WirelesscontrollerSetting":
+                return new WirelesscontrollerSetting(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerSnmp:WirelesscontrollerSnmp":
+                return new WirelesscontrollerSnmp(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerSsidpolicy:WirelesscontrollerSsidpolicy":
+                return new WirelesscontrollerSsidpolicy(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerSyslogprofile:WirelesscontrollerSyslogprofile":
+                return new WirelesscontrollerSyslogprofile(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerTimers:WirelesscontrollerTimers":
+                return new WirelesscontrollerTimers(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerUtmprofile:WirelesscontrollerUtmprofile":
+                return new WirelesscontrollerUtmprofile(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerVap:WirelesscontrollerVap":
+                return new WirelesscontrollerVap(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerVapgroup:WirelesscontrollerVapgroup":
+                return new WirelesscontrollerVapgroup(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerWagprofile:WirelesscontrollerWagprofile":
+                return new WirelesscontrollerWagprofile(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerWidsprofile:WirelesscontrollerWidsprofile":
+                return new WirelesscontrollerWidsprofile(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerWtp:WirelesscontrollerWtp":
+                return new WirelesscontrollerWtp(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerWtpgroup:WirelesscontrollerWtpgroup":
+                return new WirelesscontrollerWtpgroup(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerWtpprofile:WirelesscontrollerWtpprofile":
+                return new WirelesscontrollerWtpprofile(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20Anqp3gppcellular:Wirelesscontrollerhotspot20Anqp3gppcellular":
+                return new Wirelesscontrollerhotspot20Anqp3gppcellular(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20Anqpipaddresstype:Wirelesscontrollerhotspot20Anqpipaddresstype":
+                return new Wirelesscontrollerhotspot20Anqpipaddresstype(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20Anqpnairealm:Wirelesscontrollerhotspot20Anqpnairealm":
+                return new Wirelesscontrollerhotspot20Anqpnairealm(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20Anqpnetworkauthtype:Wirelesscontrollerhotspot20Anqpnetworkauthtype":
+                return new Wirelesscontrollerhotspot20Anqpnetworkauthtype(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20Anqproamingconsortium:Wirelesscontrollerhotspot20Anqproamingconsortium":
+                return new Wirelesscontrollerhotspot20Anqproamingconsortium(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20Anqpvenuename:Wirelesscontrollerhotspot20Anqpvenuename":
+                return new Wirelesscontrollerhotspot20Anqpvenuename(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20Anqpvenueurl:Wirelesscontrollerhotspot20Anqpvenueurl":
+                return new Wirelesscontrollerhotspot20Anqpvenueurl(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20H2qpadviceofcharge:Wirelesscontrollerhotspot20H2qpadviceofcharge":
+                return new Wirelesscontrollerhotspot20H2qpadviceofcharge(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20H2qpconncapability:Wirelesscontrollerhotspot20H2qpconncapability":
+                return new Wirelesscontrollerhotspot20H2qpconncapability(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20H2qpoperatorname:Wirelesscontrollerhotspot20H2qpoperatorname":
+                return new Wirelesscontrollerhotspot20H2qpoperatorname(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20H2qposuprovider:Wirelesscontrollerhotspot20H2qposuprovider":
+                return new Wirelesscontrollerhotspot20H2qposuprovider(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20H2qposuprovidernai:Wirelesscontrollerhotspot20H2qposuprovidernai":
+                return new Wirelesscontrollerhotspot20H2qposuprovidernai(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20H2qptermsandconditions:Wirelesscontrollerhotspot20H2qptermsandconditions":
+                return new Wirelesscontrollerhotspot20H2qptermsandconditions(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20H2qpwanmetric:Wirelesscontrollerhotspot20H2qpwanmetric":
+                return new Wirelesscontrollerhotspot20H2qpwanmetric(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20Hsprofile:Wirelesscontrollerhotspot20Hsprofile":
+                return new Wirelesscontrollerhotspot20Hsprofile(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20Icon:Wirelesscontrollerhotspot20Icon":
+                return new Wirelesscontrollerhotspot20Icon(name, <any>undefined, { urn })
+            case "fortios:index/wirelesscontrollerhotspot20Qosmap:Wirelesscontrollerhotspot20Qosmap":
+                return new Wirelesscontrollerhotspot20Qosmap(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("fortios", "index/alertEmailSetting", _module)
-
-import { Provider } from "./provider";
-
+pulumi.runtime.registerResourceModule("fortios", "index/alertemailSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/antivirusHeuristic", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/antivirusProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/antivirusQuarantine", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/antivirusSettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/applicationCustom", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/applicationGroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/applicationList", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/applicationName", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/applicationRulesettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/authenticationRule", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/authenticationScheme", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/authenticationSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/automationSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/certificateCa", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/certificateCrl", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/certificateLocal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/certificateRemote", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/cifsDomaincontroller", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/cifsProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/credentialstoreDomaincontroller", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/dlpDatatype", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/dlpDictionary", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/dlpFilepattern", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/dlpFpdocsource", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/dlpFpsensitivity", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/dlpProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/dlpSensitivity", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/dlpSensor", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/dlpSettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/dnsfilterDomainfilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/dnsfilterProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/dpdkCpus", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/dpdkGlobal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/emailfilterBlockallowlist", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/emailfilterBwl", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/emailfilterBword", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/emailfilterDnsbl", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/emailfilterFortishield", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/emailfilterIptrust", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/emailfilterMheader", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/emailfilterOptions", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/emailfilterProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/endpointcontrolClient", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/endpointcontrolFctems", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/endpointcontrolForticlientems", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/endpointcontrolForticlientregistrationsync", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/endpointcontrolProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/endpointcontrolRegisteredforticlient", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/endpointcontrolSettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/extendercontrollerDataplan", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/extendercontrollerExtender", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/extendercontrollerExtender1", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/extendercontrollerExtenderprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/extensioncontrollerDataplan", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/extensioncontrollerExtender", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/extensioncontrollerExtenderprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/extensioncontrollerFortigate", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/extensioncontrollerFortigateprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/filefilterProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAccessproxy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAccessproxy6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAccessproxysshclientcert", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAccessproxyvirtualhost", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAddress", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAddress6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAddress6template", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAddrgrp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAddrgrp6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAuthportal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallCentralsnatmap", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallCentralsnatmapMove", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallCentralsnatmapSort", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallCity", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallCountry", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallDecryptedtrafficmirror", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallDnstranslation", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallDoSpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallDoSpolicy6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallGlobal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallIdentitybasedroute", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInterfacepolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInterfacepolicy6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetservice", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetserviceaddition", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetserviceappend", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetservicebotnet", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetservicecustom", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetservicecustomgroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetservicedefinition", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetserviceextension", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetservicegroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetserviceipblreason", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetserviceipblvendor", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetservicelist", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetservicename", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetserviceowner", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetservicereputation", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallIppool", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallIppool6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallIptranslation", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallIpv6ehfilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallLdbmonitor", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallLocalinpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallLocalinpolicy6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallMulticastaddress", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallMulticastaddress6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallMulticastpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallMulticastpolicy6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallNetworkservicedynamic", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallObjectAddress", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallObjectAddressgroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallObjectIppool", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallObjectService", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallObjectServicecategory", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallObjectServicegroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallObjectVip", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallObjectVipgroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallPolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallPolicy46", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallPolicy6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallPolicy64", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallProfilegroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallProfileprotocoloptions", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallProxyaddress", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallProxyaddrgrp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallProxypolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallProxypolicyMove", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallProxypolicySort", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallRegion", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallSecurityPolicyseq", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallSecurityPolicysort", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallSecuritypolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallShapingpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallShapingprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallSniffer", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallSslserver", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallSslsshprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallTrafficclass", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallTtlpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallVendormac", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallVip", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallVip46", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallVip6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallVip64", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallVipgrp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallVipgrp46", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallVipgrp6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallVipgrp64", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallconsolidatedPolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallipmacbindingSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallipmacbindingTable", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallscheduleGroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallscheduleOnetime", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallscheduleRecurring", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallserviceCategory", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallserviceCustom", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallserviceGroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallshaperPeripshaper", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallshaperTrafficshaper", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallsshHostkey", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallsshLocalca", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallsshLocalkey", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallsshSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallsslSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallwildcardfqdnCustom", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallwildcardfqdnGroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgDevicemanagerDevice", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgDevicemanagerInstallDevice", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgDevicemanagerInstallPolicypackage", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgDevicemanagerScript", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgDevicemanagerScriptExecute", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgFirewallObjectAddress", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgFirewallObjectIppool", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgFirewallObjectService", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgFirewallObjectVip", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgFirewallSecurityPolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgFirewallSecurityPolicypackage", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgJsonrpcRequest", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgObjectAdomRevision", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgSystemAdmin", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgSystemAdminProfiles", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgSystemAdminUser", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgSystemAdom", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgSystemDns", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgSystemGlobal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgSystemLicenseForticare", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgSystemLicenseVm", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgSystemNetworkInterface", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgSystemNetworkRoute", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgSystemNtp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/fmgSystemSyslogserver", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/ftpproxyExplicit", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/icapProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/icapServer", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/icapServergroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/ipsCustom", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/ipsDecoder", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/ipsGlobal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/ipsRule", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/ipsRulesettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/ipsSensor", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/ipsSettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/ipsViewmap", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/jsonGenericApi", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logCustomfield", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logEventfilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logGuidisplay", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logSyslogSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logThreatweight", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logdiskFilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logdiskSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzer2Filter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzer2Overridefilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzer2Overridesetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzer2Setting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzer3Filter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzer3Overridefilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzer3Overridesetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzer3Setting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzerFilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzerOverridefilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzerOverridesetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzerSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzercloudFilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzercloudOverridefilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzercloudOverridesetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortianalyzercloudSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortiguardFilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortiguardOverridefilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortiguardOverridesetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logfortiguardSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logmemoryFilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logmemoryGlobalsetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logmemorySetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/lognulldeviceFilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/lognulldeviceSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogd2Filter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogd2Overridefilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogd2Overridesetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogd2Setting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogd3Filter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogd3Overridefilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogd3Overridesetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogd3Setting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogd4Filter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogd4Overridefilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogd4Overridesetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogd4Setting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogdFilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogdOverridefilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogdOverridesetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logsyslogdSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logtacacsaccounting2Filter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logtacacsaccounting2Setting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logtacacsaccounting3Filter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logtacacsaccounting3Setting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logtacacsaccountingFilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logtacacsaccountingSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logwebtrendsFilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logwebtrendsSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/networkingInterfacePort", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/networkingRouteStatic", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/nsxtServicechain", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/nsxtSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/reportChart", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/reportDataset", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/reportLayout", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/reportSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/reportStyle", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/reportTheme", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerAccesslist", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerAccesslist6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerAspathlist", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerAuthpath", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerBfd", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerBfd6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerBgp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerCommunitylist", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerIsis", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerKeychain", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerMulticast", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerMulticast6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerMulticastflow", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerOspf", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerOspf6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerPolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerPolicy6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerPrefixlist", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerPrefixlist6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerRip", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerRipng", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerRoutemap", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerStatic", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerStatic6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerbgpNeighbor", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerbgpNetwork", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerbgpNetwork6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerospf6Ospf6interface", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerospfNeighbor", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerospfNetwork", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerospfOspfinterface", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/sctpfilterProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/spamfilterBwl", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/spamfilterBword", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/spamfilterDnsbl", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/spamfilterFortishield", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/spamfilterIptrust", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/spamfilterMheader", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/spamfilterOptions", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/spamfilterProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/sshfilterProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontroller8021Xsettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerCustomcommand", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerDynamicportpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerFlowtracking", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerFortilinksettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerGlobal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerIgmpsnooping", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerLldpprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerLldpsettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerLocation", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerMacsyncsettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerManagedswitch", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerNacdevice", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerNacsettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerNetworkmonitorsettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerPortpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerQuarantine", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerRemotelog", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerSflow", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerSnmpcommunity", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerSnmpsysinfo", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerSnmptrapthreshold", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerSnmpuser", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerStormcontrol", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerStormcontrolpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerStpinstance", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerStpsettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerSwitchgroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerSwitchinterfacetag", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerSwitchlog", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerSwitchprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerSystem", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerTrafficpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerTrafficsniffer", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerVirtualportpool", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerVlan", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerVlanpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerautoconfigCustom", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerautoconfigDefault", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerautoconfigPolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerinitialconfigTemplate", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerinitialconfigVlans", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerptpPolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerptpSettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerqosDot1pmap", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerqosIpdscpmap", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerqosQospolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollerqosQueuepolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollersecuritypolicy8021X", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollersecuritypolicyCaptiveportal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchcontrollersecuritypolicyLocalaccess", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/system3gmodemCustom", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAccprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAcme", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAdmin", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAdminAdministrator", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAdminProfiles", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAffinityinterrupt", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAffinitypacketredistribution", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAlarm", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAlias", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemApiuser", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemApiuserSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemArptable", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAutoinstall", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAutomationaction", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAutomationdestination", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAutomationstitch", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAutomationtrigger", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAutoscript", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemCentralmanagement", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemClustersync", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemConsole", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemCsf", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemCustomlanguage", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemDdns", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemDedicatedmgmt", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemDns", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemDns64", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemDnsdatabase", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemDnsserver", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemDscpbasedpriority", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemEmailserver", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemExternalresource", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemFederatedupgrade", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemFipscc", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemFm", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemFortiai", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemFortiguard", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemFortimanager", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemFortindr", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemFortisandbox", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemFssopolling", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemFtmpush", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemGeneve", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemGeoipcountry", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemGeoipoverride", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemGlobal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemGretunnel", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemHa", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemHamonitor", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemIke", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemInterface", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemIpam", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemIpiptunnel", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemIps", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemIpsecaggregate", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemIpsurlfilterdns", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemIpsurlfilterdns6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemIpv6neighborcache", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemIpv6tunnel", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemLicenseForticare", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemLicenseVdom", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemLicenseVm", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemLinkmonitor", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemLtemodem", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemMacaddresstable", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemManagementtunnel", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemMobiletunnel", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemModem", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemNat64", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemNdproxy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemNetflow", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemNetworkvisibility", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemNpu", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemNtp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemObjecttagging", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemPasswordpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemPasswordpolicyguestadmin", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemPhysicalswitch", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemPppoeinterface", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemProberesponse", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemProxyarp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemPtp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemReplacemsggroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemReplacemsgimage", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemResourcelimits", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSaml", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSdnconnector", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSdwan", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSessionhelper", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSessionttl", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSettingDns", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSettingGlobal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSettingNtp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSflow", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSittunnel", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSmsserver", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSpeedtestschedule", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSpeedtestserver", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSsoadmin", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSsoforticloudadmin", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemStandalonecluster", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemStorage", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemStp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSwitchinterface", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemTosbasedpriority", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVdom", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVdomSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVdomdns", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVdomexception", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVdomlink", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVdomnetflow", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVdomproperty", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVdomradiusserver", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVdomsflow", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVirtualswitch", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVirtualwanlink", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVirtualwirepair", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVnetunnel", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemVxlan", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemWccp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemZone", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemautoupdatePushupdate", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemautoupdateSchedule", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemautoupdateTunneling", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemdhcp6Server", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemdhcpServer", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemlldpNetworkpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgAdmin", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgAlertmail", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgAuth", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgAutomation", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgDevicedetectionportal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgEc", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgFortiguardwf", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgFtp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgHttp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgIcap", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgMail", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgNacquar", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgNntp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgSpam", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgSslvpn", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgTrafficquota", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgUtm", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemreplacemsgWebproxy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemsnmpCommunity", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemsnmpMibview", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemsnmpSysinfo", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemsnmpUser", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userAdgrp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userCertificate", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userDevice", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userDeviceaccesslist", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userDevicecategory", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userDevicegroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userDomaincontroller", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userExchange", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userFortitoken", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userFsso", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userFssopolling", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userGroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userKrbkeytab", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userLdap", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userLocal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userNacpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userPasswordpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userPeer", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userPeergrp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userPop3", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userQuarantine", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userRadius", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userSaml", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userSecurityexemptlist", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userTacacs", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/videofilterProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/videofilterYoutubechannelfilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/videofilterYoutubekey", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/voipProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnL2tp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnOcvpn", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnPptp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpncertificateCa", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpncertificateCrl", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpncertificateLocal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpncertificateOcspserver", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpncertificateRemote", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpncertificateSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnipsecConcentrator", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnipsecFec", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnipsecForticlient", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnipsecManualkey", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnipsecManualkeyinterface", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnipsecPhase1", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnipsecPhase1interface", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnipsecPhase2", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnipsecPhase2interface", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnsslClient", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnsslSettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnsslwebHostchecksoftware", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnsslwebPortal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnsslwebRealm", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnsslwebUserbookmark", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnsslwebUsergroupbookmark", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wafMainclass", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wafProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wafSignature", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wafSubclass", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wanoptAuthgroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wanoptCacheservice", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wanoptContentdeliverynetworkrule", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wanoptPeer", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wanoptProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wanoptRemotestorage", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wanoptSettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wanoptWebcache", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webfilterContent", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webfilterContentheader", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webfilterFortiguard", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webfilterFtgdlocalcat", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webfilterFtgdlocalrating", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webfilterIpsurlfiltercachesetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webfilterIpsurlfiltersetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webfilterIpsurlfiltersetting6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webfilterOverride", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webfilterProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webfilterSearchengine", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webfilterUrlfilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webproxyDebugurl", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webproxyExplicit", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webproxyForwardserver", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webproxyForwardservergroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webproxyGlobal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webproxyProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webproxyUrlmatch", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webproxyWisp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerAccesscontrollist", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerAddress", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerAddrgrp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerApcfgprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerApstatus", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerArrpprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerBleprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerBonjourprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerGlobal", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerIntercontroller", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerLog", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerMpskprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerNacprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerQosprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerRegion", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerSnmp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerSsidpolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerSyslogprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerTimers", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerUtmprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerVap", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerVapgroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerWagprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerWidsprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerWtp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerWtpgroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerWtpprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20Anqp3gppcellular", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20Anqpipaddresstype", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20Anqpnairealm", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20Anqpnetworkauthtype", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20Anqproamingconsortium", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20Anqpvenuename", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20Anqpvenueurl", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20H2qpadviceofcharge", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20H2qpconncapability", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20H2qpoperatorname", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20H2qposuprovider", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20H2qposuprovidernai", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20H2qptermsandconditions", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20H2qpwanmetric", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20Hsprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20Icon", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelesscontrollerhotspot20Qosmap", _module)
 pulumi.runtime.registerResourcePackage("fortios", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

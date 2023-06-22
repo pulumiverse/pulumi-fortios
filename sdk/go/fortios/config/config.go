@@ -10,68 +10,132 @@ import (
 
 // CA Bundle file content
 func GetCabundlecontent(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:cabundlecontent")
+	v, err := config.Try(ctx, "fortios:cabundlecontent")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_CA_CABUNDLECONTENT").(string)
 }
 
 // CA Bundle file
 func GetCabundlefile(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:cabundlefile")
+	v, err := config.Try(ctx, "fortios:cabundlefile")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_CA_CABUNDLE").(string)
 }
 
 // CA certtificate(Optional)
 func GetCacert(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:cacert")
+	v, err := config.Try(ctx, "fortios:cacert")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_CA_CACERT").(string)
 }
 
 // User certificate
 func GetClientcert(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:clientcert")
+	v, err := config.Try(ctx, "fortios:clientcert")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_CA_CLIENTCERT").(string)
 }
 
 // User private key
 func GetClientkey(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:clientkey")
+	v, err := config.Try(ctx, "fortios:clientkey")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_CA_CLIENTKEY").(string)
 }
 
 // CA Bundle file
 func GetFmgCabundlefile(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:fmgCabundlefile")
+	v, err := config.Try(ctx, "fortios:fmgCabundlefile")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_FMG_CABUNDLE").(string)
 }
 
 // Hostname/IP address of the FortiManager to connect to
 func GetFmgHostname(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:fmgHostname")
+	v, err := config.Try(ctx, "fortios:fmgHostname")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_FMG_HOSTNAME").(string)
 }
 func GetFmgInsecure(ctx *pulumi.Context) bool {
-	return config.GetBool(ctx, "fortios:fmgInsecure")
+	v, err := config.TryBool(ctx, "fortios:fmgInsecure")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault(false, parseEnvBool, "FORTIOS_FMG_INSECURE").(bool)
 }
 func GetFmgPasswd(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:fmgPasswd")
+	v, err := config.Try(ctx, "fortios:fmgPasswd")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_FMG_PASSWORD").(string)
 }
 func GetFmgUsername(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:fmgUsername")
+	v, err := config.Try(ctx, "fortios:fmgUsername")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_FMG_USERNAME").(string)
 }
 
 // The hostname/IP address of the FortiOS to be connected
 func GetHostname(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:hostname")
+	v, err := config.Try(ctx, "fortios:hostname")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_ACCESS_HOSTNAME").(string)
 }
 
 // HTTP proxy address
 func GetHttpProxy(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:httpProxy")
+	v, err := config.Try(ctx, "fortios:httpProxy")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_HTTP_PROXY").(string)
 }
 func GetInsecure(ctx *pulumi.Context) bool {
-	return config.GetBool(ctx, "fortios:insecure")
+	v, err := config.TryBool(ctx, "fortios:insecure")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault(false, parseEnvBool, "FORTIOS_INSECURE").(bool)
 }
 
 // Enable/disable peer authentication, can be 'enable' or 'disable'
 func GetPeerauth(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:peerauth")
+	v, err := config.Try(ctx, "fortios:peerauth")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_CA_PEERAUTH").(string)
 }
 func GetToken(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:token")
+	v, err := config.Try(ctx, "fortios:token")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_ACCESS_TOKEN").(string)
 }
 func GetVdom(ctx *pulumi.Context) string {
-	return config.Get(ctx, "fortios:vdom")
+	v, err := config.Try(ctx, "fortios:vdom")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "FORTIOS_VDOM").(string)
 }

@@ -20,8 +20,1302 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "fortios:index/alertEmailSetting:alertEmailSetting":
-		r = &AlertEmailSetting{}
+	case "fortios:index/alertemailSetting:AlertemailSetting":
+		r = &AlertemailSetting{}
+	case "fortios:index/antivirusHeuristic:AntivirusHeuristic":
+		r = &AntivirusHeuristic{}
+	case "fortios:index/antivirusProfile:AntivirusProfile":
+		r = &AntivirusProfile{}
+	case "fortios:index/antivirusQuarantine:AntivirusQuarantine":
+		r = &AntivirusQuarantine{}
+	case "fortios:index/antivirusSettings:AntivirusSettings":
+		r = &AntivirusSettings{}
+	case "fortios:index/applicationCustom:ApplicationCustom":
+		r = &ApplicationCustom{}
+	case "fortios:index/applicationGroup:ApplicationGroup":
+		r = &ApplicationGroup{}
+	case "fortios:index/applicationList:ApplicationList":
+		r = &ApplicationList{}
+	case "fortios:index/applicationName:ApplicationName":
+		r = &ApplicationName{}
+	case "fortios:index/applicationRulesettings:ApplicationRulesettings":
+		r = &ApplicationRulesettings{}
+	case "fortios:index/authenticationRule:AuthenticationRule":
+		r = &AuthenticationRule{}
+	case "fortios:index/authenticationScheme:AuthenticationScheme":
+		r = &AuthenticationScheme{}
+	case "fortios:index/authenticationSetting:AuthenticationSetting":
+		r = &AuthenticationSetting{}
+	case "fortios:index/automationSetting:AutomationSetting":
+		r = &AutomationSetting{}
+	case "fortios:index/certificateCa:CertificateCa":
+		r = &CertificateCa{}
+	case "fortios:index/certificateCrl:CertificateCrl":
+		r = &CertificateCrl{}
+	case "fortios:index/certificateLocal:CertificateLocal":
+		r = &CertificateLocal{}
+	case "fortios:index/certificateRemote:CertificateRemote":
+		r = &CertificateRemote{}
+	case "fortios:index/cifsDomaincontroller:CifsDomaincontroller":
+		r = &CifsDomaincontroller{}
+	case "fortios:index/cifsProfile:CifsProfile":
+		r = &CifsProfile{}
+	case "fortios:index/credentialstoreDomaincontroller:CredentialstoreDomaincontroller":
+		r = &CredentialstoreDomaincontroller{}
+	case "fortios:index/dlpDatatype:DlpDatatype":
+		r = &DlpDatatype{}
+	case "fortios:index/dlpDictionary:DlpDictionary":
+		r = &DlpDictionary{}
+	case "fortios:index/dlpFilepattern:DlpFilepattern":
+		r = &DlpFilepattern{}
+	case "fortios:index/dlpFpdocsource:DlpFpdocsource":
+		r = &DlpFpdocsource{}
+	case "fortios:index/dlpFpsensitivity:DlpFpsensitivity":
+		r = &DlpFpsensitivity{}
+	case "fortios:index/dlpProfile:DlpProfile":
+		r = &DlpProfile{}
+	case "fortios:index/dlpSensitivity:DlpSensitivity":
+		r = &DlpSensitivity{}
+	case "fortios:index/dlpSensor:DlpSensor":
+		r = &DlpSensor{}
+	case "fortios:index/dlpSettings:DlpSettings":
+		r = &DlpSettings{}
+	case "fortios:index/dnsfilterDomainfilter:DnsfilterDomainfilter":
+		r = &DnsfilterDomainfilter{}
+	case "fortios:index/dnsfilterProfile:DnsfilterProfile":
+		r = &DnsfilterProfile{}
+	case "fortios:index/dpdkCpus:DpdkCpus":
+		r = &DpdkCpus{}
+	case "fortios:index/dpdkGlobal:DpdkGlobal":
+		r = &DpdkGlobal{}
+	case "fortios:index/emailfilterBlockallowlist:EmailfilterBlockallowlist":
+		r = &EmailfilterBlockallowlist{}
+	case "fortios:index/emailfilterBwl:EmailfilterBwl":
+		r = &EmailfilterBwl{}
+	case "fortios:index/emailfilterBword:EmailfilterBword":
+		r = &EmailfilterBword{}
+	case "fortios:index/emailfilterDnsbl:EmailfilterDnsbl":
+		r = &EmailfilterDnsbl{}
+	case "fortios:index/emailfilterFortishield:EmailfilterFortishield":
+		r = &EmailfilterFortishield{}
+	case "fortios:index/emailfilterIptrust:EmailfilterIptrust":
+		r = &EmailfilterIptrust{}
+	case "fortios:index/emailfilterMheader:EmailfilterMheader":
+		r = &EmailfilterMheader{}
+	case "fortios:index/emailfilterOptions:EmailfilterOptions":
+		r = &EmailfilterOptions{}
+	case "fortios:index/emailfilterProfile:EmailfilterProfile":
+		r = &EmailfilterProfile{}
+	case "fortios:index/endpointcontrolClient:EndpointcontrolClient":
+		r = &EndpointcontrolClient{}
+	case "fortios:index/endpointcontrolFctems:EndpointcontrolFctems":
+		r = &EndpointcontrolFctems{}
+	case "fortios:index/endpointcontrolForticlientems:EndpointcontrolForticlientems":
+		r = &EndpointcontrolForticlientems{}
+	case "fortios:index/endpointcontrolForticlientregistrationsync:EndpointcontrolForticlientregistrationsync":
+		r = &EndpointcontrolForticlientregistrationsync{}
+	case "fortios:index/endpointcontrolProfile:EndpointcontrolProfile":
+		r = &EndpointcontrolProfile{}
+	case "fortios:index/endpointcontrolRegisteredforticlient:EndpointcontrolRegisteredforticlient":
+		r = &EndpointcontrolRegisteredforticlient{}
+	case "fortios:index/endpointcontrolSettings:EndpointcontrolSettings":
+		r = &EndpointcontrolSettings{}
+	case "fortios:index/extendercontrollerDataplan:ExtendercontrollerDataplan":
+		r = &ExtendercontrollerDataplan{}
+	case "fortios:index/extendercontrollerExtender1:ExtendercontrollerExtender1":
+		r = &ExtendercontrollerExtender1{}
+	case "fortios:index/extendercontrollerExtender:ExtendercontrollerExtender":
+		r = &ExtendercontrollerExtender{}
+	case "fortios:index/extendercontrollerExtenderprofile:ExtendercontrollerExtenderprofile":
+		r = &ExtendercontrollerExtenderprofile{}
+	case "fortios:index/extensioncontrollerDataplan:ExtensioncontrollerDataplan":
+		r = &ExtensioncontrollerDataplan{}
+	case "fortios:index/extensioncontrollerExtender:ExtensioncontrollerExtender":
+		r = &ExtensioncontrollerExtender{}
+	case "fortios:index/extensioncontrollerExtenderprofile:ExtensioncontrollerExtenderprofile":
+		r = &ExtensioncontrollerExtenderprofile{}
+	case "fortios:index/extensioncontrollerFortigate:ExtensioncontrollerFortigate":
+		r = &ExtensioncontrollerFortigate{}
+	case "fortios:index/extensioncontrollerFortigateprofile:ExtensioncontrollerFortigateprofile":
+		r = &ExtensioncontrollerFortigateprofile{}
+	case "fortios:index/filefilterProfile:FilefilterProfile":
+		r = &FilefilterProfile{}
+	case "fortios:index/firewallAccessproxy6:FirewallAccessproxy6":
+		r = &FirewallAccessproxy6{}
+	case "fortios:index/firewallAccessproxy:FirewallAccessproxy":
+		r = &FirewallAccessproxy{}
+	case "fortios:index/firewallAccessproxysshclientcert:FirewallAccessproxysshclientcert":
+		r = &FirewallAccessproxysshclientcert{}
+	case "fortios:index/firewallAccessproxyvirtualhost:FirewallAccessproxyvirtualhost":
+		r = &FirewallAccessproxyvirtualhost{}
+	case "fortios:index/firewallAddress6:FirewallAddress6":
+		r = &FirewallAddress6{}
+	case "fortios:index/firewallAddress6template:FirewallAddress6template":
+		r = &FirewallAddress6template{}
+	case "fortios:index/firewallAddress:FirewallAddress":
+		r = &FirewallAddress{}
+	case "fortios:index/firewallAddrgrp6:FirewallAddrgrp6":
+		r = &FirewallAddrgrp6{}
+	case "fortios:index/firewallAddrgrp:FirewallAddrgrp":
+		r = &FirewallAddrgrp{}
+	case "fortios:index/firewallAuthportal:FirewallAuthportal":
+		r = &FirewallAuthportal{}
+	case "fortios:index/firewallCentralsnatmap:FirewallCentralsnatmap":
+		r = &FirewallCentralsnatmap{}
+	case "fortios:index/firewallCentralsnatmapMove:FirewallCentralsnatmapMove":
+		r = &FirewallCentralsnatmapMove{}
+	case "fortios:index/firewallCentralsnatmapSort:FirewallCentralsnatmapSort":
+		r = &FirewallCentralsnatmapSort{}
+	case "fortios:index/firewallCity:FirewallCity":
+		r = &FirewallCity{}
+	case "fortios:index/firewallCountry:FirewallCountry":
+		r = &FirewallCountry{}
+	case "fortios:index/firewallDecryptedtrafficmirror:FirewallDecryptedtrafficmirror":
+		r = &FirewallDecryptedtrafficmirror{}
+	case "fortios:index/firewallDnstranslation:FirewallDnstranslation":
+		r = &FirewallDnstranslation{}
+	case "fortios:index/firewallDoSpolicy6:FirewallDoSpolicy6":
+		r = &FirewallDoSpolicy6{}
+	case "fortios:index/firewallDoSpolicy:FirewallDoSpolicy":
+		r = &FirewallDoSpolicy{}
+	case "fortios:index/firewallGlobal:FirewallGlobal":
+		r = &FirewallGlobal{}
+	case "fortios:index/firewallIdentitybasedroute:FirewallIdentitybasedroute":
+		r = &FirewallIdentitybasedroute{}
+	case "fortios:index/firewallInterfacepolicy6:FirewallInterfacepolicy6":
+		r = &FirewallInterfacepolicy6{}
+	case "fortios:index/firewallInterfacepolicy:FirewallInterfacepolicy":
+		r = &FirewallInterfacepolicy{}
+	case "fortios:index/firewallInternetservice:FirewallInternetservice":
+		r = &FirewallInternetservice{}
+	case "fortios:index/firewallInternetserviceaddition:FirewallInternetserviceaddition":
+		r = &FirewallInternetserviceaddition{}
+	case "fortios:index/firewallInternetserviceappend:FirewallInternetserviceappend":
+		r = &FirewallInternetserviceappend{}
+	case "fortios:index/firewallInternetservicebotnet:FirewallInternetservicebotnet":
+		r = &FirewallInternetservicebotnet{}
+	case "fortios:index/firewallInternetservicecustom:FirewallInternetservicecustom":
+		r = &FirewallInternetservicecustom{}
+	case "fortios:index/firewallInternetservicecustomgroup:FirewallInternetservicecustomgroup":
+		r = &FirewallInternetservicecustomgroup{}
+	case "fortios:index/firewallInternetservicedefinition:FirewallInternetservicedefinition":
+		r = &FirewallInternetservicedefinition{}
+	case "fortios:index/firewallInternetserviceextension:FirewallInternetserviceextension":
+		r = &FirewallInternetserviceextension{}
+	case "fortios:index/firewallInternetservicegroup:FirewallInternetservicegroup":
+		r = &FirewallInternetservicegroup{}
+	case "fortios:index/firewallInternetserviceipblreason:FirewallInternetserviceipblreason":
+		r = &FirewallInternetserviceipblreason{}
+	case "fortios:index/firewallInternetserviceipblvendor:FirewallInternetserviceipblvendor":
+		r = &FirewallInternetserviceipblvendor{}
+	case "fortios:index/firewallInternetservicelist:FirewallInternetservicelist":
+		r = &FirewallInternetservicelist{}
+	case "fortios:index/firewallInternetservicename:FirewallInternetservicename":
+		r = &FirewallInternetservicename{}
+	case "fortios:index/firewallInternetserviceowner:FirewallInternetserviceowner":
+		r = &FirewallInternetserviceowner{}
+	case "fortios:index/firewallInternetservicereputation:FirewallInternetservicereputation":
+		r = &FirewallInternetservicereputation{}
+	case "fortios:index/firewallIppool6:FirewallIppool6":
+		r = &FirewallIppool6{}
+	case "fortios:index/firewallIppool:FirewallIppool":
+		r = &FirewallIppool{}
+	case "fortios:index/firewallIptranslation:FirewallIptranslation":
+		r = &FirewallIptranslation{}
+	case "fortios:index/firewallIpv6ehfilter:FirewallIpv6ehfilter":
+		r = &FirewallIpv6ehfilter{}
+	case "fortios:index/firewallLdbmonitor:FirewallLdbmonitor":
+		r = &FirewallLdbmonitor{}
+	case "fortios:index/firewallLocalinpolicy6:FirewallLocalinpolicy6":
+		r = &FirewallLocalinpolicy6{}
+	case "fortios:index/firewallLocalinpolicy:FirewallLocalinpolicy":
+		r = &FirewallLocalinpolicy{}
+	case "fortios:index/firewallMulticastaddress6:FirewallMulticastaddress6":
+		r = &FirewallMulticastaddress6{}
+	case "fortios:index/firewallMulticastaddress:FirewallMulticastaddress":
+		r = &FirewallMulticastaddress{}
+	case "fortios:index/firewallMulticastpolicy6:FirewallMulticastpolicy6":
+		r = &FirewallMulticastpolicy6{}
+	case "fortios:index/firewallMulticastpolicy:FirewallMulticastpolicy":
+		r = &FirewallMulticastpolicy{}
+	case "fortios:index/firewallNetworkservicedynamic:FirewallNetworkservicedynamic":
+		r = &FirewallNetworkservicedynamic{}
+	case "fortios:index/firewallObjectAddress:FirewallObjectAddress":
+		r = &FirewallObjectAddress{}
+	case "fortios:index/firewallObjectAddressgroup:FirewallObjectAddressgroup":
+		r = &FirewallObjectAddressgroup{}
+	case "fortios:index/firewallObjectIppool:FirewallObjectIppool":
+		r = &FirewallObjectIppool{}
+	case "fortios:index/firewallObjectService:FirewallObjectService":
+		r = &FirewallObjectService{}
+	case "fortios:index/firewallObjectServicecategory:FirewallObjectServicecategory":
+		r = &FirewallObjectServicecategory{}
+	case "fortios:index/firewallObjectServicegroup:FirewallObjectServicegroup":
+		r = &FirewallObjectServicegroup{}
+	case "fortios:index/firewallObjectVip:FirewallObjectVip":
+		r = &FirewallObjectVip{}
+	case "fortios:index/firewallObjectVipgroup:FirewallObjectVipgroup":
+		r = &FirewallObjectVipgroup{}
+	case "fortios:index/firewallPolicy46:FirewallPolicy46":
+		r = &FirewallPolicy46{}
+	case "fortios:index/firewallPolicy64:FirewallPolicy64":
+		r = &FirewallPolicy64{}
+	case "fortios:index/firewallPolicy6:FirewallPolicy6":
+		r = &FirewallPolicy6{}
+	case "fortios:index/firewallPolicy:FirewallPolicy":
+		r = &FirewallPolicy{}
+	case "fortios:index/firewallProfilegroup:FirewallProfilegroup":
+		r = &FirewallProfilegroup{}
+	case "fortios:index/firewallProfileprotocoloptions:FirewallProfileprotocoloptions":
+		r = &FirewallProfileprotocoloptions{}
+	case "fortios:index/firewallProxyaddress:FirewallProxyaddress":
+		r = &FirewallProxyaddress{}
+	case "fortios:index/firewallProxyaddrgrp:FirewallProxyaddrgrp":
+		r = &FirewallProxyaddrgrp{}
+	case "fortios:index/firewallProxypolicy:FirewallProxypolicy":
+		r = &FirewallProxypolicy{}
+	case "fortios:index/firewallProxypolicyMove:FirewallProxypolicyMove":
+		r = &FirewallProxypolicyMove{}
+	case "fortios:index/firewallProxypolicySort:FirewallProxypolicySort":
+		r = &FirewallProxypolicySort{}
+	case "fortios:index/firewallRegion:FirewallRegion":
+		r = &FirewallRegion{}
+	case "fortios:index/firewallSecurityPolicyseq:FirewallSecurityPolicyseq":
+		r = &FirewallSecurityPolicyseq{}
+	case "fortios:index/firewallSecurityPolicysort:FirewallSecurityPolicysort":
+		r = &FirewallSecurityPolicysort{}
+	case "fortios:index/firewallSecuritypolicy:FirewallSecuritypolicy":
+		r = &FirewallSecuritypolicy{}
+	case "fortios:index/firewallShapingpolicy:FirewallShapingpolicy":
+		r = &FirewallShapingpolicy{}
+	case "fortios:index/firewallShapingprofile:FirewallShapingprofile":
+		r = &FirewallShapingprofile{}
+	case "fortios:index/firewallSniffer:FirewallSniffer":
+		r = &FirewallSniffer{}
+	case "fortios:index/firewallSslserver:FirewallSslserver":
+		r = &FirewallSslserver{}
+	case "fortios:index/firewallSslsshprofile:FirewallSslsshprofile":
+		r = &FirewallSslsshprofile{}
+	case "fortios:index/firewallTrafficclass:FirewallTrafficclass":
+		r = &FirewallTrafficclass{}
+	case "fortios:index/firewallTtlpolicy:FirewallTtlpolicy":
+		r = &FirewallTtlpolicy{}
+	case "fortios:index/firewallVendormac:FirewallVendormac":
+		r = &FirewallVendormac{}
+	case "fortios:index/firewallVip46:FirewallVip46":
+		r = &FirewallVip46{}
+	case "fortios:index/firewallVip64:FirewallVip64":
+		r = &FirewallVip64{}
+	case "fortios:index/firewallVip6:FirewallVip6":
+		r = &FirewallVip6{}
+	case "fortios:index/firewallVip:FirewallVip":
+		r = &FirewallVip{}
+	case "fortios:index/firewallVipgrp46:FirewallVipgrp46":
+		r = &FirewallVipgrp46{}
+	case "fortios:index/firewallVipgrp64:FirewallVipgrp64":
+		r = &FirewallVipgrp64{}
+	case "fortios:index/firewallVipgrp6:FirewallVipgrp6":
+		r = &FirewallVipgrp6{}
+	case "fortios:index/firewallVipgrp:FirewallVipgrp":
+		r = &FirewallVipgrp{}
+	case "fortios:index/firewallconsolidatedPolicy:FirewallconsolidatedPolicy":
+		r = &FirewallconsolidatedPolicy{}
+	case "fortios:index/firewallipmacbindingSetting:FirewallipmacbindingSetting":
+		r = &FirewallipmacbindingSetting{}
+	case "fortios:index/firewallipmacbindingTable:FirewallipmacbindingTable":
+		r = &FirewallipmacbindingTable{}
+	case "fortios:index/firewallscheduleGroup:FirewallscheduleGroup":
+		r = &FirewallscheduleGroup{}
+	case "fortios:index/firewallscheduleOnetime:FirewallscheduleOnetime":
+		r = &FirewallscheduleOnetime{}
+	case "fortios:index/firewallscheduleRecurring:FirewallscheduleRecurring":
+		r = &FirewallscheduleRecurring{}
+	case "fortios:index/firewallserviceCategory:FirewallserviceCategory":
+		r = &FirewallserviceCategory{}
+	case "fortios:index/firewallserviceCustom:FirewallserviceCustom":
+		r = &FirewallserviceCustom{}
+	case "fortios:index/firewallserviceGroup:FirewallserviceGroup":
+		r = &FirewallserviceGroup{}
+	case "fortios:index/firewallshaperPeripshaper:FirewallshaperPeripshaper":
+		r = &FirewallshaperPeripshaper{}
+	case "fortios:index/firewallshaperTrafficshaper:FirewallshaperTrafficshaper":
+		r = &FirewallshaperTrafficshaper{}
+	case "fortios:index/firewallsshHostkey:FirewallsshHostkey":
+		r = &FirewallsshHostkey{}
+	case "fortios:index/firewallsshLocalca:FirewallsshLocalca":
+		r = &FirewallsshLocalca{}
+	case "fortios:index/firewallsshLocalkey:FirewallsshLocalkey":
+		r = &FirewallsshLocalkey{}
+	case "fortios:index/firewallsshSetting:FirewallsshSetting":
+		r = &FirewallsshSetting{}
+	case "fortios:index/firewallsslSetting:FirewallsslSetting":
+		r = &FirewallsslSetting{}
+	case "fortios:index/firewallwildcardfqdnCustom:FirewallwildcardfqdnCustom":
+		r = &FirewallwildcardfqdnCustom{}
+	case "fortios:index/firewallwildcardfqdnGroup:FirewallwildcardfqdnGroup":
+		r = &FirewallwildcardfqdnGroup{}
+	case "fortios:index/fmgDevicemanagerDevice:FmgDevicemanagerDevice":
+		r = &FmgDevicemanagerDevice{}
+	case "fortios:index/fmgDevicemanagerInstallDevice:FmgDevicemanagerInstallDevice":
+		r = &FmgDevicemanagerInstallDevice{}
+	case "fortios:index/fmgDevicemanagerInstallPolicypackage:FmgDevicemanagerInstallPolicypackage":
+		r = &FmgDevicemanagerInstallPolicypackage{}
+	case "fortios:index/fmgDevicemanagerScript:FmgDevicemanagerScript":
+		r = &FmgDevicemanagerScript{}
+	case "fortios:index/fmgDevicemanagerScriptExecute:FmgDevicemanagerScriptExecute":
+		r = &FmgDevicemanagerScriptExecute{}
+	case "fortios:index/fmgFirewallObjectAddress:FmgFirewallObjectAddress":
+		r = &FmgFirewallObjectAddress{}
+	case "fortios:index/fmgFirewallObjectIppool:FmgFirewallObjectIppool":
+		r = &FmgFirewallObjectIppool{}
+	case "fortios:index/fmgFirewallObjectService:FmgFirewallObjectService":
+		r = &FmgFirewallObjectService{}
+	case "fortios:index/fmgFirewallObjectVip:FmgFirewallObjectVip":
+		r = &FmgFirewallObjectVip{}
+	case "fortios:index/fmgFirewallSecurityPolicy:FmgFirewallSecurityPolicy":
+		r = &FmgFirewallSecurityPolicy{}
+	case "fortios:index/fmgFirewallSecurityPolicypackage:FmgFirewallSecurityPolicypackage":
+		r = &FmgFirewallSecurityPolicypackage{}
+	case "fortios:index/fmgJsonrpcRequest:FmgJsonrpcRequest":
+		r = &FmgJsonrpcRequest{}
+	case "fortios:index/fmgObjectAdomRevision:FmgObjectAdomRevision":
+		r = &FmgObjectAdomRevision{}
+	case "fortios:index/fmgSystemAdmin:FmgSystemAdmin":
+		r = &FmgSystemAdmin{}
+	case "fortios:index/fmgSystemAdminProfiles:FmgSystemAdminProfiles":
+		r = &FmgSystemAdminProfiles{}
+	case "fortios:index/fmgSystemAdminUser:FmgSystemAdminUser":
+		r = &FmgSystemAdminUser{}
+	case "fortios:index/fmgSystemAdom:FmgSystemAdom":
+		r = &FmgSystemAdom{}
+	case "fortios:index/fmgSystemDns:FmgSystemDns":
+		r = &FmgSystemDns{}
+	case "fortios:index/fmgSystemGlobal:FmgSystemGlobal":
+		r = &FmgSystemGlobal{}
+	case "fortios:index/fmgSystemLicenseForticare:FmgSystemLicenseForticare":
+		r = &FmgSystemLicenseForticare{}
+	case "fortios:index/fmgSystemLicenseVm:FmgSystemLicenseVm":
+		r = &FmgSystemLicenseVm{}
+	case "fortios:index/fmgSystemNetworkInterface:FmgSystemNetworkInterface":
+		r = &FmgSystemNetworkInterface{}
+	case "fortios:index/fmgSystemNetworkRoute:FmgSystemNetworkRoute":
+		r = &FmgSystemNetworkRoute{}
+	case "fortios:index/fmgSystemNtp:FmgSystemNtp":
+		r = &FmgSystemNtp{}
+	case "fortios:index/fmgSystemSyslogserver:FmgSystemSyslogserver":
+		r = &FmgSystemSyslogserver{}
+	case "fortios:index/ftpproxyExplicit:FtpproxyExplicit":
+		r = &FtpproxyExplicit{}
+	case "fortios:index/icapProfile:IcapProfile":
+		r = &IcapProfile{}
+	case "fortios:index/icapServer:IcapServer":
+		r = &IcapServer{}
+	case "fortios:index/icapServergroup:IcapServergroup":
+		r = &IcapServergroup{}
+	case "fortios:index/ipsCustom:IpsCustom":
+		r = &IpsCustom{}
+	case "fortios:index/ipsDecoder:IpsDecoder":
+		r = &IpsDecoder{}
+	case "fortios:index/ipsGlobal:IpsGlobal":
+		r = &IpsGlobal{}
+	case "fortios:index/ipsRule:IpsRule":
+		r = &IpsRule{}
+	case "fortios:index/ipsRulesettings:IpsRulesettings":
+		r = &IpsRulesettings{}
+	case "fortios:index/ipsSensor:IpsSensor":
+		r = &IpsSensor{}
+	case "fortios:index/ipsSettings:IpsSettings":
+		r = &IpsSettings{}
+	case "fortios:index/ipsViewmap:IpsViewmap":
+		r = &IpsViewmap{}
+	case "fortios:index/jsonGenericApi:JsonGenericApi":
+		r = &JsonGenericApi{}
+	case "fortios:index/logCustomfield:LogCustomfield":
+		r = &LogCustomfield{}
+	case "fortios:index/logEventfilter:LogEventfilter":
+		r = &LogEventfilter{}
+	case "fortios:index/logGuidisplay:LogGuidisplay":
+		r = &LogGuidisplay{}
+	case "fortios:index/logSetting:LogSetting":
+		r = &LogSetting{}
+	case "fortios:index/logSyslogSetting:LogSyslogSetting":
+		r = &LogSyslogSetting{}
+	case "fortios:index/logThreatweight:LogThreatweight":
+		r = &LogThreatweight{}
+	case "fortios:index/logdiskFilter:LogdiskFilter":
+		r = &LogdiskFilter{}
+	case "fortios:index/logdiskSetting:LogdiskSetting":
+		r = &LogdiskSetting{}
+	case "fortios:index/logfortianalyzer2Filter:Logfortianalyzer2Filter":
+		r = &Logfortianalyzer2Filter{}
+	case "fortios:index/logfortianalyzer2Overridefilter:Logfortianalyzer2Overridefilter":
+		r = &Logfortianalyzer2Overridefilter{}
+	case "fortios:index/logfortianalyzer2Overridesetting:Logfortianalyzer2Overridesetting":
+		r = &Logfortianalyzer2Overridesetting{}
+	case "fortios:index/logfortianalyzer2Setting:Logfortianalyzer2Setting":
+		r = &Logfortianalyzer2Setting{}
+	case "fortios:index/logfortianalyzer3Filter:Logfortianalyzer3Filter":
+		r = &Logfortianalyzer3Filter{}
+	case "fortios:index/logfortianalyzer3Overridefilter:Logfortianalyzer3Overridefilter":
+		r = &Logfortianalyzer3Overridefilter{}
+	case "fortios:index/logfortianalyzer3Overridesetting:Logfortianalyzer3Overridesetting":
+		r = &Logfortianalyzer3Overridesetting{}
+	case "fortios:index/logfortianalyzer3Setting:Logfortianalyzer3Setting":
+		r = &Logfortianalyzer3Setting{}
+	case "fortios:index/logfortianalyzerFilter:LogfortianalyzerFilter":
+		r = &LogfortianalyzerFilter{}
+	case "fortios:index/logfortianalyzerOverridefilter:LogfortianalyzerOverridefilter":
+		r = &LogfortianalyzerOverridefilter{}
+	case "fortios:index/logfortianalyzerOverridesetting:LogfortianalyzerOverridesetting":
+		r = &LogfortianalyzerOverridesetting{}
+	case "fortios:index/logfortianalyzerSetting:LogfortianalyzerSetting":
+		r = &LogfortianalyzerSetting{}
+	case "fortios:index/logfortianalyzercloudFilter:LogfortianalyzercloudFilter":
+		r = &LogfortianalyzercloudFilter{}
+	case "fortios:index/logfortianalyzercloudOverridefilter:LogfortianalyzercloudOverridefilter":
+		r = &LogfortianalyzercloudOverridefilter{}
+	case "fortios:index/logfortianalyzercloudOverridesetting:LogfortianalyzercloudOverridesetting":
+		r = &LogfortianalyzercloudOverridesetting{}
+	case "fortios:index/logfortianalyzercloudSetting:LogfortianalyzercloudSetting":
+		r = &LogfortianalyzercloudSetting{}
+	case "fortios:index/logfortiguardFilter:LogfortiguardFilter":
+		r = &LogfortiguardFilter{}
+	case "fortios:index/logfortiguardOverridefilter:LogfortiguardOverridefilter":
+		r = &LogfortiguardOverridefilter{}
+	case "fortios:index/logfortiguardOverridesetting:LogfortiguardOverridesetting":
+		r = &LogfortiguardOverridesetting{}
+	case "fortios:index/logfortiguardSetting:LogfortiguardSetting":
+		r = &LogfortiguardSetting{}
+	case "fortios:index/logmemoryFilter:LogmemoryFilter":
+		r = &LogmemoryFilter{}
+	case "fortios:index/logmemoryGlobalsetting:LogmemoryGlobalsetting":
+		r = &LogmemoryGlobalsetting{}
+	case "fortios:index/logmemorySetting:LogmemorySetting":
+		r = &LogmemorySetting{}
+	case "fortios:index/lognulldeviceFilter:LognulldeviceFilter":
+		r = &LognulldeviceFilter{}
+	case "fortios:index/lognulldeviceSetting:LognulldeviceSetting":
+		r = &LognulldeviceSetting{}
+	case "fortios:index/logsyslogd2Filter:Logsyslogd2Filter":
+		r = &Logsyslogd2Filter{}
+	case "fortios:index/logsyslogd2Overridefilter:Logsyslogd2Overridefilter":
+		r = &Logsyslogd2Overridefilter{}
+	case "fortios:index/logsyslogd2Overridesetting:Logsyslogd2Overridesetting":
+		r = &Logsyslogd2Overridesetting{}
+	case "fortios:index/logsyslogd2Setting:Logsyslogd2Setting":
+		r = &Logsyslogd2Setting{}
+	case "fortios:index/logsyslogd3Filter:Logsyslogd3Filter":
+		r = &Logsyslogd3Filter{}
+	case "fortios:index/logsyslogd3Overridefilter:Logsyslogd3Overridefilter":
+		r = &Logsyslogd3Overridefilter{}
+	case "fortios:index/logsyslogd3Overridesetting:Logsyslogd3Overridesetting":
+		r = &Logsyslogd3Overridesetting{}
+	case "fortios:index/logsyslogd3Setting:Logsyslogd3Setting":
+		r = &Logsyslogd3Setting{}
+	case "fortios:index/logsyslogd4Filter:Logsyslogd4Filter":
+		r = &Logsyslogd4Filter{}
+	case "fortios:index/logsyslogd4Overridefilter:Logsyslogd4Overridefilter":
+		r = &Logsyslogd4Overridefilter{}
+	case "fortios:index/logsyslogd4Overridesetting:Logsyslogd4Overridesetting":
+		r = &Logsyslogd4Overridesetting{}
+	case "fortios:index/logsyslogd4Setting:Logsyslogd4Setting":
+		r = &Logsyslogd4Setting{}
+	case "fortios:index/logsyslogdFilter:LogsyslogdFilter":
+		r = &LogsyslogdFilter{}
+	case "fortios:index/logsyslogdOverridefilter:LogsyslogdOverridefilter":
+		r = &LogsyslogdOverridefilter{}
+	case "fortios:index/logsyslogdOverridesetting:LogsyslogdOverridesetting":
+		r = &LogsyslogdOverridesetting{}
+	case "fortios:index/logsyslogdSetting:LogsyslogdSetting":
+		r = &LogsyslogdSetting{}
+	case "fortios:index/logtacacsaccounting2Filter:Logtacacsaccounting2Filter":
+		r = &Logtacacsaccounting2Filter{}
+	case "fortios:index/logtacacsaccounting2Setting:Logtacacsaccounting2Setting":
+		r = &Logtacacsaccounting2Setting{}
+	case "fortios:index/logtacacsaccounting3Filter:Logtacacsaccounting3Filter":
+		r = &Logtacacsaccounting3Filter{}
+	case "fortios:index/logtacacsaccounting3Setting:Logtacacsaccounting3Setting":
+		r = &Logtacacsaccounting3Setting{}
+	case "fortios:index/logtacacsaccountingFilter:LogtacacsaccountingFilter":
+		r = &LogtacacsaccountingFilter{}
+	case "fortios:index/logtacacsaccountingSetting:LogtacacsaccountingSetting":
+		r = &LogtacacsaccountingSetting{}
+	case "fortios:index/logwebtrendsFilter:LogwebtrendsFilter":
+		r = &LogwebtrendsFilter{}
+	case "fortios:index/logwebtrendsSetting:LogwebtrendsSetting":
+		r = &LogwebtrendsSetting{}
+	case "fortios:index/networkingInterfacePort:NetworkingInterfacePort":
+		r = &NetworkingInterfacePort{}
+	case "fortios:index/networkingRouteStatic:NetworkingRouteStatic":
+		r = &NetworkingRouteStatic{}
+	case "fortios:index/nsxtServicechain:NsxtServicechain":
+		r = &NsxtServicechain{}
+	case "fortios:index/nsxtSetting:NsxtSetting":
+		r = &NsxtSetting{}
+	case "fortios:index/reportChart:ReportChart":
+		r = &ReportChart{}
+	case "fortios:index/reportDataset:ReportDataset":
+		r = &ReportDataset{}
+	case "fortios:index/reportLayout:ReportLayout":
+		r = &ReportLayout{}
+	case "fortios:index/reportSetting:ReportSetting":
+		r = &ReportSetting{}
+	case "fortios:index/reportStyle:ReportStyle":
+		r = &ReportStyle{}
+	case "fortios:index/reportTheme:ReportTheme":
+		r = &ReportTheme{}
+	case "fortios:index/routerAccesslist6:RouterAccesslist6":
+		r = &RouterAccesslist6{}
+	case "fortios:index/routerAccesslist:RouterAccesslist":
+		r = &RouterAccesslist{}
+	case "fortios:index/routerAspathlist:RouterAspathlist":
+		r = &RouterAspathlist{}
+	case "fortios:index/routerAuthpath:RouterAuthpath":
+		r = &RouterAuthpath{}
+	case "fortios:index/routerBfd6:RouterBfd6":
+		r = &RouterBfd6{}
+	case "fortios:index/routerBfd:RouterBfd":
+		r = &RouterBfd{}
+	case "fortios:index/routerBgp:RouterBgp":
+		r = &RouterBgp{}
+	case "fortios:index/routerCommunitylist:RouterCommunitylist":
+		r = &RouterCommunitylist{}
+	case "fortios:index/routerIsis:RouterIsis":
+		r = &RouterIsis{}
+	case "fortios:index/routerKeychain:RouterKeychain":
+		r = &RouterKeychain{}
+	case "fortios:index/routerMulticast6:RouterMulticast6":
+		r = &RouterMulticast6{}
+	case "fortios:index/routerMulticast:RouterMulticast":
+		r = &RouterMulticast{}
+	case "fortios:index/routerMulticastflow:RouterMulticastflow":
+		r = &RouterMulticastflow{}
+	case "fortios:index/routerOspf6:RouterOspf6":
+		r = &RouterOspf6{}
+	case "fortios:index/routerOspf:RouterOspf":
+		r = &RouterOspf{}
+	case "fortios:index/routerPolicy6:RouterPolicy6":
+		r = &RouterPolicy6{}
+	case "fortios:index/routerPolicy:RouterPolicy":
+		r = &RouterPolicy{}
+	case "fortios:index/routerPrefixlist6:RouterPrefixlist6":
+		r = &RouterPrefixlist6{}
+	case "fortios:index/routerPrefixlist:RouterPrefixlist":
+		r = &RouterPrefixlist{}
+	case "fortios:index/routerRip:RouterRip":
+		r = &RouterRip{}
+	case "fortios:index/routerRipng:RouterRipng":
+		r = &RouterRipng{}
+	case "fortios:index/routerRoutemap:RouterRoutemap":
+		r = &RouterRoutemap{}
+	case "fortios:index/routerSetting:RouterSetting":
+		r = &RouterSetting{}
+	case "fortios:index/routerStatic6:RouterStatic6":
+		r = &RouterStatic6{}
+	case "fortios:index/routerStatic:RouterStatic":
+		r = &RouterStatic{}
+	case "fortios:index/routerbgpNeighbor:RouterbgpNeighbor":
+		r = &RouterbgpNeighbor{}
+	case "fortios:index/routerbgpNetwork6:RouterbgpNetwork6":
+		r = &RouterbgpNetwork6{}
+	case "fortios:index/routerbgpNetwork:RouterbgpNetwork":
+		r = &RouterbgpNetwork{}
+	case "fortios:index/routerospf6Ospf6interface:Routerospf6Ospf6interface":
+		r = &Routerospf6Ospf6interface{}
+	case "fortios:index/routerospfNeighbor:RouterospfNeighbor":
+		r = &RouterospfNeighbor{}
+	case "fortios:index/routerospfNetwork:RouterospfNetwork":
+		r = &RouterospfNetwork{}
+	case "fortios:index/routerospfOspfinterface:RouterospfOspfinterface":
+		r = &RouterospfOspfinterface{}
+	case "fortios:index/sctpfilterProfile:SctpfilterProfile":
+		r = &SctpfilterProfile{}
+	case "fortios:index/spamfilterBwl:SpamfilterBwl":
+		r = &SpamfilterBwl{}
+	case "fortios:index/spamfilterBword:SpamfilterBword":
+		r = &SpamfilterBword{}
+	case "fortios:index/spamfilterDnsbl:SpamfilterDnsbl":
+		r = &SpamfilterDnsbl{}
+	case "fortios:index/spamfilterFortishield:SpamfilterFortishield":
+		r = &SpamfilterFortishield{}
+	case "fortios:index/spamfilterIptrust:SpamfilterIptrust":
+		r = &SpamfilterIptrust{}
+	case "fortios:index/spamfilterMheader:SpamfilterMheader":
+		r = &SpamfilterMheader{}
+	case "fortios:index/spamfilterOptions:SpamfilterOptions":
+		r = &SpamfilterOptions{}
+	case "fortios:index/spamfilterProfile:SpamfilterProfile":
+		r = &SpamfilterProfile{}
+	case "fortios:index/sshfilterProfile:SshfilterProfile":
+		r = &SshfilterProfile{}
+	case "fortios:index/switchcontroller8021Xsettings:Switchcontroller8021Xsettings":
+		r = &Switchcontroller8021Xsettings{}
+	case "fortios:index/switchcontrollerCustomcommand:SwitchcontrollerCustomcommand":
+		r = &SwitchcontrollerCustomcommand{}
+	case "fortios:index/switchcontrollerDynamicportpolicy:SwitchcontrollerDynamicportpolicy":
+		r = &SwitchcontrollerDynamicportpolicy{}
+	case "fortios:index/switchcontrollerFlowtracking:SwitchcontrollerFlowtracking":
+		r = &SwitchcontrollerFlowtracking{}
+	case "fortios:index/switchcontrollerFortilinksettings:SwitchcontrollerFortilinksettings":
+		r = &SwitchcontrollerFortilinksettings{}
+	case "fortios:index/switchcontrollerGlobal:SwitchcontrollerGlobal":
+		r = &SwitchcontrollerGlobal{}
+	case "fortios:index/switchcontrollerIgmpsnooping:SwitchcontrollerIgmpsnooping":
+		r = &SwitchcontrollerIgmpsnooping{}
+	case "fortios:index/switchcontrollerLldpprofile:SwitchcontrollerLldpprofile":
+		r = &SwitchcontrollerLldpprofile{}
+	case "fortios:index/switchcontrollerLldpsettings:SwitchcontrollerLldpsettings":
+		r = &SwitchcontrollerLldpsettings{}
+	case "fortios:index/switchcontrollerLocation:SwitchcontrollerLocation":
+		r = &SwitchcontrollerLocation{}
+	case "fortios:index/switchcontrollerMacsyncsettings:SwitchcontrollerMacsyncsettings":
+		r = &SwitchcontrollerMacsyncsettings{}
+	case "fortios:index/switchcontrollerManagedswitch:SwitchcontrollerManagedswitch":
+		r = &SwitchcontrollerManagedswitch{}
+	case "fortios:index/switchcontrollerNacdevice:SwitchcontrollerNacdevice":
+		r = &SwitchcontrollerNacdevice{}
+	case "fortios:index/switchcontrollerNacsettings:SwitchcontrollerNacsettings":
+		r = &SwitchcontrollerNacsettings{}
+	case "fortios:index/switchcontrollerNetworkmonitorsettings:SwitchcontrollerNetworkmonitorsettings":
+		r = &SwitchcontrollerNetworkmonitorsettings{}
+	case "fortios:index/switchcontrollerPortpolicy:SwitchcontrollerPortpolicy":
+		r = &SwitchcontrollerPortpolicy{}
+	case "fortios:index/switchcontrollerQuarantine:SwitchcontrollerQuarantine":
+		r = &SwitchcontrollerQuarantine{}
+	case "fortios:index/switchcontrollerRemotelog:SwitchcontrollerRemotelog":
+		r = &SwitchcontrollerRemotelog{}
+	case "fortios:index/switchcontrollerSflow:SwitchcontrollerSflow":
+		r = &SwitchcontrollerSflow{}
+	case "fortios:index/switchcontrollerSnmpcommunity:SwitchcontrollerSnmpcommunity":
+		r = &SwitchcontrollerSnmpcommunity{}
+	case "fortios:index/switchcontrollerSnmpsysinfo:SwitchcontrollerSnmpsysinfo":
+		r = &SwitchcontrollerSnmpsysinfo{}
+	case "fortios:index/switchcontrollerSnmptrapthreshold:SwitchcontrollerSnmptrapthreshold":
+		r = &SwitchcontrollerSnmptrapthreshold{}
+	case "fortios:index/switchcontrollerSnmpuser:SwitchcontrollerSnmpuser":
+		r = &SwitchcontrollerSnmpuser{}
+	case "fortios:index/switchcontrollerStormcontrol:SwitchcontrollerStormcontrol":
+		r = &SwitchcontrollerStormcontrol{}
+	case "fortios:index/switchcontrollerStormcontrolpolicy:SwitchcontrollerStormcontrolpolicy":
+		r = &SwitchcontrollerStormcontrolpolicy{}
+	case "fortios:index/switchcontrollerStpinstance:SwitchcontrollerStpinstance":
+		r = &SwitchcontrollerStpinstance{}
+	case "fortios:index/switchcontrollerStpsettings:SwitchcontrollerStpsettings":
+		r = &SwitchcontrollerStpsettings{}
+	case "fortios:index/switchcontrollerSwitchgroup:SwitchcontrollerSwitchgroup":
+		r = &SwitchcontrollerSwitchgroup{}
+	case "fortios:index/switchcontrollerSwitchinterfacetag:SwitchcontrollerSwitchinterfacetag":
+		r = &SwitchcontrollerSwitchinterfacetag{}
+	case "fortios:index/switchcontrollerSwitchlog:SwitchcontrollerSwitchlog":
+		r = &SwitchcontrollerSwitchlog{}
+	case "fortios:index/switchcontrollerSwitchprofile:SwitchcontrollerSwitchprofile":
+		r = &SwitchcontrollerSwitchprofile{}
+	case "fortios:index/switchcontrollerSystem:SwitchcontrollerSystem":
+		r = &SwitchcontrollerSystem{}
+	case "fortios:index/switchcontrollerTrafficpolicy:SwitchcontrollerTrafficpolicy":
+		r = &SwitchcontrollerTrafficpolicy{}
+	case "fortios:index/switchcontrollerTrafficsniffer:SwitchcontrollerTrafficsniffer":
+		r = &SwitchcontrollerTrafficsniffer{}
+	case "fortios:index/switchcontrollerVirtualportpool:SwitchcontrollerVirtualportpool":
+		r = &SwitchcontrollerVirtualportpool{}
+	case "fortios:index/switchcontrollerVlan:SwitchcontrollerVlan":
+		r = &SwitchcontrollerVlan{}
+	case "fortios:index/switchcontrollerVlanpolicy:SwitchcontrollerVlanpolicy":
+		r = &SwitchcontrollerVlanpolicy{}
+	case "fortios:index/switchcontrollerautoconfigCustom:SwitchcontrollerautoconfigCustom":
+		r = &SwitchcontrollerautoconfigCustom{}
+	case "fortios:index/switchcontrollerautoconfigDefault:SwitchcontrollerautoconfigDefault":
+		r = &SwitchcontrollerautoconfigDefault{}
+	case "fortios:index/switchcontrollerautoconfigPolicy:SwitchcontrollerautoconfigPolicy":
+		r = &SwitchcontrollerautoconfigPolicy{}
+	case "fortios:index/switchcontrollerinitialconfigTemplate:SwitchcontrollerinitialconfigTemplate":
+		r = &SwitchcontrollerinitialconfigTemplate{}
+	case "fortios:index/switchcontrollerinitialconfigVlans:SwitchcontrollerinitialconfigVlans":
+		r = &SwitchcontrollerinitialconfigVlans{}
+	case "fortios:index/switchcontrollerptpPolicy:SwitchcontrollerptpPolicy":
+		r = &SwitchcontrollerptpPolicy{}
+	case "fortios:index/switchcontrollerptpSettings:SwitchcontrollerptpSettings":
+		r = &SwitchcontrollerptpSettings{}
+	case "fortios:index/switchcontrollerqosDot1pmap:SwitchcontrollerqosDot1pmap":
+		r = &SwitchcontrollerqosDot1pmap{}
+	case "fortios:index/switchcontrollerqosIpdscpmap:SwitchcontrollerqosIpdscpmap":
+		r = &SwitchcontrollerqosIpdscpmap{}
+	case "fortios:index/switchcontrollerqosQospolicy:SwitchcontrollerqosQospolicy":
+		r = &SwitchcontrollerqosQospolicy{}
+	case "fortios:index/switchcontrollerqosQueuepolicy:SwitchcontrollerqosQueuepolicy":
+		r = &SwitchcontrollerqosQueuepolicy{}
+	case "fortios:index/switchcontrollersecuritypolicy8021X:Switchcontrollersecuritypolicy8021X":
+		r = &Switchcontrollersecuritypolicy8021X{}
+	case "fortios:index/switchcontrollersecuritypolicyCaptiveportal:SwitchcontrollersecuritypolicyCaptiveportal":
+		r = &SwitchcontrollersecuritypolicyCaptiveportal{}
+	case "fortios:index/switchcontrollersecuritypolicyLocalaccess:SwitchcontrollersecuritypolicyLocalaccess":
+		r = &SwitchcontrollersecuritypolicyLocalaccess{}
+	case "fortios:index/system3gmodemCustom:System3gmodemCustom":
+		r = &System3gmodemCustom{}
+	case "fortios:index/systemAccprofile:SystemAccprofile":
+		r = &SystemAccprofile{}
+	case "fortios:index/systemAcme:SystemAcme":
+		r = &SystemAcme{}
+	case "fortios:index/systemAdmin:SystemAdmin":
+		r = &SystemAdmin{}
+	case "fortios:index/systemAdminAdministrator:SystemAdminAdministrator":
+		r = &SystemAdminAdministrator{}
+	case "fortios:index/systemAdminProfiles:SystemAdminProfiles":
+		r = &SystemAdminProfiles{}
+	case "fortios:index/systemAffinityinterrupt:SystemAffinityinterrupt":
+		r = &SystemAffinityinterrupt{}
+	case "fortios:index/systemAffinitypacketredistribution:SystemAffinitypacketredistribution":
+		r = &SystemAffinitypacketredistribution{}
+	case "fortios:index/systemAlarm:SystemAlarm":
+		r = &SystemAlarm{}
+	case "fortios:index/systemAlias:SystemAlias":
+		r = &SystemAlias{}
+	case "fortios:index/systemApiuser:SystemApiuser":
+		r = &SystemApiuser{}
+	case "fortios:index/systemApiuserSetting:SystemApiuserSetting":
+		r = &SystemApiuserSetting{}
+	case "fortios:index/systemArptable:SystemArptable":
+		r = &SystemArptable{}
+	case "fortios:index/systemAutoinstall:SystemAutoinstall":
+		r = &SystemAutoinstall{}
+	case "fortios:index/systemAutomationaction:SystemAutomationaction":
+		r = &SystemAutomationaction{}
+	case "fortios:index/systemAutomationdestination:SystemAutomationdestination":
+		r = &SystemAutomationdestination{}
+	case "fortios:index/systemAutomationstitch:SystemAutomationstitch":
+		r = &SystemAutomationstitch{}
+	case "fortios:index/systemAutomationtrigger:SystemAutomationtrigger":
+		r = &SystemAutomationtrigger{}
+	case "fortios:index/systemAutoscript:SystemAutoscript":
+		r = &SystemAutoscript{}
+	case "fortios:index/systemCentralmanagement:SystemCentralmanagement":
+		r = &SystemCentralmanagement{}
+	case "fortios:index/systemClustersync:SystemClustersync":
+		r = &SystemClustersync{}
+	case "fortios:index/systemConsole:SystemConsole":
+		r = &SystemConsole{}
+	case "fortios:index/systemCsf:SystemCsf":
+		r = &SystemCsf{}
+	case "fortios:index/systemCustomlanguage:SystemCustomlanguage":
+		r = &SystemCustomlanguage{}
+	case "fortios:index/systemDdns:SystemDdns":
+		r = &SystemDdns{}
+	case "fortios:index/systemDedicatedmgmt:SystemDedicatedmgmt":
+		r = &SystemDedicatedmgmt{}
+	case "fortios:index/systemDns64:SystemDns64":
+		r = &SystemDns64{}
+	case "fortios:index/systemDns:SystemDns":
+		r = &SystemDns{}
+	case "fortios:index/systemDnsdatabase:SystemDnsdatabase":
+		r = &SystemDnsdatabase{}
+	case "fortios:index/systemDnsserver:SystemDnsserver":
+		r = &SystemDnsserver{}
+	case "fortios:index/systemDscpbasedpriority:SystemDscpbasedpriority":
+		r = &SystemDscpbasedpriority{}
+	case "fortios:index/systemEmailserver:SystemEmailserver":
+		r = &SystemEmailserver{}
+	case "fortios:index/systemExternalresource:SystemExternalresource":
+		r = &SystemExternalresource{}
+	case "fortios:index/systemFederatedupgrade:SystemFederatedupgrade":
+		r = &SystemFederatedupgrade{}
+	case "fortios:index/systemFipscc:SystemFipscc":
+		r = &SystemFipscc{}
+	case "fortios:index/systemFm:SystemFm":
+		r = &SystemFm{}
+	case "fortios:index/systemFortiai:SystemFortiai":
+		r = &SystemFortiai{}
+	case "fortios:index/systemFortiguard:SystemFortiguard":
+		r = &SystemFortiguard{}
+	case "fortios:index/systemFortimanager:SystemFortimanager":
+		r = &SystemFortimanager{}
+	case "fortios:index/systemFortindr:SystemFortindr":
+		r = &SystemFortindr{}
+	case "fortios:index/systemFortisandbox:SystemFortisandbox":
+		r = &SystemFortisandbox{}
+	case "fortios:index/systemFssopolling:SystemFssopolling":
+		r = &SystemFssopolling{}
+	case "fortios:index/systemFtmpush:SystemFtmpush":
+		r = &SystemFtmpush{}
+	case "fortios:index/systemGeneve:SystemGeneve":
+		r = &SystemGeneve{}
+	case "fortios:index/systemGeoipcountry:SystemGeoipcountry":
+		r = &SystemGeoipcountry{}
+	case "fortios:index/systemGeoipoverride:SystemGeoipoverride":
+		r = &SystemGeoipoverride{}
+	case "fortios:index/systemGlobal:SystemGlobal":
+		r = &SystemGlobal{}
+	case "fortios:index/systemGretunnel:SystemGretunnel":
+		r = &SystemGretunnel{}
+	case "fortios:index/systemHa:SystemHa":
+		r = &SystemHa{}
+	case "fortios:index/systemHamonitor:SystemHamonitor":
+		r = &SystemHamonitor{}
+	case "fortios:index/systemIke:SystemIke":
+		r = &SystemIke{}
+	case "fortios:index/systemInterface:SystemInterface":
+		r = &SystemInterface{}
+	case "fortios:index/systemIpam:SystemIpam":
+		r = &SystemIpam{}
+	case "fortios:index/systemIpiptunnel:SystemIpiptunnel":
+		r = &SystemIpiptunnel{}
+	case "fortios:index/systemIps:SystemIps":
+		r = &SystemIps{}
+	case "fortios:index/systemIpsecaggregate:SystemIpsecaggregate":
+		r = &SystemIpsecaggregate{}
+	case "fortios:index/systemIpsurlfilterdns6:SystemIpsurlfilterdns6":
+		r = &SystemIpsurlfilterdns6{}
+	case "fortios:index/systemIpsurlfilterdns:SystemIpsurlfilterdns":
+		r = &SystemIpsurlfilterdns{}
+	case "fortios:index/systemIpv6neighborcache:SystemIpv6neighborcache":
+		r = &SystemIpv6neighborcache{}
+	case "fortios:index/systemIpv6tunnel:SystemIpv6tunnel":
+		r = &SystemIpv6tunnel{}
+	case "fortios:index/systemLicenseForticare:SystemLicenseForticare":
+		r = &SystemLicenseForticare{}
+	case "fortios:index/systemLicenseVdom:SystemLicenseVdom":
+		r = &SystemLicenseVdom{}
+	case "fortios:index/systemLicenseVm:SystemLicenseVm":
+		r = &SystemLicenseVm{}
+	case "fortios:index/systemLinkmonitor:SystemLinkmonitor":
+		r = &SystemLinkmonitor{}
+	case "fortios:index/systemLtemodem:SystemLtemodem":
+		r = &SystemLtemodem{}
+	case "fortios:index/systemMacaddresstable:SystemMacaddresstable":
+		r = &SystemMacaddresstable{}
+	case "fortios:index/systemManagementtunnel:SystemManagementtunnel":
+		r = &SystemManagementtunnel{}
+	case "fortios:index/systemMobiletunnel:SystemMobiletunnel":
+		r = &SystemMobiletunnel{}
+	case "fortios:index/systemModem:SystemModem":
+		r = &SystemModem{}
+	case "fortios:index/systemNat64:SystemNat64":
+		r = &SystemNat64{}
+	case "fortios:index/systemNdproxy:SystemNdproxy":
+		r = &SystemNdproxy{}
+	case "fortios:index/systemNetflow:SystemNetflow":
+		r = &SystemNetflow{}
+	case "fortios:index/systemNetworkvisibility:SystemNetworkvisibility":
+		r = &SystemNetworkvisibility{}
+	case "fortios:index/systemNpu:SystemNpu":
+		r = &SystemNpu{}
+	case "fortios:index/systemNtp:SystemNtp":
+		r = &SystemNtp{}
+	case "fortios:index/systemObjecttagging:SystemObjecttagging":
+		r = &SystemObjecttagging{}
+	case "fortios:index/systemPasswordpolicy:SystemPasswordpolicy":
+		r = &SystemPasswordpolicy{}
+	case "fortios:index/systemPasswordpolicyguestadmin:SystemPasswordpolicyguestadmin":
+		r = &SystemPasswordpolicyguestadmin{}
+	case "fortios:index/systemPhysicalswitch:SystemPhysicalswitch":
+		r = &SystemPhysicalswitch{}
+	case "fortios:index/systemPppoeinterface:SystemPppoeinterface":
+		r = &SystemPppoeinterface{}
+	case "fortios:index/systemProberesponse:SystemProberesponse":
+		r = &SystemProberesponse{}
+	case "fortios:index/systemProxyarp:SystemProxyarp":
+		r = &SystemProxyarp{}
+	case "fortios:index/systemPtp:SystemPtp":
+		r = &SystemPtp{}
+	case "fortios:index/systemReplacemsggroup:SystemReplacemsggroup":
+		r = &SystemReplacemsggroup{}
+	case "fortios:index/systemReplacemsgimage:SystemReplacemsgimage":
+		r = &SystemReplacemsgimage{}
+	case "fortios:index/systemResourcelimits:SystemResourcelimits":
+		r = &SystemResourcelimits{}
+	case "fortios:index/systemSaml:SystemSaml":
+		r = &SystemSaml{}
+	case "fortios:index/systemSdnconnector:SystemSdnconnector":
+		r = &SystemSdnconnector{}
+	case "fortios:index/systemSdwan:SystemSdwan":
+		r = &SystemSdwan{}
+	case "fortios:index/systemSessionhelper:SystemSessionhelper":
+		r = &SystemSessionhelper{}
+	case "fortios:index/systemSessionttl:SystemSessionttl":
+		r = &SystemSessionttl{}
+	case "fortios:index/systemSettingDns:SystemSettingDns":
+		r = &SystemSettingDns{}
+	case "fortios:index/systemSettingGlobal:SystemSettingGlobal":
+		r = &SystemSettingGlobal{}
+	case "fortios:index/systemSettingNtp:SystemSettingNtp":
+		r = &SystemSettingNtp{}
+	case "fortios:index/systemSettings:SystemSettings":
+		r = &SystemSettings{}
+	case "fortios:index/systemSflow:SystemSflow":
+		r = &SystemSflow{}
+	case "fortios:index/systemSittunnel:SystemSittunnel":
+		r = &SystemSittunnel{}
+	case "fortios:index/systemSmsserver:SystemSmsserver":
+		r = &SystemSmsserver{}
+	case "fortios:index/systemSpeedtestschedule:SystemSpeedtestschedule":
+		r = &SystemSpeedtestschedule{}
+	case "fortios:index/systemSpeedtestserver:SystemSpeedtestserver":
+		r = &SystemSpeedtestserver{}
+	case "fortios:index/systemSsoadmin:SystemSsoadmin":
+		r = &SystemSsoadmin{}
+	case "fortios:index/systemSsoforticloudadmin:SystemSsoforticloudadmin":
+		r = &SystemSsoforticloudadmin{}
+	case "fortios:index/systemStandalonecluster:SystemStandalonecluster":
+		r = &SystemStandalonecluster{}
+	case "fortios:index/systemStorage:SystemStorage":
+		r = &SystemStorage{}
+	case "fortios:index/systemStp:SystemStp":
+		r = &SystemStp{}
+	case "fortios:index/systemSwitchinterface:SystemSwitchinterface":
+		r = &SystemSwitchinterface{}
+	case "fortios:index/systemTosbasedpriority:SystemTosbasedpriority":
+		r = &SystemTosbasedpriority{}
+	case "fortios:index/systemVdom:SystemVdom":
+		r = &SystemVdom{}
+	case "fortios:index/systemVdomSetting:SystemVdomSetting":
+		r = &SystemVdomSetting{}
+	case "fortios:index/systemVdomdns:SystemVdomdns":
+		r = &SystemVdomdns{}
+	case "fortios:index/systemVdomexception:SystemVdomexception":
+		r = &SystemVdomexception{}
+	case "fortios:index/systemVdomlink:SystemVdomlink":
+		r = &SystemVdomlink{}
+	case "fortios:index/systemVdomnetflow:SystemVdomnetflow":
+		r = &SystemVdomnetflow{}
+	case "fortios:index/systemVdomproperty:SystemVdomproperty":
+		r = &SystemVdomproperty{}
+	case "fortios:index/systemVdomradiusserver:SystemVdomradiusserver":
+		r = &SystemVdomradiusserver{}
+	case "fortios:index/systemVdomsflow:SystemVdomsflow":
+		r = &SystemVdomsflow{}
+	case "fortios:index/systemVirtualswitch:SystemVirtualswitch":
+		r = &SystemVirtualswitch{}
+	case "fortios:index/systemVirtualwanlink:SystemVirtualwanlink":
+		r = &SystemVirtualwanlink{}
+	case "fortios:index/systemVirtualwirepair:SystemVirtualwirepair":
+		r = &SystemVirtualwirepair{}
+	case "fortios:index/systemVnetunnel:SystemVnetunnel":
+		r = &SystemVnetunnel{}
+	case "fortios:index/systemVxlan:SystemVxlan":
+		r = &SystemVxlan{}
+	case "fortios:index/systemWccp:SystemWccp":
+		r = &SystemWccp{}
+	case "fortios:index/systemZone:SystemZone":
+		r = &SystemZone{}
+	case "fortios:index/systemautoupdatePushupdate:SystemautoupdatePushupdate":
+		r = &SystemautoupdatePushupdate{}
+	case "fortios:index/systemautoupdateSchedule:SystemautoupdateSchedule":
+		r = &SystemautoupdateSchedule{}
+	case "fortios:index/systemautoupdateTunneling:SystemautoupdateTunneling":
+		r = &SystemautoupdateTunneling{}
+	case "fortios:index/systemdhcp6Server:Systemdhcp6Server":
+		r = &Systemdhcp6Server{}
+	case "fortios:index/systemdhcpServer:SystemdhcpServer":
+		r = &SystemdhcpServer{}
+	case "fortios:index/systemlldpNetworkpolicy:SystemlldpNetworkpolicy":
+		r = &SystemlldpNetworkpolicy{}
+	case "fortios:index/systemreplacemsgAdmin:SystemreplacemsgAdmin":
+		r = &SystemreplacemsgAdmin{}
+	case "fortios:index/systemreplacemsgAlertmail:SystemreplacemsgAlertmail":
+		r = &SystemreplacemsgAlertmail{}
+	case "fortios:index/systemreplacemsgAuth:SystemreplacemsgAuth":
+		r = &SystemreplacemsgAuth{}
+	case "fortios:index/systemreplacemsgAutomation:SystemreplacemsgAutomation":
+		r = &SystemreplacemsgAutomation{}
+	case "fortios:index/systemreplacemsgDevicedetectionportal:SystemreplacemsgDevicedetectionportal":
+		r = &SystemreplacemsgDevicedetectionportal{}
+	case "fortios:index/systemreplacemsgEc:SystemreplacemsgEc":
+		r = &SystemreplacemsgEc{}
+	case "fortios:index/systemreplacemsgFortiguardwf:SystemreplacemsgFortiguardwf":
+		r = &SystemreplacemsgFortiguardwf{}
+	case "fortios:index/systemreplacemsgFtp:SystemreplacemsgFtp":
+		r = &SystemreplacemsgFtp{}
+	case "fortios:index/systemreplacemsgHttp:SystemreplacemsgHttp":
+		r = &SystemreplacemsgHttp{}
+	case "fortios:index/systemreplacemsgIcap:SystemreplacemsgIcap":
+		r = &SystemreplacemsgIcap{}
+	case "fortios:index/systemreplacemsgMail:SystemreplacemsgMail":
+		r = &SystemreplacemsgMail{}
+	case "fortios:index/systemreplacemsgNacquar:SystemreplacemsgNacquar":
+		r = &SystemreplacemsgNacquar{}
+	case "fortios:index/systemreplacemsgNntp:SystemreplacemsgNntp":
+		r = &SystemreplacemsgNntp{}
+	case "fortios:index/systemreplacemsgSpam:SystemreplacemsgSpam":
+		r = &SystemreplacemsgSpam{}
+	case "fortios:index/systemreplacemsgSslvpn:SystemreplacemsgSslvpn":
+		r = &SystemreplacemsgSslvpn{}
+	case "fortios:index/systemreplacemsgTrafficquota:SystemreplacemsgTrafficquota":
+		r = &SystemreplacemsgTrafficquota{}
+	case "fortios:index/systemreplacemsgUtm:SystemreplacemsgUtm":
+		r = &SystemreplacemsgUtm{}
+	case "fortios:index/systemreplacemsgWebproxy:SystemreplacemsgWebproxy":
+		r = &SystemreplacemsgWebproxy{}
+	case "fortios:index/systemsnmpCommunity:SystemsnmpCommunity":
+		r = &SystemsnmpCommunity{}
+	case "fortios:index/systemsnmpMibview:SystemsnmpMibview":
+		r = &SystemsnmpMibview{}
+	case "fortios:index/systemsnmpSysinfo:SystemsnmpSysinfo":
+		r = &SystemsnmpSysinfo{}
+	case "fortios:index/systemsnmpUser:SystemsnmpUser":
+		r = &SystemsnmpUser{}
+	case "fortios:index/userAdgrp:UserAdgrp":
+		r = &UserAdgrp{}
+	case "fortios:index/userCertificate:UserCertificate":
+		r = &UserCertificate{}
+	case "fortios:index/userDevice:UserDevice":
+		r = &UserDevice{}
+	case "fortios:index/userDeviceaccesslist:UserDeviceaccesslist":
+		r = &UserDeviceaccesslist{}
+	case "fortios:index/userDevicecategory:UserDevicecategory":
+		r = &UserDevicecategory{}
+	case "fortios:index/userDevicegroup:UserDevicegroup":
+		r = &UserDevicegroup{}
+	case "fortios:index/userDomaincontroller:UserDomaincontroller":
+		r = &UserDomaincontroller{}
+	case "fortios:index/userExchange:UserExchange":
+		r = &UserExchange{}
+	case "fortios:index/userFortitoken:UserFortitoken":
+		r = &UserFortitoken{}
+	case "fortios:index/userFsso:UserFsso":
+		r = &UserFsso{}
+	case "fortios:index/userFssopolling:UserFssopolling":
+		r = &UserFssopolling{}
+	case "fortios:index/userGroup:UserGroup":
+		r = &UserGroup{}
+	case "fortios:index/userKrbkeytab:UserKrbkeytab":
+		r = &UserKrbkeytab{}
+	case "fortios:index/userLdap:UserLdap":
+		r = &UserLdap{}
+	case "fortios:index/userLocal:UserLocal":
+		r = &UserLocal{}
+	case "fortios:index/userNacpolicy:UserNacpolicy":
+		r = &UserNacpolicy{}
+	case "fortios:index/userPasswordpolicy:UserPasswordpolicy":
+		r = &UserPasswordpolicy{}
+	case "fortios:index/userPeer:UserPeer":
+		r = &UserPeer{}
+	case "fortios:index/userPeergrp:UserPeergrp":
+		r = &UserPeergrp{}
+	case "fortios:index/userPop3:UserPop3":
+		r = &UserPop3{}
+	case "fortios:index/userQuarantine:UserQuarantine":
+		r = &UserQuarantine{}
+	case "fortios:index/userRadius:UserRadius":
+		r = &UserRadius{}
+	case "fortios:index/userSaml:UserSaml":
+		r = &UserSaml{}
+	case "fortios:index/userSecurityexemptlist:UserSecurityexemptlist":
+		r = &UserSecurityexemptlist{}
+	case "fortios:index/userSetting:UserSetting":
+		r = &UserSetting{}
+	case "fortios:index/userTacacs:UserTacacs":
+		r = &UserTacacs{}
+	case "fortios:index/videofilterProfile:VideofilterProfile":
+		r = &VideofilterProfile{}
+	case "fortios:index/videofilterYoutubechannelfilter:VideofilterYoutubechannelfilter":
+		r = &VideofilterYoutubechannelfilter{}
+	case "fortios:index/videofilterYoutubekey:VideofilterYoutubekey":
+		r = &VideofilterYoutubekey{}
+	case "fortios:index/voipProfile:VoipProfile":
+		r = &VoipProfile{}
+	case "fortios:index/vpnL2tp:VpnL2tp":
+		r = &VpnL2tp{}
+	case "fortios:index/vpnOcvpn:VpnOcvpn":
+		r = &VpnOcvpn{}
+	case "fortios:index/vpnPptp:VpnPptp":
+		r = &VpnPptp{}
+	case "fortios:index/vpncertificateCa:VpncertificateCa":
+		r = &VpncertificateCa{}
+	case "fortios:index/vpncertificateCrl:VpncertificateCrl":
+		r = &VpncertificateCrl{}
+	case "fortios:index/vpncertificateLocal:VpncertificateLocal":
+		r = &VpncertificateLocal{}
+	case "fortios:index/vpncertificateOcspserver:VpncertificateOcspserver":
+		r = &VpncertificateOcspserver{}
+	case "fortios:index/vpncertificateRemote:VpncertificateRemote":
+		r = &VpncertificateRemote{}
+	case "fortios:index/vpncertificateSetting:VpncertificateSetting":
+		r = &VpncertificateSetting{}
+	case "fortios:index/vpnipsecConcentrator:VpnipsecConcentrator":
+		r = &VpnipsecConcentrator{}
+	case "fortios:index/vpnipsecFec:VpnipsecFec":
+		r = &VpnipsecFec{}
+	case "fortios:index/vpnipsecForticlient:VpnipsecForticlient":
+		r = &VpnipsecForticlient{}
+	case "fortios:index/vpnipsecManualkey:VpnipsecManualkey":
+		r = &VpnipsecManualkey{}
+	case "fortios:index/vpnipsecManualkeyinterface:VpnipsecManualkeyinterface":
+		r = &VpnipsecManualkeyinterface{}
+	case "fortios:index/vpnipsecPhase1:VpnipsecPhase1":
+		r = &VpnipsecPhase1{}
+	case "fortios:index/vpnipsecPhase1interface:VpnipsecPhase1interface":
+		r = &VpnipsecPhase1interface{}
+	case "fortios:index/vpnipsecPhase2:VpnipsecPhase2":
+		r = &VpnipsecPhase2{}
+	case "fortios:index/vpnipsecPhase2interface:VpnipsecPhase2interface":
+		r = &VpnipsecPhase2interface{}
+	case "fortios:index/vpnsslClient:VpnsslClient":
+		r = &VpnsslClient{}
+	case "fortios:index/vpnsslSettings:VpnsslSettings":
+		r = &VpnsslSettings{}
+	case "fortios:index/vpnsslwebHostchecksoftware:VpnsslwebHostchecksoftware":
+		r = &VpnsslwebHostchecksoftware{}
+	case "fortios:index/vpnsslwebPortal:VpnsslwebPortal":
+		r = &VpnsslwebPortal{}
+	case "fortios:index/vpnsslwebRealm:VpnsslwebRealm":
+		r = &VpnsslwebRealm{}
+	case "fortios:index/vpnsslwebUserbookmark:VpnsslwebUserbookmark":
+		r = &VpnsslwebUserbookmark{}
+	case "fortios:index/vpnsslwebUsergroupbookmark:VpnsslwebUsergroupbookmark":
+		r = &VpnsslwebUsergroupbookmark{}
+	case "fortios:index/wafMainclass:WafMainclass":
+		r = &WafMainclass{}
+	case "fortios:index/wafProfile:WafProfile":
+		r = &WafProfile{}
+	case "fortios:index/wafSignature:WafSignature":
+		r = &WafSignature{}
+	case "fortios:index/wafSubclass:WafSubclass":
+		r = &WafSubclass{}
+	case "fortios:index/wanoptAuthgroup:WanoptAuthgroup":
+		r = &WanoptAuthgroup{}
+	case "fortios:index/wanoptCacheservice:WanoptCacheservice":
+		r = &WanoptCacheservice{}
+	case "fortios:index/wanoptContentdeliverynetworkrule:WanoptContentdeliverynetworkrule":
+		r = &WanoptContentdeliverynetworkrule{}
+	case "fortios:index/wanoptPeer:WanoptPeer":
+		r = &WanoptPeer{}
+	case "fortios:index/wanoptProfile:WanoptProfile":
+		r = &WanoptProfile{}
+	case "fortios:index/wanoptRemotestorage:WanoptRemotestorage":
+		r = &WanoptRemotestorage{}
+	case "fortios:index/wanoptSettings:WanoptSettings":
+		r = &WanoptSettings{}
+	case "fortios:index/wanoptWebcache:WanoptWebcache":
+		r = &WanoptWebcache{}
+	case "fortios:index/webfilterContent:WebfilterContent":
+		r = &WebfilterContent{}
+	case "fortios:index/webfilterContentheader:WebfilterContentheader":
+		r = &WebfilterContentheader{}
+	case "fortios:index/webfilterFortiguard:WebfilterFortiguard":
+		r = &WebfilterFortiguard{}
+	case "fortios:index/webfilterFtgdlocalcat:WebfilterFtgdlocalcat":
+		r = &WebfilterFtgdlocalcat{}
+	case "fortios:index/webfilterFtgdlocalrating:WebfilterFtgdlocalrating":
+		r = &WebfilterFtgdlocalrating{}
+	case "fortios:index/webfilterIpsurlfiltercachesetting:WebfilterIpsurlfiltercachesetting":
+		r = &WebfilterIpsurlfiltercachesetting{}
+	case "fortios:index/webfilterIpsurlfiltersetting6:WebfilterIpsurlfiltersetting6":
+		r = &WebfilterIpsurlfiltersetting6{}
+	case "fortios:index/webfilterIpsurlfiltersetting:WebfilterIpsurlfiltersetting":
+		r = &WebfilterIpsurlfiltersetting{}
+	case "fortios:index/webfilterOverride:WebfilterOverride":
+		r = &WebfilterOverride{}
+	case "fortios:index/webfilterProfile:WebfilterProfile":
+		r = &WebfilterProfile{}
+	case "fortios:index/webfilterSearchengine:WebfilterSearchengine":
+		r = &WebfilterSearchengine{}
+	case "fortios:index/webfilterUrlfilter:WebfilterUrlfilter":
+		r = &WebfilterUrlfilter{}
+	case "fortios:index/webproxyDebugurl:WebproxyDebugurl":
+		r = &WebproxyDebugurl{}
+	case "fortios:index/webproxyExplicit:WebproxyExplicit":
+		r = &WebproxyExplicit{}
+	case "fortios:index/webproxyForwardserver:WebproxyForwardserver":
+		r = &WebproxyForwardserver{}
+	case "fortios:index/webproxyForwardservergroup:WebproxyForwardservergroup":
+		r = &WebproxyForwardservergroup{}
+	case "fortios:index/webproxyGlobal:WebproxyGlobal":
+		r = &WebproxyGlobal{}
+	case "fortios:index/webproxyProfile:WebproxyProfile":
+		r = &WebproxyProfile{}
+	case "fortios:index/webproxyUrlmatch:WebproxyUrlmatch":
+		r = &WebproxyUrlmatch{}
+	case "fortios:index/webproxyWisp:WebproxyWisp":
+		r = &WebproxyWisp{}
+	case "fortios:index/wirelesscontrollerAccesscontrollist:WirelesscontrollerAccesscontrollist":
+		r = &WirelesscontrollerAccesscontrollist{}
+	case "fortios:index/wirelesscontrollerAddress:WirelesscontrollerAddress":
+		r = &WirelesscontrollerAddress{}
+	case "fortios:index/wirelesscontrollerAddrgrp:WirelesscontrollerAddrgrp":
+		r = &WirelesscontrollerAddrgrp{}
+	case "fortios:index/wirelesscontrollerApcfgprofile:WirelesscontrollerApcfgprofile":
+		r = &WirelesscontrollerApcfgprofile{}
+	case "fortios:index/wirelesscontrollerApstatus:WirelesscontrollerApstatus":
+		r = &WirelesscontrollerApstatus{}
+	case "fortios:index/wirelesscontrollerArrpprofile:WirelesscontrollerArrpprofile":
+		r = &WirelesscontrollerArrpprofile{}
+	case "fortios:index/wirelesscontrollerBleprofile:WirelesscontrollerBleprofile":
+		r = &WirelesscontrollerBleprofile{}
+	case "fortios:index/wirelesscontrollerBonjourprofile:WirelesscontrollerBonjourprofile":
+		r = &WirelesscontrollerBonjourprofile{}
+	case "fortios:index/wirelesscontrollerGlobal:WirelesscontrollerGlobal":
+		r = &WirelesscontrollerGlobal{}
+	case "fortios:index/wirelesscontrollerIntercontroller:WirelesscontrollerIntercontroller":
+		r = &WirelesscontrollerIntercontroller{}
+	case "fortios:index/wirelesscontrollerLog:WirelesscontrollerLog":
+		r = &WirelesscontrollerLog{}
+	case "fortios:index/wirelesscontrollerMpskprofile:WirelesscontrollerMpskprofile":
+		r = &WirelesscontrollerMpskprofile{}
+	case "fortios:index/wirelesscontrollerNacprofile:WirelesscontrollerNacprofile":
+		r = &WirelesscontrollerNacprofile{}
+	case "fortios:index/wirelesscontrollerQosprofile:WirelesscontrollerQosprofile":
+		r = &WirelesscontrollerQosprofile{}
+	case "fortios:index/wirelesscontrollerRegion:WirelesscontrollerRegion":
+		r = &WirelesscontrollerRegion{}
+	case "fortios:index/wirelesscontrollerSetting:WirelesscontrollerSetting":
+		r = &WirelesscontrollerSetting{}
+	case "fortios:index/wirelesscontrollerSnmp:WirelesscontrollerSnmp":
+		r = &WirelesscontrollerSnmp{}
+	case "fortios:index/wirelesscontrollerSsidpolicy:WirelesscontrollerSsidpolicy":
+		r = &WirelesscontrollerSsidpolicy{}
+	case "fortios:index/wirelesscontrollerSyslogprofile:WirelesscontrollerSyslogprofile":
+		r = &WirelesscontrollerSyslogprofile{}
+	case "fortios:index/wirelesscontrollerTimers:WirelesscontrollerTimers":
+		r = &WirelesscontrollerTimers{}
+	case "fortios:index/wirelesscontrollerUtmprofile:WirelesscontrollerUtmprofile":
+		r = &WirelesscontrollerUtmprofile{}
+	case "fortios:index/wirelesscontrollerVap:WirelesscontrollerVap":
+		r = &WirelesscontrollerVap{}
+	case "fortios:index/wirelesscontrollerVapgroup:WirelesscontrollerVapgroup":
+		r = &WirelesscontrollerVapgroup{}
+	case "fortios:index/wirelesscontrollerWagprofile:WirelesscontrollerWagprofile":
+		r = &WirelesscontrollerWagprofile{}
+	case "fortios:index/wirelesscontrollerWidsprofile:WirelesscontrollerWidsprofile":
+		r = &WirelesscontrollerWidsprofile{}
+	case "fortios:index/wirelesscontrollerWtp:WirelesscontrollerWtp":
+		r = &WirelesscontrollerWtp{}
+	case "fortios:index/wirelesscontrollerWtpgroup:WirelesscontrollerWtpgroup":
+		r = &WirelesscontrollerWtpgroup{}
+	case "fortios:index/wirelesscontrollerWtpprofile:WirelesscontrollerWtpprofile":
+		r = &WirelesscontrollerWtpprofile{}
+	case "fortios:index/wirelesscontrollerhotspot20Anqp3gppcellular:Wirelesscontrollerhotspot20Anqp3gppcellular":
+		r = &Wirelesscontrollerhotspot20Anqp3gppcellular{}
+	case "fortios:index/wirelesscontrollerhotspot20Anqpipaddresstype:Wirelesscontrollerhotspot20Anqpipaddresstype":
+		r = &Wirelesscontrollerhotspot20Anqpipaddresstype{}
+	case "fortios:index/wirelesscontrollerhotspot20Anqpnairealm:Wirelesscontrollerhotspot20Anqpnairealm":
+		r = &Wirelesscontrollerhotspot20Anqpnairealm{}
+	case "fortios:index/wirelesscontrollerhotspot20Anqpnetworkauthtype:Wirelesscontrollerhotspot20Anqpnetworkauthtype":
+		r = &Wirelesscontrollerhotspot20Anqpnetworkauthtype{}
+	case "fortios:index/wirelesscontrollerhotspot20Anqproamingconsortium:Wirelesscontrollerhotspot20Anqproamingconsortium":
+		r = &Wirelesscontrollerhotspot20Anqproamingconsortium{}
+	case "fortios:index/wirelesscontrollerhotspot20Anqpvenuename:Wirelesscontrollerhotspot20Anqpvenuename":
+		r = &Wirelesscontrollerhotspot20Anqpvenuename{}
+	case "fortios:index/wirelesscontrollerhotspot20Anqpvenueurl:Wirelesscontrollerhotspot20Anqpvenueurl":
+		r = &Wirelesscontrollerhotspot20Anqpvenueurl{}
+	case "fortios:index/wirelesscontrollerhotspot20H2qpadviceofcharge:Wirelesscontrollerhotspot20H2qpadviceofcharge":
+		r = &Wirelesscontrollerhotspot20H2qpadviceofcharge{}
+	case "fortios:index/wirelesscontrollerhotspot20H2qpconncapability:Wirelesscontrollerhotspot20H2qpconncapability":
+		r = &Wirelesscontrollerhotspot20H2qpconncapability{}
+	case "fortios:index/wirelesscontrollerhotspot20H2qpoperatorname:Wirelesscontrollerhotspot20H2qpoperatorname":
+		r = &Wirelesscontrollerhotspot20H2qpoperatorname{}
+	case "fortios:index/wirelesscontrollerhotspot20H2qposuprovider:Wirelesscontrollerhotspot20H2qposuprovider":
+		r = &Wirelesscontrollerhotspot20H2qposuprovider{}
+	case "fortios:index/wirelesscontrollerhotspot20H2qposuprovidernai:Wirelesscontrollerhotspot20H2qposuprovidernai":
+		r = &Wirelesscontrollerhotspot20H2qposuprovidernai{}
+	case "fortios:index/wirelesscontrollerhotspot20H2qptermsandconditions:Wirelesscontrollerhotspot20H2qptermsandconditions":
+		r = &Wirelesscontrollerhotspot20H2qptermsandconditions{}
+	case "fortios:index/wirelesscontrollerhotspot20H2qpwanmetric:Wirelesscontrollerhotspot20H2qpwanmetric":
+		r = &Wirelesscontrollerhotspot20H2qpwanmetric{}
+	case "fortios:index/wirelesscontrollerhotspot20Hsprofile:Wirelesscontrollerhotspot20Hsprofile":
+		r = &Wirelesscontrollerhotspot20Hsprofile{}
+	case "fortios:index/wirelesscontrollerhotspot20Icon:Wirelesscontrollerhotspot20Icon":
+		r = &Wirelesscontrollerhotspot20Icon{}
+	case "fortios:index/wirelesscontrollerhotspot20Qosmap:Wirelesscontrollerhotspot20Qosmap":
+		r = &Wirelesscontrollerhotspot20Qosmap{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -52,7 +1346,3242 @@ func init() {
 	version, _ := PkgVersion()
 	pulumi.RegisterResourceModule(
 		"fortios",
-		"index/alertEmailSetting",
+		"index/alertemailSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/antivirusHeuristic",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/antivirusProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/antivirusQuarantine",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/antivirusSettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/applicationCustom",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/applicationGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/applicationList",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/applicationName",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/applicationRulesettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/authenticationRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/authenticationScheme",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/authenticationSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/automationSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/certificateCa",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/certificateCrl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/certificateLocal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/certificateRemote",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/cifsDomaincontroller",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/cifsProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/credentialstoreDomaincontroller",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dlpDatatype",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dlpDictionary",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dlpFilepattern",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dlpFpdocsource",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dlpFpsensitivity",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dlpProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dlpSensitivity",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dlpSensor",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dlpSettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dnsfilterDomainfilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dnsfilterProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dpdkCpus",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/dpdkGlobal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/emailfilterBlockallowlist",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/emailfilterBwl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/emailfilterBword",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/emailfilterDnsbl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/emailfilterFortishield",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/emailfilterIptrust",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/emailfilterMheader",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/emailfilterOptions",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/emailfilterProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/endpointcontrolClient",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/endpointcontrolFctems",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/endpointcontrolForticlientems",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/endpointcontrolForticlientregistrationsync",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/endpointcontrolProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/endpointcontrolRegisteredforticlient",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/endpointcontrolSettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/extendercontrollerDataplan",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/extendercontrollerExtender",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/extendercontrollerExtender1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/extendercontrollerExtenderprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/extensioncontrollerDataplan",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/extensioncontrollerExtender",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/extensioncontrollerExtenderprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/extensioncontrollerFortigate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/extensioncontrollerFortigateprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/filefilterProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAccessproxy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAccessproxy6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAccessproxysshclientcert",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAccessproxyvirtualhost",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAddress",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAddress6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAddress6template",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAddrgrp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAddrgrp6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAuthportal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallCentralsnatmap",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallCentralsnatmapMove",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallCentralsnatmapSort",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallCity",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallCountry",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallDecryptedtrafficmirror",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallDnstranslation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallDoSpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallDoSpolicy6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallGlobal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallIdentitybasedroute",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInterfacepolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInterfacepolicy6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetservice",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetserviceaddition",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetserviceappend",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetservicebotnet",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetservicecustom",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetservicecustomgroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetservicedefinition",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetserviceextension",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetservicegroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetserviceipblreason",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetserviceipblvendor",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetservicelist",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetservicename",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetserviceowner",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetservicereputation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallIppool",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallIppool6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallIptranslation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallIpv6ehfilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallLdbmonitor",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallLocalinpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallLocalinpolicy6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallMulticastaddress",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallMulticastaddress6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallMulticastpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallMulticastpolicy6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallNetworkservicedynamic",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallObjectAddress",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallObjectAddressgroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallObjectIppool",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallObjectService",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallObjectServicecategory",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallObjectServicegroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallObjectVip",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallObjectVipgroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallPolicy46",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallPolicy6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallPolicy64",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallProfilegroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallProfileprotocoloptions",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallProxyaddress",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallProxyaddrgrp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallProxypolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallProxypolicyMove",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallProxypolicySort",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallRegion",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallSecurityPolicyseq",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallSecurityPolicysort",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallSecuritypolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallShapingpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallShapingprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallSniffer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallSslserver",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallSslsshprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallTrafficclass",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallTtlpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallVendormac",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallVip",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallVip46",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallVip6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallVip64",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallVipgrp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallVipgrp46",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallVipgrp6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallVipgrp64",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallconsolidatedPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallipmacbindingSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallipmacbindingTable",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallscheduleGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallscheduleOnetime",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallscheduleRecurring",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallserviceCategory",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallserviceCustom",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallserviceGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallshaperPeripshaper",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallshaperTrafficshaper",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallsshHostkey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallsshLocalca",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallsshLocalkey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallsshSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallsslSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallwildcardfqdnCustom",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallwildcardfqdnGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgDevicemanagerDevice",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgDevicemanagerInstallDevice",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgDevicemanagerInstallPolicypackage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgDevicemanagerScript",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgDevicemanagerScriptExecute",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgFirewallObjectAddress",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgFirewallObjectIppool",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgFirewallObjectService",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgFirewallObjectVip",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgFirewallSecurityPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgFirewallSecurityPolicypackage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgJsonrpcRequest",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgObjectAdomRevision",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgSystemAdmin",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgSystemAdminProfiles",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgSystemAdminUser",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgSystemAdom",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgSystemDns",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgSystemGlobal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgSystemLicenseForticare",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgSystemLicenseVm",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgSystemNetworkInterface",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgSystemNetworkRoute",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgSystemNtp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/fmgSystemSyslogserver",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/ftpproxyExplicit",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/icapProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/icapServer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/icapServergroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/ipsCustom",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/ipsDecoder",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/ipsGlobal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/ipsRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/ipsRulesettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/ipsSensor",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/ipsSettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/ipsViewmap",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/jsonGenericApi",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logCustomfield",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logEventfilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logGuidisplay",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logSyslogSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logThreatweight",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logdiskFilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logdiskSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzer2Filter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzer2Overridefilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzer2Overridesetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzer2Setting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzer3Filter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzer3Overridefilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzer3Overridesetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzer3Setting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzerFilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzerOverridefilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzerOverridesetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzerSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzercloudFilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzercloudOverridefilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzercloudOverridesetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortianalyzercloudSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortiguardFilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortiguardOverridefilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortiguardOverridesetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logfortiguardSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logmemoryFilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logmemoryGlobalsetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logmemorySetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/lognulldeviceFilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/lognulldeviceSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogd2Filter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogd2Overridefilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogd2Overridesetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogd2Setting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogd3Filter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogd3Overridefilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogd3Overridesetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogd3Setting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogd4Filter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogd4Overridefilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogd4Overridesetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogd4Setting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogdFilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogdOverridefilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogdOverridesetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logsyslogdSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logtacacsaccounting2Filter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logtacacsaccounting2Setting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logtacacsaccounting3Filter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logtacacsaccounting3Setting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logtacacsaccountingFilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logtacacsaccountingSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logwebtrendsFilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logwebtrendsSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/networkingInterfacePort",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/networkingRouteStatic",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/nsxtServicechain",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/nsxtSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/reportChart",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/reportDataset",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/reportLayout",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/reportSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/reportStyle",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/reportTheme",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerAccesslist",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerAccesslist6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerAspathlist",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerAuthpath",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerBfd",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerBfd6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerBgp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerCommunitylist",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerIsis",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerKeychain",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerMulticast",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerMulticast6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerMulticastflow",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerOspf",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerOspf6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerPolicy6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerPrefixlist",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerPrefixlist6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerRip",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerRipng",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerRoutemap",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerStatic",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerStatic6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerbgpNeighbor",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerbgpNetwork",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerbgpNetwork6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerospf6Ospf6interface",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerospfNeighbor",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerospfNetwork",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/routerospfOspfinterface",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/sctpfilterProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/spamfilterBwl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/spamfilterBword",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/spamfilterDnsbl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/spamfilterFortishield",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/spamfilterIptrust",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/spamfilterMheader",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/spamfilterOptions",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/spamfilterProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/sshfilterProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontroller8021Xsettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerCustomcommand",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerDynamicportpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerFlowtracking",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerFortilinksettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerGlobal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerIgmpsnooping",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerLldpprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerLldpsettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerLocation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerMacsyncsettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerManagedswitch",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerNacdevice",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerNacsettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerNetworkmonitorsettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerPortpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerQuarantine",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerRemotelog",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerSflow",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerSnmpcommunity",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerSnmpsysinfo",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerSnmptrapthreshold",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerSnmpuser",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerStormcontrol",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerStormcontrolpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerStpinstance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerStpsettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerSwitchgroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerSwitchinterfacetag",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerSwitchlog",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerSwitchprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerSystem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerTrafficpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerTrafficsniffer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerVirtualportpool",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerVlan",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerVlanpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerautoconfigCustom",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerautoconfigDefault",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerautoconfigPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerinitialconfigTemplate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerinitialconfigVlans",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerptpPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerptpSettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerqosDot1pmap",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerqosIpdscpmap",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerqosQospolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollerqosQueuepolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollersecuritypolicy8021X",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollersecuritypolicyCaptiveportal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchcontrollersecuritypolicyLocalaccess",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/system3gmodemCustom",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAccprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAcme",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAdmin",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAdminAdministrator",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAdminProfiles",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAffinityinterrupt",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAffinitypacketredistribution",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAlarm",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAlias",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemApiuser",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemApiuserSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemArptable",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAutoinstall",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAutomationaction",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAutomationdestination",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAutomationstitch",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAutomationtrigger",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAutoscript",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemCentralmanagement",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemClustersync",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemConsole",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemCsf",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemCustomlanguage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemDdns",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemDedicatedmgmt",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemDns",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemDns64",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemDnsdatabase",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemDnsserver",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemDscpbasedpriority",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemEmailserver",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemExternalresource",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemFederatedupgrade",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemFipscc",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemFm",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemFortiai",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemFortiguard",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemFortimanager",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemFortindr",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemFortisandbox",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemFssopolling",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemFtmpush",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemGeneve",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemGeoipcountry",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemGeoipoverride",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemGlobal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemGretunnel",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemHa",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemHamonitor",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemIke",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemInterface",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemIpam",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemIpiptunnel",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemIps",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemIpsecaggregate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemIpsurlfilterdns",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemIpsurlfilterdns6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemIpv6neighborcache",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemIpv6tunnel",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemLicenseForticare",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemLicenseVdom",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemLicenseVm",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemLinkmonitor",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemLtemodem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemMacaddresstable",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemManagementtunnel",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemMobiletunnel",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemModem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemNat64",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemNdproxy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemNetflow",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemNetworkvisibility",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemNpu",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemNtp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemObjecttagging",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemPasswordpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemPasswordpolicyguestadmin",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemPhysicalswitch",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemPppoeinterface",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemProberesponse",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemProxyarp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemPtp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemReplacemsggroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemReplacemsgimage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemResourcelimits",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSaml",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSdnconnector",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSdwan",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSessionhelper",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSessionttl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSettingDns",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSettingGlobal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSettingNtp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSflow",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSittunnel",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSmsserver",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSpeedtestschedule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSpeedtestserver",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSsoadmin",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSsoforticloudadmin",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemStandalonecluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemStorage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemStp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSwitchinterface",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemTosbasedpriority",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVdom",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVdomSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVdomdns",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVdomexception",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVdomlink",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVdomnetflow",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVdomproperty",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVdomradiusserver",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVdomsflow",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVirtualswitch",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVirtualwanlink",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVirtualwirepair",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVnetunnel",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemVxlan",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemWccp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemZone",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemautoupdatePushupdate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemautoupdateSchedule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemautoupdateTunneling",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemdhcp6Server",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemdhcpServer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemlldpNetworkpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgAdmin",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgAlertmail",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgAuth",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgAutomation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgDevicedetectionportal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgEc",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgFortiguardwf",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgFtp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgHttp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgIcap",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgMail",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgNacquar",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgNntp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgSpam",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgSslvpn",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgTrafficquota",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgUtm",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemreplacemsgWebproxy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemsnmpCommunity",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemsnmpMibview",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemsnmpSysinfo",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemsnmpUser",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userAdgrp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userCertificate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userDevice",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userDeviceaccesslist",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userDevicecategory",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userDevicegroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userDomaincontroller",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userExchange",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userFortitoken",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userFsso",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userFssopolling",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userKrbkeytab",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userLdap",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userLocal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userNacpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userPasswordpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userPeer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userPeergrp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userPop3",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userQuarantine",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userRadius",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userSaml",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userSecurityexemptlist",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userTacacs",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/videofilterProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/videofilterYoutubechannelfilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/videofilterYoutubekey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/voipProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnL2tp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnOcvpn",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnPptp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpncertificateCa",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpncertificateCrl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpncertificateLocal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpncertificateOcspserver",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpncertificateRemote",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpncertificateSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnipsecConcentrator",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnipsecFec",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnipsecForticlient",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnipsecManualkey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnipsecManualkeyinterface",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnipsecPhase1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnipsecPhase1interface",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnipsecPhase2",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnipsecPhase2interface",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnsslClient",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnsslSettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnsslwebHostchecksoftware",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnsslwebPortal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnsslwebRealm",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnsslwebUserbookmark",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnsslwebUsergroupbookmark",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wafMainclass",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wafProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wafSignature",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wafSubclass",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wanoptAuthgroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wanoptCacheservice",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wanoptContentdeliverynetworkrule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wanoptPeer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wanoptProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wanoptRemotestorage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wanoptSettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wanoptWebcache",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webfilterContent",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webfilterContentheader",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webfilterFortiguard",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webfilterFtgdlocalcat",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webfilterFtgdlocalrating",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webfilterIpsurlfiltercachesetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webfilterIpsurlfiltersetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webfilterIpsurlfiltersetting6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webfilterOverride",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webfilterProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webfilterSearchengine",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webfilterUrlfilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webproxyDebugurl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webproxyExplicit",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webproxyForwardserver",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webproxyForwardservergroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webproxyGlobal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webproxyProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webproxyUrlmatch",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webproxyWisp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerAccesscontrollist",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerAddress",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerAddrgrp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerApcfgprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerApstatus",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerArrpprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerBleprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerBonjourprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerGlobal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerIntercontroller",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerLog",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerMpskprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerNacprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerQosprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerRegion",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerSnmp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerSsidpolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerSyslogprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerTimers",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerUtmprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerVap",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerVapgroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerWagprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerWidsprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerWtp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerWtpgroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerWtpprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20Anqp3gppcellular",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20Anqpipaddresstype",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20Anqpnairealm",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20Anqpnetworkauthtype",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20Anqproamingconsortium",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20Anqpvenuename",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20Anqpvenueurl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20H2qpadviceofcharge",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20H2qpconncapability",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20H2qpoperatorname",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20H2qposuprovider",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20H2qposuprovidernai",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20H2qptermsandconditions",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20H2qpwanmetric",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20Hsprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20Icon",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelesscontrollerhotspot20Qosmap",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

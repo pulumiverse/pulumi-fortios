@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Aspyrmedia.Fortios.Outputs
+namespace Pulumiverse.Fortios.Outputs
 {
 
     [OutputType]
     public sealed class GetFirewallDoSpolicyDstaddrResult
     {
+        /// <summary>
+        /// Anomaly name.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]
