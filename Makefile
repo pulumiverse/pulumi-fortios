@@ -6,6 +6,7 @@ TF_NAME          := fortios
 PROVIDER_PATH    := provider
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
 PULUMI_REPO_PATHS:= github.com/fortinetdev/terraform-provider-fortios=$(ROOT_DIR)/upstream
+
 JAVA_GEN         := pulumi-java-gen
 JAVA_GEN_VERSION := v0.9.3
 TFGEN            := pulumi-tfgen-fortios
@@ -18,7 +19,6 @@ WORKING_DIR      := $(shell pwd)
 
 GO_MAJOR_VERSION := $(shell go version | cut -c 14- | cut -d' ' -f1 | cut -d'.' -f1)
 GO_MINOR_VERSION := $(shell go version | cut -c 14- | cut -d' ' -f1 | cut -d'.' -f2)
-
 ####
 # Defines the required Go version. This is a safeguard, because
 # the (local) version must match the version specified in .github/workflows/release.yml
@@ -40,8 +40,8 @@ validate_go_version: ## Validates the installed version of go
 	fi
 
 upstream/.git:
-		@echo "Initializing upstream" ; \
-		git clone  --depth 1 --branch v1.16.0 git@github.com:fortinetdev/terraform-provider-fortios upstream
+	@echo "Initializing upstream" ; \
+	git clone  --depth 1 --branch v1.16.0 https://github.com/fortinetdev/terraform-provider-fortios.git upstream
 
 development:: install_plugins provider lint_provider build_sdks install_sdks cleanup # Build the provider & SDKs for a development environment
 
@@ -61,7 +61,7 @@ build_sdks:: install_plugins provider build_nodejs build_python build_go build_d
 
 build_nodejs:: VERSION := $(shell pulumictl get version --language javascript)
 build_nodejs:: install_plugins tfgen # build the node sdk
-	PULUMI_REPO_PATHS='$(PULUMI_REPO_PATHS)' $(WORKING_DIR)/bin/${TFGEN} nodejs --overlays provider/overlays/nodejs --out sdk/nodejs/
+	PULUMI_REPO_PATHS='$(PULUMI_REPO_PATHS)' $(WORKING_DIR)/bin/$(TFGEN) nodejs --overlays provider/overlays/nodejs --out sdk/nodejs/
 	cd sdk/nodejs/ && \
         yarn install && \
         yarn run tsc && \
@@ -71,7 +71,7 @@ build_nodejs:: install_plugins tfgen # build the node sdk
 
 build_python:: PYPI_VERSION := $(shell pulumictl get version --language python)
 build_python:: install_plugins tfgen # build the python sdk
-	PULUMI_REPO_PATHS='$(PULUMI_REPO_PATHS)' $(WORKING_DIR)/bin/${TFGEN} python --overlays provider/overlays/python --out sdk/python/
+	PULUMI_REPO_PATHS='$(PULUMI_REPO_PATHS)' $(WORKING_DIR)/bin/$(TFGEN) python --overlays provider/overlays/python --out sdk/python/
 	cd sdk/python/ && \
         cp ../../README.md . && \
         python3 setup.py clean --all 2>/dev/null && \
@@ -83,13 +83,13 @@ build_python:: install_plugins tfgen # build the python sdk
 build_dotnet:: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
 build_dotnet:: install_plugins tfgen # build the dotnet sdk
 	pulumictl get version --language dotnet
-	PULUMI_REPO_PATHS='$(PULUMI_REPO_PATHS)' $(WORKING_DIR)/bin/${TFGEN} dotnet --overlays provider/overlays/dotnet --out sdk/dotnet/
+	PULUMI_REPO_PATHS='$(PULUMI_REPO_PATHS)' $(WORKING_DIR)/bin/$(TFGEN) dotnet --overlays provider/overlays/dotnet --out sdk/dotnet/
 	cd sdk/dotnet/ && \
 		echo "${DOTNET_VERSION}" >version.txt && \
         dotnet build /p:Version=${DOTNET_VERSION}
 
 build_go:: install_plugins tfgen # build the go sdk
-	PULUMI_REPO_PATHS='$(PULUMI_REPO_PATHS)' $(WORKING_DIR)/bin/${TFGEN} go --overlays provider/overlays/go --out sdk/go/
+	PULUMI_REPO_PATHS='$(PULUMI_REPO_PATHS)' $(WORKING_DIR)/bin/$(TFGEN) go --overlays provider/overlays/go --out sdk/go/
 	cd sdk/go/ && \
 		go mod tidy
 
@@ -107,8 +107,7 @@ lint_provider:: provider # lint the provider code
 	cd provider && golangci-lint run -c ../.golangci.yml
 
 cleanup:: # cleans up the temporary directory
-	rm -rf $(WORKING_DIR)/bin
-	rm -rf $(WORKING_DIR)/upstream
+	rm -r $(WORKING_DIR)/bin
 	rm -f provider/cmd/${PROVIDER}/schema.go
 
 help::
@@ -118,6 +117,11 @@ help::
 
 clean::
 	rm -rf sdk/{dotnet,nodejs,go,python} sdk/go.sum
+
+.PHONY: fmt
+fmt::
+	@echo "Fixing source code with gofmt..."
+	find . -name '*.go' | grep -v vendor | xargs gofmt -s -w
 
 install_plugins:: validate_go_version
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
