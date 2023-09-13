@@ -10,192 +10,226 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-type AntivirusProfileCifs struct {
-	ArchiveBlock       *string `pulumi:"archiveBlock"`
-	ArchiveLog         *string `pulumi:"archiveLog"`
-	AvScan             *string `pulumi:"avScan"`
-	Emulator           *string `pulumi:"emulator"`
-	ExternalBlocklist  *string `pulumi:"externalBlocklist"`
-	Fortiai            *string `pulumi:"fortiai"`
-	Fortindr           *string `pulumi:"fortindr"`
-	Fortisandbox       *string `pulumi:"fortisandbox"`
-	Options            *string `pulumi:"options"`
+type ProfileCifs struct {
+	// Select the archive types to block.
+	ArchiveBlock *string `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog *string `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan *string `pulumi:"avScan"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator *string `pulumi:"emulator"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist *string `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai *string `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr *string `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox *string `pulumi:"fortisandbox"`
+	// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options *string `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention *string `pulumi:"outbreakPrevention"`
-	Quarantine         *string `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine *string `pulumi:"quarantine"`
 }
 
-// AntivirusProfileCifsInput is an input type that accepts AntivirusProfileCifsArgs and AntivirusProfileCifsOutput values.
-// You can construct a concrete instance of `AntivirusProfileCifsInput` via:
+// ProfileCifsInput is an input type that accepts ProfileCifsArgs and ProfileCifsOutput values.
+// You can construct a concrete instance of `ProfileCifsInput` via:
 //
-//	AntivirusProfileCifsArgs{...}
-type AntivirusProfileCifsInput interface {
+//	ProfileCifsArgs{...}
+type ProfileCifsInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileCifsOutput() AntivirusProfileCifsOutput
-	ToAntivirusProfileCifsOutputWithContext(context.Context) AntivirusProfileCifsOutput
+	ToProfileCifsOutput() ProfileCifsOutput
+	ToProfileCifsOutputWithContext(context.Context) ProfileCifsOutput
 }
 
-type AntivirusProfileCifsArgs struct {
-	ArchiveBlock       pulumi.StringPtrInput `pulumi:"archiveBlock"`
-	ArchiveLog         pulumi.StringPtrInput `pulumi:"archiveLog"`
-	AvScan             pulumi.StringPtrInput `pulumi:"avScan"`
-	Emulator           pulumi.StringPtrInput `pulumi:"emulator"`
-	ExternalBlocklist  pulumi.StringPtrInput `pulumi:"externalBlocklist"`
-	Fortiai            pulumi.StringPtrInput `pulumi:"fortiai"`
-	Fortindr           pulumi.StringPtrInput `pulumi:"fortindr"`
-	Fortisandbox       pulumi.StringPtrInput `pulumi:"fortisandbox"`
-	Options            pulumi.StringPtrInput `pulumi:"options"`
+type ProfileCifsArgs struct {
+	// Select the archive types to block.
+	ArchiveBlock pulumi.StringPtrInput `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog pulumi.StringPtrInput `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan pulumi.StringPtrInput `pulumi:"avScan"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator pulumi.StringPtrInput `pulumi:"emulator"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
+	// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options pulumi.StringPtrInput `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention pulumi.StringPtrInput `pulumi:"outbreakPrevention"`
-	Quarantine         pulumi.StringPtrInput `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine pulumi.StringPtrInput `pulumi:"quarantine"`
 }
 
-func (AntivirusProfileCifsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileCifs)(nil)).Elem()
+func (ProfileCifsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileCifs)(nil)).Elem()
 }
 
-func (i AntivirusProfileCifsArgs) ToAntivirusProfileCifsOutput() AntivirusProfileCifsOutput {
-	return i.ToAntivirusProfileCifsOutputWithContext(context.Background())
+func (i ProfileCifsArgs) ToProfileCifsOutput() ProfileCifsOutput {
+	return i.ToProfileCifsOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileCifsArgs) ToAntivirusProfileCifsOutputWithContext(ctx context.Context) AntivirusProfileCifsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileCifsOutput)
+func (i ProfileCifsArgs) ToProfileCifsOutputWithContext(ctx context.Context) ProfileCifsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileCifsOutput)
 }
 
-func (i AntivirusProfileCifsArgs) ToAntivirusProfileCifsPtrOutput() AntivirusProfileCifsPtrOutput {
-	return i.ToAntivirusProfileCifsPtrOutputWithContext(context.Background())
+func (i ProfileCifsArgs) ToProfileCifsPtrOutput() ProfileCifsPtrOutput {
+	return i.ToProfileCifsPtrOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileCifsArgs) ToAntivirusProfileCifsPtrOutputWithContext(ctx context.Context) AntivirusProfileCifsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileCifsOutput).ToAntivirusProfileCifsPtrOutputWithContext(ctx)
+func (i ProfileCifsArgs) ToProfileCifsPtrOutputWithContext(ctx context.Context) ProfileCifsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileCifsOutput).ToProfileCifsPtrOutputWithContext(ctx)
 }
 
-// AntivirusProfileCifsPtrInput is an input type that accepts AntivirusProfileCifsArgs, AntivirusProfileCifsPtr and AntivirusProfileCifsPtrOutput values.
-// You can construct a concrete instance of `AntivirusProfileCifsPtrInput` via:
+// ProfileCifsPtrInput is an input type that accepts ProfileCifsArgs, ProfileCifsPtr and ProfileCifsPtrOutput values.
+// You can construct a concrete instance of `ProfileCifsPtrInput` via:
 //
-//	        AntivirusProfileCifsArgs{...}
+//	        ProfileCifsArgs{...}
 //
 //	or:
 //
 //	        nil
-type AntivirusProfileCifsPtrInput interface {
+type ProfileCifsPtrInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileCifsPtrOutput() AntivirusProfileCifsPtrOutput
-	ToAntivirusProfileCifsPtrOutputWithContext(context.Context) AntivirusProfileCifsPtrOutput
+	ToProfileCifsPtrOutput() ProfileCifsPtrOutput
+	ToProfileCifsPtrOutputWithContext(context.Context) ProfileCifsPtrOutput
 }
 
-type antivirusProfileCifsPtrType AntivirusProfileCifsArgs
+type profileCifsPtrType ProfileCifsArgs
 
-func AntivirusProfileCifsPtr(v *AntivirusProfileCifsArgs) AntivirusProfileCifsPtrInput {
-	return (*antivirusProfileCifsPtrType)(v)
+func ProfileCifsPtr(v *ProfileCifsArgs) ProfileCifsPtrInput {
+	return (*profileCifsPtrType)(v)
 }
 
-func (*antivirusProfileCifsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileCifs)(nil)).Elem()
+func (*profileCifsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileCifs)(nil)).Elem()
 }
 
-func (i *antivirusProfileCifsPtrType) ToAntivirusProfileCifsPtrOutput() AntivirusProfileCifsPtrOutput {
-	return i.ToAntivirusProfileCifsPtrOutputWithContext(context.Background())
+func (i *profileCifsPtrType) ToProfileCifsPtrOutput() ProfileCifsPtrOutput {
+	return i.ToProfileCifsPtrOutputWithContext(context.Background())
 }
 
-func (i *antivirusProfileCifsPtrType) ToAntivirusProfileCifsPtrOutputWithContext(ctx context.Context) AntivirusProfileCifsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileCifsPtrOutput)
+func (i *profileCifsPtrType) ToProfileCifsPtrOutputWithContext(ctx context.Context) ProfileCifsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileCifsPtrOutput)
 }
 
-type AntivirusProfileCifsOutput struct{ *pulumi.OutputState }
+type ProfileCifsOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileCifsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileCifs)(nil)).Elem()
+func (ProfileCifsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileCifs)(nil)).Elem()
 }
 
-func (o AntivirusProfileCifsOutput) ToAntivirusProfileCifsOutput() AntivirusProfileCifsOutput {
+func (o ProfileCifsOutput) ToProfileCifsOutput() ProfileCifsOutput {
 	return o
 }
 
-func (o AntivirusProfileCifsOutput) ToAntivirusProfileCifsOutputWithContext(ctx context.Context) AntivirusProfileCifsOutput {
+func (o ProfileCifsOutput) ToProfileCifsOutputWithContext(ctx context.Context) ProfileCifsOutput {
 	return o
 }
 
-func (o AntivirusProfileCifsOutput) ToAntivirusProfileCifsPtrOutput() AntivirusProfileCifsPtrOutput {
-	return o.ToAntivirusProfileCifsPtrOutputWithContext(context.Background())
+func (o ProfileCifsOutput) ToProfileCifsPtrOutput() ProfileCifsPtrOutput {
+	return o.ToProfileCifsPtrOutputWithContext(context.Background())
 }
 
-func (o AntivirusProfileCifsOutput) ToAntivirusProfileCifsPtrOutputWithContext(ctx context.Context) AntivirusProfileCifsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AntivirusProfileCifs) *AntivirusProfileCifs {
+func (o ProfileCifsOutput) ToProfileCifsPtrOutputWithContext(ctx context.Context) ProfileCifsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProfileCifs) *ProfileCifs {
 		return &v
-	}).(AntivirusProfileCifsPtrOutput)
+	}).(ProfileCifsPtrOutput)
 }
 
-func (o AntivirusProfileCifsOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileCifs) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
+// Select the archive types to block.
+func (o ProfileCifsOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileCifs) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileCifs) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
+// Select the archive types to log.
+func (o ProfileCifsOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileCifs) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileCifs) *string { return v.AvScan }).(pulumi.StringPtrOutput)
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileCifsOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileCifs) *string { return v.AvScan }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileCifs) *string { return v.Emulator }).(pulumi.StringPtrOutput)
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileCifsOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileCifs) *string { return v.Emulator }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileCifs) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileCifsOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileCifs) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileCifs) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileCifsOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileCifs) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileCifs) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileCifsOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileCifs) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileCifs) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileCifsOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileCifs) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileCifs) *string { return v.Options }).(pulumi.StringPtrOutput)
+// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileCifsOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileCifs) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileCifs) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
+// Enable Virus Outbreak Prevention service.
+func (o ProfileCifsOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileCifs) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileCifs) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileCifsOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileCifs) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileCifsPtrOutput struct{ *pulumi.OutputState }
+type ProfileCifsPtrOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileCifsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileCifs)(nil)).Elem()
+func (ProfileCifsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileCifs)(nil)).Elem()
 }
 
-func (o AntivirusProfileCifsPtrOutput) ToAntivirusProfileCifsPtrOutput() AntivirusProfileCifsPtrOutput {
+func (o ProfileCifsPtrOutput) ToProfileCifsPtrOutput() ProfileCifsPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileCifsPtrOutput) ToAntivirusProfileCifsPtrOutputWithContext(ctx context.Context) AntivirusProfileCifsPtrOutput {
+func (o ProfileCifsPtrOutput) ToProfileCifsPtrOutputWithContext(ctx context.Context) ProfileCifsPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileCifsPtrOutput) Elem() AntivirusProfileCifsOutput {
-	return o.ApplyT(func(v *AntivirusProfileCifs) AntivirusProfileCifs {
+func (o ProfileCifsPtrOutput) Elem() ProfileCifsOutput {
+	return o.ApplyT(func(v *ProfileCifs) ProfileCifs {
 		if v != nil {
 			return *v
 		}
-		var ret AntivirusProfileCifs
+		var ret ProfileCifs
 		return ret
-	}).(AntivirusProfileCifsOutput)
+	}).(ProfileCifsOutput)
 }
 
-func (o AntivirusProfileCifsPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileCifs) *string {
+// Select the archive types to block.
+func (o ProfileCifsPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileCifs) *string {
 		if v == nil {
 			return nil
 		}
@@ -203,8 +237,9 @@ func (o AntivirusProfileCifsPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileCifs) *string {
+// Select the archive types to log.
+func (o ProfileCifsPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileCifs) *string {
 		if v == nil {
 			return nil
 		}
@@ -212,8 +247,9 @@ func (o AntivirusProfileCifsPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsPtrOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileCifs) *string {
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileCifsPtrOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileCifs) *string {
 		if v == nil {
 			return nil
 		}
@@ -221,8 +257,9 @@ func (o AntivirusProfileCifsPtrOutput) AvScan() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsPtrOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileCifs) *string {
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileCifsPtrOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileCifs) *string {
 		if v == nil {
 			return nil
 		}
@@ -230,8 +267,9 @@ func (o AntivirusProfileCifsPtrOutput) Emulator() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileCifs) *string {
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileCifsPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileCifs) *string {
 		if v == nil {
 			return nil
 		}
@@ -239,8 +277,9 @@ func (o AntivirusProfileCifsPtrOutput) ExternalBlocklist() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsPtrOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileCifs) *string {
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileCifsPtrOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileCifs) *string {
 		if v == nil {
 			return nil
 		}
@@ -248,8 +287,9 @@ func (o AntivirusProfileCifsPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsPtrOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileCifs) *string {
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileCifsPtrOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileCifs) *string {
 		if v == nil {
 			return nil
 		}
@@ -257,8 +297,9 @@ func (o AntivirusProfileCifsPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileCifs) *string {
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileCifsPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileCifs) *string {
 		if v == nil {
 			return nil
 		}
@@ -266,8 +307,9 @@ func (o AntivirusProfileCifsPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsPtrOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileCifs) *string {
+// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileCifsPtrOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileCifs) *string {
 		if v == nil {
 			return nil
 		}
@@ -275,8 +317,9 @@ func (o AntivirusProfileCifsPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileCifs) *string {
+// Enable Virus Outbreak Prevention service.
+func (o ProfileCifsPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileCifs) *string {
 		if v == nil {
 			return nil
 		}
@@ -284,8 +327,9 @@ func (o AntivirusProfileCifsPtrOutput) OutbreakPrevention() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileCifsPtrOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileCifs) *string {
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileCifsPtrOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileCifs) *string {
 		if v == nil {
 			return nil
 		}
@@ -293,240 +337,298 @@ func (o AntivirusProfileCifsPtrOutput) Quarantine() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileContentDisarm struct {
-	CoverPage               *string `pulumi:"coverPage"`
-	DetectOnly              *string `pulumi:"detectOnly"`
-	ErrorAction             *string `pulumi:"errorAction"`
-	OfficeAction            *string `pulumi:"officeAction"`
-	OfficeDde               *string `pulumi:"officeDde"`
-	OfficeEmbed             *string `pulumi:"officeEmbed"`
-	OfficeHylink            *string `pulumi:"officeHylink"`
-	OfficeLinked            *string `pulumi:"officeLinked"`
-	OfficeMacro             *string `pulumi:"officeMacro"`
+type ProfileContentDisarm struct {
+	// Enable/disable inserting a cover page into the disarmed document. Valid values: `disable`, `enable`.
+	CoverPage *string `pulumi:"coverPage"`
+	// Enable/disable only detect disarmable files, do not alter content. Valid values: `disable`, `enable`.
+	DetectOnly *string `pulumi:"detectOnly"`
+	// Action to be taken if CDR engine encounters an unrecoverable error. Valid values: `block`, `log-only`, `ignore`.
+	ErrorAction *string `pulumi:"errorAction"`
+	// Enable/disable stripping of PowerPoint action events in Microsoft Office documents. Valid values: `disable`, `enable`.
+	OfficeAction *string `pulumi:"officeAction"`
+	// Enable/disable stripping of Dynamic Data Exchange events in Microsoft Office documents. Valid values: `disable`, `enable`.
+	OfficeDde *string `pulumi:"officeDde"`
+	// Enable/disable stripping of embedded objects in Microsoft Office documents. Valid values: `disable`, `enable`.
+	OfficeEmbed *string `pulumi:"officeEmbed"`
+	// Enable/disable stripping of hyperlinks in Microsoft Office documents. Valid values: `disable`, `enable`.
+	OfficeHylink *string `pulumi:"officeHylink"`
+	// Enable/disable stripping of linked objects in Microsoft Office documents. Valid values: `disable`, `enable`.
+	OfficeLinked *string `pulumi:"officeLinked"`
+	// Enable/disable stripping of macros in Microsoft Office documents. Valid values: `disable`, `enable`.
+	OfficeMacro *string `pulumi:"officeMacro"`
+	// Destination to send original file if active content is removed. Valid values: `fortisandbox`, `quarantine`, `discard`.
 	OriginalFileDestination *string `pulumi:"originalFileDestination"`
-	PdfActForm              *string `pulumi:"pdfActForm"`
-	PdfActGotor             *string `pulumi:"pdfActGotor"`
-	PdfActJava              *string `pulumi:"pdfActJava"`
-	PdfActLaunch            *string `pulumi:"pdfActLaunch"`
-	PdfActMovie             *string `pulumi:"pdfActMovie"`
-	PdfActSound             *string `pulumi:"pdfActSound"`
-	PdfEmbedfile            *string `pulumi:"pdfEmbedfile"`
-	PdfHyperlink            *string `pulumi:"pdfHyperlink"`
-	PdfJavacode             *string `pulumi:"pdfJavacode"`
+	// Enable/disable stripping of actions that submit data to other targets in PDF documents. Valid values: `disable`, `enable`.
+	PdfActForm *string `pulumi:"pdfActForm"`
+	// Enable/disable stripping of links to other PDFs in PDF documents. Valid values: `disable`, `enable`.
+	PdfActGotor *string `pulumi:"pdfActGotor"`
+	// Enable/disable stripping of actions that execute JavaScript code in PDF documents. Valid values: `disable`, `enable`.
+	PdfActJava *string `pulumi:"pdfActJava"`
+	// Enable/disable stripping of links to external applications in PDF documents. Valid values: `disable`, `enable`.
+	PdfActLaunch *string `pulumi:"pdfActLaunch"`
+	// Enable/disable stripping of embedded movies in PDF documents. Valid values: `disable`, `enable`.
+	PdfActMovie *string `pulumi:"pdfActMovie"`
+	// Enable/disable stripping of embedded sound files in PDF documents. Valid values: `disable`, `enable`.
+	PdfActSound *string `pulumi:"pdfActSound"`
+	// Enable/disable stripping of embedded files in PDF documents. Valid values: `disable`, `enable`.
+	PdfEmbedfile *string `pulumi:"pdfEmbedfile"`
+	// Enable/disable stripping of hyperlinks from PDF documents. Valid values: `disable`, `enable`.
+	PdfHyperlink *string `pulumi:"pdfHyperlink"`
+	// Enable/disable stripping of JavaScript code in PDF documents. Valid values: `disable`, `enable`.
+	PdfJavacode *string `pulumi:"pdfJavacode"`
 }
 
-// AntivirusProfileContentDisarmInput is an input type that accepts AntivirusProfileContentDisarmArgs and AntivirusProfileContentDisarmOutput values.
-// You can construct a concrete instance of `AntivirusProfileContentDisarmInput` via:
+// ProfileContentDisarmInput is an input type that accepts ProfileContentDisarmArgs and ProfileContentDisarmOutput values.
+// You can construct a concrete instance of `ProfileContentDisarmInput` via:
 //
-//	AntivirusProfileContentDisarmArgs{...}
-type AntivirusProfileContentDisarmInput interface {
+//	ProfileContentDisarmArgs{...}
+type ProfileContentDisarmInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileContentDisarmOutput() AntivirusProfileContentDisarmOutput
-	ToAntivirusProfileContentDisarmOutputWithContext(context.Context) AntivirusProfileContentDisarmOutput
+	ToProfileContentDisarmOutput() ProfileContentDisarmOutput
+	ToProfileContentDisarmOutputWithContext(context.Context) ProfileContentDisarmOutput
 }
 
-type AntivirusProfileContentDisarmArgs struct {
-	CoverPage               pulumi.StringPtrInput `pulumi:"coverPage"`
-	DetectOnly              pulumi.StringPtrInput `pulumi:"detectOnly"`
-	ErrorAction             pulumi.StringPtrInput `pulumi:"errorAction"`
-	OfficeAction            pulumi.StringPtrInput `pulumi:"officeAction"`
-	OfficeDde               pulumi.StringPtrInput `pulumi:"officeDde"`
-	OfficeEmbed             pulumi.StringPtrInput `pulumi:"officeEmbed"`
-	OfficeHylink            pulumi.StringPtrInput `pulumi:"officeHylink"`
-	OfficeLinked            pulumi.StringPtrInput `pulumi:"officeLinked"`
-	OfficeMacro             pulumi.StringPtrInput `pulumi:"officeMacro"`
+type ProfileContentDisarmArgs struct {
+	// Enable/disable inserting a cover page into the disarmed document. Valid values: `disable`, `enable`.
+	CoverPage pulumi.StringPtrInput `pulumi:"coverPage"`
+	// Enable/disable only detect disarmable files, do not alter content. Valid values: `disable`, `enable`.
+	DetectOnly pulumi.StringPtrInput `pulumi:"detectOnly"`
+	// Action to be taken if CDR engine encounters an unrecoverable error. Valid values: `block`, `log-only`, `ignore`.
+	ErrorAction pulumi.StringPtrInput `pulumi:"errorAction"`
+	// Enable/disable stripping of PowerPoint action events in Microsoft Office documents. Valid values: `disable`, `enable`.
+	OfficeAction pulumi.StringPtrInput `pulumi:"officeAction"`
+	// Enable/disable stripping of Dynamic Data Exchange events in Microsoft Office documents. Valid values: `disable`, `enable`.
+	OfficeDde pulumi.StringPtrInput `pulumi:"officeDde"`
+	// Enable/disable stripping of embedded objects in Microsoft Office documents. Valid values: `disable`, `enable`.
+	OfficeEmbed pulumi.StringPtrInput `pulumi:"officeEmbed"`
+	// Enable/disable stripping of hyperlinks in Microsoft Office documents. Valid values: `disable`, `enable`.
+	OfficeHylink pulumi.StringPtrInput `pulumi:"officeHylink"`
+	// Enable/disable stripping of linked objects in Microsoft Office documents. Valid values: `disable`, `enable`.
+	OfficeLinked pulumi.StringPtrInput `pulumi:"officeLinked"`
+	// Enable/disable stripping of macros in Microsoft Office documents. Valid values: `disable`, `enable`.
+	OfficeMacro pulumi.StringPtrInput `pulumi:"officeMacro"`
+	// Destination to send original file if active content is removed. Valid values: `fortisandbox`, `quarantine`, `discard`.
 	OriginalFileDestination pulumi.StringPtrInput `pulumi:"originalFileDestination"`
-	PdfActForm              pulumi.StringPtrInput `pulumi:"pdfActForm"`
-	PdfActGotor             pulumi.StringPtrInput `pulumi:"pdfActGotor"`
-	PdfActJava              pulumi.StringPtrInput `pulumi:"pdfActJava"`
-	PdfActLaunch            pulumi.StringPtrInput `pulumi:"pdfActLaunch"`
-	PdfActMovie             pulumi.StringPtrInput `pulumi:"pdfActMovie"`
-	PdfActSound             pulumi.StringPtrInput `pulumi:"pdfActSound"`
-	PdfEmbedfile            pulumi.StringPtrInput `pulumi:"pdfEmbedfile"`
-	PdfHyperlink            pulumi.StringPtrInput `pulumi:"pdfHyperlink"`
-	PdfJavacode             pulumi.StringPtrInput `pulumi:"pdfJavacode"`
+	// Enable/disable stripping of actions that submit data to other targets in PDF documents. Valid values: `disable`, `enable`.
+	PdfActForm pulumi.StringPtrInput `pulumi:"pdfActForm"`
+	// Enable/disable stripping of links to other PDFs in PDF documents. Valid values: `disable`, `enable`.
+	PdfActGotor pulumi.StringPtrInput `pulumi:"pdfActGotor"`
+	// Enable/disable stripping of actions that execute JavaScript code in PDF documents. Valid values: `disable`, `enable`.
+	PdfActJava pulumi.StringPtrInput `pulumi:"pdfActJava"`
+	// Enable/disable stripping of links to external applications in PDF documents. Valid values: `disable`, `enable`.
+	PdfActLaunch pulumi.StringPtrInput `pulumi:"pdfActLaunch"`
+	// Enable/disable stripping of embedded movies in PDF documents. Valid values: `disable`, `enable`.
+	PdfActMovie pulumi.StringPtrInput `pulumi:"pdfActMovie"`
+	// Enable/disable stripping of embedded sound files in PDF documents. Valid values: `disable`, `enable`.
+	PdfActSound pulumi.StringPtrInput `pulumi:"pdfActSound"`
+	// Enable/disable stripping of embedded files in PDF documents. Valid values: `disable`, `enable`.
+	PdfEmbedfile pulumi.StringPtrInput `pulumi:"pdfEmbedfile"`
+	// Enable/disable stripping of hyperlinks from PDF documents. Valid values: `disable`, `enable`.
+	PdfHyperlink pulumi.StringPtrInput `pulumi:"pdfHyperlink"`
+	// Enable/disable stripping of JavaScript code in PDF documents. Valid values: `disable`, `enable`.
+	PdfJavacode pulumi.StringPtrInput `pulumi:"pdfJavacode"`
 }
 
-func (AntivirusProfileContentDisarmArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileContentDisarm)(nil)).Elem()
+func (ProfileContentDisarmArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileContentDisarm)(nil)).Elem()
 }
 
-func (i AntivirusProfileContentDisarmArgs) ToAntivirusProfileContentDisarmOutput() AntivirusProfileContentDisarmOutput {
-	return i.ToAntivirusProfileContentDisarmOutputWithContext(context.Background())
+func (i ProfileContentDisarmArgs) ToProfileContentDisarmOutput() ProfileContentDisarmOutput {
+	return i.ToProfileContentDisarmOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileContentDisarmArgs) ToAntivirusProfileContentDisarmOutputWithContext(ctx context.Context) AntivirusProfileContentDisarmOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileContentDisarmOutput)
+func (i ProfileContentDisarmArgs) ToProfileContentDisarmOutputWithContext(ctx context.Context) ProfileContentDisarmOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileContentDisarmOutput)
 }
 
-func (i AntivirusProfileContentDisarmArgs) ToAntivirusProfileContentDisarmPtrOutput() AntivirusProfileContentDisarmPtrOutput {
-	return i.ToAntivirusProfileContentDisarmPtrOutputWithContext(context.Background())
+func (i ProfileContentDisarmArgs) ToProfileContentDisarmPtrOutput() ProfileContentDisarmPtrOutput {
+	return i.ToProfileContentDisarmPtrOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileContentDisarmArgs) ToAntivirusProfileContentDisarmPtrOutputWithContext(ctx context.Context) AntivirusProfileContentDisarmPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileContentDisarmOutput).ToAntivirusProfileContentDisarmPtrOutputWithContext(ctx)
+func (i ProfileContentDisarmArgs) ToProfileContentDisarmPtrOutputWithContext(ctx context.Context) ProfileContentDisarmPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileContentDisarmOutput).ToProfileContentDisarmPtrOutputWithContext(ctx)
 }
 
-// AntivirusProfileContentDisarmPtrInput is an input type that accepts AntivirusProfileContentDisarmArgs, AntivirusProfileContentDisarmPtr and AntivirusProfileContentDisarmPtrOutput values.
-// You can construct a concrete instance of `AntivirusProfileContentDisarmPtrInput` via:
+// ProfileContentDisarmPtrInput is an input type that accepts ProfileContentDisarmArgs, ProfileContentDisarmPtr and ProfileContentDisarmPtrOutput values.
+// You can construct a concrete instance of `ProfileContentDisarmPtrInput` via:
 //
-//	        AntivirusProfileContentDisarmArgs{...}
+//	        ProfileContentDisarmArgs{...}
 //
 //	or:
 //
 //	        nil
-type AntivirusProfileContentDisarmPtrInput interface {
+type ProfileContentDisarmPtrInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileContentDisarmPtrOutput() AntivirusProfileContentDisarmPtrOutput
-	ToAntivirusProfileContentDisarmPtrOutputWithContext(context.Context) AntivirusProfileContentDisarmPtrOutput
+	ToProfileContentDisarmPtrOutput() ProfileContentDisarmPtrOutput
+	ToProfileContentDisarmPtrOutputWithContext(context.Context) ProfileContentDisarmPtrOutput
 }
 
-type antivirusProfileContentDisarmPtrType AntivirusProfileContentDisarmArgs
+type profileContentDisarmPtrType ProfileContentDisarmArgs
 
-func AntivirusProfileContentDisarmPtr(v *AntivirusProfileContentDisarmArgs) AntivirusProfileContentDisarmPtrInput {
-	return (*antivirusProfileContentDisarmPtrType)(v)
+func ProfileContentDisarmPtr(v *ProfileContentDisarmArgs) ProfileContentDisarmPtrInput {
+	return (*profileContentDisarmPtrType)(v)
 }
 
-func (*antivirusProfileContentDisarmPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileContentDisarm)(nil)).Elem()
+func (*profileContentDisarmPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileContentDisarm)(nil)).Elem()
 }
 
-func (i *antivirusProfileContentDisarmPtrType) ToAntivirusProfileContentDisarmPtrOutput() AntivirusProfileContentDisarmPtrOutput {
-	return i.ToAntivirusProfileContentDisarmPtrOutputWithContext(context.Background())
+func (i *profileContentDisarmPtrType) ToProfileContentDisarmPtrOutput() ProfileContentDisarmPtrOutput {
+	return i.ToProfileContentDisarmPtrOutputWithContext(context.Background())
 }
 
-func (i *antivirusProfileContentDisarmPtrType) ToAntivirusProfileContentDisarmPtrOutputWithContext(ctx context.Context) AntivirusProfileContentDisarmPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileContentDisarmPtrOutput)
+func (i *profileContentDisarmPtrType) ToProfileContentDisarmPtrOutputWithContext(ctx context.Context) ProfileContentDisarmPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileContentDisarmPtrOutput)
 }
 
-type AntivirusProfileContentDisarmOutput struct{ *pulumi.OutputState }
+type ProfileContentDisarmOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileContentDisarmOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileContentDisarm)(nil)).Elem()
+func (ProfileContentDisarmOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileContentDisarm)(nil)).Elem()
 }
 
-func (o AntivirusProfileContentDisarmOutput) ToAntivirusProfileContentDisarmOutput() AntivirusProfileContentDisarmOutput {
+func (o ProfileContentDisarmOutput) ToProfileContentDisarmOutput() ProfileContentDisarmOutput {
 	return o
 }
 
-func (o AntivirusProfileContentDisarmOutput) ToAntivirusProfileContentDisarmOutputWithContext(ctx context.Context) AntivirusProfileContentDisarmOutput {
+func (o ProfileContentDisarmOutput) ToProfileContentDisarmOutputWithContext(ctx context.Context) ProfileContentDisarmOutput {
 	return o
 }
 
-func (o AntivirusProfileContentDisarmOutput) ToAntivirusProfileContentDisarmPtrOutput() AntivirusProfileContentDisarmPtrOutput {
-	return o.ToAntivirusProfileContentDisarmPtrOutputWithContext(context.Background())
+func (o ProfileContentDisarmOutput) ToProfileContentDisarmPtrOutput() ProfileContentDisarmPtrOutput {
+	return o.ToProfileContentDisarmPtrOutputWithContext(context.Background())
 }
 
-func (o AntivirusProfileContentDisarmOutput) ToAntivirusProfileContentDisarmPtrOutputWithContext(ctx context.Context) AntivirusProfileContentDisarmPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AntivirusProfileContentDisarm) *AntivirusProfileContentDisarm {
+func (o ProfileContentDisarmOutput) ToProfileContentDisarmPtrOutputWithContext(ctx context.Context) ProfileContentDisarmPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProfileContentDisarm) *ProfileContentDisarm {
 		return &v
-	}).(AntivirusProfileContentDisarmPtrOutput)
+	}).(ProfileContentDisarmPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) CoverPage() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.CoverPage }).(pulumi.StringPtrOutput)
+// Enable/disable inserting a cover page into the disarmed document. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) CoverPage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.CoverPage }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) DetectOnly() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.DetectOnly }).(pulumi.StringPtrOutput)
+// Enable/disable only detect disarmable files, do not alter content. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) DetectOnly() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.DetectOnly }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) ErrorAction() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.ErrorAction }).(pulumi.StringPtrOutput)
+// Action to be taken if CDR engine encounters an unrecoverable error. Valid values: `block`, `log-only`, `ignore`.
+func (o ProfileContentDisarmOutput) ErrorAction() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.ErrorAction }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) OfficeAction() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.OfficeAction }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of PowerPoint action events in Microsoft Office documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) OfficeAction() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.OfficeAction }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) OfficeDde() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.OfficeDde }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of Dynamic Data Exchange events in Microsoft Office documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) OfficeDde() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.OfficeDde }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) OfficeEmbed() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.OfficeEmbed }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of embedded objects in Microsoft Office documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) OfficeEmbed() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.OfficeEmbed }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) OfficeHylink() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.OfficeHylink }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of hyperlinks in Microsoft Office documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) OfficeHylink() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.OfficeHylink }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) OfficeLinked() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.OfficeLinked }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of linked objects in Microsoft Office documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) OfficeLinked() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.OfficeLinked }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) OfficeMacro() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.OfficeMacro }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of macros in Microsoft Office documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) OfficeMacro() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.OfficeMacro }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) OriginalFileDestination() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.OriginalFileDestination }).(pulumi.StringPtrOutput)
+// Destination to send original file if active content is removed. Valid values: `fortisandbox`, `quarantine`, `discard`.
+func (o ProfileContentDisarmOutput) OriginalFileDestination() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.OriginalFileDestination }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) PdfActForm() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.PdfActForm }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of actions that submit data to other targets in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) PdfActForm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.PdfActForm }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) PdfActGotor() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.PdfActGotor }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of links to other PDFs in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) PdfActGotor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.PdfActGotor }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) PdfActJava() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.PdfActJava }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of actions that execute JavaScript code in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) PdfActJava() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.PdfActJava }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) PdfActLaunch() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.PdfActLaunch }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of links to external applications in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) PdfActLaunch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.PdfActLaunch }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) PdfActMovie() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.PdfActMovie }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of embedded movies in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) PdfActMovie() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.PdfActMovie }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) PdfActSound() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.PdfActSound }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of embedded sound files in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) PdfActSound() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.PdfActSound }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) PdfEmbedfile() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.PdfEmbedfile }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of embedded files in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) PdfEmbedfile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.PdfEmbedfile }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) PdfHyperlink() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.PdfHyperlink }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of hyperlinks from PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) PdfHyperlink() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.PdfHyperlink }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmOutput) PdfJavacode() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileContentDisarm) *string { return v.PdfJavacode }).(pulumi.StringPtrOutput)
+// Enable/disable stripping of JavaScript code in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmOutput) PdfJavacode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileContentDisarm) *string { return v.PdfJavacode }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileContentDisarmPtrOutput struct{ *pulumi.OutputState }
+type ProfileContentDisarmPtrOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileContentDisarmPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileContentDisarm)(nil)).Elem()
+func (ProfileContentDisarmPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileContentDisarm)(nil)).Elem()
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) ToAntivirusProfileContentDisarmPtrOutput() AntivirusProfileContentDisarmPtrOutput {
+func (o ProfileContentDisarmPtrOutput) ToProfileContentDisarmPtrOutput() ProfileContentDisarmPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) ToAntivirusProfileContentDisarmPtrOutputWithContext(ctx context.Context) AntivirusProfileContentDisarmPtrOutput {
+func (o ProfileContentDisarmPtrOutput) ToProfileContentDisarmPtrOutputWithContext(ctx context.Context) ProfileContentDisarmPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) Elem() AntivirusProfileContentDisarmOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) AntivirusProfileContentDisarm {
+func (o ProfileContentDisarmPtrOutput) Elem() ProfileContentDisarmOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) ProfileContentDisarm {
 		if v != nil {
 			return *v
 		}
-		var ret AntivirusProfileContentDisarm
+		var ret ProfileContentDisarm
 		return ret
-	}).(AntivirusProfileContentDisarmOutput)
+	}).(ProfileContentDisarmOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) CoverPage() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable inserting a cover page into the disarmed document. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) CoverPage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -534,8 +636,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) CoverPage() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) DetectOnly() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable only detect disarmable files, do not alter content. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) DetectOnly() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -543,8 +646,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) DetectOnly() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) ErrorAction() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Action to be taken if CDR engine encounters an unrecoverable error. Valid values: `block`, `log-only`, `ignore`.
+func (o ProfileContentDisarmPtrOutput) ErrorAction() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -552,8 +656,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) ErrorAction() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) OfficeAction() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of PowerPoint action events in Microsoft Office documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) OfficeAction() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -561,8 +666,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) OfficeAction() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) OfficeDde() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of Dynamic Data Exchange events in Microsoft Office documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) OfficeDde() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -570,8 +676,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) OfficeDde() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) OfficeEmbed() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of embedded objects in Microsoft Office documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) OfficeEmbed() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -579,8 +686,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) OfficeEmbed() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) OfficeHylink() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of hyperlinks in Microsoft Office documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) OfficeHylink() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -588,8 +696,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) OfficeHylink() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) OfficeLinked() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of linked objects in Microsoft Office documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) OfficeLinked() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -597,8 +706,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) OfficeLinked() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) OfficeMacro() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of macros in Microsoft Office documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) OfficeMacro() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -606,8 +716,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) OfficeMacro() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) OriginalFileDestination() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Destination to send original file if active content is removed. Valid values: `fortisandbox`, `quarantine`, `discard`.
+func (o ProfileContentDisarmPtrOutput) OriginalFileDestination() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -615,8 +726,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) OriginalFileDestination() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) PdfActForm() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of actions that submit data to other targets in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) PdfActForm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -624,8 +736,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) PdfActForm() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) PdfActGotor() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of links to other PDFs in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) PdfActGotor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -633,8 +746,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) PdfActGotor() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) PdfActJava() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of actions that execute JavaScript code in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) PdfActJava() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -642,8 +756,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) PdfActJava() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) PdfActLaunch() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of links to external applications in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) PdfActLaunch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -651,8 +766,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) PdfActLaunch() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) PdfActMovie() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of embedded movies in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) PdfActMovie() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -660,8 +776,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) PdfActMovie() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) PdfActSound() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of embedded sound files in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) PdfActSound() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -669,8 +786,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) PdfActSound() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) PdfEmbedfile() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of embedded files in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) PdfEmbedfile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -678,8 +796,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) PdfEmbedfile() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) PdfHyperlink() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of hyperlinks from PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) PdfHyperlink() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -687,8 +806,9 @@ func (o AntivirusProfileContentDisarmPtrOutput) PdfHyperlink() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileContentDisarmPtrOutput) PdfJavacode() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileContentDisarm) *string {
+// Enable/disable stripping of JavaScript code in PDF documents. Valid values: `disable`, `enable`.
+func (o ProfileContentDisarmPtrOutput) PdfJavacode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileContentDisarm) *string {
 		if v == nil {
 			return nil
 		}
@@ -696,286 +816,323 @@ func (o AntivirusProfileContentDisarmPtrOutput) PdfJavacode() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileExternalBlocklist struct {
+type ProfileExternalBlocklist struct {
+	// External blocklist.
 	Name *string `pulumi:"name"`
 }
 
-// AntivirusProfileExternalBlocklistInput is an input type that accepts AntivirusProfileExternalBlocklistArgs and AntivirusProfileExternalBlocklistOutput values.
-// You can construct a concrete instance of `AntivirusProfileExternalBlocklistInput` via:
+// ProfileExternalBlocklistInput is an input type that accepts ProfileExternalBlocklistArgs and ProfileExternalBlocklistOutput values.
+// You can construct a concrete instance of `ProfileExternalBlocklistInput` via:
 //
-//	AntivirusProfileExternalBlocklistArgs{...}
-type AntivirusProfileExternalBlocklistInput interface {
+//	ProfileExternalBlocklistArgs{...}
+type ProfileExternalBlocklistInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileExternalBlocklistOutput() AntivirusProfileExternalBlocklistOutput
-	ToAntivirusProfileExternalBlocklistOutputWithContext(context.Context) AntivirusProfileExternalBlocklistOutput
+	ToProfileExternalBlocklistOutput() ProfileExternalBlocklistOutput
+	ToProfileExternalBlocklistOutputWithContext(context.Context) ProfileExternalBlocklistOutput
 }
 
-type AntivirusProfileExternalBlocklistArgs struct {
+type ProfileExternalBlocklistArgs struct {
+	// External blocklist.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (AntivirusProfileExternalBlocklistArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileExternalBlocklist)(nil)).Elem()
+func (ProfileExternalBlocklistArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileExternalBlocklist)(nil)).Elem()
 }
 
-func (i AntivirusProfileExternalBlocklistArgs) ToAntivirusProfileExternalBlocklistOutput() AntivirusProfileExternalBlocklistOutput {
-	return i.ToAntivirusProfileExternalBlocklistOutputWithContext(context.Background())
+func (i ProfileExternalBlocklistArgs) ToProfileExternalBlocklistOutput() ProfileExternalBlocklistOutput {
+	return i.ToProfileExternalBlocklistOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileExternalBlocklistArgs) ToAntivirusProfileExternalBlocklistOutputWithContext(ctx context.Context) AntivirusProfileExternalBlocklistOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileExternalBlocklistOutput)
+func (i ProfileExternalBlocklistArgs) ToProfileExternalBlocklistOutputWithContext(ctx context.Context) ProfileExternalBlocklistOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileExternalBlocklistOutput)
 }
 
-// AntivirusProfileExternalBlocklistArrayInput is an input type that accepts AntivirusProfileExternalBlocklistArray and AntivirusProfileExternalBlocklistArrayOutput values.
-// You can construct a concrete instance of `AntivirusProfileExternalBlocklistArrayInput` via:
+// ProfileExternalBlocklistArrayInput is an input type that accepts ProfileExternalBlocklistArray and ProfileExternalBlocklistArrayOutput values.
+// You can construct a concrete instance of `ProfileExternalBlocklistArrayInput` via:
 //
-//	AntivirusProfileExternalBlocklistArray{ AntivirusProfileExternalBlocklistArgs{...} }
-type AntivirusProfileExternalBlocklistArrayInput interface {
+//	ProfileExternalBlocklistArray{ ProfileExternalBlocklistArgs{...} }
+type ProfileExternalBlocklistArrayInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileExternalBlocklistArrayOutput() AntivirusProfileExternalBlocklistArrayOutput
-	ToAntivirusProfileExternalBlocklistArrayOutputWithContext(context.Context) AntivirusProfileExternalBlocklistArrayOutput
+	ToProfileExternalBlocklistArrayOutput() ProfileExternalBlocklistArrayOutput
+	ToProfileExternalBlocklistArrayOutputWithContext(context.Context) ProfileExternalBlocklistArrayOutput
 }
 
-type AntivirusProfileExternalBlocklistArray []AntivirusProfileExternalBlocklistInput
+type ProfileExternalBlocklistArray []ProfileExternalBlocklistInput
 
-func (AntivirusProfileExternalBlocklistArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AntivirusProfileExternalBlocklist)(nil)).Elem()
+func (ProfileExternalBlocklistArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProfileExternalBlocklist)(nil)).Elem()
 }
 
-func (i AntivirusProfileExternalBlocklistArray) ToAntivirusProfileExternalBlocklistArrayOutput() AntivirusProfileExternalBlocklistArrayOutput {
-	return i.ToAntivirusProfileExternalBlocklistArrayOutputWithContext(context.Background())
+func (i ProfileExternalBlocklistArray) ToProfileExternalBlocklistArrayOutput() ProfileExternalBlocklistArrayOutput {
+	return i.ToProfileExternalBlocklistArrayOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileExternalBlocklistArray) ToAntivirusProfileExternalBlocklistArrayOutputWithContext(ctx context.Context) AntivirusProfileExternalBlocklistArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileExternalBlocklistArrayOutput)
+func (i ProfileExternalBlocklistArray) ToProfileExternalBlocklistArrayOutputWithContext(ctx context.Context) ProfileExternalBlocklistArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileExternalBlocklistArrayOutput)
 }
 
-type AntivirusProfileExternalBlocklistOutput struct{ *pulumi.OutputState }
+type ProfileExternalBlocklistOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileExternalBlocklistOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileExternalBlocklist)(nil)).Elem()
+func (ProfileExternalBlocklistOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileExternalBlocklist)(nil)).Elem()
 }
 
-func (o AntivirusProfileExternalBlocklistOutput) ToAntivirusProfileExternalBlocklistOutput() AntivirusProfileExternalBlocklistOutput {
+func (o ProfileExternalBlocklistOutput) ToProfileExternalBlocklistOutput() ProfileExternalBlocklistOutput {
 	return o
 }
 
-func (o AntivirusProfileExternalBlocklistOutput) ToAntivirusProfileExternalBlocklistOutputWithContext(ctx context.Context) AntivirusProfileExternalBlocklistOutput {
+func (o ProfileExternalBlocklistOutput) ToProfileExternalBlocklistOutputWithContext(ctx context.Context) ProfileExternalBlocklistOutput {
 	return o
 }
 
-func (o AntivirusProfileExternalBlocklistOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileExternalBlocklist) *string { return v.Name }).(pulumi.StringPtrOutput)
+// External blocklist.
+func (o ProfileExternalBlocklistOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileExternalBlocklist) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileExternalBlocklistArrayOutput struct{ *pulumi.OutputState }
+type ProfileExternalBlocklistArrayOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileExternalBlocklistArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AntivirusProfileExternalBlocklist)(nil)).Elem()
+func (ProfileExternalBlocklistArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProfileExternalBlocklist)(nil)).Elem()
 }
 
-func (o AntivirusProfileExternalBlocklistArrayOutput) ToAntivirusProfileExternalBlocklistArrayOutput() AntivirusProfileExternalBlocklistArrayOutput {
+func (o ProfileExternalBlocklistArrayOutput) ToProfileExternalBlocklistArrayOutput() ProfileExternalBlocklistArrayOutput {
 	return o
 }
 
-func (o AntivirusProfileExternalBlocklistArrayOutput) ToAntivirusProfileExternalBlocklistArrayOutputWithContext(ctx context.Context) AntivirusProfileExternalBlocklistArrayOutput {
+func (o ProfileExternalBlocklistArrayOutput) ToProfileExternalBlocklistArrayOutputWithContext(ctx context.Context) ProfileExternalBlocklistArrayOutput {
 	return o
 }
 
-func (o AntivirusProfileExternalBlocklistArrayOutput) Index(i pulumi.IntInput) AntivirusProfileExternalBlocklistOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AntivirusProfileExternalBlocklist {
-		return vs[0].([]AntivirusProfileExternalBlocklist)[vs[1].(int)]
-	}).(AntivirusProfileExternalBlocklistOutput)
+func (o ProfileExternalBlocklistArrayOutput) Index(i pulumi.IntInput) ProfileExternalBlocklistOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProfileExternalBlocklist {
+		return vs[0].([]ProfileExternalBlocklist)[vs[1].(int)]
+	}).(ProfileExternalBlocklistOutput)
 }
 
-type AntivirusProfileFtp struct {
-	ArchiveBlock       *string `pulumi:"archiveBlock"`
-	ArchiveLog         *string `pulumi:"archiveLog"`
-	AvScan             *string `pulumi:"avScan"`
-	Emulator           *string `pulumi:"emulator"`
-	ExternalBlocklist  *string `pulumi:"externalBlocklist"`
-	Fortiai            *string `pulumi:"fortiai"`
-	Fortindr           *string `pulumi:"fortindr"`
-	Fortisandbox       *string `pulumi:"fortisandbox"`
-	Options            *string `pulumi:"options"`
+type ProfileFtp struct {
+	// Select the archive types to block.
+	ArchiveBlock *string `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog *string `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan *string `pulumi:"avScan"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator *string `pulumi:"emulator"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist *string `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai *string `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr *string `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox *string `pulumi:"fortisandbox"`
+	// Enable/disable FTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options *string `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention *string `pulumi:"outbreakPrevention"`
-	Quarantine         *string `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine *string `pulumi:"quarantine"`
 }
 
-// AntivirusProfileFtpInput is an input type that accepts AntivirusProfileFtpArgs and AntivirusProfileFtpOutput values.
-// You can construct a concrete instance of `AntivirusProfileFtpInput` via:
+// ProfileFtpInput is an input type that accepts ProfileFtpArgs and ProfileFtpOutput values.
+// You can construct a concrete instance of `ProfileFtpInput` via:
 //
-//	AntivirusProfileFtpArgs{...}
-type AntivirusProfileFtpInput interface {
+//	ProfileFtpArgs{...}
+type ProfileFtpInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileFtpOutput() AntivirusProfileFtpOutput
-	ToAntivirusProfileFtpOutputWithContext(context.Context) AntivirusProfileFtpOutput
+	ToProfileFtpOutput() ProfileFtpOutput
+	ToProfileFtpOutputWithContext(context.Context) ProfileFtpOutput
 }
 
-type AntivirusProfileFtpArgs struct {
-	ArchiveBlock       pulumi.StringPtrInput `pulumi:"archiveBlock"`
-	ArchiveLog         pulumi.StringPtrInput `pulumi:"archiveLog"`
-	AvScan             pulumi.StringPtrInput `pulumi:"avScan"`
-	Emulator           pulumi.StringPtrInput `pulumi:"emulator"`
-	ExternalBlocklist  pulumi.StringPtrInput `pulumi:"externalBlocklist"`
-	Fortiai            pulumi.StringPtrInput `pulumi:"fortiai"`
-	Fortindr           pulumi.StringPtrInput `pulumi:"fortindr"`
-	Fortisandbox       pulumi.StringPtrInput `pulumi:"fortisandbox"`
-	Options            pulumi.StringPtrInput `pulumi:"options"`
+type ProfileFtpArgs struct {
+	// Select the archive types to block.
+	ArchiveBlock pulumi.StringPtrInput `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog pulumi.StringPtrInput `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan pulumi.StringPtrInput `pulumi:"avScan"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator pulumi.StringPtrInput `pulumi:"emulator"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
+	// Enable/disable FTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options pulumi.StringPtrInput `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention pulumi.StringPtrInput `pulumi:"outbreakPrevention"`
-	Quarantine         pulumi.StringPtrInput `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine pulumi.StringPtrInput `pulumi:"quarantine"`
 }
 
-func (AntivirusProfileFtpArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileFtp)(nil)).Elem()
+func (ProfileFtpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileFtp)(nil)).Elem()
 }
 
-func (i AntivirusProfileFtpArgs) ToAntivirusProfileFtpOutput() AntivirusProfileFtpOutput {
-	return i.ToAntivirusProfileFtpOutputWithContext(context.Background())
+func (i ProfileFtpArgs) ToProfileFtpOutput() ProfileFtpOutput {
+	return i.ToProfileFtpOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileFtpArgs) ToAntivirusProfileFtpOutputWithContext(ctx context.Context) AntivirusProfileFtpOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileFtpOutput)
+func (i ProfileFtpArgs) ToProfileFtpOutputWithContext(ctx context.Context) ProfileFtpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileFtpOutput)
 }
 
-func (i AntivirusProfileFtpArgs) ToAntivirusProfileFtpPtrOutput() AntivirusProfileFtpPtrOutput {
-	return i.ToAntivirusProfileFtpPtrOutputWithContext(context.Background())
+func (i ProfileFtpArgs) ToProfileFtpPtrOutput() ProfileFtpPtrOutput {
+	return i.ToProfileFtpPtrOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileFtpArgs) ToAntivirusProfileFtpPtrOutputWithContext(ctx context.Context) AntivirusProfileFtpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileFtpOutput).ToAntivirusProfileFtpPtrOutputWithContext(ctx)
+func (i ProfileFtpArgs) ToProfileFtpPtrOutputWithContext(ctx context.Context) ProfileFtpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileFtpOutput).ToProfileFtpPtrOutputWithContext(ctx)
 }
 
-// AntivirusProfileFtpPtrInput is an input type that accepts AntivirusProfileFtpArgs, AntivirusProfileFtpPtr and AntivirusProfileFtpPtrOutput values.
-// You can construct a concrete instance of `AntivirusProfileFtpPtrInput` via:
+// ProfileFtpPtrInput is an input type that accepts ProfileFtpArgs, ProfileFtpPtr and ProfileFtpPtrOutput values.
+// You can construct a concrete instance of `ProfileFtpPtrInput` via:
 //
-//	        AntivirusProfileFtpArgs{...}
+//	        ProfileFtpArgs{...}
 //
 //	or:
 //
 //	        nil
-type AntivirusProfileFtpPtrInput interface {
+type ProfileFtpPtrInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileFtpPtrOutput() AntivirusProfileFtpPtrOutput
-	ToAntivirusProfileFtpPtrOutputWithContext(context.Context) AntivirusProfileFtpPtrOutput
+	ToProfileFtpPtrOutput() ProfileFtpPtrOutput
+	ToProfileFtpPtrOutputWithContext(context.Context) ProfileFtpPtrOutput
 }
 
-type antivirusProfileFtpPtrType AntivirusProfileFtpArgs
+type profileFtpPtrType ProfileFtpArgs
 
-func AntivirusProfileFtpPtr(v *AntivirusProfileFtpArgs) AntivirusProfileFtpPtrInput {
-	return (*antivirusProfileFtpPtrType)(v)
+func ProfileFtpPtr(v *ProfileFtpArgs) ProfileFtpPtrInput {
+	return (*profileFtpPtrType)(v)
 }
 
-func (*antivirusProfileFtpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileFtp)(nil)).Elem()
+func (*profileFtpPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileFtp)(nil)).Elem()
 }
 
-func (i *antivirusProfileFtpPtrType) ToAntivirusProfileFtpPtrOutput() AntivirusProfileFtpPtrOutput {
-	return i.ToAntivirusProfileFtpPtrOutputWithContext(context.Background())
+func (i *profileFtpPtrType) ToProfileFtpPtrOutput() ProfileFtpPtrOutput {
+	return i.ToProfileFtpPtrOutputWithContext(context.Background())
 }
 
-func (i *antivirusProfileFtpPtrType) ToAntivirusProfileFtpPtrOutputWithContext(ctx context.Context) AntivirusProfileFtpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileFtpPtrOutput)
+func (i *profileFtpPtrType) ToProfileFtpPtrOutputWithContext(ctx context.Context) ProfileFtpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileFtpPtrOutput)
 }
 
-type AntivirusProfileFtpOutput struct{ *pulumi.OutputState }
+type ProfileFtpOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileFtpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileFtp)(nil)).Elem()
+func (ProfileFtpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileFtp)(nil)).Elem()
 }
 
-func (o AntivirusProfileFtpOutput) ToAntivirusProfileFtpOutput() AntivirusProfileFtpOutput {
+func (o ProfileFtpOutput) ToProfileFtpOutput() ProfileFtpOutput {
 	return o
 }
 
-func (o AntivirusProfileFtpOutput) ToAntivirusProfileFtpOutputWithContext(ctx context.Context) AntivirusProfileFtpOutput {
+func (o ProfileFtpOutput) ToProfileFtpOutputWithContext(ctx context.Context) ProfileFtpOutput {
 	return o
 }
 
-func (o AntivirusProfileFtpOutput) ToAntivirusProfileFtpPtrOutput() AntivirusProfileFtpPtrOutput {
-	return o.ToAntivirusProfileFtpPtrOutputWithContext(context.Background())
+func (o ProfileFtpOutput) ToProfileFtpPtrOutput() ProfileFtpPtrOutput {
+	return o.ToProfileFtpPtrOutputWithContext(context.Background())
 }
 
-func (o AntivirusProfileFtpOutput) ToAntivirusProfileFtpPtrOutputWithContext(ctx context.Context) AntivirusProfileFtpPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AntivirusProfileFtp) *AntivirusProfileFtp {
+func (o ProfileFtpOutput) ToProfileFtpPtrOutputWithContext(ctx context.Context) ProfileFtpPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProfileFtp) *ProfileFtp {
 		return &v
-	}).(AntivirusProfileFtpPtrOutput)
+	}).(ProfileFtpPtrOutput)
 }
 
-func (o AntivirusProfileFtpOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileFtp) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
+// Select the archive types to block.
+func (o ProfileFtpOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFtp) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileFtp) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
+// Select the archive types to log.
+func (o ProfileFtpOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFtp) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileFtp) *string { return v.AvScan }).(pulumi.StringPtrOutput)
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileFtpOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFtp) *string { return v.AvScan }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileFtp) *string { return v.Emulator }).(pulumi.StringPtrOutput)
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileFtpOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFtp) *string { return v.Emulator }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileFtp) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileFtpOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFtp) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileFtp) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileFtpOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFtp) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileFtp) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileFtpOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFtp) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileFtp) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileFtpOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFtp) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileFtp) *string { return v.Options }).(pulumi.StringPtrOutput)
+// Enable/disable FTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileFtpOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFtp) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileFtp) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
+// Enable Virus Outbreak Prevention service.
+func (o ProfileFtpOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFtp) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileFtp) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileFtpOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFtp) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileFtpPtrOutput struct{ *pulumi.OutputState }
+type ProfileFtpPtrOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileFtpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileFtp)(nil)).Elem()
+func (ProfileFtpPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileFtp)(nil)).Elem()
 }
 
-func (o AntivirusProfileFtpPtrOutput) ToAntivirusProfileFtpPtrOutput() AntivirusProfileFtpPtrOutput {
+func (o ProfileFtpPtrOutput) ToProfileFtpPtrOutput() ProfileFtpPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileFtpPtrOutput) ToAntivirusProfileFtpPtrOutputWithContext(ctx context.Context) AntivirusProfileFtpPtrOutput {
+func (o ProfileFtpPtrOutput) ToProfileFtpPtrOutputWithContext(ctx context.Context) ProfileFtpPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileFtpPtrOutput) Elem() AntivirusProfileFtpOutput {
-	return o.ApplyT(func(v *AntivirusProfileFtp) AntivirusProfileFtp {
+func (o ProfileFtpPtrOutput) Elem() ProfileFtpOutput {
+	return o.ApplyT(func(v *ProfileFtp) ProfileFtp {
 		if v != nil {
 			return *v
 		}
-		var ret AntivirusProfileFtp
+		var ret ProfileFtp
 		return ret
-	}).(AntivirusProfileFtpOutput)
+	}).(ProfileFtpOutput)
 }
 
-func (o AntivirusProfileFtpPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileFtp) *string {
+// Select the archive types to block.
+func (o ProfileFtpPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileFtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -983,8 +1140,9 @@ func (o AntivirusProfileFtpPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileFtp) *string {
+// Select the archive types to log.
+func (o ProfileFtpPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileFtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -992,8 +1150,9 @@ func (o AntivirusProfileFtpPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpPtrOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileFtp) *string {
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileFtpPtrOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileFtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1001,8 +1160,9 @@ func (o AntivirusProfileFtpPtrOutput) AvScan() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpPtrOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileFtp) *string {
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileFtpPtrOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileFtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1010,8 +1170,9 @@ func (o AntivirusProfileFtpPtrOutput) Emulator() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileFtp) *string {
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileFtpPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileFtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1019,8 +1180,9 @@ func (o AntivirusProfileFtpPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpPtrOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileFtp) *string {
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileFtpPtrOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileFtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1028,8 +1190,9 @@ func (o AntivirusProfileFtpPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpPtrOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileFtp) *string {
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileFtpPtrOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileFtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1037,8 +1200,9 @@ func (o AntivirusProfileFtpPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileFtp) *string {
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileFtpPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileFtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1046,8 +1210,9 @@ func (o AntivirusProfileFtpPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpPtrOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileFtp) *string {
+// Enable/disable FTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileFtpPtrOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileFtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1055,8 +1220,9 @@ func (o AntivirusProfileFtpPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileFtp) *string {
+// Enable Virus Outbreak Prevention service.
+func (o ProfileFtpPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileFtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1064,8 +1230,9 @@ func (o AntivirusProfileFtpPtrOutput) OutbreakPrevention() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileFtpPtrOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileFtp) *string {
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileFtpPtrOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileFtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1073,204 +1240,244 @@ func (o AntivirusProfileFtpPtrOutput) Quarantine() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileHttp struct {
-	ArchiveBlock           *string `pulumi:"archiveBlock"`
-	ArchiveLog             *string `pulumi:"archiveLog"`
-	AvScan                 *string `pulumi:"avScan"`
-	ContentDisarm          *string `pulumi:"contentDisarm"`
-	Emulator               *string `pulumi:"emulator"`
-	ExternalBlocklist      *string `pulumi:"externalBlocklist"`
-	Fortiai                *string `pulumi:"fortiai"`
-	Fortindr               *string `pulumi:"fortindr"`
-	Fortisandbox           *string `pulumi:"fortisandbox"`
-	Options                *string `pulumi:"options"`
-	OutbreakPrevention     *string `pulumi:"outbreakPrevention"`
-	Quarantine             *string `pulumi:"quarantine"`
+type ProfileHttp struct {
+	// Select the archive types to block.
+	ArchiveBlock *string `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog *string `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan *string `pulumi:"avScan"`
+	// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+	ContentDisarm *string `pulumi:"contentDisarm"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator *string `pulumi:"emulator"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist *string `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai *string `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr *string `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox *string `pulumi:"fortisandbox"`
+	// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options *string `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
+	OutbreakPrevention *string `pulumi:"outbreakPrevention"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine *string `pulumi:"quarantine"`
+	// Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
 	UnknownContentEncoding *string `pulumi:"unknownContentEncoding"`
 }
 
-// AntivirusProfileHttpInput is an input type that accepts AntivirusProfileHttpArgs and AntivirusProfileHttpOutput values.
-// You can construct a concrete instance of `AntivirusProfileHttpInput` via:
+// ProfileHttpInput is an input type that accepts ProfileHttpArgs and ProfileHttpOutput values.
+// You can construct a concrete instance of `ProfileHttpInput` via:
 //
-//	AntivirusProfileHttpArgs{...}
-type AntivirusProfileHttpInput interface {
+//	ProfileHttpArgs{...}
+type ProfileHttpInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileHttpOutput() AntivirusProfileHttpOutput
-	ToAntivirusProfileHttpOutputWithContext(context.Context) AntivirusProfileHttpOutput
+	ToProfileHttpOutput() ProfileHttpOutput
+	ToProfileHttpOutputWithContext(context.Context) ProfileHttpOutput
 }
 
-type AntivirusProfileHttpArgs struct {
-	ArchiveBlock           pulumi.StringPtrInput `pulumi:"archiveBlock"`
-	ArchiveLog             pulumi.StringPtrInput `pulumi:"archiveLog"`
-	AvScan                 pulumi.StringPtrInput `pulumi:"avScan"`
-	ContentDisarm          pulumi.StringPtrInput `pulumi:"contentDisarm"`
-	Emulator               pulumi.StringPtrInput `pulumi:"emulator"`
-	ExternalBlocklist      pulumi.StringPtrInput `pulumi:"externalBlocklist"`
-	Fortiai                pulumi.StringPtrInput `pulumi:"fortiai"`
-	Fortindr               pulumi.StringPtrInput `pulumi:"fortindr"`
-	Fortisandbox           pulumi.StringPtrInput `pulumi:"fortisandbox"`
-	Options                pulumi.StringPtrInput `pulumi:"options"`
-	OutbreakPrevention     pulumi.StringPtrInput `pulumi:"outbreakPrevention"`
-	Quarantine             pulumi.StringPtrInput `pulumi:"quarantine"`
+type ProfileHttpArgs struct {
+	// Select the archive types to block.
+	ArchiveBlock pulumi.StringPtrInput `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog pulumi.StringPtrInput `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan pulumi.StringPtrInput `pulumi:"avScan"`
+	// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+	ContentDisarm pulumi.StringPtrInput `pulumi:"contentDisarm"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator pulumi.StringPtrInput `pulumi:"emulator"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
+	// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options pulumi.StringPtrInput `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
+	OutbreakPrevention pulumi.StringPtrInput `pulumi:"outbreakPrevention"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine pulumi.StringPtrInput `pulumi:"quarantine"`
+	// Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
 	UnknownContentEncoding pulumi.StringPtrInput `pulumi:"unknownContentEncoding"`
 }
 
-func (AntivirusProfileHttpArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileHttp)(nil)).Elem()
+func (ProfileHttpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileHttp)(nil)).Elem()
 }
 
-func (i AntivirusProfileHttpArgs) ToAntivirusProfileHttpOutput() AntivirusProfileHttpOutput {
-	return i.ToAntivirusProfileHttpOutputWithContext(context.Background())
+func (i ProfileHttpArgs) ToProfileHttpOutput() ProfileHttpOutput {
+	return i.ToProfileHttpOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileHttpArgs) ToAntivirusProfileHttpOutputWithContext(ctx context.Context) AntivirusProfileHttpOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileHttpOutput)
+func (i ProfileHttpArgs) ToProfileHttpOutputWithContext(ctx context.Context) ProfileHttpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileHttpOutput)
 }
 
-func (i AntivirusProfileHttpArgs) ToAntivirusProfileHttpPtrOutput() AntivirusProfileHttpPtrOutput {
-	return i.ToAntivirusProfileHttpPtrOutputWithContext(context.Background())
+func (i ProfileHttpArgs) ToProfileHttpPtrOutput() ProfileHttpPtrOutput {
+	return i.ToProfileHttpPtrOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileHttpArgs) ToAntivirusProfileHttpPtrOutputWithContext(ctx context.Context) AntivirusProfileHttpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileHttpOutput).ToAntivirusProfileHttpPtrOutputWithContext(ctx)
+func (i ProfileHttpArgs) ToProfileHttpPtrOutputWithContext(ctx context.Context) ProfileHttpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileHttpOutput).ToProfileHttpPtrOutputWithContext(ctx)
 }
 
-// AntivirusProfileHttpPtrInput is an input type that accepts AntivirusProfileHttpArgs, AntivirusProfileHttpPtr and AntivirusProfileHttpPtrOutput values.
-// You can construct a concrete instance of `AntivirusProfileHttpPtrInput` via:
+// ProfileHttpPtrInput is an input type that accepts ProfileHttpArgs, ProfileHttpPtr and ProfileHttpPtrOutput values.
+// You can construct a concrete instance of `ProfileHttpPtrInput` via:
 //
-//	        AntivirusProfileHttpArgs{...}
+//	        ProfileHttpArgs{...}
 //
 //	or:
 //
 //	        nil
-type AntivirusProfileHttpPtrInput interface {
+type ProfileHttpPtrInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileHttpPtrOutput() AntivirusProfileHttpPtrOutput
-	ToAntivirusProfileHttpPtrOutputWithContext(context.Context) AntivirusProfileHttpPtrOutput
+	ToProfileHttpPtrOutput() ProfileHttpPtrOutput
+	ToProfileHttpPtrOutputWithContext(context.Context) ProfileHttpPtrOutput
 }
 
-type antivirusProfileHttpPtrType AntivirusProfileHttpArgs
+type profileHttpPtrType ProfileHttpArgs
 
-func AntivirusProfileHttpPtr(v *AntivirusProfileHttpArgs) AntivirusProfileHttpPtrInput {
-	return (*antivirusProfileHttpPtrType)(v)
+func ProfileHttpPtr(v *ProfileHttpArgs) ProfileHttpPtrInput {
+	return (*profileHttpPtrType)(v)
 }
 
-func (*antivirusProfileHttpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileHttp)(nil)).Elem()
+func (*profileHttpPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileHttp)(nil)).Elem()
 }
 
-func (i *antivirusProfileHttpPtrType) ToAntivirusProfileHttpPtrOutput() AntivirusProfileHttpPtrOutput {
-	return i.ToAntivirusProfileHttpPtrOutputWithContext(context.Background())
+func (i *profileHttpPtrType) ToProfileHttpPtrOutput() ProfileHttpPtrOutput {
+	return i.ToProfileHttpPtrOutputWithContext(context.Background())
 }
 
-func (i *antivirusProfileHttpPtrType) ToAntivirusProfileHttpPtrOutputWithContext(ctx context.Context) AntivirusProfileHttpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileHttpPtrOutput)
+func (i *profileHttpPtrType) ToProfileHttpPtrOutputWithContext(ctx context.Context) ProfileHttpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileHttpPtrOutput)
 }
 
-type AntivirusProfileHttpOutput struct{ *pulumi.OutputState }
+type ProfileHttpOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileHttpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileHttp)(nil)).Elem()
+func (ProfileHttpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileHttp)(nil)).Elem()
 }
 
-func (o AntivirusProfileHttpOutput) ToAntivirusProfileHttpOutput() AntivirusProfileHttpOutput {
+func (o ProfileHttpOutput) ToProfileHttpOutput() ProfileHttpOutput {
 	return o
 }
 
-func (o AntivirusProfileHttpOutput) ToAntivirusProfileHttpOutputWithContext(ctx context.Context) AntivirusProfileHttpOutput {
+func (o ProfileHttpOutput) ToProfileHttpOutputWithContext(ctx context.Context) ProfileHttpOutput {
 	return o
 }
 
-func (o AntivirusProfileHttpOutput) ToAntivirusProfileHttpPtrOutput() AntivirusProfileHttpPtrOutput {
-	return o.ToAntivirusProfileHttpPtrOutputWithContext(context.Background())
+func (o ProfileHttpOutput) ToProfileHttpPtrOutput() ProfileHttpPtrOutput {
+	return o.ToProfileHttpPtrOutputWithContext(context.Background())
 }
 
-func (o AntivirusProfileHttpOutput) ToAntivirusProfileHttpPtrOutputWithContext(ctx context.Context) AntivirusProfileHttpPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AntivirusProfileHttp) *AntivirusProfileHttp {
+func (o ProfileHttpOutput) ToProfileHttpPtrOutputWithContext(ctx context.Context) ProfileHttpPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProfileHttp) *ProfileHttp {
 		return &v
-	}).(AntivirusProfileHttpPtrOutput)
+	}).(ProfileHttpPtrOutput)
 }
 
-func (o AntivirusProfileHttpOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileHttp) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
+// Select the archive types to block.
+func (o ProfileHttpOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileHttp) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileHttp) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
+// Select the archive types to log.
+func (o ProfileHttpOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileHttp) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileHttp) *string { return v.AvScan }).(pulumi.StringPtrOutput)
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileHttpOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileHttp) *string { return v.AvScan }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpOutput) ContentDisarm() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileHttp) *string { return v.ContentDisarm }).(pulumi.StringPtrOutput)
+// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+func (o ProfileHttpOutput) ContentDisarm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileHttp) *string { return v.ContentDisarm }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileHttp) *string { return v.Emulator }).(pulumi.StringPtrOutput)
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileHttpOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileHttp) *string { return v.Emulator }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileHttp) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileHttpOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileHttp) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileHttp) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileHttpOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileHttp) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileHttp) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileHttpOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileHttp) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileHttp) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileHttpOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileHttp) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileHttp) *string { return v.Options }).(pulumi.StringPtrOutput)
+// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileHttpOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileHttp) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileHttp) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
+// Enable Virus Outbreak Prevention service.
+func (o ProfileHttpOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileHttp) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileHttp) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileHttpOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileHttp) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpOutput) UnknownContentEncoding() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileHttp) *string { return v.UnknownContentEncoding }).(pulumi.StringPtrOutput)
+// Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
+func (o ProfileHttpOutput) UnknownContentEncoding() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileHttp) *string { return v.UnknownContentEncoding }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileHttpPtrOutput struct{ *pulumi.OutputState }
+type ProfileHttpPtrOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileHttpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileHttp)(nil)).Elem()
+func (ProfileHttpPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileHttp)(nil)).Elem()
 }
 
-func (o AntivirusProfileHttpPtrOutput) ToAntivirusProfileHttpPtrOutput() AntivirusProfileHttpPtrOutput {
+func (o ProfileHttpPtrOutput) ToProfileHttpPtrOutput() ProfileHttpPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileHttpPtrOutput) ToAntivirusProfileHttpPtrOutputWithContext(ctx context.Context) AntivirusProfileHttpPtrOutput {
+func (o ProfileHttpPtrOutput) ToProfileHttpPtrOutputWithContext(ctx context.Context) ProfileHttpPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileHttpPtrOutput) Elem() AntivirusProfileHttpOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) AntivirusProfileHttp {
+func (o ProfileHttpPtrOutput) Elem() ProfileHttpOutput {
+	return o.ApplyT(func(v *ProfileHttp) ProfileHttp {
 		if v != nil {
 			return *v
 		}
-		var ret AntivirusProfileHttp
+		var ret ProfileHttp
 		return ret
-	}).(AntivirusProfileHttpOutput)
+	}).(ProfileHttpOutput)
 }
 
-func (o AntivirusProfileHttpPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) *string {
+// Select the archive types to block.
+func (o ProfileHttpPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1278,8 +1485,9 @@ func (o AntivirusProfileHttpPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) *string {
+// Select the archive types to log.
+func (o ProfileHttpPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1287,8 +1495,9 @@ func (o AntivirusProfileHttpPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpPtrOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) *string {
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileHttpPtrOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1296,8 +1505,9 @@ func (o AntivirusProfileHttpPtrOutput) AvScan() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpPtrOutput) ContentDisarm() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) *string {
+// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+func (o ProfileHttpPtrOutput) ContentDisarm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1305,8 +1515,9 @@ func (o AntivirusProfileHttpPtrOutput) ContentDisarm() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpPtrOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) *string {
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileHttpPtrOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1314,8 +1525,9 @@ func (o AntivirusProfileHttpPtrOutput) Emulator() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) *string {
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileHttpPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1323,8 +1535,9 @@ func (o AntivirusProfileHttpPtrOutput) ExternalBlocklist() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpPtrOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) *string {
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileHttpPtrOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1332,8 +1545,9 @@ func (o AntivirusProfileHttpPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpPtrOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) *string {
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileHttpPtrOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1341,8 +1555,9 @@ func (o AntivirusProfileHttpPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) *string {
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileHttpPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1350,8 +1565,9 @@ func (o AntivirusProfileHttpPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpPtrOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) *string {
+// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileHttpPtrOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1359,8 +1575,9 @@ func (o AntivirusProfileHttpPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) *string {
+// Enable Virus Outbreak Prevention service.
+func (o ProfileHttpPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1368,8 +1585,9 @@ func (o AntivirusProfileHttpPtrOutput) OutbreakPrevention() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpPtrOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) *string {
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileHttpPtrOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1377,8 +1595,9 @@ func (o AntivirusProfileHttpPtrOutput) Quarantine() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileHttpPtrOutput) UnknownContentEncoding() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileHttp) *string {
+// Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
+func (o ProfileHttpPtrOutput) UnknownContentEncoding() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
 			return nil
 		}
@@ -1386,204 +1605,244 @@ func (o AntivirusProfileHttpPtrOutput) UnknownContentEncoding() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileImap struct {
-	ArchiveBlock       *string `pulumi:"archiveBlock"`
-	ArchiveLog         *string `pulumi:"archiveLog"`
-	AvScan             *string `pulumi:"avScan"`
-	ContentDisarm      *string `pulumi:"contentDisarm"`
-	Emulator           *string `pulumi:"emulator"`
-	Executables        *string `pulumi:"executables"`
-	ExternalBlocklist  *string `pulumi:"externalBlocklist"`
-	Fortiai            *string `pulumi:"fortiai"`
-	Fortindr           *string `pulumi:"fortindr"`
-	Fortisandbox       *string `pulumi:"fortisandbox"`
-	Options            *string `pulumi:"options"`
+type ProfileImap struct {
+	// Select the archive types to block.
+	ArchiveBlock *string `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog *string `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan *string `pulumi:"avScan"`
+	// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+	ContentDisarm *string `pulumi:"contentDisarm"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator *string `pulumi:"emulator"`
+	// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+	Executables *string `pulumi:"executables"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist *string `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai *string `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr *string `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox *string `pulumi:"fortisandbox"`
+	// Enable/disable POP3 AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options *string `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention *string `pulumi:"outbreakPrevention"`
-	Quarantine         *string `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine *string `pulumi:"quarantine"`
 }
 
-// AntivirusProfileImapInput is an input type that accepts AntivirusProfileImapArgs and AntivirusProfileImapOutput values.
-// You can construct a concrete instance of `AntivirusProfileImapInput` via:
+// ProfileImapInput is an input type that accepts ProfileImapArgs and ProfileImapOutput values.
+// You can construct a concrete instance of `ProfileImapInput` via:
 //
-//	AntivirusProfileImapArgs{...}
-type AntivirusProfileImapInput interface {
+//	ProfileImapArgs{...}
+type ProfileImapInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileImapOutput() AntivirusProfileImapOutput
-	ToAntivirusProfileImapOutputWithContext(context.Context) AntivirusProfileImapOutput
+	ToProfileImapOutput() ProfileImapOutput
+	ToProfileImapOutputWithContext(context.Context) ProfileImapOutput
 }
 
-type AntivirusProfileImapArgs struct {
-	ArchiveBlock       pulumi.StringPtrInput `pulumi:"archiveBlock"`
-	ArchiveLog         pulumi.StringPtrInput `pulumi:"archiveLog"`
-	AvScan             pulumi.StringPtrInput `pulumi:"avScan"`
-	ContentDisarm      pulumi.StringPtrInput `pulumi:"contentDisarm"`
-	Emulator           pulumi.StringPtrInput `pulumi:"emulator"`
-	Executables        pulumi.StringPtrInput `pulumi:"executables"`
-	ExternalBlocklist  pulumi.StringPtrInput `pulumi:"externalBlocklist"`
-	Fortiai            pulumi.StringPtrInput `pulumi:"fortiai"`
-	Fortindr           pulumi.StringPtrInput `pulumi:"fortindr"`
-	Fortisandbox       pulumi.StringPtrInput `pulumi:"fortisandbox"`
-	Options            pulumi.StringPtrInput `pulumi:"options"`
+type ProfileImapArgs struct {
+	// Select the archive types to block.
+	ArchiveBlock pulumi.StringPtrInput `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog pulumi.StringPtrInput `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan pulumi.StringPtrInput `pulumi:"avScan"`
+	// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+	ContentDisarm pulumi.StringPtrInput `pulumi:"contentDisarm"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator pulumi.StringPtrInput `pulumi:"emulator"`
+	// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+	Executables pulumi.StringPtrInput `pulumi:"executables"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
+	// Enable/disable POP3 AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options pulumi.StringPtrInput `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention pulumi.StringPtrInput `pulumi:"outbreakPrevention"`
-	Quarantine         pulumi.StringPtrInput `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine pulumi.StringPtrInput `pulumi:"quarantine"`
 }
 
-func (AntivirusProfileImapArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileImap)(nil)).Elem()
+func (ProfileImapArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileImap)(nil)).Elem()
 }
 
-func (i AntivirusProfileImapArgs) ToAntivirusProfileImapOutput() AntivirusProfileImapOutput {
-	return i.ToAntivirusProfileImapOutputWithContext(context.Background())
+func (i ProfileImapArgs) ToProfileImapOutput() ProfileImapOutput {
+	return i.ToProfileImapOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileImapArgs) ToAntivirusProfileImapOutputWithContext(ctx context.Context) AntivirusProfileImapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileImapOutput)
+func (i ProfileImapArgs) ToProfileImapOutputWithContext(ctx context.Context) ProfileImapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileImapOutput)
 }
 
-func (i AntivirusProfileImapArgs) ToAntivirusProfileImapPtrOutput() AntivirusProfileImapPtrOutput {
-	return i.ToAntivirusProfileImapPtrOutputWithContext(context.Background())
+func (i ProfileImapArgs) ToProfileImapPtrOutput() ProfileImapPtrOutput {
+	return i.ToProfileImapPtrOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileImapArgs) ToAntivirusProfileImapPtrOutputWithContext(ctx context.Context) AntivirusProfileImapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileImapOutput).ToAntivirusProfileImapPtrOutputWithContext(ctx)
+func (i ProfileImapArgs) ToProfileImapPtrOutputWithContext(ctx context.Context) ProfileImapPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileImapOutput).ToProfileImapPtrOutputWithContext(ctx)
 }
 
-// AntivirusProfileImapPtrInput is an input type that accepts AntivirusProfileImapArgs, AntivirusProfileImapPtr and AntivirusProfileImapPtrOutput values.
-// You can construct a concrete instance of `AntivirusProfileImapPtrInput` via:
+// ProfileImapPtrInput is an input type that accepts ProfileImapArgs, ProfileImapPtr and ProfileImapPtrOutput values.
+// You can construct a concrete instance of `ProfileImapPtrInput` via:
 //
-//	        AntivirusProfileImapArgs{...}
+//	        ProfileImapArgs{...}
 //
 //	or:
 //
 //	        nil
-type AntivirusProfileImapPtrInput interface {
+type ProfileImapPtrInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileImapPtrOutput() AntivirusProfileImapPtrOutput
-	ToAntivirusProfileImapPtrOutputWithContext(context.Context) AntivirusProfileImapPtrOutput
+	ToProfileImapPtrOutput() ProfileImapPtrOutput
+	ToProfileImapPtrOutputWithContext(context.Context) ProfileImapPtrOutput
 }
 
-type antivirusProfileImapPtrType AntivirusProfileImapArgs
+type profileImapPtrType ProfileImapArgs
 
-func AntivirusProfileImapPtr(v *AntivirusProfileImapArgs) AntivirusProfileImapPtrInput {
-	return (*antivirusProfileImapPtrType)(v)
+func ProfileImapPtr(v *ProfileImapArgs) ProfileImapPtrInput {
+	return (*profileImapPtrType)(v)
 }
 
-func (*antivirusProfileImapPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileImap)(nil)).Elem()
+func (*profileImapPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileImap)(nil)).Elem()
 }
 
-func (i *antivirusProfileImapPtrType) ToAntivirusProfileImapPtrOutput() AntivirusProfileImapPtrOutput {
-	return i.ToAntivirusProfileImapPtrOutputWithContext(context.Background())
+func (i *profileImapPtrType) ToProfileImapPtrOutput() ProfileImapPtrOutput {
+	return i.ToProfileImapPtrOutputWithContext(context.Background())
 }
 
-func (i *antivirusProfileImapPtrType) ToAntivirusProfileImapPtrOutputWithContext(ctx context.Context) AntivirusProfileImapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileImapPtrOutput)
+func (i *profileImapPtrType) ToProfileImapPtrOutputWithContext(ctx context.Context) ProfileImapPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileImapPtrOutput)
 }
 
-type AntivirusProfileImapOutput struct{ *pulumi.OutputState }
+type ProfileImapOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileImapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileImap)(nil)).Elem()
+func (ProfileImapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileImap)(nil)).Elem()
 }
 
-func (o AntivirusProfileImapOutput) ToAntivirusProfileImapOutput() AntivirusProfileImapOutput {
+func (o ProfileImapOutput) ToProfileImapOutput() ProfileImapOutput {
 	return o
 }
 
-func (o AntivirusProfileImapOutput) ToAntivirusProfileImapOutputWithContext(ctx context.Context) AntivirusProfileImapOutput {
+func (o ProfileImapOutput) ToProfileImapOutputWithContext(ctx context.Context) ProfileImapOutput {
 	return o
 }
 
-func (o AntivirusProfileImapOutput) ToAntivirusProfileImapPtrOutput() AntivirusProfileImapPtrOutput {
-	return o.ToAntivirusProfileImapPtrOutputWithContext(context.Background())
+func (o ProfileImapOutput) ToProfileImapPtrOutput() ProfileImapPtrOutput {
+	return o.ToProfileImapPtrOutputWithContext(context.Background())
 }
 
-func (o AntivirusProfileImapOutput) ToAntivirusProfileImapPtrOutputWithContext(ctx context.Context) AntivirusProfileImapPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AntivirusProfileImap) *AntivirusProfileImap {
+func (o ProfileImapOutput) ToProfileImapPtrOutputWithContext(ctx context.Context) ProfileImapPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProfileImap) *ProfileImap {
 		return &v
-	}).(AntivirusProfileImapPtrOutput)
+	}).(ProfileImapPtrOutput)
 }
 
-func (o AntivirusProfileImapOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileImap) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
+// Select the archive types to block.
+func (o ProfileImapOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileImap) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileImap) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
+// Select the archive types to log.
+func (o ProfileImapOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileImap) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileImap) *string { return v.AvScan }).(pulumi.StringPtrOutput)
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileImapOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileImap) *string { return v.AvScan }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapOutput) ContentDisarm() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileImap) *string { return v.ContentDisarm }).(pulumi.StringPtrOutput)
+// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+func (o ProfileImapOutput) ContentDisarm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileImap) *string { return v.ContentDisarm }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileImap) *string { return v.Emulator }).(pulumi.StringPtrOutput)
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileImapOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileImap) *string { return v.Emulator }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapOutput) Executables() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileImap) *string { return v.Executables }).(pulumi.StringPtrOutput)
+// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+func (o ProfileImapOutput) Executables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileImap) *string { return v.Executables }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileImap) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileImapOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileImap) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileImap) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileImapOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileImap) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileImap) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileImapOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileImap) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileImap) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileImapOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileImap) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileImap) *string { return v.Options }).(pulumi.StringPtrOutput)
+// Enable/disable POP3 AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileImapOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileImap) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileImap) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
+// Enable Virus Outbreak Prevention service.
+func (o ProfileImapOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileImap) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileImap) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileImapOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileImap) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileImapPtrOutput struct{ *pulumi.OutputState }
+type ProfileImapPtrOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileImapPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileImap)(nil)).Elem()
+func (ProfileImapPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileImap)(nil)).Elem()
 }
 
-func (o AntivirusProfileImapPtrOutput) ToAntivirusProfileImapPtrOutput() AntivirusProfileImapPtrOutput {
+func (o ProfileImapPtrOutput) ToProfileImapPtrOutput() ProfileImapPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileImapPtrOutput) ToAntivirusProfileImapPtrOutputWithContext(ctx context.Context) AntivirusProfileImapPtrOutput {
+func (o ProfileImapPtrOutput) ToProfileImapPtrOutputWithContext(ctx context.Context) ProfileImapPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileImapPtrOutput) Elem() AntivirusProfileImapOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) AntivirusProfileImap {
+func (o ProfileImapPtrOutput) Elem() ProfileImapOutput {
+	return o.ApplyT(func(v *ProfileImap) ProfileImap {
 		if v != nil {
 			return *v
 		}
-		var ret AntivirusProfileImap
+		var ret ProfileImap
 		return ret
-	}).(AntivirusProfileImapOutput)
+	}).(ProfileImapOutput)
 }
 
-func (o AntivirusProfileImapPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) *string {
+// Select the archive types to block.
+func (o ProfileImapPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
 			return nil
 		}
@@ -1591,8 +1850,9 @@ func (o AntivirusProfileImapPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) *string {
+// Select the archive types to log.
+func (o ProfileImapPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
 			return nil
 		}
@@ -1600,8 +1860,9 @@ func (o AntivirusProfileImapPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapPtrOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) *string {
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileImapPtrOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
 			return nil
 		}
@@ -1609,8 +1870,9 @@ func (o AntivirusProfileImapPtrOutput) AvScan() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapPtrOutput) ContentDisarm() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) *string {
+// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+func (o ProfileImapPtrOutput) ContentDisarm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
 			return nil
 		}
@@ -1618,8 +1880,9 @@ func (o AntivirusProfileImapPtrOutput) ContentDisarm() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapPtrOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) *string {
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileImapPtrOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
 			return nil
 		}
@@ -1627,8 +1890,9 @@ func (o AntivirusProfileImapPtrOutput) Emulator() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapPtrOutput) Executables() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) *string {
+// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+func (o ProfileImapPtrOutput) Executables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
 			return nil
 		}
@@ -1636,8 +1900,9 @@ func (o AntivirusProfileImapPtrOutput) Executables() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) *string {
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileImapPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
 			return nil
 		}
@@ -1645,8 +1910,9 @@ func (o AntivirusProfileImapPtrOutput) ExternalBlocklist() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapPtrOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) *string {
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileImapPtrOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
 			return nil
 		}
@@ -1654,8 +1920,9 @@ func (o AntivirusProfileImapPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapPtrOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) *string {
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileImapPtrOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
 			return nil
 		}
@@ -1663,8 +1930,9 @@ func (o AntivirusProfileImapPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) *string {
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileImapPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
 			return nil
 		}
@@ -1672,8 +1940,9 @@ func (o AntivirusProfileImapPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapPtrOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) *string {
+// Enable/disable POP3 AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileImapPtrOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
 			return nil
 		}
@@ -1681,8 +1950,9 @@ func (o AntivirusProfileImapPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) *string {
+// Enable Virus Outbreak Prevention service.
+func (o ProfileImapPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
 			return nil
 		}
@@ -1690,8 +1960,9 @@ func (o AntivirusProfileImapPtrOutput) OutbreakPrevention() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileImapPtrOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileImap) *string {
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileImapPtrOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
 			return nil
 		}
@@ -1699,198 +1970,235 @@ func (o AntivirusProfileImapPtrOutput) Quarantine() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileMapi struct {
-	ArchiveBlock       *string `pulumi:"archiveBlock"`
-	ArchiveLog         *string `pulumi:"archiveLog"`
-	AvScan             *string `pulumi:"avScan"`
-	Emulator           *string `pulumi:"emulator"`
-	Executables        *string `pulumi:"executables"`
-	ExternalBlocklist  *string `pulumi:"externalBlocklist"`
-	Fortiai            *string `pulumi:"fortiai"`
-	Fortindr           *string `pulumi:"fortindr"`
-	Fortisandbox       *string `pulumi:"fortisandbox"`
-	Options            *string `pulumi:"options"`
+type ProfileMapi struct {
+	// Select the archive types to block.
+	ArchiveBlock *string `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog *string `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan *string `pulumi:"avScan"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator *string `pulumi:"emulator"`
+	// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+	Executables *string `pulumi:"executables"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist *string `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai *string `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr *string `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox *string `pulumi:"fortisandbox"`
+	// Enable/disable MAPI AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options *string `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention *string `pulumi:"outbreakPrevention"`
-	Quarantine         *string `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine *string `pulumi:"quarantine"`
 }
 
-// AntivirusProfileMapiInput is an input type that accepts AntivirusProfileMapiArgs and AntivirusProfileMapiOutput values.
-// You can construct a concrete instance of `AntivirusProfileMapiInput` via:
+// ProfileMapiInput is an input type that accepts ProfileMapiArgs and ProfileMapiOutput values.
+// You can construct a concrete instance of `ProfileMapiInput` via:
 //
-//	AntivirusProfileMapiArgs{...}
-type AntivirusProfileMapiInput interface {
+//	ProfileMapiArgs{...}
+type ProfileMapiInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileMapiOutput() AntivirusProfileMapiOutput
-	ToAntivirusProfileMapiOutputWithContext(context.Context) AntivirusProfileMapiOutput
+	ToProfileMapiOutput() ProfileMapiOutput
+	ToProfileMapiOutputWithContext(context.Context) ProfileMapiOutput
 }
 
-type AntivirusProfileMapiArgs struct {
-	ArchiveBlock       pulumi.StringPtrInput `pulumi:"archiveBlock"`
-	ArchiveLog         pulumi.StringPtrInput `pulumi:"archiveLog"`
-	AvScan             pulumi.StringPtrInput `pulumi:"avScan"`
-	Emulator           pulumi.StringPtrInput `pulumi:"emulator"`
-	Executables        pulumi.StringPtrInput `pulumi:"executables"`
-	ExternalBlocklist  pulumi.StringPtrInput `pulumi:"externalBlocklist"`
-	Fortiai            pulumi.StringPtrInput `pulumi:"fortiai"`
-	Fortindr           pulumi.StringPtrInput `pulumi:"fortindr"`
-	Fortisandbox       pulumi.StringPtrInput `pulumi:"fortisandbox"`
-	Options            pulumi.StringPtrInput `pulumi:"options"`
+type ProfileMapiArgs struct {
+	// Select the archive types to block.
+	ArchiveBlock pulumi.StringPtrInput `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog pulumi.StringPtrInput `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan pulumi.StringPtrInput `pulumi:"avScan"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator pulumi.StringPtrInput `pulumi:"emulator"`
+	// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+	Executables pulumi.StringPtrInput `pulumi:"executables"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
+	// Enable/disable MAPI AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options pulumi.StringPtrInput `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention pulumi.StringPtrInput `pulumi:"outbreakPrevention"`
-	Quarantine         pulumi.StringPtrInput `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine pulumi.StringPtrInput `pulumi:"quarantine"`
 }
 
-func (AntivirusProfileMapiArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileMapi)(nil)).Elem()
+func (ProfileMapiArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileMapi)(nil)).Elem()
 }
 
-func (i AntivirusProfileMapiArgs) ToAntivirusProfileMapiOutput() AntivirusProfileMapiOutput {
-	return i.ToAntivirusProfileMapiOutputWithContext(context.Background())
+func (i ProfileMapiArgs) ToProfileMapiOutput() ProfileMapiOutput {
+	return i.ToProfileMapiOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileMapiArgs) ToAntivirusProfileMapiOutputWithContext(ctx context.Context) AntivirusProfileMapiOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileMapiOutput)
+func (i ProfileMapiArgs) ToProfileMapiOutputWithContext(ctx context.Context) ProfileMapiOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileMapiOutput)
 }
 
-func (i AntivirusProfileMapiArgs) ToAntivirusProfileMapiPtrOutput() AntivirusProfileMapiPtrOutput {
-	return i.ToAntivirusProfileMapiPtrOutputWithContext(context.Background())
+func (i ProfileMapiArgs) ToProfileMapiPtrOutput() ProfileMapiPtrOutput {
+	return i.ToProfileMapiPtrOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileMapiArgs) ToAntivirusProfileMapiPtrOutputWithContext(ctx context.Context) AntivirusProfileMapiPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileMapiOutput).ToAntivirusProfileMapiPtrOutputWithContext(ctx)
+func (i ProfileMapiArgs) ToProfileMapiPtrOutputWithContext(ctx context.Context) ProfileMapiPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileMapiOutput).ToProfileMapiPtrOutputWithContext(ctx)
 }
 
-// AntivirusProfileMapiPtrInput is an input type that accepts AntivirusProfileMapiArgs, AntivirusProfileMapiPtr and AntivirusProfileMapiPtrOutput values.
-// You can construct a concrete instance of `AntivirusProfileMapiPtrInput` via:
+// ProfileMapiPtrInput is an input type that accepts ProfileMapiArgs, ProfileMapiPtr and ProfileMapiPtrOutput values.
+// You can construct a concrete instance of `ProfileMapiPtrInput` via:
 //
-//	        AntivirusProfileMapiArgs{...}
+//	        ProfileMapiArgs{...}
 //
 //	or:
 //
 //	        nil
-type AntivirusProfileMapiPtrInput interface {
+type ProfileMapiPtrInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileMapiPtrOutput() AntivirusProfileMapiPtrOutput
-	ToAntivirusProfileMapiPtrOutputWithContext(context.Context) AntivirusProfileMapiPtrOutput
+	ToProfileMapiPtrOutput() ProfileMapiPtrOutput
+	ToProfileMapiPtrOutputWithContext(context.Context) ProfileMapiPtrOutput
 }
 
-type antivirusProfileMapiPtrType AntivirusProfileMapiArgs
+type profileMapiPtrType ProfileMapiArgs
 
-func AntivirusProfileMapiPtr(v *AntivirusProfileMapiArgs) AntivirusProfileMapiPtrInput {
-	return (*antivirusProfileMapiPtrType)(v)
+func ProfileMapiPtr(v *ProfileMapiArgs) ProfileMapiPtrInput {
+	return (*profileMapiPtrType)(v)
 }
 
-func (*antivirusProfileMapiPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileMapi)(nil)).Elem()
+func (*profileMapiPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileMapi)(nil)).Elem()
 }
 
-func (i *antivirusProfileMapiPtrType) ToAntivirusProfileMapiPtrOutput() AntivirusProfileMapiPtrOutput {
-	return i.ToAntivirusProfileMapiPtrOutputWithContext(context.Background())
+func (i *profileMapiPtrType) ToProfileMapiPtrOutput() ProfileMapiPtrOutput {
+	return i.ToProfileMapiPtrOutputWithContext(context.Background())
 }
 
-func (i *antivirusProfileMapiPtrType) ToAntivirusProfileMapiPtrOutputWithContext(ctx context.Context) AntivirusProfileMapiPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileMapiPtrOutput)
+func (i *profileMapiPtrType) ToProfileMapiPtrOutputWithContext(ctx context.Context) ProfileMapiPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileMapiPtrOutput)
 }
 
-type AntivirusProfileMapiOutput struct{ *pulumi.OutputState }
+type ProfileMapiOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileMapiOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileMapi)(nil)).Elem()
+func (ProfileMapiOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileMapi)(nil)).Elem()
 }
 
-func (o AntivirusProfileMapiOutput) ToAntivirusProfileMapiOutput() AntivirusProfileMapiOutput {
+func (o ProfileMapiOutput) ToProfileMapiOutput() ProfileMapiOutput {
 	return o
 }
 
-func (o AntivirusProfileMapiOutput) ToAntivirusProfileMapiOutputWithContext(ctx context.Context) AntivirusProfileMapiOutput {
+func (o ProfileMapiOutput) ToProfileMapiOutputWithContext(ctx context.Context) ProfileMapiOutput {
 	return o
 }
 
-func (o AntivirusProfileMapiOutput) ToAntivirusProfileMapiPtrOutput() AntivirusProfileMapiPtrOutput {
-	return o.ToAntivirusProfileMapiPtrOutputWithContext(context.Background())
+func (o ProfileMapiOutput) ToProfileMapiPtrOutput() ProfileMapiPtrOutput {
+	return o.ToProfileMapiPtrOutputWithContext(context.Background())
 }
 
-func (o AntivirusProfileMapiOutput) ToAntivirusProfileMapiPtrOutputWithContext(ctx context.Context) AntivirusProfileMapiPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AntivirusProfileMapi) *AntivirusProfileMapi {
+func (o ProfileMapiOutput) ToProfileMapiPtrOutputWithContext(ctx context.Context) ProfileMapiPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProfileMapi) *ProfileMapi {
 		return &v
-	}).(AntivirusProfileMapiPtrOutput)
+	}).(ProfileMapiPtrOutput)
 }
 
-func (o AntivirusProfileMapiOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileMapi) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
+// Select the archive types to block.
+func (o ProfileMapiOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileMapi) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileMapi) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
+// Select the archive types to log.
+func (o ProfileMapiOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileMapi) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileMapi) *string { return v.AvScan }).(pulumi.StringPtrOutput)
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileMapiOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileMapi) *string { return v.AvScan }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileMapi) *string { return v.Emulator }).(pulumi.StringPtrOutput)
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileMapiOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileMapi) *string { return v.Emulator }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiOutput) Executables() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileMapi) *string { return v.Executables }).(pulumi.StringPtrOutput)
+// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+func (o ProfileMapiOutput) Executables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileMapi) *string { return v.Executables }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileMapi) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileMapiOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileMapi) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileMapi) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileMapiOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileMapi) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileMapi) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileMapiOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileMapi) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileMapi) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileMapiOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileMapi) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileMapi) *string { return v.Options }).(pulumi.StringPtrOutput)
+// Enable/disable MAPI AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileMapiOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileMapi) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileMapi) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
+// Enable Virus Outbreak Prevention service.
+func (o ProfileMapiOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileMapi) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileMapi) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileMapiOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileMapi) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileMapiPtrOutput struct{ *pulumi.OutputState }
+type ProfileMapiPtrOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileMapiPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileMapi)(nil)).Elem()
+func (ProfileMapiPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileMapi)(nil)).Elem()
 }
 
-func (o AntivirusProfileMapiPtrOutput) ToAntivirusProfileMapiPtrOutput() AntivirusProfileMapiPtrOutput {
+func (o ProfileMapiPtrOutput) ToProfileMapiPtrOutput() ProfileMapiPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileMapiPtrOutput) ToAntivirusProfileMapiPtrOutputWithContext(ctx context.Context) AntivirusProfileMapiPtrOutput {
+func (o ProfileMapiPtrOutput) ToProfileMapiPtrOutputWithContext(ctx context.Context) ProfileMapiPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileMapiPtrOutput) Elem() AntivirusProfileMapiOutput {
-	return o.ApplyT(func(v *AntivirusProfileMapi) AntivirusProfileMapi {
+func (o ProfileMapiPtrOutput) Elem() ProfileMapiOutput {
+	return o.ApplyT(func(v *ProfileMapi) ProfileMapi {
 		if v != nil {
 			return *v
 		}
-		var ret AntivirusProfileMapi
+		var ret ProfileMapi
 		return ret
-	}).(AntivirusProfileMapiOutput)
+	}).(ProfileMapiOutput)
 }
 
-func (o AntivirusProfileMapiPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileMapi) *string {
+// Select the archive types to block.
+func (o ProfileMapiPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileMapi) *string {
 		if v == nil {
 			return nil
 		}
@@ -1898,8 +2206,9 @@ func (o AntivirusProfileMapiPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileMapi) *string {
+// Select the archive types to log.
+func (o ProfileMapiPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileMapi) *string {
 		if v == nil {
 			return nil
 		}
@@ -1907,8 +2216,9 @@ func (o AntivirusProfileMapiPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiPtrOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileMapi) *string {
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileMapiPtrOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileMapi) *string {
 		if v == nil {
 			return nil
 		}
@@ -1916,8 +2226,9 @@ func (o AntivirusProfileMapiPtrOutput) AvScan() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiPtrOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileMapi) *string {
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileMapiPtrOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileMapi) *string {
 		if v == nil {
 			return nil
 		}
@@ -1925,8 +2236,9 @@ func (o AntivirusProfileMapiPtrOutput) Emulator() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiPtrOutput) Executables() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileMapi) *string {
+// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+func (o ProfileMapiPtrOutput) Executables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileMapi) *string {
 		if v == nil {
 			return nil
 		}
@@ -1934,8 +2246,9 @@ func (o AntivirusProfileMapiPtrOutput) Executables() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileMapi) *string {
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileMapiPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileMapi) *string {
 		if v == nil {
 			return nil
 		}
@@ -1943,8 +2256,9 @@ func (o AntivirusProfileMapiPtrOutput) ExternalBlocklist() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiPtrOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileMapi) *string {
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileMapiPtrOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileMapi) *string {
 		if v == nil {
 			return nil
 		}
@@ -1952,8 +2266,9 @@ func (o AntivirusProfileMapiPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiPtrOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileMapi) *string {
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileMapiPtrOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileMapi) *string {
 		if v == nil {
 			return nil
 		}
@@ -1961,8 +2276,9 @@ func (o AntivirusProfileMapiPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileMapi) *string {
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileMapiPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileMapi) *string {
 		if v == nil {
 			return nil
 		}
@@ -1970,8 +2286,9 @@ func (o AntivirusProfileMapiPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiPtrOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileMapi) *string {
+// Enable/disable MAPI AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileMapiPtrOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileMapi) *string {
 		if v == nil {
 			return nil
 		}
@@ -1979,8 +2296,9 @@ func (o AntivirusProfileMapiPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileMapi) *string {
+// Enable Virus Outbreak Prevention service.
+func (o ProfileMapiPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileMapi) *string {
 		if v == nil {
 			return nil
 		}
@@ -1988,8 +2306,9 @@ func (o AntivirusProfileMapiPtrOutput) OutbreakPrevention() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileMapiPtrOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileMapi) *string {
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileMapiPtrOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileMapi) *string {
 		if v == nil {
 			return nil
 		}
@@ -1997,144 +2316,154 @@ func (o AntivirusProfileMapiPtrOutput) Quarantine() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileNacQuar struct {
-	Expiry   *string `pulumi:"expiry"`
+type ProfileNacQuar struct {
+	// Duration of quarantine.
+	Expiry *string `pulumi:"expiry"`
+	// Enable/Disable quarantining infected hosts to the banned user list. Valid values: `none`, `quar-src-ip`.
 	Infected *string `pulumi:"infected"`
-	Log      *string `pulumi:"log"`
+	// Enable/disable AntiVirus quarantine logging. Valid values: `enable`, `disable`.
+	Log *string `pulumi:"log"`
 }
 
-// AntivirusProfileNacQuarInput is an input type that accepts AntivirusProfileNacQuarArgs and AntivirusProfileNacQuarOutput values.
-// You can construct a concrete instance of `AntivirusProfileNacQuarInput` via:
+// ProfileNacQuarInput is an input type that accepts ProfileNacQuarArgs and ProfileNacQuarOutput values.
+// You can construct a concrete instance of `ProfileNacQuarInput` via:
 //
-//	AntivirusProfileNacQuarArgs{...}
-type AntivirusProfileNacQuarInput interface {
+//	ProfileNacQuarArgs{...}
+type ProfileNacQuarInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileNacQuarOutput() AntivirusProfileNacQuarOutput
-	ToAntivirusProfileNacQuarOutputWithContext(context.Context) AntivirusProfileNacQuarOutput
+	ToProfileNacQuarOutput() ProfileNacQuarOutput
+	ToProfileNacQuarOutputWithContext(context.Context) ProfileNacQuarOutput
 }
 
-type AntivirusProfileNacQuarArgs struct {
-	Expiry   pulumi.StringPtrInput `pulumi:"expiry"`
+type ProfileNacQuarArgs struct {
+	// Duration of quarantine.
+	Expiry pulumi.StringPtrInput `pulumi:"expiry"`
+	// Enable/Disable quarantining infected hosts to the banned user list. Valid values: `none`, `quar-src-ip`.
 	Infected pulumi.StringPtrInput `pulumi:"infected"`
-	Log      pulumi.StringPtrInput `pulumi:"log"`
+	// Enable/disable AntiVirus quarantine logging. Valid values: `enable`, `disable`.
+	Log pulumi.StringPtrInput `pulumi:"log"`
 }
 
-func (AntivirusProfileNacQuarArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileNacQuar)(nil)).Elem()
+func (ProfileNacQuarArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileNacQuar)(nil)).Elem()
 }
 
-func (i AntivirusProfileNacQuarArgs) ToAntivirusProfileNacQuarOutput() AntivirusProfileNacQuarOutput {
-	return i.ToAntivirusProfileNacQuarOutputWithContext(context.Background())
+func (i ProfileNacQuarArgs) ToProfileNacQuarOutput() ProfileNacQuarOutput {
+	return i.ToProfileNacQuarOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileNacQuarArgs) ToAntivirusProfileNacQuarOutputWithContext(ctx context.Context) AntivirusProfileNacQuarOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileNacQuarOutput)
+func (i ProfileNacQuarArgs) ToProfileNacQuarOutputWithContext(ctx context.Context) ProfileNacQuarOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileNacQuarOutput)
 }
 
-func (i AntivirusProfileNacQuarArgs) ToAntivirusProfileNacQuarPtrOutput() AntivirusProfileNacQuarPtrOutput {
-	return i.ToAntivirusProfileNacQuarPtrOutputWithContext(context.Background())
+func (i ProfileNacQuarArgs) ToProfileNacQuarPtrOutput() ProfileNacQuarPtrOutput {
+	return i.ToProfileNacQuarPtrOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileNacQuarArgs) ToAntivirusProfileNacQuarPtrOutputWithContext(ctx context.Context) AntivirusProfileNacQuarPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileNacQuarOutput).ToAntivirusProfileNacQuarPtrOutputWithContext(ctx)
+func (i ProfileNacQuarArgs) ToProfileNacQuarPtrOutputWithContext(ctx context.Context) ProfileNacQuarPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileNacQuarOutput).ToProfileNacQuarPtrOutputWithContext(ctx)
 }
 
-// AntivirusProfileNacQuarPtrInput is an input type that accepts AntivirusProfileNacQuarArgs, AntivirusProfileNacQuarPtr and AntivirusProfileNacQuarPtrOutput values.
-// You can construct a concrete instance of `AntivirusProfileNacQuarPtrInput` via:
+// ProfileNacQuarPtrInput is an input type that accepts ProfileNacQuarArgs, ProfileNacQuarPtr and ProfileNacQuarPtrOutput values.
+// You can construct a concrete instance of `ProfileNacQuarPtrInput` via:
 //
-//	        AntivirusProfileNacQuarArgs{...}
+//	        ProfileNacQuarArgs{...}
 //
 //	or:
 //
 //	        nil
-type AntivirusProfileNacQuarPtrInput interface {
+type ProfileNacQuarPtrInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileNacQuarPtrOutput() AntivirusProfileNacQuarPtrOutput
-	ToAntivirusProfileNacQuarPtrOutputWithContext(context.Context) AntivirusProfileNacQuarPtrOutput
+	ToProfileNacQuarPtrOutput() ProfileNacQuarPtrOutput
+	ToProfileNacQuarPtrOutputWithContext(context.Context) ProfileNacQuarPtrOutput
 }
 
-type antivirusProfileNacQuarPtrType AntivirusProfileNacQuarArgs
+type profileNacQuarPtrType ProfileNacQuarArgs
 
-func AntivirusProfileNacQuarPtr(v *AntivirusProfileNacQuarArgs) AntivirusProfileNacQuarPtrInput {
-	return (*antivirusProfileNacQuarPtrType)(v)
+func ProfileNacQuarPtr(v *ProfileNacQuarArgs) ProfileNacQuarPtrInput {
+	return (*profileNacQuarPtrType)(v)
 }
 
-func (*antivirusProfileNacQuarPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileNacQuar)(nil)).Elem()
+func (*profileNacQuarPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileNacQuar)(nil)).Elem()
 }
 
-func (i *antivirusProfileNacQuarPtrType) ToAntivirusProfileNacQuarPtrOutput() AntivirusProfileNacQuarPtrOutput {
-	return i.ToAntivirusProfileNacQuarPtrOutputWithContext(context.Background())
+func (i *profileNacQuarPtrType) ToProfileNacQuarPtrOutput() ProfileNacQuarPtrOutput {
+	return i.ToProfileNacQuarPtrOutputWithContext(context.Background())
 }
 
-func (i *antivirusProfileNacQuarPtrType) ToAntivirusProfileNacQuarPtrOutputWithContext(ctx context.Context) AntivirusProfileNacQuarPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileNacQuarPtrOutput)
+func (i *profileNacQuarPtrType) ToProfileNacQuarPtrOutputWithContext(ctx context.Context) ProfileNacQuarPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileNacQuarPtrOutput)
 }
 
-type AntivirusProfileNacQuarOutput struct{ *pulumi.OutputState }
+type ProfileNacQuarOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileNacQuarOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileNacQuar)(nil)).Elem()
+func (ProfileNacQuarOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileNacQuar)(nil)).Elem()
 }
 
-func (o AntivirusProfileNacQuarOutput) ToAntivirusProfileNacQuarOutput() AntivirusProfileNacQuarOutput {
+func (o ProfileNacQuarOutput) ToProfileNacQuarOutput() ProfileNacQuarOutput {
 	return o
 }
 
-func (o AntivirusProfileNacQuarOutput) ToAntivirusProfileNacQuarOutputWithContext(ctx context.Context) AntivirusProfileNacQuarOutput {
+func (o ProfileNacQuarOutput) ToProfileNacQuarOutputWithContext(ctx context.Context) ProfileNacQuarOutput {
 	return o
 }
 
-func (o AntivirusProfileNacQuarOutput) ToAntivirusProfileNacQuarPtrOutput() AntivirusProfileNacQuarPtrOutput {
-	return o.ToAntivirusProfileNacQuarPtrOutputWithContext(context.Background())
+func (o ProfileNacQuarOutput) ToProfileNacQuarPtrOutput() ProfileNacQuarPtrOutput {
+	return o.ToProfileNacQuarPtrOutputWithContext(context.Background())
 }
 
-func (o AntivirusProfileNacQuarOutput) ToAntivirusProfileNacQuarPtrOutputWithContext(ctx context.Context) AntivirusProfileNacQuarPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AntivirusProfileNacQuar) *AntivirusProfileNacQuar {
+func (o ProfileNacQuarOutput) ToProfileNacQuarPtrOutputWithContext(ctx context.Context) ProfileNacQuarPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProfileNacQuar) *ProfileNacQuar {
 		return &v
-	}).(AntivirusProfileNacQuarPtrOutput)
+	}).(ProfileNacQuarPtrOutput)
 }
 
-func (o AntivirusProfileNacQuarOutput) Expiry() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNacQuar) *string { return v.Expiry }).(pulumi.StringPtrOutput)
+// Duration of quarantine.
+func (o ProfileNacQuarOutput) Expiry() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNacQuar) *string { return v.Expiry }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNacQuarOutput) Infected() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNacQuar) *string { return v.Infected }).(pulumi.StringPtrOutput)
+// Enable/Disable quarantining infected hosts to the banned user list. Valid values: `none`, `quar-src-ip`.
+func (o ProfileNacQuarOutput) Infected() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNacQuar) *string { return v.Infected }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNacQuarOutput) Log() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNacQuar) *string { return v.Log }).(pulumi.StringPtrOutput)
+// Enable/disable AntiVirus quarantine logging. Valid values: `enable`, `disable`.
+func (o ProfileNacQuarOutput) Log() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNacQuar) *string { return v.Log }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileNacQuarPtrOutput struct{ *pulumi.OutputState }
+type ProfileNacQuarPtrOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileNacQuarPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileNacQuar)(nil)).Elem()
+func (ProfileNacQuarPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileNacQuar)(nil)).Elem()
 }
 
-func (o AntivirusProfileNacQuarPtrOutput) ToAntivirusProfileNacQuarPtrOutput() AntivirusProfileNacQuarPtrOutput {
+func (o ProfileNacQuarPtrOutput) ToProfileNacQuarPtrOutput() ProfileNacQuarPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileNacQuarPtrOutput) ToAntivirusProfileNacQuarPtrOutputWithContext(ctx context.Context) AntivirusProfileNacQuarPtrOutput {
+func (o ProfileNacQuarPtrOutput) ToProfileNacQuarPtrOutputWithContext(ctx context.Context) ProfileNacQuarPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileNacQuarPtrOutput) Elem() AntivirusProfileNacQuarOutput {
-	return o.ApplyT(func(v *AntivirusProfileNacQuar) AntivirusProfileNacQuar {
+func (o ProfileNacQuarPtrOutput) Elem() ProfileNacQuarOutput {
+	return o.ApplyT(func(v *ProfileNacQuar) ProfileNacQuar {
 		if v != nil {
 			return *v
 		}
-		var ret AntivirusProfileNacQuar
+		var ret ProfileNacQuar
 		return ret
-	}).(AntivirusProfileNacQuarOutput)
+	}).(ProfileNacQuarOutput)
 }
 
-func (o AntivirusProfileNacQuarPtrOutput) Expiry() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNacQuar) *string {
+// Duration of quarantine.
+func (o ProfileNacQuarPtrOutput) Expiry() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNacQuar) *string {
 		if v == nil {
 			return nil
 		}
@@ -2142,8 +2471,9 @@ func (o AntivirusProfileNacQuarPtrOutput) Expiry() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNacQuarPtrOutput) Infected() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNacQuar) *string {
+// Enable/Disable quarantining infected hosts to the banned user list. Valid values: `none`, `quar-src-ip`.
+func (o ProfileNacQuarPtrOutput) Infected() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNacQuar) *string {
 		if v == nil {
 			return nil
 		}
@@ -2151,8 +2481,9 @@ func (o AntivirusProfileNacQuarPtrOutput) Infected() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNacQuarPtrOutput) Log() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNacQuar) *string {
+// Enable/disable AntiVirus quarantine logging. Valid values: `enable`, `disable`.
+func (o ProfileNacQuarPtrOutput) Log() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNacQuar) *string {
 		if v == nil {
 			return nil
 		}
@@ -2160,192 +2491,226 @@ func (o AntivirusProfileNacQuarPtrOutput) Log() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileNntp struct {
-	ArchiveBlock       *string `pulumi:"archiveBlock"`
-	ArchiveLog         *string `pulumi:"archiveLog"`
-	AvScan             *string `pulumi:"avScan"`
-	Emulator           *string `pulumi:"emulator"`
-	ExternalBlocklist  *string `pulumi:"externalBlocklist"`
-	Fortiai            *string `pulumi:"fortiai"`
-	Fortindr           *string `pulumi:"fortindr"`
-	Fortisandbox       *string `pulumi:"fortisandbox"`
-	Options            *string `pulumi:"options"`
+type ProfileNntp struct {
+	// Select the archive types to block.
+	ArchiveBlock *string `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog *string `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan *string `pulumi:"avScan"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator *string `pulumi:"emulator"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist *string `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai *string `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr *string `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox *string `pulumi:"fortisandbox"`
+	// Enable/disable NNTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options *string `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention *string `pulumi:"outbreakPrevention"`
-	Quarantine         *string `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine *string `pulumi:"quarantine"`
 }
 
-// AntivirusProfileNntpInput is an input type that accepts AntivirusProfileNntpArgs and AntivirusProfileNntpOutput values.
-// You can construct a concrete instance of `AntivirusProfileNntpInput` via:
+// ProfileNntpInput is an input type that accepts ProfileNntpArgs and ProfileNntpOutput values.
+// You can construct a concrete instance of `ProfileNntpInput` via:
 //
-//	AntivirusProfileNntpArgs{...}
-type AntivirusProfileNntpInput interface {
+//	ProfileNntpArgs{...}
+type ProfileNntpInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileNntpOutput() AntivirusProfileNntpOutput
-	ToAntivirusProfileNntpOutputWithContext(context.Context) AntivirusProfileNntpOutput
+	ToProfileNntpOutput() ProfileNntpOutput
+	ToProfileNntpOutputWithContext(context.Context) ProfileNntpOutput
 }
 
-type AntivirusProfileNntpArgs struct {
-	ArchiveBlock       pulumi.StringPtrInput `pulumi:"archiveBlock"`
-	ArchiveLog         pulumi.StringPtrInput `pulumi:"archiveLog"`
-	AvScan             pulumi.StringPtrInput `pulumi:"avScan"`
-	Emulator           pulumi.StringPtrInput `pulumi:"emulator"`
-	ExternalBlocklist  pulumi.StringPtrInput `pulumi:"externalBlocklist"`
-	Fortiai            pulumi.StringPtrInput `pulumi:"fortiai"`
-	Fortindr           pulumi.StringPtrInput `pulumi:"fortindr"`
-	Fortisandbox       pulumi.StringPtrInput `pulumi:"fortisandbox"`
-	Options            pulumi.StringPtrInput `pulumi:"options"`
+type ProfileNntpArgs struct {
+	// Select the archive types to block.
+	ArchiveBlock pulumi.StringPtrInput `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog pulumi.StringPtrInput `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan pulumi.StringPtrInput `pulumi:"avScan"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator pulumi.StringPtrInput `pulumi:"emulator"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
+	// Enable/disable NNTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options pulumi.StringPtrInput `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention pulumi.StringPtrInput `pulumi:"outbreakPrevention"`
-	Quarantine         pulumi.StringPtrInput `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine pulumi.StringPtrInput `pulumi:"quarantine"`
 }
 
-func (AntivirusProfileNntpArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileNntp)(nil)).Elem()
+func (ProfileNntpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileNntp)(nil)).Elem()
 }
 
-func (i AntivirusProfileNntpArgs) ToAntivirusProfileNntpOutput() AntivirusProfileNntpOutput {
-	return i.ToAntivirusProfileNntpOutputWithContext(context.Background())
+func (i ProfileNntpArgs) ToProfileNntpOutput() ProfileNntpOutput {
+	return i.ToProfileNntpOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileNntpArgs) ToAntivirusProfileNntpOutputWithContext(ctx context.Context) AntivirusProfileNntpOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileNntpOutput)
+func (i ProfileNntpArgs) ToProfileNntpOutputWithContext(ctx context.Context) ProfileNntpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileNntpOutput)
 }
 
-func (i AntivirusProfileNntpArgs) ToAntivirusProfileNntpPtrOutput() AntivirusProfileNntpPtrOutput {
-	return i.ToAntivirusProfileNntpPtrOutputWithContext(context.Background())
+func (i ProfileNntpArgs) ToProfileNntpPtrOutput() ProfileNntpPtrOutput {
+	return i.ToProfileNntpPtrOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileNntpArgs) ToAntivirusProfileNntpPtrOutputWithContext(ctx context.Context) AntivirusProfileNntpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileNntpOutput).ToAntivirusProfileNntpPtrOutputWithContext(ctx)
+func (i ProfileNntpArgs) ToProfileNntpPtrOutputWithContext(ctx context.Context) ProfileNntpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileNntpOutput).ToProfileNntpPtrOutputWithContext(ctx)
 }
 
-// AntivirusProfileNntpPtrInput is an input type that accepts AntivirusProfileNntpArgs, AntivirusProfileNntpPtr and AntivirusProfileNntpPtrOutput values.
-// You can construct a concrete instance of `AntivirusProfileNntpPtrInput` via:
+// ProfileNntpPtrInput is an input type that accepts ProfileNntpArgs, ProfileNntpPtr and ProfileNntpPtrOutput values.
+// You can construct a concrete instance of `ProfileNntpPtrInput` via:
 //
-//	        AntivirusProfileNntpArgs{...}
+//	        ProfileNntpArgs{...}
 //
 //	or:
 //
 //	        nil
-type AntivirusProfileNntpPtrInput interface {
+type ProfileNntpPtrInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileNntpPtrOutput() AntivirusProfileNntpPtrOutput
-	ToAntivirusProfileNntpPtrOutputWithContext(context.Context) AntivirusProfileNntpPtrOutput
+	ToProfileNntpPtrOutput() ProfileNntpPtrOutput
+	ToProfileNntpPtrOutputWithContext(context.Context) ProfileNntpPtrOutput
 }
 
-type antivirusProfileNntpPtrType AntivirusProfileNntpArgs
+type profileNntpPtrType ProfileNntpArgs
 
-func AntivirusProfileNntpPtr(v *AntivirusProfileNntpArgs) AntivirusProfileNntpPtrInput {
-	return (*antivirusProfileNntpPtrType)(v)
+func ProfileNntpPtr(v *ProfileNntpArgs) ProfileNntpPtrInput {
+	return (*profileNntpPtrType)(v)
 }
 
-func (*antivirusProfileNntpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileNntp)(nil)).Elem()
+func (*profileNntpPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileNntp)(nil)).Elem()
 }
 
-func (i *antivirusProfileNntpPtrType) ToAntivirusProfileNntpPtrOutput() AntivirusProfileNntpPtrOutput {
-	return i.ToAntivirusProfileNntpPtrOutputWithContext(context.Background())
+func (i *profileNntpPtrType) ToProfileNntpPtrOutput() ProfileNntpPtrOutput {
+	return i.ToProfileNntpPtrOutputWithContext(context.Background())
 }
 
-func (i *antivirusProfileNntpPtrType) ToAntivirusProfileNntpPtrOutputWithContext(ctx context.Context) AntivirusProfileNntpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileNntpPtrOutput)
+func (i *profileNntpPtrType) ToProfileNntpPtrOutputWithContext(ctx context.Context) ProfileNntpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileNntpPtrOutput)
 }
 
-type AntivirusProfileNntpOutput struct{ *pulumi.OutputState }
+type ProfileNntpOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileNntpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileNntp)(nil)).Elem()
+func (ProfileNntpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileNntp)(nil)).Elem()
 }
 
-func (o AntivirusProfileNntpOutput) ToAntivirusProfileNntpOutput() AntivirusProfileNntpOutput {
+func (o ProfileNntpOutput) ToProfileNntpOutput() ProfileNntpOutput {
 	return o
 }
 
-func (o AntivirusProfileNntpOutput) ToAntivirusProfileNntpOutputWithContext(ctx context.Context) AntivirusProfileNntpOutput {
+func (o ProfileNntpOutput) ToProfileNntpOutputWithContext(ctx context.Context) ProfileNntpOutput {
 	return o
 }
 
-func (o AntivirusProfileNntpOutput) ToAntivirusProfileNntpPtrOutput() AntivirusProfileNntpPtrOutput {
-	return o.ToAntivirusProfileNntpPtrOutputWithContext(context.Background())
+func (o ProfileNntpOutput) ToProfileNntpPtrOutput() ProfileNntpPtrOutput {
+	return o.ToProfileNntpPtrOutputWithContext(context.Background())
 }
 
-func (o AntivirusProfileNntpOutput) ToAntivirusProfileNntpPtrOutputWithContext(ctx context.Context) AntivirusProfileNntpPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AntivirusProfileNntp) *AntivirusProfileNntp {
+func (o ProfileNntpOutput) ToProfileNntpPtrOutputWithContext(ctx context.Context) ProfileNntpPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProfileNntp) *ProfileNntp {
 		return &v
-	}).(AntivirusProfileNntpPtrOutput)
+	}).(ProfileNntpPtrOutput)
 }
 
-func (o AntivirusProfileNntpOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNntp) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
+// Select the archive types to block.
+func (o ProfileNntpOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNntp) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNntp) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
+// Select the archive types to log.
+func (o ProfileNntpOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNntp) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNntp) *string { return v.AvScan }).(pulumi.StringPtrOutput)
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileNntpOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNntp) *string { return v.AvScan }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNntp) *string { return v.Emulator }).(pulumi.StringPtrOutput)
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileNntpOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNntp) *string { return v.Emulator }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNntp) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileNntpOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNntp) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNntp) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileNntpOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNntp) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNntp) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileNntpOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNntp) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNntp) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileNntpOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNntp) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNntp) *string { return v.Options }).(pulumi.StringPtrOutput)
+// Enable/disable NNTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileNntpOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNntp) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNntp) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
+// Enable Virus Outbreak Prevention service.
+func (o ProfileNntpOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNntp) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileNntp) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileNntpOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileNntp) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileNntpPtrOutput struct{ *pulumi.OutputState }
+type ProfileNntpPtrOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileNntpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileNntp)(nil)).Elem()
+func (ProfileNntpPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileNntp)(nil)).Elem()
 }
 
-func (o AntivirusProfileNntpPtrOutput) ToAntivirusProfileNntpPtrOutput() AntivirusProfileNntpPtrOutput {
+func (o ProfileNntpPtrOutput) ToProfileNntpPtrOutput() ProfileNntpPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileNntpPtrOutput) ToAntivirusProfileNntpPtrOutputWithContext(ctx context.Context) AntivirusProfileNntpPtrOutput {
+func (o ProfileNntpPtrOutput) ToProfileNntpPtrOutputWithContext(ctx context.Context) ProfileNntpPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileNntpPtrOutput) Elem() AntivirusProfileNntpOutput {
-	return o.ApplyT(func(v *AntivirusProfileNntp) AntivirusProfileNntp {
+func (o ProfileNntpPtrOutput) Elem() ProfileNntpOutput {
+	return o.ApplyT(func(v *ProfileNntp) ProfileNntp {
 		if v != nil {
 			return *v
 		}
-		var ret AntivirusProfileNntp
+		var ret ProfileNntp
 		return ret
-	}).(AntivirusProfileNntpOutput)
+	}).(ProfileNntpOutput)
 }
 
-func (o AntivirusProfileNntpPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNntp) *string {
+// Select the archive types to block.
+func (o ProfileNntpPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNntp) *string {
 		if v == nil {
 			return nil
 		}
@@ -2353,8 +2718,9 @@ func (o AntivirusProfileNntpPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNntp) *string {
+// Select the archive types to log.
+func (o ProfileNntpPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNntp) *string {
 		if v == nil {
 			return nil
 		}
@@ -2362,8 +2728,9 @@ func (o AntivirusProfileNntpPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpPtrOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNntp) *string {
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileNntpPtrOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNntp) *string {
 		if v == nil {
 			return nil
 		}
@@ -2371,8 +2738,9 @@ func (o AntivirusProfileNntpPtrOutput) AvScan() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpPtrOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNntp) *string {
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileNntpPtrOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNntp) *string {
 		if v == nil {
 			return nil
 		}
@@ -2380,8 +2748,9 @@ func (o AntivirusProfileNntpPtrOutput) Emulator() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNntp) *string {
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileNntpPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNntp) *string {
 		if v == nil {
 			return nil
 		}
@@ -2389,8 +2758,9 @@ func (o AntivirusProfileNntpPtrOutput) ExternalBlocklist() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpPtrOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNntp) *string {
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileNntpPtrOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNntp) *string {
 		if v == nil {
 			return nil
 		}
@@ -2398,8 +2768,9 @@ func (o AntivirusProfileNntpPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpPtrOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNntp) *string {
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileNntpPtrOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNntp) *string {
 		if v == nil {
 			return nil
 		}
@@ -2407,8 +2778,9 @@ func (o AntivirusProfileNntpPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNntp) *string {
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileNntpPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNntp) *string {
 		if v == nil {
 			return nil
 		}
@@ -2416,8 +2788,9 @@ func (o AntivirusProfileNntpPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpPtrOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNntp) *string {
+// Enable/disable NNTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileNntpPtrOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNntp) *string {
 		if v == nil {
 			return nil
 		}
@@ -2425,8 +2798,9 @@ func (o AntivirusProfileNntpPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNntp) *string {
+// Enable Virus Outbreak Prevention service.
+func (o ProfileNntpPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNntp) *string {
 		if v == nil {
 			return nil
 		}
@@ -2434,8 +2808,9 @@ func (o AntivirusProfileNntpPtrOutput) OutbreakPrevention() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileNntpPtrOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileNntp) *string {
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileNntpPtrOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileNntp) *string {
 		if v == nil {
 			return nil
 		}
@@ -2443,138 +2818,145 @@ func (o AntivirusProfileNntpPtrOutput) Quarantine() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileOutbreakPrevention struct {
+type ProfileOutbreakPrevention struct {
+	// Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
 	ExternalBlocklist *string `pulumi:"externalBlocklist"`
-	FtgdService       *string `pulumi:"ftgdService"`
+	// Enable/disable FortiGuard Virus outbreak prevention service. Valid values: `disable`, `enable`.
+	FtgdService *string `pulumi:"ftgdService"`
 }
 
-// AntivirusProfileOutbreakPreventionInput is an input type that accepts AntivirusProfileOutbreakPreventionArgs and AntivirusProfileOutbreakPreventionOutput values.
-// You can construct a concrete instance of `AntivirusProfileOutbreakPreventionInput` via:
+// ProfileOutbreakPreventionInput is an input type that accepts ProfileOutbreakPreventionArgs and ProfileOutbreakPreventionOutput values.
+// You can construct a concrete instance of `ProfileOutbreakPreventionInput` via:
 //
-//	AntivirusProfileOutbreakPreventionArgs{...}
-type AntivirusProfileOutbreakPreventionInput interface {
+//	ProfileOutbreakPreventionArgs{...}
+type ProfileOutbreakPreventionInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileOutbreakPreventionOutput() AntivirusProfileOutbreakPreventionOutput
-	ToAntivirusProfileOutbreakPreventionOutputWithContext(context.Context) AntivirusProfileOutbreakPreventionOutput
+	ToProfileOutbreakPreventionOutput() ProfileOutbreakPreventionOutput
+	ToProfileOutbreakPreventionOutputWithContext(context.Context) ProfileOutbreakPreventionOutput
 }
 
-type AntivirusProfileOutbreakPreventionArgs struct {
+type ProfileOutbreakPreventionArgs struct {
+	// Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
 	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
-	FtgdService       pulumi.StringPtrInput `pulumi:"ftgdService"`
+	// Enable/disable FortiGuard Virus outbreak prevention service. Valid values: `disable`, `enable`.
+	FtgdService pulumi.StringPtrInput `pulumi:"ftgdService"`
 }
 
-func (AntivirusProfileOutbreakPreventionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileOutbreakPrevention)(nil)).Elem()
+func (ProfileOutbreakPreventionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileOutbreakPrevention)(nil)).Elem()
 }
 
-func (i AntivirusProfileOutbreakPreventionArgs) ToAntivirusProfileOutbreakPreventionOutput() AntivirusProfileOutbreakPreventionOutput {
-	return i.ToAntivirusProfileOutbreakPreventionOutputWithContext(context.Background())
+func (i ProfileOutbreakPreventionArgs) ToProfileOutbreakPreventionOutput() ProfileOutbreakPreventionOutput {
+	return i.ToProfileOutbreakPreventionOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileOutbreakPreventionArgs) ToAntivirusProfileOutbreakPreventionOutputWithContext(ctx context.Context) AntivirusProfileOutbreakPreventionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileOutbreakPreventionOutput)
+func (i ProfileOutbreakPreventionArgs) ToProfileOutbreakPreventionOutputWithContext(ctx context.Context) ProfileOutbreakPreventionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileOutbreakPreventionOutput)
 }
 
-func (i AntivirusProfileOutbreakPreventionArgs) ToAntivirusProfileOutbreakPreventionPtrOutput() AntivirusProfileOutbreakPreventionPtrOutput {
-	return i.ToAntivirusProfileOutbreakPreventionPtrOutputWithContext(context.Background())
+func (i ProfileOutbreakPreventionArgs) ToProfileOutbreakPreventionPtrOutput() ProfileOutbreakPreventionPtrOutput {
+	return i.ToProfileOutbreakPreventionPtrOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileOutbreakPreventionArgs) ToAntivirusProfileOutbreakPreventionPtrOutputWithContext(ctx context.Context) AntivirusProfileOutbreakPreventionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileOutbreakPreventionOutput).ToAntivirusProfileOutbreakPreventionPtrOutputWithContext(ctx)
+func (i ProfileOutbreakPreventionArgs) ToProfileOutbreakPreventionPtrOutputWithContext(ctx context.Context) ProfileOutbreakPreventionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileOutbreakPreventionOutput).ToProfileOutbreakPreventionPtrOutputWithContext(ctx)
 }
 
-// AntivirusProfileOutbreakPreventionPtrInput is an input type that accepts AntivirusProfileOutbreakPreventionArgs, AntivirusProfileOutbreakPreventionPtr and AntivirusProfileOutbreakPreventionPtrOutput values.
-// You can construct a concrete instance of `AntivirusProfileOutbreakPreventionPtrInput` via:
+// ProfileOutbreakPreventionPtrInput is an input type that accepts ProfileOutbreakPreventionArgs, ProfileOutbreakPreventionPtr and ProfileOutbreakPreventionPtrOutput values.
+// You can construct a concrete instance of `ProfileOutbreakPreventionPtrInput` via:
 //
-//	        AntivirusProfileOutbreakPreventionArgs{...}
+//	        ProfileOutbreakPreventionArgs{...}
 //
 //	or:
 //
 //	        nil
-type AntivirusProfileOutbreakPreventionPtrInput interface {
+type ProfileOutbreakPreventionPtrInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileOutbreakPreventionPtrOutput() AntivirusProfileOutbreakPreventionPtrOutput
-	ToAntivirusProfileOutbreakPreventionPtrOutputWithContext(context.Context) AntivirusProfileOutbreakPreventionPtrOutput
+	ToProfileOutbreakPreventionPtrOutput() ProfileOutbreakPreventionPtrOutput
+	ToProfileOutbreakPreventionPtrOutputWithContext(context.Context) ProfileOutbreakPreventionPtrOutput
 }
 
-type antivirusProfileOutbreakPreventionPtrType AntivirusProfileOutbreakPreventionArgs
+type profileOutbreakPreventionPtrType ProfileOutbreakPreventionArgs
 
-func AntivirusProfileOutbreakPreventionPtr(v *AntivirusProfileOutbreakPreventionArgs) AntivirusProfileOutbreakPreventionPtrInput {
-	return (*antivirusProfileOutbreakPreventionPtrType)(v)
+func ProfileOutbreakPreventionPtr(v *ProfileOutbreakPreventionArgs) ProfileOutbreakPreventionPtrInput {
+	return (*profileOutbreakPreventionPtrType)(v)
 }
 
-func (*antivirusProfileOutbreakPreventionPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileOutbreakPrevention)(nil)).Elem()
+func (*profileOutbreakPreventionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileOutbreakPrevention)(nil)).Elem()
 }
 
-func (i *antivirusProfileOutbreakPreventionPtrType) ToAntivirusProfileOutbreakPreventionPtrOutput() AntivirusProfileOutbreakPreventionPtrOutput {
-	return i.ToAntivirusProfileOutbreakPreventionPtrOutputWithContext(context.Background())
+func (i *profileOutbreakPreventionPtrType) ToProfileOutbreakPreventionPtrOutput() ProfileOutbreakPreventionPtrOutput {
+	return i.ToProfileOutbreakPreventionPtrOutputWithContext(context.Background())
 }
 
-func (i *antivirusProfileOutbreakPreventionPtrType) ToAntivirusProfileOutbreakPreventionPtrOutputWithContext(ctx context.Context) AntivirusProfileOutbreakPreventionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileOutbreakPreventionPtrOutput)
+func (i *profileOutbreakPreventionPtrType) ToProfileOutbreakPreventionPtrOutputWithContext(ctx context.Context) ProfileOutbreakPreventionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileOutbreakPreventionPtrOutput)
 }
 
-type AntivirusProfileOutbreakPreventionOutput struct{ *pulumi.OutputState }
+type ProfileOutbreakPreventionOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileOutbreakPreventionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileOutbreakPrevention)(nil)).Elem()
+func (ProfileOutbreakPreventionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileOutbreakPrevention)(nil)).Elem()
 }
 
-func (o AntivirusProfileOutbreakPreventionOutput) ToAntivirusProfileOutbreakPreventionOutput() AntivirusProfileOutbreakPreventionOutput {
+func (o ProfileOutbreakPreventionOutput) ToProfileOutbreakPreventionOutput() ProfileOutbreakPreventionOutput {
 	return o
 }
 
-func (o AntivirusProfileOutbreakPreventionOutput) ToAntivirusProfileOutbreakPreventionOutputWithContext(ctx context.Context) AntivirusProfileOutbreakPreventionOutput {
+func (o ProfileOutbreakPreventionOutput) ToProfileOutbreakPreventionOutputWithContext(ctx context.Context) ProfileOutbreakPreventionOutput {
 	return o
 }
 
-func (o AntivirusProfileOutbreakPreventionOutput) ToAntivirusProfileOutbreakPreventionPtrOutput() AntivirusProfileOutbreakPreventionPtrOutput {
-	return o.ToAntivirusProfileOutbreakPreventionPtrOutputWithContext(context.Background())
+func (o ProfileOutbreakPreventionOutput) ToProfileOutbreakPreventionPtrOutput() ProfileOutbreakPreventionPtrOutput {
+	return o.ToProfileOutbreakPreventionPtrOutputWithContext(context.Background())
 }
 
-func (o AntivirusProfileOutbreakPreventionOutput) ToAntivirusProfileOutbreakPreventionPtrOutputWithContext(ctx context.Context) AntivirusProfileOutbreakPreventionPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AntivirusProfileOutbreakPrevention) *AntivirusProfileOutbreakPrevention {
+func (o ProfileOutbreakPreventionOutput) ToProfileOutbreakPreventionPtrOutputWithContext(ctx context.Context) ProfileOutbreakPreventionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProfileOutbreakPrevention) *ProfileOutbreakPrevention {
 		return &v
-	}).(AntivirusProfileOutbreakPreventionPtrOutput)
+	}).(ProfileOutbreakPreventionPtrOutput)
 }
 
-func (o AntivirusProfileOutbreakPreventionOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileOutbreakPrevention) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
+// Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+func (o ProfileOutbreakPreventionOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileOutbreakPrevention) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileOutbreakPreventionOutput) FtgdService() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileOutbreakPrevention) *string { return v.FtgdService }).(pulumi.StringPtrOutput)
+// Enable/disable FortiGuard Virus outbreak prevention service. Valid values: `disable`, `enable`.
+func (o ProfileOutbreakPreventionOutput) FtgdService() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileOutbreakPrevention) *string { return v.FtgdService }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileOutbreakPreventionPtrOutput struct{ *pulumi.OutputState }
+type ProfileOutbreakPreventionPtrOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileOutbreakPreventionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileOutbreakPrevention)(nil)).Elem()
+func (ProfileOutbreakPreventionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileOutbreakPrevention)(nil)).Elem()
 }
 
-func (o AntivirusProfileOutbreakPreventionPtrOutput) ToAntivirusProfileOutbreakPreventionPtrOutput() AntivirusProfileOutbreakPreventionPtrOutput {
+func (o ProfileOutbreakPreventionPtrOutput) ToProfileOutbreakPreventionPtrOutput() ProfileOutbreakPreventionPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileOutbreakPreventionPtrOutput) ToAntivirusProfileOutbreakPreventionPtrOutputWithContext(ctx context.Context) AntivirusProfileOutbreakPreventionPtrOutput {
+func (o ProfileOutbreakPreventionPtrOutput) ToProfileOutbreakPreventionPtrOutputWithContext(ctx context.Context) ProfileOutbreakPreventionPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileOutbreakPreventionPtrOutput) Elem() AntivirusProfileOutbreakPreventionOutput {
-	return o.ApplyT(func(v *AntivirusProfileOutbreakPrevention) AntivirusProfileOutbreakPrevention {
+func (o ProfileOutbreakPreventionPtrOutput) Elem() ProfileOutbreakPreventionOutput {
+	return o.ApplyT(func(v *ProfileOutbreakPrevention) ProfileOutbreakPrevention {
 		if v != nil {
 			return *v
 		}
-		var ret AntivirusProfileOutbreakPrevention
+		var ret ProfileOutbreakPrevention
 		return ret
-	}).(AntivirusProfileOutbreakPreventionOutput)
+	}).(ProfileOutbreakPreventionOutput)
 }
 
-func (o AntivirusProfileOutbreakPreventionPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileOutbreakPrevention) *string {
+// Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+func (o ProfileOutbreakPreventionPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileOutbreakPrevention) *string {
 		if v == nil {
 			return nil
 		}
@@ -2582,8 +2964,9 @@ func (o AntivirusProfileOutbreakPreventionPtrOutput) ExternalBlocklist() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileOutbreakPreventionPtrOutput) FtgdService() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileOutbreakPrevention) *string {
+// Enable/disable FortiGuard Virus outbreak prevention service. Valid values: `disable`, `enable`.
+func (o ProfileOutbreakPreventionPtrOutput) FtgdService() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileOutbreakPrevention) *string {
 		if v == nil {
 			return nil
 		}
@@ -2591,204 +2974,244 @@ func (o AntivirusProfileOutbreakPreventionPtrOutput) FtgdService() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfilePop3 struct {
-	ArchiveBlock       *string `pulumi:"archiveBlock"`
-	ArchiveLog         *string `pulumi:"archiveLog"`
-	AvScan             *string `pulumi:"avScan"`
-	ContentDisarm      *string `pulumi:"contentDisarm"`
-	Emulator           *string `pulumi:"emulator"`
-	Executables        *string `pulumi:"executables"`
-	ExternalBlocklist  *string `pulumi:"externalBlocklist"`
-	Fortiai            *string `pulumi:"fortiai"`
-	Fortindr           *string `pulumi:"fortindr"`
-	Fortisandbox       *string `pulumi:"fortisandbox"`
-	Options            *string `pulumi:"options"`
+type ProfilePop3 struct {
+	// Select the archive types to block.
+	ArchiveBlock *string `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog *string `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan *string `pulumi:"avScan"`
+	// AV Content Disarm and Reconstruction settings. The structure of `contentDisarm` block is documented below.
+	ContentDisarm *string `pulumi:"contentDisarm"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator *string `pulumi:"emulator"`
+	// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+	Executables *string `pulumi:"executables"`
+	// One or more external malware block lists. The structure of `externalBlocklist` block is documented below.
+	ExternalBlocklist *string `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai *string `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr *string `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox *string `pulumi:"fortisandbox"`
+	// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options *string `pulumi:"options"`
+	// Configure Virus Outbreak Prevention settings. The structure of `outbreakPrevention` block is documented below.
 	OutbreakPrevention *string `pulumi:"outbreakPrevention"`
-	Quarantine         *string `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine *string `pulumi:"quarantine"`
 }
 
-// AntivirusProfilePop3Input is an input type that accepts AntivirusProfilePop3Args and AntivirusProfilePop3Output values.
-// You can construct a concrete instance of `AntivirusProfilePop3Input` via:
+// ProfilePop3Input is an input type that accepts ProfilePop3Args and ProfilePop3Output values.
+// You can construct a concrete instance of `ProfilePop3Input` via:
 //
-//	AntivirusProfilePop3Args{...}
-type AntivirusProfilePop3Input interface {
+//	ProfilePop3Args{...}
+type ProfilePop3Input interface {
 	pulumi.Input
 
-	ToAntivirusProfilePop3Output() AntivirusProfilePop3Output
-	ToAntivirusProfilePop3OutputWithContext(context.Context) AntivirusProfilePop3Output
+	ToProfilePop3Output() ProfilePop3Output
+	ToProfilePop3OutputWithContext(context.Context) ProfilePop3Output
 }
 
-type AntivirusProfilePop3Args struct {
-	ArchiveBlock       pulumi.StringPtrInput `pulumi:"archiveBlock"`
-	ArchiveLog         pulumi.StringPtrInput `pulumi:"archiveLog"`
-	AvScan             pulumi.StringPtrInput `pulumi:"avScan"`
-	ContentDisarm      pulumi.StringPtrInput `pulumi:"contentDisarm"`
-	Emulator           pulumi.StringPtrInput `pulumi:"emulator"`
-	Executables        pulumi.StringPtrInput `pulumi:"executables"`
-	ExternalBlocklist  pulumi.StringPtrInput `pulumi:"externalBlocklist"`
-	Fortiai            pulumi.StringPtrInput `pulumi:"fortiai"`
-	Fortindr           pulumi.StringPtrInput `pulumi:"fortindr"`
-	Fortisandbox       pulumi.StringPtrInput `pulumi:"fortisandbox"`
-	Options            pulumi.StringPtrInput `pulumi:"options"`
+type ProfilePop3Args struct {
+	// Select the archive types to block.
+	ArchiveBlock pulumi.StringPtrInput `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog pulumi.StringPtrInput `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan pulumi.StringPtrInput `pulumi:"avScan"`
+	// AV Content Disarm and Reconstruction settings. The structure of `contentDisarm` block is documented below.
+	ContentDisarm pulumi.StringPtrInput `pulumi:"contentDisarm"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator pulumi.StringPtrInput `pulumi:"emulator"`
+	// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+	Executables pulumi.StringPtrInput `pulumi:"executables"`
+	// One or more external malware block lists. The structure of `externalBlocklist` block is documented below.
+	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
+	// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options pulumi.StringPtrInput `pulumi:"options"`
+	// Configure Virus Outbreak Prevention settings. The structure of `outbreakPrevention` block is documented below.
 	OutbreakPrevention pulumi.StringPtrInput `pulumi:"outbreakPrevention"`
-	Quarantine         pulumi.StringPtrInput `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine pulumi.StringPtrInput `pulumi:"quarantine"`
 }
 
-func (AntivirusProfilePop3Args) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfilePop3)(nil)).Elem()
+func (ProfilePop3Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfilePop3)(nil)).Elem()
 }
 
-func (i AntivirusProfilePop3Args) ToAntivirusProfilePop3Output() AntivirusProfilePop3Output {
-	return i.ToAntivirusProfilePop3OutputWithContext(context.Background())
+func (i ProfilePop3Args) ToProfilePop3Output() ProfilePop3Output {
+	return i.ToProfilePop3OutputWithContext(context.Background())
 }
 
-func (i AntivirusProfilePop3Args) ToAntivirusProfilePop3OutputWithContext(ctx context.Context) AntivirusProfilePop3Output {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfilePop3Output)
+func (i ProfilePop3Args) ToProfilePop3OutputWithContext(ctx context.Context) ProfilePop3Output {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfilePop3Output)
 }
 
-func (i AntivirusProfilePop3Args) ToAntivirusProfilePop3PtrOutput() AntivirusProfilePop3PtrOutput {
-	return i.ToAntivirusProfilePop3PtrOutputWithContext(context.Background())
+func (i ProfilePop3Args) ToProfilePop3PtrOutput() ProfilePop3PtrOutput {
+	return i.ToProfilePop3PtrOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfilePop3Args) ToAntivirusProfilePop3PtrOutputWithContext(ctx context.Context) AntivirusProfilePop3PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfilePop3Output).ToAntivirusProfilePop3PtrOutputWithContext(ctx)
+func (i ProfilePop3Args) ToProfilePop3PtrOutputWithContext(ctx context.Context) ProfilePop3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfilePop3Output).ToProfilePop3PtrOutputWithContext(ctx)
 }
 
-// AntivirusProfilePop3PtrInput is an input type that accepts AntivirusProfilePop3Args, AntivirusProfilePop3Ptr and AntivirusProfilePop3PtrOutput values.
-// You can construct a concrete instance of `AntivirusProfilePop3PtrInput` via:
+// ProfilePop3PtrInput is an input type that accepts ProfilePop3Args, ProfilePop3Ptr and ProfilePop3PtrOutput values.
+// You can construct a concrete instance of `ProfilePop3PtrInput` via:
 //
-//	        AntivirusProfilePop3Args{...}
+//	        ProfilePop3Args{...}
 //
 //	or:
 //
 //	        nil
-type AntivirusProfilePop3PtrInput interface {
+type ProfilePop3PtrInput interface {
 	pulumi.Input
 
-	ToAntivirusProfilePop3PtrOutput() AntivirusProfilePop3PtrOutput
-	ToAntivirusProfilePop3PtrOutputWithContext(context.Context) AntivirusProfilePop3PtrOutput
+	ToProfilePop3PtrOutput() ProfilePop3PtrOutput
+	ToProfilePop3PtrOutputWithContext(context.Context) ProfilePop3PtrOutput
 }
 
-type antivirusProfilePop3PtrType AntivirusProfilePop3Args
+type profilePop3PtrType ProfilePop3Args
 
-func AntivirusProfilePop3Ptr(v *AntivirusProfilePop3Args) AntivirusProfilePop3PtrInput {
-	return (*antivirusProfilePop3PtrType)(v)
+func ProfilePop3Ptr(v *ProfilePop3Args) ProfilePop3PtrInput {
+	return (*profilePop3PtrType)(v)
 }
 
-func (*antivirusProfilePop3PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfilePop3)(nil)).Elem()
+func (*profilePop3PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfilePop3)(nil)).Elem()
 }
 
-func (i *antivirusProfilePop3PtrType) ToAntivirusProfilePop3PtrOutput() AntivirusProfilePop3PtrOutput {
-	return i.ToAntivirusProfilePop3PtrOutputWithContext(context.Background())
+func (i *profilePop3PtrType) ToProfilePop3PtrOutput() ProfilePop3PtrOutput {
+	return i.ToProfilePop3PtrOutputWithContext(context.Background())
 }
 
-func (i *antivirusProfilePop3PtrType) ToAntivirusProfilePop3PtrOutputWithContext(ctx context.Context) AntivirusProfilePop3PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfilePop3PtrOutput)
+func (i *profilePop3PtrType) ToProfilePop3PtrOutputWithContext(ctx context.Context) ProfilePop3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfilePop3PtrOutput)
 }
 
-type AntivirusProfilePop3Output struct{ *pulumi.OutputState }
+type ProfilePop3Output struct{ *pulumi.OutputState }
 
-func (AntivirusProfilePop3Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfilePop3)(nil)).Elem()
+func (ProfilePop3Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfilePop3)(nil)).Elem()
 }
 
-func (o AntivirusProfilePop3Output) ToAntivirusProfilePop3Output() AntivirusProfilePop3Output {
+func (o ProfilePop3Output) ToProfilePop3Output() ProfilePop3Output {
 	return o
 }
 
-func (o AntivirusProfilePop3Output) ToAntivirusProfilePop3OutputWithContext(ctx context.Context) AntivirusProfilePop3Output {
+func (o ProfilePop3Output) ToProfilePop3OutputWithContext(ctx context.Context) ProfilePop3Output {
 	return o
 }
 
-func (o AntivirusProfilePop3Output) ToAntivirusProfilePop3PtrOutput() AntivirusProfilePop3PtrOutput {
-	return o.ToAntivirusProfilePop3PtrOutputWithContext(context.Background())
+func (o ProfilePop3Output) ToProfilePop3PtrOutput() ProfilePop3PtrOutput {
+	return o.ToProfilePop3PtrOutputWithContext(context.Background())
 }
 
-func (o AntivirusProfilePop3Output) ToAntivirusProfilePop3PtrOutputWithContext(ctx context.Context) AntivirusProfilePop3PtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AntivirusProfilePop3) *AntivirusProfilePop3 {
+func (o ProfilePop3Output) ToProfilePop3PtrOutputWithContext(ctx context.Context) ProfilePop3PtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProfilePop3) *ProfilePop3 {
 		return &v
-	}).(AntivirusProfilePop3PtrOutput)
+	}).(ProfilePop3PtrOutput)
 }
 
-func (o AntivirusProfilePop3Output) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfilePop3) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
+// Select the archive types to block.
+func (o ProfilePop3Output) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfilePop3) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3Output) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfilePop3) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
+// Select the archive types to log.
+func (o ProfilePop3Output) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfilePop3) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3Output) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfilePop3) *string { return v.AvScan }).(pulumi.StringPtrOutput)
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfilePop3Output) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfilePop3) *string { return v.AvScan }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3Output) ContentDisarm() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfilePop3) *string { return v.ContentDisarm }).(pulumi.StringPtrOutput)
+// AV Content Disarm and Reconstruction settings. The structure of `contentDisarm` block is documented below.
+func (o ProfilePop3Output) ContentDisarm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfilePop3) *string { return v.ContentDisarm }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3Output) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfilePop3) *string { return v.Emulator }).(pulumi.StringPtrOutput)
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfilePop3Output) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfilePop3) *string { return v.Emulator }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3Output) Executables() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfilePop3) *string { return v.Executables }).(pulumi.StringPtrOutput)
+// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+func (o ProfilePop3Output) Executables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfilePop3) *string { return v.Executables }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3Output) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfilePop3) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
+// One or more external malware block lists. The structure of `externalBlocklist` block is documented below.
+func (o ProfilePop3Output) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfilePop3) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3Output) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfilePop3) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfilePop3Output) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfilePop3) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3Output) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfilePop3) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfilePop3Output) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfilePop3) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3Output) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfilePop3) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfilePop3Output) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfilePop3) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3Output) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfilePop3) *string { return v.Options }).(pulumi.StringPtrOutput)
+// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfilePop3Output) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfilePop3) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3Output) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfilePop3) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
+// Configure Virus Outbreak Prevention settings. The structure of `outbreakPrevention` block is documented below.
+func (o ProfilePop3Output) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfilePop3) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3Output) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfilePop3) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfilePop3Output) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfilePop3) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfilePop3PtrOutput struct{ *pulumi.OutputState }
+type ProfilePop3PtrOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfilePop3PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfilePop3)(nil)).Elem()
+func (ProfilePop3PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfilePop3)(nil)).Elem()
 }
 
-func (o AntivirusProfilePop3PtrOutput) ToAntivirusProfilePop3PtrOutput() AntivirusProfilePop3PtrOutput {
+func (o ProfilePop3PtrOutput) ToProfilePop3PtrOutput() ProfilePop3PtrOutput {
 	return o
 }
 
-func (o AntivirusProfilePop3PtrOutput) ToAntivirusProfilePop3PtrOutputWithContext(ctx context.Context) AntivirusProfilePop3PtrOutput {
+func (o ProfilePop3PtrOutput) ToProfilePop3PtrOutputWithContext(ctx context.Context) ProfilePop3PtrOutput {
 	return o
 }
 
-func (o AntivirusProfilePop3PtrOutput) Elem() AntivirusProfilePop3Output {
-	return o.ApplyT(func(v *AntivirusProfilePop3) AntivirusProfilePop3 {
+func (o ProfilePop3PtrOutput) Elem() ProfilePop3Output {
+	return o.ApplyT(func(v *ProfilePop3) ProfilePop3 {
 		if v != nil {
 			return *v
 		}
-		var ret AntivirusProfilePop3
+		var ret ProfilePop3
 		return ret
-	}).(AntivirusProfilePop3Output)
+	}).(ProfilePop3Output)
 }
 
-func (o AntivirusProfilePop3PtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfilePop3) *string {
+// Select the archive types to block.
+func (o ProfilePop3PtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
 			return nil
 		}
@@ -2796,8 +3219,9 @@ func (o AntivirusProfilePop3PtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3PtrOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfilePop3) *string {
+// Select the archive types to log.
+func (o ProfilePop3PtrOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
 			return nil
 		}
@@ -2805,8 +3229,9 @@ func (o AntivirusProfilePop3PtrOutput) ArchiveLog() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3PtrOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfilePop3) *string {
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfilePop3PtrOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
 			return nil
 		}
@@ -2814,8 +3239,9 @@ func (o AntivirusProfilePop3PtrOutput) AvScan() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3PtrOutput) ContentDisarm() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfilePop3) *string {
+// AV Content Disarm and Reconstruction settings. The structure of `contentDisarm` block is documented below.
+func (o ProfilePop3PtrOutput) ContentDisarm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
 			return nil
 		}
@@ -2823,8 +3249,9 @@ func (o AntivirusProfilePop3PtrOutput) ContentDisarm() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3PtrOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfilePop3) *string {
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfilePop3PtrOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
 			return nil
 		}
@@ -2832,8 +3259,9 @@ func (o AntivirusProfilePop3PtrOutput) Emulator() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3PtrOutput) Executables() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfilePop3) *string {
+// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+func (o ProfilePop3PtrOutput) Executables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
 			return nil
 		}
@@ -2841,8 +3269,9 @@ func (o AntivirusProfilePop3PtrOutput) Executables() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3PtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfilePop3) *string {
+// One or more external malware block lists. The structure of `externalBlocklist` block is documented below.
+func (o ProfilePop3PtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
 			return nil
 		}
@@ -2850,8 +3279,9 @@ func (o AntivirusProfilePop3PtrOutput) ExternalBlocklist() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3PtrOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfilePop3) *string {
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfilePop3PtrOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
 			return nil
 		}
@@ -2859,8 +3289,9 @@ func (o AntivirusProfilePop3PtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3PtrOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfilePop3) *string {
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfilePop3PtrOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
 			return nil
 		}
@@ -2868,8 +3299,9 @@ func (o AntivirusProfilePop3PtrOutput) Fortindr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3PtrOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfilePop3) *string {
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfilePop3PtrOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
 			return nil
 		}
@@ -2877,8 +3309,9 @@ func (o AntivirusProfilePop3PtrOutput) Fortisandbox() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3PtrOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfilePop3) *string {
+// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfilePop3PtrOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
 			return nil
 		}
@@ -2886,8 +3319,9 @@ func (o AntivirusProfilePop3PtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3PtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfilePop3) *string {
+// Configure Virus Outbreak Prevention settings. The structure of `outbreakPrevention` block is documented below.
+func (o ProfilePop3PtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
 			return nil
 		}
@@ -2895,8 +3329,9 @@ func (o AntivirusProfilePop3PtrOutput) OutbreakPrevention() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfilePop3PtrOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfilePop3) *string {
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfilePop3PtrOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
 			return nil
 		}
@@ -2904,156 +3339,172 @@ func (o AntivirusProfilePop3PtrOutput) Quarantine() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileSmb struct {
-	ArchiveBlock       *string `pulumi:"archiveBlock"`
-	ArchiveLog         *string `pulumi:"archiveLog"`
-	Emulator           *string `pulumi:"emulator"`
-	Options            *string `pulumi:"options"`
+type ProfileSmb struct {
+	// Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+	ArchiveBlock *string `pulumi:"archiveBlock"`
+	// Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+	ArchiveLog *string `pulumi:"archiveLog"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator *string `pulumi:"emulator"`
+	// Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options *string `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
 	OutbreakPrevention *string `pulumi:"outbreakPrevention"`
 }
 
-// AntivirusProfileSmbInput is an input type that accepts AntivirusProfileSmbArgs and AntivirusProfileSmbOutput values.
-// You can construct a concrete instance of `AntivirusProfileSmbInput` via:
+// ProfileSmbInput is an input type that accepts ProfileSmbArgs and ProfileSmbOutput values.
+// You can construct a concrete instance of `ProfileSmbInput` via:
 //
-//	AntivirusProfileSmbArgs{...}
-type AntivirusProfileSmbInput interface {
+//	ProfileSmbArgs{...}
+type ProfileSmbInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileSmbOutput() AntivirusProfileSmbOutput
-	ToAntivirusProfileSmbOutputWithContext(context.Context) AntivirusProfileSmbOutput
+	ToProfileSmbOutput() ProfileSmbOutput
+	ToProfileSmbOutputWithContext(context.Context) ProfileSmbOutput
 }
 
-type AntivirusProfileSmbArgs struct {
-	ArchiveBlock       pulumi.StringPtrInput `pulumi:"archiveBlock"`
-	ArchiveLog         pulumi.StringPtrInput `pulumi:"archiveLog"`
-	Emulator           pulumi.StringPtrInput `pulumi:"emulator"`
-	Options            pulumi.StringPtrInput `pulumi:"options"`
+type ProfileSmbArgs struct {
+	// Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+	ArchiveBlock pulumi.StringPtrInput `pulumi:"archiveBlock"`
+	// Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+	ArchiveLog pulumi.StringPtrInput `pulumi:"archiveLog"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator pulumi.StringPtrInput `pulumi:"emulator"`
+	// Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options pulumi.StringPtrInput `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
 	OutbreakPrevention pulumi.StringPtrInput `pulumi:"outbreakPrevention"`
 }
 
-func (AntivirusProfileSmbArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileSmb)(nil)).Elem()
+func (ProfileSmbArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileSmb)(nil)).Elem()
 }
 
-func (i AntivirusProfileSmbArgs) ToAntivirusProfileSmbOutput() AntivirusProfileSmbOutput {
-	return i.ToAntivirusProfileSmbOutputWithContext(context.Background())
+func (i ProfileSmbArgs) ToProfileSmbOutput() ProfileSmbOutput {
+	return i.ToProfileSmbOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileSmbArgs) ToAntivirusProfileSmbOutputWithContext(ctx context.Context) AntivirusProfileSmbOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileSmbOutput)
+func (i ProfileSmbArgs) ToProfileSmbOutputWithContext(ctx context.Context) ProfileSmbOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileSmbOutput)
 }
 
-func (i AntivirusProfileSmbArgs) ToAntivirusProfileSmbPtrOutput() AntivirusProfileSmbPtrOutput {
-	return i.ToAntivirusProfileSmbPtrOutputWithContext(context.Background())
+func (i ProfileSmbArgs) ToProfileSmbPtrOutput() ProfileSmbPtrOutput {
+	return i.ToProfileSmbPtrOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileSmbArgs) ToAntivirusProfileSmbPtrOutputWithContext(ctx context.Context) AntivirusProfileSmbPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileSmbOutput).ToAntivirusProfileSmbPtrOutputWithContext(ctx)
+func (i ProfileSmbArgs) ToProfileSmbPtrOutputWithContext(ctx context.Context) ProfileSmbPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileSmbOutput).ToProfileSmbPtrOutputWithContext(ctx)
 }
 
-// AntivirusProfileSmbPtrInput is an input type that accepts AntivirusProfileSmbArgs, AntivirusProfileSmbPtr and AntivirusProfileSmbPtrOutput values.
-// You can construct a concrete instance of `AntivirusProfileSmbPtrInput` via:
+// ProfileSmbPtrInput is an input type that accepts ProfileSmbArgs, ProfileSmbPtr and ProfileSmbPtrOutput values.
+// You can construct a concrete instance of `ProfileSmbPtrInput` via:
 //
-//	        AntivirusProfileSmbArgs{...}
+//	        ProfileSmbArgs{...}
 //
 //	or:
 //
 //	        nil
-type AntivirusProfileSmbPtrInput interface {
+type ProfileSmbPtrInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileSmbPtrOutput() AntivirusProfileSmbPtrOutput
-	ToAntivirusProfileSmbPtrOutputWithContext(context.Context) AntivirusProfileSmbPtrOutput
+	ToProfileSmbPtrOutput() ProfileSmbPtrOutput
+	ToProfileSmbPtrOutputWithContext(context.Context) ProfileSmbPtrOutput
 }
 
-type antivirusProfileSmbPtrType AntivirusProfileSmbArgs
+type profileSmbPtrType ProfileSmbArgs
 
-func AntivirusProfileSmbPtr(v *AntivirusProfileSmbArgs) AntivirusProfileSmbPtrInput {
-	return (*antivirusProfileSmbPtrType)(v)
+func ProfileSmbPtr(v *ProfileSmbArgs) ProfileSmbPtrInput {
+	return (*profileSmbPtrType)(v)
 }
 
-func (*antivirusProfileSmbPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileSmb)(nil)).Elem()
+func (*profileSmbPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileSmb)(nil)).Elem()
 }
 
-func (i *antivirusProfileSmbPtrType) ToAntivirusProfileSmbPtrOutput() AntivirusProfileSmbPtrOutput {
-	return i.ToAntivirusProfileSmbPtrOutputWithContext(context.Background())
+func (i *profileSmbPtrType) ToProfileSmbPtrOutput() ProfileSmbPtrOutput {
+	return i.ToProfileSmbPtrOutputWithContext(context.Background())
 }
 
-func (i *antivirusProfileSmbPtrType) ToAntivirusProfileSmbPtrOutputWithContext(ctx context.Context) AntivirusProfileSmbPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileSmbPtrOutput)
+func (i *profileSmbPtrType) ToProfileSmbPtrOutputWithContext(ctx context.Context) ProfileSmbPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileSmbPtrOutput)
 }
 
-type AntivirusProfileSmbOutput struct{ *pulumi.OutputState }
+type ProfileSmbOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileSmbOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileSmb)(nil)).Elem()
+func (ProfileSmbOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileSmb)(nil)).Elem()
 }
 
-func (o AntivirusProfileSmbOutput) ToAntivirusProfileSmbOutput() AntivirusProfileSmbOutput {
+func (o ProfileSmbOutput) ToProfileSmbOutput() ProfileSmbOutput {
 	return o
 }
 
-func (o AntivirusProfileSmbOutput) ToAntivirusProfileSmbOutputWithContext(ctx context.Context) AntivirusProfileSmbOutput {
+func (o ProfileSmbOutput) ToProfileSmbOutputWithContext(ctx context.Context) ProfileSmbOutput {
 	return o
 }
 
-func (o AntivirusProfileSmbOutput) ToAntivirusProfileSmbPtrOutput() AntivirusProfileSmbPtrOutput {
-	return o.ToAntivirusProfileSmbPtrOutputWithContext(context.Background())
+func (o ProfileSmbOutput) ToProfileSmbPtrOutput() ProfileSmbPtrOutput {
+	return o.ToProfileSmbPtrOutputWithContext(context.Background())
 }
 
-func (o AntivirusProfileSmbOutput) ToAntivirusProfileSmbPtrOutputWithContext(ctx context.Context) AntivirusProfileSmbPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AntivirusProfileSmb) *AntivirusProfileSmb {
+func (o ProfileSmbOutput) ToProfileSmbPtrOutputWithContext(ctx context.Context) ProfileSmbPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProfileSmb) *ProfileSmb {
 		return &v
-	}).(AntivirusProfileSmbPtrOutput)
+	}).(ProfileSmbPtrOutput)
 }
 
-func (o AntivirusProfileSmbOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmb) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
+// Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+func (o ProfileSmbOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmb) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmbOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmb) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
+// Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+func (o ProfileSmbOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmb) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmbOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmb) *string { return v.Emulator }).(pulumi.StringPtrOutput)
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileSmbOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmb) *string { return v.Emulator }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmbOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmb) *string { return v.Options }).(pulumi.StringPtrOutput)
+// Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileSmbOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmb) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmbOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmb) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
+// Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+func (o ProfileSmbOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmb) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileSmbPtrOutput struct{ *pulumi.OutputState }
+type ProfileSmbPtrOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileSmbPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileSmb)(nil)).Elem()
+func (ProfileSmbPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileSmb)(nil)).Elem()
 }
 
-func (o AntivirusProfileSmbPtrOutput) ToAntivirusProfileSmbPtrOutput() AntivirusProfileSmbPtrOutput {
+func (o ProfileSmbPtrOutput) ToProfileSmbPtrOutput() ProfileSmbPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileSmbPtrOutput) ToAntivirusProfileSmbPtrOutputWithContext(ctx context.Context) AntivirusProfileSmbPtrOutput {
+func (o ProfileSmbPtrOutput) ToProfileSmbPtrOutputWithContext(ctx context.Context) ProfileSmbPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileSmbPtrOutput) Elem() AntivirusProfileSmbOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmb) AntivirusProfileSmb {
+func (o ProfileSmbPtrOutput) Elem() ProfileSmbOutput {
+	return o.ApplyT(func(v *ProfileSmb) ProfileSmb {
 		if v != nil {
 			return *v
 		}
-		var ret AntivirusProfileSmb
+		var ret ProfileSmb
 		return ret
-	}).(AntivirusProfileSmbOutput)
+	}).(ProfileSmbOutput)
 }
 
-func (o AntivirusProfileSmbPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmb) *string {
+// Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+func (o ProfileSmbPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmb) *string {
 		if v == nil {
 			return nil
 		}
@@ -3061,8 +3512,9 @@ func (o AntivirusProfileSmbPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmbPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmb) *string {
+// Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+func (o ProfileSmbPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmb) *string {
 		if v == nil {
 			return nil
 		}
@@ -3070,8 +3522,9 @@ func (o AntivirusProfileSmbPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmbPtrOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmb) *string {
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileSmbPtrOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmb) *string {
 		if v == nil {
 			return nil
 		}
@@ -3079,8 +3532,9 @@ func (o AntivirusProfileSmbPtrOutput) Emulator() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmbPtrOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmb) *string {
+// Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileSmbPtrOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmb) *string {
 		if v == nil {
 			return nil
 		}
@@ -3088,8 +3542,9 @@ func (o AntivirusProfileSmbPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmbPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmb) *string {
+// Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+func (o ProfileSmbPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmb) *string {
 		if v == nil {
 			return nil
 		}
@@ -3097,204 +3552,244 @@ func (o AntivirusProfileSmbPtrOutput) OutbreakPrevention() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileSmtp struct {
-	ArchiveBlock       *string `pulumi:"archiveBlock"`
-	ArchiveLog         *string `pulumi:"archiveLog"`
-	AvScan             *string `pulumi:"avScan"`
-	ContentDisarm      *string `pulumi:"contentDisarm"`
-	Emulator           *string `pulumi:"emulator"`
-	Executables        *string `pulumi:"executables"`
-	ExternalBlocklist  *string `pulumi:"externalBlocklist"`
-	Fortiai            *string `pulumi:"fortiai"`
-	Fortindr           *string `pulumi:"fortindr"`
-	Fortisandbox       *string `pulumi:"fortisandbox"`
-	Options            *string `pulumi:"options"`
+type ProfileSmtp struct {
+	// Select the archive types to block.
+	ArchiveBlock *string `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog *string `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan *string `pulumi:"avScan"`
+	// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+	ContentDisarm *string `pulumi:"contentDisarm"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator *string `pulumi:"emulator"`
+	// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+	Executables *string `pulumi:"executables"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist *string `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai *string `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr *string `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox *string `pulumi:"fortisandbox"`
+	// Enable/disable SMTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options *string `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention *string `pulumi:"outbreakPrevention"`
-	Quarantine         *string `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine *string `pulumi:"quarantine"`
 }
 
-// AntivirusProfileSmtpInput is an input type that accepts AntivirusProfileSmtpArgs and AntivirusProfileSmtpOutput values.
-// You can construct a concrete instance of `AntivirusProfileSmtpInput` via:
+// ProfileSmtpInput is an input type that accepts ProfileSmtpArgs and ProfileSmtpOutput values.
+// You can construct a concrete instance of `ProfileSmtpInput` via:
 //
-//	AntivirusProfileSmtpArgs{...}
-type AntivirusProfileSmtpInput interface {
+//	ProfileSmtpArgs{...}
+type ProfileSmtpInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileSmtpOutput() AntivirusProfileSmtpOutput
-	ToAntivirusProfileSmtpOutputWithContext(context.Context) AntivirusProfileSmtpOutput
+	ToProfileSmtpOutput() ProfileSmtpOutput
+	ToProfileSmtpOutputWithContext(context.Context) ProfileSmtpOutput
 }
 
-type AntivirusProfileSmtpArgs struct {
-	ArchiveBlock       pulumi.StringPtrInput `pulumi:"archiveBlock"`
-	ArchiveLog         pulumi.StringPtrInput `pulumi:"archiveLog"`
-	AvScan             pulumi.StringPtrInput `pulumi:"avScan"`
-	ContentDisarm      pulumi.StringPtrInput `pulumi:"contentDisarm"`
-	Emulator           pulumi.StringPtrInput `pulumi:"emulator"`
-	Executables        pulumi.StringPtrInput `pulumi:"executables"`
-	ExternalBlocklist  pulumi.StringPtrInput `pulumi:"externalBlocklist"`
-	Fortiai            pulumi.StringPtrInput `pulumi:"fortiai"`
-	Fortindr           pulumi.StringPtrInput `pulumi:"fortindr"`
-	Fortisandbox       pulumi.StringPtrInput `pulumi:"fortisandbox"`
-	Options            pulumi.StringPtrInput `pulumi:"options"`
+type ProfileSmtpArgs struct {
+	// Select the archive types to block.
+	ArchiveBlock pulumi.StringPtrInput `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog pulumi.StringPtrInput `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan pulumi.StringPtrInput `pulumi:"avScan"`
+	// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+	ContentDisarm pulumi.StringPtrInput `pulumi:"contentDisarm"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator pulumi.StringPtrInput `pulumi:"emulator"`
+	// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+	Executables pulumi.StringPtrInput `pulumi:"executables"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
+	// Enable/disable SMTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options pulumi.StringPtrInput `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention pulumi.StringPtrInput `pulumi:"outbreakPrevention"`
-	Quarantine         pulumi.StringPtrInput `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine pulumi.StringPtrInput `pulumi:"quarantine"`
 }
 
-func (AntivirusProfileSmtpArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileSmtp)(nil)).Elem()
+func (ProfileSmtpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileSmtp)(nil)).Elem()
 }
 
-func (i AntivirusProfileSmtpArgs) ToAntivirusProfileSmtpOutput() AntivirusProfileSmtpOutput {
-	return i.ToAntivirusProfileSmtpOutputWithContext(context.Background())
+func (i ProfileSmtpArgs) ToProfileSmtpOutput() ProfileSmtpOutput {
+	return i.ToProfileSmtpOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileSmtpArgs) ToAntivirusProfileSmtpOutputWithContext(ctx context.Context) AntivirusProfileSmtpOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileSmtpOutput)
+func (i ProfileSmtpArgs) ToProfileSmtpOutputWithContext(ctx context.Context) ProfileSmtpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileSmtpOutput)
 }
 
-func (i AntivirusProfileSmtpArgs) ToAntivirusProfileSmtpPtrOutput() AntivirusProfileSmtpPtrOutput {
-	return i.ToAntivirusProfileSmtpPtrOutputWithContext(context.Background())
+func (i ProfileSmtpArgs) ToProfileSmtpPtrOutput() ProfileSmtpPtrOutput {
+	return i.ToProfileSmtpPtrOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileSmtpArgs) ToAntivirusProfileSmtpPtrOutputWithContext(ctx context.Context) AntivirusProfileSmtpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileSmtpOutput).ToAntivirusProfileSmtpPtrOutputWithContext(ctx)
+func (i ProfileSmtpArgs) ToProfileSmtpPtrOutputWithContext(ctx context.Context) ProfileSmtpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileSmtpOutput).ToProfileSmtpPtrOutputWithContext(ctx)
 }
 
-// AntivirusProfileSmtpPtrInput is an input type that accepts AntivirusProfileSmtpArgs, AntivirusProfileSmtpPtr and AntivirusProfileSmtpPtrOutput values.
-// You can construct a concrete instance of `AntivirusProfileSmtpPtrInput` via:
+// ProfileSmtpPtrInput is an input type that accepts ProfileSmtpArgs, ProfileSmtpPtr and ProfileSmtpPtrOutput values.
+// You can construct a concrete instance of `ProfileSmtpPtrInput` via:
 //
-//	        AntivirusProfileSmtpArgs{...}
+//	        ProfileSmtpArgs{...}
 //
 //	or:
 //
 //	        nil
-type AntivirusProfileSmtpPtrInput interface {
+type ProfileSmtpPtrInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileSmtpPtrOutput() AntivirusProfileSmtpPtrOutput
-	ToAntivirusProfileSmtpPtrOutputWithContext(context.Context) AntivirusProfileSmtpPtrOutput
+	ToProfileSmtpPtrOutput() ProfileSmtpPtrOutput
+	ToProfileSmtpPtrOutputWithContext(context.Context) ProfileSmtpPtrOutput
 }
 
-type antivirusProfileSmtpPtrType AntivirusProfileSmtpArgs
+type profileSmtpPtrType ProfileSmtpArgs
 
-func AntivirusProfileSmtpPtr(v *AntivirusProfileSmtpArgs) AntivirusProfileSmtpPtrInput {
-	return (*antivirusProfileSmtpPtrType)(v)
+func ProfileSmtpPtr(v *ProfileSmtpArgs) ProfileSmtpPtrInput {
+	return (*profileSmtpPtrType)(v)
 }
 
-func (*antivirusProfileSmtpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileSmtp)(nil)).Elem()
+func (*profileSmtpPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileSmtp)(nil)).Elem()
 }
 
-func (i *antivirusProfileSmtpPtrType) ToAntivirusProfileSmtpPtrOutput() AntivirusProfileSmtpPtrOutput {
-	return i.ToAntivirusProfileSmtpPtrOutputWithContext(context.Background())
+func (i *profileSmtpPtrType) ToProfileSmtpPtrOutput() ProfileSmtpPtrOutput {
+	return i.ToProfileSmtpPtrOutputWithContext(context.Background())
 }
 
-func (i *antivirusProfileSmtpPtrType) ToAntivirusProfileSmtpPtrOutputWithContext(ctx context.Context) AntivirusProfileSmtpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileSmtpPtrOutput)
+func (i *profileSmtpPtrType) ToProfileSmtpPtrOutputWithContext(ctx context.Context) ProfileSmtpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileSmtpPtrOutput)
 }
 
-type AntivirusProfileSmtpOutput struct{ *pulumi.OutputState }
+type ProfileSmtpOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileSmtpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileSmtp)(nil)).Elem()
+func (ProfileSmtpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileSmtp)(nil)).Elem()
 }
 
-func (o AntivirusProfileSmtpOutput) ToAntivirusProfileSmtpOutput() AntivirusProfileSmtpOutput {
+func (o ProfileSmtpOutput) ToProfileSmtpOutput() ProfileSmtpOutput {
 	return o
 }
 
-func (o AntivirusProfileSmtpOutput) ToAntivirusProfileSmtpOutputWithContext(ctx context.Context) AntivirusProfileSmtpOutput {
+func (o ProfileSmtpOutput) ToProfileSmtpOutputWithContext(ctx context.Context) ProfileSmtpOutput {
 	return o
 }
 
-func (o AntivirusProfileSmtpOutput) ToAntivirusProfileSmtpPtrOutput() AntivirusProfileSmtpPtrOutput {
-	return o.ToAntivirusProfileSmtpPtrOutputWithContext(context.Background())
+func (o ProfileSmtpOutput) ToProfileSmtpPtrOutput() ProfileSmtpPtrOutput {
+	return o.ToProfileSmtpPtrOutputWithContext(context.Background())
 }
 
-func (o AntivirusProfileSmtpOutput) ToAntivirusProfileSmtpPtrOutputWithContext(ctx context.Context) AntivirusProfileSmtpPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AntivirusProfileSmtp) *AntivirusProfileSmtp {
+func (o ProfileSmtpOutput) ToProfileSmtpPtrOutputWithContext(ctx context.Context) ProfileSmtpPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProfileSmtp) *ProfileSmtp {
 		return &v
-	}).(AntivirusProfileSmtpPtrOutput)
+	}).(ProfileSmtpPtrOutput)
 }
 
-func (o AntivirusProfileSmtpOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmtp) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
+// Select the archive types to block.
+func (o ProfileSmtpOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmtp) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmtp) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
+// Select the archive types to log.
+func (o ProfileSmtpOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmtp) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmtp) *string { return v.AvScan }).(pulumi.StringPtrOutput)
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSmtpOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmtp) *string { return v.AvScan }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpOutput) ContentDisarm() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmtp) *string { return v.ContentDisarm }).(pulumi.StringPtrOutput)
+// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+func (o ProfileSmtpOutput) ContentDisarm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmtp) *string { return v.ContentDisarm }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmtp) *string { return v.Emulator }).(pulumi.StringPtrOutput)
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileSmtpOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmtp) *string { return v.Emulator }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpOutput) Executables() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmtp) *string { return v.Executables }).(pulumi.StringPtrOutput)
+// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+func (o ProfileSmtpOutput) Executables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmtp) *string { return v.Executables }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmtp) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSmtpOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmtp) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmtp) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSmtpOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmtp) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmtp) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSmtpOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmtp) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmtp) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSmtpOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmtp) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmtp) *string { return v.Options }).(pulumi.StringPtrOutput)
+// Enable/disable SMTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileSmtpOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmtp) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmtp) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
+// Enable Virus Outbreak Prevention service.
+func (o ProfileSmtpOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmtp) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSmtp) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileSmtpOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSmtp) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileSmtpPtrOutput struct{ *pulumi.OutputState }
+type ProfileSmtpPtrOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileSmtpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileSmtp)(nil)).Elem()
+func (ProfileSmtpPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileSmtp)(nil)).Elem()
 }
 
-func (o AntivirusProfileSmtpPtrOutput) ToAntivirusProfileSmtpPtrOutput() AntivirusProfileSmtpPtrOutput {
+func (o ProfileSmtpPtrOutput) ToProfileSmtpPtrOutput() ProfileSmtpPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileSmtpPtrOutput) ToAntivirusProfileSmtpPtrOutputWithContext(ctx context.Context) AntivirusProfileSmtpPtrOutput {
+func (o ProfileSmtpPtrOutput) ToProfileSmtpPtrOutputWithContext(ctx context.Context) ProfileSmtpPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileSmtpPtrOutput) Elem() AntivirusProfileSmtpOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) AntivirusProfileSmtp {
+func (o ProfileSmtpPtrOutput) Elem() ProfileSmtpOutput {
+	return o.ApplyT(func(v *ProfileSmtp) ProfileSmtp {
 		if v != nil {
 			return *v
 		}
-		var ret AntivirusProfileSmtp
+		var ret ProfileSmtp
 		return ret
-	}).(AntivirusProfileSmtpOutput)
+	}).(ProfileSmtpOutput)
 }
 
-func (o AntivirusProfileSmtpPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) *string {
+// Select the archive types to block.
+func (o ProfileSmtpPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -3302,8 +3797,9 @@ func (o AntivirusProfileSmtpPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) *string {
+// Select the archive types to log.
+func (o ProfileSmtpPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -3311,8 +3807,9 @@ func (o AntivirusProfileSmtpPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpPtrOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) *string {
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSmtpPtrOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -3320,8 +3817,9 @@ func (o AntivirusProfileSmtpPtrOutput) AvScan() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpPtrOutput) ContentDisarm() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) *string {
+// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+func (o ProfileSmtpPtrOutput) ContentDisarm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -3329,8 +3827,9 @@ func (o AntivirusProfileSmtpPtrOutput) ContentDisarm() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpPtrOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) *string {
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileSmtpPtrOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -3338,8 +3837,9 @@ func (o AntivirusProfileSmtpPtrOutput) Emulator() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpPtrOutput) Executables() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) *string {
+// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+func (o ProfileSmtpPtrOutput) Executables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -3347,8 +3847,9 @@ func (o AntivirusProfileSmtpPtrOutput) Executables() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) *string {
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSmtpPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -3356,8 +3857,9 @@ func (o AntivirusProfileSmtpPtrOutput) ExternalBlocklist() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpPtrOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) *string {
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSmtpPtrOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -3365,8 +3867,9 @@ func (o AntivirusProfileSmtpPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpPtrOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) *string {
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSmtpPtrOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -3374,8 +3877,9 @@ func (o AntivirusProfileSmtpPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) *string {
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSmtpPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -3383,8 +3887,9 @@ func (o AntivirusProfileSmtpPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpPtrOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) *string {
+// Enable/disable SMTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileSmtpPtrOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -3392,8 +3897,9 @@ func (o AntivirusProfileSmtpPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) *string {
+// Enable Virus Outbreak Prevention service.
+func (o ProfileSmtpPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -3401,8 +3907,9 @@ func (o AntivirusProfileSmtpPtrOutput) OutbreakPrevention() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSmtpPtrOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSmtp) *string {
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileSmtpPtrOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
 			return nil
 		}
@@ -3410,192 +3917,226 @@ func (o AntivirusProfileSmtpPtrOutput) Quarantine() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileSsh struct {
-	ArchiveBlock       *string `pulumi:"archiveBlock"`
-	ArchiveLog         *string `pulumi:"archiveLog"`
-	AvScan             *string `pulumi:"avScan"`
-	Emulator           *string `pulumi:"emulator"`
-	ExternalBlocklist  *string `pulumi:"externalBlocklist"`
-	Fortiai            *string `pulumi:"fortiai"`
-	Fortindr           *string `pulumi:"fortindr"`
-	Fortisandbox       *string `pulumi:"fortisandbox"`
-	Options            *string `pulumi:"options"`
+type ProfileSsh struct {
+	// Select the archive types to block.
+	ArchiveBlock *string `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog *string `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan *string `pulumi:"avScan"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator *string `pulumi:"emulator"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist *string `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai *string `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr *string `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox *string `pulumi:"fortisandbox"`
+	// Enable/disable SFTP and SCP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options *string `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention *string `pulumi:"outbreakPrevention"`
-	Quarantine         *string `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine *string `pulumi:"quarantine"`
 }
 
-// AntivirusProfileSshInput is an input type that accepts AntivirusProfileSshArgs and AntivirusProfileSshOutput values.
-// You can construct a concrete instance of `AntivirusProfileSshInput` via:
+// ProfileSshInput is an input type that accepts ProfileSshArgs and ProfileSshOutput values.
+// You can construct a concrete instance of `ProfileSshInput` via:
 //
-//	AntivirusProfileSshArgs{...}
-type AntivirusProfileSshInput interface {
+//	ProfileSshArgs{...}
+type ProfileSshInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileSshOutput() AntivirusProfileSshOutput
-	ToAntivirusProfileSshOutputWithContext(context.Context) AntivirusProfileSshOutput
+	ToProfileSshOutput() ProfileSshOutput
+	ToProfileSshOutputWithContext(context.Context) ProfileSshOutput
 }
 
-type AntivirusProfileSshArgs struct {
-	ArchiveBlock       pulumi.StringPtrInput `pulumi:"archiveBlock"`
-	ArchiveLog         pulumi.StringPtrInput `pulumi:"archiveLog"`
-	AvScan             pulumi.StringPtrInput `pulumi:"avScan"`
-	Emulator           pulumi.StringPtrInput `pulumi:"emulator"`
-	ExternalBlocklist  pulumi.StringPtrInput `pulumi:"externalBlocklist"`
-	Fortiai            pulumi.StringPtrInput `pulumi:"fortiai"`
-	Fortindr           pulumi.StringPtrInput `pulumi:"fortindr"`
-	Fortisandbox       pulumi.StringPtrInput `pulumi:"fortisandbox"`
-	Options            pulumi.StringPtrInput `pulumi:"options"`
+type ProfileSshArgs struct {
+	// Select the archive types to block.
+	ArchiveBlock pulumi.StringPtrInput `pulumi:"archiveBlock"`
+	// Select the archive types to log.
+	ArchiveLog pulumi.StringPtrInput `pulumi:"archiveLog"`
+	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+	AvScan pulumi.StringPtrInput `pulumi:"avScan"`
+	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+	Emulator pulumi.StringPtrInput `pulumi:"emulator"`
+	// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
+	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
+	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
+	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
+	// Enable/disable SFTP and SCP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	Options pulumi.StringPtrInput `pulumi:"options"`
+	// Enable Virus Outbreak Prevention service.
 	OutbreakPrevention pulumi.StringPtrInput `pulumi:"outbreakPrevention"`
-	Quarantine         pulumi.StringPtrInput `pulumi:"quarantine"`
+	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+	Quarantine pulumi.StringPtrInput `pulumi:"quarantine"`
 }
 
-func (AntivirusProfileSshArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileSsh)(nil)).Elem()
+func (ProfileSshArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileSsh)(nil)).Elem()
 }
 
-func (i AntivirusProfileSshArgs) ToAntivirusProfileSshOutput() AntivirusProfileSshOutput {
-	return i.ToAntivirusProfileSshOutputWithContext(context.Background())
+func (i ProfileSshArgs) ToProfileSshOutput() ProfileSshOutput {
+	return i.ToProfileSshOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileSshArgs) ToAntivirusProfileSshOutputWithContext(ctx context.Context) AntivirusProfileSshOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileSshOutput)
+func (i ProfileSshArgs) ToProfileSshOutputWithContext(ctx context.Context) ProfileSshOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileSshOutput)
 }
 
-func (i AntivirusProfileSshArgs) ToAntivirusProfileSshPtrOutput() AntivirusProfileSshPtrOutput {
-	return i.ToAntivirusProfileSshPtrOutputWithContext(context.Background())
+func (i ProfileSshArgs) ToProfileSshPtrOutput() ProfileSshPtrOutput {
+	return i.ToProfileSshPtrOutputWithContext(context.Background())
 }
 
-func (i AntivirusProfileSshArgs) ToAntivirusProfileSshPtrOutputWithContext(ctx context.Context) AntivirusProfileSshPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileSshOutput).ToAntivirusProfileSshPtrOutputWithContext(ctx)
+func (i ProfileSshArgs) ToProfileSshPtrOutputWithContext(ctx context.Context) ProfileSshPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileSshOutput).ToProfileSshPtrOutputWithContext(ctx)
 }
 
-// AntivirusProfileSshPtrInput is an input type that accepts AntivirusProfileSshArgs, AntivirusProfileSshPtr and AntivirusProfileSshPtrOutput values.
-// You can construct a concrete instance of `AntivirusProfileSshPtrInput` via:
+// ProfileSshPtrInput is an input type that accepts ProfileSshArgs, ProfileSshPtr and ProfileSshPtrOutput values.
+// You can construct a concrete instance of `ProfileSshPtrInput` via:
 //
-//	        AntivirusProfileSshArgs{...}
+//	        ProfileSshArgs{...}
 //
 //	or:
 //
 //	        nil
-type AntivirusProfileSshPtrInput interface {
+type ProfileSshPtrInput interface {
 	pulumi.Input
 
-	ToAntivirusProfileSshPtrOutput() AntivirusProfileSshPtrOutput
-	ToAntivirusProfileSshPtrOutputWithContext(context.Context) AntivirusProfileSshPtrOutput
+	ToProfileSshPtrOutput() ProfileSshPtrOutput
+	ToProfileSshPtrOutputWithContext(context.Context) ProfileSshPtrOutput
 }
 
-type antivirusProfileSshPtrType AntivirusProfileSshArgs
+type profileSshPtrType ProfileSshArgs
 
-func AntivirusProfileSshPtr(v *AntivirusProfileSshArgs) AntivirusProfileSshPtrInput {
-	return (*antivirusProfileSshPtrType)(v)
+func ProfileSshPtr(v *ProfileSshArgs) ProfileSshPtrInput {
+	return (*profileSshPtrType)(v)
 }
 
-func (*antivirusProfileSshPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileSsh)(nil)).Elem()
+func (*profileSshPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileSsh)(nil)).Elem()
 }
 
-func (i *antivirusProfileSshPtrType) ToAntivirusProfileSshPtrOutput() AntivirusProfileSshPtrOutput {
-	return i.ToAntivirusProfileSshPtrOutputWithContext(context.Background())
+func (i *profileSshPtrType) ToProfileSshPtrOutput() ProfileSshPtrOutput {
+	return i.ToProfileSshPtrOutputWithContext(context.Background())
 }
 
-func (i *antivirusProfileSshPtrType) ToAntivirusProfileSshPtrOutputWithContext(ctx context.Context) AntivirusProfileSshPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileSshPtrOutput)
+func (i *profileSshPtrType) ToProfileSshPtrOutputWithContext(ctx context.Context) ProfileSshPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileSshPtrOutput)
 }
 
-type AntivirusProfileSshOutput struct{ *pulumi.OutputState }
+type ProfileSshOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileSshOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfileSsh)(nil)).Elem()
+func (ProfileSshOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileSsh)(nil)).Elem()
 }
 
-func (o AntivirusProfileSshOutput) ToAntivirusProfileSshOutput() AntivirusProfileSshOutput {
+func (o ProfileSshOutput) ToProfileSshOutput() ProfileSshOutput {
 	return o
 }
 
-func (o AntivirusProfileSshOutput) ToAntivirusProfileSshOutputWithContext(ctx context.Context) AntivirusProfileSshOutput {
+func (o ProfileSshOutput) ToProfileSshOutputWithContext(ctx context.Context) ProfileSshOutput {
 	return o
 }
 
-func (o AntivirusProfileSshOutput) ToAntivirusProfileSshPtrOutput() AntivirusProfileSshPtrOutput {
-	return o.ToAntivirusProfileSshPtrOutputWithContext(context.Background())
+func (o ProfileSshOutput) ToProfileSshPtrOutput() ProfileSshPtrOutput {
+	return o.ToProfileSshPtrOutputWithContext(context.Background())
 }
 
-func (o AntivirusProfileSshOutput) ToAntivirusProfileSshPtrOutputWithContext(ctx context.Context) AntivirusProfileSshPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AntivirusProfileSsh) *AntivirusProfileSsh {
+func (o ProfileSshOutput) ToProfileSshPtrOutputWithContext(ctx context.Context) ProfileSshPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProfileSsh) *ProfileSsh {
 		return &v
-	}).(AntivirusProfileSshPtrOutput)
+	}).(ProfileSshPtrOutput)
 }
 
-func (o AntivirusProfileSshOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSsh) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
+// Select the archive types to block.
+func (o ProfileSshOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSsh) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSsh) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
+// Select the archive types to log.
+func (o ProfileSshOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSsh) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSsh) *string { return v.AvScan }).(pulumi.StringPtrOutput)
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSshOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSsh) *string { return v.AvScan }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSsh) *string { return v.Emulator }).(pulumi.StringPtrOutput)
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileSshOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSsh) *string { return v.Emulator }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSsh) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSshOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSsh) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSsh) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSshOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSsh) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSsh) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSshOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSsh) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSsh) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSshOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSsh) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSsh) *string { return v.Options }).(pulumi.StringPtrOutput)
+// Enable/disable SFTP and SCP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileSshOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSsh) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSsh) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
+// Enable Virus Outbreak Prevention service.
+func (o ProfileSshOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSsh) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AntivirusProfileSsh) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileSshOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSsh) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
 }
 
-type AntivirusProfileSshPtrOutput struct{ *pulumi.OutputState }
+type ProfileSshPtrOutput struct{ *pulumi.OutputState }
 
-func (AntivirusProfileSshPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfileSsh)(nil)).Elem()
+func (ProfileSshPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProfileSsh)(nil)).Elem()
 }
 
-func (o AntivirusProfileSshPtrOutput) ToAntivirusProfileSshPtrOutput() AntivirusProfileSshPtrOutput {
+func (o ProfileSshPtrOutput) ToProfileSshPtrOutput() ProfileSshPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileSshPtrOutput) ToAntivirusProfileSshPtrOutputWithContext(ctx context.Context) AntivirusProfileSshPtrOutput {
+func (o ProfileSshPtrOutput) ToProfileSshPtrOutputWithContext(ctx context.Context) ProfileSshPtrOutput {
 	return o
 }
 
-func (o AntivirusProfileSshPtrOutput) Elem() AntivirusProfileSshOutput {
-	return o.ApplyT(func(v *AntivirusProfileSsh) AntivirusProfileSsh {
+func (o ProfileSshPtrOutput) Elem() ProfileSshOutput {
+	return o.ApplyT(func(v *ProfileSsh) ProfileSsh {
 		if v != nil {
 			return *v
 		}
-		var ret AntivirusProfileSsh
+		var ret ProfileSsh
 		return ret
-	}).(AntivirusProfileSshOutput)
+	}).(ProfileSshOutput)
 }
 
-func (o AntivirusProfileSshPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSsh) *string {
+// Select the archive types to block.
+func (o ProfileSshPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSsh) *string {
 		if v == nil {
 			return nil
 		}
@@ -3603,8 +4144,9 @@ func (o AntivirusProfileSshPtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSsh) *string {
+// Select the archive types to log.
+func (o ProfileSshPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSsh) *string {
 		if v == nil {
 			return nil
 		}
@@ -3612,8 +4154,9 @@ func (o AntivirusProfileSshPtrOutput) ArchiveLog() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshPtrOutput) AvScan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSsh) *string {
+// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSshPtrOutput) AvScan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSsh) *string {
 		if v == nil {
 			return nil
 		}
@@ -3621,8 +4164,9 @@ func (o AntivirusProfileSshPtrOutput) AvScan() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshPtrOutput) Emulator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSsh) *string {
+// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+func (o ProfileSshPtrOutput) Emulator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSsh) *string {
 		if v == nil {
 			return nil
 		}
@@ -3630,8 +4174,9 @@ func (o AntivirusProfileSshPtrOutput) Emulator() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSsh) *string {
+// Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSshPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSsh) *string {
 		if v == nil {
 			return nil
 		}
@@ -3639,8 +4184,9 @@ func (o AntivirusProfileSshPtrOutput) ExternalBlocklist() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshPtrOutput) Fortiai() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSsh) *string {
+// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSshPtrOutput) Fortiai() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSsh) *string {
 		if v == nil {
 			return nil
 		}
@@ -3648,8 +4194,9 @@ func (o AntivirusProfileSshPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshPtrOutput) Fortindr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSsh) *string {
+// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSshPtrOutput) Fortindr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSsh) *string {
 		if v == nil {
 			return nil
 		}
@@ -3657,8 +4204,9 @@ func (o AntivirusProfileSshPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSsh) *string {
+// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
+func (o ProfileSshPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSsh) *string {
 		if v == nil {
 			return nil
 		}
@@ -3666,8 +4214,9 @@ func (o AntivirusProfileSshPtrOutput) Fortisandbox() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshPtrOutput) Options() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSsh) *string {
+// Enable/disable SFTP and SCP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+func (o ProfileSshPtrOutput) Options() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSsh) *string {
 		if v == nil {
 			return nil
 		}
@@ -3675,8 +4224,9 @@ func (o AntivirusProfileSshPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSsh) *string {
+// Enable Virus Outbreak Prevention service.
+func (o ProfileSshPtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSsh) *string {
 		if v == nil {
 			return nil
 		}
@@ -3684,8 +4234,9 @@ func (o AntivirusProfileSshPtrOutput) OutbreakPrevention() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o AntivirusProfileSshPtrOutput) Quarantine() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AntivirusProfileSsh) *string {
+// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+func (o ProfileSshPtrOutput) Quarantine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSsh) *string {
 		if v == nil {
 			return nil
 		}
@@ -3694,60 +4245,60 @@ func (o AntivirusProfileSshPtrOutput) Quarantine() pulumi.StringPtrOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileCifsInput)(nil)).Elem(), AntivirusProfileCifsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileCifsPtrInput)(nil)).Elem(), AntivirusProfileCifsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileContentDisarmInput)(nil)).Elem(), AntivirusProfileContentDisarmArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileContentDisarmPtrInput)(nil)).Elem(), AntivirusProfileContentDisarmArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileExternalBlocklistInput)(nil)).Elem(), AntivirusProfileExternalBlocklistArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileExternalBlocklistArrayInput)(nil)).Elem(), AntivirusProfileExternalBlocklistArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileFtpInput)(nil)).Elem(), AntivirusProfileFtpArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileFtpPtrInput)(nil)).Elem(), AntivirusProfileFtpArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileHttpInput)(nil)).Elem(), AntivirusProfileHttpArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileHttpPtrInput)(nil)).Elem(), AntivirusProfileHttpArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileImapInput)(nil)).Elem(), AntivirusProfileImapArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileImapPtrInput)(nil)).Elem(), AntivirusProfileImapArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileMapiInput)(nil)).Elem(), AntivirusProfileMapiArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileMapiPtrInput)(nil)).Elem(), AntivirusProfileMapiArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileNacQuarInput)(nil)).Elem(), AntivirusProfileNacQuarArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileNacQuarPtrInput)(nil)).Elem(), AntivirusProfileNacQuarArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileNntpInput)(nil)).Elem(), AntivirusProfileNntpArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileNntpPtrInput)(nil)).Elem(), AntivirusProfileNntpArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileOutbreakPreventionInput)(nil)).Elem(), AntivirusProfileOutbreakPreventionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileOutbreakPreventionPtrInput)(nil)).Elem(), AntivirusProfileOutbreakPreventionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfilePop3Input)(nil)).Elem(), AntivirusProfilePop3Args{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfilePop3PtrInput)(nil)).Elem(), AntivirusProfilePop3Args{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileSmbInput)(nil)).Elem(), AntivirusProfileSmbArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileSmbPtrInput)(nil)).Elem(), AntivirusProfileSmbArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileSmtpInput)(nil)).Elem(), AntivirusProfileSmtpArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileSmtpPtrInput)(nil)).Elem(), AntivirusProfileSmtpArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileSshInput)(nil)).Elem(), AntivirusProfileSshArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileSshPtrInput)(nil)).Elem(), AntivirusProfileSshArgs{})
-	pulumi.RegisterOutputType(AntivirusProfileCifsOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileCifsPtrOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileContentDisarmOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileContentDisarmPtrOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileExternalBlocklistOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileExternalBlocklistArrayOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileFtpOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileFtpPtrOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileHttpOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileHttpPtrOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileImapOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileImapPtrOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileMapiOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileMapiPtrOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileNacQuarOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileNacQuarPtrOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileNntpOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileNntpPtrOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileOutbreakPreventionOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileOutbreakPreventionPtrOutput{})
-	pulumi.RegisterOutputType(AntivirusProfilePop3Output{})
-	pulumi.RegisterOutputType(AntivirusProfilePop3PtrOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileSmbOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileSmbPtrOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileSmtpOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileSmtpPtrOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileSshOutput{})
-	pulumi.RegisterOutputType(AntivirusProfileSshPtrOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileCifsInput)(nil)).Elem(), ProfileCifsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileCifsPtrInput)(nil)).Elem(), ProfileCifsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileContentDisarmInput)(nil)).Elem(), ProfileContentDisarmArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileContentDisarmPtrInput)(nil)).Elem(), ProfileContentDisarmArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileExternalBlocklistInput)(nil)).Elem(), ProfileExternalBlocklistArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileExternalBlocklistArrayInput)(nil)).Elem(), ProfileExternalBlocklistArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileFtpInput)(nil)).Elem(), ProfileFtpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileFtpPtrInput)(nil)).Elem(), ProfileFtpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileHttpInput)(nil)).Elem(), ProfileHttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileHttpPtrInput)(nil)).Elem(), ProfileHttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileImapInput)(nil)).Elem(), ProfileImapArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileImapPtrInput)(nil)).Elem(), ProfileImapArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileMapiInput)(nil)).Elem(), ProfileMapiArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileMapiPtrInput)(nil)).Elem(), ProfileMapiArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileNacQuarInput)(nil)).Elem(), ProfileNacQuarArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileNacQuarPtrInput)(nil)).Elem(), ProfileNacQuarArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileNntpInput)(nil)).Elem(), ProfileNntpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileNntpPtrInput)(nil)).Elem(), ProfileNntpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileOutbreakPreventionInput)(nil)).Elem(), ProfileOutbreakPreventionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileOutbreakPreventionPtrInput)(nil)).Elem(), ProfileOutbreakPreventionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfilePop3Input)(nil)).Elem(), ProfilePop3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfilePop3PtrInput)(nil)).Elem(), ProfilePop3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileSmbInput)(nil)).Elem(), ProfileSmbArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileSmbPtrInput)(nil)).Elem(), ProfileSmbArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileSmtpInput)(nil)).Elem(), ProfileSmtpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileSmtpPtrInput)(nil)).Elem(), ProfileSmtpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileSshInput)(nil)).Elem(), ProfileSshArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileSshPtrInput)(nil)).Elem(), ProfileSshArgs{})
+	pulumi.RegisterOutputType(ProfileCifsOutput{})
+	pulumi.RegisterOutputType(ProfileCifsPtrOutput{})
+	pulumi.RegisterOutputType(ProfileContentDisarmOutput{})
+	pulumi.RegisterOutputType(ProfileContentDisarmPtrOutput{})
+	pulumi.RegisterOutputType(ProfileExternalBlocklistOutput{})
+	pulumi.RegisterOutputType(ProfileExternalBlocklistArrayOutput{})
+	pulumi.RegisterOutputType(ProfileFtpOutput{})
+	pulumi.RegisterOutputType(ProfileFtpPtrOutput{})
+	pulumi.RegisterOutputType(ProfileHttpOutput{})
+	pulumi.RegisterOutputType(ProfileHttpPtrOutput{})
+	pulumi.RegisterOutputType(ProfileImapOutput{})
+	pulumi.RegisterOutputType(ProfileImapPtrOutput{})
+	pulumi.RegisterOutputType(ProfileMapiOutput{})
+	pulumi.RegisterOutputType(ProfileMapiPtrOutput{})
+	pulumi.RegisterOutputType(ProfileNacQuarOutput{})
+	pulumi.RegisterOutputType(ProfileNacQuarPtrOutput{})
+	pulumi.RegisterOutputType(ProfileNntpOutput{})
+	pulumi.RegisterOutputType(ProfileNntpPtrOutput{})
+	pulumi.RegisterOutputType(ProfileOutbreakPreventionOutput{})
+	pulumi.RegisterOutputType(ProfileOutbreakPreventionPtrOutput{})
+	pulumi.RegisterOutputType(ProfilePop3Output{})
+	pulumi.RegisterOutputType(ProfilePop3PtrOutput{})
+	pulumi.RegisterOutputType(ProfileSmbOutput{})
+	pulumi.RegisterOutputType(ProfileSmbPtrOutput{})
+	pulumi.RegisterOutputType(ProfileSmtpOutput{})
+	pulumi.RegisterOutputType(ProfileSmtpPtrOutput{})
+	pulumi.RegisterOutputType(ProfileSshOutput{})
+	pulumi.RegisterOutputType(ProfileSshPtrOutput{})
 }

@@ -6,9 +6,9 @@ package antivirus
 import (
 	"fmt"
 
-	"github.com/aspyrmedia/pulumi-fortios/sdk/go/fortios"
 	"github.com/blang/semver"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios"
 )
 
 type module struct {
@@ -21,14 +21,14 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "fortios:antivirus/antivirusHeuristic:antivirusHeuristic":
-		r = &AntivirusHeuristic{}
-	case "fortios:antivirus/antivirusProfile:antivirusProfile":
-		r = &AntivirusProfile{}
-	case "fortios:antivirus/antivirusQuarantine:antivirusQuarantine":
-		r = &AntivirusQuarantine{}
-	case "fortios:antivirus/antivirusSettings:antivirusSettings":
-		r = &AntivirusSettings{}
+	case "fortios:antivirus/heuristic:Heuristic":
+		r = &Heuristic{}
+	case "fortios:antivirus/profile:Profile":
+		r = &Profile{}
+	case "fortios:antivirus/quarantine:Quarantine":
+		r = &Quarantine{}
+	case "fortios:antivirus/settings:Settings":
+		r = &Settings{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -44,22 +44,22 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"fortios",
-		"antivirus/antivirusHeuristic",
+		"antivirus/heuristic",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
-		"antivirus/antivirusProfile",
+		"antivirus/profile",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
-		"antivirus/antivirusQuarantine",
+		"antivirus/quarantine",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
-		"antivirus/antivirusSettings",
+		"antivirus/settings",
 		&module{version},
 	)
 }

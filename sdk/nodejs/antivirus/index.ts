@@ -5,35 +5,45 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./antivirusHeuristic";
-export * from "./antivirusProfile";
-export * from "./antivirusQuarantine";
-export * from "./antivirusSettings";
+export { HeuristicArgs, HeuristicState } from "./heuristic";
+export type Heuristic = import("./heuristic").Heuristic;
+export const Heuristic: typeof import("./heuristic").Heuristic = null as any;
+utilities.lazyLoad(exports, ["Heuristic"], () => require("./heuristic"));
 
-// Import resources to register:
-import { AntivirusHeuristic } from "./antivirusHeuristic";
-import { AntivirusProfile } from "./antivirusProfile";
-import { AntivirusQuarantine } from "./antivirusQuarantine";
-import { AntivirusSettings } from "./antivirusSettings";
+export { ProfileArgs, ProfileState } from "./profile";
+export type Profile = import("./profile").Profile;
+export const Profile: typeof import("./profile").Profile = null as any;
+utilities.lazyLoad(exports, ["Profile"], () => require("./profile"));
+
+export { QuarantineArgs, QuarantineState } from "./quarantine";
+export type Quarantine = import("./quarantine").Quarantine;
+export const Quarantine: typeof import("./quarantine").Quarantine = null as any;
+utilities.lazyLoad(exports, ["Quarantine"], () => require("./quarantine"));
+
+export { SettingsArgs, SettingsState } from "./settings";
+export type Settings = import("./settings").Settings;
+export const Settings: typeof import("./settings").Settings = null as any;
+utilities.lazyLoad(exports, ["Settings"], () => require("./settings"));
+
 
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "fortios:antivirus/antivirusHeuristic:antivirusHeuristic":
-                return new AntivirusHeuristic(name, <any>undefined, { urn })
-            case "fortios:antivirus/antivirusProfile:antivirusProfile":
-                return new AntivirusProfile(name, <any>undefined, { urn })
-            case "fortios:antivirus/antivirusQuarantine:antivirusQuarantine":
-                return new AntivirusQuarantine(name, <any>undefined, { urn })
-            case "fortios:antivirus/antivirusSettings:antivirusSettings":
-                return new AntivirusSettings(name, <any>undefined, { urn })
+            case "fortios:antivirus/heuristic:Heuristic":
+                return new Heuristic(name, <any>undefined, { urn })
+            case "fortios:antivirus/profile:Profile":
+                return new Profile(name, <any>undefined, { urn })
+            case "fortios:antivirus/quarantine:Quarantine":
+                return new Quarantine(name, <any>undefined, { urn })
+            case "fortios:antivirus/settings:Settings":
+                return new Settings(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("fortios", "antivirus/antivirusHeuristic", _module)
-pulumi.runtime.registerResourceModule("fortios", "antivirus/antivirusProfile", _module)
-pulumi.runtime.registerResourceModule("fortios", "antivirus/antivirusQuarantine", _module)
-pulumi.runtime.registerResourceModule("fortios", "antivirus/antivirusSettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "antivirus/heuristic", _module)
+pulumi.runtime.registerResourceModule("fortios", "antivirus/profile", _module)
+pulumi.runtime.registerResourceModule("fortios", "antivirus/quarantine", _module)
+pulumi.runtime.registerResourceModule("fortios", "antivirus/settings", _module)
