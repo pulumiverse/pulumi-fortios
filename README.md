@@ -44,13 +44,6 @@ To use from .NET, install using `dotnet add package`:
 dotnet add package Pulumiverse.Fortios
 ```
 
-## Configuration
-
-The following configuration points are available for the `fortios` provider:
-
-- `fortios:apiKey` (environment: `fortios_API_KEY`) - the API key for `fortios`
-- `fortios:region` (environment: `fortios_REGION`) - the region in which to deploy resources
-
 ## Reference
 
 For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/fortios/api-docs/).
