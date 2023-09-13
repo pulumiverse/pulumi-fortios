@@ -18,12 +18,11 @@ import (
 	"fmt"
 	"path/filepath"
 	"strings"
+	"unicode"
 
 	"github.com/ettle/strcase"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 	"github.com/pulumiverse/pulumi-fortios/provider/pkg/version"
@@ -36,29 +35,37 @@ const (
 	mainMod = "index" // the fortios module
 )
 
-func convertName(name string) string {
-	idx := strings.Index(name, "_")
-	contract.Assertf(idx > 0 && idx < len(name)-1, "Invalid snake case name %s", name)
-	name = name[idx+1:]
-	contract.Assertf(len(name) > 0, "Invalid snake case name %s", name)
-	return strcase.ToPascal(name)
+var module_overrides = map[string]string{
+	"system": "sys",
 }
 
-func makeDataSource(mod string, name string) tokens.ModuleMember {
-	name = convertName(name)
+func convertName(tfname string) (module string, name string) {
+	tfNameItems := strings.Split(tfname, "_")
+	contract.Assertf(len(tfNameItems) >= 2, "Invalid snake case name %s", tfname)
+	contract.Assertf(tfNameItems[0] == "fortios", "Invalid snake case name %s. Does not start with fortios", tfname)
+	if len(tfNameItems) == 2 {
+		module = mainMod
+		name = tfNameItems[1]
+	} else {
+		module = tfNameItems[1]
+		name = strings.Join(tfNameItems[2:], "_")
+	}
+	if v, ok := module_overrides[module]; ok {
+		module = v
+	}
+	contract.Assertf(!unicode.IsDigit(rune(name[0])), "Pulumi name must not start with a digit: %s", name)
+	name = strcase.ToPascal(name)
+	return
+}
+
+func makeDataSource(_ string, ds string) tokens.ModuleMember {
+	mod, name := convertName(ds)
 	return tfbridge.MakeDataSource("fortios", mod, "get"+name)
 }
 
-func makeResource(mod string, res string) tokens.Type {
-	return tfbridge.MakeResource("fortios", mod, convertName(res))
-}
-
-// preConfigureCallback is called before the providerConfigure function of the underlying provider.
-// It should validate that the provider can be configured, and provide actionable errors in the case
-// it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
-// for example `stringValue(vars, "accessKey")`.
-func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
-	return nil
+func makeResource(_ string, res string) tokens.Type {
+	mod, name := convertName(res)
+	return tfbridge.MakeResource("fortios", mod, name)
 }
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
@@ -212,7 +219,6 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 		},
-		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
@@ -252,6 +258,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_application_name": {
 				Tok: makeResource(mainMod, "fortios_application_name"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"name": {
+						CSharpName: "ApplicationName",
+					},
+				},
 			},
 			"fortios_application_rulesettings": {
 				Tok: makeResource(mainMod, "fortios_application_rulesettings"),
@@ -270,15 +281,30 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_certificate_ca": {
 				Tok: makeResource(mainMod, "fortios_certificate_ca"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"ca": {
+						CSharpName: "Certificate",
+					},
+				},
 			},
 			"fortios_certificate_crl": {
 				Tok: makeResource(mainMod, "fortios_certificate_crl"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"crl": {
+						CSharpName: "Data",
+					},
+				},
 			},
 			"fortios_certificate_local": {
 				Tok: makeResource(mainMod, "fortios_certificate_local"),
 			},
 			"fortios_certificate_remote": {
 				Tok: makeResource(mainMod, "fortios_certificate_remote"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"remote": {
+						CSharpName: "Certificate",
+					},
+				},
 			},
 			"fortios_cifs_domaincontroller": {
 				Tok: makeResource(mainMod, "fortios_cifs_domaincontroller"),
@@ -861,12 +887,22 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_logdisk_filter": {
 				Tok: makeResource(mainMod, "fortios_logdisk_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logdisk_setting": {
 				Tok: makeResource(mainMod, "fortios_logdisk_setting"),
 			},
 			"fortios_logfortianalyzer2_filter": {
 				Tok: makeResource(mainMod, "fortios_logfortianalyzer2_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logfortianalyzer2_overridefilter": {
 				Tok: makeResource(mainMod, "fortios_logfortianalyzer2_overridefilter"),
@@ -879,6 +915,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_logfortianalyzer3_filter": {
 				Tok: makeResource(mainMod, "fortios_logfortianalyzer3_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logfortianalyzer3_overridefilter": {
 				Tok: makeResource(mainMod, "fortios_logfortianalyzer3_overridefilter"),
@@ -891,6 +932,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_logfortianalyzer_filter": {
 				Tok: makeResource(mainMod, "fortios_logfortianalyzer_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logfortianalyzer_overridefilter": {
 				Tok: makeResource(mainMod, "fortios_logfortianalyzer_overridefilter"),
@@ -903,6 +949,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_logfortianalyzercloud_filter": {
 				Tok: makeResource(mainMod, "fortios_logfortianalyzercloud_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logfortianalyzercloud_overridefilter": {
 				Tok: makeResource(mainMod, "fortios_logfortianalyzercloud_overridefilter"),
@@ -915,6 +966,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_logfortiguard_filter": {
 				Tok: makeResource(mainMod, "fortios_logfortiguard_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logfortiguard_overridefilter": {
 				Tok: makeResource(mainMod, "fortios_logfortiguard_overridefilter"),
@@ -927,6 +983,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_logmemory_filter": {
 				Tok: makeResource(mainMod, "fortios_logmemory_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logmemory_globalsetting": {
 				Tok: makeResource(mainMod, "fortios_logmemory_globalsetting"),
@@ -936,12 +997,22 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_lognulldevice_filter": {
 				Tok: makeResource(mainMod, "fortios_lognulldevice_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_lognulldevice_setting": {
 				Tok: makeResource(mainMod, "fortios_lognulldevice_setting"),
 			},
 			"fortios_logsyslogd2_filter": {
 				Tok: makeResource(mainMod, "fortios_logsyslogd2_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logsyslogd2_overridefilter": {
 				Tok: makeResource(mainMod, "fortios_logsyslogd2_overridefilter"),
@@ -954,6 +1025,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_logsyslogd3_filter": {
 				Tok: makeResource(mainMod, "fortios_logsyslogd3_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logsyslogd3_overridefilter": {
 				Tok: makeResource(mainMod, "fortios_logsyslogd3_overridefilter"),
@@ -966,6 +1042,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_logsyslogd4_filter": {
 				Tok: makeResource(mainMod, "fortios_logsyslogd4_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logsyslogd4_overridefilter": {
 				Tok: makeResource(mainMod, "fortios_logsyslogd4_overridefilter"),
@@ -978,6 +1059,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_logsyslogd_filter": {
 				Tok: makeResource(mainMod, "fortios_logsyslogd_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logsyslogd_overridefilter": {
 				Tok: makeResource(mainMod, "fortios_logsyslogd_overridefilter"),
@@ -990,24 +1076,44 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_logtacacsaccounting2_filter": {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting2_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logtacacsaccounting2_setting": {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting2_setting"),
 			},
 			"fortios_logtacacsaccounting3_filter": {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting3_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logtacacsaccounting3_setting": {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting3_setting"),
 			},
 			"fortios_logtacacsaccounting_filter": {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logtacacsaccounting_setting": {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting_setting"),
 			},
 			"fortios_logwebtrends_filter": {
 				Tok: makeResource(mainMod, "fortios_logwebtrends_filter"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"filter": {
+						CSharpName: "FilterDefinition",
+					},
+				},
 			},
 			"fortios_logwebtrends_setting": {
 				Tok: makeResource(mainMod, "fortios_logwebtrends_setting"),
@@ -1169,7 +1275,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_sshfilter_profile"),
 			},
 			"fortios_switchcontroller_8021Xsettings": {
-				Tok: makeResource(mainMod, "fortios_switchcontroller_8021Xsettings"),
+				Tok: makeResource(mainMod, "fortios_switchcontroller_settings8021X"),
 			},
 			"fortios_switchcontroller_customcommand": {
 				Tok: makeResource(mainMod, "fortios_switchcontroller_customcommand"),
@@ -1218,6 +1324,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_switchcontroller_quarantine": {
 				Tok: makeResource(mainMod, "fortios_switchcontroller_quarantine"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"quarantine": {
+						CSharpName: "Data",
+					},
+				},
 			},
 			"fortios_switchcontroller_remotelog": {
 				Tok: makeResource(mainMod, "fortios_switchcontroller_remotelog"),
@@ -1313,7 +1424,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_switchcontrollerqos_queuepolicy"),
 			},
 			"fortios_switchcontrollersecuritypolicy_8021X": {
-				Tok: makeResource(mainMod, "fortios_switchcontrollersecuritypolicy_8021X"),
+				Tok: makeResource(mainMod, "fortios_switchcontrollersecuritypolicy_policy8021X"),
 			},
 			"fortios_switchcontrollersecuritypolicy_captiveportal": {
 				Tok: makeResource(mainMod, "fortios_switchcontrollersecuritypolicy_captiveportal"),
@@ -1476,6 +1587,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_system_interface": {
 				Tok: makeResource(mainMod, "fortios_system_interface"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"interface": {
+						CSharpName: "Data",
+					},
+				},
 			},
 			"fortios_system_ipam": {
 				Tok: makeResource(mainMod, "fortios_system_ipam"),
@@ -1836,6 +1952,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_user_quarantine": {
 				Tok: makeResource(mainMod, "fortios_user_quarantine"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"quarantine": {
+						CSharpName: "Data",
+					},
+				},
 			},
 			"fortios_user_radius": {
 				Tok: makeResource(mainMod, "fortios_user_radius"),
@@ -1875,9 +1996,19 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_vpncertificate_ca": {
 				Tok: makeResource(mainMod, "fortios_vpncertificate_ca"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"ca": {
+						CSharpName: "Certificate",
+					},
+				},
 			},
 			"fortios_vpncertificate_crl": {
 				Tok: makeResource(mainMod, "fortios_vpncertificate_crl"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"crl": {
+						CSharpName: "Data",
+					},
+				},
 			},
 			"fortios_vpncertificate_local": {
 				Tok: makeResource(mainMod, "fortios_vpncertificate_local"),
@@ -1887,6 +2018,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_vpncertificate_remote": {
 				Tok: makeResource(mainMod, "fortios_vpncertificate_remote"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"remote": {
+						CSharpName: "Data",
+					},
+				},
 			},
 			"fortios_vpncertificate_setting": {
 				Tok: makeResource(mainMod, "fortios_vpncertificate_setting"),
@@ -2663,6 +2799,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_system_interface": {
 				Tok: makeDataSource(mainMod, "fortios_system_interface"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"interface": {
+						CSharpName: "Data",
+					},
+				},
 			},
 			"fortios_system_interfacelist": {
 				Tok: makeDataSource(mainMod, "fortios_system_interfacelist"),
@@ -2901,7 +3042,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", "fortios"),
+				fmt.Sprintf("github.com/pulumiverse/pulumi-%[1]s/sdk/", "fortios"),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				"fortios",
