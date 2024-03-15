@@ -1,0 +1,44 @@
+name: terraform
+runtime: yaml
+
+config:
+  fortios:fmgHostname:
+    value: 192.168.88.200
+  fortios:fmgInsecure:
+    value: true
+  fortios:fmgPasswd:
+    value: admin
+  fortios:fmgUsername:
+    value: APIUser
+
+resources:
+  script:
+    type: fortios:fmg:DevicemanagerScript
+    properties:
+      name: config-intf3
+      description: configure interface3
+      content: <|
+        config system interface
+        edit port3
+          set vdom "root"
+          set ip 10.10.0.200 255.255.0.0
+          set allowaccess ping http https
+          next
+        end
+      target: device_database
+      adom: test-adom
+
+  script-execute:
+    type: fortios:fmg:DevicemanagerScriptExecute
+    properties:
+      scriptName: ${script.name}
+      targetDevname: FGVM64-test
+      adom: test-adom
+      vdom: root
+
+  install-device:
+    type: fortios:fmg:DevicemanagerInstallDevice
+    properties:
+      targetDevname: ${script-execute.targetDevname}
+      adom: test-adom
+      vdom: root

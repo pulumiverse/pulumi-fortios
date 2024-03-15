@@ -1,0 +1,3 @@
+name: fortios-sort-policies
+runtime: nodejs
+description: A Pulumi programm to deploy Fortios firewall policies in order

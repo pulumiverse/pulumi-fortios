@@ -1,0 +1,11 @@
+name: terraform
+runtime: python
+config:
+  fortios:fmgHostname:
+    value: 192.168.88.200
+  fortios:fmgInsecure:
+    value: true
+  fortios:fmgPasswd:
+    value: admin
+  fortios:fmgUsername:
+    value: APIUser

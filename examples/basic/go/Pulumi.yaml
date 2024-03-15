@@ -1,0 +1,11 @@
+name: basic
+runtime: go
+config:
+  fortios:cabundlefile:
+    value: /path/yourCA.crt
+  fortios:hostname:
+    value: 192.168.52.177
+  fortios:insecure:
+    value: false
+  fortios:token:
+    value: jn3t3Nw7qckQzt955Htkfj5hwQ6jdb
