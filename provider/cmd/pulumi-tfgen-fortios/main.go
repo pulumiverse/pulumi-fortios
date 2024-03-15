@@ -15,11 +15,11 @@
 package main
 
 import (
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 	fortios "github.com/pulumiverse/pulumi-fortios/provider"
 	"github.com/pulumiverse/pulumi-fortios/provider/pkg/version"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
-	)
+)
 
 func main() {
 	tfgen.Main("fortios", version.Version, fortios.Provider())
-	}
+}

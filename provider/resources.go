@@ -36,7 +36,58 @@ const (
 )
 
 var module_overrides = map[string]string{
-	"system": "sys",
+	"firewallconsolidated":           "firewall/consolidated",
+	"firewallipmacbinding":           "firewall/ipmacbinding",
+	"firewallschedule":               "firewall/schedule",
+	"firewallservice":                "firewall/service",
+	"firewallshaper":                 "firewall/shaper",
+	"firewallssh":                    "firewall/ssh",
+	"firewallssl":                    "firewall/ssl",
+	"firewallwildcardfqdn":           "firewall/wildcardfqdn",
+	"logdisk":                        "log/disk",
+	"logfortianalyzer":               "log/fortianalyzer",
+	"logfortianalyzer2":              "log/fortianalyzer/v2",
+	"logfortianalyzer3":              "log/fortianalyzer/v3",
+	"logfortianalyzercloud":          "log/fortianalyzer/cloud",
+	"logfortiguard":                  "log/fortiguard",
+	"logmemory":                      "log/memory",
+	"lognulldevice":                  "log/nulldevice",
+	"logsyslogd":                     "log/syslogd",
+	"logsyslogd2":                    "log/syslogd/v2",
+	"logsyslogd3":                    "log/syslogd/v3",
+	"logsyslogd4":                    "log/syslogd/v4",
+	"logtacacsaccounting":            "log/tacacsaccounting",
+	"logtacacsaccounting2":           "log/tacacsaccounting/v2",
+	"logtacacsaccounting3":           "log/tacacsaccounting/v3",
+	"logwebtrends":                   "log/webtrends",
+	"switchcontrollerautoconfig":     "switchcontroller/autoconfig",
+	"switchcontrollerinitialconfig":  "switchcontroller/initialconfig",
+	"switchcontrollerptp":            "switchcontroller/ptp",
+	"switchcontrollerqos":            "switchcontroller/qos",
+	"switchcontrollersecuritypolicy": "switchcontroller/securitypolicy",
+	"routerbgp":                      "router/bgp",
+	"routerospf":                     "router/ospf",
+	"routerospf6":                    "router/ospf6",
+	"system3gmodem":                  "system/modem3g",
+	"systemautoupdate":               "system/autoupdate",
+	"systemdhcp":                     "system/dhcp",
+	"systemdhcp6":                    "system/dhcp6",
+	"systemlldp":                     "system/lldp",
+	"systemreplacemsg":               "system/replacemsg",
+	"systemsnmp":                     "system/snmp",
+	"wirelesscontrollerhotspot20":    "wirelesscontroller/hotspot20",
+	"dnsfilter":                      "filter/dns",
+	"emailfilter":                    "filter/email",
+	"filefilter":                     "filter/file",
+	"sctpfilter":                     "filter/sctp",
+	"spamfilter":                     "filter/spam",
+	"sshfilter":                      "filter/ssh",
+	"videofilter":                    "filter/video",
+	"webfilter":                      "filter/web",
+	"vpncertificate":                 "vpn/certificate",
+	"vpnipsec":                       "vpn/ipsec",
+	"vpnssl":                         "vpn/ssl",
+	"vpnsslweb":                      "vpn/ssl/web",
 }
 
 func convertName(tfname string) (module string, name string) {
@@ -53,6 +104,7 @@ func convertName(tfname string) (module string, name string) {
 	if v, ok := module_overrides[module]; ok {
 		module = v
 	}
+	contract.Assertf(!unicode.IsDigit(rune(module[0])), "Pulumi namespace must not start with a digit: %s", name)
 	contract.Assertf(!unicode.IsDigit(rune(name[0])), "Pulumi name must not start with a digit: %s", name)
 	name = strcase.ToPascal(name)
 	return
@@ -108,17 +160,11 @@ func Provider() tfbridge.ProviderInfo {
 		Repository: "https://github.com/pulumiverse/pulumi-fortios",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
-		Version:   version.Version,
-		GitHubOrg: "fortinetdev",
+		Version:           version.Version,
+		GitHubOrg:         "fortinetdev",
+		TFProviderVersion: "1.16.0",
+		UpstreamRepoPath:  "./upstream",
 		Config: map[string]*tfbridge.SchemaInfo{
-			// Add any required configuration here, or remove the example below if
-			// no additional points are required.
-			// "region": {
-			// 	Type: tfbridge.MakeType("region", "Region"),
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
-			// 	},
-			// },
 			"hostname": {
 				MarkAsOptional: tfbridge.True(),
 				Default: &tfbridge.DefaultInfo{
@@ -220,18 +266,6 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type. Two examples
-			// are below - the single line form is the common case. The multi-line form is
-			// needed only if you wish to override types or other default options.
-			//
-			// "aws_iam_role": {Tok: makeResource(mainMod(mainMod, "aws_iam_role")}
-			//
-			// "aws_acm_certificate": {
-			// 	Tok: Tok: makeResource(mainMod(mainMod, "aws_acm_certificate"),
-			// 	Fields: map[string]*tfbridge.SchemaInfo{
-			// 		"tags": {Type: tfbridge.MakeType("fortios", "Tags")},
-			// 	},
-			// },
 			"fortios_alertemail_setting": {
 				Tok: makeResource(mainMod, "fortios_alertemail_setting"),
 			},
@@ -257,12 +291,8 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_application_list"),
 			},
 			"fortios_application_name": {
-				Tok: makeResource(mainMod, "fortios_application_name"),
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"name": {
-						CSharpName: "ApplicationName",
-					},
-				},
+				Tok:        makeResource(mainMod, "fortios_application_name"),
+				CSharpName: "ApplicationName",
 			},
 			"fortios_application_rulesettings": {
 				Tok: makeResource(mainMod, "fortios_application_rulesettings"),
@@ -280,7 +310,8 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_automation_setting"),
 			},
 			"fortios_certificate_ca": {
-				Tok: makeResource(mainMod, "fortios_certificate_ca"),
+				Tok:        makeResource(mainMod, "fortios_certificate_ca"),
+				CSharpName: "Authority",
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"ca": {
 						CSharpName: "Certificate",
@@ -288,12 +319,8 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 			"fortios_certificate_crl": {
-				Tok: makeResource(mainMod, "fortios_certificate_crl"),
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"crl": {
-						CSharpName: "Data",
-					},
-				},
+				Tok:        makeResource(mainMod, "fortios_certificate_crl"),
+				CSharpName: "RevocationList",
 			},
 			"fortios_certificate_local": {
 				Tok: makeResource(mainMod, "fortios_certificate_local"),
@@ -889,7 +916,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logdisk_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -900,7 +927,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logfortianalyzer2_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -917,7 +944,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logfortianalyzer3_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -934,7 +961,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logfortianalyzer_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -951,7 +978,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logfortianalyzercloud_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -968,7 +995,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logfortiguard_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -985,7 +1012,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logmemory_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -999,7 +1026,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_lognulldevice_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -1010,7 +1037,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logsyslogd2_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -1027,7 +1054,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logsyslogd3_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -1044,7 +1071,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logsyslogd4_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -1061,7 +1088,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logsyslogd_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -1078,7 +1105,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting2_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -1089,7 +1116,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting3_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -1100,7 +1127,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -1111,7 +1138,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_logwebtrends_filter"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"filter": {
-						CSharpName: "FilterDefinition",
+						CSharpName: "Definition",
 					},
 				},
 			},
@@ -1167,7 +1194,8 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_router_bfd6"),
 			},
 			"fortios_router_bgp": {
-				Tok: makeResource(mainMod, "fortios_router_bgp"),
+				Tok:        makeResource(mainMod, "fortios_router_bgp"),
+				CSharpName: "BgpRouter",
 			},
 			"fortios_router_communitylist": {
 				Tok: makeResource(mainMod, "fortios_router_communitylist"),
@@ -1188,10 +1216,12 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_router_multicastflow"),
 			},
 			"fortios_router_ospf": {
-				Tok: makeResource(mainMod, "fortios_router_ospf"),
+				Tok:        makeResource(mainMod, "fortios_router_ospf"),
+				CSharpName: "OspfRouter",
 			},
 			"fortios_router_ospf6": {
-				Tok: makeResource(mainMod, "fortios_router_ospf6"),
+				Tok:        makeResource(mainMod, "fortios_router_ospf6"),
+				CSharpName: "Ospf6Router",
 			},
 			"fortios_router_policy": {
 				Tok: makeResource(mainMod, "fortios_router_policy"),
@@ -1995,7 +2025,8 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "fortios_vpn_pptp"),
 			},
 			"fortios_vpncertificate_ca": {
-				Tok: makeResource(mainMod, "fortios_vpncertificate_ca"),
+				Tok:        makeResource(mainMod, "fortios_vpncertificate_ca"),
+				CSharpName: "Authority",
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"ca": {
 						CSharpName: "Certificate",
@@ -2003,12 +2034,8 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 			"fortios_vpncertificate_crl": {
-				Tok: makeResource(mainMod, "fortios_vpncertificate_crl"),
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"crl": {
-						CSharpName: "Data",
-					},
-				},
+				Tok:        makeResource(mainMod, "fortios_vpncertificate_crl"),
+				CSharpName: "RevocationList",
 			},
 			"fortios_vpncertificate_local": {
 				Tok: makeResource(mainMod, "fortios_vpncertificate_local"),
@@ -3030,7 +3057,7 @@ func Provider() tfbridge.ProviderInfo {
 			// See the documentation for tfbridge.OverlayInfo for how to lay out this
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
-			//Overlay: &tfbridge.OverlayInfo{},
+			// Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
 			PackageName: "pulumiverse_fortios",
