@@ -1,6 +1,5 @@
 .idea
 .code
-.vscode
 **/vendor/
 .pulumi
 **/bin/
@@ -31,3 +30,4 @@ sdk/java/gradlew
 sdk/java/gradlew.bat
 
 upstream
+**/*.log
