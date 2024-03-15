@@ -14,7 +14,7 @@ RUN apt-get update && \
 # See README.md
 
 # Install go
-ARG GO_VERSION=1.20.4
+ARG GO_VERSION=1.21.7
 RUN rm -rf /usr/local/go && \
     wget -O- https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz | \
     tar -C /usr/local -xzf -
@@ -29,7 +29,7 @@ RUN mkdir -p $GOPATH/bin && \
 ENV PATH=$PATH:$GOPATH/bin
 
 # Install pulumictl
-ARG PULUMICTL_VERSION=v0.0.42
+ARG PULUMICTL_VERSION=v0.0.46
 RUN rm -rf /usr/local/bin/pulumictl && \
     wget -O- https://github.com/pulumi/pulumictl/releases/download/${PULUMICTL_VERSION}/pulumictl-${PULUMICTL_VERSION}-linux-amd64.tar.gz | \
     tar -C /usr/local/bin -xzf -
