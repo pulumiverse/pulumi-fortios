@@ -9,29 +9,28 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // CA certificate.
 //
 // ## Import
 //
-// # Certificate Ca can be imported using any of these accepted formats
+// Certificate Ca can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:certificate/ca:Ca labelname {{name}}
-//
+// $ pulumi import fortios:certificate/ca:Ca labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:certificate/ca:Ca labelname {{name}}
-//
+// $ pulumi import fortios:certificate/ca:Ca labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Ca struct {
 	pulumi.CustomResourceState
 
@@ -75,7 +74,7 @@ func NewCa(ctx *pulumi.Context,
 	if args.Ca == nil {
 		return nil, errors.New("invalid value for required argument 'Ca'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Ca
 	err := ctx.RegisterResource("fortios:certificate/ca:Ca", name, args, &resource, opts...)
 	if err != nil {

@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv6 IP pools.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,26 +41,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall Ippool6 can be imported using any of these accepted formats
+// Firewall Ippool6 can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/ippool6:Ippool6 labelname {{name}}
-//
+// $ pulumi import fortios:firewall/ippool6:Ippool6 labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/ippool6:Ippool6 labelname {{name}}
-//
+// $ pulumi import fortios:firewall/ippool6:Ippool6 labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Ippool6 struct {
 	pulumi.CustomResourceState
 
@@ -91,7 +92,7 @@ func NewIppool6(ctx *pulumi.Context,
 	if args.Startip == nil {
 		return nil, errors.New("invalid value for required argument 'Startip'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Ippool6
 	err := ctx.RegisterResource("fortios:firewall/ippool6:Ippool6", name, args, &resource, opts...)
 	if err != nil {

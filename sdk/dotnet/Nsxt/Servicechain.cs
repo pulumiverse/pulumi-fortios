@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Nsxt
     /// 
     /// ## Import
     /// 
-    /// Nsxt ServiceChain can be imported using any of these accepted formats
+    /// Nsxt ServiceChain can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:nsxt/servicechain:Servicechain labelname {{fosid}}
+    /// $ pulumi import fortios:nsxt/servicechain:Servicechain labelname {{fosid}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:nsxt/servicechain:Servicechain labelname {{fosid}}
+    /// $ pulumi import fortios:nsxt/servicechain:Servicechain labelname {{fosid}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:nsxt/servicechain:Servicechain")]
     public partial class Servicechain : global::Pulumi.CustomResource

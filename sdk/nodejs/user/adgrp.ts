@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -25,22 +26,25 @@ import * as utilities from "../utilities";
  * });
  * const trname = new fortios.user.Adgrp("trname", {serverName: trname1.name});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * User Adgrp can be imported using any of these accepted formats
+ * User Adgrp can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:user/adgrp:Adgrp labelname {{name}}
+ * $ pulumi import fortios:user/adgrp:Adgrp labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:user/adgrp:Adgrp labelname {{name}}
+ * $ pulumi import fortios:user/adgrp:Adgrp labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Adgrp extends pulumi.CustomResource {
     /**

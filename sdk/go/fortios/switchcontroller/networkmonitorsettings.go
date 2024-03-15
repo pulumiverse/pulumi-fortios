@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure network monitor settings.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,26 +39,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # SwitchController NetworkMonitorSettings can be imported using any of these accepted formats
+// SwitchController NetworkMonitorSettings can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/networkmonitorsettings:Networkmonitorsettings labelname SwitchControllerNetworkMonitorSettings
-//
+// $ pulumi import fortios:switchcontroller/networkmonitorsettings:Networkmonitorsettings labelname SwitchControllerNetworkMonitorSettings
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/networkmonitorsettings:Networkmonitorsettings labelname SwitchControllerNetworkMonitorSettings
-//
+// $ pulumi import fortios:switchcontroller/networkmonitorsettings:Networkmonitorsettings labelname SwitchControllerNetworkMonitorSettings
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Networkmonitorsettings struct {
 	pulumi.CustomResourceState
 
@@ -73,7 +74,7 @@ func NewNetworkmonitorsettings(ctx *pulumi.Context,
 		args = &NetworkmonitorsettingsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Networkmonitorsettings
 	err := ctx.RegisterResource("fortios:switchcontroller/networkmonitorsettings:Networkmonitorsettings", name, args, &resource, opts...)
 	if err != nil {

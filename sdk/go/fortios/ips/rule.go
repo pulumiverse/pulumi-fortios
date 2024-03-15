@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPS rules.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -26,6 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// import first and then modify
 //			_, err := ips.NewRule(ctx, "trname", &ips.RuleArgs{
 //				Action:      pulumi.String("block"),
 //				Application: pulumi.String("All"),
@@ -49,26 +52,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Ips Rule can be imported using any of these accepted formats
+// Ips Rule can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:ips/rule:Rule labelname {{name}}
-//
+// $ pulumi import fortios:ips/rule:Rule labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:ips/rule:Rule labelname {{name}}
-//
+// $ pulumi import fortios:ips/rule:Rule labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Rule struct {
 	pulumi.CustomResourceState
 
@@ -115,7 +117,7 @@ func NewRule(ctx *pulumi.Context,
 		args = &RuleArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Rule
 	err := ctx.RegisterResource("fortios:ips/rule:Rule", name, args, &resource, opts...)
 	if err != nil {

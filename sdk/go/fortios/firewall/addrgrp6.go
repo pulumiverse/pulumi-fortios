@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv6 address groups.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -58,26 +60,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall Addrgrp6 can be imported using any of these accepted formats
+// Firewall Addrgrp6 can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/addrgrp6:Addrgrp6 labelname {{name}}
-//
+// $ pulumi import fortios:firewall/addrgrp6:Addrgrp6 labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/addrgrp6:Addrgrp6 labelname {{name}}
-//
+// $ pulumi import fortios:firewall/addrgrp6:Addrgrp6 labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Addrgrp6 struct {
 	pulumi.CustomResourceState
 
@@ -113,7 +114,7 @@ func NewAddrgrp6(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Addrgrp6
 	err := ctx.RegisterResource("fortios:firewall/addrgrp6:Addrgrp6", name, args, &resource, opts...)
 	if err != nil {

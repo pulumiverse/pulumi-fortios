@@ -8,7 +8,10 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type ProfileAddressList struct {
 	// Blocked address. The structure of `blockedAddress` block is documented below.

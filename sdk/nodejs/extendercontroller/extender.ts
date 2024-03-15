@@ -13,6 +13,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -39,22 +40,25 @@ import * as utilities from "../utilities";
  *     wimaxAuthProtocol: "tls",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * ExtenderController Extender can be imported using any of these accepted formats
+ * ExtenderController Extender can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:extendercontroller/extender:Extender labelname {{fosid}}
+ * $ pulumi import fortios:extendercontroller/extender:Extender labelname {{fosid}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:extendercontroller/extender:Extender labelname {{fosid}}
+ * $ pulumi import fortios:extendercontroller/extender:Extender labelname {{fosid}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Extender extends pulumi.CustomResource {
     /**

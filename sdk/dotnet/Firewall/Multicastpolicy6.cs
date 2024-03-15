@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -52,22 +53,25 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Firewall MulticastPolicy6 can be imported using any of these accepted formats
+    /// Firewall MulticastPolicy6 can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/multicastpolicy6:Multicastpolicy6 labelname {{fosid}}
+    /// $ pulumi import fortios:firewall/multicastpolicy6:Multicastpolicy6 labelname {{fosid}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/multicastpolicy6:Multicastpolicy6 labelname {{fosid}}
+    /// $ pulumi import fortios:firewall/multicastpolicy6:Multicastpolicy6 labelname {{fosid}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:firewall/multicastpolicy6:Multicastpolicy6")]
     public partial class Multicastpolicy6 : global::Pulumi.CustomResource

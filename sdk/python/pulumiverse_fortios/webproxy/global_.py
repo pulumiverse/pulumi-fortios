@@ -765,6 +765,7 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -784,22 +785,25 @@ class Global(pulumi.CustomResource):
             tunnel_non_http="enable",
             unknown_http_version="best-effort")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        WebProxy Global can be imported using any of these accepted formats
+        WebProxy Global can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:webproxy/global:Global labelname WebProxyGlobal
+        $ pulumi import fortios:webproxy/global:Global labelname WebProxyGlobal
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:webproxy/global:Global labelname WebProxyGlobal
+        $ pulumi import fortios:webproxy/global:Global labelname WebProxyGlobal
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -837,6 +841,7 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -856,22 +861,25 @@ class Global(pulumi.CustomResource):
             tunnel_non_http="enable",
             unknown_http_version="best-effort")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        WebProxy Global can be imported using any of these accepted formats
+        WebProxy Global can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:webproxy/global:Global labelname WebProxyGlobal
+        $ pulumi import fortios:webproxy/global:Global labelname WebProxyGlobal
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:webproxy/global:Global labelname WebProxyGlobal
+        $ pulumi import fortios:webproxy/global:Global labelname WebProxyGlobal
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param GlobalArgs args: The arguments to use to populate this resource's properties.

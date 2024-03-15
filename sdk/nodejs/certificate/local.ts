@@ -12,11 +12,12 @@ import * as utilities from "../utilities";
  * ## Example
  *
  * ### Delete Certificate:
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
  *
- * const trname1 = new fortios.sys.Autoscript("trname1", {
+ * const trname1 = new fortios.system.Autoscript("trname1", {
  *     interval: 1,
  *     outputSize: 10,
  *     repeat: 1,
@@ -28,6 +29,7 @@ import * as utilities from "../utilities";
  *     start: "auto",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class Local extends pulumi.CustomResource {
     /**

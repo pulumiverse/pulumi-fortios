@@ -13,10 +13,11 @@ namespace Pulumiverse.Fortios.Firewall
     /// <summary>
     /// Provides a resource to configure firewall service group of FortiOS.
     /// 
-    /// !&gt; **Warning:** The resource will be deprecated and replaced by new resource `fortios.firewallservice.Group`, we recommend that you use the new resource.
+    /// !&gt; **Warning:** The resource will be deprecated and replaced by new resource `fortios.firewall/service.Group`, we recommend that you use the new resource.
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,6 +39,7 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:firewall/objectServicegroup:ObjectServicegroup")]
     public partial class ObjectServicegroup : global::Pulumi.CustomResource

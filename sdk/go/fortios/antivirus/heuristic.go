@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure global heuristic options. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,26 +39,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Antivirus Heuristic can be imported using any of these accepted formats
+// Antivirus Heuristic can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:antivirus/heuristic:Heuristic labelname AntivirusHeuristic
-//
+// $ pulumi import fortios:antivirus/heuristic:Heuristic labelname AntivirusHeuristic
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:antivirus/heuristic:Heuristic labelname AntivirusHeuristic
-//
+// $ pulumi import fortios:antivirus/heuristic:Heuristic labelname AntivirusHeuristic
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Heuristic struct {
 	pulumi.CustomResourceState
 
@@ -73,7 +74,7 @@ func NewHeuristic(ctx *pulumi.Context,
 		args = &HeuristicArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Heuristic
 	err := ctx.RegisterResource("fortios:antivirus/heuristic:Heuristic", name, args, &resource, opts...)
 	if err != nil {

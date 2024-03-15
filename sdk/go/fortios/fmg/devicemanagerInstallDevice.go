@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports installing devicemanager script from FortiManager to the related device
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,6 +41,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type DevicemanagerInstallDevice struct {
 	pulumi.CustomResourceState
 
@@ -62,7 +65,7 @@ func NewDevicemanagerInstallDevice(ctx *pulumi.Context,
 	if args.TargetDevname == nil {
 		return nil, errors.New("invalid value for required argument 'TargetDevname'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DevicemanagerInstallDevice
 	err := ctx.RegisterResource("fortios:fmg/devicemanagerInstallDevice:DevicemanagerInstallDevice", name, args, &resource, opts...)
 	if err != nil {

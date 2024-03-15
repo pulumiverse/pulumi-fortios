@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure RIPng.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -69,26 +71,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Router Ripng can be imported using any of these accepted formats
+// Router Ripng can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/ripng:Ripng labelname RouterRipng
-//
+// $ pulumi import fortios:router/ripng:Ripng labelname RouterRipng
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/ripng:Ripng labelname RouterRipng
-//
+// $ pulumi import fortios:router/ripng:Ripng labelname RouterRipng
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Ripng struct {
 	pulumi.CustomResourceState
 
@@ -135,7 +136,7 @@ func NewRipng(ctx *pulumi.Context,
 		args = &RipngArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Ripng
 	err := ctx.RegisterResource("fortios:router/ripng:Ripng", name, args, &resource, opts...)
 	if err != nil {

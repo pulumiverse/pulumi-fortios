@@ -10,7 +10,9 @@ import * as utilities from "../utilities";
  * Resource to sort firewall security policies by policyid or policy name, in ascending or descending order.
  *
  * ## Example Usage
+ *
  * ### Example1
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -21,6 +23,7 @@ import * as utilities from "../utilities";
  * });
  * export const policylistAfterApply = test.statePolicyLists;
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class SecurityPolicysort extends pulumi.CustomResource {
     /**

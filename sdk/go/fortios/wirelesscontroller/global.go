@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure wireless controller global settings.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -51,26 +53,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # WirelessController Global can be imported using any of these accepted formats
+// WirelessController Global can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
-//
+// $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
-//
+// $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Global struct {
 	pulumi.CustomResourceState
 
@@ -123,7 +124,7 @@ func NewGlobal(ctx *pulumi.Context,
 		args = &GlobalArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Global
 	err := ctx.RegisterResource("fortios:wirelesscontroller/global:Global", name, args, &resource, opts...)
 	if err != nil {

@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure shaping profiles.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,26 +50,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall ShapingProfile can be imported using any of these accepted formats
+// Firewall ShapingProfile can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/shapingprofile:Shapingprofile labelname {{profile_name}}
-//
+// $ pulumi import fortios:firewall/shapingprofile:Shapingprofile labelname {{profile_name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/shapingprofile:Shapingprofile labelname {{profile_name}}
-//
+// $ pulumi import fortios:firewall/shapingprofile:Shapingprofile labelname {{profile_name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Shapingprofile struct {
 	pulumi.CustomResourceState
 
@@ -100,7 +101,7 @@ func NewShapingprofile(ctx *pulumi.Context,
 	if args.ProfileName == nil {
 		return nil, errors.New("invalid value for required argument 'ProfileName'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Shapingprofile
 	err := ctx.RegisterResource("fortios:firewall/shapingprofile:Shapingprofile", name, args, &resource, opts...)
 	if err != nil {

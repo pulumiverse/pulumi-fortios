@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure RADIUS server entries.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -62,26 +64,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # User Radius can be imported using any of these accepted formats
+// User Radius can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/radius:Radius labelname {{name}}
-//
+// $ pulumi import fortios:user/radius:Radius labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/radius:Radius labelname {{name}}
-//
+// $ pulumi import fortios:user/radius:Radius labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Radius struct {
 	pulumi.CustomResourceState
 
@@ -215,7 +216,7 @@ func NewRadius(ctx *pulumi.Context,
 		"tertiarySecret",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Radius
 	err := ctx.RegisterResource("fortios:user/radius:Radius", name, args, &resource, opts...)
 	if err != nil {

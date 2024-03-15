@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `firewall.Profileprotocoloptions`.
 func GetProfileprotocoloptionslist(ctx *pulumi.Context, args *GetProfileprotocoloptionslistArgs, opts ...pulumi.InvokeOption) (*GetProfileprotocoloptionslistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetProfileprotocoloptionslistResult
 	err := ctx.Invoke("fortios:firewall/getProfileprotocoloptionslist:getProfileprotocoloptionslist", args, &rv, opts...)
 	if err != nil {

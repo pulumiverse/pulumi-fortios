@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure NGFW IPv4/IPv6 application policies. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -63,26 +65,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall SecurityPolicy can be imported using any of these accepted formats
+// Firewall SecurityPolicy can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/securitypolicy:Securitypolicy labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/securitypolicy:Securitypolicy labelname {{policyid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/securitypolicy:Securitypolicy labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/securitypolicy:Securitypolicy labelname {{policyid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Securitypolicy struct {
 	pulumi.CustomResourceState
 
@@ -255,7 +256,7 @@ func NewSecuritypolicy(ctx *pulumi.Context,
 		args = &SecuritypolicyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Securitypolicy
 	err := ctx.RegisterResource("fortios:firewall/securitypolicy:Securitypolicy", name, args, &resource, opts...)
 	if err != nil {

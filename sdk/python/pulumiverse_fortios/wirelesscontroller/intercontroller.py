@@ -337,6 +337,7 @@ class Intercontroller(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -348,22 +349,25 @@ class Intercontroller(pulumi.CustomResource):
             inter_controller_mode="disable",
             inter_controller_pri="primary")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        WirelessController InterController can be imported using any of these accepted formats
+        WirelessController InterController can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
+        $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
+        $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -388,6 +392,7 @@ class Intercontroller(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -399,22 +404,25 @@ class Intercontroller(pulumi.CustomResource):
             inter_controller_mode="disable",
             inter_controller_pri="primary")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        WirelessController InterController can be imported using any of these accepted formats
+        WirelessController InterController can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
+        $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
+        $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param IntercontrollerArgs args: The arguments to use to populate this resource's properties.

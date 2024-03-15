@@ -13,10 +13,12 @@ namespace Pulumiverse.Fortios.Firewall
     /// <summary>
     /// Provides a resource to configure firewall service of FortiOS.
     /// 
-    /// !&gt; **Warning:** The resource will be deprecated and replaced by new resource `fortios.firewallservice.Custom`, we recommend that you use the new resource.
+    /// !&gt; **Warning:** The resource will be deprecated and replaced by new resource `fortios.firewall/service.Custom`, we recommend that you use the new resource.
     /// 
     /// ## Example Usage
+    /// 
     /// ### Fqdn Service
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,7 +37,10 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Iprange Service
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -57,7 +62,10 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### ICMP Service
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -78,6 +86,7 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:firewall/objectService:ObjectService")]
     public partial class ObjectService : global::Pulumi.CustomResource

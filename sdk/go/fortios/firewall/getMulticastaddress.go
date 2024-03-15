@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios firewall multicastaddress
 func LookupMulticastaddress(ctx *pulumi.Context, args *LookupMulticastaddressArgs, opts ...pulumi.InvokeOption) (*LookupMulticastaddressResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMulticastaddressResult
 	err := ctx.Invoke("fortios:firewall/getMulticastaddress:getMulticastaddress", args, &rv, opts...)
 	if err != nil {

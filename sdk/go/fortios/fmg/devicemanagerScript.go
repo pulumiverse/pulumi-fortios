@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports Create/Read/Update/Delete devicemanager script for FortiManager.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,7 +30,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := fmg.NewDevicemanagerScript(ctx, "test1", &fmg.DevicemanagerScriptArgs{
-//				Content:     pulumi.String("config system interface \n edit port3 \n	 set vdom \"root\"\n	 set ip 10.7.0.200 255.255.0.0 \n	 set allowaccess ping http https\n	 next \n end\n"),
+//				Content: pulumi.String(`config system interface
+//	 edit port3
+//		 set vdom "root"
+//		 set ip 10.7.0.200 255.255.0.0
+//		 set allowaccess ping http https
+//		 next
+//	 end
+//
+// `),
+//
 //				Description: pulumi.String("description"),
 //				Target:      pulumi.String("remote_device"),
 //			})
@@ -40,6 +51,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type DevicemanagerScript struct {
 	pulumi.CustomResourceState
 
@@ -65,7 +77,7 @@ func NewDevicemanagerScript(ctx *pulumi.Context,
 	if args.Content == nil {
 		return nil, errors.New("invalid value for required argument 'Content'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DevicemanagerScript
 	err := ctx.RegisterResource("fortios:fmg/devicemanagerScript:DevicemanagerScript", name, args, &resource, opts...)
 	if err != nil {

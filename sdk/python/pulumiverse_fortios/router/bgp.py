@@ -2248,14 +2248,15 @@ class Bgp(pulumi.CustomResource):
         """
         Configure BGP.
 
-        > The provider supports the definition of Neighbor in Router Bgp `router.Bgp`, and also allows the definition of separate Neighbor resources `routerbgp.Neighbor`, but do not use a `router.Bgp` with in-line Neighbor in conjunction with any `routerbgp.Neighbor` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Neighbor in Router Bgp `router.Bgp`, and also allows the definition of separate Neighbor resources `router/bgp.Neighbor`, but do not use a `router.Bgp` with in-line Neighbor in conjunction with any `router/bgp.Neighbor` resources, otherwise conflicts and overwrite will occur.
 
-        > The provider supports the definition of Network in Router Bgp `router.Bgp`, and also allows the definition of separate Network resources `routerbgp.Network`, but do not use a `router.Bgp` with in-line Network in conjunction with any `routerbgp.Network` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Network in Router Bgp `router.Bgp`, and also allows the definition of separate Network resources `router/bgp.Network`, but do not use a `router.Bgp` with in-line Network in conjunction with any `router/bgp.Network` resources, otherwise conflicts and overwrite will occur.
 
-        > The provider supports the definition of Network6 in Router Bgp `router.Bgp`, and also allows the definition of separate Network6 resources `routerbgp.Network6`, but do not use a `router.Bgp` with in-line Network6 in conjunction with any `routerbgp.Network6` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Network6 in Router Bgp `router.Bgp`, and also allows the definition of separate Network6 resources `router/bgp.Network6`, but do not use a `router.Bgp` with in-line Network6 in conjunction with any `router/bgp.Network6` resources, otherwise conflicts and overwrite will occur.
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2334,22 +2335,25 @@ class Bgp(pulumi.CustomResource):
             scan_time=60,
             synchronization="disable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router Bgp can be imported using any of these accepted formats
+        Router Bgp can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/bgp:Bgp labelname RouterBgp
+        $ pulumi import fortios:router/bgp:Bgp labelname RouterBgp
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/bgp:Bgp labelname RouterBgp
+        $ pulumi import fortios:router/bgp:Bgp labelname RouterBgp
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -2430,14 +2434,15 @@ class Bgp(pulumi.CustomResource):
         """
         Configure BGP.
 
-        > The provider supports the definition of Neighbor in Router Bgp `router.Bgp`, and also allows the definition of separate Neighbor resources `routerbgp.Neighbor`, but do not use a `router.Bgp` with in-line Neighbor in conjunction with any `routerbgp.Neighbor` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Neighbor in Router Bgp `router.Bgp`, and also allows the definition of separate Neighbor resources `router/bgp.Neighbor`, but do not use a `router.Bgp` with in-line Neighbor in conjunction with any `router/bgp.Neighbor` resources, otherwise conflicts and overwrite will occur.
 
-        > The provider supports the definition of Network in Router Bgp `router.Bgp`, and also allows the definition of separate Network resources `routerbgp.Network`, but do not use a `router.Bgp` with in-line Network in conjunction with any `routerbgp.Network` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Network in Router Bgp `router.Bgp`, and also allows the definition of separate Network resources `router/bgp.Network`, but do not use a `router.Bgp` with in-line Network in conjunction with any `router/bgp.Network` resources, otherwise conflicts and overwrite will occur.
 
-        > The provider supports the definition of Network6 in Router Bgp `router.Bgp`, and also allows the definition of separate Network6 resources `routerbgp.Network6`, but do not use a `router.Bgp` with in-line Network6 in conjunction with any `routerbgp.Network6` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Network6 in Router Bgp `router.Bgp`, and also allows the definition of separate Network6 resources `router/bgp.Network6`, but do not use a `router.Bgp` with in-line Network6 in conjunction with any `router/bgp.Network6` resources, otherwise conflicts and overwrite will occur.
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2516,22 +2521,25 @@ class Bgp(pulumi.CustomResource):
             scan_time=60,
             synchronization="disable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router Bgp can be imported using any of these accepted formats
+        Router Bgp can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/bgp:Bgp labelname RouterBgp
+        $ pulumi import fortios:router/bgp:Bgp labelname RouterBgp
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/bgp:Bgp labelname RouterBgp
+        $ pulumi import fortios:router/bgp:Bgp labelname RouterBgp
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param BgpArgs args: The arguments to use to populate this resource's properties.

@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Log
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,22 +32,25 @@ namespace Pulumiverse.Fortios.Log
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Log CustomField can be imported using any of these accepted formats
+    /// Log CustomField can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
+    /// $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
+    /// $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:log/customfield:Customfield")]
     public partial class Customfield : global::Pulumi.CustomResource

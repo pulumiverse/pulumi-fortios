@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure TTL policies.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -53,26 +55,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall TtlPolicy can be imported using any of these accepted formats
+// Firewall TtlPolicy can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/ttlpolicy:Ttlpolicy labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/ttlpolicy:Ttlpolicy labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/ttlpolicy:Ttlpolicy labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/ttlpolicy:Ttlpolicy labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Ttlpolicy struct {
 	pulumi.CustomResourceState
 
@@ -123,7 +124,7 @@ func NewTtlpolicy(ctx *pulumi.Context,
 	if args.Ttl == nil {
 		return nil, errors.New("invalid value for required argument 'Ttl'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Ttlpolicy
 	err := ctx.RegisterResource("fortios:firewall/ttlpolicy:Ttlpolicy", name, args, &resource, opts...)
 	if err != nil {

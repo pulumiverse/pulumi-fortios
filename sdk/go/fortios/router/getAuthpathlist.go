@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `router.Authpath`.
 func GetAuthpathlist(ctx *pulumi.Context, args *GetAuthpathlistArgs, opts ...pulumi.InvokeOption) (*GetAuthpathlistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAuthpathlistResult
 	err := ctx.Invoke("fortios:router/getAuthpathlist:getAuthpathlist", args, &rv, opts...)
 	if err != nil {

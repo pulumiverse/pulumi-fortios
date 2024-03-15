@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Report setting configuration.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,26 +43,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Report Setting can be imported using any of these accepted formats
+// Report Setting can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:report/setting:Setting labelname ReportSetting
-//
+// $ pulumi import fortios:report/setting:Setting labelname ReportSetting
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:report/setting:Setting labelname ReportSetting
-//
+// $ pulumi import fortios:report/setting:Setting labelname ReportSetting
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Setting struct {
 	pulumi.CustomResourceState
 
@@ -85,7 +86,7 @@ func NewSetting(ctx *pulumi.Context,
 		args = &SettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Setting
 	err := ctx.RegisterResource("fortios:report/setting:Setting", name, args, &resource, opts...)
 	if err != nil {

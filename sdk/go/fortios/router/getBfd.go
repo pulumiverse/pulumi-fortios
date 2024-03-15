@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on fortios router bfd
 func LookupBfd(ctx *pulumi.Context, args *LookupBfdArgs, opts ...pulumi.InvokeOption) (*LookupBfdResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBfdResult
 	err := ctx.Invoke("fortios:router/getBfd:getBfd", args, &rv, opts...)
 	if err != nil {

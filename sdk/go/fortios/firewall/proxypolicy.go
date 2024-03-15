@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure proxy policies.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -83,26 +85,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall ProxyPolicy can be imported using any of these accepted formats
+// Firewall ProxyPolicy can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/proxypolicy:Proxypolicy labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/proxypolicy:Proxypolicy labelname {{policyid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/proxypolicy:Proxypolicy labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/proxypolicy:Proxypolicy labelname {{policyid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Proxypolicy struct {
 	pulumi.CustomResourceState
 
@@ -272,7 +273,7 @@ func NewProxypolicy(ctx *pulumi.Context,
 	if args.Schedule == nil {
 		return nil, errors.New("invalid value for required argument 'Schedule'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Proxypolicy
 	err := ctx.RegisterResource("fortios:firewall/proxypolicy:Proxypolicy", name, args, &resource, opts...)
 	if err != nil {

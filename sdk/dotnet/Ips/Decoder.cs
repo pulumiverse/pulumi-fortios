@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Ips
     /// 
     /// ## Import
     /// 
-    /// Ips Decoder can be imported using any of these accepted formats
+    /// Ips Decoder can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:ips/decoder:Decoder labelname {{name}}
+    /// $ pulumi import fortios:ips/decoder:Decoder labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:ips/decoder:Decoder labelname {{name}}
+    /// $ pulumi import fortios:ips/decoder:Decoder labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:ips/decoder:Decoder")]
     public partial class Decoder : global::Pulumi.CustomResource

@@ -9,28 +9,32 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
  *
  * const trname = new fortios.antivirus.Heuristic("trname", {mode: "disable"});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Antivirus Heuristic can be imported using any of these accepted formats
+ * Antivirus Heuristic can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:antivirus/heuristic:Heuristic labelname AntivirusHeuristic
+ * $ pulumi import fortios:antivirus/heuristic:Heuristic labelname AntivirusHeuristic
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:antivirus/heuristic:Heuristic labelname AntivirusHeuristic
+ * $ pulumi import fortios:antivirus/heuristic:Heuristic labelname AntivirusHeuristic
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Heuristic extends pulumi.CustomResource {
     /**

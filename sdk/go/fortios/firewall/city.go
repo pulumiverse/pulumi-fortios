@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Define city table. Applies to FortiOS Version `>= 6.4.0`.
 //
 // ## Import
 //
-// # Firewall City can be imported using any of these accepted formats
+// Firewall City can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/city:City labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/city:City labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/city:City labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/city:City labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type City struct {
 	pulumi.CustomResourceState
 
@@ -49,7 +48,7 @@ func NewCity(ctx *pulumi.Context,
 		args = &CityArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource City
 	err := ctx.RegisterResource("fortios:firewall/city:City", name, args, &resource, opts...)
 	if err != nil {

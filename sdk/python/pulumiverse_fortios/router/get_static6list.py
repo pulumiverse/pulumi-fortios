@@ -91,10 +91,10 @@ def get_static6list(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:router/getStatic6list:getStatic6list', __args__, opts=opts, typ=GetStatic6listResult).value
 
     return AwaitableGetStatic6listResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        seq_numlists=__ret__.seq_numlists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        seq_numlists=pulumi.get(__ret__, 'seq_numlists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_static6list)

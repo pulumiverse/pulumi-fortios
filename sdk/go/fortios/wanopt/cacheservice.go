@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Designate cache-service for wan-optimization and webcache.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,26 +42,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Wanopt CacheService can be imported using any of these accepted formats
+// Wanopt CacheService can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wanopt/cacheservice:Cacheservice labelname WanoptCacheService
-//
+// $ pulumi import fortios:wanopt/cacheservice:Cacheservice labelname WanoptCacheService
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wanopt/cacheservice:Cacheservice labelname WanoptCacheService
-//
+// $ pulumi import fortios:wanopt/cacheservice:Cacheservice labelname WanoptCacheService
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Cacheservice struct {
 	pulumi.CustomResourceState
 
@@ -88,7 +89,7 @@ func NewCacheservice(ctx *pulumi.Context,
 		args = &CacheserviceArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Cacheservice
 	err := ctx.RegisterResource("fortios:wanopt/cacheservice:Cacheservice", name, args, &resource, opts...)
 	if err != nil {

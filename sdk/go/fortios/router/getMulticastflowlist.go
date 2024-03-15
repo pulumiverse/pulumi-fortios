@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `router.Multicastflow`.
 func GetMulticastflowlist(ctx *pulumi.Context, args *GetMulticastflowlistArgs, opts ...pulumi.InvokeOption) (*GetMulticastflowlistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetMulticastflowlistResult
 	err := ctx.Invoke("fortios:router/getMulticastflowlist:getMulticastflowlist", args, &rv, opts...)
 	if err != nil {

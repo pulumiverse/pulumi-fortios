@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure AntiVirus settings.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,26 +40,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Antivirus Settings can be imported using any of these accepted formats
+// Antivirus Settings can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
-//
+// $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
-//
+// $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Settings struct {
 	pulumi.CustomResourceState
 
@@ -86,7 +87,7 @@ func NewSettings(ctx *pulumi.Context,
 		args = &SettingsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Settings
 	err := ctx.RegisterResource("fortios:antivirus/settings:Settings", name, args, &resource, opts...)
 	if err != nil {

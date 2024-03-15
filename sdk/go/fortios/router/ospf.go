@@ -9,18 +9,20 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure OSPF.
 //
-// > The provider supports the definition of Ospf-Interface in Router Ospf `router.Ospf`, and also allows the definition of separate Ospf-Interface resources `routerospf.Ospfinterface`, but do not use a `router.Ospf` with in-line Ospf-Interface in conjunction with any `routerospf.Ospfinterface` resources, otherwise conflicts and overwrite will occur.
+// > The provider supports the definition of Ospf-Interface in Router Ospf `router.Ospf`, and also allows the definition of separate Ospf-Interface resources `router/ospf.Ospfinterface`, but do not use a `router.Ospf` with in-line Ospf-Interface in conjunction with any `router/ospf.Ospfinterface` resources, otherwise conflicts and overwrite will occur.
 //
-// > The provider supports the definition of Network in Router Ospf `router.Ospf`, and also allows the definition of separate Network resources `routerospf.Network`, but do not use a `router.Ospf` with in-line Network in conjunction with any `routerospf.Network` resources, otherwise conflicts and overwrite will occur.
+// > The provider supports the definition of Network in Router Ospf `router.Ospf`, and also allows the definition of separate Network resources `router/ospf.Network`, but do not use a `router.Ospf` with in-line Network in conjunction with any `router/ospf.Network` resources, otherwise conflicts and overwrite will occur.
 //
-// > The provider supports the definition of Neighbor in Router Ospf `router.Ospf`, and also allows the definition of separate Neighbor resources `routerospf.Neighbor`, but do not use a `router.Ospf` with in-line Neighbor in conjunction with any `routerospf.Neighbor` resources, otherwise conflicts and overwrite will occur.
+// > The provider supports the definition of Neighbor in Router Ospf `router.Ospf`, and also allows the definition of separate Neighbor resources `router/ospf.Neighbor`, but do not use a `router.Ospf` with in-line Neighbor in conjunction with any `router/ospf.Neighbor` resources, otherwise conflicts and overwrite will occur.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -100,26 +102,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Router Ospf can be imported using any of these accepted formats
+// Router Ospf can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
-//
+// $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
-//
+// $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Ospf struct {
 	pulumi.CustomResourceState
 
@@ -203,7 +204,7 @@ func NewOspf(ctx *pulumi.Context,
 	if args.RouterId == nil {
 		return nil, errors.New("invalid value for required argument 'RouterId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Ospf
 	err := ctx.RegisterResource("fortios:router/ospf:Ospf", name, args, &resource, opts...)
 	if err != nil {

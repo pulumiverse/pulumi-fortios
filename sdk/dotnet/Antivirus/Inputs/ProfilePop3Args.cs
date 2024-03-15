@@ -74,7 +74,7 @@ namespace Pulumiverse.Fortios.Antivirus.Inputs
         public Input<string>? Fortisandbox { get; set; }
 
         /// <summary>
-        /// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+        /// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         /// </summary>
         [Input("options")]
         public Input<string>? Options { get; set; }

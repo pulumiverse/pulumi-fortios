@@ -632,6 +632,7 @@ class Eventfilter(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -649,22 +650,25 @@ class Eventfilter(pulumi.CustomResource):
             wan_opt="enable",
             wireless_activity="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Log Eventfilter can be imported using any of these accepted formats
+        Log Eventfilter can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
+        $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
+        $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -698,6 +702,7 @@ class Eventfilter(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -715,22 +720,25 @@ class Eventfilter(pulumi.CustomResource):
             wan_opt="enable",
             wireless_activity="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Log Eventfilter can be imported using any of these accepted formats
+        Log Eventfilter can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
+        $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
+        $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param EventfilterArgs args: The arguments to use to populate this resource's properties.

@@ -9,29 +9,28 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure L2TP.
 //
 // ## Import
 //
-// # Vpn L2Tp can be imported using any of these accepted formats
+// Vpn L2Tp can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:vpn/l2tp:L2tp labelname VpnL2Tp
-//
+// $ pulumi import fortios:vpn/l2tp:L2tp labelname VpnL2Tp
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:vpn/l2tp:L2tp labelname VpnL2Tp
-//
+// $ pulumi import fortios:vpn/l2tp:L2tp labelname VpnL2Tp
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type L2tp struct {
 	pulumi.CustomResourceState
 
@@ -67,7 +66,7 @@ func NewL2tp(ctx *pulumi.Context,
 	if args.Status == nil {
 		return nil, errors.New("invalid value for required argument 'Status'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource L2tp
 	err := ctx.RegisterResource("fortios:vpn/l2tp:L2tp", name, args, &resource, opts...)
 	if err != nil {

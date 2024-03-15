@@ -163,16 +163,16 @@ def get_ipv6ehfilter(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:firewall/getIpv6ehfilter:getIpv6ehfilter', __args__, opts=opts, typ=GetIpv6ehfilterResult).value
 
     return AwaitableGetIpv6ehfilterResult(
-        auth=__ret__.auth,
-        dest_opt=__ret__.dest_opt,
-        fragment=__ret__.fragment,
-        hdopt_type=__ret__.hdopt_type,
-        hop_opt=__ret__.hop_opt,
-        id=__ret__.id,
-        no_next=__ret__.no_next,
-        routing=__ret__.routing,
-        routing_type=__ret__.routing_type,
-        vdomparam=__ret__.vdomparam)
+        auth=pulumi.get(__ret__, 'auth'),
+        dest_opt=pulumi.get(__ret__, 'dest_opt'),
+        fragment=pulumi.get(__ret__, 'fragment'),
+        hdopt_type=pulumi.get(__ret__, 'hdopt_type'),
+        hop_opt=pulumi.get(__ret__, 'hop_opt'),
+        id=pulumi.get(__ret__, 'id'),
+        no_next=pulumi.get(__ret__, 'no_next'),
+        routing=pulumi.get(__ret__, 'routing'),
+        routing_type=pulumi.get(__ret__, 'routing_type'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_ipv6ehfilter)

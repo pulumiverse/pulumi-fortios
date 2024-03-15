@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports Create/Read/Update/Delete firewall security policy on FortiManager which could be installed to the FortiGate later
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -81,6 +83,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type FirewallSecurityPolicy struct {
 	pulumi.CustomResourceState
 
@@ -196,7 +199,7 @@ func NewFirewallSecurityPolicy(ctx *pulumi.Context,
 	if args.Srcintfs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcintfs'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallSecurityPolicy
 	err := ctx.RegisterResource("fortios:fmg/firewallSecurityPolicy:FirewallSecurityPolicy", name, args, &resource, opts...)
 	if err != nil {

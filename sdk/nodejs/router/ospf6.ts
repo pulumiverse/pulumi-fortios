@@ -9,10 +9,11 @@ import * as utilities from "../utilities";
 /**
  * Configure IPv6 OSPF.
  *
- * > The provider supports the definition of Ospf6-Interface in Router Ospf6 `fortios.router.Ospf6`, and also allows the definition of separate Ospf6-Interface resources `fortios.routerospf6.Ospf6interface`, but do not use a `fortios.router.Ospf6` with in-line Ospf6-Interface in conjunction with any `fortios.routerospf6.Ospf6interface` resources, otherwise conflicts and overwrite will occur.
+ * > The provider supports the definition of Ospf6-Interface in Router Ospf6 `fortios.router.Ospf6`, and also allows the definition of separate Ospf6-Interface resources `fortios.router/ospf6.Ospf6interface`, but do not use a `fortios.router.Ospf6` with in-line Ospf6-Interface in conjunction with any `fortios.router/ospf6.Ospf6interface` resources, otherwise conflicts and overwrite will occur.
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -62,22 +63,25 @@ import * as utilities from "../utilities";
  *     spfTimers: "5 10",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Router Ospf6 can be imported using any of these accepted formats
+ * Router Ospf6 can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
+ * $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
+ * $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Ospf6 extends pulumi.CustomResource {
     /**

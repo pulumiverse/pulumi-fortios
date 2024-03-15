@@ -27,8 +27,6 @@ namespace Pulumiverse.Fortios.Router.Inputs
 
         /// <summary>
         /// Type of condition. Valid values: `exist`, `non-exist`.
-        /// 
-        /// The `conditional_advertise6` block supports:
         /// </summary>
         [Input("conditionType")]
         public Input<string>? ConditionType { get; set; }

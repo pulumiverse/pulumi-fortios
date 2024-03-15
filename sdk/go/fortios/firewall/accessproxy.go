@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv4 access proxy. Applies to FortiOS Version `>= 7.0.1`.
 //
 // ## Import
 //
-// # Firewall AccessProxy can be imported using any of these accepted formats
+// Firewall AccessProxy can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/accessproxy:Accessproxy labelname {{name}}
-//
+// $ pulumi import fortios:firewall/accessproxy:Accessproxy labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/accessproxy:Accessproxy labelname {{name}}
-//
+// $ pulumi import fortios:firewall/accessproxy:Accessproxy labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Accessproxy struct {
 	pulumi.CustomResourceState
 
@@ -71,7 +70,7 @@ func NewAccessproxy(ctx *pulumi.Context,
 		args = &AccessproxyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Accessproxy
 	err := ctx.RegisterResource("fortios:firewall/accessproxy:Accessproxy", name, args, &resource, opts...)
 	if err != nil {

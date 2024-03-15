@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
     /// 
     /// ## Import
     /// 
-    /// WirelessController WtpGroup can be imported using any of these accepted formats
+    /// WirelessController WtpGroup can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:wirelesscontroller/wtpgroup:Wtpgroup labelname {{name}}
+    /// $ pulumi import fortios:wirelesscontroller/wtpgroup:Wtpgroup labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:wirelesscontroller/wtpgroup:Wtpgroup labelname {{name}}
+    /// $ pulumi import fortios:wirelesscontroller/wtpgroup:Wtpgroup labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:wirelesscontroller/wtpgroup:Wtpgroup")]
     public partial class Wtpgroup : global::Pulumi.CustomResource

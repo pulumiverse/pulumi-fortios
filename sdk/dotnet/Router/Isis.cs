@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -54,22 +55,25 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Router Isis can be imported using any of these accepted formats
+    /// Router Isis can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:router/isis:Isis labelname RouterIsis
+    /// $ pulumi import fortios:router/isis:Isis labelname RouterIsis
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:router/isis:Isis labelname RouterIsis
+    /// $ pulumi import fortios:router/isis:Isis labelname RouterIsis
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:router/isis:Isis")]
     public partial class Isis : global::Pulumi.CustomResource

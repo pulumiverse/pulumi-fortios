@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios firewall proxyaddrgrp
 func LookupProxyaddrgrp(ctx *pulumi.Context, args *LookupProxyaddrgrpArgs, opts ...pulumi.InvokeOption) (*LookupProxyaddrgrpResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProxyaddrgrpResult
 	err := ctx.Invoke("fortios:firewall/getProxyaddrgrp:getProxyaddrgrp", args, &rv, opts...)
 	if err != nil {

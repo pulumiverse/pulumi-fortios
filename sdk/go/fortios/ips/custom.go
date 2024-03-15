@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPS custom signature.
 //
 // ## Import
 //
-// # Ips Custom can be imported using any of these accepted formats
+// Ips Custom can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:ips/custom:Custom labelname {{tag}}
-//
+// $ pulumi import fortios:ips/custom:Custom labelname {{tag}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:ips/custom:Custom labelname {{tag}}
-//
+// $ pulumi import fortios:ips/custom:Custom labelname {{tag}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Custom struct {
 	pulumi.CustomResourceState
 
@@ -73,7 +72,7 @@ func NewCustom(ctx *pulumi.Context,
 		args = &CustomArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Custom
 	err := ctx.RegisterResource("fortios:ips/custom:Custom", name, args, &resource, opts...)
 	if err != nil {

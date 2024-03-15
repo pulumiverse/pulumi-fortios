@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // FortiAPI Generic Interface.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,7 +39,19 @@ import (
 //			}
 //			ctx.Export("response1", test1.Response)
 //			test2, err := json.NewGenericApi(ctx, "test2", &json.GenericApiArgs{
-//				Json:   pulumi.String("{\n  \"name\": \"11221\",\n  \"type\": \"geography\",\n  \"fqdn\": \"\",\n  \"country\": \"AL\",\n  \"comment\": \"ccc\",\n  \"visibility\": \"enable\",\n  \"associated-interface\": \"port1\",\n  \"allow-routing\": \"disable\"\n}\n\n"),
+//				Json: pulumi.String(`{
+//	  "name": "11221",
+//	  "type": "geography",
+//	  "fqdn": "",
+//	  "country": "AL",
+//	  "comment": "ccc",
+//	  "visibility": "enable",
+//	  "associated-interface": "port1",
+//	  "allow-routing": "disable"
+//	}
+//
+// `),
+//
 //				Method: pulumi.String("POST"),
 //				Path:   pulumi.String("/api/v2/cmdb/firewall/address"),
 //			})
@@ -60,6 +74,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type GenericApi struct {
 	pulumi.CustomResourceState
 
@@ -91,7 +106,7 @@ func NewGenericApi(ctx *pulumi.Context,
 	if args.Path == nil {
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource GenericApi
 	err := ctx.RegisterResource("fortios:json/genericApi:GenericApi", name, args, &resource, opts...)
 	if err != nil {

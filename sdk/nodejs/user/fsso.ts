@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -24,22 +25,25 @@ import * as utilities from "../utilities";
  *     sourceIp6: "::",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * User Fsso can be imported using any of these accepted formats
+ * User Fsso can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:user/fsso:Fsso labelname {{name}}
+ * $ pulumi import fortios:user/fsso:Fsso labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:user/fsso:Fsso labelname {{name}}
+ * $ pulumi import fortios:user/fsso:Fsso labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Fsso extends pulumi.CustomResource {
     /**

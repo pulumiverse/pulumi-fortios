@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure an ICAP server group consisting of multiple forward servers. Supports failover and load balancing. Applies to FortiOS Version `>= 7.2.0`.
 //
 // ## Import
 //
-// # Icap ServerGroup can be imported using any of these accepted formats
+// Icap ServerGroup can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:icap/servergroup:Servergroup labelname {{name}}
-//
+// $ pulumi import fortios:icap/servergroup:Servergroup labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:icap/servergroup:Servergroup labelname {{name}}
-//
+// $ pulumi import fortios:icap/servergroup:Servergroup labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Servergroup struct {
 	pulumi.CustomResourceState
 
@@ -53,7 +52,7 @@ func NewServergroup(ctx *pulumi.Context,
 		args = &ServergroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Servergroup
 	err := ctx.RegisterResource("fortios:icap/servergroup:Servergroup", name, args, &resource, opts...)
 	if err != nil {

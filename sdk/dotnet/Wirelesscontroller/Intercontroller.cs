@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,22 +35,25 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// WirelessController InterController can be imported using any of these accepted formats
+    /// WirelessController InterController can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
+    /// $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
+    /// $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:wirelesscontroller/intercontroller:Intercontroller")]
     public partial class Intercontroller : global::Pulumi.CustomResource

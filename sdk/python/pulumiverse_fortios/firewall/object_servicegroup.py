@@ -134,10 +134,11 @@ class ObjectServicegroup(pulumi.CustomResource):
         """
         Provides a resource to configure firewall service group of FortiOS.
 
-        !> **Warning:** The resource will be deprecated and replaced by new resource `firewallservice.Group`, we recommend that you use the new resource.
+        !> **Warning:** The resource will be deprecated and replaced by new resource `firewall/service.Group`, we recommend that you use the new resource.
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -150,6 +151,7 @@ class ObjectServicegroup(pulumi.CustomResource):
                 "HTTPS",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -166,10 +168,11 @@ class ObjectServicegroup(pulumi.CustomResource):
         """
         Provides a resource to configure firewall service group of FortiOS.
 
-        !> **Warning:** The resource will be deprecated and replaced by new resource `firewallservice.Group`, we recommend that you use the new resource.
+        !> **Warning:** The resource will be deprecated and replaced by new resource `firewall/service.Group`, we recommend that you use the new resource.
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -182,6 +185,7 @@ class ObjectServicegroup(pulumi.CustomResource):
                 "HTTPS",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param ObjectServicegroupArgs args: The arguments to use to populate this resource's properties.

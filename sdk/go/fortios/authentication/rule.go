@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure Authentication Rules.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,26 +43,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Authentication Rule can be imported using any of these accepted formats
+// Authentication Rule can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:authentication/rule:Rule labelname {{name}}
-//
+// $ pulumi import fortios:authentication/rule:Rule labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:authentication/rule:Rule labelname {{name}}
-//
+// $ pulumi import fortios:authentication/rule:Rule labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Rule struct {
 	pulumi.CustomResourceState
 
@@ -107,7 +108,7 @@ func NewRule(ctx *pulumi.Context,
 		args = &RuleArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Rule
 	err := ctx.RegisterResource("fortios:authentication/rule:Rule", name, args, &resource, opts...)
 	if err != nil {

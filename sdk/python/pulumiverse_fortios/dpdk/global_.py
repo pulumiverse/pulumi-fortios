@@ -403,19 +403,21 @@ class Global(pulumi.CustomResource):
 
         ## Import
 
-        Dpdk Global can be imported using any of these accepted formats
+        Dpdk Global can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:dpdk/global:Global labelname DpdkGlobal
+        $ pulumi import fortios:dpdk/global:Global labelname DpdkGlobal
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:dpdk/global:Global labelname DpdkGlobal
+        $ pulumi import fortios:dpdk/global:Global labelname DpdkGlobal
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -442,19 +444,21 @@ class Global(pulumi.CustomResource):
 
         ## Import
 
-        Dpdk Global can be imported using any of these accepted formats
+        Dpdk Global can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:dpdk/global:Global labelname DpdkGlobal
+        $ pulumi import fortios:dpdk/global:Global labelname DpdkGlobal
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:dpdk/global:Global labelname DpdkGlobal
+        $ pulumi import fortios:dpdk/global:Global labelname DpdkGlobal
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param GlobalArgs args: The arguments to use to populate this resource's properties.

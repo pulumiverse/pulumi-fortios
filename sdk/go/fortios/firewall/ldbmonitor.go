@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure server load balancing health monitors.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,26 +45,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall LdbMonitor can be imported using any of these accepted formats
+// Firewall LdbMonitor can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/ldbmonitor:Ldbmonitor labelname {{name}}
-//
+// $ pulumi import fortios:firewall/ldbmonitor:Ldbmonitor labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/ldbmonitor:Ldbmonitor labelname {{name}}
-//
+// $ pulumi import fortios:firewall/ldbmonitor:Ldbmonitor labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Ldbmonitor struct {
 	pulumi.CustomResourceState
 
@@ -106,7 +107,7 @@ func NewLdbmonitor(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Ldbmonitor
 	err := ctx.RegisterResource("fortios:firewall/ldbmonitor:Ldbmonitor", name, args, &resource, opts...)
 	if err != nil {

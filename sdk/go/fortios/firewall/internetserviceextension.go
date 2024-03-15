@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure Internet Services Extension.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,26 +40,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall InternetServiceExtension can be imported using any of these accepted formats
+// Firewall InternetServiceExtension can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetserviceextension:Internetserviceextension labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetserviceextension:Internetserviceextension labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetserviceextension:Internetserviceextension labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetserviceextension:Internetserviceextension labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Internetserviceextension struct {
 	pulumi.CustomResourceState
 
@@ -82,7 +83,7 @@ func NewInternetserviceextension(ctx *pulumi.Context,
 		args = &InternetserviceextensionArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Internetserviceextension
 	err := ctx.RegisterResource("fortios:firewall/internetserviceextension:Internetserviceextension", name, args, &resource, opts...)
 	if err != nil {

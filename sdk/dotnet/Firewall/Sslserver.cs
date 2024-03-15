@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,22 +43,25 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Firewall SslServer can be imported using any of these accepted formats
+    /// Firewall SslServer can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/sslserver:Sslserver labelname {{name}}
+    /// $ pulumi import fortios:firewall/sslserver:Sslserver labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/sslserver:Sslserver labelname {{name}}
+    /// $ pulumi import fortios:firewall/sslserver:Sslserver labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:firewall/sslserver:Sslserver")]
     public partial class Sslserver : global::Pulumi.CustomResource

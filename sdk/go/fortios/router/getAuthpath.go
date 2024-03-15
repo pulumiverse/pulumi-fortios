@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios router authpath
 func LookupAuthpath(ctx *pulumi.Context, args *LookupAuthpathArgs, opts ...pulumi.InvokeOption) (*LookupAuthpathResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAuthpathResult
 	err := ctx.Invoke("fortios:router/getAuthpath:getAuthpath", args, &rv, opts...)
 	if err != nil {

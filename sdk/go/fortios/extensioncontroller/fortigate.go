@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // FortiGate controller configuration. Applies to FortiOS Version `>= 7.2.1`.
 //
 // ## Import
 //
-// # ExtensionController Fortigate can be imported using any of these accepted formats
+// ExtensionController Fortigate can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:extensioncontroller/fortigate:Fortigate labelname {{name}}
-//
+// $ pulumi import fortios:extensioncontroller/fortigate:Fortigate labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:extensioncontroller/fortigate:Fortigate labelname {{name}}
-//
+// $ pulumi import fortios:extensioncontroller/fortigate:Fortigate labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Fortigate struct {
 	pulumi.CustomResourceState
 
@@ -61,7 +60,7 @@ func NewFortigate(ctx *pulumi.Context,
 		args = &FortigateArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Fortigate
 	err := ctx.RegisterResource("fortios:extensioncontroller/fortigate:Fortigate", name, args, &resource, opts...)
 	if err != nil {

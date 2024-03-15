@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure inter wireless controller operation.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,26 +43,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # WirelessController InterController can be imported using any of these accepted formats
+// WirelessController InterController can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
-//
+// $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
-//
+// $ pulumi import fortios:wirelesscontroller/intercontroller:Intercontroller labelname WirelessControllerInterController
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Intercontroller struct {
 	pulumi.CustomResourceState
 
@@ -98,7 +99,7 @@ func NewIntercontroller(ctx *pulumi.Context,
 		"interControllerKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Intercontroller
 	err := ctx.RegisterResource("fortios:wirelesscontroller/intercontroller:Intercontroller", name, args, &resource, opts...)
 	if err != nil {

@@ -271,6 +271,7 @@ class Multicast(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -300,22 +301,25 @@ class Multicast(pulumi.CustomResource):
             route_limit=2147483647,
             route_threshold=2147483647)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router Multicast can be imported using any of these accepted formats
+        Router Multicast can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/multicast:Multicast labelname RouterMulticast
+        $ pulumi import fortios:router/multicast:Multicast labelname RouterMulticast
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/multicast:Multicast labelname RouterMulticast
+        $ pulumi import fortios:router/multicast:Multicast labelname RouterMulticast
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -338,6 +342,7 @@ class Multicast(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -367,22 +372,25 @@ class Multicast(pulumi.CustomResource):
             route_limit=2147483647,
             route_threshold=2147483647)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router Multicast can be imported using any of these accepted formats
+        Router Multicast can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/multicast:Multicast labelname RouterMulticast
+        $ pulumi import fortios:router/multicast:Multicast labelname RouterMulticast
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/multicast:Multicast labelname RouterMulticast
+        $ pulumi import fortios:router/multicast:Multicast labelname RouterMulticast
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param MulticastArgs args: The arguments to use to populate this resource's properties.

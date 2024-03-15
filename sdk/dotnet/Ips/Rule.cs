@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Ips
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -43,22 +44,25 @@ namespace Pulumiverse.Fortios.Ips
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Ips Rule can be imported using any of these accepted formats
+    /// Ips Rule can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:ips/rule:Rule labelname {{name}}
+    /// $ pulumi import fortios:ips/rule:Rule labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:ips/rule:Rule labelname {{name}}
+    /// $ pulumi import fortios:ips/rule:Rule labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:ips/rule:Rule")]
     public partial class Rule : global::Pulumi.CustomResource

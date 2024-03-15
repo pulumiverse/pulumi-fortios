@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure custom log fields.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,26 +41,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Log CustomField can be imported using any of these accepted formats
+// Log CustomField can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
-//
+// $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
-//
+// $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Customfield struct {
 	pulumi.CustomResourceState
 
@@ -82,7 +83,7 @@ func NewCustomfield(ctx *pulumi.Context,
 	if args.Value == nil {
 		return nil, errors.New("invalid value for required argument 'Value'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Customfield
 	err := ctx.RegisterResource("fortios:log/customfield:Customfield", name, args, &resource, opts...)
 	if err != nil {

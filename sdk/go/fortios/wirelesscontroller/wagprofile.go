@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure wireless access gateway (WAG) profiles used for tunnels on AP. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # WirelessController WagProfile can be imported using any of these accepted formats
+// WirelessController WagProfile can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/wagprofile:Wagprofile labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/wagprofile:Wagprofile labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/wagprofile:Wagprofile labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/wagprofile:Wagprofile labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Wagprofile struct {
 	pulumi.CustomResourceState
 
@@ -63,7 +62,7 @@ func NewWagprofile(ctx *pulumi.Context,
 		args = &WagprofileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Wagprofile
 	err := ctx.RegisterResource("fortios:wirelesscontroller/wagprofile:Wagprofile", name, args, &resource, opts...)
 	if err != nil {

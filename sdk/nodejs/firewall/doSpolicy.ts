@@ -11,19 +11,21 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Firewall DosPolicy can be imported using any of these accepted formats
+ * Firewall DosPolicy can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:firewall/doSpolicy:DoSpolicy labelname {{policyid}}
+ * $ pulumi import fortios:firewall/doSpolicy:DoSpolicy labelname {{policyid}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:firewall/doSpolicy:DoSpolicy labelname {{policyid}}
+ * $ pulumi import fortios:firewall/doSpolicy:DoSpolicy labelname {{policyid}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class DoSpolicy extends pulumi.CustomResource {
     /**

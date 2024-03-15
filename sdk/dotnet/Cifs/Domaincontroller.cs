@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Cifs
     /// 
     /// ## Import
     /// 
-    /// Cifs DomainController can be imported using any of these accepted formats
+    /// Cifs DomainController can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:cifs/domaincontroller:Domaincontroller labelname {{server_name}}
+    /// $ pulumi import fortios:cifs/domaincontroller:Domaincontroller labelname {{server_name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:cifs/domaincontroller:Domaincontroller labelname {{server_name}}
+    /// $ pulumi import fortios:cifs/domaincontroller:Domaincontroller labelname {{server_name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:cifs/domaincontroller:Domaincontroller")]
     public partial class Domaincontroller : global::Pulumi.CustomResource

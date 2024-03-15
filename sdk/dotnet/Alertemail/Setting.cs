@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Alertemail
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -41,22 +42,25 @@ namespace Pulumiverse.Fortios.Alertemail
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Alertemail Setting can be imported using any of these accepted formats
+    /// Alertemail Setting can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:alertemail/setting:Setting labelname AlertemailSetting
+    /// $ pulumi import fortios:alertemail/setting:Setting labelname AlertemailSetting
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:alertemail/setting:Setting labelname AlertemailSetting
+    /// $ pulumi import fortios:alertemail/setting:Setting labelname AlertemailSetting
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:alertemail/setting:Setting")]
     public partial class Setting : global::Pulumi.CustomResource

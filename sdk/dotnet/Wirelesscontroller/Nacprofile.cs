@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
     /// 
     /// ## Import
     /// 
-    /// WirelessController NacProfile can be imported using any of these accepted formats
+    /// WirelessController NacProfile can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:wirelesscontroller/nacprofile:Nacprofile labelname {{name}}
+    /// $ pulumi import fortios:wirelesscontroller/nacprofile:Nacprofile labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:wirelesscontroller/nacprofile:Nacprofile labelname {{name}}
+    /// $ pulumi import fortios:wirelesscontroller/nacprofile:Nacprofile labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:wirelesscontroller/nacprofile:Nacprofile")]
     public partial class Nacprofile : global::Pulumi.CustomResource

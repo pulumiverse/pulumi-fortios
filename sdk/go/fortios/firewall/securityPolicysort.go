@@ -9,12 +9,15 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Resource to sort firewall security policies by policyid or policy name, in ascending or descending order.
 //
 // ## Example Usage
+//
 // ### Example1
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,6 +43,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SecurityPolicysort struct {
 	pulumi.CustomResourceState
 
@@ -69,7 +73,7 @@ func NewSecurityPolicysort(ctx *pulumi.Context,
 	if args.Sortdirection == nil {
 		return nil, errors.New("invalid value for required argument 'Sortdirection'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecurityPolicysort
 	err := ctx.RegisterResource("fortios:firewall/securityPolicysort:SecurityPolicysort", name, args, &resource, opts...)
 	if err != nil {

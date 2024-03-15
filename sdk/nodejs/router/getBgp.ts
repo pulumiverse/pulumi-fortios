@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -18,6 +19,7 @@ import * as utilities from "../utilities";
  * const sample1 = fortios.router.getBgp({});
  * export const output1 = sample1.then(sample1 => sample1.neighbors);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getBgp(args?: GetBgpArgs, opts?: pulumi.InvokeOptions): Promise<GetBgpResult> {
     args = args || {};
@@ -313,6 +315,7 @@ export interface GetBgpResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -320,6 +323,7 @@ export interface GetBgpResult {
  * const sample1 = fortios.router.getBgp({});
  * export const output1 = sample1.then(sample1 => sample1.neighbors);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getBgpOutput(args?: GetBgpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBgpResult> {
     return pulumi.output(args).apply((a: any) => getBgp(a, opts))

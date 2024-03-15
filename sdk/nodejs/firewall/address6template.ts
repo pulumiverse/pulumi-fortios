@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -34,22 +35,25 @@ import * as utilities from "../utilities";
  *     subnetSegmentCount: 2,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Firewall Address6Template can be imported using any of these accepted formats
+ * Firewall Address6Template can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:firewall/address6template:Address6template labelname {{name}}
+ * $ pulumi import fortios:firewall/address6template:Address6template labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:firewall/address6template:Address6template labelname {{name}}
+ * $ pulumi import fortios:firewall/address6template:Address6template labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Address6template extends pulumi.CustomResource {
     /**

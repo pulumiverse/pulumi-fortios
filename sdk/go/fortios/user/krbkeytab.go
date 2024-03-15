@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure Kerberos keytab entries.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -61,26 +63,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # User KrbKeytab can be imported using any of these accepted formats
+// User KrbKeytab can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
-//
+// $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
-//
+// $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Krbkeytab struct {
 	pulumi.CustomResourceState
 
@@ -121,7 +122,7 @@ func NewKrbkeytab(ctx *pulumi.Context,
 		"keytab",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Krbkeytab
 	err := ctx.RegisterResource("fortios:user/krbkeytab:Krbkeytab", name, args, &resource, opts...)
 	if err != nil {

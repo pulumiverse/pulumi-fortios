@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios router accesslist6
 func LookupAccesslist6(ctx *pulumi.Context, args *LookupAccesslist6Args, opts ...pulumi.InvokeOption) (*LookupAccesslist6Result, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAccesslist6Result
 	err := ctx.Invoke("fortios:router/getAccesslist6:getAccesslist6", args, &rv, opts...)
 	if err != nil {

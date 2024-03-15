@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiSwitch logging (logs are transferred to and inserted into FortiGate event log).
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,26 +40,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # SwitchController SwitchLog can be imported using any of these accepted formats
+// SwitchController SwitchLog can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/switchlog:Switchlog labelname SwitchControllerSwitchLog
-//
+// $ pulumi import fortios:switchcontroller/switchlog:Switchlog labelname SwitchControllerSwitchLog
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/switchlog:Switchlog labelname SwitchControllerSwitchLog
-//
+// $ pulumi import fortios:switchcontroller/switchlog:Switchlog labelname SwitchControllerSwitchLog
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Switchlog struct {
 	pulumi.CustomResourceState
 
@@ -76,7 +77,7 @@ func NewSwitchlog(ctx *pulumi.Context,
 		args = &SwitchlogArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Switchlog
 	err := ctx.RegisterResource("fortios:switchcontroller/switchlog:Switchlog", name, args, &resource, opts...)
 	if err != nil {

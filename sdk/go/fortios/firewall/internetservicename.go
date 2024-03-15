@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Define internet service names. Applies to FortiOS Version `>= 6.4.0`.
 //
 // ## Import
 //
-// # Firewall InternetServiceName can be imported using any of these accepted formats
+// Firewall InternetServiceName can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetservicename:Internetservicename labelname {{name}}
-//
+// $ pulumi import fortios:firewall/internetservicename:Internetservicename labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetservicename:Internetservicename labelname {{name}}
-//
+// $ pulumi import fortios:firewall/internetservicename:Internetservicename labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Internetservicename struct {
 	pulumi.CustomResourceState
 
@@ -57,7 +56,7 @@ func NewInternetservicename(ctx *pulumi.Context,
 		args = &InternetservicenameArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Internetservicename
 	err := ctx.RegisterResource("fortios:firewall/internetservicename:Internetservicename", name, args, &resource, opts...)
 	if err != nil {

@@ -660,6 +660,7 @@ class Saml(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -675,22 +676,25 @@ class Saml(pulumi.CustomResource):
             single_sign_on_url="https://1.1.1.1/sign",
             user_name="ad111")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        User Saml can be imported using any of these accepted formats
+        User Saml can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:user/saml:Saml labelname {{name}}
+        $ pulumi import fortios:user/saml:Saml labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:user/saml:Saml labelname {{name}}
+        $ pulumi import fortios:user/saml:Saml labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -725,6 +729,7 @@ class Saml(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -740,22 +745,25 @@ class Saml(pulumi.CustomResource):
             single_sign_on_url="https://1.1.1.1/sign",
             user_name="ad111")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        User Saml can be imported using any of these accepted formats
+        User Saml can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:user/saml:Saml labelname {{name}}
+        $ pulumi import fortios:user/saml:Saml labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:user/saml:Saml labelname {{name}}
+        $ pulumi import fortios:user/saml:Saml labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param SamlArgs args: The arguments to use to populate this resource's properties.

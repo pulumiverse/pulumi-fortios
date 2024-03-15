@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.User
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -33,22 +34,25 @@ namespace Pulumiverse.Fortios.User
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// User Device can be imported using any of these accepted formats
+    /// User Device can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:user/device:Device labelname {{alias}}
+    /// $ pulumi import fortios:user/device:Device labelname {{alias}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:user/device:Device labelname {{alias}}
+    /// $ pulumi import fortios:user/device:Device labelname {{alias}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:user/device:Device")]
     public partial class Device : global::Pulumi.CustomResource

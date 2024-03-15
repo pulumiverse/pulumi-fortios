@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv6 to IPv4 policies. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -64,26 +66,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall Policy64 can be imported using any of these accepted formats
+// Firewall Policy64 can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/policy64:Policy64 labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/policy64:Policy64 labelname {{policyid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/policy64:Policy64 labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/policy64:Policy64 labelname {{policyid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Policy64 struct {
 	pulumi.CustomResourceState
 
@@ -161,7 +162,7 @@ func NewPolicy64(ctx *pulumi.Context,
 	if args.Srcintf == nil {
 		return nil, errors.New("invalid value for required argument 'Srcintf'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Policy64
 	err := ctx.RegisterResource("fortios:firewall/policy64:Policy64", name, args, &resource, opts...)
 	if err != nil {

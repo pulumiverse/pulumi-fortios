@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure Fortinet Single Sign On (FSSO) agents.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,26 +47,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # User Fsso can be imported using any of these accepted formats
+// User Fsso can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/fsso:Fsso labelname {{name}}
-//
+// $ pulumi import fortios:user/fsso:Fsso labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/fsso:Fsso labelname {{name}}
-//
+// $ pulumi import fortios:user/fsso:Fsso labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Fsso struct {
 	pulumi.CustomResourceState
 
@@ -169,7 +170,7 @@ func NewFsso(ctx *pulumi.Context,
 		"password5",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Fsso
 	err := ctx.RegisterResource("fortios:user/fsso:Fsso", name, args, &resource, opts...)
 	if err != nil {

@@ -186,8 +186,6 @@ class ExplicitPacPolicySrcaddr6Args:
                  name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Address name.
-               
-               The `srcaddr6` block supports:
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -197,8 +195,6 @@ class ExplicitPacPolicySrcaddr6Args:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Address name.
-
-        The `srcaddr6` block supports:
         """
         return pulumi.get(self, "name")
 
@@ -275,8 +271,6 @@ class GlobalLearnClientIpSrcaddr6Args:
                  name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Address name.
-               
-               The `learn_client_ip_srcaddr6` block supports:
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -286,8 +280,6 @@ class GlobalLearnClientIpSrcaddr6Args:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Address name.
-
-        The `learn_client_ip_srcaddr6` block supports:
         """
         return pulumi.get(self, "name")
 

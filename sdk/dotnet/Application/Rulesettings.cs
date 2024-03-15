@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Application
     /// 
     /// ## Import
     /// 
-    /// Application RuleSettings can be imported using any of these accepted formats
+    /// Application RuleSettings can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:application/rulesettings:Rulesettings labelname {{fosid}}
+    /// $ pulumi import fortios:application/rulesettings:Rulesettings labelname {{fosid}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:application/rulesettings:Rulesettings labelname {{fosid}}
+    /// $ pulumi import fortios:application/rulesettings:Rulesettings labelname {{fosid}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:application/rulesettings:Rulesettings")]
     public partial class Rulesettings : global::Pulumi.CustomResource

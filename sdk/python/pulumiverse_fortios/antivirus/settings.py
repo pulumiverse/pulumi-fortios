@@ -302,6 +302,7 @@ class Settings(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -310,22 +311,25 @@ class Settings(pulumi.CustomResource):
             default_db="extended",
             grayware="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Antivirus Settings can be imported using any of these accepted formats
+        Antivirus Settings can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
+        $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
+        $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -349,6 +353,7 @@ class Settings(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -357,22 +362,25 @@ class Settings(pulumi.CustomResource):
             default_db="extended",
             grayware="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Antivirus Settings can be imported using any of these accepted formats
+        Antivirus Settings can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
+        $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
+        $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param SettingsArgs args: The arguments to use to populate this resource's properties.

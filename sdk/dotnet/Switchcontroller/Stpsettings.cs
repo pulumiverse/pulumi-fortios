@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,22 +37,25 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// SwitchController StpSettings can be imported using any of these accepted formats
+    /// SwitchController StpSettings can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
+    /// $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
+    /// $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:switchcontroller/stpsettings:Stpsettings")]
     public partial class Stpsettings : global::Pulumi.CustomResource

@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Report themes configuration Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,26 +41,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Report Theme can be imported using any of these accepted formats
+// Report Theme can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:report/theme:Theme labelname {{name}}
-//
+// $ pulumi import fortios:report/theme:Theme labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:report/theme:Theme labelname {{name}}
-//
+// $ pulumi import fortios:report/theme:Theme labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Theme struct {
 	pulumi.CustomResourceState
 
@@ -133,7 +134,7 @@ func NewTheme(ctx *pulumi.Context,
 		args = &ThemeArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Theme
 	err := ctx.RegisterResource("fortios:report/theme:Theme", name, args, &resource, opts...)
 	if err != nil {

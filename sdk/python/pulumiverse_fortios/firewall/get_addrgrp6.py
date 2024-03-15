@@ -167,16 +167,16 @@ def get_addrgrp6(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:firewall/getAddrgrp6:getAddrgrp6', __args__, opts=opts, typ=GetAddrgrp6Result).value
 
     return AwaitableGetAddrgrp6Result(
-        color=__ret__.color,
-        comment=__ret__.comment,
-        fabric_object=__ret__.fabric_object,
-        id=__ret__.id,
-        members=__ret__.members,
-        name=__ret__.name,
-        taggings=__ret__.taggings,
-        uuid=__ret__.uuid,
-        vdomparam=__ret__.vdomparam,
-        visibility=__ret__.visibility)
+        color=pulumi.get(__ret__, 'color'),
+        comment=pulumi.get(__ret__, 'comment'),
+        fabric_object=pulumi.get(__ret__, 'fabric_object'),
+        id=pulumi.get(__ret__, 'id'),
+        members=pulumi.get(__ret__, 'members'),
+        name=pulumi.get(__ret__, 'name'),
+        taggings=pulumi.get(__ret__, 'taggings'),
+        uuid=pulumi.get(__ret__, 'uuid'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        visibility=pulumi.get(__ret__, 'visibility'))
 
 
 @_utilities.lift_output_func(get_addrgrp6)

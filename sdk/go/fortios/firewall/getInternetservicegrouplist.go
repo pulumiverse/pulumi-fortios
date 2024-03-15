@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `firewall.Internetservicegroup`.
 func GetInternetservicegrouplist(ctx *pulumi.Context, args *GetInternetservicegrouplistArgs, opts ...pulumi.InvokeOption) (*GetInternetservicegrouplistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetInternetservicegrouplistResult
 	err := ctx.Invoke("fortios:firewall/getInternetservicegrouplist:getInternetservicegrouplist", args, &rv, opts...)
 	if err != nil {

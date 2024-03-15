@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure Virtual Access Points (VAPs).
 //
 // ## Import
 //
-// # WirelessController Vap can be imported using any of these accepted formats
+// WirelessController Vap can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/vap:Vap labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/vap:Vap labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/vap:Vap labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/vap:Vap labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Vap struct {
 	pulumi.CustomResourceState
 
@@ -416,7 +415,7 @@ func NewVap(ctx *pulumi.Context,
 		"saePassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Vap
 	err := ctx.RegisterResource("fortios:wirelesscontroller/vap:Vap", name, args, &resource, opts...)
 	if err != nil {

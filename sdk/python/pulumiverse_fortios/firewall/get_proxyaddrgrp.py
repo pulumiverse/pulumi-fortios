@@ -167,16 +167,16 @@ def get_proxyaddrgrp(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:firewall/getProxyaddrgrp:getProxyaddrgrp', __args__, opts=opts, typ=GetProxyaddrgrpResult).value
 
     return AwaitableGetProxyaddrgrpResult(
-        color=__ret__.color,
-        comment=__ret__.comment,
-        id=__ret__.id,
-        members=__ret__.members,
-        name=__ret__.name,
-        taggings=__ret__.taggings,
-        type=__ret__.type,
-        uuid=__ret__.uuid,
-        vdomparam=__ret__.vdomparam,
-        visibility=__ret__.visibility)
+        color=pulumi.get(__ret__, 'color'),
+        comment=pulumi.get(__ret__, 'comment'),
+        id=pulumi.get(__ret__, 'id'),
+        members=pulumi.get(__ret__, 'members'),
+        name=pulumi.get(__ret__, 'name'),
+        taggings=pulumi.get(__ret__, 'taggings'),
+        type=pulumi.get(__ret__, 'type'),
+        uuid=pulumi.get(__ret__, 'uuid'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        visibility=pulumi.get(__ret__, 'visibility'))
 
 
 @_utilities.lift_output_func(get_proxyaddrgrp)

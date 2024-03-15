@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports Create/Read/Update/Delete object adom revision for FortiManager.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,6 +41,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type ObjectAdomRevision struct {
 	pulumi.CustomResourceState
 
@@ -61,7 +64,7 @@ func NewObjectAdomRevision(ctx *pulumi.Context,
 		args = &ObjectAdomRevisionArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectAdomRevision
 	err := ctx.RegisterResource("fortios:fmg/objectAdomRevision:ObjectAdomRevision", name, args, &resource, opts...)
 	if err != nil {

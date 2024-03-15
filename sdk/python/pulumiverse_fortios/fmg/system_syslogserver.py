@@ -137,15 +137,6 @@ class SystemSyslogserver(pulumi.CustomResource):
 
         ## Example Usage
 
-        ```python
-        import pulumi
-        import pulumiverse_fortios as fortios
-
-        test1 = fortios.fmg.SystemSyslogserver("test1",
-            ip="1.1.1.1",
-            port=99)
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ip: Ipaddress of the syslog server.
@@ -162,15 +153,6 @@ class SystemSyslogserver(pulumi.CustomResource):
         This resource supports Create/Delete system syslog server for FortiManager.
 
         ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_fortios as fortios
-
-        test1 = fortios.fmg.SystemSyslogserver("test1",
-            ip="1.1.1.1",
-            port=99)
-        ```
 
         :param str resource_name: The name of the resource.
         :param SystemSyslogserverArgs args: The arguments to use to populate this resource's properties.

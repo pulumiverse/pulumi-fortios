@@ -107,11 +107,11 @@ def get_internetservicecustomgroup(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:firewall/getInternetservicecustomgroup:getInternetservicecustomgroup', __args__, opts=opts, typ=GetInternetservicecustomgroupResult).value
 
     return AwaitableGetInternetservicecustomgroupResult(
-        comment=__ret__.comment,
-        id=__ret__.id,
-        members=__ret__.members,
-        name=__ret__.name,
-        vdomparam=__ret__.vdomparam)
+        comment=pulumi.get(__ret__, 'comment'),
+        id=pulumi.get(__ret__, 'id'),
+        members=pulumi.get(__ret__, 'members'),
+        name=pulumi.get(__ret__, 'name'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_internetservicecustomgroup)

@@ -9,14 +9,17 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a resource to configure firewall service of FortiOS.
 //
-// !> **Warning:** The resource will be deprecated and replaced by new resource `firewallservice.Custom`, we recommend that you use the new resource.
+// !> **Warning:** The resource will be deprecated and replaced by new resource `firewall/service.Custom`, we recommend that you use the new resource.
 //
 // ## Example Usage
+//
 // ### Fqdn Service
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,7 +46,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Iprange Service
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,7 +79,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### ICMP Service
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -102,6 +111,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type ObjectService struct {
 	pulumi.CustomResourceState
 
@@ -146,7 +156,7 @@ func NewObjectService(ctx *pulumi.Context,
 	if args.Protocol == nil {
 		return nil, errors.New("invalid value for required argument 'Protocol'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectService
 	err := ctx.RegisterResource("fortios:firewall/objectService:ObjectService", name, args, &resource, opts...)
 	if err != nil {

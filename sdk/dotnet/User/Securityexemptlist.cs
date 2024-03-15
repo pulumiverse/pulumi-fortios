@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.User
     /// 
     /// ## Import
     /// 
-    /// User SecurityExemptList can be imported using any of these accepted formats
+    /// User SecurityExemptList can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:user/securityexemptlist:Securityexemptlist labelname {{name}}
+    /// $ pulumi import fortios:user/securityexemptlist:Securityexemptlist labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:user/securityexemptlist:Securityexemptlist labelname {{name}}
+    /// $ pulumi import fortios:user/securityexemptlist:Securityexemptlist labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:user/securityexemptlist:Securityexemptlist")]
     public partial class Securityexemptlist : global::Pulumi.CustomResource

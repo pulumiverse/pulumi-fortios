@@ -236,6 +236,7 @@ class Settings8021X(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -245,22 +246,25 @@ class Settings8021X(pulumi.CustomResource):
             max_reauth_attempt=3,
             reauth_period=12)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SwitchController 8021XSettings can be imported using any of these accepted formats
+        SwitchController 8021XSettings can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
+        $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
+        $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -282,6 +286,7 @@ class Settings8021X(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -291,22 +296,25 @@ class Settings8021X(pulumi.CustomResource):
             max_reauth_attempt=3,
             reauth_period=12)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SwitchController 8021XSettings can be imported using any of these accepted formats
+        SwitchController 8021XSettings can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
+        $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
+        $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param Settings8021XArgs args: The arguments to use to populate this resource's properties.

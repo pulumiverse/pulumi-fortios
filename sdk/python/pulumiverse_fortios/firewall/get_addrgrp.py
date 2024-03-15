@@ -227,21 +227,21 @@ def get_addrgrp(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:firewall/getAddrgrp:getAddrgrp', __args__, opts=opts, typ=GetAddrgrpResult).value
 
     return AwaitableGetAddrgrpResult(
-        allow_routing=__ret__.allow_routing,
-        category=__ret__.category,
-        color=__ret__.color,
-        comment=__ret__.comment,
-        exclude=__ret__.exclude,
-        exclude_members=__ret__.exclude_members,
-        fabric_object=__ret__.fabric_object,
-        id=__ret__.id,
-        members=__ret__.members,
-        name=__ret__.name,
-        taggings=__ret__.taggings,
-        type=__ret__.type,
-        uuid=__ret__.uuid,
-        vdomparam=__ret__.vdomparam,
-        visibility=__ret__.visibility)
+        allow_routing=pulumi.get(__ret__, 'allow_routing'),
+        category=pulumi.get(__ret__, 'category'),
+        color=pulumi.get(__ret__, 'color'),
+        comment=pulumi.get(__ret__, 'comment'),
+        exclude=pulumi.get(__ret__, 'exclude'),
+        exclude_members=pulumi.get(__ret__, 'exclude_members'),
+        fabric_object=pulumi.get(__ret__, 'fabric_object'),
+        id=pulumi.get(__ret__, 'id'),
+        members=pulumi.get(__ret__, 'members'),
+        name=pulumi.get(__ret__, 'name'),
+        taggings=pulumi.get(__ret__, 'taggings'),
+        type=pulumi.get(__ret__, 'type'),
+        uuid=pulumi.get(__ret__, 'uuid'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        visibility=pulumi.get(__ret__, 'visibility'))
 
 
 @_utilities.lift_output_func(get_addrgrp)

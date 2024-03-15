@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure WTP profiles or FortiAP profiles that define radio settings for manageable FortiAP platforms.
 //
 // ## Import
 //
-// # WirelessController WtpProfile can be imported using any of these accepted formats
+// WirelessController WtpProfile can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/wtpprofile:Wtpprofile labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/wtpprofile:Wtpprofile labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/wtpprofile:Wtpprofile labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/wtpprofile:Wtpprofile labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Wtpprofile struct {
 	pulumi.CustomResourceState
 
@@ -146,7 +145,7 @@ func NewWtpprofile(ctx *pulumi.Context,
 		"loginPasswd",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Wtpprofile
 	err := ctx.RegisterResource("fortios:wirelesscontroller/wtpprofile:Wtpprofile", name, args, &resource, opts...)
 	if err != nil {

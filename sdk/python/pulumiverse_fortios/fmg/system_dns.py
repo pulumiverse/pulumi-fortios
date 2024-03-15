@@ -104,6 +104,7 @@ class SystemDns(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -112,6 +113,7 @@ class SystemDns(pulumi.CustomResource):
             primary="208.91.112.52",
             secondary="208.91.112.54")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -129,6 +131,7 @@ class SystemDns(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -137,6 +140,7 @@ class SystemDns(pulumi.CustomResource):
             primary="208.91.112.52",
             secondary="208.91.112.54")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SystemDnsArgs args: The arguments to use to populate this resource's properties.

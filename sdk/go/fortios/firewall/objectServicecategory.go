@@ -8,14 +8,16 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a resource to configure firewall service category of FortiOS.
 //
-// !> **Warning:** The resource will be deprecated and replaced by new resource `firewallservice.Category`, we recommend that you use the new resource.
+// !> **Warning:** The resource will be deprecated and replaced by new resource `firewall/service.Category`, we recommend that you use the new resource.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,6 +41,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type ObjectServicecategory struct {
 	pulumi.CustomResourceState
 
@@ -55,7 +58,7 @@ func NewObjectServicecategory(ctx *pulumi.Context,
 		args = &ObjectServicecategoryArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectServicecategory
 	err := ctx.RegisterResource("fortios:firewall/objectServicecategory:ObjectServicecategory", name, args, &resource, opts...)
 	if err != nil {

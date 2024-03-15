@@ -19,7 +19,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? InspectAll;
         /// <summary>
-        /// One or more options that can be applied to the session. Valid values: `clientcomfort`, `servercomfort`, `oversize`, `chunkedbypass`.
+        /// One or more options that can be applied to the session. Valid values: `oversize`.
         /// </summary>
         public readonly string? Options;
         /// <summary>
@@ -27,7 +27,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly int? OversizeLimit;
         /// <summary>
-        /// Ports to scan for content (1 - 65535, default = 80).
+        /// Ports to scan for content (1 - 65535, default = 445).
         /// </summary>
         public readonly int? Ports;
         /// <summary>
@@ -36,8 +36,6 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         public readonly string? ProxyAfterTcpHandshake;
         /// <summary>
         /// Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-        /// 
-        /// The `pop3` block supports:
         /// </summary>
         public readonly string? ScanBzip2;
         /// <summary>

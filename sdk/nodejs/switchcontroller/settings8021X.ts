@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -19,22 +20,25 @@ import * as utilities from "../utilities";
  *     reauthPeriod: 12,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * SwitchController 8021XSettings can be imported using any of these accepted formats
+ * SwitchController 8021XSettings can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
+ * $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
+ * $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Settings8021X extends pulumi.CustomResource {
     /**

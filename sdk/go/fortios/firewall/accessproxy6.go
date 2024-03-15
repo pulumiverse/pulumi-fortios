@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv6 access proxy. Applies to FortiOS Version `>= 7.0.1`.
 //
 // ## Import
 //
-// # Firewall AccessProxy6 can be imported using any of these accepted formats
+// Firewall AccessProxy6 can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/accessproxy6:Accessproxy6 labelname {{name}}
-//
+// $ pulumi import fortios:firewall/accessproxy6:Accessproxy6 labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/accessproxy6:Accessproxy6 labelname {{name}}
-//
+// $ pulumi import fortios:firewall/accessproxy6:Accessproxy6 labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Accessproxy6 struct {
 	pulumi.CustomResourceState
 
@@ -71,7 +70,7 @@ func NewAccessproxy6(ctx *pulumi.Context,
 		args = &Accessproxy6Args{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Accessproxy6
 	err := ctx.RegisterResource("fortios:firewall/accessproxy6:Accessproxy6", name, args, &resource, opts...)
 	if err != nil {

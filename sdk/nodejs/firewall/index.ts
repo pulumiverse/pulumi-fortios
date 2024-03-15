@@ -696,6 +696,27 @@ export const Vipgrp64: typeof import("./vipgrp64").Vipgrp64 = null as any;
 utilities.lazyLoad(exports, ["Vipgrp64"], () => require("./vipgrp64"));
 
 
+// Export sub-modules:
+import * as consolidated from "./consolidated";
+import * as ipmacbinding from "./ipmacbinding";
+import * as schedule from "./schedule";
+import * as service from "./service";
+import * as shaper from "./shaper";
+import * as ssh from "./ssh";
+import * as ssl from "./ssl";
+import * as wildcardfqdn from "./wildcardfqdn";
+
+export {
+    consolidated,
+    ipmacbinding,
+    schedule,
+    service,
+    shaper,
+    ssh,
+    ssl,
+    wildcardfqdn,
+};
+
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {

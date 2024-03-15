@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiSwitch SNMP v3 users globally. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # SwitchController SnmpUser can be imported using any of these accepted formats
+// SwitchController SnmpUser can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/snmpuser:Snmpuser labelname {{name}}
-//
+// $ pulumi import fortios:switchcontroller/snmpuser:Snmpuser labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/snmpuser:Snmpuser labelname {{name}}
-//
+// $ pulumi import fortios:switchcontroller/snmpuser:Snmpuser labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Snmpuser struct {
 	pulumi.CustomResourceState
 
@@ -72,7 +71,7 @@ func NewSnmpuser(ctx *pulumi.Context,
 		"privPwd",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Snmpuser
 	err := ctx.RegisterResource("fortios:switchcontroller/snmpuser:Snmpuser", name, args, &resource, opts...)
 	if err != nil {

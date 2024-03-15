@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiSwitch SNMP system information globally. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # SwitchController SnmpSysinfo can be imported using any of these accepted formats
+// SwitchController SnmpSysinfo can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/snmpsysinfo:Snmpsysinfo labelname SwitchControllerSnmpSysinfo
-//
+// $ pulumi import fortios:switchcontroller/snmpsysinfo:Snmpsysinfo labelname SwitchControllerSnmpSysinfo
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/snmpsysinfo:Snmpsysinfo labelname SwitchControllerSnmpSysinfo
-//
+// $ pulumi import fortios:switchcontroller/snmpsysinfo:Snmpsysinfo labelname SwitchControllerSnmpSysinfo
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Snmpsysinfo struct {
 	pulumi.CustomResourceState
 
@@ -55,7 +54,7 @@ func NewSnmpsysinfo(ctx *pulumi.Context,
 		args = &SnmpsysinfoArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Snmpsysinfo
 	err := ctx.RegisterResource("fortios:switchcontroller/snmpsysinfo:Snmpsysinfo", name, args, &resource, opts...)
 	if err != nil {

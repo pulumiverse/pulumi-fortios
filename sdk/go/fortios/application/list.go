@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure application control lists.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,26 +47,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Application List can be imported using any of these accepted formats
+// Application List can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:application/list:List labelname {{name}}
-//
+// $ pulumi import fortios:application/list:List labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:application/list:List labelname {{name}}
-//
+// $ pulumi import fortios:application/list:List labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type List struct {
 	pulumi.CustomResourceState
 
@@ -117,7 +118,7 @@ func NewList(ctx *pulumi.Context,
 		args = &ListArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource List
 	err := ctx.RegisterResource("fortios:application/list:List", name, args, &resource, opts...)
 	if err != nil {

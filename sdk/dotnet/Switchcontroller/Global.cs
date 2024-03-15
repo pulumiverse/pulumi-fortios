@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,22 +36,25 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// SwitchController Global can be imported using any of these accepted formats
+    /// SwitchController Global can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/global:Global labelname SwitchControllerGlobal
+    /// $ pulumi import fortios:switchcontroller/global:Global labelname SwitchControllerGlobal
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/global:Global labelname SwitchControllerGlobal
+    /// $ pulumi import fortios:switchcontroller/global:Global labelname SwitchControllerGlobal
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:switchcontroller/global:Global")]
     public partial class Global : global::Pulumi.CustomResource

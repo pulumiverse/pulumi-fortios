@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 type SecurityPolicyseq struct {
@@ -17,9 +18,8 @@ type SecurityPolicyseq struct {
 	// The alter position: should only be "before" or "after"
 	AlterPosition pulumi.StringOutput `pulumi:"alterPosition"`
 	// Comment
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Enable status detection for policySrcId and policy_dst_id
-	EnableStateChecking pulumi.BoolPtrOutput `pulumi:"enableStateChecking"`
+	Comment             pulumi.StringPtrOutput `pulumi:"comment"`
+	EnableStateChecking pulumi.BoolPtrOutput   `pulumi:"enableStateChecking"`
 	// The dest policy id which you want to alter
 	PolicyDstId pulumi.IntOutput `pulumi:"policyDstId"`
 	// The policy id which you want to alter
@@ -45,7 +45,7 @@ func NewSecurityPolicyseq(ctx *pulumi.Context,
 	if args.PolicySrcId == nil {
 		return nil, errors.New("invalid value for required argument 'PolicySrcId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecurityPolicyseq
 	err := ctx.RegisterResource("fortios:firewall/securityPolicyseq:SecurityPolicyseq", name, args, &resource, opts...)
 	if err != nil {
@@ -71,9 +71,8 @@ type securityPolicyseqState struct {
 	// The alter position: should only be "before" or "after"
 	AlterPosition *string `pulumi:"alterPosition"`
 	// Comment
-	Comment *string `pulumi:"comment"`
-	// Enable status detection for policySrcId and policy_dst_id
-	EnableStateChecking *bool `pulumi:"enableStateChecking"`
+	Comment             *string `pulumi:"comment"`
+	EnableStateChecking *bool   `pulumi:"enableStateChecking"`
 	// The dest policy id which you want to alter
 	PolicyDstId *int `pulumi:"policyDstId"`
 	// The policy id which you want to alter
@@ -87,8 +86,7 @@ type SecurityPolicyseqState struct {
 	// The alter position: should only be "before" or "after"
 	AlterPosition pulumi.StringPtrInput
 	// Comment
-	Comment pulumi.StringPtrInput
-	// Enable status detection for policySrcId and policy_dst_id
+	Comment             pulumi.StringPtrInput
 	EnableStateChecking pulumi.BoolPtrInput
 	// The dest policy id which you want to alter
 	PolicyDstId pulumi.IntPtrInput
@@ -107,9 +105,8 @@ type securityPolicyseqArgs struct {
 	// The alter position: should only be "before" or "after"
 	AlterPosition string `pulumi:"alterPosition"`
 	// Comment
-	Comment *string `pulumi:"comment"`
-	// Enable status detection for policySrcId and policy_dst_id
-	EnableStateChecking *bool `pulumi:"enableStateChecking"`
+	Comment             *string `pulumi:"comment"`
+	EnableStateChecking *bool   `pulumi:"enableStateChecking"`
 	// The dest policy id which you want to alter
 	PolicyDstId int `pulumi:"policyDstId"`
 	// The policy id which you want to alter
@@ -123,8 +120,7 @@ type SecurityPolicyseqArgs struct {
 	// The alter position: should only be "before" or "after"
 	AlterPosition pulumi.StringInput
 	// Comment
-	Comment pulumi.StringPtrInput
-	// Enable status detection for policySrcId and policy_dst_id
+	Comment             pulumi.StringPtrInput
 	EnableStateChecking pulumi.BoolPtrInput
 	// The dest policy id which you want to alter
 	PolicyDstId pulumi.IntInput
@@ -231,7 +227,6 @@ func (o SecurityPolicyseqOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecurityPolicyseq) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-// Enable status detection for policySrcId and policy_dst_id
 func (o SecurityPolicyseqOutput) EnableStateChecking() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecurityPolicyseq) pulumi.BoolPtrOutput { return v.EnableStateChecking }).(pulumi.BoolPtrOutput)
 }

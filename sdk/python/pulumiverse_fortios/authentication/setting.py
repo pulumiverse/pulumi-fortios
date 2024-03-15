@@ -799,6 +799,7 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -811,22 +812,25 @@ class Setting(pulumi.CustomResource):
             captive_portal_ssl_port=7831,
             captive_portal_type="fqdn")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Authentication Setting can be imported using any of these accepted formats
+        Authentication Setting can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:authentication/setting:Setting labelname AuthenticationSetting
+        $ pulumi import fortios:authentication/setting:Setting labelname AuthenticationSetting
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:authentication/setting:Setting labelname AuthenticationSetting
+        $ pulumi import fortios:authentication/setting:Setting labelname AuthenticationSetting
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -865,6 +869,7 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -877,22 +882,25 @@ class Setting(pulumi.CustomResource):
             captive_portal_ssl_port=7831,
             captive_portal_type="fqdn")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Authentication Setting can be imported using any of these accepted formats
+        Authentication Setting can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:authentication/setting:Setting labelname AuthenticationSetting
+        $ pulumi import fortios:authentication/setting:Setting labelname AuthenticationSetting
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:authentication/setting:Setting labelname AuthenticationSetting
+        $ pulumi import fortios:authentication/setting:Setting labelname AuthenticationSetting
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param SettingArgs args: The arguments to use to populate this resource's properties.

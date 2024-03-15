@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.User
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -44,22 +45,25 @@ namespace Pulumiverse.Fortios.User
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// User Setting can be imported using any of these accepted formats
+    /// User Setting can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:user/setting:Setting labelname UserSetting
+    /// $ pulumi import fortios:user/setting:Setting labelname UserSetting
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:user/setting:Setting labelname UserSetting
+    /// $ pulumi import fortios:user/setting:Setting labelname UserSetting
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:user/setting:Setting")]
     public partial class Setting : global::Pulumi.CustomResource

@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -40,22 +41,25 @@ import * as utilities from "../utilities";
  *     webfilterProfileStatus: "disable",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Firewall InterfacePolicy6 can be imported using any of these accepted formats
+ * Firewall InterfacePolicy6 can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
+ * $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
+ * $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Interfacepolicy6 extends pulumi.CustomResource {
     /**

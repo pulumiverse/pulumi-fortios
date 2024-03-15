@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `router.Aspathlist`.
 func GetAspathlistlist(ctx *pulumi.Context, args *GetAspathlistlistArgs, opts ...pulumi.InvokeOption) (*GetAspathlistlistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAspathlistlistResult
 	err := ctx.Invoke("fortios:router/getAspathlistlist:getAspathlistlist", args, &rv, opts...)
 	if err != nil {

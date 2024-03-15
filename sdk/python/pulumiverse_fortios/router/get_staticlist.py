@@ -82,6 +82,7 @@ def get_staticlist(filter: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -89,6 +90,7 @@ def get_staticlist(filter: Optional[str] = None,
     sample1 = fortios.router.get_staticlist(filter="seq_num>1")
     pulumi.export("output1", sample1.seq_numlists)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str filter: A filter used to scope the list. See Filter results of datasource.
@@ -101,10 +103,10 @@ def get_staticlist(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:router/getStaticlist:getStaticlist', __args__, opts=opts, typ=GetStaticlistResult).value
 
     return AwaitableGetStaticlistResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        seq_numlists=__ret__.seq_numlists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        seq_numlists=pulumi.get(__ret__, 'seq_numlists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_staticlist)
@@ -116,6 +118,7 @@ def get_staticlist_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -123,6 +126,7 @@ def get_staticlist_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
     sample1 = fortios.router.get_staticlist(filter="seq_num>1")
     pulumi.export("output1", sample1.seq_numlists)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str filter: A filter used to scope the list. See Filter results of datasource.

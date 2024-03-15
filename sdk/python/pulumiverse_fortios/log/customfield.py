@@ -169,6 +169,7 @@ class Customfield(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -177,22 +178,25 @@ class Customfield(pulumi.CustomResource):
             fosid="1",
             value="logteststr")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Log CustomField can be imported using any of these accepted formats
+        Log CustomField can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
+        $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
+        $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -212,6 +216,7 @@ class Customfield(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -220,22 +225,25 @@ class Customfield(pulumi.CustomResource):
             fosid="1",
             value="logteststr")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Log CustomField can be imported using any of these accepted formats
+        Log CustomField can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
+        $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
+        $ pulumi import fortios:log/customfield:Customfield labelname {{fosid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param CustomfieldArgs args: The arguments to use to populate this resource's properties.

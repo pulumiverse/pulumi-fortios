@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,22 +28,25 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Router PrefixList can be imported using any of these accepted formats
+    /// Router PrefixList can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:router/prefixlist:Prefixlist labelname {{name}}
+    /// $ pulumi import fortios:router/prefixlist:Prefixlist labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:router/prefixlist:Prefixlist labelname {{name}}
+    /// $ pulumi import fortios:router/prefixlist:Prefixlist labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:router/prefixlist:Prefixlist")]
     public partial class Prefixlist : global::Pulumi.CustomResource

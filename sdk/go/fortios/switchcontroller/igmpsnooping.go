@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiSwitch IGMP snooping global settings.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,26 +40,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # SwitchController IgmpSnooping can be imported using any of these accepted formats
+// SwitchController IgmpSnooping can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/igmpsnooping:Igmpsnooping labelname SwitchControllerIgmpSnooping
-//
+// $ pulumi import fortios:switchcontroller/igmpsnooping:Igmpsnooping labelname SwitchControllerIgmpSnooping
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/igmpsnooping:Igmpsnooping labelname SwitchControllerIgmpSnooping
-//
+// $ pulumi import fortios:switchcontroller/igmpsnooping:Igmpsnooping labelname SwitchControllerIgmpSnooping
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Igmpsnooping struct {
 	pulumi.CustomResourceState
 
@@ -78,7 +79,7 @@ func NewIgmpsnooping(ctx *pulumi.Context,
 		args = &IgmpsnoopingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Igmpsnooping
 	err := ctx.RegisterResource("fortios:switchcontroller/igmpsnooping:Igmpsnooping", name, args, &resource, opts...)
 	if err != nil {

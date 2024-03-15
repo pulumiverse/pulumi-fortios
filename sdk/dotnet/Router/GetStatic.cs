@@ -15,10 +15,9 @@ namespace Pulumiverse.Fortios.Router
         /// <summary>
         /// Use this data source to get information on an fortios router static
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -38,8 +37,7 @@ namespace Pulumiverse.Fortios.Router
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetStaticResult> InvokeAsync(GetStaticArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStaticResult>("fortios:router/getStatic:getStatic", args ?? new GetStaticArgs(), options.WithDefaults());
@@ -47,10 +45,9 @@ namespace Pulumiverse.Fortios.Router
         /// <summary>
         /// Use this data source to get information on an fortios router static
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -70,8 +67,7 @@ namespace Pulumiverse.Fortios.Router
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetStaticResult> Invoke(GetStaticInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStaticResult>("fortios:router/getStatic:getStatic", args ?? new GetStaticInvokeArgs(), options.WithDefaults());

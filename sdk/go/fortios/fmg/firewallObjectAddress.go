@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports Create/Read/Update/Delete firewall object address for FortiManager.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -60,6 +62,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type FirewallObjectAddress struct {
 	pulumi.CustomResourceState
 
@@ -92,7 +95,7 @@ func NewFirewallObjectAddress(ctx *pulumi.Context,
 		args = &FirewallObjectAddressArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallObjectAddress
 	err := ctx.RegisterResource("fortios:fmg/firewallObjectAddress:FirewallObjectAddress", name, args, &resource, opts...)
 	if err != nil {

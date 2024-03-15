@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `firewall.Address6`.
 func GetAddress6list(ctx *pulumi.Context, args *GetAddress6listArgs, opts ...pulumi.InvokeOption) (*GetAddress6listResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAddress6listResult
 	err := ctx.Invoke("fortios:firewall/getAddress6list:getAddress6list", args, &rv, opts...)
 	if err != nil {

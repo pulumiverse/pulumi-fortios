@@ -815,11 +815,12 @@ class Local(pulumi.CustomResource):
         ## Example
 
         ### Delete Certificate:
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
-        trname1 = fortios.sys.Autoscript("trname1",
+        trname1 = fortios.system.Autoscript("trname1",
             interval=1,
             output_size=10,
             repeat=1,
@@ -830,6 +831,7 @@ class Local(pulumi.CustomResource):
         \"\"\",
             start="auto")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -848,11 +850,12 @@ class Local(pulumi.CustomResource):
         ## Example
 
         ### Delete Certificate:
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
-        trname1 = fortios.sys.Autoscript("trname1",
+        trname1 = fortios.system.Autoscript("trname1",
             interval=1,
             output_size=10,
             repeat=1,
@@ -863,6 +866,7 @@ class Local(pulumi.CustomResource):
         \"\"\",
             start="auto")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param LocalArgs args: The arguments to use to populate this resource's properties.

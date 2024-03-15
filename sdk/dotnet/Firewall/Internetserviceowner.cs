@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Import
     /// 
-    /// Firewall InternetServiceOwner can be imported using any of these accepted formats
+    /// Firewall InternetServiceOwner can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/internetserviceowner:Internetserviceowner labelname {{fosid}}
+    /// $ pulumi import fortios:firewall/internetserviceowner:Internetserviceowner labelname {{fosid}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/internetserviceowner:Internetserviceowner labelname {{fosid}}
+    /// $ pulumi import fortios:firewall/internetserviceowner:Internetserviceowner labelname {{fosid}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:firewall/internetserviceowner:Internetserviceowner")]
     public partial class Internetserviceowner : global::Pulumi.CustomResource

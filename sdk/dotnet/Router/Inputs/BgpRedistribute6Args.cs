@@ -20,13 +20,7 @@ namespace Pulumiverse.Fortios.Router.Inputs
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Route map to modify generated route.
-        /// 
-        /// The `network6` block supports:
-        /// 
-        /// 
-        /// 
-        /// The `redistribute6` block supports:
+        /// Route map of VRF leaking.
         /// </summary>
         [Input("routeMap")]
         public Input<string>? RouteMap { get; set; }

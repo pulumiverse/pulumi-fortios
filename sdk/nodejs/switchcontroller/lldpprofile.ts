@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -23,22 +24,25 @@ import * as utilities from "../utilities";
  *     medTlvs: "inventory-management network-policy",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * SwitchController LldpProfile can be imported using any of these accepted formats
+ * SwitchController LldpProfile can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:switchcontroller/lldpprofile:Lldpprofile labelname {{name}}
+ * $ pulumi import fortios:switchcontroller/lldpprofile:Lldpprofile labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:switchcontroller/lldpprofile:Lldpprofile labelname {{name}}
+ * $ pulumi import fortios:switchcontroller/lldpprofile:Lldpprofile labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Lldpprofile extends pulumi.CustomResource {
     /**

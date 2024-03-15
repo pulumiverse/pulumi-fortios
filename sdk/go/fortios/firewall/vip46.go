@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv4 to IPv6 virtual IPs. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,26 +50,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall Vip46 can be imported using any of these accepted formats
+// Firewall Vip46 can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/vip46:Vip46 labelname {{name}}
-//
+// $ pulumi import fortios:firewall/vip46:Vip46 labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/vip46:Vip46 labelname {{name}}
-//
+// $ pulumi import fortios:firewall/vip46:Vip46 labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Vip46 struct {
 	pulumi.CustomResourceState
 
@@ -128,7 +129,7 @@ func NewVip46(ctx *pulumi.Context,
 	if args.Mappedip == nil {
 		return nil, errors.New("invalid value for required argument 'Mappedip'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Vip46
 	err := ctx.RegisterResource("fortios:firewall/vip46:Vip46", name, args, &resource, opts...)
 	if err != nil {

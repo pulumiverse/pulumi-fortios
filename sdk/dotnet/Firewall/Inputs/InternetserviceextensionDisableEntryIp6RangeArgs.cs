@@ -20,7 +20,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? EndIp6 { get; set; }
 
         /// <summary>
-        /// Entry ID(1-255).
+        /// Disable entry ID.
         /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }

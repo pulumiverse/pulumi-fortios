@@ -20,8 +20,6 @@ namespace Pulumiverse.Fortios.Router.Outputs
         public readonly int? Id;
         /// <summary>
         /// Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-        /// 
-        /// The `summary_address6` block supports:
         /// </summary>
         public readonly string? Level;
         /// <summary>

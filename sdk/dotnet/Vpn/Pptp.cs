@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Vpn
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,22 +36,25 @@ namespace Pulumiverse.Fortios.Vpn
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Vpn Pptp can be imported using any of these accepted formats
+    /// Vpn Pptp can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:vpn/pptp:Pptp labelname VpnPptp
+    /// $ pulumi import fortios:vpn/pptp:Pptp labelname VpnPptp
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:vpn/pptp:Pptp labelname VpnPptp
+    /// $ pulumi import fortios:vpn/pptp:Pptp labelname VpnPptp
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:vpn/pptp:Pptp")]
     public partial class Pptp : global::Pulumi.CustomResource

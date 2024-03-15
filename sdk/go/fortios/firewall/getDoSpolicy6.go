@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios firewall DoSpolicy6
 func LookupDoSpolicy6(ctx *pulumi.Context, args *LookupDoSpolicy6Args, opts ...pulumi.InvokeOption) (*LookupDoSpolicy6Result, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDoSpolicy6Result
 	err := ctx.Invoke("fortios:firewall/getDoSpolicy6:getDoSpolicy6", args, &rv, opts...)
 	if err != nil {

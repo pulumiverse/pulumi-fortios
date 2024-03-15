@@ -166,6 +166,7 @@ class SystemNetworkRoute(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -176,6 +177,7 @@ class SystemNetworkRoute(pulumi.CustomResource):
             gateway="192.168.2.1",
             route_id=5)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -195,6 +197,7 @@ class SystemNetworkRoute(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -205,6 +208,7 @@ class SystemNetworkRoute(pulumi.CustomResource):
             gateway="192.168.2.1",
             route_id=5)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SystemNetworkRouteArgs args: The arguments to use to populate this resource's properties.

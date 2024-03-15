@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -53,22 +54,25 @@ import * as utilities from "../utilities";
  *     version: "2",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Router Rip can be imported using any of these accepted formats
+ * Router Rip can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:router/rip:Rip labelname RouterRip
+ * $ pulumi import fortios:router/rip:Rip labelname RouterRip
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:router/rip:Rip labelname RouterRip
+ * $ pulumi import fortios:router/rip:Rip labelname RouterRip
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Rip extends pulumi.CustomResource {
     /**

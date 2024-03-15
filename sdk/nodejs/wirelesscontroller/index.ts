@@ -146,6 +146,13 @@ export const Wtpprofile: typeof import("./wtpprofile").Wtpprofile = null as any;
 utilities.lazyLoad(exports, ["Wtpprofile"], () => require("./wtpprofile"));
 
 
+// Export sub-modules:
+import * as hotspot20 from "./hotspot20";
+
+export {
+    hotspot20,
+};
+
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {

@@ -71,3 +71,17 @@ from .static import *
 from .static6 import *
 from ._inputs import *
 from . import outputs
+
+# Make subpackages available:
+if typing.TYPE_CHECKING:
+    import pulumiverse_fortios.router.bgp as __bgp
+    bgp = __bgp
+    import pulumiverse_fortios.router.ospf as __ospf
+    ospf = __ospf
+    import pulumiverse_fortios.router.ospf6 as __ospf6
+    ospf6 = __ospf6
+else:
+    bgp = _utilities.lazy_import('pulumiverse_fortios.router.bgp')
+    ospf = _utilities.lazy_import('pulumiverse_fortios.router.ospf')
+    ospf6 = _utilities.lazy_import('pulumiverse_fortios.router.ospf6')
+

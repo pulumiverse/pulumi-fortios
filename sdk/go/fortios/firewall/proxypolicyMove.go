@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 type ProxypolicyMove struct {
@@ -38,7 +39,7 @@ func NewProxypolicyMove(ctx *pulumi.Context,
 	if args.PolicyidSrc == nil {
 		return nil, errors.New("invalid value for required argument 'PolicyidSrc'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ProxypolicyMove
 	err := ctx.RegisterResource("fortios:firewall/proxypolicyMove:ProxypolicyMove", name, args, &resource, opts...)
 	if err != nil {

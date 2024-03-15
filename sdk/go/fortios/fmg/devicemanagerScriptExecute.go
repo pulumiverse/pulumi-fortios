@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports executing devicemanager script on Fortimanager.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,6 +42,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type DevicemanagerScriptExecute struct {
 	pulumi.CustomResourceState
 
@@ -67,7 +70,7 @@ func NewDevicemanagerScriptExecute(ctx *pulumi.Context,
 	if args.ScriptName == nil {
 		return nil, errors.New("invalid value for required argument 'ScriptName'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DevicemanagerScriptExecute
 	err := ctx.RegisterResource("fortios:fmg/devicemanagerScriptExecute:DevicemanagerScriptExecute", name, args, &resource, opts...)
 	if err != nil {

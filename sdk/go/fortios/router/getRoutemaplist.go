@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `router.Routemap`.
 func GetRoutemaplist(ctx *pulumi.Context, args *GetRoutemaplistArgs, opts ...pulumi.InvokeOption) (*GetRoutemaplistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRoutemaplistResult
 	err := ctx.Invoke("fortios:router/getRoutemaplist:getRoutemaplist", args, &rv, opts...)
 	if err != nil {

@@ -8,7 +8,10 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type ProfileCifs struct {
 	// Select the archive types to block.
@@ -2995,7 +2998,7 @@ type ProfilePop3 struct {
 	Fortindr *string `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox *string `pulumi:"fortisandbox"`
-	// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
 	Options *string `pulumi:"options"`
 	// Configure Virus Outbreak Prevention settings. The structure of `outbreakPrevention` block is documented below.
 	OutbreakPrevention *string `pulumi:"outbreakPrevention"`
@@ -3035,7 +3038,7 @@ type ProfilePop3Args struct {
 	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
-	// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+	// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
 	Options pulumi.StringPtrInput `pulumi:"options"`
 	// Configure Virus Outbreak Prevention settings. The structure of `outbreakPrevention` block is documented below.
 	OutbreakPrevention pulumi.StringPtrInput `pulumi:"outbreakPrevention"`
@@ -3170,7 +3173,7 @@ func (o ProfilePop3Output) Fortisandbox() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
 func (o ProfilePop3Output) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
@@ -3309,7 +3312,7 @@ func (o ProfilePop3PtrOutput) Fortisandbox() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
 func (o ProfilePop3PtrOutput) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {

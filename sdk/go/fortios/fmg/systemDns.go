@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports modifying system dns setting for FortiManager.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +40,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SystemDns struct {
 	pulumi.CustomResourceState
 
@@ -54,7 +57,7 @@ func NewSystemDns(ctx *pulumi.Context,
 		args = &SystemDnsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemDns
 	err := ctx.RegisterResource("fortios:fmg/systemDns:SystemDns", name, args, &resource, opts...)
 	if err != nil {

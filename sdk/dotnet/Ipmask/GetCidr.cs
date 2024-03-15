@@ -15,11 +15,11 @@ namespace Pulumiverse.Fortios.Ipmask
         /// <summary>
         /// Convert IP/Mask to CIDR
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
+        /// 
         /// ### Example1
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -28,7 +28,7 @@ namespace Pulumiverse.Fortios.Ipmask
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var trnameInterface = Fortios.Sys.GetInterface.Invoke(new()
+        ///     var trnameInterface = Fortios.System.GetInterface.Invoke(new()
         ///     {
         ///         Name = "port3",
         ///     });
@@ -44,10 +44,11 @@ namespace Pulumiverse.Fortios.Ipmask
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% example %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
         /// ### Example2
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -56,7 +57,7 @@ namespace Pulumiverse.Fortios.Ipmask
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var trnameInterface = Fortios.Sys.GetInterface.Invoke(new()
+        ///     var trnameInterface = Fortios.System.GetInterface.Invoke(new()
         ///     {
         ///         Name = "port3",
         ///     });
@@ -80,8 +81,7 @@ namespace Pulumiverse.Fortios.Ipmask
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetCidrResult> InvokeAsync(GetCidrArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCidrResult>("fortios:ipmask/getCidr:getCidr", args ?? new GetCidrArgs(), options.WithDefaults());
@@ -89,11 +89,11 @@ namespace Pulumiverse.Fortios.Ipmask
         /// <summary>
         /// Convert IP/Mask to CIDR
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
+        /// 
         /// ### Example1
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -102,7 +102,7 @@ namespace Pulumiverse.Fortios.Ipmask
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var trnameInterface = Fortios.Sys.GetInterface.Invoke(new()
+        ///     var trnameInterface = Fortios.System.GetInterface.Invoke(new()
         ///     {
         ///         Name = "port3",
         ///     });
@@ -118,10 +118,11 @@ namespace Pulumiverse.Fortios.Ipmask
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% example %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
         /// ### Example2
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -130,7 +131,7 @@ namespace Pulumiverse.Fortios.Ipmask
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var trnameInterface = Fortios.Sys.GetInterface.Invoke(new()
+        ///     var trnameInterface = Fortios.System.GetInterface.Invoke(new()
         ///     {
         ///         Name = "port3",
         ///     });
@@ -154,8 +155,7 @@ namespace Pulumiverse.Fortios.Ipmask
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetCidrResult> Invoke(GetCidrInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCidrResult>("fortios:ipmask/getCidr:getCidr", args ?? new GetCidrInvokeArgs(), options.WithDefaults());

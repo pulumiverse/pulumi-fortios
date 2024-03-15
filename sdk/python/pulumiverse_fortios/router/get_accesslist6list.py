@@ -91,10 +91,10 @@ def get_accesslist6list(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:router/getAccesslist6list:getAccesslist6list', __args__, opts=opts, typ=GetAccesslist6listResult).value
 
     return AwaitableGetAccesslist6listResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        namelists=__ret__.namelists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        namelists=pulumi.get(__ret__, 'namelists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_accesslist6list)

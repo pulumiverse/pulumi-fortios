@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `firewall.Proxyaddrgrp`.
 func GetProxyaddrgrplist(ctx *pulumi.Context, args *GetProxyaddrgrplistArgs, opts ...pulumi.InvokeOption) (*GetProxyaddrgrplistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetProxyaddrgrplistResult
 	err := ctx.Invoke("fortios:firewall/getProxyaddrgrplist:getProxyaddrgrplist", args, &rv, opts...)
 	if err != nil {

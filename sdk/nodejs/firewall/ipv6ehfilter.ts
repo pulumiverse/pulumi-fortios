@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -22,22 +23,25 @@ import * as utilities from "../utilities";
  *     routing: "enable",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Firewall Ipv6EhFilter can be imported using any of these accepted formats
+ * Firewall Ipv6EhFilter can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
+ * $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
+ * $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Ipv6ehfilter extends pulumi.CustomResource {
     /**

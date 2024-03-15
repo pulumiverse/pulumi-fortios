@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Report
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -32,22 +33,25 @@ namespace Pulumiverse.Fortios.Report
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Report Theme can be imported using any of these accepted formats
+    /// Report Theme can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:report/theme:Theme labelname {{name}}
+    /// $ pulumi import fortios:report/theme:Theme labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:report/theme:Theme labelname {{name}}
+    /// $ pulumi import fortios:report/theme:Theme labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:report/theme:Theme")]
     public partial class Theme : global::Pulumi.CustomResource

@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `router.Prefixlist`.
 func GetPrefixlistlist(ctx *pulumi.Context, args *GetPrefixlistlistArgs, opts ...pulumi.InvokeOption) (*GetPrefixlistlistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPrefixlistlistResult
 	err := ctx.Invoke("fortios:router/getPrefixlistlist:getPrefixlistlist", args, &rv, opts...)
 	if err != nil {

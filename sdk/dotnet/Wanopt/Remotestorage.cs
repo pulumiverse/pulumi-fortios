@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Wanopt
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,22 +32,25 @@ namespace Pulumiverse.Fortios.Wanopt
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Wanopt RemoteStorage can be imported using any of these accepted formats
+    /// Wanopt RemoteStorage can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:wanopt/remotestorage:Remotestorage labelname WanoptRemoteStorage
+    /// $ pulumi import fortios:wanopt/remotestorage:Remotestorage labelname WanoptRemoteStorage
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:wanopt/remotestorage:Remotestorage labelname WanoptRemoteStorage
+    /// $ pulumi import fortios:wanopt/remotestorage:Remotestorage labelname WanoptRemoteStorage
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:wanopt/remotestorage:Remotestorage")]
     public partial class Remotestorage : global::Pulumi.CustomResource

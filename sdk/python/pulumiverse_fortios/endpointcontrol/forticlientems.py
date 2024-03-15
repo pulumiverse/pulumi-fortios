@@ -398,19 +398,21 @@ class Forticlientems(pulumi.CustomResource):
 
         ## Import
 
-        EndpointControl ForticlientEms can be imported using any of these accepted formats
+        EndpointControl ForticlientEms can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:endpointcontrol/forticlientems:Forticlientems labelname {{name}}
+        $ pulumi import fortios:endpointcontrol/forticlientems:Forticlientems labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:endpointcontrol/forticlientems:Forticlientems labelname {{name}}
+        $ pulumi import fortios:endpointcontrol/forticlientems:Forticlientems labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -437,19 +439,21 @@ class Forticlientems(pulumi.CustomResource):
 
         ## Import
 
-        EndpointControl ForticlientEms can be imported using any of these accepted formats
+        EndpointControl ForticlientEms can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:endpointcontrol/forticlientems:Forticlientems labelname {{name}}
+        $ pulumi import fortios:endpointcontrol/forticlientems:Forticlientems labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:endpointcontrol/forticlientems:Forticlientems labelname {{name}}
+        $ pulumi import fortios:endpointcontrol/forticlientems:Forticlientems labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param ForticlientemsArgs args: The arguments to use to populate this resource's properties.

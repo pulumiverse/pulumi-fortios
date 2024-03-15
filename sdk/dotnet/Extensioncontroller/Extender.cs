@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Extensioncontroller
     /// 
     /// ## Import
     /// 
-    /// ExtensionController Extender can be imported using any of these accepted formats
+    /// ExtensionController Extender can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:extensioncontroller/extender:Extender labelname {{name}}
+    /// $ pulumi import fortios:extensioncontroller/extender:Extender labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:extensioncontroller/extender:Extender labelname {{name}}
+    /// $ pulumi import fortios:extensioncontroller/extender:Extender labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:extensioncontroller/extender:Extender")]
     public partial class Extender : global::Pulumi.CustomResource

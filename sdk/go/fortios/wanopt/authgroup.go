@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure WAN optimization authentication groups.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,26 +42,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Wanopt AuthGroup can be imported using any of these accepted formats
+// Wanopt AuthGroup can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wanopt/authgroup:Authgroup labelname {{name}}
-//
+// $ pulumi import fortios:wanopt/authgroup:Authgroup labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wanopt/authgroup:Authgroup labelname {{name}}
-//
+// $ pulumi import fortios:wanopt/authgroup:Authgroup labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Authgroup struct {
 	pulumi.CustomResourceState
 
@@ -96,7 +97,7 @@ func NewAuthgroup(ctx *pulumi.Context,
 		"psk",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Authgroup
 	err := ctx.RegisterResource("fortios:wanopt/authgroup:Authgroup", name, args, &resource, opts...)
 	if err != nil {

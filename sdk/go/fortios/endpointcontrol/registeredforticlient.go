@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Registered FortiClient list. Applies to FortiOS Version `<= 6.2.0`.
 //
 // ## Import
 //
-// # EndpointControl RegisteredForticlient can be imported using any of these accepted formats
+// EndpointControl RegisteredForticlient can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:endpointcontrol/registeredforticlient:Registeredforticlient labelname {{uid}}
-//
+// $ pulumi import fortios:endpointcontrol/registeredforticlient:Registeredforticlient labelname {{uid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:endpointcontrol/registeredforticlient:Registeredforticlient labelname {{uid}}
-//
+// $ pulumi import fortios:endpointcontrol/registeredforticlient:Registeredforticlient labelname {{uid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Registeredforticlient struct {
 	pulumi.CustomResourceState
 
@@ -59,7 +58,7 @@ func NewRegisteredforticlient(ctx *pulumi.Context,
 		args = &RegisteredforticlientArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Registeredforticlient
 	err := ctx.RegisterResource("fortios:endpointcontrol/registeredforticlient:Registeredforticlient", name, args, &resource, opts...)
 	if err != nil {

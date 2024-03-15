@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports modifying system ntp setting for FortiManager.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,6 +42,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SystemNtp struct {
 	pulumi.CustomResourceState
 
@@ -61,7 +64,7 @@ func NewSystemNtp(ctx *pulumi.Context,
 	if args.Server == nil {
 		return nil, errors.New("invalid value for required argument 'Server'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemNtp
 	err := ctx.RegisterResource("fortios:fmg/systemNtp:SystemNtp", name, args, &resource, opts...)
 	if err != nil {

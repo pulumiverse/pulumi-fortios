@@ -238,28 +238,32 @@ class Quarantine(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.user.Quarantine("trname", quarantine="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        User Quarantine can be imported using any of these accepted formats
+        User Quarantine can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
+        $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
+        $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -281,28 +285,32 @@ class Quarantine(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.user.Quarantine("trname", quarantine="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        User Quarantine can be imported using any of these accepted formats
+        User Quarantine can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
+        $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
+        $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param QuarantineArgs args: The arguments to use to populate this resource's properties.

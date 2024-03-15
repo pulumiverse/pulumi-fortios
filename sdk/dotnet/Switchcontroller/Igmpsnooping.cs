@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,22 +32,25 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// SwitchController IgmpSnooping can be imported using any of these accepted formats
+    /// SwitchController IgmpSnooping can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/igmpsnooping:Igmpsnooping labelname SwitchControllerIgmpSnooping
+    /// $ pulumi import fortios:switchcontroller/igmpsnooping:Igmpsnooping labelname SwitchControllerIgmpSnooping
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/igmpsnooping:Igmpsnooping labelname SwitchControllerIgmpSnooping
+    /// $ pulumi import fortios:switchcontroller/igmpsnooping:Igmpsnooping labelname SwitchControllerIgmpSnooping
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:switchcontroller/igmpsnooping:Igmpsnooping")]
     public partial class Igmpsnooping : global::Pulumi.CustomResource

@@ -91,10 +91,10 @@ def get_addrgrplist(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:firewall/getAddrgrplist:getAddrgrplist', __args__, opts=opts, typ=GetAddrgrplistResult).value
 
     return AwaitableGetAddrgrplistResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        namelists=__ret__.namelists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        namelists=pulumi.get(__ret__, 'namelists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_addrgrplist)

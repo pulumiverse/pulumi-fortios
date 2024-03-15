@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Import
     /// 
-    /// Firewall InternetServiceAppend can be imported using any of these accepted formats
+    /// Firewall InternetServiceAppend can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/internetserviceappend:Internetserviceappend labelname FirewallInternetServiceAppend
+    /// $ pulumi import fortios:firewall/internetserviceappend:Internetserviceappend labelname FirewallInternetServiceAppend
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/internetserviceappend:Internetserviceappend labelname FirewallInternetServiceAppend
+    /// $ pulumi import fortios:firewall/internetserviceappend:Internetserviceappend labelname FirewallInternetServiceAppend
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:firewall/internetserviceappend:Internetserviceappend")]
     public partial class Internetserviceappend : global::Pulumi.CustomResource

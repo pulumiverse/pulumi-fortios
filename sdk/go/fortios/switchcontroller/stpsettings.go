@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiSwitch spanning tree protocol (STP).
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,26 +45,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # SwitchController StpSettings can be imported using any of these accepted formats
+// SwitchController StpSettings can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
-//
+// $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
-//
+// $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Stpsettings struct {
 	pulumi.CustomResourceState
 
@@ -93,7 +94,7 @@ func NewStpsettings(ctx *pulumi.Context,
 		args = &StpsettingsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Stpsettings
 	err := ctx.RegisterResource("fortios:switchcontroller/stpsettings:Stpsettings", name, args, &resource, opts...)
 	if err != nil {

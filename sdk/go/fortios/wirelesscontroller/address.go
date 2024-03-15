@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure the client with its MAC address. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1,6.4.2,6.4.10,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6`.
 //
 // ## Import
 //
-// # WirelessController Address can be imported using any of these accepted formats
+// WirelessController Address can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/address:Address labelname {{fosid}}
-//
+// $ pulumi import fortios:wirelesscontroller/address:Address labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/address:Address labelname {{fosid}}
-//
+// $ pulumi import fortios:wirelesscontroller/address:Address labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Address struct {
 	pulumi.CustomResourceState
 
@@ -51,7 +50,7 @@ func NewAddress(ctx *pulumi.Context,
 		args = &AddressArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Address
 	err := ctx.RegisterResource("fortios:wirelesscontroller/address:Address", name, args, &resource, opts...)
 	if err != nil {

@@ -202,6 +202,7 @@ class Settings(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -211,22 +212,25 @@ class Settings(pulumi.CustomResource):
             host_id="default-id",
             tunnel_ssl_algorithm="high")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Wanopt Settings can be imported using any of these accepted formats
+        Wanopt Settings can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:wanopt/settings:Settings labelname WanoptSettings
+        $ pulumi import fortios:wanopt/settings:Settings labelname WanoptSettings
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:wanopt/settings:Settings labelname WanoptSettings
+        $ pulumi import fortios:wanopt/settings:Settings labelname WanoptSettings
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -247,6 +251,7 @@ class Settings(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -256,22 +261,25 @@ class Settings(pulumi.CustomResource):
             host_id="default-id",
             tunnel_ssl_algorithm="high")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Wanopt Settings can be imported using any of these accepted formats
+        Wanopt Settings can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:wanopt/settings:Settings labelname WanoptSettings
+        $ pulumi import fortios:wanopt/settings:Settings labelname WanoptSettings
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:wanopt/settings:Settings labelname WanoptSettings
+        $ pulumi import fortios:wanopt/settings:Settings labelname WanoptSettings
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param SettingsArgs args: The arguments to use to populate this resource's properties.

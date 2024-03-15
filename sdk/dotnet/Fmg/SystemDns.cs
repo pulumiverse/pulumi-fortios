@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Fmg
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,6 +32,7 @@ namespace Pulumiverse.Fortios.Fmg
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:fmg/systemDns:SystemDns")]
     public partial class SystemDns : global::Pulumi.CustomResource

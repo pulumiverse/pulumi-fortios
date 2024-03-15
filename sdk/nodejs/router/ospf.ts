@@ -9,14 +9,15 @@ import * as utilities from "../utilities";
 /**
  * Configure OSPF.
  *
- * > The provider supports the definition of Ospf-Interface in Router Ospf `fortios.router.Ospf`, and also allows the definition of separate Ospf-Interface resources `fortios.routerospf.Ospfinterface`, but do not use a `fortios.router.Ospf` with in-line Ospf-Interface in conjunction with any `fortios.routerospf.Ospfinterface` resources, otherwise conflicts and overwrite will occur.
+ * > The provider supports the definition of Ospf-Interface in Router Ospf `fortios.router.Ospf`, and also allows the definition of separate Ospf-Interface resources `fortios.router/ospf.Ospfinterface`, but do not use a `fortios.router.Ospf` with in-line Ospf-Interface in conjunction with any `fortios.router/ospf.Ospfinterface` resources, otherwise conflicts and overwrite will occur.
  *
- * > The provider supports the definition of Network in Router Ospf `fortios.router.Ospf`, and also allows the definition of separate Network resources `fortios.routerospf.Network`, but do not use a `fortios.router.Ospf` with in-line Network in conjunction with any `fortios.routerospf.Network` resources, otherwise conflicts and overwrite will occur.
+ * > The provider supports the definition of Network in Router Ospf `fortios.router.Ospf`, and also allows the definition of separate Network resources `fortios.router/ospf.Network`, but do not use a `fortios.router.Ospf` with in-line Network in conjunction with any `fortios.router/ospf.Network` resources, otherwise conflicts and overwrite will occur.
  *
- * > The provider supports the definition of Neighbor in Router Ospf `fortios.router.Ospf`, and also allows the definition of separate Neighbor resources `fortios.routerospf.Neighbor`, but do not use a `fortios.router.Ospf` with in-line Neighbor in conjunction with any `fortios.routerospf.Neighbor` resources, otherwise conflicts and overwrite will occur.
+ * > The provider supports the definition of Neighbor in Router Ospf `fortios.router.Ospf`, and also allows the definition of separate Neighbor resources `fortios.router/ospf.Neighbor`, but do not use a `fortios.router.Ospf` with in-line Neighbor in conjunction with any `fortios.router/ospf.Neighbor` resources, otherwise conflicts and overwrite will occur.
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -81,22 +82,25 @@ import * as utilities from "../utilities";
  *     spfTimers: "5 10",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Router Ospf can be imported using any of these accepted formats
+ * Router Ospf can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
+ * $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
+ * $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Ospf extends pulumi.CustomResource {
     /**

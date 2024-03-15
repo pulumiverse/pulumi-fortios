@@ -95,10 +95,10 @@ def get_internetservicedefinition(fosid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:firewall/getInternetservicedefinition:getInternetservicedefinition', __args__, opts=opts, typ=GetInternetservicedefinitionResult).value
 
     return AwaitableGetInternetservicedefinitionResult(
-        entries=__ret__.entries,
-        fosid=__ret__.fosid,
-        id=__ret__.id,
-        vdomparam=__ret__.vdomparam)
+        entries=pulumi.get(__ret__, 'entries'),
+        fosid=pulumi.get(__ret__, 'fosid'),
+        id=pulumi.get(__ret__, 'id'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_internetservicedefinition)

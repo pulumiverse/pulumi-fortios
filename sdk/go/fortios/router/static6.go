@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv6 static routing tables.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,26 +50,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Router Static6 can be imported using any of these accepted formats
+// Router Static6 can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/static6:Static6 labelname {{seq_num}}
-//
+// $ pulumi import fortios:router/static6:Static6 labelname {{seq_num}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/static6:Static6 labelname {{seq_num}}
-//
+// $ pulumi import fortios:router/static6:Static6 labelname {{seq_num}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Static6 struct {
 	pulumi.CustomResourceState
 
@@ -125,7 +126,7 @@ func NewStatic6(ctx *pulumi.Context,
 	if args.Device == nil {
 		return nil, errors.New("invalid value for required argument 'Device'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Static6
 	err := ctx.RegisterResource("fortios:router/static6:Static6", name, args, &resource, opts...)
 	if err != nil {

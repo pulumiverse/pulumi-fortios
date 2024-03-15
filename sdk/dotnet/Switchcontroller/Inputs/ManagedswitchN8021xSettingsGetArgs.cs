@@ -20,7 +20,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         public Input<string>? LinkDownAuth { get; set; }
 
         /// <summary>
-        /// Enable to configure local STP settings that override global STP settings. Valid values: `enable`, `disable`.
+        /// Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("localOverride")]
         public Input<string>? LocalOverride { get; set; }

@@ -732,6 +732,7 @@ class Static6(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -749,22 +750,25 @@ class Static6(pulumi.CustomResource):
             status="enable",
             virtual_wan_link="disable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router Static6 can be imported using any of these accepted formats
+        Router Static6 can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/static6:Static6 labelname {{seq_num}}
+        $ pulumi import fortios:router/static6:Static6 labelname {{seq_num}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/static6:Static6 labelname {{seq_num}}
+        $ pulumi import fortios:router/static6:Static6 labelname {{seq_num}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -801,6 +805,7 @@ class Static6(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -818,22 +823,25 @@ class Static6(pulumi.CustomResource):
             status="enable",
             virtual_wan_link="disable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router Static6 can be imported using any of these accepted formats
+        Router Static6 can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/static6:Static6 labelname {{seq_num}}
+        $ pulumi import fortios:router/static6:Static6 labelname {{seq_num}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/static6:Static6 labelname {{seq_num}}
+        $ pulumi import fortios:router/static6:Static6 labelname {{seq_num}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param Static6Args args: The arguments to use to populate this resource's properties.

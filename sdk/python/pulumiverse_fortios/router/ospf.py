@@ -1159,14 +1159,15 @@ class Ospf(pulumi.CustomResource):
         """
         Configure OSPF.
 
-        > The provider supports the definition of Ospf-Interface in Router Ospf `router.Ospf`, and also allows the definition of separate Ospf-Interface resources `routerospf.Ospfinterface`, but do not use a `router.Ospf` with in-line Ospf-Interface in conjunction with any `routerospf.Ospfinterface` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Ospf-Interface in Router Ospf `router.Ospf`, and also allows the definition of separate Ospf-Interface resources `router/ospf.Ospfinterface`, but do not use a `router.Ospf` with in-line Ospf-Interface in conjunction with any `router/ospf.Ospfinterface` resources, otherwise conflicts and overwrite will occur.
 
-        > The provider supports the definition of Network in Router Ospf `router.Ospf`, and also allows the definition of separate Network resources `routerospf.Network`, but do not use a `router.Ospf` with in-line Network in conjunction with any `routerospf.Network` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Network in Router Ospf `router.Ospf`, and also allows the definition of separate Network resources `router/ospf.Network`, but do not use a `router.Ospf` with in-line Network in conjunction with any `router/ospf.Network` resources, otherwise conflicts and overwrite will occur.
 
-        > The provider supports the definition of Neighbor in Router Ospf `router.Ospf`, and also allows the definition of separate Neighbor resources `routerospf.Neighbor`, but do not use a `router.Ospf` with in-line Neighbor in conjunction with any `routerospf.Neighbor` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Neighbor in Router Ospf `router.Ospf`, and also allows the definition of separate Neighbor resources `router/ospf.Neighbor`, but do not use a `router.Ospf` with in-line Neighbor in conjunction with any `router/ospf.Neighbor` resources, otherwise conflicts and overwrite will occur.
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1230,22 +1231,25 @@ class Ospf(pulumi.CustomResource):
             router_id="0.0.0.0",
             spf_timers="5 10")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router Ospf can be imported using any of these accepted formats
+        Router Ospf can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
+        $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
+        $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1293,14 +1297,15 @@ class Ospf(pulumi.CustomResource):
         """
         Configure OSPF.
 
-        > The provider supports the definition of Ospf-Interface in Router Ospf `router.Ospf`, and also allows the definition of separate Ospf-Interface resources `routerospf.Ospfinterface`, but do not use a `router.Ospf` with in-line Ospf-Interface in conjunction with any `routerospf.Ospfinterface` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Ospf-Interface in Router Ospf `router.Ospf`, and also allows the definition of separate Ospf-Interface resources `router/ospf.Ospfinterface`, but do not use a `router.Ospf` with in-line Ospf-Interface in conjunction with any `router/ospf.Ospfinterface` resources, otherwise conflicts and overwrite will occur.
 
-        > The provider supports the definition of Network in Router Ospf `router.Ospf`, and also allows the definition of separate Network resources `routerospf.Network`, but do not use a `router.Ospf` with in-line Network in conjunction with any `routerospf.Network` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Network in Router Ospf `router.Ospf`, and also allows the definition of separate Network resources `router/ospf.Network`, but do not use a `router.Ospf` with in-line Network in conjunction with any `router/ospf.Network` resources, otherwise conflicts and overwrite will occur.
 
-        > The provider supports the definition of Neighbor in Router Ospf `router.Ospf`, and also allows the definition of separate Neighbor resources `routerospf.Neighbor`, but do not use a `router.Ospf` with in-line Neighbor in conjunction with any `routerospf.Neighbor` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Neighbor in Router Ospf `router.Ospf`, and also allows the definition of separate Neighbor resources `router/ospf.Neighbor`, but do not use a `router.Ospf` with in-line Neighbor in conjunction with any `router/ospf.Neighbor` resources, otherwise conflicts and overwrite will occur.
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1364,22 +1369,25 @@ class Ospf(pulumi.CustomResource):
             router_id="0.0.0.0",
             spf_timers="5 10")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router Ospf can be imported using any of these accepted formats
+        Router Ospf can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
+        $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
+        $ pulumi import fortios:router/ospf:Ospf labelname RouterOspf
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param OspfArgs args: The arguments to use to populate this resource's properties.

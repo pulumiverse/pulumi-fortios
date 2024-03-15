@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure firewall authentication portals.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,26 +44,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall AuthPortal can be imported using any of these accepted formats
+// Firewall AuthPortal can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/authportal:Authportal labelname FirewallAuthPortal
-//
+// $ pulumi import fortios:firewall/authportal:Authportal labelname FirewallAuthPortal
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/authportal:Authportal labelname FirewallAuthPortal
-//
+// $ pulumi import fortios:firewall/authportal:Authportal labelname FirewallAuthPortal
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Authportal struct {
 	pulumi.CustomResourceState
 
@@ -86,7 +87,7 @@ func NewAuthportal(ctx *pulumi.Context,
 		args = &AuthportalArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Authportal
 	err := ctx.RegisterResource("fortios:firewall/authportal:Authportal", name, args, &resource, opts...)
 	if err != nil {

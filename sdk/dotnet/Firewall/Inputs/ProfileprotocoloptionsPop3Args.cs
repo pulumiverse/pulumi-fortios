@@ -20,7 +20,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? InspectAll { get; set; }
 
         /// <summary>
-        /// One or more options that can be applied to the session. Valid values: `clientcomfort`, `servercomfort`, `oversize`, `chunkedbypass`.
+        /// One or more options that can be applied to the session. Valid values: `oversize`.
         /// </summary>
         [Input("options")]
         public Input<string>? Options { get; set; }
@@ -32,7 +32,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<int>? OversizeLimit { get; set; }
 
         /// <summary>
-        /// Ports to scan for content (1 - 65535, default = 80).
+        /// Ports to scan for content (1 - 65535, default = 445).
         /// </summary>
         [Input("ports")]
         public Input<int>? Ports { get; set; }
@@ -45,8 +45,6 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
 
         /// <summary>
         /// Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-        /// 
-        /// The `pop3` block supports:
         /// </summary>
         [Input("scanBzip2")]
         public Input<string>? ScanBzip2 { get; set; }

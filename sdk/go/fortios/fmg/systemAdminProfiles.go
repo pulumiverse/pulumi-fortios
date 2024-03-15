@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports Create/Read/Update/Delete admin profiles for FortiManager
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -68,6 +70,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SystemAdminProfiles struct {
 	pulumi.CustomResourceState
 
@@ -145,7 +148,7 @@ func NewSystemAdminProfiles(ctx *pulumi.Context,
 	if args.Profileid == nil {
 		return nil, errors.New("invalid value for required argument 'Profileid'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAdminProfiles
 	err := ctx.RegisterResource("fortios:fmg/systemAdminProfiles:SystemAdminProfiles", name, args, &resource, opts...)
 	if err != nil {

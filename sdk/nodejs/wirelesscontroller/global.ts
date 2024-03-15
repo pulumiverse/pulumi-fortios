@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -31,22 +32,25 @@ import * as utilities from "../utilities";
  *     wtpShare: "disable",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * WirelessController Global can be imported using any of these accepted formats
+ * WirelessController Global can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
+ * $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
+ * $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Global extends pulumi.CustomResource {
     /**

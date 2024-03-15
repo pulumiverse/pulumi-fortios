@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Import
     /// 
-    /// Firewall InternetServiceBotnet can be imported using any of these accepted formats
+    /// Firewall InternetServiceBotnet can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/internetservicebotnet:Internetservicebotnet labelname {{fosid}}
+    /// $ pulumi import fortios:firewall/internetservicebotnet:Internetservicebotnet labelname {{fosid}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/internetservicebotnet:Internetservicebotnet labelname {{fosid}}
+    /// $ pulumi import fortios:firewall/internetservicebotnet:Internetservicebotnet labelname {{fosid}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:firewall/internetservicebotnet:Internetservicebotnet")]
     public partial class Internetservicebotnet : global::Pulumi.CustomResource

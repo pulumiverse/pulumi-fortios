@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure Internet Services Addition. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # Firewall InternetServiceAddition can be imported using any of these accepted formats
+// Firewall InternetServiceAddition can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetserviceaddition:Internetserviceaddition labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetserviceaddition:Internetserviceaddition labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetserviceaddition:Internetserviceaddition labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetserviceaddition:Internetserviceaddition labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Internetserviceaddition struct {
 	pulumi.CustomResourceState
 
@@ -53,7 +52,7 @@ func NewInternetserviceaddition(ctx *pulumi.Context,
 		args = &InternetserviceadditionArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Internetserviceaddition
 	err := ctx.RegisterResource("fortios:firewall/internetserviceaddition:Internetserviceaddition", name, args, &resource, opts...)
 	if err != nil {

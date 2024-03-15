@@ -10,7 +10,9 @@ import * as utilities from "../utilities";
  * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.firewall.Ippool`, we recommend that you use the new resource.
  *
  * ## Example Usage
+ *
  * ### Overload Ippool
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -23,7 +25,10 @@ import * as utilities from "../utilities";
  *     type: "overload",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### One-To-One Ippool
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -36,6 +41,7 @@ import * as utilities from "../utilities";
  *     type: "one-to-one",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class ObjectIppool extends pulumi.CustomResource {
     /**

@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiToken.
 //
 // ## Import
 //
-// # User Fortitoken can be imported using any of these accepted formats
+// User Fortitoken can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/fortitoken:Fortitoken labelname {{serial_number}}
-//
+// $ pulumi import fortios:user/fortitoken:Fortitoken labelname {{serial_number}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/fortitoken:Fortitoken labelname {{serial_number}}
-//
+// $ pulumi import fortios:user/fortitoken:Fortitoken labelname {{serial_number}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Fortitoken struct {
 	pulumi.CustomResourceState
 
@@ -63,7 +62,7 @@ func NewFortitoken(ctx *pulumi.Context,
 		args = &FortitokenArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Fortitoken
 	err := ctx.RegisterResource("fortios:user/fortitoken:Fortitoken", name, args, &resource, opts...)
 	if err != nil {

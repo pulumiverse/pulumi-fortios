@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// ## Import
     /// 
-    /// SwitchController TrafficSniffer can be imported using any of these accepted formats
+    /// SwitchController TrafficSniffer can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/trafficsniffer:Trafficsniffer labelname SwitchControllerTrafficSniffer
+    /// $ pulumi import fortios:switchcontroller/trafficsniffer:Trafficsniffer labelname SwitchControllerTrafficSniffer
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/trafficsniffer:Trafficsniffer labelname SwitchControllerTrafficSniffer
+    /// $ pulumi import fortios:switchcontroller/trafficsniffer:Trafficsniffer labelname SwitchControllerTrafficSniffer
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:switchcontroller/trafficsniffer:Trafficsniffer")]
     public partial class Trafficsniffer : global::Pulumi.CustomResource

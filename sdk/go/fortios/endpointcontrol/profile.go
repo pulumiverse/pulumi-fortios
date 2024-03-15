@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiClient endpoint control profiles. Applies to FortiOS Version `<= 6.2.0`.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -91,26 +93,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # EndpointControl Profile can be imported using any of these accepted formats
+// EndpointControl Profile can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:endpointcontrol/profile:Profile labelname {{profile_name}}
-//
+// $ pulumi import fortios:endpointcontrol/profile:Profile labelname {{profile_name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:endpointcontrol/profile:Profile labelname {{profile_name}}
-//
+// $ pulumi import fortios:endpointcontrol/profile:Profile labelname {{profile_name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Profile struct {
 	pulumi.CustomResourceState
 
@@ -149,7 +150,7 @@ func NewProfile(ctx *pulumi.Context,
 		args = &ProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Profile
 	err := ctx.RegisterResource("fortios:endpointcontrol/profile:Profile", name, args, &resource, opts...)
 	if err != nil {

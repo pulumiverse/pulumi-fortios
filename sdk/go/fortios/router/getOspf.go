@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on fortios router ospf
 func LookupOspf(ctx *pulumi.Context, args *LookupOspfArgs, opts ...pulumi.InvokeOption) (*LookupOspfResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOspfResult
 	err := ctx.Invoke("fortios:router/getOspf:getOspf", args, &rv, opts...)
 	if err != nil {

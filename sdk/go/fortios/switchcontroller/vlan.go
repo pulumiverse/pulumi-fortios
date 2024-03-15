@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure VLANs for switch controller. Applies to FortiOS Version `<= 6.2.0`.
 //
 // ## Import
 //
-// # SwitchController Vlan can be imported using any of these accepted formats
+// SwitchController Vlan can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/vlan:Vlan labelname {{name}}
-//
+// $ pulumi import fortios:switchcontroller/vlan:Vlan labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/vlan:Vlan labelname {{name}}
-//
+// $ pulumi import fortios:switchcontroller/vlan:Vlan labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Vlan struct {
 	pulumi.CustomResourceState
 
@@ -71,7 +70,7 @@ func NewVlan(ctx *pulumi.Context,
 		args = &VlanArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Vlan
 	err := ctx.RegisterResource("fortios:switchcontroller/vlan:Vlan", name, args, &resource, opts...)
 	if err != nil {

@@ -304,6 +304,7 @@ class Cacheservice(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -314,22 +315,25 @@ class Cacheservice(pulumi.CustomResource):
             device_id="default_dev_id",
             prefer_scenario="balance")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Wanopt CacheService can be imported using any of these accepted formats
+        Wanopt CacheService can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:wanopt/cacheservice:Cacheservice labelname WanoptCacheService
+        $ pulumi import fortios:wanopt/cacheservice:Cacheservice labelname WanoptCacheService
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:wanopt/cacheservice:Cacheservice labelname WanoptCacheService
+        $ pulumi import fortios:wanopt/cacheservice:Cacheservice labelname WanoptCacheService
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -353,6 +357,7 @@ class Cacheservice(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -363,22 +368,25 @@ class Cacheservice(pulumi.CustomResource):
             device_id="default_dev_id",
             prefer_scenario="balance")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Wanopt CacheService can be imported using any of these accepted formats
+        Wanopt CacheService can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:wanopt/cacheservice:Cacheservice labelname WanoptCacheService
+        $ pulumi import fortios:wanopt/cacheservice:Cacheservice labelname WanoptCacheService
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:wanopt/cacheservice:Cacheservice labelname WanoptCacheService
+        $ pulumi import fortios:wanopt/cacheservice:Cacheservice labelname WanoptCacheService
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param CacheserviceArgs args: The arguments to use to populate this resource's properties.

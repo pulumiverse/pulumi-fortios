@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv6 access lists.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,26 +39,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Router AccessList6 can be imported using any of these accepted formats
+// Router AccessList6 can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/accesslist6:Accesslist6 labelname {{name}}
-//
+// $ pulumi import fortios:router/accesslist6:Accesslist6 labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/accesslist6:Accesslist6 labelname {{name}}
-//
+// $ pulumi import fortios:router/accesslist6:Accesslist6 labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Accesslist6 struct {
 	pulumi.CustomResourceState
 
@@ -79,7 +80,7 @@ func NewAccesslist6(ctx *pulumi.Context,
 		args = &Accesslist6Args{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Accesslist6
 	err := ctx.RegisterResource("fortios:router/accesslist6:Accesslist6", name, args, &resource, opts...)
 	if err != nil {

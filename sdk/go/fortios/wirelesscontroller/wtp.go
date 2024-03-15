@@ -9,29 +9,28 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure Wireless Termination Points (WTPs), that is, FortiAPs or APs to be managed by FortiGate.
 //
 // ## Import
 //
-// # WirelessController Wtp can be imported using any of these accepted formats
+// WirelessController Wtp can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/wtp:Wtp labelname {{wtp_id}}
-//
+// $ pulumi import fortios:wirelesscontroller/wtp:Wtp labelname {{wtp_id}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/wtp:Wtp labelname {{wtp_id}}
-//
+// $ pulumi import fortios:wirelesscontroller/wtp:Wtp labelname {{wtp_id}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Wtp struct {
 	pulumi.CustomResourceState
 
@@ -142,7 +141,7 @@ func NewWtp(ctx *pulumi.Context,
 		"loginPasswd",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Wtp
 	err := ctx.RegisterResource("fortios:wirelesscontroller/wtp:Wtp", name, args, &resource, opts...)
 	if err != nil {

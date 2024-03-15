@@ -8,13 +8,15 @@ import * as utilities from "../utilities";
  * Convert IP/Mask to CIDR
  *
  * ## Example Usage
+ *
  * ### Example1
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
  *
- * const trnameInterface = fortios.sys.getInterface({
+ * const trnameInterface = fortios.system.getInterface({
  *     name: "port3",
  * });
  * const trnameCidr = trnameInterface.then(trnameInterface => fortios.ipmask.getCidr({
@@ -22,13 +24,16 @@ import * as utilities from "../utilities";
  * }));
  * export const output1 = trnameCidr.then(trnameCidr => trnameCidr.cidr);
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Example2
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
  *
- * const trnameInterface = fortios.sys.getInterface({
+ * const trnameInterface = fortios.system.getInterface({
  *     name: "port3",
  * });
  * const trnameCidr = trnameInterface.then(trnameInterface => fortios.ipmask.getCidr({
@@ -43,6 +48,7 @@ import * as utilities from "../utilities";
  * export const outputConv2 = trnameCidr.then(trnameCidr => trnameCidr.cidrlists);
  * export const outputOrignal = trnameInterface.then(trnameInterface => trnameInterface.ip);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getCidr(args?: GetCidrArgs, opts?: pulumi.InvokeOptions): Promise<GetCidrResult> {
     args = args || {};
@@ -97,13 +103,15 @@ export interface GetCidrResult {
  * Convert IP/Mask to CIDR
  *
  * ## Example Usage
+ *
  * ### Example1
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
  *
- * const trnameInterface = fortios.sys.getInterface({
+ * const trnameInterface = fortios.system.getInterface({
  *     name: "port3",
  * });
  * const trnameCidr = trnameInterface.then(trnameInterface => fortios.ipmask.getCidr({
@@ -111,13 +119,16 @@ export interface GetCidrResult {
  * }));
  * export const output1 = trnameCidr.then(trnameCidr => trnameCidr.cidr);
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Example2
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
  *
- * const trnameInterface = fortios.sys.getInterface({
+ * const trnameInterface = fortios.system.getInterface({
  *     name: "port3",
  * });
  * const trnameCidr = trnameInterface.then(trnameInterface => fortios.ipmask.getCidr({
@@ -132,6 +143,7 @@ export interface GetCidrResult {
  * export const outputConv2 = trnameCidr.then(trnameCidr => trnameCidr.cidrlists);
  * export const outputOrignal = trnameInterface.then(trnameInterface => trnameInterface.ip);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getCidrOutput(args?: GetCidrOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCidrResult> {
     return pulumi.output(args).apply((a: any) => getCidr(a, opts))

@@ -2110,11 +2110,11 @@ class WtpRadio1(dict):
                  vap_all: Optional[str] = None,
                  vaps: Optional[Sequence['outputs.WtpRadio1Vap']] = None):
         """
-        :param int auto_power_high: Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+        :param int auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        :param int auto_power_low: Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        :param int auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param str band: WiFi band that Radio 1 operates on.
+        :param str band: WiFi band that Radio 4 operates on.
         :param Sequence['WtpRadio1ChannelArgs'] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
         :param str drma_manual_mode: Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
         :param str override_analysis: Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
@@ -2173,7 +2173,7 @@ class WtpRadio1(dict):
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[int]:
         """
-        Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_high")
 
@@ -2189,7 +2189,7 @@ class WtpRadio1(dict):
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[int]:
         """
-        Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_low")
 
@@ -2205,7 +2205,7 @@ class WtpRadio1(dict):
     @pulumi.getter
     def band(self) -> Optional[str]:
         """
-        WiFi band that Radio 1 operates on.
+        WiFi band that Radio 4 operates on.
         """
         return pulumi.get(self, "band")
 
@@ -2430,11 +2430,11 @@ class WtpRadio2(dict):
                  vap_all: Optional[str] = None,
                  vaps: Optional[Sequence['outputs.WtpRadio2Vap']] = None):
         """
-        :param int auto_power_high: Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+        :param int auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        :param int auto_power_low: Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        :param int auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param str band: WiFi band that Radio 1 operates on.
+        :param str band: WiFi band that Radio 4 operates on.
         :param Sequence['WtpRadio2ChannelArgs'] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
         :param str drma_manual_mode: Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
         :param str override_analysis: Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
@@ -2493,7 +2493,7 @@ class WtpRadio2(dict):
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[int]:
         """
-        Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_high")
 
@@ -2509,7 +2509,7 @@ class WtpRadio2(dict):
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[int]:
         """
-        Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_low")
 
@@ -2525,7 +2525,7 @@ class WtpRadio2(dict):
     @pulumi.getter
     def band(self) -> Optional[str]:
         """
-        WiFi band that Radio 1 operates on.
+        WiFi band that Radio 4 operates on.
         """
         return pulumi.get(self, "band")
 
@@ -2747,11 +2747,11 @@ class WtpRadio3(dict):
                  vap_all: Optional[str] = None,
                  vaps: Optional[Sequence['outputs.WtpRadio3Vap']] = None):
         """
-        :param int auto_power_high: Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+        :param int auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        :param int auto_power_low: Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        :param int auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param str band: WiFi band that Radio 1 operates on.
+        :param str band: WiFi band that Radio 4 operates on.
         :param Sequence['WtpRadio3ChannelArgs'] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
         :param str drma_manual_mode: Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
         :param str override_analysis: Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
@@ -2807,7 +2807,7 @@ class WtpRadio3(dict):
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[int]:
         """
-        Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_high")
 
@@ -2823,7 +2823,7 @@ class WtpRadio3(dict):
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[int]:
         """
-        Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_low")
 
@@ -2839,7 +2839,7 @@ class WtpRadio3(dict):
     @pulumi.getter
     def band(self) -> Optional[str]:
         """
-        WiFi band that Radio 1 operates on.
+        WiFi band that Radio 4 operates on.
         """
         return pulumi.get(self, "band")
 
@@ -3053,11 +3053,11 @@ class WtpRadio4(dict):
                  vap_all: Optional[str] = None,
                  vaps: Optional[Sequence['outputs.WtpRadio4Vap']] = None):
         """
-        :param int auto_power_high: Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+        :param int auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        :param int auto_power_low: Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        :param int auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param str band: WiFi band that Radio 1 operates on.
+        :param str band: WiFi band that Radio 4 operates on.
         :param Sequence['WtpRadio4ChannelArgs'] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
         :param str drma_manual_mode: Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
         :param str override_analysis: Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
@@ -3113,7 +3113,7 @@ class WtpRadio4(dict):
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[int]:
         """
-        Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_high")
 
@@ -3129,7 +3129,7 @@ class WtpRadio4(dict):
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[int]:
         """
-        Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_low")
 
@@ -3145,7 +3145,7 @@ class WtpRadio4(dict):
     @pulumi.getter
     def band(self) -> Optional[str]:
         """
-        WiFi band that Radio 1 operates on.
+        WiFi band that Radio 4 operates on.
         """
         return pulumi.get(self, "band")
 
@@ -4528,11 +4528,11 @@ class WtpprofileRadio1(dict):
         :param str ap_sniffer_mgmt_other: Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
         :param str ap_sniffer_mgmt_probe: Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
         :param str arrp_profile: Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-        :param int auto_power_high: Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
-        :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
-        :param int auto_power_low: Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        :param int auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
+        :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
+        :param int auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param str band: WiFi band that Radio 1 operates on.
+        :param str band: WiFi band that Radio 3 operates on.
         :param str band5g_type: WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
         :param str bandwidth_admission_control: Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
         :param int bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
@@ -4541,21 +4541,21 @@ class WtpprofileRadio1(dict):
         :param str bss_color_mode: BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
         :param str call_admission_control: Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
         :param int call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-        :param str channel_bonding: Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+        :param str channel_bonding: Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
         :param str channel_utilization: Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
         :param Sequence['WtpprofileRadio1ChannelArgs'] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
         :param str coexistence: Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
         :param str darrp: Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
         :param str drma: Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
         :param str drma_sensitivity: Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-        :param int dtim: DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+        :param int dtim: Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
         :param int frag_threshold: Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
         :param str frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
         :param str iperf_protocol: Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
         :param int iperf_server_port: Iperf service port number.
         :param int max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
         :param int max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        :param str mode: Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         :param str n80211d: Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
         :param int power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
         :param str power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
@@ -4834,7 +4834,7 @@ class WtpprofileRadio1(dict):
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[int]:
         """
-        Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_high")
 
@@ -4842,7 +4842,7 @@ class WtpprofileRadio1(dict):
     @pulumi.getter(name="autoPowerLevel")
     def auto_power_level(self) -> Optional[str]:
         """
-        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "auto_power_level")
 
@@ -4850,7 +4850,7 @@ class WtpprofileRadio1(dict):
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[int]:
         """
-        Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_low")
 
@@ -4866,7 +4866,7 @@ class WtpprofileRadio1(dict):
     @pulumi.getter
     def band(self) -> Optional[str]:
         """
-        WiFi band that Radio 1 operates on.
+        WiFi band that Radio 3 operates on.
         """
         return pulumi.get(self, "band")
 
@@ -4938,7 +4938,7 @@ class WtpprofileRadio1(dict):
     @pulumi.getter(name="channelBonding")
     def channel_bonding(self) -> Optional[str]:
         """
-        Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+        Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
         """
         return pulumi.get(self, "channel_bonding")
 
@@ -4994,7 +4994,7 @@ class WtpprofileRadio1(dict):
     @pulumi.getter
     def dtim(self) -> Optional[int]:
         """
-        DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+        Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
         """
         return pulumi.get(self, "dtim")
 
@@ -5050,7 +5050,7 @@ class WtpprofileRadio1(dict):
     @pulumi.getter
     def mode(self) -> Optional[str]:
         """
-        Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         """
         return pulumi.get(self, "mode")
 
@@ -5576,11 +5576,11 @@ class WtpprofileRadio2(dict):
         :param str ap_sniffer_mgmt_other: Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
         :param str ap_sniffer_mgmt_probe: Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
         :param str arrp_profile: Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-        :param int auto_power_high: Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
-        :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
-        :param int auto_power_low: Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        :param int auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
+        :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
+        :param int auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param str band: WiFi band that Radio 1 operates on.
+        :param str band: WiFi band that Radio 3 operates on.
         :param str band5g_type: WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
         :param str bandwidth_admission_control: Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
         :param int bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
@@ -5589,21 +5589,21 @@ class WtpprofileRadio2(dict):
         :param str bss_color_mode: BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
         :param str call_admission_control: Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
         :param int call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-        :param str channel_bonding: Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+        :param str channel_bonding: Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
         :param str channel_utilization: Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
         :param Sequence['WtpprofileRadio2ChannelArgs'] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
         :param str coexistence: Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
         :param str darrp: Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
         :param str drma: Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
         :param str drma_sensitivity: Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-        :param int dtim: DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+        :param int dtim: Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
         :param int frag_threshold: Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
         :param str frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
         :param str iperf_protocol: Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
         :param int iperf_server_port: Iperf service port number.
         :param int max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
         :param int max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        :param str mode: Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         :param str n80211d: Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
         :param int power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
         :param str power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
@@ -5882,7 +5882,7 @@ class WtpprofileRadio2(dict):
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[int]:
         """
-        Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_high")
 
@@ -5890,7 +5890,7 @@ class WtpprofileRadio2(dict):
     @pulumi.getter(name="autoPowerLevel")
     def auto_power_level(self) -> Optional[str]:
         """
-        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "auto_power_level")
 
@@ -5898,7 +5898,7 @@ class WtpprofileRadio2(dict):
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[int]:
         """
-        Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_low")
 
@@ -5914,7 +5914,7 @@ class WtpprofileRadio2(dict):
     @pulumi.getter
     def band(self) -> Optional[str]:
         """
-        WiFi band that Radio 1 operates on.
+        WiFi band that Radio 3 operates on.
         """
         return pulumi.get(self, "band")
 
@@ -5986,7 +5986,7 @@ class WtpprofileRadio2(dict):
     @pulumi.getter(name="channelBonding")
     def channel_bonding(self) -> Optional[str]:
         """
-        Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+        Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
         """
         return pulumi.get(self, "channel_bonding")
 
@@ -6042,7 +6042,7 @@ class WtpprofileRadio2(dict):
     @pulumi.getter
     def dtim(self) -> Optional[int]:
         """
-        DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+        Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
         """
         return pulumi.get(self, "dtim")
 
@@ -6098,7 +6098,7 @@ class WtpprofileRadio2(dict):
     @pulumi.getter
     def mode(self) -> Optional[str]:
         """
-        Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         """
         return pulumi.get(self, "mode")
 
@@ -6621,11 +6621,11 @@ class WtpprofileRadio3(dict):
         :param str ap_sniffer_mgmt_other: Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
         :param str ap_sniffer_mgmt_probe: Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
         :param str arrp_profile: Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-        :param int auto_power_high: Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
-        :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
-        :param int auto_power_low: Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        :param int auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
+        :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
+        :param int auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param str band: WiFi band that Radio 1 operates on.
+        :param str band: WiFi band that Radio 3 operates on.
         :param str band5g_type: WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
         :param str bandwidth_admission_control: Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
         :param int bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
@@ -6634,21 +6634,21 @@ class WtpprofileRadio3(dict):
         :param str bss_color_mode: BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
         :param str call_admission_control: Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
         :param int call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-        :param str channel_bonding: Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+        :param str channel_bonding: Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
         :param str channel_utilization: Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
         :param Sequence['WtpprofileRadio3ChannelArgs'] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
         :param str coexistence: Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
         :param str darrp: Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
         :param str drma: Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
         :param str drma_sensitivity: Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-        :param int dtim: DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+        :param int dtim: Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
         :param int frag_threshold: Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
         :param str frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
         :param str iperf_protocol: Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
         :param int iperf_server_port: Iperf service port number.
         :param int max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
         :param int max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        :param str mode: Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         :param str n80211d: Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
         :param int power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
         :param str power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
@@ -6924,7 +6924,7 @@ class WtpprofileRadio3(dict):
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[int]:
         """
-        Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_high")
 
@@ -6932,7 +6932,7 @@ class WtpprofileRadio3(dict):
     @pulumi.getter(name="autoPowerLevel")
     def auto_power_level(self) -> Optional[str]:
         """
-        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "auto_power_level")
 
@@ -6940,7 +6940,7 @@ class WtpprofileRadio3(dict):
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[int]:
         """
-        Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_low")
 
@@ -6956,7 +6956,7 @@ class WtpprofileRadio3(dict):
     @pulumi.getter
     def band(self) -> Optional[str]:
         """
-        WiFi band that Radio 1 operates on.
+        WiFi band that Radio 3 operates on.
         """
         return pulumi.get(self, "band")
 
@@ -7028,7 +7028,7 @@ class WtpprofileRadio3(dict):
     @pulumi.getter(name="channelBonding")
     def channel_bonding(self) -> Optional[str]:
         """
-        Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+        Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
         """
         return pulumi.get(self, "channel_bonding")
 
@@ -7084,7 +7084,7 @@ class WtpprofileRadio3(dict):
     @pulumi.getter
     def dtim(self) -> Optional[int]:
         """
-        DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+        Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
         """
         return pulumi.get(self, "dtim")
 
@@ -7140,7 +7140,7 @@ class WtpprofileRadio3(dict):
     @pulumi.getter
     def mode(self) -> Optional[str]:
         """
-        Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         """
         return pulumi.get(self, "mode")
 
@@ -7655,11 +7655,11 @@ class WtpprofileRadio4(dict):
         :param str ap_sniffer_mgmt_other: Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
         :param str ap_sniffer_mgmt_probe: Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
         :param str arrp_profile: Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-        :param int auto_power_high: Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
-        :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
-        :param int auto_power_low: Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        :param int auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
+        :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
+        :param int auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param str band: WiFi band that Radio 1 operates on.
+        :param str band: WiFi band that Radio 3 operates on.
         :param str band5g_type: WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
         :param str bandwidth_admission_control: Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
         :param int bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
@@ -7668,21 +7668,21 @@ class WtpprofileRadio4(dict):
         :param str bss_color_mode: BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
         :param str call_admission_control: Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
         :param int call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-        :param str channel_bonding: Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+        :param str channel_bonding: Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
         :param str channel_utilization: Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
         :param Sequence['WtpprofileRadio4ChannelArgs'] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
         :param str coexistence: Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
         :param str darrp: Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
         :param str drma: Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
         :param str drma_sensitivity: Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-        :param int dtim: DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+        :param int dtim: Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
         :param int frag_threshold: Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
         :param str frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
         :param str iperf_protocol: Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
         :param int iperf_server_port: Iperf service port number.
         :param int max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
         :param int max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        :param str mode: Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         :param str n80211d: Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
         :param int power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
         :param str power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
@@ -7958,7 +7958,7 @@ class WtpprofileRadio4(dict):
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[int]:
         """
-        Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_high")
 
@@ -7966,7 +7966,7 @@ class WtpprofileRadio4(dict):
     @pulumi.getter(name="autoPowerLevel")
     def auto_power_level(self) -> Optional[str]:
         """
-        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "auto_power_level")
 
@@ -7974,7 +7974,7 @@ class WtpprofileRadio4(dict):
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[int]:
         """
-        Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         """
         return pulumi.get(self, "auto_power_low")
 
@@ -7990,7 +7990,7 @@ class WtpprofileRadio4(dict):
     @pulumi.getter
     def band(self) -> Optional[str]:
         """
-        WiFi band that Radio 1 operates on.
+        WiFi band that Radio 3 operates on.
         """
         return pulumi.get(self, "band")
 
@@ -8062,7 +8062,7 @@ class WtpprofileRadio4(dict):
     @pulumi.getter(name="channelBonding")
     def channel_bonding(self) -> Optional[str]:
         """
-        Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+        Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
         """
         return pulumi.get(self, "channel_bonding")
 
@@ -8118,7 +8118,7 @@ class WtpprofileRadio4(dict):
     @pulumi.getter
     def dtim(self) -> Optional[int]:
         """
-        DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+        Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
         """
         return pulumi.get(self, "dtim")
 
@@ -8174,7 +8174,7 @@ class WtpprofileRadio4(dict):
     @pulumi.getter
     def mode(self) -> Optional[str]:
         """
-        Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         """
         return pulumi.get(self, "mode")
 

@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -24,22 +25,25 @@ import * as utilities from "../utilities";
  *     macViolationTimer: 0,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * SwitchController Global can be imported using any of these accepted formats
+ * SwitchController Global can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:switchcontroller/global:Global labelname SwitchControllerGlobal
+ * $ pulumi import fortios:switchcontroller/global:Global labelname SwitchControllerGlobal
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:switchcontroller/global:Global labelname SwitchControllerGlobal
+ * $ pulumi import fortios:switchcontroller/global:Global labelname SwitchControllerGlobal
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Global extends pulumi.CustomResource {
     /**

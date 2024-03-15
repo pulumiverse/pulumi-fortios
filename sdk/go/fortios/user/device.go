@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure devices. Applies to FortiOS Version `<= 6.2.0`.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,26 +42,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # User Device can be imported using any of these accepted formats
+// User Device can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/device:Device labelname {{alias}}
-//
+// $ pulumi import fortios:user/device:Device labelname {{alias}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/device:Device labelname {{alias}}
-//
+// $ pulumi import fortios:user/device:Device labelname {{alias}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Device struct {
 	pulumi.CustomResourceState
 
@@ -94,7 +95,7 @@ func NewDevice(ctx *pulumi.Context,
 		args = &DeviceArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Device
 	err := ctx.RegisterResource("fortios:user/device:Device", name, args, &resource, opts...)
 	if err != nil {

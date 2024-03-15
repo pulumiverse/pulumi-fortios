@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Designate logical storage for DLP fingerprint database.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,30 +42,29 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Dlp Settings can be imported using any of these accepted formats
+// Dlp Settings can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:dlp/settings:Settings labelname DlpSettings
-//
+// $ pulumi import fortios:dlp/settings:Settings labelname DlpSettings
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:dlp/settings:Settings labelname DlpSettings
-//
+// $ pulumi import fortios:dlp/settings:Settings labelname DlpSettings
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Settings struct {
 	pulumi.CustomResourceState
 
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
+	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
 	CacheMemPercent pulumi.IntOutput `pulumi:"cacheMemPercent"`
 	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
 	ChunkSize pulumi.IntOutput `pulumi:"chunkSize"`
@@ -84,7 +85,7 @@ func NewSettings(ctx *pulumi.Context,
 		args = &SettingsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Settings
 	err := ctx.RegisterResource("fortios:dlp/settings:Settings", name, args, &resource, opts...)
 	if err != nil {
@@ -107,7 +108,7 @@ func GetSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Settings resources.
 type settingsState struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
+	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
 	CacheMemPercent *int `pulumi:"cacheMemPercent"`
 	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
 	ChunkSize *int `pulumi:"chunkSize"`
@@ -122,7 +123,7 @@ type settingsState struct {
 }
 
 type SettingsState struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
+	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
 	CacheMemPercent pulumi.IntPtrInput
 	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
 	ChunkSize pulumi.IntPtrInput
@@ -141,7 +142,7 @@ func (SettingsState) ElementType() reflect.Type {
 }
 
 type settingsArgs struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
+	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
 	CacheMemPercent *int `pulumi:"cacheMemPercent"`
 	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
 	ChunkSize *int `pulumi:"chunkSize"`
@@ -157,7 +158,7 @@ type settingsArgs struct {
 
 // The set of arguments for constructing a Settings resource.
 type SettingsArgs struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%).
+	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
 	CacheMemPercent pulumi.IntPtrInput
 	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
 	ChunkSize pulumi.IntPtrInput
@@ -258,7 +259,7 @@ func (o SettingsOutput) ToSettingsOutputWithContext(ctx context.Context) Setting
 	return o
 }
 
-// Maximum percentage of available memory allocated to caching (1 - 15%).
+// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
 func (o SettingsOutput) CacheMemPercent() pulumi.IntOutput {
 	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.CacheMemPercent }).(pulumi.IntOutput)
 }

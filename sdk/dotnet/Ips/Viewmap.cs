@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Ips
     /// 
     /// ## Import
     /// 
-    /// Ips ViewMap can be imported using any of these accepted formats
+    /// Ips ViewMap can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:ips/viewmap:Viewmap labelname {{fosid}}
+    /// $ pulumi import fortios:ips/viewmap:Viewmap labelname {{fosid}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:ips/viewmap:Viewmap labelname {{fosid}}
+    /// $ pulumi import fortios:ips/viewmap:Viewmap labelname {{fosid}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:ips/viewmap:Viewmap")]
     public partial class Viewmap : global::Pulumi.CustomResource

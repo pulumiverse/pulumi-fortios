@@ -8,7 +8,10 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type Accessproxy6ApiGateway6 struct {
 	// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
@@ -5635,12 +5638,6 @@ func (o AuthportalGroupArrayOutput) Index(i pulumi.IntInput) AuthportalGroupOutp
 
 type CentralsnatmapDstAddr6 struct {
 	// Address name.
-	//
-	// The `origAddr6` block supports:
-	//
-	// The `dstAddr6` block supports:
-	//
-	// The `natIppool6` block supports:
 	Name *string `pulumi:"name"`
 }
 
@@ -5657,12 +5654,6 @@ type CentralsnatmapDstAddr6Input interface {
 
 type CentralsnatmapDstAddr6Args struct {
 	// Address name.
-	//
-	// The `origAddr6` block supports:
-	//
-	// The `dstAddr6` block supports:
-	//
-	// The `natIppool6` block supports:
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -5718,12 +5709,6 @@ func (o CentralsnatmapDstAddr6Output) ToCentralsnatmapDstAddr6OutputWithContext(
 }
 
 // Address name.
-//
-// The `origAddr6` block supports:
-//
-// The `dstAddr6` block supports:
-//
-// The `natIppool6` block supports:
 func (o CentralsnatmapDstAddr6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CentralsnatmapDstAddr6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -5944,12 +5929,6 @@ func (o CentralsnatmapDstintfArrayOutput) Index(i pulumi.IntInput) Centralsnatma
 
 type CentralsnatmapNatIppool6 struct {
 	// Address name.
-	//
-	// The `origAddr6` block supports:
-	//
-	// The `dstAddr6` block supports:
-	//
-	// The `natIppool6` block supports:
 	Name *string `pulumi:"name"`
 }
 
@@ -5966,12 +5945,6 @@ type CentralsnatmapNatIppool6Input interface {
 
 type CentralsnatmapNatIppool6Args struct {
 	// Address name.
-	//
-	// The `origAddr6` block supports:
-	//
-	// The `dstAddr6` block supports:
-	//
-	// The `natIppool6` block supports:
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -6027,12 +6000,6 @@ func (o CentralsnatmapNatIppool6Output) ToCentralsnatmapNatIppool6OutputWithCont
 }
 
 // Address name.
-//
-// The `origAddr6` block supports:
-//
-// The `dstAddr6` block supports:
-//
-// The `natIppool6` block supports:
 func (o CentralsnatmapNatIppool6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CentralsnatmapNatIppool6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -6156,12 +6123,6 @@ func (o CentralsnatmapNatIppoolArrayOutput) Index(i pulumi.IntInput) Centralsnat
 
 type CentralsnatmapOrigAddr6 struct {
 	// Address name.
-	//
-	// The `origAddr6` block supports:
-	//
-	// The `dstAddr6` block supports:
-	//
-	// The `natIppool6` block supports:
 	Name *string `pulumi:"name"`
 }
 
@@ -6178,12 +6139,6 @@ type CentralsnatmapOrigAddr6Input interface {
 
 type CentralsnatmapOrigAddr6Args struct {
 	// Address name.
-	//
-	// The `origAddr6` block supports:
-	//
-	// The `dstAddr6` block supports:
-	//
-	// The `natIppool6` block supports:
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -6239,12 +6194,6 @@ func (o CentralsnatmapOrigAddr6Output) ToCentralsnatmapOrigAddr6OutputWithContex
 }
 
 // Address name.
-//
-// The `origAddr6` block supports:
-//
-// The `dstAddr6` block supports:
-//
-// The `natIppool6` block supports:
 func (o CentralsnatmapOrigAddr6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CentralsnatmapOrigAddr6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -9584,7 +9533,7 @@ func (o InternetserviceextensionDisableEntryArrayOutput) Index(i pulumi.IntInput
 type InternetserviceextensionDisableEntryIp6Range struct {
 	// End IPv6 address.
 	EndIp6 *string `pulumi:"endIp6"`
-	// Entry ID(1-255).
+	// Disable entry ID.
 	Id *int `pulumi:"id"`
 	// Start IPv6 address.
 	StartIp6 *string `pulumi:"startIp6"`
@@ -9604,7 +9553,7 @@ type InternetserviceextensionDisableEntryIp6RangeInput interface {
 type InternetserviceextensionDisableEntryIp6RangeArgs struct {
 	// End IPv6 address.
 	EndIp6 pulumi.StringPtrInput `pulumi:"endIp6"`
-	// Entry ID(1-255).
+	// Disable entry ID.
 	Id pulumi.IntPtrInput `pulumi:"id"`
 	// Start IPv6 address.
 	StartIp6 pulumi.StringPtrInput `pulumi:"startIp6"`
@@ -9666,7 +9615,7 @@ func (o InternetserviceextensionDisableEntryIp6RangeOutput) EndIp6() pulumi.Stri
 	return o.ApplyT(func(v InternetserviceextensionDisableEntryIp6Range) *string { return v.EndIp6 }).(pulumi.StringPtrOutput)
 }
 
-// Entry ID(1-255).
+// Disable entry ID.
 func (o InternetserviceextensionDisableEntryIp6RangeOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InternetserviceextensionDisableEntryIp6Range) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
@@ -10075,9 +10024,7 @@ func (o InternetserviceextensionEntryArrayOutput) Index(i pulumi.IntInput) Inter
 }
 
 type InternetserviceextensionEntryDst6 struct {
-	// Select the destination address or address group object from available options.
-	//
-	// The `dst6` block supports:
+	// Select the destination address6 or address group object from available options.
 	Name *string `pulumi:"name"`
 }
 
@@ -10093,9 +10040,7 @@ type InternetserviceextensionEntryDst6Input interface {
 }
 
 type InternetserviceextensionEntryDst6Args struct {
-	// Select the destination address or address group object from available options.
-	//
-	// The `dst6` block supports:
+	// Select the destination address6 or address group object from available options.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -10150,9 +10095,7 @@ func (o InternetserviceextensionEntryDst6Output) ToInternetserviceextensionEntry
 	return o
 }
 
-// Select the destination address or address group object from available options.
-//
-// The `dst6` block supports:
+// Select the destination address6 or address group object from available options.
 func (o InternetserviceextensionEntryDst6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InternetserviceextensionEntryDst6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -21408,17 +21351,15 @@ func (o ProfileprotocoloptionsNntpPtrOutput) UncompressedOversizeLimit() pulumi.
 type ProfileprotocoloptionsPop3 struct {
 	// Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
 	InspectAll *string `pulumi:"inspectAll"`
-	// One or more options that can be applied to the session. Valid values: `clientcomfort`, `servercomfort`, `oversize`, `chunkedbypass`.
+	// One or more options that can be applied to the session. Valid values: `oversize`.
 	Options *string `pulumi:"options"`
 	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
 	OversizeLimit *int `pulumi:"oversizeLimit"`
-	// Ports to scan for content (1 - 65535, default = 80).
+	// Ports to scan for content (1 - 65535, default = 445).
 	Ports *int `pulumi:"ports"`
 	// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
 	ProxyAfterTcpHandshake *string `pulumi:"proxyAfterTcpHandshake"`
 	// Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-	//
-	// The `pop3` block supports:
 	ScanBzip2 *string `pulumi:"scanBzip2"`
 	// SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
 	SslOffloaded *string `pulumi:"sslOffloaded"`
@@ -21444,17 +21385,15 @@ type ProfileprotocoloptionsPop3Input interface {
 type ProfileprotocoloptionsPop3Args struct {
 	// Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
 	InspectAll pulumi.StringPtrInput `pulumi:"inspectAll"`
-	// One or more options that can be applied to the session. Valid values: `clientcomfort`, `servercomfort`, `oversize`, `chunkedbypass`.
+	// One or more options that can be applied to the session. Valid values: `oversize`.
 	Options pulumi.StringPtrInput `pulumi:"options"`
 	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
 	OversizeLimit pulumi.IntPtrInput `pulumi:"oversizeLimit"`
-	// Ports to scan for content (1 - 65535, default = 80).
+	// Ports to scan for content (1 - 65535, default = 445).
 	Ports pulumi.IntPtrInput `pulumi:"ports"`
 	// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
 	ProxyAfterTcpHandshake pulumi.StringPtrInput `pulumi:"proxyAfterTcpHandshake"`
 	// Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-	//
-	// The `pop3` block supports:
 	ScanBzip2 pulumi.StringPtrInput `pulumi:"scanBzip2"`
 	// SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
 	SslOffloaded pulumi.StringPtrInput `pulumi:"sslOffloaded"`
@@ -21548,7 +21487,7 @@ func (o ProfileprotocoloptionsPop3Output) InspectAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *string { return v.InspectAll }).(pulumi.StringPtrOutput)
 }
 
-// One or more options that can be applied to the session. Valid values: `clientcomfort`, `servercomfort`, `oversize`, `chunkedbypass`.
+// One or more options that can be applied to the session. Valid values: `oversize`.
 func (o ProfileprotocoloptionsPop3Output) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
@@ -21558,7 +21497,7 @@ func (o ProfileprotocoloptionsPop3Output) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *int { return v.OversizeLimit }).(pulumi.IntPtrOutput)
 }
 
-// Ports to scan for content (1 - 65535, default = 80).
+// Ports to scan for content (1 - 65535, default = 445).
 func (o ProfileprotocoloptionsPop3Output) Ports() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *int { return v.Ports }).(pulumi.IntPtrOutput)
 }
@@ -21569,8 +21508,6 @@ func (o ProfileprotocoloptionsPop3Output) ProxyAfterTcpHandshake() pulumi.String
 }
 
 // Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-//
-// The `pop3` block supports:
 func (o ProfileprotocoloptionsPop3Output) ScanBzip2() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *string { return v.ScanBzip2 }).(pulumi.StringPtrOutput)
 }
@@ -21629,7 +21566,7 @@ func (o ProfileprotocoloptionsPop3PtrOutput) InspectAll() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// One or more options that can be applied to the session. Valid values: `clientcomfort`, `servercomfort`, `oversize`, `chunkedbypass`.
+// One or more options that can be applied to the session. Valid values: `oversize`.
 func (o ProfileprotocoloptionsPop3PtrOutput) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *string {
 		if v == nil {
@@ -21649,7 +21586,7 @@ func (o ProfileprotocoloptionsPop3PtrOutput) OversizeLimit() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// Ports to scan for content (1 - 65535, default = 80).
+// Ports to scan for content (1 - 65535, default = 445).
 func (o ProfileprotocoloptionsPop3PtrOutput) Ports() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *int {
 		if v == nil {
@@ -21670,8 +21607,6 @@ func (o ProfileprotocoloptionsPop3PtrOutput) ProxyAfterTcpHandshake() pulumi.Str
 }
 
 // Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-//
-// The `pop3` block supports:
 func (o ProfileprotocoloptionsPop3PtrOutput) ScanBzip2() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *string {
 		if v == nil {
@@ -32959,10 +32894,8 @@ type SslsshprofilePop3s struct {
 	// Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
 	RevokedServerCert *string `pulumi:"revokedServerCert"`
 	// Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-	//
-	// The `pop3s` block supports:
 	SniServerCertCheck *string `pulumi:"sniServerCertCheck"`
-	// Configure protocol inspection status. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
+	// Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
 	Status *string `pulumi:"status"`
 	// Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
 	UnsupportedSsl *string `pulumi:"unsupportedSsl"`
@@ -32972,7 +32905,7 @@ type SslsshprofilePop3s struct {
 	UnsupportedSslNegotiation *string `pulumi:"unsupportedSslNegotiation"`
 	// Action based on the SSL version used being unsupported.
 	UnsupportedSslVersion *string `pulumi:"unsupportedSslVersion"`
-	// Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+	// Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 	UntrustedServerCert *string `pulumi:"untrustedServerCert"`
 }
 
@@ -33007,10 +32940,8 @@ type SslsshprofilePop3sArgs struct {
 	// Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
 	RevokedServerCert pulumi.StringPtrInput `pulumi:"revokedServerCert"`
 	// Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-	//
-	// The `pop3s` block supports:
 	SniServerCertCheck pulumi.StringPtrInput `pulumi:"sniServerCertCheck"`
-	// Configure protocol inspection status. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
+	// Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
 	UnsupportedSsl pulumi.StringPtrInput `pulumi:"unsupportedSsl"`
@@ -33020,7 +32951,7 @@ type SslsshprofilePop3sArgs struct {
 	UnsupportedSslNegotiation pulumi.StringPtrInput `pulumi:"unsupportedSslNegotiation"`
 	// Action based on the SSL version used being unsupported.
 	UnsupportedSslVersion pulumi.StringPtrInput `pulumi:"unsupportedSslVersion"`
-	// Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+	// Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 	UntrustedServerCert pulumi.StringPtrInput `pulumi:"untrustedServerCert"`
 }
 
@@ -33147,13 +33078,11 @@ func (o SslsshprofilePop3sOutput) RevokedServerCert() pulumi.StringPtrOutput {
 }
 
 // Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-//
-// The `pop3s` block supports:
 func (o SslsshprofilePop3sOutput) SniServerCertCheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.SniServerCertCheck }).(pulumi.StringPtrOutput)
 }
 
-// Configure protocol inspection status. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
+// Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
 func (o SslsshprofilePop3sOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
@@ -33178,7 +33107,7 @@ func (o SslsshprofilePop3sOutput) UnsupportedSslVersion() pulumi.StringPtrOutput
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.UnsupportedSslVersion }).(pulumi.StringPtrOutput)
 }
 
-// Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+// Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 func (o SslsshprofilePop3sOutput) UntrustedServerCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.UntrustedServerCert }).(pulumi.StringPtrOutput)
 }
@@ -33298,8 +33227,6 @@ func (o SslsshprofilePop3sPtrOutput) RevokedServerCert() pulumi.StringPtrOutput 
 }
 
 // Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-//
-// The `pop3s` block supports:
 func (o SslsshprofilePop3sPtrOutput) SniServerCertCheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -33309,7 +33236,7 @@ func (o SslsshprofilePop3sPtrOutput) SniServerCertCheck() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Configure protocol inspection status. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
+// Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
 func (o SslsshprofilePop3sPtrOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -33359,7 +33286,7 @@ func (o SslsshprofilePop3sPtrOutput) UnsupportedSslVersion() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+// Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 func (o SslsshprofilePop3sPtrOutput) UntrustedServerCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {

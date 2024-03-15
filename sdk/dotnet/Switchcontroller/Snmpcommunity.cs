@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// ## Import
     /// 
-    /// SwitchController SnmpCommunity can be imported using any of these accepted formats
+    /// SwitchController SnmpCommunity can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/snmpcommunity:Snmpcommunity labelname {{fosid}}
+    /// $ pulumi import fortios:switchcontroller/snmpcommunity:Snmpcommunity labelname {{fosid}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/snmpcommunity:Snmpcommunity labelname {{fosid}}
+    /// $ pulumi import fortios:switchcontroller/snmpcommunity:Snmpcommunity labelname {{fosid}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:switchcontroller/snmpcommunity:Snmpcommunity")]
     public partial class Snmpcommunity : global::Pulumi.CustomResource

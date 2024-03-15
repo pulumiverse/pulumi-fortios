@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -65,22 +66,25 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Firewall SslSshProfile can be imported using any of these accepted formats
+    /// Firewall SslSshProfile can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/sslsshprofile:Sslsshprofile labelname {{name}}
+    /// $ pulumi import fortios:firewall/sslsshprofile:Sslsshprofile labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/sslsshprofile:Sslsshprofile labelname {{name}}
+    /// $ pulumi import fortios:firewall/sslsshprofile:Sslsshprofile labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:firewall/sslsshprofile:Sslsshprofile")]
     public partial class Sslsshprofile : global::Pulumi.CustomResource

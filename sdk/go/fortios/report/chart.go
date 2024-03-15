@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Report chart widget configuration. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,26 +52,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Report Chart can be imported using any of these accepted formats
+// Report Chart can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:report/chart:Chart labelname {{name}}
-//
+// $ pulumi import fortios:report/chart:Chart labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:report/chart:Chart labelname {{name}}
-//
+// $ pulumi import fortios:report/chart:Chart labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Chart struct {
 	pulumi.CustomResourceState
 
@@ -138,7 +139,7 @@ func NewChart(ctx *pulumi.Context,
 	if args.Dataset == nil {
 		return nil, errors.New("invalid value for required argument 'Dataset'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Chart
 	err := ctx.RegisterResource("fortios:report/chart:Chart", name, args, &resource, opts...)
 	if err != nil {

@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `router.Static`.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,8 +40,9 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetStaticlist(ctx *pulumi.Context, args *GetStaticlistArgs, opts ...pulumi.InvokeOption) (*GetStaticlistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetStaticlistResult
 	err := ctx.Invoke("fortios:router/getStaticlist:getStaticlist", args, &rv, opts...)
 	if err != nil {

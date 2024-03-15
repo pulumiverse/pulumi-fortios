@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Report
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,22 +35,25 @@ namespace Pulumiverse.Fortios.Report
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Report Setting can be imported using any of these accepted formats
+    /// Report Setting can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:report/setting:Setting labelname ReportSetting
+    /// $ pulumi import fortios:report/setting:Setting labelname ReportSetting
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:report/setting:Setting labelname ReportSetting
+    /// $ pulumi import fortios:report/setting:Setting labelname ReportSetting
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:report/setting:Setting")]
     public partial class Setting : global::Pulumi.CustomResource

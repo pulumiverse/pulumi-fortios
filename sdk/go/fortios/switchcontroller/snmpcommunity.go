@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiSwitch SNMP v1/v2c communities globally. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # SwitchController SnmpCommunity can be imported using any of these accepted formats
+// SwitchController SnmpCommunity can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/snmpcommunity:Snmpcommunity labelname {{fosid}}
-//
+// $ pulumi import fortios:switchcontroller/snmpcommunity:Snmpcommunity labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/snmpcommunity:Snmpcommunity labelname {{fosid}}
-//
+// $ pulumi import fortios:switchcontroller/snmpcommunity:Snmpcommunity labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Snmpcommunity struct {
 	pulumi.CustomResourceState
 
@@ -77,7 +76,7 @@ func NewSnmpcommunity(ctx *pulumi.Context,
 		args = &SnmpcommunityArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Snmpcommunity
 	err := ctx.RegisterResource("fortios:switchcontroller/snmpcommunity:Snmpcommunity", name, args, &resource, opts...)
 	if err != nil {

@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports Create/Read/Update/Delete firewall object virtual ip for FortiManager.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -54,6 +56,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type FirewallObjectVip struct {
 	pulumi.CustomResourceState
 
@@ -86,7 +89,7 @@ func NewFirewallObjectVip(ctx *pulumi.Context,
 		args = &FirewallObjectVipArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallObjectVip
 	err := ctx.RegisterResource("fortios:fmg/firewallObjectVip:FirewallObjectVip", name, args, &resource, opts...)
 	if err != nil {

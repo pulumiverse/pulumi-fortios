@@ -696,6 +696,7 @@ class Ippool(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -712,22 +713,25 @@ class Ippool(pulumi.CustomResource):
             startip="1.0.0.0",
             type="overload")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall Ippool can be imported using any of these accepted formats
+        Firewall Ippool can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/ippool:Ippool labelname {{name}}
+        $ pulumi import fortios:firewall/ippool:Ippool labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/ippool:Ippool labelname {{name}}
+        $ pulumi import fortios:firewall/ippool:Ippool labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -763,6 +767,7 @@ class Ippool(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -779,22 +784,25 @@ class Ippool(pulumi.CustomResource):
             startip="1.0.0.0",
             type="overload")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall Ippool can be imported using any of these accepted formats
+        Firewall Ippool can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/ippool:Ippool labelname {{name}}
+        $ pulumi import fortios:firewall/ippool:Ippool labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/ippool:Ippool labelname {{name}}
+        $ pulumi import fortios:firewall/ippool:Ippool labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param IppoolArgs args: The arguments to use to populate this resource's properties.

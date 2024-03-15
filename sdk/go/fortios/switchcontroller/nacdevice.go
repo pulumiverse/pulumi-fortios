@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure/list NAC devices learned on the managed FortiSwitch ports which matches NAC policy. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,7.0.0`.
 //
 // ## Import
 //
-// # SwitchController NacDevice can be imported using any of these accepted formats
+// SwitchController NacDevice can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/nacdevice:Nacdevice labelname {{fosid}}
-//
+// $ pulumi import fortios:switchcontroller/nacdevice:Nacdevice labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/nacdevice:Nacdevice labelname {{fosid}}
-//
+// $ pulumi import fortios:switchcontroller/nacdevice:Nacdevice labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Nacdevice struct {
 	pulumi.CustomResourceState
 
@@ -65,7 +64,7 @@ func NewNacdevice(ctx *pulumi.Context,
 		args = &NacdeviceArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Nacdevice
 	err := ctx.RegisterResource("fortios:switchcontroller/nacdevice:Nacdevice", name, args, &resource, opts...)
 	if err != nil {

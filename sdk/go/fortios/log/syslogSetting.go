@@ -9,14 +9,16 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a resource to configure logging to remote Syslog logging servers.
 //
-// !> **Warning:** The resource will be deprecated and replaced by new resource `logsyslogd.Setting`, we recommend that you use the new resource.
+// !> **Warning:** The resource will be deprecated and replaced by new resource `log/syslogd.Setting`, we recommend that you use the new resource.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,6 +48,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SyslogSetting struct {
 	pulumi.CustomResourceState
 
@@ -75,7 +78,7 @@ func NewSyslogSetting(ctx *pulumi.Context,
 	if args.Status == nil {
 		return nil, errors.New("invalid value for required argument 'Status'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SyslogSetting
 	err := ctx.RegisterResource("fortios:log/syslogSetting:SyslogSetting", name, args, &resource, opts...)
 	if err != nil {

@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -63,22 +64,25 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Firewall CentralSnatMap can be imported using any of these accepted formats
+    /// Firewall CentralSnatMap can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/centralsnatmap:Centralsnatmap labelname {{policyid}}
+    /// $ pulumi import fortios:firewall/centralsnatmap:Centralsnatmap labelname {{policyid}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/centralsnatmap:Centralsnatmap labelname {{policyid}}
+    /// $ pulumi import fortios:firewall/centralsnatmap:Centralsnatmap labelname {{policyid}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:firewall/centralsnatmap:Centralsnatmap")]
     public partial class Centralsnatmap : global::Pulumi.CustomResource

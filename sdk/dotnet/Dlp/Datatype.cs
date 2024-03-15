@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Dlp
     /// 
     /// ## Import
     /// 
-    /// Dlp DataType can be imported using any of these accepted formats
+    /// Dlp DataType can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:dlp/datatype:Datatype labelname {{name}}
+    /// $ pulumi import fortios:dlp/datatype:Datatype labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:dlp/datatype:Datatype labelname {{name}}
+    /// $ pulumi import fortios:dlp/datatype:Datatype labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:dlp/datatype:Datatype")]
     public partial class Datatype : global::Pulumi.CustomResource

@@ -8,7 +8,10 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type AccesscontrollistLayer3Ipv4Rule struct {
 	// Policy action (allow | deny). Valid values: `allow`, `deny`.
@@ -4170,15 +4173,15 @@ func (o WtpLanPtrOutput) PortSsid() pulumi.StringPtrOutput {
 }
 
 type WtpRadio1 struct {
-	// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
 	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow *int `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 4 operates on.
 	Band *string `pulumi:"band"`
 	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 	Channels []WtpRadio1Channel `pulumi:"channels"`
@@ -4222,15 +4225,15 @@ type WtpRadio1Input interface {
 }
 
 type WtpRadio1Args struct {
-	// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
 	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 4 operates on.
 	Band pulumi.StringPtrInput `pulumi:"band"`
 	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 	Channels WtpRadio1ChannelArrayInput `pulumi:"channels"`
@@ -4339,7 +4342,7 @@ func (o WtpRadio1Output) ToWtpRadio1PtrOutputWithContext(ctx context.Context) Wt
 	}).(WtpRadio1PtrOutput)
 }
 
-// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio1Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
@@ -4349,7 +4352,7 @@ func (o WtpRadio1Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio1Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
@@ -4359,7 +4362,7 @@ func (o WtpRadio1Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 4 operates on.
 func (o WtpRadio1Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
@@ -4458,7 +4461,7 @@ func (o WtpRadio1PtrOutput) Elem() WtpRadio1Output {
 	}).(WtpRadio1Output)
 }
 
-// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio1PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *int {
 		if v == nil {
@@ -4478,7 +4481,7 @@ func (o WtpRadio1PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio1PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *int {
 		if v == nil {
@@ -4498,7 +4501,7 @@ func (o WtpRadio1PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 4 operates on.
 func (o WtpRadio1PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *string {
 		if v == nil {
@@ -4843,15 +4846,15 @@ func (o WtpRadio1VapArrayOutput) Index(i pulumi.IntInput) WtpRadio1VapOutput {
 }
 
 type WtpRadio2 struct {
-	// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
 	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow *int `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 4 operates on.
 	Band *string `pulumi:"band"`
 	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 	Channels []WtpRadio2Channel `pulumi:"channels"`
@@ -4895,15 +4898,15 @@ type WtpRadio2Input interface {
 }
 
 type WtpRadio2Args struct {
-	// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
 	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 4 operates on.
 	Band pulumi.StringPtrInput `pulumi:"band"`
 	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 	Channels WtpRadio2ChannelArrayInput `pulumi:"channels"`
@@ -5012,7 +5015,7 @@ func (o WtpRadio2Output) ToWtpRadio2PtrOutputWithContext(ctx context.Context) Wt
 	}).(WtpRadio2PtrOutput)
 }
 
-// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio2Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
@@ -5022,7 +5025,7 @@ func (o WtpRadio2Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio2Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
@@ -5032,7 +5035,7 @@ func (o WtpRadio2Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 4 operates on.
 func (o WtpRadio2Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
@@ -5131,7 +5134,7 @@ func (o WtpRadio2PtrOutput) Elem() WtpRadio2Output {
 	}).(WtpRadio2Output)
 }
 
-// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio2PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *int {
 		if v == nil {
@@ -5151,7 +5154,7 @@ func (o WtpRadio2PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio2PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *int {
 		if v == nil {
@@ -5171,7 +5174,7 @@ func (o WtpRadio2PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 4 operates on.
 func (o WtpRadio2PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *string {
 		if v == nil {
@@ -5516,15 +5519,15 @@ func (o WtpRadio2VapArrayOutput) Index(i pulumi.IntInput) WtpRadio2VapOutput {
 }
 
 type WtpRadio3 struct {
-	// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
 	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow *int `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 4 operates on.
 	Band *string `pulumi:"band"`
 	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 	Channels []WtpRadio3Channel `pulumi:"channels"`
@@ -5566,15 +5569,15 @@ type WtpRadio3Input interface {
 }
 
 type WtpRadio3Args struct {
-	// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
 	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 4 operates on.
 	Band pulumi.StringPtrInput `pulumi:"band"`
 	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 	Channels WtpRadio3ChannelArrayInput `pulumi:"channels"`
@@ -5681,7 +5684,7 @@ func (o WtpRadio3Output) ToWtpRadio3PtrOutputWithContext(ctx context.Context) Wt
 	}).(WtpRadio3PtrOutput)
 }
 
-// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio3Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
@@ -5691,7 +5694,7 @@ func (o WtpRadio3Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio3Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
@@ -5701,7 +5704,7 @@ func (o WtpRadio3Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 4 operates on.
 func (o WtpRadio3Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
@@ -5795,7 +5798,7 @@ func (o WtpRadio3PtrOutput) Elem() WtpRadio3Output {
 	}).(WtpRadio3Output)
 }
 
-// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio3PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *int {
 		if v == nil {
@@ -5815,7 +5818,7 @@ func (o WtpRadio3PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio3PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *int {
 		if v == nil {
@@ -5835,7 +5838,7 @@ func (o WtpRadio3PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 4 operates on.
 func (o WtpRadio3PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *string {
 		if v == nil {
@@ -6170,15 +6173,15 @@ func (o WtpRadio3VapArrayOutput) Index(i pulumi.IntInput) WtpRadio3VapOutput {
 }
 
 type WtpRadio4 struct {
-	// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
 	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow *int `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 4 operates on.
 	Band *string `pulumi:"band"`
 	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 	Channels []WtpRadio4Channel `pulumi:"channels"`
@@ -6220,15 +6223,15 @@ type WtpRadio4Input interface {
 }
 
 type WtpRadio4Args struct {
-	// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
 	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 4 operates on.
 	Band pulumi.StringPtrInput `pulumi:"band"`
 	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 	Channels WtpRadio4ChannelArrayInput `pulumi:"channels"`
@@ -6335,7 +6338,7 @@ func (o WtpRadio4Output) ToWtpRadio4PtrOutputWithContext(ctx context.Context) Wt
 	}).(WtpRadio4PtrOutput)
 }
 
-// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio4Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
@@ -6345,7 +6348,7 @@ func (o WtpRadio4Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio4Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
@@ -6355,7 +6358,7 @@ func (o WtpRadio4Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 4 operates on.
 func (o WtpRadio4Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
@@ -6449,7 +6452,7 @@ func (o WtpRadio4PtrOutput) Elem() WtpRadio4Output {
 	}).(WtpRadio4Output)
 }
 
-// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio4PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *int {
 		if v == nil {
@@ -6469,7 +6472,7 @@ func (o WtpRadio4PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio4PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *int {
 		if v == nil {
@@ -6489,7 +6492,7 @@ func (o WtpRadio4PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 4 operates on.
 func (o WtpRadio4PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *string {
 		if v == nil {
@@ -8828,15 +8831,15 @@ type WtpprofileRadio1 struct {
 	ApSnifferMgmtProbe *string `pulumi:"apSnifferMgmtProbe"`
 	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 	ArrpProfile *string `pulumi:"arrpProfile"`
-	// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow *int `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 3 operates on.
 	Band *string `pulumi:"band"`
 	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 	Band5gType *string `pulumi:"band5gType"`
@@ -8854,7 +8857,7 @@ type WtpprofileRadio1 struct {
 	CallAdmissionControl *string `pulumi:"callAdmissionControl"`
 	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 	CallCapacity *int `pulumi:"callCapacity"`
-	// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 	ChannelBonding *string `pulumi:"channelBonding"`
 	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
 	ChannelUtilization *string `pulumi:"channelUtilization"`
@@ -8868,7 +8871,7 @@ type WtpprofileRadio1 struct {
 	Drma *string `pulumi:"drma"`
 	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 	DrmaSensitivity *string `pulumi:"drmaSensitivity"`
-	// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 	Dtim *int `pulumi:"dtim"`
 	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 	FragThreshold *int `pulumi:"fragThreshold"`
@@ -8882,7 +8885,7 @@ type WtpprofileRadio1 struct {
 	MaxClients *int `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance *int `pulumi:"maxDistance"`
-	// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode *string `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d *string `pulumi:"n80211d"`
@@ -8986,15 +8989,15 @@ type WtpprofileRadio1Args struct {
 	ApSnifferMgmtProbe pulumi.StringPtrInput `pulumi:"apSnifferMgmtProbe"`
 	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 	ArrpProfile pulumi.StringPtrInput `pulumi:"arrpProfile"`
-	// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 3 operates on.
 	Band pulumi.StringPtrInput `pulumi:"band"`
 	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 	Band5gType pulumi.StringPtrInput `pulumi:"band5gType"`
@@ -9012,7 +9015,7 @@ type WtpprofileRadio1Args struct {
 	CallAdmissionControl pulumi.StringPtrInput `pulumi:"callAdmissionControl"`
 	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 	CallCapacity pulumi.IntPtrInput `pulumi:"callCapacity"`
-	// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 	ChannelBonding pulumi.StringPtrInput `pulumi:"channelBonding"`
 	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
 	ChannelUtilization pulumi.StringPtrInput `pulumi:"channelUtilization"`
@@ -9026,7 +9029,7 @@ type WtpprofileRadio1Args struct {
 	Drma pulumi.StringPtrInput `pulumi:"drma"`
 	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 	DrmaSensitivity pulumi.StringPtrInput `pulumi:"drmaSensitivity"`
-	// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 	Dtim pulumi.IntPtrInput `pulumi:"dtim"`
 	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 	FragThreshold pulumi.IntPtrInput `pulumi:"fragThreshold"`
@@ -9040,7 +9043,7 @@ type WtpprofileRadio1Args struct {
 	MaxClients pulumi.IntPtrInput `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance pulumi.IntPtrInput `pulumi:"maxDistance"`
-	// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d pulumi.StringPtrInput `pulumi:"n80211d"`
@@ -9245,17 +9248,17 @@ func (o WtpprofileRadio1Output) ArrpProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ArrpProfile }).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio1Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio1Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
@@ -9265,7 +9268,7 @@ func (o WtpprofileRadio1Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio1Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
@@ -9310,7 +9313,7 @@ func (o WtpprofileRadio1Output) CallCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.CallCapacity }).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio1Output) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ChannelBonding }).(pulumi.StringPtrOutput)
 }
@@ -9345,7 +9348,7 @@ func (o WtpprofileRadio1Output) DrmaSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.DrmaSensitivity }).(pulumi.StringPtrOutput)
 }
 
-// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio1Output) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.Dtim }).(pulumi.IntPtrOutput)
 }
@@ -9380,7 +9383,7 @@ func (o WtpprofileRadio1Output) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
-// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio1Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
@@ -9689,7 +9692,7 @@ func (o WtpprofileRadio1PtrOutput) ArrpProfile() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio1PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -9699,7 +9702,7 @@ func (o WtpprofileRadio1PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -9709,7 +9712,7 @@ func (o WtpprofileRadio1PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio1PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -9729,7 +9732,7 @@ func (o WtpprofileRadio1PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio1PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -9819,7 +9822,7 @@ func (o WtpprofileRadio1PtrOutput) CallCapacity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio1PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -9889,7 +9892,7 @@ func (o WtpprofileRadio1PtrOutput) DrmaSensitivity() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio1PtrOutput) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -9959,7 +9962,7 @@ func (o WtpprofileRadio1PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio1PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10508,15 +10511,15 @@ type WtpprofileRadio2 struct {
 	ApSnifferMgmtProbe *string `pulumi:"apSnifferMgmtProbe"`
 	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 	ArrpProfile *string `pulumi:"arrpProfile"`
-	// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow *int `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 3 operates on.
 	Band *string `pulumi:"band"`
 	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 	Band5gType *string `pulumi:"band5gType"`
@@ -10534,7 +10537,7 @@ type WtpprofileRadio2 struct {
 	CallAdmissionControl *string `pulumi:"callAdmissionControl"`
 	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 	CallCapacity *int `pulumi:"callCapacity"`
-	// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 	ChannelBonding *string `pulumi:"channelBonding"`
 	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
 	ChannelUtilization *string `pulumi:"channelUtilization"`
@@ -10548,7 +10551,7 @@ type WtpprofileRadio2 struct {
 	Drma *string `pulumi:"drma"`
 	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 	DrmaSensitivity *string `pulumi:"drmaSensitivity"`
-	// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 	Dtim *int `pulumi:"dtim"`
 	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 	FragThreshold *int `pulumi:"fragThreshold"`
@@ -10562,7 +10565,7 @@ type WtpprofileRadio2 struct {
 	MaxClients *int `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance *int `pulumi:"maxDistance"`
-	// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode *string `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d *string `pulumi:"n80211d"`
@@ -10666,15 +10669,15 @@ type WtpprofileRadio2Args struct {
 	ApSnifferMgmtProbe pulumi.StringPtrInput `pulumi:"apSnifferMgmtProbe"`
 	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 	ArrpProfile pulumi.StringPtrInput `pulumi:"arrpProfile"`
-	// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 3 operates on.
 	Band pulumi.StringPtrInput `pulumi:"band"`
 	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 	Band5gType pulumi.StringPtrInput `pulumi:"band5gType"`
@@ -10692,7 +10695,7 @@ type WtpprofileRadio2Args struct {
 	CallAdmissionControl pulumi.StringPtrInput `pulumi:"callAdmissionControl"`
 	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 	CallCapacity pulumi.IntPtrInput `pulumi:"callCapacity"`
-	// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 	ChannelBonding pulumi.StringPtrInput `pulumi:"channelBonding"`
 	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
 	ChannelUtilization pulumi.StringPtrInput `pulumi:"channelUtilization"`
@@ -10706,7 +10709,7 @@ type WtpprofileRadio2Args struct {
 	Drma pulumi.StringPtrInput `pulumi:"drma"`
 	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 	DrmaSensitivity pulumi.StringPtrInput `pulumi:"drmaSensitivity"`
-	// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 	Dtim pulumi.IntPtrInput `pulumi:"dtim"`
 	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 	FragThreshold pulumi.IntPtrInput `pulumi:"fragThreshold"`
@@ -10720,7 +10723,7 @@ type WtpprofileRadio2Args struct {
 	MaxClients pulumi.IntPtrInput `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance pulumi.IntPtrInput `pulumi:"maxDistance"`
-	// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d pulumi.StringPtrInput `pulumi:"n80211d"`
@@ -10925,17 +10928,17 @@ func (o WtpprofileRadio2Output) ArrpProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ArrpProfile }).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio2Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio2Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
@@ -10945,7 +10948,7 @@ func (o WtpprofileRadio2Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio2Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
@@ -10990,7 +10993,7 @@ func (o WtpprofileRadio2Output) CallCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.CallCapacity }).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio2Output) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ChannelBonding }).(pulumi.StringPtrOutput)
 }
@@ -11025,7 +11028,7 @@ func (o WtpprofileRadio2Output) DrmaSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.DrmaSensitivity }).(pulumi.StringPtrOutput)
 }
 
-// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio2Output) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.Dtim }).(pulumi.IntPtrOutput)
 }
@@ -11060,7 +11063,7 @@ func (o WtpprofileRadio2Output) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
-// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio2Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
@@ -11369,7 +11372,7 @@ func (o WtpprofileRadio2PtrOutput) ArrpProfile() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio2PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -11379,7 +11382,7 @@ func (o WtpprofileRadio2PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -11389,7 +11392,7 @@ func (o WtpprofileRadio2PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio2PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -11409,7 +11412,7 @@ func (o WtpprofileRadio2PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio2PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -11499,7 +11502,7 @@ func (o WtpprofileRadio2PtrOutput) CallCapacity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio2PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -11569,7 +11572,7 @@ func (o WtpprofileRadio2PtrOutput) DrmaSensitivity() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio2PtrOutput) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -11639,7 +11642,7 @@ func (o WtpprofileRadio2PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio2PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12188,15 +12191,15 @@ type WtpprofileRadio3 struct {
 	ApSnifferMgmtProbe *string `pulumi:"apSnifferMgmtProbe"`
 	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 	ArrpProfile *string `pulumi:"arrpProfile"`
-	// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow *int `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 3 operates on.
 	Band *string `pulumi:"band"`
 	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 	Band5gType *string `pulumi:"band5gType"`
@@ -12214,7 +12217,7 @@ type WtpprofileRadio3 struct {
 	CallAdmissionControl *string `pulumi:"callAdmissionControl"`
 	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 	CallCapacity *int `pulumi:"callCapacity"`
-	// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 	ChannelBonding *string `pulumi:"channelBonding"`
 	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
 	ChannelUtilization *string `pulumi:"channelUtilization"`
@@ -12228,7 +12231,7 @@ type WtpprofileRadio3 struct {
 	Drma *string `pulumi:"drma"`
 	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 	DrmaSensitivity *string `pulumi:"drmaSensitivity"`
-	// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 	Dtim *int `pulumi:"dtim"`
 	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 	FragThreshold *int `pulumi:"fragThreshold"`
@@ -12242,7 +12245,7 @@ type WtpprofileRadio3 struct {
 	MaxClients *int `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance *int `pulumi:"maxDistance"`
-	// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode *string `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d *string `pulumi:"n80211d"`
@@ -12344,15 +12347,15 @@ type WtpprofileRadio3Args struct {
 	ApSnifferMgmtProbe pulumi.StringPtrInput `pulumi:"apSnifferMgmtProbe"`
 	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 	ArrpProfile pulumi.StringPtrInput `pulumi:"arrpProfile"`
-	// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 3 operates on.
 	Band pulumi.StringPtrInput `pulumi:"band"`
 	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 	Band5gType pulumi.StringPtrInput `pulumi:"band5gType"`
@@ -12370,7 +12373,7 @@ type WtpprofileRadio3Args struct {
 	CallAdmissionControl pulumi.StringPtrInput `pulumi:"callAdmissionControl"`
 	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 	CallCapacity pulumi.IntPtrInput `pulumi:"callCapacity"`
-	// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 	ChannelBonding pulumi.StringPtrInput `pulumi:"channelBonding"`
 	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
 	ChannelUtilization pulumi.StringPtrInput `pulumi:"channelUtilization"`
@@ -12384,7 +12387,7 @@ type WtpprofileRadio3Args struct {
 	Drma pulumi.StringPtrInput `pulumi:"drma"`
 	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 	DrmaSensitivity pulumi.StringPtrInput `pulumi:"drmaSensitivity"`
-	// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 	Dtim pulumi.IntPtrInput `pulumi:"dtim"`
 	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 	FragThreshold pulumi.IntPtrInput `pulumi:"fragThreshold"`
@@ -12398,7 +12401,7 @@ type WtpprofileRadio3Args struct {
 	MaxClients pulumi.IntPtrInput `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance pulumi.IntPtrInput `pulumi:"maxDistance"`
-	// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d pulumi.StringPtrInput `pulumi:"n80211d"`
@@ -12601,17 +12604,17 @@ func (o WtpprofileRadio3Output) ArrpProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ArrpProfile }).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio3Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio3Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
@@ -12621,7 +12624,7 @@ func (o WtpprofileRadio3Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio3Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
@@ -12666,7 +12669,7 @@ func (o WtpprofileRadio3Output) CallCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.CallCapacity }).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio3Output) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ChannelBonding }).(pulumi.StringPtrOutput)
 }
@@ -12701,7 +12704,7 @@ func (o WtpprofileRadio3Output) DrmaSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.DrmaSensitivity }).(pulumi.StringPtrOutput)
 }
 
-// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio3Output) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.Dtim }).(pulumi.IntPtrOutput)
 }
@@ -12736,7 +12739,7 @@ func (o WtpprofileRadio3Output) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
-// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio3Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
@@ -13040,7 +13043,7 @@ func (o WtpprofileRadio3PtrOutput) ArrpProfile() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio3PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -13050,7 +13053,7 @@ func (o WtpprofileRadio3PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13060,7 +13063,7 @@ func (o WtpprofileRadio3PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio3PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -13080,7 +13083,7 @@ func (o WtpprofileRadio3PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio3PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13170,7 +13173,7 @@ func (o WtpprofileRadio3PtrOutput) CallCapacity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio3PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13240,7 +13243,7 @@ func (o WtpprofileRadio3PtrOutput) DrmaSensitivity() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio3PtrOutput) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -13310,7 +13313,7 @@ func (o WtpprofileRadio3PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio3PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13849,15 +13852,15 @@ type WtpprofileRadio4 struct {
 	ApSnifferMgmtProbe *string `pulumi:"apSnifferMgmtProbe"`
 	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 	ArrpProfile *string `pulumi:"arrpProfile"`
-	// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow *int `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 3 operates on.
 	Band *string `pulumi:"band"`
 	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 	Band5gType *string `pulumi:"band5gType"`
@@ -13875,7 +13878,7 @@ type WtpprofileRadio4 struct {
 	CallAdmissionControl *string `pulumi:"callAdmissionControl"`
 	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 	CallCapacity *int `pulumi:"callCapacity"`
-	// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 	ChannelBonding *string `pulumi:"channelBonding"`
 	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
 	ChannelUtilization *string `pulumi:"channelUtilization"`
@@ -13889,7 +13892,7 @@ type WtpprofileRadio4 struct {
 	Drma *string `pulumi:"drma"`
 	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 	DrmaSensitivity *string `pulumi:"drmaSensitivity"`
-	// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 	Dtim *int `pulumi:"dtim"`
 	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 	FragThreshold *int `pulumi:"fragThreshold"`
@@ -13903,7 +13906,7 @@ type WtpprofileRadio4 struct {
 	MaxClients *int `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance *int `pulumi:"maxDistance"`
-	// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode *string `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d *string `pulumi:"n80211d"`
@@ -14005,15 +14008,15 @@ type WtpprofileRadio4Args struct {
 	ApSnifferMgmtProbe pulumi.StringPtrInput `pulumi:"apSnifferMgmtProbe"`
 	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 	ArrpProfile pulumi.StringPtrInput `pulumi:"arrpProfile"`
-	// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
 	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 1 operates on.
+	// WiFi band that Radio 3 operates on.
 	Band pulumi.StringPtrInput `pulumi:"band"`
 	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 	Band5gType pulumi.StringPtrInput `pulumi:"band5gType"`
@@ -14031,7 +14034,7 @@ type WtpprofileRadio4Args struct {
 	CallAdmissionControl pulumi.StringPtrInput `pulumi:"callAdmissionControl"`
 	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 	CallCapacity pulumi.IntPtrInput `pulumi:"callCapacity"`
-	// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 	ChannelBonding pulumi.StringPtrInput `pulumi:"channelBonding"`
 	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
 	ChannelUtilization pulumi.StringPtrInput `pulumi:"channelUtilization"`
@@ -14045,7 +14048,7 @@ type WtpprofileRadio4Args struct {
 	Drma pulumi.StringPtrInput `pulumi:"drma"`
 	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 	DrmaSensitivity pulumi.StringPtrInput `pulumi:"drmaSensitivity"`
-	// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 	Dtim pulumi.IntPtrInput `pulumi:"dtim"`
 	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 	FragThreshold pulumi.IntPtrInput `pulumi:"fragThreshold"`
@@ -14059,7 +14062,7 @@ type WtpprofileRadio4Args struct {
 	MaxClients pulumi.IntPtrInput `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance pulumi.IntPtrInput `pulumi:"maxDistance"`
-	// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d pulumi.StringPtrInput `pulumi:"n80211d"`
@@ -14262,17 +14265,17 @@ func (o WtpprofileRadio4Output) ArrpProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ArrpProfile }).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio4Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio4Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
@@ -14282,7 +14285,7 @@ func (o WtpprofileRadio4Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio4Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
@@ -14327,7 +14330,7 @@ func (o WtpprofileRadio4Output) CallCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.CallCapacity }).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio4Output) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ChannelBonding }).(pulumi.StringPtrOutput)
 }
@@ -14362,7 +14365,7 @@ func (o WtpprofileRadio4Output) DrmaSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.DrmaSensitivity }).(pulumi.StringPtrOutput)
 }
 
-// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio4Output) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.Dtim }).(pulumi.IntPtrOutput)
 }
@@ -14397,7 +14400,7 @@ func (o WtpprofileRadio4Output) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
-// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio4Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
@@ -14701,7 +14704,7 @@ func (o WtpprofileRadio4PtrOutput) ArrpProfile() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio4PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -14711,7 +14714,7 @@ func (o WtpprofileRadio4PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -14721,7 +14724,7 @@ func (o WtpprofileRadio4PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio4PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -14741,7 +14744,7 @@ func (o WtpprofileRadio4PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 1 operates on.
+// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio4PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -14831,7 +14834,7 @@ func (o WtpprofileRadio4PtrOutput) CallCapacity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio4PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -14901,7 +14904,7 @@ func (o WtpprofileRadio4PtrOutput) DrmaSensitivity() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio4PtrOutput) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -14971,7 +14974,7 @@ func (o WtpprofileRadio4PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio4PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {

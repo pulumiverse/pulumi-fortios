@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `user.Saml`.
 func GetSamllist(ctx *pulumi.Context, args *GetSamllistArgs, opts ...pulumi.InvokeOption) (*GetSamllistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSamllistResult
 	err := ctx.Invoke("fortios:user/getSamllist:getSamllist", args, &rv, opts...)
 	if err != nil {

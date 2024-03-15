@@ -467,6 +467,7 @@ class Server(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -478,22 +479,25 @@ class Server(pulumi.CustomResource):
             max_connections=100,
             port=22)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Icap Server can be imported using any of these accepted formats
+        Icap Server can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:icap/server:Server labelname {{name}}
+        $ pulumi import fortios:icap/server:Server labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:icap/server:Server labelname {{name}}
+        $ pulumi import fortios:icap/server:Server labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -522,6 +526,7 @@ class Server(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -533,22 +538,25 @@ class Server(pulumi.CustomResource):
             max_connections=100,
             port=22)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Icap Server can be imported using any of these accepted formats
+        Icap Server can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:icap/server:Server labelname {{name}}
+        $ pulumi import fortios:icap/server:Server labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:icap/server:Server labelname {{name}}
+        $ pulumi import fortios:icap/server:Server labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param ServerArgs args: The arguments to use to populate this resource's properties.

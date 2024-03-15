@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiSwitch RSPAN/ERSPAN traffic sniffing parameters. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # SwitchController TrafficSniffer can be imported using any of these accepted formats
+// SwitchController TrafficSniffer can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/trafficsniffer:Trafficsniffer labelname SwitchControllerTrafficSniffer
-//
+// $ pulumi import fortios:switchcontroller/trafficsniffer:Trafficsniffer labelname SwitchControllerTrafficSniffer
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/trafficsniffer:Trafficsniffer labelname SwitchControllerTrafficSniffer
-//
+// $ pulumi import fortios:switchcontroller/trafficsniffer:Trafficsniffer labelname SwitchControllerTrafficSniffer
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Trafficsniffer struct {
 	pulumi.CustomResourceState
 
@@ -57,7 +56,7 @@ func NewTrafficsniffer(ctx *pulumi.Context,
 		args = &TrafficsnifferArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Trafficsniffer
 	err := ctx.RegisterResource("fortios:switchcontroller/trafficsniffer:Trafficsniffer", name, args, &resource, opts...)
 	if err != nil {

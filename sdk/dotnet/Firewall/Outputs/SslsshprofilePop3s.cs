@@ -52,12 +52,10 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         public readonly string? RevokedServerCert;
         /// <summary>
         /// Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-        /// 
-        /// The `pop3s` block supports:
         /// </summary>
         public readonly string? SniServerCertCheck;
         /// <summary>
-        /// Configure protocol inspection status. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
+        /// Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
         /// </summary>
         public readonly string? Status;
         /// <summary>
@@ -77,7 +75,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? UnsupportedSslVersion;
         /// <summary>
-        /// Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        /// Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         /// </summary>
         public readonly string? UntrustedServerCert;
 

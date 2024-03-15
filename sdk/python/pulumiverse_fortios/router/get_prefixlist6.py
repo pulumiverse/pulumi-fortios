@@ -107,11 +107,11 @@ def get_prefixlist6(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:router/getPrefixlist6:getPrefixlist6', __args__, opts=opts, typ=GetPrefixlist6Result).value
 
     return AwaitableGetPrefixlist6Result(
-        comments=__ret__.comments,
-        id=__ret__.id,
-        name=__ret__.name,
-        rules=__ret__.rules,
-        vdomparam=__ret__.vdomparam)
+        comments=pulumi.get(__ret__, 'comments'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        rules=pulumi.get(__ret__, 'rules'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_prefixlist6)

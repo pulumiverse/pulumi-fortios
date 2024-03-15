@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -25,22 +26,25 @@ import * as utilities from "../utilities";
  *     name: trnames12.alias,
  * }]});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * User DeviceGroup can be imported using any of these accepted formats
+ * User DeviceGroup can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:user/devicegroup:Devicegroup labelname {{name}}
+ * $ pulumi import fortios:user/devicegroup:Devicegroup labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:user/devicegroup:Devicegroup labelname {{name}}
+ * $ pulumi import fortios:user/devicegroup:Devicegroup labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Devicegroup extends pulumi.CustomResource {
     /**

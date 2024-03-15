@@ -8,16 +8,6 @@ import * as utilities from "../utilities";
  * This resource supports Create/Delete system syslog server for FortiManager.
  *
  * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumiverse/fortios";
- *
- * const test1 = new fortios.fmg.SystemSyslogserver("test1", {
- *     ip: "1.1.1.1",
- *     port: 99,
- * });
- * ```
  */
 export class SystemSyslogserver extends pulumi.CustomResource {
     /**

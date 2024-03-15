@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `router.Policy6`.
 func GetPolicy6list(ctx *pulumi.Context, args *GetPolicy6listArgs, opts ...pulumi.InvokeOption) (*GetPolicy6listResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPolicy6listResult
 	err := ctx.Invoke("fortios:router/getPolicy6list:getPolicy6list", args, &rv, opts...)
 	if err != nil {

@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios firewall addrgrp
 func LookupAddrgrp(ctx *pulumi.Context, args *LookupAddrgrpArgs, opts ...pulumi.InvokeOption) (*LookupAddrgrpResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAddrgrpResult
 	err := ctx.Invoke("fortios:firewall/getAddrgrp:getAddrgrp", args, &rv, opts...)
 	if err != nil {

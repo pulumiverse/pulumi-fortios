@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure Bluetooth Low Energy profile.
 //
 // ## Import
 //
-// # WirelessController BleProfile can be imported using any of these accepted formats
+// WirelessController BleProfile can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/bleprofile:Bleprofile labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/bleprofile:Bleprofile labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/bleprofile:Bleprofile labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/bleprofile:Bleprofile labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Bleprofile struct {
 	pulumi.CustomResourceState
 
@@ -71,7 +70,7 @@ func NewBleprofile(ctx *pulumi.Context,
 		args = &BleprofileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Bleprofile
 	err := ctx.RegisterResource("fortios:wirelesscontroller/bleprofile:Bleprofile", name, args, &resource, opts...)
 	if err != nil {

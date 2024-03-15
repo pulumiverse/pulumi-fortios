@@ -98,7 +98,7 @@ namespace Pulumiverse.Fortios.Router.Inputs
         public Input<string>? MtuIgnore { get; set; }
 
         /// <summary>
-        /// Virtual link entry name.
+        /// Interface entry name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

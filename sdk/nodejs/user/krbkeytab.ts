@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -37,22 +38,25 @@ import * as utilities from "../utilities";
  *     principal: "testprin",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * User KrbKeytab can be imported using any of these accepted formats
+ * User KrbKeytab can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
+ * $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
+ * $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Krbkeytab extends pulumi.CustomResource {
     /**

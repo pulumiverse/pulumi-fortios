@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
     /// 
     /// ## Import
     /// 
-    /// WirelessController Wtp can be imported using any of these accepted formats
+    /// WirelessController Wtp can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:wirelesscontroller/wtp:Wtp labelname {{wtp_id}}
+    /// $ pulumi import fortios:wirelesscontroller/wtp:Wtp labelname {{wtp_id}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:wirelesscontroller/wtp:Wtp labelname {{wtp_id}}
+    /// $ pulumi import fortios:wirelesscontroller/wtp:Wtp labelname {{wtp_id}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:wirelesscontroller/wtp:Wtp")]
     public partial class Wtp : global::Pulumi.CustomResource

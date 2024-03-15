@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure central SNAT policies.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -63,26 +65,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall CentralSnatMap can be imported using any of these accepted formats
+// Firewall CentralSnatMap can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/centralsnatmap:Centralsnatmap labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/centralsnatmap:Centralsnatmap labelname {{policyid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/centralsnatmap:Centralsnatmap labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/centralsnatmap:Centralsnatmap labelname {{policyid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Centralsnatmap struct {
 	pulumi.CustomResourceState
 
@@ -158,7 +159,7 @@ func NewCentralsnatmap(ctx *pulumi.Context,
 	if args.Srcintfs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcintfs'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Centralsnatmap
 	err := ctx.RegisterResource("fortios:firewall/centralsnatmap:Centralsnatmap", name, args, &resource, opts...)
 	if err != nil {

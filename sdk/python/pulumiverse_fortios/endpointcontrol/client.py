@@ -269,19 +269,21 @@ class Client(pulumi.CustomResource):
 
         ## Import
 
-        EndpointControl Client can be imported using any of these accepted formats
+        EndpointControl Client can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:endpointcontrol/client:Client labelname {{fosid}}
+        $ pulumi import fortios:endpointcontrol/client:Client labelname {{fosid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:endpointcontrol/client:Client labelname {{fosid}}
+        $ pulumi import fortios:endpointcontrol/client:Client labelname {{fosid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -304,19 +306,21 @@ class Client(pulumi.CustomResource):
 
         ## Import
 
-        EndpointControl Client can be imported using any of these accepted formats
+        EndpointControl Client can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:endpointcontrol/client:Client labelname {{fosid}}
+        $ pulumi import fortios:endpointcontrol/client:Client labelname {{fosid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:endpointcontrol/client:Client labelname {{fosid}}
+        $ pulumi import fortios:endpointcontrol/client:Client labelname {{fosid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param ClientArgs args: The arguments to use to populate this resource's properties.

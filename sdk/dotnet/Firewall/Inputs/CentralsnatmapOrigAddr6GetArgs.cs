@@ -15,18 +15,6 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
     {
         /// <summary>
         /// Address name.
-        /// 
-        /// The `orig_addr6` block supports:
-        /// 
-        /// 
-        /// 
-        /// 
-        /// The `dst_addr6` block supports:
-        /// 
-        /// 
-        /// 
-        /// 
-        /// The `nat_ippool6` block supports:
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

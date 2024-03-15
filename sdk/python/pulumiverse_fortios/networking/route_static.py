@@ -368,6 +368,7 @@ class RouteStatic(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -393,6 +394,7 @@ class RouteStatic(pulumi.CustomResource):
             status="enable",
             weight="3")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -420,6 +422,7 @@ class RouteStatic(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -445,6 +448,7 @@ class RouteStatic(pulumi.CustomResource):
             status="enable",
             weight="3")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param RouteStaticArgs args: The arguments to use to populate this resource's properties.

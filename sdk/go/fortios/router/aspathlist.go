@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure Autonomous System (AS) path lists.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,26 +44,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Router AspathList can be imported using any of these accepted formats
+// Router AspathList can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/aspathlist:Aspathlist labelname {{name}}
-//
+// $ pulumi import fortios:router/aspathlist:Aspathlist labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/aspathlist:Aspathlist labelname {{name}}
-//
+// $ pulumi import fortios:router/aspathlist:Aspathlist labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Aspathlist struct {
 	pulumi.CustomResourceState
 
@@ -82,7 +83,7 @@ func NewAspathlist(ctx *pulumi.Context,
 		args = &AspathlistArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Aspathlist
 	err := ctx.RegisterResource("fortios:router/aspathlist:Aspathlist", name, args, &resource, opts...)
 	if err != nil {

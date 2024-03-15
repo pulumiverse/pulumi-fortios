@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure firewall IP-translation.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,26 +44,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall IpTranslation can be imported using any of these accepted formats
+// Firewall IpTranslation can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
-//
+// $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
-//
+// $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Iptranslation struct {
 	pulumi.CustomResourceState
 
@@ -95,7 +96,7 @@ func NewIptranslation(ctx *pulumi.Context,
 	if args.Startip == nil {
 		return nil, errors.New("invalid value for required argument 'Startip'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Iptranslation
 	err := ctx.RegisterResource("fortios:firewall/iptranslation:Iptranslation", name, args, &resource, opts...)
 	if err != nil {

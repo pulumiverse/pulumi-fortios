@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a resource to configure firewall address group used in firewall policies of FortiOS.
@@ -17,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,6 +46,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type ObjectAddressgroup struct {
 	pulumi.CustomResourceState
 
@@ -65,7 +68,7 @@ func NewObjectAddressgroup(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectAddressgroup
 	err := ctx.RegisterResource("fortios:firewall/objectAddressgroup:ObjectAddressgroup", name, args, &resource, opts...)
 	if err != nil {

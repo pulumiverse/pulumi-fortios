@@ -9,19 +9,21 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Waf MainClass can be imported using any of these accepted formats
+ * Waf MainClass can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:waf/mainclass:Mainclass labelname {{fosid}}
+ * $ pulumi import fortios:waf/mainclass:Mainclass labelname {{fosid}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:waf/mainclass:Mainclass labelname {{fosid}}
+ * $ pulumi import fortios:waf/mainclass:Mainclass labelname {{fosid}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Mainclass extends pulumi.CustomResource {
     /**

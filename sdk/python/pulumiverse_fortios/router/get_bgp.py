@@ -841,6 +841,7 @@ def get_bgp(vdomparam: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -848,6 +849,7 @@ def get_bgp(vdomparam: Optional[str] = None,
     sample1 = fortios.router.get_bgp()
     pulumi.export("output1", sample1.neighbors)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -858,73 +860,73 @@ def get_bgp(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:router/getBgp:getBgp', __args__, opts=opts, typ=GetBgpResult).value
 
     return AwaitableGetBgpResult(
-        additional_path=__ret__.additional_path,
-        additional_path6=__ret__.additional_path6,
-        additional_path_select=__ret__.additional_path_select,
-        additional_path_select6=__ret__.additional_path_select6,
-        additional_path_select_vpnv4=__ret__.additional_path_select_vpnv4,
-        additional_path_vpnv4=__ret__.additional_path_vpnv4,
-        admin_distances=__ret__.admin_distances,
-        aggregate_address6s=__ret__.aggregate_address6s,
-        aggregate_addresses=__ret__.aggregate_addresses,
-        always_compare_med=__ret__.always_compare_med,
-        as_=__ret__.as_,
-        bestpath_as_path_ignore=__ret__.bestpath_as_path_ignore,
-        bestpath_cmp_confed_aspath=__ret__.bestpath_cmp_confed_aspath,
-        bestpath_cmp_routerid=__ret__.bestpath_cmp_routerid,
-        bestpath_med_confed=__ret__.bestpath_med_confed,
-        bestpath_med_missing_as_worst=__ret__.bestpath_med_missing_as_worst,
-        client_to_client_reflection=__ret__.client_to_client_reflection,
-        cluster_id=__ret__.cluster_id,
-        confederation_identifier=__ret__.confederation_identifier,
-        confederation_peers=__ret__.confederation_peers,
-        dampening=__ret__.dampening,
-        dampening_max_suppress_time=__ret__.dampening_max_suppress_time,
-        dampening_reachability_half_life=__ret__.dampening_reachability_half_life,
-        dampening_reuse=__ret__.dampening_reuse,
-        dampening_route_map=__ret__.dampening_route_map,
-        dampening_suppress=__ret__.dampening_suppress,
-        dampening_unreachability_half_life=__ret__.dampening_unreachability_half_life,
-        default_local_preference=__ret__.default_local_preference,
-        deterministic_med=__ret__.deterministic_med,
-        distance_external=__ret__.distance_external,
-        distance_internal=__ret__.distance_internal,
-        distance_local=__ret__.distance_local,
-        ebgp_multipath=__ret__.ebgp_multipath,
-        enforce_first_as=__ret__.enforce_first_as,
-        fast_external_failover=__ret__.fast_external_failover,
-        graceful_end_on_timer=__ret__.graceful_end_on_timer,
-        graceful_restart=__ret__.graceful_restart,
-        graceful_restart_time=__ret__.graceful_restart_time,
-        graceful_stalepath_time=__ret__.graceful_stalepath_time,
-        graceful_update_delay=__ret__.graceful_update_delay,
-        holdtime_timer=__ret__.holdtime_timer,
-        ibgp_multipath=__ret__.ibgp_multipath,
-        id=__ret__.id,
-        ignore_optional_capability=__ret__.ignore_optional_capability,
-        keepalive_timer=__ret__.keepalive_timer,
-        log_neighbour_changes=__ret__.log_neighbour_changes,
-        multipath_recursive_distance=__ret__.multipath_recursive_distance,
-        neighbor_groups=__ret__.neighbor_groups,
-        neighbor_range6s=__ret__.neighbor_range6s,
-        neighbor_ranges=__ret__.neighbor_ranges,
-        neighbors=__ret__.neighbors,
-        network6s=__ret__.network6s,
-        network_import_check=__ret__.network_import_check,
-        networks=__ret__.networks,
-        recursive_inherit_priority=__ret__.recursive_inherit_priority,
-        recursive_next_hop=__ret__.recursive_next_hop,
-        redistribute6s=__ret__.redistribute6s,
-        redistributes=__ret__.redistributes,
-        router_id=__ret__.router_id,
-        scan_time=__ret__.scan_time,
-        synchronization=__ret__.synchronization,
-        tag_resolve_mode=__ret__.tag_resolve_mode,
-        vdomparam=__ret__.vdomparam,
-        vrf6s=__ret__.vrf6s,
-        vrf_leak6s=__ret__.vrf_leak6s,
-        vrf_leaks=__ret__.vrf_leaks,
-        vrves=__ret__.vrves)
+        additional_path=pulumi.get(__ret__, 'additional_path'),
+        additional_path6=pulumi.get(__ret__, 'additional_path6'),
+        additional_path_select=pulumi.get(__ret__, 'additional_path_select'),
+        additional_path_select6=pulumi.get(__ret__, 'additional_path_select6'),
+        additional_path_select_vpnv4=pulumi.get(__ret__, 'additional_path_select_vpnv4'),
+        additional_path_vpnv4=pulumi.get(__ret__, 'additional_path_vpnv4'),
+        admin_distances=pulumi.get(__ret__, 'admin_distances'),
+        aggregate_address6s=pulumi.get(__ret__, 'aggregate_address6s'),
+        aggregate_addresses=pulumi.get(__ret__, 'aggregate_addresses'),
+        always_compare_med=pulumi.get(__ret__, 'always_compare_med'),
+        as_=pulumi.get(__ret__, 'as_'),
+        bestpath_as_path_ignore=pulumi.get(__ret__, 'bestpath_as_path_ignore'),
+        bestpath_cmp_confed_aspath=pulumi.get(__ret__, 'bestpath_cmp_confed_aspath'),
+        bestpath_cmp_routerid=pulumi.get(__ret__, 'bestpath_cmp_routerid'),
+        bestpath_med_confed=pulumi.get(__ret__, 'bestpath_med_confed'),
+        bestpath_med_missing_as_worst=pulumi.get(__ret__, 'bestpath_med_missing_as_worst'),
+        client_to_client_reflection=pulumi.get(__ret__, 'client_to_client_reflection'),
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        confederation_identifier=pulumi.get(__ret__, 'confederation_identifier'),
+        confederation_peers=pulumi.get(__ret__, 'confederation_peers'),
+        dampening=pulumi.get(__ret__, 'dampening'),
+        dampening_max_suppress_time=pulumi.get(__ret__, 'dampening_max_suppress_time'),
+        dampening_reachability_half_life=pulumi.get(__ret__, 'dampening_reachability_half_life'),
+        dampening_reuse=pulumi.get(__ret__, 'dampening_reuse'),
+        dampening_route_map=pulumi.get(__ret__, 'dampening_route_map'),
+        dampening_suppress=pulumi.get(__ret__, 'dampening_suppress'),
+        dampening_unreachability_half_life=pulumi.get(__ret__, 'dampening_unreachability_half_life'),
+        default_local_preference=pulumi.get(__ret__, 'default_local_preference'),
+        deterministic_med=pulumi.get(__ret__, 'deterministic_med'),
+        distance_external=pulumi.get(__ret__, 'distance_external'),
+        distance_internal=pulumi.get(__ret__, 'distance_internal'),
+        distance_local=pulumi.get(__ret__, 'distance_local'),
+        ebgp_multipath=pulumi.get(__ret__, 'ebgp_multipath'),
+        enforce_first_as=pulumi.get(__ret__, 'enforce_first_as'),
+        fast_external_failover=pulumi.get(__ret__, 'fast_external_failover'),
+        graceful_end_on_timer=pulumi.get(__ret__, 'graceful_end_on_timer'),
+        graceful_restart=pulumi.get(__ret__, 'graceful_restart'),
+        graceful_restart_time=pulumi.get(__ret__, 'graceful_restart_time'),
+        graceful_stalepath_time=pulumi.get(__ret__, 'graceful_stalepath_time'),
+        graceful_update_delay=pulumi.get(__ret__, 'graceful_update_delay'),
+        holdtime_timer=pulumi.get(__ret__, 'holdtime_timer'),
+        ibgp_multipath=pulumi.get(__ret__, 'ibgp_multipath'),
+        id=pulumi.get(__ret__, 'id'),
+        ignore_optional_capability=pulumi.get(__ret__, 'ignore_optional_capability'),
+        keepalive_timer=pulumi.get(__ret__, 'keepalive_timer'),
+        log_neighbour_changes=pulumi.get(__ret__, 'log_neighbour_changes'),
+        multipath_recursive_distance=pulumi.get(__ret__, 'multipath_recursive_distance'),
+        neighbor_groups=pulumi.get(__ret__, 'neighbor_groups'),
+        neighbor_range6s=pulumi.get(__ret__, 'neighbor_range6s'),
+        neighbor_ranges=pulumi.get(__ret__, 'neighbor_ranges'),
+        neighbors=pulumi.get(__ret__, 'neighbors'),
+        network6s=pulumi.get(__ret__, 'network6s'),
+        network_import_check=pulumi.get(__ret__, 'network_import_check'),
+        networks=pulumi.get(__ret__, 'networks'),
+        recursive_inherit_priority=pulumi.get(__ret__, 'recursive_inherit_priority'),
+        recursive_next_hop=pulumi.get(__ret__, 'recursive_next_hop'),
+        redistribute6s=pulumi.get(__ret__, 'redistribute6s'),
+        redistributes=pulumi.get(__ret__, 'redistributes'),
+        router_id=pulumi.get(__ret__, 'router_id'),
+        scan_time=pulumi.get(__ret__, 'scan_time'),
+        synchronization=pulumi.get(__ret__, 'synchronization'),
+        tag_resolve_mode=pulumi.get(__ret__, 'tag_resolve_mode'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        vrf6s=pulumi.get(__ret__, 'vrf6s'),
+        vrf_leak6s=pulumi.get(__ret__, 'vrf_leak6s'),
+        vrf_leaks=pulumi.get(__ret__, 'vrf_leaks'),
+        vrves=pulumi.get(__ret__, 'vrves'))
 
 
 @_utilities.lift_output_func(get_bgp)
@@ -935,6 +937,7 @@ def get_bgp_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -942,6 +945,7 @@ def get_bgp_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
     sample1 = fortios.router.get_bgp()
     pulumi.export("output1", sample1.neighbors)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

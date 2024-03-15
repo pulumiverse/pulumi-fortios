@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,7.0.0`.
 //
 // ## Import
 //
-// # SwitchController NacSettings can be imported using any of these accepted formats
+// SwitchController NacSettings can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/nacsettings:Nacsettings labelname {{name}}
-//
+// $ pulumi import fortios:switchcontroller/nacsettings:Nacsettings labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/nacsettings:Nacsettings labelname {{name}}
-//
+// $ pulumi import fortios:switchcontroller/nacsettings:Nacsettings labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Nacsettings struct {
 	pulumi.CustomResourceState
 
@@ -59,7 +58,7 @@ func NewNacsettings(ctx *pulumi.Context,
 		args = &NacsettingsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Nacsettings
 	err := ctx.RegisterResource("fortios:switchcontroller/nacsettings:Nacsettings", name, args, &resource, opts...)
 	if err != nil {

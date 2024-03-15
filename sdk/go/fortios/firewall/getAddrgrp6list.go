@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `firewall.Addrgrp6`.
 func GetAddrgrp6list(ctx *pulumi.Context, args *GetAddrgrp6listArgs, opts ...pulumi.InvokeOption) (*GetAddrgrp6listResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAddrgrp6listResult
 	err := ctx.Invoke("fortios:firewall/getAddrgrp6list:getAddrgrp6list", args, &rv, opts...)
 	if err != nil {

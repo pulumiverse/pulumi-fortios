@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -27,22 +28,25 @@ import * as utilities from "../utilities";
  *     visibility: "enable",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Firewall Address6 can be imported using any of these accepted formats
+ * Firewall Address6 can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:firewall/address6:Address6 labelname {{name}}
+ * $ pulumi import fortios:firewall/address6:Address6 labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:firewall/address6:Address6 labelname {{name}}
+ * $ pulumi import fortios:firewall/address6:Address6 labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Address6 extends pulumi.CustomResource {
     /**

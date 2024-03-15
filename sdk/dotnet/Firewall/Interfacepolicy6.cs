@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -63,22 +64,25 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Firewall InterfacePolicy6 can be imported using any of these accepted formats
+    /// Firewall InterfacePolicy6 can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
+    /// $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
+    /// $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:firewall/interfacepolicy6:Interfacepolicy6")]
     public partial class Interfacepolicy6 : global::Pulumi.CustomResource

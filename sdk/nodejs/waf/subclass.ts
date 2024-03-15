@@ -9,19 +9,21 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Waf SubClass can be imported using any of these accepted formats
+ * Waf SubClass can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:waf/subclass:Subclass labelname {{fosid}}
+ * $ pulumi import fortios:waf/subclass:Subclass labelname {{fosid}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:waf/subclass:Subclass labelname {{fosid}}
+ * $ pulumi import fortios:waf/subclass:Subclass labelname {{fosid}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Subclass extends pulumi.CustomResource {
     /**

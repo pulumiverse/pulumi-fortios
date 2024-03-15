@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// ## Import
     /// 
-    /// SwitchController FlowTracking can be imported using any of these accepted formats
+    /// SwitchController FlowTracking can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/flowtracking:Flowtracking labelname SwitchControllerFlowTracking
+    /// $ pulumi import fortios:switchcontroller/flowtracking:Flowtracking labelname SwitchControllerFlowTracking
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/flowtracking:Flowtracking labelname SwitchControllerFlowTracking
+    /// $ pulumi import fortios:switchcontroller/flowtracking:Flowtracking labelname SwitchControllerFlowTracking
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:switchcontroller/flowtracking:Flowtracking")]
     public partial class Flowtracking : global::Pulumi.CustomResource

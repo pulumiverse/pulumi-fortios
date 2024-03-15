@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure predefined data type used by DLP blocking. Applies to FortiOS Version `>= 7.2.0`.
 //
 // ## Import
 //
-// # Dlp DataType can be imported using any of these accepted formats
+// Dlp DataType can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:dlp/datatype:Datatype labelname {{name}}
-//
+// $ pulumi import fortios:dlp/datatype:Datatype labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:dlp/datatype:Datatype labelname {{name}}
-//
+// $ pulumi import fortios:dlp/datatype:Datatype labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Datatype struct {
 	pulumi.CustomResourceState
 
@@ -61,7 +60,7 @@ func NewDatatype(ctx *pulumi.Context,
 		args = &DatatypeArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Datatype
 	err := ctx.RegisterResource("fortios:dlp/datatype:Datatype", name, args, &resource, opts...)
 	if err != nil {

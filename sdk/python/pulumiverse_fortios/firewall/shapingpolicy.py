@@ -1521,6 +1521,7 @@ class Shapingpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1552,22 +1553,25 @@ class Shapingpolicy(pulumi.CustomResource):
             tos_mask="0x00",
             tos_negate="disable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall ShapingPolicy can be imported using any of these accepted formats
+        Firewall ShapingPolicy can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/shapingpolicy:Shapingpolicy labelname {{fosid}}
+        $ pulumi import fortios:firewall/shapingpolicy:Shapingpolicy labelname {{fosid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/shapingpolicy:Shapingpolicy labelname {{fosid}}
+        $ pulumi import fortios:firewall/shapingpolicy:Shapingpolicy labelname {{fosid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1628,6 +1632,7 @@ class Shapingpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1659,22 +1664,25 @@ class Shapingpolicy(pulumi.CustomResource):
             tos_mask="0x00",
             tos_negate="disable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall ShapingPolicy can be imported using any of these accepted formats
+        Firewall ShapingPolicy can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/shapingpolicy:Shapingpolicy labelname {{fosid}}
+        $ pulumi import fortios:firewall/shapingpolicy:Shapingpolicy labelname {{fosid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/shapingpolicy:Shapingpolicy labelname {{fosid}}
+        $ pulumi import fortios:firewall/shapingpolicy:Shapingpolicy labelname {{fosid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param ShapingpolicyArgs args: The arguments to use to populate this resource's properties.

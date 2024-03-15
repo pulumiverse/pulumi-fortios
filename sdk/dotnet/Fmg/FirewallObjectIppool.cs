@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Fmg
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,6 +37,7 @@ namespace Pulumiverse.Fortios.Fmg
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:fmg/firewallObjectIppool:FirewallObjectIppool")]
     public partial class FirewallObjectIppool : global::Pulumi.CustomResource

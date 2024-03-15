@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure key-chain.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,26 +45,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Router KeyChain can be imported using any of these accepted formats
+// Router KeyChain can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/keychain:Keychain labelname {{name}}
-//
+// $ pulumi import fortios:router/keychain:Keychain labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/keychain:Keychain labelname {{name}}
-//
+// $ pulumi import fortios:router/keychain:Keychain labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Keychain struct {
 	pulumi.CustomResourceState
 
@@ -83,7 +84,7 @@ func NewKeychain(ctx *pulumi.Context,
 		args = &KeychainArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Keychain
 	err := ctx.RegisterResource("fortios:router/keychain:Keychain", name, args, &resource, opts...)
 	if err != nil {

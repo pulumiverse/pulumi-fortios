@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure explicit Web proxy settings.
 //
 // ## Import
 //
-// # WebProxy Explicit can be imported using any of these accepted formats
+// WebProxy Explicit can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:webproxy/explicit:Explicit labelname WebProxyExplicit
-//
+// $ pulumi import fortios:webproxy/explicit:Explicit labelname WebProxyExplicit
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:webproxy/explicit:Explicit labelname WebProxyExplicit
-//
+// $ pulumi import fortios:webproxy/explicit:Explicit labelname WebProxyExplicit
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Explicit struct {
 	pulumi.CustomResourceState
 
@@ -103,7 +102,7 @@ func NewExplicit(ctx *pulumi.Context,
 		args = &ExplicitArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Explicit
 	err := ctx.RegisterResource("fortios:webproxy/explicit:Explicit", name, args, &resource, opts...)
 	if err != nil {

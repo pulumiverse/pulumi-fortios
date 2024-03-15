@@ -314,6 +314,7 @@ def get_static(seq_num: Optional[int] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -321,6 +322,7 @@ def get_static(seq_num: Optional[int] = None,
     sample1 = fortios.router.get_static(seq_num=1)
     pulumi.export("output1", sample1)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param int seq_num: Specify the seq_num of the desired router static.
@@ -333,29 +335,29 @@ def get_static(seq_num: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:router/getStatic:getStatic', __args__, opts=opts, typ=GetStaticResult).value
 
     return AwaitableGetStaticResult(
-        bfd=__ret__.bfd,
-        blackhole=__ret__.blackhole,
-        comment=__ret__.comment,
-        device=__ret__.device,
-        distance=__ret__.distance,
-        dst=__ret__.dst,
-        dstaddr=__ret__.dstaddr,
-        dynamic_gateway=__ret__.dynamic_gateway,
-        gateway=__ret__.gateway,
-        id=__ret__.id,
-        internet_service=__ret__.internet_service,
-        internet_service_custom=__ret__.internet_service_custom,
-        link_monitor_exempt=__ret__.link_monitor_exempt,
-        priority=__ret__.priority,
-        sdwan=__ret__.sdwan,
-        sdwan_zones=__ret__.sdwan_zones,
-        seq_num=__ret__.seq_num,
-        src=__ret__.src,
-        status=__ret__.status,
-        vdomparam=__ret__.vdomparam,
-        virtual_wan_link=__ret__.virtual_wan_link,
-        vrf=__ret__.vrf,
-        weight=__ret__.weight)
+        bfd=pulumi.get(__ret__, 'bfd'),
+        blackhole=pulumi.get(__ret__, 'blackhole'),
+        comment=pulumi.get(__ret__, 'comment'),
+        device=pulumi.get(__ret__, 'device'),
+        distance=pulumi.get(__ret__, 'distance'),
+        dst=pulumi.get(__ret__, 'dst'),
+        dstaddr=pulumi.get(__ret__, 'dstaddr'),
+        dynamic_gateway=pulumi.get(__ret__, 'dynamic_gateway'),
+        gateway=pulumi.get(__ret__, 'gateway'),
+        id=pulumi.get(__ret__, 'id'),
+        internet_service=pulumi.get(__ret__, 'internet_service'),
+        internet_service_custom=pulumi.get(__ret__, 'internet_service_custom'),
+        link_monitor_exempt=pulumi.get(__ret__, 'link_monitor_exempt'),
+        priority=pulumi.get(__ret__, 'priority'),
+        sdwan=pulumi.get(__ret__, 'sdwan'),
+        sdwan_zones=pulumi.get(__ret__, 'sdwan_zones'),
+        seq_num=pulumi.get(__ret__, 'seq_num'),
+        src=pulumi.get(__ret__, 'src'),
+        status=pulumi.get(__ret__, 'status'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        virtual_wan_link=pulumi.get(__ret__, 'virtual_wan_link'),
+        vrf=pulumi.get(__ret__, 'vrf'),
+        weight=pulumi.get(__ret__, 'weight'))
 
 
 @_utilities.lift_output_func(get_static)
@@ -367,6 +369,7 @@ def get_static_output(seq_num: Optional[pulumi.Input[int]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -374,6 +377,7 @@ def get_static_output(seq_num: Optional[pulumi.Input[int]] = None,
     sample1 = fortios.router.get_static(seq_num=1)
     pulumi.export("output1", sample1)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param int seq_num: Specify the seq_num of the desired router static.

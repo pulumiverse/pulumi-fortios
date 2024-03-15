@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Show vendor and the MAC address they have. Applies to FortiOS Version `>= 6.4.0`.
 //
 // ## Import
 //
-// # Firewall VendorMac can be imported using any of these accepted formats
+// Firewall VendorMac can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/vendormac:Vendormac labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/vendormac:Vendormac labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/vendormac:Vendormac labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/vendormac:Vendormac labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Vendormac struct {
 	pulumi.CustomResourceState
 
@@ -53,7 +52,7 @@ func NewVendormac(ctx *pulumi.Context,
 		args = &VendormacArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Vendormac
 	err := ctx.RegisterResource("fortios:firewall/vendormac:Vendormac", name, args, &resource, opts...)
 	if err != nil {

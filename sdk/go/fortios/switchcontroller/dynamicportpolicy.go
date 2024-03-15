@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure Dynamic port policy to be applied on the managed FortiSwitch ports through DPP device. Applies to FortiOS Version `>= 7.0.1`.
 //
 // ## Import
 //
-// # SwitchController DynamicPortPolicy can be imported using any of these accepted formats
+// SwitchController DynamicPortPolicy can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/dynamicportpolicy:Dynamicportpolicy labelname {{name}}
-//
+// $ pulumi import fortios:switchcontroller/dynamicportpolicy:Dynamicportpolicy labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/dynamicportpolicy:Dynamicportpolicy labelname {{name}}
-//
+// $ pulumi import fortios:switchcontroller/dynamicportpolicy:Dynamicportpolicy labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Dynamicportpolicy struct {
 	pulumi.CustomResourceState
 
@@ -55,7 +54,7 @@ func NewDynamicportpolicy(ctx *pulumi.Context,
 		args = &DynamicportpolicyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Dynamicportpolicy
 	err := ctx.RegisterResource("fortios:switchcontroller/dynamicportpolicy:Dynamicportpolicy", name, args, &resource, opts...)
 	if err != nil {

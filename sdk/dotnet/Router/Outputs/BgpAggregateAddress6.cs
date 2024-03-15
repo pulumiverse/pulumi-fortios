@@ -28,8 +28,6 @@ namespace Pulumiverse.Fortios.Router.Outputs
         public readonly string? Prefix6;
         /// <summary>
         /// Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
-        /// 
-        /// The `aggregate_address6` block supports:
         /// </summary>
         public readonly string? SummaryOnly;
 

@@ -63,15 +63,15 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly string? ArrpProfile;
         /// <summary>
-        /// Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+        /// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         /// </summary>
         public readonly int? AutoPowerHigh;
         /// <summary>
-        /// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+        /// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
         /// </summary>
         public readonly string? AutoPowerLevel;
         /// <summary>
-        /// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        /// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         /// </summary>
         public readonly int? AutoPowerLow;
         /// <summary>
@@ -79,7 +79,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly string? AutoPowerTarget;
         /// <summary>
-        /// WiFi band that Radio 1 operates on.
+        /// WiFi band that Radio 3 operates on.
         /// </summary>
         public readonly string? Band;
         /// <summary>
@@ -115,7 +115,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly int? CallCapacity;
         /// <summary>
-        /// Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+        /// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
         /// </summary>
         public readonly string? ChannelBonding;
         /// <summary>
@@ -143,7 +143,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly string? DrmaSensitivity;
         /// <summary>
-        /// DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+        /// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
         /// </summary>
         public readonly int? Dtim;
         /// <summary>
@@ -171,7 +171,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly int? MaxDistance;
         /// <summary>
-        /// Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+        /// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         /// </summary>
         public readonly string? Mode;
         /// <summary>

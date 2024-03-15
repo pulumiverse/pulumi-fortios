@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // SAML server entry configuration. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,26 +48,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # User Saml can be imported using any of these accepted formats
+// User Saml can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/saml:Saml labelname {{name}}
-//
+// $ pulumi import fortios:user/saml:Saml labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/saml:Saml labelname {{name}}
-//
+// $ pulumi import fortios:user/saml:Saml labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Saml struct {
 	pulumi.CustomResourceState
 
@@ -131,7 +132,7 @@ func NewSaml(ctx *pulumi.Context,
 	if args.SingleSignOnUrl == nil {
 		return nil, errors.New("invalid value for required argument 'SingleSignOnUrl'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Saml
 	err := ctx.RegisterResource("fortios:user/saml:Saml", name, args, &resource, opts...)
 	if err != nil {

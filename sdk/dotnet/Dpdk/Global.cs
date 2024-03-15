@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Dpdk
     /// 
     /// ## Import
     /// 
-    /// Dpdk Global can be imported using any of these accepted formats
+    /// Dpdk Global can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:dpdk/global:Global labelname DpdkGlobal
+    /// $ pulumi import fortios:dpdk/global:Global labelname DpdkGlobal
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:dpdk/global:Global labelname DpdkGlobal
+    /// $ pulumi import fortios:dpdk/global:Global labelname DpdkGlobal
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:dpdk/global:Global")]
     public partial class Global : global::Pulumi.CustomResource

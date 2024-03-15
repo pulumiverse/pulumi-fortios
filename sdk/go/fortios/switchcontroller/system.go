@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure system-wide switch controller settings.
 //
 // ## Import
 //
-// # SwitchController System can be imported using any of these accepted formats
+// SwitchController System can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/system:System labelname SwitchControllerSystem
-//
+// $ pulumi import fortios:switchcontroller/system:System labelname SwitchControllerSystem
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/system:System labelname SwitchControllerSystem
-//
+// $ pulumi import fortios:switchcontroller/system:System labelname SwitchControllerSystem
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type System struct {
 	pulumi.CustomResourceState
 
@@ -65,7 +64,7 @@ func NewSystem(ctx *pulumi.Context,
 		args = &SystemArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource System
 	err := ctx.RegisterResource("fortios:switchcontroller/system:System", name, args, &resource, opts...)
 	if err != nil {

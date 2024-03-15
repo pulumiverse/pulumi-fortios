@@ -698,6 +698,7 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -719,22 +720,25 @@ class Global(pulumi.CustomResource):
             rogue_scan_mac_adjacency=7,
             wtp_share="disable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        WirelessController Global can be imported using any of these accepted formats
+        WirelessController Global can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
+        $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
+        $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -770,6 +774,7 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -791,22 +796,25 @@ class Global(pulumi.CustomResource):
             rogue_scan_mac_adjacency=7,
             wtp_share="disable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        WirelessController Global can be imported using any of these accepted formats
+        WirelessController Global can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
+        $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
+        $ pulumi import fortios:wirelesscontroller/global:Global labelname WirelessControllerGlobal
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param GlobalArgs args: The arguments to use to populate this resource's properties.

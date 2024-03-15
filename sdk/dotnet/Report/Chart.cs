@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Report
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,22 +43,25 @@ namespace Pulumiverse.Fortios.Report
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Report Chart can be imported using any of these accepted formats
+    /// Report Chart can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:report/chart:Chart labelname {{name}}
+    /// $ pulumi import fortios:report/chart:Chart labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:report/chart:Chart labelname {{name}}
+    /// $ pulumi import fortios:report/chart:Chart labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:report/chart:Chart")]
     public partial class Chart : global::Pulumi.CustomResource

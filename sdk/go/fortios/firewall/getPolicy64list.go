@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `firewall.Policy64`.
 func GetPolicy64list(ctx *pulumi.Context, args *GetPolicy64listArgs, opts ...pulumi.InvokeOption) (*GetPolicy64listResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPolicy64listResult
 	err := ctx.Invoke("fortios:firewall/getPolicy64list:getPolicy64list", args, &rv, opts...)
 	if err != nil {

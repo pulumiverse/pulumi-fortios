@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -18,22 +19,25 @@ import * as utilities from "../utilities";
  *     floodUnknownMulticast: "disable",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * SwitchController IgmpSnooping can be imported using any of these accepted formats
+ * SwitchController IgmpSnooping can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:switchcontroller/igmpsnooping:Igmpsnooping labelname SwitchControllerIgmpSnooping
+ * $ pulumi import fortios:switchcontroller/igmpsnooping:Igmpsnooping labelname SwitchControllerIgmpSnooping
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:switchcontroller/igmpsnooping:Igmpsnooping labelname SwitchControllerIgmpSnooping
+ * $ pulumi import fortios:switchcontroller/igmpsnooping:Igmpsnooping labelname SwitchControllerIgmpSnooping
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Igmpsnooping extends pulumi.CustomResource {
     /**

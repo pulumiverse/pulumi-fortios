@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `firewall.Internetservicedefinition`.
 func GetInternetservicedefinitionlist(ctx *pulumi.Context, args *GetInternetservicedefinitionlistArgs, opts ...pulumi.InvokeOption) (*GetInternetservicedefinitionlistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetInternetservicedefinitionlistResult
 	err := ctx.Invoke("fortios:firewall/getInternetservicedefinitionlist:getInternetservicedefinitionlist", args, &rv, opts...)
 	if err != nil {

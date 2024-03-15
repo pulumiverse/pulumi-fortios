@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -44,6 +45,7 @@ import * as utilities from "../utilities";
  * });
  * export const response3 = test3.response;
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class GenericApi extends pulumi.CustomResource {
     /**

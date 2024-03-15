@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure Overlay Controller VPN settings. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # Vpn Ocvpn can be imported using any of these accepted formats
+// Vpn Ocvpn can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:vpn/ocvpn:Ocvpn labelname VpnOcvpn
-//
+// $ pulumi import fortios:vpn/ocvpn:Ocvpn labelname VpnOcvpn
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:vpn/ocvpn:Ocvpn labelname VpnOcvpn
-//
+// $ pulumi import fortios:vpn/ocvpn:Ocvpn labelname VpnOcvpn
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Ocvpn struct {
 	pulumi.CustomResourceState
 
@@ -77,7 +76,7 @@ func NewOcvpn(ctx *pulumi.Context,
 		args = &OcvpnArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Ocvpn
 	err := ctx.RegisterResource("fortios:vpn/ocvpn:Ocvpn", name, args, &resource, opts...)
 	if err != nil {

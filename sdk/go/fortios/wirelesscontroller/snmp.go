@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure SNMP. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # WirelessController Snmp can be imported using any of these accepted formats
+// WirelessController Snmp can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/snmp:Snmp labelname WirelessControllerSnmp
-//
+// $ pulumi import fortios:wirelesscontroller/snmp:Snmp labelname WirelessControllerSnmp
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/snmp:Snmp labelname WirelessControllerSnmp
-//
+// $ pulumi import fortios:wirelesscontroller/snmp:Snmp labelname WirelessControllerSnmp
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Snmp struct {
 	pulumi.CustomResourceState
 
@@ -59,7 +58,7 @@ func NewSnmp(ctx *pulumi.Context,
 		args = &SnmpArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Snmp
 	err := ctx.RegisterResource("fortios:wirelesscontroller/snmp:Snmp", name, args, &resource, opts...)
 	if err != nil {

@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -19,22 +20,25 @@ import * as utilities from "../utilities";
  *     tunnelSslAlgorithm: "high",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Wanopt Settings can be imported using any of these accepted formats
+ * Wanopt Settings can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:wanopt/settings:Settings labelname WanoptSettings
+ * $ pulumi import fortios:wanopt/settings:Settings labelname WanoptSettings
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:wanopt/settings:Settings labelname WanoptSettings
+ * $ pulumi import fortios:wanopt/settings:Settings labelname WanoptSettings
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Settings extends pulumi.CustomResource {
     /**

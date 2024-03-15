@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv4 prefix lists.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -35,26 +37,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Router PrefixList can be imported using any of these accepted formats
+// Router PrefixList can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/prefixlist:Prefixlist labelname {{name}}
-//
+// $ pulumi import fortios:router/prefixlist:Prefixlist labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/prefixlist:Prefixlist labelname {{name}}
-//
+// $ pulumi import fortios:router/prefixlist:Prefixlist labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Prefixlist struct {
 	pulumi.CustomResourceState
 
@@ -77,7 +78,7 @@ func NewPrefixlist(ctx *pulumi.Context,
 		args = &PrefixlistArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Prefixlist
 	err := ctx.RegisterResource("fortios:router/prefixlist:Prefixlist", name, args, &resource, opts...)
 	if err != nil {

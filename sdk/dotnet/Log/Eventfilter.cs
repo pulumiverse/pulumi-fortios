@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Log
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -40,22 +41,25 @@ namespace Pulumiverse.Fortios.Log
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Log Eventfilter can be imported using any of these accepted formats
+    /// Log Eventfilter can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
+    /// $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
+    /// $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:log/eventfilter:Eventfilter")]
     public partial class Eventfilter : global::Pulumi.CustomResource

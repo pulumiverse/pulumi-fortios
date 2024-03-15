@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Report
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -37,22 +38,25 @@ namespace Pulumiverse.Fortios.Report
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Report Style can be imported using any of these accepted formats
+    /// Report Style can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:report/style:Style labelname {{name}}
+    /// $ pulumi import fortios:report/style:Style labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:report/style:Style labelname {{name}}
+    /// $ pulumi import fortios:report/style:Style labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:report/style:Style")]
     public partial class Style : global::Pulumi.CustomResource

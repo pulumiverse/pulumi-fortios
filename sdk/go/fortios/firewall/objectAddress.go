@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a resource to configure firewall addresses used in firewall policies of FortiOS.
@@ -16,7 +17,9 @@ import (
 // !> **Warning:** The resource will be deprecated and replaced by new resource `firewall.Address`, we recommend that you use the new resource.
 //
 // ## Example Usage
+//
 // ### Iprange Address
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,7 +46,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Geography Address
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -69,7 +75,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Fqdn Address
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -98,7 +107,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Ipmask Address
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -124,6 +136,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type ObjectAddress struct {
 	pulumi.CustomResourceState
 
@@ -161,7 +174,7 @@ func NewObjectAddress(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectAddress
 	err := ctx.RegisterResource("fortios:firewall/objectAddress:ObjectAddress", name, args, &resource, opts...)
 	if err != nil {

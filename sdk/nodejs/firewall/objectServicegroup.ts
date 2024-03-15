@@ -7,10 +7,11 @@ import * as utilities from "../utilities";
 /**
  * Provides a resource to configure firewall service group of FortiOS.
  *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.firewallservice.Group`, we recommend that you use the new resource.
+ * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.firewall/service.Group`, we recommend that you use the new resource.
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -24,6 +25,7 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class ObjectServicegroup extends pulumi.CustomResource {
     /**

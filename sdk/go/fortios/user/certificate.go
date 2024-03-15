@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure certificate users. Applies to FortiOS Version `>= 7.0.1`.
 //
 // ## Import
 //
-// # User Certificate can be imported using any of these accepted formats
+// User Certificate can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/certificate:Certificate labelname {{name}}
-//
+// $ pulumi import fortios:user/certificate:Certificate labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/certificate:Certificate labelname {{name}}
-//
+// $ pulumi import fortios:user/certificate:Certificate labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Certificate struct {
 	pulumi.CustomResourceState
 
@@ -57,7 +56,7 @@ func NewCertificate(ctx *pulumi.Context,
 		args = &CertificateArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Certificate
 	err := ctx.RegisterResource("fortios:user/certificate:Certificate", name, args, &resource, opts...)
 	if err != nil {

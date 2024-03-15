@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Webproxy
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -43,22 +44,25 @@ namespace Pulumiverse.Fortios.Webproxy
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// WebProxy UrlMatch can be imported using any of these accepted formats
+    /// WebProxy UrlMatch can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:webproxy/urlmatch:Urlmatch labelname {{name}}
+    /// $ pulumi import fortios:webproxy/urlmatch:Urlmatch labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:webproxy/urlmatch:Urlmatch labelname {{name}}
+    /// $ pulumi import fortios:webproxy/urlmatch:Urlmatch labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:webproxy/urlmatch:Urlmatch")]
     public partial class Urlmatch : global::Pulumi.CustomResource

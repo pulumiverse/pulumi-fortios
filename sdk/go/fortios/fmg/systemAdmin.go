@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports modifying system admin setting for FortiManager.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,6 +41,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SystemAdmin struct {
 	pulumi.CustomResourceState
 
@@ -57,7 +60,7 @@ func NewSystemAdmin(ctx *pulumi.Context,
 		args = &SystemAdminArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAdmin
 	err := ctx.RegisterResource("fortios:fmg/systemAdmin:SystemAdmin", name, args, &resource, opts...)
 	if err != nil {

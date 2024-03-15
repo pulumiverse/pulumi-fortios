@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure decrypted traffic mirror. Applies to FortiOS Version `>= 6.4.0`.
 //
 // ## Import
 //
-// # Firewall DecryptedTrafficMirror can be imported using any of these accepted formats
+// Firewall DecryptedTrafficMirror can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/decryptedtrafficmirror:Decryptedtrafficmirror labelname {{name}}
-//
+// $ pulumi import fortios:firewall/decryptedtrafficmirror:Decryptedtrafficmirror labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/decryptedtrafficmirror:Decryptedtrafficmirror labelname {{name}}
-//
+// $ pulumi import fortios:firewall/decryptedtrafficmirror:Decryptedtrafficmirror labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Decryptedtrafficmirror struct {
 	pulumi.CustomResourceState
 
@@ -57,7 +56,7 @@ func NewDecryptedtrafficmirror(ctx *pulumi.Context,
 		args = &DecryptedtrafficmirrorArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Decryptedtrafficmirror
 	err := ctx.RegisterResource("fortios:firewall/decryptedtrafficmirror:Decryptedtrafficmirror", name, args, &resource, opts...)
 	if err != nil {

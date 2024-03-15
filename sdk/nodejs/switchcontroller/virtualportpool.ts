@@ -9,28 +9,32 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
  *
  * const trname = new fortios.switchcontroller.Virtualportpool("trname", {description: "virtualport"});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * SwitchController VirtualPortPool can be imported using any of these accepted formats
+ * SwitchController VirtualPortPool can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:switchcontroller/virtualportpool:Virtualportpool labelname {{name}}
+ * $ pulumi import fortios:switchcontroller/virtualportpool:Virtualportpool labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:switchcontroller/virtualportpool:Virtualportpool labelname {{name}}
+ * $ pulumi import fortios:switchcontroller/virtualportpool:Virtualportpool labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Virtualportpool extends pulumi.CustomResource {
     /**

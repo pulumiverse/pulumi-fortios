@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `router.Keychain`.
 func GetKeychainlist(ctx *pulumi.Context, args *GetKeychainlistArgs, opts ...pulumi.InvokeOption) (*GetKeychainlistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetKeychainlistResult
 	err := ctx.Invoke("fortios:router/getKeychainlist:getKeychainlist", args, &rv, opts...)
 	if err != nil {

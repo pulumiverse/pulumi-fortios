@@ -21,6 +21,17 @@ export const Pptp: typeof import("./pptp").Pptp = null as any;
 utilities.lazyLoad(exports, ["Pptp"], () => require("./pptp"));
 
 
+// Export sub-modules:
+import * as certificate from "./certificate";
+import * as ipsec from "./ipsec";
+import * as ssl from "./ssl";
+
+export {
+    certificate,
+    ipsec,
+    ssl,
+};
+
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {

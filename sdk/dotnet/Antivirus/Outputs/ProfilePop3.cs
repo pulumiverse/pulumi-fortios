@@ -55,7 +55,7 @@ namespace Pulumiverse.Fortios.Antivirus.Outputs
         /// </summary>
         public readonly string? Fortisandbox;
         /// <summary>
-        /// Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+        /// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         /// </summary>
         public readonly string? Options;
         /// <summary>

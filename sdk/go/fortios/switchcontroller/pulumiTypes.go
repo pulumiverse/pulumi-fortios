@@ -8,7 +8,10 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type DynamicportpolicyPolicy struct {
 	// Enable/disable bouncing (administratively bring the link down, up) of a switch port where this policy is applied. Helps to clear and reassign VLAN from lldp-profile. Valid values: `disable`, `enable`.
@@ -3661,7 +3664,7 @@ func (o ManagedswitchMirrorSrcIngressArrayOutput) Index(i pulumi.IntInput) Manag
 type ManagedswitchN8021xSettings struct {
 	// Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
 	LinkDownAuth *string `pulumi:"linkDownAuth"`
-	// Enable to configure local STP settings that override global STP settings. Valid values: `enable`, `disable`.
+	// Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
 	LocalOverride *string `pulumi:"localOverride"`
 	// Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
 	MabReauth *string `pulumi:"mabReauth"`
@@ -3687,7 +3690,7 @@ type ManagedswitchN8021xSettingsInput interface {
 type ManagedswitchN8021xSettingsArgs struct {
 	// Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
 	LinkDownAuth pulumi.StringPtrInput `pulumi:"linkDownAuth"`
-	// Enable to configure local STP settings that override global STP settings. Valid values: `enable`, `disable`.
+	// Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
 	LocalOverride pulumi.StringPtrInput `pulumi:"localOverride"`
 	// Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
 	MabReauth pulumi.StringPtrInput `pulumi:"mabReauth"`
@@ -3781,7 +3784,7 @@ func (o ManagedswitchN8021xSettingsOutput) LinkDownAuth() pulumi.StringPtrOutput
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.LinkDownAuth }).(pulumi.StringPtrOutput)
 }
 
-// Enable to configure local STP settings that override global STP settings. Valid values: `enable`, `disable`.
+// Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
 func (o ManagedswitchN8021xSettingsOutput) LocalOverride() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.LocalOverride }).(pulumi.StringPtrOutput)
 }
@@ -3840,7 +3843,7 @@ func (o ManagedswitchN8021xSettingsPtrOutput) LinkDownAuth() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to configure local STP settings that override global STP settings. Valid values: `enable`, `disable`.
+// Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
 func (o ManagedswitchN8021xSettingsPtrOutput) LocalOverride() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
 		if v == nil {
@@ -4007,7 +4010,7 @@ type ManagedswitchPort struct {
 	PacketSampler *string `pulumi:"packetSampler"`
 	// Configure ingress pause metering rate, in kbps (default = 0, disabled).
 	PauseMeter *int `pulumi:"pauseMeter"`
-	// Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
+	// Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
 	PauseMeterResume *string `pulumi:"pauseMeterResume"`
 	// PoE capable.
 	PoeCapable *int `pulumi:"poeCapable"`
@@ -4207,7 +4210,7 @@ type ManagedswitchPortArgs struct {
 	PacketSampler pulumi.StringPtrInput `pulumi:"packetSampler"`
 	// Configure ingress pause metering rate, in kbps (default = 0, disabled).
 	PauseMeter pulumi.IntPtrInput `pulumi:"pauseMeter"`
-	// Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
+	// Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
 	PauseMeterResume pulumi.StringPtrInput `pulumi:"pauseMeterResume"`
 	// PoE capable.
 	PoeCapable pulumi.IntPtrInput `pulumi:"poeCapable"`
@@ -4620,7 +4623,7 @@ func (o ManagedswitchPortOutput) PauseMeter() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *int { return v.PauseMeter }).(pulumi.IntPtrOutput)
 }
 
-// Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
+// Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
 func (o ManagedswitchPortOutput) PauseMeterResume() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.PauseMeterResume }).(pulumi.StringPtrOutput)
 }

@@ -107,11 +107,11 @@ def get_communitylist(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:router/getCommunitylist:getCommunitylist', __args__, opts=opts, typ=GetCommunitylistResult).value
 
     return AwaitableGetCommunitylistResult(
-        id=__ret__.id,
-        name=__ret__.name,
-        rules=__ret__.rules,
-        type=__ret__.type,
-        vdomparam=__ret__.vdomparam)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        rules=pulumi.get(__ret__, 'rules'),
+        type=pulumi.get(__ret__, 'type'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_communitylist)

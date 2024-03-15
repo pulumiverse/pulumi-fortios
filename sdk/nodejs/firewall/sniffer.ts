@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -34,22 +35,25 @@ import * as utilities from "../utilities";
  *     webfilterProfileStatus: "disable",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Firewall Sniffer can be imported using any of these accepted formats
+ * Firewall Sniffer can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:firewall/sniffer:Sniffer labelname {{fosid}}
+ * $ pulumi import fortios:firewall/sniffer:Sniffer labelname {{fosid}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:firewall/sniffer:Sniffer labelname {{fosid}}
+ * $ pulumi import fortios:firewall/sniffer:Sniffer labelname {{fosid}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Sniffer extends pulumi.CustomResource {
     /**

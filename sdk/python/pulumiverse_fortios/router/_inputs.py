@@ -796,8 +796,6 @@ class BgpAggregateAddress6Args:
         :param pulumi.Input[int] id: ID.
         :param pulumi.Input[str] prefix6: Aggregate IPv6 prefix.
         :param pulumi.Input[str] summary_only: Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
-               
-               The `aggregate_address6` block supports:
         """
         if as_set is not None:
             pulumi.set(__self__, "as_set", as_set)
@@ -849,8 +847,6 @@ class BgpAggregateAddress6Args:
     def summary_only(self) -> Optional[pulumi.Input[str]]:
         """
         Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
-
-        The `aggregate_address6` block supports:
         """
         return pulumi.get(self, "summary_only")
 
@@ -2794,8 +2790,6 @@ class BgpNeighborConditionalAdvertise6Args:
         :param pulumi.Input[str] advertise_routemap: Name of advertising route map.
         :param pulumi.Input[str] condition_routemap: Name of condition route map.
         :param pulumi.Input[str] condition_type: Type of condition. Valid values: `exist`, `non-exist`.
-               
-               The `conditional_advertise6` block supports:
         """
         if advertise_routemap is not None:
             pulumi.set(__self__, "advertise_routemap", advertise_routemap)
@@ -2833,8 +2827,6 @@ class BgpNeighborConditionalAdvertise6Args:
     def condition_type(self) -> Optional[pulumi.Input[str]]:
         """
         Type of condition. Valid values: `exist`, `non-exist`.
-
-        The `conditional_advertise6` block supports:
         """
         return pulumi.get(self, "condition_type")
 
@@ -4836,13 +4828,7 @@ class BgpNetwork6Args:
         :param pulumi.Input[int] id: ID.
         :param pulumi.Input[str] network_import_check: Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] prefix6: Aggregate IPv6 prefix.
-        :param pulumi.Input[str] route_map: Route map to modify generated route.
-               
-               The `network6` block supports:
-               
-               
-               
-               The `redistribute6` block supports:
+        :param pulumi.Input[str] route_map: Route map of VRF leaking.
         """
         if backdoor is not None:
             pulumi.set(__self__, "backdoor", backdoor)
@@ -4907,13 +4893,7 @@ class BgpNetwork6Args:
     @pulumi.getter(name="routeMap")
     def route_map(self) -> Optional[pulumi.Input[str]]:
         """
-        Route map to modify generated route.
-
-        The `network6` block supports:
-
-
-
-        The `redistribute6` block supports:
+        Route map of VRF leaking.
         """
         return pulumi.get(self, "route_map")
 
@@ -5017,13 +4997,7 @@ class BgpRedistribute6Args:
                  status: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Neighbor group name.
-        :param pulumi.Input[str] route_map: Route map to modify generated route.
-               
-               The `network6` block supports:
-               
-               
-               
-               The `redistribute6` block supports:
+        :param pulumi.Input[str] route_map: Route map of VRF leaking.
         :param pulumi.Input[str] status: Status Valid values: `enable`, `disable`.
         """
         if name is not None:
@@ -5049,13 +5023,7 @@ class BgpRedistribute6Args:
     @pulumi.getter(name="routeMap")
     def route_map(self) -> Optional[pulumi.Input[str]]:
         """
-        Route map to modify generated route.
-
-        The `network6` block supports:
-
-
-
-        The `redistribute6` block supports:
+        Route map of VRF leaking.
         """
         return pulumi.get(self, "route_map")
 
@@ -6186,14 +6154,10 @@ class IsisRedistribute6Args:
                  status: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] level: Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-               
-               The `summary_address6` block supports:
         :param pulumi.Input[int] metric: Metric.
         :param pulumi.Input[str] metric_type: Metric type. Valid values: `external`, `internal`.
         :param pulumi.Input[str] protocol: Protocol name.
         :param pulumi.Input[str] routemap: Route map name.
-               
-               The `redistribute6` block supports:
         :param pulumi.Input[str] status: Enable/disable interface for IS-IS. Valid values: `enable`, `disable`.
         """
         if level is not None:
@@ -6214,8 +6178,6 @@ class IsisRedistribute6Args:
     def level(self) -> Optional[pulumi.Input[str]]:
         """
         Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-
-        The `summary_address6` block supports:
         """
         return pulumi.get(self, "level")
 
@@ -6264,8 +6226,6 @@ class IsisRedistribute6Args:
     def routemap(self) -> Optional[pulumi.Input[str]]:
         """
         Route map name.
-
-        The `redistribute6` block supports:
         """
         return pulumi.get(self, "routemap")
 
@@ -6398,8 +6358,6 @@ class IsisSummaryAddress6Args:
         """
         :param pulumi.Input[int] id: isis-net ID.
         :param pulumi.Input[str] level: Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-               
-               The `summary_address6` block supports:
         :param pulumi.Input[str] prefix6: IPv6 prefix.
         """
         if id is not None:
@@ -6426,8 +6384,6 @@ class IsisSummaryAddress6Args:
     def level(self) -> Optional[pulumi.Input[str]]:
         """
         Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-
-        The `summary_address6` block supports:
         """
         return pulumi.get(self, "level")
 
@@ -8437,7 +8393,7 @@ class Ospf6Ospf6InterfaceArgs:
         :param pulumi.Input[int] key_rollover_interval: Key roll-over interval.
         :param pulumi.Input[int] mtu: MTU for OSPFv3 packets.
         :param pulumi.Input[str] mtu_ignore: Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] name: Virtual link entry name.
+        :param pulumi.Input[str] name: Interface entry name.
         :param pulumi.Input[Sequence[pulumi.Input['Ospf6Ospf6InterfaceNeighborArgs']]] neighbors: OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
         :param pulumi.Input[str] network_type: Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
         :param pulumi.Input[int] priority: priority
@@ -8646,7 +8602,7 @@ class Ospf6Ospf6InterfaceArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Virtual link entry name.
+        Interface entry name.
         """
         return pulumi.get(self, "name")
 

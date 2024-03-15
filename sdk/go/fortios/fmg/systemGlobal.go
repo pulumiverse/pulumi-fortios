@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports modifying system global setting for FortiManager.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,6 +43,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SystemGlobal struct {
 	pulumi.CustomResourceState
 
@@ -63,7 +66,7 @@ func NewSystemGlobal(ctx *pulumi.Context,
 		args = &SystemGlobalArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemGlobal
 	err := ctx.RegisterResource("fortios:fmg/systemGlobal:SystemGlobal", name, args, &resource, opts...)
 	if err != nil {

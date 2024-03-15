@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure Access Proxy SSH client certificate. Applies to FortiOS Version `>= 7.0.1`.
 //
 // ## Import
 //
-// # Firewall AccessProxySshClientCert can be imported using any of these accepted formats
+// Firewall AccessProxySshClientCert can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/accessproxysshclientcert:Accessproxysshclientcert labelname {{name}}
-//
+// $ pulumi import fortios:firewall/accessproxysshclientcert:Accessproxysshclientcert labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/accessproxysshclientcert:Accessproxysshclientcert labelname {{name}}
-//
+// $ pulumi import fortios:firewall/accessproxysshclientcert:Accessproxysshclientcert labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Accessproxysshclientcert struct {
 	pulumi.CustomResourceState
 
@@ -65,7 +64,7 @@ func NewAccessproxysshclientcert(ctx *pulumi.Context,
 		args = &AccessproxysshclientcertArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Accessproxysshclientcert
 	err := ctx.RegisterResource("fortios:firewall/accessproxysshclientcert:Accessproxysshclientcert", name, args, &resource, opts...)
 	if err != nil {

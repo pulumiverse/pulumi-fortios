@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // IP blacklist vendor. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # Firewall InternetServiceIpblVendor can be imported using any of these accepted formats
+// Firewall InternetServiceIpblVendor can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetserviceipblvendor:Internetserviceipblvendor labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetserviceipblvendor:Internetserviceipblvendor labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetserviceipblvendor:Internetserviceipblvendor labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetserviceipblvendor:Internetserviceipblvendor labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Internetserviceipblvendor struct {
 	pulumi.CustomResourceState
 
@@ -49,7 +48,7 @@ func NewInternetserviceipblvendor(ctx *pulumi.Context,
 		args = &InternetserviceipblvendorArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Internetserviceipblvendor
 	err := ctx.RegisterResource("fortios:firewall/internetserviceipblvendor:Internetserviceipblvendor", name, args, &resource, opts...)
 	if err != nil {

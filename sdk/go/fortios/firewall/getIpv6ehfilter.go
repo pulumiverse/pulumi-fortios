@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on fortios firewall ipv6ehfilter
 func LookupIpv6ehfilter(ctx *pulumi.Context, args *LookupIpv6ehfilterArgs, opts ...pulumi.InvokeOption) (*LookupIpv6ehfilterResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIpv6ehfilterResult
 	err := ctx.Invoke("fortios:firewall/getIpv6ehfilter:getIpv6ehfilter", args, &rv, opts...)
 	if err != nil {

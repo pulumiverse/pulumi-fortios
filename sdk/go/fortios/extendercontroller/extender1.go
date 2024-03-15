@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Extender controller configuration.
@@ -17,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -85,26 +87,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # ExtenderController Extender1 can be imported using any of these accepted formats
+// ExtenderController Extender1 can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:extendercontroller/extender1:Extender1 labelname {{name}}
-//
+// $ pulumi import fortios:extendercontroller/extender1:Extender1 labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:extendercontroller/extender1:Extender1 labelname {{name}}
-//
+// $ pulumi import fortios:extendercontroller/extender1:Extender1 labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Extender1 struct {
 	pulumi.CustomResourceState
 
@@ -149,7 +150,7 @@ func NewExtender1(ctx *pulumi.Context,
 		"loginPassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Extender1
 	err := ctx.RegisterResource("fortios:extendercontroller/extender1:Extender1", name, args, &resource, opts...)
 	if err != nil {

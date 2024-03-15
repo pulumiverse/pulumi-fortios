@@ -326,6 +326,17 @@ export const Static6: typeof import("./static6").Static6 = null as any;
 utilities.lazyLoad(exports, ["Static6"], () => require("./static6"));
 
 
+// Export sub-modules:
+import * as bgp from "./bgp";
+import * as ospf from "./ospf";
+import * as ospf6 from "./ospf6";
+
+export {
+    bgp,
+    ospf,
+    ospf6,
+};
+
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {

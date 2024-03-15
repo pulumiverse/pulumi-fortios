@@ -11,28 +11,32 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
  *
  * const trname = new fortios.dlp.Filepattern("trname", {fosid: 9});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Dlp Filepattern can be imported using any of these accepted formats
+ * Dlp Filepattern can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:dlp/filepattern:Filepattern labelname {{fosid}}
+ * $ pulumi import fortios:dlp/filepattern:Filepattern labelname {{fosid}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:dlp/filepattern:Filepattern labelname {{fosid}}
+ * $ pulumi import fortios:dlp/filepattern:Filepattern labelname {{fosid}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Filepattern extends pulumi.CustomResource {
     /**

@@ -1659,7 +1659,7 @@ class ProfilePop3Args:
         :param pulumi.Input[str] fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
         :param pulumi.Input[str] fortindr: Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         :param pulumi.Input[str] fortisandbox: Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
-        :param pulumi.Input[str] options: Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+        :param pulumi.Input[str] options: Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param pulumi.Input[str] outbreak_prevention: Configure Virus Outbreak Prevention settings. The structure of `outbreak_prevention` block is documented below.
         :param pulumi.Input[str] quarantine: Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
         """
@@ -1814,7 +1814,7 @@ class ProfilePop3Args:
     @pulumi.getter
     def options(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+        Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         """
         return pulumi.get(self, "options")
 

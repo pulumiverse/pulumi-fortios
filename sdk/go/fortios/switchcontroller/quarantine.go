@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiSwitch quarantine support.
 //
 // ## Import
 //
-// # SwitchController Quarantine can be imported using any of these accepted formats
+// SwitchController Quarantine can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/quarantine:Quarantine labelname SwitchControllerQuarantine
-//
+// $ pulumi import fortios:switchcontroller/quarantine:Quarantine labelname SwitchControllerQuarantine
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/quarantine:Quarantine labelname SwitchControllerQuarantine
-//
+// $ pulumi import fortios:switchcontroller/quarantine:Quarantine labelname SwitchControllerQuarantine
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Quarantine struct {
 	pulumi.CustomResourceState
 
@@ -51,7 +50,7 @@ func NewQuarantine(ctx *pulumi.Context,
 		args = &QuarantineArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Quarantine
 	err := ctx.RegisterResource("fortios:switchcontroller/quarantine:Quarantine", name, args, &resource, opts...)
 	if err != nil {

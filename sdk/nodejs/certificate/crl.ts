@@ -9,19 +9,21 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Certificate Crl can be imported using any of these accepted formats
+ * Certificate Crl can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:certificate/crl:Crl labelname {{name}}
+ * $ pulumi import fortios:certificate/crl:Crl labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:certificate/crl:Crl labelname {{name}}
+ * $ pulumi import fortios:certificate/crl:Crl labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Crl extends pulumi.CustomResource {
     /**

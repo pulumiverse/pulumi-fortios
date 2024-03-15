@@ -462,7 +462,7 @@ export namespace antivirus {
          */
         fortisandbox?: pulumi.Input<string>;
         /**
-         * Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+         * Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
          */
         options?: pulumi.Input<string>;
         /**
@@ -1178,495 +1178,12 @@ export namespace dlp {
     }
 }
 
-export namespace dnsfilter {
-    export interface DomainfilterEntry {
-        /**
-         * Action to take for domain filter matches. Valid values: `block`, `allow`, `monitor`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Domain entries to be filtered.
-         */
-        domain?: pulumi.Input<string>;
-        /**
-         * Id.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Enable/disable this domain filter. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * DNS domain filter type. Valid values: `simple`, `regex`, `wildcard`.
-         */
-        type?: pulumi.Input<string>;
-    }
-
-    export interface ProfileDnsTranslation {
-        /**
-         * DNS translation type (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-         */
-        addrType?: pulumi.Input<string>;
-        /**
-         * IPv4 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src.
-         */
-        dst?: pulumi.Input<string>;
-        /**
-         * IPv6 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src6.
-         */
-        dst6?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * If src and dst are subnets rather than single IP addresses, enter the netmask for both src and dst.
-         */
-        netmask?: pulumi.Input<string>;
-        /**
-         * If src6 and dst6 are subnets rather than single IP addresses, enter the prefix for both src6 and dst6 (1 - 128, default = 128).
-         */
-        prefix?: pulumi.Input<number>;
-        /**
-         * IPv4 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst.
-         */
-        src?: pulumi.Input<string>;
-        /**
-         * IPv6 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst6.
-         */
-        src6?: pulumi.Input<string>;
-        /**
-         * Enable/disable this DNS translation entry. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-    }
-
-    export interface ProfileDomainFilter {
-        /**
-         * DNS domain filter table ID.
-         */
-        domainFilterTable?: pulumi.Input<number>;
-    }
-
-    export interface ProfileExternalIpBlocklist {
-        /**
-         * External domain block list name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFtgdDns {
-        /**
-         * FortiGuard DNS domain filters. The structure of `filters` block is documented below.
-         */
-        filters?: pulumi.Input<pulumi.Input<inputs.dnsfilter.ProfileFtgdDnsFilter>[]>;
-        /**
-         * FortiGuard DNS filter options. Valid values: `error-allow`, `ftgd-disable`.
-         */
-        options?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFtgdDnsFilter {
-        /**
-         * Action to take for DNS requests matching the category. Valid values: `block`, `monitor`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Category number.
-         */
-        category?: pulumi.Input<number>;
-        /**
-         * ID number.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Enable/disable DNS filter logging for this DNS profile. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-    }
-}
-
 export namespace dpdk {
     export interface GlobalInterface {
         /**
          * Physical interface name.
          */
         interfaceName?: pulumi.Input<string>;
-    }
-}
-
-export namespace emailfilter {
-    export interface BlockallowlistEntry {
-        /**
-         * Reject, mark as spam or good email. Valid values: `reject`, `spam`, `clear`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * IP address type. Valid values: `ipv4`, `ipv6`.
-         */
-        addrType?: pulumi.Input<string>;
-        /**
-         * Email address pattern.
-         */
-        emailPattern?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * IPv4 network address/subnet mask bits.
-         */
-        ip4Subnet?: pulumi.Input<string>;
-        /**
-         * IPv6 network address/subnet mask bits.
-         */
-        ip6Subnet?: pulumi.Input<string>;
-        /**
-         * Pattern to match.
-         */
-        pattern?: pulumi.Input<string>;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType?: pulumi.Input<string>;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Entry type.
-         */
-        type?: pulumi.Input<string>;
-    }
-
-    export interface BwlEntry {
-        /**
-         * Reject, mark as spam or good email. Valid values: `reject`, `spam`, `clear`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * IP address type. Valid values: `ipv4`, `ipv6`.
-         */
-        addrType?: pulumi.Input<string>;
-        /**
-         * Email address pattern.
-         */
-        emailPattern?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * IPv4 network address/subnet mask bits.
-         */
-        ip4Subnet?: pulumi.Input<string>;
-        /**
-         * IPv6 network address/subnet mask bits.
-         */
-        ip6Subnet?: pulumi.Input<string>;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType?: pulumi.Input<string>;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Entry type. Valid values: `ip`, `email`.
-         */
-        type?: pulumi.Input<string>;
-    }
-
-    export interface BwordEntry {
-        /**
-         * Mark spam or good. Valid values: `spam`, `clear`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Banned word entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Language for the banned word. Valid values: `western`, `simch`, `trach`, `japanese`, `korean`, `french`, `thai`, `spanish`.
-         */
-        language?: pulumi.Input<string>;
-        /**
-         * Pattern for the banned word.
-         */
-        pattern?: pulumi.Input<string>;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType?: pulumi.Input<string>;
-        /**
-         * Score value.
-         */
-        score?: pulumi.Input<number>;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Component of the email to be scanned. Valid values: `subject`, `body`, `all`.
-         */
-        where?: pulumi.Input<string>;
-    }
-
-    export interface DnsblEntry {
-        /**
-         * Reject connection or mark as spam email. Valid values: `reject`, `spam`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * DNSBL/ORBL entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * DNSBL or ORBL server name.
-         */
-        server?: pulumi.Input<string>;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-    }
-
-    export interface IptrustEntry {
-        /**
-         * Type of address. Valid values: `ipv4`, `ipv6`.
-         */
-        addrType?: pulumi.Input<string>;
-        /**
-         * Trusted IP entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * IPv4 network address or network address/subnet mask bits.
-         */
-        ip4Subnet?: pulumi.Input<string>;
-        /**
-         * IPv6 network address/subnet mask bits.
-         */
-        ip6Subnet?: pulumi.Input<string>;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-    }
-
-    export interface MheaderEntry {
-        /**
-         * Mark spam or good. Valid values: `spam`, `clear`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Pattern for the header field body.
-         */
-        fieldbody?: pulumi.Input<string>;
-        /**
-         * Pattern for header field name.
-         */
-        fieldname?: pulumi.Input<string>;
-        /**
-         * Mime header entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType?: pulumi.Input<string>;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFileFilter {
-        /**
-         * File filter entries. The structure of `entries` block is documented below.
-         */
-        entries?: pulumi.Input<pulumi.Input<inputs.emailfilter.ProfileFileFilterEntry>[]>;
-        /**
-         * Enable/disable file filter logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Enable/disable file filter archive contents scan. Valid values: `enable`, `disable`.
-         */
-        scanArchiveContents?: pulumi.Input<string>;
-        /**
-         * Enable/disable file filter. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFileFilterEntry {
-        /**
-         * Action taken for matched file. Valid values: `log`, `block`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Comment.
-         */
-        comment?: pulumi.Input<string>;
-        /**
-         * Select file type. The structure of `fileType` block is documented below.
-         */
-        fileTypes?: pulumi.Input<pulumi.Input<inputs.emailfilter.ProfileFileFilterEntryFileType>[]>;
-        /**
-         * Add a file filter.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Match password-protected files. Valid values: `yes`, `any`.
-         */
-        passwordProtected?: pulumi.Input<string>;
-        /**
-         * Protocols to apply with. Valid values: `smtp`, `imap`, `pop3`.
-         */
-        protocol?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFileFilterEntryFileType {
-        /**
-         * File type name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface ProfileGmail {
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll?: pulumi.Input<string>;
-    }
-
-    export interface ProfileImap {
-        /**
-         * Action for spam email. Valid values: `pass`, `tag`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll?: pulumi.Input<string>;
-        /**
-         * Subject text or header added to spam email.
-         */
-        tagMsg?: pulumi.Input<string>;
-        /**
-         * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-         */
-        tagType?: pulumi.Input<string>;
-    }
-
-    export interface ProfileMapi {
-        /**
-         * Action for spam email. Valid values: `pass`, `discard`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll?: pulumi.Input<string>;
-    }
-
-    export interface ProfileMsnHotmail {
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll?: pulumi.Input<string>;
-    }
-
-    export interface ProfileOtherWebmails {
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll?: pulumi.Input<string>;
-    }
-
-    export interface ProfilePop3 {
-        /**
-         * Action taken for matched file. Valid values: `log`, `block`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Enable/disable file filter logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll?: pulumi.Input<string>;
-        /**
-         * Subject text or header added to spam email.
-         *
-         * The `pop3` block supports:
-         */
-        tagMsg?: pulumi.Input<string>;
-        /**
-         * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-         */
-        tagType?: pulumi.Input<string>;
-    }
-
-    export interface ProfileSmtp {
-        /**
-         * Action for spam email. Valid values: `pass`, `tag`, `discard`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Enable/disable SMTP email header IP checks for spamfsip, spamrbl and spambwl filters. Valid values: `disable`, `enable`.
-         */
-        hdrip?: pulumi.Input<string>;
-        /**
-         * Enable/disable local filter to override SMTP remote check result. Valid values: `disable`, `enable`.
-         */
-        localOverride?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll?: pulumi.Input<string>;
-        /**
-         * Subject text or header added to spam email.
-         */
-        tagMsg?: pulumi.Input<string>;
-        /**
-         * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-         */
-        tagType?: pulumi.Input<string>;
-    }
-
-    export interface ProfileYahooMail {
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll?: pulumi.Input<string>;
     }
 }
 
@@ -3128,43 +2645,1396 @@ export namespace extensioncontroller {
     }
 }
 
-export namespace filefilter {
-    export interface ProfileRule {
-        /**
-         * Action taken for matched file. Valid values: `log-only`, `block`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Comment.
-         */
-        comment?: pulumi.Input<string>;
-        /**
-         * Traffic direction. (HTTP, FTP, SSH, CIFS only) Valid values: `incoming`, `outgoing`, `any`.
-         */
-        direction?: pulumi.Input<string>;
-        /**
-         * Select file type. The structure of `fileType` block is documented below.
-         */
-        fileTypes?: pulumi.Input<pulumi.Input<inputs.filefilter.ProfileRuleFileType>[]>;
-        /**
-         * File-filter rule name.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * Match password-protected files. Valid values: `yes`, `any`.
-         */
-        passwordProtected?: pulumi.Input<string>;
-        /**
-         * Protocols to apply rule to. Valid values: `http`, `ftp`, `smtp`, `imap`, `pop3`, `mapi`, `cifs`, `ssh`.
-         */
-        protocol?: pulumi.Input<string>;
+export namespace filter {
+    export namespace dns {
+        export interface DomainfilterEntry {
+            /**
+             * Action to take for domain filter matches. Valid values: `block`, `allow`, `monitor`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Domain entries to be filtered.
+             */
+            domain?: pulumi.Input<string>;
+            /**
+             * Id.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Enable/disable this domain filter. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * DNS domain filter type. Valid values: `simple`, `regex`, `wildcard`.
+             */
+            type?: pulumi.Input<string>;
+        }
+
+        export interface ProfileDnsTranslation {
+            /**
+             * DNS translation type (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
+             */
+            addrType?: pulumi.Input<string>;
+            /**
+             * IPv4 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src.
+             */
+            dst?: pulumi.Input<string>;
+            /**
+             * IPv6 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src6.
+             */
+            dst6?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * If src and dst are subnets rather than single IP addresses, enter the netmask for both src and dst.
+             */
+            netmask?: pulumi.Input<string>;
+            /**
+             * If src6 and dst6 are subnets rather than single IP addresses, enter the prefix for both src6 and dst6 (1 - 128, default = 128).
+             */
+            prefix?: pulumi.Input<number>;
+            /**
+             * IPv4 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst.
+             */
+            src?: pulumi.Input<string>;
+            /**
+             * IPv6 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst6.
+             */
+            src6?: pulumi.Input<string>;
+            /**
+             * Enable/disable this DNS translation entry. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+        }
+
+        export interface ProfileDomainFilter {
+            /**
+             * DNS domain filter table ID.
+             */
+            domainFilterTable?: pulumi.Input<number>;
+        }
+
+        export interface ProfileExternalIpBlocklist {
+            /**
+             * External domain block list name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFtgdDns {
+            /**
+             * FortiGuard DNS domain filters. The structure of `filters` block is documented below.
+             */
+            filters?: pulumi.Input<pulumi.Input<inputs.filter.dns.ProfileFtgdDnsFilter>[]>;
+            /**
+             * FortiGuard DNS filter options. Valid values: `error-allow`, `ftgd-disable`.
+             */
+            options?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFtgdDnsFilter {
+            /**
+             * Action to take for DNS requests matching the category. Valid values: `block`, `monitor`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Category number.
+             */
+            category?: pulumi.Input<number>;
+            /**
+             * ID number.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Enable/disable DNS filter logging for this DNS profile. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+        }
     }
 
-    export interface ProfileRuleFileType {
-        /**
-         * File type name.
-         */
-        name?: pulumi.Input<string>;
+    export namespace email {
+        export interface BlockallowlistEntry {
+            /**
+             * Reject, mark as spam or good email. Valid values: `reject`, `spam`, `clear`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * IP address type. Valid values: `ipv4`, `ipv6`.
+             */
+            addrType?: pulumi.Input<string>;
+            /**
+             * Email address pattern.
+             */
+            emailPattern?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * IPv4 network address/subnet mask bits.
+             */
+            ip4Subnet?: pulumi.Input<string>;
+            /**
+             * IPv6 network address/subnet mask bits.
+             */
+            ip6Subnet?: pulumi.Input<string>;
+            /**
+             * Pattern to match.
+             */
+            pattern?: pulumi.Input<string>;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType?: pulumi.Input<string>;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Entry type.
+             */
+            type?: pulumi.Input<string>;
+        }
+
+        export interface BwlEntry {
+            /**
+             * Reject, mark as spam or good email. Valid values: `reject`, `spam`, `clear`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * IP address type. Valid values: `ipv4`, `ipv6`.
+             */
+            addrType?: pulumi.Input<string>;
+            /**
+             * Email address pattern.
+             */
+            emailPattern?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * IPv4 network address/subnet mask bits.
+             */
+            ip4Subnet?: pulumi.Input<string>;
+            /**
+             * IPv6 network address/subnet mask bits.
+             */
+            ip6Subnet?: pulumi.Input<string>;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType?: pulumi.Input<string>;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Entry type. Valid values: `ip`, `email`.
+             */
+            type?: pulumi.Input<string>;
+        }
+
+        export interface BwordEntry {
+            /**
+             * Mark spam or good. Valid values: `spam`, `clear`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Banned word entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Language for the banned word. Valid values: `western`, `simch`, `trach`, `japanese`, `korean`, `french`, `thai`, `spanish`.
+             */
+            language?: pulumi.Input<string>;
+            /**
+             * Pattern for the banned word.
+             */
+            pattern?: pulumi.Input<string>;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType?: pulumi.Input<string>;
+            /**
+             * Score value.
+             */
+            score?: pulumi.Input<number>;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Component of the email to be scanned. Valid values: `subject`, `body`, `all`.
+             */
+            where?: pulumi.Input<string>;
+        }
+
+        export interface DnsblEntry {
+            /**
+             * Reject connection or mark as spam email. Valid values: `reject`, `spam`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * DNSBL/ORBL entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * DNSBL or ORBL server name.
+             */
+            server?: pulumi.Input<string>;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+        }
+
+        export interface IptrustEntry {
+            /**
+             * Type of address. Valid values: `ipv4`, `ipv6`.
+             */
+            addrType?: pulumi.Input<string>;
+            /**
+             * Trusted IP entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * IPv4 network address or network address/subnet mask bits.
+             */
+            ip4Subnet?: pulumi.Input<string>;
+            /**
+             * IPv6 network address/subnet mask bits.
+             */
+            ip6Subnet?: pulumi.Input<string>;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+        }
+
+        export interface MheaderEntry {
+            /**
+             * Mark spam or good. Valid values: `spam`, `clear`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Pattern for the header field body.
+             */
+            fieldbody?: pulumi.Input<string>;
+            /**
+             * Pattern for header field name.
+             */
+            fieldname?: pulumi.Input<string>;
+            /**
+             * Mime header entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType?: pulumi.Input<string>;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFileFilter {
+            /**
+             * File filter entries. The structure of `entries` block is documented below.
+             */
+            entries?: pulumi.Input<pulumi.Input<inputs.filter.email.ProfileFileFilterEntry>[]>;
+            /**
+             * Enable/disable file filter logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Enable/disable file filter archive contents scan. Valid values: `enable`, `disable`.
+             */
+            scanArchiveContents?: pulumi.Input<string>;
+            /**
+             * Enable/disable file filter. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFileFilterEntry {
+            /**
+             * Action taken for matched file. Valid values: `log`, `block`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Comment.
+             */
+            comment?: pulumi.Input<string>;
+            /**
+             * Select file type. The structure of `fileType` block is documented below.
+             */
+            fileTypes?: pulumi.Input<pulumi.Input<inputs.filter.email.ProfileFileFilterEntryFileType>[]>;
+            /**
+             * Add a file filter.
+             */
+            filter?: pulumi.Input<string>;
+            /**
+             * Match password-protected files. Valid values: `yes`, `any`.
+             */
+            passwordProtected?: pulumi.Input<string>;
+            /**
+             * Protocols to apply with. Valid values: `smtp`, `imap`, `pop3`.
+             */
+            protocol?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFileFilterEntryFileType {
+            /**
+             * File type name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface ProfileGmail {
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll?: pulumi.Input<string>;
+        }
+
+        export interface ProfileImap {
+            /**
+             * Action for spam email. Valid values: `pass`, `tag`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll?: pulumi.Input<string>;
+            /**
+             * Subject text or header added to spam email.
+             */
+            tagMsg?: pulumi.Input<string>;
+            /**
+             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+             */
+            tagType?: pulumi.Input<string>;
+        }
+
+        export interface ProfileMapi {
+            /**
+             * Action for spam email. Valid values: `pass`, `discard`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll?: pulumi.Input<string>;
+        }
+
+        export interface ProfileMsnHotmail {
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll?: pulumi.Input<string>;
+        }
+
+        export interface ProfileOtherWebmails {
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll?: pulumi.Input<string>;
+        }
+
+        export interface ProfilePop3 {
+            /**
+             * Action taken for matched file. Valid values: `log`, `block`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Enable/disable file filter logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll?: pulumi.Input<string>;
+            /**
+             * Subject text or header added to spam email.
+             */
+            tagMsg?: pulumi.Input<string>;
+            /**
+             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+             */
+            tagType?: pulumi.Input<string>;
+        }
+
+        export interface ProfileSmtp {
+            /**
+             * Action for spam email. Valid values: `pass`, `tag`, `discard`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Enable/disable SMTP email header IP checks for spamfsip, spamrbl and spambwl filters. Valid values: `disable`, `enable`.
+             */
+            hdrip?: pulumi.Input<string>;
+            /**
+             * Enable/disable local filter to override SMTP remote check result. Valid values: `disable`, `enable`.
+             */
+            localOverride?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll?: pulumi.Input<string>;
+            /**
+             * Subject text or header added to spam email.
+             */
+            tagMsg?: pulumi.Input<string>;
+            /**
+             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+             */
+            tagType?: pulumi.Input<string>;
+        }
+
+        export interface ProfileYahooMail {
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll?: pulumi.Input<string>;
+        }
+    }
+
+    export namespace file {
+        export interface ProfileRule {
+            /**
+             * Action taken for matched file. Valid values: `log-only`, `block`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Comment.
+             */
+            comment?: pulumi.Input<string>;
+            /**
+             * Traffic direction. (HTTP, FTP, SSH, CIFS only) Valid values: `incoming`, `outgoing`, `any`.
+             */
+            direction?: pulumi.Input<string>;
+            /**
+             * Select file type. The structure of `fileType` block is documented below.
+             */
+            fileTypes?: pulumi.Input<pulumi.Input<inputs.filter.file.ProfileRuleFileType>[]>;
+            /**
+             * File-filter rule name.
+             */
+            name?: pulumi.Input<string>;
+            /**
+             * Match password-protected files. Valid values: `yes`, `any`.
+             */
+            passwordProtected?: pulumi.Input<string>;
+            /**
+             * Protocols to apply rule to. Valid values: `http`, `ftp`, `smtp`, `imap`, `pop3`, `mapi`, `cifs`, `ssh`.
+             */
+            protocol?: pulumi.Input<string>;
+        }
+
+        export interface ProfileRuleFileType {
+            /**
+             * File type name.
+             */
+            name?: pulumi.Input<string>;
+        }
+    }
+
+    export namespace sctp {
+        export interface ProfilePpidFilter {
+            /**
+             * Action taken when PPID is matched. Valid values: `pass`, `reset`, `replace`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Comment.
+             */
+            comment?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Payload protocol identifier.
+             */
+            ppid?: pulumi.Input<number>;
+        }
+    }
+
+    export namespace spam {
+        export interface BwlEntry {
+            /**
+             * Reject, mark as spam or good email. Valid values: `reject`, `spam`, `clear`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * IP address type. Valid values: `ipv4`, `ipv6`.
+             */
+            addrType?: pulumi.Input<string>;
+            /**
+             * Email address pattern.
+             */
+            emailPattern?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * IPv4 network address/subnet mask bits.
+             */
+            ip4Subnet?: pulumi.Input<string>;
+            /**
+             * IPv6 network address/subnet mask bits.
+             */
+            ip6Subnet?: pulumi.Input<string>;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType?: pulumi.Input<string>;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Entry type. Valid values: `ip`, `email`.
+             */
+            type?: pulumi.Input<string>;
+        }
+
+        export interface BwordEntry {
+            /**
+             * Mark spam or good. Valid values: `spam`, `clear`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Banned word entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Language for the banned word. Valid values: `western`, `simch`, `trach`, `japanese`, `korean`, `french`, `thai`, `spanish`.
+             */
+            language?: pulumi.Input<string>;
+            /**
+             * Pattern for the banned word.
+             */
+            pattern?: pulumi.Input<string>;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType?: pulumi.Input<string>;
+            /**
+             * Score value.
+             */
+            score?: pulumi.Input<number>;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Component of the email to be scanned. Valid values: `subject`, `body`, `all`.
+             */
+            where?: pulumi.Input<string>;
+        }
+
+        export interface DnsblEntry {
+            /**
+             * Reject connection or mark as spam email. Valid values: `reject`, `spam`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * DNSBL/ORBL entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * DNSBL or ORBL server name.
+             */
+            server?: pulumi.Input<string>;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+        }
+
+        export interface IptrustEntry {
+            /**
+             * Type of address. Valid values: `ipv4`, `ipv6`.
+             */
+            addrType?: pulumi.Input<string>;
+            /**
+             * Trusted IP entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * IPv4 network address or network address/subnet mask bits.
+             */
+            ip4Subnet?: pulumi.Input<string>;
+            /**
+             * IPv6 network address/subnet mask bits.
+             */
+            ip6Subnet?: pulumi.Input<string>;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+        }
+
+        export interface MheaderEntry {
+            /**
+             * Mark spam or good. Valid values: `spam`, `clear`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Pattern for the header field body.
+             */
+            fieldbody?: pulumi.Input<string>;
+            /**
+             * Pattern for header field name.
+             */
+            fieldname?: pulumi.Input<string>;
+            /**
+             * Mime header entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType?: pulumi.Input<string>;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+        }
+
+        export interface ProfileGmail {
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+        }
+
+        export interface ProfileImap {
+            /**
+             * Action for spam email. Valid values: `pass`, `tag`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Subject text or header added to spam email.
+             */
+            tagMsg?: pulumi.Input<string>;
+            /**
+             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+             */
+            tagType?: pulumi.Input<string>;
+        }
+
+        export interface ProfileMapi {
+            /**
+             * Action for spam email. Valid values: `pass`, `discard`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+        }
+
+        export interface ProfileMsnHotmail {
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+        }
+
+        export interface ProfilePop3 {
+            /**
+             * Action for spam email. Valid values: `pass`, `tag`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Subject text or header added to spam email.
+             */
+            tagMsg?: pulumi.Input<string>;
+            /**
+             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+             */
+            tagType?: pulumi.Input<string>;
+        }
+
+        export interface ProfileSmtp {
+            /**
+             * Action for spam email. Valid values: `pass`, `tag`, `discard`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Enable/disable SMTP email header IP checks for spamfsip, spamrbl and spambwl filters. Valid values: `disable`, `enable`.
+             */
+            hdrip?: pulumi.Input<string>;
+            /**
+             * Enable/disable local filter to override SMTP remote check result. Valid values: `disable`, `enable`.
+             */
+            localOverride?: pulumi.Input<string>;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Subject text or header added to spam email.
+             */
+            tagMsg?: pulumi.Input<string>;
+            /**
+             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+             */
+            tagType?: pulumi.Input<string>;
+        }
+
+        export interface ProfileYahooMail {
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+        }
+    }
+
+    export namespace ssh {
+        export interface ProfileFileFilter {
+            /**
+             * File filter entries. The structure of `entries` block is documented below.
+             */
+            entries?: pulumi.Input<pulumi.Input<inputs.filter.ssh.ProfileFileFilterEntry>[]>;
+            /**
+             * Enable/disable file filter logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Enable/disable file filter archive contents scan. Valid values: `enable`, `disable`.
+             */
+            scanArchiveContents?: pulumi.Input<string>;
+            /**
+             * Enable/disable file filter. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFileFilterEntry {
+            /**
+             * Action taken for matched file. Valid values: `log`, `block`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Comment.
+             */
+            comment?: pulumi.Input<string>;
+            /**
+             * Match files transmitted in the session's originating or reply direction. Valid values: `incoming`, `outgoing`, `any`.
+             */
+            direction?: pulumi.Input<string>;
+            /**
+             * Select file type. The structure of `fileType` block is documented below.
+             */
+            fileTypes?: pulumi.Input<pulumi.Input<inputs.filter.ssh.ProfileFileFilterEntryFileType>[]>;
+            /**
+             * Add a file filter.
+             */
+            filter?: pulumi.Input<string>;
+            /**
+             * Match password-protected files. Valid values: `yes`, `any`.
+             */
+            passwordProtected?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFileFilterEntryFileType {
+            /**
+             * File type name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface ProfileShellCommand {
+            /**
+             * Action to take for URL filter matches. Valid values: `block`, `allow`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Enable/disable alert. Valid values: `enable`, `disable`.
+             */
+            alert?: pulumi.Input<string>;
+            /**
+             * Id.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * SSH shell command pattern.
+             */
+            pattern?: pulumi.Input<string>;
+            /**
+             * Log severity. Valid values: `low`, `medium`, `high`, `critical`.
+             */
+            severity?: pulumi.Input<string>;
+            /**
+             * Matching type. Valid values: `simple`, `regex`.
+             */
+            type?: pulumi.Input<string>;
+        }
+    }
+
+    export namespace video {
+        export interface ProfileFortiguardCategory {
+            /**
+             * Configure VideoFilter FortiGuard category. The structure of `filters` block is documented below.
+             */
+            filters?: pulumi.Input<pulumi.Input<inputs.filter.video.ProfileFortiguardCategoryFilter>[]>;
+        }
+
+        export interface ProfileFortiguardCategoryFilter {
+            /**
+             * VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Category ID.
+             */
+            categoryId?: pulumi.Input<number>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+        }
+
+        export interface YoutubechannelfilterEntry {
+            /**
+             * YouTube channel filter action. Valid values: `allow`, `monitor`, `block`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Channel ID.
+             */
+            channelId?: pulumi.Input<string>;
+            /**
+             * Comment.
+             */
+            comment?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+        }
+    }
+
+    export namespace web {
+        export interface ContentEntry {
+            /**
+             * Block or exempt word when a match is found. Valid values: `block`, `exempt`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Language of banned word. Valid values: `western`, `simch`, `trach`, `japanese`, `korean`, `french`, `thai`, `spanish`, `cyrillic`.
+             */
+            lang?: pulumi.Input<string>;
+            /**
+             * Banned word.
+             */
+            name?: pulumi.Input<string>;
+            /**
+             * Banned word pattern type: wildcard pattern or Perl regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType?: pulumi.Input<string>;
+            /**
+             * Score, to be applied every time the word appears on a web page (0 - 4294967295, default = 10).
+             */
+            score?: pulumi.Input<number>;
+            /**
+             * Enable/disable banned word. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+        }
+
+        export interface ContentheaderEntry {
+            /**
+             * Action to take for this content type. Valid values: `block`, `allow`, `exempt`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Categories that this content type applies to.
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Content type (regular expression).
+             */
+            pattern?: pulumi.Input<string>;
+        }
+
+        export interface ProfileAntiphish {
+            /**
+             * Authentication methods. Valid values: `domain-controller`, `ldap`.
+             */
+            authentication?: pulumi.Input<string>;
+            /**
+             * Enable/disable checking of HTTP Basic Auth field for known credentials. Valid values: `enable`, `disable`.
+             */
+            checkBasicAuth?: pulumi.Input<string>;
+            /**
+             * Enable/disable checking of GET URI parameters for known credentials. Valid values: `enable`, `disable`.
+             */
+            checkUri?: pulumi.Input<string>;
+            /**
+             * Enable/disable acting only on valid username credentials. Action will be taken for valid usernames regardless of password validity. Valid values: `enable`, `disable`.
+             */
+            checkUsernameOnly?: pulumi.Input<string>;
+            /**
+             * Custom username and password regex patterns. The structure of `customPatterns` block is documented below.
+             */
+            customPatterns?: pulumi.Input<pulumi.Input<inputs.filter.web.ProfileAntiphishCustomPattern>[]>;
+            /**
+             * Action to be taken when there is no matching rule. Valid values: `exempt`, `log`, `block`.
+             */
+            defaultAction?: pulumi.Input<string>;
+            /**
+             * Domain for which to verify received credentials against.
+             */
+            domainController?: pulumi.Input<string>;
+            /**
+             * AntiPhishing entries. The structure of `inspectionEntries` block is documented below.
+             */
+            inspectionEntries?: pulumi.Input<pulumi.Input<inputs.filter.web.ProfileAntiphishInspectionEntry>[]>;
+            /**
+             * LDAP server for which to verify received credentials against.
+             */
+            ldap?: pulumi.Input<string>;
+            /**
+             * Maximum size of a POST body to check for credentials.
+             */
+            maxBodyLen?: pulumi.Input<number>;
+            /**
+             * Toggle AntiPhishing functionality. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+        }
+
+        export interface ProfileAntiphishCustomPattern {
+            /**
+             * Category that the pattern matches. Valid values: `username`, `password`.
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Target pattern.
+             */
+            pattern?: pulumi.Input<string>;
+            /**
+             * Pattern will be treated either as a regex pattern or literal string. Valid values: `regex`, `literal`.
+             */
+            type?: pulumi.Input<string>;
+        }
+
+        export interface ProfileAntiphishInspectionEntry {
+            /**
+             * Action to be taken upon an AntiPhishing match. Valid values: `exempt`, `log`, `block`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * FortiGuard category to match.
+             */
+            fortiguardCategory?: pulumi.Input<string>;
+            /**
+             * Inspection target name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFileFilter {
+            /**
+             * File filter entries. The structure of `entries` block is documented below.
+             */
+            entries?: pulumi.Input<pulumi.Input<inputs.filter.web.ProfileFileFilterEntry>[]>;
+            /**
+             * Enable/disable file filter logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Enable/disable file filter archive contents scan. Valid values: `enable`, `disable`.
+             */
+            scanArchiveContents?: pulumi.Input<string>;
+            /**
+             * Enable/disable file filter. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFileFilterEntry {
+            /**
+             * Action taken for matched file. Valid values: `log`, `block`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Comment.
+             */
+            comment?: pulumi.Input<string>;
+            /**
+             * Match files transmitted in the session's originating or reply direction. Valid values: `incoming`, `outgoing`, `any`.
+             */
+            direction?: pulumi.Input<string>;
+            /**
+             * Select file type. The structure of `fileType` block is documented below.
+             */
+            fileTypes?: pulumi.Input<pulumi.Input<inputs.filter.web.ProfileFileFilterEntryFileType>[]>;
+            /**
+             * Add a file filter.
+             */
+            filter?: pulumi.Input<string>;
+            /**
+             * Match password-protected files. Valid values: `yes`, `any`.
+             */
+            passwordProtected?: pulumi.Input<string>;
+            /**
+             * Protocols to apply with. Valid values: `http`, `ftp`.
+             */
+            protocol?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFileFilterEntryFileType {
+            /**
+             * File type name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFtgdWf {
+            /**
+             * Do not stop quota for these categories.
+             */
+            exemptQuota?: pulumi.Input<string>;
+            /**
+             * FortiGuard filters. The structure of `filters` block is documented below.
+             */
+            filters?: pulumi.Input<pulumi.Input<inputs.filter.web.ProfileFtgdWfFilter>[]>;
+            /**
+             * Maximum FortiGuard quota used by single page view in seconds (excludes streams).
+             */
+            maxQuotaTimeout?: pulumi.Input<number>;
+            /**
+             * Options for FortiGuard Web Filter. Valid values: `error-allow`, `rate-server-ip`, `connect-request-bypass`, `ftgd-disable`.
+             */
+            options?: pulumi.Input<string>;
+            /**
+             * Allow web filter profile overrides.
+             */
+            ovrd?: pulumi.Input<string>;
+            /**
+             * FortiGuard traffic quota settings. The structure of `quota` block is documented below.
+             */
+            quotas?: pulumi.Input<pulumi.Input<inputs.filter.web.ProfileFtgdWfQuota>[]>;
+            /**
+             * Enable/disable rating CRL by URL. Valid values: `disable`, `enable`.
+             */
+            rateCrlUrls?: pulumi.Input<string>;
+            /**
+             * Enable/disable rating CSS by URL. Valid values: `disable`, `enable`.
+             */
+            rateCssUrls?: pulumi.Input<string>;
+            /**
+             * Enable/disable rating images by URL. Valid values: `disable`, `enable`.
+             */
+            rateImageUrls?: pulumi.Input<string>;
+            /**
+             * Enable/disable rating JavaScript by URL. Valid values: `disable`, `enable`.
+             */
+            rateJavascriptUrls?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFtgdWfFilter {
+            /**
+             * Action to take for matches. Valid values: `block`, `authenticate`, `monitor`, `warning`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Groups with permission to authenticate. The structure of `authUsrGrp` block is documented below.
+             */
+            authUsrGrps?: pulumi.Input<pulumi.Input<inputs.filter.web.ProfileFtgdWfFilterAuthUsrGrp>[]>;
+            /**
+             * Categories and groups the filter examines.
+             */
+            category?: pulumi.Input<number>;
+            /**
+             * ID number.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Override replacement message.
+             */
+            overrideReplacemsg?: pulumi.Input<string>;
+            /**
+             * Duration of warnings.
+             */
+            warnDuration?: pulumi.Input<string>;
+            /**
+             * Re-display warning after closing browser or after a timeout. Valid values: `session`, `timeout`.
+             */
+            warningDurationType?: pulumi.Input<string>;
+            /**
+             * Warning prompts in each category or each domain. Valid values: `per-domain`, `per-category`.
+             */
+            warningPrompt?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFtgdWfFilterAuthUsrGrp {
+            /**
+             * User group name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFtgdWfQuota {
+            /**
+             * FortiGuard categories to apply quota to (category action must be set to monitor).
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Duration of quota.
+             */
+            duration?: pulumi.Input<string>;
+            /**
+             * ID number.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Override replacement message.
+             */
+            overrideReplacemsg?: pulumi.Input<string>;
+            /**
+             * Quota type. Valid values: `time`, `traffic`.
+             */
+            type?: pulumi.Input<string>;
+            /**
+             * Traffic quota unit of measurement. Valid values: `B`, `KB`, `MB`, `GB`.
+             */
+            unit?: pulumi.Input<string>;
+            /**
+             * Traffic quota value.
+             */
+            value?: pulumi.Input<number>;
+        }
+
+        export interface ProfileOverride {
+            /**
+             * Allow/deny browser-based (cookie) overrides. Valid values: `allow`, `deny`.
+             */
+            ovrdCookie?: pulumi.Input<string>;
+            /**
+             * Override duration.
+             */
+            ovrdDur?: pulumi.Input<string>;
+            /**
+             * Override duration mode. Valid values: `constant`, `ask`.
+             */
+            ovrdDurMode?: pulumi.Input<string>;
+            /**
+             * Override scope. Valid values: `user`, `user-group`, `ip`, `browser`, `ask`.
+             */
+            ovrdScope?: pulumi.Input<string>;
+            /**
+             * User groups with permission to use the override. The structure of `ovrdUserGroup` block is documented below.
+             */
+            ovrdUserGroups?: pulumi.Input<pulumi.Input<inputs.filter.web.ProfileOverrideOvrdUserGroup>[]>;
+            /**
+             * Profile attribute to retrieve from the RADIUS server. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
+             */
+            profileAttribute?: pulumi.Input<string>;
+            /**
+             * Override profile type. Valid values: `list`, `radius`.
+             */
+            profileType?: pulumi.Input<string>;
+            /**
+             * Web filter profile with permission to create overrides. The structure of `profile` block is documented below.
+             */
+            profiles?: pulumi.Input<pulumi.Input<inputs.filter.web.ProfileOverrideProfile>[]>;
+        }
+
+        export interface ProfileOverrideOvrdUserGroup {
+            /**
+             * User group name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface ProfileOverrideProfile {
+            /**
+             * Web profile.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface ProfileWeb {
+            /**
+             * FortiGuard allowlist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
+             */
+            allowlist?: pulumi.Input<string>;
+            /**
+             * Enable/disable automatic addition of URLs detected by FortiSandbox to blacklist. Valid values: `enable`, `disable`.
+             */
+            blacklist?: pulumi.Input<string>;
+            /**
+             * Enable/disable automatic addition of URLs detected by FortiSandbox to blocklist. Valid values: `enable`, `disable`.
+             */
+            blocklist?: pulumi.Input<string>;
+            /**
+             * Banned word table ID.
+             */
+            bwordTable?: pulumi.Input<number>;
+            /**
+             * Banned word score threshold.
+             */
+            bwordThreshold?: pulumi.Input<number>;
+            /**
+             * Content header list.
+             */
+            contentHeaderList?: pulumi.Input<number>;
+            /**
+             * Search keywords to log when match is found. The structure of `keywordMatch` block is documented below.
+             */
+            keywordMatches?: pulumi.Input<pulumi.Input<inputs.filter.web.ProfileWebKeywordMatch>[]>;
+            /**
+             * Enable/disable logging all search phrases. Valid values: `enable`, `disable`.
+             */
+            logSearch?: pulumi.Input<string>;
+            /**
+             * Safe search type. Valid values: `url`, `header`.
+             */
+            safeSearch?: pulumi.Input<string>;
+            /**
+             * URL filter table ID.
+             */
+            urlfilterTable?: pulumi.Input<number>;
+            /**
+             * Set Vimeo-restrict ("7" = don't show mature content, "134" = don't show unrated and mature content). A value of cookie "contentRating".
+             */
+            vimeoRestrict?: pulumi.Input<string>;
+            /**
+             * FortiGuard whitelist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
+             */
+            whitelist?: pulumi.Input<string>;
+            /**
+             * YouTube EDU filter level. Valid values: `none`, `strict`, `moderate`.
+             */
+            youtubeRestrict?: pulumi.Input<string>;
+        }
+
+        export interface ProfileWebKeywordMatch {
+            /**
+             * Pattern/keyword to search for.
+             */
+            pattern?: pulumi.Input<string>;
+        }
+
+        export interface ProfileWispServer {
+            /**
+             * Server name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface ProfileYoutubeChannelFilter {
+            /**
+             * YouTube channel ID to be filtered.
+             */
+            channelId?: pulumi.Input<string>;
+            /**
+             * Comment.
+             */
+            comment?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+        }
+
+        export interface UrlfilterEntry {
+            /**
+             * Action to take for URL filter matches. Valid values: `exempt`, `block`, `allow`, `monitor`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Action to take for AntiPhishing matches. Valid values: `block`, `log`.
+             */
+            antiphishAction?: pulumi.Input<string>;
+            /**
+             * Resolve IPv4 address, IPv6 address, or both from DNS server. Valid values: `ipv4`, `ipv6`, `both`.
+             */
+            dnsAddressFamily?: pulumi.Input<string>;
+            /**
+             * If action is set to exempt, select the security profile operations that exempt URLs skip. Separate multiple options with a space.
+             */
+            exempt?: pulumi.Input<string>;
+            /**
+             * Id.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Referrer host name.
+             */
+            referrerHost?: pulumi.Input<string>;
+            /**
+             * Enable/disable this URL filter. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Filter type (simple, regex, or wildcard). Valid values: `simple`, `regex`, `wildcard`.
+             */
+            type?: pulumi.Input<string>;
+            /**
+             * URL to be filtered.
+             */
+            url?: pulumi.Input<string>;
+            /**
+             * Web proxy profile.
+             */
+            webProxyProfile?: pulumi.Input<string>;
+        }
     }
 }
 
@@ -4194,18 +5064,6 @@ export namespace firewall {
     export interface CentralsnatmapDstAddr6 {
         /**
          * Address name.
-         *
-         * The `origAddr6` block supports:
-         *
-         *
-         *
-         *
-         * The `dstAddr6` block supports:
-         *
-         *
-         *
-         *
-         * The `natIppool6` block supports:
          */
         name?: pulumi.Input<string>;
     }
@@ -4227,18 +5085,6 @@ export namespace firewall {
     export interface CentralsnatmapNatIppool6 {
         /**
          * Address name.
-         *
-         * The `origAddr6` block supports:
-         *
-         *
-         *
-         *
-         * The `dstAddr6` block supports:
-         *
-         *
-         *
-         *
-         * The `natIppool6` block supports:
          */
         name?: pulumi.Input<string>;
     }
@@ -4253,18 +5099,6 @@ export namespace firewall {
     export interface CentralsnatmapOrigAddr6 {
         /**
          * Address name.
-         *
-         * The `origAddr6` block supports:
-         *
-         *
-         *
-         *
-         * The `dstAddr6` block supports:
-         *
-         *
-         *
-         *
-         * The `natIppool6` block supports:
          */
         name?: pulumi.Input<string>;
     }
@@ -4654,7 +5488,7 @@ export namespace firewall {
          */
         endIp6?: pulumi.Input<string>;
         /**
-         * Entry ID(1-255).
+         * Disable entry ID.
          */
         id?: pulumi.Input<number>;
         /**
@@ -4731,9 +5565,7 @@ export namespace firewall {
 
     export interface InternetserviceextensionEntryDst6 {
         /**
-         * Select the destination address or address group object from available options.
-         *
-         * The `dst6` block supports:
+         * Select the destination address6 or address group object from available options.
          */
         name?: pulumi.Input<string>;
     }
@@ -5776,7 +6608,7 @@ export namespace firewall {
          */
         inspectAll?: pulumi.Input<string>;
         /**
-         * One or more options that can be applied to the session. Valid values: `clientcomfort`, `servercomfort`, `oversize`, `chunkedbypass`.
+         * One or more options that can be applied to the session. Valid values: `oversize`.
          */
         options?: pulumi.Input<string>;
         /**
@@ -5784,7 +6616,7 @@ export namespace firewall {
          */
         oversizeLimit?: pulumi.Input<number>;
         /**
-         * Ports to scan for content (1 - 65535, default = 80).
+         * Ports to scan for content (1 - 65535, default = 445).
          */
         ports?: pulumi.Input<number>;
         /**
@@ -5793,8 +6625,6 @@ export namespace firewall {
         proxyAfterTcpHandshake?: pulumi.Input<string>;
         /**
          * Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-         *
-         * The `pop3` block supports:
          */
         scanBzip2?: pulumi.Input<string>;
         /**
@@ -6937,12 +7767,10 @@ export namespace firewall {
         revokedServerCert?: pulumi.Input<string>;
         /**
          * Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-         *
-         * The `pop3s` block supports:
          */
         sniServerCertCheck?: pulumi.Input<string>;
         /**
-         * Configure protocol inspection status. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
+         * Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
          */
         status?: pulumi.Input<string>;
         /**
@@ -6962,7 +7790,7 @@ export namespace firewall {
          */
         unsupportedSslVersion?: pulumi.Input<string>;
         /**
-         * Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+         * Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
          */
         untrustedServerCert?: pulumi.Input<string>;
     }
@@ -7606,230 +8434,229 @@ export namespace firewall {
          */
         name?: pulumi.Input<string>;
     }
-}
+    export namespace consolidated {
+        export interface PolicyAppCategory {
+            /**
+             * Category IDs.
+             */
+            id?: pulumi.Input<number>;
+        }
 
-export namespace firewallconsolidated {
-    export interface PolicyAppCategory {
-        /**
-         * Category IDs.
-         */
-        id?: pulumi.Input<number>;
+        export interface PolicyAppGroup {
+            /**
+             * Application group names.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyApplication {
+            /**
+             * Application IDs.
+             */
+            id?: pulumi.Input<number>;
+        }
+
+        export interface PolicyDstaddr4 {
+            /**
+             * Policy name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyDstaddr6 {
+            /**
+             * Policy name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyDstintf {
+            /**
+             * Address name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyFssoGroup {
+            /**
+             * Names of FSSO groups.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyGroup {
+            /**
+             * Group name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyInternetServiceCustom {
+            /**
+             * Custom Internet Service name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyInternetServiceCustomGroup {
+            /**
+             * Custom Internet Service group name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyInternetServiceGroup {
+            /**
+             * Internet Service group name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyInternetServiceId {
+            /**
+             * Internet Service ID.
+             */
+            id?: pulumi.Input<number>;
+        }
+
+        export interface PolicyInternetServiceName {
+            /**
+             * Internet Service name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyInternetServiceSrcCustom {
+            /**
+             * Custom Internet Service name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyInternetServiceSrcCustomGroup {
+            /**
+             * Custom Internet Service group name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyInternetServiceSrcGroup {
+            /**
+             * Internet Service group name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyInternetServiceSrcId {
+            /**
+             * Internet Service ID.
+             */
+            id?: pulumi.Input<number>;
+        }
+
+        export interface PolicyInternetServiceSrcName {
+            /**
+             * Internet Service name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyPoolname4 {
+            /**
+             * Policy name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyPoolname6 {
+            /**
+             * Policy name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyService {
+            /**
+             * Service name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicySrcaddr4 {
+            /**
+             * Policy name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicySrcaddr6 {
+            /**
+             * Policy name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicySrcintf {
+            /**
+             * Interface name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface PolicyUrlCategory {
+            /**
+             * URL category ID.
+             */
+            id?: pulumi.Input<number>;
+        }
+
+        export interface PolicyUser {
+            /**
+             * IPv6 pool name.
+             */
+            name?: pulumi.Input<string>;
+        }
     }
 
-    export interface PolicyAppGroup {
-        /**
-         * Application group names.
-         */
-        name?: pulumi.Input<string>;
+    export namespace schedule {
+        export interface GroupMember {
+            /**
+             * Schedule name.
+             */
+            name?: pulumi.Input<string>;
+        }
     }
 
-    export interface PolicyApplication {
-        /**
-         * Application IDs.
-         */
-        id?: pulumi.Input<number>;
+    export namespace service {
+        export interface CustomAppCategory {
+            /**
+             * Application category id.
+             */
+            id?: pulumi.Input<number>;
+        }
+
+        export interface CustomApplication {
+            /**
+             * Application id.
+             */
+            id?: pulumi.Input<number>;
+        }
+
+        export interface GroupMember {
+            /**
+             * Address name.
+             */
+            name?: pulumi.Input<string>;
+        }
     }
 
-    export interface PolicyDstaddr4 {
-        /**
-         * Policy name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyDstaddr6 {
-        /**
-         * Policy name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyDstintf {
-        /**
-         * Address name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyFssoGroup {
-        /**
-         * Names of FSSO groups.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyGroup {
-        /**
-         * Group name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyInternetServiceCustom {
-        /**
-         * Custom Internet Service name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyInternetServiceCustomGroup {
-        /**
-         * Custom Internet Service group name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyInternetServiceGroup {
-        /**
-         * Internet Service group name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyInternetServiceId {
-        /**
-         * Internet Service ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface PolicyInternetServiceName {
-        /**
-         * Internet Service name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyInternetServiceSrcCustom {
-        /**
-         * Custom Internet Service name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyInternetServiceSrcCustomGroup {
-        /**
-         * Custom Internet Service group name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyInternetServiceSrcGroup {
-        /**
-         * Internet Service group name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyInternetServiceSrcId {
-        /**
-         * Internet Service ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface PolicyInternetServiceSrcName {
-        /**
-         * Internet Service name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyPoolname4 {
-        /**
-         * Policy name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyPoolname6 {
-        /**
-         * Policy name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyService {
-        /**
-         * Service name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicySrcaddr4 {
-        /**
-         * Policy name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicySrcaddr6 {
-        /**
-         * Policy name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicySrcintf {
-        /**
-         * Interface name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PolicyUrlCategory {
-        /**
-         * URL category ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface PolicyUser {
-        /**
-         * IPv6 pool name.
-         */
-        name?: pulumi.Input<string>;
-    }
-}
-
-export namespace firewallschedule {
-    export interface GroupMember {
-        /**
-         * Schedule name.
-         */
-        name?: pulumi.Input<string>;
-    }
-}
-
-export namespace firewallservice {
-    export interface CustomAppCategory {
-        /**
-         * Application category id.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface CustomApplication {
-        /**
-         * Application id.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface GroupMember {
-        /**
-         * Address name.
-         */
-        name?: pulumi.Input<string>;
-    }
-}
-
-export namespace firewallwildcardfqdn {
-    export interface GroupMember {
-        /**
-         * Address name.
-         */
-        name?: pulumi.Input<string>;
+    export namespace wildcardfqdn {
+        export interface GroupMember {
+            /**
+             * Address name.
+             */
+            name?: pulumi.Input<string>;
+        }
     }
 }
 
@@ -8386,618 +9213,615 @@ export namespace log {
          */
         level?: pulumi.Input<string>;
     }
-}
-
-export namespace logdisk {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-}
-
-export namespace logfortianalyzer {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
+    export namespace disk {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Free style filter string.
+             */
+            filter?: pulumi.Input<string>;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+        }
     }
 
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
+    export namespace fortianalyzer {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Free style filter string.
+             */
+            filter?: pulumi.Input<string>;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+        }
+
+        export interface OverridefilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Free style filter string.
+             */
+            filter?: pulumi.Input<string>;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+        }
+
+        export interface OverridesettingSerial {
+            /**
+             * Serial Number.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface SettingSerial {
+            /**
+             * Serial Number.
+             */
+            name?: pulumi.Input<string>;
+        }
+        export namespace cloud {
+            export interface FilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category?: pulumi.Input<string>;
+                /**
+                 * Free style filter string.
+                 */
+                filter?: pulumi.Input<string>;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+            }
+
+            export interface OverridefilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category?: pulumi.Input<string>;
+                /**
+                 * Free style filter string.
+                 */
+                filter?: pulumi.Input<string>;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+            }
+
+            export interface SettingSerial {
+                /**
+                 * Serial Number.
+                 */
+                name?: pulumi.Input<string>;
+            }
+        }
+
+        export namespace v2 {
+            export interface FilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category?: pulumi.Input<string>;
+                /**
+                 * Free style filter string.
+                 */
+                filter?: pulumi.Input<string>;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+            }
+
+            export interface OverridefilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category?: pulumi.Input<string>;
+                /**
+                 * Free style filter string.
+                 */
+                filter?: pulumi.Input<string>;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+            }
+
+            export interface OverridesettingSerial {
+                /**
+                 * Serial Number.
+                 */
+                name?: pulumi.Input<string>;
+            }
+
+            export interface SettingSerial {
+                /**
+                 * Serial Number.
+                 */
+                name?: pulumi.Input<string>;
+            }
+        }
+
+        export namespace v3 {
+            export interface FilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category?: pulumi.Input<string>;
+                /**
+                 * Free style filter string.
+                 */
+                filter?: pulumi.Input<string>;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+            }
+
+            export interface OverridefilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category?: pulumi.Input<string>;
+                /**
+                 * Free style filter string.
+                 */
+                filter?: pulumi.Input<string>;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+            }
+
+            export interface OverridesettingSerial {
+                /**
+                 * Serial Number.
+                 */
+                name?: pulumi.Input<string>;
+            }
+
+            export interface SettingSerial {
+                /**
+                 * Serial Number.
+                 */
+                name?: pulumi.Input<string>;
+            }
+        }
     }
 
-    export interface OverridesettingSerial {
-        /**
-         * Serial Number.
-         */
-        name?: pulumi.Input<string>;
+    export namespace fortiguard {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Free style filter string.
+             */
+            filter?: pulumi.Input<string>;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+        }
+
+        export interface OverridefilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Free style filter string.
+             */
+            filter?: pulumi.Input<string>;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+        }
     }
 
-    export interface SettingSerial {
-        /**
-         * Serial Number.
-         */
-        name?: pulumi.Input<string>;
-    }
-}
-
-export namespace logfortianalyzer2 {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
+    export namespace memory {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Free style filter string.
+             */
+            filter?: pulumi.Input<string>;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+        }
     }
 
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
+    export namespace nulldevice {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Free style filter string.
+             */
+            filter?: pulumi.Input<string>;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+        }
     }
 
-    export interface OverridesettingSerial {
-        /**
-         * Serial Number.
-         */
-        name?: pulumi.Input<string>;
+    export namespace syslogd {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Free style filter string.
+             */
+            filter?: pulumi.Input<string>;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+        }
+
+        export interface OverridefilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Free style filter string.
+             */
+            filter?: pulumi.Input<string>;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+        }
+
+        export interface OverridesettingCustomFieldName {
+            /**
+             * Field custom name.
+             */
+            custom?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Field name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface SettingCustomFieldName {
+            /**
+             * Field custom name.
+             */
+            custom?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Field name.
+             */
+            name?: pulumi.Input<string>;
+        }
+        export namespace v2 {
+            export interface FilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category?: pulumi.Input<string>;
+                /**
+                 * Free style filter string.
+                 */
+                filter?: pulumi.Input<string>;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+            }
+
+            export interface OverridefilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category?: pulumi.Input<string>;
+                /**
+                 * Free style filter string.
+                 */
+                filter?: pulumi.Input<string>;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+            }
+
+            export interface OverridesettingCustomFieldName {
+                /**
+                 * Field custom name.
+                 */
+                custom?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+                /**
+                 * Field name.
+                 */
+                name?: pulumi.Input<string>;
+            }
+
+            export interface SettingCustomFieldName {
+                /**
+                 * Field custom name.
+                 */
+                custom?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+                /**
+                 * Field name.
+                 */
+                name?: pulumi.Input<string>;
+            }
+        }
+
+        export namespace v3 {
+            export interface FilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category?: pulumi.Input<string>;
+                /**
+                 * Free style filter string.
+                 */
+                filter?: pulumi.Input<string>;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+            }
+
+            export interface OverridefilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category?: pulumi.Input<string>;
+                /**
+                 * Free style filter string.
+                 */
+                filter?: pulumi.Input<string>;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+            }
+
+            export interface OverridesettingCustomFieldName {
+                /**
+                 * Field custom name.
+                 */
+                custom?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+                /**
+                 * Field name.
+                 */
+                name?: pulumi.Input<string>;
+            }
+
+            export interface SettingCustomFieldName {
+                /**
+                 * Field custom name.
+                 */
+                custom?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+                /**
+                 * Field name.
+                 */
+                name?: pulumi.Input<string>;
+            }
+        }
+
+        export namespace v4 {
+            export interface FilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category?: pulumi.Input<string>;
+                /**
+                 * Free style filter string.
+                 */
+                filter?: pulumi.Input<string>;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+            }
+
+            export interface OverridefilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category?: pulumi.Input<string>;
+                /**
+                 * Free style filter string.
+                 */
+                filter?: pulumi.Input<string>;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+            }
+
+            export interface OverridesettingCustomFieldName {
+                /**
+                 * Field custom name.
+                 */
+                custom?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+                /**
+                 * Field name.
+                 */
+                name?: pulumi.Input<string>;
+            }
+
+            export interface SettingCustomFieldName {
+                /**
+                 * Field custom name.
+                 */
+                custom?: pulumi.Input<string>;
+                /**
+                 * Entry ID.
+                 */
+                id?: pulumi.Input<number>;
+                /**
+                 * Field name.
+                 */
+                name?: pulumi.Input<string>;
+            }
+        }
     }
 
-    export interface SettingSerial {
-        /**
-         * Serial Number.
-         */
-        name?: pulumi.Input<string>;
-    }
-}
-
-export namespace logfortianalyzer3 {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface OverridesettingSerial {
-        /**
-         * Serial Number.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface SettingSerial {
-        /**
-         * Serial Number.
-         */
-        name?: pulumi.Input<string>;
-    }
-}
-
-export namespace logfortianalyzercloud {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface SettingSerial {
-        /**
-         * Serial Number.
-         */
-        name?: pulumi.Input<string>;
-    }
-}
-
-export namespace logfortiguard {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-}
-
-export namespace logmemory {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-}
-
-export namespace lognulldevice {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-}
-
-export namespace logsyslogd {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface OverridesettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Field name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface SettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Field name.
-         */
-        name?: pulumi.Input<string>;
-    }
-}
-
-export namespace logsyslogd2 {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface OverridesettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Field name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface SettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Field name.
-         */
-        name?: pulumi.Input<string>;
-    }
-}
-
-export namespace logsyslogd3 {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface OverridesettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Field name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface SettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Field name.
-         */
-        name?: pulumi.Input<string>;
-    }
-}
-
-export namespace logsyslogd4 {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface OverridesettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Field name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface SettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Field name.
-         */
-        name?: pulumi.Input<string>;
-    }
-}
-
-export namespace logwebtrends {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Free style filter string.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
+    export namespace webtrends {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Free style filter string.
+             */
+            filter?: pulumi.Input<string>;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType?: pulumi.Input<string>;
+            /**
+             * Entry ID.
+             */
+            id?: pulumi.Input<number>;
+        }
     }
 }
 
@@ -9686,8 +10510,6 @@ export namespace router {
         prefix6?: pulumi.Input<string>;
         /**
          * Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
-         *
-         * The `aggregateAddress6` block supports:
          */
         summaryOnly?: pulumi.Input<string>;
     }
@@ -10184,8 +11006,6 @@ export namespace router {
         conditionRoutemap?: pulumi.Input<string>;
         /**
          * Type of condition. Valid values: `exist`, `non-exist`.
-         *
-         * The `conditionalAdvertise6` block supports:
          */
         conditionType?: pulumi.Input<string>;
     }
@@ -10716,13 +11536,7 @@ export namespace router {
          */
         prefix6?: pulumi.Input<string>;
         /**
-         * Route map to modify generated route.
-         *
-         * The `network6` block supports:
-         *
-         *
-         *
-         * The `redistribute6` block supports:
+         * Route map of VRF leaking.
          */
         routeMap?: pulumi.Input<string>;
     }
@@ -10748,13 +11562,7 @@ export namespace router {
          */
         name?: pulumi.Input<string>;
         /**
-         * Route map to modify generated route.
-         *
-         * The `network6` block supports:
-         *
-         *
-         *
-         * The `redistribute6` block supports:
+         * Route map of VRF leaking.
          */
         routeMap?: pulumi.Input<string>;
         /**
@@ -11069,8 +11877,6 @@ export namespace router {
     export interface IsisRedistribute6 {
         /**
          * Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-         *
-         * The `summaryAddress6` block supports:
          */
         level?: pulumi.Input<string>;
         /**
@@ -11087,8 +11893,6 @@ export namespace router {
         protocol?: pulumi.Input<string>;
         /**
          * Route map name.
-         *
-         * The `redistribute6` block supports:
          */
         routemap?: pulumi.Input<string>;
         /**
@@ -11119,8 +11923,6 @@ export namespace router {
         id?: pulumi.Input<number>;
         /**
          * Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-         *
-         * The `summaryAddress6` block supports:
          */
         level?: pulumi.Input<string>;
         /**
@@ -11676,7 +12478,7 @@ export namespace router {
          */
         mtuIgnore?: pulumi.Input<string>;
         /**
-         * Virtual link entry name.
+         * Interface entry name.
          */
         name?: pulumi.Input<string>;
         /**
@@ -12841,439 +13643,85 @@ export namespace router {
          */
         name?: pulumi.Input<string>;
     }
-}
+    export namespace bgp {
+        export interface NeighborConditionalAdvertise {
+            /**
+             * Name of advertising route map.
+             */
+            advertiseRoutemap?: pulumi.Input<string>;
+            /**
+             * Name of condition route map.
+             */
+            conditionRoutemap?: pulumi.Input<string>;
+            /**
+             * Type of condition. Valid values: `exist`, `non-exist`.
+             */
+            conditionType?: pulumi.Input<string>;
+        }
 
-export namespace routerbgp {
-    export interface NeighborConditionalAdvertise {
-        /**
-         * Name of advertising route map.
-         */
-        advertiseRoutemap?: pulumi.Input<string>;
-        /**
-         * Name of condition route map.
-         */
-        conditionRoutemap?: pulumi.Input<string>;
-        /**
-         * Type of condition. Valid values: `exist`, `non-exist`.
-         */
-        conditionType?: pulumi.Input<string>;
+        export interface NeighborConditionalAdvertise6 {
+            /**
+             * Name of advertising route map.
+             */
+            advertiseRoutemap?: pulumi.Input<string>;
+            /**
+             * Name of condition route map.
+             */
+            conditionRoutemap?: pulumi.Input<string>;
+            /**
+             * Type of condition. Valid values: `exist`, `non-exist`.
+             */
+            conditionType?: pulumi.Input<string>;
+        }
     }
 
-    export interface NeighborConditionalAdvertise6 {
-        /**
-         * Name of advertising route map.
-         */
-        advertiseRoutemap?: pulumi.Input<string>;
-        /**
-         * Name of condition route map.
-         */
-        conditionRoutemap?: pulumi.Input<string>;
-        /**
-         * Type of condition. Valid values: `exist`, `non-exist`.
-         *
-         * The `conditionalAdvertise6` block supports:
-         */
-        conditionType?: pulumi.Input<string>;
-    }
-}
-
-export namespace routerospf {
-    export interface OspfinterfaceMd5Key {
-        /**
-         * Key ID (1 - 255).
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Password for the key.
-         */
-        keyString?: pulumi.Input<string>;
-    }
-}
-
-export namespace routerospf6 {
-    export interface Ospf6interfaceIpsecKey {
-        /**
-         * Authentication key.
-         */
-        authKey?: pulumi.Input<string>;
-        /**
-         * Encryption key.
-         */
-        encKey?: pulumi.Input<string>;
-        /**
-         * Security Parameters Index.
-         */
-        spi?: pulumi.Input<number>;
+    export namespace ospf {
+        export interface OspfinterfaceMd5Key {
+            /**
+             * Key ID (1 - 255).
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Password for the key.
+             */
+            keyString?: pulumi.Input<string>;
+        }
     }
 
-    export interface Ospf6interfaceNeighbor {
-        /**
-         * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-         */
-        cost?: pulumi.Input<number>;
-        /**
-         * IPv6 link local address of the neighbor.
-         */
-        ip6?: pulumi.Input<string>;
-        /**
-         * Poll interval time in seconds.
-         */
-        pollInterval?: pulumi.Input<number>;
-        /**
-         * priority
-         */
-        priority?: pulumi.Input<number>;
-    }
-}
+    export namespace ospf6 {
+        export interface Ospf6interfaceIpsecKey {
+            /**
+             * Authentication key.
+             */
+            authKey?: pulumi.Input<string>;
+            /**
+             * Encryption key.
+             */
+            encKey?: pulumi.Input<string>;
+            /**
+             * Security Parameters Index.
+             */
+            spi?: pulumi.Input<number>;
+        }
 
-export namespace sctpfilter {
-    export interface ProfilePpidFilter {
-        /**
-         * Action taken when PPID is matched. Valid values: `pass`, `reset`, `replace`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Comment.
-         */
-        comment?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Payload protocol identifier.
-         */
-        ppid?: pulumi.Input<number>;
-    }
-}
-
-export namespace spamfilter {
-    export interface BwlEntry {
-        /**
-         * Reject, mark as spam or good email. Valid values: `reject`, `spam`, `clear`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * IP address type. Valid values: `ipv4`, `ipv6`.
-         */
-        addrType?: pulumi.Input<string>;
-        /**
-         * Email address pattern.
-         */
-        emailPattern?: pulumi.Input<string>;
-        /**
-         * Entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * IPv4 network address/subnet mask bits.
-         */
-        ip4Subnet?: pulumi.Input<string>;
-        /**
-         * IPv6 network address/subnet mask bits.
-         */
-        ip6Subnet?: pulumi.Input<string>;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType?: pulumi.Input<string>;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Entry type. Valid values: `ip`, `email`.
-         */
-        type?: pulumi.Input<string>;
-    }
-
-    export interface BwordEntry {
-        /**
-         * Mark spam or good. Valid values: `spam`, `clear`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Banned word entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Language for the banned word. Valid values: `western`, `simch`, `trach`, `japanese`, `korean`, `french`, `thai`, `spanish`.
-         */
-        language?: pulumi.Input<string>;
-        /**
-         * Pattern for the banned word.
-         */
-        pattern?: pulumi.Input<string>;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType?: pulumi.Input<string>;
-        /**
-         * Score value.
-         */
-        score?: pulumi.Input<number>;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Component of the email to be scanned. Valid values: `subject`, `body`, `all`.
-         */
-        where?: pulumi.Input<string>;
-    }
-
-    export interface DnsblEntry {
-        /**
-         * Reject connection or mark as spam email. Valid values: `reject`, `spam`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * DNSBL/ORBL entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * DNSBL or ORBL server name.
-         */
-        server?: pulumi.Input<string>;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-    }
-
-    export interface IptrustEntry {
-        /**
-         * Type of address. Valid values: `ipv4`, `ipv6`.
-         */
-        addrType?: pulumi.Input<string>;
-        /**
-         * Trusted IP entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * IPv4 network address or network address/subnet mask bits.
-         */
-        ip4Subnet?: pulumi.Input<string>;
-        /**
-         * IPv6 network address/subnet mask bits.
-         */
-        ip6Subnet?: pulumi.Input<string>;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-    }
-
-    export interface MheaderEntry {
-        /**
-         * Mark spam or good. Valid values: `spam`, `clear`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Pattern for the header field body.
-         */
-        fieldbody?: pulumi.Input<string>;
-        /**
-         * Pattern for header field name.
-         */
-        fieldname?: pulumi.Input<string>;
-        /**
-         * Mime header entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType?: pulumi.Input<string>;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-    }
-
-    export interface ProfileGmail {
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-    }
-
-    export interface ProfileImap {
-        /**
-         * Action for spam email. Valid values: `pass`, `tag`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Subject text or header added to spam email.
-         */
-        tagMsg?: pulumi.Input<string>;
-        /**
-         * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-         */
-        tagType?: pulumi.Input<string>;
-    }
-
-    export interface ProfileMapi {
-        /**
-         * Action for spam email. Valid values: `pass`, `discard`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-    }
-
-    export interface ProfileMsnHotmail {
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-    }
-
-    export interface ProfilePop3 {
-        /**
-         * Action for spam email. Valid values: `pass`, `tag`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Subject text or header added to spam email.
-         *
-         * The `pop3` block supports:
-         */
-        tagMsg?: pulumi.Input<string>;
-        /**
-         * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-         */
-        tagType?: pulumi.Input<string>;
-    }
-
-    export interface ProfileSmtp {
-        /**
-         * Action for spam email. Valid values: `pass`, `tag`, `discard`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Enable/disable SMTP email header IP checks for spamfsip, spamrbl and spambwl filters. Valid values: `disable`, `enable`.
-         */
-        hdrip?: pulumi.Input<string>;
-        /**
-         * Enable/disable local filter to override SMTP remote check result. Valid values: `disable`, `enable`.
-         */
-        localOverride?: pulumi.Input<string>;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Subject text or header added to spam email.
-         */
-        tagMsg?: pulumi.Input<string>;
-        /**
-         * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-         */
-        tagType?: pulumi.Input<string>;
-    }
-
-    export interface ProfileYahooMail {
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-    }
-}
-
-export namespace sshfilter {
-    export interface ProfileFileFilter {
-        /**
-         * File filter entries. The structure of `entries` block is documented below.
-         */
-        entries?: pulumi.Input<pulumi.Input<inputs.sshfilter.ProfileFileFilterEntry>[]>;
-        /**
-         * Enable/disable file filter logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Enable/disable file filter archive contents scan. Valid values: `enable`, `disable`.
-         */
-        scanArchiveContents?: pulumi.Input<string>;
-        /**
-         * Enable/disable file filter. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFileFilterEntry {
-        /**
-         * Action taken for matched file. Valid values: `log`, `block`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Comment.
-         */
-        comment?: pulumi.Input<string>;
-        /**
-         * Match files transmitted in the session's originating or reply direction. Valid values: `incoming`, `outgoing`, `any`.
-         */
-        direction?: pulumi.Input<string>;
-        /**
-         * Select file type. The structure of `fileType` block is documented below.
-         */
-        fileTypes?: pulumi.Input<pulumi.Input<inputs.sshfilter.ProfileFileFilterEntryFileType>[]>;
-        /**
-         * Add a file filter.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Match password-protected files. Valid values: `yes`, `any`.
-         */
-        passwordProtected?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFileFilterEntryFileType {
-        /**
-         * File type name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface ProfileShellCommand {
-        /**
-         * Action to take for URL filter matches. Valid values: `block`, `allow`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Enable/disable alert. Valid values: `enable`, `disable`.
-         */
-        alert?: pulumi.Input<string>;
-        /**
-         * Id.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * SSH shell command pattern.
-         */
-        pattern?: pulumi.Input<string>;
-        /**
-         * Log severity. Valid values: `low`, `medium`, `high`, `critical`.
-         */
-        severity?: pulumi.Input<string>;
-        /**
-         * Matching type. Valid values: `simple`, `regex`.
-         */
-        type?: pulumi.Input<string>;
+        export interface Ospf6interfaceNeighbor {
+            /**
+             * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
+             */
+            cost?: pulumi.Input<number>;
+            /**
+             * IPv6 link local address of the neighbor.
+             */
+            ip6?: pulumi.Input<string>;
+            /**
+             * Poll interval time in seconds.
+             */
+            pollInterval?: pulumi.Input<number>;
+            /**
+             * priority
+             */
+            priority?: pulumi.Input<number>;
+        }
     }
 }
 
@@ -13808,7 +14256,7 @@ export namespace switchcontroller {
          */
         linkDownAuth?: pulumi.Input<string>;
         /**
-         * Enable to configure local STP settings that override global STP settings. Valid values: `enable`, `disable`.
+         * Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
          */
         localOverride?: pulumi.Input<string>;
         /**
@@ -14063,7 +14511,7 @@ export namespace switchcontroller {
          */
         pauseMeter?: pulumi.Input<number>;
         /**
-         * Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
+         * Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
          */
         pauseMeterResume?: pulumi.Input<string>;
         /**
@@ -14688,95 +15136,94 @@ export namespace switchcontroller {
          */
         vlanName?: pulumi.Input<string>;
     }
-}
+    export namespace autoconfig {
+        export interface CustomSwitchBinding {
+            /**
+             * Custom auto-config policy.
+             */
+            policy?: pulumi.Input<string>;
+            /**
+             * Switch name.
+             */
+            switchId?: pulumi.Input<string>;
+        }
+    }
 
-export namespace switchcontrollerautoconfig {
-    export interface CustomSwitchBinding {
-        /**
-         * Custom auto-config policy.
-         */
-        policy?: pulumi.Input<string>;
-        /**
-         * Switch name.
-         */
-        switchId?: pulumi.Input<string>;
+    export namespace qos {
+        export interface IpdscpmapMap {
+            /**
+             * COS queue number.
+             */
+            cosQueue?: pulumi.Input<number>;
+            /**
+             * Differentiated service. Valid values: `CS0`, `CS1`, `AF11`, `AF12`, `AF13`, `CS2`, `AF21`, `AF22`, `AF23`, `CS3`, `AF31`, `AF32`, `AF33`, `CS4`, `AF41`, `AF42`, `AF43`, `CS5`, `EF`, `CS6`, `CS7`.
+             */
+            diffserv?: pulumi.Input<string>;
+            /**
+             * IP Precedence. Valid values: `network-control`, `internetwork-control`, `critic-ecp`, `flashoverride`, `flash`, `immediate`, `priority`, `routine`.
+             */
+            ipPrecedence?: pulumi.Input<string>;
+            /**
+             * Dscp mapping entry name.
+             */
+            name?: pulumi.Input<string>;
+            /**
+             * Raw values of DSCP (0 - 63).
+             */
+            value?: pulumi.Input<string>;
+        }
+
+        export interface QueuepolicyCosQueue {
+            /**
+             * Description of the COS queue.
+             */
+            description?: pulumi.Input<string>;
+            /**
+             * COS queue drop policy. Valid values: `taildrop`, `weighted-random-early-detection`.
+             */
+            dropPolicy?: pulumi.Input<string>;
+            /**
+             * Enable/disable ECN packet marking to drop eligible packets. Valid values: `disable`, `enable`.
+             */
+            ecn?: pulumi.Input<string>;
+            /**
+             * Maximum rate (0 - 4294967295 kbps, 0 to disable).
+             */
+            maxRate?: pulumi.Input<number>;
+            /**
+             * Maximum rate (%!o(MISSING)f link speed).
+             */
+            maxRatePercent?: pulumi.Input<number>;
+            /**
+             * Minimum rate (0 - 4294967295 kbps, 0 to disable).
+             */
+            minRate?: pulumi.Input<number>;
+            /**
+             * Minimum rate (%!o(MISSING)f link speed).
+             */
+            minRatePercent?: pulumi.Input<number>;
+            /**
+             * Cos queue ID.
+             */
+            name?: pulumi.Input<string>;
+            /**
+             * Weight of weighted round robin scheduling.
+             */
+            weight?: pulumi.Input<number>;
+        }
+    }
+
+    export namespace securitypolicy {
+        export interface Policy8021XUserGroup {
+            /**
+             * Group name.
+             */
+            name?: pulumi.Input<string>;
+        }
     }
 }
 
-export namespace switchcontrollerqos {
-    export interface IpdscpmapMap {
-        /**
-         * COS queue number.
-         */
-        cosQueue?: pulumi.Input<number>;
-        /**
-         * Differentiated service. Valid values: `CS0`, `CS1`, `AF11`, `AF12`, `AF13`, `CS2`, `AF21`, `AF22`, `AF23`, `CS3`, `AF31`, `AF32`, `AF33`, `CS4`, `AF41`, `AF42`, `AF43`, `CS5`, `EF`, `CS6`, `CS7`.
-         */
-        diffserv?: pulumi.Input<string>;
-        /**
-         * IP Precedence. Valid values: `network-control`, `internetwork-control`, `critic-ecp`, `flashoverride`, `flash`, `immediate`, `priority`, `routine`.
-         */
-        ipPrecedence?: pulumi.Input<string>;
-        /**
-         * Dscp mapping entry name.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * Raw values of DSCP (0 - 63).
-         */
-        value?: pulumi.Input<string>;
-    }
-
-    export interface QueuepolicyCosQueue {
-        /**
-         * Description of the COS queue.
-         */
-        description?: pulumi.Input<string>;
-        /**
-         * COS queue drop policy. Valid values: `taildrop`, `weighted-random-early-detection`.
-         */
-        dropPolicy?: pulumi.Input<string>;
-        /**
-         * Enable/disable ECN packet marking to drop eligible packets. Valid values: `disable`, `enable`.
-         */
-        ecn?: pulumi.Input<string>;
-        /**
-         * Maximum rate (0 - 4294967295 kbps, 0 to disable).
-         */
-        maxRate?: pulumi.Input<number>;
-        /**
-         * Maximum rate (% of link speed).
-         */
-        maxRatePercent?: pulumi.Input<number>;
-        /**
-         * Minimum rate (0 - 4294967295 kbps, 0 to disable).
-         */
-        minRate?: pulumi.Input<number>;
-        /**
-         * Minimum rate (% of link speed).
-         */
-        minRatePercent?: pulumi.Input<number>;
-        /**
-         * Cos queue ID.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * Weight of weighted round robin scheduling.
-         */
-        weight?: pulumi.Input<number>;
-    }
-}
-
-export namespace switchcontrollersecuritypolicy {
-    export interface Policy8021XUserGroup {
-        /**
-         * Group name.
-         */
-        name?: pulumi.Input<string>;
-    }
-}
-
-export namespace sys {
+export namespace system {
     export interface AccprofileFwgrpPermission {
         /**
          * Address Configuration. Valid values: `none`, `read`, `read-write`.
@@ -14977,7 +15424,7 @@ export namespace sys {
         /**
          * Dashboard widgets. The structure of `widget` block is documented below.
          */
-        widgets?: pulumi.Input<pulumi.Input<inputs.sys.AdminGuiDashboardWidget>[]>;
+        widgets?: pulumi.Input<pulumi.Input<inputs.system.AdminGuiDashboardWidget>[]>;
     }
 
     export interface AdminGuiDashboardWidget {
@@ -14988,7 +15435,7 @@ export namespace sys {
         /**
          * FortiView filters. The structure of `filters` block is documented below.
          */
-        filters?: pulumi.Input<pulumi.Input<inputs.sys.AdminGuiDashboardWidgetFilter>[]>;
+        filters?: pulumi.Input<pulumi.Input<inputs.system.AdminGuiDashboardWidgetFilter>[]>;
         /**
          * Height.
          */
@@ -15133,7 +15580,7 @@ export namespace sys {
         /**
          * Firewall policy violations. The structure of `fwPolicyViolations` block is documented below.
          */
-        fwPolicyViolations?: pulumi.Input<pulumi.Input<inputs.sys.AlarmGroupFwPolicyViolation>[]>;
+        fwPolicyViolations?: pulumi.Input<pulumi.Input<inputs.system.AlarmGroupFwPolicyViolation>[]>;
         /**
          * Group ID.
          */
@@ -15358,7 +15805,7 @@ export namespace sys {
         /**
          * Only sessions using these custom services are synchronized. Use source and destination port ranges to define these custome services. The structure of `customService` block is documented below.
          */
-        customServices?: pulumi.Input<pulumi.Input<inputs.sys.ClustersyncSessionSyncFilterCustomService>[]>;
+        customServices?: pulumi.Input<pulumi.Input<inputs.system.ClustersyncSessionSyncFilterCustomService>[]>;
         /**
          * Only sessions to this IPv4 address are synchronized. You can only enter one address. To synchronize sessions for multiple destination addresses, add multiple filters.
          */
@@ -15584,17 +16031,15 @@ export namespace sys {
 
     export interface GeoipoverrideIp6Range {
         /**
-         * Final IP address, inclusive, of the address range (format: xxx.xxx.xxx.xxx).
-         *
-         * The `ip6Range` block supports:
+         * Ending IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
          */
         endIp?: pulumi.Input<string>;
         /**
-         * ID number for individual entry in the IP-Range table.
+         * ID of individual entry in the IPv6 range table.
          */
         id?: pulumi.Input<number>;
         /**
-         * Starting IP address, inclusive, of the address range (format: xxx.xxx.xxx.xxx).
+         * Starting IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
          */
         startIp?: pulumi.Input<string>;
     }
@@ -15650,7 +16095,7 @@ export namespace sys {
         pingserverSlaveForceReset?: pulumi.Input<string>;
         priority?: pulumi.Input<number>;
         vclusterId?: pulumi.Input<number>;
-        vdoms?: pulumi.Input<pulumi.Input<inputs.sys.HaVclusterVdom>[]>;
+        vdoms?: pulumi.Input<pulumi.Input<inputs.system.HaVclusterVdom>[]>;
     }
 
     export interface HaVclusterVdom {
@@ -15969,7 +16414,7 @@ export namespace sys {
         /**
          * DHCPv6 IA-PD list The structure of `dhcp6IapdList` block is documented below.
          */
-        dhcp6IapdLists?: pulumi.Input<pulumi.Input<inputs.sys.InterfaceIpv6Dhcp6IapdList>[]>;
+        dhcp6IapdLists?: pulumi.Input<pulumi.Input<inputs.system.InterfaceIpv6Dhcp6IapdList>[]>;
         /**
          * Enable/disable DHCPv6 information request. Valid values: `enable`, `disable`.
          */
@@ -16029,7 +16474,7 @@ export namespace sys {
         /**
          * Advertised IPv6 delegated prefix list. The structure of `ip6DelegatedPrefixList` block is documented below.
          */
-        ip6DelegatedPrefixLists?: pulumi.Input<pulumi.Input<inputs.sys.InterfaceIpv6Ip6DelegatedPrefixList>[]>;
+        ip6DelegatedPrefixLists?: pulumi.Input<pulumi.Input<inputs.system.InterfaceIpv6Ip6DelegatedPrefixList>[]>;
         /**
          * Enable/disable using the DNS server acquired by DHCP. Valid values: `enable`, `disable`.
          */
@@ -16037,7 +16482,7 @@ export namespace sys {
         /**
          * Extra IPv6 address prefixes of interface. The structure of `ip6ExtraAddr` block is documented below.
          */
-        ip6ExtraAddrs?: pulumi.Input<pulumi.Input<inputs.sys.InterfaceIpv6Ip6ExtraAddr>[]>;
+        ip6ExtraAddrs?: pulumi.Input<pulumi.Input<inputs.system.InterfaceIpv6Ip6ExtraAddr>[]>;
         /**
          * Hop limit (0 means unspecified).
          */
@@ -16069,7 +16514,7 @@ export namespace sys {
         /**
          * Advertised prefix list. The structure of `ip6PrefixList` block is documented below.
          */
-        ip6PrefixLists?: pulumi.Input<pulumi.Input<inputs.sys.InterfaceIpv6Ip6PrefixList>[]>;
+        ip6PrefixLists?: pulumi.Input<pulumi.Input<inputs.system.InterfaceIpv6Ip6PrefixList>[]>;
         /**
          * Assigning a prefix from DHCP or RA. Valid values: `dhcp6`, `ra`.
          */
@@ -16135,7 +16580,7 @@ export namespace sys {
          *
          * The `ip6ExtraAddr` block supports:
          */
-        vrrp6s?: pulumi.Input<pulumi.Input<inputs.sys.InterfaceIpv6Vrrp6>[]>;
+        vrrp6s?: pulumi.Input<pulumi.Input<inputs.system.InterfaceIpv6Vrrp6>[]>;
         /**
          * Enable/disable virtual MAC for VRRP. Valid values: `enable`, `disable`.
          */
@@ -16202,9 +16647,7 @@ export namespace sys {
 
     export interface InterfaceIpv6Ip6ExtraAddr {
         /**
-         * IPv6 address prefix.
-         *
-         * The `ip6PrefixList` block supports:
+         * IPv6 prefix.
          */
         prefix?: pulumi.Input<string>;
     }
@@ -16217,7 +16660,7 @@ export namespace sys {
         /**
          * DNS search list option. The structure of `dnssl` block is documented below.
          */
-        dnssls?: pulumi.Input<pulumi.Input<inputs.sys.InterfaceIpv6Ip6PrefixListDnssl>[]>;
+        dnssls?: pulumi.Input<pulumi.Input<inputs.system.InterfaceIpv6Ip6PrefixListDnssl>[]>;
         /**
          * Enable/disable the onlink flag. Valid values: `enable`, `disable`.
          */
@@ -16227,9 +16670,7 @@ export namespace sys {
          */
         preferredLifeTime?: pulumi.Input<number>;
         /**
-         * IPv6 address prefix.
-         *
-         * The `ip6PrefixList` block supports:
+         * IPv6 prefix.
          */
         prefix?: pulumi.Input<string>;
         /**
@@ -16364,7 +16805,7 @@ export namespace sys {
         /**
          * Tags. The structure of `tags` block is documented below.
          */
-        tags?: pulumi.Input<pulumi.Input<inputs.sys.InterfaceTaggingTag>[]>;
+        tags?: pulumi.Input<pulumi.Input<inputs.system.InterfaceTaggingTag>[]>;
     }
 
     export interface InterfaceTaggingTag {
@@ -16400,7 +16841,7 @@ export namespace sys {
         /**
          * VRRP Proxy ARP configuration. The structure of `proxyArp` block is documented below.
          */
-        proxyArps?: pulumi.Input<pulumi.Input<inputs.sys.InterfaceVrrpProxyArp>[]>;
+        proxyArps?: pulumi.Input<pulumi.Input<inputs.system.InterfaceVrrpProxyArp>[]>;
         /**
          * Startup time (1 - 255 seconds).
          */
@@ -16469,7 +16910,7 @@ export namespace sys {
         /**
          * Configure serial number or wildcard of Fortigate to match. The structure of `device` block is documented below.
          */
-        devices?: pulumi.Input<pulumi.Input<inputs.sys.IpamRuleDevice>[]>;
+        devices?: pulumi.Input<pulumi.Input<inputs.system.IpamRuleDevice>[]>;
         /**
          * Enable/disable DHCP server for matching IPAM interfaces. Valid values: `enable`, `disable`.
          */
@@ -16477,7 +16918,7 @@ export namespace sys {
         /**
          * Configure name or wildcard of interface to match. The structure of `interface` block is documented below.
          */
-        interfaces?: pulumi.Input<pulumi.Input<inputs.sys.IpamRuleInterface>[]>;
+        interfaces?: pulumi.Input<pulumi.Input<inputs.system.IpamRuleInterface>[]>;
         /**
          * IPAM rule name.
          */
@@ -16485,7 +16926,7 @@ export namespace sys {
         /**
          * Configure name of IPAM pool to use. The structure of `pool` block is documented below.
          */
-        pools?: pulumi.Input<pulumi.Input<inputs.sys.IpamRulePool>[]>;
+        pools?: pulumi.Input<pulumi.Input<inputs.system.IpamRulePool>[]>;
         /**
          * Configure role of interface to match. Valid values: `any`, `lan`, `wan`, `dmz`, `undefined`.
          */
@@ -17034,7 +17475,7 @@ export namespace sys {
         /**
          * Customized SAML attributes to send along with assertion. The structure of `assertionAttributes` block is documented below.
          */
-        assertionAttributes?: pulumi.Input<pulumi.Input<inputs.sys.SamlServiceProviderAssertionAttribute>[]>;
+        assertionAttributes?: pulumi.Input<pulumi.Input<inputs.system.SamlServiceProviderAssertionAttribute>[]>;
         /**
          * IDP entity ID.
          */
@@ -17100,7 +17541,7 @@ export namespace sys {
         /**
          * AWS region name list. The structure of `regionList` block is documented below.
          */
-        regionLists?: pulumi.Input<pulumi.Input<inputs.sys.SdnconnectorExternalAccountListRegionList>[]>;
+        regionLists?: pulumi.Input<pulumi.Input<inputs.system.SdnconnectorExternalAccountListRegionList>[]>;
         /**
          * AWS role ARN to assume.
          */
@@ -17136,7 +17577,7 @@ export namespace sys {
         /**
          * Configure GCP zone list. The structure of `gcpZoneList` block is documented below.
          */
-        gcpZoneLists?: pulumi.Input<pulumi.Input<inputs.sys.SdnconnectorGcpProjectListGcpZoneList>[]>;
+        gcpZoneLists?: pulumi.Input<pulumi.Input<inputs.system.SdnconnectorGcpProjectListGcpZoneList>[]>;
         /**
          * GCP project ID.
          */
@@ -17154,7 +17595,7 @@ export namespace sys {
         /**
          * Configure IP configuration. The structure of `ip` block is documented below.
          */
-        ips?: pulumi.Input<pulumi.Input<inputs.sys.SdnconnectorNicIp>[]>;
+        ips?: pulumi.Input<pulumi.Input<inputs.system.SdnconnectorNicIp>[]>;
         /**
          * Network interface name.
          */
@@ -17195,7 +17636,7 @@ export namespace sys {
         /**
          * Configure Azure route. The structure of `route` block is documented below.
          */
-        routes?: pulumi.Input<pulumi.Input<inputs.sys.SdnconnectorRouteTableRoute>[]>;
+        routes?: pulumi.Input<pulumi.Input<inputs.system.SdnconnectorRouteTableRoute>[]>;
         /**
          * Subscription ID of Azure route table.
          */
@@ -17224,15 +17665,15 @@ export namespace sys {
         /**
          * Destination address6 or address6 group names. The structure of `dstaddr6` block is documented below.
          */
-        dstaddr6s?: pulumi.Input<pulumi.Input<inputs.sys.SdwanDuplicationDstaddr6>[]>;
+        dstaddr6s?: pulumi.Input<pulumi.Input<inputs.system.SdwanDuplicationDstaddr6>[]>;
         /**
          * Destination address or address group names. The structure of `dstaddr` block is documented below.
          */
-        dstaddrs?: pulumi.Input<pulumi.Input<inputs.sys.SdwanDuplicationDstaddr>[]>;
+        dstaddrs?: pulumi.Input<pulumi.Input<inputs.system.SdwanDuplicationDstaddr>[]>;
         /**
          * Outgoing (egress) interfaces or zones. The structure of `dstintf` block is documented below.
          */
-        dstintfs?: pulumi.Input<pulumi.Input<inputs.sys.SdwanDuplicationDstintf>[]>;
+        dstintfs?: pulumi.Input<pulumi.Input<inputs.system.SdwanDuplicationDstintf>[]>;
         /**
          * Duplication rule ID (1 - 255).
          */
@@ -17248,11 +17689,11 @@ export namespace sys {
         /**
          * SD-WAN service rule ID list. The structure of `serviceId` block is documented below.
          */
-        serviceIds?: pulumi.Input<pulumi.Input<inputs.sys.SdwanDuplicationServiceId>[]>;
+        serviceIds?: pulumi.Input<pulumi.Input<inputs.system.SdwanDuplicationServiceId>[]>;
         /**
          * Service and service group name. The structure of `service` block is documented below.
          */
-        services?: pulumi.Input<pulumi.Input<inputs.sys.SdwanDuplicationService>[]>;
+        services?: pulumi.Input<pulumi.Input<inputs.system.SdwanDuplicationService>[]>;
         /**
          * Enable/disable packet duplication matching health-check SLAs in service rule. Valid values: `enable`, `disable`.
          */
@@ -17260,15 +17701,15 @@ export namespace sys {
         /**
          * Source address6 or address6 group names. The structure of `srcaddr6` block is documented below.
          */
-        srcaddr6s?: pulumi.Input<pulumi.Input<inputs.sys.SdwanDuplicationSrcaddr6>[]>;
+        srcaddr6s?: pulumi.Input<pulumi.Input<inputs.system.SdwanDuplicationSrcaddr6>[]>;
         /**
          * Source address or address group names. The structure of `srcaddr` block is documented below.
          */
-        srcaddrs?: pulumi.Input<pulumi.Input<inputs.sys.SdwanDuplicationSrcaddr>[]>;
+        srcaddrs?: pulumi.Input<pulumi.Input<inputs.system.SdwanDuplicationSrcaddr>[]>;
         /**
          * Incoming (ingress) interfaces or zones. The structure of `srcintf` block is documented below.
          */
-        srcintfs?: pulumi.Input<pulumi.Input<inputs.sys.SdwanDuplicationSrcintf>[]>;
+        srcintfs?: pulumi.Input<pulumi.Input<inputs.system.SdwanDuplicationSrcintf>[]>;
     }
 
     export interface SdwanDuplicationDstaddr {
@@ -17280,33 +17721,7 @@ export namespace sys {
 
     export interface SdwanDuplicationDstaddr6 {
         /**
-         * Physical interface name.
-         *
-         *
-         *
-         *
-         *
-         * The `dst6` block supports:
-         *
-         *
-         * The `src6` block supports:
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         * The `srcaddr6` block supports:
-         *
-         *
-         * The `dstaddr6` block supports:
+         * Address or address group name.
          */
         name?: pulumi.Input<string>;
     }
@@ -17341,33 +17756,7 @@ export namespace sys {
 
     export interface SdwanDuplicationSrcaddr6 {
         /**
-         * Physical interface name.
-         *
-         *
-         *
-         *
-         *
-         * The `dst6` block supports:
-         *
-         *
-         * The `src6` block supports:
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         * The `srcaddr6` block supports:
-         *
-         *
-         * The `dstaddr6` block supports:
+         * Address or address group name.
          */
         name?: pulumi.Input<string>;
     }
@@ -17446,7 +17835,7 @@ export namespace sys {
         /**
          * Member sequence number list. The structure of `members` block is documented below.
          */
-        members?: pulumi.Input<pulumi.Input<inputs.sys.SdwanHealthCheckMember>[]>;
+        members?: pulumi.Input<pulumi.Input<inputs.system.SdwanHealthCheckMember>[]>;
         /**
          * Codec to use for MOS calculation (default = g711). Valid values: `g711`, `g722`, `g729`.
          */
@@ -17514,7 +17903,7 @@ export namespace sys {
         /**
          * Service level agreement (SLA). The structure of `sla` block is documented below.
          */
-        slas?: pulumi.Input<pulumi.Input<inputs.sys.SdwanHealthCheckSla>[]>;
+        slas?: pulumi.Input<pulumi.Input<inputs.system.SdwanHealthCheckSla>[]>;
         /**
          * Source IP address used in the health-check packet to the server.
          */
@@ -17737,7 +18126,7 @@ export namespace sys {
         /**
          * Destination address6 name. The structure of `dst6` block is documented below.
          */
-        dst6s?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceDst6>[]>;
+        dst6s?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceDst6>[]>;
         /**
          * Enable/disable negation of destination address match. Valid values: `enable`, `disable`.
          */
@@ -17745,7 +18134,7 @@ export namespace sys {
         /**
          * Destination address name. The structure of `dst` block is documented below.
          */
-        dsts?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceDst>[]>;
+        dsts?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceDst>[]>;
         /**
          * End destination port number.
          */
@@ -17757,7 +18146,7 @@ export namespace sys {
         /**
          * User groups. The structure of `groups` block is documented below.
          */
-        groups?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceGroup>[]>;
+        groups?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceGroup>[]>;
         /**
          * Hash algorithm for selected priority members for load balance mode. Valid values: `round-robin`, `source-ip-based`, `source-dest-ip-based`, `inbandwidth`, `outbandwidth`, `bibandwidth`.
          */
@@ -17765,7 +18154,7 @@ export namespace sys {
         /**
          * Health check list. The structure of `healthCheck` block is documented below.
          */
-        healthChecks?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceHealthCheck>[]>;
+        healthChecks?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceHealthCheck>[]>;
         /**
          * Waiting period in seconds when switching from the back-up member to the primary member (0 - 10000000, default = 0).
          */
@@ -17781,11 +18170,11 @@ export namespace sys {
         /**
          * Source interface name. The structure of `inputDevice` block is documented below.
          */
-        inputDevices?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceInputDevice>[]>;
+        inputDevices?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceInputDevice>[]>;
         /**
          * Source input-zone name. The structure of `inputZone` block is documented below.
          */
-        inputZones?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceInputZone>[]>;
+        inputZones?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceInputZone>[]>;
         /**
          * Enable/disable use of Internet service for application-based load balancing. Valid values: `enable`, `disable`.
          */
@@ -17793,31 +18182,31 @@ export namespace sys {
         /**
          * IDs of one or more application control categories. The structure of `internetServiceAppCtrlCategory` block is documented below.
          */
-        internetServiceAppCtrlCategories?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceInternetServiceAppCtrlCategory>[]>;
+        internetServiceAppCtrlCategories?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceInternetServiceAppCtrlCategory>[]>;
         /**
          * Application control based Internet Service group list. The structure of `internetServiceAppCtrlGroup` block is documented below.
          */
-        internetServiceAppCtrlGroups?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceInternetServiceAppCtrlGroup>[]>;
+        internetServiceAppCtrlGroups?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceInternetServiceAppCtrlGroup>[]>;
         /**
          * Application control based Internet Service ID list. The structure of `internetServiceAppCtrl` block is documented below.
          */
-        internetServiceAppCtrls?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceInternetServiceAppCtrl>[]>;
+        internetServiceAppCtrls?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceInternetServiceAppCtrl>[]>;
         /**
          * Custom Internet Service group list. The structure of `internetServiceCustomGroup` block is documented below.
          */
-        internetServiceCustomGroups?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceInternetServiceCustomGroup>[]>;
+        internetServiceCustomGroups?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceInternetServiceCustomGroup>[]>;
         /**
          * Custom Internet service name list. The structure of `internetServiceCustom` block is documented below.
          */
-        internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceInternetServiceCustom>[]>;
+        internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceInternetServiceCustom>[]>;
         /**
          * Internet Service group list. The structure of `internetServiceGroup` block is documented below.
          */
-        internetServiceGroups?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceInternetServiceGroup>[]>;
+        internetServiceGroups?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceInternetServiceGroup>[]>;
         /**
          * Internet service name list. The structure of `internetServiceName` block is documented below.
          */
-        internetServiceNames?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceInternetServiceName>[]>;
+        internetServiceNames?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceInternetServiceName>[]>;
         /**
          * Coefficient of jitter in the formula of custom-profile-1.
          */
@@ -17857,11 +18246,11 @@ export namespace sys {
         /**
          * Member sequence number list. The structure of `priorityMembers` block is documented below.
          */
-        priorityMembers?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServicePriorityMember>[]>;
+        priorityMembers?: pulumi.Input<pulumi.Input<inputs.system.SdwanServicePriorityMember>[]>;
         /**
          * Priority zone name list. The structure of `priorityZone` block is documented below.
          */
-        priorityZones?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServicePriorityZone>[]>;
+        priorityZones?: pulumi.Input<pulumi.Input<inputs.system.SdwanServicePriorityZone>[]>;
         /**
          * Protocol number.
          */
@@ -17885,11 +18274,11 @@ export namespace sys {
         /**
          * Service level agreement (SLA). The structure of `sla` block is documented below.
          */
-        slas?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceSla>[]>;
+        slas?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceSla>[]>;
         /**
          * Source address6 name. The structure of `src6` block is documented below.
          */
-        src6s?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceSrc6>[]>;
+        src6s?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceSrc6>[]>;
         /**
          * Enable/disable negation of source address match. Valid values: `enable`, `disable`.
          */
@@ -17897,7 +18286,7 @@ export namespace sys {
         /**
          * Source address name. The structure of `src` block is documented below.
          */
-        srcs?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceSrc>[]>;
+        srcs?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceSrc>[]>;
         /**
          * Enable/disable service when selected neighbor role is standalone while service role is not standalone. Valid values: `enable`, `disable`.
          */
@@ -17929,7 +18318,7 @@ export namespace sys {
         /**
          * User name. The structure of `users` block is documented below.
          */
-        users?: pulumi.Input<pulumi.Input<inputs.sys.SdwanServiceUser>[]>;
+        users?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceUser>[]>;
     }
 
     export interface SdwanServiceDst {
@@ -17941,33 +18330,7 @@ export namespace sys {
 
     export interface SdwanServiceDst6 {
         /**
-         * Physical interface name.
-         *
-         *
-         *
-         *
-         *
-         * The `dst6` block supports:
-         *
-         *
-         * The `src6` block supports:
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         * The `srcaddr6` block supports:
-         *
-         *
-         * The `dstaddr6` block supports:
+         * Address or address group name.
          */
         name?: pulumi.Input<string>;
     }
@@ -18083,33 +18446,7 @@ export namespace sys {
 
     export interface SdwanServiceSrc6 {
         /**
-         * Physical interface name.
-         *
-         *
-         *
-         *
-         *
-         * The `dst6` block supports:
-         *
-         *
-         * The `src6` block supports:
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         * The `srcaddr6` block supports:
-         *
-         *
-         * The `dstaddr6` block supports:
+         * Address or address group name.
          */
         name?: pulumi.Input<string>;
     }
@@ -18210,7 +18547,7 @@ export namespace sys {
         /**
          * List of interfaces to be turned down before session synchronization is complete. The structure of `downIntfsBeforeSessSync` block is documented below.
          */
-        downIntfsBeforeSessSyncs?: pulumi.Input<pulumi.Input<inputs.sys.StandaloneclusterClusterPeerDownIntfsBeforeSessSync>[]>;
+        downIntfsBeforeSessSyncs?: pulumi.Input<pulumi.Input<inputs.system.StandaloneclusterClusterPeerDownIntfsBeforeSessSync>[]>;
         /**
          * Heartbeat interval (1 - 20 (100*ms). Increase to reduce false positives.
          */
@@ -18238,7 +18575,7 @@ export namespace sys {
         /**
          * Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
          */
-        sessionSyncFilter?: pulumi.Input<inputs.sys.StandaloneclusterClusterPeerSessionSyncFilter>;
+        sessionSyncFilter?: pulumi.Input<inputs.system.StandaloneclusterClusterPeerSessionSyncFilter>;
         /**
          * Sync ID.
          */
@@ -18246,7 +18583,7 @@ export namespace sys {
         /**
          * Sessions from these VDOMs are synchronized using this session synchronization configuration. The structure of `syncvd` block is documented below.
          */
-        syncvds?: pulumi.Input<pulumi.Input<inputs.sys.StandaloneclusterClusterPeerSyncvd>[]>;
+        syncvds?: pulumi.Input<pulumi.Input<inputs.system.StandaloneclusterClusterPeerSyncvd>[]>;
     }
 
     export interface StandaloneclusterClusterPeerDownIntfsBeforeSessSync {
@@ -18260,7 +18597,7 @@ export namespace sys {
         /**
          * Only sessions using these custom services are synchronized. Use source and destination port ranges to define these custom services. The structure of `customService` block is documented below.
          */
-        customServices?: pulumi.Input<pulumi.Input<inputs.sys.StandaloneclusterClusterPeerSessionSyncFilterCustomService>[]>;
+        customServices?: pulumi.Input<pulumi.Input<inputs.system.StandaloneclusterClusterPeerSessionSyncFilterCustomService>[]>;
         /**
          * Only sessions to this IPv4 address are synchronized.
          */
@@ -18395,7 +18732,7 @@ export namespace sys {
         /**
          * Member sequence number list. The structure of `members` block is documented below.
          */
-        members?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkHealthCheckMember>[]>;
+        members?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkHealthCheckMember>[]>;
         /**
          * Status check or health check name.
          */
@@ -18451,7 +18788,7 @@ export namespace sys {
         /**
          * Service level agreement (SLA). The structure of `sla` block is documented below.
          */
-        slas?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkHealthCheckSla>[]>;
+        slas?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkHealthCheckSla>[]>;
         /**
          * Enable/disable system DNS as the probe server. Valid values: `disable`, `enable`.
          */
@@ -18634,7 +18971,7 @@ export namespace sys {
         /**
          * Destination address6 name. The structure of `dst6` block is documented below.
          */
-        dst6s?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceDst6>[]>;
+        dst6s?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceDst6>[]>;
         /**
          * Enable/disable negation of destination address match. Valid values: `enable`, `disable`.
          */
@@ -18642,7 +18979,7 @@ export namespace sys {
         /**
          * Destination address name. The structure of `dst` block is documented below.
          */
-        dsts?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceDst>[]>;
+        dsts?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceDst>[]>;
         /**
          * End destination port number.
          */
@@ -18654,7 +18991,7 @@ export namespace sys {
         /**
          * User groups. The structure of `groups` block is documented below.
          */
-        groups?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceGroup>[]>;
+        groups?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceGroup>[]>;
         /**
          * Health check.
          */
@@ -18674,7 +19011,7 @@ export namespace sys {
         /**
          * Source interface name. The structure of `inputDevice` block is documented below.
          */
-        inputDevices?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceInputDevice>[]>;
+        inputDevices?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceInputDevice>[]>;
         /**
          * Enable/disable use of Internet service for application-based load balancing. Valid values: `enable`, `disable`.
          */
@@ -18682,39 +19019,39 @@ export namespace sys {
         /**
          * Application control based Internet Service group list. The structure of `internetServiceAppCtrlGroup` block is documented below.
          */
-        internetServiceAppCtrlGroups?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceInternetServiceAppCtrlGroup>[]>;
+        internetServiceAppCtrlGroups?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceInternetServiceAppCtrlGroup>[]>;
         /**
          * Application control based Internet Service ID list. The structure of `internetServiceAppCtrl` block is documented below.
          */
-        internetServiceAppCtrls?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceInternetServiceAppCtrl>[]>;
+        internetServiceAppCtrls?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceInternetServiceAppCtrl>[]>;
         /**
          * Control-based Internet Service group list. The structure of `internetServiceCtrlGroup` block is documented below.
          */
-        internetServiceCtrlGroups?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceInternetServiceCtrlGroup>[]>;
+        internetServiceCtrlGroups?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceInternetServiceCtrlGroup>[]>;
         /**
          * Control-based Internet Service ID list. The structure of `internetServiceCtrl` block is documented below.
          */
-        internetServiceCtrls?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceInternetServiceCtrl>[]>;
+        internetServiceCtrls?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceInternetServiceCtrl>[]>;
         /**
          * Custom Internet Service group list. The structure of `internetServiceCustomGroup` block is documented below.
          */
-        internetServiceCustomGroups?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceInternetServiceCustomGroup>[]>;
+        internetServiceCustomGroups?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceInternetServiceCustomGroup>[]>;
         /**
          * Custom Internet service name list. The structure of `internetServiceCustom` block is documented below.
          */
-        internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceInternetServiceCustom>[]>;
+        internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceInternetServiceCustom>[]>;
         /**
          * Internet Service group list. The structure of `internetServiceGroup` block is documented below.
          */
-        internetServiceGroups?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceInternetServiceGroup>[]>;
+        internetServiceGroups?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceInternetServiceGroup>[]>;
         /**
          * Internet service ID list. The structure of `internetServiceId` block is documented below.
          */
-        internetServiceIds?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceInternetServiceId>[]>;
+        internetServiceIds?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceInternetServiceId>[]>;
         /**
          * Internet service name list. The structure of `internetServiceName` block is documented below.
          */
-        internetServiceNames?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceInternetServiceName>[]>;
+        internetServiceNames?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceInternetServiceName>[]>;
         /**
          * Coefficient of jitter in the formula of custom-profile-1.
          */
@@ -18750,7 +19087,7 @@ export namespace sys {
         /**
          * Member sequence number list. The structure of `priorityMembers` block is documented below.
          */
-        priorityMembers?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServicePriorityMember>[]>;
+        priorityMembers?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServicePriorityMember>[]>;
         /**
          * Protocol number.
          */
@@ -18774,11 +19111,11 @@ export namespace sys {
         /**
          * Service level agreement (SLA). The structure of `sla` block is documented below.
          */
-        slas?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceSla>[]>;
+        slas?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceSla>[]>;
         /**
          * Source address6 name. The structure of `src6` block is documented below.
          */
-        src6s?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceSrc6>[]>;
+        src6s?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceSrc6>[]>;
         /**
          * Enable/disable negation of source address match. Valid values: `enable`, `disable`.
          */
@@ -18786,7 +19123,7 @@ export namespace sys {
         /**
          * Source address name. The structure of `src` block is documented below.
          */
-        srcs?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceSrc>[]>;
+        srcs?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceSrc>[]>;
         /**
          * Enable/disable service when selected neighbor role is standalone while service role is not standalone. Valid values: `enable`, `disable`.
          */
@@ -18810,7 +19147,7 @@ export namespace sys {
         /**
          * User name. The structure of `users` block is documented below.
          */
-        users?: pulumi.Input<pulumi.Input<inputs.sys.VirtualwanlinkServiceUser>[]>;
+        users?: pulumi.Input<pulumi.Input<inputs.system.VirtualwanlinkServiceUser>[]>;
     }
 
     export interface VirtualwanlinkServiceDst {
@@ -18822,16 +19159,7 @@ export namespace sys {
 
     export interface VirtualwanlinkServiceDst6 {
         /**
-         * Physical interface name.
-         *
-         *
-         *
-         *
-         *
-         * The `dst6` block supports:
-         *
-         *
-         * The `src6` block supports:
+         * Address or address group name.
          */
         name?: pulumi.Input<string>;
     }
@@ -18940,16 +19268,7 @@ export namespace sys {
 
     export interface VirtualwanlinkServiceSrc6 {
         /**
-         * Physical interface name.
-         *
-         *
-         *
-         *
-         *
-         * The `dst6` block supports:
-         *
-         *
-         * The `src6` block supports:
+         * Address or address group name.
          */
         name?: pulumi.Input<string>;
     }
@@ -19010,7 +19329,7 @@ export namespace sys {
         /**
          * Tags. The structure of `tags` block is documented below.
          */
-        tags?: pulumi.Input<pulumi.Input<inputs.sys.ZoneTaggingTag>[]>;
+        tags?: pulumi.Input<pulumi.Input<inputs.system.ZoneTaggingTag>[]>;
     }
 
     export interface ZoneTaggingTag {
@@ -19019,448 +19338,445 @@ export namespace sys {
          */
         name?: pulumi.Input<string>;
     }
-}
+    export namespace dhcp {
+        export interface ServerExcludeRange {
+            /**
+             * End of IP range.
+             */
+            endIp?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Start of IP range.
+             */
+            startIp?: pulumi.Input<string>;
+            /**
+             * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
+             */
+            vciMatch?: pulumi.Input<string>;
+            /**
+             * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
+             */
+            vciStrings?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerExcludeRangeVciString>[]>;
+        }
 
-export namespace systemdhcp {
-    export interface ServerExcludeRange {
-        /**
-         * End of IP range.
-         */
-        endIp?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Start of IP range.
-         */
-        startIp?: pulumi.Input<string>;
-        /**
-         * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
-         */
-        vciMatch?: pulumi.Input<string>;
-        /**
-         * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
-         */
-        vciStrings?: pulumi.Input<pulumi.Input<inputs.systemdhcp.ServerExcludeRangeVciString>[]>;
+        export interface ServerExcludeRangeVciString {
+            /**
+             * VCI strings.
+             */
+            vciString?: pulumi.Input<string>;
+        }
+
+        export interface ServerIpRange {
+            /**
+             * End of IP range.
+             */
+            endIp?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Start of IP range.
+             */
+            startIp?: pulumi.Input<string>;
+            /**
+             * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
+             */
+            vciMatch?: pulumi.Input<string>;
+            /**
+             * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
+             */
+            vciStrings?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerIpRangeVciString>[]>;
+        }
+
+        export interface ServerIpRangeVciString {
+            /**
+             * VCI strings.
+             */
+            vciString?: pulumi.Input<string>;
+        }
+
+        export interface ServerOption {
+            /**
+             * DHCP option code.
+             */
+            code?: pulumi.Input<number>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * DHCP option IPs.
+             */
+            ip?: pulumi.Input<string>;
+            /**
+             * DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
+             */
+            type?: pulumi.Input<string>;
+            /**
+             * DHCP option value.
+             */
+            value?: pulumi.Input<string>;
+            /**
+             * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: `disable`, `enable`.
+             */
+            vciMatch?: pulumi.Input<string>;
+            /**
+             * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
+             */
+            vciStrings?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerOptionVciString>[]>;
+        }
+
+        export interface ServerOptionVciString {
+            /**
+             * VCI strings.
+             */
+            vciString?: pulumi.Input<string>;
+        }
+
+        export interface ServerReservedAddress {
+            /**
+             * Options for the DHCP server to configure the client with the reserved MAC address. Valid values: `assign`, `block`, `reserved`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * Option 82 circuit-ID of the client that will get the reserved IP address.
+             */
+            circuitId?: pulumi.Input<string>;
+            /**
+             * DHCP option type. Valid values: `hex`, `string`.
+             */
+            circuitIdType?: pulumi.Input<string>;
+            /**
+             * Description.
+             */
+            description?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * IP address to be reserved for the MAC address.
+             */
+            ip?: pulumi.Input<string>;
+            /**
+             * MAC address of the client that will get the reserved IP address.
+             */
+            mac?: pulumi.Input<string>;
+            /**
+             * Option 82 remote-ID of the client that will get the reserved IP address.
+             */
+            remoteId?: pulumi.Input<string>;
+            /**
+             * DHCP option type. Valid values: `hex`, `string`.
+             */
+            remoteIdType?: pulumi.Input<string>;
+            /**
+             * DHCP reserved-address type. Valid values: `mac`, `option82`.
+             */
+            type?: pulumi.Input<string>;
+        }
+
+        export interface ServerTftpServer {
+            /**
+             * TFTP server.
+             */
+            tftpServer?: pulumi.Input<string>;
+        }
+
+        export interface ServerVciString {
+            /**
+             * VCI strings.
+             */
+            vciString?: pulumi.Input<string>;
+        }
     }
 
-    export interface ServerExcludeRangeVciString {
-        /**
-         * VCI strings.
-         */
-        vciString?: pulumi.Input<string>;
+    export namespace dhcp6 {
+        export interface ServerIpRange {
+            /**
+             * End of IP range.
+             */
+            endIp?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Start of IP range.
+             */
+            startIp?: pulumi.Input<string>;
+        }
+
+        export interface ServerPrefixRange {
+            /**
+             * End of prefix range.
+             */
+            endPrefix?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Prefix length.
+             */
+            prefixLength?: pulumi.Input<number>;
+            /**
+             * Start of prefix range.
+             */
+            startPrefix?: pulumi.Input<string>;
+        }
     }
 
-    export interface ServerIpRange {
-        /**
-         * End of IP range.
-         */
-        endIp?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Start of IP range.
-         */
-        startIp?: pulumi.Input<string>;
-        /**
-         * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
-         */
-        vciMatch?: pulumi.Input<string>;
-        /**
-         * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
-         */
-        vciStrings?: pulumi.Input<pulumi.Input<inputs.systemdhcp.ServerIpRangeVciString>[]>;
+    export namespace lldp {
+        export interface NetworkpolicyGuest {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp?: pulumi.Input<number>;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority?: pulumi.Input<number>;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag?: pulumi.Input<string>;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan?: pulumi.Input<number>;
+        }
+
+        export interface NetworkpolicyGuestVoiceSignaling {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp?: pulumi.Input<number>;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority?: pulumi.Input<number>;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag?: pulumi.Input<string>;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan?: pulumi.Input<number>;
+        }
+
+        export interface NetworkpolicySoftphone {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp?: pulumi.Input<number>;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority?: pulumi.Input<number>;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag?: pulumi.Input<string>;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan?: pulumi.Input<number>;
+        }
+
+        export interface NetworkpolicyStreamingVideo {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp?: pulumi.Input<number>;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority?: pulumi.Input<number>;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag?: pulumi.Input<string>;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan?: pulumi.Input<number>;
+        }
+
+        export interface NetworkpolicyVideoConferencing {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp?: pulumi.Input<number>;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority?: pulumi.Input<number>;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag?: pulumi.Input<string>;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan?: pulumi.Input<number>;
+        }
+
+        export interface NetworkpolicyVideoSignaling {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp?: pulumi.Input<number>;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority?: pulumi.Input<number>;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag?: pulumi.Input<string>;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan?: pulumi.Input<number>;
+        }
+
+        export interface NetworkpolicyVoice {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp?: pulumi.Input<number>;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority?: pulumi.Input<number>;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag?: pulumi.Input<string>;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan?: pulumi.Input<number>;
+        }
+
+        export interface NetworkpolicyVoiceSignaling {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp?: pulumi.Input<number>;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority?: pulumi.Input<number>;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status?: pulumi.Input<string>;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag?: pulumi.Input<string>;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan?: pulumi.Input<number>;
+        }
     }
 
-    export interface ServerIpRangeVciString {
-        /**
-         * VCI strings.
-         */
-        vciString?: pulumi.Input<string>;
-    }
+    export namespace snmp {
+        export interface CommunityHost {
+            /**
+             * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
+             */
+            haDirect?: pulumi.Input<string>;
+            /**
+             * Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
+             */
+            hostType?: pulumi.Input<string>;
+            /**
+             * Host6 entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * IPv4 address of the SNMP manager (host).
+             */
+            ip?: pulumi.Input<string>;
+            /**
+             * Source IPv4 address for SNMP traps.
+             */
+            sourceIp?: pulumi.Input<string>;
+        }
 
-    export interface ServerOption {
-        /**
-         * DHCP option code.
-         */
-        code?: pulumi.Input<number>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * DHCP option IPs.
-         */
-        ip?: pulumi.Input<string>;
-        /**
-         * DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
-         */
-        type?: pulumi.Input<string>;
-        /**
-         * DHCP option value.
-         */
-        value?: pulumi.Input<string>;
-        /**
-         * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: `disable`, `enable`.
-         */
-        vciMatch?: pulumi.Input<string>;
-        /**
-         * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
-         */
-        vciStrings?: pulumi.Input<pulumi.Input<inputs.systemdhcp.ServerOptionVciString>[]>;
-    }
+        export interface CommunityHosts6 {
+            /**
+             * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
+             */
+            haDirect?: pulumi.Input<string>;
+            /**
+             * Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
+             */
+            hostType?: pulumi.Input<string>;
+            /**
+             * Host6 entry ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * SNMP manager IPv6 address prefix.
+             */
+            ipv6?: pulumi.Input<string>;
+            /**
+             * Source IPv6 address for SNMP traps.
+             */
+            sourceIpv6?: pulumi.Input<string>;
+        }
 
-    export interface ServerOptionVciString {
-        /**
-         * VCI strings.
-         */
-        vciString?: pulumi.Input<string>;
-    }
+        export interface CommunityVdom {
+            /**
+             * VDOM name
+             */
+            name?: pulumi.Input<string>;
+        }
 
-    export interface ServerReservedAddress {
-        /**
-         * Options for the DHCP server to configure the client with the reserved MAC address. Valid values: `assign`, `block`, `reserved`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Option 82 circuit-ID of the client that will get the reserved IP address.
-         */
-        circuitId?: pulumi.Input<string>;
-        /**
-         * DHCP option type. Valid values: `hex`, `string`.
-         */
-        circuitIdType?: pulumi.Input<string>;
-        /**
-         * Description.
-         */
-        description?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * IP address to be reserved for the MAC address.
-         */
-        ip?: pulumi.Input<string>;
-        /**
-         * MAC address of the client that will get the reserved IP address.
-         */
-        mac?: pulumi.Input<string>;
-        /**
-         * Option 82 remote-ID of the client that will get the reserved IP address.
-         */
-        remoteId?: pulumi.Input<string>;
-        /**
-         * DHCP option type. Valid values: `hex`, `string`.
-         */
-        remoteIdType?: pulumi.Input<string>;
-        /**
-         * DHCP reserved-address type. Valid values: `mac`, `option82`.
-         */
-        type?: pulumi.Input<string>;
-    }
-
-    export interface ServerTftpServer {
-        /**
-         * TFTP server.
-         */
-        tftpServer?: pulumi.Input<string>;
-    }
-
-    export interface ServerVciString {
-        /**
-         * VCI strings.
-         */
-        vciString?: pulumi.Input<string>;
-    }
-}
-
-export namespace systemdhcp6 {
-    export interface ServerIpRange {
-        /**
-         * End of IP range.
-         */
-        endIp?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Start of IP range.
-         */
-        startIp?: pulumi.Input<string>;
-    }
-
-    export interface ServerPrefixRange {
-        /**
-         * End of prefix range.
-         */
-        endPrefix?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Prefix length.
-         */
-        prefixLength?: pulumi.Input<number>;
-        /**
-         * Start of prefix range.
-         */
-        startPrefix?: pulumi.Input<string>;
-    }
-}
-
-export namespace systemlldp {
-    export interface NetworkpolicyGuest {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp?: pulumi.Input<number>;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority?: pulumi.Input<number>;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag?: pulumi.Input<string>;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan?: pulumi.Input<number>;
-    }
-
-    export interface NetworkpolicyGuestVoiceSignaling {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp?: pulumi.Input<number>;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority?: pulumi.Input<number>;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag?: pulumi.Input<string>;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan?: pulumi.Input<number>;
-    }
-
-    export interface NetworkpolicySoftphone {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp?: pulumi.Input<number>;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority?: pulumi.Input<number>;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag?: pulumi.Input<string>;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan?: pulumi.Input<number>;
-    }
-
-    export interface NetworkpolicyStreamingVideo {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp?: pulumi.Input<number>;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority?: pulumi.Input<number>;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag?: pulumi.Input<string>;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan?: pulumi.Input<number>;
-    }
-
-    export interface NetworkpolicyVideoConferencing {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp?: pulumi.Input<number>;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority?: pulumi.Input<number>;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag?: pulumi.Input<string>;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan?: pulumi.Input<number>;
-    }
-
-    export interface NetworkpolicyVideoSignaling {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp?: pulumi.Input<number>;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority?: pulumi.Input<number>;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag?: pulumi.Input<string>;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan?: pulumi.Input<number>;
-    }
-
-    export interface NetworkpolicyVoice {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp?: pulumi.Input<number>;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority?: pulumi.Input<number>;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag?: pulumi.Input<string>;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan?: pulumi.Input<number>;
-    }
-
-    export interface NetworkpolicyVoiceSignaling {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp?: pulumi.Input<number>;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority?: pulumi.Input<number>;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag?: pulumi.Input<string>;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan?: pulumi.Input<number>;
-    }
-}
-
-export namespace systemsnmp {
-    export interface CommunityHost {
-        /**
-         * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
-         */
-        haDirect?: pulumi.Input<string>;
-        /**
-         * Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
-         */
-        hostType?: pulumi.Input<string>;
-        /**
-         * Host6 entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * IPv4 address of the SNMP manager (host).
-         */
-        ip?: pulumi.Input<string>;
-        /**
-         * Source IPv4 address for SNMP traps.
-         */
-        sourceIp?: pulumi.Input<string>;
-    }
-
-    export interface CommunityHosts6 {
-        /**
-         * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
-         */
-        haDirect?: pulumi.Input<string>;
-        /**
-         * Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
-         *
-         * The `hosts6` block supports:
-         */
-        hostType?: pulumi.Input<string>;
-        /**
-         * Host entry ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * SNMP manager IPv6 address prefix.
-         */
-        ipv6?: pulumi.Input<string>;
-        /**
-         * Source IPv6 address for SNMP traps.
-         */
-        sourceIpv6?: pulumi.Input<string>;
-    }
-
-    export interface CommunityVdom {
-        /**
-         * VDOM name
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface UserVdom {
-        /**
-         * VDOM name
-         */
-        name?: pulumi.Input<string>;
+        export interface UserVdom {
+            /**
+             * VDOM name
+             */
+            name?: pulumi.Input<string>;
+        }
     }
 }
 
@@ -19798,53 +20114,6 @@ export namespace user {
          * Service type. Valid values: `http`, `https`, `ftp`, `telnet`.
          */
         type?: pulumi.Input<string>;
-    }
-}
-
-export namespace videofilter {
-    export interface ProfileFortiguardCategory {
-        /**
-         * Configure VideoFilter FortiGuard category. The structure of `filters` block is documented below.
-         */
-        filters?: pulumi.Input<pulumi.Input<inputs.videofilter.ProfileFortiguardCategoryFilter>[]>;
-    }
-
-    export interface ProfileFortiguardCategoryFilter {
-        /**
-         * VideoFilter action. Valid values: `allow`, `monitor`, `block`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Category ID.
-         */
-        categoryId?: pulumi.Input<number>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-    }
-
-    export interface YoutubechannelfilterEntry {
-        /**
-         * YouTube channel filter action. Valid values: `allow`, `monitor`, `block`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Channel ID.
-         */
-        channelId?: pulumi.Input<string>;
-        /**
-         * Comment.
-         */
-        comment?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
     }
 }
 
@@ -20449,899 +20718,853 @@ export namespace vpn {
          */
         name?: pulumi.Input<string>;
     }
-}
-
-export namespace vpncertificate {
-    export interface SettingCrlVerification {
-        /**
-         * CRL verification option when CRL of any certificate in chain is absent (default = ignore). Valid values: `ignore`, `revoke`.
-         */
-        chainCrlAbsence?: pulumi.Input<string>;
-        /**
-         * CRL verification option when CRL is expired (default = ignore). Valid values: `ignore`, `revoke`.
-         */
-        expiry?: pulumi.Input<string>;
-        /**
-         * CRL verification option when leaf CRL is absent (default = ignore). Valid values: `ignore`, `revoke`.
-         */
-        leafCrlAbsence?: pulumi.Input<string>;
-    }
-}
-
-export namespace vpnipsec {
-    export interface ConcentratorMember {
-        /**
-         * Member name.
-         */
-        name?: pulumi.Input<string>;
+    export namespace certificate {
+        export interface SettingCrlVerification {
+            /**
+             * CRL verification option when CRL of any certificate in chain is absent (default = ignore). Valid values: `ignore`, `revoke`.
+             */
+            chainCrlAbsence?: pulumi.Input<string>;
+            /**
+             * CRL verification option when CRL is expired (default = ignore). Valid values: `ignore`, `revoke`.
+             */
+            expiry?: pulumi.Input<string>;
+            /**
+             * CRL verification option when leaf CRL is absent (default = ignore). Valid values: `ignore`, `revoke`.
+             */
+            leafCrlAbsence?: pulumi.Input<string>;
+        }
     }
 
-    export interface FecMapping {
-        /**
-         * Apply FEC parameters when available bi-bandwidth is >= threshold (kbps, 0 means no threshold).
-         */
-        bandwidthBiThreshold?: pulumi.Input<number>;
-        /**
-         * Apply FEC parameters when available down bandwidth is >= threshold (kbps, 0 means no threshold).
-         */
-        bandwidthDownThreshold?: pulumi.Input<number>;
-        /**
-         * Apply FEC parameters when available up bandwidth is >= threshold (kbps, 0 means no threshold).
-         */
-        bandwidthUpThreshold?: pulumi.Input<number>;
-        /**
-         * Number of base FEC packets (1 - 20).
-         */
-        base?: pulumi.Input<number>;
-        /**
-         * Apply FEC parameters when latency is <= threshold (0 means no threshold).
-         */
-        latencyThreshold?: pulumi.Input<number>;
-        /**
-         * Apply FEC parameters when packet loss is >= threshold (0 - 100, 0 means no threshold).
-         */
-        packetLossThreshold?: pulumi.Input<number>;
-        /**
-         * Number of redundant FEC packets (1 - 5).
-         */
-        redundant?: pulumi.Input<number>;
-        /**
-         * Sequence number (1 - 64).
-         */
-        seqno?: pulumi.Input<number>;
+    export namespace ipsec {
+        export interface ConcentratorMember {
+            /**
+             * Member name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface FecMapping {
+            /**
+             * Apply FEC parameters when available bi-bandwidth is >= threshold (kbps, 0 means no threshold).
+             */
+            bandwidthBiThreshold?: pulumi.Input<number>;
+            /**
+             * Apply FEC parameters when available down bandwidth is >= threshold (kbps, 0 means no threshold).
+             */
+            bandwidthDownThreshold?: pulumi.Input<number>;
+            /**
+             * Apply FEC parameters when available up bandwidth is >= threshold (kbps, 0 means no threshold).
+             */
+            bandwidthUpThreshold?: pulumi.Input<number>;
+            /**
+             * Number of base FEC packets (1 - 20).
+             */
+            base?: pulumi.Input<number>;
+            /**
+             * Apply FEC parameters when latency is <= threshold (0 means no threshold).
+             */
+            latencyThreshold?: pulumi.Input<number>;
+            /**
+             * Apply FEC parameters when packet loss is >= threshold (0 - 100, 0 means no threshold).
+             */
+            packetLossThreshold?: pulumi.Input<number>;
+            /**
+             * Number of redundant FEC packets (1 - 5).
+             */
+            redundant?: pulumi.Input<number>;
+            /**
+             * Sequence number (1 - 64).
+             */
+            seqno?: pulumi.Input<number>;
+        }
+
+        export interface Phase1BackupGateway {
+            /**
+             * Address of backup gateway.
+             */
+            address?: pulumi.Input<string>;
+        }
+
+        export interface Phase1Certificate {
+            /**
+             * Certificate name.
+             *
+             * The `ipv4ExcludeRange` block supports:
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface Phase1Ipv4ExcludeRange {
+            /**
+             * End of IPv6 exclusive range.
+             */
+            endIp?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Start of IPv6 exclusive range.
+             */
+            startIp?: pulumi.Input<string>;
+        }
+
+        export interface Phase1Ipv6ExcludeRange {
+            /**
+             * End of IPv6 exclusive range.
+             */
+            endIp?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Start of IPv6 exclusive range.
+             */
+            startIp?: pulumi.Input<string>;
+        }
+
+        export interface Phase1interfaceBackupGateway {
+            /**
+             * Address of backup gateway.
+             */
+            address?: pulumi.Input<string>;
+        }
+
+        export interface Phase1interfaceCertificate {
+            /**
+             * Certificate name.
+             *
+             * The `ipv4ExcludeRange` block supports:
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface Phase1interfaceIpv4ExcludeRange {
+            /**
+             * End of IPv6 exclusive range.
+             */
+            endIp?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Start of IPv6 exclusive range.
+             */
+            startIp?: pulumi.Input<string>;
+        }
+
+        export interface Phase1interfaceIpv6ExcludeRange {
+            /**
+             * End of IPv6 exclusive range.
+             */
+            endIp?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Start of IPv6 exclusive range.
+             */
+            startIp?: pulumi.Input<string>;
+        }
     }
 
-    export interface Phase1BackupGateway {
-        /**
-         * Address of backup gateway.
-         */
-        address?: pulumi.Input<string>;
-    }
+    export namespace ssl {
+        export interface SettingsAuthenticationRule {
+            /**
+             * SSL VPN authentication method restriction.
+             */
+            auth?: pulumi.Input<string>;
+            /**
+             * SSL VPN cipher strength. Valid values: `any`, `high`, `medium`.
+             */
+            cipher?: pulumi.Input<string>;
+            /**
+             * Enable/disable SSL VPN client certificate restrictive. Valid values: `enable`, `disable`.
+             */
+            clientCert?: pulumi.Input<string>;
+            /**
+             * User groups. The structure of `groups` block is documented below.
+             */
+            groups?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.SettingsAuthenticationRuleGroup>[]>;
+            /**
+             * ID (0 - 4294967295).
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * SSL VPN portal.
+             */
+            portal?: pulumi.Input<string>;
+            /**
+             * SSL VPN realm.
+             */
+            realm?: pulumi.Input<string>;
+            /**
+             * Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
+             */
+            sourceAddress6Negate?: pulumi.Input<string>;
+            /**
+             * IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
+             */
+            sourceAddress6s?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.SettingsAuthenticationRuleSourceAddress6>[]>;
+            /**
+             * Enable/disable negated source address match. Valid values: `enable`, `disable`.
+             */
+            sourceAddressNegate?: pulumi.Input<string>;
+            /**
+             * Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
+             */
+            sourceAddresses?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.SettingsAuthenticationRuleSourceAddress>[]>;
+            /**
+             * SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
+             */
+            sourceInterfaces?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.SettingsAuthenticationRuleSourceInterface>[]>;
+            /**
+             * Name of user peer.
+             */
+            userPeer?: pulumi.Input<string>;
+            /**
+             * User name. The structure of `users` block is documented below.
+             */
+            users?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.SettingsAuthenticationRuleUser>[]>;
+        }
 
-    export interface Phase1Certificate {
-        /**
-         * Certificate name.
-         *
-         * The `ipv4ExcludeRange` block supports:
-         */
-        name?: pulumi.Input<string>;
-    }
+        export interface SettingsAuthenticationRuleGroup {
+            /**
+             * Group name.
+             */
+            name?: pulumi.Input<string>;
+        }
 
-    export interface Phase1Ipv4ExcludeRange {
-        /**
-         * End of IPv4 exclusive range.
-         *
-         * The `ipv6ExcludeRange` block supports:
-         */
-        endIp?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Start of IPv4 exclusive range.
-         */
-        startIp?: pulumi.Input<string>;
-    }
+        export interface SettingsAuthenticationRuleSourceAddress {
+            /**
+             * IPv6 address name.
+             */
+            name?: pulumi.Input<string>;
+        }
 
-    export interface Phase1Ipv6ExcludeRange {
-        /**
-         * End of IPv4 exclusive range.
-         *
-         * The `ipv6ExcludeRange` block supports:
-         */
-        endIp?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Start of IPv4 exclusive range.
-         */
-        startIp?: pulumi.Input<string>;
-    }
+        export interface SettingsAuthenticationRuleSourceAddress6 {
+            /**
+             * Group name.
+             */
+            name?: pulumi.Input<string>;
+        }
 
-    export interface Phase1interfaceBackupGateway {
-        /**
-         * Address of backup gateway.
-         */
-        address?: pulumi.Input<string>;
-    }
+        export interface SettingsAuthenticationRuleSourceInterface {
+            /**
+             * Interface name.
+             */
+            name?: pulumi.Input<string>;
+        }
 
-    export interface Phase1interfaceCertificate {
-        /**
-         * Certificate name.
-         *
-         * The `ipv4ExcludeRange` block supports:
-         */
-        name?: pulumi.Input<string>;
-    }
+        export interface SettingsAuthenticationRuleUser {
+            /**
+             * User name.
+             */
+            name?: pulumi.Input<string>;
+        }
 
-    export interface Phase1interfaceIpv4ExcludeRange {
-        /**
-         * End of IPv4 exclusive range.
-         *
-         * The `ipv6ExcludeRange` block supports:
-         */
-        endIp?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Start of IPv4 exclusive range.
-         */
-        startIp?: pulumi.Input<string>;
-    }
+        export interface SettingsSourceAddress {
+            /**
+             * IPv6 address name.
+             */
+            name?: pulumi.Input<string>;
+        }
 
-    export interface Phase1interfaceIpv6ExcludeRange {
-        /**
-         * End of IPv4 exclusive range.
-         *
-         * The `ipv6ExcludeRange` block supports:
-         */
-        endIp?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Start of IPv4 exclusive range.
-         */
-        startIp?: pulumi.Input<string>;
-    }
-}
+        export interface SettingsSourceAddress6 {
+            /**
+             * Group name.
+             */
+            name?: pulumi.Input<string>;
+        }
 
-export namespace vpnssl {
-    export interface SettingsAuthenticationRule {
-        /**
-         * SSL VPN authentication method restriction.
-         */
-        auth?: pulumi.Input<string>;
-        /**
-         * SSL VPN cipher strength. Valid values: `any`, `high`, `medium`.
-         */
-        cipher?: pulumi.Input<string>;
-        /**
-         * Enable/disable SSL VPN client certificate restrictive. Valid values: `enable`, `disable`.
-         */
-        clientCert?: pulumi.Input<string>;
-        /**
-         * User groups. The structure of `groups` block is documented below.
-         */
-        groups?: pulumi.Input<pulumi.Input<inputs.vpnssl.SettingsAuthenticationRuleGroup>[]>;
-        /**
-         * ID (0 - 4294967295).
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * SSL VPN portal.
-         */
-        portal?: pulumi.Input<string>;
-        /**
-         * SSL VPN realm.
-         */
-        realm?: pulumi.Input<string>;
-        /**
-         * Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
-         */
-        sourceAddress6Negate?: pulumi.Input<string>;
-        /**
-         * IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
-         */
-        sourceAddress6s?: pulumi.Input<pulumi.Input<inputs.vpnssl.SettingsAuthenticationRuleSourceAddress6>[]>;
-        /**
-         * Enable/disable negated source address match. Valid values: `enable`, `disable`.
-         */
-        sourceAddressNegate?: pulumi.Input<string>;
-        /**
-         * Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
-         */
-        sourceAddresses?: pulumi.Input<pulumi.Input<inputs.vpnssl.SettingsAuthenticationRuleSourceAddress>[]>;
-        /**
-         * SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
-         */
-        sourceInterfaces?: pulumi.Input<pulumi.Input<inputs.vpnssl.SettingsAuthenticationRuleSourceInterface>[]>;
-        /**
-         * Name of user peer.
-         */
-        userPeer?: pulumi.Input<string>;
-        /**
-         * User name. The structure of `users` block is documented below.
-         */
-        users?: pulumi.Input<pulumi.Input<inputs.vpnssl.SettingsAuthenticationRuleUser>[]>;
-    }
+        export interface SettingsSourceInterface {
+            /**
+             * Interface name.
+             */
+            name?: pulumi.Input<string>;
+        }
 
-    export interface SettingsAuthenticationRuleGroup {
-        /**
-         * Group name.
-         */
-        name?: pulumi.Input<string>;
-    }
+        export interface SettingsTunnelIpPool {
+            /**
+             * Address name.
+             */
+            name?: pulumi.Input<string>;
+        }
 
-    export interface SettingsAuthenticationRuleSourceAddress {
-        /**
-         * IPv6 address name.
-         */
-        name?: pulumi.Input<string>;
-    }
+        export interface SettingsTunnelIpv6Pool {
+            /**
+             * Group name.
+             */
+            name?: pulumi.Input<string>;
+        }
+        export namespace web {
+            export interface HostchecksoftwareCheckItemList {
+                /**
+                 * Action. Valid values: `require`, `deny`.
+                 */
+                action?: pulumi.Input<string>;
+                /**
+                 * Hex string of MD5 checksum.
+                 */
+                id?: pulumi.Input<number>;
+                /**
+                 * MD5 checksum. The structure of `md5s` block is documented below.
+                 *
+                 * The `md5s` block supports:
+                 */
+                md5s?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.web.HostchecksoftwareCheckItemListMd5>[]>;
+                /**
+                 * Target.
+                 */
+                target?: pulumi.Input<string>;
+                /**
+                 * Type. Valid values: `file`, `registry`, `process`.
+                 */
+                type?: pulumi.Input<string>;
+                /**
+                 * Version.
+                 */
+                version?: pulumi.Input<string>;
+            }
 
-    export interface SettingsAuthenticationRuleSourceAddress6 {
-        /**
-         * Address name.
-         *
-         * The `tunnelIpv6Pools` block supports:
-         *
-         *
-         *
-         *
-         * The `sourceAddress6` block supports:
-         *
-         *
-         *
-         *
-         * The `sourceAddress6` block supports:
-         */
-        name?: pulumi.Input<string>;
-    }
+            export interface HostchecksoftwareCheckItemListMd5 {
+                /**
+                 * Hex string of MD5 checksum.
+                 */
+                id?: pulumi.Input<string>;
+            }
 
-    export interface SettingsAuthenticationRuleSourceInterface {
-        /**
-         * Interface name.
-         */
-        name?: pulumi.Input<string>;
-    }
+            export interface PortalBookmarkGroup {
+                /**
+                 * Bookmark table. The structure of `bookmarks` block is documented below.
+                 */
+                bookmarks?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.web.PortalBookmarkGroupBookmark>[]>;
+                /**
+                 * Bookmark group name.
+                 */
+                name?: pulumi.Input<string>;
+            }
 
-    export interface SettingsAuthenticationRuleUser {
-        /**
-         * User name.
-         */
-        name?: pulumi.Input<string>;
-    }
+            export interface PortalBookmarkGroupBookmark {
+                /**
+                 * Additional parameters.
+                 */
+                additionalParams?: pulumi.Input<string>;
+                /**
+                 * Application type.
+                 */
+                apptype?: pulumi.Input<string>;
+                /**
+                 * Color depth per pixel. Valid values: `32`, `16`, `8`.
+                 */
+                colorDepth?: pulumi.Input<string>;
+                /**
+                 * Description.
+                 */
+                description?: pulumi.Input<string>;
+                /**
+                 * Login domain.
+                 */
+                domain?: pulumi.Input<string>;
+                /**
+                 * Network shared file folder parameter.
+                 */
+                folder?: pulumi.Input<string>;
+                /**
+                 * Form data. The structure of `formData` block is documented below.
+                 */
+                formDatas?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.web.PortalBookmarkGroupBookmarkFormData>[]>;
+                /**
+                 * Screen height (range from 480 - 65535, default = 768).
+                 */
+                height?: pulumi.Input<number>;
+                /**
+                 * Host name/IP parameter.
+                 */
+                host?: pulumi.Input<string>;
+                /**
+                 * Keyboard layout.
+                 */
+                keyboardLayout?: pulumi.Input<string>;
+                /**
+                 * Listening port (0 - 65535).
+                 */
+                listeningPort?: pulumi.Input<number>;
+                /**
+                 * The load balancing information or cookie which should be provided to the connection broker.
+                 */
+                loadBalancingInfo?: pulumi.Input<string>;
+                /**
+                 * Logon password.
+                 */
+                logonPassword?: pulumi.Input<string>;
+                /**
+                 * Logon user.
+                 */
+                logonUser?: pulumi.Input<string>;
+                /**
+                 * Bookmark name.
+                 */
+                name?: pulumi.Input<string>;
+                /**
+                 * Remote port.
+                 */
+                port?: pulumi.Input<number>;
+                /**
+                 * An arbitrary string which identifies the RDP source.
+                 */
+                preconnectionBlob?: pulumi.Input<string>;
+                /**
+                 * The numeric ID of the RDP source (0-2147483648).
+                 */
+                preconnectionId?: pulumi.Input<number>;
+                /**
+                 * Remote port (0 - 65535).
+                 */
+                remotePort?: pulumi.Input<number>;
+                /**
+                 * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
+                 */
+                restrictedAdmin?: pulumi.Input<string>;
+                /**
+                 * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+                 */
+                security?: pulumi.Input<string>;
+                /**
+                 * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
+                 */
+                sendPreconnectionId?: pulumi.Input<string>;
+                /**
+                 * Server side keyboard layout.
+                 */
+                serverLayout?: pulumi.Input<string>;
+                /**
+                 * Enable/disable showing of status window. Valid values: `enable`, `disable`.
+                 */
+                showStatusWindow?: pulumi.Input<string>;
+                /**
+                 * Single Sign-On. Valid values: `disable`, `static`, `auto`.
+                 */
+                sso?: pulumi.Input<string>;
+                /**
+                 * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+                 */
+                ssoCredential?: pulumi.Input<string>;
+                /**
+                 * Single sign-on credentials are only sent once to remote server. Valid values: `enable`, `disable`.
+                 */
+                ssoCredentialSentOnce?: pulumi.Input<string>;
+                /**
+                 * SSO password.
+                 */
+                ssoPassword?: pulumi.Input<string>;
+                /**
+                 * SSO user name.
+                 */
+                ssoUsername?: pulumi.Input<string>;
+                /**
+                 * URL parameter.
+                 */
+                url?: pulumi.Input<string>;
+                /**
+                 * Screen width (range from 640 - 65535, default = 1024).
+                 */
+                width?: pulumi.Input<number>;
+            }
 
-    export interface SettingsSourceAddress {
-        /**
-         * IPv6 address name.
-         */
-        name?: pulumi.Input<string>;
-    }
+            export interface PortalBookmarkGroupBookmarkFormData {
+                /**
+                 * Name.
+                 */
+                name?: pulumi.Input<string>;
+                /**
+                 * Value.
+                 */
+                value?: pulumi.Input<string>;
+            }
 
-    export interface SettingsSourceAddress6 {
-        /**
-         * Address name.
-         *
-         * The `tunnelIpv6Pools` block supports:
-         *
-         *
-         *
-         *
-         * The `sourceAddress6` block supports:
-         *
-         *
-         *
-         *
-         * The `sourceAddress6` block supports:
-         */
-        name?: pulumi.Input<string>;
-    }
+            export interface PortalHostCheckPolicy {
+                /**
+                 * Host check software list name.
+                 */
+                name?: pulumi.Input<string>;
+            }
 
-    export interface SettingsSourceInterface {
-        /**
-         * Interface name.
-         */
-        name?: pulumi.Input<string>;
-    }
+            export interface PortalIpPool {
+                /**
+                 * Address name.
+                 */
+                name?: pulumi.Input<string>;
+            }
 
-    export interface SettingsTunnelIpPool {
-        /**
-         * Address name.
-         */
-        name?: pulumi.Input<string>;
-    }
+            export interface PortalIpv6Pool {
+                /**
+                 * Portal name.
+                 */
+                name?: pulumi.Input<string>;
+            }
 
-    export interface SettingsTunnelIpv6Pool {
-        /**
-         * Address name.
-         *
-         * The `tunnelIpv6Pools` block supports:
-         *
-         *
-         *
-         *
-         * The `sourceAddress6` block supports:
-         *
-         *
-         *
-         *
-         * The `sourceAddress6` block supports:
-         */
-        name?: pulumi.Input<string>;
-    }
-}
+            export interface PortalIpv6SplitTunnelingRoutingAddress {
+                /**
+                 * Portal name.
+                 */
+                name?: pulumi.Input<string>;
+            }
 
-export namespace vpnsslweb {
-    export interface HostchecksoftwareCheckItemList {
-        /**
-         * Action. Valid values: `require`, `deny`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Hex string of MD5 checksum.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * MD5 checksum. The structure of `md5s` block is documented below.
-         *
-         * The `md5s` block supports:
-         */
-        md5s?: pulumi.Input<pulumi.Input<inputs.vpnsslweb.HostchecksoftwareCheckItemListMd5>[]>;
-        /**
-         * Target.
-         */
-        target?: pulumi.Input<string>;
-        /**
-         * Type. Valid values: `file`, `registry`, `process`.
-         */
-        type?: pulumi.Input<string>;
-        /**
-         * Version.
-         */
-        version?: pulumi.Input<string>;
-    }
+            export interface PortalMacAddrCheckRule {
+                /**
+                 * Client MAC address list. The structure of `macAddrList` block is documented below.
+                 */
+                macAddrLists?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.web.PortalMacAddrCheckRuleMacAddrList>[]>;
+                /**
+                 * Client MAC address mask.
+                 */
+                macAddrMask?: pulumi.Input<number>;
+                /**
+                 * Client MAC address check rule name.
+                 */
+                name?: pulumi.Input<string>;
+            }
 
-    export interface HostchecksoftwareCheckItemListMd5 {
-        /**
-         * ID (0 - 4294967295).
-         */
-        id?: pulumi.Input<string>;
-    }
+            export interface PortalMacAddrCheckRuleMacAddrList {
+                /**
+                 * Client MAC address.
+                 */
+                addr?: pulumi.Input<string>;
+            }
 
-    export interface PortalBookmarkGroup {
-        /**
-         * Bookmark table. The structure of `bookmarks` block is documented below.
-         */
-        bookmarks?: pulumi.Input<pulumi.Input<inputs.vpnsslweb.PortalBookmarkGroupBookmark>[]>;
-        /**
-         * Bookmark group name.
-         */
-        name?: pulumi.Input<string>;
-    }
+            export interface PortalOsCheckList {
+                /**
+                 * OS check options. Valid values: `deny`, `allow`, `check-up-to-date`.
+                 */
+                action?: pulumi.Input<string>;
+                /**
+                 * Latest OS patch level.
+                 */
+                latestPatchLevel?: pulumi.Input<string>;
+                /**
+                 * Name.
+                 */
+                name?: pulumi.Input<string>;
+                /**
+                 * OS patch level tolerance.
+                 */
+                tolerance?: pulumi.Input<number>;
+            }
 
-    export interface PortalBookmarkGroupBookmark {
-        /**
-         * Additional parameters.
-         */
-        additionalParams?: pulumi.Input<string>;
-        /**
-         * Application type.
-         */
-        apptype?: pulumi.Input<string>;
-        /**
-         * Color depth per pixel. Valid values: `32`, `16`, `8`.
-         */
-        colorDepth?: pulumi.Input<string>;
-        /**
-         * Description.
-         */
-        description?: pulumi.Input<string>;
-        /**
-         * Login domain.
-         */
-        domain?: pulumi.Input<string>;
-        /**
-         * Network shared file folder parameter.
-         */
-        folder?: pulumi.Input<string>;
-        /**
-         * Form data. The structure of `formData` block is documented below.
-         */
-        formDatas?: pulumi.Input<pulumi.Input<inputs.vpnsslweb.PortalBookmarkGroupBookmarkFormData>[]>;
-        /**
-         * Screen height (range from 480 - 65535, default = 768).
-         */
-        height?: pulumi.Input<number>;
-        /**
-         * Host name/IP parameter.
-         */
-        host?: pulumi.Input<string>;
-        /**
-         * Keyboard layout.
-         */
-        keyboardLayout?: pulumi.Input<string>;
-        /**
-         * Listening port (0 - 65535).
-         */
-        listeningPort?: pulumi.Input<number>;
-        /**
-         * The load balancing information or cookie which should be provided to the connection broker.
-         */
-        loadBalancingInfo?: pulumi.Input<string>;
-        /**
-         * Logon password.
-         */
-        logonPassword?: pulumi.Input<string>;
-        /**
-         * Logon user.
-         */
-        logonUser?: pulumi.Input<string>;
-        /**
-         * Bookmark name.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * Remote port.
-         */
-        port?: pulumi.Input<number>;
-        /**
-         * An arbitrary string which identifies the RDP source.
-         */
-        preconnectionBlob?: pulumi.Input<string>;
-        /**
-         * The numeric ID of the RDP source (0-2147483648).
-         */
-        preconnectionId?: pulumi.Input<number>;
-        /**
-         * Remote port (0 - 65535).
-         */
-        remotePort?: pulumi.Input<number>;
-        /**
-         * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
-         */
-        restrictedAdmin?: pulumi.Input<string>;
-        /**
-         * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
-         */
-        security?: pulumi.Input<string>;
-        /**
-         * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
-         */
-        sendPreconnectionId?: pulumi.Input<string>;
-        /**
-         * Server side keyboard layout.
-         */
-        serverLayout?: pulumi.Input<string>;
-        /**
-         * Enable/disable showing of status window. Valid values: `enable`, `disable`.
-         */
-        showStatusWindow?: pulumi.Input<string>;
-        /**
-         * Single Sign-On. Valid values: `disable`, `static`, `auto`.
-         */
-        sso?: pulumi.Input<string>;
-        /**
-         * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
-         */
-        ssoCredential?: pulumi.Input<string>;
-        /**
-         * Single sign-on credentials are only sent once to remote server. Valid values: `enable`, `disable`.
-         */
-        ssoCredentialSentOnce?: pulumi.Input<string>;
-        /**
-         * SSO password.
-         */
-        ssoPassword?: pulumi.Input<string>;
-        /**
-         * SSO user name.
-         */
-        ssoUsername?: pulumi.Input<string>;
-        /**
-         * URL parameter.
-         */
-        url?: pulumi.Input<string>;
-        /**
-         * Screen width (range from 640 - 65535, default = 1024).
-         */
-        width?: pulumi.Input<number>;
-    }
+            export interface PortalSplitDn {
+                /**
+                 * DNS server 1.
+                 */
+                dnsServer1?: pulumi.Input<string>;
+                /**
+                 * DNS server 2.
+                 */
+                dnsServer2?: pulumi.Input<string>;
+                /**
+                 * Split DNS domains used for SSL-VPN clients separated by comma(,).
+                 */
+                domains?: pulumi.Input<string>;
+                /**
+                 * ID.
+                 */
+                id?: pulumi.Input<number>;
+                /**
+                 * IPv6 DNS server 1.
+                 */
+                ipv6DnsServer1?: pulumi.Input<string>;
+                /**
+                 * IPv6 DNS server 2.
+                 */
+                ipv6DnsServer2?: pulumi.Input<string>;
+            }
 
-    export interface PortalBookmarkGroupBookmarkFormData {
-        /**
-         * Name.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * Value.
-         */
-        value?: pulumi.Input<string>;
-    }
+            export interface PortalSplitTunnelingRoutingAddress {
+                /**
+                 * Address name.
+                 */
+                name?: pulumi.Input<string>;
+            }
 
-    export interface PortalHostCheckPolicy {
-        /**
-         * Host check software list name.
-         */
-        name?: pulumi.Input<string>;
-    }
+            export interface UserbookmarkBookmark {
+                /**
+                 * Additional parameters.
+                 */
+                additionalParams?: pulumi.Input<string>;
+                /**
+                 * Application type.
+                 */
+                apptype?: pulumi.Input<string>;
+                /**
+                 * Color depth per pixel. Valid values: `32`, `16`, `8`.
+                 */
+                colorDepth?: pulumi.Input<string>;
+                /**
+                 * Description.
+                 */
+                description?: pulumi.Input<string>;
+                /**
+                 * Login domain.
+                 */
+                domain?: pulumi.Input<string>;
+                /**
+                 * Network shared file folder parameter.
+                 */
+                folder?: pulumi.Input<string>;
+                /**
+                 * Form data. The structure of `formData` block is documented below.
+                 */
+                formDatas?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.web.UserbookmarkBookmarkFormData>[]>;
+                /**
+                 * Screen height (range from 480 - 65535, default = 768).
+                 */
+                height?: pulumi.Input<number>;
+                /**
+                 * Host name/IP parameter.
+                 */
+                host?: pulumi.Input<string>;
+                /**
+                 * Keyboard layout.
+                 */
+                keyboardLayout?: pulumi.Input<string>;
+                /**
+                 * Listening port (0 - 65535).
+                 */
+                listeningPort?: pulumi.Input<number>;
+                /**
+                 * The load balancing information or cookie which should be provided to the connection broker.
+                 */
+                loadBalancingInfo?: pulumi.Input<string>;
+                /**
+                 * Logon password.
+                 */
+                logonPassword?: pulumi.Input<string>;
+                /**
+                 * Logon user.
+                 */
+                logonUser?: pulumi.Input<string>;
+                /**
+                 * Bookmark name.
+                 */
+                name?: pulumi.Input<string>;
+                /**
+                 * Remote port.
+                 */
+                port?: pulumi.Input<number>;
+                /**
+                 * An arbitrary string which identifies the RDP source.
+                 */
+                preconnectionBlob?: pulumi.Input<string>;
+                /**
+                 * The numeric ID of the RDP source (0-2147483648).
+                 */
+                preconnectionId?: pulumi.Input<number>;
+                /**
+                 * Remote port (0 - 65535).
+                 */
+                remotePort?: pulumi.Input<number>;
+                /**
+                 * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
+                 */
+                restrictedAdmin?: pulumi.Input<string>;
+                /**
+                 * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+                 */
+                security?: pulumi.Input<string>;
+                /**
+                 * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
+                 */
+                sendPreconnectionId?: pulumi.Input<string>;
+                /**
+                 * Server side keyboard layout.
+                 */
+                serverLayout?: pulumi.Input<string>;
+                /**
+                 * Enable/disable showing of status window. Valid values: `enable`, `disable`.
+                 */
+                showStatusWindow?: pulumi.Input<string>;
+                /**
+                 * Single Sign-On. Valid values: `disable`, `static`, `auto`.
+                 */
+                sso?: pulumi.Input<string>;
+                /**
+                 * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+                 */
+                ssoCredential?: pulumi.Input<string>;
+                /**
+                 * Single sign-on credentials are only sent once to remote server. Valid values: `enable`, `disable`.
+                 */
+                ssoCredentialSentOnce?: pulumi.Input<string>;
+                /**
+                 * SSO password.
+                 */
+                ssoPassword?: pulumi.Input<string>;
+                /**
+                 * SSO user name.
+                 */
+                ssoUsername?: pulumi.Input<string>;
+                /**
+                 * URL parameter.
+                 */
+                url?: pulumi.Input<string>;
+                /**
+                 * Screen width (range from 640 - 65535, default = 1024).
+                 */
+                width?: pulumi.Input<number>;
+            }
 
-    export interface PortalIpPool {
-        /**
-         * Address name.
-         */
-        name?: pulumi.Input<string>;
-    }
+            export interface UserbookmarkBookmarkFormData {
+                /**
+                 * Name.
+                 */
+                name?: pulumi.Input<string>;
+                /**
+                 * Value.
+                 */
+                value?: pulumi.Input<string>;
+            }
 
-    export interface PortalIpv6Pool {
-        /**
-         * Portal name.
-         */
-        name?: pulumi.Input<string>;
-    }
+            export interface UsergroupbookmarkBookmark {
+                /**
+                 * Additional parameters.
+                 */
+                additionalParams?: pulumi.Input<string>;
+                /**
+                 * Application type.
+                 */
+                apptype?: pulumi.Input<string>;
+                /**
+                 * Color depth per pixel. Valid values: `32`, `16`, `8`.
+                 */
+                colorDepth?: pulumi.Input<string>;
+                /**
+                 * Description.
+                 */
+                description?: pulumi.Input<string>;
+                /**
+                 * Login domain.
+                 */
+                domain?: pulumi.Input<string>;
+                /**
+                 * Network shared file folder parameter.
+                 */
+                folder?: pulumi.Input<string>;
+                /**
+                 * Form data. The structure of `formData` block is documented below.
+                 */
+                formDatas?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.web.UsergroupbookmarkBookmarkFormData>[]>;
+                /**
+                 * Screen height (range from 480 - 65535, default = 768).
+                 */
+                height?: pulumi.Input<number>;
+                /**
+                 * Host name/IP parameter.
+                 */
+                host?: pulumi.Input<string>;
+                /**
+                 * Keyboard layout.
+                 */
+                keyboardLayout?: pulumi.Input<string>;
+                /**
+                 * Listening port (0 - 65535).
+                 */
+                listeningPort?: pulumi.Input<number>;
+                /**
+                 * The load balancing information or cookie which should be provided to the connection broker.
+                 */
+                loadBalancingInfo?: pulumi.Input<string>;
+                /**
+                 * Logon password.
+                 */
+                logonPassword?: pulumi.Input<string>;
+                /**
+                 * Logon user.
+                 */
+                logonUser?: pulumi.Input<string>;
+                /**
+                 * Bookmark name.
+                 */
+                name?: pulumi.Input<string>;
+                /**
+                 * Remote port.
+                 */
+                port?: pulumi.Input<number>;
+                /**
+                 * An arbitrary string which identifies the RDP source.
+                 */
+                preconnectionBlob?: pulumi.Input<string>;
+                /**
+                 * The numeric ID of the RDP source (0-2147483648).
+                 */
+                preconnectionId?: pulumi.Input<number>;
+                /**
+                 * Remote port (0 - 65535).
+                 */
+                remotePort?: pulumi.Input<number>;
+                /**
+                 * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
+                 */
+                restrictedAdmin?: pulumi.Input<string>;
+                /**
+                 * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+                 */
+                security?: pulumi.Input<string>;
+                /**
+                 * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
+                 */
+                sendPreconnectionId?: pulumi.Input<string>;
+                /**
+                 * Server side keyboard layout.
+                 */
+                serverLayout?: pulumi.Input<string>;
+                /**
+                 * Enable/disable showing of status window. Valid values: `enable`, `disable`.
+                 */
+                showStatusWindow?: pulumi.Input<string>;
+                /**
+                 * Single Sign-On. Valid values: `disable`, `static`, `auto`.
+                 */
+                sso?: pulumi.Input<string>;
+                /**
+                 * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+                 */
+                ssoCredential?: pulumi.Input<string>;
+                /**
+                 * Single sign-on credentials are only sent once to remote server. Valid values: `enable`, `disable`.
+                 */
+                ssoCredentialSentOnce?: pulumi.Input<string>;
+                /**
+                 * SSO password.
+                 */
+                ssoPassword?: pulumi.Input<string>;
+                /**
+                 * SSO user name.
+                 */
+                ssoUsername?: pulumi.Input<string>;
+                /**
+                 * URL parameter.
+                 */
+                url?: pulumi.Input<string>;
+                /**
+                 * Screen width (range from 640 - 65535, default = 1024).
+                 */
+                width?: pulumi.Input<number>;
+            }
 
-    export interface PortalIpv6SplitTunnelingRoutingAddress {
-        /**
-         * Portal name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PortalMacAddrCheckRule {
-        /**
-         * Client MAC address list. The structure of `macAddrList` block is documented below.
-         */
-        macAddrLists?: pulumi.Input<pulumi.Input<inputs.vpnsslweb.PortalMacAddrCheckRuleMacAddrList>[]>;
-        /**
-         * Client MAC address mask.
-         */
-        macAddrMask?: pulumi.Input<number>;
-        /**
-         * Client MAC address check rule name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface PortalMacAddrCheckRuleMacAddrList {
-        /**
-         * Client MAC address.
-         */
-        addr?: pulumi.Input<string>;
-    }
-
-    export interface PortalOsCheckList {
-        /**
-         * OS check options. Valid values: `deny`, `allow`, `check-up-to-date`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Latest OS patch level.
-         */
-        latestPatchLevel?: pulumi.Input<string>;
-        /**
-         * Name.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * OS patch level tolerance.
-         */
-        tolerance?: pulumi.Input<number>;
-    }
-
-    export interface PortalSplitDn {
-        /**
-         * DNS server 1.
-         */
-        dnsServer1?: pulumi.Input<string>;
-        /**
-         * DNS server 2.
-         */
-        dnsServer2?: pulumi.Input<string>;
-        /**
-         * Split DNS domains used for SSL-VPN clients separated by comma(,).
-         */
-        domains?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * IPv6 DNS server 1.
-         */
-        ipv6DnsServer1?: pulumi.Input<string>;
-        /**
-         * IPv6 DNS server 2.
-         */
-        ipv6DnsServer2?: pulumi.Input<string>;
-    }
-
-    export interface PortalSplitTunnelingRoutingAddress {
-        /**
-         * Address name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface UserbookmarkBookmark {
-        /**
-         * Additional parameters.
-         */
-        additionalParams?: pulumi.Input<string>;
-        /**
-         * Application type.
-         */
-        apptype?: pulumi.Input<string>;
-        /**
-         * Color depth per pixel. Valid values: `32`, `16`, `8`.
-         */
-        colorDepth?: pulumi.Input<string>;
-        /**
-         * Description.
-         */
-        description?: pulumi.Input<string>;
-        /**
-         * Login domain.
-         */
-        domain?: pulumi.Input<string>;
-        /**
-         * Network shared file folder parameter.
-         */
-        folder?: pulumi.Input<string>;
-        /**
-         * Form data. The structure of `formData` block is documented below.
-         */
-        formDatas?: pulumi.Input<pulumi.Input<inputs.vpnsslweb.UserbookmarkBookmarkFormData>[]>;
-        /**
-         * Screen height (range from 480 - 65535, default = 768).
-         */
-        height?: pulumi.Input<number>;
-        /**
-         * Host name/IP parameter.
-         */
-        host?: pulumi.Input<string>;
-        /**
-         * Keyboard layout.
-         */
-        keyboardLayout?: pulumi.Input<string>;
-        /**
-         * Listening port (0 - 65535).
-         */
-        listeningPort?: pulumi.Input<number>;
-        /**
-         * The load balancing information or cookie which should be provided to the connection broker.
-         */
-        loadBalancingInfo?: pulumi.Input<string>;
-        /**
-         * Logon password.
-         */
-        logonPassword?: pulumi.Input<string>;
-        /**
-         * Logon user.
-         */
-        logonUser?: pulumi.Input<string>;
-        /**
-         * Bookmark name.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * Remote port.
-         */
-        port?: pulumi.Input<number>;
-        /**
-         * An arbitrary string which identifies the RDP source.
-         */
-        preconnectionBlob?: pulumi.Input<string>;
-        /**
-         * The numeric ID of the RDP source (0-2147483648).
-         */
-        preconnectionId?: pulumi.Input<number>;
-        /**
-         * Remote port (0 - 65535).
-         */
-        remotePort?: pulumi.Input<number>;
-        /**
-         * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
-         */
-        restrictedAdmin?: pulumi.Input<string>;
-        /**
-         * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
-         */
-        security?: pulumi.Input<string>;
-        /**
-         * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
-         */
-        sendPreconnectionId?: pulumi.Input<string>;
-        /**
-         * Server side keyboard layout.
-         */
-        serverLayout?: pulumi.Input<string>;
-        /**
-         * Enable/disable showing of status window. Valid values: `enable`, `disable`.
-         */
-        showStatusWindow?: pulumi.Input<string>;
-        /**
-         * Single Sign-On. Valid values: `disable`, `static`, `auto`.
-         */
-        sso?: pulumi.Input<string>;
-        /**
-         * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
-         */
-        ssoCredential?: pulumi.Input<string>;
-        /**
-         * Single sign-on credentials are only sent once to remote server. Valid values: `enable`, `disable`.
-         */
-        ssoCredentialSentOnce?: pulumi.Input<string>;
-        /**
-         * SSO password.
-         */
-        ssoPassword?: pulumi.Input<string>;
-        /**
-         * SSO user name.
-         */
-        ssoUsername?: pulumi.Input<string>;
-        /**
-         * URL parameter.
-         */
-        url?: pulumi.Input<string>;
-        /**
-         * Screen width (range from 640 - 65535, default = 1024).
-         */
-        width?: pulumi.Input<number>;
-    }
-
-    export interface UserbookmarkBookmarkFormData {
-        /**
-         * Name.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * Value.
-         */
-        value?: pulumi.Input<string>;
-    }
-
-    export interface UsergroupbookmarkBookmark {
-        /**
-         * Additional parameters.
-         */
-        additionalParams?: pulumi.Input<string>;
-        /**
-         * Application type.
-         */
-        apptype?: pulumi.Input<string>;
-        /**
-         * Color depth per pixel. Valid values: `32`, `16`, `8`.
-         */
-        colorDepth?: pulumi.Input<string>;
-        /**
-         * Description.
-         */
-        description?: pulumi.Input<string>;
-        /**
-         * Login domain.
-         */
-        domain?: pulumi.Input<string>;
-        /**
-         * Network shared file folder parameter.
-         */
-        folder?: pulumi.Input<string>;
-        /**
-         * Form data. The structure of `formData` block is documented below.
-         */
-        formDatas?: pulumi.Input<pulumi.Input<inputs.vpnsslweb.UsergroupbookmarkBookmarkFormData>[]>;
-        /**
-         * Screen height (range from 480 - 65535, default = 768).
-         */
-        height?: pulumi.Input<number>;
-        /**
-         * Host name/IP parameter.
-         */
-        host?: pulumi.Input<string>;
-        /**
-         * Keyboard layout.
-         */
-        keyboardLayout?: pulumi.Input<string>;
-        /**
-         * Listening port (0 - 65535).
-         */
-        listeningPort?: pulumi.Input<number>;
-        /**
-         * The load balancing information or cookie which should be provided to the connection broker.
-         */
-        loadBalancingInfo?: pulumi.Input<string>;
-        /**
-         * Logon password.
-         */
-        logonPassword?: pulumi.Input<string>;
-        /**
-         * Logon user.
-         */
-        logonUser?: pulumi.Input<string>;
-        /**
-         * Bookmark name.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * Remote port.
-         */
-        port?: pulumi.Input<number>;
-        /**
-         * An arbitrary string which identifies the RDP source.
-         */
-        preconnectionBlob?: pulumi.Input<string>;
-        /**
-         * The numeric ID of the RDP source (0-2147483648).
-         */
-        preconnectionId?: pulumi.Input<number>;
-        /**
-         * Remote port (0 - 65535).
-         */
-        remotePort?: pulumi.Input<number>;
-        /**
-         * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
-         */
-        restrictedAdmin?: pulumi.Input<string>;
-        /**
-         * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
-         */
-        security?: pulumi.Input<string>;
-        /**
-         * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
-         */
-        sendPreconnectionId?: pulumi.Input<string>;
-        /**
-         * Server side keyboard layout.
-         */
-        serverLayout?: pulumi.Input<string>;
-        /**
-         * Enable/disable showing of status window. Valid values: `enable`, `disable`.
-         */
-        showStatusWindow?: pulumi.Input<string>;
-        /**
-         * Single Sign-On. Valid values: `disable`, `static`, `auto`.
-         */
-        sso?: pulumi.Input<string>;
-        /**
-         * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
-         */
-        ssoCredential?: pulumi.Input<string>;
-        /**
-         * Single sign-on credentials are only sent once to remote server. Valid values: `enable`, `disable`.
-         */
-        ssoCredentialSentOnce?: pulumi.Input<string>;
-        /**
-         * SSO password.
-         */
-        ssoPassword?: pulumi.Input<string>;
-        /**
-         * SSO user name.
-         */
-        ssoUsername?: pulumi.Input<string>;
-        /**
-         * URL parameter.
-         */
-        url?: pulumi.Input<string>;
-        /**
-         * Screen width (range from 640 - 65535, default = 1024).
-         */
-        width?: pulumi.Input<number>;
-    }
-
-    export interface UsergroupbookmarkBookmarkFormData {
-        /**
-         * Name.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * Value.
-         */
-        value?: pulumi.Input<string>;
+            export interface UsergroupbookmarkBookmarkFormData {
+                /**
+                 * Name.
+                 */
+                name?: pulumi.Input<string>;
+                /**
+                 * Value.
+                 */
+                value?: pulumi.Input<string>;
+            }
+        }
     }
 }
 
@@ -22344,480 +22567,6 @@ export namespace wanopt {
     }
 }
 
-export namespace webfilter {
-    export interface ContentEntry {
-        /**
-         * Block or exempt word when a match is found. Valid values: `block`, `exempt`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Language of banned word. Valid values: `western`, `simch`, `trach`, `japanese`, `korean`, `french`, `thai`, `spanish`, `cyrillic`.
-         */
-        lang?: pulumi.Input<string>;
-        /**
-         * Banned word.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * Banned word pattern type: wildcard pattern or Perl regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType?: pulumi.Input<string>;
-        /**
-         * Score, to be applied every time the word appears on a web page (0 - 4294967295, default = 10).
-         */
-        score?: pulumi.Input<number>;
-        /**
-         * Enable/disable banned word. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-    }
-
-    export interface ContentheaderEntry {
-        /**
-         * Action to take for this content type. Valid values: `block`, `allow`, `exempt`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Categories that this content type applies to.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Content type (regular expression).
-         */
-        pattern?: pulumi.Input<string>;
-    }
-
-    export interface ProfileAntiphish {
-        /**
-         * Authentication methods. Valid values: `domain-controller`, `ldap`.
-         */
-        authentication?: pulumi.Input<string>;
-        /**
-         * Enable/disable checking of HTTP Basic Auth field for known credentials. Valid values: `enable`, `disable`.
-         */
-        checkBasicAuth?: pulumi.Input<string>;
-        /**
-         * Enable/disable checking of GET URI parameters for known credentials. Valid values: `enable`, `disable`.
-         */
-        checkUri?: pulumi.Input<string>;
-        /**
-         * Enable/disable acting only on valid username credentials. Action will be taken for valid usernames regardless of password validity. Valid values: `enable`, `disable`.
-         */
-        checkUsernameOnly?: pulumi.Input<string>;
-        /**
-         * Custom username and password regex patterns. The structure of `customPatterns` block is documented below.
-         */
-        customPatterns?: pulumi.Input<pulumi.Input<inputs.webfilter.ProfileAntiphishCustomPattern>[]>;
-        /**
-         * Action to be taken when there is no matching rule. Valid values: `exempt`, `log`, `block`.
-         */
-        defaultAction?: pulumi.Input<string>;
-        /**
-         * Domain for which to verify received credentials against.
-         */
-        domainController?: pulumi.Input<string>;
-        /**
-         * AntiPhishing entries. The structure of `inspectionEntries` block is documented below.
-         */
-        inspectionEntries?: pulumi.Input<pulumi.Input<inputs.webfilter.ProfileAntiphishInspectionEntry>[]>;
-        /**
-         * LDAP server for which to verify received credentials against.
-         */
-        ldap?: pulumi.Input<string>;
-        /**
-         * Maximum size of a POST body to check for credentials.
-         */
-        maxBodyLen?: pulumi.Input<number>;
-        /**
-         * Toggle AntiPhishing functionality. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-    }
-
-    export interface ProfileAntiphishCustomPattern {
-        /**
-         * Category that the pattern matches. Valid values: `username`, `password`.
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Target pattern.
-         */
-        pattern?: pulumi.Input<string>;
-        /**
-         * Pattern will be treated either as a regex pattern or literal string. Valid values: `regex`, `literal`.
-         */
-        type?: pulumi.Input<string>;
-    }
-
-    export interface ProfileAntiphishInspectionEntry {
-        /**
-         * Action to be taken upon an AntiPhishing match. Valid values: `exempt`, `log`, `block`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * FortiGuard category to match.
-         */
-        fortiguardCategory?: pulumi.Input<string>;
-        /**
-         * Inspection target name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFileFilter {
-        /**
-         * File filter entries. The structure of `entries` block is documented below.
-         */
-        entries?: pulumi.Input<pulumi.Input<inputs.webfilter.ProfileFileFilterEntry>[]>;
-        /**
-         * Enable/disable file filter logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Enable/disable file filter archive contents scan. Valid values: `enable`, `disable`.
-         */
-        scanArchiveContents?: pulumi.Input<string>;
-        /**
-         * Enable/disable file filter. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFileFilterEntry {
-        /**
-         * Action taken for matched file. Valid values: `log`, `block`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Comment.
-         */
-        comment?: pulumi.Input<string>;
-        /**
-         * Match files transmitted in the session's originating or reply direction. Valid values: `incoming`, `outgoing`, `any`.
-         */
-        direction?: pulumi.Input<string>;
-        /**
-         * Select file type. The structure of `fileType` block is documented below.
-         */
-        fileTypes?: pulumi.Input<pulumi.Input<inputs.webfilter.ProfileFileFilterEntryFileType>[]>;
-        /**
-         * Add a file filter.
-         */
-        filter?: pulumi.Input<string>;
-        /**
-         * Match password-protected files. Valid values: `yes`, `any`.
-         */
-        passwordProtected?: pulumi.Input<string>;
-        /**
-         * Protocols to apply with. Valid values: `http`, `ftp`.
-         */
-        protocol?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFileFilterEntryFileType {
-        /**
-         * File type name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFtgdWf {
-        /**
-         * Do not stop quota for these categories.
-         */
-        exemptQuota?: pulumi.Input<string>;
-        /**
-         * FortiGuard filters. The structure of `filters` block is documented below.
-         */
-        filters?: pulumi.Input<pulumi.Input<inputs.webfilter.ProfileFtgdWfFilter>[]>;
-        /**
-         * Maximum FortiGuard quota used by single page view in seconds (excludes streams).
-         */
-        maxQuotaTimeout?: pulumi.Input<number>;
-        /**
-         * Options for FortiGuard Web Filter. Valid values: `error-allow`, `rate-server-ip`, `connect-request-bypass`, `ftgd-disable`.
-         */
-        options?: pulumi.Input<string>;
-        /**
-         * Allow web filter profile overrides.
-         */
-        ovrd?: pulumi.Input<string>;
-        /**
-         * FortiGuard traffic quota settings. The structure of `quota` block is documented below.
-         */
-        quotas?: pulumi.Input<pulumi.Input<inputs.webfilter.ProfileFtgdWfQuota>[]>;
-        /**
-         * Enable/disable rating CRL by URL. Valid values: `disable`, `enable`.
-         */
-        rateCrlUrls?: pulumi.Input<string>;
-        /**
-         * Enable/disable rating CSS by URL. Valid values: `disable`, `enable`.
-         */
-        rateCssUrls?: pulumi.Input<string>;
-        /**
-         * Enable/disable rating images by URL. Valid values: `disable`, `enable`.
-         */
-        rateImageUrls?: pulumi.Input<string>;
-        /**
-         * Enable/disable rating JavaScript by URL. Valid values: `disable`, `enable`.
-         */
-        rateJavascriptUrls?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFtgdWfFilter {
-        /**
-         * Action to take for matches. Valid values: `block`, `authenticate`, `monitor`, `warning`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Groups with permission to authenticate. The structure of `authUsrGrp` block is documented below.
-         */
-        authUsrGrps?: pulumi.Input<pulumi.Input<inputs.webfilter.ProfileFtgdWfFilterAuthUsrGrp>[]>;
-        /**
-         * Categories and groups the filter examines.
-         */
-        category?: pulumi.Input<number>;
-        /**
-         * ID number.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log?: pulumi.Input<string>;
-        /**
-         * Override replacement message.
-         */
-        overrideReplacemsg?: pulumi.Input<string>;
-        /**
-         * Duration of warnings.
-         */
-        warnDuration?: pulumi.Input<string>;
-        /**
-         * Re-display warning after closing browser or after a timeout. Valid values: `session`, `timeout`.
-         */
-        warningDurationType?: pulumi.Input<string>;
-        /**
-         * Warning prompts in each category or each domain. Valid values: `per-domain`, `per-category`.
-         */
-        warningPrompt?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFtgdWfFilterAuthUsrGrp {
-        /**
-         * User group name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface ProfileFtgdWfQuota {
-        /**
-         * FortiGuard categories to apply quota to (category action must be set to monitor).
-         */
-        category?: pulumi.Input<string>;
-        /**
-         * Duration of quota.
-         */
-        duration?: pulumi.Input<string>;
-        /**
-         * ID number.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Override replacement message.
-         */
-        overrideReplacemsg?: pulumi.Input<string>;
-        /**
-         * Quota type. Valid values: `time`, `traffic`.
-         */
-        type?: pulumi.Input<string>;
-        /**
-         * Traffic quota unit of measurement. Valid values: `B`, `KB`, `MB`, `GB`.
-         */
-        unit?: pulumi.Input<string>;
-        /**
-         * Traffic quota value.
-         */
-        value?: pulumi.Input<number>;
-    }
-
-    export interface ProfileOverride {
-        /**
-         * Allow/deny browser-based (cookie) overrides. Valid values: `allow`, `deny`.
-         */
-        ovrdCookie?: pulumi.Input<string>;
-        /**
-         * Override duration.
-         */
-        ovrdDur?: pulumi.Input<string>;
-        /**
-         * Override duration mode. Valid values: `constant`, `ask`.
-         */
-        ovrdDurMode?: pulumi.Input<string>;
-        /**
-         * Override scope. Valid values: `user`, `user-group`, `ip`, `browser`, `ask`.
-         */
-        ovrdScope?: pulumi.Input<string>;
-        /**
-         * User groups with permission to use the override. The structure of `ovrdUserGroup` block is documented below.
-         */
-        ovrdUserGroups?: pulumi.Input<pulumi.Input<inputs.webfilter.ProfileOverrideOvrdUserGroup>[]>;
-        /**
-         * Profile attribute to retrieve from the RADIUS server. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-         */
-        profileAttribute?: pulumi.Input<string>;
-        /**
-         * Override profile type. Valid values: `list`, `radius`.
-         */
-        profileType?: pulumi.Input<string>;
-        /**
-         * Web filter profile with permission to create overrides. The structure of `profile` block is documented below.
-         */
-        profiles?: pulumi.Input<pulumi.Input<inputs.webfilter.ProfileOverrideProfile>[]>;
-    }
-
-    export interface ProfileOverrideOvrdUserGroup {
-        /**
-         * User group name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface ProfileOverrideProfile {
-        /**
-         * Web profile.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface ProfileWeb {
-        /**
-         * FortiGuard allowlist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
-         */
-        allowlist?: pulumi.Input<string>;
-        /**
-         * Enable/disable automatic addition of URLs detected by FortiSandbox to blacklist. Valid values: `enable`, `disable`.
-         */
-        blacklist?: pulumi.Input<string>;
-        /**
-         * Enable/disable automatic addition of URLs detected by FortiSandbox to blocklist. Valid values: `enable`, `disable`.
-         */
-        blocklist?: pulumi.Input<string>;
-        /**
-         * Banned word table ID.
-         */
-        bwordTable?: pulumi.Input<number>;
-        /**
-         * Banned word score threshold.
-         */
-        bwordThreshold?: pulumi.Input<number>;
-        /**
-         * Content header list.
-         */
-        contentHeaderList?: pulumi.Input<number>;
-        /**
-         * Search keywords to log when match is found. The structure of `keywordMatch` block is documented below.
-         */
-        keywordMatches?: pulumi.Input<pulumi.Input<inputs.webfilter.ProfileWebKeywordMatch>[]>;
-        /**
-         * Enable/disable logging all search phrases. Valid values: `enable`, `disable`.
-         */
-        logSearch?: pulumi.Input<string>;
-        /**
-         * Safe search type. Valid values: `url`, `header`.
-         */
-        safeSearch?: pulumi.Input<string>;
-        /**
-         * URL filter table ID.
-         */
-        urlfilterTable?: pulumi.Input<number>;
-        /**
-         * Set Vimeo-restrict ("7" = don't show mature content, "134" = don't show unrated and mature content). A value of cookie "contentRating".
-         */
-        vimeoRestrict?: pulumi.Input<string>;
-        /**
-         * FortiGuard whitelist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
-         */
-        whitelist?: pulumi.Input<string>;
-        /**
-         * YouTube EDU filter level. Valid values: `none`, `strict`, `moderate`.
-         */
-        youtubeRestrict?: pulumi.Input<string>;
-    }
-
-    export interface ProfileWebKeywordMatch {
-        /**
-         * Pattern/keyword to search for.
-         */
-        pattern?: pulumi.Input<string>;
-    }
-
-    export interface ProfileWispServer {
-        /**
-         * Server name.
-         */
-        name?: pulumi.Input<string>;
-    }
-
-    export interface ProfileYoutubeChannelFilter {
-        /**
-         * YouTube channel ID to be filtered.
-         */
-        channelId?: pulumi.Input<string>;
-        /**
-         * Comment.
-         */
-        comment?: pulumi.Input<string>;
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface UrlfilterEntry {
-        /**
-         * Action to take for URL filter matches. Valid values: `exempt`, `block`, `allow`, `monitor`.
-         */
-        action?: pulumi.Input<string>;
-        /**
-         * Action to take for AntiPhishing matches. Valid values: `block`, `log`.
-         */
-        antiphishAction?: pulumi.Input<string>;
-        /**
-         * Resolve IPv4 address, IPv6 address, or both from DNS server. Valid values: `ipv4`, `ipv6`, `both`.
-         */
-        dnsAddressFamily?: pulumi.Input<string>;
-        /**
-         * If action is set to exempt, select the security profile operations that exempt URLs skip. Separate multiple options with a space.
-         */
-        exempt?: pulumi.Input<string>;
-        /**
-         * Id.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Referrer host name.
-         */
-        referrerHost?: pulumi.Input<string>;
-        /**
-         * Enable/disable this URL filter. Valid values: `enable`, `disable`.
-         */
-        status?: pulumi.Input<string>;
-        /**
-         * Filter type (simple, regex, or wildcard). Valid values: `simple`, `regex`, `wildcard`.
-         */
-        type?: pulumi.Input<string>;
-        /**
-         * URL to be filtered.
-         */
-        url?: pulumi.Input<string>;
-        /**
-         * Web proxy profile.
-         */
-        webProxyProfile?: pulumi.Input<string>;
-    }
-}
-
 export namespace webproxy {
     export interface ExplicitPacPolicy {
         /**
@@ -22871,8 +22620,6 @@ export namespace webproxy {
     export interface ExplicitPacPolicySrcaddr6 {
         /**
          * Address name.
-         *
-         * The `srcaddr6` block supports:
          */
         name?: pulumi.Input<string>;
     }
@@ -22898,8 +22645,6 @@ export namespace webproxy {
     export interface GlobalLearnClientIpSrcaddr6 {
         /**
          * Address name.
-         *
-         * The `learnClientIpSrcaddr6` block supports:
          */
         name?: pulumi.Input<string>;
     }
@@ -23519,7 +23264,7 @@ export namespace wirelesscontroller {
 
     export interface WtpRadio1 {
         /**
-         * Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh?: pulumi.Input<number>;
         /**
@@ -23527,7 +23272,7 @@ export namespace wirelesscontroller {
          */
         autoPowerLevel?: pulumi.Input<string>;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow?: pulumi.Input<number>;
         /**
@@ -23535,7 +23280,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget?: pulumi.Input<string>;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 4 operates on.
          */
         band?: pulumi.Input<string>;
         /**
@@ -23612,7 +23357,7 @@ export namespace wirelesscontroller {
 
     export interface WtpRadio2 {
         /**
-         * Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh?: pulumi.Input<number>;
         /**
@@ -23620,7 +23365,7 @@ export namespace wirelesscontroller {
          */
         autoPowerLevel?: pulumi.Input<string>;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow?: pulumi.Input<number>;
         /**
@@ -23628,7 +23373,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget?: pulumi.Input<string>;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 4 operates on.
          */
         band?: pulumi.Input<string>;
         /**
@@ -23705,7 +23450,7 @@ export namespace wirelesscontroller {
 
     export interface WtpRadio3 {
         /**
-         * Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh?: pulumi.Input<number>;
         /**
@@ -23713,7 +23458,7 @@ export namespace wirelesscontroller {
          */
         autoPowerLevel?: pulumi.Input<string>;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow?: pulumi.Input<number>;
         /**
@@ -23721,7 +23466,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget?: pulumi.Input<string>;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 4 operates on.
          */
         band?: pulumi.Input<string>;
         /**
@@ -23794,7 +23539,7 @@ export namespace wirelesscontroller {
 
     export interface WtpRadio4 {
         /**
-         * Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh?: pulumi.Input<number>;
         /**
@@ -23802,7 +23547,7 @@ export namespace wirelesscontroller {
          */
         autoPowerLevel?: pulumi.Input<string>;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow?: pulumi.Input<number>;
         /**
@@ -23810,7 +23555,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget?: pulumi.Input<string>;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 4 operates on.
          */
         band?: pulumi.Input<string>;
         /**
@@ -24211,15 +23956,15 @@ export namespace wirelesscontroller {
          */
         arrpProfile?: pulumi.Input<string>;
         /**
-         * Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh?: pulumi.Input<number>;
         /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
          */
         autoPowerLevel?: pulumi.Input<string>;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow?: pulumi.Input<number>;
         /**
@@ -24227,7 +23972,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget?: pulumi.Input<string>;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 3 operates on.
          */
         band?: pulumi.Input<string>;
         /**
@@ -24263,7 +24008,7 @@ export namespace wirelesscontroller {
          */
         callCapacity?: pulumi.Input<number>;
         /**
-         * Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+         * Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
          */
         channelBonding?: pulumi.Input<string>;
         /**
@@ -24291,7 +24036,7 @@ export namespace wirelesscontroller {
          */
         drmaSensitivity?: pulumi.Input<string>;
         /**
-         * DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+         * Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
          */
         dtim?: pulumi.Input<number>;
         /**
@@ -24319,7 +24064,7 @@ export namespace wirelesscontroller {
          */
         maxDistance?: pulumi.Input<number>;
         /**
-         * Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+         * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode?: pulumi.Input<string>;
         /**
@@ -24516,15 +24261,15 @@ export namespace wirelesscontroller {
          */
         arrpProfile?: pulumi.Input<string>;
         /**
-         * Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh?: pulumi.Input<number>;
         /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
          */
         autoPowerLevel?: pulumi.Input<string>;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow?: pulumi.Input<number>;
         /**
@@ -24532,7 +24277,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget?: pulumi.Input<string>;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 3 operates on.
          */
         band?: pulumi.Input<string>;
         /**
@@ -24568,7 +24313,7 @@ export namespace wirelesscontroller {
          */
         callCapacity?: pulumi.Input<number>;
         /**
-         * Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+         * Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
          */
         channelBonding?: pulumi.Input<string>;
         /**
@@ -24596,7 +24341,7 @@ export namespace wirelesscontroller {
          */
         drmaSensitivity?: pulumi.Input<string>;
         /**
-         * DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+         * Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
          */
         dtim?: pulumi.Input<number>;
         /**
@@ -24624,7 +24369,7 @@ export namespace wirelesscontroller {
          */
         maxDistance?: pulumi.Input<number>;
         /**
-         * Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+         * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode?: pulumi.Input<string>;
         /**
@@ -24821,15 +24566,15 @@ export namespace wirelesscontroller {
          */
         arrpProfile?: pulumi.Input<string>;
         /**
-         * Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh?: pulumi.Input<number>;
         /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
          */
         autoPowerLevel?: pulumi.Input<string>;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow?: pulumi.Input<number>;
         /**
@@ -24837,7 +24582,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget?: pulumi.Input<string>;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 3 operates on.
          */
         band?: pulumi.Input<string>;
         /**
@@ -24873,7 +24618,7 @@ export namespace wirelesscontroller {
          */
         callCapacity?: pulumi.Input<number>;
         /**
-         * Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+         * Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
          */
         channelBonding?: pulumi.Input<string>;
         /**
@@ -24901,7 +24646,7 @@ export namespace wirelesscontroller {
          */
         drmaSensitivity?: pulumi.Input<string>;
         /**
-         * DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+         * Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
          */
         dtim?: pulumi.Input<number>;
         /**
@@ -24929,7 +24674,7 @@ export namespace wirelesscontroller {
          */
         maxDistance?: pulumi.Input<number>;
         /**
-         * Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+         * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode?: pulumi.Input<string>;
         /**
@@ -25122,15 +24867,15 @@ export namespace wirelesscontroller {
          */
         arrpProfile?: pulumi.Input<string>;
         /**
-         * Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh?: pulumi.Input<number>;
         /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
          */
         autoPowerLevel?: pulumi.Input<string>;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow?: pulumi.Input<number>;
         /**
@@ -25138,7 +24883,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget?: pulumi.Input<string>;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 3 operates on.
          */
         band?: pulumi.Input<string>;
         /**
@@ -25174,7 +24919,7 @@ export namespace wirelesscontroller {
          */
         callCapacity?: pulumi.Input<number>;
         /**
-         * Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+         * Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
          */
         channelBonding?: pulumi.Input<string>;
         /**
@@ -25202,7 +24947,7 @@ export namespace wirelesscontroller {
          */
         drmaSensitivity?: pulumi.Input<string>;
         /**
-         * DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+         * Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
          */
         dtim?: pulumi.Input<number>;
         /**
@@ -25230,7 +24975,7 @@ export namespace wirelesscontroller {
          */
         maxDistance?: pulumi.Input<number>;
         /**
-         * Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+         * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode?: pulumi.Input<string>;
         /**
@@ -25385,281 +25130,280 @@ export namespace wirelesscontroller {
          */
         id?: pulumi.Input<number>;
     }
-}
+    export namespace hotspot20 {
+        export interface Anqp3gppcellularMccMncList {
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Mobile country code.
+             */
+            mcc?: pulumi.Input<string>;
+            /**
+             * Mobile network code.
+             */
+            mnc?: pulumi.Input<string>;
+        }
 
-export namespace wirelesscontrollerhotspot20 {
-    export interface Anqp3gppcellularMccMncList {
-        /**
-         * ID.
-         */
-        id?: pulumi.Input<number>;
-        /**
-         * Mobile country code.
-         */
-        mcc?: pulumi.Input<string>;
-        /**
-         * Mobile network code.
-         */
-        mnc?: pulumi.Input<string>;
-    }
+        export interface AnqpnairealmNaiList {
+            /**
+             * EAP Methods. The structure of `eapMethod` block is documented below.
+             */
+            eapMethods?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.hotspot20.AnqpnairealmNaiListEapMethod>[]>;
+            /**
+             * Enable/disable format in accordance with IETF RFC 4282. Valid values: `disable`, `enable`.
+             */
+            encoding?: pulumi.Input<string>;
+            /**
+             * Configure NAI realms (delimited by a semi-colon character).
+             */
+            naiRealm?: pulumi.Input<string>;
+            /**
+             * NAI realm name.
+             */
+            name?: pulumi.Input<string>;
+        }
 
-    export interface AnqpnairealmNaiList {
-        /**
-         * EAP Methods. The structure of `eapMethod` block is documented below.
-         */
-        eapMethods?: pulumi.Input<pulumi.Input<inputs.wirelesscontrollerhotspot20.AnqpnairealmNaiListEapMethod>[]>;
-        /**
-         * Enable/disable format in accordance with IETF RFC 4282. Valid values: `disable`, `enable`.
-         */
-        encoding?: pulumi.Input<string>;
-        /**
-         * Configure NAI realms (delimited by a semi-colon character).
-         */
-        naiRealm?: pulumi.Input<string>;
-        /**
-         * NAI realm name.
-         */
-        name?: pulumi.Input<string>;
-    }
+        export interface AnqpnairealmNaiListEapMethod {
+            /**
+             * EAP auth param. The structure of `authParam` block is documented below.
+             */
+            authParams?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.hotspot20.AnqpnairealmNaiListEapMethodAuthParam>[]>;
+            /**
+             * EAP method index.
+             */
+            index?: pulumi.Input<number>;
+            /**
+             * EAP method type. Valid values: `eap-identity`, `eap-md5`, `eap-tls`, `eap-ttls`, `eap-peap`, `eap-sim`, `eap-aka`, `eap-aka-prime`.
+             */
+            method?: pulumi.Input<string>;
+        }
 
-    export interface AnqpnairealmNaiListEapMethod {
-        /**
-         * EAP auth param. The structure of `authParam` block is documented below.
-         */
-        authParams?: pulumi.Input<pulumi.Input<inputs.wirelesscontrollerhotspot20.AnqpnairealmNaiListEapMethodAuthParam>[]>;
-        /**
-         * EAP method index.
-         */
-        index?: pulumi.Input<number>;
-        /**
-         * EAP method type. Valid values: `eap-identity`, `eap-md5`, `eap-tls`, `eap-ttls`, `eap-peap`, `eap-sim`, `eap-aka`, `eap-aka-prime`.
-         */
-        method?: pulumi.Input<string>;
-    }
+        export interface AnqpnairealmNaiListEapMethodAuthParam {
+            /**
+             * ID of authentication parameter. Valid values: `non-eap-inner-auth`, `inner-auth-eap`, `credential`, `tunneled-credential`.
+             */
+            id?: pulumi.Input<string>;
+            /**
+             * Param index.
+             */
+            index?: pulumi.Input<number>;
+            /**
+             * Value of authentication parameter. Valid values: `eap-identity`, `eap-md5`, `eap-tls`, `eap-ttls`, `eap-peap`, `eap-sim`, `eap-aka`, `eap-aka-prime`, `non-eap-pap`, `non-eap-chap`, `non-eap-mschap`, `non-eap-mschapv2`, `cred-sim`, `cred-usim`, `cred-nfc`, `cred-hardware-token`, `cred-softoken`, `cred-certificate`, `cred-user-pwd`, `cred-none`, `cred-vendor-specific`, `tun-cred-sim`, `tun-cred-usim`, `tun-cred-nfc`, `tun-cred-hardware-token`, `tun-cred-softoken`, `tun-cred-certificate`, `tun-cred-user-pwd`, `tun-cred-anonymous`, `tun-cred-vendor-specific`.
+             */
+            val?: pulumi.Input<string>;
+        }
 
-    export interface AnqpnairealmNaiListEapMethodAuthParam {
-        /**
-         * ID of authentication parameter. Valid values: `non-eap-inner-auth`, `inner-auth-eap`, `credential`, `tunneled-credential`.
-         */
-        id?: pulumi.Input<string>;
-        /**
-         * Param index.
-         */
-        index?: pulumi.Input<number>;
-        /**
-         * Value of authentication parameter. Valid values: `eap-identity`, `eap-md5`, `eap-tls`, `eap-ttls`, `eap-peap`, `eap-sim`, `eap-aka`, `eap-aka-prime`, `non-eap-pap`, `non-eap-chap`, `non-eap-mschap`, `non-eap-mschapv2`, `cred-sim`, `cred-usim`, `cred-nfc`, `cred-hardware-token`, `cred-softoken`, `cred-certificate`, `cred-user-pwd`, `cred-none`, `cred-vendor-specific`, `tun-cred-sim`, `tun-cred-usim`, `tun-cred-nfc`, `tun-cred-hardware-token`, `tun-cred-softoken`, `tun-cred-certificate`, `tun-cred-user-pwd`, `tun-cred-anonymous`, `tun-cred-vendor-specific`.
-         */
-        val?: pulumi.Input<string>;
-    }
+        export interface AnqproamingconsortiumOiList {
+            /**
+             * Comment.
+             */
+            comment?: pulumi.Input<string>;
+            /**
+             * OI index.
+             */
+            index?: pulumi.Input<number>;
+            /**
+             * Organization identifier.
+             */
+            oi?: pulumi.Input<string>;
+        }
 
-    export interface AnqproamingconsortiumOiList {
-        /**
-         * Comment.
-         */
-        comment?: pulumi.Input<string>;
-        /**
-         * OI index.
-         */
-        index?: pulumi.Input<number>;
-        /**
-         * Organization identifier.
-         */
-        oi?: pulumi.Input<string>;
-    }
+        export interface AnqpvenuenameValueList {
+            /**
+             * Value index.
+             */
+            index?: pulumi.Input<number>;
+            /**
+             * Language code.
+             */
+            lang?: pulumi.Input<string>;
+            /**
+             * Venue name value.
+             */
+            value?: pulumi.Input<string>;
+        }
 
-    export interface AnqpvenuenameValueList {
-        /**
-         * Value index.
-         */
-        index?: pulumi.Input<number>;
-        /**
-         * Language code.
-         */
-        lang?: pulumi.Input<string>;
-        /**
-         * Venue name value.
-         */
-        value?: pulumi.Input<string>;
-    }
+        export interface AnqpvenueurlValueList {
+            /**
+             * URL index.
+             */
+            index?: pulumi.Input<number>;
+            /**
+             * Venue number.
+             */
+            number?: pulumi.Input<number>;
+            /**
+             * Venue URL value.
+             */
+            value?: pulumi.Input<string>;
+        }
 
-    export interface AnqpvenueurlValueList {
-        /**
-         * URL index.
-         */
-        index?: pulumi.Input<number>;
-        /**
-         * Venue number.
-         */
-        number?: pulumi.Input<number>;
-        /**
-         * Venue URL value.
-         */
-        value?: pulumi.Input<string>;
-    }
+        export interface H2qpadviceofchargeAocList {
+            /**
+             * NAI realm list name.
+             */
+            naiRealm?: pulumi.Input<string>;
+            /**
+             * NAI realm encoding.
+             */
+            naiRealmEncoding?: pulumi.Input<string>;
+            /**
+             * Advice of charge ID.
+             */
+            name?: pulumi.Input<string>;
+            /**
+             * Plan info. The structure of `planInfo` block is documented below.
+             */
+            planInfos?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.hotspot20.H2qpadviceofchargeAocListPlanInfo>[]>;
+            /**
+             * Usage charge type. Valid values: `time-based`, `volume-based`, `time-and-volume-based`, `unlimited`.
+             */
+            type?: pulumi.Input<string>;
+        }
 
-    export interface H2qpadviceofchargeAocList {
-        /**
-         * NAI realm list name.
-         */
-        naiRealm?: pulumi.Input<string>;
-        /**
-         * NAI realm encoding.
-         */
-        naiRealmEncoding?: pulumi.Input<string>;
-        /**
-         * Advice of charge ID.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * Plan info. The structure of `planInfo` block is documented below.
-         */
-        planInfos?: pulumi.Input<pulumi.Input<inputs.wirelesscontrollerhotspot20.H2qpadviceofchargeAocListPlanInfo>[]>;
-        /**
-         * Usage charge type. Valid values: `time-based`, `volume-based`, `time-and-volume-based`, `unlimited`.
-         */
-        type?: pulumi.Input<string>;
-    }
+        export interface H2qpadviceofchargeAocListPlanInfo {
+            /**
+             * Currency code.
+             */
+            currency?: pulumi.Input<string>;
+            /**
+             * Info file.
+             */
+            infoFile?: pulumi.Input<string>;
+            /**
+             * Languague code.
+             */
+            lang?: pulumi.Input<string>;
+            /**
+             * Plan name.
+             */
+            name?: pulumi.Input<string>;
+        }
 
-    export interface H2qpadviceofchargeAocListPlanInfo {
-        /**
-         * Currency code.
-         */
-        currency?: pulumi.Input<string>;
-        /**
-         * Info file.
-         */
-        infoFile?: pulumi.Input<string>;
-        /**
-         * Languague code.
-         */
-        lang?: pulumi.Input<string>;
-        /**
-         * Plan name.
-         */
-        name?: pulumi.Input<string>;
-    }
+        export interface H2qpoperatornameValueList {
+            /**
+             * Value index.
+             */
+            index?: pulumi.Input<number>;
+            /**
+             * Language code.
+             */
+            lang?: pulumi.Input<string>;
+            /**
+             * Friendly name value.
+             */
+            value?: pulumi.Input<string>;
+        }
 
-    export interface H2qpoperatornameValueList {
-        /**
-         * Value index.
-         */
-        index?: pulumi.Input<number>;
-        /**
-         * Language code.
-         */
-        lang?: pulumi.Input<string>;
-        /**
-         * Friendly name value.
-         */
-        value?: pulumi.Input<string>;
-    }
+        export interface H2qposuproviderFriendlyName {
+            /**
+             * OSU provider friendly name.
+             */
+            friendlyName?: pulumi.Input<string>;
+            /**
+             * OSU provider friendly name index.
+             */
+            index?: pulumi.Input<number>;
+            /**
+             * Language code.
+             */
+            lang?: pulumi.Input<string>;
+        }
 
-    export interface H2qposuproviderFriendlyName {
-        /**
-         * OSU provider friendly name.
-         */
-        friendlyName?: pulumi.Input<string>;
-        /**
-         * OSU provider friendly name index.
-         */
-        index?: pulumi.Input<number>;
-        /**
-         * Language code.
-         */
-        lang?: pulumi.Input<string>;
-    }
+        export interface H2qposuproviderServiceDescription {
+            /**
+             * Language code.
+             */
+            lang?: pulumi.Input<string>;
+            /**
+             * Service description.
+             */
+            serviceDescription?: pulumi.Input<string>;
+            /**
+             * OSU service ID.
+             */
+            serviceId?: pulumi.Input<number>;
+        }
 
-    export interface H2qposuproviderServiceDescription {
-        /**
-         * Language code.
-         */
-        lang?: pulumi.Input<string>;
-        /**
-         * Service description.
-         */
-        serviceDescription?: pulumi.Input<string>;
-        /**
-         * OSU service ID.
-         */
-        serviceId?: pulumi.Input<number>;
-    }
+        export interface H2qposuprovidernaiNaiList {
+            /**
+             * OSU NAI ID.
+             */
+            name?: pulumi.Input<string>;
+            /**
+             * OSU NAI.
+             */
+            osuNai?: pulumi.Input<string>;
+        }
 
-    export interface H2qposuprovidernaiNaiList {
-        /**
-         * OSU NAI ID.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * OSU NAI.
-         */
-        osuNai?: pulumi.Input<string>;
-    }
+        export interface HsprofileOsuProvider {
+            /**
+             * OSU provider name.
+             */
+            name?: pulumi.Input<string>;
+        }
 
-    export interface HsprofileOsuProvider {
-        /**
-         * OSU provider name.
-         */
-        name?: pulumi.Input<string>;
-    }
+        export interface IconIconList {
+            /**
+             * Icon file.
+             */
+            file?: pulumi.Input<string>;
+            /**
+             * Icon height.
+             */
+            height?: pulumi.Input<number>;
+            /**
+             * Language code.
+             */
+            lang?: pulumi.Input<string>;
+            /**
+             * Icon name.
+             */
+            name?: pulumi.Input<string>;
+            /**
+             * Icon type. Valid values: `bmp`, `gif`, `jpeg`, `png`, `tiff`.
+             */
+            type?: pulumi.Input<string>;
+            /**
+             * Icon width.
+             */
+            width?: pulumi.Input<number>;
+        }
 
-    export interface IconIconList {
-        /**
-         * Icon file.
-         */
-        file?: pulumi.Input<string>;
-        /**
-         * Icon height.
-         */
-        height?: pulumi.Input<number>;
-        /**
-         * Language code.
-         */
-        lang?: pulumi.Input<string>;
-        /**
-         * Icon name.
-         */
-        name?: pulumi.Input<string>;
-        /**
-         * Icon type. Valid values: `bmp`, `gif`, `jpeg`, `png`, `tiff`.
-         */
-        type?: pulumi.Input<string>;
-        /**
-         * Icon width.
-         */
-        width?: pulumi.Input<number>;
-    }
+        export interface QosmapDscpExcept {
+            /**
+             * DSCP value.
+             */
+            dscp?: pulumi.Input<number>;
+            /**
+             * DSCP exception index.
+             */
+            index?: pulumi.Input<number>;
+            /**
+             * User priority.
+             */
+            up?: pulumi.Input<number>;
+        }
 
-    export interface QosmapDscpExcept {
-        /**
-         * DSCP value.
-         */
-        dscp?: pulumi.Input<number>;
-        /**
-         * DSCP exception index.
-         */
-        index?: pulumi.Input<number>;
-        /**
-         * User priority.
-         */
-        up?: pulumi.Input<number>;
-    }
-
-    export interface QosmapDscpRange {
-        /**
-         * DSCP high value.
-         */
-        high?: pulumi.Input<number>;
-        /**
-         * DSCP range index.
-         */
-        index?: pulumi.Input<number>;
-        /**
-         * DSCP low value.
-         */
-        low?: pulumi.Input<number>;
-        /**
-         * User priority.
-         */
-        up?: pulumi.Input<number>;
+        export interface QosmapDscpRange {
+            /**
+             * DSCP high value.
+             */
+            high?: pulumi.Input<number>;
+            /**
+             * DSCP range index.
+             */
+            index?: pulumi.Input<number>;
+            /**
+             * DSCP low value.
+             */
+            low?: pulumi.Input<number>;
+            /**
+             * User priority.
+             */
+            up?: pulumi.Input<number>;
+        }
     }
 }

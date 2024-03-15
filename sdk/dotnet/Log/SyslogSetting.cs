@@ -13,10 +13,11 @@ namespace Pulumiverse.Fortios.Log
     /// <summary>
     /// Provides a resource to configure logging to remote Syslog logging servers.
     /// 
-    /// !&gt; **Warning:** The resource will be deprecated and replaced by new resource `fortios.logsyslogd.Setting`, we recommend that you use the new resource.
+    /// !&gt; **Warning:** The resource will be deprecated and replaced by new resource `fortios.log/syslogd.Setting`, we recommend that you use the new resource.
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,6 +39,7 @@ namespace Pulumiverse.Fortios.Log
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:log/syslogSetting:SyslogSetting")]
     public partial class SyslogSetting : global::Pulumi.CustomResource

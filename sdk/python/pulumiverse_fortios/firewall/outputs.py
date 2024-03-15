@@ -3786,18 +3786,6 @@ class CentralsnatmapDstAddr6(dict):
                  name: Optional[str] = None):
         """
         :param str name: Address name.
-               
-               The `orig_addr6` block supports:
-               
-               
-               
-               
-               The `dst_addr6` block supports:
-               
-               
-               
-               
-               The `nat_ippool6` block supports:
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -3807,18 +3795,6 @@ class CentralsnatmapDstAddr6(dict):
     def name(self) -> Optional[str]:
         """
         Address name.
-
-        The `orig_addr6` block supports:
-
-
-
-
-        The `dst_addr6` block supports:
-
-
-
-
-        The `nat_ippool6` block supports:
         """
         return pulumi.get(self, "name")
 
@@ -3867,18 +3843,6 @@ class CentralsnatmapNatIppool6(dict):
                  name: Optional[str] = None):
         """
         :param str name: Address name.
-               
-               The `orig_addr6` block supports:
-               
-               
-               
-               
-               The `dst_addr6` block supports:
-               
-               
-               
-               
-               The `nat_ippool6` block supports:
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -3888,18 +3852,6 @@ class CentralsnatmapNatIppool6(dict):
     def name(self) -> Optional[str]:
         """
         Address name.
-
-        The `orig_addr6` block supports:
-
-
-
-
-        The `dst_addr6` block supports:
-
-
-
-
-        The `nat_ippool6` block supports:
         """
         return pulumi.get(self, "name")
 
@@ -3929,18 +3881,6 @@ class CentralsnatmapOrigAddr6(dict):
                  name: Optional[str] = None):
         """
         :param str name: Address name.
-               
-               The `orig_addr6` block supports:
-               
-               
-               
-               
-               The `dst_addr6` block supports:
-               
-               
-               
-               
-               The `nat_ippool6` block supports:
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -3950,18 +3890,6 @@ class CentralsnatmapOrigAddr6(dict):
     def name(self) -> Optional[str]:
         """
         Address name.
-
-        The `orig_addr6` block supports:
-
-
-
-
-        The `dst_addr6` block supports:
-
-
-
-
-        The `nat_ippool6` block supports:
         """
         return pulumi.get(self, "name")
 
@@ -5268,7 +5196,7 @@ class InternetserviceextensionDisableEntryIp6Range(dict):
                  start_ip6: Optional[str] = None):
         """
         :param str end_ip6: End IPv6 address.
-        :param int id: Entry ID(1-255).
+        :param int id: Disable entry ID.
         :param str start_ip6: Start IPv6 address.
         """
         if end_ip6 is not None:
@@ -5290,7 +5218,7 @@ class InternetserviceextensionDisableEntryIp6Range(dict):
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        Entry ID(1-255).
+        Disable entry ID.
         """
         return pulumi.get(self, "id")
 
@@ -5534,9 +5462,7 @@ class InternetserviceextensionEntryDst6(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
-        :param str name: Select the destination address or address group object from available options.
-               
-               The `dst6` block supports:
+        :param str name: Select the destination address6 or address group object from available options.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -5545,9 +5471,7 @@ class InternetserviceextensionEntryDst6(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Select the destination address or address group object from available options.
-
-        The `dst6` block supports:
+        Select the destination address6 or address group object from available options.
         """
         return pulumi.get(self, "name")
 
@@ -8821,13 +8745,11 @@ class ProfileprotocoloptionsPop3(dict):
                  uncompressed_oversize_limit: Optional[int] = None):
         """
         :param str inspect_all: Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
-        :param str options: One or more options that can be applied to the session. Valid values: `clientcomfort`, `servercomfort`, `oversize`, `chunkedbypass`.
+        :param str options: One or more options that can be applied to the session. Valid values: `oversize`.
         :param int oversize_limit: Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
-        :param int ports: Ports to scan for content (1 - 65535, default = 80).
+        :param int ports: Ports to scan for content (1 - 65535, default = 445).
         :param str proxy_after_tcp_handshake: Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
         :param str scan_bzip2: Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-               
-               The `pop3` block supports:
         :param str ssl_offloaded: SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
         :param str status: Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
@@ -8866,7 +8788,7 @@ class ProfileprotocoloptionsPop3(dict):
     @pulumi.getter
     def options(self) -> Optional[str]:
         """
-        One or more options that can be applied to the session. Valid values: `clientcomfort`, `servercomfort`, `oversize`, `chunkedbypass`.
+        One or more options that can be applied to the session. Valid values: `oversize`.
         """
         return pulumi.get(self, "options")
 
@@ -8882,7 +8804,7 @@ class ProfileprotocoloptionsPop3(dict):
     @pulumi.getter
     def ports(self) -> Optional[int]:
         """
-        Ports to scan for content (1 - 65535, default = 80).
+        Ports to scan for content (1 - 65535, default = 445).
         """
         return pulumi.get(self, "ports")
 
@@ -8899,8 +8821,6 @@ class ProfileprotocoloptionsPop3(dict):
     def scan_bzip2(self) -> Optional[str]:
         """
         Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-
-        The `pop3` block supports:
         """
         return pulumi.get(self, "scan_bzip2")
 
@@ -12400,14 +12320,12 @@ class SslsshprofilePop3s(dict):
         :param str proxy_after_tcp_handshake: Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
         :param str revoked_server_cert: Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
         :param str sni_server_cert_check: Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-               
-               The `pop3s` block supports:
-        :param str status: Configure protocol inspection status. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
+        :param str status: Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
         :param str unsupported_ssl: Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
         :param str unsupported_ssl_cipher: Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
         :param str unsupported_ssl_negotiation: Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
         :param str unsupported_ssl_version: Action based on the SSL version used being unsupported.
-        :param str untrusted_server_cert: Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        :param str untrusted_server_cert: Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
         if cert_validation_failure is not None:
             pulumi.set(__self__, "cert_validation_failure", cert_validation_failure)
@@ -12519,8 +12437,6 @@ class SslsshprofilePop3s(dict):
     def sni_server_cert_check(self) -> Optional[str]:
         """
         Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-
-        The `pop3s` block supports:
         """
         return pulumi.get(self, "sni_server_cert_check")
 
@@ -12528,7 +12444,7 @@ class SslsshprofilePop3s(dict):
     @pulumi.getter
     def status(self) -> Optional[str]:
         """
-        Configure protocol inspection status. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
+        Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
         """
         return pulumi.get(self, "status")
 
@@ -12568,7 +12484,7 @@ class SslsshprofilePop3s(dict):
     @pulumi.getter(name="untrustedServerCert")
     def untrusted_server_cert(self) -> Optional[str]:
         """
-        Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
         return pulumi.get(self, "untrusted_server_cert")
 

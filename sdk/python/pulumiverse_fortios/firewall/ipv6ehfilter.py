@@ -335,6 +335,7 @@ class Ipv6ehfilter(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -347,22 +348,25 @@ class Ipv6ehfilter(pulumi.CustomResource):
             no_next="disable",
             routing="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall Ipv6EhFilter can be imported using any of these accepted formats
+        Firewall Ipv6EhFilter can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
+        $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
+        $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -387,6 +391,7 @@ class Ipv6ehfilter(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -399,22 +404,25 @@ class Ipv6ehfilter(pulumi.CustomResource):
             no_next="disable",
             routing="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall Ipv6EhFilter can be imported using any of these accepted formats
+        Firewall Ipv6EhFilter can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
+        $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
+        $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param Ipv6ehfilterArgs args: The arguments to use to populate this resource's properties.

@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure WiFi network access control (NAC) profiles. Applies to FortiOS Version `>= 7.0.1`.
 //
 // ## Import
 //
-// # WirelessController NacProfile can be imported using any of these accepted formats
+// WirelessController NacProfile can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/nacprofile:Nacprofile labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/nacprofile:Nacprofile labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/nacprofile:Nacprofile labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/nacprofile:Nacprofile labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Nacprofile struct {
 	pulumi.CustomResourceState
 
@@ -51,7 +50,7 @@ func NewNacprofile(ctx *pulumi.Context,
 		args = &NacprofileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Nacprofile
 	err := ctx.RegisterResource("fortios:wirelesscontroller/nacprofile:Nacprofile", name, args, &resource, opts...)
 	if err != nil {

@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure file patterns used by DLP blocking.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,26 +40,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Dlp Filepattern can be imported using any of these accepted formats
+// Dlp Filepattern can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:dlp/filepattern:Filepattern labelname {{fosid}}
-//
+// $ pulumi import fortios:dlp/filepattern:Filepattern labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:dlp/filepattern:Filepattern labelname {{fosid}}
-//
+// $ pulumi import fortios:dlp/filepattern:Filepattern labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Filepattern struct {
 	pulumi.CustomResourceState
 
@@ -85,7 +86,7 @@ func NewFilepattern(ctx *pulumi.Context,
 	if args.Fosid == nil {
 		return nil, errors.New("invalid value for required argument 'Fosid'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Filepattern
 	err := ctx.RegisterResource("fortios:dlp/filepattern:Filepattern", name, args, &resource, opts...)
 	if err != nil {

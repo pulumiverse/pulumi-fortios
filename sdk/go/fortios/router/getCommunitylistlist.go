@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `router.Communitylist`.
 func GetCommunitylistlist(ctx *pulumi.Context, args *GetCommunitylistlistArgs, opts ...pulumi.InvokeOption) (*GetCommunitylistlistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCommunitylistlistResult
 	err := ctx.Invoke("fortios:router/getCommunitylistlist:getCommunitylistlist", args, &rv, opts...)
 	if err != nil {

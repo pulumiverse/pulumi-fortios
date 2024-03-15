@@ -9,29 +9,28 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiSwitch devices that are managed by this FortiGate.
 //
 // ## Import
 //
-// # SwitchController ManagedSwitch can be imported using any of these accepted formats
+// SwitchController ManagedSwitch can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/managedswitch:Managedswitch labelname {{switch_id}}
-//
+// $ pulumi import fortios:switchcontroller/managedswitch:Managedswitch labelname {{switch_id}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/managedswitch:Managedswitch labelname {{switch_id}}
-//
+// $ pulumi import fortios:switchcontroller/managedswitch:Managedswitch labelname {{switch_id}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Managedswitch struct {
 	pulumi.CustomResourceState
 
@@ -164,7 +163,7 @@ func NewManagedswitch(ctx *pulumi.Context,
 	if args.SwitchId == nil {
 		return nil, errors.New("invalid value for required argument 'SwitchId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Managedswitch
 	err := ctx.RegisterResource("fortios:switchcontroller/managedswitch:Managedswitch", name, args, &resource, opts...)
 	if err != nil {

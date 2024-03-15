@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Extendercontroller
     /// 
     /// ## Import
     /// 
-    /// ExtenderController ExtenderProfile can be imported using any of these accepted formats
+    /// ExtenderController ExtenderProfile can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:extendercontroller/extenderprofile:Extenderprofile labelname {{name}}
+    /// $ pulumi import fortios:extendercontroller/extenderprofile:Extenderprofile labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:extendercontroller/extenderprofile:Extenderprofile labelname {{name}}
+    /// $ pulumi import fortios:extendercontroller/extenderprofile:Extenderprofile labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:extendercontroller/extenderprofile:Extenderprofile")]
     public partial class Extenderprofile : global::Pulumi.CustomResource

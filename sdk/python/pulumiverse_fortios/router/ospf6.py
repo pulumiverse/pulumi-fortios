@@ -730,10 +730,11 @@ class Ospf6(pulumi.CustomResource):
         """
         Configure IPv6 OSPF.
 
-        > The provider supports the definition of Ospf6-Interface in Router Ospf6 `router.Ospf6`, and also allows the definition of separate Ospf6-Interface resources `routerospf6.Ospf6interface`, but do not use a `router.Ospf6` with in-line Ospf6-Interface in conjunction with any `routerospf6.Ospf6interface` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Ospf6-Interface in Router Ospf6 `router.Ospf6`, and also allows the definition of separate Ospf6-Interface resources `router/ospf6.Ospf6interface`, but do not use a `router.Ospf6` with in-line Ospf6-Interface in conjunction with any `router/ospf6.Ospf6interface` resources, otherwise conflicts and overwrite will occur.
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -782,22 +783,25 @@ class Ospf6(pulumi.CustomResource):
             router_id="0.0.0.0",
             spf_timers="5 10")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router Ospf6 can be imported using any of these accepted formats
+        Router Ospf6 can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
+        $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
+        $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -832,10 +836,11 @@ class Ospf6(pulumi.CustomResource):
         """
         Configure IPv6 OSPF.
 
-        > The provider supports the definition of Ospf6-Interface in Router Ospf6 `router.Ospf6`, and also allows the definition of separate Ospf6-Interface resources `routerospf6.Ospf6interface`, but do not use a `router.Ospf6` with in-line Ospf6-Interface in conjunction with any `routerospf6.Ospf6interface` resources, otherwise conflicts and overwrite will occur.
+        > The provider supports the definition of Ospf6-Interface in Router Ospf6 `router.Ospf6`, and also allows the definition of separate Ospf6-Interface resources `router/ospf6.Ospf6interface`, but do not use a `router.Ospf6` with in-line Ospf6-Interface in conjunction with any `router/ospf6.Ospf6interface` resources, otherwise conflicts and overwrite will occur.
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -884,22 +889,25 @@ class Ospf6(pulumi.CustomResource):
             router_id="0.0.0.0",
             spf_timers="5 10")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router Ospf6 can be imported using any of these accepted formats
+        Router Ospf6 can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
+        $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
+        $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param Ospf6Args args: The arguments to use to populate this resource's properties.

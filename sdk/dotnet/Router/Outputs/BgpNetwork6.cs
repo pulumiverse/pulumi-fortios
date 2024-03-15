@@ -31,13 +31,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string? Prefix6;
         /// <summary>
-        /// Route map to modify generated route.
-        /// 
-        /// The `network6` block supports:
-        /// 
-        /// 
-        /// 
-        /// The `redistribute6` block supports:
+        /// Route map of VRF leaking.
         /// </summary>
         public readonly string? RouteMap;
 

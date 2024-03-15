@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios firewall centralsnatmap
 func LookupCentralsnatmap(ctx *pulumi.Context, args *LookupCentralsnatmapArgs, opts ...pulumi.InvokeOption) (*LookupCentralsnatmapResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCentralsnatmapResult
 	err := ctx.Invoke("fortios:firewall/getCentralsnatmap:getCentralsnatmap", args, &rv, opts...)
 	if err != nil {

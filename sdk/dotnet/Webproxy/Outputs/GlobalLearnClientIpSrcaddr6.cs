@@ -16,8 +16,6 @@ namespace Pulumiverse.Fortios.Webproxy.Outputs
     {
         /// <summary>
         /// Address name.
-        /// 
-        /// The `learn_client_ip_srcaddr6` block supports:
         /// </summary>
         public readonly string? Name;
 

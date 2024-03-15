@@ -401,7 +401,9 @@ class ObjectAddress(pulumi.CustomResource):
         !> **Warning:** The resource will be deprecated and replaced by new resource `firewall.Address`, we recommend that you use the new resource.
 
         ## Example Usage
+
         ### Iprange Address
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -412,7 +414,10 @@ class ObjectAddress(pulumi.CustomResource):
             start_ip="1.0.0.0",
             type="iprange")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Geography Address
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -422,7 +427,10 @@ class ObjectAddress(pulumi.CustomResource):
             country="AO",
             type="geography")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Fqdn Address
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -435,7 +443,10 @@ class ObjectAddress(pulumi.CustomResource):
             static_route_configure="enable",
             type="fqdn")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Ipmask Address
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -445,6 +456,7 @@ class ObjectAddress(pulumi.CustomResource):
             subnet="0.0.0.0 0.0.0.0",
             type="ipmask")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -472,7 +484,9 @@ class ObjectAddress(pulumi.CustomResource):
         !> **Warning:** The resource will be deprecated and replaced by new resource `firewall.Address`, we recommend that you use the new resource.
 
         ## Example Usage
+
         ### Iprange Address
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -483,7 +497,10 @@ class ObjectAddress(pulumi.CustomResource):
             start_ip="1.0.0.0",
             type="iprange")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Geography Address
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -493,7 +510,10 @@ class ObjectAddress(pulumi.CustomResource):
             country="AO",
             type="geography")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Fqdn Address
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -506,7 +526,10 @@ class ObjectAddress(pulumi.CustomResource):
             static_route_configure="enable",
             type="fqdn")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Ipmask Address
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -516,6 +539,7 @@ class ObjectAddress(pulumi.CustomResource):
             subnet="0.0.0.0 0.0.0.0",
             type="ipmask")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param ObjectAddressArgs args: The arguments to use to populate this resource's properties.

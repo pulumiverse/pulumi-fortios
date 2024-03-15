@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Automation setting configuration. Applies to FortiOS Version `>= 7.2.0`.
 //
 // ## Import
 //
-// # Automation Setting can be imported using any of these accepted formats
+// Automation Setting can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:automation/setting:Setting labelname AutomationSetting
-//
+// $ pulumi import fortios:automation/setting:Setting labelname AutomationSetting
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:automation/setting:Setting labelname AutomationSetting
-//
+// $ pulumi import fortios:automation/setting:Setting labelname AutomationSetting
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Setting struct {
 	pulumi.CustomResourceState
 
@@ -47,7 +46,7 @@ func NewSetting(ctx *pulumi.Context,
 		args = &SettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Setting
 	err := ctx.RegisterResource("fortios:automation/setting:Setting", name, args, &resource, opts...)
 	if err != nil {

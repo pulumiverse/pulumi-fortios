@@ -231,7 +231,9 @@ class SecurityPolicysort(pulumi.CustomResource):
         Resource to sort firewall security policies by policyid or policy name, in ascending or descending order.
 
         ## Example Usage
+
         ### Example1
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -241,6 +243,7 @@ class SecurityPolicysort(pulumi.CustomResource):
             sortdirection="descending")
         pulumi.export("policylistAfterApply", test.state_policy_lists)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -259,7 +262,9 @@ class SecurityPolicysort(pulumi.CustomResource):
         Resource to sort firewall security policies by policyid or policy name, in ascending or descending order.
 
         ## Example Usage
+
         ### Example1
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -269,6 +274,7 @@ class SecurityPolicysort(pulumi.CustomResource):
             sortdirection="descending")
         pulumi.export("policylistAfterApply", test.state_policy_lists)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SecurityPolicysortArgs args: The arguments to use to populate this resource's properties.

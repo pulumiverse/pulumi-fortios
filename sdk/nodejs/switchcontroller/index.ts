@@ -191,6 +191,21 @@ export const Vlanpolicy: typeof import("./vlanpolicy").Vlanpolicy = null as any;
 utilities.lazyLoad(exports, ["Vlanpolicy"], () => require("./vlanpolicy"));
 
 
+// Export sub-modules:
+import * as autoconfig from "./autoconfig";
+import * as initialconfig from "./initialconfig";
+import * as ptp from "./ptp";
+import * as qos from "./qos";
+import * as securitypolicy from "./securitypolicy";
+
+export {
+    autoconfig,
+    initialconfig,
+    ptp,
+    qos,
+    securitypolicy,
+};
+
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {

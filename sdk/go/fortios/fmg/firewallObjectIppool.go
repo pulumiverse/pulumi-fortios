@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports Create/Read/Update/Delete firewall object ippool for FortiManager.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,6 +46,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type FirewallObjectIppool struct {
 	pulumi.CustomResourceState
 
@@ -80,7 +83,7 @@ func NewFirewallObjectIppool(ctx *pulumi.Context,
 	if args.Startip == nil {
 		return nil, errors.New("invalid value for required argument 'Startip'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallObjectIppool
 	err := ctx.RegisterResource("fortios:fmg/firewallObjectIppool:FirewallObjectIppool", name, args, &resource, opts...)
 	if err != nil {

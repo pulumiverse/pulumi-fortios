@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Import
     /// 
-    /// Firewall VendorMac can be imported using any of these accepted formats
+    /// Firewall VendorMac can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/vendormac:Vendormac labelname {{fosid}}
+    /// $ pulumi import fortios:firewall/vendormac:Vendormac labelname {{fosid}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/vendormac:Vendormac labelname {{fosid}}
+    /// $ pulumi import fortios:firewall/vendormac:Vendormac labelname {{fosid}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:firewall/vendormac:Vendormac")]
     public partial class Vendormac : global::Pulumi.CustomResource

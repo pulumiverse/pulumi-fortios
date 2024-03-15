@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios router policy6
 func LookupPolicy6(ctx *pulumi.Context, args *LookupPolicy6Args, opts ...pulumi.InvokeOption) (*LookupPolicy6Result, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPolicy6Result
 	err := ctx.Invoke("fortios:router/getPolicy6:getPolicy6", args, &rv, opts...)
 	if err != nil {

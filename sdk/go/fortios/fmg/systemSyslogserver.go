@@ -8,36 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports Create/Delete system syslog server for FortiManager.
 //
 // ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/fmg"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fmg.NewSystemSyslogserver(ctx, "test1", &fmg.SystemSyslogserverArgs{
-//				Ip:   pulumi.String("1.1.1.1"),
-//				Port: pulumi.Int(99),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type SystemSyslogserver struct {
 	pulumi.CustomResourceState
 
@@ -56,7 +32,7 @@ func NewSystemSyslogserver(ctx *pulumi.Context,
 		args = &SystemSyslogserverArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSyslogserver
 	err := ctx.RegisterResource("fortios:fmg/systemSyslogserver:SystemSyslogserver", name, args, &resource, opts...)
 	if err != nil {

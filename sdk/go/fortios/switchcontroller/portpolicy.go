@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure port policy to be applied on the managed FortiSwitch ports through NAC device. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,7.0.0`.
 //
 // ## Import
 //
-// # SwitchController PortPolicy can be imported using any of these accepted formats
+// SwitchController PortPolicy can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/portpolicy:Portpolicy labelname {{name}}
-//
+// $ pulumi import fortios:switchcontroller/portpolicy:Portpolicy labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/portpolicy:Portpolicy labelname {{name}}
-//
+// $ pulumi import fortios:switchcontroller/portpolicy:Portpolicy labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Portpolicy struct {
 	pulumi.CustomResourceState
 
@@ -61,7 +60,7 @@ func NewPortpolicy(ctx *pulumi.Context,
 		args = &PortpolicyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Portpolicy
 	err := ctx.RegisterResource("fortios:switchcontroller/portpolicy:Portpolicy", name, args, &resource, opts...)
 	if err != nil {

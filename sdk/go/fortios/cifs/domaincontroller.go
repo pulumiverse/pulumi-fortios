@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Define known domain controller servers. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1`.
 //
 // ## Import
 //
-// # Cifs DomainController can be imported using any of these accepted formats
+// Cifs DomainController can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:cifs/domaincontroller:Domaincontroller labelname {{server_name}}
-//
+// $ pulumi import fortios:cifs/domaincontroller:Domaincontroller labelname {{server_name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:cifs/domaincontroller:Domaincontroller labelname {{server_name}}
-//
+// $ pulumi import fortios:cifs/domaincontroller:Domaincontroller labelname {{server_name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Domaincontroller struct {
 	pulumi.CustomResourceState
 
@@ -66,7 +65,7 @@ func NewDomaincontroller(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Domaincontroller
 	err := ctx.RegisterResource("fortios:cifs/domaincontroller:Domaincontroller", name, args, &resource, opts...)
 	if err != nil {

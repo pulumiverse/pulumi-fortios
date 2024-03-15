@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure DNS translation.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,26 +42,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall Dnstranslation can be imported using any of these accepted formats
+// Firewall Dnstranslation can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/dnstranslation:Dnstranslation labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/dnstranslation:Dnstranslation labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/dnstranslation:Dnstranslation labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/dnstranslation:Dnstranslation labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Dnstranslation struct {
 	pulumi.CustomResourceState
 
@@ -82,7 +83,7 @@ func NewDnstranslation(ctx *pulumi.Context,
 		args = &DnstranslationArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Dnstranslation
 	err := ctx.RegisterResource("fortios:firewall/dnstranslation:Dnstranslation", name, args, &resource, opts...)
 	if err != nil {

@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Hidden table for datasource.
 //
 // ## Import
 //
-// # Waf SubClass can be imported using any of these accepted formats
+// Waf SubClass can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:waf/subclass:Subclass labelname {{fosid}}
-//
+// $ pulumi import fortios:waf/subclass:Subclass labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:waf/subclass:Subclass labelname {{fosid}}
-//
+// $ pulumi import fortios:waf/subclass:Subclass labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Subclass struct {
 	pulumi.CustomResourceState
 
@@ -49,7 +48,7 @@ func NewSubclass(ctx *pulumi.Context,
 		args = &SubclassArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Subclass
 	err := ctx.RegisterResource("fortios:waf/subclass:Subclass", name, args, &resource, opts...)
 	if err != nil {

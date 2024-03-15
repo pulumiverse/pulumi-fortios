@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports Create/Read/Update/Delete admin user for FortiManager
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,6 +57,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SystemAdminUser struct {
 	pulumi.CustomResourceState
 
@@ -90,7 +93,7 @@ func NewSystemAdminUser(ctx *pulumi.Context,
 	if args.Userid == nil {
 		return nil, errors.New("invalid value for required argument 'Userid'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAdminUser
 	err := ctx.RegisterResource("fortios:fmg/systemAdminUser:SystemAdminUser", name, args, &resource, opts...)
 	if err != nil {

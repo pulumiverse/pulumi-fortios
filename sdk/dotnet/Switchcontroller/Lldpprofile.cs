@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,22 +35,25 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// SwitchController LldpProfile can be imported using any of these accepted formats
+    /// SwitchController LldpProfile can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/lldpprofile:Lldpprofile labelname {{name}}
+    /// $ pulumi import fortios:switchcontroller/lldpprofile:Lldpprofile labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/lldpprofile:Lldpprofile labelname {{name}}
+    /// $ pulumi import fortios:switchcontroller/lldpprofile:Lldpprofile labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:switchcontroller/lldpprofile:Lldpprofile")]
     public partial class Lldpprofile : global::Pulumi.CustomResource

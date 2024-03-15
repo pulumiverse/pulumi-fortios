@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios router keychain
 func LookupKeychain(ctx *pulumi.Context, args *LookupKeychainArgs, opts ...pulumi.InvokeOption) (*LookupKeychainResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupKeychainResult
 	err := ctx.Invoke("fortios:router/getKeychain:getKeychain", args, &rv, opts...)
 	if err != nil {

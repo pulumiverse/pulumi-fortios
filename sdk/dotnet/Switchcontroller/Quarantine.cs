@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// ## Import
     /// 
-    /// SwitchController Quarantine can be imported using any of these accepted formats
+    /// SwitchController Quarantine can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/quarantine:Quarantine labelname SwitchControllerQuarantine
+    /// $ pulumi import fortios:switchcontroller/quarantine:Quarantine labelname SwitchControllerQuarantine
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:switchcontroller/quarantine:Quarantine labelname SwitchControllerQuarantine
+    /// $ pulumi import fortios:switchcontroller/quarantine:Quarantine labelname SwitchControllerQuarantine
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:switchcontroller/quarantine:Quarantine")]
     public partial class Quarantine : global::Pulumi.CustomResource

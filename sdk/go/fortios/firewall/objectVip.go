@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a resource to configure firewall virtual IPs (VIPs) of FortiOS.
@@ -17,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,6 +51,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type ObjectVip struct {
 	pulumi.CustomResourceState
 
@@ -86,7 +89,7 @@ func NewObjectVip(ctx *pulumi.Context,
 	if args.Mappedips == nil {
 		return nil, errors.New("invalid value for required argument 'Mappedips'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectVip
 	err := ctx.RegisterResource("fortios:firewall/objectVip:ObjectVip", name, args, &resource, opts...)
 	if err != nil {

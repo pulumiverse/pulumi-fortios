@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiSwitch multiple spanning tree protocol (MSTP) instances. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # SwitchController StpInstance can be imported using any of these accepted formats
+// SwitchController StpInstance can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/stpinstance:Stpinstance labelname {{fosid}}
-//
+// $ pulumi import fortios:switchcontroller/stpinstance:Stpinstance labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/stpinstance:Stpinstance labelname {{fosid}}
-//
+// $ pulumi import fortios:switchcontroller/stpinstance:Stpinstance labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Stpinstance struct {
 	pulumi.CustomResourceState
 
@@ -51,7 +50,7 @@ func NewStpinstance(ctx *pulumi.Context,
 		args = &StpinstanceArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Stpinstance
 	err := ctx.RegisterResource("fortios:switchcontroller/stpinstance:Stpinstance", name, args, &resource, opts...)
 	if err != nil {

@@ -10,3 +10,17 @@ from .ocvpn import *
 from .pptp import *
 from ._inputs import *
 from . import outputs
+
+# Make subpackages available:
+if typing.TYPE_CHECKING:
+    import pulumiverse_fortios.vpn.certificate as __certificate
+    certificate = __certificate
+    import pulumiverse_fortios.vpn.ipsec as __ipsec
+    ipsec = __ipsec
+    import pulumiverse_fortios.vpn.ssl as __ssl
+    ssl = __ssl
+else:
+    certificate = _utilities.lazy_import('pulumiverse_fortios.vpn.certificate')
+    ipsec = _utilities.lazy_import('pulumiverse_fortios.vpn.ipsec')
+    ssl = _utilities.lazy_import('pulumiverse_fortios.vpn.ssl')
+

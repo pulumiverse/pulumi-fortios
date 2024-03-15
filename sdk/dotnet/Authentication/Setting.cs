@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Authentication
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,22 +36,25 @@ namespace Pulumiverse.Fortios.Authentication
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Authentication Setting can be imported using any of these accepted formats
+    /// Authentication Setting can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:authentication/setting:Setting labelname AuthenticationSetting
+    /// $ pulumi import fortios:authentication/setting:Setting labelname AuthenticationSetting
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:authentication/setting:Setting labelname AuthenticationSetting
+    /// $ pulumi import fortios:authentication/setting:Setting labelname AuthenticationSetting
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:authentication/setting:Setting")]
     public partial class Setting : global::Pulumi.CustomResource

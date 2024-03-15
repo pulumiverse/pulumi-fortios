@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure additional port mappings for Internet Services. Applies to FortiOS Version `6.2.4,6.2.6,6.4.1,6.4.2,6.4.10,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.2.0,7.2.1,7.2.2`.
 //
 // ## Import
 //
-// # Firewall InternetServiceAppend can be imported using any of these accepted formats
+// Firewall InternetServiceAppend can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetserviceappend:Internetserviceappend labelname FirewallInternetServiceAppend
-//
+// $ pulumi import fortios:firewall/internetserviceappend:Internetserviceappend labelname FirewallInternetServiceAppend
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetserviceappend:Internetserviceappend labelname FirewallInternetServiceAppend
-//
+// $ pulumi import fortios:firewall/internetserviceappend:Internetserviceappend labelname FirewallInternetServiceAppend
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Internetserviceappend struct {
 	pulumi.CustomResourceState
 
@@ -51,7 +50,7 @@ func NewInternetserviceappend(ctx *pulumi.Context,
 		args = &InternetserviceappendArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Internetserviceappend
 	err := ctx.RegisterResource("fortios:firewall/internetserviceappend:Internetserviceappend", name, args, &resource, opts...)
 	if err != nil {

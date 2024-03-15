@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure log event filters.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -47,26 +49,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Log Eventfilter can be imported using any of these accepted formats
+// Log Eventfilter can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
-//
+// $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
-//
+// $ pulumi import fortios:log/eventfilter:Eventfilter labelname LogEventfilter
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Eventfilter struct {
 	pulumi.CustomResourceState
 
@@ -115,7 +116,7 @@ func NewEventfilter(ctx *pulumi.Context,
 		args = &EventfilterArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Eventfilter
 	err := ctx.RegisterResource("fortios:log/eventfilter:Eventfilter", name, args, &resource, opts...)
 	if err != nil {

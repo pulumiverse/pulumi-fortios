@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure device groups. Applies to FortiOS Version `<= 6.2.0`.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,26 +52,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # User DeviceGroup can be imported using any of these accepted formats
+// User DeviceGroup can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/devicegroup:Devicegroup labelname {{name}}
-//
+// $ pulumi import fortios:user/devicegroup:Devicegroup labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/devicegroup:Devicegroup labelname {{name}}
-//
+// $ pulumi import fortios:user/devicegroup:Devicegroup labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Devicegroup struct {
 	pulumi.CustomResourceState
 
@@ -94,7 +95,7 @@ func NewDevicegroup(ctx *pulumi.Context,
 		args = &DevicegroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Devicegroup
 	err := ctx.RegisterResource("fortios:user/devicegroup:Devicegroup", name, args, &resource, opts...)
 	if err != nil {

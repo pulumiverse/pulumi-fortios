@@ -15,8 +15,6 @@ namespace Pulumiverse.Fortios.Router.Inputs
     {
         /// <summary>
         /// Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-        /// 
-        /// The `summary_address6` block supports:
         /// </summary>
         [Input("level")]
         public Input<string>? Level { get; set; }
@@ -41,8 +39,6 @@ namespace Pulumiverse.Fortios.Router.Inputs
 
         /// <summary>
         /// Route map name.
-        /// 
-        /// The `redistribute6` block supports:
         /// </summary>
         [Input("routemap")]
         public Input<string>? Routemap { get; set; }

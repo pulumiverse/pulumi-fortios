@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Import
     /// 
-    /// Firewall InternetServiceList can be imported using any of these accepted formats
+    /// Firewall InternetServiceList can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/internetservicelist:Internetservicelist labelname {{fosid}}
+    /// $ pulumi import fortios:firewall/internetservicelist:Internetservicelist labelname {{fosid}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/internetservicelist:Internetservicelist labelname {{fosid}}
+    /// $ pulumi import fortios:firewall/internetservicelist:Internetservicelist labelname {{fosid}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:firewall/internetservicelist:Internetservicelist")]
     public partial class Internetservicelist : global::Pulumi.CustomResource

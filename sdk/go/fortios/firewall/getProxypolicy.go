@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios firewall proxypolicy
 func LookupProxypolicy(ctx *pulumi.Context, args *LookupProxypolicyArgs, opts ...pulumi.InvokeOption) (*LookupProxypolicyResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProxypolicyResult
 	err := ctx.Invoke("fortios:firewall/getProxypolicy:getProxypolicy", args, &rv, opts...)
 	if err != nil {

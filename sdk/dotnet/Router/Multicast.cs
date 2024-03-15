@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -53,22 +54,25 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Router Multicast can be imported using any of these accepted formats
+    /// Router Multicast can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:router/multicast:Multicast labelname RouterMulticast
+    /// $ pulumi import fortios:router/multicast:Multicast labelname RouterMulticast
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:router/multicast:Multicast labelname RouterMulticast
+    /// $ pulumi import fortios:router/multicast:Multicast labelname RouterMulticast
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:router/multicast:Multicast")]
     public partial class Multicast : global::Pulumi.CustomResource

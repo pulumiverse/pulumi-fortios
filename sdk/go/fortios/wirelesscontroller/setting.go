@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // VDOM wireless controller configuration.
 //
 // ## Import
 //
-// # WirelessController Setting can be imported using any of these accepted formats
+// WirelessController Setting can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/setting:Setting labelname WirelessControllerSetting
-//
+// $ pulumi import fortios:wirelesscontroller/setting:Setting labelname WirelessControllerSetting
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/setting:Setting labelname WirelessControllerSetting
-//
+// $ pulumi import fortios:wirelesscontroller/setting:Setting labelname WirelessControllerSetting
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Setting struct {
 	pulumi.CustomResourceState
 
@@ -75,7 +74,7 @@ func NewSetting(ctx *pulumi.Context,
 		args = &SettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Setting
 	err := ctx.RegisterResource("fortios:wirelesscontroller/setting:Setting", name, args, &resource, opts...)
 	if err != nil {

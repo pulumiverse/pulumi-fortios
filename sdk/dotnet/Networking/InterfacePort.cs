@@ -13,10 +13,12 @@ namespace Pulumiverse.Fortios.Networking
     /// <summary>
     /// Provides a resource to configure interface settings of FortiOS.
     /// 
-    /// !&gt; **Warning:** The resource will be deprecated and replaced by new resource `fortios.sys.Interface`, we recommend that you use the new resource.
+    /// !&gt; **Warning:** The resource will be deprecated and replaced by new resource `fortios.system.Interface`, we recommend that you use the new resource.
     /// 
     /// ## Example Usage
+    /// 
     /// ### Loopback Interface
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -40,7 +42,10 @@ namespace Pulumiverse.Fortios.Networking
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### VLAN Interface
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -65,7 +70,10 @@ namespace Pulumiverse.Fortios.Networking
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Physical Interface
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -96,6 +104,7 @@ namespace Pulumiverse.Fortios.Networking
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:networking/interfacePort:InterfacePort")]
     public partial class InterfacePort : global::Pulumi.CustomResource

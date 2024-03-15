@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -45,22 +46,25 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Router Static can be imported using any of these accepted formats
+    /// Router Static can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:router/static:Static labelname {{seq_num}}
+    /// $ pulumi import fortios:router/static:Static labelname {{seq_num}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:router/static:Static labelname {{seq_num}}
+    /// $ pulumi import fortios:router/static:Static labelname {{seq_num}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:router/static:Static")]
     public partial class Static : global::Pulumi.CustomResource

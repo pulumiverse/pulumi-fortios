@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure WAN optimization peers.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,26 +40,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Wanopt Peer can be imported using any of these accepted formats
+// Wanopt Peer can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wanopt/peer:Peer labelname {{peer_host_id}}
-//
+// $ pulumi import fortios:wanopt/peer:Peer labelname {{peer_host_id}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wanopt/peer:Peer labelname {{peer_host_id}}
-//
+// $ pulumi import fortios:wanopt/peer:Peer labelname {{peer_host_id}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Peer struct {
 	pulumi.CustomResourceState
 
@@ -76,7 +77,7 @@ func NewPeer(ctx *pulumi.Context,
 		args = &PeerArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Peer
 	err := ctx.RegisterResource("fortios:wanopt/peer:Peer", name, args, &resource, opts...)
 	if err != nil {

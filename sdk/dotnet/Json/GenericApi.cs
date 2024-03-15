@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Json
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -64,6 +65,7 @@ namespace Pulumiverse.Fortios.Json
     ///     };
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:json/genericApi:GenericApi")]
     public partial class GenericApi : global::Pulumi.CustomResource

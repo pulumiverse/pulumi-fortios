@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Import
     /// 
-    /// Firewall AccessProxySshClientCert can be imported using any of these accepted formats
+    /// Firewall AccessProxySshClientCert can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/accessproxysshclientcert:Accessproxysshclientcert labelname {{name}}
+    /// $ pulumi import fortios:firewall/accessproxysshclientcert:Accessproxysshclientcert labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/accessproxysshclientcert:Accessproxysshclientcert labelname {{name}}
+    /// $ pulumi import fortios:firewall/accessproxysshclientcert:Accessproxysshclientcert labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:firewall/accessproxysshclientcert:Accessproxysshclientcert")]
     public partial class Accessproxysshclientcert : global::Pulumi.CustomResource

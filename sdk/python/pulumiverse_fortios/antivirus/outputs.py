@@ -1530,7 +1530,7 @@ class ProfilePop3(dict):
         :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
         :param str fortindr: Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         :param str fortisandbox: Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
-        :param str options: Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+        :param str options: Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Configure Virus Outbreak Prevention settings. The structure of `outbreak_prevention` block is documented below.
         :param str quarantine: Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
         """
@@ -1645,7 +1645,7 @@ class ProfilePop3(dict):
     @pulumi.getter
     def options(self) -> Optional[str]:
         """
-        Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+        Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         """
         return pulumi.get(self, "options")
 

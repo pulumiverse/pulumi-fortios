@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Show Internet Service botnet. Applies to FortiOS Version `>= 6.4.0`.
 //
 // ## Import
 //
-// # Firewall InternetServiceBotnet can be imported using any of these accepted formats
+// Firewall InternetServiceBotnet can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetservicebotnet:Internetservicebotnet labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetservicebotnet:Internetservicebotnet labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetservicebotnet:Internetservicebotnet labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetservicebotnet:Internetservicebotnet labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Internetservicebotnet struct {
 	pulumi.CustomResourceState
 
@@ -49,7 +48,7 @@ func NewInternetservicebotnet(ctx *pulumi.Context,
 		args = &InternetservicebotnetArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Internetservicebotnet
 	err := ctx.RegisterResource("fortios:firewall/internetservicebotnet:Internetservicebotnet", name, args, &resource, opts...)
 	if err != nil {

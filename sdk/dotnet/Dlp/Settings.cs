@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Dlp
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -33,28 +34,31 @@ namespace Pulumiverse.Fortios.Dlp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Dlp Settings can be imported using any of these accepted formats
+    /// Dlp Settings can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:dlp/settings:Settings labelname DlpSettings
+    /// $ pulumi import fortios:dlp/settings:Settings labelname DlpSettings
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:dlp/settings:Settings labelname DlpSettings
+    /// $ pulumi import fortios:dlp/settings:Settings labelname DlpSettings
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:dlp/settings:Settings")]
     public partial class Settings : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Maximum percentage of available memory allocated to caching (1 - 15%).
+        /// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
         /// </summary>
         [Output("cacheMemPercent")]
         public Output<int> CacheMemPercent { get; private set; } = null!;
@@ -137,7 +141,7 @@ namespace Pulumiverse.Fortios.Dlp
     public sealed class SettingsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Maximum percentage of available memory allocated to caching (1 - 15%).
+        /// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
         /// </summary>
         [Input("cacheMemPercent")]
         public Input<int>? CacheMemPercent { get; set; }
@@ -181,7 +185,7 @@ namespace Pulumiverse.Fortios.Dlp
     public sealed class SettingsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Maximum percentage of available memory allocated to caching (1 - 15%).
+        /// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
         /// </summary>
         [Input("cacheMemPercent")]
         public Input<int>? CacheMemPercent { get; set; }

@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports Create/Read/Update/Delete system adom for FortiManager.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,6 +47,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SystemAdom struct {
 	pulumi.CustomResourceState
 
@@ -77,7 +80,7 @@ func NewSystemAdom(ctx *pulumi.Context,
 		args = &SystemAdomArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAdom
 	err := ctx.RegisterResource("fortios:fmg/systemAdom:SystemAdom", name, args, &resource, opts...)
 	if err != nil {

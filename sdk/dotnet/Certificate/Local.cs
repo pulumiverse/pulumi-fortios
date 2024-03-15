@@ -18,6 +18,7 @@ namespace Pulumiverse.Fortios.Certificate
     /// ## Example
     /// 
     /// ### Delete Certificate:
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -26,7 +27,7 @@ namespace Pulumiverse.Fortios.Certificate
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var trname1 = new Fortios.Sys.Autoscript("trname1", new()
+    ///     var trname1 = new Fortios.System.Autoscript("trname1", new()
     ///     {
     ///         Interval = 1,
     ///         OutputSize = 10,
@@ -41,6 +42,7 @@ namespace Pulumiverse.Fortios.Certificate
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:certificate/local:Local")]
     public partial class Local : global::Pulumi.CustomResource

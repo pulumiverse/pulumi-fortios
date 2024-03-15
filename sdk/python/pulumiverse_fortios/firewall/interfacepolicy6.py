@@ -1035,6 +1035,7 @@ class Interfacepolicy6(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1063,22 +1064,25 @@ class Interfacepolicy6(pulumi.CustomResource):
             status="enable",
             webfilter_profile_status="disable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall InterfacePolicy6 can be imported using any of these accepted formats
+        Firewall InterfacePolicy6 can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
+        $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
+        $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1126,6 +1130,7 @@ class Interfacepolicy6(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1154,22 +1159,25 @@ class Interfacepolicy6(pulumi.CustomResource):
             status="enable",
             webfilter_profile_status="disable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall InterfacePolicy6 can be imported using any of these accepted formats
+        Firewall InterfacePolicy6 can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
+        $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
+        $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param Interfacepolicy6Args args: The arguments to use to populate this resource's properties.

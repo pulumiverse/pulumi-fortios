@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports handling JSON RPC request for FortiManager.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,19 +30,74 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := fmg.NewJsonrpcRequest(ctx, "test1", &fmg.JsonrpcRequestArgs{
-//				JsonContent: pulumi.String("{\n  \"method\": \"add\",\n  \"params\": [\n    {\n      \"data\": [\n        {\n          \"action\": \"accept\",\n          \"dstaddr\": [\"all\"],\n          \"dstintf\": \"any\",\n          \"name\": \"policytest\",\n          \"schedule\": \"none\",\n          \"service\": \"ALL\",\n          \"srcaddr\": \"all\",\n          \"srcintf\": \"any\",\n          \"internet-service\": \"enable\",\n          \"internet-service-id\": \"Alibaba-Web\",\n          \"internet-service-src\": \"enable\",\n          \"internet-service-src-id\": \"Alibaba-Web\",\n          \"users\": \"guest\",\n          \"groups\": \"Guest-group\"\n        }\n      ],\n      \"url\": \"/pm/config/adom/root/pkg/default/firewall/policy\"\n    }\n  ]\n}\n\n"),
+//				JsonContent: pulumi.String(`{
+//	  "method": "add",
+//	  "params": [
+//	    {
+//	      "data": [
+//	        {
+//	          "action": "accept",
+//	          "dstaddr": ["all"],
+//	          "dstintf": "any",
+//	          "name": "policytest",
+//	          "schedule": "none",
+//	          "service": "ALL",
+//	          "srcaddr": "all",
+//	          "srcintf": "any",
+//	          "internet-service": "enable",
+//	          "internet-service-id": "Alibaba-Web",
+//	          "internet-service-src": "enable",
+//	          "internet-service-src-id": "Alibaba-Web",
+//	          "users": "guest",
+//	          "groups": "Guest-group"
+//	        }
+//	      ],
+//	      "url": "/pm/config/adom/root/pkg/default/firewall/policy"
+//	    }
+//	  ]
+//	}
+//
+// `),
+//
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = fmg.NewJsonrpcRequest(ctx, "test2", &fmg.JsonrpcRequestArgs{
-//				JsonContent: pulumi.String("{\n  \"method\": \"add\",\n  \"params\": [\n    {\n      \"data\": [\n        {\n          \"ip\": \"192.168.1.2\",\n          \"name\": \"logserver4\",\n          \"port\": \"514\"\n        }\n      ],\n      \"url\": \"/cli/global/system/syslog\"\n    }\n  ]\n}\n\n"),
+//				JsonContent: pulumi.String(`{
+//	  "method": "add",
+//	  "params": [
+//	    {
+//	      "data": [
+//	        {
+//	          "ip": "192.168.1.2",
+//	          "name": "logserver4",
+//	          "port": "514"
+//	        }
+//	      ],
+//	      "url": "/cli/global/system/syslog"
+//	    }
+//	  ]
+//	}
+//
+// `),
+//
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = fmg.NewJsonrpcRequest(ctx, "test3", &fmg.JsonrpcRequestArgs{
-//				JsonContent: pulumi.String("{\n  \"method\": \"get\",\n  \"params\": [\n    {\n      \"url\": \"/cli/global/system/admin/user/APIUser\"\n    }\n  ]\n}\n\n"),
+//				JsonContent: pulumi.String(`{
+//	  "method": "get",
+//	  "params": [
+//	    {
+//	      "url": "/cli/global/system/admin/user/APIUser"
+//	    }
+//	  ]
+//	}
+//
+// `),
+//
 //			})
 //			if err != nil {
 //				return err
@@ -50,6 +107,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type JsonrpcRequest struct {
 	pulumi.CustomResourceState
 
@@ -71,7 +129,7 @@ func NewJsonrpcRequest(ctx *pulumi.Context,
 	if args.JsonContent == nil {
 		return nil, errors.New("invalid value for required argument 'JsonContent'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource JsonrpcRequest
 	err := ctx.RegisterResource("fortios:fmg/jsonrpcRequest:JsonrpcRequest", name, args, &resource, opts...)
 	if err != nil {

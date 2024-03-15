@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Antivirus
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,22 +32,25 @@ namespace Pulumiverse.Fortios.Antivirus
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Antivirus Settings can be imported using any of these accepted formats
+    /// Antivirus Settings can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
+    /// $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
+    /// $ pulumi import fortios:antivirus/settings:Settings labelname AntivirusSettings
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:antivirus/settings:Settings")]
     public partial class Settings : global::Pulumi.CustomResource

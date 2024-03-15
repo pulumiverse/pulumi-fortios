@@ -108,11 +108,11 @@ def get_generic_api(path: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:json/getGenericApi:getGenericApi', __args__, opts=opts, typ=GetGenericApiResult).value
 
     return AwaitableGetGenericApiResult(
-        id=__ret__.id,
-        path=__ret__.path,
-        response=__ret__.response,
-        specialparams=__ret__.specialparams,
-        vdomparam=__ret__.vdomparam)
+        id=pulumi.get(__ret__, 'id'),
+        path=pulumi.get(__ret__, 'path'),
+        response=pulumi.get(__ret__, 'response'),
+        specialparams=pulumi.get(__ret__, 'specialparams'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_generic_api)

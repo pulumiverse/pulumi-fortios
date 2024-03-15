@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure WiFi bridge access control list. Applies to FortiOS Version `>= 6.4.0`.
 //
 // ## Import
 //
-// # WirelessController AccessControlList can be imported using any of these accepted formats
+// WirelessController AccessControlList can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/accesscontrollist:Accesscontrollist labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/accesscontrollist:Accesscontrollist labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/accesscontrollist:Accesscontrollist labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/accesscontrollist:Accesscontrollist labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Accesscontrollist struct {
 	pulumi.CustomResourceState
 
@@ -57,7 +56,7 @@ func NewAccesscontrollist(ctx *pulumi.Context,
 		args = &AccesscontrollistArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Accesscontrollist
 	err := ctx.RegisterResource("fortios:wirelesscontroller/accesscontrollist:Accesscontrollist", name, args, &resource, opts...)
 	if err != nil {

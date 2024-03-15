@@ -15,10 +15,9 @@ namespace Pulumiverse.Fortios.Router
         /// <summary>
         /// Provides a list of `fortios.router.Static`.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -38,8 +37,7 @@ namespace Pulumiverse.Fortios.Router
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetStaticlistResult> InvokeAsync(GetStaticlistArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStaticlistResult>("fortios:router/getStaticlist:getStaticlist", args ?? new GetStaticlistArgs(), options.WithDefaults());
@@ -47,10 +45,9 @@ namespace Pulumiverse.Fortios.Router
         /// <summary>
         /// Provides a list of `fortios.router.Static`.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -70,8 +67,7 @@ namespace Pulumiverse.Fortios.Router
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetStaticlistResult> Invoke(GetStaticlistInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStaticlistResult>("fortios:router/getStaticlist:getStaticlist", args ?? new GetStaticlistInvokeArgs(), options.WithDefaults());

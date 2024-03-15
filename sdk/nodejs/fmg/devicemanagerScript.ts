@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -26,6 +27,7 @@ import * as utilities from "../utilities";
  *     target: "remote_device",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class DevicemanagerScript extends pulumi.CustomResource {
     /**

@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -30,22 +31,25 @@ import * as utilities from "../utilities";
  *     trafficSubmit: "disable",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Ips Global can be imported using any of these accepted formats
+ * Ips Global can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:ips/global:Global labelname IpsGlobal
+ * $ pulumi import fortios:ips/global:Global labelname IpsGlobal
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:ips/global:Global labelname IpsGlobal
+ * $ pulumi import fortios:ips/global:Global labelname IpsGlobal
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Global extends pulumi.CustomResource {
     /**

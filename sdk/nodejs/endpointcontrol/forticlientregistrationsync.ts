@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -18,22 +19,25 @@ import * as utilities from "../utilities";
  *     peerName: "1",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * EndpointControl ForticlientRegistrationSync can be imported using any of these accepted formats
+ * EndpointControl ForticlientRegistrationSync can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:endpointcontrol/forticlientregistrationsync:Forticlientregistrationsync labelname {{peer_name}}
+ * $ pulumi import fortios:endpointcontrol/forticlientregistrationsync:Forticlientregistrationsync labelname {{peer_name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:endpointcontrol/forticlientregistrationsync:Forticlientregistrationsync labelname {{peer_name}}
+ * $ pulumi import fortios:endpointcontrol/forticlientregistrationsync:Forticlientregistrationsync labelname {{peer_name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Forticlientregistrationsync extends pulumi.CustomResource {
     /**

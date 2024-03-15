@@ -9,19 +9,21 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * WirelessController Log can be imported using any of these accepted formats
+ * WirelessController Log can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:wirelesscontroller/log:Log labelname WirelessControllerLog
+ * $ pulumi import fortios:wirelesscontroller/log:Log labelname WirelessControllerLog
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:wirelesscontroller/log:Log labelname WirelessControllerLog
+ * $ pulumi import fortios:wirelesscontroller/log:Log labelname WirelessControllerLog
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Log extends pulumi.CustomResource {
     /**

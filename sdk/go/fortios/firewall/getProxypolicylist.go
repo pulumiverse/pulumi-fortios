@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `firewall.Proxypolicy`.
 func GetProxypolicylist(ctx *pulumi.Context, args *GetProxypolicylistArgs, opts ...pulumi.InvokeOption) (*GetProxypolicylistResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetProxypolicylistResult
 	err := ctx.Invoke("fortios:firewall/getProxypolicylist:getProxypolicylist", args, &rv, opts...)
 	if err != nil {

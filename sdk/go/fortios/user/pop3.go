@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // POP3 server entry configuration.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,26 +43,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # User Pop3 can be imported using any of these accepted formats
+// User Pop3 can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/pop3:Pop3 labelname {{name}}
-//
+// $ pulumi import fortios:user/pop3:Pop3 labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/pop3:Pop3 labelname {{name}}
-//
+// $ pulumi import fortios:user/pop3:Pop3 labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Pop3 struct {
 	pulumi.CustomResourceState
 
@@ -88,7 +89,7 @@ func NewPop3(ctx *pulumi.Context,
 	if args.Server == nil {
 		return nil, errors.New("invalid value for required argument 'Server'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Pop3
 	err := ctx.RegisterResource("fortios:user/pop3:Pop3", name, args, &resource, opts...)
 	if err != nil {

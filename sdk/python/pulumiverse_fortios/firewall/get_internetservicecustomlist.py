@@ -91,10 +91,10 @@ def get_internetservicecustomlist(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:firewall/getInternetservicecustomlist:getInternetservicecustomlist', __args__, opts=opts, typ=GetInternetservicecustomlistResult).value
 
     return AwaitableGetInternetservicecustomlistResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        namelists=__ret__.namelists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        namelists=pulumi.get(__ret__, 'namelists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_internetservicecustomlist)

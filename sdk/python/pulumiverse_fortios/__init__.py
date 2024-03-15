@@ -29,38 +29,18 @@ if typing.TYPE_CHECKING:
     credentialstore = __credentialstore
     import pulumiverse_fortios.dlp as __dlp
     dlp = __dlp
-    import pulumiverse_fortios.dnsfilter as __dnsfilter
-    dnsfilter = __dnsfilter
     import pulumiverse_fortios.dpdk as __dpdk
     dpdk = __dpdk
-    import pulumiverse_fortios.emailfilter as __emailfilter
-    emailfilter = __emailfilter
     import pulumiverse_fortios.endpointcontrol as __endpointcontrol
     endpointcontrol = __endpointcontrol
     import pulumiverse_fortios.extendercontroller as __extendercontroller
     extendercontroller = __extendercontroller
     import pulumiverse_fortios.extensioncontroller as __extensioncontroller
     extensioncontroller = __extensioncontroller
-    import pulumiverse_fortios.filefilter as __filefilter
-    filefilter = __filefilter
+    import pulumiverse_fortios.filter as __filter
+    filter = __filter
     import pulumiverse_fortios.firewall as __firewall
     firewall = __firewall
-    import pulumiverse_fortios.firewallconsolidated as __firewallconsolidated
-    firewallconsolidated = __firewallconsolidated
-    import pulumiverse_fortios.firewallipmacbinding as __firewallipmacbinding
-    firewallipmacbinding = __firewallipmacbinding
-    import pulumiverse_fortios.firewallschedule as __firewallschedule
-    firewallschedule = __firewallschedule
-    import pulumiverse_fortios.firewallservice as __firewallservice
-    firewallservice = __firewallservice
-    import pulumiverse_fortios.firewallshaper as __firewallshaper
-    firewallshaper = __firewallshaper
-    import pulumiverse_fortios.firewallssh as __firewallssh
-    firewallssh = __firewallssh
-    import pulumiverse_fortios.firewallssl as __firewallssl
-    firewallssl = __firewallssl
-    import pulumiverse_fortios.firewallwildcardfqdn as __firewallwildcardfqdn
-    firewallwildcardfqdn = __firewallwildcardfqdn
     import pulumiverse_fortios.fmg as __fmg
     fmg = __fmg
     import pulumiverse_fortios.ftpproxy as __ftpproxy
@@ -75,38 +55,6 @@ if typing.TYPE_CHECKING:
     json = __json
     import pulumiverse_fortios.log as __log
     log = __log
-    import pulumiverse_fortios.logdisk as __logdisk
-    logdisk = __logdisk
-    import pulumiverse_fortios.logfortianalyzer as __logfortianalyzer
-    logfortianalyzer = __logfortianalyzer
-    import pulumiverse_fortios.logfortianalyzer2 as __logfortianalyzer2
-    logfortianalyzer2 = __logfortianalyzer2
-    import pulumiverse_fortios.logfortianalyzer3 as __logfortianalyzer3
-    logfortianalyzer3 = __logfortianalyzer3
-    import pulumiverse_fortios.logfortianalyzercloud as __logfortianalyzercloud
-    logfortianalyzercloud = __logfortianalyzercloud
-    import pulumiverse_fortios.logfortiguard as __logfortiguard
-    logfortiguard = __logfortiguard
-    import pulumiverse_fortios.logmemory as __logmemory
-    logmemory = __logmemory
-    import pulumiverse_fortios.lognulldevice as __lognulldevice
-    lognulldevice = __lognulldevice
-    import pulumiverse_fortios.logsyslogd as __logsyslogd
-    logsyslogd = __logsyslogd
-    import pulumiverse_fortios.logsyslogd2 as __logsyslogd2
-    logsyslogd2 = __logsyslogd2
-    import pulumiverse_fortios.logsyslogd3 as __logsyslogd3
-    logsyslogd3 = __logsyslogd3
-    import pulumiverse_fortios.logsyslogd4 as __logsyslogd4
-    logsyslogd4 = __logsyslogd4
-    import pulumiverse_fortios.logtacacsaccounting as __logtacacsaccounting
-    logtacacsaccounting = __logtacacsaccounting
-    import pulumiverse_fortios.logtacacsaccounting2 as __logtacacsaccounting2
-    logtacacsaccounting2 = __logtacacsaccounting2
-    import pulumiverse_fortios.logtacacsaccounting3 as __logtacacsaccounting3
-    logtacacsaccounting3 = __logtacacsaccounting3
-    import pulumiverse_fortios.logwebtrends as __logwebtrends
-    logwebtrends = __logwebtrends
     import pulumiverse_fortios.networking as __networking
     networking = __networking
     import pulumiverse_fortios.nsxt as __nsxt
@@ -115,74 +63,24 @@ if typing.TYPE_CHECKING:
     report = __report
     import pulumiverse_fortios.router as __router
     router = __router
-    import pulumiverse_fortios.routerbgp as __routerbgp
-    routerbgp = __routerbgp
-    import pulumiverse_fortios.routerospf as __routerospf
-    routerospf = __routerospf
-    import pulumiverse_fortios.routerospf6 as __routerospf6
-    routerospf6 = __routerospf6
-    import pulumiverse_fortios.sctpfilter as __sctpfilter
-    sctpfilter = __sctpfilter
-    import pulumiverse_fortios.spamfilter as __spamfilter
-    spamfilter = __spamfilter
-    import pulumiverse_fortios.sshfilter as __sshfilter
-    sshfilter = __sshfilter
     import pulumiverse_fortios.switchcontroller as __switchcontroller
     switchcontroller = __switchcontroller
-    import pulumiverse_fortios.switchcontrollerautoconfig as __switchcontrollerautoconfig
-    switchcontrollerautoconfig = __switchcontrollerautoconfig
-    import pulumiverse_fortios.switchcontrollerinitialconfig as __switchcontrollerinitialconfig
-    switchcontrollerinitialconfig = __switchcontrollerinitialconfig
-    import pulumiverse_fortios.switchcontrollerptp as __switchcontrollerptp
-    switchcontrollerptp = __switchcontrollerptp
-    import pulumiverse_fortios.switchcontrollerqos as __switchcontrollerqos
-    switchcontrollerqos = __switchcontrollerqos
-    import pulumiverse_fortios.switchcontrollersecuritypolicy as __switchcontrollersecuritypolicy
-    switchcontrollersecuritypolicy = __switchcontrollersecuritypolicy
-    import pulumiverse_fortios.sys as __sys
-    sys = __sys
-    import pulumiverse_fortios.system3gmodem as __system3gmodem
-    system3gmodem = __system3gmodem
-    import pulumiverse_fortios.systemautoupdate as __systemautoupdate
-    systemautoupdate = __systemautoupdate
-    import pulumiverse_fortios.systemdhcp as __systemdhcp
-    systemdhcp = __systemdhcp
-    import pulumiverse_fortios.systemdhcp6 as __systemdhcp6
-    systemdhcp6 = __systemdhcp6
-    import pulumiverse_fortios.systemlldp as __systemlldp
-    systemlldp = __systemlldp
-    import pulumiverse_fortios.systemreplacemsg as __systemreplacemsg
-    systemreplacemsg = __systemreplacemsg
-    import pulumiverse_fortios.systemsnmp as __systemsnmp
-    systemsnmp = __systemsnmp
+    import pulumiverse_fortios.system as __system
+    system = __system
     import pulumiverse_fortios.user as __user
     user = __user
-    import pulumiverse_fortios.videofilter as __videofilter
-    videofilter = __videofilter
     import pulumiverse_fortios.voip as __voip
     voip = __voip
     import pulumiverse_fortios.vpn as __vpn
     vpn = __vpn
-    import pulumiverse_fortios.vpncertificate as __vpncertificate
-    vpncertificate = __vpncertificate
-    import pulumiverse_fortios.vpnipsec as __vpnipsec
-    vpnipsec = __vpnipsec
-    import pulumiverse_fortios.vpnssl as __vpnssl
-    vpnssl = __vpnssl
-    import pulumiverse_fortios.vpnsslweb as __vpnsslweb
-    vpnsslweb = __vpnsslweb
     import pulumiverse_fortios.waf as __waf
     waf = __waf
     import pulumiverse_fortios.wanopt as __wanopt
     wanopt = __wanopt
-    import pulumiverse_fortios.webfilter as __webfilter
-    webfilter = __webfilter
     import pulumiverse_fortios.webproxy as __webproxy
     webproxy = __webproxy
     import pulumiverse_fortios.wirelesscontroller as __wirelesscontroller
     wirelesscontroller = __wirelesscontroller
-    import pulumiverse_fortios.wirelesscontrollerhotspot20 as __wirelesscontrollerhotspot20
-    wirelesscontrollerhotspot20 = __wirelesscontrollerhotspot20
 else:
     alertemail = _utilities.lazy_import('pulumiverse_fortios.alertemail')
     antivirus = _utilities.lazy_import('pulumiverse_fortios.antivirus')
@@ -194,22 +92,12 @@ else:
     config = _utilities.lazy_import('pulumiverse_fortios.config')
     credentialstore = _utilities.lazy_import('pulumiverse_fortios.credentialstore')
     dlp = _utilities.lazy_import('pulumiverse_fortios.dlp')
-    dnsfilter = _utilities.lazy_import('pulumiverse_fortios.dnsfilter')
     dpdk = _utilities.lazy_import('pulumiverse_fortios.dpdk')
-    emailfilter = _utilities.lazy_import('pulumiverse_fortios.emailfilter')
     endpointcontrol = _utilities.lazy_import('pulumiverse_fortios.endpointcontrol')
     extendercontroller = _utilities.lazy_import('pulumiverse_fortios.extendercontroller')
     extensioncontroller = _utilities.lazy_import('pulumiverse_fortios.extensioncontroller')
-    filefilter = _utilities.lazy_import('pulumiverse_fortios.filefilter')
+    filter = _utilities.lazy_import('pulumiverse_fortios.filter')
     firewall = _utilities.lazy_import('pulumiverse_fortios.firewall')
-    firewallconsolidated = _utilities.lazy_import('pulumiverse_fortios.firewallconsolidated')
-    firewallipmacbinding = _utilities.lazy_import('pulumiverse_fortios.firewallipmacbinding')
-    firewallschedule = _utilities.lazy_import('pulumiverse_fortios.firewallschedule')
-    firewallservice = _utilities.lazy_import('pulumiverse_fortios.firewallservice')
-    firewallshaper = _utilities.lazy_import('pulumiverse_fortios.firewallshaper')
-    firewallssh = _utilities.lazy_import('pulumiverse_fortios.firewallssh')
-    firewallssl = _utilities.lazy_import('pulumiverse_fortios.firewallssl')
-    firewallwildcardfqdn = _utilities.lazy_import('pulumiverse_fortios.firewallwildcardfqdn')
     fmg = _utilities.lazy_import('pulumiverse_fortios.fmg')
     ftpproxy = _utilities.lazy_import('pulumiverse_fortios.ftpproxy')
     icap = _utilities.lazy_import('pulumiverse_fortios.icap')
@@ -217,60 +105,19 @@ else:
     ips = _utilities.lazy_import('pulumiverse_fortios.ips')
     json = _utilities.lazy_import('pulumiverse_fortios.json')
     log = _utilities.lazy_import('pulumiverse_fortios.log')
-    logdisk = _utilities.lazy_import('pulumiverse_fortios.logdisk')
-    logfortianalyzer = _utilities.lazy_import('pulumiverse_fortios.logfortianalyzer')
-    logfortianalyzer2 = _utilities.lazy_import('pulumiverse_fortios.logfortianalyzer2')
-    logfortianalyzer3 = _utilities.lazy_import('pulumiverse_fortios.logfortianalyzer3')
-    logfortianalyzercloud = _utilities.lazy_import('pulumiverse_fortios.logfortianalyzercloud')
-    logfortiguard = _utilities.lazy_import('pulumiverse_fortios.logfortiguard')
-    logmemory = _utilities.lazy_import('pulumiverse_fortios.logmemory')
-    lognulldevice = _utilities.lazy_import('pulumiverse_fortios.lognulldevice')
-    logsyslogd = _utilities.lazy_import('pulumiverse_fortios.logsyslogd')
-    logsyslogd2 = _utilities.lazy_import('pulumiverse_fortios.logsyslogd2')
-    logsyslogd3 = _utilities.lazy_import('pulumiverse_fortios.logsyslogd3')
-    logsyslogd4 = _utilities.lazy_import('pulumiverse_fortios.logsyslogd4')
-    logtacacsaccounting = _utilities.lazy_import('pulumiverse_fortios.logtacacsaccounting')
-    logtacacsaccounting2 = _utilities.lazy_import('pulumiverse_fortios.logtacacsaccounting2')
-    logtacacsaccounting3 = _utilities.lazy_import('pulumiverse_fortios.logtacacsaccounting3')
-    logwebtrends = _utilities.lazy_import('pulumiverse_fortios.logwebtrends')
     networking = _utilities.lazy_import('pulumiverse_fortios.networking')
     nsxt = _utilities.lazy_import('pulumiverse_fortios.nsxt')
     report = _utilities.lazy_import('pulumiverse_fortios.report')
     router = _utilities.lazy_import('pulumiverse_fortios.router')
-    routerbgp = _utilities.lazy_import('pulumiverse_fortios.routerbgp')
-    routerospf = _utilities.lazy_import('pulumiverse_fortios.routerospf')
-    routerospf6 = _utilities.lazy_import('pulumiverse_fortios.routerospf6')
-    sctpfilter = _utilities.lazy_import('pulumiverse_fortios.sctpfilter')
-    spamfilter = _utilities.lazy_import('pulumiverse_fortios.spamfilter')
-    sshfilter = _utilities.lazy_import('pulumiverse_fortios.sshfilter')
     switchcontroller = _utilities.lazy_import('pulumiverse_fortios.switchcontroller')
-    switchcontrollerautoconfig = _utilities.lazy_import('pulumiverse_fortios.switchcontrollerautoconfig')
-    switchcontrollerinitialconfig = _utilities.lazy_import('pulumiverse_fortios.switchcontrollerinitialconfig')
-    switchcontrollerptp = _utilities.lazy_import('pulumiverse_fortios.switchcontrollerptp')
-    switchcontrollerqos = _utilities.lazy_import('pulumiverse_fortios.switchcontrollerqos')
-    switchcontrollersecuritypolicy = _utilities.lazy_import('pulumiverse_fortios.switchcontrollersecuritypolicy')
-    sys = _utilities.lazy_import('pulumiverse_fortios.sys')
-    system3gmodem = _utilities.lazy_import('pulumiverse_fortios.system3gmodem')
-    systemautoupdate = _utilities.lazy_import('pulumiverse_fortios.systemautoupdate')
-    systemdhcp = _utilities.lazy_import('pulumiverse_fortios.systemdhcp')
-    systemdhcp6 = _utilities.lazy_import('pulumiverse_fortios.systemdhcp6')
-    systemlldp = _utilities.lazy_import('pulumiverse_fortios.systemlldp')
-    systemreplacemsg = _utilities.lazy_import('pulumiverse_fortios.systemreplacemsg')
-    systemsnmp = _utilities.lazy_import('pulumiverse_fortios.systemsnmp')
+    system = _utilities.lazy_import('pulumiverse_fortios.system')
     user = _utilities.lazy_import('pulumiverse_fortios.user')
-    videofilter = _utilities.lazy_import('pulumiverse_fortios.videofilter')
     voip = _utilities.lazy_import('pulumiverse_fortios.voip')
     vpn = _utilities.lazy_import('pulumiverse_fortios.vpn')
-    vpncertificate = _utilities.lazy_import('pulumiverse_fortios.vpncertificate')
-    vpnipsec = _utilities.lazy_import('pulumiverse_fortios.vpnipsec')
-    vpnssl = _utilities.lazy_import('pulumiverse_fortios.vpnssl')
-    vpnsslweb = _utilities.lazy_import('pulumiverse_fortios.vpnsslweb')
     waf = _utilities.lazy_import('pulumiverse_fortios.waf')
     wanopt = _utilities.lazy_import('pulumiverse_fortios.wanopt')
-    webfilter = _utilities.lazy_import('pulumiverse_fortios.webfilter')
     webproxy = _utilities.lazy_import('pulumiverse_fortios.webproxy')
     wirelesscontroller = _utilities.lazy_import('pulumiverse_fortios.wirelesscontroller')
-    wirelesscontrollerhotspot20 = _utilities.lazy_import('pulumiverse_fortios.wirelesscontrollerhotspot20')
 
 _utilities.register(
     resource_modules="""
@@ -517,22 +364,6 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
-  "mod": "dnsfilter/domainfilter",
-  "fqn": "pulumiverse_fortios.dnsfilter",
-  "classes": {
-   "fortios:dnsfilter/domainfilter:Domainfilter": "Domainfilter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "dnsfilter/profile",
-  "fqn": "pulumiverse_fortios.dnsfilter",
-  "classes": {
-   "fortios:dnsfilter/profile:Profile": "Profile"
-  }
- },
- {
-  "pkg": "fortios",
   "mod": "dpdk/cpus",
   "fqn": "pulumiverse_fortios.dpdk",
   "classes": {
@@ -545,78 +376,6 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.dpdk",
   "classes": {
    "fortios:dpdk/global:Global": "Global"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "emailfilter/blockallowlist",
-  "fqn": "pulumiverse_fortios.emailfilter",
-  "classes": {
-   "fortios:emailfilter/blockallowlist:Blockallowlist": "Blockallowlist"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "emailfilter/bwl",
-  "fqn": "pulumiverse_fortios.emailfilter",
-  "classes": {
-   "fortios:emailfilter/bwl:Bwl": "Bwl"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "emailfilter/bword",
-  "fqn": "pulumiverse_fortios.emailfilter",
-  "classes": {
-   "fortios:emailfilter/bword:Bword": "Bword"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "emailfilter/dnsbl",
-  "fqn": "pulumiverse_fortios.emailfilter",
-  "classes": {
-   "fortios:emailfilter/dnsbl:Dnsbl": "Dnsbl"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "emailfilter/fortishield",
-  "fqn": "pulumiverse_fortios.emailfilter",
-  "classes": {
-   "fortios:emailfilter/fortishield:Fortishield": "Fortishield"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "emailfilter/iptrust",
-  "fqn": "pulumiverse_fortios.emailfilter",
-  "classes": {
-   "fortios:emailfilter/iptrust:Iptrust": "Iptrust"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "emailfilter/mheader",
-  "fqn": "pulumiverse_fortios.emailfilter",
-  "classes": {
-   "fortios:emailfilter/mheader:Mheader": "Mheader"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "emailfilter/options",
-  "fqn": "pulumiverse_fortios.emailfilter",
-  "classes": {
-   "fortios:emailfilter/options:Options": "Options"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "emailfilter/profile",
-  "fqn": "pulumiverse_fortios.emailfilter",
-  "classes": {
-   "fortios:emailfilter/profile:Profile": "Profile"
   }
  },
  {
@@ -749,10 +508,298 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
-  "mod": "filefilter/profile",
-  "fqn": "pulumiverse_fortios.filefilter",
+  "mod": "filter/dns/domainfilter",
+  "fqn": "pulumiverse_fortios.filter.dns",
   "classes": {
-   "fortios:filefilter/profile:Profile": "Profile"
+   "fortios:filter/dns/domainfilter:Domainfilter": "Domainfilter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/dns/profile",
+  "fqn": "pulumiverse_fortios.filter.dns",
+  "classes": {
+   "fortios:filter/dns/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/email/blockallowlist",
+  "fqn": "pulumiverse_fortios.filter.email",
+  "classes": {
+   "fortios:filter/email/blockallowlist:Blockallowlist": "Blockallowlist"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/email/bwl",
+  "fqn": "pulumiverse_fortios.filter.email",
+  "classes": {
+   "fortios:filter/email/bwl:Bwl": "Bwl"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/email/bword",
+  "fqn": "pulumiverse_fortios.filter.email",
+  "classes": {
+   "fortios:filter/email/bword:Bword": "Bword"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/email/dnsbl",
+  "fqn": "pulumiverse_fortios.filter.email",
+  "classes": {
+   "fortios:filter/email/dnsbl:Dnsbl": "Dnsbl"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/email/fortishield",
+  "fqn": "pulumiverse_fortios.filter.email",
+  "classes": {
+   "fortios:filter/email/fortishield:Fortishield": "Fortishield"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/email/iptrust",
+  "fqn": "pulumiverse_fortios.filter.email",
+  "classes": {
+   "fortios:filter/email/iptrust:Iptrust": "Iptrust"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/email/mheader",
+  "fqn": "pulumiverse_fortios.filter.email",
+  "classes": {
+   "fortios:filter/email/mheader:Mheader": "Mheader"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/email/options",
+  "fqn": "pulumiverse_fortios.filter.email",
+  "classes": {
+   "fortios:filter/email/options:Options": "Options"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/email/profile",
+  "fqn": "pulumiverse_fortios.filter.email",
+  "classes": {
+   "fortios:filter/email/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/file/profile",
+  "fqn": "pulumiverse_fortios.filter.file",
+  "classes": {
+   "fortios:filter/file/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/sctp/profile",
+  "fqn": "pulumiverse_fortios.filter.sctp",
+  "classes": {
+   "fortios:filter/sctp/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/spam/bwl",
+  "fqn": "pulumiverse_fortios.filter.spam",
+  "classes": {
+   "fortios:filter/spam/bwl:Bwl": "Bwl"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/spam/bword",
+  "fqn": "pulumiverse_fortios.filter.spam",
+  "classes": {
+   "fortios:filter/spam/bword:Bword": "Bword"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/spam/dnsbl",
+  "fqn": "pulumiverse_fortios.filter.spam",
+  "classes": {
+   "fortios:filter/spam/dnsbl:Dnsbl": "Dnsbl"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/spam/fortishield",
+  "fqn": "pulumiverse_fortios.filter.spam",
+  "classes": {
+   "fortios:filter/spam/fortishield:Fortishield": "Fortishield"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/spam/iptrust",
+  "fqn": "pulumiverse_fortios.filter.spam",
+  "classes": {
+   "fortios:filter/spam/iptrust:Iptrust": "Iptrust"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/spam/mheader",
+  "fqn": "pulumiverse_fortios.filter.spam",
+  "classes": {
+   "fortios:filter/spam/mheader:Mheader": "Mheader"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/spam/options",
+  "fqn": "pulumiverse_fortios.filter.spam",
+  "classes": {
+   "fortios:filter/spam/options:Options": "Options"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/spam/profile",
+  "fqn": "pulumiverse_fortios.filter.spam",
+  "classes": {
+   "fortios:filter/spam/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/ssh/profile",
+  "fqn": "pulumiverse_fortios.filter.ssh",
+  "classes": {
+   "fortios:filter/ssh/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/video/profile",
+  "fqn": "pulumiverse_fortios.filter.video",
+  "classes": {
+   "fortios:filter/video/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/video/youtubechannelfilter",
+  "fqn": "pulumiverse_fortios.filter.video",
+  "classes": {
+   "fortios:filter/video/youtubechannelfilter:Youtubechannelfilter": "Youtubechannelfilter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/video/youtubekey",
+  "fqn": "pulumiverse_fortios.filter.video",
+  "classes": {
+   "fortios:filter/video/youtubekey:Youtubekey": "Youtubekey"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/web/content",
+  "fqn": "pulumiverse_fortios.filter.web",
+  "classes": {
+   "fortios:filter/web/content:Content": "Content"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/web/contentheader",
+  "fqn": "pulumiverse_fortios.filter.web",
+  "classes": {
+   "fortios:filter/web/contentheader:Contentheader": "Contentheader"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/web/fortiguard",
+  "fqn": "pulumiverse_fortios.filter.web",
+  "classes": {
+   "fortios:filter/web/fortiguard:Fortiguard": "Fortiguard"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/web/ftgdlocalcat",
+  "fqn": "pulumiverse_fortios.filter.web",
+  "classes": {
+   "fortios:filter/web/ftgdlocalcat:Ftgdlocalcat": "Ftgdlocalcat"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/web/ftgdlocalrating",
+  "fqn": "pulumiverse_fortios.filter.web",
+  "classes": {
+   "fortios:filter/web/ftgdlocalrating:Ftgdlocalrating": "Ftgdlocalrating"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/web/ipsurlfiltercachesetting",
+  "fqn": "pulumiverse_fortios.filter.web",
+  "classes": {
+   "fortios:filter/web/ipsurlfiltercachesetting:Ipsurlfiltercachesetting": "Ipsurlfiltercachesetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/web/ipsurlfiltersetting",
+  "fqn": "pulumiverse_fortios.filter.web",
+  "classes": {
+   "fortios:filter/web/ipsurlfiltersetting:Ipsurlfiltersetting": "Ipsurlfiltersetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/web/ipsurlfiltersetting6",
+  "fqn": "pulumiverse_fortios.filter.web",
+  "classes": {
+   "fortios:filter/web/ipsurlfiltersetting6:Ipsurlfiltersetting6": "Ipsurlfiltersetting6"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/web/override",
+  "fqn": "pulumiverse_fortios.filter.web",
+  "classes": {
+   "fortios:filter/web/override:Override": "Override"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/web/profile",
+  "fqn": "pulumiverse_fortios.filter.web",
+  "classes": {
+   "fortios:filter/web/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/web/searchengine",
+  "fqn": "pulumiverse_fortios.filter.web",
+  "classes": {
+   "fortios:filter/web/searchengine:Searchengine": "Searchengine"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/web/urlfilter",
+  "fqn": "pulumiverse_fortios.filter.web",
+  "classes": {
+   "fortios:filter/web/urlfilter:Urlfilter": "Urlfilter"
   }
  },
  {
@@ -865,6 +912,14 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.firewall",
   "classes": {
    "fortios:firewall/city:City": "City"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/consolidated/policy",
+  "fqn": "pulumiverse_fortios.firewall.consolidated",
+  "classes": {
+   "fortios:firewall/consolidated/policy:Policy": "Policy"
   }
  },
  {
@@ -1057,6 +1112,22 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.firewall",
   "classes": {
    "fortios:firewall/internetservicereputation:Internetservicereputation": "Internetservicereputation"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/ipmacbinding/setting",
+  "fqn": "pulumiverse_fortios.firewall.ipmacbinding",
+  "classes": {
+   "fortios:firewall/ipmacbinding/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/ipmacbinding/table",
+  "fqn": "pulumiverse_fortios.firewall.ipmacbinding",
+  "classes": {
+   "fortios:firewall/ipmacbinding/table:Table": "Table"
   }
  },
  {
@@ -1317,6 +1388,30 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "firewall/schedule/group",
+  "fqn": "pulumiverse_fortios.firewall.schedule",
+  "classes": {
+   "fortios:firewall/schedule/group:Group": "Group"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/schedule/onetime",
+  "fqn": "pulumiverse_fortios.firewall.schedule",
+  "classes": {
+   "fortios:firewall/schedule/onetime:Onetime": "Onetime"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/schedule/recurring",
+  "fqn": "pulumiverse_fortios.firewall.schedule",
+  "classes": {
+   "fortios:firewall/schedule/recurring:Recurring": "Recurring"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "firewall/securityPolicyseq",
   "fqn": "pulumiverse_fortios.firewall",
   "classes": {
@@ -1341,6 +1436,46 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "firewall/service/category",
+  "fqn": "pulumiverse_fortios.firewall.service",
+  "classes": {
+   "fortios:firewall/service/category:Category": "Category"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/service/custom",
+  "fqn": "pulumiverse_fortios.firewall.service",
+  "classes": {
+   "fortios:firewall/service/custom:Custom": "Custom"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/service/group",
+  "fqn": "pulumiverse_fortios.firewall.service",
+  "classes": {
+   "fortios:firewall/service/group:Group": "Group"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/shaper/peripshaper",
+  "fqn": "pulumiverse_fortios.firewall.shaper",
+  "classes": {
+   "fortios:firewall/shaper/peripshaper:Peripshaper": "Peripshaper"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/shaper/trafficshaper",
+  "fqn": "pulumiverse_fortios.firewall.shaper",
+  "classes": {
+   "fortios:firewall/shaper/trafficshaper:Trafficshaper": "Trafficshaper"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "firewall/shapingpolicy",
   "fqn": "pulumiverse_fortios.firewall",
   "classes": {
@@ -1361,6 +1496,46 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.firewall",
   "classes": {
    "fortios:firewall/sniffer:Sniffer": "Sniffer"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/ssh/hostkey",
+  "fqn": "pulumiverse_fortios.firewall.ssh",
+  "classes": {
+   "fortios:firewall/ssh/hostkey:Hostkey": "Hostkey"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/ssh/localca",
+  "fqn": "pulumiverse_fortios.firewall.ssh",
+  "classes": {
+   "fortios:firewall/ssh/localca:Localca": "Localca"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/ssh/localkey",
+  "fqn": "pulumiverse_fortios.firewall.ssh",
+  "classes": {
+   "fortios:firewall/ssh/localkey:Localkey": "Localkey"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/ssh/setting",
+  "fqn": "pulumiverse_fortios.firewall.ssh",
+  "classes": {
+   "fortios:firewall/ssh/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/ssl/setting",
+  "fqn": "pulumiverse_fortios.firewall.ssl",
+  "classes": {
+   "fortios:firewall/ssl/setting:Setting": "Setting"
   }
  },
  {
@@ -1469,146 +1644,18 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
-  "mod": "firewallconsolidated/policy",
-  "fqn": "pulumiverse_fortios.firewallconsolidated",
+  "mod": "firewall/wildcardfqdn/custom",
+  "fqn": "pulumiverse_fortios.firewall.wildcardfqdn",
   "classes": {
-   "fortios:firewallconsolidated/policy:Policy": "Policy"
+   "fortios:firewall/wildcardfqdn/custom:Custom": "Custom"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "firewallipmacbinding/setting",
-  "fqn": "pulumiverse_fortios.firewallipmacbinding",
+  "mod": "firewall/wildcardfqdn/group",
+  "fqn": "pulumiverse_fortios.firewall.wildcardfqdn",
   "classes": {
-   "fortios:firewallipmacbinding/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallipmacbinding/table",
-  "fqn": "pulumiverse_fortios.firewallipmacbinding",
-  "classes": {
-   "fortios:firewallipmacbinding/table:Table": "Table"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallschedule/group",
-  "fqn": "pulumiverse_fortios.firewallschedule",
-  "classes": {
-   "fortios:firewallschedule/group:Group": "Group"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallschedule/onetime",
-  "fqn": "pulumiverse_fortios.firewallschedule",
-  "classes": {
-   "fortios:firewallschedule/onetime:Onetime": "Onetime"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallschedule/recurring",
-  "fqn": "pulumiverse_fortios.firewallschedule",
-  "classes": {
-   "fortios:firewallschedule/recurring:Recurring": "Recurring"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallservice/category",
-  "fqn": "pulumiverse_fortios.firewallservice",
-  "classes": {
-   "fortios:firewallservice/category:Category": "Category"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallservice/custom",
-  "fqn": "pulumiverse_fortios.firewallservice",
-  "classes": {
-   "fortios:firewallservice/custom:Custom": "Custom"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallservice/group",
-  "fqn": "pulumiverse_fortios.firewallservice",
-  "classes": {
-   "fortios:firewallservice/group:Group": "Group"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallshaper/peripshaper",
-  "fqn": "pulumiverse_fortios.firewallshaper",
-  "classes": {
-   "fortios:firewallshaper/peripshaper:Peripshaper": "Peripshaper"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallshaper/trafficshaper",
-  "fqn": "pulumiverse_fortios.firewallshaper",
-  "classes": {
-   "fortios:firewallshaper/trafficshaper:Trafficshaper": "Trafficshaper"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallssh/hostkey",
-  "fqn": "pulumiverse_fortios.firewallssh",
-  "classes": {
-   "fortios:firewallssh/hostkey:Hostkey": "Hostkey"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallssh/localca",
-  "fqn": "pulumiverse_fortios.firewallssh",
-  "classes": {
-   "fortios:firewallssh/localca:Localca": "Localca"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallssh/localkey",
-  "fqn": "pulumiverse_fortios.firewallssh",
-  "classes": {
-   "fortios:firewallssh/localkey:Localkey": "Localkey"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallssh/setting",
-  "fqn": "pulumiverse_fortios.firewallssh",
-  "classes": {
-   "fortios:firewallssh/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallssl/setting",
-  "fqn": "pulumiverse_fortios.firewallssl",
-  "classes": {
-   "fortios:firewallssl/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallwildcardfqdn/custom",
-  "fqn": "pulumiverse_fortios.firewallwildcardfqdn",
-  "classes": {
-   "fortios:firewallwildcardfqdn/custom:Custom": "Custom"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "firewallwildcardfqdn/group",
-  "fqn": "pulumiverse_fortios.firewallwildcardfqdn",
-  "classes": {
-   "fortios:firewallwildcardfqdn/group:Group": "Group"
+   "fortios:firewall/wildcardfqdn/group:Group": "Group"
   }
  },
  {
@@ -1925,6 +1972,22 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "log/disk/filter",
+  "fqn": "pulumiverse_fortios.log.disk",
+  "classes": {
+   "fortios:log/disk/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/disk/setting",
+  "fqn": "pulumiverse_fortios.log.disk",
+  "classes": {
+   "fortios:log/disk/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "log/eventfilter",
   "fqn": "pulumiverse_fortios.log",
   "classes": {
@@ -1933,10 +1996,210 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "log/fortianalyzer/cloud/filter",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer.cloud",
+  "classes": {
+   "fortios:log/fortianalyzer/cloud/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/cloud/overridefilter",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer.cloud",
+  "classes": {
+   "fortios:log/fortianalyzer/cloud/overridefilter:Overridefilter": "Overridefilter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/cloud/overridesetting",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer.cloud",
+  "classes": {
+   "fortios:log/fortianalyzer/cloud/overridesetting:Overridesetting": "Overridesetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/cloud/setting",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer.cloud",
+  "classes": {
+   "fortios:log/fortianalyzer/cloud/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/filter",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer",
+  "classes": {
+   "fortios:log/fortianalyzer/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/overridefilter",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer",
+  "classes": {
+   "fortios:log/fortianalyzer/overridefilter:Overridefilter": "Overridefilter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/overridesetting",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer",
+  "classes": {
+   "fortios:log/fortianalyzer/overridesetting:Overridesetting": "Overridesetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/setting",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer",
+  "classes": {
+   "fortios:log/fortianalyzer/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/v2/filter",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer.v2",
+  "classes": {
+   "fortios:log/fortianalyzer/v2/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/v2/overridefilter",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer.v2",
+  "classes": {
+   "fortios:log/fortianalyzer/v2/overridefilter:Overridefilter": "Overridefilter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/v2/overridesetting",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer.v2",
+  "classes": {
+   "fortios:log/fortianalyzer/v2/overridesetting:Overridesetting": "Overridesetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/v2/setting",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer.v2",
+  "classes": {
+   "fortios:log/fortianalyzer/v2/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/v3/filter",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer.v3",
+  "classes": {
+   "fortios:log/fortianalyzer/v3/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/v3/overridefilter",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer.v3",
+  "classes": {
+   "fortios:log/fortianalyzer/v3/overridefilter:Overridefilter": "Overridefilter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/v3/overridesetting",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer.v3",
+  "classes": {
+   "fortios:log/fortianalyzer/v3/overridesetting:Overridesetting": "Overridesetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortianalyzer/v3/setting",
+  "fqn": "pulumiverse_fortios.log.fortianalyzer.v3",
+  "classes": {
+   "fortios:log/fortianalyzer/v3/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortiguard/filter",
+  "fqn": "pulumiverse_fortios.log.fortiguard",
+  "classes": {
+   "fortios:log/fortiguard/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortiguard/overridefilter",
+  "fqn": "pulumiverse_fortios.log.fortiguard",
+  "classes": {
+   "fortios:log/fortiguard/overridefilter:Overridefilter": "Overridefilter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortiguard/overridesetting",
+  "fqn": "pulumiverse_fortios.log.fortiguard",
+  "classes": {
+   "fortios:log/fortiguard/overridesetting:Overridesetting": "Overridesetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/fortiguard/setting",
+  "fqn": "pulumiverse_fortios.log.fortiguard",
+  "classes": {
+   "fortios:log/fortiguard/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "log/guidisplay",
   "fqn": "pulumiverse_fortios.log",
   "classes": {
    "fortios:log/guidisplay:Guidisplay": "Guidisplay"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/memory/filter",
+  "fqn": "pulumiverse_fortios.log.memory",
+  "classes": {
+   "fortios:log/memory/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/memory/globalsetting",
+  "fqn": "pulumiverse_fortios.log.memory",
+  "classes": {
+   "fortios:log/memory/globalsetting:Globalsetting": "Globalsetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/memory/setting",
+  "fqn": "pulumiverse_fortios.log.memory",
+  "classes": {
+   "fortios:log/memory/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/nulldevice/filter",
+  "fqn": "pulumiverse_fortios.log.nulldevice",
+  "classes": {
+   "fortios:log/nulldevice/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/nulldevice/setting",
+  "fqn": "pulumiverse_fortios.log.nulldevice",
+  "classes": {
+   "fortios:log/nulldevice/setting:Setting": "Setting"
   }
  },
  {
@@ -1957,6 +2220,182 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "log/syslogd/filter",
+  "fqn": "pulumiverse_fortios.log.syslogd",
+  "classes": {
+   "fortios:log/syslogd/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/overridefilter",
+  "fqn": "pulumiverse_fortios.log.syslogd",
+  "classes": {
+   "fortios:log/syslogd/overridefilter:Overridefilter": "Overridefilter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/overridesetting",
+  "fqn": "pulumiverse_fortios.log.syslogd",
+  "classes": {
+   "fortios:log/syslogd/overridesetting:Overridesetting": "Overridesetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/setting",
+  "fqn": "pulumiverse_fortios.log.syslogd",
+  "classes": {
+   "fortios:log/syslogd/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/v2/filter",
+  "fqn": "pulumiverse_fortios.log.syslogd.v2",
+  "classes": {
+   "fortios:log/syslogd/v2/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/v2/overridefilter",
+  "fqn": "pulumiverse_fortios.log.syslogd.v2",
+  "classes": {
+   "fortios:log/syslogd/v2/overridefilter:Overridefilter": "Overridefilter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/v2/overridesetting",
+  "fqn": "pulumiverse_fortios.log.syslogd.v2",
+  "classes": {
+   "fortios:log/syslogd/v2/overridesetting:Overridesetting": "Overridesetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/v2/setting",
+  "fqn": "pulumiverse_fortios.log.syslogd.v2",
+  "classes": {
+   "fortios:log/syslogd/v2/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/v3/filter",
+  "fqn": "pulumiverse_fortios.log.syslogd.v3",
+  "classes": {
+   "fortios:log/syslogd/v3/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/v3/overridefilter",
+  "fqn": "pulumiverse_fortios.log.syslogd.v3",
+  "classes": {
+   "fortios:log/syslogd/v3/overridefilter:Overridefilter": "Overridefilter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/v3/overridesetting",
+  "fqn": "pulumiverse_fortios.log.syslogd.v3",
+  "classes": {
+   "fortios:log/syslogd/v3/overridesetting:Overridesetting": "Overridesetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/v3/setting",
+  "fqn": "pulumiverse_fortios.log.syslogd.v3",
+  "classes": {
+   "fortios:log/syslogd/v3/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/v4/filter",
+  "fqn": "pulumiverse_fortios.log.syslogd.v4",
+  "classes": {
+   "fortios:log/syslogd/v4/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/v4/overridefilter",
+  "fqn": "pulumiverse_fortios.log.syslogd.v4",
+  "classes": {
+   "fortios:log/syslogd/v4/overridefilter:Overridefilter": "Overridefilter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/v4/overridesetting",
+  "fqn": "pulumiverse_fortios.log.syslogd.v4",
+  "classes": {
+   "fortios:log/syslogd/v4/overridesetting:Overridesetting": "Overridesetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/syslogd/v4/setting",
+  "fqn": "pulumiverse_fortios.log.syslogd.v4",
+  "classes": {
+   "fortios:log/syslogd/v4/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/tacacsaccounting/filter",
+  "fqn": "pulumiverse_fortios.log.tacacsaccounting",
+  "classes": {
+   "fortios:log/tacacsaccounting/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/tacacsaccounting/setting",
+  "fqn": "pulumiverse_fortios.log.tacacsaccounting",
+  "classes": {
+   "fortios:log/tacacsaccounting/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/tacacsaccounting/v2/filter",
+  "fqn": "pulumiverse_fortios.log.tacacsaccounting.v2",
+  "classes": {
+   "fortios:log/tacacsaccounting/v2/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/tacacsaccounting/v2/setting",
+  "fqn": "pulumiverse_fortios.log.tacacsaccounting.v2",
+  "classes": {
+   "fortios:log/tacacsaccounting/v2/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/tacacsaccounting/v3/filter",
+  "fqn": "pulumiverse_fortios.log.tacacsaccounting.v3",
+  "classes": {
+   "fortios:log/tacacsaccounting/v3/filter:Filter": "Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "log/tacacsaccounting/v3/setting",
+  "fqn": "pulumiverse_fortios.log.tacacsaccounting.v3",
+  "classes": {
+   "fortios:log/tacacsaccounting/v3/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "log/threatweight",
   "fqn": "pulumiverse_fortios.log",
   "classes": {
@@ -1965,410 +2404,18 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
-  "mod": "logdisk/filter",
-  "fqn": "pulumiverse_fortios.logdisk",
+  "mod": "log/webtrends/filter",
+  "fqn": "pulumiverse_fortios.log.webtrends",
   "classes": {
-   "fortios:logdisk/filter:Filter": "Filter"
+   "fortios:log/webtrends/filter:Filter": "Filter"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "logdisk/setting",
-  "fqn": "pulumiverse_fortios.logdisk",
+  "mod": "log/webtrends/setting",
+  "fqn": "pulumiverse_fortios.log.webtrends",
   "classes": {
-   "fortios:logdisk/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzer/filter",
-  "fqn": "pulumiverse_fortios.logfortianalyzer",
-  "classes": {
-   "fortios:logfortianalyzer/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzer/overridefilter",
-  "fqn": "pulumiverse_fortios.logfortianalyzer",
-  "classes": {
-   "fortios:logfortianalyzer/overridefilter:Overridefilter": "Overridefilter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzer/overridesetting",
-  "fqn": "pulumiverse_fortios.logfortianalyzer",
-  "classes": {
-   "fortios:logfortianalyzer/overridesetting:Overridesetting": "Overridesetting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzer/setting",
-  "fqn": "pulumiverse_fortios.logfortianalyzer",
-  "classes": {
-   "fortios:logfortianalyzer/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzer2/filter",
-  "fqn": "pulumiverse_fortios.logfortianalyzer2",
-  "classes": {
-   "fortios:logfortianalyzer2/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzer2/overridefilter",
-  "fqn": "pulumiverse_fortios.logfortianalyzer2",
-  "classes": {
-   "fortios:logfortianalyzer2/overridefilter:Overridefilter": "Overridefilter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzer2/overridesetting",
-  "fqn": "pulumiverse_fortios.logfortianalyzer2",
-  "classes": {
-   "fortios:logfortianalyzer2/overridesetting:Overridesetting": "Overridesetting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzer2/setting",
-  "fqn": "pulumiverse_fortios.logfortianalyzer2",
-  "classes": {
-   "fortios:logfortianalyzer2/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzer3/filter",
-  "fqn": "pulumiverse_fortios.logfortianalyzer3",
-  "classes": {
-   "fortios:logfortianalyzer3/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzer3/overridefilter",
-  "fqn": "pulumiverse_fortios.logfortianalyzer3",
-  "classes": {
-   "fortios:logfortianalyzer3/overridefilter:Overridefilter": "Overridefilter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzer3/overridesetting",
-  "fqn": "pulumiverse_fortios.logfortianalyzer3",
-  "classes": {
-   "fortios:logfortianalyzer3/overridesetting:Overridesetting": "Overridesetting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzer3/setting",
-  "fqn": "pulumiverse_fortios.logfortianalyzer3",
-  "classes": {
-   "fortios:logfortianalyzer3/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzercloud/filter",
-  "fqn": "pulumiverse_fortios.logfortianalyzercloud",
-  "classes": {
-   "fortios:logfortianalyzercloud/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzercloud/overridefilter",
-  "fqn": "pulumiverse_fortios.logfortianalyzercloud",
-  "classes": {
-   "fortios:logfortianalyzercloud/overridefilter:Overridefilter": "Overridefilter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzercloud/overridesetting",
-  "fqn": "pulumiverse_fortios.logfortianalyzercloud",
-  "classes": {
-   "fortios:logfortianalyzercloud/overridesetting:Overridesetting": "Overridesetting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortianalyzercloud/setting",
-  "fqn": "pulumiverse_fortios.logfortianalyzercloud",
-  "classes": {
-   "fortios:logfortianalyzercloud/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortiguard/filter",
-  "fqn": "pulumiverse_fortios.logfortiguard",
-  "classes": {
-   "fortios:logfortiguard/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortiguard/overridefilter",
-  "fqn": "pulumiverse_fortios.logfortiguard",
-  "classes": {
-   "fortios:logfortiguard/overridefilter:Overridefilter": "Overridefilter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortiguard/overridesetting",
-  "fqn": "pulumiverse_fortios.logfortiguard",
-  "classes": {
-   "fortios:logfortiguard/overridesetting:Overridesetting": "Overridesetting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logfortiguard/setting",
-  "fqn": "pulumiverse_fortios.logfortiguard",
-  "classes": {
-   "fortios:logfortiguard/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logmemory/filter",
-  "fqn": "pulumiverse_fortios.logmemory",
-  "classes": {
-   "fortios:logmemory/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logmemory/globalsetting",
-  "fqn": "pulumiverse_fortios.logmemory",
-  "classes": {
-   "fortios:logmemory/globalsetting:Globalsetting": "Globalsetting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logmemory/setting",
-  "fqn": "pulumiverse_fortios.logmemory",
-  "classes": {
-   "fortios:logmemory/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "lognulldevice/filter",
-  "fqn": "pulumiverse_fortios.lognulldevice",
-  "classes": {
-   "fortios:lognulldevice/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "lognulldevice/setting",
-  "fqn": "pulumiverse_fortios.lognulldevice",
-  "classes": {
-   "fortios:lognulldevice/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd/filter",
-  "fqn": "pulumiverse_fortios.logsyslogd",
-  "classes": {
-   "fortios:logsyslogd/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd/overridefilter",
-  "fqn": "pulumiverse_fortios.logsyslogd",
-  "classes": {
-   "fortios:logsyslogd/overridefilter:Overridefilter": "Overridefilter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd/overridesetting",
-  "fqn": "pulumiverse_fortios.logsyslogd",
-  "classes": {
-   "fortios:logsyslogd/overridesetting:Overridesetting": "Overridesetting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd/setting",
-  "fqn": "pulumiverse_fortios.logsyslogd",
-  "classes": {
-   "fortios:logsyslogd/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd2/filter",
-  "fqn": "pulumiverse_fortios.logsyslogd2",
-  "classes": {
-   "fortios:logsyslogd2/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd2/overridefilter",
-  "fqn": "pulumiverse_fortios.logsyslogd2",
-  "classes": {
-   "fortios:logsyslogd2/overridefilter:Overridefilter": "Overridefilter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd2/overridesetting",
-  "fqn": "pulumiverse_fortios.logsyslogd2",
-  "classes": {
-   "fortios:logsyslogd2/overridesetting:Overridesetting": "Overridesetting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd2/setting",
-  "fqn": "pulumiverse_fortios.logsyslogd2",
-  "classes": {
-   "fortios:logsyslogd2/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd3/filter",
-  "fqn": "pulumiverse_fortios.logsyslogd3",
-  "classes": {
-   "fortios:logsyslogd3/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd3/overridefilter",
-  "fqn": "pulumiverse_fortios.logsyslogd3",
-  "classes": {
-   "fortios:logsyslogd3/overridefilter:Overridefilter": "Overridefilter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd3/overridesetting",
-  "fqn": "pulumiverse_fortios.logsyslogd3",
-  "classes": {
-   "fortios:logsyslogd3/overridesetting:Overridesetting": "Overridesetting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd3/setting",
-  "fqn": "pulumiverse_fortios.logsyslogd3",
-  "classes": {
-   "fortios:logsyslogd3/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd4/filter",
-  "fqn": "pulumiverse_fortios.logsyslogd4",
-  "classes": {
-   "fortios:logsyslogd4/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd4/overridefilter",
-  "fqn": "pulumiverse_fortios.logsyslogd4",
-  "classes": {
-   "fortios:logsyslogd4/overridefilter:Overridefilter": "Overridefilter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd4/overridesetting",
-  "fqn": "pulumiverse_fortios.logsyslogd4",
-  "classes": {
-   "fortios:logsyslogd4/overridesetting:Overridesetting": "Overridesetting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logsyslogd4/setting",
-  "fqn": "pulumiverse_fortios.logsyslogd4",
-  "classes": {
-   "fortios:logsyslogd4/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logtacacsaccounting/filter",
-  "fqn": "pulumiverse_fortios.logtacacsaccounting",
-  "classes": {
-   "fortios:logtacacsaccounting/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logtacacsaccounting/setting",
-  "fqn": "pulumiverse_fortios.logtacacsaccounting",
-  "classes": {
-   "fortios:logtacacsaccounting/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logtacacsaccounting2/filter",
-  "fqn": "pulumiverse_fortios.logtacacsaccounting2",
-  "classes": {
-   "fortios:logtacacsaccounting2/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logtacacsaccounting2/setting",
-  "fqn": "pulumiverse_fortios.logtacacsaccounting2",
-  "classes": {
-   "fortios:logtacacsaccounting2/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logtacacsaccounting3/filter",
-  "fqn": "pulumiverse_fortios.logtacacsaccounting3",
-  "classes": {
-   "fortios:logtacacsaccounting3/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logtacacsaccounting3/setting",
-  "fqn": "pulumiverse_fortios.logtacacsaccounting3",
-  "classes": {
-   "fortios:logtacacsaccounting3/setting:Setting": "Setting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logwebtrends/filter",
-  "fqn": "pulumiverse_fortios.logwebtrends",
-  "classes": {
-   "fortios:logwebtrends/filter:Filter": "Filter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "logwebtrends/setting",
-  "fqn": "pulumiverse_fortios.logwebtrends",
-  "classes": {
-   "fortios:logwebtrends/setting:Setting": "Setting"
+   "fortios:log/webtrends/setting:Setting": "Setting"
   }
  },
  {
@@ -2509,6 +2556,30 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "router/bgp/neighbor",
+  "fqn": "pulumiverse_fortios.router.bgp",
+  "classes": {
+   "fortios:router/bgp/neighbor:Neighbor": "Neighbor"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "router/bgp/network",
+  "fqn": "pulumiverse_fortios.router.bgp",
+  "classes": {
+   "fortios:router/bgp/network:Network": "Network"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "router/bgp/network6",
+  "fqn": "pulumiverse_fortios.router.bgp",
+  "classes": {
+   "fortios:router/bgp/network6:Network6": "Network6"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "router/communitylist",
   "fqn": "pulumiverse_fortios.router",
   "classes": {
@@ -2565,10 +2636,42 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "router/ospf/neighbor",
+  "fqn": "pulumiverse_fortios.router.ospf",
+  "classes": {
+   "fortios:router/ospf/neighbor:Neighbor": "Neighbor"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "router/ospf/network",
+  "fqn": "pulumiverse_fortios.router.ospf",
+  "classes": {
+   "fortios:router/ospf/network:Network": "Network"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "router/ospf/ospfinterface",
+  "fqn": "pulumiverse_fortios.router.ospf",
+  "classes": {
+   "fortios:router/ospf/ospfinterface:Ospfinterface": "Ospfinterface"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "router/ospf6",
   "fqn": "pulumiverse_fortios.router",
   "classes": {
    "fortios:router/ospf6:Ospf6": "Ospf6"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "router/ospf6/ospf6interface",
+  "fqn": "pulumiverse_fortios.router.ospf6",
+  "classes": {
+   "fortios:router/ospf6/ospf6interface:Ospf6interface": "Ospf6interface"
   }
  },
  {
@@ -2653,138 +2756,26 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
-  "mod": "routerbgp/neighbor",
-  "fqn": "pulumiverse_fortios.routerbgp",
+  "mod": "switchcontroller/autoconfig/custom",
+  "fqn": "pulumiverse_fortios.switchcontroller.autoconfig",
   "classes": {
-   "fortios:routerbgp/neighbor:Neighbor": "Neighbor"
+   "fortios:switchcontroller/autoconfig/custom:Custom": "Custom"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "routerbgp/network",
-  "fqn": "pulumiverse_fortios.routerbgp",
+  "mod": "switchcontroller/autoconfig/default",
+  "fqn": "pulumiverse_fortios.switchcontroller.autoconfig",
   "classes": {
-   "fortios:routerbgp/network:Network": "Network"
+   "fortios:switchcontroller/autoconfig/default:Default": "Default"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "routerbgp/network6",
-  "fqn": "pulumiverse_fortios.routerbgp",
+  "mod": "switchcontroller/autoconfig/policy",
+  "fqn": "pulumiverse_fortios.switchcontroller.autoconfig",
   "classes": {
-   "fortios:routerbgp/network6:Network6": "Network6"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "routerospf/neighbor",
-  "fqn": "pulumiverse_fortios.routerospf",
-  "classes": {
-   "fortios:routerospf/neighbor:Neighbor": "Neighbor"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "routerospf/network",
-  "fqn": "pulumiverse_fortios.routerospf",
-  "classes": {
-   "fortios:routerospf/network:Network": "Network"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "routerospf/ospfinterface",
-  "fqn": "pulumiverse_fortios.routerospf",
-  "classes": {
-   "fortios:routerospf/ospfinterface:Ospfinterface": "Ospfinterface"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "routerospf6/ospf6interface",
-  "fqn": "pulumiverse_fortios.routerospf6",
-  "classes": {
-   "fortios:routerospf6/ospf6interface:Ospf6interface": "Ospf6interface"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "sctpfilter/profile",
-  "fqn": "pulumiverse_fortios.sctpfilter",
-  "classes": {
-   "fortios:sctpfilter/profile:Profile": "Profile"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "spamfilter/bwl",
-  "fqn": "pulumiverse_fortios.spamfilter",
-  "classes": {
-   "fortios:spamfilter/bwl:Bwl": "Bwl"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "spamfilter/bword",
-  "fqn": "pulumiverse_fortios.spamfilter",
-  "classes": {
-   "fortios:spamfilter/bword:Bword": "Bword"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "spamfilter/dnsbl",
-  "fqn": "pulumiverse_fortios.spamfilter",
-  "classes": {
-   "fortios:spamfilter/dnsbl:Dnsbl": "Dnsbl"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "spamfilter/fortishield",
-  "fqn": "pulumiverse_fortios.spamfilter",
-  "classes": {
-   "fortios:spamfilter/fortishield:Fortishield": "Fortishield"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "spamfilter/iptrust",
-  "fqn": "pulumiverse_fortios.spamfilter",
-  "classes": {
-   "fortios:spamfilter/iptrust:Iptrust": "Iptrust"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "spamfilter/mheader",
-  "fqn": "pulumiverse_fortios.spamfilter",
-  "classes": {
-   "fortios:spamfilter/mheader:Mheader": "Mheader"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "spamfilter/options",
-  "fqn": "pulumiverse_fortios.spamfilter",
-  "classes": {
-   "fortios:spamfilter/options:Options": "Options"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "spamfilter/profile",
-  "fqn": "pulumiverse_fortios.spamfilter",
-  "classes": {
-   "fortios:spamfilter/profile:Profile": "Profile"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "sshfilter/profile",
-  "fqn": "pulumiverse_fortios.sshfilter",
-  "classes": {
-   "fortios:sshfilter/profile:Profile": "Profile"
+   "fortios:switchcontroller/autoconfig/policy:Policy": "Policy"
   }
  },
  {
@@ -2833,6 +2824,22 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.switchcontroller",
   "classes": {
    "fortios:switchcontroller/igmpsnooping:Igmpsnooping": "Igmpsnooping"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "switchcontroller/initialconfig/template",
+  "fqn": "pulumiverse_fortios.switchcontroller.initialconfig",
+  "classes": {
+   "fortios:switchcontroller/initialconfig/template:Template": "Template"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "switchcontroller/initialconfig/vlans",
+  "fqn": "pulumiverse_fortios.switchcontroller.initialconfig",
+  "classes": {
+   "fortios:switchcontroller/initialconfig/vlans:Vlans": "Vlans"
   }
  },
  {
@@ -2909,6 +2916,54 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "switchcontroller/ptp/policy",
+  "fqn": "pulumiverse_fortios.switchcontroller.ptp",
+  "classes": {
+   "fortios:switchcontroller/ptp/policy:Policy": "Policy"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "switchcontroller/ptp/settings",
+  "fqn": "pulumiverse_fortios.switchcontroller.ptp",
+  "classes": {
+   "fortios:switchcontroller/ptp/settings:Settings": "Settings"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "switchcontroller/qos/dot1pmap",
+  "fqn": "pulumiverse_fortios.switchcontroller.qos",
+  "classes": {
+   "fortios:switchcontroller/qos/dot1pmap:Dot1pmap": "Dot1pmap"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "switchcontroller/qos/ipdscpmap",
+  "fqn": "pulumiverse_fortios.switchcontroller.qos",
+  "classes": {
+   "fortios:switchcontroller/qos/ipdscpmap:Ipdscpmap": "Ipdscpmap"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "switchcontroller/qos/qospolicy",
+  "fqn": "pulumiverse_fortios.switchcontroller.qos",
+  "classes": {
+   "fortios:switchcontroller/qos/qospolicy:Qospolicy": "Qospolicy"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "switchcontroller/qos/queuepolicy",
+  "fqn": "pulumiverse_fortios.switchcontroller.qos",
+  "classes": {
+   "fortios:switchcontroller/qos/queuepolicy:Queuepolicy": "Queuepolicy"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "switchcontroller/quarantine",
   "fqn": "pulumiverse_fortios.switchcontroller",
   "classes": {
@@ -2921,6 +2976,30 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.switchcontroller",
   "classes": {
    "fortios:switchcontroller/remotelog:Remotelog": "Remotelog"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "switchcontroller/securitypolicy/captiveportal",
+  "fqn": "pulumiverse_fortios.switchcontroller.securitypolicy",
+  "classes": {
+   "fortios:switchcontroller/securitypolicy/captiveportal:Captiveportal": "Captiveportal"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "switchcontroller/securitypolicy/localaccess",
+  "fqn": "pulumiverse_fortios.switchcontroller.securitypolicy",
+  "classes": {
+   "fortios:switchcontroller/securitypolicy/localaccess:Localaccess": "Localaccess"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "switchcontroller/securitypolicy/policy8021X",
+  "fqn": "pulumiverse_fortios.switchcontroller.securitypolicy",
+  "classes": {
+   "fortios:switchcontroller/securitypolicy/policy8021X:Policy8021X": "Policy8021X"
   }
  },
  {
@@ -3085,1322 +3164,1210 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollerautoconfig/custom",
-  "fqn": "pulumiverse_fortios.switchcontrollerautoconfig",
+  "mod": "system/accprofile",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollerautoconfig/custom:Custom": "Custom"
+   "fortios:system/accprofile:Accprofile": "Accprofile"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollerautoconfig/default",
-  "fqn": "pulumiverse_fortios.switchcontrollerautoconfig",
+  "mod": "system/acme",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollerautoconfig/default:Default": "Default"
+   "fortios:system/acme:Acme": "Acme"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollerautoconfig/policy",
-  "fqn": "pulumiverse_fortios.switchcontrollerautoconfig",
+  "mod": "system/admin",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollerautoconfig/policy:Policy": "Policy"
+   "fortios:system/admin:Admin": "Admin"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollerinitialconfig/template",
-  "fqn": "pulumiverse_fortios.switchcontrollerinitialconfig",
+  "mod": "system/adminAdministrator",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollerinitialconfig/template:Template": "Template"
+   "fortios:system/adminAdministrator:AdminAdministrator": "AdminAdministrator"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollerinitialconfig/vlans",
-  "fqn": "pulumiverse_fortios.switchcontrollerinitialconfig",
+  "mod": "system/adminProfiles",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollerinitialconfig/vlans:Vlans": "Vlans"
+   "fortios:system/adminProfiles:AdminProfiles": "AdminProfiles"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollerptp/policy",
-  "fqn": "pulumiverse_fortios.switchcontrollerptp",
+  "mod": "system/affinityinterrupt",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollerptp/policy:Policy": "Policy"
+   "fortios:system/affinityinterrupt:Affinityinterrupt": "Affinityinterrupt"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollerptp/settings",
-  "fqn": "pulumiverse_fortios.switchcontrollerptp",
+  "mod": "system/affinitypacketredistribution",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollerptp/settings:Settings": "Settings"
+   "fortios:system/affinitypacketredistribution:Affinitypacketredistribution": "Affinitypacketredistribution"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollerqos/dot1pmap",
-  "fqn": "pulumiverse_fortios.switchcontrollerqos",
+  "mod": "system/alarm",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollerqos/dot1pmap:Dot1pmap": "Dot1pmap"
+   "fortios:system/alarm:Alarm": "Alarm"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollerqos/ipdscpmap",
-  "fqn": "pulumiverse_fortios.switchcontrollerqos",
+  "mod": "system/alias",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollerqos/ipdscpmap:Ipdscpmap": "Ipdscpmap"
+   "fortios:system/alias:Alias": "Alias"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollerqos/qospolicy",
-  "fqn": "pulumiverse_fortios.switchcontrollerqos",
+  "mod": "system/apiuser",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollerqos/qospolicy:Qospolicy": "Qospolicy"
+   "fortios:system/apiuser:Apiuser": "Apiuser"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollerqos/queuepolicy",
-  "fqn": "pulumiverse_fortios.switchcontrollerqos",
+  "mod": "system/apiuserSetting",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollerqos/queuepolicy:Queuepolicy": "Queuepolicy"
+   "fortios:system/apiuserSetting:ApiuserSetting": "ApiuserSetting"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollersecuritypolicy/captiveportal",
-  "fqn": "pulumiverse_fortios.switchcontrollersecuritypolicy",
+  "mod": "system/arptable",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollersecuritypolicy/captiveportal:Captiveportal": "Captiveportal"
+   "fortios:system/arptable:Arptable": "Arptable"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollersecuritypolicy/localaccess",
-  "fqn": "pulumiverse_fortios.switchcontrollersecuritypolicy",
+  "mod": "system/autoinstall",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollersecuritypolicy/localaccess:Localaccess": "Localaccess"
+   "fortios:system/autoinstall:Autoinstall": "Autoinstall"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "switchcontrollersecuritypolicy/policy8021X",
-  "fqn": "pulumiverse_fortios.switchcontrollersecuritypolicy",
+  "mod": "system/automationaction",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:switchcontrollersecuritypolicy/policy8021X:Policy8021X": "Policy8021X"
+   "fortios:system/automationaction:Automationaction": "Automationaction"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/accprofile",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/automationdestination",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/accprofile:Accprofile": "Accprofile"
+   "fortios:system/automationdestination:Automationdestination": "Automationdestination"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/acme",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/automationstitch",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/acme:Acme": "Acme"
+   "fortios:system/automationstitch:Automationstitch": "Automationstitch"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/admin",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/automationtrigger",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/admin:Admin": "Admin"
+   "fortios:system/automationtrigger:Automationtrigger": "Automationtrigger"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/adminAdministrator",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/autoscript",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/adminAdministrator:AdminAdministrator": "AdminAdministrator"
+   "fortios:system/autoscript:Autoscript": "Autoscript"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/adminProfiles",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/autoupdate/pushupdate",
+  "fqn": "pulumiverse_fortios.system.autoupdate",
   "classes": {
-   "fortios:sys/adminProfiles:AdminProfiles": "AdminProfiles"
+   "fortios:system/autoupdate/pushupdate:Pushupdate": "Pushupdate"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/affinityinterrupt",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/autoupdate/schedule",
+  "fqn": "pulumiverse_fortios.system.autoupdate",
   "classes": {
-   "fortios:sys/affinityinterrupt:Affinityinterrupt": "Affinityinterrupt"
+   "fortios:system/autoupdate/schedule:Schedule": "Schedule"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/affinitypacketredistribution",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/autoupdate/tunneling",
+  "fqn": "pulumiverse_fortios.system.autoupdate",
   "classes": {
-   "fortios:sys/affinitypacketredistribution:Affinitypacketredistribution": "Affinitypacketredistribution"
+   "fortios:system/autoupdate/tunneling:Tunneling": "Tunneling"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/alarm",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/centralmanagement",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/alarm:Alarm": "Alarm"
+   "fortios:system/centralmanagement:Centralmanagement": "Centralmanagement"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/alias",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/clustersync",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/alias:Alias": "Alias"
+   "fortios:system/clustersync:Clustersync": "Clustersync"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/apiuser",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/console",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/apiuser:Apiuser": "Apiuser"
+   "fortios:system/console:Console": "Console"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/apiuserSetting",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/csf",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/apiuserSetting:ApiuserSetting": "ApiuserSetting"
+   "fortios:system/csf:Csf": "Csf"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/arptable",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/customlanguage",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/arptable:Arptable": "Arptable"
+   "fortios:system/customlanguage:Customlanguage": "Customlanguage"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/autoinstall",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ddns",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/autoinstall:Autoinstall": "Autoinstall"
+   "fortios:system/ddns:Ddns": "Ddns"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/automationaction",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/dedicatedmgmt",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/automationaction:Automationaction": "Automationaction"
+   "fortios:system/dedicatedmgmt:Dedicatedmgmt": "Dedicatedmgmt"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/automationdestination",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/dhcp/server",
+  "fqn": "pulumiverse_fortios.system.dhcp",
   "classes": {
-   "fortios:sys/automationdestination:Automationdestination": "Automationdestination"
+   "fortios:system/dhcp/server:Server": "Server"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/automationstitch",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/dhcp6/server",
+  "fqn": "pulumiverse_fortios.system.dhcp6",
   "classes": {
-   "fortios:sys/automationstitch:Automationstitch": "Automationstitch"
+   "fortios:system/dhcp6/server:Server": "Server"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/automationtrigger",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/dns",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/automationtrigger:Automationtrigger": "Automationtrigger"
+   "fortios:system/dns:Dns": "Dns"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/autoscript",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/dns64",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/autoscript:Autoscript": "Autoscript"
+   "fortios:system/dns64:Dns64": "Dns64"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/centralmanagement",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/dnsdatabase",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/centralmanagement:Centralmanagement": "Centralmanagement"
+   "fortios:system/dnsdatabase:Dnsdatabase": "Dnsdatabase"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/clustersync",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/dnsserver",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/clustersync:Clustersync": "Clustersync"
+   "fortios:system/dnsserver:Dnsserver": "Dnsserver"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/console",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/dscpbasedpriority",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/console:Console": "Console"
+   "fortios:system/dscpbasedpriority:Dscpbasedpriority": "Dscpbasedpriority"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/csf",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/emailserver",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/csf:Csf": "Csf"
+   "fortios:system/emailserver:Emailserver": "Emailserver"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/customlanguage",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/externalresource",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/customlanguage:Customlanguage": "Customlanguage"
+   "fortios:system/externalresource:Externalresource": "Externalresource"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ddns",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/federatedupgrade",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ddns:Ddns": "Ddns"
+   "fortios:system/federatedupgrade:Federatedupgrade": "Federatedupgrade"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/dedicatedmgmt",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/fipscc",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/dedicatedmgmt:Dedicatedmgmt": "Dedicatedmgmt"
+   "fortios:system/fipscc:Fipscc": "Fipscc"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/dns",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/fm",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/dns:Dns": "Dns"
+   "fortios:system/fm:Fm": "Fm"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/dns64",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/fortiai",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/dns64:Dns64": "Dns64"
+   "fortios:system/fortiai:Fortiai": "Fortiai"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/dnsdatabase",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/fortiguard",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/dnsdatabase:Dnsdatabase": "Dnsdatabase"
+   "fortios:system/fortiguard:Fortiguard": "Fortiguard"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/dnsserver",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/fortimanager",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/dnsserver:Dnsserver": "Dnsserver"
+   "fortios:system/fortimanager:Fortimanager": "Fortimanager"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/dscpbasedpriority",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/fortindr",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/dscpbasedpriority:Dscpbasedpriority": "Dscpbasedpriority"
+   "fortios:system/fortindr:Fortindr": "Fortindr"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/emailserver",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/fortisandbox",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/emailserver:Emailserver": "Emailserver"
+   "fortios:system/fortisandbox:Fortisandbox": "Fortisandbox"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/externalresource",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/fssopolling",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/externalresource:Externalresource": "Externalresource"
+   "fortios:system/fssopolling:Fssopolling": "Fssopolling"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/federatedupgrade",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ftmpush",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/federatedupgrade:Federatedupgrade": "Federatedupgrade"
+   "fortios:system/ftmpush:Ftmpush": "Ftmpush"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/fipscc",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/geneve",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/fipscc:Fipscc": "Fipscc"
+   "fortios:system/geneve:Geneve": "Geneve"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/fm",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/geoipcountry",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/fm:Fm": "Fm"
+   "fortios:system/geoipcountry:Geoipcountry": "Geoipcountry"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/fortiai",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/geoipoverride",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/fortiai:Fortiai": "Fortiai"
+   "fortios:system/geoipoverride:Geoipoverride": "Geoipoverride"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/fortiguard",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/global",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/fortiguard:Fortiguard": "Fortiguard"
+   "fortios:system/global:Global": "Global"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/fortimanager",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/gretunnel",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/fortimanager:Fortimanager": "Fortimanager"
+   "fortios:system/gretunnel:Gretunnel": "Gretunnel"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/fortindr",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ha",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/fortindr:Fortindr": "Fortindr"
+   "fortios:system/ha:Ha": "Ha"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/fortisandbox",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/hamonitor",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/fortisandbox:Fortisandbox": "Fortisandbox"
+   "fortios:system/hamonitor:Hamonitor": "Hamonitor"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/fssopolling",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ike",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/fssopolling:Fssopolling": "Fssopolling"
+   "fortios:system/ike:Ike": "Ike"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ftmpush",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/interface",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ftmpush:Ftmpush": "Ftmpush"
+   "fortios:system/interface:Interface": "Interface"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/geneve",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ipam",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/geneve:Geneve": "Geneve"
+   "fortios:system/ipam:Ipam": "Ipam"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/geoipcountry",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ipiptunnel",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/geoipcountry:Geoipcountry": "Geoipcountry"
+   "fortios:system/ipiptunnel:Ipiptunnel": "Ipiptunnel"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/geoipoverride",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ips",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/geoipoverride:Geoipoverride": "Geoipoverride"
+   "fortios:system/ips:Ips": "Ips"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/global",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ipsecaggregate",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/global:Global": "Global"
+   "fortios:system/ipsecaggregate:Ipsecaggregate": "Ipsecaggregate"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/gretunnel",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ipsurlfilterdns",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/gretunnel:Gretunnel": "Gretunnel"
+   "fortios:system/ipsurlfilterdns:Ipsurlfilterdns": "Ipsurlfilterdns"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ha",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ipsurlfilterdns6",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ha:Ha": "Ha"
+   "fortios:system/ipsurlfilterdns6:Ipsurlfilterdns6": "Ipsurlfilterdns6"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/hamonitor",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ipv6neighborcache",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/hamonitor:Hamonitor": "Hamonitor"
+   "fortios:system/ipv6neighborcache:Ipv6neighborcache": "Ipv6neighborcache"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ike",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ipv6tunnel",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ike:Ike": "Ike"
+   "fortios:system/ipv6tunnel:Ipv6tunnel": "Ipv6tunnel"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/interface",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/licenseForticare",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/interface:Interface": "Interface"
+   "fortios:system/licenseForticare:LicenseForticare": "LicenseForticare"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ipam",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/licenseVdom",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ipam:Ipam": "Ipam"
+   "fortios:system/licenseVdom:LicenseVdom": "LicenseVdom"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ipiptunnel",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/licenseVm",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ipiptunnel:Ipiptunnel": "Ipiptunnel"
+   "fortios:system/licenseVm:LicenseVm": "LicenseVm"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ips",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/linkmonitor",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ips:Ips": "Ips"
+   "fortios:system/linkmonitor:Linkmonitor": "Linkmonitor"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ipsecaggregate",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/lldp/networkpolicy",
+  "fqn": "pulumiverse_fortios.system.lldp",
   "classes": {
-   "fortios:sys/ipsecaggregate:Ipsecaggregate": "Ipsecaggregate"
+   "fortios:system/lldp/networkpolicy:Networkpolicy": "Networkpolicy"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ipsurlfilterdns",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ltemodem",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ipsurlfilterdns:Ipsurlfilterdns": "Ipsurlfilterdns"
+   "fortios:system/ltemodem:Ltemodem": "Ltemodem"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ipsurlfilterdns6",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/macaddresstable",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ipsurlfilterdns6:Ipsurlfilterdns6": "Ipsurlfilterdns6"
+   "fortios:system/macaddresstable:Macaddresstable": "Macaddresstable"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ipv6neighborcache",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/managementtunnel",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ipv6neighborcache:Ipv6neighborcache": "Ipv6neighborcache"
+   "fortios:system/managementtunnel:Managementtunnel": "Managementtunnel"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ipv6tunnel",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/mobiletunnel",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ipv6tunnel:Ipv6tunnel": "Ipv6tunnel"
+   "fortios:system/mobiletunnel:Mobiletunnel": "Mobiletunnel"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/licenseForticare",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/modem",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/licenseForticare:LicenseForticare": "LicenseForticare"
+   "fortios:system/modem:Modem": "Modem"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/licenseVdom",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/modem3g/custom",
+  "fqn": "pulumiverse_fortios.system.modem3g",
   "classes": {
-   "fortios:sys/licenseVdom:LicenseVdom": "LicenseVdom"
+   "fortios:system/modem3g/custom:Custom": "Custom"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/licenseVm",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/nat64",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/licenseVm:LicenseVm": "LicenseVm"
+   "fortios:system/nat64:Nat64": "Nat64"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/linkmonitor",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ndproxy",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/linkmonitor:Linkmonitor": "Linkmonitor"
+   "fortios:system/ndproxy:Ndproxy": "Ndproxy"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ltemodem",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/netflow",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ltemodem:Ltemodem": "Ltemodem"
+   "fortios:system/netflow:Netflow": "Netflow"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/macaddresstable",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/networkvisibility",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/macaddresstable:Macaddresstable": "Macaddresstable"
+   "fortios:system/networkvisibility:Networkvisibility": "Networkvisibility"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/managementtunnel",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/npu",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/managementtunnel:Managementtunnel": "Managementtunnel"
+   "fortios:system/npu:Npu": "Npu"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/mobiletunnel",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ntp",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/mobiletunnel:Mobiletunnel": "Mobiletunnel"
+   "fortios:system/ntp:Ntp": "Ntp"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/modem",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/objecttagging",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/modem:Modem": "Modem"
+   "fortios:system/objecttagging:Objecttagging": "Objecttagging"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/nat64",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/passwordpolicy",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/nat64:Nat64": "Nat64"
+   "fortios:system/passwordpolicy:Passwordpolicy": "Passwordpolicy"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ndproxy",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/passwordpolicyguestadmin",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ndproxy:Ndproxy": "Ndproxy"
+   "fortios:system/passwordpolicyguestadmin:Passwordpolicyguestadmin": "Passwordpolicyguestadmin"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/netflow",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/physicalswitch",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/netflow:Netflow": "Netflow"
+   "fortios:system/physicalswitch:Physicalswitch": "Physicalswitch"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/networkvisibility",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/pppoeinterface",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/networkvisibility:Networkvisibility": "Networkvisibility"
+   "fortios:system/pppoeinterface:Pppoeinterface": "Pppoeinterface"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/npu",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/proberesponse",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/npu:Npu": "Npu"
+   "fortios:system/proberesponse:Proberesponse": "Proberesponse"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ntp",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/proxyarp",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ntp:Ntp": "Ntp"
+   "fortios:system/proxyarp:Proxyarp": "Proxyarp"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/objecttagging",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ptp",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/objecttagging:Objecttagging": "Objecttagging"
+   "fortios:system/ptp:Ptp": "Ptp"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/passwordpolicy",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/admin",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/passwordpolicy:Passwordpolicy": "Passwordpolicy"
+   "fortios:system/replacemsg/admin:Admin": "Admin"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/passwordpolicyguestadmin",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/alertmail",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/passwordpolicyguestadmin:Passwordpolicyguestadmin": "Passwordpolicyguestadmin"
+   "fortios:system/replacemsg/alertmail:Alertmail": "Alertmail"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/physicalswitch",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/auth",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/physicalswitch:Physicalswitch": "Physicalswitch"
+   "fortios:system/replacemsg/auth:Auth": "Auth"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/pppoeinterface",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/automation",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/pppoeinterface:Pppoeinterface": "Pppoeinterface"
+   "fortios:system/replacemsg/automation:Automation": "Automation"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/proberesponse",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/devicedetectionportal",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/proberesponse:Proberesponse": "Proberesponse"
+   "fortios:system/replacemsg/devicedetectionportal:Devicedetectionportal": "Devicedetectionportal"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/proxyarp",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/ec",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/proxyarp:Proxyarp": "Proxyarp"
+   "fortios:system/replacemsg/ec:Ec": "Ec"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ptp",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/fortiguardwf",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/ptp:Ptp": "Ptp"
+   "fortios:system/replacemsg/fortiguardwf:Fortiguardwf": "Fortiguardwf"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/replacemsggroup",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/ftp",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/replacemsggroup:Replacemsggroup": "Replacemsggroup"
+   "fortios:system/replacemsg/ftp:Ftp": "Ftp"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/replacemsgimage",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/http",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/replacemsgimage:Replacemsgimage": "Replacemsgimage"
+   "fortios:system/replacemsg/http:Http": "Http"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/resourcelimits",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/icap",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/resourcelimits:Resourcelimits": "Resourcelimits"
+   "fortios:system/replacemsg/icap:Icap": "Icap"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/saml",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/mail",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/saml:Saml": "Saml"
+   "fortios:system/replacemsg/mail:Mail": "Mail"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/sdnconnector",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/nacquar",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/sdnconnector:Sdnconnector": "Sdnconnector"
+   "fortios:system/replacemsg/nacquar:Nacquar": "Nacquar"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/sdwan",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/nntp",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/sdwan:Sdwan": "Sdwan"
+   "fortios:system/replacemsg/nntp:Nntp": "Nntp"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/sessionhelper",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/spam",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/sessionhelper:Sessionhelper": "Sessionhelper"
+   "fortios:system/replacemsg/spam:Spam": "Spam"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/sessionttl",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/sslvpn",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/sessionttl:Sessionttl": "Sessionttl"
+   "fortios:system/replacemsg/sslvpn:Sslvpn": "Sslvpn"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/settingDns",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/trafficquota",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/settingDns:SettingDns": "SettingDns"
+   "fortios:system/replacemsg/trafficquota:Trafficquota": "Trafficquota"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/settingGlobal",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/utm",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/settingGlobal:SettingGlobal": "SettingGlobal"
+   "fortios:system/replacemsg/utm:Utm": "Utm"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/settingNtp",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsg/webproxy",
+  "fqn": "pulumiverse_fortios.system.replacemsg",
   "classes": {
-   "fortios:sys/settingNtp:SettingNtp": "SettingNtp"
+   "fortios:system/replacemsg/webproxy:Webproxy": "Webproxy"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/settings",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsggroup",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/settings:Settings": "Settings"
+   "fortios:system/replacemsggroup:Replacemsggroup": "Replacemsggroup"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/sflow",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/replacemsgimage",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/sflow:Sflow": "Sflow"
+   "fortios:system/replacemsgimage:Replacemsgimage": "Replacemsgimage"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/sittunnel",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/resourcelimits",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/sittunnel:Sittunnel": "Sittunnel"
+   "fortios:system/resourcelimits:Resourcelimits": "Resourcelimits"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/smsserver",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/saml",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/smsserver:Smsserver": "Smsserver"
+   "fortios:system/saml:Saml": "Saml"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/speedtestschedule",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/sdnconnector",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/speedtestschedule:Speedtestschedule": "Speedtestschedule"
+   "fortios:system/sdnconnector:Sdnconnector": "Sdnconnector"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/speedtestserver",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/sdwan",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/speedtestserver:Speedtestserver": "Speedtestserver"
+   "fortios:system/sdwan:Sdwan": "Sdwan"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ssoadmin",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/sessionhelper",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ssoadmin:Ssoadmin": "Ssoadmin"
+   "fortios:system/sessionhelper:Sessionhelper": "Sessionhelper"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/ssoforticloudadmin",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/sessionttl",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/ssoforticloudadmin:Ssoforticloudadmin": "Ssoforticloudadmin"
+   "fortios:system/sessionttl:Sessionttl": "Sessionttl"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/standalonecluster",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/settingDns",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/standalonecluster:Standalonecluster": "Standalonecluster"
+   "fortios:system/settingDns:SettingDns": "SettingDns"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/storage",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/settingGlobal",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/storage:Storage": "Storage"
+   "fortios:system/settingGlobal:SettingGlobal": "SettingGlobal"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/stp",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/settingNtp",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/stp:Stp": "Stp"
+   "fortios:system/settingNtp:SettingNtp": "SettingNtp"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/switchinterface",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/settings",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/switchinterface:Switchinterface": "Switchinterface"
+   "fortios:system/settings:Settings": "Settings"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/tosbasedpriority",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/sflow",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/tosbasedpriority:Tosbasedpriority": "Tosbasedpriority"
+   "fortios:system/sflow:Sflow": "Sflow"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/vdom",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/sittunnel",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/vdom:Vdom": "Vdom"
+   "fortios:system/sittunnel:Sittunnel": "Sittunnel"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/vdomSetting",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/smsserver",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/vdomSetting:VdomSetting": "VdomSetting"
+   "fortios:system/smsserver:Smsserver": "Smsserver"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/vdomdns",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/snmp/community",
+  "fqn": "pulumiverse_fortios.system.snmp",
   "classes": {
-   "fortios:sys/vdomdns:Vdomdns": "Vdomdns"
+   "fortios:system/snmp/community:Community": "Community"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/vdomexception",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/snmp/mibview",
+  "fqn": "pulumiverse_fortios.system.snmp",
   "classes": {
-   "fortios:sys/vdomexception:Vdomexception": "Vdomexception"
+   "fortios:system/snmp/mibview:Mibview": "Mibview"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/vdomlink",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/snmp/sysinfo",
+  "fqn": "pulumiverse_fortios.system.snmp",
   "classes": {
-   "fortios:sys/vdomlink:Vdomlink": "Vdomlink"
+   "fortios:system/snmp/sysinfo:Sysinfo": "Sysinfo"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/vdomnetflow",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/snmp/user",
+  "fqn": "pulumiverse_fortios.system.snmp",
   "classes": {
-   "fortios:sys/vdomnetflow:Vdomnetflow": "Vdomnetflow"
+   "fortios:system/snmp/user:User": "User"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/vdomproperty",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/speedtestschedule",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/vdomproperty:Vdomproperty": "Vdomproperty"
+   "fortios:system/speedtestschedule:Speedtestschedule": "Speedtestschedule"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/vdomradiusserver",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/speedtestserver",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/vdomradiusserver:Vdomradiusserver": "Vdomradiusserver"
+   "fortios:system/speedtestserver:Speedtestserver": "Speedtestserver"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/vdomsflow",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ssoadmin",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/vdomsflow:Vdomsflow": "Vdomsflow"
+   "fortios:system/ssoadmin:Ssoadmin": "Ssoadmin"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/virtualswitch",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/ssoforticloudadmin",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/virtualswitch:Virtualswitch": "Virtualswitch"
+   "fortios:system/ssoforticloudadmin:Ssoforticloudadmin": "Ssoforticloudadmin"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/virtualwanlink",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/standalonecluster",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/virtualwanlink:Virtualwanlink": "Virtualwanlink"
+   "fortios:system/standalonecluster:Standalonecluster": "Standalonecluster"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/virtualwirepair",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/storage",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/virtualwirepair:Virtualwirepair": "Virtualwirepair"
+   "fortios:system/storage:Storage": "Storage"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/vnetunnel",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/stp",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/vnetunnel:Vnetunnel": "Vnetunnel"
+   "fortios:system/stp:Stp": "Stp"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/vxlan",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/switchinterface",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/vxlan:Vxlan": "Vxlan"
+   "fortios:system/switchinterface:Switchinterface": "Switchinterface"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/wccp",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/tosbasedpriority",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/wccp:Wccp": "Wccp"
+   "fortios:system/tosbasedpriority:Tosbasedpriority": "Tosbasedpriority"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "sys/zone",
-  "fqn": "pulumiverse_fortios.sys",
+  "mod": "system/vdom",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:sys/zone:Zone": "Zone"
+   "fortios:system/vdom:Vdom": "Vdom"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "system3gmodem/custom",
-  "fqn": "pulumiverse_fortios.system3gmodem",
+  "mod": "system/vdomSetting",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:system3gmodem/custom:Custom": "Custom"
+   "fortios:system/vdomSetting:VdomSetting": "VdomSetting"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemautoupdate/pushupdate",
-  "fqn": "pulumiverse_fortios.systemautoupdate",
+  "mod": "system/vdomdns",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemautoupdate/pushupdate:Pushupdate": "Pushupdate"
+   "fortios:system/vdomdns:Vdomdns": "Vdomdns"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemautoupdate/schedule",
-  "fqn": "pulumiverse_fortios.systemautoupdate",
+  "mod": "system/vdomexception",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemautoupdate/schedule:Schedule": "Schedule"
+   "fortios:system/vdomexception:Vdomexception": "Vdomexception"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemautoupdate/tunneling",
-  "fqn": "pulumiverse_fortios.systemautoupdate",
+  "mod": "system/vdomlink",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemautoupdate/tunneling:Tunneling": "Tunneling"
+   "fortios:system/vdomlink:Vdomlink": "Vdomlink"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemdhcp/server",
-  "fqn": "pulumiverse_fortios.systemdhcp",
+  "mod": "system/vdomnetflow",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemdhcp/server:Server": "Server"
+   "fortios:system/vdomnetflow:Vdomnetflow": "Vdomnetflow"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemdhcp6/server",
-  "fqn": "pulumiverse_fortios.systemdhcp6",
+  "mod": "system/vdomproperty",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemdhcp6/server:Server": "Server"
+   "fortios:system/vdomproperty:Vdomproperty": "Vdomproperty"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemlldp/networkpolicy",
-  "fqn": "pulumiverse_fortios.systemlldp",
+  "mod": "system/vdomradiusserver",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemlldp/networkpolicy:Networkpolicy": "Networkpolicy"
+   "fortios:system/vdomradiusserver:Vdomradiusserver": "Vdomradiusserver"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemreplacemsg/admin",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
+  "mod": "system/vdomsflow",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemreplacemsg/admin:Admin": "Admin"
+   "fortios:system/vdomsflow:Vdomsflow": "Vdomsflow"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemreplacemsg/alertmail",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
+  "mod": "system/virtualswitch",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemreplacemsg/alertmail:Alertmail": "Alertmail"
+   "fortios:system/virtualswitch:Virtualswitch": "Virtualswitch"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemreplacemsg/auth",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
+  "mod": "system/virtualwanlink",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemreplacemsg/auth:Auth": "Auth"
+   "fortios:system/virtualwanlink:Virtualwanlink": "Virtualwanlink"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemreplacemsg/automation",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
+  "mod": "system/virtualwirepair",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemreplacemsg/automation:Automation": "Automation"
+   "fortios:system/virtualwirepair:Virtualwirepair": "Virtualwirepair"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemreplacemsg/devicedetectionportal",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
+  "mod": "system/vnetunnel",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemreplacemsg/devicedetectionportal:Devicedetectionportal": "Devicedetectionportal"
+   "fortios:system/vnetunnel:Vnetunnel": "Vnetunnel"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemreplacemsg/ec",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
+  "mod": "system/vxlan",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemreplacemsg/ec:Ec": "Ec"
+   "fortios:system/vxlan:Vxlan": "Vxlan"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemreplacemsg/fortiguardwf",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
+  "mod": "system/wccp",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemreplacemsg/fortiguardwf:Fortiguardwf": "Fortiguardwf"
+   "fortios:system/wccp:Wccp": "Wccp"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "systemreplacemsg/ftp",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
+  "mod": "system/zone",
+  "fqn": "pulumiverse_fortios.system",
   "classes": {
-   "fortios:systemreplacemsg/ftp:Ftp": "Ftp"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemreplacemsg/http",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
-  "classes": {
-   "fortios:systemreplacemsg/http:Http": "Http"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemreplacemsg/icap",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
-  "classes": {
-   "fortios:systemreplacemsg/icap:Icap": "Icap"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemreplacemsg/mail",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
-  "classes": {
-   "fortios:systemreplacemsg/mail:Mail": "Mail"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemreplacemsg/nacquar",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
-  "classes": {
-   "fortios:systemreplacemsg/nacquar:Nacquar": "Nacquar"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemreplacemsg/nntp",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
-  "classes": {
-   "fortios:systemreplacemsg/nntp:Nntp": "Nntp"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemreplacemsg/spam",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
-  "classes": {
-   "fortios:systemreplacemsg/spam:Spam": "Spam"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemreplacemsg/sslvpn",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
-  "classes": {
-   "fortios:systemreplacemsg/sslvpn:Sslvpn": "Sslvpn"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemreplacemsg/trafficquota",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
-  "classes": {
-   "fortios:systemreplacemsg/trafficquota:Trafficquota": "Trafficquota"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemreplacemsg/utm",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
-  "classes": {
-   "fortios:systemreplacemsg/utm:Utm": "Utm"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemreplacemsg/webproxy",
-  "fqn": "pulumiverse_fortios.systemreplacemsg",
-  "classes": {
-   "fortios:systemreplacemsg/webproxy:Webproxy": "Webproxy"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemsnmp/community",
-  "fqn": "pulumiverse_fortios.systemsnmp",
-  "classes": {
-   "fortios:systemsnmp/community:Community": "Community"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemsnmp/mibview",
-  "fqn": "pulumiverse_fortios.systemsnmp",
-  "classes": {
-   "fortios:systemsnmp/mibview:Mibview": "Mibview"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemsnmp/sysinfo",
-  "fqn": "pulumiverse_fortios.systemsnmp",
-  "classes": {
-   "fortios:systemsnmp/sysinfo:Sysinfo": "Sysinfo"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "systemsnmp/user",
-  "fqn": "pulumiverse_fortios.systemsnmp",
-  "classes": {
-   "fortios:systemsnmp/user:User": "User"
+   "fortios:system/zone:Zone": "Zone"
   }
  },
  {
@@ -4613,34 +4580,130 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
-  "mod": "videofilter/profile",
-  "fqn": "pulumiverse_fortios.videofilter",
-  "classes": {
-   "fortios:videofilter/profile:Profile": "Profile"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "videofilter/youtubechannelfilter",
-  "fqn": "pulumiverse_fortios.videofilter",
-  "classes": {
-   "fortios:videofilter/youtubechannelfilter:Youtubechannelfilter": "Youtubechannelfilter"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "videofilter/youtubekey",
-  "fqn": "pulumiverse_fortios.videofilter",
-  "classes": {
-   "fortios:videofilter/youtubekey:Youtubekey": "Youtubekey"
-  }
- },
- {
-  "pkg": "fortios",
   "mod": "voip/profile",
   "fqn": "pulumiverse_fortios.voip",
   "classes": {
    "fortios:voip/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/certificate/ca",
+  "fqn": "pulumiverse_fortios.vpn.certificate",
+  "classes": {
+   "fortios:vpn/certificate/ca:Ca": "Ca"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/certificate/crl",
+  "fqn": "pulumiverse_fortios.vpn.certificate",
+  "classes": {
+   "fortios:vpn/certificate/crl:Crl": "Crl"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/certificate/local",
+  "fqn": "pulumiverse_fortios.vpn.certificate",
+  "classes": {
+   "fortios:vpn/certificate/local:Local": "Local"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/certificate/ocspserver",
+  "fqn": "pulumiverse_fortios.vpn.certificate",
+  "classes": {
+   "fortios:vpn/certificate/ocspserver:Ocspserver": "Ocspserver"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/certificate/remote",
+  "fqn": "pulumiverse_fortios.vpn.certificate",
+  "classes": {
+   "fortios:vpn/certificate/remote:Remote": "Remote"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/certificate/setting",
+  "fqn": "pulumiverse_fortios.vpn.certificate",
+  "classes": {
+   "fortios:vpn/certificate/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/ipsec/concentrator",
+  "fqn": "pulumiverse_fortios.vpn.ipsec",
+  "classes": {
+   "fortios:vpn/ipsec/concentrator:Concentrator": "Concentrator"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/ipsec/fec",
+  "fqn": "pulumiverse_fortios.vpn.ipsec",
+  "classes": {
+   "fortios:vpn/ipsec/fec:Fec": "Fec"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/ipsec/forticlient",
+  "fqn": "pulumiverse_fortios.vpn.ipsec",
+  "classes": {
+   "fortios:vpn/ipsec/forticlient:Forticlient": "Forticlient"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/ipsec/manualkey",
+  "fqn": "pulumiverse_fortios.vpn.ipsec",
+  "classes": {
+   "fortios:vpn/ipsec/manualkey:Manualkey": "Manualkey"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/ipsec/manualkeyinterface",
+  "fqn": "pulumiverse_fortios.vpn.ipsec",
+  "classes": {
+   "fortios:vpn/ipsec/manualkeyinterface:Manualkeyinterface": "Manualkeyinterface"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/ipsec/phase1",
+  "fqn": "pulumiverse_fortios.vpn.ipsec",
+  "classes": {
+   "fortios:vpn/ipsec/phase1:Phase1": "Phase1"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/ipsec/phase1interface",
+  "fqn": "pulumiverse_fortios.vpn.ipsec",
+  "classes": {
+   "fortios:vpn/ipsec/phase1interface:Phase1interface": "Phase1interface"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/ipsec/phase2",
+  "fqn": "pulumiverse_fortios.vpn.ipsec",
+  "classes": {
+   "fortios:vpn/ipsec/phase2:Phase2": "Phase2"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/ipsec/phase2interface",
+  "fqn": "pulumiverse_fortios.vpn.ipsec",
+  "classes": {
+   "fortios:vpn/ipsec/phase2interface:Phase2interface": "Phase2interface"
   }
  },
  {
@@ -4669,178 +4732,58 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
-  "mod": "vpncertificate/ca",
-  "fqn": "pulumiverse_fortios.vpncertificate",
+  "mod": "vpn/ssl/client",
+  "fqn": "pulumiverse_fortios.vpn.ssl",
   "classes": {
-   "fortios:vpncertificate/ca:Ca": "Ca"
+   "fortios:vpn/ssl/client:Client": "Client"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "vpncertificate/crl",
-  "fqn": "pulumiverse_fortios.vpncertificate",
+  "mod": "vpn/ssl/settings",
+  "fqn": "pulumiverse_fortios.vpn.ssl",
   "classes": {
-   "fortios:vpncertificate/crl:Crl": "Crl"
+   "fortios:vpn/ssl/settings:Settings": "Settings"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "vpncertificate/local",
-  "fqn": "pulumiverse_fortios.vpncertificate",
+  "mod": "vpn/ssl/web/hostchecksoftware",
+  "fqn": "pulumiverse_fortios.vpn.ssl.web",
   "classes": {
-   "fortios:vpncertificate/local:Local": "Local"
+   "fortios:vpn/ssl/web/hostchecksoftware:Hostchecksoftware": "Hostchecksoftware"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "vpncertificate/ocspserver",
-  "fqn": "pulumiverse_fortios.vpncertificate",
+  "mod": "vpn/ssl/web/portal",
+  "fqn": "pulumiverse_fortios.vpn.ssl.web",
   "classes": {
-   "fortios:vpncertificate/ocspserver:Ocspserver": "Ocspserver"
+   "fortios:vpn/ssl/web/portal:Portal": "Portal"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "vpncertificate/remote",
-  "fqn": "pulumiverse_fortios.vpncertificate",
+  "mod": "vpn/ssl/web/realm",
+  "fqn": "pulumiverse_fortios.vpn.ssl.web",
   "classes": {
-   "fortios:vpncertificate/remote:Remote": "Remote"
+   "fortios:vpn/ssl/web/realm:Realm": "Realm"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "vpncertificate/setting",
-  "fqn": "pulumiverse_fortios.vpncertificate",
+  "mod": "vpn/ssl/web/userbookmark",
+  "fqn": "pulumiverse_fortios.vpn.ssl.web",
   "classes": {
-   "fortios:vpncertificate/setting:Setting": "Setting"
+   "fortios:vpn/ssl/web/userbookmark:Userbookmark": "Userbookmark"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "vpnipsec/concentrator",
-  "fqn": "pulumiverse_fortios.vpnipsec",
+  "mod": "vpn/ssl/web/usergroupbookmark",
+  "fqn": "pulumiverse_fortios.vpn.ssl.web",
   "classes": {
-   "fortios:vpnipsec/concentrator:Concentrator": "Concentrator"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnipsec/fec",
-  "fqn": "pulumiverse_fortios.vpnipsec",
-  "classes": {
-   "fortios:vpnipsec/fec:Fec": "Fec"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnipsec/forticlient",
-  "fqn": "pulumiverse_fortios.vpnipsec",
-  "classes": {
-   "fortios:vpnipsec/forticlient:Forticlient": "Forticlient"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnipsec/manualkey",
-  "fqn": "pulumiverse_fortios.vpnipsec",
-  "classes": {
-   "fortios:vpnipsec/manualkey:Manualkey": "Manualkey"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnipsec/manualkeyinterface",
-  "fqn": "pulumiverse_fortios.vpnipsec",
-  "classes": {
-   "fortios:vpnipsec/manualkeyinterface:Manualkeyinterface": "Manualkeyinterface"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnipsec/phase1",
-  "fqn": "pulumiverse_fortios.vpnipsec",
-  "classes": {
-   "fortios:vpnipsec/phase1:Phase1": "Phase1"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnipsec/phase1interface",
-  "fqn": "pulumiverse_fortios.vpnipsec",
-  "classes": {
-   "fortios:vpnipsec/phase1interface:Phase1interface": "Phase1interface"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnipsec/phase2",
-  "fqn": "pulumiverse_fortios.vpnipsec",
-  "classes": {
-   "fortios:vpnipsec/phase2:Phase2": "Phase2"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnipsec/phase2interface",
-  "fqn": "pulumiverse_fortios.vpnipsec",
-  "classes": {
-   "fortios:vpnipsec/phase2interface:Phase2interface": "Phase2interface"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnssl/client",
-  "fqn": "pulumiverse_fortios.vpnssl",
-  "classes": {
-   "fortios:vpnssl/client:Client": "Client"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnssl/settings",
-  "fqn": "pulumiverse_fortios.vpnssl",
-  "classes": {
-   "fortios:vpnssl/settings:Settings": "Settings"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnsslweb/hostchecksoftware",
-  "fqn": "pulumiverse_fortios.vpnsslweb",
-  "classes": {
-   "fortios:vpnsslweb/hostchecksoftware:Hostchecksoftware": "Hostchecksoftware"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnsslweb/portal",
-  "fqn": "pulumiverse_fortios.vpnsslweb",
-  "classes": {
-   "fortios:vpnsslweb/portal:Portal": "Portal"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnsslweb/realm",
-  "fqn": "pulumiverse_fortios.vpnsslweb",
-  "classes": {
-   "fortios:vpnsslweb/realm:Realm": "Realm"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnsslweb/userbookmark",
-  "fqn": "pulumiverse_fortios.vpnsslweb",
-  "classes": {
-   "fortios:vpnsslweb/userbookmark:Userbookmark": "Userbookmark"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "vpnsslweb/usergroupbookmark",
-  "fqn": "pulumiverse_fortios.vpnsslweb",
-  "classes": {
-   "fortios:vpnsslweb/usergroupbookmark:Usergroupbookmark": "Usergroupbookmark"
+   "fortios:vpn/ssl/web/usergroupbookmark:Usergroupbookmark": "Usergroupbookmark"
   }
  },
  {
@@ -4937,102 +4880,6 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.wanopt",
   "classes": {
    "fortios:wanopt/webcache:Webcache": "Webcache"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "webfilter/content",
-  "fqn": "pulumiverse_fortios.webfilter",
-  "classes": {
-   "fortios:webfilter/content:Content": "Content"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "webfilter/contentheader",
-  "fqn": "pulumiverse_fortios.webfilter",
-  "classes": {
-   "fortios:webfilter/contentheader:Contentheader": "Contentheader"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "webfilter/fortiguard",
-  "fqn": "pulumiverse_fortios.webfilter",
-  "classes": {
-   "fortios:webfilter/fortiguard:Fortiguard": "Fortiguard"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "webfilter/ftgdlocalcat",
-  "fqn": "pulumiverse_fortios.webfilter",
-  "classes": {
-   "fortios:webfilter/ftgdlocalcat:Ftgdlocalcat": "Ftgdlocalcat"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "webfilter/ftgdlocalrating",
-  "fqn": "pulumiverse_fortios.webfilter",
-  "classes": {
-   "fortios:webfilter/ftgdlocalrating:Ftgdlocalrating": "Ftgdlocalrating"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "webfilter/ipsurlfiltercachesetting",
-  "fqn": "pulumiverse_fortios.webfilter",
-  "classes": {
-   "fortios:webfilter/ipsurlfiltercachesetting:Ipsurlfiltercachesetting": "Ipsurlfiltercachesetting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "webfilter/ipsurlfiltersetting",
-  "fqn": "pulumiverse_fortios.webfilter",
-  "classes": {
-   "fortios:webfilter/ipsurlfiltersetting:Ipsurlfiltersetting": "Ipsurlfiltersetting"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "webfilter/ipsurlfiltersetting6",
-  "fqn": "pulumiverse_fortios.webfilter",
-  "classes": {
-   "fortios:webfilter/ipsurlfiltersetting6:Ipsurlfiltersetting6": "Ipsurlfiltersetting6"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "webfilter/override",
-  "fqn": "pulumiverse_fortios.webfilter",
-  "classes": {
-   "fortios:webfilter/override:Override": "Override"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "webfilter/profile",
-  "fqn": "pulumiverse_fortios.webfilter",
-  "classes": {
-   "fortios:webfilter/profile:Profile": "Profile"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "webfilter/searchengine",
-  "fqn": "pulumiverse_fortios.webfilter",
-  "classes": {
-   "fortios:webfilter/searchengine:Searchengine": "Searchengine"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "webfilter/urlfilter",
-  "fqn": "pulumiverse_fortios.webfilter",
-  "classes": {
-   "fortios:webfilter/urlfilter:Urlfilter": "Urlfilter"
   }
  },
  {
@@ -5169,6 +5016,142 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.wirelesscontroller",
   "classes": {
    "fortios:wirelesscontroller/global:Global": "Global"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/anqp3gppcellular",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/anqp3gppcellular:Anqp3gppcellular": "Anqp3gppcellular"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/anqpipaddresstype",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/anqpipaddresstype:Anqpipaddresstype": "Anqpipaddresstype"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/anqpnairealm",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/anqpnairealm:Anqpnairealm": "Anqpnairealm"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/anqpnetworkauthtype",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/anqpnetworkauthtype:Anqpnetworkauthtype": "Anqpnetworkauthtype"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/anqproamingconsortium",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/anqproamingconsortium:Anqproamingconsortium": "Anqproamingconsortium"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/anqpvenuename",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/anqpvenuename:Anqpvenuename": "Anqpvenuename"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/anqpvenueurl",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/anqpvenueurl:Anqpvenueurl": "Anqpvenueurl"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/h2qpadviceofcharge",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/h2qpadviceofcharge:H2qpadviceofcharge": "H2qpadviceofcharge"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/h2qpconncapability",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/h2qpconncapability:H2qpconncapability": "H2qpconncapability"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/h2qpoperatorname",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/h2qpoperatorname:H2qpoperatorname": "H2qpoperatorname"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/h2qposuprovider",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/h2qposuprovider:H2qposuprovider": "H2qposuprovider"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/h2qposuprovidernai",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/h2qposuprovidernai:H2qposuprovidernai": "H2qposuprovidernai"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/h2qptermsandconditions",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/h2qptermsandconditions:H2qptermsandconditions": "H2qptermsandconditions"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/h2qpwanmetric",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/h2qpwanmetric:H2qpwanmetric": "H2qpwanmetric"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/hsprofile",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/hsprofile:Hsprofile": "Hsprofile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/icon",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/icon:Icon": "Icon"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "wirelesscontroller/hotspot20/qosmap",
+  "fqn": "pulumiverse_fortios.wirelesscontroller.hotspot20",
+  "classes": {
+   "fortios:wirelesscontroller/hotspot20/qosmap:Qosmap": "Qosmap"
   }
  },
  {
@@ -5321,142 +5304,6 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.wirelesscontroller",
   "classes": {
    "fortios:wirelesscontroller/wtpprofile:Wtpprofile": "Wtpprofile"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/anqp3gppcellular",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/anqp3gppcellular:Anqp3gppcellular": "Anqp3gppcellular"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/anqpipaddresstype",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/anqpipaddresstype:Anqpipaddresstype": "Anqpipaddresstype"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/anqpnairealm",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/anqpnairealm:Anqpnairealm": "Anqpnairealm"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/anqpnetworkauthtype",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/anqpnetworkauthtype:Anqpnetworkauthtype": "Anqpnetworkauthtype"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/anqproamingconsortium",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/anqproamingconsortium:Anqproamingconsortium": "Anqproamingconsortium"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/anqpvenuename",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/anqpvenuename:Anqpvenuename": "Anqpvenuename"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/anqpvenueurl",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/anqpvenueurl:Anqpvenueurl": "Anqpvenueurl"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/h2qpadviceofcharge",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/h2qpadviceofcharge:H2qpadviceofcharge": "H2qpadviceofcharge"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/h2qpconncapability",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/h2qpconncapability:H2qpconncapability": "H2qpconncapability"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/h2qpoperatorname",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/h2qpoperatorname:H2qpoperatorname": "H2qpoperatorname"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/h2qposuprovider",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/h2qposuprovider:H2qposuprovider": "H2qposuprovider"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/h2qposuprovidernai",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/h2qposuprovidernai:H2qposuprovidernai": "H2qposuprovidernai"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/h2qptermsandconditions",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/h2qptermsandconditions:H2qptermsandconditions": "H2qptermsandconditions"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/h2qpwanmetric",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/h2qpwanmetric:H2qpwanmetric": "H2qpwanmetric"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/hsprofile",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/hsprofile:Hsprofile": "Hsprofile"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/icon",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/icon:Icon": "Icon"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "wirelesscontrollerhotspot20/qosmap",
-  "fqn": "pulumiverse_fortios.wirelesscontrollerhotspot20",
-  "classes": {
-   "fortios:wirelesscontrollerhotspot20/qosmap:Qosmap": "Qosmap"
   }
  }
 ]

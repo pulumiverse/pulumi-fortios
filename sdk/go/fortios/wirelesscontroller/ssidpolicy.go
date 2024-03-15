@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure WiFi SSID policies. Applies to FortiOS Version `>= 7.0.1`.
 //
 // ## Import
 //
-// # WirelessController SsidPolicy can be imported using any of these accepted formats
+// WirelessController SsidPolicy can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/ssidpolicy:Ssidpolicy labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/ssidpolicy:Ssidpolicy labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/ssidpolicy:Ssidpolicy labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/ssidpolicy:Ssidpolicy labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Ssidpolicy struct {
 	pulumi.CustomResourceState
 
@@ -51,7 +50,7 @@ func NewSsidpolicy(ctx *pulumi.Context,
 		args = &SsidpolicyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Ssidpolicy
 	err := ctx.RegisterResource("fortios:wirelesscontroller/ssidpolicy:Ssidpolicy", name, args, &resource, opts...)
 	if err != nil {

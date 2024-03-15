@@ -42,9 +42,6 @@ export class SecurityPolicyseq extends pulumi.CustomResource {
      * Comment
      */
     public readonly comment!: pulumi.Output<string | undefined>;
-    /**
-     * Enable status detection for policySrcId and policy_dst_id
-     */
     public readonly enableStateChecking!: pulumi.Output<boolean | undefined>;
     /**
      * The dest policy id which you want to alter
@@ -116,9 +113,6 @@ export interface SecurityPolicyseqState {
      * Comment
      */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable status detection for policySrcId and policy_dst_id
-     */
     enableStateChecking?: pulumi.Input<boolean>;
     /**
      * The dest policy id which you want to alter
@@ -145,9 +139,6 @@ export interface SecurityPolicyseqArgs {
      * Comment
      */
     comment?: pulumi.Input<string>;
-    /**
-     * Enable status detection for policySrcId and policy_dst_id
-     */
     enableStateChecking?: pulumi.Input<boolean>;
     /**
      * The dest policy id which you want to alter

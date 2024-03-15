@@ -29,7 +29,6 @@ class SecurityPolicyseqArgs:
         :param pulumi.Input[int] policy_dst_id: The dest policy id which you want to alter
         :param pulumi.Input[int] policy_src_id: The policy id which you want to alter
         :param pulumi.Input[str] comment: Comment
-        :param pulumi.Input[bool] enable_state_checking: Enable status detection for policy_src_id and policy_dst_id
         """
         pulumi.set(__self__, "alter_position", alter_position)
         pulumi.set(__self__, "policy_dst_id", policy_dst_id)
@@ -94,9 +93,6 @@ class SecurityPolicyseqArgs:
     @property
     @pulumi.getter(name="enableStateChecking")
     def enable_state_checking(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Enable status detection for policy_src_id and policy_dst_id
-        """
         return pulumi.get(self, "enable_state_checking")
 
     @enable_state_checking.setter
@@ -137,7 +133,6 @@ class _SecurityPolicyseqState:
         Input properties used for looking up and filtering SecurityPolicyseq resources.
         :param pulumi.Input[str] alter_position: The alter position: should only be "before" or "after"
         :param pulumi.Input[str] comment: Comment
-        :param pulumi.Input[bool] enable_state_checking: Enable status detection for policy_src_id and policy_dst_id
         :param pulumi.Input[int] policy_dst_id: The dest policy id which you want to alter
         :param pulumi.Input[int] policy_src_id: The policy id which you want to alter
         """
@@ -185,9 +180,6 @@ class _SecurityPolicyseqState:
     @property
     @pulumi.getter(name="enableStateChecking")
     def enable_state_checking(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Enable status detection for policy_src_id and policy_dst_id
-        """
         return pulumi.get(self, "enable_state_checking")
 
     @enable_state_checking.setter
@@ -265,7 +257,6 @@ class SecurityPolicyseq(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alter_position: The alter position: should only be "before" or "after"
         :param pulumi.Input[str] comment: Comment
-        :param pulumi.Input[bool] enable_state_checking: Enable status detection for policy_src_id and policy_dst_id
         :param pulumi.Input[int] policy_dst_id: The dest policy id which you want to alter
         :param pulumi.Input[int] policy_src_id: The policy id which you want to alter
         """
@@ -349,7 +340,6 @@ class SecurityPolicyseq(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alter_position: The alter position: should only be "before" or "after"
         :param pulumi.Input[str] comment: Comment
-        :param pulumi.Input[bool] enable_state_checking: Enable status detection for policy_src_id and policy_dst_id
         :param pulumi.Input[int] policy_dst_id: The dest policy id which you want to alter
         :param pulumi.Input[int] policy_src_id: The policy id which you want to alter
         """
@@ -386,9 +376,6 @@ class SecurityPolicyseq(pulumi.CustomResource):
     @property
     @pulumi.getter(name="enableStateChecking")
     def enable_state_checking(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Enable status detection for policy_src_id and policy_dst_id
-        """
         return pulumi.get(self, "enable_state_checking")
 
     @property

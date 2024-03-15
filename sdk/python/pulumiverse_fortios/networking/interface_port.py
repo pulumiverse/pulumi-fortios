@@ -695,10 +695,12 @@ class InterfacePort(pulumi.CustomResource):
         """
         Provides a resource to configure interface settings of FortiOS.
 
-        !> **Warning:** The resource will be deprecated and replaced by new resource `sys.Interface`, we recommend that you use the new resource.
+        !> **Warning:** The resource will be deprecated and replaced by new resource `system.Interface`, we recommend that you use the new resource.
 
         ## Example Usage
+
         ### Loopback Interface
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -714,7 +716,10 @@ class InterfacePort(pulumi.CustomResource):
             type="loopback",
             vdom="root")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### VLAN Interface
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -731,7 +736,10 @@ class InterfacePort(pulumi.CustomResource):
             vdom="root",
             vlanid="3")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Physical Interface
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -754,6 +762,7 @@ class InterfacePort(pulumi.CustomResource):
             tcp_mss="3232",
             type="physical")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -787,10 +796,12 @@ class InterfacePort(pulumi.CustomResource):
         """
         Provides a resource to configure interface settings of FortiOS.
 
-        !> **Warning:** The resource will be deprecated and replaced by new resource `sys.Interface`, we recommend that you use the new resource.
+        !> **Warning:** The resource will be deprecated and replaced by new resource `system.Interface`, we recommend that you use the new resource.
 
         ## Example Usage
+
         ### Loopback Interface
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -806,7 +817,10 @@ class InterfacePort(pulumi.CustomResource):
             type="loopback",
             vdom="root")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### VLAN Interface
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -823,7 +837,10 @@ class InterfacePort(pulumi.CustomResource):
             vdom="root",
             vlanid="3")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Physical Interface
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -846,6 +863,7 @@ class InterfacePort(pulumi.CustomResource):
             tcp_mss="3232",
             type="physical")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param InterfacePortArgs args: The arguments to use to populate this resource's properties.

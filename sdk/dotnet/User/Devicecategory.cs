@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.User
     /// 
     /// ## Import
     /// 
-    /// User DeviceCategory can be imported using any of these accepted formats
+    /// User DeviceCategory can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:user/devicecategory:Devicecategory labelname {{name}}
+    /// $ pulumi import fortios:user/devicecategory:Devicecategory labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:user/devicecategory:Devicecategory labelname {{name}}
+    /// $ pulumi import fortios:user/devicecategory:Devicecategory labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:user/devicecategory:Devicecategory")]
     public partial class Devicecategory : global::Pulumi.CustomResource

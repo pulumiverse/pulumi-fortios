@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -21,22 +22,25 @@ import * as utilities from "../utilities";
  *     type: "SCTP",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Firewall IpTranslation can be imported using any of these accepted formats
+ * Firewall IpTranslation can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
+ * $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
+ * $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Iptranslation extends pulumi.CustomResource {
     /**

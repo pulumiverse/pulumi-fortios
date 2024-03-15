@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios router multicastflow
 func LookupMulticastflow(ctx *pulumi.Context, args *LookupMulticastflowArgs, opts ...pulumi.InvokeOption) (*LookupMulticastflowResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMulticastflowResult
 	err := ctx.Invoke("fortios:router/getMulticastflow:getMulticastflow", args, &rv, opts...)
 	if err != nil {

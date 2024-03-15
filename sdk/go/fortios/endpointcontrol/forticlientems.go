@@ -9,29 +9,28 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiClient Enterprise Management Server (EMS) entries. Applies to FortiOS Version `<= 6.2.0`.
 //
 // ## Import
 //
-// # EndpointControl ForticlientEms can be imported using any of these accepted formats
+// EndpointControl ForticlientEms can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:endpointcontrol/forticlientems:Forticlientems labelname {{name}}
-//
+// $ pulumi import fortios:endpointcontrol/forticlientems:Forticlientems labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:endpointcontrol/forticlientems:Forticlientems labelname {{name}}
-//
+// $ pulumi import fortios:endpointcontrol/forticlientems:Forticlientems labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Forticlientems struct {
 	pulumi.CustomResourceState
 
@@ -82,7 +81,7 @@ func NewForticlientems(ctx *pulumi.Context,
 		"adminPassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Forticlientems
 	err := ctx.RegisterResource("fortios:endpointcontrol/forticlientems:Forticlientems", name, args, &resource, opts...)
 	if err != nil {

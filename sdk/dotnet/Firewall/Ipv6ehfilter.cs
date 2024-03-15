@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,22 +36,25 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Firewall Ipv6EhFilter can be imported using any of these accepted formats
+    /// Firewall Ipv6EhFilter can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
+    /// $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
+    /// $ pulumi import fortios:firewall/ipv6ehfilter:Ipv6ehfilter labelname FirewallIpv6EhFilter
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:firewall/ipv6ehfilter:Ipv6ehfilter")]
     public partial class Ipv6ehfilter : global::Pulumi.CustomResource

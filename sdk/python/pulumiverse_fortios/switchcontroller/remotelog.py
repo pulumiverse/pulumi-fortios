@@ -302,19 +302,21 @@ class Remotelog(pulumi.CustomResource):
 
         ## Import
 
-        SwitchController RemoteLog can be imported using any of these accepted formats
+        SwitchController RemoteLog can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:switchcontroller/remotelog:Remotelog labelname {{name}}
+        $ pulumi import fortios:switchcontroller/remotelog:Remotelog labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:switchcontroller/remotelog:Remotelog labelname {{name}}
+        $ pulumi import fortios:switchcontroller/remotelog:Remotelog labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -338,19 +340,21 @@ class Remotelog(pulumi.CustomResource):
 
         ## Import
 
-        SwitchController RemoteLog can be imported using any of these accepted formats
+        SwitchController RemoteLog can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:switchcontroller/remotelog:Remotelog labelname {{name}}
+        $ pulumi import fortios:switchcontroller/remotelog:Remotelog labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:switchcontroller/remotelog:Remotelog labelname {{name}}
+        $ pulumi import fortios:switchcontroller/remotelog:Remotelog labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param RemotelogArgs args: The arguments to use to populate this resource's properties.

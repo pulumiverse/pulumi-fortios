@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Authentication
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -46,22 +47,25 @@ namespace Pulumiverse.Fortios.Authentication
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Authentication Scheme can be imported using any of these accepted formats
+    /// Authentication Scheme can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:authentication/scheme:Scheme labelname {{name}}
+    /// $ pulumi import fortios:authentication/scheme:Scheme labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:authentication/scheme:Scheme labelname {{name}}
+    /// $ pulumi import fortios:authentication/scheme:Scheme labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:authentication/scheme:Scheme")]
     public partial class Scheme : global::Pulumi.CustomResource

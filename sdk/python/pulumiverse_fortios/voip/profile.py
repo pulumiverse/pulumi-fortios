@@ -271,6 +271,7 @@ class Profile(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -334,22 +335,25 @@ class Profile(pulumi.CustomResource):
                 update_rate=0,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Voip Profile can be imported using any of these accepted formats
+        Voip Profile can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:voip/profile:Profile labelname {{name}}
+        $ pulumi import fortios:voip/profile:Profile labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:voip/profile:Profile labelname {{name}}
+        $ pulumi import fortios:voip/profile:Profile labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -372,6 +376,7 @@ class Profile(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -435,22 +440,25 @@ class Profile(pulumi.CustomResource):
                 update_rate=0,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Voip Profile can be imported using any of these accepted formats
+        Voip Profile can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:voip/profile:Profile labelname {{name}}
+        $ pulumi import fortios:voip/profile:Profile labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:voip/profile:Profile labelname {{name}}
+        $ pulumi import fortios:voip/profile:Profile labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param ProfileArgs args: The arguments to use to populate this resource's properties.

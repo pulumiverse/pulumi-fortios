@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios firewall internetservicecustomgroup
 func LookupInternetservicecustomgroup(ctx *pulumi.Context, args *LookupInternetservicecustomgroupArgs, opts ...pulumi.InvokeOption) (*LookupInternetservicecustomgroupResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInternetservicecustomgroupResult
 	err := ctx.Invoke("fortios:firewall/getInternetservicecustomgroup:getInternetservicecustomgroup", args, &rv, opts...)
 	if err != nil {

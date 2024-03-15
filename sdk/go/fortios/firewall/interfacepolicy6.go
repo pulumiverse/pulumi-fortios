@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv6 interface policies.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -65,26 +67,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall InterfacePolicy6 can be imported using any of these accepted formats
+// Firewall InterfacePolicy6 can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/interfacepolicy6:Interfacepolicy6 labelname {{policyid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Interfacepolicy6 struct {
 	pulumi.CustomResourceState
 
@@ -168,7 +169,7 @@ func NewInterfacepolicy6(ctx *pulumi.Context,
 	if args.Srcaddr6s == nil {
 		return nil, errors.New("invalid value for required argument 'Srcaddr6s'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Interfacepolicy6
 	err := ctx.RegisterResource("fortios:firewall/interfacepolicy6:Interfacepolicy6", name, args, &resource, opts...)
 	if err != nil {

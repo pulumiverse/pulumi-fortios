@@ -16,18 +16,6 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
     {
         /// <summary>
         /// Address name.
-        /// 
-        /// The `orig_addr6` block supports:
-        /// 
-        /// 
-        /// 
-        /// 
-        /// The `dst_addr6` block supports:
-        /// 
-        /// 
-        /// 
-        /// 
-        /// The `nat_ippool6` block supports:
         /// </summary>
         public readonly string? Name;
 

@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure WTP groups.
 //
 // ## Import
 //
-// # WirelessController WtpGroup can be imported using any of these accepted formats
+// WirelessController WtpGroup can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/wtpgroup:Wtpgroup labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/wtpgroup:Wtpgroup labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/wtpgroup:Wtpgroup labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/wtpgroup:Wtpgroup labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Wtpgroup struct {
 	pulumi.CustomResourceState
 
@@ -53,7 +52,7 @@ func NewWtpgroup(ctx *pulumi.Context,
 		args = &WtpgroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Wtpgroup
 	err := ctx.RegisterResource("fortios:wirelesscontroller/wtpgroup:Wtpgroup", name, args, &resource, opts...)
 	if err != nil {

@@ -14,9 +14,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
     public sealed class InternetserviceextensionEntryDst6Args : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Select the destination address or address group object from available options.
-        /// 
-        /// The `dst6` block supports:
+        /// Select the destination address6 or address group object from available options.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

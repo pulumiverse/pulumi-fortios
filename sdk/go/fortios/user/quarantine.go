@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure quarantine support.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,26 +39,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # User Quarantine can be imported using any of these accepted formats
+// User Quarantine can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
-//
+// $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
-//
+// $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Quarantine struct {
 	pulumi.CustomResourceState
 
@@ -81,7 +82,7 @@ func NewQuarantine(ctx *pulumi.Context,
 		args = &QuarantineArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Quarantine
 	err := ctx.RegisterResource("fortios:user/quarantine:Quarantine", name, args, &resource, opts...)
 	if err != nil {

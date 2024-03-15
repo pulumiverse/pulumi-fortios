@@ -189,22 +189,26 @@ class Accesslist(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.router.Accesslist("trname", comments="test accesslist")
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Note
 
         The feature can only be correctly supported when FortiOS Version >= 6.2.4, for FortiOS Version < 6.2.4, please use the following resource configuration as an alternative.
 
         ### Example
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
-        trname1 = fortios.sys.Autoscript("trname1",
+        trname1 = fortios.system.Autoscript("trname1",
             interval=1,
             output_size=10,
             repeat=1,
@@ -221,22 +225,25 @@ class Accesslist(pulumi.CustomResource):
         \"\"\",
             start="auto")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router AccessList can be imported using any of these accepted formats
+        Router AccessList can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
+        $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="true"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="true"
 
         ```sh
-         $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
+        $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -255,22 +262,26 @@ class Accesslist(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.router.Accesslist("trname", comments="test accesslist")
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Note
 
         The feature can only be correctly supported when FortiOS Version >= 6.2.4, for FortiOS Version < 6.2.4, please use the following resource configuration as an alternative.
 
         ### Example
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
-        trname1 = fortios.sys.Autoscript("trname1",
+        trname1 = fortios.system.Autoscript("trname1",
             interval=1,
             output_size=10,
             repeat=1,
@@ -287,22 +298,25 @@ class Accesslist(pulumi.CustomResource):
         \"\"\",
             start="auto")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router AccessList can be imported using any of these accepted formats
+        Router AccessList can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
+        $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="true"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="true"
 
         ```sh
-         $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
+        $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param AccesslistArgs args: The arguments to use to populate this resource's properties.

@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios firewall address6template
 func LookupAddress6template(ctx *pulumi.Context, args *LookupAddress6templateArgs, opts ...pulumi.InvokeOption) (*LookupAddress6templateResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAddress6templateResult
 	err := ctx.Invoke("fortios:firewall/getAddress6template:getAddress6template", args, &rv, opts...)
 	if err != nil {

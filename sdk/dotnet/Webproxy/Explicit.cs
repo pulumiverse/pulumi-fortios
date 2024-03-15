@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Webproxy
     /// 
     /// ## Import
     /// 
-    /// WebProxy Explicit can be imported using any of these accepted formats
+    /// WebProxy Explicit can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:webproxy/explicit:Explicit labelname WebProxyExplicit
+    /// $ pulumi import fortios:webproxy/explicit:Explicit labelname WebProxyExplicit
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:webproxy/explicit:Explicit labelname WebProxyExplicit
+    /// $ pulumi import fortios:webproxy/explicit:Explicit labelname WebProxyExplicit
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:webproxy/explicit:Explicit")]
     public partial class Explicit : global::Pulumi.CustomResource

@@ -15,10 +15,9 @@ namespace Pulumiverse.Fortios.Firewall
         /// <summary>
         /// Provides a list of `fortios.firewall.Policy`.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -41,8 +40,7 @@ namespace Pulumiverse.Fortios.Firewall
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetPolicylistResult> InvokeAsync(GetPolicylistArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPolicylistResult>("fortios:firewall/getPolicylist:getPolicylist", args ?? new GetPolicylistArgs(), options.WithDefaults());
@@ -50,10 +48,9 @@ namespace Pulumiverse.Fortios.Firewall
         /// <summary>
         /// Provides a list of `fortios.firewall.Policy`.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -76,8 +73,7 @@ namespace Pulumiverse.Fortios.Firewall
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetPolicylistResult> Invoke(GetPolicylistInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPolicylistResult>("fortios:firewall/getPolicylist:getPolicylist", args ?? new GetPolicylistInvokeArgs(), options.WithDefaults());

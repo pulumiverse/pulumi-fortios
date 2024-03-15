@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Create a DLP fingerprint database by allowing the FortiGate to access a file server containing files from which to create fingerprints.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,26 +54,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Dlp FpDocSource can be imported using any of these accepted formats
+// Dlp FpDocSource can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:dlp/fpdocsource:Fpdocsource labelname {{name}}
-//
+// $ pulumi import fortios:dlp/fpdocsource:Fpdocsource labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:dlp/fpdocsource:Fpdocsource labelname {{name}}
-//
+// $ pulumi import fortios:dlp/fpdocsource:Fpdocsource labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Fpdocsource struct {
 	pulumi.CustomResourceState
 
@@ -138,7 +139,7 @@ func NewFpdocsource(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Fpdocsource
 	err := ctx.RegisterResource("fortios:dlp/fpdocsource:Fpdocsource", name, args, &resource, opts...)
 	if err != nil {

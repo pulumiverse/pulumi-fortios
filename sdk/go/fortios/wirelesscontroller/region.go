@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiAP regions (for floor plans and maps).
 //
 // ## Import
 //
-// # WirelessController Region can be imported using any of these accepted formats
+// WirelessController Region can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/region:Region labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/region:Region labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/region:Region labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/region:Region labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Region struct {
 	pulumi.CustomResourceState
 
@@ -55,7 +54,7 @@ func NewRegion(ctx *pulumi.Context,
 		args = &RegionArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Region
 	err := ctx.RegisterResource("fortios:wirelesscontroller/region:Region", name, args, &resource, opts...)
 	if err != nil {

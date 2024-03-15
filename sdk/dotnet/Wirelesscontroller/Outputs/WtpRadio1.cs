@@ -15,7 +15,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
     public sealed class WtpRadio1
     {
         /// <summary>
-        /// Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+        /// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         /// </summary>
         public readonly int? AutoPowerHigh;
         /// <summary>
@@ -23,7 +23,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly string? AutoPowerLevel;
         /// <summary>
-        /// Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+        /// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         /// </summary>
         public readonly int? AutoPowerLow;
         /// <summary>
@@ -31,7 +31,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly string? AutoPowerTarget;
         /// <summary>
-        /// WiFi band that Radio 1 operates on.
+        /// WiFi band that Radio 4 operates on.
         /// </summary>
         public readonly string? Band;
         /// <summary>

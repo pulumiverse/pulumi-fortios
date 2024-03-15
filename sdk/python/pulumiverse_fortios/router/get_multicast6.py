@@ -116,12 +116,12 @@ def get_multicast6(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:router/getMulticast6:getMulticast6', __args__, opts=opts, typ=GetMulticast6Result).value
 
     return AwaitableGetMulticast6Result(
-        id=__ret__.id,
-        interfaces=__ret__.interfaces,
-        multicast_pmtu=__ret__.multicast_pmtu,
-        multicast_routing=__ret__.multicast_routing,
-        pim_sm_globals=__ret__.pim_sm_globals,
-        vdomparam=__ret__.vdomparam)
+        id=pulumi.get(__ret__, 'id'),
+        interfaces=pulumi.get(__ret__, 'interfaces'),
+        multicast_pmtu=pulumi.get(__ret__, 'multicast_pmtu'),
+        multicast_routing=pulumi.get(__ret__, 'multicast_routing'),
+        pim_sm_globals=pulumi.get(__ret__, 'pim_sm_globals'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_multicast6)

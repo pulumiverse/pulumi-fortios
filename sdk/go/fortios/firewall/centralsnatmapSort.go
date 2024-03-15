@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 type CentralsnatmapSort struct {
@@ -35,7 +36,7 @@ func NewCentralsnatmapSort(ctx *pulumi.Context,
 	if args.Sortdirection == nil {
 		return nil, errors.New("invalid value for required argument 'Sortdirection'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CentralsnatmapSort
 	err := ctx.RegisterResource("fortios:firewall/centralsnatmapSort:CentralsnatmapSort", name, args, &resource, opts...)
 	if err != nil {

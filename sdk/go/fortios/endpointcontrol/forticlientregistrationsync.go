@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiClient registration synchronization settings. Applies to FortiOS Version `<= 6.2.0`.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,26 +41,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # EndpointControl ForticlientRegistrationSync can be imported using any of these accepted formats
+// EndpointControl ForticlientRegistrationSync can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:endpointcontrol/forticlientregistrationsync:Forticlientregistrationsync labelname {{peer_name}}
-//
+// $ pulumi import fortios:endpointcontrol/forticlientregistrationsync:Forticlientregistrationsync labelname {{peer_name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:endpointcontrol/forticlientregistrationsync:Forticlientregistrationsync labelname {{peer_name}}
-//
+// $ pulumi import fortios:endpointcontrol/forticlientregistrationsync:Forticlientregistrationsync labelname {{peer_name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Forticlientregistrationsync struct {
 	pulumi.CustomResourceState
 
@@ -80,7 +81,7 @@ func NewForticlientregistrationsync(ctx *pulumi.Context,
 	if args.PeerIp == nil {
 		return nil, errors.New("invalid value for required argument 'PeerIp'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Forticlientregistrationsync
 	err := ctx.RegisterResource("fortios:endpointcontrol/forticlientregistrationsync:Forticlientregistrationsync", name, args, &resource, opts...)
 	if err != nil {

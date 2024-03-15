@@ -8,7 +8,10 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type ExplicitPacPolicy struct {
 	// Optional comments.
@@ -269,8 +272,6 @@ func (o ExplicitPacPolicyDstaddrArrayOutput) Index(i pulumi.IntInput) ExplicitPa
 
 type ExplicitPacPolicySrcaddr6 struct {
 	// Address name.
-	//
-	// The `srcaddr6` block supports:
 	Name *string `pulumi:"name"`
 }
 
@@ -287,8 +288,6 @@ type ExplicitPacPolicySrcaddr6Input interface {
 
 type ExplicitPacPolicySrcaddr6Args struct {
 	// Address name.
-	//
-	// The `srcaddr6` block supports:
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -344,8 +343,6 @@ func (o ExplicitPacPolicySrcaddr6Output) ToExplicitPacPolicySrcaddr6OutputWithCo
 }
 
 // Address name.
-//
-// The `srcaddr6` block supports:
 func (o ExplicitPacPolicySrcaddr6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExplicitPacPolicySrcaddr6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -575,8 +572,6 @@ func (o ForwardservergroupServerListArrayOutput) Index(i pulumi.IntInput) Forwar
 
 type GlobalLearnClientIpSrcaddr6 struct {
 	// Address name.
-	//
-	// The `learnClientIpSrcaddr6` block supports:
 	Name *string `pulumi:"name"`
 }
 
@@ -593,8 +588,6 @@ type GlobalLearnClientIpSrcaddr6Input interface {
 
 type GlobalLearnClientIpSrcaddr6Args struct {
 	// Address name.
-	//
-	// The `learnClientIpSrcaddr6` block supports:
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -650,8 +643,6 @@ func (o GlobalLearnClientIpSrcaddr6Output) ToGlobalLearnClientIpSrcaddr6OutputWi
 }
 
 // Address name.
-//
-// The `learnClientIpSrcaddr6` block supports:
 func (o GlobalLearnClientIpSrcaddr6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalLearnClientIpSrcaddr6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }

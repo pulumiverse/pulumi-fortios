@@ -9,14 +9,16 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a resource to configure firewall service group of FortiOS.
 //
-// !> **Warning:** The resource will be deprecated and replaced by new resource `firewallservice.Group`, we recommend that you use the new resource.
+// !> **Warning:** The resource will be deprecated and replaced by new resource `firewall/service.Group`, we recommend that you use the new resource.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,6 +47,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type ObjectServicegroup struct {
 	pulumi.CustomResourceState
 
@@ -66,7 +69,7 @@ func NewObjectServicegroup(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectServicegroup
 	err := ctx.RegisterResource("fortios:firewall/objectServicegroup:ObjectServicegroup", name, args, &resource, opts...)
 	if err != nil {

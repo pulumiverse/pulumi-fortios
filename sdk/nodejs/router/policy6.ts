@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -30,22 +31,25 @@ import * as utilities from "../utilities";
  *     tosMask: "0x00",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Router Policy6 can be imported using any of these accepted formats
+ * Router Policy6 can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:router/policy6:Policy6 labelname {{seq_num}}
+ * $ pulumi import fortios:router/policy6:Policy6 labelname {{seq_num}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:router/policy6:Policy6 labelname {{seq_num}}
+ * $ pulumi import fortios:router/policy6:Policy6 labelname {{seq_num}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Policy6 extends pulumi.CustomResource {
     /**

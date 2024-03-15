@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on fortios router isis
 func LookupIsis(ctx *pulumi.Context, args *LookupIsisArgs, opts ...pulumi.InvokeOption) (*LookupIsisResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIsisResult
 	err := ctx.Invoke("fortios:router/getIsis:getIsis", args, &rv, opts...)
 	if err != nil {

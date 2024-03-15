@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IS-IS.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -61,26 +63,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Router Isis can be imported using any of these accepted formats
+// Router Isis can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/isis:Isis labelname RouterIsis
-//
+// $ pulumi import fortios:router/isis:Isis labelname RouterIsis
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/isis:Isis labelname RouterIsis
-//
+// $ pulumi import fortios:router/isis:Isis labelname RouterIsis
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Isis struct {
 	pulumi.CustomResourceState
 
@@ -190,7 +191,7 @@ func NewIsis(ctx *pulumi.Context,
 		"authPasswordL2",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Isis
 	err := ctx.RegisterResource("fortios:router/isis:Isis", name, args, &resource, opts...)
 	if err != nil {

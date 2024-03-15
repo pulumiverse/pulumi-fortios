@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure logging by FortiSwitch device to a remote syslog server. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # SwitchController RemoteLog can be imported using any of these accepted formats
+// SwitchController RemoteLog can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/remotelog:Remotelog labelname {{name}}
-//
+// $ pulumi import fortios:switchcontroller/remotelog:Remotelog labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/remotelog:Remotelog labelname {{name}}
-//
+// $ pulumi import fortios:switchcontroller/remotelog:Remotelog labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Remotelog struct {
 	pulumi.CustomResourceState
 
@@ -59,7 +58,7 @@ func NewRemotelog(ctx *pulumi.Context,
 		args = &RemotelogArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Remotelog
 	err := ctx.RegisterResource("fortios:switchcontroller/remotelog:Remotelog", name, args, &resource, opts...)
 	if err != nil {

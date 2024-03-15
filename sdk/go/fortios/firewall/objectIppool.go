@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a resource to configure IPv4 IP address pools of FortiOS.
@@ -16,7 +17,9 @@ import (
 // !> **Warning:** The resource will be deprecated and replaced by new resource `firewall.Ippool`, we recommend that you use the new resource.
 //
 // ## Example Usage
+//
 // ### Overload Ippool
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,7 +47,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### One-To-One Ippool
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -72,6 +78,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type ObjectIppool struct {
 	pulumi.CustomResourceState
 
@@ -105,7 +112,7 @@ func NewObjectIppool(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectIppool
 	err := ctx.RegisterResource("fortios:firewall/objectIppool:ObjectIppool", name, args, &resource, opts...)
 	if err != nil {

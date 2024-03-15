@@ -238,22 +238,22 @@ def get_internetservice(fosid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:firewall/getInternetservice:getInternetservice', __args__, opts=opts, typ=GetInternetserviceResult).value
 
     return AwaitableGetInternetserviceResult(
-        database=__ret__.database,
-        direction=__ret__.direction,
-        extra_ip6_range_number=__ret__.extra_ip6_range_number,
-        extra_ip_range_number=__ret__.extra_ip_range_number,
-        fosid=__ret__.fosid,
-        icon_id=__ret__.icon_id,
-        id=__ret__.id,
-        ip6_range_number=__ret__.ip6_range_number,
-        ip_number=__ret__.ip_number,
-        ip_range_number=__ret__.ip_range_number,
-        name=__ret__.name,
-        obsolete=__ret__.obsolete,
-        reputation=__ret__.reputation,
-        singularity=__ret__.singularity,
-        sld_id=__ret__.sld_id,
-        vdomparam=__ret__.vdomparam)
+        database=pulumi.get(__ret__, 'database'),
+        direction=pulumi.get(__ret__, 'direction'),
+        extra_ip6_range_number=pulumi.get(__ret__, 'extra_ip6_range_number'),
+        extra_ip_range_number=pulumi.get(__ret__, 'extra_ip_range_number'),
+        fosid=pulumi.get(__ret__, 'fosid'),
+        icon_id=pulumi.get(__ret__, 'icon_id'),
+        id=pulumi.get(__ret__, 'id'),
+        ip6_range_number=pulumi.get(__ret__, 'ip6_range_number'),
+        ip_number=pulumi.get(__ret__, 'ip_number'),
+        ip_range_number=pulumi.get(__ret__, 'ip_range_number'),
+        name=pulumi.get(__ret__, 'name'),
+        obsolete=pulumi.get(__ret__, 'obsolete'),
+        reputation=pulumi.get(__ret__, 'reputation'),
+        singularity=pulumi.get(__ret__, 'singularity'),
+        sld_id=pulumi.get(__ret__, 'sld_id'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_internetservice)

@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Antivirus
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -40,22 +41,25 @@ namespace Pulumiverse.Fortios.Antivirus
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Antivirus Profile can be imported using any of these accepted formats
+    /// Antivirus Profile can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:antivirus/profile:Profile labelname {{name}}
+    /// $ pulumi import fortios:antivirus/profile:Profile labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:antivirus/profile:Profile labelname {{name}}
+    /// $ pulumi import fortios:antivirus/profile:Profile labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:antivirus/profile:Profile")]
     public partial class Profile : global::Pulumi.CustomResource

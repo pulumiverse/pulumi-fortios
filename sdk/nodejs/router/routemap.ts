@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -47,22 +48,25 @@ import * as utilities from "../utilities";
  *     setWeight: 21,
  * }]});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Router RouteMap can be imported using any of these accepted formats
+ * Router RouteMap can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:router/routemap:Routemap labelname {{name}}
+ * $ pulumi import fortios:router/routemap:Routemap labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:router/routemap:Routemap labelname {{name}}
+ * $ pulumi import fortios:router/routemap:Routemap labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Routemap extends pulumi.CustomResource {
     /**

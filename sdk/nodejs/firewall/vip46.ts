@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -29,22 +30,25 @@ import * as utilities from "../utilities";
  *     type: "static-nat",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Firewall Vip46 can be imported using any of these accepted formats
+ * Firewall Vip46 can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:firewall/vip46:Vip46 labelname {{name}}
+ * $ pulumi import fortios:firewall/vip46:Vip46 labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:firewall/vip46:Vip46 labelname {{name}}
+ * $ pulumi import fortios:firewall/vip46:Vip46 labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Vip46 extends pulumi.CustomResource {
     /**

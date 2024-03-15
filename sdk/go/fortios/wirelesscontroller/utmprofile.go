@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure UTM (Unified Threat Management) profile.
 //
 // ## Import
 //
-// # WirelessController UtmProfile can be imported using any of these accepted formats
+// WirelessController UtmProfile can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/utmprofile:Utmprofile labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/utmprofile:Utmprofile labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/utmprofile:Utmprofile labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/utmprofile:Utmprofile labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Utmprofile struct {
 	pulumi.CustomResourceState
 
@@ -61,7 +60,7 @@ func NewUtmprofile(ctx *pulumi.Context,
 		args = &UtmprofileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Utmprofile
 	err := ctx.RegisterResource("fortios:wirelesscontroller/utmprofile:Utmprofile", name, args, &resource, opts...)
 	if err != nil {

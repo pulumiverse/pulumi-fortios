@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure CPUs enabled to run engines in each DPDK stage. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # Dpdk Cpus can be imported using any of these accepted formats
+// Dpdk Cpus can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:dpdk/cpus:Cpus labelname DpdkCpus
-//
+// $ pulumi import fortios:dpdk/cpus:Cpus labelname DpdkCpus
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:dpdk/cpus:Cpus labelname DpdkCpus
-//
+// $ pulumi import fortios:dpdk/cpus:Cpus labelname DpdkCpus
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Cpus struct {
 	pulumi.CustomResourceState
 
@@ -55,7 +54,7 @@ func NewCpus(ctx *pulumi.Context,
 		args = &CpusArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Cpus
 	err := ctx.RegisterResource("fortios:dpdk/cpus:Cpus", name, args, &resource, opts...)
 	if err != nil {

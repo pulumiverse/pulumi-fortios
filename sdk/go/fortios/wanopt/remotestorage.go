@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure a remote cache device as Web cache storage.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,26 +40,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Wanopt RemoteStorage can be imported using any of these accepted formats
+// Wanopt RemoteStorage can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wanopt/remotestorage:Remotestorage labelname WanoptRemoteStorage
-//
+// $ pulumi import fortios:wanopt/remotestorage:Remotestorage labelname WanoptRemoteStorage
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wanopt/remotestorage:Remotestorage labelname WanoptRemoteStorage
-//
+// $ pulumi import fortios:wanopt/remotestorage:Remotestorage labelname WanoptRemoteStorage
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Remotestorage struct {
 	pulumi.CustomResourceState
 
@@ -80,7 +81,7 @@ func NewRemotestorage(ctx *pulumi.Context,
 		args = &RemotestorageArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Remotestorage
 	err := ctx.RegisterResource("fortios:wanopt/remotestorage:Remotestorage", name, args, &resource, opts...)
 	if err != nil {

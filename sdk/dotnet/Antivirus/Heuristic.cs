@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Antivirus
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,22 +31,25 @@ namespace Pulumiverse.Fortios.Antivirus
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Antivirus Heuristic can be imported using any of these accepted formats
+    /// Antivirus Heuristic can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:antivirus/heuristic:Heuristic labelname AntivirusHeuristic
+    /// $ pulumi import fortios:antivirus/heuristic:Heuristic labelname AntivirusHeuristic
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:antivirus/heuristic:Heuristic labelname AntivirusHeuristic
+    /// $ pulumi import fortios:antivirus/heuristic:Heuristic labelname AntivirusHeuristic
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:antivirus/heuristic:Heuristic")]
     public partial class Heuristic : global::Pulumi.CustomResource

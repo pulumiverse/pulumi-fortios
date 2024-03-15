@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure how log messages are displayed on the GUI.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,26 +41,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Log GuiDisplay can be imported using any of these accepted formats
+// Log GuiDisplay can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:log/guidisplay:Guidisplay labelname LogGuiDisplay
-//
+// $ pulumi import fortios:log/guidisplay:Guidisplay labelname LogGuiDisplay
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:log/guidisplay:Guidisplay labelname LogGuiDisplay
-//
+// $ pulumi import fortios:log/guidisplay:Guidisplay labelname LogGuiDisplay
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Guidisplay struct {
 	pulumi.CustomResourceState
 
@@ -79,7 +80,7 @@ func NewGuidisplay(ctx *pulumi.Context,
 		args = &GuidisplayArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Guidisplay
 	err := ctx.RegisterResource("fortios:log/guidisplay:Guidisplay", name, args, &resource, opts...)
 	if err != nil {

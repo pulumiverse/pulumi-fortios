@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiSwitch global settings.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,26 +44,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # SwitchController Global can be imported using any of these accepted formats
+// SwitchController Global can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/global:Global labelname SwitchControllerGlobal
-//
+// $ pulumi import fortios:switchcontroller/global:Global labelname SwitchControllerGlobal
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/global:Global labelname SwitchControllerGlobal
-//
+// $ pulumi import fortios:switchcontroller/global:Global labelname SwitchControllerGlobal
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Global struct {
 	pulumi.CustomResourceState
 
@@ -116,7 +117,7 @@ func NewGlobal(ctx *pulumi.Context,
 		args = &GlobalArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Global
 	err := ctx.RegisterResource("fortios:switchcontroller/global:Global", name, args, &resource, opts...)
 	if err != nil {

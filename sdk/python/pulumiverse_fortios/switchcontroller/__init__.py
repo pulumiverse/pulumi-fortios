@@ -44,3 +44,23 @@ from .vlan import *
 from .vlanpolicy import *
 from ._inputs import *
 from . import outputs
+
+# Make subpackages available:
+if typing.TYPE_CHECKING:
+    import pulumiverse_fortios.switchcontroller.autoconfig as __autoconfig
+    autoconfig = __autoconfig
+    import pulumiverse_fortios.switchcontroller.initialconfig as __initialconfig
+    initialconfig = __initialconfig
+    import pulumiverse_fortios.switchcontroller.ptp as __ptp
+    ptp = __ptp
+    import pulumiverse_fortios.switchcontroller.qos as __qos
+    qos = __qos
+    import pulumiverse_fortios.switchcontroller.securitypolicy as __securitypolicy
+    securitypolicy = __securitypolicy
+else:
+    autoconfig = _utilities.lazy_import('pulumiverse_fortios.switchcontroller.autoconfig')
+    initialconfig = _utilities.lazy_import('pulumiverse_fortios.switchcontroller.initialconfig')
+    ptp = _utilities.lazy_import('pulumiverse_fortios.switchcontroller.ptp')
+    qos = _utilities.lazy_import('pulumiverse_fortios.switchcontroller.qos')
+    securitypolicy = _utilities.lazy_import('pulumiverse_fortios.switchcontroller.securitypolicy')
+

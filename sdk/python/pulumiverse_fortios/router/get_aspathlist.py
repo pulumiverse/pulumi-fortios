@@ -95,10 +95,10 @@ def get_aspathlist(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:router/getAspathlist:getAspathlist', __args__, opts=opts, typ=GetAspathlistResult).value
 
     return AwaitableGetAspathlistResult(
-        id=__ret__.id,
-        name=__ret__.name,
-        rules=__ret__.rules,
-        vdomparam=__ret__.vdomparam)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        rules=pulumi.get(__ret__, 'rules'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_aspathlist)

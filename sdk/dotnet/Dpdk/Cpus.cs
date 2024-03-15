@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Dpdk
     /// 
     /// ## Import
     /// 
-    /// Dpdk Cpus can be imported using any of these accepted formats
+    /// Dpdk Cpus can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:dpdk/cpus:Cpus labelname DpdkCpus
+    /// $ pulumi import fortios:dpdk/cpus:Cpus labelname DpdkCpus
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:dpdk/cpus:Cpus labelname DpdkCpus
+    /// $ pulumi import fortios:dpdk/cpus:Cpus labelname DpdkCpus
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:dpdk/cpus:Cpus")]
     public partial class Cpus : global::Pulumi.CustomResource

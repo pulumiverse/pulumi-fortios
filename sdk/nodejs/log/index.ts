@@ -36,6 +36,27 @@ export const Threatweight: typeof import("./threatweight").Threatweight = null a
 utilities.lazyLoad(exports, ["Threatweight"], () => require("./threatweight"));
 
 
+// Export sub-modules:
+import * as disk from "./disk";
+import * as fortianalyzer from "./fortianalyzer";
+import * as fortiguard from "./fortiguard";
+import * as memory from "./memory";
+import * as nulldevice from "./nulldevice";
+import * as syslogd from "./syslogd";
+import * as tacacsaccounting from "./tacacsaccounting";
+import * as webtrends from "./webtrends";
+
+export {
+    disk,
+    fortianalyzer,
+    fortiguard,
+    memory,
+    nulldevice,
+    syslogd,
+    tacacsaccounting,
+    webtrends,
+};
+
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {

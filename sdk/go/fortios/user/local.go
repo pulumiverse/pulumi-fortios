@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure local users.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -67,26 +69,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # User Local can be imported using any of these accepted formats
+// User Local can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/local:Local labelname {{name}}
-//
+// $ pulumi import fortios:user/local:Local labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:user/local:Local labelname {{name}}
-//
+// $ pulumi import fortios:user/local:Local labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Local struct {
 	pulumi.CustomResourceState
 
@@ -172,7 +173,7 @@ func NewLocal(ctx *pulumi.Context,
 		"ppkSecret",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Local
 	err := ctx.RegisterResource("fortios:user/local:Local", name, args, &resource, opts...)
 	if err != nil {

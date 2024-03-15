@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // FortiExtender dataplan configuration. Applies to FortiOS Version `6.4.2,6.4.10,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.2.0`.
 //
 // ## Import
 //
-// # ExtenderController Dataplan can be imported using any of these accepted formats
+// ExtenderController Dataplan can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:extendercontroller/dataplan:Dataplan labelname {{name}}
-//
+// $ pulumi import fortios:extendercontroller/dataplan:Dataplan labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:extendercontroller/dataplan:Dataplan labelname {{name}}
-//
+// $ pulumi import fortios:extendercontroller/dataplan:Dataplan labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Dataplan struct {
 	pulumi.CustomResourceState
 
@@ -90,7 +89,7 @@ func NewDataplan(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Dataplan
 	err := ctx.RegisterResource("fortios:extendercontroller/dataplan:Dataplan", name, args, &resource, opts...)
 	if err != nil {

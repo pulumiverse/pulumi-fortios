@@ -233,6 +233,7 @@ class Iptranslation(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -244,22 +245,25 @@ class Iptranslation(pulumi.CustomResource):
             transid=1,
             type="SCTP")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall IpTranslation can be imported using any of these accepted formats
+        Firewall IpTranslation can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
+        $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
+        $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -281,6 +285,7 @@ class Iptranslation(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -292,22 +297,25 @@ class Iptranslation(pulumi.CustomResource):
             transid=1,
             type="SCTP")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall IpTranslation can be imported using any of these accepted formats
+        Firewall IpTranslation can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
+        $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
+        $ pulumi import fortios:firewall/iptranslation:Iptranslation labelname {{transid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param IptranslationArgs args: The arguments to use to populate this resource's properties.

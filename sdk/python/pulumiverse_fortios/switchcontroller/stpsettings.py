@@ -335,6 +335,7 @@ class Stpsettings(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -348,22 +349,25 @@ class Stpsettings(pulumi.CustomResource):
             revision=0,
             status="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SwitchController StpSettings can be imported using any of these accepted formats
+        SwitchController StpSettings can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
+        $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
+        $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -388,6 +392,7 @@ class Stpsettings(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -401,22 +406,25 @@ class Stpsettings(pulumi.CustomResource):
             revision=0,
             status="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SwitchController StpSettings can be imported using any of these accepted formats
+        SwitchController StpSettings can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
+        $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
+        $ pulumi import fortios:switchcontroller/stpsettings:Stpsettings labelname SwitchControllerStpSettings
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param StpsettingsArgs args: The arguments to use to populate this resource's properties.

@@ -11,28 +11,32 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
  *
  * const trname = new fortios.firewall.Identitybasedroute("trname", {comments: "test"});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Firewall IdentityBasedRoute can be imported using any of these accepted formats
+ * Firewall IdentityBasedRoute can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:firewall/identitybasedroute:Identitybasedroute labelname {{name}}
+ * $ pulumi import fortios:firewall/identitybasedroute:Identitybasedroute labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:firewall/identitybasedroute:Identitybasedroute labelname {{name}}
+ * $ pulumi import fortios:firewall/identitybasedroute:Identitybasedroute labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Identitybasedroute extends pulumi.CustomResource {
     /**

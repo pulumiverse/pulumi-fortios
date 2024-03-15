@@ -8,13 +8,16 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Convert IP/Mask to CIDR
 //
 // ## Example Usage
+//
 // ### Example1
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -22,13 +25,13 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/ipmask"
-//	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/sys"
+//	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/system"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			trnameInterface, err := sys.LookupInterface(ctx, &sys.LookupInterfaceArgs{
+//			trnameInterface, err := system.LookupInterface(ctx, &system.LookupInterfaceArgs{
 //				Name: "port3",
 //			}, nil)
 //			if err != nil {
@@ -46,8 +49,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Example2
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,13 +61,13 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/ipmask"
-//	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/sys"
+//	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/system"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			trnameInterface, err := sys.LookupInterface(ctx, &sys.LookupInterfaceArgs{
+//			trnameInterface, err := system.LookupInterface(ctx, &system.LookupInterfaceArgs{
 //				Name: "port3",
 //			}, nil)
 //			if err != nil {
@@ -86,8 +92,9 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetCidr(ctx *pulumi.Context, args *GetCidrArgs, opts ...pulumi.InvokeOption) (*GetCidrResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCidrResult
 	err := ctx.Invoke("fortios:ipmask/getCidr:getCidr", args, &rv, opts...)
 	if err != nil {

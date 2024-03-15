@@ -82,6 +82,7 @@ def get_policylist(filter: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -91,6 +92,7 @@ def get_policylist(filter: Optional[str] = None,
     sample2 = fortios.firewall.get_policylist(filter="schedule==always&action==accept,action==deny")
     pulumi.export("sample2Output", sample2.policyidlists)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str filter: A filter used to scope the list. See Filter results of datasource.
@@ -103,10 +105,10 @@ def get_policylist(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:firewall/getPolicylist:getPolicylist', __args__, opts=opts, typ=GetPolicylistResult).value
 
     return AwaitableGetPolicylistResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        policyidlists=__ret__.policyidlists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        policyidlists=pulumi.get(__ret__, 'policyidlists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_policylist)
@@ -118,6 +120,7 @@ def get_policylist_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -127,6 +130,7 @@ def get_policylist_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
     sample2 = fortios.firewall.get_policylist(filter="schedule==always&action==accept,action==deny")
     pulumi.export("sample2Output", sample2.policyidlists)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str filter: A filter used to scope the list. See Filter results of datasource.

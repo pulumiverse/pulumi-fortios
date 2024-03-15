@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -19,6 +20,7 @@ import * as utilities from "../utilities";
  *     syncInterval: 30,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class SystemNtp extends pulumi.CustomResource {
     /**

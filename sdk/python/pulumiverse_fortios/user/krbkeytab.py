@@ -233,6 +233,7 @@ class Krbkeytab(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -259,22 +260,25 @@ class Krbkeytab(pulumi.CustomResource):
             ldap_server=trname2.name,
             principal="testprin")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        User KrbKeytab can be imported using any of these accepted formats
+        User KrbKeytab can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
+        $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
+        $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -296,6 +300,7 @@ class Krbkeytab(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -322,22 +327,25 @@ class Krbkeytab(pulumi.CustomResource):
             ldap_server=trname2.name,
             principal="testprin")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        User KrbKeytab can be imported using any of these accepted formats
+        User KrbKeytab can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
+        $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
+        $ pulumi import fortios:user/krbkeytab:Krbkeytab labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param KrbkeytabArgs args: The arguments to use to populate this resource's properties.

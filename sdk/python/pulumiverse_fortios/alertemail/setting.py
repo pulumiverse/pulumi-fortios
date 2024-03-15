@@ -1259,6 +1259,7 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1277,22 +1278,25 @@ class Setting(pulumi.CustomResource):
             fds_license_expiring_days=15,
             information_interval=30)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Alertemail Setting can be imported using any of these accepted formats
+        Alertemail Setting can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:alertemail/setting:Setting labelname AlertemailSetting
+        $ pulumi import fortios:alertemail/setting:Setting labelname AlertemailSetting
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:alertemail/setting:Setting labelname AlertemailSetting
+        $ pulumi import fortios:alertemail/setting:Setting labelname AlertemailSetting
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1345,6 +1349,7 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1363,22 +1368,25 @@ class Setting(pulumi.CustomResource):
             fds_license_expiring_days=15,
             information_interval=30)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Alertemail Setting can be imported using any of these accepted formats
+        Alertemail Setting can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:alertemail/setting:Setting labelname AlertemailSetting
+        $ pulumi import fortios:alertemail/setting:Setting labelname AlertemailSetting
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:alertemail/setting:Setting labelname AlertemailSetting
+        $ pulumi import fortios:alertemail/setting:Setting labelname AlertemailSetting
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param SettingArgs args: The arguments to use to populate this resource's properties.

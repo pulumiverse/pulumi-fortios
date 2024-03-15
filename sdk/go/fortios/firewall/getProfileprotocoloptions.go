@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on an fortios firewall profileprotocoloptions
 func LookupProfileprotocoloptions(ctx *pulumi.Context, args *LookupProfileprotocoloptionsArgs, opts ...pulumi.InvokeOption) (*LookupProfileprotocoloptionsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProfileprotocoloptionsResult
 	err := ctx.Invoke("fortios:firewall/getProfileprotocoloptions:getProfileprotocoloptions", args, &rv, opts...)
 	if err != nil {

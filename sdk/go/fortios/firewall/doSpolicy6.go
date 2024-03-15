@@ -9,29 +9,28 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv6 DoS policies.
 //
 // ## Import
 //
-// # Firewall DosPolicy6 can be imported using any of these accepted formats
+// Firewall DosPolicy6 can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/doSpolicy6:DoSpolicy6 labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/doSpolicy6:DoSpolicy6 labelname {{policyid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/doSpolicy6:DoSpolicy6 labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/doSpolicy6:DoSpolicy6 labelname {{policyid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type DoSpolicy6 struct {
 	pulumi.CustomResourceState
 
@@ -75,7 +74,7 @@ func NewDoSpolicy6(ctx *pulumi.Context,
 	if args.Srcaddrs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcaddrs'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DoSpolicy6
 	err := ctx.RegisterResource("fortios:firewall/doSpolicy6:DoSpolicy6", name, args, &resource, opts...)
 	if err != nil {

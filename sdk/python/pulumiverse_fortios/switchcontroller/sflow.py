@@ -136,6 +136,7 @@ class Sflow(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -144,22 +145,25 @@ class Sflow(pulumi.CustomResource):
             collector_ip="0.0.0.0",
             collector_port=6343)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SwitchController Sflow can be imported using any of these accepted formats
+        SwitchController Sflow can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:switchcontroller/sflow:Sflow labelname SwitchControllerSflow
+        $ pulumi import fortios:switchcontroller/sflow:Sflow labelname SwitchControllerSflow
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:switchcontroller/sflow:Sflow labelname SwitchControllerSflow
+        $ pulumi import fortios:switchcontroller/sflow:Sflow labelname SwitchControllerSflow
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -178,6 +182,7 @@ class Sflow(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -186,22 +191,25 @@ class Sflow(pulumi.CustomResource):
             collector_ip="0.0.0.0",
             collector_port=6343)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SwitchController Sflow can be imported using any of these accepted formats
+        SwitchController Sflow can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:switchcontroller/sflow:Sflow labelname SwitchControllerSflow
+        $ pulumi import fortios:switchcontroller/sflow:Sflow labelname SwitchControllerSflow
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:switchcontroller/sflow:Sflow labelname SwitchControllerSflow
+        $ pulumi import fortios:switchcontroller/sflow:Sflow labelname SwitchControllerSflow
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param SflowArgs args: The arguments to use to populate this resource's properties.

@@ -463,10 +463,12 @@ class ObjectService(pulumi.CustomResource):
         """
         Provides a resource to configure firewall service of FortiOS.
 
-        !> **Warning:** The resource will be deprecated and replaced by new resource `firewallservice.Custom`, we recommend that you use the new resource.
+        !> **Warning:** The resource will be deprecated and replaced by new resource `firewall/service.Custom`, we recommend that you use the new resource.
 
         ## Example Usage
+
         ### Fqdn Service
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -477,7 +479,10 @@ class ObjectService(pulumi.CustomResource):
             fqdn="abc.com",
             protocol="TCP/UDP/SCTP")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Iprange Service
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -491,7 +496,10 @@ class ObjectService(pulumi.CustomResource):
             tcp_portrange="22-33",
             udp_portrange="44-55")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### ICMP Service
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -504,6 +512,7 @@ class ObjectService(pulumi.CustomResource):
             protocol="ICMP",
             protocol_number="1")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -530,10 +539,12 @@ class ObjectService(pulumi.CustomResource):
         """
         Provides a resource to configure firewall service of FortiOS.
 
-        !> **Warning:** The resource will be deprecated and replaced by new resource `firewallservice.Custom`, we recommend that you use the new resource.
+        !> **Warning:** The resource will be deprecated and replaced by new resource `firewall/service.Custom`, we recommend that you use the new resource.
 
         ## Example Usage
+
         ### Fqdn Service
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -544,7 +555,10 @@ class ObjectService(pulumi.CustomResource):
             fqdn="abc.com",
             protocol="TCP/UDP/SCTP")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Iprange Service
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -558,7 +572,10 @@ class ObjectService(pulumi.CustomResource):
             tcp_portrange="22-33",
             udp_portrange="44-55")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### ICMP Service
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -571,6 +588,7 @@ class ObjectService(pulumi.CustomResource):
             protocol="ICMP",
             protocol_number="1")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param ObjectServiceArgs args: The arguments to use to populate this resource's properties.

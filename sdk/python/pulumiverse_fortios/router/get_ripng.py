@@ -248,23 +248,23 @@ def get_ripng(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:router/getRipng:getRipng', __args__, opts=opts, typ=GetRipngResult).value
 
     return AwaitableGetRipngResult(
-        aggregate_addresses=__ret__.aggregate_addresses,
-        default_information_originate=__ret__.default_information_originate,
-        default_metric=__ret__.default_metric,
-        distances=__ret__.distances,
-        distribute_lists=__ret__.distribute_lists,
-        garbage_timer=__ret__.garbage_timer,
-        id=__ret__.id,
-        interfaces=__ret__.interfaces,
-        max_out_metric=__ret__.max_out_metric,
-        neighbors=__ret__.neighbors,
-        networks=__ret__.networks,
-        offset_lists=__ret__.offset_lists,
-        passive_interfaces=__ret__.passive_interfaces,
-        redistributes=__ret__.redistributes,
-        timeout_timer=__ret__.timeout_timer,
-        update_timer=__ret__.update_timer,
-        vdomparam=__ret__.vdomparam)
+        aggregate_addresses=pulumi.get(__ret__, 'aggregate_addresses'),
+        default_information_originate=pulumi.get(__ret__, 'default_information_originate'),
+        default_metric=pulumi.get(__ret__, 'default_metric'),
+        distances=pulumi.get(__ret__, 'distances'),
+        distribute_lists=pulumi.get(__ret__, 'distribute_lists'),
+        garbage_timer=pulumi.get(__ret__, 'garbage_timer'),
+        id=pulumi.get(__ret__, 'id'),
+        interfaces=pulumi.get(__ret__, 'interfaces'),
+        max_out_metric=pulumi.get(__ret__, 'max_out_metric'),
+        neighbors=pulumi.get(__ret__, 'neighbors'),
+        networks=pulumi.get(__ret__, 'networks'),
+        offset_lists=pulumi.get(__ret__, 'offset_lists'),
+        passive_interfaces=pulumi.get(__ret__, 'passive_interfaces'),
+        redistributes=pulumi.get(__ret__, 'redistributes'),
+        timeout_timer=pulumi.get(__ret__, 'timeout_timer'),
+        update_timer=pulumi.get(__ret__, 'update_timer'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_ripng)

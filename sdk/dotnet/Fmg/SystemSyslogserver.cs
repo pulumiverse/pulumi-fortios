@@ -14,23 +14,6 @@ namespace Pulumiverse.Fortios.Fmg
     /// This resource supports Create/Delete system syslog server for FortiManager.
     /// 
     /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Fortios = Pulumiverse.Fortios;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test1 = new Fortios.Fmg.SystemSyslogserver("test1", new()
-    ///     {
-    ///         Ip = "1.1.1.1",
-    ///         Port = 99,
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// </summary>
     [FortiosResourceType("fortios:fmg/systemSyslogserver:SystemSyslogserver")]
     public partial class SystemSyslogserver : global::Pulumi.CustomResource

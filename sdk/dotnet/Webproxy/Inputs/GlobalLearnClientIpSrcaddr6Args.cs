@@ -15,8 +15,6 @@ namespace Pulumiverse.Fortios.Webproxy.Inputs
     {
         /// <summary>
         /// Address name.
-        /// 
-        /// The `learn_client_ip_srcaddr6` block supports:
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

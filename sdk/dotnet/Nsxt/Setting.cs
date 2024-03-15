@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Nsxt
     /// 
     /// ## Import
     /// 
-    /// Nsxt Setting can be imported using any of these accepted formats
+    /// Nsxt Setting can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:nsxt/setting:Setting labelname NsxtSetting
+    /// $ pulumi import fortios:nsxt/setting:Setting labelname NsxtSetting
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:nsxt/setting:Setting labelname NsxtSetting
+    /// $ pulumi import fortios:nsxt/setting:Setting labelname NsxtSetting
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:nsxt/setting:Setting")]
     public partial class Setting : global::Pulumi.CustomResource

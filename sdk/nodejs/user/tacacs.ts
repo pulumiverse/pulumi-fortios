@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -20,22 +21,25 @@ import * as utilities from "../utilities";
  *     server: "1.1.1.1",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * User Tacacs can be imported using any of these accepted formats
+ * User Tacacs can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:user/tacacs:Tacacs labelname {{name}}
+ * $ pulumi import fortios:user/tacacs:Tacacs labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:user/tacacs:Tacacs labelname {{name}}
+ * $ pulumi import fortios:user/tacacs:Tacacs labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Tacacs extends pulumi.CustomResource {
     /**

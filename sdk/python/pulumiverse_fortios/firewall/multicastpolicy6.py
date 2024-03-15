@@ -597,6 +597,7 @@ class Multicastpolicy6(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -618,22 +619,25 @@ class Multicastpolicy6(pulumi.CustomResource):
             start_port=1,
             status="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall MulticastPolicy6 can be imported using any of these accepted formats
+        Firewall MulticastPolicy6 can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/multicastpolicy6:Multicastpolicy6 labelname {{fosid}}
+        $ pulumi import fortios:firewall/multicastpolicy6:Multicastpolicy6 labelname {{fosid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/multicastpolicy6:Multicastpolicy6 labelname {{fosid}}
+        $ pulumi import fortios:firewall/multicastpolicy6:Multicastpolicy6 labelname {{fosid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -666,6 +670,7 @@ class Multicastpolicy6(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -687,22 +692,25 @@ class Multicastpolicy6(pulumi.CustomResource):
             start_port=1,
             status="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall MulticastPolicy6 can be imported using any of these accepted formats
+        Firewall MulticastPolicy6 can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/multicastpolicy6:Multicastpolicy6 labelname {{fosid}}
+        $ pulumi import fortios:firewall/multicastpolicy6:Multicastpolicy6 labelname {{fosid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/multicastpolicy6:Multicastpolicy6 labelname {{fosid}}
+        $ pulumi import fortios:firewall/multicastpolicy6:Multicastpolicy6 labelname {{fosid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param Multicastpolicy6Args args: The arguments to use to populate this resource's properties.

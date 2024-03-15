@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Report style configuration. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,26 +46,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Report Style can be imported using any of these accepted formats
+// Report Style can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:report/style:Style labelname {{name}}
-//
+// $ pulumi import fortios:report/style:Style labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:report/style:Style labelname {{name}}
-//
+// $ pulumi import fortios:report/style:Style labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Style struct {
 	pulumi.CustomResourceState
 
@@ -130,7 +131,7 @@ func NewStyle(ctx *pulumi.Context,
 		args = &StyleArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Style
 	err := ctx.RegisterResource("fortios:report/style:Style", name, args, &resource, opts...)
 	if err != nil {

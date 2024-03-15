@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Global firewall settings. Applies to FortiOS Version `>= 7.2.1`.
 //
 // ## Import
 //
-// # Firewall Global can be imported using any of these accepted formats
+// Firewall Global can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/global:Global labelname FirewallGlobal
-//
+// $ pulumi import fortios:firewall/global:Global labelname FirewallGlobal
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/global:Global labelname FirewallGlobal
-//
+// $ pulumi import fortios:firewall/global:Global labelname FirewallGlobal
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Global struct {
 	pulumi.CustomResourceState
 
@@ -47,7 +46,7 @@ func NewGlobal(ctx *pulumi.Context,
 		args = &GlobalArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Global
 	err := ctx.RegisterResource("fortios:firewall/global:Global", name, args, &resource, opts...)
 	if err != nil {

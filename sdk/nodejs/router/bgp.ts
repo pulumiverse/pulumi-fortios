@@ -9,14 +9,15 @@ import * as utilities from "../utilities";
 /**
  * Configure BGP.
  *
- * > The provider supports the definition of Neighbor in Router Bgp `fortios.router.Bgp`, and also allows the definition of separate Neighbor resources `fortios.routerbgp.Neighbor`, but do not use a `fortios.router.Bgp` with in-line Neighbor in conjunction with any `fortios.routerbgp.Neighbor` resources, otherwise conflicts and overwrite will occur.
+ * > The provider supports the definition of Neighbor in Router Bgp `fortios.router.Bgp`, and also allows the definition of separate Neighbor resources `fortios.router/bgp.Neighbor`, but do not use a `fortios.router.Bgp` with in-line Neighbor in conjunction with any `fortios.router/bgp.Neighbor` resources, otherwise conflicts and overwrite will occur.
  *
- * > The provider supports the definition of Network in Router Bgp `fortios.router.Bgp`, and also allows the definition of separate Network resources `fortios.routerbgp.Network`, but do not use a `fortios.router.Bgp` with in-line Network in conjunction with any `fortios.routerbgp.Network` resources, otherwise conflicts and overwrite will occur.
+ * > The provider supports the definition of Network in Router Bgp `fortios.router.Bgp`, and also allows the definition of separate Network resources `fortios.router/bgp.Network`, but do not use a `fortios.router.Bgp` with in-line Network in conjunction with any `fortios.router/bgp.Network` resources, otherwise conflicts and overwrite will occur.
  *
- * > The provider supports the definition of Network6 in Router Bgp `fortios.router.Bgp`, and also allows the definition of separate Network6 resources `fortios.routerbgp.Network6`, but do not use a `fortios.router.Bgp` with in-line Network6 in conjunction with any `fortios.routerbgp.Network6` resources, otherwise conflicts and overwrite will occur.
+ * > The provider supports the definition of Network6 in Router Bgp `fortios.router.Bgp`, and also allows the definition of separate Network6 resources `fortios.router/bgp.Network6`, but do not use a `fortios.router.Bgp` with in-line Network6 in conjunction with any `fortios.router/bgp.Network6` resources, otherwise conflicts and overwrite will occur.
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -96,22 +97,25 @@ import * as utilities from "../utilities";
  *     synchronization: "disable",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Router Bgp can be imported using any of these accepted formats
+ * Router Bgp can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:router/bgp:Bgp labelname RouterBgp
+ * $ pulumi import fortios:router/bgp:Bgp labelname RouterBgp
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:router/bgp:Bgp labelname RouterBgp
+ * $ pulumi import fortios:router/bgp:Bgp labelname RouterBgp
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Bgp extends pulumi.CustomResource {
     /**

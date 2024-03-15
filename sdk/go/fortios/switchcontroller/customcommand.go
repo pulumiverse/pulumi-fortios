@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure the FortiGate switch controller to send custom commands to managed FortiSwitch devices.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,30 +41,29 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # SwitchController CustomCommand can be imported using any of these accepted formats
+// SwitchController CustomCommand can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/customcommand:Customcommand labelname {{command_name}}
-//
+// $ pulumi import fortios:switchcontroller/customcommand:Customcommand labelname {{command_name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/customcommand:Customcommand labelname {{command_name}}
-//
+// $ pulumi import fortios:switchcontroller/customcommand:Customcommand labelname {{command_name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Customcommand struct {
 	pulumi.CustomResourceState
 
-	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
+	// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
 	Command pulumi.StringOutput `pulumi:"command"`
 	// Command name called by the FortiGate switch controller in the execute command.
 	CommandName pulumi.StringOutput `pulumi:"commandName"`
@@ -82,7 +83,7 @@ func NewCustomcommand(ctx *pulumi.Context,
 	if args.Command == nil {
 		return nil, errors.New("invalid value for required argument 'Command'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Customcommand
 	err := ctx.RegisterResource("fortios:switchcontroller/customcommand:Customcommand", name, args, &resource, opts...)
 	if err != nil {
@@ -105,7 +106,7 @@ func GetCustomcommand(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Customcommand resources.
 type customcommandState struct {
-	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
+	// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
 	Command *string `pulumi:"command"`
 	// Command name called by the FortiGate switch controller in the execute command.
 	CommandName *string `pulumi:"commandName"`
@@ -116,7 +117,7 @@ type customcommandState struct {
 }
 
 type CustomcommandState struct {
-	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
+	// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
 	Command pulumi.StringPtrInput
 	// Command name called by the FortiGate switch controller in the execute command.
 	CommandName pulumi.StringPtrInput
@@ -131,7 +132,7 @@ func (CustomcommandState) ElementType() reflect.Type {
 }
 
 type customcommandArgs struct {
-	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
+	// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
 	Command string `pulumi:"command"`
 	// Command name called by the FortiGate switch controller in the execute command.
 	CommandName *string `pulumi:"commandName"`
@@ -143,7 +144,7 @@ type customcommandArgs struct {
 
 // The set of arguments for constructing a Customcommand resource.
 type CustomcommandArgs struct {
-	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
+	// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
 	Command pulumi.StringInput
 	// Command name called by the FortiGate switch controller in the execute command.
 	CommandName pulumi.StringPtrInput
@@ -240,7 +241,7 @@ func (o CustomcommandOutput) ToCustomcommandOutputWithContext(ctx context.Contex
 	return o
 }
 
-// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
+// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
 func (o CustomcommandOutput) Command() pulumi.StringOutput {
 	return o.ApplyT(func(v *Customcommand) pulumi.StringOutput { return v.Command }).(pulumi.StringOutput)
 }

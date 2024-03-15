@@ -67,7 +67,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string? MtuIgnore;
         /// <summary>
-        /// Virtual link entry name.
+        /// Interface entry name.
         /// </summary>
         public readonly string? Name;
         /// <summary>

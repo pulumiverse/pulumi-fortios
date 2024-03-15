@@ -17,6 +17,7 @@ namespace Pulumiverse.Fortios.Extendercontroller
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -50,22 +51,25 @@ namespace Pulumiverse.Fortios.Extendercontroller
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// ExtenderController Extender can be imported using any of these accepted formats
+    /// ExtenderController Extender can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:extendercontroller/extender:Extender labelname {{fosid}}
+    /// $ pulumi import fortios:extendercontroller/extender:Extender labelname {{fosid}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:extendercontroller/extender:Extender labelname {{fosid}}
+    /// $ pulumi import fortios:extendercontroller/extender:Extender labelname {{fosid}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:extendercontroller/extender:Extender")]
     public partial class Extender : global::Pulumi.CustomResource

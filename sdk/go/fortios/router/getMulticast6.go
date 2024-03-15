@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Use this data source to get information on fortios router multicast6
 func LookupMulticast6(ctx *pulumi.Context, args *LookupMulticast6Args, opts ...pulumi.InvokeOption) (*LookupMulticast6Result, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMulticast6Result
 	err := ctx.Invoke("fortios:router/getMulticast6:getMulticast6", args, &rv, opts...)
 	if err != nil {

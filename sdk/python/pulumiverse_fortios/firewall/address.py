@@ -1459,6 +1459,7 @@ class Address(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1473,22 +1474,25 @@ class Address(pulumi.CustomResource):
             type="ipmask",
             visibility="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall Address can be imported using any of these accepted formats
+        Firewall Address can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/address:Address labelname {{name}}
+        $ pulumi import fortios:firewall/address:Address labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/address:Address labelname {{name}}
+        $ pulumi import fortios:firewall/address:Address labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1547,6 +1551,7 @@ class Address(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1561,22 +1566,25 @@ class Address(pulumi.CustomResource):
             type="ipmask",
             visibility="enable")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Firewall Address can be imported using any of these accepted formats
+        Firewall Address can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/address:Address labelname {{name}}
+        $ pulumi import fortios:firewall/address:Address labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/address:Address labelname {{name}}
+        $ pulumi import fortios:firewall/address:Address labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param AddressArgs args: The arguments to use to populate this resource's properties.

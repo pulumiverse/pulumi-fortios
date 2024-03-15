@@ -469,6 +469,7 @@ class Threatweight(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -589,22 +590,25 @@ class Threatweight(pulumi.CustomResource):
                 ),
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Log ThreatWeight can be imported using any of these accepted formats
+        Log ThreatWeight can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:log/threatweight:Threatweight labelname LogThreatWeight
+        $ pulumi import fortios:log/threatweight:Threatweight labelname LogThreatWeight
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:log/threatweight:Threatweight labelname LogThreatWeight
+        $ pulumi import fortios:log/threatweight:Threatweight labelname LogThreatWeight
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -633,6 +637,7 @@ class Threatweight(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -753,22 +758,25 @@ class Threatweight(pulumi.CustomResource):
                 ),
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Log ThreatWeight can be imported using any of these accepted formats
+        Log ThreatWeight can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:log/threatweight:Threatweight labelname LogThreatWeight
+        $ pulumi import fortios:log/threatweight:Threatweight labelname LogThreatWeight
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:log/threatweight:Threatweight labelname LogThreatWeight
+        $ pulumi import fortios:log/threatweight:Threatweight labelname LogThreatWeight
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param ThreatweightArgs args: The arguments to use to populate this resource's properties.

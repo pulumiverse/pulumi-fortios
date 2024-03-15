@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Internet Service definition.
 //
 // ## Import
 //
-// # Firewall InternetServiceDefinition can be imported using any of these accepted formats
+// Firewall InternetServiceDefinition can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetservicedefinition:Internetservicedefinition labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetservicedefinition:Internetservicedefinition labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetservicedefinition:Internetservicedefinition labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetservicedefinition:Internetservicedefinition labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Internetservicedefinition struct {
 	pulumi.CustomResourceState
 
@@ -51,7 +50,7 @@ func NewInternetservicedefinition(ctx *pulumi.Context,
 		args = &InternetservicedefinitionArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Internetservicedefinition
 	err := ctx.RegisterResource("fortios:firewall/internetservicedefinition:Internetservicedefinition", name, args, &resource, opts...)
 	if err != nil {

@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure global 802.1X settings.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,26 +41,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # SwitchController 8021XSettings can be imported using any of these accepted formats
+// SwitchController 8021XSettings can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
-//
+// $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
-//
+// $ pulumi import fortios:switchcontroller/settings8021X:Settings8021X labelname SwitchController8021XSettings
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Settings8021X struct {
 	pulumi.CustomResourceState
 
@@ -83,7 +84,7 @@ func NewSettings8021X(ctx *pulumi.Context,
 		args = &Settings8021XArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Settings8021X
 	err := ctx.RegisterResource("fortios:switchcontroller/settings8021X:Settings8021X", name, args, &resource, opts...)
 	if err != nil {

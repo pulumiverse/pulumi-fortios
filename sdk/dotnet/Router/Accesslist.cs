@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,11 +31,14 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Note
     /// 
     /// The feature can only be correctly supported when FortiOS Version &gt;= 6.2.4, for FortiOS Version &lt; 6.2.4, please use the following resource configuration as an alternative.
     /// 
     /// ### Example
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -43,7 +47,7 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var trname1 = new Fortios.Sys.Autoscript("trname1", new()
+    ///     var trname1 = new Fortios.System.Autoscript("trname1", new()
     ///     {
     ///         Interval = 1,
     ///         OutputSize = 10,
@@ -64,22 +68,25 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Router AccessList can be imported using any of these accepted formats
+    /// Router AccessList can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
+    /// $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="true"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="true"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
+    /// $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:router/accesslist:Accesslist")]
     public partial class Accesslist : global::Pulumi.CustomResource

@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv4 static routing tables.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,26 +54,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Router Static can be imported using any of these accepted formats
+// Router Static can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/static:Static labelname {{seq_num}}
-//
+// $ pulumi import fortios:router/static:Static labelname {{seq_num}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/static:Static labelname {{seq_num}}
-//
+// $ pulumi import fortios:router/static:Static labelname {{seq_num}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Static struct {
 	pulumi.CustomResourceState
 
@@ -130,7 +131,7 @@ func NewStatic(ctx *pulumi.Context,
 		args = &StaticArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Static
 	err := ctx.RegisterResource("fortios:router/static:Static", name, args, &resource, opts...)
 	if err != nil {

@@ -24,8 +24,6 @@ namespace Pulumiverse.Fortios.Router.Outputs
         public readonly string? ConditionRoutemap;
         /// <summary>
         /// Type of condition. Valid values: `exist`, `non-exist`.
-        /// 
-        /// The `conditional_advertise6` block supports:
         /// </summary>
         public readonly string? ConditionType;
 

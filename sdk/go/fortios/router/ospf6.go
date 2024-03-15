@@ -9,14 +9,16 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv6 OSPF.
 //
-// > The provider supports the definition of Ospf6-Interface in Router Ospf6 `router.Ospf6`, and also allows the definition of separate Ospf6-Interface resources `routerospf6.Ospf6interface`, but do not use a `router.Ospf6` with in-line Ospf6-Interface in conjunction with any `routerospf6.Ospf6interface` resources, otherwise conflicts and overwrite will occur.
+// > The provider supports the definition of Ospf6-Interface in Router Ospf6 `router.Ospf6`, and also allows the definition of separate Ospf6-Interface resources `router/ospf6.Ospf6interface`, but do not use a `router.Ospf6` with in-line Ospf6-Interface in conjunction with any `router/ospf6.Ospf6interface` resources, otherwise conflicts and overwrite will occur.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -81,26 +83,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Router Ospf6 can be imported using any of these accepted formats
+// Router Ospf6 can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
-//
+// $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
-//
+// $ pulumi import fortios:router/ospf6:Ospf6 labelname RouterOspf6
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Ospf6 struct {
 	pulumi.CustomResourceState
 
@@ -158,7 +159,7 @@ func NewOspf6(ctx *pulumi.Context,
 	if args.RouterId == nil {
 		return nil, errors.New("invalid value for required argument 'RouterId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Ospf6
 	err := ctx.RegisterResource("fortios:router/ospf6:Ospf6", name, args, &resource, opts...)
 	if err != nil {

@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPS decoder.
 //
 // ## Import
 //
-// # Ips Decoder can be imported using any of these accepted formats
+// Ips Decoder can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:ips/decoder:Decoder labelname {{name}}
-//
+// $ pulumi import fortios:ips/decoder:Decoder labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:ips/decoder:Decoder labelname {{name}}
-//
+// $ pulumi import fortios:ips/decoder:Decoder labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Decoder struct {
 	pulumi.CustomResourceState
 
@@ -51,7 +50,7 @@ func NewDecoder(ctx *pulumi.Context,
 		args = &DecoderArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Decoder
 	err := ctx.RegisterResource("fortios:ips/decoder:Decoder", name, args, &resource, opts...)
 	if err != nil {

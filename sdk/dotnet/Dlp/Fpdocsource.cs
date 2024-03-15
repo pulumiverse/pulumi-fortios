@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.Dlp
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -44,22 +45,25 @@ namespace Pulumiverse.Fortios.Dlp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// Dlp FpDocSource can be imported using any of these accepted formats
+    /// Dlp FpDocSource can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:dlp/fpdocsource:Fpdocsource labelname {{name}}
+    /// $ pulumi import fortios:dlp/fpdocsource:Fpdocsource labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:dlp/fpdocsource:Fpdocsource labelname {{name}}
+    /// $ pulumi import fortios:dlp/fpdocsource:Fpdocsource labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:dlp/fpdocsource:Fpdocsource")]
     public partial class Fpdocsource : global::Pulumi.CustomResource

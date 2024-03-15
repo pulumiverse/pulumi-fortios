@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv6 routing policies.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,26 +51,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Router Policy6 can be imported using any of these accepted formats
+// Router Policy6 can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/policy6:Policy6 labelname {{seq_num}}
-//
+// $ pulumi import fortios:router/policy6:Policy6 labelname {{seq_num}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/policy6:Policy6 labelname {{seq_num}}
-//
+// $ pulumi import fortios:router/policy6:Policy6 labelname {{seq_num}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Policy6 struct {
 	pulumi.CustomResourceState
 
@@ -130,7 +131,7 @@ func NewPolicy6(ctx *pulumi.Context,
 	if args.InputDevice == nil {
 		return nil, errors.New("invalid value for required argument 'InputDevice'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Policy6
 	err := ctx.RegisterResource("fortios:router/policy6:Policy6", name, args, &resource, opts...)
 	if err != nil {

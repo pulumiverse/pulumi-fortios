@@ -9,29 +9,28 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure IPv4 DoS policies.
 //
 // ## Import
 //
-// # Firewall DosPolicy can be imported using any of these accepted formats
+// Firewall DosPolicy can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/doSpolicy:DoSpolicy labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/doSpolicy:DoSpolicy labelname {{policyid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/doSpolicy:DoSpolicy labelname {{policyid}}
-//
+// $ pulumi import fortios:firewall/doSpolicy:DoSpolicy labelname {{policyid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type DoSpolicy struct {
 	pulumi.CustomResourceState
 
@@ -75,7 +74,7 @@ func NewDoSpolicy(ctx *pulumi.Context,
 	if args.Srcaddrs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcaddrs'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DoSpolicy
 	err := ctx.RegisterResource("fortios:firewall/doSpolicy:DoSpolicy", name, args, &resource, opts...)
 	if err != nil {

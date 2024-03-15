@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `fortios_firewall_DoSpolicy6`.
 func GetDoSpolicy6list(ctx *pulumi.Context, args *GetDoSpolicy6listArgs, opts ...pulumi.InvokeOption) (*GetDoSpolicy6listResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDoSpolicy6listResult
 	err := ctx.Invoke("fortios:firewall/getDoSpolicy6list:getDoSpolicy6list", args, &rv, opts...)
 	if err != nil {

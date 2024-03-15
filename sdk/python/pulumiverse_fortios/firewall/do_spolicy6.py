@@ -400,19 +400,21 @@ class DoSpolicy6(pulumi.CustomResource):
 
         ## Import
 
-        Firewall DosPolicy6 can be imported using any of these accepted formats
+        Firewall DosPolicy6 can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/doSpolicy6:DoSpolicy6 labelname {{policyid}}
+        $ pulumi import fortios:firewall/doSpolicy6:DoSpolicy6 labelname {{policyid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/doSpolicy6:DoSpolicy6 labelname {{policyid}}
+        $ pulumi import fortios:firewall/doSpolicy6:DoSpolicy6 labelname {{policyid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -439,19 +441,21 @@ class DoSpolicy6(pulumi.CustomResource):
 
         ## Import
 
-        Firewall DosPolicy6 can be imported using any of these accepted formats
+        Firewall DosPolicy6 can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:firewall/doSpolicy6:DoSpolicy6 labelname {{policyid}}
+        $ pulumi import fortios:firewall/doSpolicy6:DoSpolicy6 labelname {{policyid}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:firewall/doSpolicy6:DoSpolicy6 labelname {{policyid}}
+        $ pulumi import fortios:firewall/doSpolicy6:DoSpolicy6 labelname {{policyid}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param DoSpolicy6Args args: The arguments to use to populate this resource's properties.

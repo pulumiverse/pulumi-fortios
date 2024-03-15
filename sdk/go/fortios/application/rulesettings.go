@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure application rule settings.
 //
 // ## Import
 //
-// # Application RuleSettings can be imported using any of these accepted formats
+// Application RuleSettings can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:application/rulesettings:Rulesettings labelname {{fosid}}
-//
+// $ pulumi import fortios:application/rulesettings:Rulesettings labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:application/rulesettings:Rulesettings labelname {{fosid}}
-//
+// $ pulumi import fortios:application/rulesettings:Rulesettings labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Rulesettings struct {
 	pulumi.CustomResourceState
 
@@ -47,7 +46,7 @@ func NewRulesettings(ctx *pulumi.Context,
 		args = &RulesettingsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Rulesettings
 	err := ctx.RegisterResource("fortios:application/rulesettings:Rulesettings", name, args, &resource, opts...)
 	if err != nil {

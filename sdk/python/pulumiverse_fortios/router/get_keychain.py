@@ -95,10 +95,10 @@ def get_keychain(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:router/getKeychain:getKeychain', __args__, opts=opts, typ=GetKeychainResult).value
 
     return AwaitableGetKeychainResult(
-        id=__ret__.id,
-        keys=__ret__.keys,
-        name=__ret__.name,
-        vdomparam=__ret__.vdomparam)
+        id=pulumi.get(__ret__, 'id'),
+        keys=pulumi.get(__ret__, 'keys'),
+        name=pulumi.get(__ret__, 'name'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_keychain)

@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Certificate Revocation List as a PEM file.
 //
 // ## Import
 //
-// # Certificate Crl can be imported using any of these accepted formats
+// Certificate Crl can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:certificate/crl:Crl labelname {{name}}
-//
+// $ pulumi import fortios:certificate/crl:Crl labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:certificate/crl:Crl labelname {{name}}
-//
+// $ pulumi import fortios:certificate/crl:Crl labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Crl struct {
 	pulumi.CustomResourceState
 
@@ -80,7 +79,7 @@ func NewCrl(ctx *pulumi.Context,
 		"ldapPassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Crl
 	err := ctx.RegisterResource("fortios:certificate/crl:Crl", name, args, &resource, opts...)
 	if err != nil {

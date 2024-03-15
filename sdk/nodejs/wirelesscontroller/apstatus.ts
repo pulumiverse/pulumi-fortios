@@ -9,19 +9,21 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * WirelessController ApStatus can be imported using any of these accepted formats
+ * WirelessController ApStatus can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:wirelesscontroller/apstatus:Apstatus labelname {{fosid}}
+ * $ pulumi import fortios:wirelesscontroller/apstatus:Apstatus labelname {{fosid}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:wirelesscontroller/apstatus:Apstatus labelname {{fosid}}
+ * $ pulumi import fortios:wirelesscontroller/apstatus:Apstatus labelname {{fosid}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Apstatus extends pulumi.CustomResource {
     /**

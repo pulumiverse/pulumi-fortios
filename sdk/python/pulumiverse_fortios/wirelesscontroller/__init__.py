@@ -35,3 +35,11 @@ from .wtpgroup import *
 from .wtpprofile import *
 from ._inputs import *
 from . import outputs
+
+# Make subpackages available:
+if typing.TYPE_CHECKING:
+    import pulumiverse_fortios.wirelesscontroller.hotspot20 as __hotspot20
+    hotspot20 = __hotspot20
+else:
+    hotspot20 = _utilities.lazy_import('pulumiverse_fortios.wirelesscontroller.hotspot20')
+

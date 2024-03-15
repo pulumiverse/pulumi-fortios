@@ -9,14 +9,17 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a resource to configure interface settings of FortiOS.
 //
-// !> **Warning:** The resource will be deprecated and replaced by new resource `sys.Interface`, we recommend that you use the new resource.
+// !> **Warning:** The resource will be deprecated and replaced by new resource `system.Interface`, we recommend that you use the new resource.
 //
 // ## Example Usage
+//
 // ### Loopback Interface
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,7 +51,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### VLAN Interface
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -81,7 +87,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Physical Interface
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -120,6 +129,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type InterfacePort struct {
 	pulumi.CustomResourceState
 
@@ -175,7 +185,7 @@ func NewInterfacePort(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InterfacePort
 	err := ctx.RegisterResource("fortios:networking/interfacePort:InterfacePort", name, args, &resource, opts...)
 	if err != nil {

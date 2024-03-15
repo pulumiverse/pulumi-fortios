@@ -172,6 +172,7 @@ class Keychain(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -182,22 +183,25 @@ class Keychain(pulumi.CustomResource):
             send_lifetime="04:00:00 01 01 2008 04:00:00 01 01 2022",
         )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router KeyChain can be imported using any of these accepted formats
+        Router KeyChain can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/keychain:Keychain labelname {{name}}
+        $ pulumi import fortios:router/keychain:Keychain labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/keychain:Keychain labelname {{name}}
+        $ pulumi import fortios:router/keychain:Keychain labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -217,6 +221,7 @@ class Keychain(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -227,22 +232,25 @@ class Keychain(pulumi.CustomResource):
             send_lifetime="04:00:00 01 01 2008 04:00:00 01 01 2022",
         )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Router KeyChain can be imported using any of these accepted formats
+        Router KeyChain can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/keychain:Keychain labelname {{name}}
+        $ pulumi import fortios:router/keychain:Keychain labelname {{name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/keychain:Keychain labelname {{name}}
+        $ pulumi import fortios:router/keychain:Keychain labelname {{name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param KeychainArgs args: The arguments to use to populate this resource's properties.

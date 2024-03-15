@@ -15,19 +15,21 @@ namespace Pulumiverse.Fortios.Dlp
     /// 
     /// ## Import
     /// 
-    /// Dlp Sensitivity can be imported using any of these accepted formats
+    /// Dlp Sensitivity can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:dlp/sensitivity:Sensitivity labelname {{name}}
+    /// $ pulumi import fortios:dlp/sensitivity:Sensitivity labelname {{name}}
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:dlp/sensitivity:Sensitivity labelname {{name}}
+    /// $ pulumi import fortios:dlp/sensitivity:Sensitivity labelname {{name}}
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:dlp/sensitivity:Sensitivity")]
     public partial class Sensitivity : global::Pulumi.CustomResource

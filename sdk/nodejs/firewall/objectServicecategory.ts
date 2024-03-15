@@ -7,16 +7,18 @@ import * as utilities from "../utilities";
 /**
  * Provides a resource to configure firewall service category of FortiOS.
  *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.firewallservice.Category`, we recommend that you use the new resource.
+ * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.firewall/service.Category`, we recommend that you use the new resource.
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
  *
  * const testCategoryName = new fortios.firewall.ObjectServicecategory("testCategoryName", {comment: "comment"});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class ObjectServicecategory extends pulumi.CustomResource {
     /**

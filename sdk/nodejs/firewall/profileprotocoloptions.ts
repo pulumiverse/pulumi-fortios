@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -110,22 +111,25 @@ import * as utilities from "../utilities";
  *     switchingProtocolsLog: "disable",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Firewall ProfileProtocolOptions can be imported using any of these accepted formats
+ * Firewall ProfileProtocolOptions can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:firewall/profileprotocoloptions:Profileprotocoloptions labelname {{name}}
+ * $ pulumi import fortios:firewall/profileprotocoloptions:Profileprotocoloptions labelname {{name}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:firewall/profileprotocoloptions:Profileprotocoloptions labelname {{name}}
+ * $ pulumi import fortios:firewall/profileprotocoloptions:Profileprotocoloptions labelname {{name}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Profileprotocoloptions extends pulumi.CustomResource {
     /**

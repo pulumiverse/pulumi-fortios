@@ -14,7 +14,9 @@ namespace Pulumiverse.Fortios.Firewall
     /// Resource to sort firewall security policies by policyid or policy name, in ascending or descending order.
     /// 
     /// ## Example Usage
+    /// 
     /// ### Example1
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,6 +37,7 @@ namespace Pulumiverse.Fortios.Firewall
     ///     };
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:firewall/securityPolicysort:SecurityPolicysort")]
     public partial class SecurityPolicysort : global::Pulumi.CustomResource

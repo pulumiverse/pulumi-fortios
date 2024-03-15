@@ -25,9 +25,6 @@ namespace Pulumiverse.Fortios.Firewall
         [Output("comment")]
         public Output<string?> Comment { get; private set; } = null!;
 
-        /// <summary>
-        /// Enable status detection for policy_src_id and policy_dst_id
-        /// </summary>
         [Output("enableStateChecking")]
         public Output<bool?> EnableStateChecking { get; private set; } = null!;
 
@@ -111,9 +108,6 @@ namespace Pulumiverse.Fortios.Firewall
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
-        /// <summary>
-        /// Enable status detection for policy_src_id and policy_dst_id
-        /// </summary>
         [Input("enableStateChecking")]
         public Input<bool>? EnableStateChecking { get; set; }
 
@@ -155,9 +149,6 @@ namespace Pulumiverse.Fortios.Firewall
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
-        /// <summary>
-        /// Enable status detection for policy_src_id and policy_dst_id
-        /// </summary>
         [Input("enableStateChecking")]
         public Input<bool>? EnableStateChecking { get; set; }
 

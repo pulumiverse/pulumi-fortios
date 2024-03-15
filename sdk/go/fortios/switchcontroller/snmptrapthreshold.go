@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiSwitch SNMP trap threshold values globally. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # SwitchController SnmpTrapThreshold can be imported using any of these accepted formats
+// SwitchController SnmpTrapThreshold can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/snmptrapthreshold:Snmptrapthreshold labelname SwitchControllerSnmpTrapThreshold
-//
+// $ pulumi import fortios:switchcontroller/snmptrapthreshold:Snmptrapthreshold labelname SwitchControllerSnmpTrapThreshold
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/snmptrapthreshold:Snmptrapthreshold labelname SwitchControllerSnmpTrapThreshold
-//
+// $ pulumi import fortios:switchcontroller/snmptrapthreshold:Snmptrapthreshold labelname SwitchControllerSnmpTrapThreshold
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Snmptrapthreshold struct {
 	pulumi.CustomResourceState
 
@@ -51,7 +50,7 @@ func NewSnmptrapthreshold(ctx *pulumi.Context,
 		args = &SnmptrapthresholdArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Snmptrapthreshold
 	err := ctx.RegisterResource("fortios:switchcontroller/snmptrapthreshold:Snmptrapthreshold", name, args, &resource, opts...)
 	if err != nil {

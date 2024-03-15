@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Internet Service owner. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # Firewall InternetServiceOwner can be imported using any of these accepted formats
+// Firewall InternetServiceOwner can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetserviceowner:Internetserviceowner labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetserviceowner:Internetserviceowner labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetserviceowner:Internetserviceowner labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetserviceowner:Internetserviceowner labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Internetserviceowner struct {
 	pulumi.CustomResourceState
 
@@ -49,7 +48,7 @@ func NewInternetserviceowner(ctx *pulumi.Context,
 		args = &InternetserviceownerArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Internetserviceowner
 	err := ctx.RegisterResource("fortios:firewall/internetserviceowner:Internetserviceowner", name, args, &resource, opts...)
 	if err != nil {

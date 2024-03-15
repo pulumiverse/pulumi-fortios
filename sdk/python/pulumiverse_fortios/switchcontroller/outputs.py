@@ -1993,7 +1993,7 @@ class ManagedswitchN8021xSettings(dict):
                  tx_period: Optional[int] = None):
         """
         :param str link_down_auth: Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-        :param str local_override: Enable to configure local STP settings that override global STP settings. Valid values: `enable`, `disable`.
+        :param str local_override: Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
         :param str mab_reauth: Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
         :param int max_reauth_attempt: Maximum number of authentication attempts (0 - 15, default = 3).
         :param int reauth_period: Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
@@ -2024,7 +2024,7 @@ class ManagedswitchN8021xSettings(dict):
     @pulumi.getter(name="localOverride")
     def local_override(self) -> Optional[str]:
         """
-        Enable to configure local STP settings that override global STP settings. Valid values: `enable`, `disable`.
+        Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "local_override")
 
@@ -2395,7 +2395,7 @@ class ManagedswitchPort(dict):
         :param int packet_sample_rate: Packet sampling rate (0 - 99999 p/sec).
         :param str packet_sampler: Enable/disable packet sampling on this interface. Valid values: `enabled`, `disabled`.
         :param int pause_meter: Configure ingress pause metering rate, in kbps (default = 0, disabled).
-        :param str pause_meter_resume: Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
+        :param str pause_meter_resume: Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
         :param int poe_capable: PoE capable.
         :param str poe_max_power: PoE maximum power.
         :param str poe_pre_standard_detection: Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
@@ -3086,7 +3086,7 @@ class ManagedswitchPort(dict):
     @pulumi.getter(name="pauseMeterResume")
     def pause_meter_resume(self) -> Optional[str]:
         """
-        Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
+        Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
         """
         return pulumi.get(self, "pause_meter_resume")
 

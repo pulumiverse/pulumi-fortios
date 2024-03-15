@@ -260,24 +260,24 @@ def get_rip(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:router/getRip:getRip', __args__, opts=opts, typ=GetRipResult).value
 
     return AwaitableGetRipResult(
-        default_information_originate=__ret__.default_information_originate,
-        default_metric=__ret__.default_metric,
-        distances=__ret__.distances,
-        distribute_lists=__ret__.distribute_lists,
-        garbage_timer=__ret__.garbage_timer,
-        id=__ret__.id,
-        interfaces=__ret__.interfaces,
-        max_out_metric=__ret__.max_out_metric,
-        neighbors=__ret__.neighbors,
-        networks=__ret__.networks,
-        offset_lists=__ret__.offset_lists,
-        passive_interfaces=__ret__.passive_interfaces,
-        recv_buffer_size=__ret__.recv_buffer_size,
-        redistributes=__ret__.redistributes,
-        timeout_timer=__ret__.timeout_timer,
-        update_timer=__ret__.update_timer,
-        vdomparam=__ret__.vdomparam,
-        version=__ret__.version)
+        default_information_originate=pulumi.get(__ret__, 'default_information_originate'),
+        default_metric=pulumi.get(__ret__, 'default_metric'),
+        distances=pulumi.get(__ret__, 'distances'),
+        distribute_lists=pulumi.get(__ret__, 'distribute_lists'),
+        garbage_timer=pulumi.get(__ret__, 'garbage_timer'),
+        id=pulumi.get(__ret__, 'id'),
+        interfaces=pulumi.get(__ret__, 'interfaces'),
+        max_out_metric=pulumi.get(__ret__, 'max_out_metric'),
+        neighbors=pulumi.get(__ret__, 'neighbors'),
+        networks=pulumi.get(__ret__, 'networks'),
+        offset_lists=pulumi.get(__ret__, 'offset_lists'),
+        passive_interfaces=pulumi.get(__ret__, 'passive_interfaces'),
+        recv_buffer_size=pulumi.get(__ret__, 'recv_buffer_size'),
+        redistributes=pulumi.get(__ret__, 'redistributes'),
+        timeout_timer=pulumi.get(__ret__, 'timeout_timer'),
+        update_timer=pulumi.get(__ret__, 'update_timer'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        version=pulumi.get(__ret__, 'version'))
 
 
 @_utilities.lift_output_func(get_rip)

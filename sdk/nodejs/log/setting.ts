@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -37,22 +38,25 @@ import * as utilities from "../utilities";
  *     userAnonymize: "disable",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Log Setting can be imported using any of these accepted formats
+ * Log Setting can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:log/setting:Setting labelname LogSetting
+ * $ pulumi import fortios:log/setting:Setting labelname LogSetting
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:log/setting:Setting labelname LogSetting
+ * $ pulumi import fortios:log/setting:Setting labelname LogSetting
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Setting extends pulumi.CustomResource {
     /**

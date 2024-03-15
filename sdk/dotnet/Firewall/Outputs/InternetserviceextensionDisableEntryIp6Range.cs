@@ -19,7 +19,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? EndIp6;
         /// <summary>
-        /// Entry ID(1-255).
+        /// Disable entry ID.
         /// </summary>
         public readonly int? Id;
         /// <summary>

@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure RIP.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -71,26 +73,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Router Rip can be imported using any of these accepted formats
+// Router Rip can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/rip:Rip labelname RouterRip
-//
+// $ pulumi import fortios:router/rip:Rip labelname RouterRip
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/rip:Rip labelname RouterRip
-//
+// $ pulumi import fortios:router/rip:Rip labelname RouterRip
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Rip struct {
 	pulumi.CustomResourceState
 
@@ -139,7 +140,7 @@ func NewRip(ctx *pulumi.Context,
 		args = &RipArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Rip
 	err := ctx.RegisterResource("fortios:router/rip:Rip", name, args, &resource, opts...)
 	if err != nil {

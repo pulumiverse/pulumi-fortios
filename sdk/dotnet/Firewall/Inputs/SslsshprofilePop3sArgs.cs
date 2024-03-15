@@ -69,14 +69,12 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
 
         /// <summary>
         /// Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-        /// 
-        /// The `pop3s` block supports:
         /// </summary>
         [Input("sniServerCertCheck")]
         public Input<string>? SniServerCertCheck { get; set; }
 
         /// <summary>
-        /// Configure protocol inspection status. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
+        /// Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
@@ -106,7 +104,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? UnsupportedSslVersion { get; set; }
 
         /// <summary>
-        /// Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        /// Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         /// </summary>
         [Input("untrustedServerCert")]
         public Input<string>? UntrustedServerCert { get; set; }

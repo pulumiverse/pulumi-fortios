@@ -172,19 +172,21 @@ class Bfd(pulumi.CustomResource):
 
         ## Import
 
-        Router Bfd can be imported using any of these accepted formats
+        Router Bfd can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/bfd:Bfd labelname RouterBfd
+        $ pulumi import fortios:router/bfd:Bfd labelname RouterBfd
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/bfd:Bfd labelname RouterBfd
+        $ pulumi import fortios:router/bfd:Bfd labelname RouterBfd
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -204,19 +206,21 @@ class Bfd(pulumi.CustomResource):
 
         ## Import
 
-        Router Bfd can be imported using any of these accepted formats
+        Router Bfd can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:router/bfd:Bfd labelname RouterBfd
+        $ pulumi import fortios:router/bfd:Bfd labelname RouterBfd
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:router/bfd:Bfd labelname RouterBfd
+        $ pulumi import fortios:router/bfd:Bfd labelname RouterBfd
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param BfdArgs args: The arguments to use to populate this resource's properties.

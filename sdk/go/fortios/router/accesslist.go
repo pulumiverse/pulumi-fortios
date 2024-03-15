@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure access lists.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,29 +39,44 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Note
 //
 // The feature can only be correctly supported when FortiOS Version >= 6.2.4, for FortiOS Version < 6.2.4, please use the following resource configuration as an alternative.
 //
 // ### Example
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/sys"
+//	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/system"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := sys.NewAutoscript(ctx, "trname1", &sys.AutoscriptArgs{
+//			_, err := system.NewAutoscript(ctx, "trname1", &system.AutoscriptArgs{
 //				Interval:   pulumi.Int(1),
 //				OutputSize: pulumi.Int(10),
 //				Repeat:     pulumi.Int(1),
-//				Script:     pulumi.String("config router access-list\nedit \"static-redistribution\"\nconfig rule\nedit 10\nset prefix 10.0.0.0 255.255.255.0\nset action permit\nset exact-match enable\nend\nend\n\n"),
-//				Start:      pulumi.String("auto"),
+//				Script: pulumi.String(`config router access-list
+//
+// edit "static-redistribution"
+// config rule
+// edit 10
+// set prefix 10.0.0.0 255.255.255.0
+// set action permit
+// set exact-match enable
+// end
+// end
+//
+// `),
+//
+//				Start: pulumi.String("auto"),
 //			})
 //			if err != nil {
 //				return err
@@ -69,26 +86,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Router AccessList can be imported using any of these accepted formats
+// Router AccessList can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
-//
+// $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="true"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="true"
 //
 // ```sh
-//
-//	$ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
-//
+// $ pulumi import fortios:router/accesslist:Accesslist labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Accesslist struct {
 	pulumi.CustomResourceState
 
@@ -109,7 +125,7 @@ func NewAccesslist(ctx *pulumi.Context,
 		args = &AccesslistArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Accesslist
 	err := ctx.RegisterResource("fortios:router/accesslist:Accesslist", name, args, &resource, opts...)
 	if err != nil {

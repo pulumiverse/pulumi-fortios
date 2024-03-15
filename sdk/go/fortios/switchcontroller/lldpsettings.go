@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure FortiSwitch LLDP settings.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,26 +43,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # SwitchController LldpSettings can be imported using any of these accepted formats
+// SwitchController LldpSettings can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/lldpsettings:Lldpsettings labelname SwitchControllerLldpSettings
-//
+// $ pulumi import fortios:switchcontroller/lldpsettings:Lldpsettings labelname SwitchControllerLldpSettings
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:switchcontroller/lldpsettings:Lldpsettings labelname SwitchControllerLldpSettings
-//
+// $ pulumi import fortios:switchcontroller/lldpsettings:Lldpsettings labelname SwitchControllerLldpSettings
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Lldpsettings struct {
 	pulumi.CustomResourceState
 
@@ -87,7 +88,7 @@ func NewLldpsettings(ctx *pulumi.Context,
 		args = &LldpsettingsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Lldpsettings
 	err := ctx.RegisterResource("fortios:switchcontroller/lldpsettings:Lldpsettings", name, args, &resource, opts...)
 	if err != nil {

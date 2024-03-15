@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -20,22 +21,25 @@ import * as utilities from "../utilities";
  *     size: 16,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Dlp Settings can be imported using any of these accepted formats
+ * Dlp Settings can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:dlp/settings:Settings labelname DlpSettings
+ * $ pulumi import fortios:dlp/settings:Settings labelname DlpSettings
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:dlp/settings:Settings labelname DlpSettings
+ * $ pulumi import fortios:dlp/settings:Settings labelname DlpSettings
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Settings extends pulumi.CustomResource {
     /**
@@ -66,7 +70,7 @@ export class Settings extends pulumi.CustomResource {
     }
 
     /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%).
+     * Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
      */
     public readonly cacheMemPercent!: pulumi.Output<number>;
     /**
@@ -128,7 +132,7 @@ export class Settings extends pulumi.CustomResource {
  */
 export interface SettingsState {
     /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%).
+     * Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
      */
     cacheMemPercent?: pulumi.Input<number>;
     /**
@@ -158,7 +162,7 @@ export interface SettingsState {
  */
 export interface SettingsArgs {
     /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%).
+     * Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
      */
     cacheMemPercent?: pulumi.Input<number>;
     /**

@@ -33,8 +33,6 @@ namespace Pulumiverse.Fortios.Router.Inputs
 
         /// <summary>
         /// Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
-        /// 
-        /// The `aggregate_address6` block supports:
         /// </summary>
         [Input("summaryOnly")]
         public Input<string>? SummaryOnly { get; set; }

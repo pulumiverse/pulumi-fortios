@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a list of `router.Accesslist6`.
 func GetAccesslist6list(ctx *pulumi.Context, args *GetAccesslist6listArgs, opts ...pulumi.InvokeOption) (*GetAccesslist6listResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAccesslist6listResult
 	err := ctx.Invoke("fortios:router/getAccesslist6list:getAccesslist6list", args, &rv, opts...)
 	if err != nil {

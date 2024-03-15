@@ -7,10 +7,11 @@ import * as utilities from "../utilities";
 /**
  * Provides a resource to configure logging to remote Syslog logging servers.
  *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.logsyslogd.Setting`, we recommend that you use the new resource.
+ * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.log/syslogd.Setting`, we recommend that you use the new resource.
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -25,6 +26,7 @@ import * as utilities from "../utilities";
  *     status: "enable",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class SyslogSetting extends pulumi.CustomResource {
     /**

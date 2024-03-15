@@ -145,3 +145,32 @@ from .vipgrp6 import *
 from .vipgrp64 import *
 from ._inputs import *
 from . import outputs
+
+# Make subpackages available:
+if typing.TYPE_CHECKING:
+    import pulumiverse_fortios.firewall.consolidated as __consolidated
+    consolidated = __consolidated
+    import pulumiverse_fortios.firewall.ipmacbinding as __ipmacbinding
+    ipmacbinding = __ipmacbinding
+    import pulumiverse_fortios.firewall.schedule as __schedule
+    schedule = __schedule
+    import pulumiverse_fortios.firewall.service as __service
+    service = __service
+    import pulumiverse_fortios.firewall.shaper as __shaper
+    shaper = __shaper
+    import pulumiverse_fortios.firewall.ssh as __ssh
+    ssh = __ssh
+    import pulumiverse_fortios.firewall.ssl as __ssl
+    ssl = __ssl
+    import pulumiverse_fortios.firewall.wildcardfqdn as __wildcardfqdn
+    wildcardfqdn = __wildcardfqdn
+else:
+    consolidated = _utilities.lazy_import('pulumiverse_fortios.firewall.consolidated')
+    ipmacbinding = _utilities.lazy_import('pulumiverse_fortios.firewall.ipmacbinding')
+    schedule = _utilities.lazy_import('pulumiverse_fortios.firewall.schedule')
+    service = _utilities.lazy_import('pulumiverse_fortios.firewall.service')
+    shaper = _utilities.lazy_import('pulumiverse_fortios.firewall.shaper')
+    ssh = _utilities.lazy_import('pulumiverse_fortios.firewall.ssh')
+    ssl = _utilities.lazy_import('pulumiverse_fortios.firewall.ssl')
+    wildcardfqdn = _utilities.lazy_import('pulumiverse_fortios.firewall.wildcardfqdn')
+

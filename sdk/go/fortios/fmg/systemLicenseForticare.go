@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports uploading FortiCare registration code to FortiGate through FortiManager.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,6 +41,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SystemLicenseForticare struct {
 	pulumi.CustomResourceState
 
@@ -63,7 +66,7 @@ func NewSystemLicenseForticare(ctx *pulumi.Context,
 	if args.Target == nil {
 		return nil, errors.New("invalid value for required argument 'Target'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemLicenseForticare
 	err := ctx.RegisterResource("fortios:fmg/systemLicenseForticare:SystemLicenseForticare", name, args, &resource, opts...)
 	if err != nil {

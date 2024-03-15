@@ -15,6 +15,7 @@ namespace Pulumiverse.Fortios.User
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,22 +31,25 @@ namespace Pulumiverse.Fortios.User
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// User Quarantine can be imported using any of these accepted formats
+    /// User Quarantine can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
+    /// $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
     /// ```
     /// 
-    ///  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    ///  $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
+    /// $ pulumi import fortios:user/quarantine:Quarantine labelname UserQuarantine
     /// ```
     /// 
-    ///  $ unset "FORTIOS_IMPORT_TABLE"
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:user/quarantine:Quarantine")]
     public partial class Quarantine : global::Pulumi.CustomResource

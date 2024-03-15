@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -22,22 +23,25 @@ import * as utilities from "../utilities";
  *     type: "unknown",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * User Device can be imported using any of these accepted formats
+ * User Device can be imported using any of these accepted formats:
  *
  * ```sh
- *  $ pulumi import fortios:user/device:Device labelname {{alias}}
+ * $ pulumi import fortios:user/device:Device labelname {{alias}}
  * ```
  *
- *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- *  $ pulumi import fortios:user/device:Device labelname {{alias}}
+ * $ pulumi import fortios:user/device:Device labelname {{alias}}
  * ```
  *
- *  $ unset "FORTIOS_IMPORT_TABLE"
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Device extends pulumi.CustomResource {
     /**

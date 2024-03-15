@@ -8,11 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Provides a FortiAPI Generic Interface data source.
 func LookupGenericApi(ctx *pulumi.Context, args *LookupGenericApiArgs, opts ...pulumi.InvokeOption) (*LookupGenericApiResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupGenericApiResult
 	err := ctx.Invoke("fortios:json/getGenericApi:getGenericApi", args, &rv, opts...)
 	if err != nil {

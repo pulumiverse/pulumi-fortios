@@ -179,17 +179,17 @@ def get_do_spolicy(policyid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:firewall/getDoSpolicy:getDoSpolicy', __args__, opts=opts, typ=GetDoSpolicyResult).value
 
     return AwaitableGetDoSpolicyResult(
-        anomalies=__ret__.anomalies,
-        comments=__ret__.comments,
-        dstaddrs=__ret__.dstaddrs,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        name=__ret__.name,
-        policyid=__ret__.policyid,
-        services=__ret__.services,
-        srcaddrs=__ret__.srcaddrs,
-        status=__ret__.status,
-        vdomparam=__ret__.vdomparam)
+        anomalies=pulumi.get(__ret__, 'anomalies'),
+        comments=pulumi.get(__ret__, 'comments'),
+        dstaddrs=pulumi.get(__ret__, 'dstaddrs'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        name=pulumi.get(__ret__, 'name'),
+        policyid=pulumi.get(__ret__, 'policyid'),
+        services=pulumi.get(__ret__, 'services'),
+        srcaddrs=pulumi.get(__ret__, 'srcaddrs'),
+        status=pulumi.get(__ret__, 'status'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_do_spolicy)

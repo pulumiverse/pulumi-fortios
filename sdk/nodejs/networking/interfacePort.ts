@@ -7,10 +7,12 @@ import * as utilities from "../utilities";
 /**
  * Provides a resource to configure interface settings of FortiOS.
  *
- * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.sys.Interface`, we recommend that you use the new resource.
+ * !> **Warning:** The resource will be deprecated and replaced by new resource `fortios.system.Interface`, we recommend that you use the new resource.
  *
  * ## Example Usage
+ *
  * ### Loopback Interface
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -27,7 +29,10 @@ import * as utilities from "../utilities";
  *     vdom: "root",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### VLAN Interface
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -45,7 +50,10 @@ import * as utilities from "../utilities";
  *     vlanid: "3",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Physical Interface
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -69,6 +77,7 @@ import * as utilities from "../utilities";
  *     type: "physical",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class InterfacePort extends pulumi.CustomResource {
     /**

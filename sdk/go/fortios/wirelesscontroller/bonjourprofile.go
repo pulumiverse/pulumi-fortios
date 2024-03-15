@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure Bonjour profiles. Bonjour is Apple's zero configuration networking protocol. Bonjour profiles allow APs and FortiAPs to connnect to networks using Bonjour.
 //
 // ## Import
 //
-// # WirelessController BonjourProfile can be imported using any of these accepted formats
+// WirelessController BonjourProfile can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/bonjourprofile:Bonjourprofile labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/bonjourprofile:Bonjourprofile labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/bonjourprofile:Bonjourprofile labelname {{name}}
-//
+// $ pulumi import fortios:wirelesscontroller/bonjourprofile:Bonjourprofile labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Bonjourprofile struct {
 	pulumi.CustomResourceState
 
@@ -53,7 +52,7 @@ func NewBonjourprofile(ctx *pulumi.Context,
 		args = &BonjourprofileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Bonjourprofile
 	err := ctx.RegisterResource("fortios:wirelesscontroller/bonjourprofile:Bonjourprofile", name, args, &resource, opts...)
 	if err != nil {

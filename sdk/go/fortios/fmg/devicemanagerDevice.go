@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports adding/deleting online FortiGate to/from FortiManager
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,6 +43,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type DevicemanagerDevice struct {
 	pulumi.CustomResourceState
 
@@ -72,7 +75,7 @@ func NewDevicemanagerDevice(ctx *pulumi.Context,
 	if args.Userid == nil {
 		return nil, errors.New("invalid value for required argument 'Userid'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DevicemanagerDevice
 	err := ctx.RegisterResource("fortios:fmg/devicemanagerDevice:DevicemanagerDevice", name, args, &resource, opts...)
 	if err != nil {

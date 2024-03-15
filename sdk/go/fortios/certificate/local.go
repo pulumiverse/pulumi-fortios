@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Local keys and certificates.
@@ -18,19 +19,20 @@ import (
 // ## Example
 //
 // ### Delete Certificate:
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/sys"
+//	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/system"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := sys.NewAutoscript(ctx, "trname1", &sys.AutoscriptArgs{
+//			_, err := system.NewAutoscript(ctx, "trname1", &system.AutoscriptArgs{
 //				Interval:   pulumi.Int(1),
 //				OutputSize: pulumi.Int(10),
 //				Repeat:     pulumi.Int(1),
@@ -45,6 +47,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type Local struct {
 	pulumi.CustomResourceState
 
@@ -106,7 +109,7 @@ func NewLocal(ctx *pulumi.Context,
 		"scepPassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Local
 	err := ctx.RegisterResource("fortios:certificate/local:Local", name, args, &resource, opts...)
 	if err != nil {

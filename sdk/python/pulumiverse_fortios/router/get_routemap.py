@@ -107,11 +107,11 @@ def get_routemap(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:router/getRoutemap:getRoutemap', __args__, opts=opts, typ=GetRoutemapResult).value
 
     return AwaitableGetRoutemapResult(
-        comments=__ret__.comments,
-        id=__ret__.id,
-        name=__ret__.name,
-        rules=__ret__.rules,
-        vdomparam=__ret__.vdomparam)
+        comments=pulumi.get(__ret__, 'comments'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        rules=pulumi.get(__ret__, 'rules'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_routemap)

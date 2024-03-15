@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure identity based routing.
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,26 +39,25 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Firewall IdentityBasedRoute can be imported using any of these accepted formats
+// Firewall IdentityBasedRoute can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/identitybasedroute:Identitybasedroute labelname {{name}}
-//
+// $ pulumi import fortios:firewall/identitybasedroute:Identitybasedroute labelname {{name}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/identitybasedroute:Identitybasedroute labelname {{name}}
-//
+// $ pulumi import fortios:firewall/identitybasedroute:Identitybasedroute labelname {{name}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Identitybasedroute struct {
 	pulumi.CustomResourceState
 
@@ -79,7 +80,7 @@ func NewIdentitybasedroute(ctx *pulumi.Context,
 		args = &IdentitybasedrouteArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Identitybasedroute
 	err := ctx.RegisterResource("fortios:firewall/identitybasedroute:Identitybasedroute", name, args, &resource, opts...)
 	if err != nil {

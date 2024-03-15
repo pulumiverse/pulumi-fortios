@@ -462,7 +462,7 @@ export namespace antivirus {
          */
         fortisandbox: string;
         /**
-         * Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
+         * Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
          */
         options: string;
         /**
@@ -1183,497 +1183,12 @@ export namespace dlp {
 
 }
 
-export namespace dnsfilter {
-    export interface DomainfilterEntry {
-        /**
-         * Action to take for domain filter matches. Valid values: `block`, `allow`, `monitor`.
-         */
-        action: string;
-        /**
-         * Domain entries to be filtered.
-         */
-        domain: string;
-        /**
-         * Id.
-         */
-        id: number;
-        /**
-         * Enable/disable this domain filter. Valid values: `enable`, `disable`.
-         */
-        status: string;
-        /**
-         * DNS domain filter type. Valid values: `simple`, `regex`, `wildcard`.
-         */
-        type: string;
-    }
-
-    export interface ProfileDnsTranslation {
-        /**
-         * DNS translation type (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
-         */
-        addrType: string;
-        /**
-         * IPv4 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src.
-         */
-        dst: string;
-        /**
-         * IPv6 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src6.
-         */
-        dst6: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * If src and dst are subnets rather than single IP addresses, enter the netmask for both src and dst.
-         */
-        netmask: string;
-        /**
-         * If src6 and dst6 are subnets rather than single IP addresses, enter the prefix for both src6 and dst6 (1 - 128, default = 128).
-         */
-        prefix: number;
-        /**
-         * IPv4 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst.
-         */
-        src: string;
-        /**
-         * IPv6 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst6.
-         */
-        src6: string;
-        /**
-         * Enable/disable this DNS translation entry. Valid values: `enable`, `disable`.
-         */
-        status: string;
-    }
-
-    export interface ProfileDomainFilter {
-        /**
-         * DNS domain filter table ID.
-         */
-        domainFilterTable: number;
-    }
-
-    export interface ProfileExternalIpBlocklist {
-        /**
-         * External domain block list name.
-         */
-        name: string;
-    }
-
-    export interface ProfileFtgdDns {
-        /**
-         * FortiGuard DNS domain filters. The structure of `filters` block is documented below.
-         */
-        filters?: outputs.dnsfilter.ProfileFtgdDnsFilter[];
-        /**
-         * FortiGuard DNS filter options. Valid values: `error-allow`, `ftgd-disable`.
-         */
-        options: string;
-    }
-
-    export interface ProfileFtgdDnsFilter {
-        /**
-         * Action to take for DNS requests matching the category. Valid values: `block`, `monitor`.
-         */
-        action: string;
-        /**
-         * Category number.
-         */
-        category: number;
-        /**
-         * ID number.
-         */
-        id: number;
-        /**
-         * Enable/disable DNS filter logging for this DNS profile. Valid values: `enable`, `disable`.
-         */
-        log: string;
-    }
-
-}
-
 export namespace dpdk {
     export interface GlobalInterface {
         /**
          * Physical interface name.
          */
         interfaceName: string;
-    }
-
-}
-
-export namespace emailfilter {
-    export interface BlockallowlistEntry {
-        /**
-         * Reject, mark as spam or good email. Valid values: `reject`, `spam`, `clear`.
-         */
-        action: string;
-        /**
-         * IP address type. Valid values: `ipv4`, `ipv6`.
-         */
-        addrType: string;
-        /**
-         * Email address pattern.
-         */
-        emailPattern: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-        /**
-         * IPv4 network address/subnet mask bits.
-         */
-        ip4Subnet: string;
-        /**
-         * IPv6 network address/subnet mask bits.
-         */
-        ip6Subnet: string;
-        /**
-         * Pattern to match.
-         */
-        pattern: string;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType: string;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status: string;
-        /**
-         * Entry type.
-         */
-        type: string;
-    }
-
-    export interface BwlEntry {
-        /**
-         * Reject, mark as spam or good email. Valid values: `reject`, `spam`, `clear`.
-         */
-        action: string;
-        /**
-         * IP address type. Valid values: `ipv4`, `ipv6`.
-         */
-        addrType: string;
-        /**
-         * Email address pattern.
-         */
-        emailPattern: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-        /**
-         * IPv4 network address/subnet mask bits.
-         */
-        ip4Subnet: string;
-        /**
-         * IPv6 network address/subnet mask bits.
-         */
-        ip6Subnet: string;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType: string;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status: string;
-        /**
-         * Entry type. Valid values: `ip`, `email`.
-         */
-        type: string;
-    }
-
-    export interface BwordEntry {
-        /**
-         * Mark spam or good. Valid values: `spam`, `clear`.
-         */
-        action: string;
-        /**
-         * Banned word entry ID.
-         */
-        id: number;
-        /**
-         * Language for the banned word. Valid values: `western`, `simch`, `trach`, `japanese`, `korean`, `french`, `thai`, `spanish`.
-         */
-        language: string;
-        /**
-         * Pattern for the banned word.
-         */
-        pattern: string;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType: string;
-        /**
-         * Score value.
-         */
-        score: number;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status: string;
-        /**
-         * Component of the email to be scanned. Valid values: `subject`, `body`, `all`.
-         */
-        where: string;
-    }
-
-    export interface DnsblEntry {
-        /**
-         * Reject connection or mark as spam email. Valid values: `reject`, `spam`.
-         */
-        action: string;
-        /**
-         * DNSBL/ORBL entry ID.
-         */
-        id: number;
-        /**
-         * DNSBL or ORBL server name.
-         */
-        server: string;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status: string;
-    }
-
-    export interface IptrustEntry {
-        /**
-         * Type of address. Valid values: `ipv4`, `ipv6`.
-         */
-        addrType: string;
-        /**
-         * Trusted IP entry ID.
-         */
-        id: number;
-        /**
-         * IPv4 network address or network address/subnet mask bits.
-         */
-        ip4Subnet: string;
-        /**
-         * IPv6 network address/subnet mask bits.
-         */
-        ip6Subnet: string;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status: string;
-    }
-
-    export interface MheaderEntry {
-        /**
-         * Mark spam or good. Valid values: `spam`, `clear`.
-         */
-        action: string;
-        /**
-         * Pattern for the header field body.
-         */
-        fieldbody: string;
-        /**
-         * Pattern for header field name.
-         */
-        fieldname: string;
-        /**
-         * Mime header entry ID.
-         */
-        id: number;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType: string;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status: string;
-    }
-
-    export interface ProfileFileFilter {
-        /**
-         * File filter entries. The structure of `entries` block is documented below.
-         */
-        entries?: outputs.emailfilter.ProfileFileFilterEntry[];
-        /**
-         * Enable/disable file filter logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Enable/disable file filter archive contents scan. Valid values: `enable`, `disable`.
-         */
-        scanArchiveContents: string;
-        /**
-         * Enable/disable file filter. Valid values: `enable`, `disable`.
-         */
-        status: string;
-    }
-
-    export interface ProfileFileFilterEntry {
-        /**
-         * Action taken for matched file. Valid values: `log`, `block`.
-         */
-        action: string;
-        /**
-         * Comment.
-         */
-        comment?: string;
-        /**
-         * Select file type. The structure of `fileType` block is documented below.
-         */
-        fileTypes?: outputs.emailfilter.ProfileFileFilterEntryFileType[];
-        /**
-         * Add a file filter.
-         */
-        filter: string;
-        /**
-         * Match password-protected files. Valid values: `yes`, `any`.
-         */
-        passwordProtected: string;
-        /**
-         * Protocols to apply with. Valid values: `smtp`, `imap`, `pop3`.
-         */
-        protocol: string;
-    }
-
-    export interface ProfileFileFilterEntryFileType {
-        /**
-         * File type name.
-         */
-        name: string;
-    }
-
-    export interface ProfileGmail {
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll: string;
-    }
-
-    export interface ProfileImap {
-        /**
-         * Action for spam email. Valid values: `pass`, `tag`.
-         */
-        action: string;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll: string;
-        /**
-         * Subject text or header added to spam email.
-         */
-        tagMsg: string;
-        /**
-         * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-         */
-        tagType: string;
-    }
-
-    export interface ProfileMapi {
-        /**
-         * Action for spam email. Valid values: `pass`, `discard`.
-         */
-        action: string;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll: string;
-    }
-
-    export interface ProfileMsnHotmail {
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll: string;
-    }
-
-    export interface ProfileOtherWebmails {
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll: string;
-    }
-
-    export interface ProfilePop3 {
-        /**
-         * Action taken for matched file. Valid values: `log`, `block`.
-         */
-        action: string;
-        /**
-         * Enable/disable file filter logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll: string;
-        /**
-         * Subject text or header added to spam email.
-         *
-         * The `pop3` block supports:
-         */
-        tagMsg: string;
-        /**
-         * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-         */
-        tagType: string;
-    }
-
-    export interface ProfileSmtp {
-        /**
-         * Action for spam email. Valid values: `pass`, `tag`, `discard`.
-         */
-        action: string;
-        /**
-         * Enable/disable SMTP email header IP checks for spamfsip, spamrbl and spambwl filters. Valid values: `disable`, `enable`.
-         */
-        hdrip: string;
-        /**
-         * Enable/disable local filter to override SMTP remote check result. Valid values: `disable`, `enable`.
-         */
-        localOverride: string;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll: string;
-        /**
-         * Subject text or header added to spam email.
-         */
-        tagMsg: string;
-        /**
-         * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-         */
-        tagType: string;
-    }
-
-    export interface ProfileYahooMail {
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-         */
-        logAll: string;
     }
 
 }
@@ -3139,45 +2654,1405 @@ export namespace extensioncontroller {
 
 }
 
-export namespace filefilter {
-    export interface ProfileRule {
-        /**
-         * Action taken for matched file. Valid values: `log-only`, `block`.
-         */
-        action: string;
-        /**
-         * Comment.
-         */
-        comment?: string;
-        /**
-         * Traffic direction. (HTTP, FTP, SSH, CIFS only) Valid values: `incoming`, `outgoing`, `any`.
-         */
-        direction: string;
-        /**
-         * Select file type. The structure of `fileType` block is documented below.
-         */
-        fileTypes?: outputs.filefilter.ProfileRuleFileType[];
-        /**
-         * File-filter rule name.
-         */
-        name: string;
-        /**
-         * Match password-protected files. Valid values: `yes`, `any`.
-         */
-        passwordProtected: string;
-        /**
-         * Protocols to apply rule to. Valid values: `http`, `ftp`, `smtp`, `imap`, `pop3`, `mapi`, `cifs`, `ssh`.
-         */
-        protocol: string;
+export namespace filter {
+    export namespace dns {
+        export interface DomainfilterEntry {
+            /**
+             * Action to take for domain filter matches. Valid values: `block`, `allow`, `monitor`.
+             */
+            action: string;
+            /**
+             * Domain entries to be filtered.
+             */
+            domain: string;
+            /**
+             * Id.
+             */
+            id: number;
+            /**
+             * Enable/disable this domain filter. Valid values: `enable`, `disable`.
+             */
+            status: string;
+            /**
+             * DNS domain filter type. Valid values: `simple`, `regex`, `wildcard`.
+             */
+            type: string;
+        }
+
+        export interface ProfileDnsTranslation {
+            /**
+             * DNS translation type (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
+             */
+            addrType: string;
+            /**
+             * IPv4 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src.
+             */
+            dst: string;
+            /**
+             * IPv6 address or subnet on the external network to substitute for the resolved address in DNS query replies. Can be single IP address or subnet on the external network, but number of addresses must equal number of mapped IP addresses in src6.
+             */
+            dst6: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * If src and dst are subnets rather than single IP addresses, enter the netmask for both src and dst.
+             */
+            netmask: string;
+            /**
+             * If src6 and dst6 are subnets rather than single IP addresses, enter the prefix for both src6 and dst6 (1 - 128, default = 128).
+             */
+            prefix: number;
+            /**
+             * IPv4 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst.
+             */
+            src: string;
+            /**
+             * IPv6 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst6.
+             */
+            src6: string;
+            /**
+             * Enable/disable this DNS translation entry. Valid values: `enable`, `disable`.
+             */
+            status: string;
+        }
+
+        export interface ProfileDomainFilter {
+            /**
+             * DNS domain filter table ID.
+             */
+            domainFilterTable: number;
+        }
+
+        export interface ProfileExternalIpBlocklist {
+            /**
+             * External domain block list name.
+             */
+            name: string;
+        }
+
+        export interface ProfileFtgdDns {
+            /**
+             * FortiGuard DNS domain filters. The structure of `filters` block is documented below.
+             */
+            filters?: outputs.filter.dns.ProfileFtgdDnsFilter[];
+            /**
+             * FortiGuard DNS filter options. Valid values: `error-allow`, `ftgd-disable`.
+             */
+            options: string;
+        }
+
+        export interface ProfileFtgdDnsFilter {
+            /**
+             * Action to take for DNS requests matching the category. Valid values: `block`, `monitor`.
+             */
+            action: string;
+            /**
+             * Category number.
+             */
+            category: number;
+            /**
+             * ID number.
+             */
+            id: number;
+            /**
+             * Enable/disable DNS filter logging for this DNS profile. Valid values: `enable`, `disable`.
+             */
+            log: string;
+        }
+
     }
 
-    export interface ProfileRuleFileType {
-        /**
-         * File type name.
-         */
-        name: string;
+    export namespace email {
+        export interface BlockallowlistEntry {
+            /**
+             * Reject, mark as spam or good email. Valid values: `reject`, `spam`, `clear`.
+             */
+            action: string;
+            /**
+             * IP address type. Valid values: `ipv4`, `ipv6`.
+             */
+            addrType: string;
+            /**
+             * Email address pattern.
+             */
+            emailPattern: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+            /**
+             * IPv4 network address/subnet mask bits.
+             */
+            ip4Subnet: string;
+            /**
+             * IPv6 network address/subnet mask bits.
+             */
+            ip6Subnet: string;
+            /**
+             * Pattern to match.
+             */
+            pattern: string;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType: string;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status: string;
+            /**
+             * Entry type.
+             */
+            type: string;
+        }
+
+        export interface BwlEntry {
+            /**
+             * Reject, mark as spam or good email. Valid values: `reject`, `spam`, `clear`.
+             */
+            action: string;
+            /**
+             * IP address type. Valid values: `ipv4`, `ipv6`.
+             */
+            addrType: string;
+            /**
+             * Email address pattern.
+             */
+            emailPattern: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+            /**
+             * IPv4 network address/subnet mask bits.
+             */
+            ip4Subnet: string;
+            /**
+             * IPv6 network address/subnet mask bits.
+             */
+            ip6Subnet: string;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType: string;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status: string;
+            /**
+             * Entry type. Valid values: `ip`, `email`.
+             */
+            type: string;
+        }
+
+        export interface BwordEntry {
+            /**
+             * Mark spam or good. Valid values: `spam`, `clear`.
+             */
+            action: string;
+            /**
+             * Banned word entry ID.
+             */
+            id: number;
+            /**
+             * Language for the banned word. Valid values: `western`, `simch`, `trach`, `japanese`, `korean`, `french`, `thai`, `spanish`.
+             */
+            language: string;
+            /**
+             * Pattern for the banned word.
+             */
+            pattern: string;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType: string;
+            /**
+             * Score value.
+             */
+            score: number;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status: string;
+            /**
+             * Component of the email to be scanned. Valid values: `subject`, `body`, `all`.
+             */
+            where: string;
+        }
+
+        export interface DnsblEntry {
+            /**
+             * Reject connection or mark as spam email. Valid values: `reject`, `spam`.
+             */
+            action: string;
+            /**
+             * DNSBL/ORBL entry ID.
+             */
+            id: number;
+            /**
+             * DNSBL or ORBL server name.
+             */
+            server: string;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status: string;
+        }
+
+        export interface IptrustEntry {
+            /**
+             * Type of address. Valid values: `ipv4`, `ipv6`.
+             */
+            addrType: string;
+            /**
+             * Trusted IP entry ID.
+             */
+            id: number;
+            /**
+             * IPv4 network address or network address/subnet mask bits.
+             */
+            ip4Subnet: string;
+            /**
+             * IPv6 network address/subnet mask bits.
+             */
+            ip6Subnet: string;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status: string;
+        }
+
+        export interface MheaderEntry {
+            /**
+             * Mark spam or good. Valid values: `spam`, `clear`.
+             */
+            action: string;
+            /**
+             * Pattern for the header field body.
+             */
+            fieldbody: string;
+            /**
+             * Pattern for header field name.
+             */
+            fieldname: string;
+            /**
+             * Mime header entry ID.
+             */
+            id: number;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType: string;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status: string;
+        }
+
+        export interface ProfileFileFilter {
+            /**
+             * File filter entries. The structure of `entries` block is documented below.
+             */
+            entries?: outputs.filter.email.ProfileFileFilterEntry[];
+            /**
+             * Enable/disable file filter logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Enable/disable file filter archive contents scan. Valid values: `enable`, `disable`.
+             */
+            scanArchiveContents: string;
+            /**
+             * Enable/disable file filter. Valid values: `enable`, `disable`.
+             */
+            status: string;
+        }
+
+        export interface ProfileFileFilterEntry {
+            /**
+             * Action taken for matched file. Valid values: `log`, `block`.
+             */
+            action: string;
+            /**
+             * Comment.
+             */
+            comment?: string;
+            /**
+             * Select file type. The structure of `fileType` block is documented below.
+             */
+            fileTypes?: outputs.filter.email.ProfileFileFilterEntryFileType[];
+            /**
+             * Add a file filter.
+             */
+            filter: string;
+            /**
+             * Match password-protected files. Valid values: `yes`, `any`.
+             */
+            passwordProtected: string;
+            /**
+             * Protocols to apply with. Valid values: `smtp`, `imap`, `pop3`.
+             */
+            protocol: string;
+        }
+
+        export interface ProfileFileFilterEntryFileType {
+            /**
+             * File type name.
+             */
+            name: string;
+        }
+
+        export interface ProfileGmail {
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll: string;
+        }
+
+        export interface ProfileImap {
+            /**
+             * Action for spam email. Valid values: `pass`, `tag`.
+             */
+            action: string;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll: string;
+            /**
+             * Subject text or header added to spam email.
+             */
+            tagMsg: string;
+            /**
+             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+             */
+            tagType: string;
+        }
+
+        export interface ProfileMapi {
+            /**
+             * Action for spam email. Valid values: `pass`, `discard`.
+             */
+            action: string;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll: string;
+        }
+
+        export interface ProfileMsnHotmail {
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll: string;
+        }
+
+        export interface ProfileOtherWebmails {
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll: string;
+        }
+
+        export interface ProfilePop3 {
+            /**
+             * Action taken for matched file. Valid values: `log`, `block`.
+             */
+            action: string;
+            /**
+             * Enable/disable file filter logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll: string;
+            /**
+             * Subject text or header added to spam email.
+             */
+            tagMsg: string;
+            /**
+             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+             */
+            tagType: string;
+        }
+
+        export interface ProfileSmtp {
+            /**
+             * Action for spam email. Valid values: `pass`, `tag`, `discard`.
+             */
+            action: string;
+            /**
+             * Enable/disable SMTP email header IP checks for spamfsip, spamrbl and spambwl filters. Valid values: `disable`, `enable`.
+             */
+            hdrip: string;
+            /**
+             * Enable/disable local filter to override SMTP remote check result. Valid values: `disable`, `enable`.
+             */
+            localOverride: string;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll: string;
+            /**
+             * Subject text or header added to spam email.
+             */
+            tagMsg: string;
+            /**
+             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+             */
+            tagType: string;
+        }
+
+        export interface ProfileYahooMail {
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
+             */
+            logAll: string;
+        }
+
     }
 
+    export namespace file {
+        export interface ProfileRule {
+            /**
+             * Action taken for matched file. Valid values: `log-only`, `block`.
+             */
+            action: string;
+            /**
+             * Comment.
+             */
+            comment?: string;
+            /**
+             * Traffic direction. (HTTP, FTP, SSH, CIFS only) Valid values: `incoming`, `outgoing`, `any`.
+             */
+            direction: string;
+            /**
+             * Select file type. The structure of `fileType` block is documented below.
+             */
+            fileTypes?: outputs.filter.file.ProfileRuleFileType[];
+            /**
+             * File-filter rule name.
+             */
+            name: string;
+            /**
+             * Match password-protected files. Valid values: `yes`, `any`.
+             */
+            passwordProtected: string;
+            /**
+             * Protocols to apply rule to. Valid values: `http`, `ftp`, `smtp`, `imap`, `pop3`, `mapi`, `cifs`, `ssh`.
+             */
+            protocol: string;
+        }
+
+        export interface ProfileRuleFileType {
+            /**
+             * File type name.
+             */
+            name: string;
+        }
+
+    }
+
+    export namespace sctp {
+        export interface ProfilePpidFilter {
+            /**
+             * Action taken when PPID is matched. Valid values: `pass`, `reset`, `replace`.
+             */
+            action: string;
+            /**
+             * Comment.
+             */
+            comment?: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Payload protocol identifier.
+             */
+            ppid: number;
+        }
+
+    }
+
+    export namespace spam {
+        export interface BwlEntry {
+            /**
+             * Reject, mark as spam or good email. Valid values: `reject`, `spam`, `clear`.
+             */
+            action: string;
+            /**
+             * IP address type. Valid values: `ipv4`, `ipv6`.
+             */
+            addrType: string;
+            /**
+             * Email address pattern.
+             */
+            emailPattern: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+            /**
+             * IPv4 network address/subnet mask bits.
+             */
+            ip4Subnet: string;
+            /**
+             * IPv6 network address/subnet mask bits.
+             */
+            ip6Subnet: string;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType: string;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status: string;
+            /**
+             * Entry type. Valid values: `ip`, `email`.
+             */
+            type: string;
+        }
+
+        export interface BwordEntry {
+            /**
+             * Mark spam or good. Valid values: `spam`, `clear`.
+             */
+            action: string;
+            /**
+             * Banned word entry ID.
+             */
+            id: number;
+            /**
+             * Language for the banned word. Valid values: `western`, `simch`, `trach`, `japanese`, `korean`, `french`, `thai`, `spanish`.
+             */
+            language: string;
+            /**
+             * Pattern for the banned word.
+             */
+            pattern: string;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType: string;
+            /**
+             * Score value.
+             */
+            score: number;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status: string;
+            /**
+             * Component of the email to be scanned. Valid values: `subject`, `body`, `all`.
+             */
+            where: string;
+        }
+
+        export interface DnsblEntry {
+            /**
+             * Reject connection or mark as spam email. Valid values: `reject`, `spam`.
+             */
+            action: string;
+            /**
+             * DNSBL/ORBL entry ID.
+             */
+            id: number;
+            /**
+             * DNSBL or ORBL server name.
+             */
+            server: string;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status: string;
+        }
+
+        export interface IptrustEntry {
+            /**
+             * Type of address. Valid values: `ipv4`, `ipv6`.
+             */
+            addrType: string;
+            /**
+             * Trusted IP entry ID.
+             */
+            id: number;
+            /**
+             * IPv4 network address or network address/subnet mask bits.
+             */
+            ip4Subnet: string;
+            /**
+             * IPv6 network address/subnet mask bits.
+             */
+            ip6Subnet: string;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status: string;
+        }
+
+        export interface MheaderEntry {
+            /**
+             * Mark spam or good. Valid values: `spam`, `clear`.
+             */
+            action: string;
+            /**
+             * Pattern for the header field body.
+             */
+            fieldbody: string;
+            /**
+             * Pattern for header field name.
+             */
+            fieldname: string;
+            /**
+             * Mime header entry ID.
+             */
+            id: number;
+            /**
+             * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType: string;
+            /**
+             * Enable/disable status. Valid values: `enable`, `disable`.
+             */
+            status: string;
+        }
+
+        export interface ProfileGmail {
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+        }
+
+        export interface ProfileImap {
+            /**
+             * Action for spam email. Valid values: `pass`, `tag`.
+             */
+            action: string;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Subject text or header added to spam email.
+             */
+            tagMsg: string;
+            /**
+             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+             */
+            tagType: string;
+        }
+
+        export interface ProfileMapi {
+            /**
+             * Action for spam email. Valid values: `pass`, `discard`.
+             */
+            action: string;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+        }
+
+        export interface ProfileMsnHotmail {
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+        }
+
+        export interface ProfilePop3 {
+            /**
+             * Action for spam email. Valid values: `pass`, `tag`.
+             */
+            action: string;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Subject text or header added to spam email.
+             */
+            tagMsg: string;
+            /**
+             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+             */
+            tagType: string;
+        }
+
+        export interface ProfileSmtp {
+            /**
+             * Action for spam email. Valid values: `pass`, `tag`, `discard`.
+             */
+            action: string;
+            /**
+             * Enable/disable SMTP email header IP checks for spamfsip, spamrbl and spambwl filters. Valid values: `disable`, `enable`.
+             */
+            hdrip: string;
+            /**
+             * Enable/disable local filter to override SMTP remote check result. Valid values: `disable`, `enable`.
+             */
+            localOverride: string;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Subject text or header added to spam email.
+             */
+            tagMsg: string;
+            /**
+             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+             */
+            tagType: string;
+        }
+
+        export interface ProfileYahooMail {
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+        }
+
+    }
+
+    export namespace ssh {
+        export interface ProfileFileFilter {
+            /**
+             * File filter entries. The structure of `entries` block is documented below.
+             */
+            entries?: outputs.filter.ssh.ProfileFileFilterEntry[];
+            /**
+             * Enable/disable file filter logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Enable/disable file filter archive contents scan. Valid values: `enable`, `disable`.
+             */
+            scanArchiveContents: string;
+            /**
+             * Enable/disable file filter. Valid values: `enable`, `disable`.
+             */
+            status: string;
+        }
+
+        export interface ProfileFileFilterEntry {
+            /**
+             * Action taken for matched file. Valid values: `log`, `block`.
+             */
+            action: string;
+            /**
+             * Comment.
+             */
+            comment?: string;
+            /**
+             * Match files transmitted in the session's originating or reply direction. Valid values: `incoming`, `outgoing`, `any`.
+             */
+            direction: string;
+            /**
+             * Select file type. The structure of `fileType` block is documented below.
+             */
+            fileTypes?: outputs.filter.ssh.ProfileFileFilterEntryFileType[];
+            /**
+             * Add a file filter.
+             */
+            filter: string;
+            /**
+             * Match password-protected files. Valid values: `yes`, `any`.
+             */
+            passwordProtected: string;
+        }
+
+        export interface ProfileFileFilterEntryFileType {
+            /**
+             * File type name.
+             */
+            name: string;
+        }
+
+        export interface ProfileShellCommand {
+            /**
+             * Action to take for URL filter matches. Valid values: `block`, `allow`.
+             */
+            action: string;
+            /**
+             * Enable/disable alert. Valid values: `enable`, `disable`.
+             */
+            alert: string;
+            /**
+             * Id.
+             */
+            id: number;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * SSH shell command pattern.
+             */
+            pattern: string;
+            /**
+             * Log severity. Valid values: `low`, `medium`, `high`, `critical`.
+             */
+            severity: string;
+            /**
+             * Matching type. Valid values: `simple`, `regex`.
+             */
+            type: string;
+        }
+
+    }
+
+    export namespace video {
+        export interface ProfileFortiguardCategory {
+            /**
+             * Configure VideoFilter FortiGuard category. The structure of `filters` block is documented below.
+             */
+            filters?: outputs.filter.video.ProfileFortiguardCategoryFilter[];
+        }
+
+        export interface ProfileFortiguardCategoryFilter {
+            /**
+             * VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+             */
+            action: string;
+            /**
+             * Category ID.
+             */
+            categoryId: number;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+        }
+
+        export interface YoutubechannelfilterEntry {
+            /**
+             * YouTube channel filter action. Valid values: `allow`, `monitor`, `block`.
+             */
+            action: string;
+            /**
+             * Channel ID.
+             */
+            channelId: string;
+            /**
+             * Comment.
+             */
+            comment?: string;
+            /**
+             * ID.
+             */
+            id: number;
+        }
+
+    }
+
+    export namespace web {
+        export interface ContentEntry {
+            /**
+             * Block or exempt word when a match is found. Valid values: `block`, `exempt`.
+             */
+            action: string;
+            /**
+             * Language of banned word. Valid values: `western`, `simch`, `trach`, `japanese`, `korean`, `french`, `thai`, `spanish`, `cyrillic`.
+             */
+            lang: string;
+            /**
+             * Banned word.
+             */
+            name: string;
+            /**
+             * Banned word pattern type: wildcard pattern or Perl regular expression. Valid values: `wildcard`, `regexp`.
+             */
+            patternType: string;
+            /**
+             * Score, to be applied every time the word appears on a web page (0 - 4294967295, default = 10).
+             */
+            score: number;
+            /**
+             * Enable/disable banned word. Valid values: `enable`, `disable`.
+             */
+            status: string;
+        }
+
+        export interface ContentheaderEntry {
+            /**
+             * Action to take for this content type. Valid values: `block`, `allow`, `exempt`.
+             */
+            action: string;
+            /**
+             * Categories that this content type applies to.
+             */
+            category: string;
+            /**
+             * Content type (regular expression).
+             */
+            pattern: string;
+        }
+
+        export interface ProfileAntiphish {
+            /**
+             * Authentication methods. Valid values: `domain-controller`, `ldap`.
+             */
+            authentication: string;
+            /**
+             * Enable/disable checking of HTTP Basic Auth field for known credentials. Valid values: `enable`, `disable`.
+             */
+            checkBasicAuth: string;
+            /**
+             * Enable/disable checking of GET URI parameters for known credentials. Valid values: `enable`, `disable`.
+             */
+            checkUri: string;
+            /**
+             * Enable/disable acting only on valid username credentials. Action will be taken for valid usernames regardless of password validity. Valid values: `enable`, `disable`.
+             */
+            checkUsernameOnly: string;
+            /**
+             * Custom username and password regex patterns. The structure of `customPatterns` block is documented below.
+             */
+            customPatterns?: outputs.filter.web.ProfileAntiphishCustomPattern[];
+            /**
+             * Action to be taken when there is no matching rule. Valid values: `exempt`, `log`, `block`.
+             */
+            defaultAction: string;
+            /**
+             * Domain for which to verify received credentials against.
+             */
+            domainController: string;
+            /**
+             * AntiPhishing entries. The structure of `inspectionEntries` block is documented below.
+             */
+            inspectionEntries?: outputs.filter.web.ProfileAntiphishInspectionEntry[];
+            /**
+             * LDAP server for which to verify received credentials against.
+             */
+            ldap: string;
+            /**
+             * Maximum size of a POST body to check for credentials.
+             */
+            maxBodyLen: number;
+            /**
+             * Toggle AntiPhishing functionality. Valid values: `enable`, `disable`.
+             */
+            status: string;
+        }
+
+        export interface ProfileAntiphishCustomPattern {
+            /**
+             * Category that the pattern matches. Valid values: `username`, `password`.
+             */
+            category: string;
+            /**
+             * Target pattern.
+             */
+            pattern: string;
+            /**
+             * Pattern will be treated either as a regex pattern or literal string. Valid values: `regex`, `literal`.
+             */
+            type: string;
+        }
+
+        export interface ProfileAntiphishInspectionEntry {
+            /**
+             * Action to be taken upon an AntiPhishing match. Valid values: `exempt`, `log`, `block`.
+             */
+            action: string;
+            /**
+             * FortiGuard category to match.
+             */
+            fortiguardCategory: string;
+            /**
+             * Inspection target name.
+             */
+            name: string;
+        }
+
+        export interface ProfileFileFilter {
+            /**
+             * File filter entries. The structure of `entries` block is documented below.
+             */
+            entries?: outputs.filter.web.ProfileFileFilterEntry[];
+            /**
+             * Enable/disable file filter logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Enable/disable file filter archive contents scan. Valid values: `enable`, `disable`.
+             */
+            scanArchiveContents: string;
+            /**
+             * Enable/disable file filter. Valid values: `enable`, `disable`.
+             */
+            status: string;
+        }
+
+        export interface ProfileFileFilterEntry {
+            /**
+             * Action taken for matched file. Valid values: `log`, `block`.
+             */
+            action: string;
+            /**
+             * Comment.
+             */
+            comment?: string;
+            /**
+             * Match files transmitted in the session's originating or reply direction. Valid values: `incoming`, `outgoing`, `any`.
+             */
+            direction: string;
+            /**
+             * Select file type. The structure of `fileType` block is documented below.
+             */
+            fileTypes?: outputs.filter.web.ProfileFileFilterEntryFileType[];
+            /**
+             * Add a file filter.
+             */
+            filter: string;
+            /**
+             * Match password-protected files. Valid values: `yes`, `any`.
+             */
+            passwordProtected: string;
+            /**
+             * Protocols to apply with. Valid values: `http`, `ftp`.
+             */
+            protocol: string;
+        }
+
+        export interface ProfileFileFilterEntryFileType {
+            /**
+             * File type name.
+             */
+            name: string;
+        }
+
+        export interface ProfileFtgdWf {
+            /**
+             * Do not stop quota for these categories.
+             */
+            exemptQuota: string;
+            /**
+             * FortiGuard filters. The structure of `filters` block is documented below.
+             */
+            filters?: outputs.filter.web.ProfileFtgdWfFilter[];
+            /**
+             * Maximum FortiGuard quota used by single page view in seconds (excludes streams).
+             */
+            maxQuotaTimeout: number;
+            /**
+             * Options for FortiGuard Web Filter. Valid values: `error-allow`, `rate-server-ip`, `connect-request-bypass`, `ftgd-disable`.
+             */
+            options: string;
+            /**
+             * Allow web filter profile overrides.
+             */
+            ovrd: string;
+            /**
+             * FortiGuard traffic quota settings. The structure of `quota` block is documented below.
+             */
+            quotas?: outputs.filter.web.ProfileFtgdWfQuota[];
+            /**
+             * Enable/disable rating CRL by URL. Valid values: `disable`, `enable`.
+             */
+            rateCrlUrls: string;
+            /**
+             * Enable/disable rating CSS by URL. Valid values: `disable`, `enable`.
+             */
+            rateCssUrls: string;
+            /**
+             * Enable/disable rating images by URL. Valid values: `disable`, `enable`.
+             */
+            rateImageUrls: string;
+            /**
+             * Enable/disable rating JavaScript by URL. Valid values: `disable`, `enable`.
+             */
+            rateJavascriptUrls: string;
+        }
+
+        export interface ProfileFtgdWfFilter {
+            /**
+             * Action to take for matches. Valid values: `block`, `authenticate`, `monitor`, `warning`.
+             */
+            action: string;
+            /**
+             * Groups with permission to authenticate. The structure of `authUsrGrp` block is documented below.
+             */
+            authUsrGrps?: outputs.filter.web.ProfileFtgdWfFilterAuthUsrGrp[];
+            /**
+             * Categories and groups the filter examines.
+             */
+            category: number;
+            /**
+             * ID number.
+             */
+            id: number;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Override replacement message.
+             */
+            overrideReplacemsg: string;
+            /**
+             * Duration of warnings.
+             */
+            warnDuration: string;
+            /**
+             * Re-display warning after closing browser or after a timeout. Valid values: `session`, `timeout`.
+             */
+            warningDurationType: string;
+            /**
+             * Warning prompts in each category or each domain. Valid values: `per-domain`, `per-category`.
+             */
+            warningPrompt: string;
+        }
+
+        export interface ProfileFtgdWfFilterAuthUsrGrp {
+            /**
+             * User group name.
+             */
+            name: string;
+        }
+
+        export interface ProfileFtgdWfQuota {
+            /**
+             * FortiGuard categories to apply quota to (category action must be set to monitor).
+             */
+            category: string;
+            /**
+             * Duration of quota.
+             */
+            duration: string;
+            /**
+             * ID number.
+             */
+            id: number;
+            /**
+             * Override replacement message.
+             */
+            overrideReplacemsg: string;
+            /**
+             * Quota type. Valid values: `time`, `traffic`.
+             */
+            type: string;
+            /**
+             * Traffic quota unit of measurement. Valid values: `B`, `KB`, `MB`, `GB`.
+             */
+            unit: string;
+            /**
+             * Traffic quota value.
+             */
+            value: number;
+        }
+
+        export interface ProfileOverride {
+            /**
+             * Allow/deny browser-based (cookie) overrides. Valid values: `allow`, `deny`.
+             */
+            ovrdCookie: string;
+            /**
+             * Override duration.
+             */
+            ovrdDur: string;
+            /**
+             * Override duration mode. Valid values: `constant`, `ask`.
+             */
+            ovrdDurMode: string;
+            /**
+             * Override scope. Valid values: `user`, `user-group`, `ip`, `browser`, `ask`.
+             */
+            ovrdScope: string;
+            /**
+             * User groups with permission to use the override. The structure of `ovrdUserGroup` block is documented below.
+             */
+            ovrdUserGroups?: outputs.filter.web.ProfileOverrideOvrdUserGroup[];
+            /**
+             * Profile attribute to retrieve from the RADIUS server. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
+             */
+            profileAttribute: string;
+            /**
+             * Override profile type. Valid values: `list`, `radius`.
+             */
+            profileType: string;
+            /**
+             * Web filter profile with permission to create overrides. The structure of `profile` block is documented below.
+             */
+            profiles?: outputs.filter.web.ProfileOverrideProfile[];
+        }
+
+        export interface ProfileOverrideOvrdUserGroup {
+            /**
+             * User group name.
+             */
+            name: string;
+        }
+
+        export interface ProfileOverrideProfile {
+            /**
+             * Web profile.
+             */
+            name: string;
+        }
+
+        export interface ProfileWeb {
+            /**
+             * FortiGuard allowlist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
+             */
+            allowlist: string;
+            /**
+             * Enable/disable automatic addition of URLs detected by FortiSandbox to blacklist. Valid values: `enable`, `disable`.
+             */
+            blacklist: string;
+            /**
+             * Enable/disable automatic addition of URLs detected by FortiSandbox to blocklist. Valid values: `enable`, `disable`.
+             */
+            blocklist: string;
+            /**
+             * Banned word table ID.
+             */
+            bwordTable: number;
+            /**
+             * Banned word score threshold.
+             */
+            bwordThreshold: number;
+            /**
+             * Content header list.
+             */
+            contentHeaderList: number;
+            /**
+             * Search keywords to log when match is found. The structure of `keywordMatch` block is documented below.
+             */
+            keywordMatches?: outputs.filter.web.ProfileWebKeywordMatch[];
+            /**
+             * Enable/disable logging all search phrases. Valid values: `enable`, `disable`.
+             */
+            logSearch: string;
+            /**
+             * Safe search type. Valid values: `url`, `header`.
+             */
+            safeSearch: string;
+            /**
+             * URL filter table ID.
+             */
+            urlfilterTable: number;
+            /**
+             * Set Vimeo-restrict ("7" = don't show mature content, "134" = don't show unrated and mature content). A value of cookie "contentRating".
+             */
+            vimeoRestrict: string;
+            /**
+             * FortiGuard whitelist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
+             */
+            whitelist: string;
+            /**
+             * YouTube EDU filter level. Valid values: `none`, `strict`, `moderate`.
+             */
+            youtubeRestrict: string;
+        }
+
+        export interface ProfileWebKeywordMatch {
+            /**
+             * Pattern/keyword to search for.
+             */
+            pattern: string;
+        }
+
+        export interface ProfileWispServer {
+            /**
+             * Server name.
+             */
+            name: string;
+        }
+
+        export interface ProfileYoutubeChannelFilter {
+            /**
+             * YouTube channel ID to be filtered.
+             */
+            channelId: string;
+            /**
+             * Comment.
+             */
+            comment?: string;
+            /**
+             * ID.
+             */
+            id: number;
+        }
+
+        export interface UrlfilterEntry {
+            /**
+             * Action to take for URL filter matches. Valid values: `exempt`, `block`, `allow`, `monitor`.
+             */
+            action: string;
+            /**
+             * Action to take for AntiPhishing matches. Valid values: `block`, `log`.
+             */
+            antiphishAction: string;
+            /**
+             * Resolve IPv4 address, IPv6 address, or both from DNS server. Valid values: `ipv4`, `ipv6`, `both`.
+             */
+            dnsAddressFamily: string;
+            /**
+             * If action is set to exempt, select the security profile operations that exempt URLs skip. Separate multiple options with a space.
+             */
+            exempt: string;
+            /**
+             * Id.
+             */
+            id: number;
+            /**
+             * Referrer host name.
+             */
+            referrerHost: string;
+            /**
+             * Enable/disable this URL filter. Valid values: `enable`, `disable`.
+             */
+            status: string;
+            /**
+             * Filter type (simple, regex, or wildcard). Valid values: `simple`, `regex`, `wildcard`.
+             */
+            type: string;
+            /**
+             * URL to be filtered.
+             */
+            url: string;
+            /**
+             * Web proxy profile.
+             */
+            webProxyProfile: string;
+        }
+
+    }
 }
 
 export namespace firewall {
@@ -4206,18 +5081,6 @@ export namespace firewall {
     export interface CentralsnatmapDstAddr6 {
         /**
          * Address name.
-         *
-         * The `origAddr6` block supports:
-         *
-         *
-         *
-         *
-         * The `dstAddr6` block supports:
-         *
-         *
-         *
-         *
-         * The `natIppool6` block supports:
          */
         name: string;
     }
@@ -4239,18 +5102,6 @@ export namespace firewall {
     export interface CentralsnatmapNatIppool6 {
         /**
          * Address name.
-         *
-         * The `origAddr6` block supports:
-         *
-         *
-         *
-         *
-         * The `dstAddr6` block supports:
-         *
-         *
-         *
-         *
-         * The `natIppool6` block supports:
          */
         name: string;
     }
@@ -4265,18 +5116,6 @@ export namespace firewall {
     export interface CentralsnatmapOrigAddr6 {
         /**
          * Address name.
-         *
-         * The `origAddr6` block supports:
-         *
-         *
-         *
-         *
-         * The `dstAddr6` block supports:
-         *
-         *
-         *
-         *
-         * The `natIppool6` block supports:
          */
         name: string;
     }
@@ -6572,7 +7411,7 @@ export namespace firewall {
          */
         endIp6: string;
         /**
-         * Entry ID(1-255).
+         * Disable entry ID.
          */
         id: number;
         /**
@@ -6649,9 +7488,7 @@ export namespace firewall {
 
     export interface InternetserviceextensionEntryDst6 {
         /**
-         * Select the destination address or address group object from available options.
-         *
-         * The `dst6` block supports:
+         * Select the destination address6 or address group object from available options.
          */
         name: string;
     }
@@ -7694,7 +8531,7 @@ export namespace firewall {
          */
         inspectAll: string;
         /**
-         * One or more options that can be applied to the session. Valid values: `clientcomfort`, `servercomfort`, `oversize`, `chunkedbypass`.
+         * One or more options that can be applied to the session. Valid values: `oversize`.
          */
         options: string;
         /**
@@ -7702,7 +8539,7 @@ export namespace firewall {
          */
         oversizeLimit: number;
         /**
-         * Ports to scan for content (1 - 65535, default = 80).
+         * Ports to scan for content (1 - 65535, default = 445).
          */
         ports: number;
         /**
@@ -7711,8 +8548,6 @@ export namespace firewall {
         proxyAfterTcpHandshake: string;
         /**
          * Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-         *
-         * The `pop3` block supports:
          */
         scanBzip2: string;
         /**
@@ -8855,12 +9690,10 @@ export namespace firewall {
         revokedServerCert: string;
         /**
          * Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-         *
-         * The `pop3s` block supports:
          */
         sniServerCertCheck: string;
         /**
-         * Configure protocol inspection status. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
+         * Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
          */
         status: string;
         /**
@@ -8880,7 +9713,7 @@ export namespace firewall {
          */
         unsupportedSslVersion: string;
         /**
-         * Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+         * Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
          */
         untrustedServerCert: string;
     }
@@ -9525,452 +10358,451 @@ export namespace firewall {
         name: string;
     }
 
-}
+    export namespace consolidated {
+        export interface GetPolicyAppCategory {
+            /**
+             * URL category ID.
+             */
+            id: number;
+        }
 
-export namespace firewallconsolidated {
-    export interface GetPolicyAppCategory {
-        /**
-         * URL category ID.
-         */
-        id: number;
+        export interface GetPolicyAppGroup {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyApplication {
+            /**
+             * URL category ID.
+             */
+            id: number;
+        }
+
+        export interface GetPolicyDstaddr4 {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyDstaddr6 {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyDstintf {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyFssoGroup {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyGroup {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyInternetServiceCustom {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyInternetServiceCustomGroup {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyInternetServiceGroup {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyInternetServiceId {
+            /**
+             * URL category ID.
+             */
+            id: number;
+        }
+
+        export interface GetPolicyInternetServiceName {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyInternetServiceSrcCustom {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyInternetServiceSrcCustomGroup {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyInternetServiceSrcGroup {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyInternetServiceSrcId {
+            /**
+             * URL category ID.
+             */
+            id: number;
+        }
+
+        export interface GetPolicyInternetServiceSrcName {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyPoolname4 {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyPoolname6 {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyService {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicySrcaddr4 {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicySrcaddr6 {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicySrcintf {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface GetPolicyUrlCategory {
+            /**
+             * URL category ID.
+             */
+            id: number;
+        }
+
+        export interface GetPolicyUser {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface PolicyAppCategory {
+            /**
+             * Category IDs.
+             */
+            id: number;
+        }
+
+        export interface PolicyAppGroup {
+            /**
+             * Application group names.
+             */
+            name: string;
+        }
+
+        export interface PolicyApplication {
+            /**
+             * Application IDs.
+             */
+            id: number;
+        }
+
+        export interface PolicyDstaddr4 {
+            /**
+             * Policy name.
+             */
+            name: string;
+        }
+
+        export interface PolicyDstaddr6 {
+            /**
+             * Policy name.
+             */
+            name: string;
+        }
+
+        export interface PolicyDstintf {
+            /**
+             * Address name.
+             */
+            name: string;
+        }
+
+        export interface PolicyFssoGroup {
+            /**
+             * Names of FSSO groups.
+             */
+            name: string;
+        }
+
+        export interface PolicyGroup {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export interface PolicyInternetServiceCustom {
+            /**
+             * Custom Internet Service name.
+             */
+            name: string;
+        }
+
+        export interface PolicyInternetServiceCustomGroup {
+            /**
+             * Custom Internet Service group name.
+             */
+            name: string;
+        }
+
+        export interface PolicyInternetServiceGroup {
+            /**
+             * Internet Service group name.
+             */
+            name: string;
+        }
+
+        export interface PolicyInternetServiceId {
+            /**
+             * Internet Service ID.
+             */
+            id: number;
+        }
+
+        export interface PolicyInternetServiceName {
+            /**
+             * Internet Service name.
+             */
+            name: string;
+        }
+
+        export interface PolicyInternetServiceSrcCustom {
+            /**
+             * Custom Internet Service name.
+             */
+            name: string;
+        }
+
+        export interface PolicyInternetServiceSrcCustomGroup {
+            /**
+             * Custom Internet Service group name.
+             */
+            name: string;
+        }
+
+        export interface PolicyInternetServiceSrcGroup {
+            /**
+             * Internet Service group name.
+             */
+            name: string;
+        }
+
+        export interface PolicyInternetServiceSrcId {
+            /**
+             * Internet Service ID.
+             */
+            id: number;
+        }
+
+        export interface PolicyInternetServiceSrcName {
+            /**
+             * Internet Service name.
+             */
+            name: string;
+        }
+
+        export interface PolicyPoolname4 {
+            /**
+             * Policy name.
+             */
+            name: string;
+        }
+
+        export interface PolicyPoolname6 {
+            /**
+             * Policy name.
+             */
+            name: string;
+        }
+
+        export interface PolicyService {
+            /**
+             * Service name.
+             */
+            name: string;
+        }
+
+        export interface PolicySrcaddr4 {
+            /**
+             * Policy name.
+             */
+            name: string;
+        }
+
+        export interface PolicySrcaddr6 {
+            /**
+             * Policy name.
+             */
+            name: string;
+        }
+
+        export interface PolicySrcintf {
+            /**
+             * Interface name.
+             */
+            name: string;
+        }
+
+        export interface PolicyUrlCategory {
+            /**
+             * URL category ID.
+             */
+            id: number;
+        }
+
+        export interface PolicyUser {
+            /**
+             * IPv6 pool name.
+             */
+            name: string;
+        }
+
     }
 
-    export interface GetPolicyAppGroup {
-        /**
-         * Application group names.
-         */
-        name: string;
+    export namespace schedule {
+        export interface GetGroupMember {
+            /**
+             * Specify the name of the desired firewallschedule group.
+             */
+            name: string;
+        }
+
+        export interface GroupMember {
+            /**
+             * Schedule name.
+             */
+            name: string;
+        }
+
     }
 
-    export interface GetPolicyApplication {
-        /**
-         * URL category ID.
-         */
-        id: number;
+    export namespace service {
+        export interface CustomAppCategory {
+            /**
+             * Application category id.
+             */
+            id: number;
+        }
+
+        export interface CustomApplication {
+            /**
+             * Application id.
+             */
+            id: number;
+        }
+
+        export interface GetCustomAppCategory {
+            /**
+             * Application id.
+             */
+            id: number;
+        }
+
+        export interface GetCustomApplication {
+            /**
+             * Application id.
+             */
+            id: number;
+        }
+
+        export interface GetGroupMember {
+            /**
+             * Specify the name of the desired firewallservice group.
+             */
+            name: string;
+        }
+
+        export interface GroupMember {
+            /**
+             * Address name.
+             */
+            name: string;
+        }
+
     }
 
-    export interface GetPolicyDstaddr4 {
-        /**
-         * Application group names.
-         */
-        name: string;
+    export namespace wildcardfqdn {
+        export interface GetGroupMember {
+            /**
+             * Specify the name of the desired firewallwildcardfqdn group.
+             */
+            name: string;
+        }
+
+        export interface GroupMember {
+            /**
+             * Address name.
+             */
+            name: string;
+        }
+
     }
-
-    export interface GetPolicyDstaddr6 {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyDstintf {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyFssoGroup {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyGroup {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyInternetServiceCustom {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyInternetServiceCustomGroup {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyInternetServiceGroup {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyInternetServiceId {
-        /**
-         * URL category ID.
-         */
-        id: number;
-    }
-
-    export interface GetPolicyInternetServiceName {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyInternetServiceSrcCustom {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyInternetServiceSrcCustomGroup {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyInternetServiceSrcGroup {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyInternetServiceSrcId {
-        /**
-         * URL category ID.
-         */
-        id: number;
-    }
-
-    export interface GetPolicyInternetServiceSrcName {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyPoolname4 {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyPoolname6 {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyService {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicySrcaddr4 {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicySrcaddr6 {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicySrcintf {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface GetPolicyUrlCategory {
-        /**
-         * URL category ID.
-         */
-        id: number;
-    }
-
-    export interface GetPolicyUser {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface PolicyAppCategory {
-        /**
-         * Category IDs.
-         */
-        id: number;
-    }
-
-    export interface PolicyAppGroup {
-        /**
-         * Application group names.
-         */
-        name: string;
-    }
-
-    export interface PolicyApplication {
-        /**
-         * Application IDs.
-         */
-        id: number;
-    }
-
-    export interface PolicyDstaddr4 {
-        /**
-         * Policy name.
-         */
-        name: string;
-    }
-
-    export interface PolicyDstaddr6 {
-        /**
-         * Policy name.
-         */
-        name: string;
-    }
-
-    export interface PolicyDstintf {
-        /**
-         * Address name.
-         */
-        name: string;
-    }
-
-    export interface PolicyFssoGroup {
-        /**
-         * Names of FSSO groups.
-         */
-        name: string;
-    }
-
-    export interface PolicyGroup {
-        /**
-         * Group name.
-         */
-        name: string;
-    }
-
-    export interface PolicyInternetServiceCustom {
-        /**
-         * Custom Internet Service name.
-         */
-        name: string;
-    }
-
-    export interface PolicyInternetServiceCustomGroup {
-        /**
-         * Custom Internet Service group name.
-         */
-        name: string;
-    }
-
-    export interface PolicyInternetServiceGroup {
-        /**
-         * Internet Service group name.
-         */
-        name: string;
-    }
-
-    export interface PolicyInternetServiceId {
-        /**
-         * Internet Service ID.
-         */
-        id: number;
-    }
-
-    export interface PolicyInternetServiceName {
-        /**
-         * Internet Service name.
-         */
-        name: string;
-    }
-
-    export interface PolicyInternetServiceSrcCustom {
-        /**
-         * Custom Internet Service name.
-         */
-        name: string;
-    }
-
-    export interface PolicyInternetServiceSrcCustomGroup {
-        /**
-         * Custom Internet Service group name.
-         */
-        name: string;
-    }
-
-    export interface PolicyInternetServiceSrcGroup {
-        /**
-         * Internet Service group name.
-         */
-        name: string;
-    }
-
-    export interface PolicyInternetServiceSrcId {
-        /**
-         * Internet Service ID.
-         */
-        id: number;
-    }
-
-    export interface PolicyInternetServiceSrcName {
-        /**
-         * Internet Service name.
-         */
-        name: string;
-    }
-
-    export interface PolicyPoolname4 {
-        /**
-         * Policy name.
-         */
-        name: string;
-    }
-
-    export interface PolicyPoolname6 {
-        /**
-         * Policy name.
-         */
-        name: string;
-    }
-
-    export interface PolicyService {
-        /**
-         * Service name.
-         */
-        name: string;
-    }
-
-    export interface PolicySrcaddr4 {
-        /**
-         * Policy name.
-         */
-        name: string;
-    }
-
-    export interface PolicySrcaddr6 {
-        /**
-         * Policy name.
-         */
-        name: string;
-    }
-
-    export interface PolicySrcintf {
-        /**
-         * Interface name.
-         */
-        name: string;
-    }
-
-    export interface PolicyUrlCategory {
-        /**
-         * URL category ID.
-         */
-        id: number;
-    }
-
-    export interface PolicyUser {
-        /**
-         * IPv6 pool name.
-         */
-        name: string;
-    }
-
-}
-
-export namespace firewallschedule {
-    export interface GetGroupMember {
-        /**
-         * Specify the name of the desired firewallschedule group.
-         */
-        name: string;
-    }
-
-    export interface GroupMember {
-        /**
-         * Schedule name.
-         */
-        name: string;
-    }
-
-}
-
-export namespace firewallservice {
-    export interface CustomAppCategory {
-        /**
-         * Application category id.
-         */
-        id: number;
-    }
-
-    export interface CustomApplication {
-        /**
-         * Application id.
-         */
-        id: number;
-    }
-
-    export interface GetCustomAppCategory {
-        /**
-         * Application id.
-         */
-        id: number;
-    }
-
-    export interface GetCustomApplication {
-        /**
-         * Application id.
-         */
-        id: number;
-    }
-
-    export interface GetGroupMember {
-        /**
-         * Specify the name of the desired firewallservice group.
-         */
-        name: string;
-    }
-
-    export interface GroupMember {
-        /**
-         * Address name.
-         */
-        name: string;
-    }
-
-}
-
-export namespace firewallwildcardfqdn {
-    export interface GetGroupMember {
-        /**
-         * Specify the name of the desired firewallwildcardfqdn group.
-         */
-        name: string;
-    }
-
-    export interface GroupMember {
-        /**
-         * Address name.
-         */
-        name: string;
-    }
-
 }
 
 export namespace icap {
@@ -10529,632 +11361,629 @@ export namespace log {
         level: string;
     }
 
-}
+    export namespace disk {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category: string;
+            /**
+             * Free style filter string.
+             */
+            filter: string;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+        }
 
-export namespace logdisk {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
     }
 
-}
+    export namespace fortianalyzer {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category: string;
+            /**
+             * Free style filter string.
+             */
+            filter: string;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+        }
 
-export namespace logfortianalyzer {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
+        export interface OverridefilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category: string;
+            /**
+             * Free style filter string.
+             */
+            filter: string;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+        }
+
+        export interface OverridesettingSerial {
+            /**
+             * Serial Number.
+             */
+            name: string;
+        }
+
+        export interface SettingSerial {
+            /**
+             * Serial Number.
+             */
+            name: string;
+        }
+
+        export namespace cloud {
+            export interface FilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category: string;
+                /**
+                 * Free style filter string.
+                 */
+                filter: string;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+            }
+
+            export interface OverridefilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category: string;
+                /**
+                 * Free style filter string.
+                 */
+                filter: string;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+            }
+
+            export interface SettingSerial {
+                /**
+                 * Serial Number.
+                 */
+                name: string;
+            }
+
+        }
+
+        export namespace v2 {
+            export interface FilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category: string;
+                /**
+                 * Free style filter string.
+                 */
+                filter: string;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+            }
+
+            export interface OverridefilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category: string;
+                /**
+                 * Free style filter string.
+                 */
+                filter: string;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+            }
+
+            export interface OverridesettingSerial {
+                /**
+                 * Serial Number.
+                 */
+                name: string;
+            }
+
+            export interface SettingSerial {
+                /**
+                 * Serial Number.
+                 */
+                name: string;
+            }
+
+        }
+
+        export namespace v3 {
+            export interface FilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category: string;
+                /**
+                 * Free style filter string.
+                 */
+                filter: string;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+            }
+
+            export interface OverridefilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category: string;
+                /**
+                 * Free style filter string.
+                 */
+                filter: string;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+            }
+
+            export interface OverridesettingSerial {
+                /**
+                 * Serial Number.
+                 */
+                name: string;
+            }
+
+            export interface SettingSerial {
+                /**
+                 * Serial Number.
+                 */
+                name: string;
+            }
+
+        }
     }
 
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
+    export namespace fortiguard {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category: string;
+            /**
+             * Free style filter string.
+             */
+            filter: string;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+        }
+
+        export interface OverridefilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category: string;
+            /**
+             * Free style filter string.
+             */
+            filter: string;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+        }
+
     }
 
-    export interface OverridesettingSerial {
-        /**
-         * Serial Number.
-         */
-        name: string;
+    export namespace memory {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category: string;
+            /**
+             * Free style filter string.
+             */
+            filter: string;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+        }
+
     }
 
-    export interface SettingSerial {
-        /**
-         * Serial Number.
-         */
-        name: string;
+    export namespace nulldevice {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category: string;
+            /**
+             * Free style filter string.
+             */
+            filter: string;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+        }
+
     }
 
-}
+    export namespace syslogd {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category: string;
+            /**
+             * Free style filter string.
+             */
+            filter: string;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+        }
 
-export namespace logfortianalyzer2 {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
+        export interface OverridefilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category: string;
+            /**
+             * Free style filter string.
+             */
+            filter: string;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+        }
+
+        export interface OverridesettingCustomFieldName {
+            /**
+             * Field custom name.
+             */
+            custom: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+            /**
+             * Field name.
+             */
+            name: string;
+        }
+
+        export interface SettingCustomFieldName {
+            /**
+             * Field custom name.
+             */
+            custom: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+            /**
+             * Field name.
+             */
+            name: string;
+        }
+
+        export namespace v2 {
+            export interface FilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category: string;
+                /**
+                 * Free style filter string.
+                 */
+                filter: string;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+            }
+
+            export interface OverridefilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category: string;
+                /**
+                 * Free style filter string.
+                 */
+                filter: string;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+            }
+
+            export interface OverridesettingCustomFieldName {
+                /**
+                 * Field custom name.
+                 */
+                custom: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+                /**
+                 * Field name.
+                 */
+                name: string;
+            }
+
+            export interface SettingCustomFieldName {
+                /**
+                 * Field custom name.
+                 */
+                custom: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+                /**
+                 * Field name.
+                 */
+                name: string;
+            }
+
+        }
+
+        export namespace v3 {
+            export interface FilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category: string;
+                /**
+                 * Free style filter string.
+                 */
+                filter: string;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+            }
+
+            export interface OverridefilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category: string;
+                /**
+                 * Free style filter string.
+                 */
+                filter: string;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+            }
+
+            export interface OverridesettingCustomFieldName {
+                /**
+                 * Field custom name.
+                 */
+                custom: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+                /**
+                 * Field name.
+                 */
+                name: string;
+            }
+
+            export interface SettingCustomFieldName {
+                /**
+                 * Field custom name.
+                 */
+                custom: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+                /**
+                 * Field name.
+                 */
+                name: string;
+            }
+
+        }
+
+        export namespace v4 {
+            export interface FilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category: string;
+                /**
+                 * Free style filter string.
+                 */
+                filter: string;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+            }
+
+            export interface OverridefilterFreeStyle {
+                /**
+                 * Log category.
+                 */
+                category: string;
+                /**
+                 * Free style filter string.
+                 */
+                filter: string;
+                /**
+                 * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+                 */
+                filterType: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+            }
+
+            export interface OverridesettingCustomFieldName {
+                /**
+                 * Field custom name.
+                 */
+                custom: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+                /**
+                 * Field name.
+                 */
+                name: string;
+            }
+
+            export interface SettingCustomFieldName {
+                /**
+                 * Field custom name.
+                 */
+                custom: string;
+                /**
+                 * Entry ID.
+                 */
+                id: number;
+                /**
+                 * Field name.
+                 */
+                name: string;
+            }
+
+        }
     }
 
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
+    export namespace webtrends {
+        export interface FilterFreeStyle {
+            /**
+             * Log category.
+             */
+            category: string;
+            /**
+             * Free style filter string.
+             */
+            filter: string;
+            /**
+             * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+             */
+            filterType: string;
+            /**
+             * Entry ID.
+             */
+            id: number;
+        }
+
     }
-
-    export interface OverridesettingSerial {
-        /**
-         * Serial Number.
-         */
-        name: string;
-    }
-
-    export interface SettingSerial {
-        /**
-         * Serial Number.
-         */
-        name: string;
-    }
-
-}
-
-export namespace logfortianalyzer3 {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-    export interface OverridesettingSerial {
-        /**
-         * Serial Number.
-         */
-        name: string;
-    }
-
-    export interface SettingSerial {
-        /**
-         * Serial Number.
-         */
-        name: string;
-    }
-
-}
-
-export namespace logfortianalyzercloud {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-    export interface SettingSerial {
-        /**
-         * Serial Number.
-         */
-        name: string;
-    }
-
-}
-
-export namespace logfortiguard {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-}
-
-export namespace logmemory {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-}
-
-export namespace lognulldevice {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-}
-
-export namespace logsyslogd {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-    export interface OverridesettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-        /**
-         * Field name.
-         */
-        name: string;
-    }
-
-    export interface SettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-        /**
-         * Field name.
-         */
-        name: string;
-    }
-
-}
-
-export namespace logsyslogd2 {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-    export interface OverridesettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-        /**
-         * Field name.
-         */
-        name: string;
-    }
-
-    export interface SettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-        /**
-         * Field name.
-         */
-        name: string;
-    }
-
-}
-
-export namespace logsyslogd3 {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-    export interface OverridesettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-        /**
-         * Field name.
-         */
-        name: string;
-    }
-
-    export interface SettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-        /**
-         * Field name.
-         */
-        name: string;
-    }
-
-}
-
-export namespace logsyslogd4 {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-    export interface OverridefilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
-    export interface OverridesettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-        /**
-         * Field name.
-         */
-        name: string;
-    }
-
-    export interface SettingCustomFieldName {
-        /**
-         * Field custom name.
-         */
-        custom: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-        /**
-         * Field name.
-         */
-        name: string;
-    }
-
-}
-
-export namespace logwebtrends {
-    export interface FilterFreeStyle {
-        /**
-         * Log category.
-         */
-        category: string;
-        /**
-         * Free style filter string.
-         */
-        filter: string;
-        /**
-         * Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
-         */
-        filterType: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-    }
-
 }
 
 export namespace nsxt {
@@ -11844,8 +12673,6 @@ export namespace router {
         prefix6: string;
         /**
          * Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
-         *
-         * The `aggregateAddress6` block supports:
          */
         summaryOnly: string;
     }
@@ -12342,8 +13169,6 @@ export namespace router {
         conditionRoutemap: string;
         /**
          * Type of condition. Valid values: `exist`, `non-exist`.
-         *
-         * The `conditionalAdvertise6` block supports:
          */
         conditionType: string;
     }
@@ -12874,13 +13699,7 @@ export namespace router {
          */
         prefix6: string;
         /**
-         * Route map to modify generated route.
-         *
-         * The `network6` block supports:
-         *
-         *
-         *
-         * The `redistribute6` block supports:
+         * Route map of VRF leaking.
          */
         routeMap: string;
     }
@@ -12906,13 +13725,7 @@ export namespace router {
          */
         name: string;
         /**
-         * Route map to modify generated route.
-         *
-         * The `network6` block supports:
-         *
-         *
-         *
-         * The `redistribute6` block supports:
+         * Route map of VRF leaking.
          */
         routeMap: string;
         /**
@@ -16567,8 +17380,6 @@ export namespace router {
     export interface IsisRedistribute6 {
         /**
          * Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-         *
-         * The `summaryAddress6` block supports:
          */
         level: string;
         /**
@@ -16585,8 +17396,6 @@ export namespace router {
         protocol: string;
         /**
          * Route map name.
-         *
-         * The `redistribute6` block supports:
          */
         routemap: string;
         /**
@@ -16617,8 +17426,6 @@ export namespace router {
         id: number;
         /**
          * Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-         *
-         * The `summaryAddress6` block supports:
          */
         level: string;
         /**
@@ -17174,7 +17981,7 @@ export namespace router {
          */
         mtuIgnore: string;
         /**
-         * Virtual link entry name.
+         * Interface entry name.
          */
         name: string;
         /**
@@ -18340,476 +19147,119 @@ export namespace router {
         name: string;
     }
 
-}
+    export namespace bgp {
+        export interface GetNeighborConditionalAdvertise {
+            /**
+             * Name of advertising route map.
+             */
+            advertiseRoutemap: string;
+            /**
+             * Name of condition route map.
+             */
+            conditionRoutemap: string;
+            /**
+             * Type of condition.
+             */
+            conditionType: string;
+        }
 
-export namespace routerbgp {
-    export interface GetNeighborConditionalAdvertise {
-        /**
-         * Name of advertising route map.
-         */
-        advertiseRoutemap: string;
-        /**
-         * Name of condition route map.
-         */
-        conditionRoutemap: string;
-        /**
-         * Type of condition.
-         */
-        conditionType: string;
+        export interface GetNeighborConditionalAdvertise6 {
+            /**
+             * Name of advertising route map.
+             */
+            advertiseRoutemap: string;
+            /**
+             * Name of condition route map.
+             */
+            conditionRoutemap: string;
+            /**
+             * Type of condition.
+             */
+            conditionType: string;
+        }
+
+        export interface NeighborConditionalAdvertise {
+            /**
+             * Name of advertising route map.
+             */
+            advertiseRoutemap: string;
+            /**
+             * Name of condition route map.
+             */
+            conditionRoutemap: string;
+            /**
+             * Type of condition. Valid values: `exist`, `non-exist`.
+             */
+            conditionType: string;
+        }
+
+        export interface NeighborConditionalAdvertise6 {
+            /**
+             * Name of advertising route map.
+             */
+            advertiseRoutemap: string;
+            /**
+             * Name of condition route map.
+             */
+            conditionRoutemap: string;
+            /**
+             * Type of condition. Valid values: `exist`, `non-exist`.
+             */
+            conditionType: string;
+        }
+
     }
 
-    export interface GetNeighborConditionalAdvertise6 {
-        /**
-         * Name of advertising route map.
-         */
-        advertiseRoutemap: string;
-        /**
-         * Name of condition route map.
-         */
-        conditionRoutemap: string;
-        /**
-         * Type of condition.
-         */
-        conditionType: string;
+    export namespace ospf {
+        export interface OspfinterfaceMd5Key {
+            /**
+             * Key ID (1 - 255).
+             */
+            id: number;
+            /**
+             * Password for the key.
+             */
+            keyString?: string;
+        }
+
     }
 
-    export interface NeighborConditionalAdvertise {
-        /**
-         * Name of advertising route map.
-         */
-        advertiseRoutemap: string;
-        /**
-         * Name of condition route map.
-         */
-        conditionRoutemap: string;
-        /**
-         * Type of condition. Valid values: `exist`, `non-exist`.
-         */
-        conditionType: string;
+    export namespace ospf6 {
+        export interface Ospf6interfaceIpsecKey {
+            /**
+             * Authentication key.
+             */
+            authKey?: string;
+            /**
+             * Encryption key.
+             */
+            encKey?: string;
+            /**
+             * Security Parameters Index.
+             */
+            spi: number;
+        }
+
+        export interface Ospf6interfaceNeighbor {
+            /**
+             * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
+             */
+            cost: number;
+            /**
+             * IPv6 link local address of the neighbor.
+             */
+            ip6: string;
+            /**
+             * Poll interval time in seconds.
+             */
+            pollInterval: number;
+            /**
+             * priority
+             */
+            priority: number;
+        }
+
     }
-
-    export interface NeighborConditionalAdvertise6 {
-        /**
-         * Name of advertising route map.
-         */
-        advertiseRoutemap: string;
-        /**
-         * Name of condition route map.
-         */
-        conditionRoutemap: string;
-        /**
-         * Type of condition. Valid values: `exist`, `non-exist`.
-         *
-         * The `conditionalAdvertise6` block supports:
-         */
-        conditionType: string;
-    }
-
-}
-
-export namespace routerospf {
-    export interface OspfinterfaceMd5Key {
-        /**
-         * Key ID (1 - 255).
-         */
-        id: number;
-        /**
-         * Password for the key.
-         */
-        keyString?: string;
-    }
-
-}
-
-export namespace routerospf6 {
-    export interface Ospf6interfaceIpsecKey {
-        /**
-         * Authentication key.
-         */
-        authKey?: string;
-        /**
-         * Encryption key.
-         */
-        encKey?: string;
-        /**
-         * Security Parameters Index.
-         */
-        spi: number;
-    }
-
-    export interface Ospf6interfaceNeighbor {
-        /**
-         * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-         */
-        cost: number;
-        /**
-         * IPv6 link local address of the neighbor.
-         */
-        ip6: string;
-        /**
-         * Poll interval time in seconds.
-         */
-        pollInterval: number;
-        /**
-         * priority
-         */
-        priority: number;
-    }
-
-}
-
-export namespace sctpfilter {
-    export interface ProfilePpidFilter {
-        /**
-         * Action taken when PPID is matched. Valid values: `pass`, `reset`, `replace`.
-         */
-        action: string;
-        /**
-         * Comment.
-         */
-        comment?: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * Payload protocol identifier.
-         */
-        ppid: number;
-    }
-
-}
-
-export namespace spamfilter {
-    export interface BwlEntry {
-        /**
-         * Reject, mark as spam or good email. Valid values: `reject`, `spam`, `clear`.
-         */
-        action: string;
-        /**
-         * IP address type. Valid values: `ipv4`, `ipv6`.
-         */
-        addrType: string;
-        /**
-         * Email address pattern.
-         */
-        emailPattern: string;
-        /**
-         * Entry ID.
-         */
-        id: number;
-        /**
-         * IPv4 network address/subnet mask bits.
-         */
-        ip4Subnet: string;
-        /**
-         * IPv6 network address/subnet mask bits.
-         */
-        ip6Subnet: string;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType: string;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status: string;
-        /**
-         * Entry type. Valid values: `ip`, `email`.
-         */
-        type: string;
-    }
-
-    export interface BwordEntry {
-        /**
-         * Mark spam or good. Valid values: `spam`, `clear`.
-         */
-        action: string;
-        /**
-         * Banned word entry ID.
-         */
-        id: number;
-        /**
-         * Language for the banned word. Valid values: `western`, `simch`, `trach`, `japanese`, `korean`, `french`, `thai`, `spanish`.
-         */
-        language: string;
-        /**
-         * Pattern for the banned word.
-         */
-        pattern: string;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType: string;
-        /**
-         * Score value.
-         */
-        score: number;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status: string;
-        /**
-         * Component of the email to be scanned. Valid values: `subject`, `body`, `all`.
-         */
-        where: string;
-    }
-
-    export interface DnsblEntry {
-        /**
-         * Reject connection or mark as spam email. Valid values: `reject`, `spam`.
-         */
-        action: string;
-        /**
-         * DNSBL/ORBL entry ID.
-         */
-        id: number;
-        /**
-         * DNSBL or ORBL server name.
-         */
-        server: string;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status: string;
-    }
-
-    export interface IptrustEntry {
-        /**
-         * Type of address. Valid values: `ipv4`, `ipv6`.
-         */
-        addrType: string;
-        /**
-         * Trusted IP entry ID.
-         */
-        id: number;
-        /**
-         * IPv4 network address or network address/subnet mask bits.
-         */
-        ip4Subnet: string;
-        /**
-         * IPv6 network address/subnet mask bits.
-         */
-        ip6Subnet: string;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status: string;
-    }
-
-    export interface MheaderEntry {
-        /**
-         * Mark spam or good. Valid values: `spam`, `clear`.
-         */
-        action: string;
-        /**
-         * Pattern for the header field body.
-         */
-        fieldbody: string;
-        /**
-         * Pattern for header field name.
-         */
-        fieldname: string;
-        /**
-         * Mime header entry ID.
-         */
-        id: number;
-        /**
-         * Wildcard pattern or regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType: string;
-        /**
-         * Enable/disable status. Valid values: `enable`, `disable`.
-         */
-        status: string;
-    }
-
-    export interface ProfileGmail {
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-    }
-
-    export interface ProfileImap {
-        /**
-         * Action for spam email. Valid values: `pass`, `tag`.
-         */
-        action: string;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Subject text or header added to spam email.
-         */
-        tagMsg: string;
-        /**
-         * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-         */
-        tagType: string;
-    }
-
-    export interface ProfileMapi {
-        /**
-         * Action for spam email. Valid values: `pass`, `discard`.
-         */
-        action: string;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-    }
-
-    export interface ProfileMsnHotmail {
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-    }
-
-    export interface ProfilePop3 {
-        /**
-         * Action for spam email. Valid values: `pass`, `tag`.
-         */
-        action: string;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Subject text or header added to spam email.
-         *
-         * The `pop3` block supports:
-         */
-        tagMsg: string;
-        /**
-         * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-         */
-        tagType: string;
-    }
-
-    export interface ProfileSmtp {
-        /**
-         * Action for spam email. Valid values: `pass`, `tag`, `discard`.
-         */
-        action: string;
-        /**
-         * Enable/disable SMTP email header IP checks for spamfsip, spamrbl and spambwl filters. Valid values: `disable`, `enable`.
-         */
-        hdrip: string;
-        /**
-         * Enable/disable local filter to override SMTP remote check result. Valid values: `disable`, `enable`.
-         */
-        localOverride: string;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Subject text or header added to spam email.
-         */
-        tagMsg: string;
-        /**
-         * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-         */
-        tagType: string;
-    }
-
-    export interface ProfileYahooMail {
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-    }
-
-}
-
-export namespace sshfilter {
-    export interface ProfileFileFilter {
-        /**
-         * File filter entries. The structure of `entries` block is documented below.
-         */
-        entries?: outputs.sshfilter.ProfileFileFilterEntry[];
-        /**
-         * Enable/disable file filter logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Enable/disable file filter archive contents scan. Valid values: `enable`, `disable`.
-         */
-        scanArchiveContents: string;
-        /**
-         * Enable/disable file filter. Valid values: `enable`, `disable`.
-         */
-        status: string;
-    }
-
-    export interface ProfileFileFilterEntry {
-        /**
-         * Action taken for matched file. Valid values: `log`, `block`.
-         */
-        action: string;
-        /**
-         * Comment.
-         */
-        comment?: string;
-        /**
-         * Match files transmitted in the session's originating or reply direction. Valid values: `incoming`, `outgoing`, `any`.
-         */
-        direction: string;
-        /**
-         * Select file type. The structure of `fileType` block is documented below.
-         */
-        fileTypes?: outputs.sshfilter.ProfileFileFilterEntryFileType[];
-        /**
-         * Add a file filter.
-         */
-        filter: string;
-        /**
-         * Match password-protected files. Valid values: `yes`, `any`.
-         */
-        passwordProtected: string;
-    }
-
-    export interface ProfileFileFilterEntryFileType {
-        /**
-         * File type name.
-         */
-        name: string;
-    }
-
-    export interface ProfileShellCommand {
-        /**
-         * Action to take for URL filter matches. Valid values: `block`, `allow`.
-         */
-        action: string;
-        /**
-         * Enable/disable alert. Valid values: `enable`, `disable`.
-         */
-        alert: string;
-        /**
-         * Id.
-         */
-        id: number;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * SSH shell command pattern.
-         */
-        pattern: string;
-        /**
-         * Log severity. Valid values: `low`, `medium`, `high`, `critical`.
-         */
-        severity: string;
-        /**
-         * Matching type. Valid values: `simple`, `regex`.
-         */
-        type: string;
-    }
-
 }
 
 export namespace switchcontroller {
@@ -19343,7 +19793,7 @@ export namespace switchcontroller {
          */
         linkDownAuth: string;
         /**
-         * Enable to configure local STP settings that override global STP settings. Valid values: `enable`, `disable`.
+         * Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
          */
         localOverride: string;
         /**
@@ -19598,7 +20048,7 @@ export namespace switchcontroller {
          */
         pauseMeter: number;
         /**
-         * Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
+         * Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
          */
         pauseMeterResume: string;
         /**
@@ -20224,98 +20674,97 @@ export namespace switchcontroller {
         vlanName: string;
     }
 
-}
+    export namespace autoconfig {
+        export interface CustomSwitchBinding {
+            /**
+             * Custom auto-config policy.
+             */
+            policy: string;
+            /**
+             * Switch name.
+             */
+            switchId: string;
+        }
 
-export namespace switchcontrollerautoconfig {
-    export interface CustomSwitchBinding {
-        /**
-         * Custom auto-config policy.
-         */
-        policy: string;
-        /**
-         * Switch name.
-         */
-        switchId: string;
     }
 
-}
+    export namespace qos {
+        export interface IpdscpmapMap {
+            /**
+             * COS queue number.
+             */
+            cosQueue: number;
+            /**
+             * Differentiated service. Valid values: `CS0`, `CS1`, `AF11`, `AF12`, `AF13`, `CS2`, `AF21`, `AF22`, `AF23`, `CS3`, `AF31`, `AF32`, `AF33`, `CS4`, `AF41`, `AF42`, `AF43`, `CS5`, `EF`, `CS6`, `CS7`.
+             */
+            diffserv: string;
+            /**
+             * IP Precedence. Valid values: `network-control`, `internetwork-control`, `critic-ecp`, `flashoverride`, `flash`, `immediate`, `priority`, `routine`.
+             */
+            ipPrecedence: string;
+            /**
+             * Dscp mapping entry name.
+             */
+            name: string;
+            /**
+             * Raw values of DSCP (0 - 63).
+             */
+            value: string;
+        }
 
-export namespace switchcontrollerqos {
-    export interface IpdscpmapMap {
-        /**
-         * COS queue number.
-         */
-        cosQueue: number;
-        /**
-         * Differentiated service. Valid values: `CS0`, `CS1`, `AF11`, `AF12`, `AF13`, `CS2`, `AF21`, `AF22`, `AF23`, `CS3`, `AF31`, `AF32`, `AF33`, `CS4`, `AF41`, `AF42`, `AF43`, `CS5`, `EF`, `CS6`, `CS7`.
-         */
-        diffserv: string;
-        /**
-         * IP Precedence. Valid values: `network-control`, `internetwork-control`, `critic-ecp`, `flashoverride`, `flash`, `immediate`, `priority`, `routine`.
-         */
-        ipPrecedence: string;
-        /**
-         * Dscp mapping entry name.
-         */
-        name: string;
-        /**
-         * Raw values of DSCP (0 - 63).
-         */
-        value: string;
+        export interface QueuepolicyCosQueue {
+            /**
+             * Description of the COS queue.
+             */
+            description: string;
+            /**
+             * COS queue drop policy. Valid values: `taildrop`, `weighted-random-early-detection`.
+             */
+            dropPolicy: string;
+            /**
+             * Enable/disable ECN packet marking to drop eligible packets. Valid values: `disable`, `enable`.
+             */
+            ecn: string;
+            /**
+             * Maximum rate (0 - 4294967295 kbps, 0 to disable).
+             */
+            maxRate: number;
+            /**
+             * Maximum rate (%!o(MISSING)f link speed).
+             */
+            maxRatePercent: number;
+            /**
+             * Minimum rate (0 - 4294967295 kbps, 0 to disable).
+             */
+            minRate: number;
+            /**
+             * Minimum rate (%!o(MISSING)f link speed).
+             */
+            minRatePercent: number;
+            /**
+             * Cos queue ID.
+             */
+            name: string;
+            /**
+             * Weight of weighted round robin scheduling.
+             */
+            weight: number;
+        }
+
     }
 
-    export interface QueuepolicyCosQueue {
-        /**
-         * Description of the COS queue.
-         */
-        description: string;
-        /**
-         * COS queue drop policy. Valid values: `taildrop`, `weighted-random-early-detection`.
-         */
-        dropPolicy: string;
-        /**
-         * Enable/disable ECN packet marking to drop eligible packets. Valid values: `disable`, `enable`.
-         */
-        ecn: string;
-        /**
-         * Maximum rate (0 - 4294967295 kbps, 0 to disable).
-         */
-        maxRate: number;
-        /**
-         * Maximum rate (% of link speed).
-         */
-        maxRatePercent: number;
-        /**
-         * Minimum rate (0 - 4294967295 kbps, 0 to disable).
-         */
-        minRate: number;
-        /**
-         * Minimum rate (% of link speed).
-         */
-        minRatePercent: number;
-        /**
-         * Cos queue ID.
-         */
-        name: string;
-        /**
-         * Weight of weighted round robin scheduling.
-         */
-        weight: number;
-    }
+    export namespace securitypolicy {
+        export interface Policy8021XUserGroup {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
 
+    }
 }
 
-export namespace switchcontrollersecuritypolicy {
-    export interface Policy8021XUserGroup {
-        /**
-         * Group name.
-         */
-        name: string;
-    }
-
-}
-
-export namespace sys {
+export namespace system {
     export interface AccprofileFwgrpPermission {
         /**
          * Address Configuration. Valid values: `none`, `read`, `read-write`.
@@ -20516,7 +20965,7 @@ export namespace sys {
         /**
          * Dashboard widgets. The structure of `widget` block is documented below.
          */
-        widgets?: outputs.sys.AdminGuiDashboardWidget[];
+        widgets?: outputs.system.AdminGuiDashboardWidget[];
     }
 
     export interface AdminGuiDashboardWidget {
@@ -20527,7 +20976,7 @@ export namespace sys {
         /**
          * FortiView filters. The structure of `filters` block is documented below.
          */
-        filters?: outputs.sys.AdminGuiDashboardWidgetFilter[];
+        filters?: outputs.system.AdminGuiDashboardWidgetFilter[];
         /**
          * Height.
          */
@@ -20672,7 +21121,7 @@ export namespace sys {
         /**
          * Firewall policy violations. The structure of `fwPolicyViolations` block is documented below.
          */
-        fwPolicyViolations?: outputs.sys.AlarmGroupFwPolicyViolation[];
+        fwPolicyViolations?: outputs.system.AlarmGroupFwPolicyViolation[];
         /**
          * Group ID.
          */
@@ -20897,7 +21346,7 @@ export namespace sys {
         /**
          * Only sessions using these custom services are synchronized. Use source and destination port ranges to define these custome services. The structure of `customService` block is documented below.
          */
-        customServices?: outputs.sys.ClustersyncSessionSyncFilterCustomService[];
+        customServices?: outputs.system.ClustersyncSessionSyncFilterCustomService[];
         /**
          * Only sessions to this IPv4 address are synchronized. You can only enter one address. To synchronize sessions for multiple destination addresses, add multiple filters.
          */
@@ -21123,17 +21572,15 @@ export namespace sys {
 
     export interface GeoipoverrideIp6Range {
         /**
-         * Final IP address, inclusive, of the address range (format: xxx.xxx.xxx.xxx).
-         *
-         * The `ip6Range` block supports:
+         * Ending IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
          */
         endIp: string;
         /**
-         * ID number for individual entry in the IP-Range table.
+         * ID of individual entry in the IPv6 range table.
          */
         id: number;
         /**
-         * Starting IP address, inclusive, of the address range (format: xxx.xxx.xxx.xxx).
+         * Starting IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
          */
         startIp: string;
     }
@@ -21319,7 +21766,7 @@ export namespace sys {
         /**
          * Dashboard widgets. The structure of `widget` block is documented below.
          */
-        widgets: outputs.sys.GetAdminGuiDashboardWidget[];
+        widgets: outputs.system.GetAdminGuiDashboardWidget[];
     }
 
     export interface GetAdminGuiDashboardWidget {
@@ -21330,7 +21777,7 @@ export namespace sys {
         /**
          * FortiView filters. The structure of `filters` block is documented below.
          */
-        filters: outputs.sys.GetAdminGuiDashboardWidgetFilter[];
+        filters: outputs.system.GetAdminGuiDashboardWidgetFilter[];
         /**
          * Height.
          */
@@ -21583,7 +22030,7 @@ export namespace sys {
         /**
          * Only sessions using these custom services are synchronized. Use source and destination port ranges to define these custome services. The structure of `customService` block is documented below.
          */
-        customServices: outputs.sys.GetClustersyncSessionSyncFilterCustomService[];
+        customServices: outputs.system.GetClustersyncSessionSyncFilterCustomService[];
         /**
          * Only sessions to this IPv4 address are synchronized. You can only enter one address. To synchronize sessions for multiple destination addresses, add multiple filters.
          */
@@ -21893,7 +22340,7 @@ export namespace sys {
         /**
          * VDOMs in virtual cluster 2.
          */
-        vdoms: outputs.sys.GetHaVclusterVdom[];
+        vdoms: outputs.system.GetHaVclusterVdom[];
     }
 
     export interface GetHaVclusterVdom {
@@ -21960,7 +22407,7 @@ export namespace sys {
         /**
          * DHCPv6 IA-PD list The structure of `dhcp6IapdList` block is documented below.
          */
-        dhcp6IapdLists: outputs.sys.GetInterfaceIpv6Dhcp6IapdList[];
+        dhcp6IapdLists: outputs.system.GetInterfaceIpv6Dhcp6IapdList[];
         /**
          * Enable/disable DHCPv6 information request.
          */
@@ -22020,7 +22467,7 @@ export namespace sys {
         /**
          * Advertised IPv6 delegated prefix list. The structure of `ip6DelegatedPrefixList` block is documented below.
          */
-        ip6DelegatedPrefixLists: outputs.sys.GetInterfaceIpv6Ip6DelegatedPrefixList[];
+        ip6DelegatedPrefixLists: outputs.system.GetInterfaceIpv6Ip6DelegatedPrefixList[];
         /**
          * Enable/disable using the DNS server acquired by DHCP.
          */
@@ -22028,7 +22475,7 @@ export namespace sys {
         /**
          * Extra IPv6 address prefixes of interface. The structure of `ip6ExtraAddr` block is documented below.
          */
-        ip6ExtraAddrs: outputs.sys.GetInterfaceIpv6Ip6ExtraAddr[];
+        ip6ExtraAddrs: outputs.system.GetInterfaceIpv6Ip6ExtraAddr[];
         /**
          * Hop limit (0 means unspecified).
          */
@@ -22060,7 +22507,7 @@ export namespace sys {
         /**
          * Advertised prefix list. The structure of `ip6PrefixList` block is documented below.
          */
-        ip6PrefixLists: outputs.sys.GetInterfaceIpv6Ip6PrefixList[];
+        ip6PrefixLists: outputs.system.GetInterfaceIpv6Ip6PrefixList[];
         /**
          * Assigning a prefix from DHCP or RA.
          */
@@ -22124,7 +22571,7 @@ export namespace sys {
         /**
          * IPv6 VRRP configuration. The structure of `vrrp6` block is documented below.
          */
-        vrrp6s: outputs.sys.GetInterfaceIpv6Vrrp6[];
+        vrrp6s: outputs.system.GetInterfaceIpv6Vrrp6[];
         /**
          * Enable/disable virtual MAC for VRRP.
          */
@@ -22200,7 +22647,7 @@ export namespace sys {
         /**
          * DNS search list option. The structure of `dnssl` block is documented below.
          */
-        dnssls: outputs.sys.GetInterfaceIpv6Ip6PrefixListDnssl[];
+        dnssls: outputs.system.GetInterfaceIpv6Ip6PrefixListDnssl[];
         /**
          * Enable/disable the onlink flag.
          */
@@ -22341,7 +22788,7 @@ export namespace sys {
         /**
          * Tags. The structure of `tags` block is documented below.
          */
-        tags: outputs.sys.GetInterfaceTaggingTag[];
+        tags: outputs.system.GetInterfaceTaggingTag[];
     }
 
     export interface GetInterfaceTaggingTag {
@@ -22375,7 +22822,7 @@ export namespace sys {
         /**
          * VRRP Proxy ARP configuration. The structure of `proxyArp` block is documented below.
          */
-        proxyArps: outputs.sys.GetInterfaceVrrpProxyArp[];
+        proxyArps: outputs.system.GetInterfaceVrrpProxyArp[];
         /**
          * Startup time (1 - 255 seconds).
          */
@@ -22909,7 +23356,7 @@ export namespace sys {
         /**
          * AWS region name list. The structure of `regionList` block is documented below.
          */
-        regionLists: outputs.sys.GetSdnconnectorExternalAccountListRegionList[];
+        regionLists: outputs.system.GetSdnconnectorExternalAccountListRegionList[];
         /**
          * AWS role ARN to assume.
          */
@@ -22945,7 +23392,7 @@ export namespace sys {
         /**
          * Configure GCP zone list. The structure of `gcpZoneList` block is documented below.
          */
-        gcpZoneLists: outputs.sys.GetSdnconnectorGcpProjectListGcpZoneList[];
+        gcpZoneLists: outputs.system.GetSdnconnectorGcpProjectListGcpZoneList[];
         /**
          * GCP project ID.
          */
@@ -22963,7 +23410,7 @@ export namespace sys {
         /**
          * Configure IP configuration. The structure of `ip` block is documented below.
          */
-        ips: outputs.sys.GetSdnconnectorNicIp[];
+        ips: outputs.system.GetSdnconnectorNicIp[];
         /**
          * Specify the name of the desired system sdnconnector.
          */
@@ -23004,7 +23451,7 @@ export namespace sys {
         /**
          * Configure Azure route. The structure of `route` block is documented below.
          */
-        routes: outputs.sys.GetSdnconnectorRouteTableRoute[];
+        routes: outputs.system.GetSdnconnectorRouteTableRoute[];
         /**
          * Subscription ID of Azure route table.
          */
@@ -23106,7 +23553,7 @@ export namespace sys {
         /**
          * Member sequence number list. The structure of `members` block is documented below.
          */
-        members: outputs.sys.GetVirtualwanlinkHealthCheckMember[];
+        members: outputs.system.GetVirtualwanlinkHealthCheckMember[];
         /**
          * Control-based Internet Service group name.
          */
@@ -23162,7 +23609,7 @@ export namespace sys {
         /**
          * Service level agreement (SLA). The structure of `sla` block is documented below.
          */
-        slas: outputs.sys.GetVirtualwanlinkHealthCheckSla[];
+        slas: outputs.system.GetVirtualwanlinkHealthCheckSla[];
         /**
          * Enable/disable system DNS as the probe server.
          */
@@ -23345,7 +23792,7 @@ export namespace sys {
         /**
          * Destination address6 name. The structure of `dst6` block is documented below.
          */
-        dst6s: outputs.sys.GetVirtualwanlinkServiceDst6[];
+        dst6s: outputs.system.GetVirtualwanlinkServiceDst6[];
         /**
          * Enable/disable negation of destination address match.
          */
@@ -23353,7 +23800,7 @@ export namespace sys {
         /**
          * Destination address name. The structure of `dst` block is documented below.
          */
-        dsts: outputs.sys.GetVirtualwanlinkServiceDst[];
+        dsts: outputs.system.GetVirtualwanlinkServiceDst[];
         /**
          * End destination port number.
          */
@@ -23365,7 +23812,7 @@ export namespace sys {
         /**
          * User groups. The structure of `groups` block is documented below.
          */
-        groups: outputs.sys.GetVirtualwanlinkServiceGroup[];
+        groups: outputs.system.GetVirtualwanlinkServiceGroup[];
         /**
          * Virtual WAN Link health-check.
          */
@@ -23385,7 +23832,7 @@ export namespace sys {
         /**
          * Source interface name. The structure of `inputDevice` block is documented below.
          */
-        inputDevices: outputs.sys.GetVirtualwanlinkServiceInputDevice[];
+        inputDevices: outputs.system.GetVirtualwanlinkServiceInputDevice[];
         /**
          * Enable/disable use of Internet service for application-based load balancing.
          */
@@ -23393,39 +23840,39 @@ export namespace sys {
         /**
          * Application control based Internet Service group list. The structure of `internetServiceAppCtrlGroup` block is documented below.
          */
-        internetServiceAppCtrlGroups: outputs.sys.GetVirtualwanlinkServiceInternetServiceAppCtrlGroup[];
+        internetServiceAppCtrlGroups: outputs.system.GetVirtualwanlinkServiceInternetServiceAppCtrlGroup[];
         /**
          * Application control based Internet Service ID list. The structure of `internetServiceAppCtrl` block is documented below.
          */
-        internetServiceAppCtrls: outputs.sys.GetVirtualwanlinkServiceInternetServiceAppCtrl[];
+        internetServiceAppCtrls: outputs.system.GetVirtualwanlinkServiceInternetServiceAppCtrl[];
         /**
          * Control-based Internet Service group list. The structure of `internetServiceCtrlGroup` block is documented below.
          */
-        internetServiceCtrlGroups: outputs.sys.GetVirtualwanlinkServiceInternetServiceCtrlGroup[];
+        internetServiceCtrlGroups: outputs.system.GetVirtualwanlinkServiceInternetServiceCtrlGroup[];
         /**
          * Control-based Internet Service ID list. The structure of `internetServiceCtrl` block is documented below.
          */
-        internetServiceCtrls: outputs.sys.GetVirtualwanlinkServiceInternetServiceCtrl[];
+        internetServiceCtrls: outputs.system.GetVirtualwanlinkServiceInternetServiceCtrl[];
         /**
          * Custom Internet Service group list. The structure of `internetServiceCustomGroup` block is documented below.
          */
-        internetServiceCustomGroups: outputs.sys.GetVirtualwanlinkServiceInternetServiceCustomGroup[];
+        internetServiceCustomGroups: outputs.system.GetVirtualwanlinkServiceInternetServiceCustomGroup[];
         /**
          * Custom Internet service name list. The structure of `internetServiceCustom` block is documented below.
          */
-        internetServiceCustoms: outputs.sys.GetVirtualwanlinkServiceInternetServiceCustom[];
+        internetServiceCustoms: outputs.system.GetVirtualwanlinkServiceInternetServiceCustom[];
         /**
          * Internet Service group list. The structure of `internetServiceGroup` block is documented below.
          */
-        internetServiceGroups: outputs.sys.GetVirtualwanlinkServiceInternetServiceGroup[];
+        internetServiceGroups: outputs.system.GetVirtualwanlinkServiceInternetServiceGroup[];
         /**
          * Internet service ID list. The structure of `internetServiceId` block is documented below.
          */
-        internetServiceIds: outputs.sys.GetVirtualwanlinkServiceInternetServiceId[];
+        internetServiceIds: outputs.system.GetVirtualwanlinkServiceInternetServiceId[];
         /**
          * Internet service name list. The structure of `internetServiceName` block is documented below.
          */
-        internetServiceNames: outputs.sys.GetVirtualwanlinkServiceInternetServiceName[];
+        internetServiceNames: outputs.system.GetVirtualwanlinkServiceInternetServiceName[];
         /**
          * Coefficient of jitter in the formula of custom-profile-1.
          */
@@ -23461,7 +23908,7 @@ export namespace sys {
         /**
          * Member sequence number list. The structure of `priorityMembers` block is documented below.
          */
-        priorityMembers: outputs.sys.GetVirtualwanlinkServicePriorityMember[];
+        priorityMembers: outputs.system.GetVirtualwanlinkServicePriorityMember[];
         /**
          * Protocol number.
          */
@@ -23485,11 +23932,11 @@ export namespace sys {
         /**
          * Service level agreement (SLA). The structure of `sla` block is documented below.
          */
-        slas: outputs.sys.GetVirtualwanlinkServiceSla[];
+        slas: outputs.system.GetVirtualwanlinkServiceSla[];
         /**
          * Source address6 name. The structure of `src6` block is documented below.
          */
-        src6s: outputs.sys.GetVirtualwanlinkServiceSrc6[];
+        src6s: outputs.system.GetVirtualwanlinkServiceSrc6[];
         /**
          * Enable/disable negation of source address match.
          */
@@ -23497,7 +23944,7 @@ export namespace sys {
         /**
          * Source address name. The structure of `src` block is documented below.
          */
-        srcs: outputs.sys.GetVirtualwanlinkServiceSrc[];
+        srcs: outputs.system.GetVirtualwanlinkServiceSrc[];
         /**
          * Enable/disable service when selected neighbor role is standalone while service role is not standalone.
          */
@@ -23521,7 +23968,7 @@ export namespace sys {
         /**
          * User name. The structure of `users` block is documented below.
          */
-        users: outputs.sys.GetVirtualwanlinkServiceUser[];
+        users: outputs.system.GetVirtualwanlinkServiceUser[];
     }
 
     export interface GetVirtualwanlinkServiceDst {
@@ -23694,7 +24141,7 @@ export namespace sys {
         /**
          * Tags. The structure of `tags` block is documented below.
          */
-        tags: outputs.sys.GetZoneTaggingTag[];
+        tags: outputs.system.GetZoneTaggingTag[];
     }
 
     export interface GetZoneTaggingTag {
@@ -23740,7 +24187,7 @@ export namespace sys {
         pingserverSlaveForceReset: string;
         priority: number;
         vclusterId: number;
-        vdoms?: outputs.sys.HaVclusterVdom[];
+        vdoms?: outputs.system.HaVclusterVdom[];
     }
 
     export interface HaVclusterVdom {
@@ -24059,7 +24506,7 @@ export namespace sys {
         /**
          * DHCPv6 IA-PD list The structure of `dhcp6IapdList` block is documented below.
          */
-        dhcp6IapdLists?: outputs.sys.InterfaceIpv6Dhcp6IapdList[];
+        dhcp6IapdLists?: outputs.system.InterfaceIpv6Dhcp6IapdList[];
         /**
          * Enable/disable DHCPv6 information request. Valid values: `enable`, `disable`.
          */
@@ -24119,7 +24566,7 @@ export namespace sys {
         /**
          * Advertised IPv6 delegated prefix list. The structure of `ip6DelegatedPrefixList` block is documented below.
          */
-        ip6DelegatedPrefixLists?: outputs.sys.InterfaceIpv6Ip6DelegatedPrefixList[];
+        ip6DelegatedPrefixLists?: outputs.system.InterfaceIpv6Ip6DelegatedPrefixList[];
         /**
          * Enable/disable using the DNS server acquired by DHCP. Valid values: `enable`, `disable`.
          */
@@ -24127,7 +24574,7 @@ export namespace sys {
         /**
          * Extra IPv6 address prefixes of interface. The structure of `ip6ExtraAddr` block is documented below.
          */
-        ip6ExtraAddrs?: outputs.sys.InterfaceIpv6Ip6ExtraAddr[];
+        ip6ExtraAddrs?: outputs.system.InterfaceIpv6Ip6ExtraAddr[];
         /**
          * Hop limit (0 means unspecified).
          */
@@ -24159,7 +24606,7 @@ export namespace sys {
         /**
          * Advertised prefix list. The structure of `ip6PrefixList` block is documented below.
          */
-        ip6PrefixLists?: outputs.sys.InterfaceIpv6Ip6PrefixList[];
+        ip6PrefixLists?: outputs.system.InterfaceIpv6Ip6PrefixList[];
         /**
          * Assigning a prefix from DHCP or RA. Valid values: `dhcp6`, `ra`.
          */
@@ -24225,7 +24672,7 @@ export namespace sys {
          *
          * The `ip6ExtraAddr` block supports:
          */
-        vrrp6s?: outputs.sys.InterfaceIpv6Vrrp6[];
+        vrrp6s?: outputs.system.InterfaceIpv6Vrrp6[];
         /**
          * Enable/disable virtual MAC for VRRP. Valid values: `enable`, `disable`.
          */
@@ -24292,9 +24739,7 @@ export namespace sys {
 
     export interface InterfaceIpv6Ip6ExtraAddr {
         /**
-         * IPv6 address prefix.
-         *
-         * The `ip6PrefixList` block supports:
+         * IPv6 prefix.
          */
         prefix: string;
     }
@@ -24307,7 +24752,7 @@ export namespace sys {
         /**
          * DNS search list option. The structure of `dnssl` block is documented below.
          */
-        dnssls?: outputs.sys.InterfaceIpv6Ip6PrefixListDnssl[];
+        dnssls?: outputs.system.InterfaceIpv6Ip6PrefixListDnssl[];
         /**
          * Enable/disable the onlink flag. Valid values: `enable`, `disable`.
          */
@@ -24317,9 +24762,7 @@ export namespace sys {
          */
         preferredLifeTime: number;
         /**
-         * IPv6 address prefix.
-         *
-         * The `ip6PrefixList` block supports:
+         * IPv6 prefix.
          */
         prefix: string;
         /**
@@ -24454,7 +24897,7 @@ export namespace sys {
         /**
          * Tags. The structure of `tags` block is documented below.
          */
-        tags?: outputs.sys.InterfaceTaggingTag[];
+        tags?: outputs.system.InterfaceTaggingTag[];
     }
 
     export interface InterfaceTaggingTag {
@@ -24490,7 +24933,7 @@ export namespace sys {
         /**
          * VRRP Proxy ARP configuration. The structure of `proxyArp` block is documented below.
          */
-        proxyArps?: outputs.sys.InterfaceVrrpProxyArp[];
+        proxyArps?: outputs.system.InterfaceVrrpProxyArp[];
         /**
          * Startup time (1 - 255 seconds).
          */
@@ -24559,7 +25002,7 @@ export namespace sys {
         /**
          * Configure serial number or wildcard of Fortigate to match. The structure of `device` block is documented below.
          */
-        devices?: outputs.sys.IpamRuleDevice[];
+        devices?: outputs.system.IpamRuleDevice[];
         /**
          * Enable/disable DHCP server for matching IPAM interfaces. Valid values: `enable`, `disable`.
          */
@@ -24567,7 +25010,7 @@ export namespace sys {
         /**
          * Configure name or wildcard of interface to match. The structure of `interface` block is documented below.
          */
-        interfaces?: outputs.sys.IpamRuleInterface[];
+        interfaces?: outputs.system.IpamRuleInterface[];
         /**
          * IPAM rule name.
          */
@@ -24575,7 +25018,7 @@ export namespace sys {
         /**
          * Configure name of IPAM pool to use. The structure of `pool` block is documented below.
          */
-        pools?: outputs.sys.IpamRulePool[];
+        pools?: outputs.system.IpamRulePool[];
         /**
          * Configure role of interface to match. Valid values: `any`, `lan`, `wan`, `dmz`, `undefined`.
          */
@@ -25124,7 +25567,7 @@ export namespace sys {
         /**
          * Customized SAML attributes to send along with assertion. The structure of `assertionAttributes` block is documented below.
          */
-        assertionAttributes?: outputs.sys.SamlServiceProviderAssertionAttribute[];
+        assertionAttributes?: outputs.system.SamlServiceProviderAssertionAttribute[];
         /**
          * IDP entity ID.
          */
@@ -25190,7 +25633,7 @@ export namespace sys {
         /**
          * AWS region name list. The structure of `regionList` block is documented below.
          */
-        regionLists?: outputs.sys.SdnconnectorExternalAccountListRegionList[];
+        regionLists?: outputs.system.SdnconnectorExternalAccountListRegionList[];
         /**
          * AWS role ARN to assume.
          */
@@ -25226,7 +25669,7 @@ export namespace sys {
         /**
          * Configure GCP zone list. The structure of `gcpZoneList` block is documented below.
          */
-        gcpZoneLists?: outputs.sys.SdnconnectorGcpProjectListGcpZoneList[];
+        gcpZoneLists?: outputs.system.SdnconnectorGcpProjectListGcpZoneList[];
         /**
          * GCP project ID.
          */
@@ -25244,7 +25687,7 @@ export namespace sys {
         /**
          * Configure IP configuration. The structure of `ip` block is documented below.
          */
-        ips?: outputs.sys.SdnconnectorNicIp[];
+        ips?: outputs.system.SdnconnectorNicIp[];
         /**
          * Network interface name.
          */
@@ -25285,7 +25728,7 @@ export namespace sys {
         /**
          * Configure Azure route. The structure of `route` block is documented below.
          */
-        routes?: outputs.sys.SdnconnectorRouteTableRoute[];
+        routes?: outputs.system.SdnconnectorRouteTableRoute[];
         /**
          * Subscription ID of Azure route table.
          */
@@ -25314,15 +25757,15 @@ export namespace sys {
         /**
          * Destination address6 or address6 group names. The structure of `dstaddr6` block is documented below.
          */
-        dstaddr6s?: outputs.sys.SdwanDuplicationDstaddr6[];
+        dstaddr6s?: outputs.system.SdwanDuplicationDstaddr6[];
         /**
          * Destination address or address group names. The structure of `dstaddr` block is documented below.
          */
-        dstaddrs?: outputs.sys.SdwanDuplicationDstaddr[];
+        dstaddrs?: outputs.system.SdwanDuplicationDstaddr[];
         /**
          * Outgoing (egress) interfaces or zones. The structure of `dstintf` block is documented below.
          */
-        dstintfs?: outputs.sys.SdwanDuplicationDstintf[];
+        dstintfs?: outputs.system.SdwanDuplicationDstintf[];
         /**
          * Duplication rule ID (1 - 255).
          */
@@ -25338,11 +25781,11 @@ export namespace sys {
         /**
          * SD-WAN service rule ID list. The structure of `serviceId` block is documented below.
          */
-        serviceIds?: outputs.sys.SdwanDuplicationServiceId[];
+        serviceIds?: outputs.system.SdwanDuplicationServiceId[];
         /**
          * Service and service group name. The structure of `service` block is documented below.
          */
-        services?: outputs.sys.SdwanDuplicationService[];
+        services?: outputs.system.SdwanDuplicationService[];
         /**
          * Enable/disable packet duplication matching health-check SLAs in service rule. Valid values: `enable`, `disable`.
          */
@@ -25350,15 +25793,15 @@ export namespace sys {
         /**
          * Source address6 or address6 group names. The structure of `srcaddr6` block is documented below.
          */
-        srcaddr6s?: outputs.sys.SdwanDuplicationSrcaddr6[];
+        srcaddr6s?: outputs.system.SdwanDuplicationSrcaddr6[];
         /**
          * Source address or address group names. The structure of `srcaddr` block is documented below.
          */
-        srcaddrs?: outputs.sys.SdwanDuplicationSrcaddr[];
+        srcaddrs?: outputs.system.SdwanDuplicationSrcaddr[];
         /**
          * Incoming (ingress) interfaces or zones. The structure of `srcintf` block is documented below.
          */
-        srcintfs?: outputs.sys.SdwanDuplicationSrcintf[];
+        srcintfs?: outputs.system.SdwanDuplicationSrcintf[];
     }
 
     export interface SdwanDuplicationDstaddr {
@@ -25370,33 +25813,7 @@ export namespace sys {
 
     export interface SdwanDuplicationDstaddr6 {
         /**
-         * Physical interface name.
-         *
-         *
-         *
-         *
-         *
-         * The `dst6` block supports:
-         *
-         *
-         * The `src6` block supports:
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         * The `srcaddr6` block supports:
-         *
-         *
-         * The `dstaddr6` block supports:
+         * Address or address group name.
          */
         name: string;
     }
@@ -25431,33 +25848,7 @@ export namespace sys {
 
     export interface SdwanDuplicationSrcaddr6 {
         /**
-         * Physical interface name.
-         *
-         *
-         *
-         *
-         *
-         * The `dst6` block supports:
-         *
-         *
-         * The `src6` block supports:
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         * The `srcaddr6` block supports:
-         *
-         *
-         * The `dstaddr6` block supports:
+         * Address or address group name.
          */
         name: string;
     }
@@ -25536,7 +25927,7 @@ export namespace sys {
         /**
          * Member sequence number list. The structure of `members` block is documented below.
          */
-        members?: outputs.sys.SdwanHealthCheckMember[];
+        members?: outputs.system.SdwanHealthCheckMember[];
         /**
          * Codec to use for MOS calculation (default = g711). Valid values: `g711`, `g722`, `g729`.
          */
@@ -25604,7 +25995,7 @@ export namespace sys {
         /**
          * Service level agreement (SLA). The structure of `sla` block is documented below.
          */
-        slas?: outputs.sys.SdwanHealthCheckSla[];
+        slas?: outputs.system.SdwanHealthCheckSla[];
         /**
          * Source IP address used in the health-check packet to the server.
          */
@@ -25827,7 +26218,7 @@ export namespace sys {
         /**
          * Destination address6 name. The structure of `dst6` block is documented below.
          */
-        dst6s?: outputs.sys.SdwanServiceDst6[];
+        dst6s?: outputs.system.SdwanServiceDst6[];
         /**
          * Enable/disable negation of destination address match. Valid values: `enable`, `disable`.
          */
@@ -25835,7 +26226,7 @@ export namespace sys {
         /**
          * Destination address name. The structure of `dst` block is documented below.
          */
-        dsts?: outputs.sys.SdwanServiceDst[];
+        dsts?: outputs.system.SdwanServiceDst[];
         /**
          * End destination port number.
          */
@@ -25847,7 +26238,7 @@ export namespace sys {
         /**
          * User groups. The structure of `groups` block is documented below.
          */
-        groups?: outputs.sys.SdwanServiceGroup[];
+        groups?: outputs.system.SdwanServiceGroup[];
         /**
          * Hash algorithm for selected priority members for load balance mode. Valid values: `round-robin`, `source-ip-based`, `source-dest-ip-based`, `inbandwidth`, `outbandwidth`, `bibandwidth`.
          */
@@ -25855,7 +26246,7 @@ export namespace sys {
         /**
          * Health check list. The structure of `healthCheck` block is documented below.
          */
-        healthChecks?: outputs.sys.SdwanServiceHealthCheck[];
+        healthChecks?: outputs.system.SdwanServiceHealthCheck[];
         /**
          * Waiting period in seconds when switching from the back-up member to the primary member (0 - 10000000, default = 0).
          */
@@ -25871,11 +26262,11 @@ export namespace sys {
         /**
          * Source interface name. The structure of `inputDevice` block is documented below.
          */
-        inputDevices?: outputs.sys.SdwanServiceInputDevice[];
+        inputDevices?: outputs.system.SdwanServiceInputDevice[];
         /**
          * Source input-zone name. The structure of `inputZone` block is documented below.
          */
-        inputZones?: outputs.sys.SdwanServiceInputZone[];
+        inputZones?: outputs.system.SdwanServiceInputZone[];
         /**
          * Enable/disable use of Internet service for application-based load balancing. Valid values: `enable`, `disable`.
          */
@@ -25883,31 +26274,31 @@ export namespace sys {
         /**
          * IDs of one or more application control categories. The structure of `internetServiceAppCtrlCategory` block is documented below.
          */
-        internetServiceAppCtrlCategories?: outputs.sys.SdwanServiceInternetServiceAppCtrlCategory[];
+        internetServiceAppCtrlCategories?: outputs.system.SdwanServiceInternetServiceAppCtrlCategory[];
         /**
          * Application control based Internet Service group list. The structure of `internetServiceAppCtrlGroup` block is documented below.
          */
-        internetServiceAppCtrlGroups?: outputs.sys.SdwanServiceInternetServiceAppCtrlGroup[];
+        internetServiceAppCtrlGroups?: outputs.system.SdwanServiceInternetServiceAppCtrlGroup[];
         /**
          * Application control based Internet Service ID list. The structure of `internetServiceAppCtrl` block is documented below.
          */
-        internetServiceAppCtrls?: outputs.sys.SdwanServiceInternetServiceAppCtrl[];
+        internetServiceAppCtrls?: outputs.system.SdwanServiceInternetServiceAppCtrl[];
         /**
          * Custom Internet Service group list. The structure of `internetServiceCustomGroup` block is documented below.
          */
-        internetServiceCustomGroups?: outputs.sys.SdwanServiceInternetServiceCustomGroup[];
+        internetServiceCustomGroups?: outputs.system.SdwanServiceInternetServiceCustomGroup[];
         /**
          * Custom Internet service name list. The structure of `internetServiceCustom` block is documented below.
          */
-        internetServiceCustoms?: outputs.sys.SdwanServiceInternetServiceCustom[];
+        internetServiceCustoms?: outputs.system.SdwanServiceInternetServiceCustom[];
         /**
          * Internet Service group list. The structure of `internetServiceGroup` block is documented below.
          */
-        internetServiceGroups?: outputs.sys.SdwanServiceInternetServiceGroup[];
+        internetServiceGroups?: outputs.system.SdwanServiceInternetServiceGroup[];
         /**
          * Internet service name list. The structure of `internetServiceName` block is documented below.
          */
-        internetServiceNames?: outputs.sys.SdwanServiceInternetServiceName[];
+        internetServiceNames?: outputs.system.SdwanServiceInternetServiceName[];
         /**
          * Coefficient of jitter in the formula of custom-profile-1.
          */
@@ -25947,11 +26338,11 @@ export namespace sys {
         /**
          * Member sequence number list. The structure of `priorityMembers` block is documented below.
          */
-        priorityMembers?: outputs.sys.SdwanServicePriorityMember[];
+        priorityMembers?: outputs.system.SdwanServicePriorityMember[];
         /**
          * Priority zone name list. The structure of `priorityZone` block is documented below.
          */
-        priorityZones?: outputs.sys.SdwanServicePriorityZone[];
+        priorityZones?: outputs.system.SdwanServicePriorityZone[];
         /**
          * Protocol number.
          */
@@ -25975,11 +26366,11 @@ export namespace sys {
         /**
          * Service level agreement (SLA). The structure of `sla` block is documented below.
          */
-        slas?: outputs.sys.SdwanServiceSla[];
+        slas?: outputs.system.SdwanServiceSla[];
         /**
          * Source address6 name. The structure of `src6` block is documented below.
          */
-        src6s?: outputs.sys.SdwanServiceSrc6[];
+        src6s?: outputs.system.SdwanServiceSrc6[];
         /**
          * Enable/disable negation of source address match. Valid values: `enable`, `disable`.
          */
@@ -25987,7 +26378,7 @@ export namespace sys {
         /**
          * Source address name. The structure of `src` block is documented below.
          */
-        srcs?: outputs.sys.SdwanServiceSrc[];
+        srcs?: outputs.system.SdwanServiceSrc[];
         /**
          * Enable/disable service when selected neighbor role is standalone while service role is not standalone. Valid values: `enable`, `disable`.
          */
@@ -26019,7 +26410,7 @@ export namespace sys {
         /**
          * User name. The structure of `users` block is documented below.
          */
-        users?: outputs.sys.SdwanServiceUser[];
+        users?: outputs.system.SdwanServiceUser[];
     }
 
     export interface SdwanServiceDst {
@@ -26031,33 +26422,7 @@ export namespace sys {
 
     export interface SdwanServiceDst6 {
         /**
-         * Physical interface name.
-         *
-         *
-         *
-         *
-         *
-         * The `dst6` block supports:
-         *
-         *
-         * The `src6` block supports:
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         * The `srcaddr6` block supports:
-         *
-         *
-         * The `dstaddr6` block supports:
+         * Address or address group name.
          */
         name: string;
     }
@@ -26173,33 +26538,7 @@ export namespace sys {
 
     export interface SdwanServiceSrc6 {
         /**
-         * Physical interface name.
-         *
-         *
-         *
-         *
-         *
-         * The `dst6` block supports:
-         *
-         *
-         * The `src6` block supports:
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         *
-         * The `srcaddr6` block supports:
-         *
-         *
-         * The `dstaddr6` block supports:
+         * Address or address group name.
          */
         name: string;
     }
@@ -26300,7 +26639,7 @@ export namespace sys {
         /**
          * List of interfaces to be turned down before session synchronization is complete. The structure of `downIntfsBeforeSessSync` block is documented below.
          */
-        downIntfsBeforeSessSyncs?: outputs.sys.StandaloneclusterClusterPeerDownIntfsBeforeSessSync[];
+        downIntfsBeforeSessSyncs?: outputs.system.StandaloneclusterClusterPeerDownIntfsBeforeSessSync[];
         /**
          * Heartbeat interval (1 - 20 (100*ms). Increase to reduce false positives.
          */
@@ -26328,7 +26667,7 @@ export namespace sys {
         /**
          * Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
          */
-        sessionSyncFilter: outputs.sys.StandaloneclusterClusterPeerSessionSyncFilter;
+        sessionSyncFilter: outputs.system.StandaloneclusterClusterPeerSessionSyncFilter;
         /**
          * Sync ID.
          */
@@ -26336,7 +26675,7 @@ export namespace sys {
         /**
          * Sessions from these VDOMs are synchronized using this session synchronization configuration. The structure of `syncvd` block is documented below.
          */
-        syncvds?: outputs.sys.StandaloneclusterClusterPeerSyncvd[];
+        syncvds?: outputs.system.StandaloneclusterClusterPeerSyncvd[];
     }
 
     export interface StandaloneclusterClusterPeerDownIntfsBeforeSessSync {
@@ -26350,7 +26689,7 @@ export namespace sys {
         /**
          * Only sessions using these custom services are synchronized. Use source and destination port ranges to define these custom services. The structure of `customService` block is documented below.
          */
-        customServices?: outputs.sys.StandaloneclusterClusterPeerSessionSyncFilterCustomService[];
+        customServices?: outputs.system.StandaloneclusterClusterPeerSessionSyncFilterCustomService[];
         /**
          * Only sessions to this IPv4 address are synchronized.
          */
@@ -26485,7 +26824,7 @@ export namespace sys {
         /**
          * Member sequence number list. The structure of `members` block is documented below.
          */
-        members?: outputs.sys.VirtualwanlinkHealthCheckMember[];
+        members?: outputs.system.VirtualwanlinkHealthCheckMember[];
         /**
          * Status check or health check name.
          */
@@ -26541,7 +26880,7 @@ export namespace sys {
         /**
          * Service level agreement (SLA). The structure of `sla` block is documented below.
          */
-        slas?: outputs.sys.VirtualwanlinkHealthCheckSla[];
+        slas?: outputs.system.VirtualwanlinkHealthCheckSla[];
         /**
          * Enable/disable system DNS as the probe server. Valid values: `disable`, `enable`.
          */
@@ -26724,7 +27063,7 @@ export namespace sys {
         /**
          * Destination address6 name. The structure of `dst6` block is documented below.
          */
-        dst6s?: outputs.sys.VirtualwanlinkServiceDst6[];
+        dst6s?: outputs.system.VirtualwanlinkServiceDst6[];
         /**
          * Enable/disable negation of destination address match. Valid values: `enable`, `disable`.
          */
@@ -26732,7 +27071,7 @@ export namespace sys {
         /**
          * Destination address name. The structure of `dst` block is documented below.
          */
-        dsts?: outputs.sys.VirtualwanlinkServiceDst[];
+        dsts?: outputs.system.VirtualwanlinkServiceDst[];
         /**
          * End destination port number.
          */
@@ -26744,7 +27083,7 @@ export namespace sys {
         /**
          * User groups. The structure of `groups` block is documented below.
          */
-        groups?: outputs.sys.VirtualwanlinkServiceGroup[];
+        groups?: outputs.system.VirtualwanlinkServiceGroup[];
         /**
          * Health check.
          */
@@ -26764,7 +27103,7 @@ export namespace sys {
         /**
          * Source interface name. The structure of `inputDevice` block is documented below.
          */
-        inputDevices?: outputs.sys.VirtualwanlinkServiceInputDevice[];
+        inputDevices?: outputs.system.VirtualwanlinkServiceInputDevice[];
         /**
          * Enable/disable use of Internet service for application-based load balancing. Valid values: `enable`, `disable`.
          */
@@ -26772,39 +27111,39 @@ export namespace sys {
         /**
          * Application control based Internet Service group list. The structure of `internetServiceAppCtrlGroup` block is documented below.
          */
-        internetServiceAppCtrlGroups?: outputs.sys.VirtualwanlinkServiceInternetServiceAppCtrlGroup[];
+        internetServiceAppCtrlGroups?: outputs.system.VirtualwanlinkServiceInternetServiceAppCtrlGroup[];
         /**
          * Application control based Internet Service ID list. The structure of `internetServiceAppCtrl` block is documented below.
          */
-        internetServiceAppCtrls?: outputs.sys.VirtualwanlinkServiceInternetServiceAppCtrl[];
+        internetServiceAppCtrls?: outputs.system.VirtualwanlinkServiceInternetServiceAppCtrl[];
         /**
          * Control-based Internet Service group list. The structure of `internetServiceCtrlGroup` block is documented below.
          */
-        internetServiceCtrlGroups?: outputs.sys.VirtualwanlinkServiceInternetServiceCtrlGroup[];
+        internetServiceCtrlGroups?: outputs.system.VirtualwanlinkServiceInternetServiceCtrlGroup[];
         /**
          * Control-based Internet Service ID list. The structure of `internetServiceCtrl` block is documented below.
          */
-        internetServiceCtrls?: outputs.sys.VirtualwanlinkServiceInternetServiceCtrl[];
+        internetServiceCtrls?: outputs.system.VirtualwanlinkServiceInternetServiceCtrl[];
         /**
          * Custom Internet Service group list. The structure of `internetServiceCustomGroup` block is documented below.
          */
-        internetServiceCustomGroups?: outputs.sys.VirtualwanlinkServiceInternetServiceCustomGroup[];
+        internetServiceCustomGroups?: outputs.system.VirtualwanlinkServiceInternetServiceCustomGroup[];
         /**
          * Custom Internet service name list. The structure of `internetServiceCustom` block is documented below.
          */
-        internetServiceCustoms?: outputs.sys.VirtualwanlinkServiceInternetServiceCustom[];
+        internetServiceCustoms?: outputs.system.VirtualwanlinkServiceInternetServiceCustom[];
         /**
          * Internet Service group list. The structure of `internetServiceGroup` block is documented below.
          */
-        internetServiceGroups?: outputs.sys.VirtualwanlinkServiceInternetServiceGroup[];
+        internetServiceGroups?: outputs.system.VirtualwanlinkServiceInternetServiceGroup[];
         /**
          * Internet service ID list. The structure of `internetServiceId` block is documented below.
          */
-        internetServiceIds?: outputs.sys.VirtualwanlinkServiceInternetServiceId[];
+        internetServiceIds?: outputs.system.VirtualwanlinkServiceInternetServiceId[];
         /**
          * Internet service name list. The structure of `internetServiceName` block is documented below.
          */
-        internetServiceNames?: outputs.sys.VirtualwanlinkServiceInternetServiceName[];
+        internetServiceNames?: outputs.system.VirtualwanlinkServiceInternetServiceName[];
         /**
          * Coefficient of jitter in the formula of custom-profile-1.
          */
@@ -26840,7 +27179,7 @@ export namespace sys {
         /**
          * Member sequence number list. The structure of `priorityMembers` block is documented below.
          */
-        priorityMembers?: outputs.sys.VirtualwanlinkServicePriorityMember[];
+        priorityMembers?: outputs.system.VirtualwanlinkServicePriorityMember[];
         /**
          * Protocol number.
          */
@@ -26864,11 +27203,11 @@ export namespace sys {
         /**
          * Service level agreement (SLA). The structure of `sla` block is documented below.
          */
-        slas?: outputs.sys.VirtualwanlinkServiceSla[];
+        slas?: outputs.system.VirtualwanlinkServiceSla[];
         /**
          * Source address6 name. The structure of `src6` block is documented below.
          */
-        src6s?: outputs.sys.VirtualwanlinkServiceSrc6[];
+        src6s?: outputs.system.VirtualwanlinkServiceSrc6[];
         /**
          * Enable/disable negation of source address match. Valid values: `enable`, `disable`.
          */
@@ -26876,7 +27215,7 @@ export namespace sys {
         /**
          * Source address name. The structure of `src` block is documented below.
          */
-        srcs?: outputs.sys.VirtualwanlinkServiceSrc[];
+        srcs?: outputs.system.VirtualwanlinkServiceSrc[];
         /**
          * Enable/disable service when selected neighbor role is standalone while service role is not standalone. Valid values: `enable`, `disable`.
          */
@@ -26900,7 +27239,7 @@ export namespace sys {
         /**
          * User name. The structure of `users` block is documented below.
          */
-        users?: outputs.sys.VirtualwanlinkServiceUser[];
+        users?: outputs.system.VirtualwanlinkServiceUser[];
     }
 
     export interface VirtualwanlinkServiceDst {
@@ -26912,16 +27251,7 @@ export namespace sys {
 
     export interface VirtualwanlinkServiceDst6 {
         /**
-         * Physical interface name.
-         *
-         *
-         *
-         *
-         *
-         * The `dst6` block supports:
-         *
-         *
-         * The `src6` block supports:
+         * Address or address group name.
          */
         name: string;
     }
@@ -27030,16 +27360,7 @@ export namespace sys {
 
     export interface VirtualwanlinkServiceSrc6 {
         /**
-         * Physical interface name.
-         *
-         *
-         *
-         *
-         *
-         * The `dst6` block supports:
-         *
-         *
-         * The `src6` block supports:
+         * Address or address group name.
          */
         name: string;
     }
@@ -27100,7 +27421,7 @@ export namespace sys {
         /**
          * Tags. The structure of `tags` block is documented below.
          */
-        tags?: outputs.sys.ZoneTaggingTag[];
+        tags?: outputs.system.ZoneTaggingTag[];
     }
 
     export interface ZoneTaggingTag {
@@ -27110,852 +27431,849 @@ export namespace sys {
         name: string;
     }
 
-}
+    export namespace dhcp {
+        export interface GetServerExcludeRange {
+            /**
+             * End of IP range.
+             */
+            endIp: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Start of IP range.
+             */
+            startIp: string;
+            /**
+             * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
+             */
+            vciMatch: string;
+            /**
+             * VCI strings.
+             */
+            vciStrings: outputs.system.dhcp.GetServerExcludeRangeVciString[];
+        }
 
-export namespace systemdhcp {
-    export interface GetServerExcludeRange {
-        /**
-         * End of IP range.
-         */
-        endIp: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * Start of IP range.
-         */
-        startIp: string;
-        /**
-         * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
-         */
-        vciMatch: string;
-        /**
-         * VCI strings.
-         */
-        vciStrings: outputs.systemdhcp.GetServerExcludeRangeVciString[];
+        export interface GetServerExcludeRangeVciString {
+            /**
+             * VCI strings.
+             */
+            vciString: string;
+        }
+
+        export interface GetServerIpRange {
+            /**
+             * End of IP range.
+             */
+            endIp: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Start of IP range.
+             */
+            startIp: string;
+            /**
+             * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
+             */
+            vciMatch: string;
+            /**
+             * VCI strings.
+             */
+            vciStrings: outputs.system.dhcp.GetServerIpRangeVciString[];
+        }
+
+        export interface GetServerIpRangeVciString {
+            /**
+             * VCI strings.
+             */
+            vciString: string;
+        }
+
+        export interface GetServerOption {
+            /**
+             * DHCP option code.
+             */
+            code: number;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * IP address to be reserved for the MAC address.
+             */
+            ip: string;
+            /**
+             * DHCP reserved-address type.
+             */
+            type: string;
+            /**
+             * DHCP option value.
+             */
+            value: string;
+            /**
+             * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
+             */
+            vciMatch: string;
+            /**
+             * VCI strings.
+             */
+            vciStrings: outputs.system.dhcp.GetServerOptionVciString[];
+        }
+
+        export interface GetServerOptionVciString {
+            /**
+             * VCI strings.
+             */
+            vciString: string;
+        }
+
+        export interface GetServerReservedAddress {
+            /**
+             * Options for the DHCP server to configure the client with the reserved MAC address.
+             */
+            action: string;
+            /**
+             * Option 82 circuit-ID of the client that will get the reserved IP address.
+             */
+            circuitId: string;
+            /**
+             * DHCP option type.
+             */
+            circuitIdType: string;
+            /**
+             * Description.
+             */
+            description: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * IP address to be reserved for the MAC address.
+             */
+            ip: string;
+            /**
+             * MAC address of the client that will get the reserved IP address.
+             */
+            mac: string;
+            /**
+             * Option 82 remote-ID of the client that will get the reserved IP address.
+             */
+            remoteId: string;
+            /**
+             * DHCP option type.
+             */
+            remoteIdType: string;
+            /**
+             * DHCP reserved-address type.
+             */
+            type: string;
+        }
+
+        export interface GetServerTftpServer {
+            /**
+             * TFTP server.
+             */
+            tftpServer: string;
+        }
+
+        export interface GetServerVciString {
+            /**
+             * VCI strings.
+             */
+            vciString: string;
+        }
+
+        export interface ServerExcludeRange {
+            /**
+             * End of IP range.
+             */
+            endIp: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Start of IP range.
+             */
+            startIp: string;
+            /**
+             * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
+             */
+            vciMatch: string;
+            /**
+             * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
+             */
+            vciStrings?: outputs.system.dhcp.ServerExcludeRangeVciString[];
+        }
+
+        export interface ServerExcludeRangeVciString {
+            /**
+             * VCI strings.
+             */
+            vciString: string;
+        }
+
+        export interface ServerIpRange {
+            /**
+             * End of IP range.
+             */
+            endIp: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Start of IP range.
+             */
+            startIp: string;
+            /**
+             * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
+             */
+            vciMatch: string;
+            /**
+             * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
+             */
+            vciStrings?: outputs.system.dhcp.ServerIpRangeVciString[];
+        }
+
+        export interface ServerIpRangeVciString {
+            /**
+             * VCI strings.
+             */
+            vciString: string;
+        }
+
+        export interface ServerOption {
+            /**
+             * DHCP option code.
+             */
+            code: number;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * DHCP option IPs.
+             */
+            ip: string;
+            /**
+             * DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
+             */
+            type: string;
+            /**
+             * DHCP option value.
+             */
+            value: string;
+            /**
+             * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: `disable`, `enable`.
+             */
+            vciMatch: string;
+            /**
+             * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
+             */
+            vciStrings?: outputs.system.dhcp.ServerOptionVciString[];
+        }
+
+        export interface ServerOptionVciString {
+            /**
+             * VCI strings.
+             */
+            vciString: string;
+        }
+
+        export interface ServerReservedAddress {
+            /**
+             * Options for the DHCP server to configure the client with the reserved MAC address. Valid values: `assign`, `block`, `reserved`.
+             */
+            action: string;
+            /**
+             * Option 82 circuit-ID of the client that will get the reserved IP address.
+             */
+            circuitId: string;
+            /**
+             * DHCP option type. Valid values: `hex`, `string`.
+             */
+            circuitIdType: string;
+            /**
+             * Description.
+             */
+            description?: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * IP address to be reserved for the MAC address.
+             */
+            ip: string;
+            /**
+             * MAC address of the client that will get the reserved IP address.
+             */
+            mac: string;
+            /**
+             * Option 82 remote-ID of the client that will get the reserved IP address.
+             */
+            remoteId: string;
+            /**
+             * DHCP option type. Valid values: `hex`, `string`.
+             */
+            remoteIdType: string;
+            /**
+             * DHCP reserved-address type. Valid values: `mac`, `option82`.
+             */
+            type: string;
+        }
+
+        export interface ServerTftpServer {
+            /**
+             * TFTP server.
+             */
+            tftpServer: string;
+        }
+
+        export interface ServerVciString {
+            /**
+             * VCI strings.
+             */
+            vciString: string;
+        }
+
     }
 
-    export interface GetServerExcludeRangeVciString {
-        /**
-         * VCI strings.
-         */
-        vciString: string;
+    export namespace dhcp6 {
+        export interface ServerIpRange {
+            /**
+             * End of IP range.
+             */
+            endIp: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Start of IP range.
+             */
+            startIp: string;
+        }
+
+        export interface ServerPrefixRange {
+            /**
+             * End of prefix range.
+             */
+            endPrefix: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Prefix length.
+             */
+            prefixLength: number;
+            /**
+             * Start of prefix range.
+             */
+            startPrefix: string;
+        }
+
     }
 
-    export interface GetServerIpRange {
-        /**
-         * End of IP range.
-         */
-        endIp: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * Start of IP range.
-         */
-        startIp: string;
-        /**
-         * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
-         */
-        vciMatch: string;
-        /**
-         * VCI strings.
-         */
-        vciStrings: outputs.systemdhcp.GetServerIpRangeVciString[];
+    export namespace lldp {
+        export interface GetNetworkpolicyGuest {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface GetNetworkpolicyGuestVoiceSignaling {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface GetNetworkpolicySoftphone {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface GetNetworkpolicyStreamingVideo {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface GetNetworkpolicyVideoConferencing {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface GetNetworkpolicyVideoSignaling {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface GetNetworkpolicyVoice {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface GetNetworkpolicyVoiceSignaling {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface NetworkpolicyGuest {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface NetworkpolicyGuestVoiceSignaling {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface NetworkpolicySoftphone {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface NetworkpolicyStreamingVideo {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface NetworkpolicyVideoConferencing {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface NetworkpolicyVideoSignaling {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface NetworkpolicyVoice {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
+        export interface NetworkpolicyVoiceSignaling {
+            /**
+             * Differentiated Services Code Point (DSCP) value to advertise.
+             */
+            dscp: number;
+            /**
+             * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
+             */
+            priority: number;
+            /**
+             * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
+             */
+            status: string;
+            /**
+             * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
+             */
+            tag: string;
+            /**
+             * 802.1Q VLAN ID to advertise (1 - 4094).
+             */
+            vlan: number;
+        }
+
     }
 
-    export interface GetServerIpRangeVciString {
-        /**
-         * VCI strings.
-         */
-        vciString: string;
+    export namespace snmp {
+        export interface CommunityHost {
+            /**
+             * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
+             */
+            haDirect: string;
+            /**
+             * Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
+             */
+            hostType: string;
+            /**
+             * Host6 entry ID.
+             */
+            id: number;
+            /**
+             * IPv4 address of the SNMP manager (host).
+             */
+            ip: string;
+            /**
+             * Source IPv4 address for SNMP traps.
+             */
+            sourceIp: string;
+        }
+
+        export interface CommunityHosts6 {
+            /**
+             * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
+             */
+            haDirect: string;
+            /**
+             * Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
+             */
+            hostType: string;
+            /**
+             * Host6 entry ID.
+             */
+            id: number;
+            /**
+             * SNMP manager IPv6 address prefix.
+             */
+            ipv6: string;
+            /**
+             * Source IPv6 address for SNMP traps.
+             */
+            sourceIpv6: string;
+        }
+
+        export interface CommunityVdom {
+            /**
+             * VDOM name
+             */
+            name: string;
+        }
+
+        export interface GetCommunityHost {
+            /**
+             * Enable/disable direct management of HA cluster members.
+             */
+            haDirect: string;
+            /**
+             * Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both.
+             */
+            hostType: string;
+            /**
+             * Host6 entry ID.
+             */
+            id: number;
+            /**
+             * IPv4 address of the SNMP manager (host).
+             */
+            ip: string;
+            /**
+             * Source IPv4 address for SNMP traps.
+             */
+            sourceIp: string;
+        }
+
+        export interface GetCommunityHosts6 {
+            /**
+             * Enable/disable direct management of HA cluster members.
+             */
+            haDirect: string;
+            /**
+             * Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both.
+             */
+            hostType: string;
+            /**
+             * Host6 entry ID.
+             */
+            id: number;
+            /**
+             * SNMP manager IPv6 address prefix.
+             */
+            ipv6: string;
+            /**
+             * Source IPv6 address for SNMP traps.
+             */
+            sourceIpv6: string;
+        }
+
+        export interface GetCommunityVdom {
+            /**
+             * VDOM name
+             */
+            name: string;
+        }
+
+        export interface GetUserVdom {
+            /**
+             * Specify the name of the desired systemsnmp user.
+             */
+            name: string;
+        }
+
+        export interface UserVdom {
+            /**
+             * VDOM name
+             */
+            name: string;
+        }
+
     }
-
-    export interface GetServerOption {
-        /**
-         * DHCP option code.
-         */
-        code: number;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * IP address to be reserved for the MAC address.
-         */
-        ip: string;
-        /**
-         * DHCP reserved-address type.
-         */
-        type: string;
-        /**
-         * DHCP option value.
-         */
-        value: string;
-        /**
-         * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
-         */
-        vciMatch: string;
-        /**
-         * VCI strings.
-         */
-        vciStrings: outputs.systemdhcp.GetServerOptionVciString[];
-    }
-
-    export interface GetServerOptionVciString {
-        /**
-         * VCI strings.
-         */
-        vciString: string;
-    }
-
-    export interface GetServerReservedAddress {
-        /**
-         * Options for the DHCP server to configure the client with the reserved MAC address.
-         */
-        action: string;
-        /**
-         * Option 82 circuit-ID of the client that will get the reserved IP address.
-         */
-        circuitId: string;
-        /**
-         * DHCP option type.
-         */
-        circuitIdType: string;
-        /**
-         * Description.
-         */
-        description: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * IP address to be reserved for the MAC address.
-         */
-        ip: string;
-        /**
-         * MAC address of the client that will get the reserved IP address.
-         */
-        mac: string;
-        /**
-         * Option 82 remote-ID of the client that will get the reserved IP address.
-         */
-        remoteId: string;
-        /**
-         * DHCP option type.
-         */
-        remoteIdType: string;
-        /**
-         * DHCP reserved-address type.
-         */
-        type: string;
-    }
-
-    export interface GetServerTftpServer {
-        /**
-         * TFTP server.
-         */
-        tftpServer: string;
-    }
-
-    export interface GetServerVciString {
-        /**
-         * VCI strings.
-         */
-        vciString: string;
-    }
-
-    export interface ServerExcludeRange {
-        /**
-         * End of IP range.
-         */
-        endIp: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * Start of IP range.
-         */
-        startIp: string;
-        /**
-         * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
-         */
-        vciMatch: string;
-        /**
-         * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
-         */
-        vciStrings?: outputs.systemdhcp.ServerExcludeRangeVciString[];
-    }
-
-    export interface ServerExcludeRangeVciString {
-        /**
-         * VCI strings.
-         */
-        vciString: string;
-    }
-
-    export interface ServerIpRange {
-        /**
-         * End of IP range.
-         */
-        endIp: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * Start of IP range.
-         */
-        startIp: string;
-        /**
-         * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
-         */
-        vciMatch: string;
-        /**
-         * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
-         */
-        vciStrings?: outputs.systemdhcp.ServerIpRangeVciString[];
-    }
-
-    export interface ServerIpRangeVciString {
-        /**
-         * VCI strings.
-         */
-        vciString: string;
-    }
-
-    export interface ServerOption {
-        /**
-         * DHCP option code.
-         */
-        code: number;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * DHCP option IPs.
-         */
-        ip: string;
-        /**
-         * DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
-         */
-        type: string;
-        /**
-         * DHCP option value.
-         */
-        value: string;
-        /**
-         * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: `disable`, `enable`.
-         */
-        vciMatch: string;
-        /**
-         * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
-         */
-        vciStrings?: outputs.systemdhcp.ServerOptionVciString[];
-    }
-
-    export interface ServerOptionVciString {
-        /**
-         * VCI strings.
-         */
-        vciString: string;
-    }
-
-    export interface ServerReservedAddress {
-        /**
-         * Options for the DHCP server to configure the client with the reserved MAC address. Valid values: `assign`, `block`, `reserved`.
-         */
-        action: string;
-        /**
-         * Option 82 circuit-ID of the client that will get the reserved IP address.
-         */
-        circuitId: string;
-        /**
-         * DHCP option type. Valid values: `hex`, `string`.
-         */
-        circuitIdType: string;
-        /**
-         * Description.
-         */
-        description?: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * IP address to be reserved for the MAC address.
-         */
-        ip: string;
-        /**
-         * MAC address of the client that will get the reserved IP address.
-         */
-        mac: string;
-        /**
-         * Option 82 remote-ID of the client that will get the reserved IP address.
-         */
-        remoteId: string;
-        /**
-         * DHCP option type. Valid values: `hex`, `string`.
-         */
-        remoteIdType: string;
-        /**
-         * DHCP reserved-address type. Valid values: `mac`, `option82`.
-         */
-        type: string;
-    }
-
-    export interface ServerTftpServer {
-        /**
-         * TFTP server.
-         */
-        tftpServer: string;
-    }
-
-    export interface ServerVciString {
-        /**
-         * VCI strings.
-         */
-        vciString: string;
-    }
-
-}
-
-export namespace systemdhcp6 {
-    export interface ServerIpRange {
-        /**
-         * End of IP range.
-         */
-        endIp: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * Start of IP range.
-         */
-        startIp: string;
-    }
-
-    export interface ServerPrefixRange {
-        /**
-         * End of prefix range.
-         */
-        endPrefix: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * Prefix length.
-         */
-        prefixLength: number;
-        /**
-         * Start of prefix range.
-         */
-        startPrefix: string;
-    }
-
-}
-
-export namespace systemlldp {
-    export interface GetNetworkpolicyGuest {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface GetNetworkpolicyGuestVoiceSignaling {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface GetNetworkpolicySoftphone {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface GetNetworkpolicyStreamingVideo {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface GetNetworkpolicyVideoConferencing {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface GetNetworkpolicyVideoSignaling {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface GetNetworkpolicyVoice {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface GetNetworkpolicyVoiceSignaling {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface NetworkpolicyGuest {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface NetworkpolicyGuestVoiceSignaling {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface NetworkpolicySoftphone {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface NetworkpolicyStreamingVideo {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface NetworkpolicyVideoConferencing {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface NetworkpolicyVideoSignaling {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface NetworkpolicyVoice {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-    export interface NetworkpolicyVoiceSignaling {
-        /**
-         * Differentiated Services Code Point (DSCP) value to advertise.
-         */
-        dscp: number;
-        /**
-         * 802.1P CoS/PCP to advertise (0 - 7; from lowest to highest priority).
-         */
-        priority: number;
-        /**
-         * Enable/disable advertising this policy. Valid values: `disable`, `enable`.
-         */
-        status: string;
-        /**
-         * Advertise tagged or untagged traffic. Valid values: `none`, `dot1q`, `dot1p`.
-         */
-        tag: string;
-        /**
-         * 802.1Q VLAN ID to advertise (1 - 4094).
-         */
-        vlan: number;
-    }
-
-}
-
-export namespace systemsnmp {
-    export interface CommunityHost {
-        /**
-         * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
-         */
-        haDirect: string;
-        /**
-         * Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
-         */
-        hostType: string;
-        /**
-         * Host6 entry ID.
-         */
-        id: number;
-        /**
-         * IPv4 address of the SNMP manager (host).
-         */
-        ip: string;
-        /**
-         * Source IPv4 address for SNMP traps.
-         */
-        sourceIp: string;
-    }
-
-    export interface CommunityHosts6 {
-        /**
-         * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
-         */
-        haDirect: string;
-        /**
-         * Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
-         *
-         * The `hosts6` block supports:
-         */
-        hostType: string;
-        /**
-         * Host entry ID.
-         */
-        id: number;
-        /**
-         * SNMP manager IPv6 address prefix.
-         */
-        ipv6: string;
-        /**
-         * Source IPv6 address for SNMP traps.
-         */
-        sourceIpv6: string;
-    }
-
-    export interface CommunityVdom {
-        /**
-         * VDOM name
-         */
-        name: string;
-    }
-
-    export interface GetCommunityHost {
-        /**
-         * Enable/disable direct management of HA cluster members.
-         */
-        haDirect: string;
-        /**
-         * Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both.
-         */
-        hostType: string;
-        /**
-         * Host6 entry ID.
-         */
-        id: number;
-        /**
-         * IPv4 address of the SNMP manager (host).
-         */
-        ip: string;
-        /**
-         * Source IPv4 address for SNMP traps.
-         */
-        sourceIp: string;
-    }
-
-    export interface GetCommunityHosts6 {
-        /**
-         * Enable/disable direct management of HA cluster members.
-         */
-        haDirect: string;
-        /**
-         * Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both.
-         */
-        hostType: string;
-        /**
-         * Host6 entry ID.
-         */
-        id: number;
-        /**
-         * SNMP manager IPv6 address prefix.
-         */
-        ipv6: string;
-        /**
-         * Source IPv6 address for SNMP traps.
-         */
-        sourceIpv6: string;
-    }
-
-    export interface GetCommunityVdom {
-        /**
-         * VDOM name
-         */
-        name: string;
-    }
-
-    export interface GetUserVdom {
-        /**
-         * Specify the name of the desired systemsnmp user.
-         */
-        name: string;
-    }
-
-    export interface UserVdom {
-        /**
-         * VDOM name
-         */
-        name: string;
-    }
-
 }
 
 export namespace user {
@@ -28292,54 +28610,6 @@ export namespace user {
          * Service type. Valid values: `http`, `https`, `ftp`, `telnet`.
          */
         type: string;
-    }
-
-}
-
-export namespace videofilter {
-    export interface ProfileFortiguardCategory {
-        /**
-         * Configure VideoFilter FortiGuard category. The structure of `filters` block is documented below.
-         */
-        filters?: outputs.videofilter.ProfileFortiguardCategoryFilter[];
-    }
-
-    export interface ProfileFortiguardCategoryFilter {
-        /**
-         * VideoFilter action. Valid values: `allow`, `monitor`, `block`.
-         */
-        action: string;
-        /**
-         * Category ID.
-         */
-        categoryId: number;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-    }
-
-    export interface YoutubechannelfilterEntry {
-        /**
-         * YouTube channel filter action. Valid values: `allow`, `monitor`, `block`.
-         */
-        action: string;
-        /**
-         * Channel ID.
-         */
-        channelId: string;
-        /**
-         * Comment.
-         */
-        comment?: string;
-        /**
-         * ID.
-         */
-        id: number;
     }
 
 }
@@ -28947,904 +29217,858 @@ export namespace vpn {
         name: string;
     }
 
-}
+    export namespace certificate {
+        export interface SettingCrlVerification {
+            /**
+             * CRL verification option when CRL of any certificate in chain is absent (default = ignore). Valid values: `ignore`, `revoke`.
+             */
+            chainCrlAbsence: string;
+            /**
+             * CRL verification option when CRL is expired (default = ignore). Valid values: `ignore`, `revoke`.
+             */
+            expiry: string;
+            /**
+             * CRL verification option when leaf CRL is absent (default = ignore). Valid values: `ignore`, `revoke`.
+             */
+            leafCrlAbsence: string;
+        }
 
-export namespace vpncertificate {
-    export interface SettingCrlVerification {
-        /**
-         * CRL verification option when CRL of any certificate in chain is absent (default = ignore). Valid values: `ignore`, `revoke`.
-         */
-        chainCrlAbsence: string;
-        /**
-         * CRL verification option when CRL is expired (default = ignore). Valid values: `ignore`, `revoke`.
-         */
-        expiry: string;
-        /**
-         * CRL verification option when leaf CRL is absent (default = ignore). Valid values: `ignore`, `revoke`.
-         */
-        leafCrlAbsence: string;
     }
 
-}
+    export namespace ipsec {
+        export interface ConcentratorMember {
+            /**
+             * Member name.
+             */
+            name: string;
+        }
 
-export namespace vpnipsec {
-    export interface ConcentratorMember {
-        /**
-         * Member name.
-         */
-        name: string;
+        export interface FecMapping {
+            /**
+             * Apply FEC parameters when available bi-bandwidth is >= threshold (kbps, 0 means no threshold).
+             */
+            bandwidthBiThreshold: number;
+            /**
+             * Apply FEC parameters when available down bandwidth is >= threshold (kbps, 0 means no threshold).
+             */
+            bandwidthDownThreshold: number;
+            /**
+             * Apply FEC parameters when available up bandwidth is >= threshold (kbps, 0 means no threshold).
+             */
+            bandwidthUpThreshold: number;
+            /**
+             * Number of base FEC packets (1 - 20).
+             */
+            base: number;
+            /**
+             * Apply FEC parameters when latency is <= threshold (0 means no threshold).
+             */
+            latencyThreshold: number;
+            /**
+             * Apply FEC parameters when packet loss is >= threshold (0 - 100, 0 means no threshold).
+             */
+            packetLossThreshold: number;
+            /**
+             * Number of redundant FEC packets (1 - 5).
+             */
+            redundant: number;
+            /**
+             * Sequence number (1 - 64).
+             */
+            seqno: number;
+        }
+
+        export interface Phase1BackupGateway {
+            /**
+             * Address of backup gateway.
+             */
+            address: string;
+        }
+
+        export interface Phase1Certificate {
+            /**
+             * Certificate name.
+             *
+             * The `ipv4ExcludeRange` block supports:
+             */
+            name: string;
+        }
+
+        export interface Phase1Ipv4ExcludeRange {
+            /**
+             * End of IPv6 exclusive range.
+             */
+            endIp: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Start of IPv6 exclusive range.
+             */
+            startIp: string;
+        }
+
+        export interface Phase1Ipv6ExcludeRange {
+            /**
+             * End of IPv6 exclusive range.
+             */
+            endIp: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Start of IPv6 exclusive range.
+             */
+            startIp: string;
+        }
+
+        export interface Phase1interfaceBackupGateway {
+            /**
+             * Address of backup gateway.
+             */
+            address: string;
+        }
+
+        export interface Phase1interfaceCertificate {
+            /**
+             * Certificate name.
+             *
+             * The `ipv4ExcludeRange` block supports:
+             */
+            name: string;
+        }
+
+        export interface Phase1interfaceIpv4ExcludeRange {
+            /**
+             * End of IPv6 exclusive range.
+             */
+            endIp: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Start of IPv6 exclusive range.
+             */
+            startIp: string;
+        }
+
+        export interface Phase1interfaceIpv6ExcludeRange {
+            /**
+             * End of IPv6 exclusive range.
+             */
+            endIp: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Start of IPv6 exclusive range.
+             */
+            startIp: string;
+        }
+
     }
 
-    export interface FecMapping {
-        /**
-         * Apply FEC parameters when available bi-bandwidth is >= threshold (kbps, 0 means no threshold).
-         */
-        bandwidthBiThreshold: number;
-        /**
-         * Apply FEC parameters when available down bandwidth is >= threshold (kbps, 0 means no threshold).
-         */
-        bandwidthDownThreshold: number;
-        /**
-         * Apply FEC parameters when available up bandwidth is >= threshold (kbps, 0 means no threshold).
-         */
-        bandwidthUpThreshold: number;
-        /**
-         * Number of base FEC packets (1 - 20).
-         */
-        base: number;
-        /**
-         * Apply FEC parameters when latency is <= threshold (0 means no threshold).
-         */
-        latencyThreshold: number;
-        /**
-         * Apply FEC parameters when packet loss is >= threshold (0 - 100, 0 means no threshold).
-         */
-        packetLossThreshold: number;
-        /**
-         * Number of redundant FEC packets (1 - 5).
-         */
-        redundant: number;
-        /**
-         * Sequence number (1 - 64).
-         */
-        seqno: number;
+    export namespace ssl {
+        export interface SettingsAuthenticationRule {
+            /**
+             * SSL VPN authentication method restriction.
+             */
+            auth: string;
+            /**
+             * SSL VPN cipher strength. Valid values: `any`, `high`, `medium`.
+             */
+            cipher: string;
+            /**
+             * Enable/disable SSL VPN client certificate restrictive. Valid values: `enable`, `disable`.
+             */
+            clientCert: string;
+            /**
+             * User groups. The structure of `groups` block is documented below.
+             */
+            groups?: outputs.vpn.ssl.SettingsAuthenticationRuleGroup[];
+            /**
+             * ID (0 - 4294967295).
+             */
+            id: number;
+            /**
+             * SSL VPN portal.
+             */
+            portal: string;
+            /**
+             * SSL VPN realm.
+             */
+            realm: string;
+            /**
+             * Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
+             */
+            sourceAddress6Negate: string;
+            /**
+             * IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
+             */
+            sourceAddress6s?: outputs.vpn.ssl.SettingsAuthenticationRuleSourceAddress6[];
+            /**
+             * Enable/disable negated source address match. Valid values: `enable`, `disable`.
+             */
+            sourceAddressNegate: string;
+            /**
+             * Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
+             */
+            sourceAddresses?: outputs.vpn.ssl.SettingsAuthenticationRuleSourceAddress[];
+            /**
+             * SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
+             */
+            sourceInterfaces?: outputs.vpn.ssl.SettingsAuthenticationRuleSourceInterface[];
+            /**
+             * Name of user peer.
+             */
+            userPeer: string;
+            /**
+             * User name. The structure of `users` block is documented below.
+             */
+            users?: outputs.vpn.ssl.SettingsAuthenticationRuleUser[];
+        }
+
+        export interface SettingsAuthenticationRuleGroup {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export interface SettingsAuthenticationRuleSourceAddress {
+            /**
+             * IPv6 address name.
+             */
+            name: string;
+        }
+
+        export interface SettingsAuthenticationRuleSourceAddress6 {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export interface SettingsAuthenticationRuleSourceInterface {
+            /**
+             * Interface name.
+             */
+            name: string;
+        }
+
+        export interface SettingsAuthenticationRuleUser {
+            /**
+             * User name.
+             */
+            name: string;
+        }
+
+        export interface SettingsSourceAddress {
+            /**
+             * IPv6 address name.
+             */
+            name: string;
+        }
+
+        export interface SettingsSourceAddress6 {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export interface SettingsSourceInterface {
+            /**
+             * Interface name.
+             */
+            name: string;
+        }
+
+        export interface SettingsTunnelIpPool {
+            /**
+             * Address name.
+             */
+            name: string;
+        }
+
+        export interface SettingsTunnelIpv6Pool {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export namespace web {
+            export interface HostchecksoftwareCheckItemList {
+                /**
+                 * Action. Valid values: `require`, `deny`.
+                 */
+                action: string;
+                /**
+                 * Hex string of MD5 checksum.
+                 */
+                id: number;
+                /**
+                 * MD5 checksum. The structure of `md5s` block is documented below.
+                 *
+                 * The `md5s` block supports:
+                 */
+                md5s?: outputs.vpn.ssl.web.HostchecksoftwareCheckItemListMd5[];
+                /**
+                 * Target.
+                 */
+                target: string;
+                /**
+                 * Type. Valid values: `file`, `registry`, `process`.
+                 */
+                type: string;
+                /**
+                 * Version.
+                 */
+                version: string;
+            }
+
+            export interface HostchecksoftwareCheckItemListMd5 {
+                /**
+                 * Hex string of MD5 checksum.
+                 */
+                id: string;
+            }
+
+            export interface PortalBookmarkGroup {
+                /**
+                 * Bookmark table. The structure of `bookmarks` block is documented below.
+                 */
+                bookmarks?: outputs.vpn.ssl.web.PortalBookmarkGroupBookmark[];
+                /**
+                 * Bookmark group name.
+                 */
+                name: string;
+            }
+
+            export interface PortalBookmarkGroupBookmark {
+                /**
+                 * Additional parameters.
+                 */
+                additionalParams?: string;
+                /**
+                 * Application type.
+                 */
+                apptype: string;
+                /**
+                 * Color depth per pixel. Valid values: `32`, `16`, `8`.
+                 */
+                colorDepth: string;
+                /**
+                 * Description.
+                 */
+                description?: string;
+                /**
+                 * Login domain.
+                 */
+                domain?: string;
+                /**
+                 * Network shared file folder parameter.
+                 */
+                folder?: string;
+                /**
+                 * Form data. The structure of `formData` block is documented below.
+                 */
+                formDatas?: outputs.vpn.ssl.web.PortalBookmarkGroupBookmarkFormData[];
+                /**
+                 * Screen height (range from 480 - 65535, default = 768).
+                 */
+                height: number;
+                /**
+                 * Host name/IP parameter.
+                 */
+                host?: string;
+                /**
+                 * Keyboard layout.
+                 */
+                keyboardLayout: string;
+                /**
+                 * Listening port (0 - 65535).
+                 */
+                listeningPort: number;
+                /**
+                 * The load balancing information or cookie which should be provided to the connection broker.
+                 */
+                loadBalancingInfo?: string;
+                /**
+                 * Logon password.
+                 */
+                logonPassword?: string;
+                /**
+                 * Logon user.
+                 */
+                logonUser?: string;
+                /**
+                 * Bookmark name.
+                 */
+                name: string;
+                /**
+                 * Remote port.
+                 */
+                port: number;
+                /**
+                 * An arbitrary string which identifies the RDP source.
+                 */
+                preconnectionBlob?: string;
+                /**
+                 * The numeric ID of the RDP source (0-2147483648).
+                 */
+                preconnectionId: number;
+                /**
+                 * Remote port (0 - 65535).
+                 */
+                remotePort: number;
+                /**
+                 * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
+                 */
+                restrictedAdmin: string;
+                /**
+                 * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+                 */
+                security: string;
+                /**
+                 * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
+                 */
+                sendPreconnectionId: string;
+                /**
+                 * Server side keyboard layout.
+                 */
+                serverLayout: string;
+                /**
+                 * Enable/disable showing of status window. Valid values: `enable`, `disable`.
+                 */
+                showStatusWindow: string;
+                /**
+                 * Single Sign-On. Valid values: `disable`, `static`, `auto`.
+                 */
+                sso: string;
+                /**
+                 * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+                 */
+                ssoCredential: string;
+                /**
+                 * Single sign-on credentials are only sent once to remote server. Valid values: `enable`, `disable`.
+                 */
+                ssoCredentialSentOnce: string;
+                /**
+                 * SSO password.
+                 */
+                ssoPassword?: string;
+                /**
+                 * SSO user name.
+                 */
+                ssoUsername?: string;
+                /**
+                 * URL parameter.
+                 */
+                url?: string;
+                /**
+                 * Screen width (range from 640 - 65535, default = 1024).
+                 */
+                width: number;
+            }
+
+            export interface PortalBookmarkGroupBookmarkFormData {
+                /**
+                 * Name.
+                 */
+                name: string;
+                /**
+                 * Value.
+                 */
+                value?: string;
+            }
+
+            export interface PortalHostCheckPolicy {
+                /**
+                 * Host check software list name.
+                 */
+                name: string;
+            }
+
+            export interface PortalIpPool {
+                /**
+                 * Address name.
+                 */
+                name: string;
+            }
+
+            export interface PortalIpv6Pool {
+                /**
+                 * Portal name.
+                 */
+                name: string;
+            }
+
+            export interface PortalIpv6SplitTunnelingRoutingAddress {
+                /**
+                 * Portal name.
+                 */
+                name: string;
+            }
+
+            export interface PortalMacAddrCheckRule {
+                /**
+                 * Client MAC address list. The structure of `macAddrList` block is documented below.
+                 */
+                macAddrLists?: outputs.vpn.ssl.web.PortalMacAddrCheckRuleMacAddrList[];
+                /**
+                 * Client MAC address mask.
+                 */
+                macAddrMask: number;
+                /**
+                 * Client MAC address check rule name.
+                 */
+                name: string;
+            }
+
+            export interface PortalMacAddrCheckRuleMacAddrList {
+                /**
+                 * Client MAC address.
+                 */
+                addr: string;
+            }
+
+            export interface PortalOsCheckList {
+                /**
+                 * OS check options. Valid values: `deny`, `allow`, `check-up-to-date`.
+                 */
+                action: string;
+                /**
+                 * Latest OS patch level.
+                 */
+                latestPatchLevel: string;
+                /**
+                 * Name.
+                 */
+                name: string;
+                /**
+                 * OS patch level tolerance.
+                 */
+                tolerance: number;
+            }
+
+            export interface PortalSplitDn {
+                /**
+                 * DNS server 1.
+                 */
+                dnsServer1: string;
+                /**
+                 * DNS server 2.
+                 */
+                dnsServer2: string;
+                /**
+                 * Split DNS domains used for SSL-VPN clients separated by comma(,).
+                 */
+                domains?: string;
+                /**
+                 * ID.
+                 */
+                id: number;
+                /**
+                 * IPv6 DNS server 1.
+                 */
+                ipv6DnsServer1: string;
+                /**
+                 * IPv6 DNS server 2.
+                 */
+                ipv6DnsServer2: string;
+            }
+
+            export interface PortalSplitTunnelingRoutingAddress {
+                /**
+                 * Address name.
+                 */
+                name: string;
+            }
+
+            export interface UserbookmarkBookmark {
+                /**
+                 * Additional parameters.
+                 */
+                additionalParams?: string;
+                /**
+                 * Application type.
+                 */
+                apptype: string;
+                /**
+                 * Color depth per pixel. Valid values: `32`, `16`, `8`.
+                 */
+                colorDepth: string;
+                /**
+                 * Description.
+                 */
+                description?: string;
+                /**
+                 * Login domain.
+                 */
+                domain?: string;
+                /**
+                 * Network shared file folder parameter.
+                 */
+                folder?: string;
+                /**
+                 * Form data. The structure of `formData` block is documented below.
+                 */
+                formDatas?: outputs.vpn.ssl.web.UserbookmarkBookmarkFormData[];
+                /**
+                 * Screen height (range from 480 - 65535, default = 768).
+                 */
+                height: number;
+                /**
+                 * Host name/IP parameter.
+                 */
+                host?: string;
+                /**
+                 * Keyboard layout.
+                 */
+                keyboardLayout: string;
+                /**
+                 * Listening port (0 - 65535).
+                 */
+                listeningPort: number;
+                /**
+                 * The load balancing information or cookie which should be provided to the connection broker.
+                 */
+                loadBalancingInfo?: string;
+                /**
+                 * Logon password.
+                 */
+                logonPassword?: string;
+                /**
+                 * Logon user.
+                 */
+                logonUser?: string;
+                /**
+                 * Bookmark name.
+                 */
+                name: string;
+                /**
+                 * Remote port.
+                 */
+                port: number;
+                /**
+                 * An arbitrary string which identifies the RDP source.
+                 */
+                preconnectionBlob?: string;
+                /**
+                 * The numeric ID of the RDP source (0-2147483648).
+                 */
+                preconnectionId: number;
+                /**
+                 * Remote port (0 - 65535).
+                 */
+                remotePort: number;
+                /**
+                 * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
+                 */
+                restrictedAdmin: string;
+                /**
+                 * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+                 */
+                security: string;
+                /**
+                 * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
+                 */
+                sendPreconnectionId: string;
+                /**
+                 * Server side keyboard layout.
+                 */
+                serverLayout: string;
+                /**
+                 * Enable/disable showing of status window. Valid values: `enable`, `disable`.
+                 */
+                showStatusWindow: string;
+                /**
+                 * Single Sign-On. Valid values: `disable`, `static`, `auto`.
+                 */
+                sso: string;
+                /**
+                 * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+                 */
+                ssoCredential: string;
+                /**
+                 * Single sign-on credentials are only sent once to remote server. Valid values: `enable`, `disable`.
+                 */
+                ssoCredentialSentOnce: string;
+                /**
+                 * SSO password.
+                 */
+                ssoPassword?: string;
+                /**
+                 * SSO user name.
+                 */
+                ssoUsername?: string;
+                /**
+                 * URL parameter.
+                 */
+                url?: string;
+                /**
+                 * Screen width (range from 640 - 65535, default = 1024).
+                 */
+                width: number;
+            }
+
+            export interface UserbookmarkBookmarkFormData {
+                /**
+                 * Name.
+                 */
+                name: string;
+                /**
+                 * Value.
+                 */
+                value?: string;
+            }
+
+            export interface UsergroupbookmarkBookmark {
+                /**
+                 * Additional parameters.
+                 */
+                additionalParams?: string;
+                /**
+                 * Application type.
+                 */
+                apptype: string;
+                /**
+                 * Color depth per pixel. Valid values: `32`, `16`, `8`.
+                 */
+                colorDepth: string;
+                /**
+                 * Description.
+                 */
+                description?: string;
+                /**
+                 * Login domain.
+                 */
+                domain?: string;
+                /**
+                 * Network shared file folder parameter.
+                 */
+                folder?: string;
+                /**
+                 * Form data. The structure of `formData` block is documented below.
+                 */
+                formDatas?: outputs.vpn.ssl.web.UsergroupbookmarkBookmarkFormData[];
+                /**
+                 * Screen height (range from 480 - 65535, default = 768).
+                 */
+                height: number;
+                /**
+                 * Host name/IP parameter.
+                 */
+                host?: string;
+                /**
+                 * Keyboard layout.
+                 */
+                keyboardLayout: string;
+                /**
+                 * Listening port (0 - 65535).
+                 */
+                listeningPort: number;
+                /**
+                 * The load balancing information or cookie which should be provided to the connection broker.
+                 */
+                loadBalancingInfo?: string;
+                /**
+                 * Logon password.
+                 */
+                logonPassword?: string;
+                /**
+                 * Logon user.
+                 */
+                logonUser?: string;
+                /**
+                 * Bookmark name.
+                 */
+                name: string;
+                /**
+                 * Remote port.
+                 */
+                port: number;
+                /**
+                 * An arbitrary string which identifies the RDP source.
+                 */
+                preconnectionBlob?: string;
+                /**
+                 * The numeric ID of the RDP source (0-2147483648).
+                 */
+                preconnectionId: number;
+                /**
+                 * Remote port (0 - 65535).
+                 */
+                remotePort: number;
+                /**
+                 * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
+                 */
+                restrictedAdmin: string;
+                /**
+                 * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+                 */
+                security: string;
+                /**
+                 * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
+                 */
+                sendPreconnectionId: string;
+                /**
+                 * Server side keyboard layout.
+                 */
+                serverLayout: string;
+                /**
+                 * Enable/disable showing of status window. Valid values: `enable`, `disable`.
+                 */
+                showStatusWindow: string;
+                /**
+                 * Single Sign-On. Valid values: `disable`, `static`, `auto`.
+                 */
+                sso: string;
+                /**
+                 * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+                 */
+                ssoCredential: string;
+                /**
+                 * Single sign-on credentials are only sent once to remote server. Valid values: `enable`, `disable`.
+                 */
+                ssoCredentialSentOnce: string;
+                /**
+                 * SSO password.
+                 */
+                ssoPassword?: string;
+                /**
+                 * SSO user name.
+                 */
+                ssoUsername?: string;
+                /**
+                 * URL parameter.
+                 */
+                url?: string;
+                /**
+                 * Screen width (range from 640 - 65535, default = 1024).
+                 */
+                width: number;
+            }
+
+            export interface UsergroupbookmarkBookmarkFormData {
+                /**
+                 * Name.
+                 */
+                name: string;
+                /**
+                 * Value.
+                 */
+                value?: string;
+            }
+
+        }
     }
-
-    export interface Phase1BackupGateway {
-        /**
-         * Address of backup gateway.
-         */
-        address: string;
-    }
-
-    export interface Phase1Certificate {
-        /**
-         * Certificate name.
-         *
-         * The `ipv4ExcludeRange` block supports:
-         */
-        name: string;
-    }
-
-    export interface Phase1Ipv4ExcludeRange {
-        /**
-         * End of IPv4 exclusive range.
-         *
-         * The `ipv6ExcludeRange` block supports:
-         */
-        endIp: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * Start of IPv4 exclusive range.
-         */
-        startIp: string;
-    }
-
-    export interface Phase1Ipv6ExcludeRange {
-        /**
-         * End of IPv4 exclusive range.
-         *
-         * The `ipv6ExcludeRange` block supports:
-         */
-        endIp: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * Start of IPv4 exclusive range.
-         */
-        startIp: string;
-    }
-
-    export interface Phase1interfaceBackupGateway {
-        /**
-         * Address of backup gateway.
-         */
-        address: string;
-    }
-
-    export interface Phase1interfaceCertificate {
-        /**
-         * Certificate name.
-         *
-         * The `ipv4ExcludeRange` block supports:
-         */
-        name: string;
-    }
-
-    export interface Phase1interfaceIpv4ExcludeRange {
-        /**
-         * End of IPv4 exclusive range.
-         *
-         * The `ipv6ExcludeRange` block supports:
-         */
-        endIp: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * Start of IPv4 exclusive range.
-         */
-        startIp: string;
-    }
-
-    export interface Phase1interfaceIpv6ExcludeRange {
-        /**
-         * End of IPv4 exclusive range.
-         *
-         * The `ipv6ExcludeRange` block supports:
-         */
-        endIp: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * Start of IPv4 exclusive range.
-         */
-        startIp: string;
-    }
-
-}
-
-export namespace vpnssl {
-    export interface SettingsAuthenticationRule {
-        /**
-         * SSL VPN authentication method restriction.
-         */
-        auth: string;
-        /**
-         * SSL VPN cipher strength. Valid values: `any`, `high`, `medium`.
-         */
-        cipher: string;
-        /**
-         * Enable/disable SSL VPN client certificate restrictive. Valid values: `enable`, `disable`.
-         */
-        clientCert: string;
-        /**
-         * User groups. The structure of `groups` block is documented below.
-         */
-        groups?: outputs.vpnssl.SettingsAuthenticationRuleGroup[];
-        /**
-         * ID (0 - 4294967295).
-         */
-        id: number;
-        /**
-         * SSL VPN portal.
-         */
-        portal: string;
-        /**
-         * SSL VPN realm.
-         */
-        realm: string;
-        /**
-         * Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
-         */
-        sourceAddress6Negate: string;
-        /**
-         * IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
-         */
-        sourceAddress6s?: outputs.vpnssl.SettingsAuthenticationRuleSourceAddress6[];
-        /**
-         * Enable/disable negated source address match. Valid values: `enable`, `disable`.
-         */
-        sourceAddressNegate: string;
-        /**
-         * Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
-         */
-        sourceAddresses?: outputs.vpnssl.SettingsAuthenticationRuleSourceAddress[];
-        /**
-         * SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
-         */
-        sourceInterfaces?: outputs.vpnssl.SettingsAuthenticationRuleSourceInterface[];
-        /**
-         * Name of user peer.
-         */
-        userPeer: string;
-        /**
-         * User name. The structure of `users` block is documented below.
-         */
-        users?: outputs.vpnssl.SettingsAuthenticationRuleUser[];
-    }
-
-    export interface SettingsAuthenticationRuleGroup {
-        /**
-         * Group name.
-         */
-        name: string;
-    }
-
-    export interface SettingsAuthenticationRuleSourceAddress {
-        /**
-         * IPv6 address name.
-         */
-        name: string;
-    }
-
-    export interface SettingsAuthenticationRuleSourceAddress6 {
-        /**
-         * Address name.
-         *
-         * The `tunnelIpv6Pools` block supports:
-         *
-         *
-         *
-         *
-         * The `sourceAddress6` block supports:
-         *
-         *
-         *
-         *
-         * The `sourceAddress6` block supports:
-         */
-        name: string;
-    }
-
-    export interface SettingsAuthenticationRuleSourceInterface {
-        /**
-         * Interface name.
-         */
-        name: string;
-    }
-
-    export interface SettingsAuthenticationRuleUser {
-        /**
-         * User name.
-         */
-        name: string;
-    }
-
-    export interface SettingsSourceAddress {
-        /**
-         * IPv6 address name.
-         */
-        name: string;
-    }
-
-    export interface SettingsSourceAddress6 {
-        /**
-         * Address name.
-         *
-         * The `tunnelIpv6Pools` block supports:
-         *
-         *
-         *
-         *
-         * The `sourceAddress6` block supports:
-         *
-         *
-         *
-         *
-         * The `sourceAddress6` block supports:
-         */
-        name: string;
-    }
-
-    export interface SettingsSourceInterface {
-        /**
-         * Interface name.
-         */
-        name: string;
-    }
-
-    export interface SettingsTunnelIpPool {
-        /**
-         * Address name.
-         */
-        name: string;
-    }
-
-    export interface SettingsTunnelIpv6Pool {
-        /**
-         * Address name.
-         *
-         * The `tunnelIpv6Pools` block supports:
-         *
-         *
-         *
-         *
-         * The `sourceAddress6` block supports:
-         *
-         *
-         *
-         *
-         * The `sourceAddress6` block supports:
-         */
-        name: string;
-    }
-
-}
-
-export namespace vpnsslweb {
-    export interface HostchecksoftwareCheckItemList {
-        /**
-         * Action. Valid values: `require`, `deny`.
-         */
-        action: string;
-        /**
-         * Hex string of MD5 checksum.
-         */
-        id: number;
-        /**
-         * MD5 checksum. The structure of `md5s` block is documented below.
-         *
-         * The `md5s` block supports:
-         */
-        md5s?: outputs.vpnsslweb.HostchecksoftwareCheckItemListMd5[];
-        /**
-         * Target.
-         */
-        target: string;
-        /**
-         * Type. Valid values: `file`, `registry`, `process`.
-         */
-        type: string;
-        /**
-         * Version.
-         */
-        version: string;
-    }
-
-    export interface HostchecksoftwareCheckItemListMd5 {
-        /**
-         * ID (0 - 4294967295).
-         */
-        id: string;
-    }
-
-    export interface PortalBookmarkGroup {
-        /**
-         * Bookmark table. The structure of `bookmarks` block is documented below.
-         */
-        bookmarks?: outputs.vpnsslweb.PortalBookmarkGroupBookmark[];
-        /**
-         * Bookmark group name.
-         */
-        name: string;
-    }
-
-    export interface PortalBookmarkGroupBookmark {
-        /**
-         * Additional parameters.
-         */
-        additionalParams?: string;
-        /**
-         * Application type.
-         */
-        apptype: string;
-        /**
-         * Color depth per pixel. Valid values: `32`, `16`, `8`.
-         */
-        colorDepth: string;
-        /**
-         * Description.
-         */
-        description?: string;
-        /**
-         * Login domain.
-         */
-        domain?: string;
-        /**
-         * Network shared file folder parameter.
-         */
-        folder?: string;
-        /**
-         * Form data. The structure of `formData` block is documented below.
-         */
-        formDatas?: outputs.vpnsslweb.PortalBookmarkGroupBookmarkFormData[];
-        /**
-         * Screen height (range from 480 - 65535, default = 768).
-         */
-        height: number;
-        /**
-         * Host name/IP parameter.
-         */
-        host?: string;
-        /**
-         * Keyboard layout.
-         */
-        keyboardLayout: string;
-        /**
-         * Listening port (0 - 65535).
-         */
-        listeningPort: number;
-        /**
-         * The load balancing information or cookie which should be provided to the connection broker.
-         */
-        loadBalancingInfo?: string;
-        /**
-         * Logon password.
-         */
-        logonPassword?: string;
-        /**
-         * Logon user.
-         */
-        logonUser?: string;
-        /**
-         * Bookmark name.
-         */
-        name: string;
-        /**
-         * Remote port.
-         */
-        port: number;
-        /**
-         * An arbitrary string which identifies the RDP source.
-         */
-        preconnectionBlob?: string;
-        /**
-         * The numeric ID of the RDP source (0-2147483648).
-         */
-        preconnectionId: number;
-        /**
-         * Remote port (0 - 65535).
-         */
-        remotePort: number;
-        /**
-         * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
-         */
-        restrictedAdmin: string;
-        /**
-         * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
-         */
-        security: string;
-        /**
-         * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
-         */
-        sendPreconnectionId: string;
-        /**
-         * Server side keyboard layout.
-         */
-        serverLayout: string;
-        /**
-         * Enable/disable showing of status window. Valid values: `enable`, `disable`.
-         */
-        showStatusWindow: string;
-        /**
-         * Single Sign-On. Valid values: `disable`, `static`, `auto`.
-         */
-        sso: string;
-        /**
-         * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
-         */
-        ssoCredential: string;
-        /**
-         * Single sign-on credentials are only sent once to remote server. Valid values: `enable`, `disable`.
-         */
-        ssoCredentialSentOnce: string;
-        /**
-         * SSO password.
-         */
-        ssoPassword?: string;
-        /**
-         * SSO user name.
-         */
-        ssoUsername?: string;
-        /**
-         * URL parameter.
-         */
-        url?: string;
-        /**
-         * Screen width (range from 640 - 65535, default = 1024).
-         */
-        width: number;
-    }
-
-    export interface PortalBookmarkGroupBookmarkFormData {
-        /**
-         * Name.
-         */
-        name: string;
-        /**
-         * Value.
-         */
-        value?: string;
-    }
-
-    export interface PortalHostCheckPolicy {
-        /**
-         * Host check software list name.
-         */
-        name: string;
-    }
-
-    export interface PortalIpPool {
-        /**
-         * Address name.
-         */
-        name: string;
-    }
-
-    export interface PortalIpv6Pool {
-        /**
-         * Portal name.
-         */
-        name: string;
-    }
-
-    export interface PortalIpv6SplitTunnelingRoutingAddress {
-        /**
-         * Portal name.
-         */
-        name: string;
-    }
-
-    export interface PortalMacAddrCheckRule {
-        /**
-         * Client MAC address list. The structure of `macAddrList` block is documented below.
-         */
-        macAddrLists?: outputs.vpnsslweb.PortalMacAddrCheckRuleMacAddrList[];
-        /**
-         * Client MAC address mask.
-         */
-        macAddrMask: number;
-        /**
-         * Client MAC address check rule name.
-         */
-        name: string;
-    }
-
-    export interface PortalMacAddrCheckRuleMacAddrList {
-        /**
-         * Client MAC address.
-         */
-        addr: string;
-    }
-
-    export interface PortalOsCheckList {
-        /**
-         * OS check options. Valid values: `deny`, `allow`, `check-up-to-date`.
-         */
-        action: string;
-        /**
-         * Latest OS patch level.
-         */
-        latestPatchLevel: string;
-        /**
-         * Name.
-         */
-        name: string;
-        /**
-         * OS patch level tolerance.
-         */
-        tolerance: number;
-    }
-
-    export interface PortalSplitDn {
-        /**
-         * DNS server 1.
-         */
-        dnsServer1: string;
-        /**
-         * DNS server 2.
-         */
-        dnsServer2: string;
-        /**
-         * Split DNS domains used for SSL-VPN clients separated by comma(,).
-         */
-        domains?: string;
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * IPv6 DNS server 1.
-         */
-        ipv6DnsServer1: string;
-        /**
-         * IPv6 DNS server 2.
-         */
-        ipv6DnsServer2: string;
-    }
-
-    export interface PortalSplitTunnelingRoutingAddress {
-        /**
-         * Address name.
-         */
-        name: string;
-    }
-
-    export interface UserbookmarkBookmark {
-        /**
-         * Additional parameters.
-         */
-        additionalParams?: string;
-        /**
-         * Application type.
-         */
-        apptype: string;
-        /**
-         * Color depth per pixel. Valid values: `32`, `16`, `8`.
-         */
-        colorDepth: string;
-        /**
-         * Description.
-         */
-        description?: string;
-        /**
-         * Login domain.
-         */
-        domain?: string;
-        /**
-         * Network shared file folder parameter.
-         */
-        folder?: string;
-        /**
-         * Form data. The structure of `formData` block is documented below.
-         */
-        formDatas?: outputs.vpnsslweb.UserbookmarkBookmarkFormData[];
-        /**
-         * Screen height (range from 480 - 65535, default = 768).
-         */
-        height: number;
-        /**
-         * Host name/IP parameter.
-         */
-        host?: string;
-        /**
-         * Keyboard layout.
-         */
-        keyboardLayout: string;
-        /**
-         * Listening port (0 - 65535).
-         */
-        listeningPort: number;
-        /**
-         * The load balancing information or cookie which should be provided to the connection broker.
-         */
-        loadBalancingInfo?: string;
-        /**
-         * Logon password.
-         */
-        logonPassword?: string;
-        /**
-         * Logon user.
-         */
-        logonUser?: string;
-        /**
-         * Bookmark name.
-         */
-        name: string;
-        /**
-         * Remote port.
-         */
-        port: number;
-        /**
-         * An arbitrary string which identifies the RDP source.
-         */
-        preconnectionBlob?: string;
-        /**
-         * The numeric ID of the RDP source (0-2147483648).
-         */
-        preconnectionId: number;
-        /**
-         * Remote port (0 - 65535).
-         */
-        remotePort: number;
-        /**
-         * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
-         */
-        restrictedAdmin: string;
-        /**
-         * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
-         */
-        security: string;
-        /**
-         * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
-         */
-        sendPreconnectionId: string;
-        /**
-         * Server side keyboard layout.
-         */
-        serverLayout: string;
-        /**
-         * Enable/disable showing of status window. Valid values: `enable`, `disable`.
-         */
-        showStatusWindow: string;
-        /**
-         * Single Sign-On. Valid values: `disable`, `static`, `auto`.
-         */
-        sso: string;
-        /**
-         * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
-         */
-        ssoCredential: string;
-        /**
-         * Single sign-on credentials are only sent once to remote server. Valid values: `enable`, `disable`.
-         */
-        ssoCredentialSentOnce: string;
-        /**
-         * SSO password.
-         */
-        ssoPassword?: string;
-        /**
-         * SSO user name.
-         */
-        ssoUsername?: string;
-        /**
-         * URL parameter.
-         */
-        url?: string;
-        /**
-         * Screen width (range from 640 - 65535, default = 1024).
-         */
-        width: number;
-    }
-
-    export interface UserbookmarkBookmarkFormData {
-        /**
-         * Name.
-         */
-        name: string;
-        /**
-         * Value.
-         */
-        value?: string;
-    }
-
-    export interface UsergroupbookmarkBookmark {
-        /**
-         * Additional parameters.
-         */
-        additionalParams?: string;
-        /**
-         * Application type.
-         */
-        apptype: string;
-        /**
-         * Color depth per pixel. Valid values: `32`, `16`, `8`.
-         */
-        colorDepth: string;
-        /**
-         * Description.
-         */
-        description?: string;
-        /**
-         * Login domain.
-         */
-        domain?: string;
-        /**
-         * Network shared file folder parameter.
-         */
-        folder?: string;
-        /**
-         * Form data. The structure of `formData` block is documented below.
-         */
-        formDatas?: outputs.vpnsslweb.UsergroupbookmarkBookmarkFormData[];
-        /**
-         * Screen height (range from 480 - 65535, default = 768).
-         */
-        height: number;
-        /**
-         * Host name/IP parameter.
-         */
-        host?: string;
-        /**
-         * Keyboard layout.
-         */
-        keyboardLayout: string;
-        /**
-         * Listening port (0 - 65535).
-         */
-        listeningPort: number;
-        /**
-         * The load balancing information or cookie which should be provided to the connection broker.
-         */
-        loadBalancingInfo?: string;
-        /**
-         * Logon password.
-         */
-        logonPassword?: string;
-        /**
-         * Logon user.
-         */
-        logonUser?: string;
-        /**
-         * Bookmark name.
-         */
-        name: string;
-        /**
-         * Remote port.
-         */
-        port: number;
-        /**
-         * An arbitrary string which identifies the RDP source.
-         */
-        preconnectionBlob?: string;
-        /**
-         * The numeric ID of the RDP source (0-2147483648).
-         */
-        preconnectionId: number;
-        /**
-         * Remote port (0 - 65535).
-         */
-        remotePort: number;
-        /**
-         * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
-         */
-        restrictedAdmin: string;
-        /**
-         * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
-         */
-        security: string;
-        /**
-         * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
-         */
-        sendPreconnectionId: string;
-        /**
-         * Server side keyboard layout.
-         */
-        serverLayout: string;
-        /**
-         * Enable/disable showing of status window. Valid values: `enable`, `disable`.
-         */
-        showStatusWindow: string;
-        /**
-         * Single Sign-On. Valid values: `disable`, `static`, `auto`.
-         */
-        sso: string;
-        /**
-         * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
-         */
-        ssoCredential: string;
-        /**
-         * Single sign-on credentials are only sent once to remote server. Valid values: `enable`, `disable`.
-         */
-        ssoCredentialSentOnce: string;
-        /**
-         * SSO password.
-         */
-        ssoPassword?: string;
-        /**
-         * SSO user name.
-         */
-        ssoUsername?: string;
-        /**
-         * URL parameter.
-         */
-        url?: string;
-        /**
-         * Screen width (range from 640 - 65535, default = 1024).
-         */
-        width: number;
-    }
-
-    export interface UsergroupbookmarkBookmarkFormData {
-        /**
-         * Name.
-         */
-        name: string;
-        /**
-         * Value.
-         */
-        value?: string;
-    }
-
 }
 
 export namespace waf {
@@ -30848,481 +31072,6 @@ export namespace wanopt {
 
 }
 
-export namespace webfilter {
-    export interface ContentEntry {
-        /**
-         * Block or exempt word when a match is found. Valid values: `block`, `exempt`.
-         */
-        action: string;
-        /**
-         * Language of banned word. Valid values: `western`, `simch`, `trach`, `japanese`, `korean`, `french`, `thai`, `spanish`, `cyrillic`.
-         */
-        lang: string;
-        /**
-         * Banned word.
-         */
-        name: string;
-        /**
-         * Banned word pattern type: wildcard pattern or Perl regular expression. Valid values: `wildcard`, `regexp`.
-         */
-        patternType: string;
-        /**
-         * Score, to be applied every time the word appears on a web page (0 - 4294967295, default = 10).
-         */
-        score: number;
-        /**
-         * Enable/disable banned word. Valid values: `enable`, `disable`.
-         */
-        status: string;
-    }
-
-    export interface ContentheaderEntry {
-        /**
-         * Action to take for this content type. Valid values: `block`, `allow`, `exempt`.
-         */
-        action: string;
-        /**
-         * Categories that this content type applies to.
-         */
-        category: string;
-        /**
-         * Content type (regular expression).
-         */
-        pattern: string;
-    }
-
-    export interface ProfileAntiphish {
-        /**
-         * Authentication methods. Valid values: `domain-controller`, `ldap`.
-         */
-        authentication: string;
-        /**
-         * Enable/disable checking of HTTP Basic Auth field for known credentials. Valid values: `enable`, `disable`.
-         */
-        checkBasicAuth: string;
-        /**
-         * Enable/disable checking of GET URI parameters for known credentials. Valid values: `enable`, `disable`.
-         */
-        checkUri: string;
-        /**
-         * Enable/disable acting only on valid username credentials. Action will be taken for valid usernames regardless of password validity. Valid values: `enable`, `disable`.
-         */
-        checkUsernameOnly: string;
-        /**
-         * Custom username and password regex patterns. The structure of `customPatterns` block is documented below.
-         */
-        customPatterns?: outputs.webfilter.ProfileAntiphishCustomPattern[];
-        /**
-         * Action to be taken when there is no matching rule. Valid values: `exempt`, `log`, `block`.
-         */
-        defaultAction: string;
-        /**
-         * Domain for which to verify received credentials against.
-         */
-        domainController: string;
-        /**
-         * AntiPhishing entries. The structure of `inspectionEntries` block is documented below.
-         */
-        inspectionEntries?: outputs.webfilter.ProfileAntiphishInspectionEntry[];
-        /**
-         * LDAP server for which to verify received credentials against.
-         */
-        ldap: string;
-        /**
-         * Maximum size of a POST body to check for credentials.
-         */
-        maxBodyLen: number;
-        /**
-         * Toggle AntiPhishing functionality. Valid values: `enable`, `disable`.
-         */
-        status: string;
-    }
-
-    export interface ProfileAntiphishCustomPattern {
-        /**
-         * Category that the pattern matches. Valid values: `username`, `password`.
-         */
-        category: string;
-        /**
-         * Target pattern.
-         */
-        pattern: string;
-        /**
-         * Pattern will be treated either as a regex pattern or literal string. Valid values: `regex`, `literal`.
-         */
-        type: string;
-    }
-
-    export interface ProfileAntiphishInspectionEntry {
-        /**
-         * Action to be taken upon an AntiPhishing match. Valid values: `exempt`, `log`, `block`.
-         */
-        action: string;
-        /**
-         * FortiGuard category to match.
-         */
-        fortiguardCategory: string;
-        /**
-         * Inspection target name.
-         */
-        name: string;
-    }
-
-    export interface ProfileFileFilter {
-        /**
-         * File filter entries. The structure of `entries` block is documented below.
-         */
-        entries?: outputs.webfilter.ProfileFileFilterEntry[];
-        /**
-         * Enable/disable file filter logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Enable/disable file filter archive contents scan. Valid values: `enable`, `disable`.
-         */
-        scanArchiveContents: string;
-        /**
-         * Enable/disable file filter. Valid values: `enable`, `disable`.
-         */
-        status: string;
-    }
-
-    export interface ProfileFileFilterEntry {
-        /**
-         * Action taken for matched file. Valid values: `log`, `block`.
-         */
-        action: string;
-        /**
-         * Comment.
-         */
-        comment?: string;
-        /**
-         * Match files transmitted in the session's originating or reply direction. Valid values: `incoming`, `outgoing`, `any`.
-         */
-        direction: string;
-        /**
-         * Select file type. The structure of `fileType` block is documented below.
-         */
-        fileTypes?: outputs.webfilter.ProfileFileFilterEntryFileType[];
-        /**
-         * Add a file filter.
-         */
-        filter: string;
-        /**
-         * Match password-protected files. Valid values: `yes`, `any`.
-         */
-        passwordProtected: string;
-        /**
-         * Protocols to apply with. Valid values: `http`, `ftp`.
-         */
-        protocol: string;
-    }
-
-    export interface ProfileFileFilterEntryFileType {
-        /**
-         * File type name.
-         */
-        name: string;
-    }
-
-    export interface ProfileFtgdWf {
-        /**
-         * Do not stop quota for these categories.
-         */
-        exemptQuota: string;
-        /**
-         * FortiGuard filters. The structure of `filters` block is documented below.
-         */
-        filters?: outputs.webfilter.ProfileFtgdWfFilter[];
-        /**
-         * Maximum FortiGuard quota used by single page view in seconds (excludes streams).
-         */
-        maxQuotaTimeout: number;
-        /**
-         * Options for FortiGuard Web Filter. Valid values: `error-allow`, `rate-server-ip`, `connect-request-bypass`, `ftgd-disable`.
-         */
-        options: string;
-        /**
-         * Allow web filter profile overrides.
-         */
-        ovrd: string;
-        /**
-         * FortiGuard traffic quota settings. The structure of `quota` block is documented below.
-         */
-        quotas?: outputs.webfilter.ProfileFtgdWfQuota[];
-        /**
-         * Enable/disable rating CRL by URL. Valid values: `disable`, `enable`.
-         */
-        rateCrlUrls: string;
-        /**
-         * Enable/disable rating CSS by URL. Valid values: `disable`, `enable`.
-         */
-        rateCssUrls: string;
-        /**
-         * Enable/disable rating images by URL. Valid values: `disable`, `enable`.
-         */
-        rateImageUrls: string;
-        /**
-         * Enable/disable rating JavaScript by URL. Valid values: `disable`, `enable`.
-         */
-        rateJavascriptUrls: string;
-    }
-
-    export interface ProfileFtgdWfFilter {
-        /**
-         * Action to take for matches. Valid values: `block`, `authenticate`, `monitor`, `warning`.
-         */
-        action: string;
-        /**
-         * Groups with permission to authenticate. The structure of `authUsrGrp` block is documented below.
-         */
-        authUsrGrps?: outputs.webfilter.ProfileFtgdWfFilterAuthUsrGrp[];
-        /**
-         * Categories and groups the filter examines.
-         */
-        category: number;
-        /**
-         * ID number.
-         */
-        id: number;
-        /**
-         * Enable/disable logging. Valid values: `enable`, `disable`.
-         */
-        log: string;
-        /**
-         * Override replacement message.
-         */
-        overrideReplacemsg: string;
-        /**
-         * Duration of warnings.
-         */
-        warnDuration: string;
-        /**
-         * Re-display warning after closing browser or after a timeout. Valid values: `session`, `timeout`.
-         */
-        warningDurationType: string;
-        /**
-         * Warning prompts in each category or each domain. Valid values: `per-domain`, `per-category`.
-         */
-        warningPrompt: string;
-    }
-
-    export interface ProfileFtgdWfFilterAuthUsrGrp {
-        /**
-         * User group name.
-         */
-        name: string;
-    }
-
-    export interface ProfileFtgdWfQuota {
-        /**
-         * FortiGuard categories to apply quota to (category action must be set to monitor).
-         */
-        category: string;
-        /**
-         * Duration of quota.
-         */
-        duration: string;
-        /**
-         * ID number.
-         */
-        id: number;
-        /**
-         * Override replacement message.
-         */
-        overrideReplacemsg: string;
-        /**
-         * Quota type. Valid values: `time`, `traffic`.
-         */
-        type: string;
-        /**
-         * Traffic quota unit of measurement. Valid values: `B`, `KB`, `MB`, `GB`.
-         */
-        unit: string;
-        /**
-         * Traffic quota value.
-         */
-        value: number;
-    }
-
-    export interface ProfileOverride {
-        /**
-         * Allow/deny browser-based (cookie) overrides. Valid values: `allow`, `deny`.
-         */
-        ovrdCookie: string;
-        /**
-         * Override duration.
-         */
-        ovrdDur: string;
-        /**
-         * Override duration mode. Valid values: `constant`, `ask`.
-         */
-        ovrdDurMode: string;
-        /**
-         * Override scope. Valid values: `user`, `user-group`, `ip`, `browser`, `ask`.
-         */
-        ovrdScope: string;
-        /**
-         * User groups with permission to use the override. The structure of `ovrdUserGroup` block is documented below.
-         */
-        ovrdUserGroups?: outputs.webfilter.ProfileOverrideOvrdUserGroup[];
-        /**
-         * Profile attribute to retrieve from the RADIUS server. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
-         */
-        profileAttribute: string;
-        /**
-         * Override profile type. Valid values: `list`, `radius`.
-         */
-        profileType: string;
-        /**
-         * Web filter profile with permission to create overrides. The structure of `profile` block is documented below.
-         */
-        profiles?: outputs.webfilter.ProfileOverrideProfile[];
-    }
-
-    export interface ProfileOverrideOvrdUserGroup {
-        /**
-         * User group name.
-         */
-        name: string;
-    }
-
-    export interface ProfileOverrideProfile {
-        /**
-         * Web profile.
-         */
-        name: string;
-    }
-
-    export interface ProfileWeb {
-        /**
-         * FortiGuard allowlist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
-         */
-        allowlist: string;
-        /**
-         * Enable/disable automatic addition of URLs detected by FortiSandbox to blacklist. Valid values: `enable`, `disable`.
-         */
-        blacklist: string;
-        /**
-         * Enable/disable automatic addition of URLs detected by FortiSandbox to blocklist. Valid values: `enable`, `disable`.
-         */
-        blocklist: string;
-        /**
-         * Banned word table ID.
-         */
-        bwordTable: number;
-        /**
-         * Banned word score threshold.
-         */
-        bwordThreshold: number;
-        /**
-         * Content header list.
-         */
-        contentHeaderList: number;
-        /**
-         * Search keywords to log when match is found. The structure of `keywordMatch` block is documented below.
-         */
-        keywordMatches?: outputs.webfilter.ProfileWebKeywordMatch[];
-        /**
-         * Enable/disable logging all search phrases. Valid values: `enable`, `disable`.
-         */
-        logSearch: string;
-        /**
-         * Safe search type. Valid values: `url`, `header`.
-         */
-        safeSearch: string;
-        /**
-         * URL filter table ID.
-         */
-        urlfilterTable: number;
-        /**
-         * Set Vimeo-restrict ("7" = don't show mature content, "134" = don't show unrated and mature content). A value of cookie "contentRating".
-         */
-        vimeoRestrict: string;
-        /**
-         * FortiGuard whitelist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
-         */
-        whitelist: string;
-        /**
-         * YouTube EDU filter level. Valid values: `none`, `strict`, `moderate`.
-         */
-        youtubeRestrict: string;
-    }
-
-    export interface ProfileWebKeywordMatch {
-        /**
-         * Pattern/keyword to search for.
-         */
-        pattern: string;
-    }
-
-    export interface ProfileWispServer {
-        /**
-         * Server name.
-         */
-        name: string;
-    }
-
-    export interface ProfileYoutubeChannelFilter {
-        /**
-         * YouTube channel ID to be filtered.
-         */
-        channelId: string;
-        /**
-         * Comment.
-         */
-        comment?: string;
-        /**
-         * ID.
-         */
-        id: number;
-    }
-
-    export interface UrlfilterEntry {
-        /**
-         * Action to take for URL filter matches. Valid values: `exempt`, `block`, `allow`, `monitor`.
-         */
-        action: string;
-        /**
-         * Action to take for AntiPhishing matches. Valid values: `block`, `log`.
-         */
-        antiphishAction: string;
-        /**
-         * Resolve IPv4 address, IPv6 address, or both from DNS server. Valid values: `ipv4`, `ipv6`, `both`.
-         */
-        dnsAddressFamily: string;
-        /**
-         * If action is set to exempt, select the security profile operations that exempt URLs skip. Separate multiple options with a space.
-         */
-        exempt: string;
-        /**
-         * Id.
-         */
-        id: number;
-        /**
-         * Referrer host name.
-         */
-        referrerHost: string;
-        /**
-         * Enable/disable this URL filter. Valid values: `enable`, `disable`.
-         */
-        status: string;
-        /**
-         * Filter type (simple, regex, or wildcard). Valid values: `simple`, `regex`, `wildcard`.
-         */
-        type: string;
-        /**
-         * URL to be filtered.
-         */
-        url: string;
-        /**
-         * Web proxy profile.
-         */
-        webProxyProfile: string;
-    }
-
-}
-
 export namespace webproxy {
     export interface ExplicitPacPolicy {
         /**
@@ -31376,8 +31125,6 @@ export namespace webproxy {
     export interface ExplicitPacPolicySrcaddr6 {
         /**
          * Address name.
-         *
-         * The `srcaddr6` block supports:
          */
         name: string;
     }
@@ -31403,8 +31150,6 @@ export namespace webproxy {
     export interface GlobalLearnClientIpSrcaddr6 {
         /**
          * Address name.
-         *
-         * The `learnClientIpSrcaddr6` block supports:
          */
         name: string;
     }
@@ -32025,7 +31770,7 @@ export namespace wirelesscontroller {
 
     export interface WtpRadio1 {
         /**
-         * Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh: number;
         /**
@@ -32033,7 +31778,7 @@ export namespace wirelesscontroller {
          */
         autoPowerLevel: string;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow: number;
         /**
@@ -32041,7 +31786,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget: string;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 4 operates on.
          */
         band: string;
         /**
@@ -32118,7 +31863,7 @@ export namespace wirelesscontroller {
 
     export interface WtpRadio2 {
         /**
-         * Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh: number;
         /**
@@ -32126,7 +31871,7 @@ export namespace wirelesscontroller {
          */
         autoPowerLevel: string;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow: number;
         /**
@@ -32134,7 +31879,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget: string;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 4 operates on.
          */
         band: string;
         /**
@@ -32211,7 +31956,7 @@ export namespace wirelesscontroller {
 
     export interface WtpRadio3 {
         /**
-         * Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh: number;
         /**
@@ -32219,7 +31964,7 @@ export namespace wirelesscontroller {
          */
         autoPowerLevel: string;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow: number;
         /**
@@ -32227,7 +31972,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget: string;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 4 operates on.
          */
         band: string;
         /**
@@ -32300,7 +32045,7 @@ export namespace wirelesscontroller {
 
     export interface WtpRadio4 {
         /**
-         * Automatic transmission power high limit in decibels (dB) of the measured power referenced to one milliwatt (mW), or dBm (10 - 17 dBm, default = 17).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh: number;
         /**
@@ -32308,7 +32053,7 @@ export namespace wirelesscontroller {
          */
         autoPowerLevel: string;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow: number;
         /**
@@ -32316,7 +32061,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget: string;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 4 operates on.
          */
         band: string;
         /**
@@ -32717,15 +32462,15 @@ export namespace wirelesscontroller {
          */
         arrpProfile: string;
         /**
-         * Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh: number;
         /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
          */
         autoPowerLevel: string;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow: number;
         /**
@@ -32733,7 +32478,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget: string;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 3 operates on.
          */
         band: string;
         /**
@@ -32769,7 +32514,7 @@ export namespace wirelesscontroller {
          */
         callCapacity: number;
         /**
-         * Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+         * Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
          */
         channelBonding: string;
         /**
@@ -32797,7 +32542,7 @@ export namespace wirelesscontroller {
          */
         drmaSensitivity: string;
         /**
-         * DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+         * Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
          */
         dtim: number;
         /**
@@ -32825,7 +32570,7 @@ export namespace wirelesscontroller {
          */
         maxDistance: number;
         /**
-         * Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+         * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode: string;
         /**
@@ -33022,15 +32767,15 @@ export namespace wirelesscontroller {
          */
         arrpProfile: string;
         /**
-         * Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh: number;
         /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
          */
         autoPowerLevel: string;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow: number;
         /**
@@ -33038,7 +32783,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget: string;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 3 operates on.
          */
         band: string;
         /**
@@ -33074,7 +32819,7 @@ export namespace wirelesscontroller {
          */
         callCapacity: number;
         /**
-         * Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+         * Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
          */
         channelBonding: string;
         /**
@@ -33102,7 +32847,7 @@ export namespace wirelesscontroller {
          */
         drmaSensitivity: string;
         /**
-         * DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+         * Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
          */
         dtim: number;
         /**
@@ -33130,7 +32875,7 @@ export namespace wirelesscontroller {
          */
         maxDistance: number;
         /**
-         * Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+         * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode: string;
         /**
@@ -33327,15 +33072,15 @@ export namespace wirelesscontroller {
          */
         arrpProfile: string;
         /**
-         * Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh: number;
         /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
          */
         autoPowerLevel: string;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow: number;
         /**
@@ -33343,7 +33088,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget: string;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 3 operates on.
          */
         band: string;
         /**
@@ -33379,7 +33124,7 @@ export namespace wirelesscontroller {
          */
         callCapacity: number;
         /**
-         * Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+         * Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
          */
         channelBonding: string;
         /**
@@ -33407,7 +33152,7 @@ export namespace wirelesscontroller {
          */
         drmaSensitivity: string;
         /**
-         * DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+         * Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
          */
         dtim: number;
         /**
@@ -33435,7 +33180,7 @@ export namespace wirelesscontroller {
          */
         maxDistance: number;
         /**
-         * Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+         * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode: string;
         /**
@@ -33628,15 +33373,15 @@ export namespace wirelesscontroller {
          */
         arrpProfile: string;
         /**
-         * Automatic transmit power high limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerHigh: number;
         /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = disable). Valid values: `enable`, `disable`.
+         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
          */
         autoPowerLevel: string;
         /**
-         * Automatic transmission power low limit in dBm (the actual range of transmit power depends on the AP platform type).
+         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
          */
         autoPowerLow: number;
         /**
@@ -33644,7 +33389,7 @@ export namespace wirelesscontroller {
          */
         autoPowerTarget: string;
         /**
-         * WiFi band that Radio 1 operates on.
+         * WiFi band that Radio 3 operates on.
          */
         band: string;
         /**
@@ -33680,7 +33425,7 @@ export namespace wirelesscontroller {
          */
         callCapacity: number;
         /**
-         * Channel bandwidth: 80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence.
+         * Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
          */
         channelBonding: string;
         /**
@@ -33708,7 +33453,7 @@ export namespace wirelesscontroller {
          */
         drmaSensitivity: string;
         /**
-         * DTIM interval. The frequency to transmit Delivery Traffic Indication Message (or Map) (DTIM) messages (1 - 255, default = 1). Set higher to save client battery life.
+         * Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
          */
         dtim: number;
         /**
@@ -33736,7 +33481,7 @@ export namespace wirelesscontroller {
          */
         maxDistance: number;
         /**
-         * Configure operation mode of 5G radios (default = single-5G). Valid values: `single-5G`, `dual-5G`.
+         * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode: string;
         /**
@@ -33892,282 +33637,281 @@ export namespace wirelesscontroller {
         id: number;
     }
 
-}
+    export namespace hotspot20 {
+        export interface Anqp3gppcellularMccMncList {
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Mobile country code.
+             */
+            mcc: string;
+            /**
+             * Mobile network code.
+             */
+            mnc: string;
+        }
 
-export namespace wirelesscontrollerhotspot20 {
-    export interface Anqp3gppcellularMccMncList {
-        /**
-         * ID.
-         */
-        id: number;
-        /**
-         * Mobile country code.
-         */
-        mcc: string;
-        /**
-         * Mobile network code.
-         */
-        mnc: string;
+        export interface AnqpnairealmNaiList {
+            /**
+             * EAP Methods. The structure of `eapMethod` block is documented below.
+             */
+            eapMethods?: outputs.wirelesscontroller.hotspot20.AnqpnairealmNaiListEapMethod[];
+            /**
+             * Enable/disable format in accordance with IETF RFC 4282. Valid values: `disable`, `enable`.
+             */
+            encoding: string;
+            /**
+             * Configure NAI realms (delimited by a semi-colon character).
+             */
+            naiRealm: string;
+            /**
+             * NAI realm name.
+             */
+            name: string;
+        }
+
+        export interface AnqpnairealmNaiListEapMethod {
+            /**
+             * EAP auth param. The structure of `authParam` block is documented below.
+             */
+            authParams?: outputs.wirelesscontroller.hotspot20.AnqpnairealmNaiListEapMethodAuthParam[];
+            /**
+             * EAP method index.
+             */
+            index: number;
+            /**
+             * EAP method type. Valid values: `eap-identity`, `eap-md5`, `eap-tls`, `eap-ttls`, `eap-peap`, `eap-sim`, `eap-aka`, `eap-aka-prime`.
+             */
+            method: string;
+        }
+
+        export interface AnqpnairealmNaiListEapMethodAuthParam {
+            /**
+             * ID of authentication parameter. Valid values: `non-eap-inner-auth`, `inner-auth-eap`, `credential`, `tunneled-credential`.
+             */
+            id: string;
+            /**
+             * Param index.
+             */
+            index: number;
+            /**
+             * Value of authentication parameter. Valid values: `eap-identity`, `eap-md5`, `eap-tls`, `eap-ttls`, `eap-peap`, `eap-sim`, `eap-aka`, `eap-aka-prime`, `non-eap-pap`, `non-eap-chap`, `non-eap-mschap`, `non-eap-mschapv2`, `cred-sim`, `cred-usim`, `cred-nfc`, `cred-hardware-token`, `cred-softoken`, `cred-certificate`, `cred-user-pwd`, `cred-none`, `cred-vendor-specific`, `tun-cred-sim`, `tun-cred-usim`, `tun-cred-nfc`, `tun-cred-hardware-token`, `tun-cred-softoken`, `tun-cred-certificate`, `tun-cred-user-pwd`, `tun-cred-anonymous`, `tun-cred-vendor-specific`.
+             */
+            val: string;
+        }
+
+        export interface AnqproamingconsortiumOiList {
+            /**
+             * Comment.
+             */
+            comment: string;
+            /**
+             * OI index.
+             */
+            index: number;
+            /**
+             * Organization identifier.
+             */
+            oi: string;
+        }
+
+        export interface AnqpvenuenameValueList {
+            /**
+             * Value index.
+             */
+            index: number;
+            /**
+             * Language code.
+             */
+            lang: string;
+            /**
+             * Venue name value.
+             */
+            value: string;
+        }
+
+        export interface AnqpvenueurlValueList {
+            /**
+             * URL index.
+             */
+            index: number;
+            /**
+             * Venue number.
+             */
+            number: number;
+            /**
+             * Venue URL value.
+             */
+            value: string;
+        }
+
+        export interface H2qpadviceofchargeAocList {
+            /**
+             * NAI realm list name.
+             */
+            naiRealm: string;
+            /**
+             * NAI realm encoding.
+             */
+            naiRealmEncoding: string;
+            /**
+             * Advice of charge ID.
+             */
+            name: string;
+            /**
+             * Plan info. The structure of `planInfo` block is documented below.
+             */
+            planInfos?: outputs.wirelesscontroller.hotspot20.H2qpadviceofchargeAocListPlanInfo[];
+            /**
+             * Usage charge type. Valid values: `time-based`, `volume-based`, `time-and-volume-based`, `unlimited`.
+             */
+            type: string;
+        }
+
+        export interface H2qpadviceofchargeAocListPlanInfo {
+            /**
+             * Currency code.
+             */
+            currency: string;
+            /**
+             * Info file.
+             */
+            infoFile: string;
+            /**
+             * Languague code.
+             */
+            lang: string;
+            /**
+             * Plan name.
+             */
+            name: string;
+        }
+
+        export interface H2qpoperatornameValueList {
+            /**
+             * Value index.
+             */
+            index: number;
+            /**
+             * Language code.
+             */
+            lang: string;
+            /**
+             * Friendly name value.
+             */
+            value: string;
+        }
+
+        export interface H2qposuproviderFriendlyName {
+            /**
+             * OSU provider friendly name.
+             */
+            friendlyName: string;
+            /**
+             * OSU provider friendly name index.
+             */
+            index: number;
+            /**
+             * Language code.
+             */
+            lang: string;
+        }
+
+        export interface H2qposuproviderServiceDescription {
+            /**
+             * Language code.
+             */
+            lang: string;
+            /**
+             * Service description.
+             */
+            serviceDescription: string;
+            /**
+             * OSU service ID.
+             */
+            serviceId: number;
+        }
+
+        export interface H2qposuprovidernaiNaiList {
+            /**
+             * OSU NAI ID.
+             */
+            name: string;
+            /**
+             * OSU NAI.
+             */
+            osuNai: string;
+        }
+
+        export interface HsprofileOsuProvider {
+            /**
+             * OSU provider name.
+             */
+            name: string;
+        }
+
+        export interface IconIconList {
+            /**
+             * Icon file.
+             */
+            file: string;
+            /**
+             * Icon height.
+             */
+            height: number;
+            /**
+             * Language code.
+             */
+            lang: string;
+            /**
+             * Icon name.
+             */
+            name: string;
+            /**
+             * Icon type. Valid values: `bmp`, `gif`, `jpeg`, `png`, `tiff`.
+             */
+            type: string;
+            /**
+             * Icon width.
+             */
+            width: number;
+        }
+
+        export interface QosmapDscpExcept {
+            /**
+             * DSCP value.
+             */
+            dscp: number;
+            /**
+             * DSCP exception index.
+             */
+            index: number;
+            /**
+             * User priority.
+             */
+            up: number;
+        }
+
+        export interface QosmapDscpRange {
+            /**
+             * DSCP high value.
+             */
+            high: number;
+            /**
+             * DSCP range index.
+             */
+            index: number;
+            /**
+             * DSCP low value.
+             */
+            low: number;
+            /**
+             * User priority.
+             */
+            up: number;
+        }
+
     }
-
-    export interface AnqpnairealmNaiList {
-        /**
-         * EAP Methods. The structure of `eapMethod` block is documented below.
-         */
-        eapMethods?: outputs.wirelesscontrollerhotspot20.AnqpnairealmNaiListEapMethod[];
-        /**
-         * Enable/disable format in accordance with IETF RFC 4282. Valid values: `disable`, `enable`.
-         */
-        encoding: string;
-        /**
-         * Configure NAI realms (delimited by a semi-colon character).
-         */
-        naiRealm: string;
-        /**
-         * NAI realm name.
-         */
-        name: string;
-    }
-
-    export interface AnqpnairealmNaiListEapMethod {
-        /**
-         * EAP auth param. The structure of `authParam` block is documented below.
-         */
-        authParams?: outputs.wirelesscontrollerhotspot20.AnqpnairealmNaiListEapMethodAuthParam[];
-        /**
-         * EAP method index.
-         */
-        index: number;
-        /**
-         * EAP method type. Valid values: `eap-identity`, `eap-md5`, `eap-tls`, `eap-ttls`, `eap-peap`, `eap-sim`, `eap-aka`, `eap-aka-prime`.
-         */
-        method: string;
-    }
-
-    export interface AnqpnairealmNaiListEapMethodAuthParam {
-        /**
-         * ID of authentication parameter. Valid values: `non-eap-inner-auth`, `inner-auth-eap`, `credential`, `tunneled-credential`.
-         */
-        id: string;
-        /**
-         * Param index.
-         */
-        index: number;
-        /**
-         * Value of authentication parameter. Valid values: `eap-identity`, `eap-md5`, `eap-tls`, `eap-ttls`, `eap-peap`, `eap-sim`, `eap-aka`, `eap-aka-prime`, `non-eap-pap`, `non-eap-chap`, `non-eap-mschap`, `non-eap-mschapv2`, `cred-sim`, `cred-usim`, `cred-nfc`, `cred-hardware-token`, `cred-softoken`, `cred-certificate`, `cred-user-pwd`, `cred-none`, `cred-vendor-specific`, `tun-cred-sim`, `tun-cred-usim`, `tun-cred-nfc`, `tun-cred-hardware-token`, `tun-cred-softoken`, `tun-cred-certificate`, `tun-cred-user-pwd`, `tun-cred-anonymous`, `tun-cred-vendor-specific`.
-         */
-        val: string;
-    }
-
-    export interface AnqproamingconsortiumOiList {
-        /**
-         * Comment.
-         */
-        comment: string;
-        /**
-         * OI index.
-         */
-        index: number;
-        /**
-         * Organization identifier.
-         */
-        oi: string;
-    }
-
-    export interface AnqpvenuenameValueList {
-        /**
-         * Value index.
-         */
-        index: number;
-        /**
-         * Language code.
-         */
-        lang: string;
-        /**
-         * Venue name value.
-         */
-        value: string;
-    }
-
-    export interface AnqpvenueurlValueList {
-        /**
-         * URL index.
-         */
-        index: number;
-        /**
-         * Venue number.
-         */
-        number: number;
-        /**
-         * Venue URL value.
-         */
-        value: string;
-    }
-
-    export interface H2qpadviceofchargeAocList {
-        /**
-         * NAI realm list name.
-         */
-        naiRealm: string;
-        /**
-         * NAI realm encoding.
-         */
-        naiRealmEncoding: string;
-        /**
-         * Advice of charge ID.
-         */
-        name: string;
-        /**
-         * Plan info. The structure of `planInfo` block is documented below.
-         */
-        planInfos?: outputs.wirelesscontrollerhotspot20.H2qpadviceofchargeAocListPlanInfo[];
-        /**
-         * Usage charge type. Valid values: `time-based`, `volume-based`, `time-and-volume-based`, `unlimited`.
-         */
-        type: string;
-    }
-
-    export interface H2qpadviceofchargeAocListPlanInfo {
-        /**
-         * Currency code.
-         */
-        currency: string;
-        /**
-         * Info file.
-         */
-        infoFile: string;
-        /**
-         * Languague code.
-         */
-        lang: string;
-        /**
-         * Plan name.
-         */
-        name: string;
-    }
-
-    export interface H2qpoperatornameValueList {
-        /**
-         * Value index.
-         */
-        index: number;
-        /**
-         * Language code.
-         */
-        lang: string;
-        /**
-         * Friendly name value.
-         */
-        value: string;
-    }
-
-    export interface H2qposuproviderFriendlyName {
-        /**
-         * OSU provider friendly name.
-         */
-        friendlyName: string;
-        /**
-         * OSU provider friendly name index.
-         */
-        index: number;
-        /**
-         * Language code.
-         */
-        lang: string;
-    }
-
-    export interface H2qposuproviderServiceDescription {
-        /**
-         * Language code.
-         */
-        lang: string;
-        /**
-         * Service description.
-         */
-        serviceDescription: string;
-        /**
-         * OSU service ID.
-         */
-        serviceId: number;
-    }
-
-    export interface H2qposuprovidernaiNaiList {
-        /**
-         * OSU NAI ID.
-         */
-        name: string;
-        /**
-         * OSU NAI.
-         */
-        osuNai: string;
-    }
-
-    export interface HsprofileOsuProvider {
-        /**
-         * OSU provider name.
-         */
-        name: string;
-    }
-
-    export interface IconIconList {
-        /**
-         * Icon file.
-         */
-        file: string;
-        /**
-         * Icon height.
-         */
-        height: number;
-        /**
-         * Language code.
-         */
-        lang: string;
-        /**
-         * Icon name.
-         */
-        name: string;
-        /**
-         * Icon type. Valid values: `bmp`, `gif`, `jpeg`, `png`, `tiff`.
-         */
-        type: string;
-        /**
-         * Icon width.
-         */
-        width: number;
-    }
-
-    export interface QosmapDscpExcept {
-        /**
-         * DSCP value.
-         */
-        dscp: number;
-        /**
-         * DSCP exception index.
-         */
-        index: number;
-        /**
-         * User priority.
-         */
-        up: number;
-    }
-
-    export interface QosmapDscpRange {
-        /**
-         * DSCP high value.
-         */
-        high: number;
-        /**
-         * DSCP range index.
-         */
-        index: number;
-        /**
-         * DSCP low value.
-         */
-        low: number;
-        /**
-         * User priority.
-         */
-        up: number;
-    }
-
 }

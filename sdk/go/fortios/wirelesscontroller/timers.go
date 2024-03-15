@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // Configure CAPWAP timers.
 //
 // ## Import
 //
-// # WirelessController Timers can be imported using any of these accepted formats
+// WirelessController Timers can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/timers:Timers labelname WirelessControllerTimers
-//
+// $ pulumi import fortios:wirelesscontroller/timers:Timers labelname WirelessControllerTimers
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:wirelesscontroller/timers:Timers labelname WirelessControllerTimers
-//
+// $ pulumi import fortios:wirelesscontroller/timers:Timers labelname WirelessControllerTimers
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Timers struct {
 	pulumi.CustomResourceState
 
@@ -85,7 +84,7 @@ func NewTimers(ctx *pulumi.Context,
 		args = &TimersArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Timers
 	err := ctx.RegisterResource("fortios:wirelesscontroller/timers:Timers", name, args, &resource, opts...)
 	if err != nil {

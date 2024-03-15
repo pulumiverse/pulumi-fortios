@@ -20,7 +20,7 @@ class CustomcommandArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Customcommand resource.
-        :param pulumi.Input[str] command: String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
+        :param pulumi.Input[str] command: String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
         :param pulumi.Input[str] command_name: Command name called by the FortiGate switch controller in the execute command.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -37,7 +37,7 @@ class CustomcommandArgs:
     @pulumi.getter
     def command(self) -> pulumi.Input[str]:
         """
-        String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
+        String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
         """
         return pulumi.get(self, "command")
 
@@ -91,7 +91,7 @@ class _CustomcommandState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Customcommand resources.
-        :param pulumi.Input[str] command: String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
+        :param pulumi.Input[str] command: String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
         :param pulumi.Input[str] command_name: Command name called by the FortiGate switch controller in the execute command.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -109,7 +109,7 @@ class _CustomcommandState:
     @pulumi.getter
     def command(self) -> Optional[pulumi.Input[str]]:
         """
-        String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
+        String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
         """
         return pulumi.get(self, "command")
 
@@ -169,6 +169,7 @@ class Customcommand(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -177,26 +178,29 @@ class Customcommand(pulumi.CustomResource):
             command="ls",
             command_name="1")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SwitchController CustomCommand can be imported using any of these accepted formats
+        SwitchController CustomCommand can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:switchcontroller/customcommand:Customcommand labelname {{command_name}}
+        $ pulumi import fortios:switchcontroller/customcommand:Customcommand labelname {{command_name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:switchcontroller/customcommand:Customcommand labelname {{command_name}}
+        $ pulumi import fortios:switchcontroller/customcommand:Customcommand labelname {{command_name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] command: String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
+        :param pulumi.Input[str] command: String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
         :param pulumi.Input[str] command_name: Command name called by the FortiGate switch controller in the execute command.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -212,6 +216,7 @@ class Customcommand(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -220,22 +225,25 @@ class Customcommand(pulumi.CustomResource):
             command="ls",
             command_name="1")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        SwitchController CustomCommand can be imported using any of these accepted formats
+        SwitchController CustomCommand can be imported using any of these accepted formats:
 
         ```sh
-         $ pulumi import fortios:switchcontroller/customcommand:Customcommand labelname {{command_name}}
+        $ pulumi import fortios:switchcontroller/customcommand:Customcommand labelname {{command_name}}
         ```
 
-         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-         $ pulumi import fortios:switchcontroller/customcommand:Customcommand labelname {{command_name}}
+        $ pulumi import fortios:switchcontroller/customcommand:Customcommand labelname {{command_name}}
         ```
 
-         $ unset "FORTIOS_IMPORT_TABLE"
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param CustomcommandArgs args: The arguments to use to populate this resource's properties.
@@ -292,7 +300,7 @@ class Customcommand(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] command: String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
+        :param pulumi.Input[str] command: String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
         :param pulumi.Input[str] command_name: Command name called by the FortiGate switch controller in the execute command.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -311,7 +319,7 @@ class Customcommand(pulumi.CustomResource):
     @pulumi.getter
     def command(self) -> pulumi.Output[str]:
         """
-        String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
+        String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
         """
         return pulumi.get(self, "command")
 

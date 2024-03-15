@@ -9,12 +9,14 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // This resource supports installing devicemanager policy package from FortiManager to the related FortiGate
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,6 +41,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type DevicemanagerInstallPolicypackage struct {
 	pulumi.CustomResourceState
 
@@ -60,7 +63,7 @@ func NewDevicemanagerInstallPolicypackage(ctx *pulumi.Context,
 	if args.PackageName == nil {
 		return nil, errors.New("invalid value for required argument 'PackageName'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DevicemanagerInstallPolicypackage
 	err := ctx.RegisterResource("fortios:fmg/devicemanagerInstallPolicypackage:DevicemanagerInstallPolicypackage", name, args, &resource, opts...)
 	if err != nil {

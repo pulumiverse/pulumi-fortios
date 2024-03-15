@@ -8,29 +8,28 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
 // IP blacklist reason. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
-// # Firewall InternetServiceIpblReason can be imported using any of these accepted formats
+// Firewall InternetServiceIpblReason can be imported using any of these accepted formats:
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetserviceipblreason:Internetserviceipblreason labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetserviceipblreason:Internetserviceipblreason labelname {{fosid}}
 // ```
 //
-//	If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
-//
-//	$ pulumi import fortios:firewall/internetserviceipblreason:Internetserviceipblreason labelname {{fosid}}
-//
+// $ pulumi import fortios:firewall/internetserviceipblreason:Internetserviceipblreason labelname {{fosid}}
 // ```
 //
-//	$ unset "FORTIOS_IMPORT_TABLE"
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Internetserviceipblreason struct {
 	pulumi.CustomResourceState
 
@@ -49,7 +48,7 @@ func NewInternetserviceipblreason(ctx *pulumi.Context,
 		args = &InternetserviceipblreasonArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Internetserviceipblreason
 	err := ctx.RegisterResource("fortios:firewall/internetserviceipblreason:Internetserviceipblreason", name, args, &resource, opts...)
 	if err != nil {
