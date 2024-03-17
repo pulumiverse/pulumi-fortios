@@ -20,8 +20,8 @@ import (
 	_ "embed"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	"github.com/pulumiverse/pulumi-fortios/provider/pkg/version"
 	fortios "github.com/pulumiverse/pulumi-fortios/provider"
+	"github.com/pulumiverse/pulumi-fortios/provider/pkg/version"
 )
 
 //go:embed schema-embed.json
@@ -29,5 +29,4 @@ var pulumiSchema []byte
 
 func main() {
 	tfbridge.Main("fortios", version.Version, fortios.Provider(), pulumiSchema)
-	
 }

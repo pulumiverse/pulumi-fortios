@@ -1,4 +1,8 @@
 .pulumi/
 **/bin/
+**/dist
 node_modules/
-
+**/*-lock.json
+**/*-lock
+**/*.tf
+**/*terraform*

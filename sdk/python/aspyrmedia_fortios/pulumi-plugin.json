@@ -1,5 +1,0 @@
-{
-  "resource": true,
-  "name": "fortios",
-  "server": "https://github.com/aspyrmedia/pulumi-fortios/releases/download/v${VERSION}"
-}

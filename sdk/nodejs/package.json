@@ -1,7 +1,7 @@
 {
     "name": "@pulumiverse/fortios",
     "version": "${VERSION}",
-    "description": "A Pulumi package for creating and managing Fortios resources",
+    "description": "A Pulumi package for creating and managing Fortios resources. Based on terraform-provider-fortios: version v1.16.0",
     "keywords": [
         "pulumi",
         "fortios",
@@ -11,8 +11,7 @@
     "repository": "https://github.com/pulumiverse/pulumi-fortios",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "tsc",
-        "install": "node scripts/install-pulumi-plugin.js resource fortios ${VERSION}"
+        "build": "tsc"
     },
     "dependencies": {
         "@pulumi/pulumi": "^3.0.0"
