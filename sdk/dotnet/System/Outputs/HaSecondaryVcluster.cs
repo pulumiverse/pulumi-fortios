@@ -14,15 +14,45 @@ namespace Pulumiverse.Fortios.System.Outputs
     [OutputType]
     public sealed class HaSecondaryVcluster
     {
+        /// <summary>
+        /// Interfaces to check for port monitoring (or link failure).
+        /// </summary>
         public readonly string? Monitor;
+        /// <summary>
+        /// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        /// </summary>
         public readonly string? Override;
+        /// <summary>
+        /// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        /// </summary>
         public readonly int? OverrideWaitTime;
+        /// <summary>
+        /// Remote IP monitoring failover threshold (0 - 50).
+        /// </summary>
         public readonly int? PingserverFailoverThreshold;
+        /// <summary>
+        /// Interfaces to check for remote IP monitoring.
+        /// </summary>
         public readonly string? PingserverMonitorInterface;
+        /// <summary>
+        /// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        /// </summary>
         public readonly string? PingserverSecondaryForceReset;
+        /// <summary>
+        /// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        /// </summary>
         public readonly string? PingserverSlaveForceReset;
+        /// <summary>
+        /// Increase the priority to select the primary unit (0 - 255).
+        /// </summary>
         public readonly int? Priority;
+        /// <summary>
+        /// Cluster ID.
+        /// </summary>
         public readonly int? VclusterId;
+        /// <summary>
+        /// VDOMs in virtual cluster 2.
+        /// </summary>
         public readonly string? Vdom;
 
         [OutputConstructor]

@@ -80,6 +80,10 @@ export class Nacpolicy extends pulumi.CustomResource {
      */
     public readonly firewallAddress!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * NAC policy matching host.
      */
     public readonly host!: pulumi.Output<string>;
@@ -103,6 +107,10 @@ export class Nacpolicy extends pulumi.CustomResource {
      * NAC policy matching operating system.
      */
     public readonly os!: pulumi.Output<string>;
+    /**
+     * NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+     */
+    public readonly severities!: pulumi.Output<outputs.user.NacpolicySeverity[] | undefined>;
     /**
      * NAC policy matching source.
      */
@@ -179,12 +187,14 @@ export class Nacpolicy extends pulumi.CustomResource {
             resourceInputs["emsTag"] = state ? state.emsTag : undefined;
             resourceInputs["family"] = state ? state.family : undefined;
             resourceInputs["firewallAddress"] = state ? state.firewallAddress : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["hwVendor"] = state ? state.hwVendor : undefined;
             resourceInputs["hwVersion"] = state ? state.hwVersion : undefined;
             resourceInputs["mac"] = state ? state.mac : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["os"] = state ? state.os : undefined;
+            resourceInputs["severities"] = state ? state.severities : undefined;
             resourceInputs["src"] = state ? state.src : undefined;
             resourceInputs["ssidPolicy"] = state ? state.ssidPolicy : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -207,12 +217,14 @@ export class Nacpolicy extends pulumi.CustomResource {
             resourceInputs["emsTag"] = args ? args.emsTag : undefined;
             resourceInputs["family"] = args ? args.family : undefined;
             resourceInputs["firewallAddress"] = args ? args.firewallAddress : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["hwVendor"] = args ? args.hwVendor : undefined;
             resourceInputs["hwVersion"] = args ? args.hwVersion : undefined;
             resourceInputs["mac"] = args ? args.mac : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["os"] = args ? args.os : undefined;
+            resourceInputs["severities"] = args ? args.severities : undefined;
             resourceInputs["src"] = args ? args.src : undefined;
             resourceInputs["ssidPolicy"] = args ? args.ssidPolicy : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
@@ -262,6 +274,10 @@ export interface NacpolicyState {
      */
     firewallAddress?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * NAC policy matching host.
      */
     host?: pulumi.Input<string>;
@@ -285,6 +301,10 @@ export interface NacpolicyState {
      * NAC policy matching operating system.
      */
     os?: pulumi.Input<string>;
+    /**
+     * NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+     */
+    severities?: pulumi.Input<pulumi.Input<inputs.user.NacpolicySeverity>[]>;
     /**
      * NAC policy matching source.
      */
@@ -372,6 +392,10 @@ export interface NacpolicyArgs {
      */
     firewallAddress?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * NAC policy matching host.
      */
     host?: pulumi.Input<string>;
@@ -395,6 +419,10 @@ export interface NacpolicyArgs {
      * NAC policy matching operating system.
      */
     os?: pulumi.Input<string>;
+    /**
+     * NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+     */
+    severities?: pulumi.Input<pulumi.Input<inputs.user.NacpolicySeverity>[]>;
     /**
      * NAC policy matching source.
      */

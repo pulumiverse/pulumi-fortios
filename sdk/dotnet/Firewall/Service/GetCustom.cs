@@ -178,6 +178,10 @@ namespace Pulumiverse.Fortios.Firewall.Service
         /// Multiple UDP port ranges.
         /// </summary>
         public readonly string UdpPortrange;
+        /// <summary>
+        /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        /// </summary>
+        public readonly string Uuid;
         public readonly string? Vdomparam;
         /// <summary>
         /// Enable/disable the visibility of the service on the GUI.
@@ -240,6 +244,8 @@ namespace Pulumiverse.Fortios.Firewall.Service
 
             string udpPortrange,
 
+            string uuid,
+
             string? vdomparam,
 
             string visibility)
@@ -271,6 +277,7 @@ namespace Pulumiverse.Fortios.Firewall.Service
             TcpTimewaitTimer = tcpTimewaitTimer;
             UdpIdleTimer = udpIdleTimer;
             UdpPortrange = udpPortrange;
+            Uuid = uuid;
             Vdomparam = vdomparam;
             Visibility = visibility;
         }

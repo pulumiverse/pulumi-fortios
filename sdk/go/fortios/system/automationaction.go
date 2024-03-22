@@ -128,6 +128,8 @@ type Automationaction struct {
 	EmailTos AutomationactionEmailToArrayOutput `pulumi:"emailTos"`
 	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
 	ExecuteSecurityFabric pulumi.StringOutput `pulumi:"executeSecurityFabric"`
+	// Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
+	ForticareEmail pulumi.StringOutput `pulumi:"forticareEmail"`
 	// Google Cloud function name.
 	GcpFunction pulumi.StringOutput `pulumi:"gcpFunction"`
 	// Google Cloud function domain.
@@ -136,6 +138,8 @@ type Automationaction struct {
 	GcpFunctionRegion pulumi.StringOutput `pulumi:"gcpFunctionRegion"`
 	// Google Cloud Platform project name.
 	GcpProject pulumi.StringOutput `pulumi:"gcpProject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Request headers. The structure of `headers` block is documented below.
 	Headers AutomationactionHeaderArrayOutput `pulumi:"headers"`
 	// Request body (if necessary). Should be serialized json string.
@@ -289,6 +293,8 @@ type automationactionState struct {
 	EmailTos []AutomationactionEmailTo `pulumi:"emailTos"`
 	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
 	ExecuteSecurityFabric *string `pulumi:"executeSecurityFabric"`
+	// Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
+	ForticareEmail *string `pulumi:"forticareEmail"`
 	// Google Cloud function name.
 	GcpFunction *string `pulumi:"gcpFunction"`
 	// Google Cloud function domain.
@@ -297,6 +303,8 @@ type automationactionState struct {
 	GcpFunctionRegion *string `pulumi:"gcpFunctionRegion"`
 	// Google Cloud Platform project name.
 	GcpProject *string `pulumi:"gcpProject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Request headers. The structure of `headers` block is documented below.
 	Headers []AutomationactionHeader `pulumi:"headers"`
 	// Request body (if necessary). Should be serialized json string.
@@ -406,6 +414,8 @@ type AutomationactionState struct {
 	EmailTos AutomationactionEmailToArrayInput
 	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
 	ExecuteSecurityFabric pulumi.StringPtrInput
+	// Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
+	ForticareEmail pulumi.StringPtrInput
 	// Google Cloud function name.
 	GcpFunction pulumi.StringPtrInput
 	// Google Cloud function domain.
@@ -414,6 +424,8 @@ type AutomationactionState struct {
 	GcpFunctionRegion pulumi.StringPtrInput
 	// Google Cloud Platform project name.
 	GcpProject pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Request headers. The structure of `headers` block is documented below.
 	Headers AutomationactionHeaderArrayInput
 	// Request body (if necessary). Should be serialized json string.
@@ -527,6 +539,8 @@ type automationactionArgs struct {
 	EmailTos []AutomationactionEmailTo `pulumi:"emailTos"`
 	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
 	ExecuteSecurityFabric *string `pulumi:"executeSecurityFabric"`
+	// Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
+	ForticareEmail *string `pulumi:"forticareEmail"`
 	// Google Cloud function name.
 	GcpFunction *string `pulumi:"gcpFunction"`
 	// Google Cloud function domain.
@@ -535,6 +549,8 @@ type automationactionArgs struct {
 	GcpFunctionRegion *string `pulumi:"gcpFunctionRegion"`
 	// Google Cloud Platform project name.
 	GcpProject *string `pulumi:"gcpProject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Request headers. The structure of `headers` block is documented below.
 	Headers []AutomationactionHeader `pulumi:"headers"`
 	// Request body (if necessary). Should be serialized json string.
@@ -645,6 +661,8 @@ type AutomationactionArgs struct {
 	EmailTos AutomationactionEmailToArrayInput
 	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
 	ExecuteSecurityFabric pulumi.StringPtrInput
+	// Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
+	ForticareEmail pulumi.StringPtrInput
 	// Google Cloud function name.
 	GcpFunction pulumi.StringPtrInput
 	// Google Cloud function domain.
@@ -653,6 +671,8 @@ type AutomationactionArgs struct {
 	GcpFunctionRegion pulumi.StringPtrInput
 	// Google Cloud Platform project name.
 	GcpProject pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Request headers. The structure of `headers` block is documented below.
 	Headers AutomationactionHeaderArrayInput
 	// Request body (if necessary). Should be serialized json string.
@@ -938,6 +958,11 @@ func (o AutomationactionOutput) ExecuteSecurityFabric() pulumi.StringOutput {
 	return o.ApplyT(func(v *Automationaction) pulumi.StringOutput { return v.ExecuteSecurityFabric }).(pulumi.StringOutput)
 }
 
+// Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
+func (o AutomationactionOutput) ForticareEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v *Automationaction) pulumi.StringOutput { return v.ForticareEmail }).(pulumi.StringOutput)
+}
+
 // Google Cloud function name.
 func (o AutomationactionOutput) GcpFunction() pulumi.StringOutput {
 	return o.ApplyT(func(v *Automationaction) pulumi.StringOutput { return v.GcpFunction }).(pulumi.StringOutput)
@@ -956,6 +981,11 @@ func (o AutomationactionOutput) GcpFunctionRegion() pulumi.StringOutput {
 // Google Cloud Platform project name.
 func (o AutomationactionOutput) GcpProject() pulumi.StringOutput {
 	return o.ApplyT(func(v *Automationaction) pulumi.StringOutput { return v.GcpProject }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o AutomationactionOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Automationaction) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Request headers. The structure of `headers` block is documented below.

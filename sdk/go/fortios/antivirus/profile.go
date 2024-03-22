@@ -77,9 +77,9 @@ type Profile struct {
 	AnalyticsBlFiletype pulumi.IntOutput `pulumi:"analyticsBlFiletype"`
 	// Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
 	AnalyticsDb pulumi.StringOutput `pulumi:"analyticsDb"`
-	// Do not submit files matching this DLP file-pattern to FortiSandbox.
+	// Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
 	AnalyticsIgnoreFiletype pulumi.IntOutput `pulumi:"analyticsIgnoreFiletype"`
-	// Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+	// Maximum size of files that can be uploaded to FortiSandbox.
 	AnalyticsMaxUpload pulumi.IntOutput `pulumi:"analyticsMaxUpload"`
 	// Do not submit files matching this DLP file-pattern to FortiSandbox.
 	AnalyticsWlFiletype pulumi.IntOutput `pulumi:"analyticsWlFiletype"`
@@ -125,6 +125,8 @@ type Profile struct {
 	FtgdAnalytics pulumi.StringOutput `pulumi:"ftgdAnalytics"`
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
 	Ftp ProfileFtpOutput `pulumi:"ftp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure HTTP AntiVirus options. The structure of `http` block is documented below.
 	Http ProfileHttpOutput `pulumi:"http"`
 	// Configure IMAP AntiVirus options. The structure of `imap` block is documented below.
@@ -149,7 +151,7 @@ type Profile struct {
 	Pop3 ProfilePop3Output `pulumi:"pop3"`
 	// Replacement message group customized for this profile.
 	ReplacemsgGroup pulumi.StringOutput `pulumi:"replacemsgGroup"`
-	// Choose between full scan mode and quick scan mode.
+	// Configure scan mode (default or legacy).
 	ScanMode pulumi.StringOutput `pulumi:"scanMode"`
 	// Configure SMB AntiVirus options. The structure of `smb` block is documented below.
 	Smb ProfileSmbOutput `pulumi:"smb"`
@@ -197,9 +199,9 @@ type profileState struct {
 	AnalyticsBlFiletype *int `pulumi:"analyticsBlFiletype"`
 	// Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
 	AnalyticsDb *string `pulumi:"analyticsDb"`
-	// Do not submit files matching this DLP file-pattern to FortiSandbox.
+	// Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
 	AnalyticsIgnoreFiletype *int `pulumi:"analyticsIgnoreFiletype"`
-	// Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+	// Maximum size of files that can be uploaded to FortiSandbox.
 	AnalyticsMaxUpload *int `pulumi:"analyticsMaxUpload"`
 	// Do not submit files matching this DLP file-pattern to FortiSandbox.
 	AnalyticsWlFiletype *int `pulumi:"analyticsWlFiletype"`
@@ -245,6 +247,8 @@ type profileState struct {
 	FtgdAnalytics *string `pulumi:"ftgdAnalytics"`
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
 	Ftp *ProfileFtp `pulumi:"ftp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure HTTP AntiVirus options. The structure of `http` block is documented below.
 	Http *ProfileHttp `pulumi:"http"`
 	// Configure IMAP AntiVirus options. The structure of `imap` block is documented below.
@@ -269,7 +273,7 @@ type profileState struct {
 	Pop3 *ProfilePop3 `pulumi:"pop3"`
 	// Replacement message group customized for this profile.
 	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Choose between full scan mode and quick scan mode.
+	// Configure scan mode (default or legacy).
 	ScanMode *string `pulumi:"scanMode"`
 	// Configure SMB AntiVirus options. The structure of `smb` block is documented below.
 	Smb *ProfileSmb `pulumi:"smb"`
@@ -288,9 +292,9 @@ type ProfileState struct {
 	AnalyticsBlFiletype pulumi.IntPtrInput
 	// Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
 	AnalyticsDb pulumi.StringPtrInput
-	// Do not submit files matching this DLP file-pattern to FortiSandbox.
+	// Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
 	AnalyticsIgnoreFiletype pulumi.IntPtrInput
-	// Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+	// Maximum size of files that can be uploaded to FortiSandbox.
 	AnalyticsMaxUpload pulumi.IntPtrInput
 	// Do not submit files matching this DLP file-pattern to FortiSandbox.
 	AnalyticsWlFiletype pulumi.IntPtrInput
@@ -336,6 +340,8 @@ type ProfileState struct {
 	FtgdAnalytics pulumi.StringPtrInput
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
 	Ftp ProfileFtpPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure HTTP AntiVirus options. The structure of `http` block is documented below.
 	Http ProfileHttpPtrInput
 	// Configure IMAP AntiVirus options. The structure of `imap` block is documented below.
@@ -360,7 +366,7 @@ type ProfileState struct {
 	Pop3 ProfilePop3PtrInput
 	// Replacement message group customized for this profile.
 	ReplacemsgGroup pulumi.StringPtrInput
-	// Choose between full scan mode and quick scan mode.
+	// Configure scan mode (default or legacy).
 	ScanMode pulumi.StringPtrInput
 	// Configure SMB AntiVirus options. The structure of `smb` block is documented below.
 	Smb ProfileSmbPtrInput
@@ -383,9 +389,9 @@ type profileArgs struct {
 	AnalyticsBlFiletype *int `pulumi:"analyticsBlFiletype"`
 	// Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
 	AnalyticsDb *string `pulumi:"analyticsDb"`
-	// Do not submit files matching this DLP file-pattern to FortiSandbox.
+	// Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
 	AnalyticsIgnoreFiletype *int `pulumi:"analyticsIgnoreFiletype"`
-	// Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+	// Maximum size of files that can be uploaded to FortiSandbox.
 	AnalyticsMaxUpload *int `pulumi:"analyticsMaxUpload"`
 	// Do not submit files matching this DLP file-pattern to FortiSandbox.
 	AnalyticsWlFiletype *int `pulumi:"analyticsWlFiletype"`
@@ -431,6 +437,8 @@ type profileArgs struct {
 	FtgdAnalytics *string `pulumi:"ftgdAnalytics"`
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
 	Ftp *ProfileFtp `pulumi:"ftp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure HTTP AntiVirus options. The structure of `http` block is documented below.
 	Http *ProfileHttp `pulumi:"http"`
 	// Configure IMAP AntiVirus options. The structure of `imap` block is documented below.
@@ -455,7 +463,7 @@ type profileArgs struct {
 	Pop3 *ProfilePop3 `pulumi:"pop3"`
 	// Replacement message group customized for this profile.
 	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
-	// Choose between full scan mode and quick scan mode.
+	// Configure scan mode (default or legacy).
 	ScanMode *string `pulumi:"scanMode"`
 	// Configure SMB AntiVirus options. The structure of `smb` block is documented below.
 	Smb *ProfileSmb `pulumi:"smb"`
@@ -475,9 +483,9 @@ type ProfileArgs struct {
 	AnalyticsBlFiletype pulumi.IntPtrInput
 	// Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
 	AnalyticsDb pulumi.StringPtrInput
-	// Do not submit files matching this DLP file-pattern to FortiSandbox.
+	// Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
 	AnalyticsIgnoreFiletype pulumi.IntPtrInput
-	// Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+	// Maximum size of files that can be uploaded to FortiSandbox.
 	AnalyticsMaxUpload pulumi.IntPtrInput
 	// Do not submit files matching this DLP file-pattern to FortiSandbox.
 	AnalyticsWlFiletype pulumi.IntPtrInput
@@ -523,6 +531,8 @@ type ProfileArgs struct {
 	FtgdAnalytics pulumi.StringPtrInput
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
 	Ftp ProfileFtpPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure HTTP AntiVirus options. The structure of `http` block is documented below.
 	Http ProfileHttpPtrInput
 	// Configure IMAP AntiVirus options. The structure of `imap` block is documented below.
@@ -547,7 +557,7 @@ type ProfileArgs struct {
 	Pop3 ProfilePop3PtrInput
 	// Replacement message group customized for this profile.
 	ReplacemsgGroup pulumi.StringPtrInput
-	// Choose between full scan mode and quick scan mode.
+	// Configure scan mode (default or legacy).
 	ScanMode pulumi.StringPtrInput
 	// Configure SMB AntiVirus options. The structure of `smb` block is documented below.
 	Smb ProfileSmbPtrInput
@@ -661,12 +671,12 @@ func (o ProfileOutput) AnalyticsDb() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.AnalyticsDb }).(pulumi.StringOutput)
 }
 
-// Do not submit files matching this DLP file-pattern to FortiSandbox.
+// Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
 func (o ProfileOutput) AnalyticsIgnoreFiletype() pulumi.IntOutput {
 	return o.ApplyT(func(v *Profile) pulumi.IntOutput { return v.AnalyticsIgnoreFiletype }).(pulumi.IntOutput)
 }
 
-// Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+// Maximum size of files that can be uploaded to FortiSandbox.
 func (o ProfileOutput) AnalyticsMaxUpload() pulumi.IntOutput {
 	return o.ApplyT(func(v *Profile) pulumi.IntOutput { return v.AnalyticsMaxUpload }).(pulumi.IntOutput)
 }
@@ -781,6 +791,11 @@ func (o ProfileOutput) Ftp() ProfileFtpOutput {
 	return o.ApplyT(func(v *Profile) ProfileFtpOutput { return v.Ftp }).(ProfileFtpOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Configure HTTP AntiVirus options. The structure of `http` block is documented below.
 func (o ProfileOutput) Http() ProfileHttpOutput {
 	return o.ApplyT(func(v *Profile) ProfileHttpOutput { return v.Http }).(ProfileHttpOutput)
@@ -841,7 +856,7 @@ func (o ProfileOutput) ReplacemsgGroup() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.ReplacemsgGroup }).(pulumi.StringOutput)
 }
 
-// Choose between full scan mode and quick scan mode.
+// Configure scan mode (default or legacy).
 func (o ProfileOutput) ScanMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.ScanMode }).(pulumi.StringOutput)
 }

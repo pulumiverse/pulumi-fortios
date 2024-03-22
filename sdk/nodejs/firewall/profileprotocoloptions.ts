@@ -180,6 +180,10 @@ export class Profileprotocoloptions extends pulumi.CustomResource {
      */
     public readonly ftp!: pulumi.Output<outputs.firewall.ProfileprotocoloptionsFtp>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Configure HTTP protocol options. The structure of `http` block is documented below.
      */
     public readonly http!: pulumi.Output<outputs.firewall.ProfileprotocoloptionsHttp>;
@@ -254,6 +258,7 @@ export class Profileprotocoloptions extends pulumi.CustomResource {
             resourceInputs["dns"] = state ? state.dns : undefined;
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
             resourceInputs["ftp"] = state ? state.ftp : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["http"] = state ? state.http : undefined;
             resourceInputs["imap"] = state ? state.imap : undefined;
             resourceInputs["mailSignature"] = state ? state.mailSignature : undefined;
@@ -275,6 +280,7 @@ export class Profileprotocoloptions extends pulumi.CustomResource {
             resourceInputs["dns"] = args ? args.dns : undefined;
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
             resourceInputs["ftp"] = args ? args.ftp : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["http"] = args ? args.http : undefined;
             resourceInputs["imap"] = args ? args.imap : undefined;
             resourceInputs["mailSignature"] = args ? args.mailSignature : undefined;
@@ -319,6 +325,10 @@ export interface ProfileprotocoloptionsState {
      * Configure FTP protocol options. The structure of `ftp` block is documented below.
      */
     ftp?: pulumi.Input<inputs.firewall.ProfileprotocoloptionsFtp>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Configure HTTP protocol options. The structure of `http` block is documented below.
      */
@@ -401,6 +411,10 @@ export interface ProfileprotocoloptionsArgs {
      * Configure FTP protocol options. The structure of `ftp` block is documented below.
      */
     ftp?: pulumi.Input<inputs.firewall.ProfileprotocoloptionsFtp>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Configure HTTP protocol options. The structure of `http` block is documented below.
      */

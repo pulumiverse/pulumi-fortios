@@ -81,6 +81,14 @@ export class Rule extends pulumi.CustomResource {
      */
     public readonly comments!: pulumi.Output<string | undefined>;
     /**
+     * Depth to allow CORS access (default = 3).
+     */
+    public readonly corsDepth!: pulumi.Output<number>;
+    /**
+     * Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly corsStateful!: pulumi.Output<string>;
+    /**
      * Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
      */
     public readonly dstaddr6s!: pulumi.Output<outputs.authentication.RuleDstaddr6[] | undefined>;
@@ -93,6 +101,10 @@ export class Rule extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
      */
     public readonly ipBased!: pulumi.Output<string>;
@@ -101,7 +113,7 @@ export class Rule extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
+     * Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
      */
     public readonly protocol!: pulumi.Output<string>;
     /**
@@ -156,9 +168,12 @@ export class Rule extends pulumi.CustomResource {
             const state = argsOrState as RuleState | undefined;
             resourceInputs["activeAuthMethod"] = state ? state.activeAuthMethod : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["corsDepth"] = state ? state.corsDepth : undefined;
+            resourceInputs["corsStateful"] = state ? state.corsStateful : undefined;
             resourceInputs["dstaddr6s"] = state ? state.dstaddr6s : undefined;
             resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ipBased"] = state ? state.ipBased : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
@@ -175,9 +190,12 @@ export class Rule extends pulumi.CustomResource {
             const args = argsOrState as RuleArgs | undefined;
             resourceInputs["activeAuthMethod"] = args ? args.activeAuthMethod : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["corsDepth"] = args ? args.corsDepth : undefined;
+            resourceInputs["corsStateful"] = args ? args.corsStateful : undefined;
             resourceInputs["dstaddr6s"] = args ? args.dstaddr6s : undefined;
             resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ipBased"] = args ? args.ipBased : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
@@ -209,6 +227,14 @@ export interface RuleState {
      */
     comments?: pulumi.Input<string>;
     /**
+     * Depth to allow CORS access (default = 3).
+     */
+    corsDepth?: pulumi.Input<number>;
+    /**
+     * Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
+     */
+    corsStateful?: pulumi.Input<string>;
+    /**
      * Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
      */
     dstaddr6s?: pulumi.Input<pulumi.Input<inputs.authentication.RuleDstaddr6>[]>;
@@ -221,6 +247,10 @@ export interface RuleState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
      */
     ipBased?: pulumi.Input<string>;
@@ -229,7 +259,7 @@ export interface RuleState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
+     * Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
      */
     protocol?: pulumi.Input<string>;
     /**
@@ -283,6 +313,14 @@ export interface RuleArgs {
      */
     comments?: pulumi.Input<string>;
     /**
+     * Depth to allow CORS access (default = 3).
+     */
+    corsDepth?: pulumi.Input<number>;
+    /**
+     * Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
+     */
+    corsStateful?: pulumi.Input<string>;
+    /**
      * Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
      */
     dstaddr6s?: pulumi.Input<pulumi.Input<inputs.authentication.RuleDstaddr6>[]>;
@@ -295,6 +333,10 @@ export interface RuleArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
      */
     ipBased?: pulumi.Input<string>;
@@ -303,7 +345,7 @@ export interface RuleArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
+     * Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
      */
     protocol?: pulumi.Input<string>;
     /**

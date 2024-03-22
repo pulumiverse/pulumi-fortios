@@ -81,6 +81,8 @@ type Policy struct {
 	Fixedport pulumi.StringOutput `pulumi:"fixedport"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups PolicyFssoGroupArrayOutput `pulumi:"fssoGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups PolicyGroupArrayOutput `pulumi:"groups"`
 	// Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -297,6 +299,8 @@ type policyState struct {
 	Fixedport *string `pulumi:"fixedport"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups []PolicyFssoGroup `pulumi:"fssoGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups []PolicyGroup `pulumi:"groups"`
 	// Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -484,6 +488,8 @@ type PolicyState struct {
 	Fixedport pulumi.StringPtrInput
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups PolicyFssoGroupArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups PolicyGroupArrayInput
 	// Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -675,6 +681,8 @@ type policyArgs struct {
 	Fixedport *string `pulumi:"fixedport"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups []PolicyFssoGroup `pulumi:"fssoGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups []PolicyGroup `pulumi:"groups"`
 	// Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -863,6 +871,8 @@ type PolicyArgs struct {
 	Fixedport pulumi.StringPtrInput
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups PolicyFssoGroupArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups PolicyGroupArrayInput
 	// Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -1206,6 +1216,11 @@ func (o PolicyOutput) Fixedport() pulumi.StringOutput {
 // Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 func (o PolicyOutput) FssoGroups() PolicyFssoGroupArrayOutput {
 	return o.ApplyT(func(v *Policy) PolicyFssoGroupArrayOutput { return v.FssoGroups }).(PolicyFssoGroupArrayOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o PolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.

@@ -213,10 +213,12 @@ class ProfileSipArgs:
                  block_update: Optional[pulumi.Input[str]] = None,
                  bye_rate: Optional[pulumi.Input[int]] = None,
                  bye_rate_track: Optional[pulumi.Input[str]] = None,
+                 call_id_regex: Optional[pulumi.Input[str]] = None,
                  call_keepalive: Optional[pulumi.Input[int]] = None,
                  cancel_rate: Optional[pulumi.Input[int]] = None,
                  cancel_rate_track: Optional[pulumi.Input[str]] = None,
                  contact_fixup: Optional[pulumi.Input[str]] = None,
+                 content_type_regex: Optional[pulumi.Input[str]] = None,
                  hnt_restrict_source_ip: Optional[pulumi.Input[str]] = None,
                  hosted_nat_traversal: Optional[pulumi.Input[str]] = None,
                  info_rate: Optional[pulumi.Input[int]] = None,
@@ -327,10 +329,12 @@ class ProfileSipArgs:
         :param pulumi.Input[str] block_update: Enable/disable block UPDATE requests. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] bye_rate: BYE request rate limit (per second, per policy).
         :param pulumi.Input[str] bye_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        :param pulumi.Input[str] call_id_regex: Validate PCRE regular expression for Call-Id header value.
         :param pulumi.Input[int] call_keepalive: Continue tracking calls with no RTP for this many minutes.
         :param pulumi.Input[int] cancel_rate: CANCEL request rate limit (per second, per policy).
         :param pulumi.Input[str] cancel_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param pulumi.Input[str] contact_fixup: Fixup contact anyway even if contact's IP:port doesn't match session's IP:port. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] content_type_regex: Validate PCRE regular expression for Content-Type header value.
         :param pulumi.Input[str] hnt_restrict_source_ip: Enable/disable restrict RTP source IP to be the same as SIP source IP when HNT is enabled. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] hosted_nat_traversal: Hosted NAT Traversal (HNT). Valid values: `disable`, `enable`.
         :param pulumi.Input[int] info_rate: INFO request rate limit (per second, per policy).
@@ -462,6 +466,8 @@ class ProfileSipArgs:
             pulumi.set(__self__, "bye_rate", bye_rate)
         if bye_rate_track is not None:
             pulumi.set(__self__, "bye_rate_track", bye_rate_track)
+        if call_id_regex is not None:
+            pulumi.set(__self__, "call_id_regex", call_id_regex)
         if call_keepalive is not None:
             pulumi.set(__self__, "call_keepalive", call_keepalive)
         if cancel_rate is not None:
@@ -470,6 +476,8 @@ class ProfileSipArgs:
             pulumi.set(__self__, "cancel_rate_track", cancel_rate_track)
         if contact_fixup is not None:
             pulumi.set(__self__, "contact_fixup", contact_fixup)
+        if content_type_regex is not None:
+            pulumi.set(__self__, "content_type_regex", content_type_regex)
         if hnt_restrict_source_ip is not None:
             pulumi.set(__self__, "hnt_restrict_source_ip", hnt_restrict_source_ip)
         if hosted_nat_traversal is not None:
@@ -900,6 +908,18 @@ class ProfileSipArgs:
         pulumi.set(self, "bye_rate_track", value)
 
     @property
+    @pulumi.getter(name="callIdRegex")
+    def call_id_regex(self) -> Optional[pulumi.Input[str]]:
+        """
+        Validate PCRE regular expression for Call-Id header value.
+        """
+        return pulumi.get(self, "call_id_regex")
+
+    @call_id_regex.setter
+    def call_id_regex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "call_id_regex", value)
+
+    @property
     @pulumi.getter(name="callKeepalive")
     def call_keepalive(self) -> Optional[pulumi.Input[int]]:
         """
@@ -946,6 +966,18 @@ class ProfileSipArgs:
     @contact_fixup.setter
     def contact_fixup(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "contact_fixup", value)
+
+    @property
+    @pulumi.getter(name="contentTypeRegex")
+    def content_type_regex(self) -> Optional[pulumi.Input[str]]:
+        """
+        Validate PCRE regular expression for Content-Type header value.
+        """
+        return pulumi.get(self, "content_type_regex")
+
+    @content_type_regex.setter
+    def content_type_regex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "content_type_regex", value)
 
     @property
     @pulumi.getter(name="hntRestrictSourceIp")

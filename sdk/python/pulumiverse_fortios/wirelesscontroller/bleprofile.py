@@ -26,6 +26,12 @@ class BleprofileArgs:
                  major_id: Optional[pulumi.Input[int]] = None,
                  minor_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 scan_interval: Optional[pulumi.Input[int]] = None,
+                 scan_period: Optional[pulumi.Input[int]] = None,
+                 scan_threshold: Optional[pulumi.Input[str]] = None,
+                 scan_time: Optional[pulumi.Input[int]] = None,
+                 scan_type: Optional[pulumi.Input[str]] = None,
+                 scan_window: Optional[pulumi.Input[int]] = None,
                  txpower: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -42,6 +48,12 @@ class BleprofileArgs:
         :param pulumi.Input[int] major_id: Major ID.
         :param pulumi.Input[int] minor_id: Minor ID.
         :param pulumi.Input[str] name: Bluetooth Low Energy profile name.
+        :param pulumi.Input[int] scan_interval: Scan Interval (default = 50 msec).
+        :param pulumi.Input[int] scan_period: Scan Period (default = 4000 msec).
+        :param pulumi.Input[str] scan_threshold: Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+        :param pulumi.Input[int] scan_time: Scan Time (default = 1000 msec).
+        :param pulumi.Input[str] scan_type: Scan Type (default = active). Valid values: `active`, `passive`.
+        :param pulumi.Input[int] scan_window: Scan Windows (default = 50 msec).
         :param pulumi.Input[str] txpower: Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -69,6 +81,18 @@ class BleprofileArgs:
             pulumi.set(__self__, "minor_id", minor_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if scan_interval is not None:
+            pulumi.set(__self__, "scan_interval", scan_interval)
+        if scan_period is not None:
+            pulumi.set(__self__, "scan_period", scan_period)
+        if scan_threshold is not None:
+            pulumi.set(__self__, "scan_threshold", scan_threshold)
+        if scan_time is not None:
+            pulumi.set(__self__, "scan_time", scan_time)
+        if scan_type is not None:
+            pulumi.set(__self__, "scan_type", scan_type)
+        if scan_window is not None:
+            pulumi.set(__self__, "scan_window", scan_window)
         if txpower is not None:
             pulumi.set(__self__, "txpower", txpower)
         if vdomparam is not None:
@@ -217,6 +241,78 @@ class BleprofileArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="scanInterval")
+    def scan_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Scan Interval (default = 50 msec).
+        """
+        return pulumi.get(self, "scan_interval")
+
+    @scan_interval.setter
+    def scan_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_interval", value)
+
+    @property
+    @pulumi.getter(name="scanPeriod")
+    def scan_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Scan Period (default = 4000 msec).
+        """
+        return pulumi.get(self, "scan_period")
+
+    @scan_period.setter
+    def scan_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_period", value)
+
+    @property
+    @pulumi.getter(name="scanThreshold")
+    def scan_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+        """
+        return pulumi.get(self, "scan_threshold")
+
+    @scan_threshold.setter
+    def scan_threshold(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scan_threshold", value)
+
+    @property
+    @pulumi.getter(name="scanTime")
+    def scan_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        Scan Time (default = 1000 msec).
+        """
+        return pulumi.get(self, "scan_time")
+
+    @scan_time.setter
+    def scan_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_time", value)
+
+    @property
+    @pulumi.getter(name="scanType")
+    def scan_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Scan Type (default = active). Valid values: `active`, `passive`.
+        """
+        return pulumi.get(self, "scan_type")
+
+    @scan_type.setter
+    def scan_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scan_type", value)
+
+    @property
+    @pulumi.getter(name="scanWindow")
+    def scan_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        Scan Windows (default = 50 msec).
+        """
+        return pulumi.get(self, "scan_window")
+
+    @scan_window.setter
+    def scan_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_window", value)
 
     @property
     @pulumi.getter
@@ -258,6 +354,12 @@ class _BleprofileState:
                  major_id: Optional[pulumi.Input[int]] = None,
                  minor_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 scan_interval: Optional[pulumi.Input[int]] = None,
+                 scan_period: Optional[pulumi.Input[int]] = None,
+                 scan_threshold: Optional[pulumi.Input[str]] = None,
+                 scan_time: Optional[pulumi.Input[int]] = None,
+                 scan_type: Optional[pulumi.Input[str]] = None,
+                 scan_window: Optional[pulumi.Input[int]] = None,
                  txpower: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -274,6 +376,12 @@ class _BleprofileState:
         :param pulumi.Input[int] major_id: Major ID.
         :param pulumi.Input[int] minor_id: Minor ID.
         :param pulumi.Input[str] name: Bluetooth Low Energy profile name.
+        :param pulumi.Input[int] scan_interval: Scan Interval (default = 50 msec).
+        :param pulumi.Input[int] scan_period: Scan Period (default = 4000 msec).
+        :param pulumi.Input[str] scan_threshold: Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+        :param pulumi.Input[int] scan_time: Scan Time (default = 1000 msec).
+        :param pulumi.Input[str] scan_type: Scan Type (default = active). Valid values: `active`, `passive`.
+        :param pulumi.Input[int] scan_window: Scan Windows (default = 50 msec).
         :param pulumi.Input[str] txpower: Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -301,6 +409,18 @@ class _BleprofileState:
             pulumi.set(__self__, "minor_id", minor_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if scan_interval is not None:
+            pulumi.set(__self__, "scan_interval", scan_interval)
+        if scan_period is not None:
+            pulumi.set(__self__, "scan_period", scan_period)
+        if scan_threshold is not None:
+            pulumi.set(__self__, "scan_threshold", scan_threshold)
+        if scan_time is not None:
+            pulumi.set(__self__, "scan_time", scan_time)
+        if scan_type is not None:
+            pulumi.set(__self__, "scan_type", scan_type)
+        if scan_window is not None:
+            pulumi.set(__self__, "scan_window", scan_window)
         if txpower is not None:
             pulumi.set(__self__, "txpower", txpower)
         if vdomparam is not None:
@@ -449,6 +569,78 @@ class _BleprofileState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="scanInterval")
+    def scan_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Scan Interval (default = 50 msec).
+        """
+        return pulumi.get(self, "scan_interval")
+
+    @scan_interval.setter
+    def scan_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_interval", value)
+
+    @property
+    @pulumi.getter(name="scanPeriod")
+    def scan_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Scan Period (default = 4000 msec).
+        """
+        return pulumi.get(self, "scan_period")
+
+    @scan_period.setter
+    def scan_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_period", value)
+
+    @property
+    @pulumi.getter(name="scanThreshold")
+    def scan_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+        """
+        return pulumi.get(self, "scan_threshold")
+
+    @scan_threshold.setter
+    def scan_threshold(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scan_threshold", value)
+
+    @property
+    @pulumi.getter(name="scanTime")
+    def scan_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        Scan Time (default = 1000 msec).
+        """
+        return pulumi.get(self, "scan_time")
+
+    @scan_time.setter
+    def scan_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_time", value)
+
+    @property
+    @pulumi.getter(name="scanType")
+    def scan_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Scan Type (default = active). Valid values: `active`, `passive`.
+        """
+        return pulumi.get(self, "scan_type")
+
+    @scan_type.setter
+    def scan_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scan_type", value)
+
+    @property
+    @pulumi.getter(name="scanWindow")
+    def scan_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        Scan Windows (default = 50 msec).
+        """
+        return pulumi.get(self, "scan_window")
+
+    @scan_window.setter
+    def scan_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_window", value)
 
     @property
     @pulumi.getter
@@ -492,6 +684,12 @@ class Bleprofile(pulumi.CustomResource):
                  major_id: Optional[pulumi.Input[int]] = None,
                  minor_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 scan_interval: Optional[pulumi.Input[int]] = None,
+                 scan_period: Optional[pulumi.Input[int]] = None,
+                 scan_threshold: Optional[pulumi.Input[str]] = None,
+                 scan_time: Optional[pulumi.Input[int]] = None,
+                 scan_type: Optional[pulumi.Input[str]] = None,
+                 scan_window: Optional[pulumi.Input[int]] = None,
                  txpower: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -530,6 +728,12 @@ class Bleprofile(pulumi.CustomResource):
         :param pulumi.Input[int] major_id: Major ID.
         :param pulumi.Input[int] minor_id: Minor ID.
         :param pulumi.Input[str] name: Bluetooth Low Energy profile name.
+        :param pulumi.Input[int] scan_interval: Scan Interval (default = 50 msec).
+        :param pulumi.Input[int] scan_period: Scan Period (default = 4000 msec).
+        :param pulumi.Input[str] scan_threshold: Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+        :param pulumi.Input[int] scan_time: Scan Time (default = 1000 msec).
+        :param pulumi.Input[str] scan_type: Scan Type (default = active). Valid values: `active`, `passive`.
+        :param pulumi.Input[int] scan_window: Scan Windows (default = 50 msec).
         :param pulumi.Input[str] txpower: Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -587,6 +791,12 @@ class Bleprofile(pulumi.CustomResource):
                  major_id: Optional[pulumi.Input[int]] = None,
                  minor_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 scan_interval: Optional[pulumi.Input[int]] = None,
+                 scan_period: Optional[pulumi.Input[int]] = None,
+                 scan_threshold: Optional[pulumi.Input[str]] = None,
+                 scan_time: Optional[pulumi.Input[int]] = None,
+                 scan_type: Optional[pulumi.Input[str]] = None,
+                 scan_window: Optional[pulumi.Input[int]] = None,
                  txpower: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -610,6 +820,12 @@ class Bleprofile(pulumi.CustomResource):
             __props__.__dict__["major_id"] = major_id
             __props__.__dict__["minor_id"] = minor_id
             __props__.__dict__["name"] = name
+            __props__.__dict__["scan_interval"] = scan_interval
+            __props__.__dict__["scan_period"] = scan_period
+            __props__.__dict__["scan_threshold"] = scan_threshold
+            __props__.__dict__["scan_time"] = scan_time
+            __props__.__dict__["scan_type"] = scan_type
+            __props__.__dict__["scan_window"] = scan_window
             __props__.__dict__["txpower"] = txpower
             __props__.__dict__["vdomparam"] = vdomparam
         super(Bleprofile, __self__).__init__(
@@ -634,6 +850,12 @@ class Bleprofile(pulumi.CustomResource):
             major_id: Optional[pulumi.Input[int]] = None,
             minor_id: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            scan_interval: Optional[pulumi.Input[int]] = None,
+            scan_period: Optional[pulumi.Input[int]] = None,
+            scan_threshold: Optional[pulumi.Input[str]] = None,
+            scan_time: Optional[pulumi.Input[int]] = None,
+            scan_type: Optional[pulumi.Input[str]] = None,
+            scan_window: Optional[pulumi.Input[int]] = None,
             txpower: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Bleprofile':
         """
@@ -655,6 +877,12 @@ class Bleprofile(pulumi.CustomResource):
         :param pulumi.Input[int] major_id: Major ID.
         :param pulumi.Input[int] minor_id: Minor ID.
         :param pulumi.Input[str] name: Bluetooth Low Energy profile name.
+        :param pulumi.Input[int] scan_interval: Scan Interval (default = 50 msec).
+        :param pulumi.Input[int] scan_period: Scan Period (default = 4000 msec).
+        :param pulumi.Input[str] scan_threshold: Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+        :param pulumi.Input[int] scan_time: Scan Time (default = 1000 msec).
+        :param pulumi.Input[str] scan_type: Scan Type (default = active). Valid values: `active`, `passive`.
+        :param pulumi.Input[int] scan_window: Scan Windows (default = 50 msec).
         :param pulumi.Input[str] txpower: Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -674,6 +902,12 @@ class Bleprofile(pulumi.CustomResource):
         __props__.__dict__["major_id"] = major_id
         __props__.__dict__["minor_id"] = minor_id
         __props__.__dict__["name"] = name
+        __props__.__dict__["scan_interval"] = scan_interval
+        __props__.__dict__["scan_period"] = scan_period
+        __props__.__dict__["scan_threshold"] = scan_threshold
+        __props__.__dict__["scan_time"] = scan_time
+        __props__.__dict__["scan_type"] = scan_type
+        __props__.__dict__["scan_window"] = scan_window
         __props__.__dict__["txpower"] = txpower
         __props__.__dict__["vdomparam"] = vdomparam
         return Bleprofile(resource_name, opts=opts, __props__=__props__)
@@ -773,6 +1007,54 @@ class Bleprofile(pulumi.CustomResource):
         Bluetooth Low Energy profile name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="scanInterval")
+    def scan_interval(self) -> pulumi.Output[int]:
+        """
+        Scan Interval (default = 50 msec).
+        """
+        return pulumi.get(self, "scan_interval")
+
+    @property
+    @pulumi.getter(name="scanPeriod")
+    def scan_period(self) -> pulumi.Output[int]:
+        """
+        Scan Period (default = 4000 msec).
+        """
+        return pulumi.get(self, "scan_period")
+
+    @property
+    @pulumi.getter(name="scanThreshold")
+    def scan_threshold(self) -> pulumi.Output[str]:
+        """
+        Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+        """
+        return pulumi.get(self, "scan_threshold")
+
+    @property
+    @pulumi.getter(name="scanTime")
+    def scan_time(self) -> pulumi.Output[int]:
+        """
+        Scan Time (default = 1000 msec).
+        """
+        return pulumi.get(self, "scan_time")
+
+    @property
+    @pulumi.getter(name="scanType")
+    def scan_type(self) -> pulumi.Output[str]:
+        """
+        Scan Type (default = active). Valid values: `active`, `passive`.
+        """
+        return pulumi.get(self, "scan_type")
+
+    @property
+    @pulumi.getter(name="scanWindow")
+    def scan_window(self) -> pulumi.Output[int]:
+        """
+        Scan Windows (default = 50 msec).
+        """
+        return pulumi.get(self, "scan_window")
 
     @property
     @pulumi.getter

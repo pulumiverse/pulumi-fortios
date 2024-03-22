@@ -37,6 +37,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         [Input("interfaceSelectMethod")]
         public Input<string>? InterfaceSelectMethod { get; set; }
 
+        /// <summary>
+        /// Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
+        /// </summary>
+        [Input("ipType")]
+        public Input<string>? IpType { get; set; }
+
         [Input("key")]
         private Input<string>? _key;
 

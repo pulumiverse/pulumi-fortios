@@ -81,6 +81,12 @@ namespace Pulumiverse.Fortios.Ftpproxy
         public Output<string> SecDefaultAction { get; private set; } = null!;
 
         /// <summary>
+        /// Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+        /// </summary>
+        [Output("serverDataMode")]
+        public Output<string> ServerDataMode { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("ssl")]
@@ -93,7 +99,7 @@ namespace Pulumiverse.Fortios.Ftpproxy
         public Output<string> SslAlgorithm { get; private set; } = null!;
 
         /// <summary>
-        /// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+        /// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
         /// </summary>
         [Output("sslCert")]
         public Output<string> SslCert { get; private set; } = null!;
@@ -188,6 +194,12 @@ namespace Pulumiverse.Fortios.Ftpproxy
         public Input<string>? SecDefaultAction { get; set; }
 
         /// <summary>
+        /// Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+        /// </summary>
+        [Input("serverDataMode")]
+        public Input<string>? ServerDataMode { get; set; }
+
+        /// <summary>
         /// Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("ssl")]
@@ -200,7 +212,7 @@ namespace Pulumiverse.Fortios.Ftpproxy
         public Input<string>? SslAlgorithm { get; set; }
 
         /// <summary>
-        /// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+        /// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
         /// </summary>
         [Input("sslCert")]
         public Input<string>? SslCert { get; set; }
@@ -256,6 +268,12 @@ namespace Pulumiverse.Fortios.Ftpproxy
         public Input<string>? SecDefaultAction { get; set; }
 
         /// <summary>
+        /// Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+        /// </summary>
+        [Input("serverDataMode")]
+        public Input<string>? ServerDataMode { get; set; }
+
+        /// <summary>
         /// Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("ssl")]
@@ -268,7 +286,7 @@ namespace Pulumiverse.Fortios.Ftpproxy
         public Input<string>? SslAlgorithm { get; set; }
 
         /// <summary>
-        /// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+        /// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
         /// </summary>
         [Input("sslCert")]
         public Input<string>? SslCert { get; set; }

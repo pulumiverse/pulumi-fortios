@@ -75,6 +75,8 @@ import (
 type Global struct {
 	pulumi.CustomResourceState
 
+	// Configure the number cwAcd daemons for multi-core CPU support (default = 0).
+	AcdProcessCount pulumi.IntOutput `pulumi:"acdProcessCount"`
 	// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
 	ApLogServer pulumi.StringOutput `pulumi:"apLogServer"`
 	// IP address that APs or FortiAPs send log messages to.
@@ -85,6 +87,8 @@ type Global struct {
 	ControlMessageOffload pulumi.StringOutput `pulumi:"controlMessageOffload"`
 	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
 	DataEthernetIi pulumi.StringOutput `pulumi:"dataEthernetIi"`
+	// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+	DfsLabTest pulumi.StringOutput `pulumi:"dfsLabTest"`
 	// Multicast IP address for AP discovery (default = 244.0.1.140).
 	DiscoveryMcAddr pulumi.StringOutput `pulumi:"discoveryMcAddr"`
 	// Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -109,10 +113,16 @@ type Global struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
 	RogueScanMacAdjacency pulumi.IntOutput `pulumi:"rogueScanMacAdjacency"`
+	// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+	RollingWtpUpgrade pulumi.StringOutput `pulumi:"rollingWtpUpgrade"`
+	// Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+	RollingWtpUpgradeThreshold pulumi.StringOutput `pulumi:"rollingWtpUpgradeThreshold"`
 	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
 	TunnelMode pulumi.StringOutput `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Wpad daemon process count for multi-core CPU support.
+	WpadProcessCount pulumi.IntOutput `pulumi:"wpadProcessCount"`
 	// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
 	WtpShare pulumi.StringOutput `pulumi:"wtpShare"`
 }
@@ -147,6 +157,8 @@ func GetGlobal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Global resources.
 type globalState struct {
+	// Configure the number cwAcd daemons for multi-core CPU support (default = 0).
+	AcdProcessCount *int `pulumi:"acdProcessCount"`
 	// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
 	ApLogServer *string `pulumi:"apLogServer"`
 	// IP address that APs or FortiAPs send log messages to.
@@ -157,6 +169,8 @@ type globalState struct {
 	ControlMessageOffload *string `pulumi:"controlMessageOffload"`
 	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
 	DataEthernetIi *string `pulumi:"dataEthernetIi"`
+	// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+	DfsLabTest *string `pulumi:"dfsLabTest"`
 	// Multicast IP address for AP discovery (default = 244.0.1.140).
 	DiscoveryMcAddr *string `pulumi:"discoveryMcAddr"`
 	// Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -181,15 +195,23 @@ type globalState struct {
 	Name *string `pulumi:"name"`
 	// Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
 	RogueScanMacAdjacency *int `pulumi:"rogueScanMacAdjacency"`
+	// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+	RollingWtpUpgrade *string `pulumi:"rollingWtpUpgrade"`
+	// Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+	RollingWtpUpgradeThreshold *string `pulumi:"rollingWtpUpgradeThreshold"`
 	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
 	TunnelMode *string `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Wpad daemon process count for multi-core CPU support.
+	WpadProcessCount *int `pulumi:"wpadProcessCount"`
 	// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
 	WtpShare *string `pulumi:"wtpShare"`
 }
 
 type GlobalState struct {
+	// Configure the number cwAcd daemons for multi-core CPU support (default = 0).
+	AcdProcessCount pulumi.IntPtrInput
 	// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
 	ApLogServer pulumi.StringPtrInput
 	// IP address that APs or FortiAPs send log messages to.
@@ -200,6 +222,8 @@ type GlobalState struct {
 	ControlMessageOffload pulumi.StringPtrInput
 	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
 	DataEthernetIi pulumi.StringPtrInput
+	// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+	DfsLabTest pulumi.StringPtrInput
 	// Multicast IP address for AP discovery (default = 244.0.1.140).
 	DiscoveryMcAddr pulumi.StringPtrInput
 	// Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -224,10 +248,16 @@ type GlobalState struct {
 	Name pulumi.StringPtrInput
 	// Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
 	RogueScanMacAdjacency pulumi.IntPtrInput
+	// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+	RollingWtpUpgrade pulumi.StringPtrInput
+	// Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+	RollingWtpUpgradeThreshold pulumi.StringPtrInput
 	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
 	TunnelMode pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Wpad daemon process count for multi-core CPU support.
+	WpadProcessCount pulumi.IntPtrInput
 	// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
 	WtpShare pulumi.StringPtrInput
 }
@@ -237,6 +267,8 @@ func (GlobalState) ElementType() reflect.Type {
 }
 
 type globalArgs struct {
+	// Configure the number cwAcd daemons for multi-core CPU support (default = 0).
+	AcdProcessCount *int `pulumi:"acdProcessCount"`
 	// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
 	ApLogServer *string `pulumi:"apLogServer"`
 	// IP address that APs or FortiAPs send log messages to.
@@ -247,6 +279,8 @@ type globalArgs struct {
 	ControlMessageOffload *string `pulumi:"controlMessageOffload"`
 	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
 	DataEthernetIi *string `pulumi:"dataEthernetIi"`
+	// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+	DfsLabTest *string `pulumi:"dfsLabTest"`
 	// Multicast IP address for AP discovery (default = 244.0.1.140).
 	DiscoveryMcAddr *string `pulumi:"discoveryMcAddr"`
 	// Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -271,16 +305,24 @@ type globalArgs struct {
 	Name *string `pulumi:"name"`
 	// Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
 	RogueScanMacAdjacency *int `pulumi:"rogueScanMacAdjacency"`
+	// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+	RollingWtpUpgrade *string `pulumi:"rollingWtpUpgrade"`
+	// Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+	RollingWtpUpgradeThreshold *string `pulumi:"rollingWtpUpgradeThreshold"`
 	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
 	TunnelMode *string `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Wpad daemon process count for multi-core CPU support.
+	WpadProcessCount *int `pulumi:"wpadProcessCount"`
 	// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
 	WtpShare *string `pulumi:"wtpShare"`
 }
 
 // The set of arguments for constructing a Global resource.
 type GlobalArgs struct {
+	// Configure the number cwAcd daemons for multi-core CPU support (default = 0).
+	AcdProcessCount pulumi.IntPtrInput
 	// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
 	ApLogServer pulumi.StringPtrInput
 	// IP address that APs or FortiAPs send log messages to.
@@ -291,6 +333,8 @@ type GlobalArgs struct {
 	ControlMessageOffload pulumi.StringPtrInput
 	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
 	DataEthernetIi pulumi.StringPtrInput
+	// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+	DfsLabTest pulumi.StringPtrInput
 	// Multicast IP address for AP discovery (default = 244.0.1.140).
 	DiscoveryMcAddr pulumi.StringPtrInput
 	// Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -315,10 +359,16 @@ type GlobalArgs struct {
 	Name pulumi.StringPtrInput
 	// Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
 	RogueScanMacAdjacency pulumi.IntPtrInput
+	// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+	RollingWtpUpgrade pulumi.StringPtrInput
+	// Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+	RollingWtpUpgradeThreshold pulumi.StringPtrInput
 	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
 	TunnelMode pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Wpad daemon process count for multi-core CPU support.
+	WpadProcessCount pulumi.IntPtrInput
 	// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
 	WtpShare pulumi.StringPtrInput
 }
@@ -410,6 +460,11 @@ func (o GlobalOutput) ToGlobalOutputWithContext(ctx context.Context) GlobalOutpu
 	return o
 }
 
+// Configure the number cwAcd daemons for multi-core CPU support (default = 0).
+func (o GlobalOutput) AcdProcessCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.AcdProcessCount }).(pulumi.IntOutput)
+}
+
 // Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
 func (o GlobalOutput) ApLogServer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.ApLogServer }).(pulumi.StringOutput)
@@ -433,6 +488,11 @@ func (o GlobalOutput) ControlMessageOffload() pulumi.StringOutput {
 // Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
 func (o GlobalOutput) DataEthernetIi() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.DataEthernetIi }).(pulumi.StringOutput)
+}
+
+// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+func (o GlobalOutput) DfsLabTest() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.DfsLabTest }).(pulumi.StringOutput)
 }
 
 // Multicast IP address for AP discovery (default = 244.0.1.140).
@@ -495,6 +555,16 @@ func (o GlobalOutput) RogueScanMacAdjacency() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.RogueScanMacAdjacency }).(pulumi.IntOutput)
 }
 
+// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+func (o GlobalOutput) RollingWtpUpgrade() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.RollingWtpUpgrade }).(pulumi.StringOutput)
+}
+
+// Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+func (o GlobalOutput) RollingWtpUpgradeThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.RollingWtpUpgradeThreshold }).(pulumi.StringOutput)
+}
+
 // Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
 func (o GlobalOutput) TunnelMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.TunnelMode }).(pulumi.StringOutput)
@@ -503,6 +573,11 @@ func (o GlobalOutput) TunnelMode() pulumi.StringOutput {
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 func (o GlobalOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// Wpad daemon process count for multi-core CPU support.
+func (o GlobalOutput) WpadProcessCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.WpadProcessCount }).(pulumi.IntOutput)
 }
 
 // Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.

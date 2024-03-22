@@ -64,6 +64,10 @@ export class Trafficsniffer extends pulumi.CustomResource {
      */
     public readonly erspanIp!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
      */
     public readonly mode!: pulumi.Output<string>;
@@ -99,6 +103,7 @@ export class Trafficsniffer extends pulumi.CustomResource {
             const state = argsOrState as TrafficsnifferState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["erspanIp"] = state ? state.erspanIp : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["mode"] = state ? state.mode : undefined;
             resourceInputs["targetIps"] = state ? state.targetIps : undefined;
             resourceInputs["targetMacs"] = state ? state.targetMacs : undefined;
@@ -108,6 +113,7 @@ export class Trafficsniffer extends pulumi.CustomResource {
             const args = argsOrState as TrafficsnifferArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["erspanIp"] = args ? args.erspanIp : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["mode"] = args ? args.mode : undefined;
             resourceInputs["targetIps"] = args ? args.targetIps : undefined;
             resourceInputs["targetMacs"] = args ? args.targetMacs : undefined;
@@ -131,6 +137,10 @@ export interface TrafficsnifferState {
      * Configure ERSPAN collector IP address.
      */
     erspanIp?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
      */
@@ -165,6 +175,10 @@ export interface TrafficsnifferArgs {
      * Configure ERSPAN collector IP address.
      */
     erspanIp?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
      */

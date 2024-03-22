@@ -15,7 +15,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
     public sealed class ProxypolicyInternetServiceCustomGroup
     {
         /// <summary>
-        /// Custom Internet Service group name.
+        /// Custom Internet Service IPv6 group name.
         /// </summary>
         public readonly string? Name;
 

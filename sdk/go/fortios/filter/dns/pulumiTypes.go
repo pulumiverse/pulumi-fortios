@@ -829,6 +829,103 @@ func (o ProfileFtgdDnsFilterArrayOutput) Index(i pulumi.IntInput) ProfileFtgdDns
 	}).(ProfileFtgdDnsFilterOutput)
 }
 
+type ProfileTransparentDnsDatabase struct {
+	// DNS database zone name.
+	Name *string `pulumi:"name"`
+}
+
+// ProfileTransparentDnsDatabaseInput is an input type that accepts ProfileTransparentDnsDatabaseArgs and ProfileTransparentDnsDatabaseOutput values.
+// You can construct a concrete instance of `ProfileTransparentDnsDatabaseInput` via:
+//
+//	ProfileTransparentDnsDatabaseArgs{...}
+type ProfileTransparentDnsDatabaseInput interface {
+	pulumi.Input
+
+	ToProfileTransparentDnsDatabaseOutput() ProfileTransparentDnsDatabaseOutput
+	ToProfileTransparentDnsDatabaseOutputWithContext(context.Context) ProfileTransparentDnsDatabaseOutput
+}
+
+type ProfileTransparentDnsDatabaseArgs struct {
+	// DNS database zone name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (ProfileTransparentDnsDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileTransparentDnsDatabase)(nil)).Elem()
+}
+
+func (i ProfileTransparentDnsDatabaseArgs) ToProfileTransparentDnsDatabaseOutput() ProfileTransparentDnsDatabaseOutput {
+	return i.ToProfileTransparentDnsDatabaseOutputWithContext(context.Background())
+}
+
+func (i ProfileTransparentDnsDatabaseArgs) ToProfileTransparentDnsDatabaseOutputWithContext(ctx context.Context) ProfileTransparentDnsDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileTransparentDnsDatabaseOutput)
+}
+
+// ProfileTransparentDnsDatabaseArrayInput is an input type that accepts ProfileTransparentDnsDatabaseArray and ProfileTransparentDnsDatabaseArrayOutput values.
+// You can construct a concrete instance of `ProfileTransparentDnsDatabaseArrayInput` via:
+//
+//	ProfileTransparentDnsDatabaseArray{ ProfileTransparentDnsDatabaseArgs{...} }
+type ProfileTransparentDnsDatabaseArrayInput interface {
+	pulumi.Input
+
+	ToProfileTransparentDnsDatabaseArrayOutput() ProfileTransparentDnsDatabaseArrayOutput
+	ToProfileTransparentDnsDatabaseArrayOutputWithContext(context.Context) ProfileTransparentDnsDatabaseArrayOutput
+}
+
+type ProfileTransparentDnsDatabaseArray []ProfileTransparentDnsDatabaseInput
+
+func (ProfileTransparentDnsDatabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProfileTransparentDnsDatabase)(nil)).Elem()
+}
+
+func (i ProfileTransparentDnsDatabaseArray) ToProfileTransparentDnsDatabaseArrayOutput() ProfileTransparentDnsDatabaseArrayOutput {
+	return i.ToProfileTransparentDnsDatabaseArrayOutputWithContext(context.Background())
+}
+
+func (i ProfileTransparentDnsDatabaseArray) ToProfileTransparentDnsDatabaseArrayOutputWithContext(ctx context.Context) ProfileTransparentDnsDatabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileTransparentDnsDatabaseArrayOutput)
+}
+
+type ProfileTransparentDnsDatabaseOutput struct{ *pulumi.OutputState }
+
+func (ProfileTransparentDnsDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileTransparentDnsDatabase)(nil)).Elem()
+}
+
+func (o ProfileTransparentDnsDatabaseOutput) ToProfileTransparentDnsDatabaseOutput() ProfileTransparentDnsDatabaseOutput {
+	return o
+}
+
+func (o ProfileTransparentDnsDatabaseOutput) ToProfileTransparentDnsDatabaseOutputWithContext(ctx context.Context) ProfileTransparentDnsDatabaseOutput {
+	return o
+}
+
+// DNS database zone name.
+func (o ProfileTransparentDnsDatabaseOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileTransparentDnsDatabase) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ProfileTransparentDnsDatabaseArrayOutput struct{ *pulumi.OutputState }
+
+func (ProfileTransparentDnsDatabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProfileTransparentDnsDatabase)(nil)).Elem()
+}
+
+func (o ProfileTransparentDnsDatabaseArrayOutput) ToProfileTransparentDnsDatabaseArrayOutput() ProfileTransparentDnsDatabaseArrayOutput {
+	return o
+}
+
+func (o ProfileTransparentDnsDatabaseArrayOutput) ToProfileTransparentDnsDatabaseArrayOutputWithContext(ctx context.Context) ProfileTransparentDnsDatabaseArrayOutput {
+	return o
+}
+
+func (o ProfileTransparentDnsDatabaseArrayOutput) Index(i pulumi.IntInput) ProfileTransparentDnsDatabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProfileTransparentDnsDatabase {
+		return vs[0].([]ProfileTransparentDnsDatabase)[vs[1].(int)]
+	}).(ProfileTransparentDnsDatabaseOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainfilterEntryInput)(nil)).Elem(), DomainfilterEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainfilterEntryArrayInput)(nil)).Elem(), DomainfilterEntryArray{})
@@ -842,6 +939,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProfileFtgdDnsPtrInput)(nil)).Elem(), ProfileFtgdDnsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProfileFtgdDnsFilterInput)(nil)).Elem(), ProfileFtgdDnsFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProfileFtgdDnsFilterArrayInput)(nil)).Elem(), ProfileFtgdDnsFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileTransparentDnsDatabaseInput)(nil)).Elem(), ProfileTransparentDnsDatabaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileTransparentDnsDatabaseArrayInput)(nil)).Elem(), ProfileTransparentDnsDatabaseArray{})
 	pulumi.RegisterOutputType(DomainfilterEntryOutput{})
 	pulumi.RegisterOutputType(DomainfilterEntryArrayOutput{})
 	pulumi.RegisterOutputType(ProfileDnsTranslationOutput{})
@@ -854,4 +953,6 @@ func init() {
 	pulumi.RegisterOutputType(ProfileFtgdDnsPtrOutput{})
 	pulumi.RegisterOutputType(ProfileFtgdDnsFilterOutput{})
 	pulumi.RegisterOutputType(ProfileFtgdDnsFilterArrayOutput{})
+	pulumi.RegisterOutputType(ProfileTransparentDnsDatabaseOutput{})
+	pulumi.RegisterOutputType(ProfileTransparentDnsDatabaseArrayOutput{})
 }

@@ -93,6 +93,10 @@ export interface GetPolicyResult {
      */
     readonly capturePacket: string;
     /**
+     * Name of an existing CASB profile.
+     */
+    readonly casbProfile: string;
+    /**
      * Name of an existing CIFS profile.
      */
     readonly cifsProfile: string;
@@ -116,6 +120,10 @@ export interface GetPolicyResult {
      * Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
      */
     readonly devices: outputs.firewall.GetPolicyDevice[];
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    readonly diameterFilterProfile: string;
     /**
      * Enable to copy packet's DiffServ values from session's original direction to its reply direction.
      */
@@ -369,6 +377,10 @@ export interface GetPolicyResult {
      */
     readonly ipsSensor: string;
     /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    readonly ipsVoipFilter: string;
+    /**
      * Label for the policy that appears when the GUI is in Section View mode.
      */
     readonly label: string;
@@ -453,6 +465,18 @@ export interface GetPolicyResult {
      */
     readonly passiveWanHealthMeasurement: string;
     /**
+     * Enable/disable PCP inbound DNAT.
+     */
+    readonly pcpInbound: string;
+    /**
+     * Enable/disable PCP outbound SNAT.
+     */
+    readonly pcpOutbound: string;
+    /**
+     * PCP pool names. The structure of `pcpPoolname` block is documented below.
+     */
+    readonly pcpPoolnames: outputs.firewall.GetPolicyPcpPoolname[];
+    /**
      * Per-IP traffic shaper.
      */
     readonly perIpShaper: string;
@@ -472,6 +496,10 @@ export interface GetPolicyResult {
      * Policy expiry date (YYYY-MM-DD HH:MM:SS).
      */
     readonly policyExpiryDate: string;
+    /**
+     * Policy expiry date and time, in epoch format.
+     */
+    readonly policyExpiryDateUtc: string;
     /**
      * Policy ID.
      */
@@ -686,6 +714,10 @@ export interface GetPolicyResult {
      */
     readonly videofilterProfile: string;
     /**
+     * Name of an existing virtual-patch profile.
+     */
+    readonly virtualPatchProfile: string;
+    /**
      * VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
      */
     readonly vlanCosFwd: number;
@@ -758,6 +790,14 @@ export interface GetPolicyResult {
      */
     readonly wsso: string;
     /**
+     * Enable/disable zero trust device ownership.
+     */
+    readonly ztnaDeviceOwnership: string;
+    /**
+     * Source ztna-ems-tag-secondary names. The structure of `ztnaEmsTagSecondary` block is documented below.
+     */
+    readonly ztnaEmsTagSecondaries: outputs.firewall.GetPolicyZtnaEmsTagSecondary[];
+    /**
      * Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
      */
     readonly ztnaEmsTags: outputs.firewall.GetPolicyZtnaEmsTag[];
@@ -766,9 +806,17 @@ export interface GetPolicyResult {
      */
     readonly ztnaGeoTags: outputs.firewall.GetPolicyZtnaGeoTag[];
     /**
+     * Redirect ZTNA traffic to matching Access-Proxy proxy-policy.
+     */
+    readonly ztnaPolicyRedirect: string;
+    /**
      * Enable/disable zero trust access.
      */
     readonly ztnaStatus: string;
+    /**
+     * ZTNA tag matching logic.
+     */
+    readonly ztnaTagsMatchLogic: string;
 }
 /**
  * Use this data source to get information on an fortios firewall policy

@@ -770,6 +770,8 @@ type ThreatweightMalware struct {
 	FsaMalicious *string `pulumi:"fsaMalicious"`
 	// Threat weight score for FortiSandbox medium risk malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
 	FsaMediumRisk *string `pulumi:"fsaMediumRisk"`
+	// Threat weight score for malware detected by inline block. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+	InlineBlock *string `pulumi:"inlineBlock"`
 	// Threat weight score for virus (malware list) detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
 	MalwareList *string `pulumi:"malwareList"`
 	// Threat weight score for mimefragmented detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
@@ -822,6 +824,8 @@ type ThreatweightMalwareArgs struct {
 	FsaMalicious pulumi.StringPtrInput `pulumi:"fsaMalicious"`
 	// Threat weight score for FortiSandbox medium risk malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
 	FsaMediumRisk pulumi.StringPtrInput `pulumi:"fsaMediumRisk"`
+	// Threat weight score for malware detected by inline block. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+	InlineBlock pulumi.StringPtrInput `pulumi:"inlineBlock"`
 	// Threat weight score for virus (malware list) detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
 	MalwareList pulumi.StringPtrInput `pulumi:"malwareList"`
 	// Threat weight score for mimefragmented detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
@@ -970,6 +974,11 @@ func (o ThreatweightMalwareOutput) FsaMalicious() pulumi.StringPtrOutput {
 // Threat weight score for FortiSandbox medium risk malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
 func (o ThreatweightMalwareOutput) FsaMediumRisk() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ThreatweightMalware) *string { return v.FsaMediumRisk }).(pulumi.StringPtrOutput)
+}
+
+// Threat weight score for malware detected by inline block. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+func (o ThreatweightMalwareOutput) InlineBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ThreatweightMalware) *string { return v.InlineBlock }).(pulumi.StringPtrOutput)
 }
 
 // Threat weight score for virus (malware list) detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
@@ -1143,6 +1152,16 @@ func (o ThreatweightMalwarePtrOutput) FsaMediumRisk() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.FsaMediumRisk
+	}).(pulumi.StringPtrOutput)
+}
+
+// Threat weight score for malware detected by inline block. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+func (o ThreatweightMalwarePtrOutput) InlineBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThreatweightMalware) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InlineBlock
 	}).(pulumi.StringPtrOutput)
 }
 

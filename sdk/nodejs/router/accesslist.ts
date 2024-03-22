@@ -101,6 +101,7 @@ export class Accesslist extends pulumi.CustomResource {
      */
     public readonly comments!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Name.
      */
@@ -126,6 +127,7 @@ export class Accesslist extends pulumi.CustomResource {
             const state = argsOrState as AccesslistState | undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["rules"] = state ? state.rules : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -133,6 +135,7 @@ export class Accesslist extends pulumi.CustomResource {
             const args = argsOrState as AccesslistArgs | undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["rules"] = args ? args.rules : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -151,6 +154,7 @@ export interface AccesslistState {
      */
     comments?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     /**
      * Name.
      */
@@ -171,6 +175,7 @@ export interface AccesslistArgs {
      */
     comments?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     /**
      * Name.
      */

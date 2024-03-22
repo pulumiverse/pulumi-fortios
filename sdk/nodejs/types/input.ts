@@ -32,7 +32,7 @@ export namespace antivirus {
          */
         fortiai?: pulumi.Input<string>;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr?: pulumi.Input<string>;
         /**
@@ -165,7 +165,7 @@ export namespace antivirus {
          */
         fortiai?: pulumi.Input<string>;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr?: pulumi.Input<string>;
         /**
@@ -216,7 +216,7 @@ export namespace antivirus {
          */
         fortiai?: pulumi.Input<string>;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr?: pulumi.Input<string>;
         /**
@@ -275,7 +275,7 @@ export namespace antivirus {
          */
         fortiai?: pulumi.Input<string>;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr?: pulumi.Input<string>;
         /**
@@ -388,7 +388,7 @@ export namespace antivirus {
          */
         fortiai?: pulumi.Input<string>;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr?: pulumi.Input<string>;
         /**
@@ -454,7 +454,7 @@ export namespace antivirus {
          */
         fortiai?: pulumi.Input<string>;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr?: pulumi.Input<string>;
         /**
@@ -532,7 +532,7 @@ export namespace antivirus {
          */
         fortiai?: pulumi.Input<string>;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr?: pulumi.Input<string>;
         /**
@@ -579,7 +579,7 @@ export namespace antivirus {
          */
         fortiai?: pulumi.Input<string>;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr?: pulumi.Input<string>;
         /**
@@ -895,6 +895,260 @@ export namespace authentication {
     }
 }
 
+export namespace casb {
+    export interface ProfileSaasApplication {
+        /**
+         * CASB profile access rule. The structure of `accessRule` block is documented below.
+         */
+        accessRules?: pulumi.Input<pulumi.Input<inputs.casb.ProfileSaasApplicationAccessRule>[]>;
+        /**
+         * CASB profile custom control. The structure of `customControl` block is documented below.
+         */
+        customControls?: pulumi.Input<pulumi.Input<inputs.casb.ProfileSaasApplicationCustomControl>[]>;
+        /**
+         * Enable/disable domain control. Valid values: `enable`, `disable`.
+         */
+        domainControl?: pulumi.Input<string>;
+        /**
+         * CASB profile domain control domains. The structure of `domainControlDomains` block is documented below.
+         */
+        domainControlDomains?: pulumi.Input<pulumi.Input<inputs.casb.ProfileSaasApplicationDomainControlDomain>[]>;
+        /**
+         * Enable/disable log settings. Valid values: `enable`, `disable`.
+         */
+        log?: pulumi.Input<string>;
+        /**
+         * CASB profile SaaS application name.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * Enable/disable safe search. Valid values: `enable`, `disable`.
+         */
+        safeSearch?: pulumi.Input<string>;
+        /**
+         * CASB profile safe search control. The structure of `safeSearchControl` block is documented below.
+         */
+        safeSearchControls?: pulumi.Input<pulumi.Input<inputs.casb.ProfileSaasApplicationSafeSearchControl>[]>;
+        /**
+         * Enable/disable setting. Valid values: `enable`, `disable`.
+         */
+        status?: pulumi.Input<string>;
+        /**
+         * Enable/disable tenant control. Valid values: `enable`, `disable`.
+         */
+        tenantControl?: pulumi.Input<string>;
+        /**
+         * CASB profile tenant control tenants. The structure of `tenantControlTenants` block is documented below.
+         */
+        tenantControlTenants?: pulumi.Input<pulumi.Input<inputs.casb.ProfileSaasApplicationTenantControlTenant>[]>;
+    }
+
+    export interface ProfileSaasApplicationAccessRule {
+        /**
+         * CASB access rule action. Valid values: `bypass`, `block`, `monitor`.
+         */
+        action?: pulumi.Input<string>;
+        /**
+         * CASB bypass options. Valid values: `av`, `dlp`, `web-filter`, `file-filter`, `video-filter`.
+         */
+        bypass?: pulumi.Input<string>;
+        /**
+         * CASB access rule activity name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface ProfileSaasApplicationCustomControl {
+        /**
+         * CASB custom control user activity name.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * CASB custom control option. The structure of `option` block is documented below.
+         */
+        options?: pulumi.Input<pulumi.Input<inputs.casb.ProfileSaasApplicationCustomControlOption>[]>;
+    }
+
+    export interface ProfileSaasApplicationCustomControlOption {
+        /**
+         * CASB custom control option name.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * CASB custom control user input. The structure of `userInput` block is documented below.
+         */
+        userInputs?: pulumi.Input<pulumi.Input<inputs.casb.ProfileSaasApplicationCustomControlOptionUserInput>[]>;
+    }
+
+    export interface ProfileSaasApplicationCustomControlOptionUserInput {
+        /**
+         * user input value.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface ProfileSaasApplicationDomainControlDomain {
+        /**
+         * Domain control domain name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface ProfileSaasApplicationSafeSearchControl {
+        /**
+         * Safe search control name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface ProfileSaasApplicationTenantControlTenant {
+        /**
+         * Tenant control tenants name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface SaasapplicationDomain {
+        /**
+         * Domain list separated by space.
+         */
+        domain?: pulumi.Input<string>;
+    }
+
+    export interface UseractivityControlOption {
+        /**
+         * CASB control option name.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * CASB control option operations. The structure of `operations` block is documented below.
+         */
+        operations?: pulumi.Input<pulumi.Input<inputs.casb.UseractivityControlOptionOperation>[]>;
+        /**
+         * CASB control option status. Valid values: `enable`, `disable`.
+         */
+        status?: pulumi.Input<string>;
+    }
+
+    export interface UseractivityControlOptionOperation {
+        /**
+         * CASB operation action. Valid values: `append`, `prepend`, `replace`, `new`, `new-on-not-found`, `delete`.
+         */
+        action?: pulumi.Input<string>;
+        /**
+         * CASB operation search case sensitive. Valid values: `enable`, `disable`.
+         */
+        caseSensitive?: pulumi.Input<string>;
+        /**
+         * CASB operation direction. Valid values: `request`.
+         */
+        direction?: pulumi.Input<string>;
+        /**
+         * CASB operation header name to search.
+         */
+        headerName?: pulumi.Input<string>;
+        /**
+         * CASB control option operation name.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * CASB operation key to search.
+         */
+        searchKey?: pulumi.Input<string>;
+        /**
+         * CASB operation search pattern. Valid values: `simple`, `substr`, `regexp`.
+         */
+        searchPattern?: pulumi.Input<string>;
+        /**
+         * CASB operation target. Valid values: `header`, `path`.
+         */
+        target?: pulumi.Input<string>;
+        /**
+         * Enable/disable value from user input. Valid values: `enable`, `disable`.
+         */
+        valueFromInput?: pulumi.Input<string>;
+        /**
+         * CASB operation new values. The structure of `values` block is documented below.
+         */
+        values?: pulumi.Input<pulumi.Input<inputs.casb.UseractivityControlOptionOperationValue>[]>;
+    }
+
+    export interface UseractivityControlOptionOperationValue {
+        /**
+         * Operation value.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface UseractivityMatch {
+        /**
+         * CASB user activity match rules ID.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * CASB user activity rules. The structure of `rules` block is documented below.
+         */
+        rules?: pulumi.Input<pulumi.Input<inputs.casb.UseractivityMatchRule>[]>;
+        /**
+         * CASB user activity rules strategy. Valid values: `and`, `or`.
+         */
+        strategy?: pulumi.Input<string>;
+    }
+
+    export interface UseractivityMatchRule {
+        /**
+         * CASB user activity match case sensitive. Valid values: `enable`, `disable`.
+         */
+        caseSensitive?: pulumi.Input<string>;
+        /**
+         * CASB user activity domain list. The structure of `domains` block is documented below.
+         */
+        domains?: pulumi.Input<pulumi.Input<inputs.casb.UseractivityMatchRuleDomain>[]>;
+        /**
+         * CASB user activity rule header name.
+         */
+        headerName?: pulumi.Input<string>;
+        /**
+         * CASB user activity rule ID.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * CASB user activity rule match pattern. Valid values: `simple`, `substr`, `regexp`.
+         */
+        matchPattern?: pulumi.Input<string>;
+        /**
+         * CASB user activity rule match value.
+         */
+        matchValue?: pulumi.Input<string>;
+        /**
+         * CASB user activity method list. The structure of `methods` block is documented below.
+         */
+        methods?: pulumi.Input<pulumi.Input<inputs.casb.UseractivityMatchRuleMethod>[]>;
+        /**
+         * Enable/disable what the matching strategy must not be. Valid values: `enable`, `disable`.
+         */
+        negate?: pulumi.Input<string>;
+        /**
+         * CASB user activity rule type. Valid values: `domains`, `host`, `path`, `header`, `header-value`, `method`.
+         */
+        type?: pulumi.Input<string>;
+    }
+
+    export interface UseractivityMatchRuleDomain {
+        /**
+         * Domain list separated by space.
+         */
+        domain?: pulumi.Input<string>;
+    }
+
+    export interface UseractivityMatchRuleMethod {
+        /**
+         * User activity method.
+         */
+        method?: pulumi.Input<string>;
+    }
+}
+
 export namespace cifs {
     export interface ProfileFileFilter {
         /**
@@ -985,6 +1239,21 @@ export namespace dlp {
         type?: pulumi.Input<string>;
     }
 
+    export interface ExactdatamatchColumn {
+        /**
+         * Column index.
+         */
+        index?: pulumi.Input<number>;
+        /**
+         * Enable/disable optional match. Valid values: `enable`, `disable`.
+         */
+        optional?: pulumi.Input<string>;
+        /**
+         * Data-type for this column.
+         */
+        type?: pulumi.Input<string>;
+    }
+
     export interface FilepatternEntry {
         /**
          * Select a file type.
@@ -1014,7 +1283,7 @@ export namespace dlp {
          */
         expiry?: pulumi.Input<string>;
         /**
-         * Match files this size or larger (0 - 4294967295 kbytes).
+         * Match files greater than or equal to this size (KB).
          */
         fileSize?: pulumi.Input<number>;
         /**
@@ -1110,7 +1379,7 @@ export namespace dlp {
          */
         companyIdentifier?: pulumi.Input<string>;
         /**
-         * Quarantine duration in days, hours, minutes format (dddhhmm).
+         * Quarantine duration in days, hours, minutes (format = dddhhmm).
          */
         expiry?: pulumi.Input<string>;
         /**
@@ -2752,6 +3021,13 @@ export namespace filter {
              */
             log?: pulumi.Input<string>;
         }
+
+        export interface ProfileTransparentDnsDatabase {
+            /**
+             * DNS database zone name.
+             */
+            name?: pulumi.Input<string>;
+        }
     }
 
     export namespace email {
@@ -3138,7 +3414,7 @@ export namespace filter {
              */
             comment?: pulumi.Input<string>;
             /**
-             * Traffic direction. (HTTP, FTP, SSH, CIFS only) Valid values: `incoming`, `outgoing`, `any`.
+             * Traffic direction. On FortiOS versions 6.4.1-7.4.1: HTTP, FTP, SSH, CIFS only. On FortiOS versions >= 7.4.2: HTTP, FTP, SSH, CIFS, and MAPI only. Valid values: `incoming`, `outgoing`, `any`.
              */
             direction?: pulumi.Input<string>;
             /**
@@ -3517,6 +3793,60 @@ export namespace filter {
     }
 
     export namespace video {
+        export interface KeywordWord {
+            /**
+             * Comment.
+             */
+            comment?: pulumi.Input<string>;
+            /**
+             * Name.
+             */
+            name?: pulumi.Input<string>;
+            /**
+             * Pattern type. Valid values: `wildcard`, `regex`.
+             */
+            patternType?: pulumi.Input<string>;
+            /**
+             * Enable(consider)/disable(ignore) this keyword. Valid values: `enable`, `disable`.
+             */
+            status?: pulumi.Input<string>;
+        }
+
+        export interface ProfileFilter {
+            /**
+             * VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+             */
+            action?: pulumi.Input<string>;
+            /**
+             * FortiGuard category ID.
+             */
+            category?: pulumi.Input<string>;
+            /**
+             * Channel ID.
+             */
+            channel?: pulumi.Input<string>;
+            /**
+             * Comment.
+             */
+            comment?: pulumi.Input<string>;
+            /**
+             * ID.
+             */
+            id?: pulumi.Input<number>;
+            /**
+             * Video filter keyword ID.
+             */
+            keyword?: pulumi.Input<number>;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log?: pulumi.Input<string>;
+            /**
+             * Filter type. Valid values: `category`, `channel`, `title`, `description`.
+             */
+            type?: pulumi.Input<string>;
+        }
+
         export interface ProfileFortiguardCategory {
             /**
              * Configure VideoFilter FortiGuard category. The structure of `filters` block is documented below.
@@ -4045,6 +4375,14 @@ export namespace firewall {
          */
         applications?: pulumi.Input<pulumi.Input<inputs.firewall.Accessproxy6ApiGatewayApplication>[]>;
         /**
+         * HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+         */
+        h2Support?: pulumi.Input<string>;
+        /**
+         * HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+         */
+        h3Support?: pulumi.Input<string>;
+        /**
          * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
          */
         httpCookieAge?: pulumi.Input<number>;
@@ -4084,6 +4422,10 @@ export namespace firewall {
          * Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
          */
         persistence?: pulumi.Input<string>;
+        /**
+         * QUIC setting. The structure of `quic` block is documented below.
+         */
+        quic?: pulumi.Input<inputs.firewall.Accessproxy6ApiGatewayQuic>;
         /**
          * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
          */
@@ -4121,6 +4463,10 @@ export namespace firewall {
          */
         sslMinVersion?: pulumi.Input<string>;
         /**
+         * Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+         */
+        sslRenegotiation?: pulumi.Input<string>;
+        /**
          * SSL-VPN web portal.
          */
         sslVpnWebPortal?: pulumi.Input<string>;
@@ -4143,6 +4489,14 @@ export namespace firewall {
          * SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
          */
         applications?: pulumi.Input<pulumi.Input<inputs.firewall.Accessproxy6ApiGateway6Application>[]>;
+        /**
+         * HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+         */
+        h2Support?: pulumi.Input<string>;
+        /**
+         * HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+         */
+        h3Support?: pulumi.Input<string>;
         /**
          * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
          */
@@ -4184,6 +4538,10 @@ export namespace firewall {
          */
         persistence?: pulumi.Input<string>;
         /**
+         * QUIC setting. The structure of `quic` block is documented below.
+         */
+        quic?: pulumi.Input<inputs.firewall.Accessproxy6ApiGateway6Quic>;
+        /**
          * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
          */
         realservers?: pulumi.Input<pulumi.Input<inputs.firewall.Accessproxy6ApiGateway6Realserver>[]>;
@@ -4220,6 +4578,10 @@ export namespace firewall {
          */
         sslMinVersion?: pulumi.Input<string>;
         /**
+         * Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+         */
+        sslRenegotiation?: pulumi.Input<string>;
+        /**
          * SSL-VPN web portal.
          */
         sslVpnWebPortal?: pulumi.Input<string>;
@@ -4244,6 +4606,41 @@ export namespace firewall {
         name?: pulumi.Input<string>;
     }
 
+    export interface Accessproxy6ApiGateway6Quic {
+        /**
+         * ACK delay exponent (1 - 20, default = 3).
+         */
+        ackDelayExponent?: pulumi.Input<number>;
+        /**
+         * Active connection ID limit (1 - 8, default = 2).
+         */
+        activeConnectionIdLimit?: pulumi.Input<number>;
+        /**
+         * Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+         */
+        activeMigration?: pulumi.Input<string>;
+        /**
+         * Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+         */
+        greaseQuicBit?: pulumi.Input<string>;
+        /**
+         * Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+         */
+        maxAckDelay?: pulumi.Input<number>;
+        /**
+         * Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+         */
+        maxDatagramFrameSize?: pulumi.Input<number>;
+        /**
+         * Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+         */
+        maxIdleTimeout?: pulumi.Input<number>;
+        /**
+         * Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+         */
+        maxUdpPayloadSize?: pulumi.Input<number>;
+    }
+
     export interface Accessproxy6ApiGateway6Realserver {
         /**
          * Type of address. Valid values: `ip`, `fqdn`.
@@ -4257,6 +4654,10 @@ export namespace firewall {
          * Wildcard domain name of the real server.
          */
         domain?: pulumi.Input<string>;
+        /**
+         * Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+         */
+        externalAuth?: pulumi.Input<string>;
         /**
          * Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
          */
@@ -4306,6 +4707,14 @@ export namespace firewall {
          */
         status?: pulumi.Input<string>;
         /**
+         * Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+         */
+        translateHost?: pulumi.Input<string>;
+        /**
+         * Tunnel encryption. Valid values: `enable`, `disable`.
+         */
+        tunnelEncryption?: pulumi.Input<string>;
+        /**
          * TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
          */
         type?: pulumi.Input<string>;
@@ -4344,6 +4753,41 @@ export namespace firewall {
         name?: pulumi.Input<string>;
     }
 
+    export interface Accessproxy6ApiGatewayQuic {
+        /**
+         * ACK delay exponent (1 - 20, default = 3).
+         */
+        ackDelayExponent?: pulumi.Input<number>;
+        /**
+         * Active connection ID limit (1 - 8, default = 2).
+         */
+        activeConnectionIdLimit?: pulumi.Input<number>;
+        /**
+         * Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+         */
+        activeMigration?: pulumi.Input<string>;
+        /**
+         * Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+         */
+        greaseQuicBit?: pulumi.Input<string>;
+        /**
+         * Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+         */
+        maxAckDelay?: pulumi.Input<number>;
+        /**
+         * Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+         */
+        maxDatagramFrameSize?: pulumi.Input<number>;
+        /**
+         * Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+         */
+        maxIdleTimeout?: pulumi.Input<number>;
+        /**
+         * Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+         */
+        maxUdpPayloadSize?: pulumi.Input<number>;
+    }
+
     export interface Accessproxy6ApiGatewayRealserver {
         /**
          * Type of address. Valid values: `ip`, `fqdn`.
@@ -4357,6 +4801,10 @@ export namespace firewall {
          * Wildcard domain name of the real server.
          */
         domain?: pulumi.Input<string>;
+        /**
+         * Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+         */
+        externalAuth?: pulumi.Input<string>;
         /**
          * Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
          */
@@ -4406,6 +4854,14 @@ export namespace firewall {
          */
         status?: pulumi.Input<string>;
         /**
+         * Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+         */
+        translateHost?: pulumi.Input<string>;
+        /**
+         * Tunnel encryption. Valid values: `enable`, `disable`.
+         */
+        tunnelEncryption?: pulumi.Input<string>;
+        /**
          * TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
          */
         type?: pulumi.Input<string>;
@@ -4443,6 +4899,14 @@ export namespace firewall {
          */
         applications?: pulumi.Input<pulumi.Input<inputs.firewall.AccessproxyApiGatewayApplication>[]>;
         /**
+         * HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+         */
+        h2Support?: pulumi.Input<string>;
+        /**
+         * HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+         */
+        h3Support?: pulumi.Input<string>;
+        /**
          * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
          */
         httpCookieAge?: pulumi.Input<number>;
@@ -4482,6 +4946,10 @@ export namespace firewall {
          * Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
          */
         persistence?: pulumi.Input<string>;
+        /**
+         * QUIC setting. The structure of `quic` block is documented below.
+         */
+        quic?: pulumi.Input<inputs.firewall.AccessproxyApiGatewayQuic>;
         /**
          * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
          */
@@ -4519,6 +4987,10 @@ export namespace firewall {
          */
         sslMinVersion?: pulumi.Input<string>;
         /**
+         * Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+         */
+        sslRenegotiation?: pulumi.Input<string>;
+        /**
          * SSL-VPN web portal.
          */
         sslVpnWebPortal?: pulumi.Input<string>;
@@ -4541,6 +5013,14 @@ export namespace firewall {
          * SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
          */
         applications?: pulumi.Input<pulumi.Input<inputs.firewall.AccessproxyApiGateway6Application>[]>;
+        /**
+         * HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+         */
+        h2Support?: pulumi.Input<string>;
+        /**
+         * HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+         */
+        h3Support?: pulumi.Input<string>;
         /**
          * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
          */
@@ -4582,6 +5062,10 @@ export namespace firewall {
          */
         persistence?: pulumi.Input<string>;
         /**
+         * QUIC setting. The structure of `quic` block is documented below.
+         */
+        quic?: pulumi.Input<inputs.firewall.AccessproxyApiGateway6Quic>;
+        /**
          * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
          */
         realservers?: pulumi.Input<pulumi.Input<inputs.firewall.AccessproxyApiGateway6Realserver>[]>;
@@ -4618,6 +5102,10 @@ export namespace firewall {
          */
         sslMinVersion?: pulumi.Input<string>;
         /**
+         * Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+         */
+        sslRenegotiation?: pulumi.Input<string>;
+        /**
          * SSL-VPN web portal.
          */
         sslVpnWebPortal?: pulumi.Input<string>;
@@ -4642,6 +5130,41 @@ export namespace firewall {
         name?: pulumi.Input<string>;
     }
 
+    export interface AccessproxyApiGateway6Quic {
+        /**
+         * ACK delay exponent (1 - 20, default = 3).
+         */
+        ackDelayExponent?: pulumi.Input<number>;
+        /**
+         * Active connection ID limit (1 - 8, default = 2).
+         */
+        activeConnectionIdLimit?: pulumi.Input<number>;
+        /**
+         * Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+         */
+        activeMigration?: pulumi.Input<string>;
+        /**
+         * Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+         */
+        greaseQuicBit?: pulumi.Input<string>;
+        /**
+         * Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+         */
+        maxAckDelay?: pulumi.Input<number>;
+        /**
+         * Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+         */
+        maxDatagramFrameSize?: pulumi.Input<number>;
+        /**
+         * Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+         */
+        maxIdleTimeout?: pulumi.Input<number>;
+        /**
+         * Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+         */
+        maxUdpPayloadSize?: pulumi.Input<number>;
+    }
+
     export interface AccessproxyApiGateway6Realserver {
         /**
          * Type of address. Valid values: `ip`, `fqdn`.
@@ -4655,6 +5178,10 @@ export namespace firewall {
          * Wildcard domain name of the real server.
          */
         domain?: pulumi.Input<string>;
+        /**
+         * Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+         */
+        externalAuth?: pulumi.Input<string>;
         /**
          * Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
          */
@@ -4704,6 +5231,14 @@ export namespace firewall {
          */
         status?: pulumi.Input<string>;
         /**
+         * Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+         */
+        translateHost?: pulumi.Input<string>;
+        /**
+         * Tunnel encryption. Valid values: `enable`, `disable`.
+         */
+        tunnelEncryption?: pulumi.Input<string>;
+        /**
          * TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
          */
         type?: pulumi.Input<string>;
@@ -4742,6 +5277,41 @@ export namespace firewall {
         name?: pulumi.Input<string>;
     }
 
+    export interface AccessproxyApiGatewayQuic {
+        /**
+         * ACK delay exponent (1 - 20, default = 3).
+         */
+        ackDelayExponent?: pulumi.Input<number>;
+        /**
+         * Active connection ID limit (1 - 8, default = 2).
+         */
+        activeConnectionIdLimit?: pulumi.Input<number>;
+        /**
+         * Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+         */
+        activeMigration?: pulumi.Input<string>;
+        /**
+         * Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+         */
+        greaseQuicBit?: pulumi.Input<string>;
+        /**
+         * Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+         */
+        maxAckDelay?: pulumi.Input<number>;
+        /**
+         * Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+         */
+        maxDatagramFrameSize?: pulumi.Input<number>;
+        /**
+         * Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+         */
+        maxIdleTimeout?: pulumi.Input<number>;
+        /**
+         * Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+         */
+        maxUdpPayloadSize?: pulumi.Input<number>;
+    }
+
     export interface AccessproxyApiGatewayRealserver {
         /**
          * Type of address. Valid values: `ip`, `fqdn`.
@@ -4755,6 +5325,10 @@ export namespace firewall {
          * Wildcard domain name of the real server.
          */
         domain?: pulumi.Input<string>;
+        /**
+         * Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+         */
+        externalAuth?: pulumi.Input<string>;
         /**
          * Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
          */
@@ -4803,6 +5377,14 @@ export namespace firewall {
          * Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
          */
         status?: pulumi.Input<string>;
+        /**
+         * Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+         */
+        translateHost?: pulumi.Input<string>;
+        /**
+         * Tunnel encryption. Valid values: `enable`, `disable`.
+         */
+        tunnelEncryption?: pulumi.Input<string>;
         /**
          * TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
          */
@@ -4982,6 +5564,13 @@ export namespace firewall {
         name?: pulumi.Input<string>;
     }
 
+    export interface Addrgrp6ExcludeMember {
+        /**
+         * Address6 name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
     export interface Addrgrp6Member {
         /**
          * Address6/addrgrp6 name.
@@ -5103,6 +5692,10 @@ export namespace firewall {
         name?: pulumi.Input<string>;
     }
 
+    export interface CentralsnatmapSortStatePolicyList {
+        policyid?: pulumi.Input<string>;
+    }
+
     export interface CentralsnatmapSrcintf {
         /**
          * Interface name.
@@ -5154,11 +5747,11 @@ export namespace firewall {
          */
         status?: pulumi.Input<string>;
         /**
-         * Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
          */
         threshold?: pulumi.Input<number>;
         /**
-         * Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+         * Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
          */
         thresholddefault?: pulumi.Input<number>;
     }
@@ -5214,11 +5807,11 @@ export namespace firewall {
          */
         status?: pulumi.Input<string>;
         /**
-         * Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
          */
         threshold?: pulumi.Input<number>;
         /**
-         * Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+         * Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
          */
         thresholddefault?: pulumi.Input<number>;
     }
@@ -5594,6 +6187,13 @@ export namespace firewall {
          * Internet Service name.
          */
         name?: pulumi.Input<string>;
+    }
+
+    export interface InternetservicesubappSubApp {
+        /**
+         * Subapp ID.
+         */
+        id?: pulumi.Input<number>;
     }
 
     export interface Localinpolicy6Dstaddr {
@@ -6095,6 +6695,13 @@ export namespace firewall {
         userAgentString?: pulumi.Input<string>;
     }
 
+    export interface PolicyPcpPoolname {
+        /**
+         * PCP pool name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
     export interface PolicyPoolname {
         /**
          * IPv6 pool name.
@@ -6128,6 +6735,12 @@ export namespace firewall {
          * Security group tag.
          */
         id?: pulumi.Input<number>;
+    }
+
+    export interface PolicySortStatePolicyList {
+        action?: pulumi.Input<string>;
+        name?: pulumi.Input<string>;
+        policyid?: pulumi.Input<string>;
     }
 
     export interface PolicySrcVendorMac {
@@ -6188,6 +6801,13 @@ export namespace firewall {
         name?: pulumi.Input<string>;
     }
 
+    export interface PolicyZtnaEmsTagSecondary {
+        /**
+         * Address name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
     export interface PolicyZtnaGeoTag {
         /**
          * Address name.
@@ -6205,7 +6825,7 @@ export namespace firewall {
          */
         options?: pulumi.Input<string>;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit?: pulumi.Input<number>;
         /**
@@ -6229,15 +6849,15 @@ export namespace firewall {
          */
         status?: pulumi.Input<string>;
         /**
-         * Maximum dynamic TCP window size (default = 8MB).
+         * Maximum dynamic TCP window size.
          */
         tcpWindowMaximum?: pulumi.Input<number>;
         /**
-         * Minimum dynamic TCP window size (default = 128KB).
+         * Minimum dynamic TCP window size.
          */
         tcpWindowMinimum?: pulumi.Input<number>;
         /**
-         * Set TCP static window size (default = 256KB).
+         * Set TCP static window size.
          */
         tcpWindowSize?: pulumi.Input<number>;
         /**
@@ -6249,7 +6869,7 @@ export namespace firewall {
          */
         uncompressedNestLimit?: pulumi.Input<number>;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit?: pulumi.Input<number>;
     }
@@ -6278,11 +6898,11 @@ export namespace firewall {
 
     export interface ProfileprotocoloptionsFtp {
         /**
-         * Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+         * Number of bytes to send in each transmission for client comforting (bytes). On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
          */
         comfortAmount?: pulumi.Input<number>;
         /**
-         * Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+         * Interval between successive transmissions of data for client comforting (seconds).
          */
         comfortInterval?: pulumi.Input<number>;
         /**
@@ -6298,7 +6918,7 @@ export namespace firewall {
          */
         options?: pulumi.Input<string>;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit?: pulumi.Input<number>;
         /**
@@ -6318,7 +6938,7 @@ export namespace firewall {
          */
         status?: pulumi.Input<string>;
         /**
-         * Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+         * Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
          */
         streamBasedUncompressedLimit?: pulumi.Input<number>;
         /**
@@ -6342,7 +6962,7 @@ export namespace firewall {
          */
         uncompressedNestLimit?: pulumi.Input<number>;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit?: pulumi.Input<number>;
     }
@@ -6357,11 +6977,11 @@ export namespace firewall {
          */
         blockPageStatusCode?: pulumi.Input<number>;
         /**
-         * Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+         * Amount of data to send in a transmission for client comforting. On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
          */
         comfortAmount?: pulumi.Input<number>;
         /**
-         * Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+         * Interval between successive transmissions of data for client comforting (seconds).
          */
         comfortInterval?: pulumi.Input<number>;
         /**
@@ -6389,7 +7009,7 @@ export namespace firewall {
          */
         options?: pulumi.Input<string>;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB). On FortiOS versions 6.2.0-7.2.3: 1 - 383 MB, default = 10.
          */
         oversizeLimit?: pulumi.Input<number>;
         /**
@@ -6425,7 +7045,7 @@ export namespace firewall {
          */
         status?: pulumi.Input<string>;
         /**
-         * Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+         * Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
          */
         streamBasedUncompressedLimit?: pulumi.Input<number>;
         /**
@@ -6441,15 +7061,15 @@ export namespace firewall {
          */
         switchingProtocols?: pulumi.Input<string>;
         /**
-         * Maximum dynamic TCP window size (default = 8MB).
+         * Maximum dynamic TCP window size.
          */
         tcpWindowMaximum?: pulumi.Input<number>;
         /**
-         * Minimum dynamic TCP window size (default = 128KB).
+         * Minimum dynamic TCP window size.
          */
         tcpWindowMinimum?: pulumi.Input<number>;
         /**
-         * Set TCP static window size (default = 256KB).
+         * Set TCP static window size.
          */
         tcpWindowSize?: pulumi.Input<number>;
         /**
@@ -6465,9 +7085,13 @@ export namespace firewall {
          */
         uncompressedNestLimit?: pulumi.Input<number>;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit?: pulumi.Input<number>;
+        /**
+         * Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
+         */
+        unknownContentEncoding?: pulumi.Input<string>;
         /**
          * How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: `reject`, `tunnel`, `best-effort`.
          */
@@ -6488,7 +7112,7 @@ export namespace firewall {
          */
         options?: pulumi.Input<string>;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit?: pulumi.Input<number>;
         /**
@@ -6516,7 +7140,7 @@ export namespace firewall {
          */
         uncompressedNestLimit?: pulumi.Input<number>;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit?: pulumi.Input<number>;
     }
@@ -6538,7 +7162,7 @@ export namespace firewall {
          */
         options?: pulumi.Input<string>;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit?: pulumi.Input<number>;
         /**
@@ -6558,7 +7182,7 @@ export namespace firewall {
          */
         uncompressedNestLimit?: pulumi.Input<number>;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit?: pulumi.Input<number>;
     }
@@ -6573,7 +7197,7 @@ export namespace firewall {
          */
         options?: pulumi.Input<string>;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit?: pulumi.Input<number>;
         /**
@@ -6597,7 +7221,7 @@ export namespace firewall {
          */
         uncompressedNestLimit?: pulumi.Input<number>;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit?: pulumi.Input<number>;
     }
@@ -6612,7 +7236,7 @@ export namespace firewall {
          */
         options?: pulumi.Input<string>;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit?: pulumi.Input<number>;
         /**
@@ -6640,7 +7264,7 @@ export namespace firewall {
          */
         uncompressedNestLimit?: pulumi.Input<number>;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit?: pulumi.Input<number>;
     }
@@ -6655,7 +7279,7 @@ export namespace firewall {
          */
         options?: pulumi.Input<string>;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit?: pulumi.Input<number>;
         /**
@@ -6687,18 +7311,18 @@ export namespace firewall {
          */
         uncompressedNestLimit?: pulumi.Input<number>;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit?: pulumi.Input<number>;
     }
 
     export interface ProfileprotocoloptionsSsh {
         /**
-         * Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
+         * Number of bytes to send in each transmission for client comforting (bytes).
          */
         comfortAmount?: pulumi.Input<number>;
         /**
-         * Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+         * Interval between successive transmissions of data for client comforting (seconds).
          */
         comfortInterval?: pulumi.Input<number>;
         /**
@@ -6706,7 +7330,7 @@ export namespace firewall {
          */
         options?: pulumi.Input<string>;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit?: pulumi.Input<number>;
         /**
@@ -6718,7 +7342,7 @@ export namespace firewall {
          */
         sslOffloaded?: pulumi.Input<string>;
         /**
-         * Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+         * Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
          */
         streamBasedUncompressedLimit?: pulumi.Input<number>;
         /**
@@ -6742,7 +7366,7 @@ export namespace firewall {
          */
         uncompressedNestLimit?: pulumi.Input<number>;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit?: pulumi.Input<number>;
     }
@@ -6873,6 +7497,34 @@ export namespace firewall {
         name?: pulumi.Input<string>;
     }
 
+    export interface ProxypolicyInternetService6Custom {
+        /**
+         * Policy name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface ProxypolicyInternetService6CustomGroup {
+        /**
+         * Policy name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface ProxypolicyInternetService6Group {
+        /**
+         * Policy name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface ProxypolicyInternetService6Name {
+        /**
+         * Policy name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
     export interface ProxypolicyInternetServiceCustom {
         /**
          * Custom name.
@@ -6882,7 +7534,7 @@ export namespace firewall {
 
     export interface ProxypolicyInternetServiceCustomGroup {
         /**
-         * Custom Internet Service group name.
+         * Custom Internet Service IPv6 group name.
          */
         name?: pulumi.Input<string>;
     }
@@ -6920,6 +7572,12 @@ export namespace firewall {
          * Address name.
          */
         name?: pulumi.Input<string>;
+    }
+
+    export interface ProxypolicySortStatePolicyList {
+        action?: pulumi.Input<string>;
+        name?: pulumi.Input<string>;
+        policyid?: pulumi.Input<string>;
     }
 
     export interface ProxypolicySrcaddr {
@@ -6965,12 +7623,6 @@ export namespace firewall {
     }
 
     export interface SecurityPolicyseqStatePolicyList {
-        action?: pulumi.Input<string>;
-        name?: pulumi.Input<string>;
-        policyid?: pulumi.Input<string>;
-    }
-
-    export interface SecurityPolicysortStatePolicyList {
         action?: pulumi.Input<string>;
         name?: pulumi.Input<string>;
         policyid?: pulumi.Input<string>;
@@ -7170,6 +7822,12 @@ export namespace firewall {
          * Service name.
          */
         name?: pulumi.Input<string>;
+    }
+
+    export interface SecuritypolicySortStatePolicyList {
+        action?: pulumi.Input<string>;
+        name?: pulumi.Input<string>;
+        policyid?: pulumi.Input<string>;
     }
 
     export interface SecuritypolicySrcaddr {
@@ -7452,11 +8110,11 @@ export namespace firewall {
          */
         status?: pulumi.Input<string>;
         /**
-         * Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
          */
         threshold?: pulumi.Input<number>;
         /**
-         * Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+         * Number of detected instances (packets per second or concurrent session number) which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
          */
         thresholddefault?: pulumi.Input<number>;
     }
@@ -7489,6 +8147,10 @@ export namespace firewall {
          * Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
          */
         proxyAfterTcpHandshake?: pulumi.Input<string>;
+        /**
+         * QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+         */
+        quic?: pulumi.Input<string>;
         /**
          * Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
          */
@@ -7627,6 +8289,10 @@ export namespace firewall {
          * Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
          */
         proxyAfterTcpHandshake?: pulumi.Input<string>;
+        /**
+         * QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+         */
+        quic?: pulumi.Input<string>;
         /**
          * Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
          */
@@ -8196,6 +8862,41 @@ export namespace firewall {
         name?: pulumi.Input<string>;
     }
 
+    export interface Vip6Quic {
+        /**
+         * ACK delay exponent (1 - 20, default = 3).
+         */
+        ackDelayExponent?: pulumi.Input<number>;
+        /**
+         * Active connection ID limit (1 - 8, default = 2).
+         */
+        activeConnectionIdLimit?: pulumi.Input<number>;
+        /**
+         * Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+         */
+        activeMigration?: pulumi.Input<string>;
+        /**
+         * Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+         */
+        greaseQuicBit?: pulumi.Input<string>;
+        /**
+         * Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+         */
+        maxAckDelay?: pulumi.Input<number>;
+        /**
+         * Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+         */
+        maxDatagramFrameSize?: pulumi.Input<number>;
+        /**
+         * Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+         */
+        maxIdleTimeout?: pulumi.Input<number>;
+        /**
+         * Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+         */
+        maxUdpPayloadSize?: pulumi.Input<number>;
+    }
+
     export interface Vip6Realserver {
         /**
          * Only clients in this IP range can connect to this real server.
@@ -8237,6 +8938,10 @@ export namespace firewall {
          * Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
          */
         status?: pulumi.Input<string>;
+        /**
+         * Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+         */
+        translateHost?: pulumi.Input<string>;
         /**
          * Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
          */
@@ -8287,6 +8992,17 @@ export namespace firewall {
         name?: pulumi.Input<string>;
     }
 
+    export interface VipGslbPublicIp {
+        /**
+         * Index of this public IP setting.
+         */
+        index?: pulumi.Input<number>;
+        /**
+         * The publicly accessible IP address.
+         */
+        ip?: pulumi.Input<string>;
+    }
+
     export interface VipMappedip {
         /**
          * Mapped IP range.
@@ -8299,6 +9015,41 @@ export namespace firewall {
          * Health monitor name.
          */
         name?: pulumi.Input<string>;
+    }
+
+    export interface VipQuic {
+        /**
+         * ACK delay exponent (1 - 20, default = 3).
+         */
+        ackDelayExponent?: pulumi.Input<number>;
+        /**
+         * Active connection ID limit (1 - 8, default = 2).
+         */
+        activeConnectionIdLimit?: pulumi.Input<number>;
+        /**
+         * Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+         */
+        activeMigration?: pulumi.Input<string>;
+        /**
+         * Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+         */
+        greaseQuicBit?: pulumi.Input<string>;
+        /**
+         * Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+         */
+        maxAckDelay?: pulumi.Input<number>;
+        /**
+         * Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+         */
+        maxDatagramFrameSize?: pulumi.Input<number>;
+        /**
+         * Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+         */
+        maxIdleTimeout?: pulumi.Input<number>;
+        /**
+         * Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+         */
+        maxUdpPayloadSize?: pulumi.Input<number>;
     }
 
     export interface VipRealserver {
@@ -8346,6 +9097,10 @@ export namespace firewall {
          * Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
          */
         status?: pulumi.Input<string>;
+        /**
+         * Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+         */
+        translateHost?: pulumi.Input<string>;
         /**
          * Type of address. Valid values: `ip`, `address`.
          */
@@ -8735,7 +9490,7 @@ export namespace icap {
          */
         name?: pulumi.Input<string>;
         /**
-         * Optionally assign a weight of the ICAP server for weighted load balancing (1 - 100, default = 10)
+         * Optionally assign a weight of the forwarding server for weighted load balancing (1 - 100, default = 10).
          */
         weight?: pulumi.Input<number>;
     }
@@ -9165,6 +9920,10 @@ export namespace log {
          * Threat weight score for FortiSandbox medium risk malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
          */
         fsaMediumRisk?: pulumi.Input<string>;
+        /**
+         * Threat weight score for malware detected by inline block. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+         */
+        inlineBlock?: pulumi.Input<string>;
         /**
          * Threat weight score for virus (malware list) detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
          */
@@ -10531,9 +11290,17 @@ export namespace router {
          */
         activate6?: pulumi.Input<string>;
         /**
+         * Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
+         */
+        activateEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
          */
         activateVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
+         */
+        activateVpnv6?: pulumi.Input<string>;
         /**
          * Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
          */
@@ -10547,6 +11314,10 @@ export namespace router {
          */
         additionalPathVpnv4?: pulumi.Input<string>;
         /**
+         * Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+         */
+        additionalPathVpnv6?: pulumi.Input<string>;
+        /**
          * Number of IPv4 additional paths that can be advertised to this neighbor.
          */
         advAdditionalPath?: pulumi.Input<number>;
@@ -10558,6 +11329,10 @@ export namespace router {
          * Number of VPNv4 additional paths that can be advertised to this neighbor.
          */
         advAdditionalPathVpnv4?: pulumi.Input<number>;
+        /**
+         * Number of VPNv6 additional paths that can be advertised to this neighbor.
+         */
+        advAdditionalPathVpnv6?: pulumi.Input<number>;
         /**
          * Minimum interval (sec) between sending updates.
          */
@@ -10579,9 +11354,29 @@ export namespace router {
          */
         allowasInEnable6?: pulumi.Input<string>;
         /**
+         * Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+         */
+        allowasInEnableEvpn?: pulumi.Input<string>;
+        /**
+         * Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+         */
+        allowasInEnableVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+         */
+        allowasInEnableVpnv6?: pulumi.Input<string>;
+        /**
+         * The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+         */
+        allowasInEvpn?: pulumi.Input<number>;
+        /**
          * The maximum number of occurrence of my AS number allowed for VPNv4 route.
          */
         allowasInVpnv4?: pulumi.Input<number>;
+        /**
+         * The maximum number of occurrence of my AS number allowed for VPNv6 route.
+         */
+        allowasInVpnv6?: pulumi.Input<number>;
         /**
          * Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
          */
@@ -10602,6 +11397,14 @@ export namespace router {
          * List of attributes that should be unchanged for VPNv4 route. Valid values: `as-path`, `med`, `next-hop`.
          */
         attributeUnchangedVpnv4?: pulumi.Input<string>;
+        /**
+         * List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+         */
+        attributeUnchangedVpnv6?: pulumi.Input<string>;
+        /**
+         * Key-chain name for TCP authentication options.
+         */
+        authOptions?: pulumi.Input<string>;
         /**
          * Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
          */
@@ -10627,9 +11430,17 @@ export namespace router {
          */
         capabilityGracefulRestart6?: pulumi.Input<string>;
         /**
+         * Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+         */
+        capabilityGracefulRestartEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
          */
         capabilityGracefulRestartVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+         */
+        capabilityGracefulRestartVpnv6?: pulumi.Input<string>;
         /**
          * Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
          */
@@ -10679,6 +11490,10 @@ export namespace router {
          */
         distributeListInVpnv4?: pulumi.Input<string>;
         /**
+         * Filter for VPNv6 updates from this neighbor.
+         */
+        distributeListInVpnv6?: pulumi.Input<string>;
+        /**
          * Filter for IPv4 updates to this neighbor.
          */
         distributeListOut?: pulumi.Input<string>;
@@ -10690,6 +11505,10 @@ export namespace router {
          * Filter for VPNv4 updates to this neighbor.
          */
         distributeListOutVpnv4?: pulumi.Input<string>;
+        /**
+         * Filter for VPNv6 updates to this neighbor.
+         */
+        distributeListOutVpnv6?: pulumi.Input<string>;
         /**
          * Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
          */
@@ -10711,6 +11530,14 @@ export namespace router {
          */
         filterListIn6?: pulumi.Input<string>;
         /**
+         * BGP filter for VPNv4 inbound routes.
+         */
+        filterListInVpnv4?: pulumi.Input<string>;
+        /**
+         * BGP filter for VPNv6 inbound routes.
+         */
+        filterListInVpnv6?: pulumi.Input<string>;
+        /**
          * BGP filter for IPv4 outbound routes.
          */
         filterListOut?: pulumi.Input<string>;
@@ -10718,6 +11545,14 @@ export namespace router {
          * BGP filter for IPv6 outbound routes.
          */
         filterListOut6?: pulumi.Input<string>;
+        /**
+         * BGP filter for VPNv4 outbound routes.
+         */
+        filterListOutVpnv4?: pulumi.Input<string>;
+        /**
+         * BGP filter for VPNv6 outbound routes.
+         */
+        filterListOutVpnv6?: pulumi.Input<string>;
         /**
          * Interval (sec) before peer considered dead.
          */
@@ -10759,6 +11594,10 @@ export namespace router {
          */
         maximumPrefix6?: pulumi.Input<number>;
         /**
+         * Maximum number of L2VPN EVPN prefixes to accept from this peer.
+         */
+        maximumPrefixEvpn?: pulumi.Input<number>;
+        /**
          * Maximum IPv4 prefix threshold value (1 - 100 percent).
          */
         maximumPrefixThreshold?: pulumi.Input<number>;
@@ -10767,13 +11606,25 @@ export namespace router {
          */
         maximumPrefixThreshold6?: pulumi.Input<number>;
         /**
+         * Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+         */
+        maximumPrefixThresholdEvpn?: pulumi.Input<number>;
+        /**
          * Maximum VPNv4 prefix threshold value (1 - 100 percent).
          */
         maximumPrefixThresholdVpnv4?: pulumi.Input<number>;
         /**
+         * Maximum VPNv6 prefix threshold value (1 - 100 percent).
+         */
+        maximumPrefixThresholdVpnv6?: pulumi.Input<number>;
+        /**
          * Maximum number of VPNv4 prefixes to accept from this peer.
          */
         maximumPrefixVpnv4?: pulumi.Input<number>;
+        /**
+         * Maximum number of VPNv6 prefixes to accept from this peer.
+         */
+        maximumPrefixVpnv6?: pulumi.Input<number>;
         /**
          * Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
          */
@@ -10783,9 +11634,17 @@ export namespace router {
          */
         maximumPrefixWarningOnly6?: pulumi.Input<string>;
         /**
+         * Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
+         */
+        maximumPrefixWarningOnlyEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
          */
         maximumPrefixWarningOnlyVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
+         */
+        maximumPrefixWarningOnlyVpnv6?: pulumi.Input<string>;
         /**
          * Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
          */
@@ -10806,6 +11665,10 @@ export namespace router {
          * Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor. Valid values: `enable`, `disable`.
          */
         nextHopSelfVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
+         */
+        nextHopSelfVpnv6?: pulumi.Input<string>;
         /**
          * Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
          */
@@ -10831,6 +11694,10 @@ export namespace router {
          */
         prefixListInVpnv4?: pulumi.Input<string>;
         /**
+         * Inbound filter for VPNv6 updates from this neighbor.
+         */
+        prefixListInVpnv6?: pulumi.Input<string>;
+        /**
          * IPv4 Outbound filter for updates to this neighbor.
          */
         prefixListOut?: pulumi.Input<string>;
@@ -10842,6 +11709,10 @@ export namespace router {
          * Outbound filter for VPNv4 updates to this neighbor.
          */
         prefixListOutVpnv4?: pulumi.Input<string>;
+        /**
+         * Outbound filter for VPNv6 updates to this neighbor.
+         */
+        prefixListOutVpnv6?: pulumi.Input<string>;
         /**
          * AS number of neighbor.
          */
@@ -10855,9 +11726,17 @@ export namespace router {
          */
         removePrivateAs6?: pulumi.Input<string>;
         /**
+         * Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
+         */
+        removePrivateAsEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
          */
         removePrivateAsVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
+         */
+        removePrivateAsVpnv6?: pulumi.Input<string>;
         /**
          * Graceful restart delay time (sec, 0 = global default).
          */
@@ -10875,9 +11754,17 @@ export namespace router {
          */
         routeMapIn6?: pulumi.Input<string>;
         /**
+         * L2VPN EVPN inbound route map filter.
+         */
+        routeMapInEvpn?: pulumi.Input<string>;
+        /**
          * VPNv4 inbound route map filter.
          */
         routeMapInVpnv4?: pulumi.Input<string>;
+        /**
+         * VPNv6 inbound route map filter.
+         */
+        routeMapInVpnv6?: pulumi.Input<string>;
         /**
          * IPv4 Outbound route map filter.
          */
@@ -10891,6 +11778,10 @@ export namespace router {
          */
         routeMapOut6Preferable?: pulumi.Input<string>;
         /**
+         * L2VPN EVPN outbound route map filter.
+         */
+        routeMapOutEvpn?: pulumi.Input<string>;
+        /**
          * IPv4 outbound route map filter if the peer is preferred.
          */
         routeMapOutPreferable?: pulumi.Input<string>;
@@ -10903,6 +11794,14 @@ export namespace router {
          */
         routeMapOutVpnv4Preferable?: pulumi.Input<string>;
         /**
+         * VPNv6 outbound route map filter.
+         */
+        routeMapOutVpnv6?: pulumi.Input<string>;
+        /**
+         * VPNv6 outbound route map filter if this neighbor is preferred.
+         */
+        routeMapOutVpnv6Preferable?: pulumi.Input<string>;
+        /**
          * Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
          */
         routeReflectorClient?: pulumi.Input<string>;
@@ -10911,9 +11810,17 @@ export namespace router {
          */
         routeReflectorClient6?: pulumi.Input<string>;
         /**
+         * Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeReflectorClientEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
          */
         routeReflectorClientVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeReflectorClientVpnv6?: pulumi.Input<string>;
         /**
          * Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
          */
@@ -10923,9 +11830,17 @@ export namespace router {
          */
         routeServerClient6?: pulumi.Input<string>;
         /**
+         * Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeServerClientEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
          */
         routeServerClientVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeServerClientVpnv6?: pulumi.Input<string>;
         /**
          * IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
          */
@@ -10935,9 +11850,17 @@ export namespace router {
          */
         sendCommunity6?: pulumi.Input<string>;
         /**
+         * Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
+         */
+        sendCommunityEvpn?: pulumi.Input<string>;
+        /**
          * Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
          */
         sendCommunityVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+         */
+        sendCommunityVpnv6?: pulumi.Input<string>;
         /**
          * Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
          */
@@ -10951,9 +11874,17 @@ export namespace router {
          */
         softReconfiguration6?: pulumi.Input<string>;
         /**
+         * Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
+         */
+        softReconfigurationEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
          */
         softReconfigurationVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+         */
+        softReconfigurationVpnv6?: pulumi.Input<string>;
         /**
          * Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
          */
@@ -11020,9 +11951,17 @@ export namespace router {
          */
         activate6?: pulumi.Input<string>;
         /**
+         * Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
+         */
+        activateEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
          */
         activateVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
+         */
+        activateVpnv6?: pulumi.Input<string>;
         /**
          * Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
          */
@@ -11036,6 +11975,10 @@ export namespace router {
          */
         additionalPathVpnv4?: pulumi.Input<string>;
         /**
+         * Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+         */
+        additionalPathVpnv6?: pulumi.Input<string>;
+        /**
          * Number of IPv4 additional paths that can be advertised to this neighbor.
          */
         advAdditionalPath?: pulumi.Input<number>;
@@ -11047,6 +11990,10 @@ export namespace router {
          * Number of VPNv4 additional paths that can be advertised to this neighbor.
          */
         advAdditionalPathVpnv4?: pulumi.Input<number>;
+        /**
+         * Number of VPNv6 additional paths that can be advertised to this neighbor.
+         */
+        advAdditionalPathVpnv6?: pulumi.Input<number>;
         /**
          * Minimum interval (sec) between sending updates.
          */
@@ -11068,9 +12015,29 @@ export namespace router {
          */
         allowasInEnable6?: pulumi.Input<string>;
         /**
+         * Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+         */
+        allowasInEnableEvpn?: pulumi.Input<string>;
+        /**
+         * Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+         */
+        allowasInEnableVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+         */
+        allowasInEnableVpnv6?: pulumi.Input<string>;
+        /**
+         * The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+         */
+        allowasInEvpn?: pulumi.Input<number>;
+        /**
          * The maximum number of occurrence of my AS number allowed for VPNv4 route.
          */
         allowasInVpnv4?: pulumi.Input<number>;
+        /**
+         * The maximum number of occurrence of my AS number allowed for VPNv6 route.
+         */
+        allowasInVpnv6?: pulumi.Input<number>;
         /**
          * Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
          */
@@ -11091,6 +12058,14 @@ export namespace router {
          * List of attributes that should be unchanged for VPNv4 route. Valid values: `as-path`, `med`, `next-hop`.
          */
         attributeUnchangedVpnv4?: pulumi.Input<string>;
+        /**
+         * List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+         */
+        attributeUnchangedVpnv6?: pulumi.Input<string>;
+        /**
+         * Key-chain name for TCP authentication options.
+         */
+        authOptions?: pulumi.Input<string>;
         /**
          * Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
          */
@@ -11116,9 +12091,17 @@ export namespace router {
          */
         capabilityGracefulRestart6?: pulumi.Input<string>;
         /**
+         * Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+         */
+        capabilityGracefulRestartEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
          */
         capabilityGracefulRestartVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+         */
+        capabilityGracefulRestartVpnv6?: pulumi.Input<string>;
         /**
          * Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
          */
@@ -11160,6 +12143,10 @@ export namespace router {
          */
         distributeListInVpnv4?: pulumi.Input<string>;
         /**
+         * Filter for VPNv6 updates from this neighbor.
+         */
+        distributeListInVpnv6?: pulumi.Input<string>;
+        /**
          * Filter for IPv4 updates to this neighbor.
          */
         distributeListOut?: pulumi.Input<string>;
@@ -11171,6 +12158,10 @@ export namespace router {
          * Filter for VPNv4 updates to this neighbor.
          */
         distributeListOutVpnv4?: pulumi.Input<string>;
+        /**
+         * Filter for VPNv6 updates to this neighbor.
+         */
+        distributeListOutVpnv6?: pulumi.Input<string>;
         /**
          * Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
          */
@@ -11192,6 +12183,14 @@ export namespace router {
          */
         filterListIn6?: pulumi.Input<string>;
         /**
+         * BGP filter for VPNv4 inbound routes.
+         */
+        filterListInVpnv4?: pulumi.Input<string>;
+        /**
+         * BGP filter for VPNv6 inbound routes.
+         */
+        filterListInVpnv6?: pulumi.Input<string>;
+        /**
          * BGP filter for IPv4 outbound routes.
          */
         filterListOut?: pulumi.Input<string>;
@@ -11199,6 +12198,14 @@ export namespace router {
          * BGP filter for IPv6 outbound routes.
          */
         filterListOut6?: pulumi.Input<string>;
+        /**
+         * BGP filter for VPNv4 outbound routes.
+         */
+        filterListOutVpnv4?: pulumi.Input<string>;
+        /**
+         * BGP filter for VPNv6 outbound routes.
+         */
+        filterListOutVpnv6?: pulumi.Input<string>;
         /**
          * Interval (sec) before peer considered dead.
          */
@@ -11236,6 +12243,10 @@ export namespace router {
          */
         maximumPrefix6?: pulumi.Input<number>;
         /**
+         * Maximum number of L2VPN EVPN prefixes to accept from this peer.
+         */
+        maximumPrefixEvpn?: pulumi.Input<number>;
+        /**
          * Maximum IPv4 prefix threshold value (1 - 100 percent).
          */
         maximumPrefixThreshold?: pulumi.Input<number>;
@@ -11244,13 +12255,25 @@ export namespace router {
          */
         maximumPrefixThreshold6?: pulumi.Input<number>;
         /**
+         * Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+         */
+        maximumPrefixThresholdEvpn?: pulumi.Input<number>;
+        /**
          * Maximum VPNv4 prefix threshold value (1 - 100 percent).
          */
         maximumPrefixThresholdVpnv4?: pulumi.Input<number>;
         /**
+         * Maximum VPNv6 prefix threshold value (1 - 100 percent).
+         */
+        maximumPrefixThresholdVpnv6?: pulumi.Input<number>;
+        /**
          * Maximum number of VPNv4 prefixes to accept from this peer.
          */
         maximumPrefixVpnv4?: pulumi.Input<number>;
+        /**
+         * Maximum number of VPNv6 prefixes to accept from this peer.
+         */
+        maximumPrefixVpnv6?: pulumi.Input<number>;
         /**
          * Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
          */
@@ -11260,9 +12283,17 @@ export namespace router {
          */
         maximumPrefixWarningOnly6?: pulumi.Input<string>;
         /**
+         * Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
+         */
+        maximumPrefixWarningOnlyEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
          */
         maximumPrefixWarningOnlyVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
+         */
+        maximumPrefixWarningOnlyVpnv6?: pulumi.Input<string>;
         /**
          * Neighbor group name.
          */
@@ -11288,6 +12319,10 @@ export namespace router {
          */
         nextHopSelfVpnv4?: pulumi.Input<string>;
         /**
+         * Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
+         */
+        nextHopSelfVpnv6?: pulumi.Input<string>;
+        /**
          * Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
          */
         overrideCapability?: pulumi.Input<string>;
@@ -11295,6 +12330,10 @@ export namespace router {
          * Enable/disable sending of open messages to this neighbor. Valid values: `enable`, `disable`.
          */
         passive?: pulumi.Input<string>;
+        /**
+         * Password used in MD5 authentication.
+         */
+        password?: pulumi.Input<string>;
         /**
          * IPv4 Inbound filter for updates from this neighbor.
          */
@@ -11308,6 +12347,10 @@ export namespace router {
          */
         prefixListInVpnv4?: pulumi.Input<string>;
         /**
+         * Inbound filter for VPNv6 updates from this neighbor.
+         */
+        prefixListInVpnv6?: pulumi.Input<string>;
+        /**
          * IPv4 Outbound filter for updates to this neighbor.
          */
         prefixListOut?: pulumi.Input<string>;
@@ -11319,6 +12362,10 @@ export namespace router {
          * Outbound filter for VPNv4 updates to this neighbor.
          */
         prefixListOutVpnv4?: pulumi.Input<string>;
+        /**
+         * Outbound filter for VPNv6 updates to this neighbor.
+         */
+        prefixListOutVpnv6?: pulumi.Input<string>;
         /**
          * AS number of neighbor.
          */
@@ -11332,9 +12379,17 @@ export namespace router {
          */
         removePrivateAs6?: pulumi.Input<string>;
         /**
+         * Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
+         */
+        removePrivateAsEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
          */
         removePrivateAsVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
+         */
+        removePrivateAsVpnv6?: pulumi.Input<string>;
         /**
          * Graceful restart delay time (sec, 0 = global default).
          */
@@ -11352,9 +12407,17 @@ export namespace router {
          */
         routeMapIn6?: pulumi.Input<string>;
         /**
+         * L2VPN EVPN inbound route map filter.
+         */
+        routeMapInEvpn?: pulumi.Input<string>;
+        /**
          * VPNv4 inbound route map filter.
          */
         routeMapInVpnv4?: pulumi.Input<string>;
+        /**
+         * VPNv6 inbound route map filter.
+         */
+        routeMapInVpnv6?: pulumi.Input<string>;
         /**
          * IPv4 Outbound route map filter.
          */
@@ -11368,6 +12431,10 @@ export namespace router {
          */
         routeMapOut6Preferable?: pulumi.Input<string>;
         /**
+         * L2VPN EVPN outbound route map filter.
+         */
+        routeMapOutEvpn?: pulumi.Input<string>;
+        /**
          * IPv4 outbound route map filter if the peer is preferred.
          */
         routeMapOutPreferable?: pulumi.Input<string>;
@@ -11380,6 +12447,14 @@ export namespace router {
          */
         routeMapOutVpnv4Preferable?: pulumi.Input<string>;
         /**
+         * VPNv6 outbound route map filter.
+         */
+        routeMapOutVpnv6?: pulumi.Input<string>;
+        /**
+         * VPNv6 outbound route map filter if this neighbor is preferred.
+         */
+        routeMapOutVpnv6Preferable?: pulumi.Input<string>;
+        /**
          * Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
          */
         routeReflectorClient?: pulumi.Input<string>;
@@ -11388,9 +12463,17 @@ export namespace router {
          */
         routeReflectorClient6?: pulumi.Input<string>;
         /**
+         * Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeReflectorClientEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
          */
         routeReflectorClientVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeReflectorClientVpnv6?: pulumi.Input<string>;
         /**
          * Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
          */
@@ -11400,9 +12483,17 @@ export namespace router {
          */
         routeServerClient6?: pulumi.Input<string>;
         /**
+         * Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeServerClientEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
          */
         routeServerClientVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeServerClientVpnv6?: pulumi.Input<string>;
         /**
          * IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
          */
@@ -11412,9 +12503,17 @@ export namespace router {
          */
         sendCommunity6?: pulumi.Input<string>;
         /**
+         * Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
+         */
+        sendCommunityEvpn?: pulumi.Input<string>;
+        /**
          * Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
          */
         sendCommunityVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+         */
+        sendCommunityVpnv6?: pulumi.Input<string>;
         /**
          * Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
          */
@@ -11428,9 +12527,17 @@ export namespace router {
          */
         softReconfiguration6?: pulumi.Input<string>;
         /**
+         * Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
+         */
+        softReconfigurationEvpn?: pulumi.Input<string>;
+        /**
          * Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
          */
         softReconfigurationVpnv4?: pulumi.Input<string>;
+        /**
+         * Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+         */
+        softReconfigurationVpnv6?: pulumi.Input<string>;
         /**
          * Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
          */
@@ -11597,20 +12704,54 @@ export namespace router {
          */
         role?: pulumi.Input<string>;
         /**
-         * Origin VRF ID (0 - 63).
+         * Origin VRF ID. On FortiOS versions 7.2.0-7.2.3: 0 - 63. On FortiOS versions >= 7.2.4: 0 - 251.
          */
         vrf?: pulumi.Input<string>;
     }
 
     export interface BgpVrf6 {
         /**
+         * List of export route target. The structure of `exportRt` block is documented below.
+         */
+        exportRts?: pulumi.Input<pulumi.Input<inputs.router.BgpVrf6ExportRt>[]>;
+        /**
+         * Import route map.
+         */
+        importRouteMap?: pulumi.Input<string>;
+        /**
+         * List of import route target. The structure of `importRt` block is documented below.
+         */
+        importRts?: pulumi.Input<pulumi.Input<inputs.router.BgpVrf6ImportRt>[]>;
+        /**
          * Target VRF table. The structure of `leakTarget` block is documented below.
          */
         leakTargets?: pulumi.Input<pulumi.Input<inputs.router.BgpVrf6LeakTarget>[]>;
         /**
+         * Route Distinguisher: AA:NN|A.B.C.D:NN.
+         */
+        rd?: pulumi.Input<string>;
+        /**
+         * VRF role. Valid values: `standalone`, `ce`, `pe`.
+         */
+        role?: pulumi.Input<string>;
+        /**
          * BGP VRF leaking table. The structure of `vrf` block is documented below.
          */
         vrf?: pulumi.Input<string>;
+    }
+
+    export interface BgpVrf6ExportRt {
+        /**
+         * Attribute: AA:NN|A.B.C.D:NN.
+         */
+        routeTarget?: pulumi.Input<string>;
+    }
+
+    export interface BgpVrf6ImportRt {
+        /**
+         * Attribute: AA:NN|A.B.C.D:NN
+         */
+        routeTarget?: pulumi.Input<string>;
     }
 
     export interface BgpVrf6LeakTarget {
@@ -11623,21 +12764,21 @@ export namespace router {
          */
         routeMap?: pulumi.Input<string>;
         /**
-         * Target VRF ID (0 - 63).
+         * Target VRF ID. On FortiOS versions 7.2.0-7.2.3: 0 - 63. On FortiOS versions >= 7.2.4: 0 - 251.
          */
         vrf?: pulumi.Input<string>;
     }
 
     export interface BgpVrfExportRt {
         /**
-         * Attribute: AA|AA:NN.
+         * Attribute: AA:NN|A.B.C.D:NN.
          */
         routeTarget?: pulumi.Input<string>;
     }
 
     export interface BgpVrfImportRt {
         /**
-         * Attribute: AA|AA:NN.
+         * Attribute: AA:NN|A.B.C.D:NN
          */
         routeTarget?: pulumi.Input<string>;
     }
@@ -11648,7 +12789,7 @@ export namespace router {
          */
         targets?: pulumi.Input<pulumi.Input<inputs.router.BgpVrfLeakTarget>[]>;
         /**
-         * Origin VRF ID <0 - 31>.
+         * Origin VRF ID (0 - 31).
          */
         vrf?: pulumi.Input<string>;
     }
@@ -11674,7 +12815,7 @@ export namespace router {
          */
         routeMap?: pulumi.Input<string>;
         /**
-         * Target VRF ID <0 - 31>.
+         * Target VRF ID (0 - 31).
          */
         vrf?: pulumi.Input<string>;
     }
@@ -11689,7 +12830,7 @@ export namespace router {
          */
         routeMap?: pulumi.Input<string>;
         /**
-         * Target VRF ID <0 - 31>.
+         * Target VRF ID (0 - 31).
          */
         vrf?: pulumi.Input<string>;
     }
@@ -11711,6 +12852,29 @@ export namespace router {
          * Ordered list of COMMUNITY attributes as a regular expression.
          */
         regexp?: pulumi.Input<string>;
+    }
+
+    export interface ExtcommunitylistRule {
+        /**
+         * Permit or deny route-based operations, based on the route's EXTENDED COMMUNITY attribute. Valid values: `deny`, `permit`.
+         */
+        action?: pulumi.Input<string>;
+        /**
+         * ID.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * Extended community specifications for matching a reserved extended community.
+         */
+        match?: pulumi.Input<string>;
+        /**
+         * Ordered list of EXTENDED COMMUNITY attributes as a regular expression.
+         */
+        regexp?: pulumi.Input<string>;
+        /**
+         * Type of extended community. Valid values: `rt`, `soo`.
+         */
+        type?: pulumi.Input<string>;
     }
 
     export interface IsisIsisInterface {
@@ -11842,7 +13006,7 @@ export namespace router {
          */
         id?: pulumi.Input<number>;
         /**
-         * IS-IS net xx.xxxx. ... .xxxx.xx.
+         * IS-IS networks (format = xx.xxxx.  .xxxx.xx.).
          */
         net?: pulumi.Input<string>;
     }
@@ -11937,7 +13101,7 @@ export namespace router {
          */
         acceptLifetime?: pulumi.Input<string>;
         /**
-         * Cryptographic algorithm. Valid values: `md5`, `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, `hmac-sha512`.
+         * Cryptographic algorithm.
          */
         algorithm?: pulumi.Input<string>;
         /**
@@ -11945,7 +13109,7 @@ export namespace router {
          */
         id?: pulumi.Input<number>;
         /**
-         * Password for the key (max. = 35 characters).
+         * Password for the key. On FortiOS versions 6.2.0-7.0.0: max. = 35 characters. On FortiOS versions 7.0.1-7.0.3: maximum = 64 characters.
          */
         keyString?: pulumi.Input<string>;
         /**
@@ -11956,11 +13120,11 @@ export namespace router {
 
     export interface Multicast6Interface {
         /**
-         * Time before old neighbour information expires (1 - 65535 sec, default = 105).
+         * Time before old neighbor information expires in seconds (1 - 65535, default = 105).
          */
         helloHoldtime?: pulumi.Input<number>;
         /**
-         * Interval between sending PIM hello messages  (1 - 65535 sec, default = 30)..
+         * Interval between sending PIM hello messages in seconds (1 - 65535, default = 30).
          */
         helloInterval?: pulumi.Input<number>;
         /**
@@ -12108,7 +13272,7 @@ export namespace router {
          */
         queryMaxResponseTime?: pulumi.Input<number>;
         /**
-         * Timeout between queries before becoming querier for network (60 - 900, default = 255).
+         * Timeout between queries before becoming querying unit for network (60 - 900, default = 255).
          */
         queryTimeout?: pulumi.Input<number>;
         /**
@@ -12185,6 +13349,10 @@ export namespace router {
          * Maximum retries of null register (1 - 20, default = 1).
          */
         nullRegisterRetries?: pulumi.Input<number>;
+        /**
+         * Enable/disable use of SDWAN when checking RPF neighbor and sending of REG packet. Valid values: `enable`, `disable`.
+         */
+        pimUseSdwan?: pulumi.Input<string>;
         /**
          * Limit of packets/sec per source registered through this RP (0 - 65535, default = 0 which means unlimited).
          */
@@ -13445,6 +14613,14 @@ export namespace router {
          */
         matchCommunityExact?: pulumi.Input<string>;
         /**
+         * Match BGP extended community list.
+         */
+        matchExtcommunity?: pulumi.Input<string>;
+        /**
+         * Enable/disable exact matching of extended communities. Valid values: `enable`, `disable`.
+         */
+        matchExtcommunityExact?: pulumi.Input<string>;
+        /**
          * BGP flag value to match (0 - 65535)
          */
         matchFlags?: pulumi.Input<number>;
@@ -13565,6 +14741,10 @@ export namespace router {
          */
         setIpNexthop?: pulumi.Input<string>;
         /**
+         * IP address of preferred source.
+         */
+        setIpPrefsrc?: pulumi.Input<string>;
+        /**
          * BGP local preference path attribute.
          */
         setLocalPreference?: pulumi.Input<number>;
@@ -13597,6 +14777,18 @@ export namespace router {
          */
         setTag?: pulumi.Input<number>;
         /**
+         * IP address of VPNv4 next-hop.
+         */
+        setVpnv4Nexthop?: pulumi.Input<string>;
+        /**
+         * IPv6 global address of VPNv6 next-hop.
+         */
+        setVpnv6Nexthop?: pulumi.Input<string>;
+        /**
+         * IPv6 link-local address of VPNv6 next-hop.
+         */
+        setVpnv6NexthopLocal?: pulumi.Input<string>;
+        /**
          * BGP weight for routing table.
          */
         setWeight?: pulumi.Input<number>;
@@ -13604,7 +14796,7 @@ export namespace router {
 
     export interface RoutemapRuleSetAspath {
         /**
-         * AS number (0 - 42949672). NOTE: Use quotes for repeating numbers, e.g.: "1 1 2"
+         * AS number. Use quotes for repeating numbers, For example, "1 1 2". On FortiOS versions 6.2.0-7.0.0: 0 - 42949672. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295.
          */
         as?: pulumi.Input<string>;
     }
@@ -13625,7 +14817,7 @@ export namespace router {
 
     export interface RoutemapRuleSetExtcommunitySoo {
         /**
-         * AA:NN
+         * Community (format = AA:NN).
          */
         community?: pulumi.Input<string>;
     }
@@ -13722,6 +14914,60 @@ export namespace router {
              */
             priority?: pulumi.Input<number>;
         }
+    }
+}
+
+export namespace rule {
+    export interface FmwpMetadata {
+        /**
+         * ID.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * Meta ID.
+         */
+        metaid?: pulumi.Input<number>;
+        /**
+         * Value ID.
+         */
+        valueid?: pulumi.Input<number>;
+    }
+
+    export interface OtdtMetadata {
+        /**
+         * ID.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * Meta ID.
+         */
+        metaid?: pulumi.Input<number>;
+        /**
+         * Value ID.
+         */
+        valueid?: pulumi.Input<number>;
+    }
+
+    export interface OtdtParameter {
+        /**
+         * Parameter name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface OtvpMetadata {
+        /**
+         * ID.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * Meta ID.
+         */
+        metaid?: pulumi.Input<number>;
+        /**
+         * Value ID.
+         */
+        valueid?: pulumi.Input<number>;
     }
 }
 
@@ -14135,6 +15381,29 @@ export namespace switchcontroller {
         commandName?: pulumi.Input<string>;
     }
 
+    export interface ManagedswitchDhcpSnoopingStaticClient {
+        /**
+         * Client static IP address.
+         */
+        ip?: pulumi.Input<string>;
+        /**
+         * Client MAC address.
+         */
+        mac?: pulumi.Input<string>;
+        /**
+         * Client name.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * Interface name.
+         */
+        port?: pulumi.Input<string>;
+        /**
+         * VLAN name.
+         */
+        vlan?: pulumi.Input<string>;
+    }
+
     export interface ManagedswitchIgmpSnooping {
         /**
          * Maximum time to retain a multicast snooping entry for which no packets have been seen (15 - 3600 sec, default = 300).
@@ -14264,6 +15533,26 @@ export namespace switchcontroller {
          */
         mabReauth?: pulumi.Input<string>;
         /**
+         * MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+         */
+        macCalledStationDelimiter?: pulumi.Input<string>;
+        /**
+         * MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+         */
+        macCallingStationDelimiter?: pulumi.Input<string>;
+        /**
+         * MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+         */
+        macCase?: pulumi.Input<string>;
+        /**
+         * MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+         */
+        macPasswordDelimiter?: pulumi.Input<string>;
+        /**
+         * MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+         */
+        macUsernameDelimiter?: pulumi.Input<string>;
+        /**
          * Maximum number of authentication attempts (0 - 15, default = 3).
          */
         maxReauthAttempt?: pulumi.Input<number>;
@@ -14283,6 +15572,10 @@ export namespace switchcontroller {
          */
         accessMode?: pulumi.Input<string>;
         /**
+         * ACL groups on this port. The structure of `aclGroup` block is documented below.
+         */
+        aclGroups?: pulumi.Input<pulumi.Input<inputs.switchcontroller.ManagedswitchPortAclGroup>[]>;
+        /**
          * LACP member select mode. Valid values: `bandwidth`, `count`.
          */
         aggregatorMode?: pulumi.Input<string>;
@@ -14299,6 +15592,10 @@ export namespace switchcontroller {
          */
         arpInspectionTrust?: pulumi.Input<string>;
         /**
+         * Peer to Peer Authenticated port.
+         */
+        authenticatedPort?: pulumi.Input<number>;
+        /**
          * Enable/disable Link Aggregation Group (LAG) bundling for non-FortiLink interfaces. Valid values: `enable`, `disable`.
          */
         bundle?: pulumi.Input<string>;
@@ -14306,6 +15603,10 @@ export namespace switchcontroller {
          * Description for port.
          */
         description?: pulumi.Input<string>;
+        /**
+         * Configure DHCP snooping option 82 override. The structure of `dhcpSnoopOption82Override` block is documented below.
+         */
+        dhcpSnoopOption82Overrides?: pulumi.Input<pulumi.Input<inputs.switchcontroller.ManagedswitchPortDhcpSnoopOption82Override>[]>;
         /**
          * Enable/disable allowance of DHCP with option-82 on untrusted interface. Valid values: `enable`, `disable`.
          */
@@ -14322,6 +15623,10 @@ export namespace switchcontroller {
          * Enable/disable this interface as an edge port, bridging connections between workstations and/or computers. Valid values: `enable`, `disable`.
          */
         edgePort?: pulumi.Input<string>;
+        /**
+         * Peer to Peer Encrypted port.
+         */
+        encryptedPort?: pulumi.Input<number>;
         /**
          * Switch controller export tag name. The structure of `exportTags` block is documented below.
          */
@@ -14343,7 +15648,7 @@ export namespace switchcontroller {
          */
         fecCapable?: pulumi.Input<number>;
         /**
-         * State of forward error correction. Valid values: `disabled`, `cl74`, `cl91`.
+         * State of forward error correction.
          */
         fecState?: pulumi.Input<string>;
         /**
@@ -14387,6 +15692,10 @@ export namespace switchcontroller {
          */
         fortilinkPort?: pulumi.Input<number>;
         /**
+         * ACLs on this port. The structure of `fortiswitchAcls` block is documented below.
+         */
+        fortiswitchAcls?: pulumi.Input<pulumi.Input<inputs.switchcontroller.ManagedswitchPortFortiswitchAcl>[]>;
+        /**
          * Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
          */
         igmpSnooping?: pulumi.Input<string>;
@@ -14419,6 +15728,10 @@ export namespace switchcontroller {
          */
         islPeerDeviceName?: pulumi.Input<string>;
         /**
+         * ISL peer device serial number.
+         */
+        islPeerDeviceSn?: pulumi.Input<string>;
+        /**
          * ISL peer port name.
          */
         islPeerPortName?: pulumi.Input<string>;
@@ -14430,6 +15743,10 @@ export namespace switchcontroller {
          * Limit the number of dynamic MAC addresses on this Port (1 - 128, 0 = no limit, default).
          */
         learningLimit?: pulumi.Input<number>;
+        /**
+         * Port link status. Valid values: `up`, `down`.
+         */
+        linkStatus?: pulumi.Input<string>;
         /**
          * LLDP port TLV profile.
          */
@@ -14523,6 +15840,22 @@ export namespace switchcontroller {
          */
         poeMaxPower?: pulumi.Input<string>;
         /**
+         * PoE mode IEEE 802.3BT capable.
+         */
+        poeModeBtCabable?: pulumi.Input<number>;
+        /**
+         * Configure PoE port mode. Valid values: `ieee802-3af`, `ieee802-3at`, `ieee802-3bt`.
+         */
+        poePortMode?: pulumi.Input<string>;
+        /**
+         * Configure PoE port power. Valid values: `normal`, `perpetual`, `perpetual-fast`.
+         */
+        poePortPower?: pulumi.Input<string>;
+        /**
+         * Configure PoE port priority. Valid values: `critical-priority`, `high-priority`, `low-priority`, `medium-priority`.
+         */
+        poePortPriority?: pulumi.Input<string>;
+        /**
          * Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
          */
         poePreStandardDetection?: pulumi.Input<string>;
@@ -14567,9 +15900,17 @@ export namespace switchcontroller {
          */
         ptpPolicy?: pulumi.Input<string>;
         /**
+         * Enable/disable PTP policy on this FortiSwitch port. Valid values: `disable`, `enable`.
+         */
+        ptpStatus?: pulumi.Input<string>;
+        /**
          * Switch controller QoS policy from available options.
          */
         qosPolicy?: pulumi.Input<string>;
+        /**
+         * Peer to Peer Restricted Authenticated port.
+         */
+        restrictedAuthPort?: pulumi.Input<number>;
         /**
          * Enable/disable inter-operability with rapid PVST on this interface. Valid values: `disabled`, `enabled`.
          */
@@ -14652,7 +15993,29 @@ export namespace switchcontroller {
         vlan?: pulumi.Input<string>;
     }
 
+    export interface ManagedswitchPortAclGroup {
+        /**
+         * ACL group name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
     export interface ManagedswitchPortAllowedVlan {
+        /**
+         * VLAN name.
+         */
+        vlanName?: pulumi.Input<string>;
+    }
+
+    export interface ManagedswitchPortDhcpSnoopOption82Override {
+        /**
+         * Circuit ID string.
+         */
+        circuitId?: pulumi.Input<string>;
+        /**
+         * Remote ID string.
+         */
+        remoteId?: pulumi.Input<string>;
         /**
          * VLAN name.
          */
@@ -14664,6 +16027,15 @@ export namespace switchcontroller {
          * Switch tag name.
          */
         tagName?: pulumi.Input<string>;
+    }
+
+    export interface ManagedswitchPortFortiswitchAcl {
+        /**
+         * ACL ID.
+         *
+         * The `dhcpSnoopOption82Override` block supports:
+         */
+        id?: pulumi.Input<number>;
     }
 
     export interface ManagedswitchPortInterfaceTag {
@@ -14716,6 +16088,17 @@ export namespace switchcontroller {
          * Enable/disable logging by FortiSwitch device to a remote syslog server. Valid values: `enable`, `disable`.
          */
         status?: pulumi.Input<string>;
+    }
+
+    export interface ManagedswitchRouteOffloadRouter {
+        /**
+         * Router IP address.
+         */
+        routerIp?: pulumi.Input<string>;
+        /**
+         * VLAN name.
+         */
+        vlanName?: pulumi.Input<string>;
     }
 
     export interface ManagedswitchSnmpCommunity {
@@ -14987,6 +16370,17 @@ export namespace switchcontroller {
         status?: pulumi.Input<string>;
     }
 
+    export interface ManagedswitchVlan {
+        /**
+         * 802.1x Radius (Tunnel-Private-Group-Id) VLANID assign-by-name priority. A smaller value has a higher priority.
+         */
+        assignmentPriority?: pulumi.Input<number>;
+        /**
+         * VLAN name.
+         */
+        vlanName?: pulumi.Input<string>;
+    }
+
     export interface QuarantineTarget {
         /**
          * Description for the quarantine MAC.
@@ -15223,6 +16617,49 @@ export namespace switchcontroller {
     }
 }
 
+export namespace switchcontrolleracl {
+    export interface GroupIngress {
+        /**
+         * ACL ID.
+         */
+        id?: pulumi.Input<number>;
+    }
+
+    export interface IngressAction {
+        /**
+         * Enable/disable count. Valid values: `enable`, `disable`.
+         */
+        count?: pulumi.Input<string>;
+        /**
+         * Enable/disable drop. Valid values: `enable`, `disable`.
+         */
+        drop?: pulumi.Input<string>;
+    }
+
+    export interface IngressClassifier {
+        /**
+         * Destination IP address to be matched.
+         */
+        dstIpPrefix?: pulumi.Input<string>;
+        /**
+         * Destination MAC address to be matched.
+         */
+        dstMac?: pulumi.Input<string>;
+        /**
+         * Source IP address to be matched.
+         */
+        srcIpPrefix?: pulumi.Input<string>;
+        /**
+         * Source MAC address to be matched.
+         */
+        srcMac?: pulumi.Input<string>;
+        /**
+         * VLAN ID to be matched.
+         */
+        vlan?: pulumi.Input<number>;
+    }
+}
+
 export namespace system {
     export interface AccprofileFwgrpPermission {
         /**
@@ -15310,6 +16747,14 @@ export namespace system {
          */
         applicationControl?: pulumi.Input<string>;
         /**
+         * Inline CASB filter profile and settings Valid values: `none`, `read`, `read-write`.
+         */
+        casb?: pulumi.Input<string>;
+        /**
+         * DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+         */
+        dataLeakPrevention?: pulumi.Input<string>;
+        /**
          * DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
          */
         dataLossPrevention?: pulumi.Input<string>;
@@ -15345,6 +16790,10 @@ export namespace system {
          * Video filter profiles and settings. Valid values: `none`, `read`, `read-write`.
          */
         videofilter?: pulumi.Input<string>;
+        /**
+         * Virtual patch profiles and settings. Valid values: `none`, `read`, `read-write`.
+         */
+        virtualPatch?: pulumi.Input<string>;
         /**
          * VoIP profiles and settings. Valid values: `none`, `read`, `read-write`.
          */
@@ -15867,6 +17316,17 @@ export namespace system {
          * Serial.
          */
         serial?: pulumi.Input<string>;
+        /**
+         * Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
+         */
+        vdoms?: pulumi.Input<pulumi.Input<inputs.system.CsfFabricConnectorVdom>[]>;
+    }
+
+    export interface CsfFabricConnectorVdom {
+        /**
+         * Virtual domain name.
+         */
+        name?: pulumi.Input<string>;
     }
 
     export interface CsfFabricDevice {
@@ -15922,6 +17382,10 @@ export namespace system {
          */
         haMembers?: pulumi.Input<string>;
         /**
+         * Index of the downstream in tree.
+         */
+        index?: pulumi.Input<number>;
+        /**
          * Name.
          */
         name?: pulumi.Input<string>;
@@ -15943,6 +17407,13 @@ export namespace system {
          * Interface name.
          */
         interfaceName?: pulumi.Input<string>;
+    }
+
+    export interface DeviceupgradeKnownHaMember {
+        /**
+         * Serial number of HA member
+         */
+        serial?: pulumi.Input<string>;
     }
 
     export interface DnsDomain {
@@ -15998,6 +17469,105 @@ export namespace system {
         type?: pulumi.Input<string>;
     }
 
+    export interface EvpnExportRt {
+        /**
+         * Route target: AA|AA:NN.
+         */
+        routeTarget?: pulumi.Input<string>;
+    }
+
+    export interface EvpnImportRt {
+        /**
+         * Route target: AA|AA:NN.
+         */
+        routeTarget?: pulumi.Input<string>;
+    }
+
+    export interface FabricvpnAdvertisedSubnet {
+        /**
+         * Access policy direction. Valid values: `inbound`, `bidirectional`.
+         */
+        access?: pulumi.Input<string>;
+        /**
+         * Underlying BGP network.
+         */
+        bgpNetwork?: pulumi.Input<number>;
+        /**
+         * Underlying firewall address.
+         */
+        firewallAddress?: pulumi.Input<string>;
+        /**
+         * ID.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * Underlying policies.
+         */
+        policies?: pulumi.Input<number>;
+        /**
+         * Network prefix.
+         */
+        prefix?: pulumi.Input<string>;
+    }
+
+    export interface FabricvpnOverlay {
+        /**
+         * Underlying BGP neighbor entry.
+         */
+        bgpNeighbor?: pulumi.Input<string>;
+        /**
+         * Underlying BGP neighbor group entry.
+         */
+        bgpNeighborGroup?: pulumi.Input<string>;
+        /**
+         * Underlying BGP neighbor range entry.
+         */
+        bgpNeighborRange?: pulumi.Input<number>;
+        /**
+         * Underlying BGP network.
+         */
+        bgpNetwork?: pulumi.Input<number>;
+        /**
+         * Underlying interface name.
+         */
+        interface?: pulumi.Input<string>;
+        /**
+         * IPsec interface.
+         */
+        ipsecPhase1?: pulumi.Input<string>;
+        /**
+         * Overlay name.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * The overlay policy to allow ADVPN thru traffic.
+         */
+        overlayPolicy?: pulumi.Input<number>;
+        /**
+         * IPv4 address and subnet mask for the overlay tunnel , syntax: X.X.X.X/24.
+         */
+        overlayTunnelBlock?: pulumi.Input<string>;
+        /**
+         * IP address of the hub gateway (Set by hub).
+         */
+        remoteGw?: pulumi.Input<string>;
+        /**
+         * Underlying router policy.
+         */
+        routePolicy?: pulumi.Input<number>;
+        /**
+         * Reference to SD-WAN member entry.
+         */
+        sdwanMember?: pulumi.Input<number>;
+    }
+
+    export interface FederatedupgradeKnownHaMember {
+        /**
+         * Serial number of HA member
+         */
+        serial?: pulumi.Input<string>;
+    }
+
     export interface FederatedupgradeNodeList {
         /**
          * The serial of the FortiGate that controls this device
@@ -16007,6 +17577,10 @@ export namespace system {
          * What type of device this node represents.
          */
         deviceType?: pulumi.Input<string>;
+        /**
+         * Maximum number of minutes to allow for immediate upgrade preparation.
+         */
+        maximumMinutes?: pulumi.Input<number>;
         /**
          * Serial number of the node to include.
          */
@@ -16059,46 +17633,141 @@ export namespace system {
         startIp?: pulumi.Input<string>;
     }
 
-    export interface HaHaMgmtInterface {
-        dst?: pulumi.Input<string>;
-        gateway?: pulumi.Input<string>;
-        gateway6?: pulumi.Input<string>;
+    export interface GlobalInternetServiceDownloadList {
+        /**
+         * Internet Service ID.
+         */
         id?: pulumi.Input<number>;
+    }
+
+    export interface HaHaMgmtInterface {
+        /**
+         * Default route destination for reserved HA management interface.
+         */
+        dst?: pulumi.Input<string>;
+        /**
+         * Default route gateway for reserved HA management interface.
+         */
+        gateway?: pulumi.Input<string>;
+        /**
+         * Default IPv6 gateway for reserved HA management interface.
+         */
+        gateway6?: pulumi.Input<string>;
+        /**
+         * Table ID.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * Interface to reserve for HA management.
+         */
         interface?: pulumi.Input<string>;
     }
 
     export interface HaSecondaryVcluster {
+        /**
+         * Interfaces to check for port monitoring (or link failure).
+         */
         monitor?: pulumi.Input<string>;
+        /**
+         * Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+         */
         override?: pulumi.Input<string>;
+        /**
+         * Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+         */
         overrideWaitTime?: pulumi.Input<number>;
+        /**
+         * Remote IP monitoring failover threshold (0 - 50).
+         */
         pingserverFailoverThreshold?: pulumi.Input<number>;
+        /**
+         * Interfaces to check for remote IP monitoring.
+         */
         pingserverMonitorInterface?: pulumi.Input<string>;
+        /**
+         * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+         */
         pingserverSecondaryForceReset?: pulumi.Input<string>;
+        /**
+         * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+         */
         pingserverSlaveForceReset?: pulumi.Input<string>;
+        /**
+         * Increase the priority to select the primary unit (0 - 255).
+         */
         priority?: pulumi.Input<number>;
+        /**
+         * Cluster ID.
+         */
         vclusterId?: pulumi.Input<number>;
+        /**
+         * VDOMs in virtual cluster 2.
+         */
         vdom?: pulumi.Input<string>;
     }
 
     export interface HaUnicastPeer {
+        /**
+         * Table ID.
+         */
         id?: pulumi.Input<number>;
+        /**
+         * Unicast peer IP.
+         */
         peerIp?: pulumi.Input<string>;
     }
 
     export interface HaVcluster {
+        /**
+         * Interfaces to check for port monitoring (or link failure).
+         */
         monitor?: pulumi.Input<string>;
+        /**
+         * Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+         */
         override?: pulumi.Input<string>;
+        /**
+         * Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+         */
         overrideWaitTime?: pulumi.Input<number>;
+        /**
+         * Remote IP monitoring failover threshold (0 - 50).
+         */
         pingserverFailoverThreshold?: pulumi.Input<number>;
+        /**
+         * Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+         */
+        pingserverFlipTimeout?: pulumi.Input<number>;
+        /**
+         * Interfaces to check for remote IP monitoring.
+         */
         pingserverMonitorInterface?: pulumi.Input<string>;
+        /**
+         * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+         */
         pingserverSecondaryForceReset?: pulumi.Input<string>;
+        /**
+         * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+         */
         pingserverSlaveForceReset?: pulumi.Input<string>;
+        /**
+         * Increase the priority to select the primary unit (0 - 255).
+         */
         priority?: pulumi.Input<number>;
+        /**
+         * ID.
+         */
         vclusterId?: pulumi.Input<number>;
+        /**
+         * Virtual domain(s) in the virtual cluster. The structure of `vdom` block is documented below.
+         */
         vdoms?: pulumi.Input<pulumi.Input<inputs.system.HaVclusterVdom>[]>;
     }
 
     export interface HaVclusterVdom {
+        /**
+         * Virtual domain name.
+         */
         name?: pulumi.Input<string>;
     }
 
@@ -16436,6 +18105,10 @@ export namespace system {
          */
         dhcp6PrefixHintVlt?: pulumi.Input<number>;
         /**
+         * DHCP6 relay interface ID.
+         */
+        dhcp6RelayInterfaceId?: pulumi.Input<string>;
+        /**
          * DHCPv6 relay IP address.
          */
         dhcp6RelayIp?: pulumi.Input<string>;
@@ -16443,6 +18116,14 @@ export namespace system {
          * Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
          */
         dhcp6RelayService?: pulumi.Input<string>;
+        /**
+         * Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
+         */
+        dhcp6RelaySourceInterface?: pulumi.Input<string>;
+        /**
+         * IPv6 address used by the DHCP6 relay as its source IP.
+         */
+        dhcp6RelaySourceIp?: pulumi.Input<string>;
         /**
          * DHCPv6 relay type. Valid values: `regular`.
          */
@@ -16704,6 +18385,10 @@ export namespace system {
          */
         advInterval?: pulumi.Input<number>;
         /**
+         * Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
+         */
+        ignoreDefaultRoute?: pulumi.Input<string>;
+        /**
          * Enable/disable preempt mode. Valid values: `enable`, `disable`.
          */
         preempt?: pulumi.Input<string>;
@@ -16784,6 +18469,10 @@ export namespace system {
          * PING server status.
          */
         pingServStatus?: pulumi.Input<number>;
+        /**
+         * DHCP relay IP address.
+         */
+        secipRelayIp?: pulumi.Input<string>;
     }
 
     export interface InterfaceSecurityGroup {
@@ -16989,7 +18678,7 @@ export namespace system {
          */
         port?: pulumi.Input<number>;
         /**
-         * Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
+         * Protocols used to monitor the server.
          */
         protocol?: pulumi.Input<string>;
         /**
@@ -17029,6 +18718,33 @@ export namespace system {
          * Interface name.
          */
         interfaceName?: pulumi.Input<string>;
+    }
+
+    export interface NetflowCollector {
+        /**
+         * Collector IP.
+         */
+        collectorIp?: pulumi.Input<string>;
+        /**
+         * NetFlow collector port number.
+         */
+        collectorPort?: pulumi.Input<number>;
+        /**
+         * ID.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * Specify outgoing interface to reach server.
+         */
+        interface?: pulumi.Input<string>;
+        /**
+         * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+         */
+        interfaceSelectMethod?: pulumi.Input<string>;
+        /**
+         * Source IP address for communication with the NetFlow agent.
+         */
+        sourceIp?: pulumi.Input<string>;
     }
 
     export interface NpuPriorityProtocol {
@@ -17071,6 +18787,10 @@ export namespace system {
          */
         interfaceSelectMethod?: pulumi.Input<string>;
         /**
+         * Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
+         */
+        ipType?: pulumi.Input<string>;
+        /**
          * Key for MD5/SHA1 authentication.
          */
         key?: pulumi.Input<string>;
@@ -17093,6 +18813,106 @@ export namespace system {
          * Tag name.
          */
         name?: pulumi.Input<string>;
+    }
+
+    export interface PcpserverPool {
+        /**
+         * Allowed PCP opcode. Valid values: `map`, `peer`, `announce`.
+         */
+        allowOpcode?: pulumi.Input<string>;
+        /**
+         * Number of multicast announcements.
+         */
+        announcementCount?: pulumi.Input<number>;
+        /**
+         * Enable to respond to ARP requests for external IP (default = enable). Valid values: `disable`, `enable`.
+         */
+        arpReply?: pulumi.Input<string>;
+        /**
+         * Mapping limit per client (0 - 65535, default = 0, 0 = unlimited).
+         */
+        clientMappingLimit?: pulumi.Input<number>;
+        /**
+         * Subnets from which PCP requests are accepted. The structure of `clientSubnet` block is documented below.
+         */
+        clientSubnets?: pulumi.Input<pulumi.Input<inputs.system.PcpserverPoolClientSubnet>[]>;
+        /**
+         * Description.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * External interface name.
+         */
+        extIntf?: pulumi.Input<string>;
+        /**
+         * IP address or address range on the external interface that you want to map to an address on the internal network.
+         */
+        extip?: pulumi.Input<string>;
+        /**
+         * Incoming port number range that you want to map to a port number on the internal network.
+         */
+        extport?: pulumi.Input<string>;
+        /**
+         * ID.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * Internal interface name. The structure of `intlIntf` block is documented below.
+         */
+        intlIntfs?: pulumi.Input<pulumi.Input<inputs.system.PcpserverPoolIntlIntf>[]>;
+        /**
+         * Filter limit per mapping (0 - 5, default = 1).
+         */
+        mappingFilterLimit?: pulumi.Input<number>;
+        /**
+         * Maximal lifetime of a PCP mapping in seconds (3600 - 604800, default = 86400).
+         */
+        maximalLifetime?: pulumi.Input<number>;
+        /**
+         * Minimal lifetime of a PCP mapping in seconds (60 - 300, default = 120).
+         */
+        minimalLifetime?: pulumi.Input<number>;
+        /**
+         * Enable/disable multicast announcements. Valid values: `enable`, `disable`.
+         */
+        multicastAnnouncement?: pulumi.Input<string>;
+        /**
+         * PCP pool name.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * Minimum delay (in seconds) the PCP Server will wait before recycling mappings that have expired (0 - 3600, default = 0).
+         */
+        recycleDelay?: pulumi.Input<number>;
+        /**
+         * Allow/disallow third party option. Valid values: `allow`, `disallow`.
+         */
+        thirdParty?: pulumi.Input<string>;
+        /**
+         * Subnets from which third party requests are accepted. The structure of `thirdPartySubnet` block is documented below.
+         */
+        thirdPartySubnets?: pulumi.Input<pulumi.Input<inputs.system.PcpserverPoolThirdPartySubnet>[]>;
+    }
+
+    export interface PcpserverPoolClientSubnet {
+        /**
+         * Client subnets.
+         */
+        subnet?: pulumi.Input<string>;
+    }
+
+    export interface PcpserverPoolIntlIntf {
+        /**
+         * Interface name.
+         */
+        interfaceName?: pulumi.Input<string>;
+    }
+
+    export interface PcpserverPoolThirdPartySubnet {
+        /**
+         * Third party subnets.
+         */
+        subnet?: pulumi.Input<string>;
     }
 
     export interface PtpServerInterface {
@@ -17533,6 +19353,13 @@ export namespace system {
         type?: pulumi.Input<string>;
     }
 
+    export interface SdnconnectorCompartmentList {
+        /**
+         * OCI compartment ID.
+         */
+        compartmentId?: pulumi.Input<string>;
+    }
+
     export interface SdnconnectorExternalAccountList {
         /**
          * AWS external ID.
@@ -17615,6 +19442,13 @@ export namespace system {
          * Resource group of Azure public IP.
          */
         resourceGroup?: pulumi.Input<string>;
+    }
+
+    export interface SdnconnectorOciRegionList {
+        /**
+         * OCI region.
+         */
+        region?: pulumi.Input<string>;
     }
 
     export interface SdnconnectorRoute {
@@ -17781,6 +19615,10 @@ export namespace system {
          */
         addrMode?: pulumi.Input<string>;
         /**
+         * Traffic class ID.
+         */
+        classId?: pulumi.Input<number>;
+        /**
          * The mode determining how to detect the server.
          */
         detectMode?: pulumi.Input<string>;
@@ -17909,6 +19747,10 @@ export namespace system {
          */
         source?: pulumi.Input<string>;
         /**
+         * Source IPv6 addressused in the health-check packet to server.
+         */
+        source6?: pulumi.Input<string>;
+        /**
          * Enable/disable system DNS as the probe server. Valid values: `disable`, `enable`.
          */
         systemDns?: pulumi.Input<string>;
@@ -18022,6 +19864,10 @@ export namespace system {
          */
         interface?: pulumi.Input<string>;
         /**
+         * Preferred source of route for this member.
+         */
+        preferredSource?: pulumi.Input<string>;
+        /**
          * Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
          */
         priority?: pulumi.Input<number>;
@@ -18050,6 +19896,10 @@ export namespace system {
          */
         status?: pulumi.Input<string>;
         /**
+         * Measured transport group (0 - 255).
+         */
+        transportGroup?: pulumi.Input<number>;
+        /**
          * Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).
          */
         volumeRatio?: pulumi.Input<number>;
@@ -18077,6 +19927,10 @@ export namespace system {
          */
         member?: pulumi.Input<number>;
         /**
+         * Member sequence number list. The structure of `memberBlock` block is documented below.
+         */
+        memberBlocks?: pulumi.Input<pulumi.Input<inputs.system.SdwanNeighborMemberBlock>[]>;
+        /**
          * Minimum number of members which meet SLA when the neighbor is preferred.
          */
         minimumSlaMeetMembers?: pulumi.Input<number>;
@@ -18089,9 +19943,20 @@ export namespace system {
          */
         role?: pulumi.Input<string>;
         /**
+         * SD-WAN service ID to work with the neighbor.
+         */
+        serviceId?: pulumi.Input<number>;
+        /**
          * SLA ID.
          */
         slaId?: pulumi.Input<number>;
+    }
+
+    export interface SdwanNeighborMemberBlock {
+        /**
+         * Member sequence number.
+         */
+        seqNum?: pulumi.Input<number>;
     }
 
     export interface SdwanService {
@@ -18099,6 +19964,10 @@ export namespace system {
          * Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
          */
         addrMode?: pulumi.Input<string>;
+        /**
+         * Set/unset the service as agent use exclusively. Valid values: `enable`, `disable`.
+         */
+        agentExclusive?: pulumi.Input<string>;
         /**
          * Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.
          */
@@ -18139,6 +20008,10 @@ export namespace system {
          * End destination port number.
          */
         endPort?: pulumi.Input<number>;
+        /**
+         * End source port number.
+         */
+        endSrcPort?: pulumi.Input<number>;
         /**
          * Enable/disable SD-WAN service gateway. Valid values: `enable`, `disable`.
          */
@@ -18224,11 +20097,15 @@ export namespace system {
          */
         linkCostThreshold?: pulumi.Input<number>;
         /**
+         * Enable/disable load-balance. Valid values: `enable`, `disable`.
+         */
+        loadBalance?: pulumi.Input<string>;
+        /**
          * Minimum number of members which meet SLA.
          */
         minimumSlaMeetMembers?: pulumi.Input<number>;
         /**
-         * Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
+         * Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN.
          */
         mode?: pulumi.Input<string>;
         /**
@@ -18268,9 +20145,25 @@ export namespace system {
          */
         routeTag?: pulumi.Input<number>;
         /**
+         * Enable/disable shortcut for this service. Valid values: `enable`, `disable`.
+         */
+        shortcut?: pulumi.Input<string>;
+        /**
+         * High priority of ADVPN shortcut for this service. Valid values: `enable`, `disable`, `auto`.
+         */
+        shortcutPriority?: pulumi.Input<string>;
+        /**
+         * Enable/disable shortcut-stickiness of ADVPN. Valid values: `enable`, `disable`.
+         */
+        shortcutStickiness?: pulumi.Input<string>;
+        /**
          * Method to compare SLA value for SLA mode. Valid values: `order`, `number`.
          */
         slaCompareMethod?: pulumi.Input<string>;
+        /**
+         * Enable/disable SLA stickiness (default = disable). Valid values: `enable`, `disable`.
+         */
+        slaStickiness?: pulumi.Input<string>;
         /**
          * Service level agreement (SLA). The structure of `sla` block is documented below.
          */
@@ -18296,6 +20189,10 @@ export namespace system {
          */
         startPort?: pulumi.Input<number>;
         /**
+         * Start source port number.
+         */
+        startSrcPort?: pulumi.Input<number>;
+        /**
          * Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
          */
         status?: pulumi.Input<string>;
@@ -18319,6 +20216,10 @@ export namespace system {
          * User name. The structure of `users` block is documented below.
          */
         users?: pulumi.Input<pulumi.Input<inputs.system.SdwanServiceUser>[]>;
+        /**
+         * Enable/disable zone mode. Valid values: `enable`, `disable`.
+         */
+        zoneMode?: pulumi.Input<string>;
     }
 
     export interface SdwanServiceDst {
@@ -18460,6 +20361,18 @@ export namespace system {
 
     export interface SdwanZone {
         /**
+         * Health check for ADVPN local overlay link quality.
+         */
+        advpnHealthCheck?: pulumi.Input<string>;
+        /**
+         * Enable/disable selection of ADVPN based on SDWAN information. Valid values: `enable`, `disable`.
+         */
+        advpnSelect?: pulumi.Input<string>;
+        /**
+         * Minimum number of members which meet SLA when the neighbor is preferred.
+         */
+        minimumSlaMeetMembers?: pulumi.Input<number>;
+        /**
          * Zone name.
          */
         name?: pulumi.Input<string>;
@@ -18483,6 +20396,10 @@ export namespace system {
          */
         protocol?: pulumi.Input<number>;
         /**
+         * Refresh direction: Both, outgoing, incoming Valid values: `both`, `outgoing`, `incoming`.
+         */
+        refreshDirection?: pulumi.Input<string>;
+        /**
          * Start port number.
          */
         startPort?: pulumi.Input<number>;
@@ -18499,6 +20416,33 @@ export namespace system {
         name?: pulumi.Input<string>;
     }
 
+    export interface SflowCollector {
+        /**
+         * IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+         */
+        collectorIp?: pulumi.Input<string>;
+        /**
+         * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+         */
+        collectorPort?: pulumi.Input<number>;
+        /**
+         * ID.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * Specify outgoing interface to reach server.
+         */
+        interface?: pulumi.Input<string>;
+        /**
+         * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+         */
+        interfaceSelectMethod?: pulumi.Input<string>;
+        /**
+         * Source IP address for sFlow agent.
+         */
+        sourceIp?: pulumi.Input<string>;
+    }
+
     export interface SpeedtestscheduleSchedule {
         /**
          * Name of a firewall recurring schedule.
@@ -18508,6 +20452,10 @@ export namespace system {
 
     export interface SpeedtestserverHost {
         /**
+         * Speed test host distance.
+         */
+        distance?: pulumi.Input<number>;
+        /**
          * Server host ID.
          */
         id?: pulumi.Input<number>;
@@ -18515,6 +20463,14 @@ export namespace system {
          * Server host IPv4 address.
          */
         ip?: pulumi.Input<string>;
+        /**
+         * Speed test host latitude.
+         */
+        latitude?: pulumi.Input<string>;
+        /**
+         * Speed test host longitude.
+         */
+        longitude?: pulumi.Input<string>;
         /**
          * Speed test host password.
          */
@@ -18537,6 +20493,13 @@ export namespace system {
     }
 
     export interface SsoforticloudadminVdom {
+        /**
+         * Virtual domain name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface SsofortigatecloudadminVdom {
         /**
          * Virtual domain name.
          */
@@ -18672,6 +20635,60 @@ export namespace system {
          * VDOM name.
          */
         name?: pulumi.Input<string>;
+    }
+
+    export interface VdomnetflowCollector {
+        /**
+         * Collector IP.
+         */
+        collectorIp?: pulumi.Input<string>;
+        /**
+         * NetFlow collector port number.
+         */
+        collectorPort?: pulumi.Input<number>;
+        /**
+         * ID.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * Specify outgoing interface to reach server.
+         */
+        interface?: pulumi.Input<string>;
+        /**
+         * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+         */
+        interfaceSelectMethod?: pulumi.Input<string>;
+        /**
+         * Source IP address for communication with the NetFlow agent.
+         */
+        sourceIp?: pulumi.Input<string>;
+    }
+
+    export interface VdomsflowCollector {
+        /**
+         * IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+         */
+        collectorIp?: pulumi.Input<string>;
+        /**
+         * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+         */
+        collectorPort?: pulumi.Input<number>;
+        /**
+         * ID.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * Specify outgoing interface to reach server.
+         */
+        interface?: pulumi.Input<string>;
+        /**
+         * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+         */
+        interfaceSelectMethod?: pulumi.Input<string>;
+        /**
+         * Source IP address for sFlow agent.
+         */
+        sourceIp?: pulumi.Input<string>;
     }
 
     export interface VirtualswitchPort {
@@ -19349,9 +21366,21 @@ export namespace system {
              */
             id?: pulumi.Input<number>;
             /**
+             * Lease time in seconds, 0 means default lease time.
+             */
+            leaseTime?: pulumi.Input<number>;
+            /**
              * Start of IP range.
              */
             startIp?: pulumi.Input<string>;
+            /**
+             * Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+             */
+            uciMatch?: pulumi.Input<string>;
+            /**
+             * One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+             */
+            uciStrings?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerExcludeRangeUciString>[]>;
             /**
              * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
              */
@@ -19360,6 +21389,13 @@ export namespace system {
              * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
              */
             vciStrings?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerExcludeRangeVciString>[]>;
+        }
+
+        export interface ServerExcludeRangeUciString {
+            /**
+             * UCI strings.
+             */
+            uciString?: pulumi.Input<string>;
         }
 
         export interface ServerExcludeRangeVciString {
@@ -19379,9 +21415,21 @@ export namespace system {
              */
             id?: pulumi.Input<number>;
             /**
+             * Lease time in seconds, 0 means default lease time.
+             */
+            leaseTime?: pulumi.Input<number>;
+            /**
              * Start of IP range.
              */
             startIp?: pulumi.Input<string>;
+            /**
+             * Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+             */
+            uciMatch?: pulumi.Input<string>;
+            /**
+             * One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+             */
+            uciStrings?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerIpRangeUciString>[]>;
             /**
              * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
              */
@@ -19390,6 +21438,13 @@ export namespace system {
              * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
              */
             vciStrings?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerIpRangeVciString>[]>;
+        }
+
+        export interface ServerIpRangeUciString {
+            /**
+             * UCI strings.
+             */
+            uciString?: pulumi.Input<string>;
         }
 
         export interface ServerIpRangeVciString {
@@ -19417,6 +21472,14 @@ export namespace system {
              */
             type?: pulumi.Input<string>;
             /**
+             * Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this option. Valid values: `disable`, `enable`.
+             */
+            uciMatch?: pulumi.Input<string>;
+            /**
+             * One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+             */
+            uciStrings?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerOptionUciString>[]>;
+            /**
              * DHCP option value.
              */
             value?: pulumi.Input<string>;
@@ -19428,6 +21491,13 @@ export namespace system {
              * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
              */
             vciStrings?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerOptionVciString>[]>;
+        }
+
+        export interface ServerOptionUciString {
+            /**
+             * UCI strings.
+             */
+            uciString?: pulumi.Input<string>;
         }
 
         export interface ServerOptionVciString {
@@ -19949,6 +22019,13 @@ export namespace user {
         name?: pulumi.Input<string>;
     }
 
+    export interface NacpolicySeverity {
+        /**
+         * Enter multiple severity levels, where 0 = Info, 1 = Low, ..., 4 = Critical
+         */
+        severityNum?: pulumi.Input<number>;
+    }
+
     export interface NacpolicySwitchGroup {
         /**
          * Managed FortiSwitch group name from available options.
@@ -20117,6 +22194,41 @@ export namespace user {
     }
 }
 
+export namespace virtualpatch {
+    export interface ProfileExemption {
+        /**
+         * Device MAC addresses. The structure of `device` block is documented below.
+         */
+        devices?: pulumi.Input<pulumi.Input<inputs.virtualpatch.ProfileExemptionDevice>[]>;
+        /**
+         * IDs.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * Patch signature rule IDs. The structure of `rule` block is documented below.
+         */
+        rules?: pulumi.Input<pulumi.Input<inputs.virtualpatch.ProfileExemptionRule>[]>;
+        /**
+         * Enable/disable exemption. Valid values: `enable`, `disable`.
+         */
+        status?: pulumi.Input<string>;
+    }
+
+    export interface ProfileExemptionDevice {
+        /**
+         * Device MAC address.
+         */
+        mac?: pulumi.Input<string>;
+    }
+
+    export interface ProfileExemptionRule {
+        /**
+         * Rule IDs.
+         */
+        id?: pulumi.Input<number>;
+    }
+}
+
 export namespace voip {
     export interface ProfileMsrp {
         /**
@@ -20250,6 +22362,10 @@ export namespace voip {
          */
         byeRateTrack?: pulumi.Input<string>;
         /**
+         * Validate PCRE regular expression for Call-Id header value.
+         */
+        callIdRegex?: pulumi.Input<string>;
+        /**
          * Continue tracking calls with no RTP for this many minutes.
          */
         callKeepalive?: pulumi.Input<number>;
@@ -20265,6 +22381,10 @@ export namespace voip {
          * Fixup contact anyway even if contact's IP:port doesn't match session's IP:port. Valid values: `disable`, `enable`.
          */
         contactFixup?: pulumi.Input<string>;
+        /**
+         * Validate PCRE regular expression for Content-Type header value.
+         */
+        contentTypeRegex?: pulumi.Input<string>;
         /**
          * Enable/disable restrict RTP source IP to be the same as SIP source IP when HNT is enabled. Valid values: `disable`, `enable`.
          */
@@ -20621,6 +22741,29 @@ export namespace voip {
 }
 
 export namespace vpn {
+    export interface KmipserverServerList {
+        /**
+         * Client certificate to use for connectivity to the KMIP server.
+         */
+        cert?: pulumi.Input<string>;
+        /**
+         * ID
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * KMIP server port.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * KMIP server FQDN or IP address.
+         */
+        server?: pulumi.Input<string>;
+        /**
+         * Enable/disable KMIP server. Valid values: `enable`, `disable`.
+         */
+        status?: pulumi.Input<string>;
+    }
+
     export interface OcvpnForticlientAccess {
         /**
          * FortiClient user authentication groups. The structure of `authGroups` block is documented below.
@@ -20718,6 +22861,13 @@ export namespace vpn {
          */
         name?: pulumi.Input<string>;
     }
+
+    export interface QkdCertificate {
+        /**
+         * Certificate name.
+         */
+        name?: pulumi.Input<string>;
+    }
     export namespace certificate {
         export interface SettingCrlVerification {
             /**
@@ -20788,10 +22938,17 @@ export namespace vpn {
         export interface Phase1Certificate {
             /**
              * Certificate name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface Phase1InternalDomainList {
+            /**
+             * Domain name.
              *
              * The `ipv4ExcludeRange` block supports:
              */
-            name?: pulumi.Input<string>;
+            domainName?: pulumi.Input<string>;
         }
 
         export interface Phase1Ipv4ExcludeRange {
@@ -20834,10 +22991,17 @@ export namespace vpn {
         export interface Phase1interfaceCertificate {
             /**
              * Certificate name.
+             */
+            name?: pulumi.Input<string>;
+        }
+
+        export interface Phase1interfaceInternalDomainList {
+            /**
+             * Domain name.
              *
              * The `ipv4ExcludeRange` block supports:
              */
-            name?: pulumi.Input<string>;
+            domainName?: pulumi.Input<string>;
         }
 
         export interface Phase1interfaceIpv4ExcludeRange {
@@ -21170,6 +23334,10 @@ export namespace vpn {
                  */
                 url?: pulumi.Input<string>;
                 /**
+                 * Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+                 */
+                vncKeyboardLayout?: pulumi.Input<string>;
+                /**
                  * Screen width (range from 640 - 65535, default = 1024).
                  */
                 width?: pulumi.Input<number>;
@@ -21212,6 +23380,48 @@ export namespace vpn {
                  * Portal name.
                  */
                 name?: pulumi.Input<string>;
+            }
+
+            export interface PortalLandingPage {
+                /**
+                 * Form data. The structure of `formData` block is documented below.
+                 */
+                formDatas?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.web.PortalLandingPageFormData>[]>;
+                /**
+                 * Landing page log out URL.
+                 */
+                logoutUrl?: pulumi.Input<string>;
+                /**
+                 * Single sign-on. Valid values: `disable`, `static`, `auto`.
+                 */
+                sso?: pulumi.Input<string>;
+                /**
+                 * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+                 */
+                ssoCredential?: pulumi.Input<string>;
+                /**
+                 * SSO password.
+                 */
+                ssoPassword?: pulumi.Input<string>;
+                /**
+                 * SSO user name.
+                 */
+                ssoUsername?: pulumi.Input<string>;
+                /**
+                 * Landing page URL.
+                 */
+                url?: pulumi.Input<string>;
+            }
+
+            export interface PortalLandingPageFormData {
+                /**
+                 * Name.
+                 */
+                name?: pulumi.Input<string>;
+                /**
+                 * Value.
+                 */
+                value?: pulumi.Input<string>;
             }
 
             export interface PortalMacAddrCheckRule {
@@ -21411,6 +23621,10 @@ export namespace vpn {
                  */
                 url?: pulumi.Input<string>;
                 /**
+                 * Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+                 */
+                vncKeyboardLayout?: pulumi.Input<string>;
+                /**
                  * Screen width (range from 640 - 65535, default = 1024).
                  */
                 width?: pulumi.Input<number>;
@@ -21548,6 +23762,10 @@ export namespace vpn {
                  * URL parameter.
                  */
                 url?: pulumi.Input<string>;
+                /**
+                 * Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+                 */
+                vncKeyboardLayout?: pulumi.Input<string>;
                 /**
                  * Screen width (range from 640 - 65535, default = 1024).
                  */
@@ -22624,6 +24842,13 @@ export namespace webproxy {
         name?: pulumi.Input<string>;
     }
 
+    export interface ExplicitSecureWebProxyCert {
+        /**
+         * Certificate list.
+         */
+        name?: pulumi.Input<string>;
+    }
+
     export interface ForwardservergroupServerList {
         /**
          * Forward server name.
@@ -22651,7 +24876,7 @@ export namespace webproxy {
 
     export interface ProfileHeader {
         /**
-         * Action when the HTTP header is forwarded. Valid values: `add-to-request`, `add-to-response`, `remove-from-request`, `remove-from-response`.
+         * Action when the HTTP header is forwarded.
          */
         action?: pulumi.Input<string>;
         /**
@@ -22825,7 +25050,7 @@ export namespace wirelesscontroller {
          */
         policyId?: pulumi.Input<number>;
         /**
-         * Bonjour services for the VLAN connecting to the Bonjour network. Valid values: `all`, `airplay`, `afp`, `bit-torrent`, `ftp`, `ichat`, `itunes`, `printers`, `samba`, `scanners`, `ssh`, `chromecast`.
+         * Bonjour services for the VLAN connecting to the Bonjour network.
          */
         services?: pulumi.Input<string>;
         /**
@@ -23175,6 +25400,20 @@ export namespace wirelesscontroller {
          * Schedule name.
          */
         name?: pulumi.Input<string>;
+    }
+
+    export interface WidsprofileApScanChannelList2g5g {
+        /**
+         * Channel 6g number.
+         */
+        chan?: pulumi.Input<string>;
+    }
+
+    export interface WidsprofileApScanChannelList6g {
+        /**
+         * Channel 6g number.
+         */
+        chan?: pulumi.Input<string>;
     }
 
     export interface WtpLan {
@@ -23879,6 +26118,58 @@ export namespace wirelesscontroller {
          */
         fortipresenceUnassoc?: pulumi.Input<string>;
         /**
+         * Enable/disable PoleStar BLE NAO Track Real Time Location Service (RTLS) support (default = disable). Valid values: `enable`, `disable`.
+         */
+        polestar?: pulumi.Input<string>;
+        /**
+         * Time that measurements should be accumulated in seconds (default = 2).
+         */
+        polestarAccumulationInterval?: pulumi.Input<number>;
+        /**
+         * Tags and asset addrgrp list to be reported.
+         */
+        polestarAssetAddrgrpList?: pulumi.Input<string>;
+        /**
+         * Tags and asset UUID list 1 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+         */
+        polestarAssetUuidList1?: pulumi.Input<string>;
+        /**
+         * Tags and asset UUID list 2 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+         */
+        polestarAssetUuidList2?: pulumi.Input<string>;
+        /**
+         * Tags and asset UUID list 3 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+         */
+        polestarAssetUuidList3?: pulumi.Input<string>;
+        /**
+         * Tags and asset UUID list 4 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+         */
+        polestarAssetUuidList4?: pulumi.Input<string>;
+        /**
+         * Select the protocol to report Measurements, Advertising Data, or Location Data to NAO Cloud. (default = WSS). Valid values: `WSS`.
+         */
+        polestarProtocol?: pulumi.Input<string>;
+        /**
+         * Time between reporting accumulated measurements in seconds (default = 2).
+         */
+        polestarReportingInterval?: pulumi.Input<number>;
+        /**
+         * FQDN of PoleStar Nao Track Server (default = ws.nao-cloud.com).
+         */
+        polestarServerFqdn?: pulumi.Input<string>;
+        /**
+         * Path of PoleStar Nao Track Server (default = /v1/token/<access_token>/pst-v2).
+         */
+        polestarServerPath?: pulumi.Input<string>;
+        /**
+         * Port of PoleStar Nao Track Server (default = 443).
+         */
+        polestarServerPort?: pulumi.Input<number>;
+        /**
+         * Access Token of PoleStar Nao Track Server.
+         */
+        polestarServerToken?: pulumi.Input<string>;
+        /**
          * Enable/disable client station locating services for all clients, whether associated or not (default = disable). Valid values: `enable`, `disable`.
          */
         stationLocate?: pulumi.Input<string>;
@@ -24064,6 +26355,10 @@ export namespace wirelesscontroller {
          */
         maxDistance?: pulumi.Input<number>;
         /**
+         * Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+         */
+        mimoMode?: pulumi.Input<string>;
+        /**
          * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode?: pulumi.Input<string>;
@@ -24071,6 +26366,14 @@ export namespace wirelesscontroller {
          * Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
          */
         n80211d?: pulumi.Input<string>;
+        /**
+         * Optional antenna used on FAP (default = none).
+         */
+        optionalAntenna?: pulumi.Input<string>;
+        /**
+         * Optional antenna gain in dBi (0 to 20, default = 0).
+         */
+        optionalAntennaGain?: pulumi.Input<string>;
         /**
          * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
          */
@@ -24104,9 +26407,17 @@ export namespace wirelesscontroller {
          */
         samBssid?: pulumi.Input<string>;
         /**
+         * CA certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samCaCertificate?: pulumi.Input<string>;
+        /**
          * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
          */
         samCaptivePortal?: pulumi.Input<string>;
+        /**
+         * Client certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samClientCertificate?: pulumi.Input<string>;
         /**
          * Failure identification on the page after an incorrect login.
          */
@@ -24132,15 +26443,27 @@ export namespace wirelesscontroller {
          */
         samCwpUsername?: pulumi.Input<string>;
         /**
+         * Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+         */
+        samEapMethod?: pulumi.Input<string>;
+        /**
          * Passphrase for WiFi network connection.
          */
         samPassword?: pulumi.Input<string>;
+        /**
+         * Private key for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKey?: pulumi.Input<string>;
+        /**
+         * Password for private key file for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKeyPassword?: pulumi.Input<string>;
         /**
          * SAM report interval (sec), 0 for a one-time report.
          */
         samReportIntv?: pulumi.Input<number>;
         /**
-         * Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+         * Select WiFi network security type (default = "wpa-personal").
          */
         samSecurityType?: pulumi.Input<string>;
         /**
@@ -24369,6 +26692,10 @@ export namespace wirelesscontroller {
          */
         maxDistance?: pulumi.Input<number>;
         /**
+         * Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+         */
+        mimoMode?: pulumi.Input<string>;
+        /**
          * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode?: pulumi.Input<string>;
@@ -24376,6 +26703,14 @@ export namespace wirelesscontroller {
          * Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
          */
         n80211d?: pulumi.Input<string>;
+        /**
+         * Optional antenna used on FAP (default = none).
+         */
+        optionalAntenna?: pulumi.Input<string>;
+        /**
+         * Optional antenna gain in dBi (0 to 20, default = 0).
+         */
+        optionalAntennaGain?: pulumi.Input<string>;
         /**
          * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
          */
@@ -24409,9 +26744,17 @@ export namespace wirelesscontroller {
          */
         samBssid?: pulumi.Input<string>;
         /**
+         * CA certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samCaCertificate?: pulumi.Input<string>;
+        /**
          * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
          */
         samCaptivePortal?: pulumi.Input<string>;
+        /**
+         * Client certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samClientCertificate?: pulumi.Input<string>;
         /**
          * Failure identification on the page after an incorrect login.
          */
@@ -24437,15 +26780,27 @@ export namespace wirelesscontroller {
          */
         samCwpUsername?: pulumi.Input<string>;
         /**
+         * Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+         */
+        samEapMethod?: pulumi.Input<string>;
+        /**
          * Passphrase for WiFi network connection.
          */
         samPassword?: pulumi.Input<string>;
+        /**
+         * Private key for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKey?: pulumi.Input<string>;
+        /**
+         * Password for private key file for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKeyPassword?: pulumi.Input<string>;
         /**
          * SAM report interval (sec), 0 for a one-time report.
          */
         samReportIntv?: pulumi.Input<number>;
         /**
-         * Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+         * Select WiFi network security type (default = "wpa-personal").
          */
         samSecurityType?: pulumi.Input<string>;
         /**
@@ -24674,6 +27029,10 @@ export namespace wirelesscontroller {
          */
         maxDistance?: pulumi.Input<number>;
         /**
+         * Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+         */
+        mimoMode?: pulumi.Input<string>;
+        /**
          * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode?: pulumi.Input<string>;
@@ -24681,6 +27040,14 @@ export namespace wirelesscontroller {
          * Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
          */
         n80211d?: pulumi.Input<string>;
+        /**
+         * Optional antenna used on FAP (default = none).
+         */
+        optionalAntenna?: pulumi.Input<string>;
+        /**
+         * Optional antenna gain in dBi (0 to 20, default = 0).
+         */
+        optionalAntennaGain?: pulumi.Input<string>;
         /**
          * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
          */
@@ -24710,9 +27077,17 @@ export namespace wirelesscontroller {
          */
         samBssid?: pulumi.Input<string>;
         /**
+         * CA certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samCaCertificate?: pulumi.Input<string>;
+        /**
          * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
          */
         samCaptivePortal?: pulumi.Input<string>;
+        /**
+         * Client certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samClientCertificate?: pulumi.Input<string>;
         /**
          * Failure identification on the page after an incorrect login.
          */
@@ -24738,15 +27113,27 @@ export namespace wirelesscontroller {
          */
         samCwpUsername?: pulumi.Input<string>;
         /**
+         * Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+         */
+        samEapMethod?: pulumi.Input<string>;
+        /**
          * Passphrase for WiFi network connection.
          */
         samPassword?: pulumi.Input<string>;
+        /**
+         * Private key for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKey?: pulumi.Input<string>;
+        /**
+         * Password for private key file for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKeyPassword?: pulumi.Input<string>;
         /**
          * SAM report interval (sec), 0 for a one-time report.
          */
         samReportIntv?: pulumi.Input<number>;
         /**
-         * Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+         * Select WiFi network security type (default = "wpa-personal").
          */
         samSecurityType?: pulumi.Input<string>;
         /**
@@ -24975,6 +27362,10 @@ export namespace wirelesscontroller {
          */
         maxDistance?: pulumi.Input<number>;
         /**
+         * Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+         */
+        mimoMode?: pulumi.Input<string>;
+        /**
          * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode?: pulumi.Input<string>;
@@ -24982,6 +27373,14 @@ export namespace wirelesscontroller {
          * Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
          */
         n80211d?: pulumi.Input<string>;
+        /**
+         * Optional antenna used on FAP (default = none).
+         */
+        optionalAntenna?: pulumi.Input<string>;
+        /**
+         * Optional antenna gain in dBi (0 to 20, default = 0).
+         */
+        optionalAntennaGain?: pulumi.Input<string>;
         /**
          * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
          */
@@ -25011,9 +27410,17 @@ export namespace wirelesscontroller {
          */
         samBssid?: pulumi.Input<string>;
         /**
+         * CA certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samCaCertificate?: pulumi.Input<string>;
+        /**
          * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
          */
         samCaptivePortal?: pulumi.Input<string>;
+        /**
+         * Client certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samClientCertificate?: pulumi.Input<string>;
         /**
          * Failure identification on the page after an incorrect login.
          */
@@ -25039,15 +27446,27 @@ export namespace wirelesscontroller {
          */
         samCwpUsername?: pulumi.Input<string>;
         /**
+         * Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+         */
+        samEapMethod?: pulumi.Input<string>;
+        /**
          * Passphrase for WiFi network connection.
          */
         samPassword?: pulumi.Input<string>;
+        /**
+         * Private key for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKey?: pulumi.Input<string>;
+        /**
+         * Password for private key file for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKeyPassword?: pulumi.Input<string>;
         /**
          * SAM report interval (sec), 0 for a one-time report.
          */
         samReportIntv?: pulumi.Input<number>;
         /**
-         * Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+         * Select WiFi network security type (default = "wpa-personal").
          */
         samSecurityType?: pulumi.Input<string>;
         /**

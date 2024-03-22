@@ -63,6 +63,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// Enable/disable communication to the proxy server in FortiGuard configuration.
+        /// </summary>
+        public readonly string Proxy;
+        /// <summary>
         /// IPv4 address or domain name of FortiToken Mobile push services server.
         /// </summary>
         public readonly string Server;
@@ -88,6 +92,8 @@ namespace Pulumiverse.Fortios.System
         private GetFtmpushResult(
             string id,
 
+            string proxy,
+
             string server,
 
             string serverCert,
@@ -101,6 +107,7 @@ namespace Pulumiverse.Fortios.System
             string? vdomparam)
         {
             Id = id;
+            Proxy = proxy;
             Server = server;
             ServerCert = serverCert;
             ServerIp = serverIp;

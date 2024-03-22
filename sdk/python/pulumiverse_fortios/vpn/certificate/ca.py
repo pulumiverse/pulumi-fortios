@@ -18,6 +18,7 @@ class CaArgs:
                  auto_update_days: Optional[pulumi.Input[int]] = None,
                  auto_update_days_warning: Optional[pulumi.Input[int]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
+                 est_url: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obsolete: Optional[pulumi.Input[str]] = None,
@@ -34,6 +35,7 @@ class CaArgs:
         :param pulumi.Input[int] auto_update_days: Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
         :param pulumi.Input[int] auto_update_days_warning: Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
         :param pulumi.Input[str] ca_identifier: CA identifier of the SCEP server.
+        :param pulumi.Input[str] est_url: URL of the EST server.
         :param pulumi.Input[int] last_updated: Time at which CA was last updated.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] obsolete: Enable/disable this CA as obsoleted. Valid values: `disable`, `enable`.
@@ -52,6 +54,8 @@ class CaArgs:
             pulumi.set(__self__, "auto_update_days_warning", auto_update_days_warning)
         if ca_identifier is not None:
             pulumi.set(__self__, "ca_identifier", ca_identifier)
+        if est_url is not None:
+            pulumi.set(__self__, "est_url", est_url)
         if last_updated is not None:
             pulumi.set(__self__, "last_updated", last_updated)
         if name is not None:
@@ -120,6 +124,18 @@ class CaArgs:
     @ca_identifier.setter
     def ca_identifier(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ca_identifier", value)
+
+    @property
+    @pulumi.getter(name="estUrl")
+    def est_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL of the EST server.
+        """
+        return pulumi.get(self, "est_url")
+
+    @est_url.setter
+    def est_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_url", value)
 
     @property
     @pulumi.getter(name="lastUpdated")
@@ -249,6 +265,7 @@ class _CaState:
                  auto_update_days_warning: Optional[pulumi.Input[int]] = None,
                  ca: Optional[pulumi.Input[str]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
+                 est_url: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obsolete: Optional[pulumi.Input[str]] = None,
@@ -265,6 +282,7 @@ class _CaState:
         :param pulumi.Input[int] auto_update_days_warning: Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
         :param pulumi.Input[str] ca: CA certificate as a PEM file.
         :param pulumi.Input[str] ca_identifier: CA identifier of the SCEP server.
+        :param pulumi.Input[str] est_url: URL of the EST server.
         :param pulumi.Input[int] last_updated: Time at which CA was last updated.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] obsolete: Enable/disable this CA as obsoleted. Valid values: `disable`, `enable`.
@@ -284,6 +302,8 @@ class _CaState:
             pulumi.set(__self__, "ca", ca)
         if ca_identifier is not None:
             pulumi.set(__self__, "ca_identifier", ca_identifier)
+        if est_url is not None:
+            pulumi.set(__self__, "est_url", est_url)
         if last_updated is not None:
             pulumi.set(__self__, "last_updated", last_updated)
         if name is not None:
@@ -352,6 +372,18 @@ class _CaState:
     @ca_identifier.setter
     def ca_identifier(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ca_identifier", value)
+
+    @property
+    @pulumi.getter(name="estUrl")
+    def est_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL of the EST server.
+        """
+        return pulumi.get(self, "est_url")
+
+    @est_url.setter
+    def est_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_url", value)
 
     @property
     @pulumi.getter(name="lastUpdated")
@@ -483,6 +515,7 @@ class Ca(pulumi.CustomResource):
                  auto_update_days_warning: Optional[pulumi.Input[int]] = None,
                  ca: Optional[pulumi.Input[str]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
+                 est_url: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obsolete: Optional[pulumi.Input[str]] = None,
@@ -521,6 +554,7 @@ class Ca(pulumi.CustomResource):
         :param pulumi.Input[int] auto_update_days_warning: Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
         :param pulumi.Input[str] ca: CA certificate as a PEM file.
         :param pulumi.Input[str] ca_identifier: CA identifier of the SCEP server.
+        :param pulumi.Input[str] est_url: URL of the EST server.
         :param pulumi.Input[int] last_updated: Time at which CA was last updated.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] obsolete: Enable/disable this CA as obsoleted. Valid values: `disable`, `enable`.
@@ -578,6 +612,7 @@ class Ca(pulumi.CustomResource):
                  auto_update_days_warning: Optional[pulumi.Input[int]] = None,
                  ca: Optional[pulumi.Input[str]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
+                 est_url: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obsolete: Optional[pulumi.Input[str]] = None,
@@ -601,8 +636,9 @@ class Ca(pulumi.CustomResource):
             __props__.__dict__["auto_update_days_warning"] = auto_update_days_warning
             if ca is None and not opts.urn:
                 raise TypeError("Missing required property 'ca'")
-            __props__.__dict__["ca"] = ca
+            __props__.__dict__["ca"] = None if ca is None else pulumi.Output.secret(ca)
             __props__.__dict__["ca_identifier"] = ca_identifier
+            __props__.__dict__["est_url"] = est_url
             __props__.__dict__["last_updated"] = last_updated
             __props__.__dict__["name"] = name
             __props__.__dict__["obsolete"] = obsolete
@@ -613,6 +649,8 @@ class Ca(pulumi.CustomResource):
             __props__.__dict__["ssl_inspection_trusted"] = ssl_inspection_trusted
             __props__.__dict__["trusted"] = trusted
             __props__.__dict__["vdomparam"] = vdomparam
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["ca"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Ca, __self__).__init__(
             'fortios:vpn/certificate/ca:Ca',
             resource_name,
@@ -627,6 +665,7 @@ class Ca(pulumi.CustomResource):
             auto_update_days_warning: Optional[pulumi.Input[int]] = None,
             ca: Optional[pulumi.Input[str]] = None,
             ca_identifier: Optional[pulumi.Input[str]] = None,
+            est_url: Optional[pulumi.Input[str]] = None,
             last_updated: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             obsolete: Optional[pulumi.Input[str]] = None,
@@ -648,6 +687,7 @@ class Ca(pulumi.CustomResource):
         :param pulumi.Input[int] auto_update_days_warning: Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
         :param pulumi.Input[str] ca: CA certificate as a PEM file.
         :param pulumi.Input[str] ca_identifier: CA identifier of the SCEP server.
+        :param pulumi.Input[str] est_url: URL of the EST server.
         :param pulumi.Input[int] last_updated: Time at which CA was last updated.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] obsolete: Enable/disable this CA as obsoleted. Valid values: `disable`, `enable`.
@@ -667,6 +707,7 @@ class Ca(pulumi.CustomResource):
         __props__.__dict__["auto_update_days_warning"] = auto_update_days_warning
         __props__.__dict__["ca"] = ca
         __props__.__dict__["ca_identifier"] = ca_identifier
+        __props__.__dict__["est_url"] = est_url
         __props__.__dict__["last_updated"] = last_updated
         __props__.__dict__["name"] = name
         __props__.__dict__["obsolete"] = obsolete
@@ -710,6 +751,14 @@ class Ca(pulumi.CustomResource):
         CA identifier of the SCEP server.
         """
         return pulumi.get(self, "ca_identifier")
+
+    @property
+    @pulumi.getter(name="estUrl")
+    def est_url(self) -> pulumi.Output[str]:
+        """
+        URL of the EST server.
+        """
+        return pulumi.get(self, "est_url")
 
     @property
     @pulumi.getter(name="lastUpdated")

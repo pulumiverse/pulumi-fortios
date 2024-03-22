@@ -22,6 +22,7 @@ class OcvpnArgs:
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_users: Optional[pulumi.Input[str]] = None,
                  forticlient_access: Optional[pulumi.Input['OcvpnForticlientAccessArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_allocation_block: Optional[pulumi.Input[str]] = None,
                  multipath: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
@@ -41,6 +42,7 @@ class OcvpnArgs:
         :param pulumi.Input[str] eap: Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eap_users: EAP authentication user group.
         :param pulumi.Input['OcvpnForticlientAccessArgs'] forticlient_access: Configure FortiClient settings. The structure of `forticlient_access` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_allocation_block: Class B subnet reserved for private IP address assignment.
         :param pulumi.Input[str] multipath: Enable/disable multipath redundancy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat: Enable/disable inter-overlay source NAT. Valid values: `enable`, `disable`.
@@ -65,6 +67,8 @@ class OcvpnArgs:
             pulumi.set(__self__, "eap_users", eap_users)
         if forticlient_access is not None:
             pulumi.set(__self__, "forticlient_access", forticlient_access)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_allocation_block is not None:
             pulumi.set(__self__, "ip_allocation_block", ip_allocation_block)
         if multipath is not None:
@@ -159,6 +163,18 @@ class OcvpnArgs:
     @forticlient_access.setter
     def forticlient_access(self, value: Optional[pulumi.Input['OcvpnForticlientAccessArgs']]):
         pulumi.set(self, "forticlient_access", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipAllocationBlock")
@@ -302,6 +318,7 @@ class _OcvpnState:
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_users: Optional[pulumi.Input[str]] = None,
                  forticlient_access: Optional[pulumi.Input['OcvpnForticlientAccessArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_allocation_block: Optional[pulumi.Input[str]] = None,
                  multipath: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
@@ -321,6 +338,7 @@ class _OcvpnState:
         :param pulumi.Input[str] eap: Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eap_users: EAP authentication user group.
         :param pulumi.Input['OcvpnForticlientAccessArgs'] forticlient_access: Configure FortiClient settings. The structure of `forticlient_access` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_allocation_block: Class B subnet reserved for private IP address assignment.
         :param pulumi.Input[str] multipath: Enable/disable multipath redundancy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat: Enable/disable inter-overlay source NAT. Valid values: `enable`, `disable`.
@@ -345,6 +363,8 @@ class _OcvpnState:
             pulumi.set(__self__, "eap_users", eap_users)
         if forticlient_access is not None:
             pulumi.set(__self__, "forticlient_access", forticlient_access)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_allocation_block is not None:
             pulumi.set(__self__, "ip_allocation_block", ip_allocation_block)
         if multipath is not None:
@@ -439,6 +459,18 @@ class _OcvpnState:
     @forticlient_access.setter
     def forticlient_access(self, value: Optional[pulumi.Input['OcvpnForticlientAccessArgs']]):
         pulumi.set(self, "forticlient_access", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipAllocationBlock")
@@ -584,6 +616,7 @@ class Ocvpn(pulumi.CustomResource):
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_users: Optional[pulumi.Input[str]] = None,
                  forticlient_access: Optional[pulumi.Input[pulumi.InputType['OcvpnForticlientAccessArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_allocation_block: Optional[pulumi.Input[str]] = None,
                  multipath: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
@@ -597,7 +630,7 @@ class Ocvpn(pulumi.CustomResource):
                  wan_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OcvpnWanInterfaceArgs']]]]] = None,
                  __props__=None):
         """
-        Configure Overlay Controller VPN settings. Applies to FortiOS Version `>= 6.2.4`.
+        Configure Overlay Controller VPN settings. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7,7.0.8,7.0.9,7.0.10,7.0.11,7.0.12,7.0.13,7.2.0,7.2.1,7.2.2,7.2.3,7.2.4,7.2.6`.
 
         ## Import
 
@@ -625,6 +658,7 @@ class Ocvpn(pulumi.CustomResource):
         :param pulumi.Input[str] eap: Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eap_users: EAP authentication user group.
         :param pulumi.Input[pulumi.InputType['OcvpnForticlientAccessArgs']] forticlient_access: Configure FortiClient settings. The structure of `forticlient_access` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_allocation_block: Class B subnet reserved for private IP address assignment.
         :param pulumi.Input[str] multipath: Enable/disable multipath redundancy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat: Enable/disable inter-overlay source NAT. Valid values: `enable`, `disable`.
@@ -644,7 +678,7 @@ class Ocvpn(pulumi.CustomResource):
                  args: Optional[OcvpnArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure Overlay Controller VPN settings. Applies to FortiOS Version `>= 6.2.4`.
+        Configure Overlay Controller VPN settings. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7,7.0.8,7.0.9,7.0.10,7.0.11,7.0.12,7.0.13,7.2.0,7.2.1,7.2.2,7.2.3,7.2.4,7.2.6`.
 
         ## Import
 
@@ -685,6 +719,7 @@ class Ocvpn(pulumi.CustomResource):
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_users: Optional[pulumi.Input[str]] = None,
                  forticlient_access: Optional[pulumi.Input[pulumi.InputType['OcvpnForticlientAccessArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_allocation_block: Optional[pulumi.Input[str]] = None,
                  multipath: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
@@ -711,6 +746,7 @@ class Ocvpn(pulumi.CustomResource):
             __props__.__dict__["eap"] = eap
             __props__.__dict__["eap_users"] = eap_users
             __props__.__dict__["forticlient_access"] = forticlient_access
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ip_allocation_block"] = ip_allocation_block
             __props__.__dict__["multipath"] = multipath
             __props__.__dict__["nat"] = nat
@@ -738,6 +774,7 @@ class Ocvpn(pulumi.CustomResource):
             eap: Optional[pulumi.Input[str]] = None,
             eap_users: Optional[pulumi.Input[str]] = None,
             forticlient_access: Optional[pulumi.Input[pulumi.InputType['OcvpnForticlientAccessArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ip_allocation_block: Optional[pulumi.Input[str]] = None,
             multipath: Optional[pulumi.Input[str]] = None,
             nat: Optional[pulumi.Input[str]] = None,
@@ -762,6 +799,7 @@ class Ocvpn(pulumi.CustomResource):
         :param pulumi.Input[str] eap: Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eap_users: EAP authentication user group.
         :param pulumi.Input[pulumi.InputType['OcvpnForticlientAccessArgs']] forticlient_access: Configure FortiClient settings. The structure of `forticlient_access` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_allocation_block: Class B subnet reserved for private IP address assignment.
         :param pulumi.Input[str] multipath: Enable/disable multipath redundancy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat: Enable/disable inter-overlay source NAT. Valid values: `enable`, `disable`.
@@ -784,6 +822,7 @@ class Ocvpn(pulumi.CustomResource):
         __props__.__dict__["eap"] = eap
         __props__.__dict__["eap_users"] = eap_users
         __props__.__dict__["forticlient_access"] = forticlient_access
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ip_allocation_block"] = ip_allocation_block
         __props__.__dict__["multipath"] = multipath
         __props__.__dict__["nat"] = nat
@@ -844,6 +883,14 @@ class Ocvpn(pulumi.CustomResource):
         Configure FortiClient settings. The structure of `forticlient_access` block is documented below.
         """
         return pulumi.get(self, "forticlient_access")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ipAllocationBlock")

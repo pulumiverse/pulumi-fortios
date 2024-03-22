@@ -22,6 +22,7 @@ class OverridesettingArgs:
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  facility: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  max_log_rate: Optional[pulumi.Input[int]] = None,
@@ -43,6 +44,7 @@ class OverridesettingArgs:
         :param pulumi.Input[str] enc_algorithm: Enable/disable reliable syslogging with TLS encryption. Valid values: `high-medium`, `high`, `low`, `disable`.
         :param pulumi.Input[str] facility: Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
         :param pulumi.Input[str] format: Log format.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] max_log_rate: Syslog maximum log rate in MBps (0 = unlimited).
@@ -52,7 +54,7 @@ class OverridesettingArgs:
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
         :param pulumi.Input[str] server: Address of remote syslog server.
         :param pulumi.Input[str] source_ip: Source IP address of syslog.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] syslog_type: Hidden setting index of Syslog.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -69,6 +71,8 @@ class OverridesettingArgs:
             pulumi.set(__self__, "facility", facility)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -167,6 +171,18 @@ class OverridesettingArgs:
     @format.setter
     def format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -280,7 +296,7 @@ class OverridesettingArgs:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -334,6 +350,7 @@ class _OverridesettingState:
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  facility: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  max_log_rate: Optional[pulumi.Input[int]] = None,
@@ -355,6 +372,7 @@ class _OverridesettingState:
         :param pulumi.Input[str] enc_algorithm: Enable/disable reliable syslogging with TLS encryption. Valid values: `high-medium`, `high`, `low`, `disable`.
         :param pulumi.Input[str] facility: Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
         :param pulumi.Input[str] format: Log format.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] max_log_rate: Syslog maximum log rate in MBps (0 = unlimited).
@@ -364,7 +382,7 @@ class _OverridesettingState:
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
         :param pulumi.Input[str] server: Address of remote syslog server.
         :param pulumi.Input[str] source_ip: Source IP address of syslog.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] syslog_type: Hidden setting index of Syslog.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -381,6 +399,8 @@ class _OverridesettingState:
             pulumi.set(__self__, "facility", facility)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -479,6 +499,18 @@ class _OverridesettingState:
     @format.setter
     def format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -592,7 +624,7 @@ class _OverridesettingState:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -648,6 +680,7 @@ class Overridesetting(pulumi.CustomResource):
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  facility: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  max_log_rate: Optional[pulumi.Input[int]] = None,
@@ -691,6 +724,7 @@ class Overridesetting(pulumi.CustomResource):
         :param pulumi.Input[str] enc_algorithm: Enable/disable reliable syslogging with TLS encryption. Valid values: `high-medium`, `high`, `low`, `disable`.
         :param pulumi.Input[str] facility: Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
         :param pulumi.Input[str] format: Log format.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] max_log_rate: Syslog maximum log rate in MBps (0 = unlimited).
@@ -700,7 +734,7 @@ class Overridesetting(pulumi.CustomResource):
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
         :param pulumi.Input[str] server: Address of remote syslog server.
         :param pulumi.Input[str] source_ip: Source IP address of syslog.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] syslog_type: Hidden setting index of Syslog.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -753,6 +787,7 @@ class Overridesetting(pulumi.CustomResource):
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  facility: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  max_log_rate: Optional[pulumi.Input[int]] = None,
@@ -781,6 +816,7 @@ class Overridesetting(pulumi.CustomResource):
             __props__.__dict__["enc_algorithm"] = enc_algorithm
             __props__.__dict__["facility"] = facility
             __props__.__dict__["format"] = format
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
             __props__.__dict__["max_log_rate"] = max_log_rate
@@ -810,6 +846,7 @@ class Overridesetting(pulumi.CustomResource):
             enc_algorithm: Optional[pulumi.Input[str]] = None,
             facility: Optional[pulumi.Input[str]] = None,
             format: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
             max_log_rate: Optional[pulumi.Input[int]] = None,
@@ -836,6 +873,7 @@ class Overridesetting(pulumi.CustomResource):
         :param pulumi.Input[str] enc_algorithm: Enable/disable reliable syslogging with TLS encryption. Valid values: `high-medium`, `high`, `low`, `disable`.
         :param pulumi.Input[str] facility: Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
         :param pulumi.Input[str] format: Log format.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] max_log_rate: Syslog maximum log rate in MBps (0 = unlimited).
@@ -845,7 +883,7 @@ class Overridesetting(pulumi.CustomResource):
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
         :param pulumi.Input[str] server: Address of remote syslog server.
         :param pulumi.Input[str] source_ip: Source IP address of syslog.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] syslog_type: Hidden setting index of Syslog.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -860,6 +898,7 @@ class Overridesetting(pulumi.CustomResource):
         __props__.__dict__["enc_algorithm"] = enc_algorithm
         __props__.__dict__["facility"] = facility
         __props__.__dict__["format"] = format
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
         __props__.__dict__["max_log_rate"] = max_log_rate
@@ -922,6 +961,14 @@ class Overridesetting(pulumi.CustomResource):
         Log format.
         """
         return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -999,7 +1046,7 @@ class Overridesetting(pulumi.CustomResource):
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> pulumi.Output[str]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 

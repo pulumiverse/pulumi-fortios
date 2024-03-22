@@ -98,6 +98,10 @@ export class Centralsnatmap extends pulumi.CustomResource {
      */
     public readonly dstAddrs!: pulumi.Output<outputs.firewall.CentralsnatmapDstAddr[]>;
     /**
+     * Destination port or port range (1 to 65535, 0 means any port).
+     */
+    public readonly dstPort!: pulumi.Output<string>;
+    /**
      * Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
      */
     public readonly dstintfs!: pulumi.Output<outputs.firewall.CentralsnatmapDstintf[]>;
@@ -105,6 +109,10 @@ export class Centralsnatmap extends pulumi.CustomResource {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable source NAT. Valid values: `disable`, `enable`.
      */
@@ -126,7 +134,7 @@ export class Centralsnatmap extends pulumi.CustomResource {
      */
     public readonly natIppools!: pulumi.Output<outputs.firewall.CentralsnatmapNatIppool[] | undefined>;
     /**
-     * Translated port or port range (0 to 65535).
+     * Translated port or port range (0 to 65535, 0 means any port).
      */
     public readonly natPort!: pulumi.Output<string>;
     /**
@@ -138,7 +146,7 @@ export class Centralsnatmap extends pulumi.CustomResource {
      */
     public readonly origAddrs!: pulumi.Output<outputs.firewall.CentralsnatmapOrigAddr[]>;
     /**
-     * Original TCP port (0 to 65535).
+     * Original TCP port (1 to 65535, 0 means any port).
      */
     public readonly origPort!: pulumi.Output<string>;
     /**
@@ -186,8 +194,10 @@ export class Centralsnatmap extends pulumi.CustomResource {
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["dstAddr6s"] = state ? state.dstAddr6s : undefined;
             resourceInputs["dstAddrs"] = state ? state.dstAddrs : undefined;
+            resourceInputs["dstPort"] = state ? state.dstPort : undefined;
             resourceInputs["dstintfs"] = state ? state.dstintfs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["nat"] = state ? state.nat : undefined;
             resourceInputs["nat46"] = state ? state.nat46 : undefined;
             resourceInputs["nat64"] = state ? state.nat64 : undefined;
@@ -230,8 +240,10 @@ export class Centralsnatmap extends pulumi.CustomResource {
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["dstAddr6s"] = args ? args.dstAddr6s : undefined;
             resourceInputs["dstAddrs"] = args ? args.dstAddrs : undefined;
+            resourceInputs["dstPort"] = args ? args.dstPort : undefined;
             resourceInputs["dstintfs"] = args ? args.dstintfs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["nat"] = args ? args.nat : undefined;
             resourceInputs["nat46"] = args ? args.nat46 : undefined;
             resourceInputs["nat64"] = args ? args.nat64 : undefined;
@@ -271,6 +283,10 @@ export interface CentralsnatmapState {
      */
     dstAddrs?: pulumi.Input<pulumi.Input<inputs.firewall.CentralsnatmapDstAddr>[]>;
     /**
+     * Destination port or port range (1 to 65535, 0 means any port).
+     */
+    dstPort?: pulumi.Input<string>;
+    /**
      * Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
      */
     dstintfs?: pulumi.Input<pulumi.Input<inputs.firewall.CentralsnatmapDstintf>[]>;
@@ -278,6 +294,10 @@ export interface CentralsnatmapState {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable source NAT. Valid values: `disable`, `enable`.
      */
@@ -299,7 +319,7 @@ export interface CentralsnatmapState {
      */
     natIppools?: pulumi.Input<pulumi.Input<inputs.firewall.CentralsnatmapNatIppool>[]>;
     /**
-     * Translated port or port range (0 to 65535).
+     * Translated port or port range (0 to 65535, 0 means any port).
      */
     natPort?: pulumi.Input<string>;
     /**
@@ -311,7 +331,7 @@ export interface CentralsnatmapState {
      */
     origAddrs?: pulumi.Input<pulumi.Input<inputs.firewall.CentralsnatmapOrigAddr>[]>;
     /**
-     * Original TCP port (0 to 65535).
+     * Original TCP port (1 to 65535, 0 means any port).
      */
     origPort?: pulumi.Input<string>;
     /**
@@ -361,6 +381,10 @@ export interface CentralsnatmapArgs {
      */
     dstAddrs: pulumi.Input<pulumi.Input<inputs.firewall.CentralsnatmapDstAddr>[]>;
     /**
+     * Destination port or port range (1 to 65535, 0 means any port).
+     */
+    dstPort?: pulumi.Input<string>;
+    /**
      * Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
      */
     dstintfs: pulumi.Input<pulumi.Input<inputs.firewall.CentralsnatmapDstintf>[]>;
@@ -368,6 +392,10 @@ export interface CentralsnatmapArgs {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable source NAT. Valid values: `disable`, `enable`.
      */
@@ -389,7 +417,7 @@ export interface CentralsnatmapArgs {
      */
     natIppools?: pulumi.Input<pulumi.Input<inputs.firewall.CentralsnatmapNatIppool>[]>;
     /**
-     * Translated port or port range (0 to 65535).
+     * Translated port or port range (0 to 65535, 0 means any port).
      */
     natPort?: pulumi.Input<string>;
     /**
@@ -401,7 +429,7 @@ export interface CentralsnatmapArgs {
      */
     origAddrs: pulumi.Input<pulumi.Input<inputs.firewall.CentralsnatmapOrigAddr>[]>;
     /**
-     * Original TCP port (0 to 65535).
+     * Original TCP port (1 to 65535, 0 means any port).
      */
     origPort: pulumi.Input<string>;
     /**

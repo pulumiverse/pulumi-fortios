@@ -32,7 +32,7 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
+        /// Protocols used to monitor the server.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }

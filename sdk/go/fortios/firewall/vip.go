@@ -139,8 +139,20 @@ type Vip struct {
 	Extport pulumi.StringOutput `pulumi:"extport"`
 	// Custom defined ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
 	GratuitousArpInterval pulumi.IntOutput `pulumi:"gratuitousArpInterval"`
+	// Domain to use when integrating with FortiGSLB.
+	GslbDomainName pulumi.StringOutput `pulumi:"gslbDomainName"`
+	// Hostname to use within the configured FortiGSLB domain.
+	GslbHostname pulumi.StringOutput `pulumi:"gslbHostname"`
+	// Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslbPublicIps` block is documented below.
+	GslbPublicIps VipGslbPublicIpArrayOutput `pulumi:"gslbPublicIps"`
+	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+	H2Support pulumi.StringOutput `pulumi:"h2Support"`
+	// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+	H3Support pulumi.StringOutput `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 	HttpCookieAge pulumi.IntOutput `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -159,8 +171,16 @@ type Vip struct {
 	HttpIpHeaderName pulumi.StringOutput `pulumi:"httpIpHeaderName"`
 	// Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
 	HttpMultiplex pulumi.StringOutput `pulumi:"httpMultiplex"`
+	// Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+	HttpMultiplexMaxConcurrentRequest pulumi.IntOutput `pulumi:"httpMultiplexMaxConcurrentRequest"`
+	// Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+	HttpMultiplexMaxRequest pulumi.IntOutput `pulumi:"httpMultiplexMaxRequest"`
+	// Time-to-live for idle connections to servers.
+	HttpMultiplexTtl pulumi.IntOutput `pulumi:"httpMultiplexTtl"`
 	// Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
 	HttpRedirect pulumi.StringOutput `pulumi:"httpRedirect"`
+	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+	HttpSupportedMaxVersion pulumi.StringOutput `pulumi:"httpSupportedMaxVersion"`
 	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 	HttpsCookieSecure pulumi.StringOutput `pulumi:"httpsCookieSecure"`
 	// Start-mapped-IPv6-address [-end mapped-IPv6-address].
@@ -187,6 +207,8 @@ type Vip struct {
 	Nat46 pulumi.StringOutput `pulumi:"nat46"`
 	// Enable/disable forcing the source NAT mapped IP to the external IP for all traffic. Valid values: `disable`, `enable`.
 	NatSourceVip pulumi.StringOutput `pulumi:"natSourceVip"`
+	// Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
+	OneClickGslbServer pulumi.StringOutput `pulumi:"oneClickGslbServer"`
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 	OutlookWebAccess pulumi.StringOutput `pulumi:"outlookWebAccess"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -197,6 +219,8 @@ type Vip struct {
 	PortmappingType pulumi.StringOutput `pulumi:"portmappingType"`
 	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`, `icmp`.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic VipQuicOutput `pulumi:"quic"`
 	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers VipRealserverArrayOutput `pulumi:"realservers"`
 	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
@@ -269,6 +293,8 @@ type Vip struct {
 	SslServerMaxVersion pulumi.StringOutput `pulumi:"sslServerMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
 	SslServerMinVersion pulumi.StringOutput `pulumi:"sslServerMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslServerRenegotiation pulumi.StringOutput `pulumi:"sslServerRenegotiation"`
 	// Maximum number of FortiGate to Server SSL session states to keep.
 	SslServerSessionStateMax pulumi.IntOutput `pulumi:"sslServerSessionStateMax"`
 	// Number of minutes to keep FortiGate to Server SSL session state.
@@ -341,8 +367,20 @@ type vipState struct {
 	Extport *string `pulumi:"extport"`
 	// Custom defined ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
 	GratuitousArpInterval *int `pulumi:"gratuitousArpInterval"`
+	// Domain to use when integrating with FortiGSLB.
+	GslbDomainName *string `pulumi:"gslbDomainName"`
+	// Hostname to use within the configured FortiGSLB domain.
+	GslbHostname *string `pulumi:"gslbHostname"`
+	// Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslbPublicIps` block is documented below.
+	GslbPublicIps []VipGslbPublicIp `pulumi:"gslbPublicIps"`
+	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+	H2Support *string `pulumi:"h2Support"`
+	// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+	H3Support *string `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 	HttpCookieAge *int `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -361,8 +399,16 @@ type vipState struct {
 	HttpIpHeaderName *string `pulumi:"httpIpHeaderName"`
 	// Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
 	HttpMultiplex *string `pulumi:"httpMultiplex"`
+	// Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+	HttpMultiplexMaxConcurrentRequest *int `pulumi:"httpMultiplexMaxConcurrentRequest"`
+	// Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+	HttpMultiplexMaxRequest *int `pulumi:"httpMultiplexMaxRequest"`
+	// Time-to-live for idle connections to servers.
+	HttpMultiplexTtl *int `pulumi:"httpMultiplexTtl"`
 	// Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
 	HttpRedirect *string `pulumi:"httpRedirect"`
+	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+	HttpSupportedMaxVersion *string `pulumi:"httpSupportedMaxVersion"`
 	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 	HttpsCookieSecure *string `pulumi:"httpsCookieSecure"`
 	// Start-mapped-IPv6-address [-end mapped-IPv6-address].
@@ -389,6 +435,8 @@ type vipState struct {
 	Nat46 *string `pulumi:"nat46"`
 	// Enable/disable forcing the source NAT mapped IP to the external IP for all traffic. Valid values: `disable`, `enable`.
 	NatSourceVip *string `pulumi:"natSourceVip"`
+	// Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
+	OneClickGslbServer *string `pulumi:"oneClickGslbServer"`
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 	OutlookWebAccess *string `pulumi:"outlookWebAccess"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -399,6 +447,8 @@ type vipState struct {
 	PortmappingType *string `pulumi:"portmappingType"`
 	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`, `icmp`.
 	Protocol *string `pulumi:"protocol"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic *VipQuic `pulumi:"quic"`
 	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers []VipRealserver `pulumi:"realservers"`
 	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
@@ -471,6 +521,8 @@ type vipState struct {
 	SslServerMaxVersion *string `pulumi:"sslServerMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
 	SslServerMinVersion *string `pulumi:"sslServerMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslServerRenegotiation *string `pulumi:"sslServerRenegotiation"`
 	// Maximum number of FortiGate to Server SSL session states to keep.
 	SslServerSessionStateMax *int `pulumi:"sslServerSessionStateMax"`
 	// Number of minutes to keep FortiGate to Server SSL session state.
@@ -514,8 +566,20 @@ type VipState struct {
 	Extport pulumi.StringPtrInput
 	// Custom defined ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
 	GratuitousArpInterval pulumi.IntPtrInput
+	// Domain to use when integrating with FortiGSLB.
+	GslbDomainName pulumi.StringPtrInput
+	// Hostname to use within the configured FortiGSLB domain.
+	GslbHostname pulumi.StringPtrInput
+	// Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslbPublicIps` block is documented below.
+	GslbPublicIps VipGslbPublicIpArrayInput
+	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+	H2Support pulumi.StringPtrInput
+	// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+	H3Support pulumi.StringPtrInput
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 	HttpCookieAge pulumi.IntPtrInput
 	// Domain that HTTP cookie persistence should apply to.
@@ -534,8 +598,16 @@ type VipState struct {
 	HttpIpHeaderName pulumi.StringPtrInput
 	// Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
 	HttpMultiplex pulumi.StringPtrInput
+	// Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+	HttpMultiplexMaxConcurrentRequest pulumi.IntPtrInput
+	// Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+	HttpMultiplexMaxRequest pulumi.IntPtrInput
+	// Time-to-live for idle connections to servers.
+	HttpMultiplexTtl pulumi.IntPtrInput
 	// Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
 	HttpRedirect pulumi.StringPtrInput
+	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+	HttpSupportedMaxVersion pulumi.StringPtrInput
 	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 	HttpsCookieSecure pulumi.StringPtrInput
 	// Start-mapped-IPv6-address [-end mapped-IPv6-address].
@@ -562,6 +634,8 @@ type VipState struct {
 	Nat46 pulumi.StringPtrInput
 	// Enable/disable forcing the source NAT mapped IP to the external IP for all traffic. Valid values: `disable`, `enable`.
 	NatSourceVip pulumi.StringPtrInput
+	// Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
+	OneClickGslbServer pulumi.StringPtrInput
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 	OutlookWebAccess pulumi.StringPtrInput
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -572,6 +646,8 @@ type VipState struct {
 	PortmappingType pulumi.StringPtrInput
 	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`, `icmp`.
 	Protocol pulumi.StringPtrInput
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic VipQuicPtrInput
 	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers VipRealserverArrayInput
 	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
@@ -644,6 +720,8 @@ type VipState struct {
 	SslServerMaxVersion pulumi.StringPtrInput
 	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
 	SslServerMinVersion pulumi.StringPtrInput
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslServerRenegotiation pulumi.StringPtrInput
 	// Maximum number of FortiGate to Server SSL session states to keep.
 	SslServerSessionStateMax pulumi.IntPtrInput
 	// Number of minutes to keep FortiGate to Server SSL session state.
@@ -691,8 +769,20 @@ type vipArgs struct {
 	Extport *string `pulumi:"extport"`
 	// Custom defined ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
 	GratuitousArpInterval *int `pulumi:"gratuitousArpInterval"`
+	// Domain to use when integrating with FortiGSLB.
+	GslbDomainName *string `pulumi:"gslbDomainName"`
+	// Hostname to use within the configured FortiGSLB domain.
+	GslbHostname *string `pulumi:"gslbHostname"`
+	// Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslbPublicIps` block is documented below.
+	GslbPublicIps []VipGslbPublicIp `pulumi:"gslbPublicIps"`
+	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+	H2Support *string `pulumi:"h2Support"`
+	// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+	H3Support *string `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 	HttpCookieAge *int `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -711,8 +801,16 @@ type vipArgs struct {
 	HttpIpHeaderName *string `pulumi:"httpIpHeaderName"`
 	// Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
 	HttpMultiplex *string `pulumi:"httpMultiplex"`
+	// Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+	HttpMultiplexMaxConcurrentRequest *int `pulumi:"httpMultiplexMaxConcurrentRequest"`
+	// Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+	HttpMultiplexMaxRequest *int `pulumi:"httpMultiplexMaxRequest"`
+	// Time-to-live for idle connections to servers.
+	HttpMultiplexTtl *int `pulumi:"httpMultiplexTtl"`
 	// Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
 	HttpRedirect *string `pulumi:"httpRedirect"`
+	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+	HttpSupportedMaxVersion *string `pulumi:"httpSupportedMaxVersion"`
 	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 	HttpsCookieSecure *string `pulumi:"httpsCookieSecure"`
 	// Start-mapped-IPv6-address [-end mapped-IPv6-address].
@@ -739,6 +837,8 @@ type vipArgs struct {
 	Nat46 *string `pulumi:"nat46"`
 	// Enable/disable forcing the source NAT mapped IP to the external IP for all traffic. Valid values: `disable`, `enable`.
 	NatSourceVip *string `pulumi:"natSourceVip"`
+	// Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
+	OneClickGslbServer *string `pulumi:"oneClickGslbServer"`
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 	OutlookWebAccess *string `pulumi:"outlookWebAccess"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -749,6 +849,8 @@ type vipArgs struct {
 	PortmappingType *string `pulumi:"portmappingType"`
 	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`, `icmp`.
 	Protocol *string `pulumi:"protocol"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic *VipQuic `pulumi:"quic"`
 	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers []VipRealserver `pulumi:"realservers"`
 	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
@@ -821,6 +923,8 @@ type vipArgs struct {
 	SslServerMaxVersion *string `pulumi:"sslServerMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
 	SslServerMinVersion *string `pulumi:"sslServerMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslServerRenegotiation *string `pulumi:"sslServerRenegotiation"`
 	// Maximum number of FortiGate to Server SSL session states to keep.
 	SslServerSessionStateMax *int `pulumi:"sslServerSessionStateMax"`
 	// Number of minutes to keep FortiGate to Server SSL session state.
@@ -865,8 +969,20 @@ type VipArgs struct {
 	Extport pulumi.StringPtrInput
 	// Custom defined ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
 	GratuitousArpInterval pulumi.IntPtrInput
+	// Domain to use when integrating with FortiGSLB.
+	GslbDomainName pulumi.StringPtrInput
+	// Hostname to use within the configured FortiGSLB domain.
+	GslbHostname pulumi.StringPtrInput
+	// Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslbPublicIps` block is documented below.
+	GslbPublicIps VipGslbPublicIpArrayInput
+	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+	H2Support pulumi.StringPtrInput
+	// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+	H3Support pulumi.StringPtrInput
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 	HttpCookieAge pulumi.IntPtrInput
 	// Domain that HTTP cookie persistence should apply to.
@@ -885,8 +1001,16 @@ type VipArgs struct {
 	HttpIpHeaderName pulumi.StringPtrInput
 	// Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
 	HttpMultiplex pulumi.StringPtrInput
+	// Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+	HttpMultiplexMaxConcurrentRequest pulumi.IntPtrInput
+	// Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+	HttpMultiplexMaxRequest pulumi.IntPtrInput
+	// Time-to-live for idle connections to servers.
+	HttpMultiplexTtl pulumi.IntPtrInput
 	// Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
 	HttpRedirect pulumi.StringPtrInput
+	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+	HttpSupportedMaxVersion pulumi.StringPtrInput
 	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 	HttpsCookieSecure pulumi.StringPtrInput
 	// Start-mapped-IPv6-address [-end mapped-IPv6-address].
@@ -913,6 +1037,8 @@ type VipArgs struct {
 	Nat46 pulumi.StringPtrInput
 	// Enable/disable forcing the source NAT mapped IP to the external IP for all traffic. Valid values: `disable`, `enable`.
 	NatSourceVip pulumi.StringPtrInput
+	// Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
+	OneClickGslbServer pulumi.StringPtrInput
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 	OutlookWebAccess pulumi.StringPtrInput
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -923,6 +1049,8 @@ type VipArgs struct {
 	PortmappingType pulumi.StringPtrInput
 	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`, `icmp`.
 	Protocol pulumi.StringPtrInput
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic VipQuicPtrInput
 	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers VipRealserverArrayInput
 	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
@@ -995,6 +1123,8 @@ type VipArgs struct {
 	SslServerMaxVersion pulumi.StringPtrInput
 	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
 	SslServerMinVersion pulumi.StringPtrInput
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslServerRenegotiation pulumi.StringPtrInput
 	// Maximum number of FortiGate to Server SSL session states to keep.
 	SslServerSessionStateMax pulumi.IntPtrInput
 	// Number of minutes to keep FortiGate to Server SSL session state.
@@ -1157,9 +1287,39 @@ func (o VipOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vip) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o VipOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Vip) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
 func (o VipOutput) GratuitousArpInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vip) pulumi.IntOutput { return v.GratuitousArpInterval }).(pulumi.IntOutput)
+}
+
+// Domain to use when integrating with FortiGSLB.
+func (o VipOutput) GslbDomainName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.GslbDomainName }).(pulumi.StringOutput)
+}
+
+// Hostname to use within the configured FortiGSLB domain.
+func (o VipOutput) GslbHostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.GslbHostname }).(pulumi.StringOutput)
+}
+
+// Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslbPublicIps` block is documented below.
+func (o VipOutput) GslbPublicIps() VipGslbPublicIpArrayOutput {
+	return o.ApplyT(func(v *Vip) VipGslbPublicIpArrayOutput { return v.GslbPublicIps }).(VipGslbPublicIpArrayOutput)
+}
+
+// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+func (o VipOutput) H2Support() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.H2Support }).(pulumi.StringOutput)
+}
+
+// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+func (o VipOutput) H3Support() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.H3Support }).(pulumi.StringOutput)
 }
 
 // Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
@@ -1207,9 +1367,29 @@ func (o VipOutput) HttpMultiplex() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.HttpMultiplex }).(pulumi.StringOutput)
 }
 
+// Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+func (o VipOutput) HttpMultiplexMaxConcurrentRequest() pulumi.IntOutput {
+	return o.ApplyT(func(v *Vip) pulumi.IntOutput { return v.HttpMultiplexMaxConcurrentRequest }).(pulumi.IntOutput)
+}
+
+// Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+func (o VipOutput) HttpMultiplexMaxRequest() pulumi.IntOutput {
+	return o.ApplyT(func(v *Vip) pulumi.IntOutput { return v.HttpMultiplexMaxRequest }).(pulumi.IntOutput)
+}
+
+// Time-to-live for idle connections to servers.
+func (o VipOutput) HttpMultiplexTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *Vip) pulumi.IntOutput { return v.HttpMultiplexTtl }).(pulumi.IntOutput)
+}
+
 // Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
 func (o VipOutput) HttpRedirect() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.HttpRedirect }).(pulumi.StringOutput)
+}
+
+// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+func (o VipOutput) HttpSupportedMaxVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.HttpSupportedMaxVersion }).(pulumi.StringOutput)
 }
 
 // Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
@@ -1277,6 +1457,11 @@ func (o VipOutput) NatSourceVip() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.NatSourceVip }).(pulumi.StringOutput)
 }
 
+// Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
+func (o VipOutput) OneClickGslbServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.OneClickGslbServer }).(pulumi.StringOutput)
+}
+
 // Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 func (o VipOutput) OutlookWebAccess() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.OutlookWebAccess }).(pulumi.StringOutput)
@@ -1300,6 +1485,11 @@ func (o VipOutput) PortmappingType() pulumi.StringOutput {
 // Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`, `icmp`.
 func (o VipOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// QUIC setting. The structure of `quic` block is documented below.
+func (o VipOutput) Quic() VipQuicOutput {
+	return o.ApplyT(func(v *Vip) VipQuicOutput { return v.Quic }).(VipQuicOutput)
 }
 
 // Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
@@ -1480,6 +1670,11 @@ func (o VipOutput) SslServerMaxVersion() pulumi.StringOutput {
 // Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
 func (o VipOutput) SslServerMinVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.SslServerMinVersion }).(pulumi.StringOutput)
+}
+
+// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+func (o VipOutput) SslServerRenegotiation() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.SslServerRenegotiation }).(pulumi.StringOutput)
 }
 
 // Maximum number of FortiGate to Server SSL session states to keep.

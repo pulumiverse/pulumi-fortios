@@ -123,6 +123,10 @@ export class Static6 extends pulumi.CustomResource {
      */
     public readonly gateway!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
      */
     public readonly linkMonitorExempt!: pulumi.Output<string>;
@@ -187,6 +191,7 @@ export class Static6 extends pulumi.CustomResource {
             resourceInputs["dynamicGateway"] = state ? state.dynamicGateway : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["linkMonitorExempt"] = state ? state.linkMonitorExempt : undefined;
             resourceInputs["priority"] = state ? state.priority : undefined;
             resourceInputs["sdwan"] = state ? state.sdwan : undefined;
@@ -213,6 +218,7 @@ export class Static6 extends pulumi.CustomResource {
             resourceInputs["dynamicGateway"] = args ? args.dynamicGateway : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["linkMonitorExempt"] = args ? args.linkMonitorExempt : undefined;
             resourceInputs["priority"] = args ? args.priority : undefined;
             resourceInputs["sdwan"] = args ? args.sdwan : undefined;
@@ -277,6 +283,10 @@ export interface Static6State {
      * IPv6 address of the gateway.
      */
     gateway?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
      */
@@ -367,6 +377,10 @@ export interface Static6Args {
      * IPv6 address of the gateway.
      */
     gateway?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
      */

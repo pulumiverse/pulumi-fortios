@@ -33,7 +33,7 @@ import (
 type Fortigate struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+	// Enable/disable FortiGate administration.
 	Authorized pulumi.StringOutput `pulumi:"authorized"`
 	// Description.
 	Description pulumi.StringOutput `pulumi:"description"`
@@ -83,7 +83,7 @@ func GetFortigate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Fortigate resources.
 type fortigateState struct {
-	// Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+	// Enable/disable FortiGate administration.
 	Authorized *string `pulumi:"authorized"`
 	// Description.
 	Description *string `pulumi:"description"`
@@ -104,7 +104,7 @@ type fortigateState struct {
 }
 
 type FortigateState struct {
-	// Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+	// Enable/disable FortiGate administration.
 	Authorized pulumi.StringPtrInput
 	// Description.
 	Description pulumi.StringPtrInput
@@ -129,7 +129,7 @@ func (FortigateState) ElementType() reflect.Type {
 }
 
 type fortigateArgs struct {
-	// Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+	// Enable/disable FortiGate administration.
 	Authorized *string `pulumi:"authorized"`
 	// Description.
 	Description *string `pulumi:"description"`
@@ -151,7 +151,7 @@ type fortigateArgs struct {
 
 // The set of arguments for constructing a Fortigate resource.
 type FortigateArgs struct {
-	// Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+	// Enable/disable FortiGate administration.
 	Authorized pulumi.StringPtrInput
 	// Description.
 	Description pulumi.StringPtrInput
@@ -258,7 +258,7 @@ func (o FortigateOutput) ToFortigateOutputWithContext(ctx context.Context) Forti
 	return o
 }
 
-// Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+// Enable/disable FortiGate administration.
 func (o FortigateOutput) Authorized() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortigate) pulumi.StringOutput { return v.Authorized }).(pulumi.StringOutput)
 }

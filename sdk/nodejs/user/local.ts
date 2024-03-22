@@ -145,6 +145,10 @@ export class Local extends pulumi.CustomResource {
      */
     public readonly ppkSecret!: pulumi.Output<string | undefined>;
     /**
+     * Quantum Key Distribution (QKD) profile.
+     */
+    public readonly qkdProfile!: pulumi.Output<string>;
+    /**
      * Name of RADIUS server with which the user must authenticate.
      */
     public readonly radiusServer!: pulumi.Output<string>;
@@ -231,6 +235,7 @@ export class Local extends pulumi.CustomResource {
             resourceInputs["passwdTime"] = state ? state.passwdTime : undefined;
             resourceInputs["ppkIdentity"] = state ? state.ppkIdentity : undefined;
             resourceInputs["ppkSecret"] = state ? state.ppkSecret : undefined;
+            resourceInputs["qkdProfile"] = state ? state.qkdProfile : undefined;
             resourceInputs["radiusServer"] = state ? state.radiusServer : undefined;
             resourceInputs["smsCustomServer"] = state ? state.smsCustomServer : undefined;
             resourceInputs["smsPhone"] = state ? state.smsPhone : undefined;
@@ -267,6 +272,7 @@ export class Local extends pulumi.CustomResource {
             resourceInputs["passwdTime"] = args ? args.passwdTime : undefined;
             resourceInputs["ppkIdentity"] = args ? args.ppkIdentity : undefined;
             resourceInputs["ppkSecret"] = args?.ppkSecret ? pulumi.secret(args.ppkSecret) : undefined;
+            resourceInputs["qkdProfile"] = args ? args.qkdProfile : undefined;
             resourceInputs["radiusServer"] = args ? args.radiusServer : undefined;
             resourceInputs["smsCustomServer"] = args ? args.smsCustomServer : undefined;
             resourceInputs["smsPhone"] = args ? args.smsPhone : undefined;
@@ -346,6 +352,10 @@ export interface LocalState {
      * IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
      */
     ppkSecret?: pulumi.Input<string>;
+    /**
+     * Quantum Key Distribution (QKD) profile.
+     */
+    qkdProfile?: pulumi.Input<string>;
     /**
      * Name of RADIUS server with which the user must authenticate.
      */
@@ -464,6 +474,10 @@ export interface LocalArgs {
      * IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
      */
     ppkSecret?: pulumi.Input<string>;
+    /**
+     * Quantum Key Distribution (QKD) profile.
+     */
+    qkdProfile?: pulumi.Input<string>;
     /**
      * Name of RADIUS server with which the user must authenticate.
      */

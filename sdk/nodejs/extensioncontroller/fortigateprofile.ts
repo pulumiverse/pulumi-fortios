@@ -64,6 +64,10 @@ export class Fortigateprofile extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * FortiGate connector LAN extension configuration. The structure of `lanExtension` block is documented below.
      */
     public readonly lanExtension!: pulumi.Output<outputs.extensioncontroller.FortigateprofileLanExtension>;
@@ -91,6 +95,7 @@ export class Fortigateprofile extends pulumi.CustomResource {
             const state = argsOrState as FortigateprofileState | undefined;
             resourceInputs["extension"] = state ? state.extension : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["lanExtension"] = state ? state.lanExtension : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -98,6 +103,7 @@ export class Fortigateprofile extends pulumi.CustomResource {
             const args = argsOrState as FortigateprofileArgs | undefined;
             resourceInputs["extension"] = args ? args.extension : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["lanExtension"] = args ? args.lanExtension : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -119,6 +125,10 @@ export interface FortigateprofileState {
      * ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * FortiGate connector LAN extension configuration. The structure of `lanExtension` block is documented below.
      */
@@ -145,6 +155,10 @@ export interface FortigateprofileArgs {
      * ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * FortiGate connector LAN extension configuration. The structure of `lanExtension` block is documented below.
      */

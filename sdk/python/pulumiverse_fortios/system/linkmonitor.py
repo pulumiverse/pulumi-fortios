@@ -25,6 +25,7 @@ class LinkmonitorArgs:
                  failtime: Optional[pulumi.Input[int]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  gateway_ip6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  http_agent: Optional[pulumi.Input[str]] = None,
                  http_get: Optional[pulumi.Input[str]] = None,
@@ -63,6 +64,7 @@ class LinkmonitorArgs:
         :param pulumi.Input[int] failtime: Number of retry attempts before the server is considered down (1 - 10, default = 5)
         :param pulumi.Input[str] gateway_ip: Gateway IP address used to probe the server.
         :param pulumi.Input[str] gateway_ip6: Gateway IPv6 address used to probe the server.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] ha_priority: HA election priority (1 - 50).
         :param pulumi.Input[str] http_agent: String in the http-agent field in the HTTP header.
         :param pulumi.Input[str] http_get: If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
@@ -108,6 +110,8 @@ class LinkmonitorArgs:
             pulumi.set(__self__, "gateway_ip", gateway_ip)
         if gateway_ip6 is not None:
             pulumi.set(__self__, "gateway_ip6", gateway_ip6)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ha_priority is not None:
             pulumi.set(__self__, "ha_priority", ha_priority)
         if http_agent is not None:
@@ -270,6 +274,18 @@ class LinkmonitorArgs:
     @gateway_ip6.setter
     def gateway_ip6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gateway_ip6", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="haPriority")
@@ -607,6 +623,7 @@ class _LinkmonitorState:
                  failtime: Optional[pulumi.Input[int]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  gateway_ip6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  http_agent: Optional[pulumi.Input[str]] = None,
                  http_get: Optional[pulumi.Input[str]] = None,
@@ -645,6 +662,7 @@ class _LinkmonitorState:
         :param pulumi.Input[int] failtime: Number of retry attempts before the server is considered down (1 - 10, default = 5)
         :param pulumi.Input[str] gateway_ip: Gateway IP address used to probe the server.
         :param pulumi.Input[str] gateway_ip6: Gateway IPv6 address used to probe the server.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] ha_priority: HA election priority (1 - 50).
         :param pulumi.Input[str] http_agent: String in the http-agent field in the HTTP header.
         :param pulumi.Input[str] http_get: If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
@@ -690,6 +708,8 @@ class _LinkmonitorState:
             pulumi.set(__self__, "gateway_ip", gateway_ip)
         if gateway_ip6 is not None:
             pulumi.set(__self__, "gateway_ip6", gateway_ip6)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ha_priority is not None:
             pulumi.set(__self__, "ha_priority", ha_priority)
         if http_agent is not None:
@@ -842,6 +862,18 @@ class _LinkmonitorState:
     @gateway_ip6.setter
     def gateway_ip6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gateway_ip6", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="haPriority")
@@ -1193,6 +1225,7 @@ class Linkmonitor(pulumi.CustomResource):
                  failtime: Optional[pulumi.Input[int]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  gateway_ip6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  http_agent: Optional[pulumi.Input[str]] = None,
                  http_get: Optional[pulumi.Input[str]] = None,
@@ -1286,6 +1319,7 @@ class Linkmonitor(pulumi.CustomResource):
         :param pulumi.Input[int] failtime: Number of retry attempts before the server is considered down (1 - 10, default = 5)
         :param pulumi.Input[str] gateway_ip: Gateway IP address used to probe the server.
         :param pulumi.Input[str] gateway_ip6: Gateway IPv6 address used to probe the server.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] ha_priority: HA election priority (1 - 50).
         :param pulumi.Input[str] http_agent: String in the http-agent field in the HTTP header.
         :param pulumi.Input[str] http_get: If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
@@ -1398,6 +1432,7 @@ class Linkmonitor(pulumi.CustomResource):
                  failtime: Optional[pulumi.Input[int]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  gateway_ip6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  http_agent: Optional[pulumi.Input[str]] = None,
                  http_get: Optional[pulumi.Input[str]] = None,
@@ -1443,6 +1478,7 @@ class Linkmonitor(pulumi.CustomResource):
             __props__.__dict__["failtime"] = failtime
             __props__.__dict__["gateway_ip"] = gateway_ip
             __props__.__dict__["gateway_ip6"] = gateway_ip6
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ha_priority"] = ha_priority
             __props__.__dict__["http_agent"] = http_agent
             __props__.__dict__["http_get"] = http_get
@@ -1493,6 +1529,7 @@ class Linkmonitor(pulumi.CustomResource):
             failtime: Optional[pulumi.Input[int]] = None,
             gateway_ip: Optional[pulumi.Input[str]] = None,
             gateway_ip6: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ha_priority: Optional[pulumi.Input[int]] = None,
             http_agent: Optional[pulumi.Input[str]] = None,
             http_get: Optional[pulumi.Input[str]] = None,
@@ -1536,6 +1573,7 @@ class Linkmonitor(pulumi.CustomResource):
         :param pulumi.Input[int] failtime: Number of retry attempts before the server is considered down (1 - 10, default = 5)
         :param pulumi.Input[str] gateway_ip: Gateway IP address used to probe the server.
         :param pulumi.Input[str] gateway_ip6: Gateway IPv6 address used to probe the server.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] ha_priority: HA election priority (1 - 50).
         :param pulumi.Input[str] http_agent: String in the http-agent field in the HTTP header.
         :param pulumi.Input[str] http_get: If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string.
@@ -1577,6 +1615,7 @@ class Linkmonitor(pulumi.CustomResource):
         __props__.__dict__["failtime"] = failtime
         __props__.__dict__["gateway_ip"] = gateway_ip
         __props__.__dict__["gateway_ip6"] = gateway_ip6
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ha_priority"] = ha_priority
         __props__.__dict__["http_agent"] = http_agent
         __props__.__dict__["http_get"] = http_get
@@ -1670,6 +1709,14 @@ class Linkmonitor(pulumi.CustomResource):
         Gateway IPv6 address used to probe the server.
         """
         return pulumi.get(self, "gateway_ip6")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="haPriority")

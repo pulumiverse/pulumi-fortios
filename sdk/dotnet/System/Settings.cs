@@ -191,6 +191,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> DenyTcpWithIcmp { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("detectUnknownEsp")]
+        public Output<string> DetectUnknownEsp { get; private set; } = null!;
+
+        /// <summary>
         /// Interface to use for management access for NAT mode.
         /// </summary>
         [Output("device")]
@@ -293,6 +299,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Gateway6 { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("guiAdvancedPolicy")]
@@ -329,6 +341,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> GuiApplicationControl { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("guiCasb")]
+        public Output<string> GuiCasb { get; private set; } = null!;
+
+        /// <summary>
         /// Default columns to display for policy lists on GUI. The structure of `gui_default_policy_columns` block is documented below.
         /// </summary>
         [Output("guiDefaultPolicyColumns")]
@@ -345,6 +363,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("guiDlp")]
         public Output<string> GuiDlp { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("guiDlpProfile")]
+        public Output<string> GuiDlpProfile { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
@@ -369,6 +393,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("guiDosPolicy")]
         public Output<string> GuiDosPolicy { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("guiDynamicDeviceOsId")]
+        public Output<string> GuiDynamicDeviceOsId { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
@@ -527,10 +557,22 @@ namespace Pulumiverse.Fortios.System
         public Output<string> GuiPolicyLearning { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("guiProxyInspection")]
+        public Output<string> GuiProxyInspection { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("guiReplacementMessageGroups")]
         public Output<string> GuiReplacementMessageGroups { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("guiRouteTagAddressCreation")]
+        public Output<string> GuiRouteTagAddressCreation { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
@@ -543,6 +585,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("guiSpamfilter")]
         public Output<string> GuiSpamfilter { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("guiSslvpn")]
+        public Output<string> GuiSslvpn { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
@@ -579,6 +627,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("guiVideofilter")]
         public Output<string> GuiVideofilter { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("guiVirtualPatchProfile")]
+        public Output<string> GuiVirtualPatchProfile { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
@@ -683,6 +737,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> IkeSessionResume { get; private set; } = null!;
 
         /// <summary>
+        /// TCP port for IKE/IPsec traffic (default 4500).
+        /// </summary>
+        [Output("ikeTcpPort")]
+        public Output<int> IkeTcpPort { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("implicitAllowDns")]
@@ -693,6 +753,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("inspectionMode")]
         public Output<string> InspectionMode { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("internetServiceDatabaseCache")]
+        public Output<string> InternetServiceDatabaseCache { get; private set; } = null!;
 
         /// <summary>
         /// IP address and netmask.
@@ -1114,6 +1180,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DenyTcpWithIcmp { get; set; }
 
         /// <summary>
+        /// Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("detectUnknownEsp")]
+        public Input<string>? DetectUnknownEsp { get; set; }
+
+        /// <summary>
         /// Interface to use for management access for NAT mode.
         /// </summary>
         [Input("device")]
@@ -1216,6 +1288,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Gateway6 { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("guiAdvancedPolicy")]
@@ -1251,6 +1329,12 @@ namespace Pulumiverse.Fortios.System
         [Input("guiApplicationControl")]
         public Input<string>? GuiApplicationControl { get; set; }
 
+        /// <summary>
+        /// Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiCasb")]
+        public Input<string>? GuiCasb { get; set; }
+
         [Input("guiDefaultPolicyColumns")]
         private InputList<Inputs.SettingsGuiDefaultPolicyColumnArgs>? _guiDefaultPolicyColumns;
 
@@ -1276,6 +1360,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? GuiDlp { get; set; }
 
         /// <summary>
+        /// Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiDlpProfile")]
+        public Input<string>? GuiDlpProfile { get; set; }
+
+        /// <summary>
         /// Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("guiDnsDatabase")]
@@ -1298,6 +1388,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("guiDosPolicy")]
         public Input<string>? GuiDosPolicy { get; set; }
+
+        /// <summary>
+        /// Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiDynamicDeviceOsId")]
+        public Input<string>? GuiDynamicDeviceOsId { get; set; }
 
         /// <summary>
         /// Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
@@ -1456,10 +1552,22 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? GuiPolicyLearning { get; set; }
 
         /// <summary>
+        /// Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiProxyInspection")]
+        public Input<string>? GuiProxyInspection { get; set; }
+
+        /// <summary>
         /// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("guiReplacementMessageGroups")]
         public Input<string>? GuiReplacementMessageGroups { get; set; }
+
+        /// <summary>
+        /// Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiRouteTagAddressCreation")]
+        public Input<string>? GuiRouteTagAddressCreation { get; set; }
 
         /// <summary>
         /// Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
@@ -1472,6 +1580,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("guiSpamfilter")]
         public Input<string>? GuiSpamfilter { get; set; }
+
+        /// <summary>
+        /// Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiSslvpn")]
+        public Input<string>? GuiSslvpn { get; set; }
 
         /// <summary>
         /// Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
@@ -1508,6 +1622,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("guiVideofilter")]
         public Input<string>? GuiVideofilter { get; set; }
+
+        /// <summary>
+        /// Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiVirtualPatchProfile")]
+        public Input<string>? GuiVirtualPatchProfile { get; set; }
 
         /// <summary>
         /// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
@@ -1612,6 +1732,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? IkeSessionResume { get; set; }
 
         /// <summary>
+        /// TCP port for IKE/IPsec traffic (default 4500).
+        /// </summary>
+        [Input("ikeTcpPort")]
+        public Input<int>? IkeTcpPort { get; set; }
+
+        /// <summary>
         /// Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("implicitAllowDns")]
@@ -1622,6 +1748,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("inspectionMode")]
         public Input<string>? InspectionMode { get; set; }
+
+        /// <summary>
+        /// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("internetServiceDatabaseCache")]
+        public Input<string>? InternetServiceDatabaseCache { get; set; }
 
         /// <summary>
         /// IP address and netmask.
@@ -2004,6 +2136,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DenyTcpWithIcmp { get; set; }
 
         /// <summary>
+        /// Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("detectUnknownEsp")]
+        public Input<string>? DetectUnknownEsp { get; set; }
+
+        /// <summary>
         /// Interface to use for management access for NAT mode.
         /// </summary>
         [Input("device")]
@@ -2106,6 +2244,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Gateway6 { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("guiAdvancedPolicy")]
@@ -2141,6 +2285,12 @@ namespace Pulumiverse.Fortios.System
         [Input("guiApplicationControl")]
         public Input<string>? GuiApplicationControl { get; set; }
 
+        /// <summary>
+        /// Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiCasb")]
+        public Input<string>? GuiCasb { get; set; }
+
         [Input("guiDefaultPolicyColumns")]
         private InputList<Inputs.SettingsGuiDefaultPolicyColumnGetArgs>? _guiDefaultPolicyColumns;
 
@@ -2166,6 +2316,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? GuiDlp { get; set; }
 
         /// <summary>
+        /// Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiDlpProfile")]
+        public Input<string>? GuiDlpProfile { get; set; }
+
+        /// <summary>
         /// Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("guiDnsDatabase")]
@@ -2188,6 +2344,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("guiDosPolicy")]
         public Input<string>? GuiDosPolicy { get; set; }
+
+        /// <summary>
+        /// Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiDynamicDeviceOsId")]
+        public Input<string>? GuiDynamicDeviceOsId { get; set; }
 
         /// <summary>
         /// Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
@@ -2346,10 +2508,22 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? GuiPolicyLearning { get; set; }
 
         /// <summary>
+        /// Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiProxyInspection")]
+        public Input<string>? GuiProxyInspection { get; set; }
+
+        /// <summary>
         /// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("guiReplacementMessageGroups")]
         public Input<string>? GuiReplacementMessageGroups { get; set; }
+
+        /// <summary>
+        /// Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiRouteTagAddressCreation")]
+        public Input<string>? GuiRouteTagAddressCreation { get; set; }
 
         /// <summary>
         /// Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
@@ -2362,6 +2536,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("guiSpamfilter")]
         public Input<string>? GuiSpamfilter { get; set; }
+
+        /// <summary>
+        /// Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiSslvpn")]
+        public Input<string>? GuiSslvpn { get; set; }
 
         /// <summary>
         /// Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
@@ -2398,6 +2578,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("guiVideofilter")]
         public Input<string>? GuiVideofilter { get; set; }
+
+        /// <summary>
+        /// Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiVirtualPatchProfile")]
+        public Input<string>? GuiVirtualPatchProfile { get; set; }
 
         /// <summary>
         /// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
@@ -2502,6 +2688,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? IkeSessionResume { get; set; }
 
         /// <summary>
+        /// TCP port for IKE/IPsec traffic (default 4500).
+        /// </summary>
+        [Input("ikeTcpPort")]
+        public Input<int>? IkeTcpPort { get; set; }
+
+        /// <summary>
         /// Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("implicitAllowDns")]
@@ -2512,6 +2704,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("inspectionMode")]
         public Input<string>? InspectionMode { get; set; }
+
+        /// <summary>
+        /// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("internetServiceDatabaseCache")]
+        public Input<string>? InternetServiceDatabaseCache { get; set; }
 
         /// <summary>
         /// IP address and netmask.

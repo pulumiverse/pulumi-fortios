@@ -81,6 +81,14 @@ type Peer struct {
 	LdapUsername pulumi.StringOutput `pulumi:"ldapUsername"`
 	// Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
 	MandatoryCaVerify pulumi.StringOutput `pulumi:"mandatoryCaVerify"`
+	// MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+	MfaMode pulumi.StringOutput `pulumi:"mfaMode"`
+	// Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+	MfaPassword pulumi.StringPtrOutput `pulumi:"mfaPassword"`
+	// Name of a remote authenticator. Performs client access right check.
+	MfaServer pulumi.StringOutput `pulumi:"mfaServer"`
+	// Unified username for remote authentication.
+	MfaUsername pulumi.StringOutput `pulumi:"mfaUsername"`
 	// Peer name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Online Certificate Status Protocol (OCSP) server for certificate retrieval.
@@ -152,6 +160,14 @@ type peerState struct {
 	LdapUsername *string `pulumi:"ldapUsername"`
 	// Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
 	MandatoryCaVerify *string `pulumi:"mandatoryCaVerify"`
+	// MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+	MfaMode *string `pulumi:"mfaMode"`
+	// Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+	MfaPassword *string `pulumi:"mfaPassword"`
+	// Name of a remote authenticator. Performs client access right check.
+	MfaServer *string `pulumi:"mfaServer"`
+	// Unified username for remote authentication.
+	MfaUsername *string `pulumi:"mfaUsername"`
 	// Peer name.
 	Name *string `pulumi:"name"`
 	// Online Certificate Status Protocol (OCSP) server for certificate retrieval.
@@ -183,6 +199,14 @@ type PeerState struct {
 	LdapUsername pulumi.StringPtrInput
 	// Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
 	MandatoryCaVerify pulumi.StringPtrInput
+	// MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+	MfaMode pulumi.StringPtrInput
+	// Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+	MfaPassword pulumi.StringPtrInput
+	// Name of a remote authenticator. Performs client access right check.
+	MfaServer pulumi.StringPtrInput
+	// Unified username for remote authentication.
+	MfaUsername pulumi.StringPtrInput
 	// Peer name.
 	Name pulumi.StringPtrInput
 	// Online Certificate Status Protocol (OCSP) server for certificate retrieval.
@@ -218,6 +242,14 @@ type peerArgs struct {
 	LdapUsername *string `pulumi:"ldapUsername"`
 	// Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
 	MandatoryCaVerify *string `pulumi:"mandatoryCaVerify"`
+	// MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+	MfaMode *string `pulumi:"mfaMode"`
+	// Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+	MfaPassword *string `pulumi:"mfaPassword"`
+	// Name of a remote authenticator. Performs client access right check.
+	MfaServer *string `pulumi:"mfaServer"`
+	// Unified username for remote authentication.
+	MfaUsername *string `pulumi:"mfaUsername"`
 	// Peer name.
 	Name *string `pulumi:"name"`
 	// Online Certificate Status Protocol (OCSP) server for certificate retrieval.
@@ -250,6 +282,14 @@ type PeerArgs struct {
 	LdapUsername pulumi.StringPtrInput
 	// Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
 	MandatoryCaVerify pulumi.StringPtrInput
+	// MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+	MfaMode pulumi.StringPtrInput
+	// Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+	MfaPassword pulumi.StringPtrInput
+	// Name of a remote authenticator. Performs client access right check.
+	MfaServer pulumi.StringPtrInput
+	// Unified username for remote authentication.
+	MfaUsername pulumi.StringPtrInput
 	// Peer name.
 	Name pulumi.StringPtrInput
 	// Online Certificate Status Protocol (OCSP) server for certificate retrieval.
@@ -389,6 +429,26 @@ func (o PeerOutput) LdapUsername() pulumi.StringOutput {
 // Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
 func (o PeerOutput) MandatoryCaVerify() pulumi.StringOutput {
 	return o.ApplyT(func(v *Peer) pulumi.StringOutput { return v.MandatoryCaVerify }).(pulumi.StringOutput)
+}
+
+// MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+func (o PeerOutput) MfaMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *Peer) pulumi.StringOutput { return v.MfaMode }).(pulumi.StringOutput)
+}
+
+// Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+func (o PeerOutput) MfaPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Peer) pulumi.StringPtrOutput { return v.MfaPassword }).(pulumi.StringPtrOutput)
+}
+
+// Name of a remote authenticator. Performs client access right check.
+func (o PeerOutput) MfaServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *Peer) pulumi.StringOutput { return v.MfaServer }).(pulumi.StringOutput)
+}
+
+// Unified username for remote authentication.
+func (o PeerOutput) MfaUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *Peer) pulumi.StringOutput { return v.MfaUsername }).(pulumi.StringOutput)
 }
 
 // Peer name.

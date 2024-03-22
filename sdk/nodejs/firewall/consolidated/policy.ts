@@ -152,6 +152,10 @@ export class Policy extends pulumi.CustomResource {
      */
     public readonly fssoGroups!: pulumi.Output<outputs.firewall.consolidated.PolicyFssoGroup[] | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
      */
     public readonly groups!: pulumi.Output<outputs.firewall.consolidated.PolicyGroup[] | undefined>;
@@ -461,6 +465,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
             resourceInputs["fixedport"] = state ? state.fixedport : undefined;
             resourceInputs["fssoGroups"] = state ? state.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["httpPolicyRedirect"] = state ? state.httpPolicyRedirect : undefined;
             resourceInputs["icapProfile"] = state ? state.icapProfile : undefined;
@@ -555,6 +560,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
             resourceInputs["fixedport"] = args ? args.fixedport : undefined;
             resourceInputs["fssoGroups"] = args ? args.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["httpPolicyRedirect"] = args ? args.httpPolicyRedirect : undefined;
             resourceInputs["icapProfile"] = args ? args.icapProfile : undefined;
@@ -729,6 +735,10 @@ export interface PolicyState {
      * Names of FSSO groups. The structure of `fssoGroups` block is documented below.
      */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.firewall.consolidated.PolicyFssoGroup>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
      */
@@ -1103,6 +1113,10 @@ export interface PolicyArgs {
      * Names of FSSO groups. The structure of `fssoGroups` block is documented below.
      */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.firewall.consolidated.PolicyFssoGroup>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
      */

@@ -85,8 +85,10 @@ type LookupCustomResult struct {
 	// UDP half close timeout (0 - 86400 sec, 0 = default).
 	UdpIdleTimer int `pulumi:"udpIdleTimer"`
 	// Multiple UDP port ranges.
-	UdpPortrange string  `pulumi:"udpPortrange"`
-	Vdomparam    *string `pulumi:"vdomparam"`
+	UdpPortrange string `pulumi:"udpPortrange"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid      string  `pulumi:"uuid"`
+	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable the visibility of the service on the GUI.
 	Visibility string `pulumi:"visibility"`
 }
@@ -264,6 +266,11 @@ func (o LookupCustomResultOutput) UdpIdleTimer() pulumi.IntOutput {
 // Multiple UDP port ranges.
 func (o LookupCustomResultOutput) UdpPortrange() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCustomResult) string { return v.UdpPortrange }).(pulumi.StringOutput)
+}
+
+// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+func (o LookupCustomResultOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCustomResult) string { return v.Uuid }).(pulumi.StringOutput)
 }
 
 func (o LookupCustomResultOutput) Vdomparam() pulumi.StringPtrOutput {

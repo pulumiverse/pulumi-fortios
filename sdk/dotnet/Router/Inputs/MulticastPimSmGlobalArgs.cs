@@ -98,6 +98,12 @@ namespace Pulumiverse.Fortios.Router.Inputs
         public Input<int>? NullRegisterRetries { get; set; }
 
         /// <summary>
+        /// Enable/disable use of SDWAN when checking RPF neighbor and sending of REG packet. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("pimUseSdwan")]
+        public Input<string>? PimUseSdwan { get; set; }
+
+        /// <summary>
         /// Limit of packets/sec per source registered through this RP (0 - 65535, default = 0 which means unlimited).
         /// </summary>
         [Input("registerRateLimit")]

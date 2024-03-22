@@ -118,10 +118,22 @@ namespace Pulumiverse.Fortios.System
         public Output<int> FqdnCacheTtl { get; private set; } = null!;
 
         /// <summary>
+        /// FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+        /// </summary>
+        [Output("fqdnMaxRefresh")]
+        public Output<int> FqdnMaxRefresh { get; private set; } = null!;
+
+        /// <summary>
         /// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
         /// </summary>
         [Output("fqdnMinRefresh")]
         public Output<int> FqdnMinRefresh { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Specify outgoing interface to reach server.
@@ -321,10 +333,22 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? FqdnCacheTtl { get; set; }
 
         /// <summary>
+        /// FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+        /// </summary>
+        [Input("fqdnMaxRefresh")]
+        public Input<int>? FqdnMaxRefresh { get; set; }
+
+        /// <summary>
         /// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
         /// </summary>
         [Input("fqdnMinRefresh")]
         public Input<int>? FqdnMinRefresh { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Specify outgoing interface to reach server.
@@ -491,10 +515,22 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? FqdnCacheTtl { get; set; }
 
         /// <summary>
+        /// FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+        /// </summary>
+        [Input("fqdnMaxRefresh")]
+        public Input<int>? FqdnMaxRefresh { get; set; }
+
+        /// <summary>
         /// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
         /// </summary>
         [Input("fqdnMinRefresh")]
         public Input<int>? FqdnMinRefresh { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Specify outgoing interface to reach server.

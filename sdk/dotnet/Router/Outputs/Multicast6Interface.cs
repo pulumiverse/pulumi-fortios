@@ -15,11 +15,11 @@ namespace Pulumiverse.Fortios.Router.Outputs
     public sealed class Multicast6Interface
     {
         /// <summary>
-        /// Time before old neighbour information expires (1 - 65535 sec, default = 105).
+        /// Time before old neighbor information expires in seconds (1 - 65535, default = 105).
         /// </summary>
         public readonly int? HelloHoldtime;
         /// <summary>
-        /// Interval between sending PIM hello messages  (1 - 65535 sec, default = 30)..
+        /// Interval between sending PIM hello messages in seconds (1 - 65535, default = 30).
         /// </summary>
         public readonly int? HelloInterval;
         /// <summary>

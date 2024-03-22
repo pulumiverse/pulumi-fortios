@@ -89,7 +89,7 @@ type Emailserver struct {
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// SMTP server IPv6 source IP.
 	SourceIp6 pulumi.StringOutput `pulumi:"sourceIp6"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
 	// Use FortiGuard Message service or custom email server. Valid values: `custom`.
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -158,7 +158,7 @@ type emailserverState struct {
 	SourceIp *string `pulumi:"sourceIp"`
 	// SMTP server IPv6 source IP.
 	SourceIp6 *string `pulumi:"sourceIp6"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Use FortiGuard Message service or custom email server. Valid values: `custom`.
 	Type *string `pulumi:"type"`
@@ -191,7 +191,7 @@ type EmailserverState struct {
 	SourceIp pulumi.StringPtrInput
 	// SMTP server IPv6 source IP.
 	SourceIp6 pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Use FortiGuard Message service or custom email server. Valid values: `custom`.
 	Type pulumi.StringPtrInput
@@ -228,7 +228,7 @@ type emailserverArgs struct {
 	SourceIp *string `pulumi:"sourceIp"`
 	// SMTP server IPv6 source IP.
 	SourceIp6 *string `pulumi:"sourceIp6"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Use FortiGuard Message service or custom email server. Valid values: `custom`.
 	Type *string `pulumi:"type"`
@@ -262,7 +262,7 @@ type EmailserverArgs struct {
 	SourceIp pulumi.StringPtrInput
 	// SMTP server IPv6 source IP.
 	SourceIp6 pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Use FortiGuard Message service or custom email server. Valid values: `custom`.
 	Type pulumi.StringPtrInput
@@ -411,7 +411,7 @@ func (o EmailserverOutput) SourceIp6() pulumi.StringOutput {
 	return o.ApplyT(func(v *Emailserver) pulumi.StringOutput { return v.SourceIp6 }).(pulumi.StringOutput)
 }
 
-// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 func (o EmailserverOutput) SslMinProtoVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Emailserver) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
 }

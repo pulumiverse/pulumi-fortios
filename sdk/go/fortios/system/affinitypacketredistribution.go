@@ -40,6 +40,8 @@ type Affinitypacketredistribution struct {
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
 	// Physical interface name on which to perform packet redistribution.
 	Interface pulumi.StringOutput `pulumi:"interface"`
+	// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+	RoundRobin pulumi.StringOutput `pulumi:"roundRobin"`
 	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
 	Rxqid pulumi.IntOutput `pulumi:"rxqid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -94,6 +96,8 @@ type affinitypacketredistributionState struct {
 	Fosid *int `pulumi:"fosid"`
 	// Physical interface name on which to perform packet redistribution.
 	Interface *string `pulumi:"interface"`
+	// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+	RoundRobin *string `pulumi:"roundRobin"`
 	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
 	Rxqid *int `pulumi:"rxqid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -107,6 +111,8 @@ type AffinitypacketredistributionState struct {
 	Fosid pulumi.IntPtrInput
 	// Physical interface name on which to perform packet redistribution.
 	Interface pulumi.StringPtrInput
+	// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+	RoundRobin pulumi.StringPtrInput
 	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
 	Rxqid pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -124,6 +130,8 @@ type affinitypacketredistributionArgs struct {
 	Fosid int `pulumi:"fosid"`
 	// Physical interface name on which to perform packet redistribution.
 	Interface string `pulumi:"interface"`
+	// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+	RoundRobin *string `pulumi:"roundRobin"`
 	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
 	Rxqid int `pulumi:"rxqid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -138,6 +146,8 @@ type AffinitypacketredistributionArgs struct {
 	Fosid pulumi.IntInput
 	// Physical interface name on which to perform packet redistribution.
 	Interface pulumi.StringInput
+	// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+	RoundRobin pulumi.StringPtrInput
 	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
 	Rxqid pulumi.IntInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -244,6 +254,11 @@ func (o AffinitypacketredistributionOutput) Fosid() pulumi.IntOutput {
 // Physical interface name on which to perform packet redistribution.
 func (o AffinitypacketredistributionOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *Affinitypacketredistribution) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+func (o AffinitypacketredistributionOutput) RoundRobin() pulumi.StringOutput {
+	return o.ApplyT(func(v *Affinitypacketredistribution) pulumi.StringOutput { return v.RoundRobin }).(pulumi.StringOutput)
 }
 
 // ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.

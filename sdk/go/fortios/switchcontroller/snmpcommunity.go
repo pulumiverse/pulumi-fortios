@@ -39,6 +39,8 @@ type Snmpcommunity struct {
 	Events pulumi.StringOutput `pulumi:"events"`
 	// SNMP community ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
 	Hosts SnmpcommunityHostArrayOutput `pulumi:"hosts"`
 	// SNMP community name.
@@ -105,6 +107,8 @@ type snmpcommunityState struct {
 	Events *string `pulumi:"events"`
 	// SNMP community ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
 	Hosts []SnmpcommunityHost `pulumi:"hosts"`
 	// SNMP community name.
@@ -142,6 +146,8 @@ type SnmpcommunityState struct {
 	Events pulumi.StringPtrInput
 	// SNMP community ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
 	Hosts SnmpcommunityHostArrayInput
 	// SNMP community name.
@@ -183,6 +189,8 @@ type snmpcommunityArgs struct {
 	Events *string `pulumi:"events"`
 	// SNMP community ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
 	Hosts []SnmpcommunityHost `pulumi:"hosts"`
 	// SNMP community name.
@@ -221,6 +229,8 @@ type SnmpcommunityArgs struct {
 	Events pulumi.StringPtrInput
 	// SNMP community ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
 	Hosts SnmpcommunityHostArrayInput
 	// SNMP community name.
@@ -351,6 +361,11 @@ func (o SnmpcommunityOutput) Events() pulumi.StringOutput {
 // SNMP community ID.
 func (o SnmpcommunityOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Snmpcommunity) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SnmpcommunityOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Snmpcommunity) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.

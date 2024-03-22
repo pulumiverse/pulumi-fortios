@@ -27,7 +27,7 @@ class ProfileRuleArgs:
         """
         :param pulumi.Input[str] action: Action taken for matched file. Valid values: `log-only`, `block`.
         :param pulumi.Input[str] comment: Comment.
-        :param pulumi.Input[str] direction: Traffic direction. (HTTP, FTP, SSH, CIFS only) Valid values: `incoming`, `outgoing`, `any`.
+        :param pulumi.Input[str] direction: Traffic direction. On FortiOS versions 6.4.1-7.4.1: HTTP, FTP, SSH, CIFS only. On FortiOS versions >= 7.4.2: HTTP, FTP, SSH, CIFS, and MAPI only. Valid values: `incoming`, `outgoing`, `any`.
         :param pulumi.Input[Sequence[pulumi.Input['ProfileRuleFileTypeArgs']]] file_types: Select file type. The structure of `file_type` block is documented below.
         :param pulumi.Input[str] name: File-filter rule name.
         :param pulumi.Input[str] password_protected: Match password-protected files. Valid values: `yes`, `any`.
@@ -76,7 +76,7 @@ class ProfileRuleArgs:
     @pulumi.getter
     def direction(self) -> Optional[pulumi.Input[str]]:
         """
-        Traffic direction. (HTTP, FTP, SSH, CIFS only) Valid values: `incoming`, `outgoing`, `any`.
+        Traffic direction. On FortiOS versions 6.4.1-7.4.1: HTTP, FTP, SSH, CIFS only. On FortiOS versions >= 7.4.2: HTTP, FTP, SSH, CIFS, and MAPI only. Valid values: `incoming`, `outgoing`, `any`.
         """
         return pulumi.get(self, "direction")
 

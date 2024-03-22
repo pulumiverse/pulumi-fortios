@@ -65,6 +65,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<string> DhcpServerAccessList { get; private set; } = null!;
 
         /// <summary>
+        /// Configure FortiSwitch DHCP snooping static clients. The structure of `dhcp_snooping_static_client` block is documented below.
+        /// </summary>
+        [Output("dhcpSnoopingStaticClients")]
+        public Output<ImmutableArray<Outputs.ManagedswitchDhcpSnoopingStaticClient>> DhcpSnoopingStaticClients { get; private set; } = null!;
+
+        /// <summary>
         /// Directly connected FortiSwitch.
         /// </summary>
         [Output("directlyConnected")]
@@ -137,6 +143,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<string> FswWan2Peer { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Configure FortiSwitch IGMP snooping global settings. The structure of `igmp_snooping` block is documented below.
         /// </summary>
         [Output("igmpSnooping")]
@@ -165,6 +177,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Output("mclagIgmpSnoopingAware")]
         public Output<string> MclagIgmpSnoopingAware { get; private set; } = null!;
+
+        /// <summary>
+        /// FortiLink management mode.
+        /// </summary>
+        [Output("mgmtMode")]
+        public Output<int> MgmtMode { get; private set; } = null!;
 
         /// <summary>
         /// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
@@ -245,6 +263,24 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<int> PreProvisioned { get; private set; } = null!;
 
         /// <summary>
+        /// PTP profile configuration.
+        /// </summary>
+        [Output("ptpProfile")]
+        public Output<string> PtpProfile { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("ptpStatus")]
+        public Output<string> PtpStatus { get; private set; } = null!;
+
+        /// <summary>
+        /// Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        /// </summary>
+        [Output("purdueLevel")]
+        public Output<string> PurdueLevel { get; private set; } = null!;
+
+        /// <summary>
         /// Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
         /// </summary>
         [Output("qosDropPolicy")]
@@ -257,10 +293,46 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<int> QosRedProbability { get; private set; } = null!;
 
         /// <summary>
+        /// NAS-IP address.
+        /// </summary>
+        [Output("radiusNasIp")]
+        public Output<string> RadiusNasIp { get; private set; } = null!;
+
+        /// <summary>
+        /// Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("radiusNasIpOverride")]
+        public Output<string> RadiusNasIpOverride { get; private set; } = null!;
+
+        /// <summary>
         /// Configure logging by FortiSwitch device to a remote syslog server. The structure of `remote_log` block is documented below.
         /// </summary>
         [Output("remoteLogs")]
         public Output<ImmutableArray<Outputs.ManagedswitchRemoteLog>> RemoteLogs { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("routeOffload")]
+        public Output<string> RouteOffload { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("routeOffloadMclag")]
+        public Output<string> RouteOffloadMclag { get; private set; } = null!;
+
+        /// <summary>
+        /// Configure route offload MCLAG IP address. The structure of `route_offload_router` block is documented below.
+        /// </summary>
+        [Output("routeOffloadRouters")]
+        public Output<ImmutableArray<Outputs.ManagedswitchRouteOffloadRouter>> RouteOffloadRouters { get; private set; } = null!;
+
+        /// <summary>
+        /// Managed-switch serial number.
+        /// </summary>
+        [Output("sn")]
+        public Output<string> Sn { get; private set; } = null!;
 
         /// <summary>
         /// Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmp_community` block is documented below.
@@ -359,6 +431,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<string> TdrSupported { get; private set; } = null!;
 
         /// <summary>
+        /// SOCKS tunnel management discovered.
+        /// </summary>
+        [Output("tunnelDiscovered")]
+        public Output<int> TunnelDiscovered { get; private set; } = null!;
+
+        /// <summary>
         /// Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
         /// </summary>
         [Output("type")]
@@ -375,6 +453,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Output("version")]
         public Output<int> Version { get; private set; } = null!;
+
+        /// <summary>
+        /// Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+        /// </summary>
+        [Output("vlans")]
+        public Output<ImmutableArray<Outputs.ManagedswitchVlan>> Vlans { get; private set; } = null!;
 
 
         /// <summary>
@@ -459,6 +543,18 @@ namespace Pulumiverse.Fortios.Switchcontroller
         [Input("dhcpServerAccessList")]
         public Input<string>? DhcpServerAccessList { get; set; }
 
+        [Input("dhcpSnoopingStaticClients")]
+        private InputList<Inputs.ManagedswitchDhcpSnoopingStaticClientArgs>? _dhcpSnoopingStaticClients;
+
+        /// <summary>
+        /// Configure FortiSwitch DHCP snooping static clients. The structure of `dhcp_snooping_static_client` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ManagedswitchDhcpSnoopingStaticClientArgs> DhcpSnoopingStaticClients
+        {
+            get => _dhcpSnoopingStaticClients ?? (_dhcpSnoopingStaticClients = new InputList<Inputs.ManagedswitchDhcpSnoopingStaticClientArgs>());
+            set => _dhcpSnoopingStaticClients = value;
+        }
+
         /// <summary>
         /// Directly connected FortiSwitch.
         /// </summary>
@@ -532,6 +628,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? FswWan2Peer { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Configure FortiSwitch IGMP snooping global settings. The structure of `igmp_snooping` block is documented below.
         /// </summary>
         [Input("igmpSnooping")]
@@ -566,6 +668,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("mclagIgmpSnoopingAware")]
         public Input<string>? MclagIgmpSnoopingAware { get; set; }
+
+        /// <summary>
+        /// FortiLink management mode.
+        /// </summary>
+        [Input("mgmtMode")]
+        public Input<int>? MgmtMode { get; set; }
 
         [Input("mirrors")]
         private InputList<Inputs.ManagedswitchMirrorArgs>? _mirrors;
@@ -658,6 +766,24 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<int>? PreProvisioned { get; set; }
 
         /// <summary>
+        /// PTP profile configuration.
+        /// </summary>
+        [Input("ptpProfile")]
+        public Input<string>? PtpProfile { get; set; }
+
+        /// <summary>
+        /// Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("ptpStatus")]
+        public Input<string>? PtpStatus { get; set; }
+
+        /// <summary>
+        /// Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        /// </summary>
+        [Input("purdueLevel")]
+        public Input<string>? PurdueLevel { get; set; }
+
+        /// <summary>
         /// Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
         /// </summary>
         [Input("qosDropPolicy")]
@@ -668,6 +794,18 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("qosRedProbability")]
         public Input<int>? QosRedProbability { get; set; }
+
+        /// <summary>
+        /// NAS-IP address.
+        /// </summary>
+        [Input("radiusNasIp")]
+        public Input<string>? RadiusNasIp { get; set; }
+
+        /// <summary>
+        /// Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("radiusNasIpOverride")]
+        public Input<string>? RadiusNasIpOverride { get; set; }
 
         [Input("remoteLogs")]
         private InputList<Inputs.ManagedswitchRemoteLogArgs>? _remoteLogs;
@@ -680,6 +818,36 @@ namespace Pulumiverse.Fortios.Switchcontroller
             get => _remoteLogs ?? (_remoteLogs = new InputList<Inputs.ManagedswitchRemoteLogArgs>());
             set => _remoteLogs = value;
         }
+
+        /// <summary>
+        /// Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("routeOffload")]
+        public Input<string>? RouteOffload { get; set; }
+
+        /// <summary>
+        /// Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("routeOffloadMclag")]
+        public Input<string>? RouteOffloadMclag { get; set; }
+
+        [Input("routeOffloadRouters")]
+        private InputList<Inputs.ManagedswitchRouteOffloadRouterArgs>? _routeOffloadRouters;
+
+        /// <summary>
+        /// Configure route offload MCLAG IP address. The structure of `route_offload_router` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ManagedswitchRouteOffloadRouterArgs> RouteOffloadRouters
+        {
+            get => _routeOffloadRouters ?? (_routeOffloadRouters = new InputList<Inputs.ManagedswitchRouteOffloadRouterArgs>());
+            set => _routeOffloadRouters = value;
+        }
+
+        /// <summary>
+        /// Managed-switch serial number.
+        /// </summary>
+        [Input("sn")]
+        public Input<string>? Sn { get; set; }
 
         [Input("snmpCommunities")]
         private InputList<Inputs.ManagedswitchSnmpCommunityArgs>? _snmpCommunities;
@@ -802,6 +970,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? TdrSupported { get; set; }
 
         /// <summary>
+        /// SOCKS tunnel management discovered.
+        /// </summary>
+        [Input("tunnelDiscovered")]
+        public Input<int>? TunnelDiscovered { get; set; }
+
+        /// <summary>
         /// Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
         /// </summary>
         [Input("type")]
@@ -818,6 +992,18 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("version")]
         public Input<int>? Version { get; set; }
+
+        [Input("vlans")]
+        private InputList<Inputs.ManagedswitchVlanArgs>? _vlans;
+
+        /// <summary>
+        /// Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ManagedswitchVlanArgs> Vlans
+        {
+            get => _vlans ?? (_vlans = new InputList<Inputs.ManagedswitchVlanArgs>());
+            set => _vlans = value;
+        }
 
         public ManagedswitchArgs()
         {
@@ -862,6 +1048,18 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("dhcpServerAccessList")]
         public Input<string>? DhcpServerAccessList { get; set; }
+
+        [Input("dhcpSnoopingStaticClients")]
+        private InputList<Inputs.ManagedswitchDhcpSnoopingStaticClientGetArgs>? _dhcpSnoopingStaticClients;
+
+        /// <summary>
+        /// Configure FortiSwitch DHCP snooping static clients. The structure of `dhcp_snooping_static_client` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ManagedswitchDhcpSnoopingStaticClientGetArgs> DhcpSnoopingStaticClients
+        {
+            get => _dhcpSnoopingStaticClients ?? (_dhcpSnoopingStaticClients = new InputList<Inputs.ManagedswitchDhcpSnoopingStaticClientGetArgs>());
+            set => _dhcpSnoopingStaticClients = value;
+        }
 
         /// <summary>
         /// Directly connected FortiSwitch.
@@ -936,6 +1134,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? FswWan2Peer { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Configure FortiSwitch IGMP snooping global settings. The structure of `igmp_snooping` block is documented below.
         /// </summary>
         [Input("igmpSnooping")]
@@ -970,6 +1174,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("mclagIgmpSnoopingAware")]
         public Input<string>? MclagIgmpSnoopingAware { get; set; }
+
+        /// <summary>
+        /// FortiLink management mode.
+        /// </summary>
+        [Input("mgmtMode")]
+        public Input<int>? MgmtMode { get; set; }
 
         [Input("mirrors")]
         private InputList<Inputs.ManagedswitchMirrorGetArgs>? _mirrors;
@@ -1062,6 +1272,24 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<int>? PreProvisioned { get; set; }
 
         /// <summary>
+        /// PTP profile configuration.
+        /// </summary>
+        [Input("ptpProfile")]
+        public Input<string>? PtpProfile { get; set; }
+
+        /// <summary>
+        /// Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("ptpStatus")]
+        public Input<string>? PtpStatus { get; set; }
+
+        /// <summary>
+        /// Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        /// </summary>
+        [Input("purdueLevel")]
+        public Input<string>? PurdueLevel { get; set; }
+
+        /// <summary>
         /// Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
         /// </summary>
         [Input("qosDropPolicy")]
@@ -1072,6 +1300,18 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("qosRedProbability")]
         public Input<int>? QosRedProbability { get; set; }
+
+        /// <summary>
+        /// NAS-IP address.
+        /// </summary>
+        [Input("radiusNasIp")]
+        public Input<string>? RadiusNasIp { get; set; }
+
+        /// <summary>
+        /// Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("radiusNasIpOverride")]
+        public Input<string>? RadiusNasIpOverride { get; set; }
 
         [Input("remoteLogs")]
         private InputList<Inputs.ManagedswitchRemoteLogGetArgs>? _remoteLogs;
@@ -1084,6 +1324,36 @@ namespace Pulumiverse.Fortios.Switchcontroller
             get => _remoteLogs ?? (_remoteLogs = new InputList<Inputs.ManagedswitchRemoteLogGetArgs>());
             set => _remoteLogs = value;
         }
+
+        /// <summary>
+        /// Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("routeOffload")]
+        public Input<string>? RouteOffload { get; set; }
+
+        /// <summary>
+        /// Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("routeOffloadMclag")]
+        public Input<string>? RouteOffloadMclag { get; set; }
+
+        [Input("routeOffloadRouters")]
+        private InputList<Inputs.ManagedswitchRouteOffloadRouterGetArgs>? _routeOffloadRouters;
+
+        /// <summary>
+        /// Configure route offload MCLAG IP address. The structure of `route_offload_router` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ManagedswitchRouteOffloadRouterGetArgs> RouteOffloadRouters
+        {
+            get => _routeOffloadRouters ?? (_routeOffloadRouters = new InputList<Inputs.ManagedswitchRouteOffloadRouterGetArgs>());
+            set => _routeOffloadRouters = value;
+        }
+
+        /// <summary>
+        /// Managed-switch serial number.
+        /// </summary>
+        [Input("sn")]
+        public Input<string>? Sn { get; set; }
 
         [Input("snmpCommunities")]
         private InputList<Inputs.ManagedswitchSnmpCommunityGetArgs>? _snmpCommunities;
@@ -1206,6 +1476,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? TdrSupported { get; set; }
 
         /// <summary>
+        /// SOCKS tunnel management discovered.
+        /// </summary>
+        [Input("tunnelDiscovered")]
+        public Input<int>? TunnelDiscovered { get; set; }
+
+        /// <summary>
         /// Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
         /// </summary>
         [Input("type")]
@@ -1222,6 +1498,18 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("version")]
         public Input<int>? Version { get; set; }
+
+        [Input("vlans")]
+        private InputList<Inputs.ManagedswitchVlanGetArgs>? _vlans;
+
+        /// <summary>
+        /// Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ManagedswitchVlanGetArgs> Vlans
+        {
+            get => _vlans ?? (_vlans = new InputList<Inputs.ManagedswitchVlanGetArgs>());
+            set => _vlans = value;
+        }
 
         public ManagedswitchState()
         {

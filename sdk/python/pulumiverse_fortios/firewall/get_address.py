@@ -22,7 +22,7 @@ class GetAddressResult:
     """
     A collection of values returned by getAddress.
     """
-    def __init__(__self__, allow_routing=None, associated_interface=None, cache_ttl=None, clearpass_spt=None, color=None, comment=None, country=None, end_ip=None, end_mac=None, epg_name=None, fabric_object=None, filter=None, fqdn=None, fsso_groups=None, id=None, interface=None, lists=None, macaddrs=None, name=None, node_ip_only=None, obj_id=None, obj_tag=None, obj_type=None, organization=None, policy_group=None, sdn=None, sdn_addr_type=None, sdn_tag=None, start_ip=None, start_mac=None, sub_type=None, subnet=None, subnet_name=None, tag_detection_level=None, tag_type=None, taggings=None, tenant=None, type=None, uuid=None, vdomparam=None, visibility=None, wildcard=None, wildcard_fqdn=None):
+    def __init__(__self__, allow_routing=None, associated_interface=None, cache_ttl=None, clearpass_spt=None, color=None, comment=None, country=None, end_ip=None, end_mac=None, epg_name=None, fabric_object=None, filter=None, fqdn=None, fsso_groups=None, hw_model=None, hw_vendor=None, id=None, interface=None, lists=None, macaddrs=None, name=None, node_ip_only=None, obj_id=None, obj_tag=None, obj_type=None, organization=None, os=None, policy_group=None, route_tag=None, sdn=None, sdn_addr_type=None, sdn_tag=None, start_ip=None, start_mac=None, sub_type=None, subnet=None, subnet_name=None, sw_version=None, tag_detection_level=None, tag_type=None, taggings=None, tenant=None, type=None, uuid=None, vdomparam=None, visibility=None, wildcard=None, wildcard_fqdn=None):
         if allow_routing and not isinstance(allow_routing, str):
             raise TypeError("Expected argument 'allow_routing' to be a str")
         pulumi.set(__self__, "allow_routing", allow_routing)
@@ -65,6 +65,12 @@ class GetAddressResult:
         if fsso_groups and not isinstance(fsso_groups, list):
             raise TypeError("Expected argument 'fsso_groups' to be a list")
         pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if hw_model and not isinstance(hw_model, str):
+            raise TypeError("Expected argument 'hw_model' to be a str")
+        pulumi.set(__self__, "hw_model", hw_model)
+        if hw_vendor and not isinstance(hw_vendor, str):
+            raise TypeError("Expected argument 'hw_vendor' to be a str")
+        pulumi.set(__self__, "hw_vendor", hw_vendor)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -95,9 +101,15 @@ class GetAddressResult:
         if organization and not isinstance(organization, str):
             raise TypeError("Expected argument 'organization' to be a str")
         pulumi.set(__self__, "organization", organization)
+        if os and not isinstance(os, str):
+            raise TypeError("Expected argument 'os' to be a str")
+        pulumi.set(__self__, "os", os)
         if policy_group and not isinstance(policy_group, str):
             raise TypeError("Expected argument 'policy_group' to be a str")
         pulumi.set(__self__, "policy_group", policy_group)
+        if route_tag and not isinstance(route_tag, int):
+            raise TypeError("Expected argument 'route_tag' to be a int")
+        pulumi.set(__self__, "route_tag", route_tag)
         if sdn and not isinstance(sdn, str):
             raise TypeError("Expected argument 'sdn' to be a str")
         pulumi.set(__self__, "sdn", sdn)
@@ -122,6 +134,9 @@ class GetAddressResult:
         if subnet_name and not isinstance(subnet_name, str):
             raise TypeError("Expected argument 'subnet_name' to be a str")
         pulumi.set(__self__, "subnet_name", subnet_name)
+        if sw_version and not isinstance(sw_version, str):
+            raise TypeError("Expected argument 'sw_version' to be a str")
+        pulumi.set(__self__, "sw_version", sw_version)
         if tag_detection_level and not isinstance(tag_detection_level, str):
             raise TypeError("Expected argument 'tag_detection_level' to be a str")
         pulumi.set(__self__, "tag_detection_level", tag_detection_level)
@@ -266,6 +281,22 @@ class GetAddressResult:
         return pulumi.get(self, "fsso_groups")
 
     @property
+    @pulumi.getter(name="hwModel")
+    def hw_model(self) -> str:
+        """
+        Dynamic address matching hardware model.
+        """
+        return pulumi.get(self, "hw_model")
+
+    @property
+    @pulumi.getter(name="hwVendor")
+    def hw_vendor(self) -> str:
+        """
+        Dynamic address matching hardware vendor.
+        """
+        return pulumi.get(self, "hw_vendor")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
@@ -346,12 +377,28 @@ class GetAddressResult:
         return pulumi.get(self, "organization")
 
     @property
+    @pulumi.getter
+    def os(self) -> str:
+        """
+        Dynamic address matching operating system.
+        """
+        return pulumi.get(self, "os")
+
+    @property
     @pulumi.getter(name="policyGroup")
     def policy_group(self) -> str:
         """
         Policy group name.
         """
         return pulumi.get(self, "policy_group")
+
+    @property
+    @pulumi.getter(name="routeTag")
+    def route_tag(self) -> int:
+        """
+        route-tag address.
+        """
+        return pulumi.get(self, "route_tag")
 
     @property
     @pulumi.getter
@@ -416,6 +463,14 @@ class GetAddressResult:
         Subnet name.
         """
         return pulumi.get(self, "subnet_name")
+
+    @property
+    @pulumi.getter(name="swVersion")
+    def sw_version(self) -> str:
+        """
+        Dynamic address matching software version.
+        """
+        return pulumi.get(self, "sw_version")
 
     @property
     @pulumi.getter(name="tagDetectionLevel")
@@ -515,6 +570,8 @@ class AwaitableGetAddressResult(GetAddressResult):
             filter=self.filter,
             fqdn=self.fqdn,
             fsso_groups=self.fsso_groups,
+            hw_model=self.hw_model,
+            hw_vendor=self.hw_vendor,
             id=self.id,
             interface=self.interface,
             lists=self.lists,
@@ -525,7 +582,9 @@ class AwaitableGetAddressResult(GetAddressResult):
             obj_tag=self.obj_tag,
             obj_type=self.obj_type,
             organization=self.organization,
+            os=self.os,
             policy_group=self.policy_group,
+            route_tag=self.route_tag,
             sdn=self.sdn,
             sdn_addr_type=self.sdn_addr_type,
             sdn_tag=self.sdn_tag,
@@ -534,6 +593,7 @@ class AwaitableGetAddressResult(GetAddressResult):
             sub_type=self.sub_type,
             subnet=self.subnet,
             subnet_name=self.subnet_name,
+            sw_version=self.sw_version,
             tag_detection_level=self.tag_detection_level,
             tag_type=self.tag_type,
             taggings=self.taggings,
@@ -577,6 +637,8 @@ def get_address(name: Optional[str] = None,
         filter=pulumi.get(__ret__, 'filter'),
         fqdn=pulumi.get(__ret__, 'fqdn'),
         fsso_groups=pulumi.get(__ret__, 'fsso_groups'),
+        hw_model=pulumi.get(__ret__, 'hw_model'),
+        hw_vendor=pulumi.get(__ret__, 'hw_vendor'),
         id=pulumi.get(__ret__, 'id'),
         interface=pulumi.get(__ret__, 'interface'),
         lists=pulumi.get(__ret__, 'lists'),
@@ -587,7 +649,9 @@ def get_address(name: Optional[str] = None,
         obj_tag=pulumi.get(__ret__, 'obj_tag'),
         obj_type=pulumi.get(__ret__, 'obj_type'),
         organization=pulumi.get(__ret__, 'organization'),
+        os=pulumi.get(__ret__, 'os'),
         policy_group=pulumi.get(__ret__, 'policy_group'),
+        route_tag=pulumi.get(__ret__, 'route_tag'),
         sdn=pulumi.get(__ret__, 'sdn'),
         sdn_addr_type=pulumi.get(__ret__, 'sdn_addr_type'),
         sdn_tag=pulumi.get(__ret__, 'sdn_tag'),
@@ -596,6 +660,7 @@ def get_address(name: Optional[str] = None,
         sub_type=pulumi.get(__ret__, 'sub_type'),
         subnet=pulumi.get(__ret__, 'subnet'),
         subnet_name=pulumi.get(__ret__, 'subnet_name'),
+        sw_version=pulumi.get(__ret__, 'sw_version'),
         tag_detection_level=pulumi.get(__ret__, 'tag_detection_level'),
         tag_type=pulumi.get(__ret__, 'tag_type'),
         taggings=pulumi.get(__ret__, 'taggings'),

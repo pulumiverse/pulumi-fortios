@@ -81,6 +81,10 @@ export class Global extends pulumi.CustomResource {
     }
 
     /**
+     * Configure the number cwAcd daemons for multi-core CPU support (default = 0).
+     */
+    public readonly acdProcessCount!: pulumi.Output<number>;
+    /**
      * Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
      */
     public readonly apLogServer!: pulumi.Output<string>;
@@ -100,6 +104,10 @@ export class Global extends pulumi.CustomResource {
      * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
      */
     public readonly dataEthernetIi!: pulumi.Output<string>;
+    /**
+     * Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+     */
+    public readonly dfsLabTest!: pulumi.Output<string>;
     /**
      * Multicast IP address for AP discovery (default = 244.0.1.140).
      */
@@ -149,6 +157,14 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly rogueScanMacAdjacency!: pulumi.Output<number>;
     /**
+     * Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly rollingWtpUpgrade!: pulumi.Output<string>;
+    /**
+     * Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+     */
+    public readonly rollingWtpUpgradeThreshold!: pulumi.Output<string>;
+    /**
      * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
      */
     public readonly tunnelMode!: pulumi.Output<string>;
@@ -156,6 +172,10 @@ export class Global extends pulumi.CustomResource {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    /**
+     * Wpad daemon process count for multi-core CPU support.
+     */
+    public readonly wpadProcessCount!: pulumi.Output<number>;
     /**
      * Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
      */
@@ -174,11 +194,13 @@ export class Global extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GlobalState | undefined;
+            resourceInputs["acdProcessCount"] = state ? state.acdProcessCount : undefined;
             resourceInputs["apLogServer"] = state ? state.apLogServer : undefined;
             resourceInputs["apLogServerIp"] = state ? state.apLogServerIp : undefined;
             resourceInputs["apLogServerPort"] = state ? state.apLogServerPort : undefined;
             resourceInputs["controlMessageOffload"] = state ? state.controlMessageOffload : undefined;
             resourceInputs["dataEthernetIi"] = state ? state.dataEthernetIi : undefined;
+            resourceInputs["dfsLabTest"] = state ? state.dfsLabTest : undefined;
             resourceInputs["discoveryMcAddr"] = state ? state.discoveryMcAddr : undefined;
             resourceInputs["fiappEthType"] = state ? state.fiappEthType : undefined;
             resourceInputs["imageDownload"] = state ? state.imageDownload : undefined;
@@ -191,16 +213,21 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["nacInterval"] = state ? state.nacInterval : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["rogueScanMacAdjacency"] = state ? state.rogueScanMacAdjacency : undefined;
+            resourceInputs["rollingWtpUpgrade"] = state ? state.rollingWtpUpgrade : undefined;
+            resourceInputs["rollingWtpUpgradeThreshold"] = state ? state.rollingWtpUpgradeThreshold : undefined;
             resourceInputs["tunnelMode"] = state ? state.tunnelMode : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["wpadProcessCount"] = state ? state.wpadProcessCount : undefined;
             resourceInputs["wtpShare"] = state ? state.wtpShare : undefined;
         } else {
             const args = argsOrState as GlobalArgs | undefined;
+            resourceInputs["acdProcessCount"] = args ? args.acdProcessCount : undefined;
             resourceInputs["apLogServer"] = args ? args.apLogServer : undefined;
             resourceInputs["apLogServerIp"] = args ? args.apLogServerIp : undefined;
             resourceInputs["apLogServerPort"] = args ? args.apLogServerPort : undefined;
             resourceInputs["controlMessageOffload"] = args ? args.controlMessageOffload : undefined;
             resourceInputs["dataEthernetIi"] = args ? args.dataEthernetIi : undefined;
+            resourceInputs["dfsLabTest"] = args ? args.dfsLabTest : undefined;
             resourceInputs["discoveryMcAddr"] = args ? args.discoveryMcAddr : undefined;
             resourceInputs["fiappEthType"] = args ? args.fiappEthType : undefined;
             resourceInputs["imageDownload"] = args ? args.imageDownload : undefined;
@@ -213,8 +240,11 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["nacInterval"] = args ? args.nacInterval : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["rogueScanMacAdjacency"] = args ? args.rogueScanMacAdjacency : undefined;
+            resourceInputs["rollingWtpUpgrade"] = args ? args.rollingWtpUpgrade : undefined;
+            resourceInputs["rollingWtpUpgradeThreshold"] = args ? args.rollingWtpUpgradeThreshold : undefined;
             resourceInputs["tunnelMode"] = args ? args.tunnelMode : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["wpadProcessCount"] = args ? args.wpadProcessCount : undefined;
             resourceInputs["wtpShare"] = args ? args.wtpShare : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -227,6 +257,10 @@ export class Global extends pulumi.CustomResource {
  */
 export interface GlobalState {
     /**
+     * Configure the number cwAcd daemons for multi-core CPU support (default = 0).
+     */
+    acdProcessCount?: pulumi.Input<number>;
+    /**
      * Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
      */
     apLogServer?: pulumi.Input<string>;
@@ -246,6 +280,10 @@ export interface GlobalState {
      * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
      */
     dataEthernetIi?: pulumi.Input<string>;
+    /**
+     * Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+     */
+    dfsLabTest?: pulumi.Input<string>;
     /**
      * Multicast IP address for AP discovery (default = 244.0.1.140).
      */
@@ -295,6 +333,14 @@ export interface GlobalState {
      */
     rogueScanMacAdjacency?: pulumi.Input<number>;
     /**
+     * Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+     */
+    rollingWtpUpgrade?: pulumi.Input<string>;
+    /**
+     * Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+     */
+    rollingWtpUpgradeThreshold?: pulumi.Input<string>;
+    /**
      * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
      */
     tunnelMode?: pulumi.Input<string>;
@@ -302,6 +348,10 @@ export interface GlobalState {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Wpad daemon process count for multi-core CPU support.
+     */
+    wpadProcessCount?: pulumi.Input<number>;
     /**
      * Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
      */
@@ -313,6 +363,10 @@ export interface GlobalState {
  */
 export interface GlobalArgs {
     /**
+     * Configure the number cwAcd daemons for multi-core CPU support (default = 0).
+     */
+    acdProcessCount?: pulumi.Input<number>;
+    /**
      * Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
      */
     apLogServer?: pulumi.Input<string>;
@@ -332,6 +386,10 @@ export interface GlobalArgs {
      * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
      */
     dataEthernetIi?: pulumi.Input<string>;
+    /**
+     * Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+     */
+    dfsLabTest?: pulumi.Input<string>;
     /**
      * Multicast IP address for AP discovery (default = 244.0.1.140).
      */
@@ -381,6 +439,14 @@ export interface GlobalArgs {
      */
     rogueScanMacAdjacency?: pulumi.Input<number>;
     /**
+     * Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+     */
+    rollingWtpUpgrade?: pulumi.Input<string>;
+    /**
+     * Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+     */
+    rollingWtpUpgradeThreshold?: pulumi.Input<string>;
+    /**
      * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
      */
     tunnelMode?: pulumi.Input<string>;
@@ -388,6 +454,10 @@ export interface GlobalArgs {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Wpad daemon process count for multi-core CPU support.
+     */
+    wpadProcessCount?: pulumi.Input<number>;
     /**
      * Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
      */

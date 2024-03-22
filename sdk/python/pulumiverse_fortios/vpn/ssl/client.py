@@ -19,6 +19,8 @@ class ClientArgs:
                  comment: Optional[pulumi.Input[str]] = None,
                  distance: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 ipv4_subnets: Optional[pulumi.Input[str]] = None,
+                 ipv6_subnets: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -37,6 +39,8 @@ class ClientArgs:
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[int] distance: Distance for routes added by SSL-VPN (1 - 255).
         :param pulumi.Input[str] interface: SSL interface to send/receive traffic over.
+        :param pulumi.Input[str] ipv4_subnets: IPv4 subnets that the client is protecting.
+        :param pulumi.Input[str] ipv6_subnets: IPv6 subnets that the client is protecting.
         :param pulumi.Input[str] name: SSL-VPN tunnel name.
         :param pulumi.Input[str] peer: Authenticate peer's certificate with the peer/peergrp.
         :param pulumi.Input[int] port: SSL-VPN server port.
@@ -59,6 +63,10 @@ class ClientArgs:
             pulumi.set(__self__, "distance", distance)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if ipv4_subnets is not None:
+            pulumi.set(__self__, "ipv4_subnets", ipv4_subnets)
+        if ipv6_subnets is not None:
+            pulumi.set(__self__, "ipv6_subnets", ipv6_subnets)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if peer is not None:
@@ -141,6 +149,30 @@ class ClientArgs:
     @interface.setter
     def interface(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="ipv4Subnets")
+    def ipv4_subnets(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv4 subnets that the client is protecting.
+        """
+        return pulumi.get(self, "ipv4_subnets")
+
+    @ipv4_subnets.setter
+    def ipv4_subnets(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv4_subnets", value)
+
+    @property
+    @pulumi.getter(name="ipv6Subnets")
+    def ipv6_subnets(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv6 subnets that the client is protecting.
+        """
+        return pulumi.get(self, "ipv6_subnets")
+
+    @ipv6_subnets.setter
+    def ipv6_subnets(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6_subnets", value)
 
     @property
     @pulumi.getter
@@ -283,6 +315,8 @@ class _ClientState:
                  comment: Optional[pulumi.Input[str]] = None,
                  distance: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 ipv4_subnets: Optional[pulumi.Input[str]] = None,
+                 ipv6_subnets: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -301,6 +335,8 @@ class _ClientState:
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[int] distance: Distance for routes added by SSL-VPN (1 - 255).
         :param pulumi.Input[str] interface: SSL interface to send/receive traffic over.
+        :param pulumi.Input[str] ipv4_subnets: IPv4 subnets that the client is protecting.
+        :param pulumi.Input[str] ipv6_subnets: IPv6 subnets that the client is protecting.
         :param pulumi.Input[str] name: SSL-VPN tunnel name.
         :param pulumi.Input[str] peer: Authenticate peer's certificate with the peer/peergrp.
         :param pulumi.Input[int] port: SSL-VPN server port.
@@ -323,6 +359,10 @@ class _ClientState:
             pulumi.set(__self__, "distance", distance)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if ipv4_subnets is not None:
+            pulumi.set(__self__, "ipv4_subnets", ipv4_subnets)
+        if ipv6_subnets is not None:
+            pulumi.set(__self__, "ipv6_subnets", ipv6_subnets)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if peer is not None:
@@ -405,6 +445,30 @@ class _ClientState:
     @interface.setter
     def interface(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="ipv4Subnets")
+    def ipv4_subnets(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv4 subnets that the client is protecting.
+        """
+        return pulumi.get(self, "ipv4_subnets")
+
+    @ipv4_subnets.setter
+    def ipv4_subnets(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv4_subnets", value)
+
+    @property
+    @pulumi.getter(name="ipv6Subnets")
+    def ipv6_subnets(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv6 subnets that the client is protecting.
+        """
+        return pulumi.get(self, "ipv6_subnets")
+
+    @ipv6_subnets.setter
+    def ipv6_subnets(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6_subnets", value)
 
     @property
     @pulumi.getter
@@ -549,6 +613,8 @@ class Client(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  distance: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 ipv4_subnets: Optional[pulumi.Input[str]] = None,
+                 ipv6_subnets: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -589,6 +655,8 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[int] distance: Distance for routes added by SSL-VPN (1 - 255).
         :param pulumi.Input[str] interface: SSL interface to send/receive traffic over.
+        :param pulumi.Input[str] ipv4_subnets: IPv4 subnets that the client is protecting.
+        :param pulumi.Input[str] ipv6_subnets: IPv6 subnets that the client is protecting.
         :param pulumi.Input[str] name: SSL-VPN tunnel name.
         :param pulumi.Input[str] peer: Authenticate peer's certificate with the peer/peergrp.
         :param pulumi.Input[int] port: SSL-VPN server port.
@@ -648,6 +716,8 @@ class Client(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  distance: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 ipv4_subnets: Optional[pulumi.Input[str]] = None,
+                 ipv6_subnets: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -673,6 +743,8 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["comment"] = comment
             __props__.__dict__["distance"] = distance
             __props__.__dict__["interface"] = interface
+            __props__.__dict__["ipv4_subnets"] = ipv4_subnets
+            __props__.__dict__["ipv6_subnets"] = ipv6_subnets
             __props__.__dict__["name"] = name
             __props__.__dict__["peer"] = peer
             __props__.__dict__["port"] = port
@@ -699,6 +771,8 @@ class Client(pulumi.CustomResource):
             comment: Optional[pulumi.Input[str]] = None,
             distance: Optional[pulumi.Input[int]] = None,
             interface: Optional[pulumi.Input[str]] = None,
+            ipv4_subnets: Optional[pulumi.Input[str]] = None,
+            ipv6_subnets: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             peer: Optional[pulumi.Input[str]] = None,
             port: Optional[pulumi.Input[int]] = None,
@@ -722,6 +796,8 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[int] distance: Distance for routes added by SSL-VPN (1 - 255).
         :param pulumi.Input[str] interface: SSL interface to send/receive traffic over.
+        :param pulumi.Input[str] ipv4_subnets: IPv4 subnets that the client is protecting.
+        :param pulumi.Input[str] ipv6_subnets: IPv6 subnets that the client is protecting.
         :param pulumi.Input[str] name: SSL-VPN tunnel name.
         :param pulumi.Input[str] peer: Authenticate peer's certificate with the peer/peergrp.
         :param pulumi.Input[int] port: SSL-VPN server port.
@@ -743,6 +819,8 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["comment"] = comment
         __props__.__dict__["distance"] = distance
         __props__.__dict__["interface"] = interface
+        __props__.__dict__["ipv4_subnets"] = ipv4_subnets
+        __props__.__dict__["ipv6_subnets"] = ipv6_subnets
         __props__.__dict__["name"] = name
         __props__.__dict__["peer"] = peer
         __props__.__dict__["port"] = port
@@ -795,6 +873,22 @@ class Client(pulumi.CustomResource):
         SSL interface to send/receive traffic over.
         """
         return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="ipv4Subnets")
+    def ipv4_subnets(self) -> pulumi.Output[str]:
+        """
+        IPv4 subnets that the client is protecting.
+        """
+        return pulumi.get(self, "ipv4_subnets")
+
+    @property
+    @pulumi.getter(name="ipv6Subnets")
+    def ipv6_subnets(self) -> pulumi.Output[str]:
+        """
+        IPv6 subnets that the client is protecting.
+        """
+        return pulumi.get(self, "ipv6_subnets")
 
     @property
     @pulumi.getter

@@ -107,6 +107,30 @@ namespace Pulumiverse.Fortios.User
         public Output<string> MandatoryCaVerify { get; private set; } = null!;
 
         /// <summary>
+        /// MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+        /// </summary>
+        [Output("mfaMode")]
+        public Output<string> MfaMode { get; private set; } = null!;
+
+        /// <summary>
+        /// Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+        /// </summary>
+        [Output("mfaPassword")]
+        public Output<string?> MfaPassword { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of a remote authenticator. Performs client access right check.
+        /// </summary>
+        [Output("mfaServer")]
+        public Output<string> MfaServer { get; private set; } = null!;
+
+        /// <summary>
+        /// Unified username for remote authentication.
+        /// </summary>
+        [Output("mfaUsername")]
+        public Output<string> MfaUsername { get; private set; } = null!;
+
+        /// <summary>
         /// Peer name.
         /// </summary>
         [Output("name")]
@@ -253,6 +277,30 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? MandatoryCaVerify { get; set; }
 
         /// <summary>
+        /// MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+        /// </summary>
+        [Input("mfaMode")]
+        public Input<string>? MfaMode { get; set; }
+
+        /// <summary>
+        /// Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+        /// </summary>
+        [Input("mfaPassword")]
+        public Input<string>? MfaPassword { get; set; }
+
+        /// <summary>
+        /// Name of a remote authenticator. Performs client access right check.
+        /// </summary>
+        [Input("mfaServer")]
+        public Input<string>? MfaServer { get; set; }
+
+        /// <summary>
+        /// Unified username for remote authentication.
+        /// </summary>
+        [Input("mfaUsername")]
+        public Input<string>? MfaUsername { get; set; }
+
+        /// <summary>
         /// Peer name.
         /// </summary>
         [Input("name")]
@@ -363,6 +411,30 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("mandatoryCaVerify")]
         public Input<string>? MandatoryCaVerify { get; set; }
+
+        /// <summary>
+        /// MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+        /// </summary>
+        [Input("mfaMode")]
+        public Input<string>? MfaMode { get; set; }
+
+        /// <summary>
+        /// Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+        /// </summary>
+        [Input("mfaPassword")]
+        public Input<string>? MfaPassword { get; set; }
+
+        /// <summary>
+        /// Name of a remote authenticator. Performs client access right check.
+        /// </summary>
+        [Input("mfaServer")]
+        public Input<string>? MfaServer { get; set; }
+
+        /// <summary>
+        /// Unified username for remote authentication.
+        /// </summary>
+        [Input("mfaUsername")]
+        public Input<string>? MfaUsername { get; set; }
 
         /// <summary>
         /// Peer name.

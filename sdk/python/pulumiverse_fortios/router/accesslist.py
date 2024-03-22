@@ -18,6 +18,7 @@ class AccesslistArgs:
     def __init__(__self__, *,
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['AccesslistRuleArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -31,6 +32,8 @@ class AccesslistArgs:
             pulumi.set(__self__, "comments", comments)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if rules is not None:
@@ -58,6 +61,15 @@ class AccesslistArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -98,6 +110,7 @@ class _AccesslistState:
     def __init__(__self__, *,
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['AccesslistRuleArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -111,6 +124,8 @@ class _AccesslistState:
             pulumi.set(__self__, "comments", comments)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if rules is not None:
@@ -138,6 +153,15 @@ class _AccesslistState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -180,6 +204,7 @@ class Accesslist(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccesslistRuleArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -335,6 +360,7 @@ class Accesslist(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccesslistRuleArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -349,6 +375,7 @@ class Accesslist(pulumi.CustomResource):
 
             __props__.__dict__["comments"] = comments
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["rules"] = rules
             __props__.__dict__["vdomparam"] = vdomparam
@@ -364,6 +391,7 @@ class Accesslist(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             comments: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccesslistRuleArgs']]]]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Accesslist':
@@ -384,6 +412,7 @@ class Accesslist(pulumi.CustomResource):
 
         __props__.__dict__["comments"] = comments
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["rules"] = rules
         __props__.__dict__["vdomparam"] = vdomparam
@@ -401,6 +430,11 @@ class Accesslist(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

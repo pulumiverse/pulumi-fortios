@@ -72,6 +72,10 @@ type Urlfilter struct {
 	Entries UrlfilterEntryArrayOutput `pulumi:"entries"`
 	// ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
+	Ip4MappedIp6 pulumi.StringOutput `pulumi:"ip4MappedIp6"`
 	// Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
 	IpAddrBlock pulumi.StringOutput `pulumi:"ipAddrBlock"`
 	// Name of URL filter list.
@@ -123,6 +127,10 @@ type urlfilterState struct {
 	Entries []UrlfilterEntry `pulumi:"entries"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
+	Ip4MappedIp6 *string `pulumi:"ip4MappedIp6"`
 	// Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
 	IpAddrBlock *string `pulumi:"ipAddrBlock"`
 	// Name of URL filter list.
@@ -142,6 +150,10 @@ type UrlfilterState struct {
 	Entries UrlfilterEntryArrayInput
 	// ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
+	Ip4MappedIp6 pulumi.StringPtrInput
 	// Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
 	IpAddrBlock pulumi.StringPtrInput
 	// Name of URL filter list.
@@ -165,6 +177,10 @@ type urlfilterArgs struct {
 	Entries []UrlfilterEntry `pulumi:"entries"`
 	// ID.
 	Fosid int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
+	Ip4MappedIp6 *string `pulumi:"ip4MappedIp6"`
 	// Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
 	IpAddrBlock *string `pulumi:"ipAddrBlock"`
 	// Name of URL filter list.
@@ -185,6 +201,10 @@ type UrlfilterArgs struct {
 	Entries UrlfilterEntryArrayInput
 	// ID.
 	Fosid pulumi.IntInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
+	Ip4MappedIp6 pulumi.StringPtrInput
 	// Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
 	IpAddrBlock pulumi.StringPtrInput
 	// Name of URL filter list.
@@ -300,6 +320,16 @@ func (o UrlfilterOutput) Entries() UrlfilterEntryArrayOutput {
 // ID.
 func (o UrlfilterOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Urlfilter) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o UrlfilterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Urlfilter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
+func (o UrlfilterOutput) Ip4MappedIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *Urlfilter) pulumi.StringOutput { return v.Ip4MappedIp6 }).(pulumi.StringOutput)
 }
 
 // Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.

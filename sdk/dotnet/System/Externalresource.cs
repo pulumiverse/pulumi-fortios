@@ -107,6 +107,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Resource { get; private set; } = null!;
 
         /// <summary>
+        /// Certificate verification option. Valid values: `none`, `basic`, `full`.
+        /// </summary>
+        [Output("serverIdentityCheck")]
+        public Output<string> ServerIdentityCheck { get; private set; } = null!;
+
+        /// <summary>
         /// Source IPv4 address used to communicate with server.
         /// </summary>
         [Output("sourceIp")]
@@ -119,7 +125,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+        /// User resource type.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -264,6 +270,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string> Resource { get; set; } = null!;
 
         /// <summary>
+        /// Certificate verification option. Valid values: `none`, `basic`, `full`.
+        /// </summary>
+        [Input("serverIdentityCheck")]
+        public Input<string>? ServerIdentityCheck { get; set; }
+
+        /// <summary>
         /// Source IPv4 address used to communicate with server.
         /// </summary>
         [Input("sourceIp")]
@@ -276,7 +288,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+        /// User resource type.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -378,6 +390,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Resource { get; set; }
 
         /// <summary>
+        /// Certificate verification option. Valid values: `none`, `basic`, `full`.
+        /// </summary>
+        [Input("serverIdentityCheck")]
+        public Input<string>? ServerIdentityCheck { get; set; }
+
+        /// <summary>
         /// Source IPv4 address used to communicate with server.
         /// </summary>
         [Input("sourceIp")]
@@ -390,7 +408,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+        /// User resource type.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

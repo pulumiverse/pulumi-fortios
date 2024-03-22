@@ -39,6 +39,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? Interface;
         /// <summary>
+        /// Preferred source of route for this member.
+        /// </summary>
+        public readonly string? PreferredSource;
+        /// <summary>
         /// Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
         /// </summary>
         public readonly int? Priority;
@@ -67,6 +71,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? Status;
         /// <summary>
+        /// Measured transport group (0 - 255).
+        /// </summary>
+        public readonly int? TransportGroup;
+        /// <summary>
         /// Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).
         /// </summary>
         public readonly int? VolumeRatio;
@@ -93,6 +101,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             string? @interface,
 
+            string? preferredSource,
+
             int? priority,
 
             int? priority6,
@@ -107,6 +117,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             string? status,
 
+            int? transportGroup,
+
             int? volumeRatio,
 
             int? weight,
@@ -119,6 +131,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             Gateway6 = gateway6;
             IngressSpilloverThreshold = ingressSpilloverThreshold;
             Interface = @interface;
+            PreferredSource = preferredSource;
             Priority = priority;
             Priority6 = priority6;
             SeqNum = seqNum;
@@ -126,6 +139,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             Source6 = source6;
             SpilloverThreshold = spilloverThreshold;
             Status = status;
+            TransportGroup = transportGroup;
             VolumeRatio = volumeRatio;
             Weight = weight;
             Zone = zone;

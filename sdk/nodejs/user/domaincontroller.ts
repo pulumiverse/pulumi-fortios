@@ -110,6 +110,14 @@ export class Domaincontroller extends pulumi.CustomResource {
      */
     public readonly adldsPort!: pulumi.Output<number>;
     /**
+     * Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+     */
+    public readonly changeDetection!: pulumi.Output<string>;
+    /**
+     * Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+     */
+    public readonly changeDetectionPeriod!: pulumi.Output<number>;
+    /**
      * Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
      */
     public readonly dnsSrvLookup!: pulumi.Output<string>;
@@ -125,6 +133,10 @@ export class Domaincontroller extends pulumi.CustomResource {
      * extra servers. The structure of `extraServer` block is documented below.
      */
     public readonly extraServers!: pulumi.Output<outputs.user.DomaincontrollerExtraServer[] | undefined>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Hostname of the server to connect to.
      */
@@ -204,10 +216,13 @@ export class Domaincontroller extends pulumi.CustomResource {
             resourceInputs["adldsIp6"] = state ? state.adldsIp6 : undefined;
             resourceInputs["adldsIpAddress"] = state ? state.adldsIpAddress : undefined;
             resourceInputs["adldsPort"] = state ? state.adldsPort : undefined;
+            resourceInputs["changeDetection"] = state ? state.changeDetection : undefined;
+            resourceInputs["changeDetectionPeriod"] = state ? state.changeDetectionPeriod : undefined;
             resourceInputs["dnsSrvLookup"] = state ? state.dnsSrvLookup : undefined;
             resourceInputs["domainName"] = state ? state.domainName : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["extraServers"] = state ? state.extraServers : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hostname"] = state ? state.hostname : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
@@ -236,10 +251,13 @@ export class Domaincontroller extends pulumi.CustomResource {
             resourceInputs["adldsIp6"] = args ? args.adldsIp6 : undefined;
             resourceInputs["adldsIpAddress"] = args ? args.adldsIpAddress : undefined;
             resourceInputs["adldsPort"] = args ? args.adldsPort : undefined;
+            resourceInputs["changeDetection"] = args ? args.changeDetection : undefined;
+            resourceInputs["changeDetectionPeriod"] = args ? args.changeDetectionPeriod : undefined;
             resourceInputs["dnsSrvLookup"] = args ? args.dnsSrvLookup : undefined;
             resourceInputs["domainName"] = args ? args.domainName : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["extraServers"] = args ? args.extraServers : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hostname"] = args ? args.hostname : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
@@ -286,6 +304,14 @@ export interface DomaincontrollerState {
      */
     adldsPort?: pulumi.Input<number>;
     /**
+     * Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+     */
+    changeDetection?: pulumi.Input<string>;
+    /**
+     * Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+     */
+    changeDetectionPeriod?: pulumi.Input<number>;
+    /**
      * Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
      */
     dnsSrvLookup?: pulumi.Input<string>;
@@ -301,6 +327,10 @@ export interface DomaincontrollerState {
      * extra servers. The structure of `extraServer` block is documented below.
      */
     extraServers?: pulumi.Input<pulumi.Input<inputs.user.DomaincontrollerExtraServer>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Hostname of the server to connect to.
      */
@@ -388,6 +418,14 @@ export interface DomaincontrollerArgs {
      */
     adldsPort?: pulumi.Input<number>;
     /**
+     * Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+     */
+    changeDetection?: pulumi.Input<string>;
+    /**
+     * Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+     */
+    changeDetectionPeriod?: pulumi.Input<number>;
+    /**
      * Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
      */
     dnsSrvLookup?: pulumi.Input<string>;
@@ -403,6 +441,10 @@ export interface DomaincontrollerArgs {
      * extra servers. The structure of `extraServer` block is documented below.
      */
     extraServers?: pulumi.Input<pulumi.Input<inputs.user.DomaincontrollerExtraServer>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Hostname of the server to connect to.
      */

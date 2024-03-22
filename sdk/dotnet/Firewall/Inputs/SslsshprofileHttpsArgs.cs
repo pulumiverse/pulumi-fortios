@@ -74,6 +74,12 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? ProxyAfterTcpHandshake { get; set; }
 
         /// <summary>
+        /// QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions &gt;= 7.4.2: default = inspect.
+        /// </summary>
+        [Input("quic")]
+        public Input<string>? Quic { get; set; }
+
+        /// <summary>
         /// Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
         /// </summary>
         [Input("revokedServerCert")]

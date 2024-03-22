@@ -23,6 +23,7 @@ class LocalinpolicyArgs:
                  comments: Optional[pulumi.Input[str]] = None,
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_mgmt_intf_only: Optional[pulumi.Input[str]] = None,
                  intf: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
@@ -31,7 +32,8 @@ class LocalinpolicyArgs:
                  srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
-                 vdomparam: Optional[pulumi.Input[str]] = None):
+                 vdomparam: Optional[pulumi.Input[str]] = None,
+                 virtual_patch: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Localinpolicy resource.
         :param pulumi.Input[Sequence[pulumi.Input['LocalinpolicyDstaddrArgs']]] dstaddrs: Destination address object from available options. The structure of `dstaddr` block is documented below.
@@ -41,6 +43,7 @@ class LocalinpolicyArgs:
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ha_mgmt_intf_only: Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] intf: Incoming interface name from available options.
         :param pulumi.Input[int] policyid: User defined local in policy ID.
@@ -50,6 +53,7 @@ class LocalinpolicyArgs:
         :param pulumi.Input[str] status: Enable/disable this local-in policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] virtual_patch: Enable/disable virtual patching. Valid values: `enable`, `disable`.
         """
         pulumi.set(__self__, "dstaddrs", dstaddrs)
         pulumi.set(__self__, "schedule", schedule)
@@ -62,6 +66,8 @@ class LocalinpolicyArgs:
             pulumi.set(__self__, "dstaddr_negate", dstaddr_negate)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ha_mgmt_intf_only is not None:
             pulumi.set(__self__, "ha_mgmt_intf_only", ha_mgmt_intf_only)
         if intf is not None:
@@ -80,6 +86,8 @@ class LocalinpolicyArgs:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if virtual_patch is not None:
+            pulumi.set(__self__, "virtual_patch", virtual_patch)
 
     @property
     @pulumi.getter
@@ -164,6 +172,18 @@ class LocalinpolicyArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="haMgmtIntfOnly")
@@ -273,6 +293,18 @@ class LocalinpolicyArgs:
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
 
+    @property
+    @pulumi.getter(name="virtualPatch")
+    def virtual_patch(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable virtual patching. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "virtual_patch")
+
+    @virtual_patch.setter
+    def virtual_patch(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch", value)
+
 
 @pulumi.input_type
 class _LocalinpolicyState:
@@ -282,6 +314,7 @@ class _LocalinpolicyState:
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['LocalinpolicyDstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_mgmt_intf_only: Optional[pulumi.Input[str]] = None,
                  intf: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
@@ -292,7 +325,8 @@ class _LocalinpolicyState:
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['LocalinpolicySrcaddrArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
-                 vdomparam: Optional[pulumi.Input[str]] = None):
+                 vdomparam: Optional[pulumi.Input[str]] = None,
+                 virtual_patch: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Localinpolicy resources.
         :param pulumi.Input[str] action: Action performed on traffic matching the policy (default = deny). Valid values: `accept`, `deny`.
@@ -300,6 +334,7 @@ class _LocalinpolicyState:
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['LocalinpolicyDstaddrArgs']]] dstaddrs: Destination address object from available options. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ha_mgmt_intf_only: Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] intf: Incoming interface name from available options.
         :param pulumi.Input[int] policyid: User defined local in policy ID.
@@ -311,6 +346,7 @@ class _LocalinpolicyState:
         :param pulumi.Input[str] status: Enable/disable this local-in policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] virtual_patch: Enable/disable virtual patching. Valid values: `enable`, `disable`.
         """
         if action is not None:
             pulumi.set(__self__, "action", action)
@@ -322,6 +358,8 @@ class _LocalinpolicyState:
             pulumi.set(__self__, "dstaddrs", dstaddrs)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ha_mgmt_intf_only is not None:
             pulumi.set(__self__, "ha_mgmt_intf_only", ha_mgmt_intf_only)
         if intf is not None:
@@ -344,6 +382,8 @@ class _LocalinpolicyState:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if virtual_patch is not None:
+            pulumi.set(__self__, "virtual_patch", virtual_patch)
 
     @property
     @pulumi.getter
@@ -404,6 +444,18 @@ class _LocalinpolicyState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="haMgmtIntfOnly")
@@ -537,6 +589,18 @@ class _LocalinpolicyState:
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
 
+    @property
+    @pulumi.getter(name="virtualPatch")
+    def virtual_patch(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable virtual patching. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "virtual_patch")
+
+    @virtual_patch.setter
+    def virtual_patch(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch", value)
+
 
 class Localinpolicy(pulumi.CustomResource):
     @overload
@@ -548,6 +612,7 @@ class Localinpolicy(pulumi.CustomResource):
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LocalinpolicyDstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_mgmt_intf_only: Optional[pulumi.Input[str]] = None,
                  intf: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
@@ -559,6 +624,7 @@ class Localinpolicy(pulumi.CustomResource):
                  status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 virtual_patch: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Configure user defined IPv4 local-in policies.
@@ -614,6 +680,7 @@ class Localinpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LocalinpolicyDstaddrArgs']]]] dstaddrs: Destination address object from available options. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ha_mgmt_intf_only: Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] intf: Incoming interface name from available options.
         :param pulumi.Input[int] policyid: User defined local in policy ID.
@@ -625,6 +692,7 @@ class Localinpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] status: Enable/disable this local-in policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] virtual_patch: Enable/disable virtual patching. Valid values: `enable`, `disable`.
         """
         ...
     @overload
@@ -699,6 +767,7 @@ class Localinpolicy(pulumi.CustomResource):
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LocalinpolicyDstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_mgmt_intf_only: Optional[pulumi.Input[str]] = None,
                  intf: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
@@ -710,6 +779,7 @@ class Localinpolicy(pulumi.CustomResource):
                  status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 virtual_patch: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -726,6 +796,7 @@ class Localinpolicy(pulumi.CustomResource):
                 raise TypeError("Missing required property 'dstaddrs'")
             __props__.__dict__["dstaddrs"] = dstaddrs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ha_mgmt_intf_only"] = ha_mgmt_intf_only
             __props__.__dict__["intf"] = intf
             __props__.__dict__["policyid"] = policyid
@@ -741,6 +812,7 @@ class Localinpolicy(pulumi.CustomResource):
             __props__.__dict__["status"] = status
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["virtual_patch"] = virtual_patch
         super(Localinpolicy, __self__).__init__(
             'fortios:firewall/localinpolicy:Localinpolicy',
             resource_name,
@@ -756,6 +828,7 @@ class Localinpolicy(pulumi.CustomResource):
             dstaddr_negate: Optional[pulumi.Input[str]] = None,
             dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LocalinpolicyDstaddrArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ha_mgmt_intf_only: Optional[pulumi.Input[str]] = None,
             intf: Optional[pulumi.Input[str]] = None,
             policyid: Optional[pulumi.Input[int]] = None,
@@ -766,7 +839,8 @@ class Localinpolicy(pulumi.CustomResource):
             srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LocalinpolicySrcaddrArgs']]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
             uuid: Optional[pulumi.Input[str]] = None,
-            vdomparam: Optional[pulumi.Input[str]] = None) -> 'Localinpolicy':
+            vdomparam: Optional[pulumi.Input[str]] = None,
+            virtual_patch: Optional[pulumi.Input[str]] = None) -> 'Localinpolicy':
         """
         Get an existing Localinpolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -779,6 +853,7 @@ class Localinpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LocalinpolicyDstaddrArgs']]]] dstaddrs: Destination address object from available options. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ha_mgmt_intf_only: Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] intf: Incoming interface name from available options.
         :param pulumi.Input[int] policyid: User defined local in policy ID.
@@ -790,6 +865,7 @@ class Localinpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] status: Enable/disable this local-in policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] virtual_patch: Enable/disable virtual patching. Valid values: `enable`, `disable`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -800,6 +876,7 @@ class Localinpolicy(pulumi.CustomResource):
         __props__.__dict__["dstaddr_negate"] = dstaddr_negate
         __props__.__dict__["dstaddrs"] = dstaddrs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ha_mgmt_intf_only"] = ha_mgmt_intf_only
         __props__.__dict__["intf"] = intf
         __props__.__dict__["policyid"] = policyid
@@ -811,6 +888,7 @@ class Localinpolicy(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["virtual_patch"] = virtual_patch
         return Localinpolicy(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -852,6 +930,14 @@ class Localinpolicy(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="haMgmtIntfOnly")
@@ -940,4 +1026,12 @@ class Localinpolicy(pulumi.CustomResource):
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="virtualPatch")
+    def virtual_patch(self) -> pulumi.Output[str]:
+        """
+        Enable/disable virtual patching. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "virtual_patch")
 

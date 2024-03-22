@@ -172,6 +172,11 @@ func GetInsecure(ctx *pulumi.Context) bool {
 	return value
 }
 
+// The password of the user.
+func GetPassword(ctx *pulumi.Context) string {
+	return config.Get(ctx, "fortios:password")
+}
+
 // Enable/disable peer authentication, can be 'enable' or 'disable'
 func GetPeerauth(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "fortios:peerauth")
@@ -194,6 +199,11 @@ func GetToken(ctx *pulumi.Context) string {
 		value = d.(string)
 	}
 	return value
+}
+
+// The username of the user.
+func GetUsername(ctx *pulumi.Context) string {
+	return config.Get(ctx, "fortios:username")
 }
 func GetVdom(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "fortios:vdom")

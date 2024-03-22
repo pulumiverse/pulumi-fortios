@@ -129,6 +129,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         public Output<ImmutableArray<Outputs.PortalBookmarkGroup>> BookmarkGroups { get; private set; } = null!;
 
         /// <summary>
+        /// Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("clientSrcRange")]
+        public Output<string> ClientSrcRange { get; private set; } = null!;
+
+        /// <summary>
         /// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("clipboard")]
@@ -147,6 +153,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         public Output<string> CustomizeForticlientDownloadUrl { get; private set; } = null!;
 
         /// <summary>
+        /// Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+        /// </summary>
+        [Output("defaultProtocol")]
+        public Output<string> DefaultProtocol { get; private set; } = null!;
+
+        /// <summary>
         /// Screen height (range from 0 - 65535, default = 768).
         /// </summary>
         [Output("defaultWindowHeight")]
@@ -159,10 +171,22 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         public Output<int> DefaultWindowWidth { get; private set; } = null!;
 
         /// <summary>
+        /// Relay agent IPv6 link address to use in DHCP6 requests.
+        /// </summary>
+        [Output("dhcp6RaLinkaddr")]
+        public Output<string> Dhcp6RaLinkaddr { get; private set; } = null!;
+
+        /// <summary>
         /// Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
         /// </summary>
         [Output("dhcpIpOverlap")]
         public Output<string> DhcpIpOverlap { get; private set; } = null!;
+
+        /// <summary>
+        /// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+        /// </summary>
+        [Output("dhcpRaGiaddr")]
+        public Output<string> DhcpRaGiaddr { get; private set; } = null!;
 
         /// <summary>
         /// Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
@@ -219,6 +243,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         public Output<string> ExclusiveRouting { get; private set; } = null!;
 
         /// <summary>
+        /// Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("focusBookmark")]
+        public Output<string> FocusBookmark { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("forticlientDownload")]
@@ -229,6 +259,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         /// </summary>
         [Output("forticlientDownloadMethod")]
         public Output<string> ForticlientDownloadMethod { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Web portal heading message.
@@ -343,6 +379,18 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         /// </summary>
         [Output("keepAlive")]
         public Output<string> KeepAlive { get; private set; } = null!;
+
+        /// <summary>
+        /// Landing page options. The structure of `landing_page` block is documented below.
+        /// </summary>
+        [Output("landingPage")]
+        public Output<Outputs.PortalLandingPage> LandingPage { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("landingPageMode")]
+        public Output<string> LandingPageMode { get; private set; } = null!;
 
         /// <summary>
         /// Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
@@ -620,6 +668,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         }
 
         /// <summary>
+        /// Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("clientSrcRange")]
+        public Input<string>? ClientSrcRange { get; set; }
+
+        /// <summary>
         /// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("clipboard")]
@@ -638,6 +692,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         public Input<string>? CustomizeForticlientDownloadUrl { get; set; }
 
         /// <summary>
+        /// Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+        /// </summary>
+        [Input("defaultProtocol")]
+        public Input<string>? DefaultProtocol { get; set; }
+
+        /// <summary>
         /// Screen height (range from 0 - 65535, default = 768).
         /// </summary>
         [Input("defaultWindowHeight")]
@@ -650,10 +710,22 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         public Input<int>? DefaultWindowWidth { get; set; }
 
         /// <summary>
+        /// Relay agent IPv6 link address to use in DHCP6 requests.
+        /// </summary>
+        [Input("dhcp6RaLinkaddr")]
+        public Input<string>? Dhcp6RaLinkaddr { get; set; }
+
+        /// <summary>
         /// Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
         /// </summary>
         [Input("dhcpIpOverlap")]
         public Input<string>? DhcpIpOverlap { get; set; }
+
+        /// <summary>
+        /// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+        /// </summary>
+        [Input("dhcpRaGiaddr")]
+        public Input<string>? DhcpRaGiaddr { get; set; }
 
         /// <summary>
         /// Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
@@ -710,6 +782,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         public Input<string>? ExclusiveRouting { get; set; }
 
         /// <summary>
+        /// Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("focusBookmark")]
+        public Input<string>? FocusBookmark { get; set; }
+
+        /// <summary>
         /// Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("forticlientDownload")]
@@ -720,6 +798,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         /// </summary>
         [Input("forticlientDownloadMethod")]
         public Input<string>? ForticlientDownloadMethod { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Web portal heading message.
@@ -858,6 +942,18 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         /// </summary>
         [Input("keepAlive")]
         public Input<string>? KeepAlive { get; set; }
+
+        /// <summary>
+        /// Landing page options. The structure of `landing_page` block is documented below.
+        /// </summary>
+        [Input("landingPage")]
+        public Input<Inputs.PortalLandingPageArgs>? LandingPage { get; set; }
+
+        /// <summary>
+        /// Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("landingPageMode")]
+        public Input<string>? LandingPageMode { get; set; }
 
         /// <summary>
         /// Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
@@ -1120,6 +1216,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         }
 
         /// <summary>
+        /// Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("clientSrcRange")]
+        public Input<string>? ClientSrcRange { get; set; }
+
+        /// <summary>
         /// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("clipboard")]
@@ -1138,6 +1240,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         public Input<string>? CustomizeForticlientDownloadUrl { get; set; }
 
         /// <summary>
+        /// Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+        /// </summary>
+        [Input("defaultProtocol")]
+        public Input<string>? DefaultProtocol { get; set; }
+
+        /// <summary>
         /// Screen height (range from 0 - 65535, default = 768).
         /// </summary>
         [Input("defaultWindowHeight")]
@@ -1150,10 +1258,22 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         public Input<int>? DefaultWindowWidth { get; set; }
 
         /// <summary>
+        /// Relay agent IPv6 link address to use in DHCP6 requests.
+        /// </summary>
+        [Input("dhcp6RaLinkaddr")]
+        public Input<string>? Dhcp6RaLinkaddr { get; set; }
+
+        /// <summary>
         /// Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
         /// </summary>
         [Input("dhcpIpOverlap")]
         public Input<string>? DhcpIpOverlap { get; set; }
+
+        /// <summary>
+        /// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+        /// </summary>
+        [Input("dhcpRaGiaddr")]
+        public Input<string>? DhcpRaGiaddr { get; set; }
 
         /// <summary>
         /// Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
@@ -1210,6 +1330,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         public Input<string>? ExclusiveRouting { get; set; }
 
         /// <summary>
+        /// Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("focusBookmark")]
+        public Input<string>? FocusBookmark { get; set; }
+
+        /// <summary>
         /// Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("forticlientDownload")]
@@ -1220,6 +1346,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         /// </summary>
         [Input("forticlientDownloadMethod")]
         public Input<string>? ForticlientDownloadMethod { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Web portal heading message.
@@ -1358,6 +1490,18 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web
         /// </summary>
         [Input("keepAlive")]
         public Input<string>? KeepAlive { get; set; }
+
+        /// <summary>
+        /// Landing page options. The structure of `landing_page` block is documented below.
+        /// </summary>
+        [Input("landingPage")]
+        public Input<Inputs.PortalLandingPageGetArgs>? LandingPage { get; set; }
+
+        /// <summary>
+        /// Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("landingPageMode")]
+        public Input<string>? LandingPageMode { get; set; }
 
         /// <summary>
         /// Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.

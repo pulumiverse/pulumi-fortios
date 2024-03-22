@@ -22,7 +22,7 @@ class GetCentralsnatmapResult:
     """
     A collection of values returned by getCentralsnatmap.
     """
-    def __init__(__self__, comments=None, dst_addr6s=None, dst_addrs=None, dstintfs=None, id=None, nat=None, nat46=None, nat64=None, nat_ippool6s=None, nat_ippools=None, nat_port=None, orig_addr6s=None, orig_addrs=None, orig_port=None, policyid=None, protocol=None, srcintfs=None, status=None, type=None, uuid=None, vdomparam=None):
+    def __init__(__self__, comments=None, dst_addr6s=None, dst_addrs=None, dst_port=None, dstintfs=None, id=None, nat=None, nat46=None, nat64=None, nat_ippool6s=None, nat_ippools=None, nat_port=None, orig_addr6s=None, orig_addrs=None, orig_port=None, policyid=None, protocol=None, srcintfs=None, status=None, type=None, uuid=None, vdomparam=None):
         if comments and not isinstance(comments, str):
             raise TypeError("Expected argument 'comments' to be a str")
         pulumi.set(__self__, "comments", comments)
@@ -32,6 +32,9 @@ class GetCentralsnatmapResult:
         if dst_addrs and not isinstance(dst_addrs, list):
             raise TypeError("Expected argument 'dst_addrs' to be a list")
         pulumi.set(__self__, "dst_addrs", dst_addrs)
+        if dst_port and not isinstance(dst_port, str):
+            raise TypeError("Expected argument 'dst_port' to be a str")
+        pulumi.set(__self__, "dst_port", dst_port)
         if dstintfs and not isinstance(dstintfs, list):
             raise TypeError("Expected argument 'dstintfs' to be a list")
         pulumi.set(__self__, "dstintfs", dstintfs)
@@ -110,6 +113,14 @@ class GetCentralsnatmapResult:
         Destination address name from available addresses. The structure of `dst_addr` block is documented below.
         """
         return pulumi.get(self, "dst_addrs")
+
+    @property
+    @pulumi.getter(name="dstPort")
+    def dst_port(self) -> str:
+        """
+        Destination port or port range (1 to 65535, 0 means any port).
+        """
+        return pulumi.get(self, "dst_port")
 
     @property
     @pulumi.getter
@@ -262,6 +273,7 @@ class AwaitableGetCentralsnatmapResult(GetCentralsnatmapResult):
             comments=self.comments,
             dst_addr6s=self.dst_addr6s,
             dst_addrs=self.dst_addrs,
+            dst_port=self.dst_port,
             dstintfs=self.dstintfs,
             id=self.id,
             nat=self.nat,
@@ -302,6 +314,7 @@ def get_centralsnatmap(policyid: Optional[int] = None,
         comments=pulumi.get(__ret__, 'comments'),
         dst_addr6s=pulumi.get(__ret__, 'dst_addr6s'),
         dst_addrs=pulumi.get(__ret__, 'dst_addrs'),
+        dst_port=pulumi.get(__ret__, 'dst_port'),
         dstintfs=pulumi.get(__ret__, 'dstintfs'),
         id=pulumi.get(__ret__, 'id'),
         nat=pulumi.get(__ret__, 'nat'),

@@ -26,6 +26,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// Serial.
         /// </summary>
         public readonly string Serial;
+        /// <summary>
+        /// Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetCsfFabricConnectorVdomResult> Vdoms;
 
         [OutputConstructor]
         private GetCsfFabricConnectorResult(
@@ -33,11 +37,14 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             string configurationWriteAccess,
 
-            string serial)
+            string serial,
+
+            ImmutableArray<Outputs.GetCsfFabricConnectorVdomResult> vdoms)
         {
             Accprofile = accprofile;
             ConfigurationWriteAccess = configurationWriteAccess;
             Serial = serial;
+            Vdoms = vdoms;
         }
     }
 }

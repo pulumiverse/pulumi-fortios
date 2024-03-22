@@ -26,11 +26,14 @@ class Multicastpolicy6Args:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ips_sensor: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[int]] = None,
                  start_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 utm_status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -45,11 +48,14 @@ class Multicastpolicy6Args:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] end_port: Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
         :param pulumi.Input[int] fosid: Policy ID.
-        :param pulumi.Input[str] logtraffic: Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] logtraffic: Enable/disable logging traffic accepted by this policy.
         :param pulumi.Input[str] name: Policy name.
         :param pulumi.Input[int] protocol: Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
         :param pulumi.Input[int] start_port: Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
         :param pulumi.Input[str] status: Enable/disable this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] utm_status: Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -69,6 +75,10 @@ class Multicastpolicy6Args:
             pulumi.set(__self__, "end_port", end_port)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if ips_sensor is not None:
+            pulumi.set(__self__, "ips_sensor", ips_sensor)
         if logtraffic is not None:
             pulumi.set(__self__, "logtraffic", logtraffic)
         if name is not None:
@@ -79,6 +89,8 @@ class Multicastpolicy6Args:
             pulumi.set(__self__, "start_port", start_port)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if utm_status is not None:
+            pulumi.set(__self__, "utm_status", utm_status)
         if uuid is not None:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
@@ -205,10 +217,34 @@ class Multicastpolicy6Args:
         pulumi.set(self, "fosid", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="ipsSensor")
+    def ips_sensor(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing IPS sensor.
+        """
+        return pulumi.get(self, "ips_sensor")
+
+    @ips_sensor.setter
+    def ips_sensor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_sensor", value)
+
+    @property
     @pulumi.getter
     def logtraffic(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+        Enable/disable logging traffic accepted by this policy.
         """
         return pulumi.get(self, "logtraffic")
 
@@ -265,6 +301,18 @@ class Multicastpolicy6Args:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter(name="utmStatus")
+    def utm_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "utm_status")
+
+    @utm_status.setter
+    def utm_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "utm_status", value)
+
+    @property
     @pulumi.getter
     def uuid(self) -> Optional[pulumi.Input[str]]:
         """
@@ -300,6 +348,8 @@ class _Multicastpolicy6State:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ips_sensor: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[int]] = None,
@@ -307,6 +357,7 @@ class _Multicastpolicy6State:
                  srcintf: Optional[pulumi.Input[str]] = None,
                  start_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 utm_status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -319,13 +370,16 @@ class _Multicastpolicy6State:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] end_port: Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
         :param pulumi.Input[int] fosid: Policy ID.
-        :param pulumi.Input[str] logtraffic: Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] logtraffic: Enable/disable logging traffic accepted by this policy.
         :param pulumi.Input[str] name: Policy name.
         :param pulumi.Input[int] protocol: Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
         :param pulumi.Input[Sequence[pulumi.Input['Multicastpolicy6SrcaddrArgs']]] srcaddrs: IPv6 source address name. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[str] srcintf: IPv6 source interface name.
         :param pulumi.Input[int] start_port: Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
         :param pulumi.Input[str] status: Enable/disable this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] utm_status: Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -345,6 +399,10 @@ class _Multicastpolicy6State:
             pulumi.set(__self__, "end_port", end_port)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if ips_sensor is not None:
+            pulumi.set(__self__, "ips_sensor", ips_sensor)
         if logtraffic is not None:
             pulumi.set(__self__, "logtraffic", logtraffic)
         if name is not None:
@@ -359,6 +417,8 @@ class _Multicastpolicy6State:
             pulumi.set(__self__, "start_port", start_port)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if utm_status is not None:
+            pulumi.set(__self__, "utm_status", utm_status)
         if uuid is not None:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
@@ -461,10 +521,34 @@ class _Multicastpolicy6State:
         pulumi.set(self, "fosid", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="ipsSensor")
+    def ips_sensor(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing IPS sensor.
+        """
+        return pulumi.get(self, "ips_sensor")
+
+    @ips_sensor.setter
+    def ips_sensor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_sensor", value)
+
+    @property
     @pulumi.getter
     def logtraffic(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+        Enable/disable logging traffic accepted by this policy.
         """
         return pulumi.get(self, "logtraffic")
 
@@ -545,6 +629,18 @@ class _Multicastpolicy6State:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter(name="utmStatus")
+    def utm_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "utm_status")
+
+    @utm_status.setter
+    def utm_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "utm_status", value)
+
+    @property
     @pulumi.getter
     def uuid(self) -> Optional[pulumi.Input[str]]:
         """
@@ -582,6 +678,8 @@ class Multicastpolicy6(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ips_sensor: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[int]] = None,
@@ -589,6 +687,7 @@ class Multicastpolicy6(pulumi.CustomResource):
                  srcintf: Optional[pulumi.Input[str]] = None,
                  start_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 utm_status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -649,13 +748,16 @@ class Multicastpolicy6(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] end_port: Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
         :param pulumi.Input[int] fosid: Policy ID.
-        :param pulumi.Input[str] logtraffic: Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] logtraffic: Enable/disable logging traffic accepted by this policy.
         :param pulumi.Input[str] name: Policy name.
         :param pulumi.Input[int] protocol: Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Multicastpolicy6SrcaddrArgs']]]] srcaddrs: IPv6 source address name. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[str] srcintf: IPv6 source interface name.
         :param pulumi.Input[int] start_port: Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
         :param pulumi.Input[str] status: Enable/disable this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] utm_status: Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -735,6 +837,8 @@ class Multicastpolicy6(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ips_sensor: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[int]] = None,
@@ -742,6 +846,7 @@ class Multicastpolicy6(pulumi.CustomResource):
                  srcintf: Optional[pulumi.Input[str]] = None,
                  start_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 utm_status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -765,6 +870,8 @@ class Multicastpolicy6(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["end_port"] = end_port
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["ips_sensor"] = ips_sensor
             __props__.__dict__["logtraffic"] = logtraffic
             __props__.__dict__["name"] = name
             __props__.__dict__["protocol"] = protocol
@@ -776,6 +883,7 @@ class Multicastpolicy6(pulumi.CustomResource):
             __props__.__dict__["srcintf"] = srcintf
             __props__.__dict__["start_port"] = start_port
             __props__.__dict__["status"] = status
+            __props__.__dict__["utm_status"] = utm_status
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
         super(Multicastpolicy6, __self__).__init__(
@@ -796,6 +904,8 @@ class Multicastpolicy6(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             end_port: Optional[pulumi.Input[int]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            ips_sensor: Optional[pulumi.Input[str]] = None,
             logtraffic: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[int]] = None,
@@ -803,6 +913,7 @@ class Multicastpolicy6(pulumi.CustomResource):
             srcintf: Optional[pulumi.Input[str]] = None,
             start_port: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            utm_status: Optional[pulumi.Input[str]] = None,
             uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Multicastpolicy6':
         """
@@ -820,13 +931,16 @@ class Multicastpolicy6(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] end_port: Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
         :param pulumi.Input[int] fosid: Policy ID.
-        :param pulumi.Input[str] logtraffic: Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] logtraffic: Enable/disable logging traffic accepted by this policy.
         :param pulumi.Input[str] name: Policy name.
         :param pulumi.Input[int] protocol: Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Multicastpolicy6SrcaddrArgs']]]] srcaddrs: IPv6 source address name. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[str] srcintf: IPv6 source interface name.
         :param pulumi.Input[int] start_port: Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
         :param pulumi.Input[str] status: Enable/disable this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] utm_status: Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -842,6 +956,8 @@ class Multicastpolicy6(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["end_port"] = end_port
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["ips_sensor"] = ips_sensor
         __props__.__dict__["logtraffic"] = logtraffic
         __props__.__dict__["name"] = name
         __props__.__dict__["protocol"] = protocol
@@ -849,6 +965,7 @@ class Multicastpolicy6(pulumi.CustomResource):
         __props__.__dict__["srcintf"] = srcintf
         __props__.__dict__["start_port"] = start_port
         __props__.__dict__["status"] = status
+        __props__.__dict__["utm_status"] = utm_status
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
         return Multicastpolicy6(resource_name, opts=opts, __props__=__props__)
@@ -918,10 +1035,26 @@ class Multicastpolicy6(pulumi.CustomResource):
         return pulumi.get(self, "fosid")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="ipsSensor")
+    def ips_sensor(self) -> pulumi.Output[str]:
+        """
+        Name of an existing IPS sensor.
+        """
+        return pulumi.get(self, "ips_sensor")
+
+    @property
     @pulumi.getter
     def logtraffic(self) -> pulumi.Output[str]:
         """
-        Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+        Enable/disable logging traffic accepted by this policy.
         """
         return pulumi.get(self, "logtraffic")
 
@@ -972,6 +1105,14 @@ class Multicastpolicy6(pulumi.CustomResource):
         Enable/disable this policy. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="utmStatus")
+    def utm_status(self) -> pulumi.Output[str]:
+        """
+        Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "utm_status")
 
     @property
     @pulumi.getter

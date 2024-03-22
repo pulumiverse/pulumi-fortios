@@ -56,9 +56,29 @@ export class Ipam extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+     */
+    public readonly automaticConflictResolution!: pulumi.Output<string>;
+    /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+     */
+    public readonly manageLanAddresses!: pulumi.Output<string>;
+    /**
+     * Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+     */
+    public readonly manageLanExtensionAddresses!: pulumi.Output<string>;
+    /**
+     * Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+     */
+    public readonly manageSsidAddresses!: pulumi.Output<string>;
     /**
      * Configure IPAM pool subnet, Class A - Class B subnet.
      */
@@ -68,11 +88,15 @@ export class Ipam extends pulumi.CustomResource {
      */
     public readonly pools!: pulumi.Output<outputs.system.IpamPool[] | undefined>;
     /**
+     * Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+     */
+    public readonly requireSubnetSizeMatch!: pulumi.Output<string>;
+    /**
      * Configure IPAM allocation rules. The structure of `rules` block is documented below.
      */
     public readonly rules!: pulumi.Output<outputs.system.IpamRule[] | undefined>;
     /**
-     * Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+     * Configure the type of IPAM server to use.
      */
     public readonly serverType!: pulumi.Output<string>;
     /**
@@ -97,18 +121,30 @@ export class Ipam extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IpamState | undefined;
+            resourceInputs["automaticConflictResolution"] = state ? state.automaticConflictResolution : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["manageLanAddresses"] = state ? state.manageLanAddresses : undefined;
+            resourceInputs["manageLanExtensionAddresses"] = state ? state.manageLanExtensionAddresses : undefined;
+            resourceInputs["manageSsidAddresses"] = state ? state.manageSsidAddresses : undefined;
             resourceInputs["poolSubnet"] = state ? state.poolSubnet : undefined;
             resourceInputs["pools"] = state ? state.pools : undefined;
+            resourceInputs["requireSubnetSizeMatch"] = state ? state.requireSubnetSizeMatch : undefined;
             resourceInputs["rules"] = state ? state.rules : undefined;
             resourceInputs["serverType"] = state ? state.serverType : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as IpamArgs | undefined;
+            resourceInputs["automaticConflictResolution"] = args ? args.automaticConflictResolution : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["manageLanAddresses"] = args ? args.manageLanAddresses : undefined;
+            resourceInputs["manageLanExtensionAddresses"] = args ? args.manageLanExtensionAddresses : undefined;
+            resourceInputs["manageSsidAddresses"] = args ? args.manageSsidAddresses : undefined;
             resourceInputs["poolSubnet"] = args ? args.poolSubnet : undefined;
             resourceInputs["pools"] = args ? args.pools : undefined;
+            resourceInputs["requireSubnetSizeMatch"] = args ? args.requireSubnetSizeMatch : undefined;
             resourceInputs["rules"] = args ? args.rules : undefined;
             resourceInputs["serverType"] = args ? args.serverType : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
@@ -124,9 +160,29 @@ export class Ipam extends pulumi.CustomResource {
  */
 export interface IpamState {
     /**
+     * Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+     */
+    automaticConflictResolution?: pulumi.Input<string>;
+    /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+     */
+    manageLanAddresses?: pulumi.Input<string>;
+    /**
+     * Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+     */
+    manageLanExtensionAddresses?: pulumi.Input<string>;
+    /**
+     * Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+     */
+    manageSsidAddresses?: pulumi.Input<string>;
     /**
      * Configure IPAM pool subnet, Class A - Class B subnet.
      */
@@ -136,11 +192,15 @@ export interface IpamState {
      */
     pools?: pulumi.Input<pulumi.Input<inputs.system.IpamPool>[]>;
     /**
+     * Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+     */
+    requireSubnetSizeMatch?: pulumi.Input<string>;
+    /**
      * Configure IPAM allocation rules. The structure of `rules` block is documented below.
      */
     rules?: pulumi.Input<pulumi.Input<inputs.system.IpamRule>[]>;
     /**
-     * Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+     * Configure the type of IPAM server to use.
      */
     serverType?: pulumi.Input<string>;
     /**
@@ -158,9 +218,29 @@ export interface IpamState {
  */
 export interface IpamArgs {
     /**
+     * Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+     */
+    automaticConflictResolution?: pulumi.Input<string>;
+    /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+     */
+    manageLanAddresses?: pulumi.Input<string>;
+    /**
+     * Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+     */
+    manageLanExtensionAddresses?: pulumi.Input<string>;
+    /**
+     * Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+     */
+    manageSsidAddresses?: pulumi.Input<string>;
     /**
      * Configure IPAM pool subnet, Class A - Class B subnet.
      */
@@ -170,11 +250,15 @@ export interface IpamArgs {
      */
     pools?: pulumi.Input<pulumi.Input<inputs.system.IpamPool>[]>;
     /**
+     * Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+     */
+    requireSubnetSizeMatch?: pulumi.Input<string>;
+    /**
      * Configure IPAM allocation rules. The structure of `rules` block is documented below.
      */
     rules?: pulumi.Input<pulumi.Input<inputs.system.IpamRule>[]>;
     /**
-     * Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+     * Configure the type of IPAM server to use.
      */
     serverType?: pulumi.Input<string>;
     /**

@@ -37,6 +37,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Domaincontroller{}
 	case "fortios:user/exchange:Exchange":
 		r = &Exchange{}
+	case "fortios:user/externalidentityprovider:Externalidentityprovider":
+		r = &Externalidentityprovider{}
 	case "fortios:user/fortitoken:Fortitoken":
 		r = &Fortitoken{}
 	case "fortios:user/fsso:Fsso":
@@ -124,6 +126,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"user/exchange",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"user/externalidentityprovider",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

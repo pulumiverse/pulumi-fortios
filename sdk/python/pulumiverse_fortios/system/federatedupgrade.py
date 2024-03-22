@@ -19,6 +19,9 @@ class FederatedupgradeArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failure_device: Optional[pulumi.Input[str]] = None,
                  failure_reason: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ha_reboot_controller: Optional[pulumi.Input[str]] = None,
+                 known_ha_members: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedupgradeKnownHaMemberArgs']]]] = None,
                  next_path_index: Optional[pulumi.Input[int]] = None,
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedupgradeNodeListArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -28,7 +31,10 @@ class FederatedupgradeArgs:
         The set of arguments for constructing a Federatedupgrade resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] failure_device: Serial number of the node to include.
-        :param pulumi.Input[str] failure_reason: Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        :param pulumi.Input[str] failure_reason: Reason for upgrade failure.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] ha_reboot_controller: Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['FederatedupgradeKnownHaMemberArgs']]] known_ha_members: Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `known_ha_members` block is documented below.
         :param pulumi.Input[int] next_path_index: The index of the next image to upgrade to.
         :param pulumi.Input[Sequence[pulumi.Input['FederatedupgradeNodeListArgs']]] node_lists: Nodes which will be included in the upgrade. The structure of `node_list` block is documented below.
         :param pulumi.Input[str] status: Current status of the upgrade.
@@ -41,6 +47,12 @@ class FederatedupgradeArgs:
             pulumi.set(__self__, "failure_device", failure_device)
         if failure_reason is not None:
             pulumi.set(__self__, "failure_reason", failure_reason)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if ha_reboot_controller is not None:
+            pulumi.set(__self__, "ha_reboot_controller", ha_reboot_controller)
+        if known_ha_members is not None:
+            pulumi.set(__self__, "known_ha_members", known_ha_members)
         if next_path_index is not None:
             pulumi.set(__self__, "next_path_index", next_path_index)
         if node_lists is not None:
@@ -80,13 +92,49 @@ class FederatedupgradeArgs:
     @pulumi.getter(name="failureReason")
     def failure_reason(self) -> Optional[pulumi.Input[str]]:
         """
-        Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        Reason for upgrade failure.
         """
         return pulumi.get(self, "failure_reason")
 
     @failure_reason.setter
     def failure_reason(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "failure_reason", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="haRebootController")
+    def ha_reboot_controller(self) -> Optional[pulumi.Input[str]]:
+        """
+        Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+        """
+        return pulumi.get(self, "ha_reboot_controller")
+
+    @ha_reboot_controller.setter
+    def ha_reboot_controller(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ha_reboot_controller", value)
+
+    @property
+    @pulumi.getter(name="knownHaMembers")
+    def known_ha_members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedupgradeKnownHaMemberArgs']]]]:
+        """
+        Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `known_ha_members` block is documented below.
+        """
+        return pulumi.get(self, "known_ha_members")
+
+    @known_ha_members.setter
+    def known_ha_members(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedupgradeKnownHaMemberArgs']]]]):
+        pulumi.set(self, "known_ha_members", value)
 
     @property
     @pulumi.getter(name="nextPathIndex")
@@ -155,6 +203,9 @@ class _FederatedupgradeState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failure_device: Optional[pulumi.Input[str]] = None,
                  failure_reason: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ha_reboot_controller: Optional[pulumi.Input[str]] = None,
+                 known_ha_members: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedupgradeKnownHaMemberArgs']]]] = None,
                  next_path_index: Optional[pulumi.Input[int]] = None,
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedupgradeNodeListArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -164,7 +215,10 @@ class _FederatedupgradeState:
         Input properties used for looking up and filtering Federatedupgrade resources.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] failure_device: Serial number of the node to include.
-        :param pulumi.Input[str] failure_reason: Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        :param pulumi.Input[str] failure_reason: Reason for upgrade failure.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] ha_reboot_controller: Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['FederatedupgradeKnownHaMemberArgs']]] known_ha_members: Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `known_ha_members` block is documented below.
         :param pulumi.Input[int] next_path_index: The index of the next image to upgrade to.
         :param pulumi.Input[Sequence[pulumi.Input['FederatedupgradeNodeListArgs']]] node_lists: Nodes which will be included in the upgrade. The structure of `node_list` block is documented below.
         :param pulumi.Input[str] status: Current status of the upgrade.
@@ -177,6 +231,12 @@ class _FederatedupgradeState:
             pulumi.set(__self__, "failure_device", failure_device)
         if failure_reason is not None:
             pulumi.set(__self__, "failure_reason", failure_reason)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if ha_reboot_controller is not None:
+            pulumi.set(__self__, "ha_reboot_controller", ha_reboot_controller)
+        if known_ha_members is not None:
+            pulumi.set(__self__, "known_ha_members", known_ha_members)
         if next_path_index is not None:
             pulumi.set(__self__, "next_path_index", next_path_index)
         if node_lists is not None:
@@ -216,13 +276,49 @@ class _FederatedupgradeState:
     @pulumi.getter(name="failureReason")
     def failure_reason(self) -> Optional[pulumi.Input[str]]:
         """
-        Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        Reason for upgrade failure.
         """
         return pulumi.get(self, "failure_reason")
 
     @failure_reason.setter
     def failure_reason(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "failure_reason", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="haRebootController")
+    def ha_reboot_controller(self) -> Optional[pulumi.Input[str]]:
+        """
+        Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+        """
+        return pulumi.get(self, "ha_reboot_controller")
+
+    @ha_reboot_controller.setter
+    def ha_reboot_controller(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ha_reboot_controller", value)
+
+    @property
+    @pulumi.getter(name="knownHaMembers")
+    def known_ha_members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedupgradeKnownHaMemberArgs']]]]:
+        """
+        Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `known_ha_members` block is documented below.
+        """
+        return pulumi.get(self, "known_ha_members")
+
+    @known_ha_members.setter
+    def known_ha_members(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedupgradeKnownHaMemberArgs']]]]):
+        pulumi.set(self, "known_ha_members", value)
 
     @property
     @pulumi.getter(name="nextPathIndex")
@@ -293,6 +389,9 @@ class Federatedupgrade(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failure_device: Optional[pulumi.Input[str]] = None,
                  failure_reason: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ha_reboot_controller: Optional[pulumi.Input[str]] = None,
+                 known_ha_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedupgradeKnownHaMemberArgs']]]]] = None,
                  next_path_index: Optional[pulumi.Input[int]] = None,
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedupgradeNodeListArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -324,7 +423,10 @@ class Federatedupgrade(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] failure_device: Serial number of the node to include.
-        :param pulumi.Input[str] failure_reason: Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        :param pulumi.Input[str] failure_reason: Reason for upgrade failure.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] ha_reboot_controller: Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedupgradeKnownHaMemberArgs']]]] known_ha_members: Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `known_ha_members` block is documented below.
         :param pulumi.Input[int] next_path_index: The index of the next image to upgrade to.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedupgradeNodeListArgs']]]] node_lists: Nodes which will be included in the upgrade. The structure of `node_list` block is documented below.
         :param pulumi.Input[str] status: Current status of the upgrade.
@@ -376,6 +478,9 @@ class Federatedupgrade(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failure_device: Optional[pulumi.Input[str]] = None,
                  failure_reason: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ha_reboot_controller: Optional[pulumi.Input[str]] = None,
+                 known_ha_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedupgradeKnownHaMemberArgs']]]]] = None,
                  next_path_index: Optional[pulumi.Input[int]] = None,
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedupgradeNodeListArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -393,6 +498,9 @@ class Federatedupgrade(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["failure_device"] = failure_device
             __props__.__dict__["failure_reason"] = failure_reason
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["ha_reboot_controller"] = ha_reboot_controller
+            __props__.__dict__["known_ha_members"] = known_ha_members
             __props__.__dict__["next_path_index"] = next_path_index
             __props__.__dict__["node_lists"] = node_lists
             __props__.__dict__["status"] = status
@@ -411,6 +519,9 @@ class Federatedupgrade(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             failure_device: Optional[pulumi.Input[str]] = None,
             failure_reason: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            ha_reboot_controller: Optional[pulumi.Input[str]] = None,
+            known_ha_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedupgradeKnownHaMemberArgs']]]]] = None,
             next_path_index: Optional[pulumi.Input[int]] = None,
             node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedupgradeNodeListArgs']]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -425,7 +536,10 @@ class Federatedupgrade(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] failure_device: Serial number of the node to include.
-        :param pulumi.Input[str] failure_reason: Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        :param pulumi.Input[str] failure_reason: Reason for upgrade failure.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] ha_reboot_controller: Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedupgradeKnownHaMemberArgs']]]] known_ha_members: Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `known_ha_members` block is documented below.
         :param pulumi.Input[int] next_path_index: The index of the next image to upgrade to.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedupgradeNodeListArgs']]]] node_lists: Nodes which will be included in the upgrade. The structure of `node_list` block is documented below.
         :param pulumi.Input[str] status: Current status of the upgrade.
@@ -439,6 +553,9 @@ class Federatedupgrade(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["failure_device"] = failure_device
         __props__.__dict__["failure_reason"] = failure_reason
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["ha_reboot_controller"] = ha_reboot_controller
+        __props__.__dict__["known_ha_members"] = known_ha_members
         __props__.__dict__["next_path_index"] = next_path_index
         __props__.__dict__["node_lists"] = node_lists
         __props__.__dict__["status"] = status
@@ -466,9 +583,33 @@ class Federatedupgrade(pulumi.CustomResource):
     @pulumi.getter(name="failureReason")
     def failure_reason(self) -> pulumi.Output[str]:
         """
-        Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        Reason for upgrade failure.
         """
         return pulumi.get(self, "failure_reason")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="haRebootController")
+    def ha_reboot_controller(self) -> pulumi.Output[str]:
+        """
+        Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+        """
+        return pulumi.get(self, "ha_reboot_controller")
+
+    @property
+    @pulumi.getter(name="knownHaMembers")
+    def known_ha_members(self) -> pulumi.Output[Optional[Sequence['outputs.FederatedupgradeKnownHaMember']]]:
+        """
+        Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `known_ha_members` block is documented below.
+        """
+        return pulumi.get(self, "known_ha_members")
 
     @property
     @pulumi.getter(name="nextPathIndex")

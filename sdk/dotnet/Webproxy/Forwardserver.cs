@@ -60,7 +60,7 @@ namespace Pulumiverse.Fortios.Webproxy
     public partial class Forwardserver : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+        /// Address type of the forwarding proxy server: IP or FQDN.
         /// </summary>
         [Output("addrType")]
         public Output<string> AddrType { get; private set; } = null!;
@@ -88,6 +88,18 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Output("ip")]
         public Output<string> Ip { get; private set; } = null!;
+
+        /// <summary>
+        /// Forward proxy server IPv6 address.
+        /// </summary>
+        [Output("ipv6")]
+        public Output<string> Ipv6 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("masquerade")]
+        public Output<string> Masquerade { get; private set; } = null!;
 
         /// <summary>
         /// URL for forward server health check monitoring (default = http://www.google.com).
@@ -183,7 +195,7 @@ namespace Pulumiverse.Fortios.Webproxy
     public sealed class ForwardserverArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+        /// Address type of the forwarding proxy server: IP or FQDN.
         /// </summary>
         [Input("addrType")]
         public Input<string>? AddrType { get; set; }
@@ -211,6 +223,18 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
+
+        /// <summary>
+        /// Forward proxy server IPv6 address.
+        /// </summary>
+        [Input("ipv6")]
+        public Input<string>? Ipv6 { get; set; }
+
+        /// <summary>
+        /// Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("masquerade")]
+        public Input<string>? Masquerade { get; set; }
 
         /// <summary>
         /// URL for forward server health check monitoring (default = http://www.google.com).
@@ -273,7 +297,7 @@ namespace Pulumiverse.Fortios.Webproxy
     public sealed class ForwardserverState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+        /// Address type of the forwarding proxy server: IP or FQDN.
         /// </summary>
         [Input("addrType")]
         public Input<string>? AddrType { get; set; }
@@ -301,6 +325,18 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
+
+        /// <summary>
+        /// Forward proxy server IPv6 address.
+        /// </summary>
+        [Input("ipv6")]
+        public Input<string>? Ipv6 { get; set; }
+
+        /// <summary>
+        /// Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("masquerade")]
+        public Input<string>? Masquerade { get; set; }
 
         /// <summary>
         /// URL for forward server health check monitoring (default = http://www.google.com).

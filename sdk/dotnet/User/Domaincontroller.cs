@@ -108,6 +108,18 @@ namespace Pulumiverse.Fortios.User
         public Output<int> AdldsPort { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("changeDetection")]
+        public Output<string> ChangeDetection { get; private set; } = null!;
+
+        /// <summary>
+        /// Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+        /// </summary>
+        [Output("changeDetectionPeriod")]
+        public Output<int> ChangeDetectionPeriod { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("dnsSrvLookup")]
@@ -130,6 +142,12 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Output("extraServers")]
         public Output<ImmutableArray<Outputs.DomaincontrollerExtraServer>> ExtraServers { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Hostname of the server to connect to.
@@ -299,6 +317,18 @@ namespace Pulumiverse.Fortios.User
         public Input<int>? AdldsPort { get; set; }
 
         /// <summary>
+        /// Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("changeDetection")]
+        public Input<string>? ChangeDetection { get; set; }
+
+        /// <summary>
+        /// Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+        /// </summary>
+        [Input("changeDetectionPeriod")]
+        public Input<int>? ChangeDetectionPeriod { get; set; }
+
+        /// <summary>
         /// Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("dnsSrvLookup")]
@@ -327,6 +357,12 @@ namespace Pulumiverse.Fortios.User
             get => _extraServers ?? (_extraServers = new InputList<Inputs.DomaincontrollerExtraServerArgs>());
             set => _extraServers = value;
         }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Hostname of the server to connect to.
@@ -457,6 +493,18 @@ namespace Pulumiverse.Fortios.User
         public Input<int>? AdldsPort { get; set; }
 
         /// <summary>
+        /// Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("changeDetection")]
+        public Input<string>? ChangeDetection { get; set; }
+
+        /// <summary>
+        /// Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+        /// </summary>
+        [Input("changeDetectionPeriod")]
+        public Input<int>? ChangeDetectionPeriod { get; set; }
+
+        /// <summary>
         /// Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("dnsSrvLookup")]
@@ -485,6 +533,12 @@ namespace Pulumiverse.Fortios.User
             get => _extraServers ?? (_extraServers = new InputList<Inputs.DomaincontrollerExtraServerGetArgs>());
             set => _extraServers = value;
         }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Hostname of the server to connect to.

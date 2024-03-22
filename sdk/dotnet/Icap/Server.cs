@@ -101,7 +101,7 @@ namespace Pulumiverse.Fortios.Icap
         public Output<string> IpVersion { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum number of concurrent connections to ICAP server.
+        /// Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
         /// </summary>
         [Output("maxConnections")]
         public Output<int> MaxConnections { get; private set; } = null!;
@@ -226,7 +226,7 @@ namespace Pulumiverse.Fortios.Icap
         public Input<string>? IpVersion { get; set; }
 
         /// <summary>
-        /// Maximum number of concurrent connections to ICAP server.
+        /// Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
         /// </summary>
         [Input("maxConnections")]
         public Input<int>? MaxConnections { get; set; }
@@ -312,7 +312,7 @@ namespace Pulumiverse.Fortios.Icap
         public Input<string>? IpVersion { get; set; }
 
         /// <summary>
-        /// Maximum number of concurrent connections to ICAP server.
+        /// Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
         /// </summary>
         [Input("maxConnections")]
         public Input<int>? MaxConnections { get; set; }

@@ -33,8 +33,12 @@ import (
 type Fortilinksettings struct {
 	pulumi.CustomResourceState
 
+	// Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+	AccessVlanMode pulumi.StringOutput `pulumi:"accessVlanMode"`
 	// FortiLink interface to which this fortilink-setting belongs.
 	Fortilink pulumi.StringOutput `pulumi:"fortilink"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer pulumi.IntOutput `pulumi:"inactiveTimer"`
 	// Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
@@ -77,8 +81,12 @@ func GetFortilinksettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Fortilinksettings resources.
 type fortilinksettingsState struct {
+	// Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+	AccessVlanMode *string `pulumi:"accessVlanMode"`
 	// FortiLink interface to which this fortilink-setting belongs.
 	Fortilink *string `pulumi:"fortilink"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer *int `pulumi:"inactiveTimer"`
 	// Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
@@ -92,8 +100,12 @@ type fortilinksettingsState struct {
 }
 
 type FortilinksettingsState struct {
+	// Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+	AccessVlanMode pulumi.StringPtrInput
 	// FortiLink interface to which this fortilink-setting belongs.
 	Fortilink pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer pulumi.IntPtrInput
 	// Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
@@ -111,8 +123,12 @@ func (FortilinksettingsState) ElementType() reflect.Type {
 }
 
 type fortilinksettingsArgs struct {
+	// Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+	AccessVlanMode *string `pulumi:"accessVlanMode"`
 	// FortiLink interface to which this fortilink-setting belongs.
 	Fortilink *string `pulumi:"fortilink"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer *int `pulumi:"inactiveTimer"`
 	// Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
@@ -127,8 +143,12 @@ type fortilinksettingsArgs struct {
 
 // The set of arguments for constructing a Fortilinksettings resource.
 type FortilinksettingsArgs struct {
+	// Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+	AccessVlanMode pulumi.StringPtrInput
 	// FortiLink interface to which this fortilink-setting belongs.
 	Fortilink pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer pulumi.IntPtrInput
 	// Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
@@ -228,9 +248,19 @@ func (o FortilinksettingsOutput) ToFortilinksettingsOutputWithContext(ctx contex
 	return o
 }
 
+// Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+func (o FortilinksettingsOutput) AccessVlanMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fortilinksettings) pulumi.StringOutput { return v.AccessVlanMode }).(pulumi.StringOutput)
+}
+
 // FortiLink interface to which this fortilink-setting belongs.
 func (o FortilinksettingsOutput) Fortilink() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortilinksettings) pulumi.StringOutput { return v.Fortilink }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o FortilinksettingsOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Fortilinksettings) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).

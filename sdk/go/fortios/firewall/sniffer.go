@@ -87,6 +87,10 @@ type Sniffer struct {
 	AvProfile pulumi.StringOutput `pulumi:"avProfile"`
 	// Enable/disable antivirus profile. Valid values: `enable`, `disable`.
 	AvProfileStatus pulumi.StringOutput `pulumi:"avProfileStatus"`
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringOutput `pulumi:"casbProfile"`
+	// Enable/disable CASB profile. Valid values: `enable`, `disable`.
+	CasbProfileStatus pulumi.StringOutput `pulumi:"casbProfileStatus"`
 	// Name of an existing DLP profile.
 	DlpProfile pulumi.StringOutput `pulumi:"dlpProfile"`
 	// Enable/disable DLP profile. Valid values: `enable`, `disable`.
@@ -109,6 +113,8 @@ type Sniffer struct {
 	FileFilterProfileStatus pulumi.StringOutput `pulumi:"fileFilterProfileStatus"`
 	// Sniffer ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
 	Host pulumi.StringOutput `pulumi:"host"`
 	// Interface name that traffic sniffing will take place on.
@@ -127,7 +133,7 @@ type Sniffer struct {
 	Ipv6 pulumi.StringOutput `pulumi:"ipv6"`
 	// Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
 	Logtraffic pulumi.StringOutput `pulumi:"logtraffic"`
-	// Maximum packet count (1 - 1000000, default = 10000).
+	// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
 	MaxPacketCount pulumi.IntOutput `pulumi:"maxPacketCount"`
 	// Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
 	NonIp pulumi.StringOutput `pulumi:"nonIp"`
@@ -143,6 +149,8 @@ type Sniffer struct {
 	SpamfilterProfileStatus pulumi.StringOutput `pulumi:"spamfilterProfileStatus"`
 	// Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// List of VLANs to sniff.
@@ -196,6 +204,10 @@ type snifferState struct {
 	AvProfile *string `pulumi:"avProfile"`
 	// Enable/disable antivirus profile. Valid values: `enable`, `disable`.
 	AvProfileStatus *string `pulumi:"avProfileStatus"`
+	// Name of an existing CASB profile.
+	CasbProfile *string `pulumi:"casbProfile"`
+	// Enable/disable CASB profile. Valid values: `enable`, `disable`.
+	CasbProfileStatus *string `pulumi:"casbProfileStatus"`
 	// Name of an existing DLP profile.
 	DlpProfile *string `pulumi:"dlpProfile"`
 	// Enable/disable DLP profile. Valid values: `enable`, `disable`.
@@ -218,6 +230,8 @@ type snifferState struct {
 	FileFilterProfileStatus *string `pulumi:"fileFilterProfileStatus"`
 	// Sniffer ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
 	Host *string `pulumi:"host"`
 	// Interface name that traffic sniffing will take place on.
@@ -236,7 +250,7 @@ type snifferState struct {
 	Ipv6 *string `pulumi:"ipv6"`
 	// Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
 	Logtraffic *string `pulumi:"logtraffic"`
-	// Maximum packet count (1 - 1000000, default = 10000).
+	// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
 	MaxPacketCount *int `pulumi:"maxPacketCount"`
 	// Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
 	NonIp *string `pulumi:"nonIp"`
@@ -252,6 +266,8 @@ type snifferState struct {
 	SpamfilterProfileStatus *string `pulumi:"spamfilterProfileStatus"`
 	// Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// List of VLANs to sniff.
@@ -273,6 +289,10 @@ type SnifferState struct {
 	AvProfile pulumi.StringPtrInput
 	// Enable/disable antivirus profile. Valid values: `enable`, `disable`.
 	AvProfileStatus pulumi.StringPtrInput
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringPtrInput
+	// Enable/disable CASB profile. Valid values: `enable`, `disable`.
+	CasbProfileStatus pulumi.StringPtrInput
 	// Name of an existing DLP profile.
 	DlpProfile pulumi.StringPtrInput
 	// Enable/disable DLP profile. Valid values: `enable`, `disable`.
@@ -295,6 +315,8 @@ type SnifferState struct {
 	FileFilterProfileStatus pulumi.StringPtrInput
 	// Sniffer ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
 	Host pulumi.StringPtrInput
 	// Interface name that traffic sniffing will take place on.
@@ -313,7 +335,7 @@ type SnifferState struct {
 	Ipv6 pulumi.StringPtrInput
 	// Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
 	Logtraffic pulumi.StringPtrInput
-	// Maximum packet count (1 - 1000000, default = 10000).
+	// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
 	MaxPacketCount pulumi.IntPtrInput
 	// Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
 	NonIp pulumi.StringPtrInput
@@ -329,6 +351,8 @@ type SnifferState struct {
 	SpamfilterProfileStatus pulumi.StringPtrInput
 	// Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// List of VLANs to sniff.
@@ -354,6 +378,10 @@ type snifferArgs struct {
 	AvProfile *string `pulumi:"avProfile"`
 	// Enable/disable antivirus profile. Valid values: `enable`, `disable`.
 	AvProfileStatus *string `pulumi:"avProfileStatus"`
+	// Name of an existing CASB profile.
+	CasbProfile *string `pulumi:"casbProfile"`
+	// Enable/disable CASB profile. Valid values: `enable`, `disable`.
+	CasbProfileStatus *string `pulumi:"casbProfileStatus"`
 	// Name of an existing DLP profile.
 	DlpProfile *string `pulumi:"dlpProfile"`
 	// Enable/disable DLP profile. Valid values: `enable`, `disable`.
@@ -376,6 +404,8 @@ type snifferArgs struct {
 	FileFilterProfileStatus *string `pulumi:"fileFilterProfileStatus"`
 	// Sniffer ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
 	Host *string `pulumi:"host"`
 	// Interface name that traffic sniffing will take place on.
@@ -394,7 +424,7 @@ type snifferArgs struct {
 	Ipv6 *string `pulumi:"ipv6"`
 	// Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
 	Logtraffic *string `pulumi:"logtraffic"`
-	// Maximum packet count (1 - 1000000, default = 10000).
+	// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
 	MaxPacketCount *int `pulumi:"maxPacketCount"`
 	// Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
 	NonIp *string `pulumi:"nonIp"`
@@ -410,6 +440,8 @@ type snifferArgs struct {
 	SpamfilterProfileStatus *string `pulumi:"spamfilterProfileStatus"`
 	// Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// List of VLANs to sniff.
@@ -432,6 +464,10 @@ type SnifferArgs struct {
 	AvProfile pulumi.StringPtrInput
 	// Enable/disable antivirus profile. Valid values: `enable`, `disable`.
 	AvProfileStatus pulumi.StringPtrInput
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringPtrInput
+	// Enable/disable CASB profile. Valid values: `enable`, `disable`.
+	CasbProfileStatus pulumi.StringPtrInput
 	// Name of an existing DLP profile.
 	DlpProfile pulumi.StringPtrInput
 	// Enable/disable DLP profile. Valid values: `enable`, `disable`.
@@ -454,6 +490,8 @@ type SnifferArgs struct {
 	FileFilterProfileStatus pulumi.StringPtrInput
 	// Sniffer ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
 	Host pulumi.StringPtrInput
 	// Interface name that traffic sniffing will take place on.
@@ -472,7 +510,7 @@ type SnifferArgs struct {
 	Ipv6 pulumi.StringPtrInput
 	// Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
 	Logtraffic pulumi.StringPtrInput
-	// Maximum packet count (1 - 1000000, default = 10000).
+	// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
 	MaxPacketCount pulumi.IntPtrInput
 	// Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
 	NonIp pulumi.StringPtrInput
@@ -488,6 +526,8 @@ type SnifferArgs struct {
 	SpamfilterProfileStatus pulumi.StringPtrInput
 	// Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// List of VLANs to sniff.
@@ -610,6 +650,16 @@ func (o SnifferOutput) AvProfileStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sniffer) pulumi.StringOutput { return v.AvProfileStatus }).(pulumi.StringOutput)
 }
 
+// Name of an existing CASB profile.
+func (o SnifferOutput) CasbProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sniffer) pulumi.StringOutput { return v.CasbProfile }).(pulumi.StringOutput)
+}
+
+// Enable/disable CASB profile. Valid values: `enable`, `disable`.
+func (o SnifferOutput) CasbProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sniffer) pulumi.StringOutput { return v.CasbProfileStatus }).(pulumi.StringOutput)
+}
+
 // Name of an existing DLP profile.
 func (o SnifferOutput) DlpProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sniffer) pulumi.StringOutput { return v.DlpProfile }).(pulumi.StringOutput)
@@ -665,6 +715,11 @@ func (o SnifferOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Sniffer) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SnifferOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Sniffer) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
 func (o SnifferOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sniffer) pulumi.StringOutput { return v.Host }).(pulumi.StringOutput)
@@ -710,7 +765,7 @@ func (o SnifferOutput) Logtraffic() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sniffer) pulumi.StringOutput { return v.Logtraffic }).(pulumi.StringOutput)
 }
 
-// Maximum packet count (1 - 1000000, default = 10000).
+// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
 func (o SnifferOutput) MaxPacketCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *Sniffer) pulumi.IntOutput { return v.MaxPacketCount }).(pulumi.IntOutput)
 }
@@ -748,6 +803,11 @@ func (o SnifferOutput) SpamfilterProfileStatus() pulumi.StringOutput {
 // Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
 func (o SnifferOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sniffer) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+func (o SnifferOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sniffer) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

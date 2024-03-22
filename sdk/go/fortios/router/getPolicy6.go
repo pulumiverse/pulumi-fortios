@@ -44,6 +44,8 @@ type LookupPolicy6Result struct {
 	Dstaddrs []GetPolicy6Dstaddr `pulumi:"dstaddrs"`
 	// End destination port number (1 - 65535).
 	EndPort int `pulumi:"endPort"`
+	// End source port number (1 - 65535).
+	EndSourcePort int `pulumi:"endSourcePort"`
 	// IPv6 address of the gateway.
 	Gateway string `pulumi:"gateway"`
 	// The provider-assigned unique ID for this managed resource.
@@ -70,6 +72,8 @@ type LookupPolicy6Result struct {
 	Srcaddrs []GetPolicy6Srcaddr `pulumi:"srcaddrs"`
 	// Start destination port number (1 - 65535).
 	StartPort int `pulumi:"startPort"`
+	// Start source port number (1 - 65535).
+	StartSourcePort int `pulumi:"startSourcePort"`
 	// Enable/disable this policy route.
 	Status string `pulumi:"status"`
 	// Type of service bit pattern.
@@ -149,6 +153,11 @@ func (o LookupPolicy6ResultOutput) EndPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupPolicy6Result) int { return v.EndPort }).(pulumi.IntOutput)
 }
 
+// End source port number (1 - 65535).
+func (o LookupPolicy6ResultOutput) EndSourcePort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupPolicy6Result) int { return v.EndSourcePort }).(pulumi.IntOutput)
+}
+
 // IPv6 address of the gateway.
 func (o LookupPolicy6ResultOutput) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicy6Result) string { return v.Gateway }).(pulumi.StringOutput)
@@ -212,6 +221,11 @@ func (o LookupPolicy6ResultOutput) Srcaddrs() GetPolicy6SrcaddrArrayOutput {
 // Start destination port number (1 - 65535).
 func (o LookupPolicy6ResultOutput) StartPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupPolicy6Result) int { return v.StartPort }).(pulumi.IntOutput)
+}
+
+// Start source port number (1 - 65535).
+func (o LookupPolicy6ResultOutput) StartSourcePort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupPolicy6Result) int { return v.StartSourcePort }).(pulumi.IntOutput)
 }
 
 // Enable/disable this policy route.

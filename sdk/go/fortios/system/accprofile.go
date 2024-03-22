@@ -115,6 +115,16 @@ type Accprofile struct {
 	AdmintimeoutOverride pulumi.StringOutput `pulumi:"admintimeoutOverride"`
 	// Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
 	Authgrp pulumi.StringOutput `pulumi:"authgrp"`
+	// Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+	CliConfig pulumi.StringOutput `pulumi:"cliConfig"`
+	// Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+	CliDiagnose pulumi.StringOutput `pulumi:"cliDiagnose"`
+	// Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+	CliExec pulumi.StringOutput `pulumi:"cliExec"`
+	// Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+	CliGet pulumi.StringOutput `pulumi:"cliGet"`
+	// Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+	CliShow pulumi.StringOutput `pulumi:"cliShow"`
 	// Comment.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
 	// FortiView. Valid values: `none`, `read`, `read-write`.
@@ -123,6 +133,8 @@ type Accprofile struct {
 	Fwgrp pulumi.StringOutput `pulumi:"fwgrp"`
 	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
 	FwgrpPermission AccprofileFwgrpPermissionOutput `pulumi:"fwgrpPermission"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
 	Loggrp pulumi.StringOutput `pulumi:"loggrp"`
 	// Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
@@ -197,6 +209,16 @@ type accprofileState struct {
 	AdmintimeoutOverride *string `pulumi:"admintimeoutOverride"`
 	// Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
 	Authgrp *string `pulumi:"authgrp"`
+	// Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+	CliConfig *string `pulumi:"cliConfig"`
+	// Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+	CliDiagnose *string `pulumi:"cliDiagnose"`
+	// Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+	CliExec *string `pulumi:"cliExec"`
+	// Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+	CliGet *string `pulumi:"cliGet"`
+	// Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+	CliShow *string `pulumi:"cliShow"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
 	// FortiView. Valid values: `none`, `read`, `read-write`.
@@ -205,6 +227,8 @@ type accprofileState struct {
 	Fwgrp *string `pulumi:"fwgrp"`
 	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
 	FwgrpPermission *AccprofileFwgrpPermission `pulumi:"fwgrpPermission"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
 	Loggrp *string `pulumi:"loggrp"`
 	// Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
@@ -250,6 +274,16 @@ type AccprofileState struct {
 	AdmintimeoutOverride pulumi.StringPtrInput
 	// Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
 	Authgrp pulumi.StringPtrInput
+	// Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+	CliConfig pulumi.StringPtrInput
+	// Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+	CliDiagnose pulumi.StringPtrInput
+	// Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+	CliExec pulumi.StringPtrInput
+	// Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+	CliGet pulumi.StringPtrInput
+	// Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+	CliShow pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
 	// FortiView. Valid values: `none`, `read`, `read-write`.
@@ -258,6 +292,8 @@ type AccprofileState struct {
 	Fwgrp pulumi.StringPtrInput
 	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
 	FwgrpPermission AccprofileFwgrpPermissionPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
 	Loggrp pulumi.StringPtrInput
 	// Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
@@ -307,6 +343,16 @@ type accprofileArgs struct {
 	AdmintimeoutOverride *string `pulumi:"admintimeoutOverride"`
 	// Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
 	Authgrp *string `pulumi:"authgrp"`
+	// Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+	CliConfig *string `pulumi:"cliConfig"`
+	// Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+	CliDiagnose *string `pulumi:"cliDiagnose"`
+	// Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+	CliExec *string `pulumi:"cliExec"`
+	// Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+	CliGet *string `pulumi:"cliGet"`
+	// Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+	CliShow *string `pulumi:"cliShow"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
 	// FortiView. Valid values: `none`, `read`, `read-write`.
@@ -315,6 +361,8 @@ type accprofileArgs struct {
 	Fwgrp *string `pulumi:"fwgrp"`
 	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
 	FwgrpPermission *AccprofileFwgrpPermission `pulumi:"fwgrpPermission"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
 	Loggrp *string `pulumi:"loggrp"`
 	// Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
@@ -361,6 +409,16 @@ type AccprofileArgs struct {
 	AdmintimeoutOverride pulumi.StringPtrInput
 	// Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
 	Authgrp pulumi.StringPtrInput
+	// Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+	CliConfig pulumi.StringPtrInput
+	// Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+	CliDiagnose pulumi.StringPtrInput
+	// Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+	CliExec pulumi.StringPtrInput
+	// Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+	CliGet pulumi.StringPtrInput
+	// Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+	CliShow pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
 	// FortiView. Valid values: `none`, `read`, `read-write`.
@@ -369,6 +427,8 @@ type AccprofileArgs struct {
 	Fwgrp pulumi.StringPtrInput
 	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
 	FwgrpPermission AccprofileFwgrpPermissionPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
 	Loggrp pulumi.StringPtrInput
 	// Custom Log & Report permission. The structure of `loggrpPermission` block is documented below.
@@ -509,6 +569,31 @@ func (o AccprofileOutput) Authgrp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Accprofile) pulumi.StringOutput { return v.Authgrp }).(pulumi.StringOutput)
 }
 
+// Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+func (o AccprofileOutput) CliConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v *Accprofile) pulumi.StringOutput { return v.CliConfig }).(pulumi.StringOutput)
+}
+
+// Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+func (o AccprofileOutput) CliDiagnose() pulumi.StringOutput {
+	return o.ApplyT(func(v *Accprofile) pulumi.StringOutput { return v.CliDiagnose }).(pulumi.StringOutput)
+}
+
+// Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+func (o AccprofileOutput) CliExec() pulumi.StringOutput {
+	return o.ApplyT(func(v *Accprofile) pulumi.StringOutput { return v.CliExec }).(pulumi.StringOutput)
+}
+
+// Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+func (o AccprofileOutput) CliGet() pulumi.StringOutput {
+	return o.ApplyT(func(v *Accprofile) pulumi.StringOutput { return v.CliGet }).(pulumi.StringOutput)
+}
+
+// Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+func (o AccprofileOutput) CliShow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Accprofile) pulumi.StringOutput { return v.CliShow }).(pulumi.StringOutput)
+}
+
 // Comment.
 func (o AccprofileOutput) Comments() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Accprofile) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
@@ -527,6 +612,11 @@ func (o AccprofileOutput) Fwgrp() pulumi.StringOutput {
 // Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
 func (o AccprofileOutput) FwgrpPermission() AccprofileFwgrpPermissionOutput {
 	return o.ApplyT(func(v *Accprofile) AccprofileFwgrpPermissionOutput { return v.FwgrpPermission }).(AccprofileFwgrpPermissionOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o AccprofileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Accprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.

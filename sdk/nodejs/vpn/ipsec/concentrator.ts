@@ -75,6 +75,10 @@ export class Concentrator extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
      */
     public readonly members!: pulumi.Output<outputs.vpn.ipsec.ConcentratorMember[] | undefined>;
@@ -106,6 +110,7 @@ export class Concentrator extends pulumi.CustomResource {
             const state = argsOrState as ConcentratorState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["srcCheck"] = state ? state.srcCheck : undefined;
@@ -114,6 +119,7 @@ export class Concentrator extends pulumi.CustomResource {
             const args = argsOrState as ConcentratorArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["srcCheck"] = args ? args.srcCheck : undefined;
@@ -136,6 +142,10 @@ export interface ConcentratorState {
      * Concentrator ID. (1-65535)
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
      */
@@ -166,6 +176,10 @@ export interface ConcentratorArgs {
      * Concentrator ID. (1-65535)
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
      */

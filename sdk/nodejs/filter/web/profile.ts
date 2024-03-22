@@ -165,6 +165,10 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly ftgdWf!: pulumi.Output<outputs.filter.web.ProfileFtgdWf>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
      */
     public readonly httpsReplacemsg!: pulumi.Output<string>;
@@ -261,6 +265,10 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly webFilterVbsLog!: pulumi.Output<string>;
     /**
+     * Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+     */
+    public readonly webFlowLogEncoding!: pulumi.Output<string>;
+    /**
      * Enable/disable logging rating errors. Valid values: `enable`, `disable`.
      */
     public readonly webFtgdErrLog!: pulumi.Output<string>;
@@ -317,6 +325,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
             resourceInputs["fileFilter"] = state ? state.fileFilter : undefined;
             resourceInputs["ftgdWf"] = state ? state.ftgdWf : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["httpsReplacemsg"] = state ? state.httpsReplacemsg : undefined;
             resourceInputs["inspectionMode"] = state ? state.inspectionMode : undefined;
             resourceInputs["logAllUrl"] = state ? state.logAllUrl : undefined;
@@ -341,6 +350,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["webFilterRefererLog"] = state ? state.webFilterRefererLog : undefined;
             resourceInputs["webFilterUnknownLog"] = state ? state.webFilterUnknownLog : undefined;
             resourceInputs["webFilterVbsLog"] = state ? state.webFilterVbsLog : undefined;
+            resourceInputs["webFlowLogEncoding"] = state ? state.webFlowLogEncoding : undefined;
             resourceInputs["webFtgdErrLog"] = state ? state.webFtgdErrLog : undefined;
             resourceInputs["webFtgdQuotaUsage"] = state ? state.webFtgdQuotaUsage : undefined;
             resourceInputs["webInvalidDomainLog"] = state ? state.webInvalidDomainLog : undefined;
@@ -359,6 +369,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
             resourceInputs["fileFilter"] = args ? args.fileFilter : undefined;
             resourceInputs["ftgdWf"] = args ? args.ftgdWf : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["httpsReplacemsg"] = args ? args.httpsReplacemsg : undefined;
             resourceInputs["inspectionMode"] = args ? args.inspectionMode : undefined;
             resourceInputs["logAllUrl"] = args ? args.logAllUrl : undefined;
@@ -383,6 +394,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["webFilterRefererLog"] = args ? args.webFilterRefererLog : undefined;
             resourceInputs["webFilterUnknownLog"] = args ? args.webFilterUnknownLog : undefined;
             resourceInputs["webFilterVbsLog"] = args ? args.webFilterVbsLog : undefined;
+            resourceInputs["webFlowLogEncoding"] = args ? args.webFlowLogEncoding : undefined;
             resourceInputs["webFtgdErrLog"] = args ? args.webFtgdErrLog : undefined;
             resourceInputs["webFtgdQuotaUsage"] = args ? args.webFtgdQuotaUsage : undefined;
             resourceInputs["webInvalidDomainLog"] = args ? args.webInvalidDomainLog : undefined;
@@ -430,6 +442,10 @@ export interface ProfileState {
      * FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
      */
     ftgdWf?: pulumi.Input<inputs.filter.web.ProfileFtgdWf>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
      */
@@ -526,6 +542,10 @@ export interface ProfileState {
      * Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
      */
     webFilterVbsLog?: pulumi.Input<string>;
+    /**
+     * Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+     */
+    webFlowLogEncoding?: pulumi.Input<string>;
     /**
      * Enable/disable logging rating errors. Valid values: `enable`, `disable`.
      */
@@ -597,6 +617,10 @@ export interface ProfileArgs {
      */
     ftgdWf?: pulumi.Input<inputs.filter.web.ProfileFtgdWf>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
      */
     httpsReplacemsg?: pulumi.Input<string>;
@@ -692,6 +716,10 @@ export interface ProfileArgs {
      * Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
      */
     webFilterVbsLog?: pulumi.Input<string>;
+    /**
+     * Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+     */
+    webFlowLogEncoding?: pulumi.Input<string>;
     /**
      * Enable/disable logging rating errors. Valid values: `enable`, `disable`.
      */

@@ -57,6 +57,10 @@ type Widsprofile struct {
 	ApFgscanReportIntv pulumi.IntOutput `pulumi:"apFgscanReportIntv"`
 	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
 	ApScan pulumi.StringOutput `pulumi:"apScan"`
+	// Selected ap scan channel list for 2.4G and 5G bands. The structure of `apScanChannelList2g5g` block is documented below.
+	ApScanChannelList2g5gs WidsprofileApScanChannelList2g5gArrayOutput `pulumi:"apScanChannelList2g5gs"`
+	// Selected ap scan channel list for 6G band. The structure of `apScanChannelList6g` block is documented below.
+	ApScanChannelList6gs WidsprofileApScanChannelList6gArrayOutput `pulumi:"apScanChannelList6gs"`
 	// Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
 	ApScanPassive pulumi.StringOutput `pulumi:"apScanPassive"`
 	// Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
@@ -119,6 +123,8 @@ type Widsprofile struct {
 	EapolSuccIntv pulumi.IntOutput `pulumi:"eapolSuccIntv"`
 	// The threshold value for EAPOL-Success flooding in specified interval.
 	EapolSuccThresh pulumi.IntOutput `pulumi:"eapolSuccThresh"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
 	InvalidMacOui pulumi.StringOutput `pulumi:"invalidMacOui"`
 	// Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
@@ -134,6 +140,8 @@ type Widsprofile struct {
 	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
 	SpoofedDeauth pulumi.StringOutput `pulumi:"spoofedDeauth"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	//
+	// The `apScanChannelList2g5g` block supports:
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
 	WeakWepIv pulumi.StringOutput `pulumi:"weakWepIv"`
@@ -195,6 +203,10 @@ type widsprofileState struct {
 	ApFgscanReportIntv *int `pulumi:"apFgscanReportIntv"`
 	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
 	ApScan *string `pulumi:"apScan"`
+	// Selected ap scan channel list for 2.4G and 5G bands. The structure of `apScanChannelList2g5g` block is documented below.
+	ApScanChannelList2g5gs []WidsprofileApScanChannelList2g5g `pulumi:"apScanChannelList2g5gs"`
+	// Selected ap scan channel list for 6G band. The structure of `apScanChannelList6g` block is documented below.
+	ApScanChannelList6gs []WidsprofileApScanChannelList6g `pulumi:"apScanChannelList6gs"`
 	// Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
 	ApScanPassive *string `pulumi:"apScanPassive"`
 	// Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
@@ -257,6 +269,8 @@ type widsprofileState struct {
 	EapolSuccIntv *int `pulumi:"eapolSuccIntv"`
 	// The threshold value for EAPOL-Success flooding in specified interval.
 	EapolSuccThresh *int `pulumi:"eapolSuccThresh"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
 	InvalidMacOui *string `pulumi:"invalidMacOui"`
 	// Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
@@ -272,6 +286,8 @@ type widsprofileState struct {
 	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
 	SpoofedDeauth *string `pulumi:"spoofedDeauth"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	//
+	// The `apScanChannelList2g5g` block supports:
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
 	WeakWepIv *string `pulumi:"weakWepIv"`
@@ -304,6 +320,10 @@ type WidsprofileState struct {
 	ApFgscanReportIntv pulumi.IntPtrInput
 	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
 	ApScan pulumi.StringPtrInput
+	// Selected ap scan channel list for 2.4G and 5G bands. The structure of `apScanChannelList2g5g` block is documented below.
+	ApScanChannelList2g5gs WidsprofileApScanChannelList2g5gArrayInput
+	// Selected ap scan channel list for 6G band. The structure of `apScanChannelList6g` block is documented below.
+	ApScanChannelList6gs WidsprofileApScanChannelList6gArrayInput
 	// Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
 	ApScanPassive pulumi.StringPtrInput
 	// Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
@@ -366,6 +386,8 @@ type WidsprofileState struct {
 	EapolSuccIntv pulumi.IntPtrInput
 	// The threshold value for EAPOL-Success flooding in specified interval.
 	EapolSuccThresh pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
 	InvalidMacOui pulumi.StringPtrInput
 	// Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
@@ -381,6 +403,8 @@ type WidsprofileState struct {
 	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
 	SpoofedDeauth pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	//
+	// The `apScanChannelList2g5g` block supports:
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
 	WeakWepIv pulumi.StringPtrInput
@@ -417,6 +441,10 @@ type widsprofileArgs struct {
 	ApFgscanReportIntv *int `pulumi:"apFgscanReportIntv"`
 	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
 	ApScan *string `pulumi:"apScan"`
+	// Selected ap scan channel list for 2.4G and 5G bands. The structure of `apScanChannelList2g5g` block is documented below.
+	ApScanChannelList2g5gs []WidsprofileApScanChannelList2g5g `pulumi:"apScanChannelList2g5gs"`
+	// Selected ap scan channel list for 6G band. The structure of `apScanChannelList6g` block is documented below.
+	ApScanChannelList6gs []WidsprofileApScanChannelList6g `pulumi:"apScanChannelList6gs"`
 	// Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
 	ApScanPassive *string `pulumi:"apScanPassive"`
 	// Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
@@ -479,6 +507,8 @@ type widsprofileArgs struct {
 	EapolSuccIntv *int `pulumi:"eapolSuccIntv"`
 	// The threshold value for EAPOL-Success flooding in specified interval.
 	EapolSuccThresh *int `pulumi:"eapolSuccThresh"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
 	InvalidMacOui *string `pulumi:"invalidMacOui"`
 	// Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
@@ -494,6 +524,8 @@ type widsprofileArgs struct {
 	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
 	SpoofedDeauth *string `pulumi:"spoofedDeauth"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	//
+	// The `apScanChannelList2g5g` block supports:
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
 	WeakWepIv *string `pulumi:"weakWepIv"`
@@ -527,6 +559,10 @@ type WidsprofileArgs struct {
 	ApFgscanReportIntv pulumi.IntPtrInput
 	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
 	ApScan pulumi.StringPtrInput
+	// Selected ap scan channel list for 2.4G and 5G bands. The structure of `apScanChannelList2g5g` block is documented below.
+	ApScanChannelList2g5gs WidsprofileApScanChannelList2g5gArrayInput
+	// Selected ap scan channel list for 6G band. The structure of `apScanChannelList6g` block is documented below.
+	ApScanChannelList6gs WidsprofileApScanChannelList6gArrayInput
 	// Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
 	ApScanPassive pulumi.StringPtrInput
 	// Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
@@ -589,6 +625,8 @@ type WidsprofileArgs struct {
 	EapolSuccIntv pulumi.IntPtrInput
 	// The threshold value for EAPOL-Success flooding in specified interval.
 	EapolSuccThresh pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
 	InvalidMacOui pulumi.StringPtrInput
 	// Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
@@ -604,6 +642,8 @@ type WidsprofileArgs struct {
 	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
 	SpoofedDeauth pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	//
+	// The `apScanChannelList2g5g` block supports:
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
 	WeakWepIv pulumi.StringPtrInput
@@ -756,6 +796,16 @@ func (o WidsprofileOutput) ApFgscanReportIntv() pulumi.IntOutput {
 // Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
 func (o WidsprofileOutput) ApScan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.StringOutput { return v.ApScan }).(pulumi.StringOutput)
+}
+
+// Selected ap scan channel list for 2.4G and 5G bands. The structure of `apScanChannelList2g5g` block is documented below.
+func (o WidsprofileOutput) ApScanChannelList2g5gs() WidsprofileApScanChannelList2g5gArrayOutput {
+	return o.ApplyT(func(v *Widsprofile) WidsprofileApScanChannelList2g5gArrayOutput { return v.ApScanChannelList2g5gs }).(WidsprofileApScanChannelList2g5gArrayOutput)
+}
+
+// Selected ap scan channel list for 6G band. The structure of `apScanChannelList6g` block is documented below.
+func (o WidsprofileOutput) ApScanChannelList6gs() WidsprofileApScanChannelList6gArrayOutput {
+	return o.ApplyT(func(v *Widsprofile) WidsprofileApScanChannelList6gArrayOutput { return v.ApScanChannelList6gs }).(WidsprofileApScanChannelList6gArrayOutput)
 }
 
 // Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
@@ -913,6 +963,11 @@ func (o WidsprofileOutput) EapolSuccThresh() pulumi.IntOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.IntOutput { return v.EapolSuccThresh }).(pulumi.IntOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o WidsprofileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Widsprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
 func (o WidsprofileOutput) InvalidMacOui() pulumi.StringOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.StringOutput { return v.InvalidMacOui }).(pulumi.StringOutput)
@@ -949,6 +1004,8 @@ func (o WidsprofileOutput) SpoofedDeauth() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+//
+// The `apScanChannelList2g5g` block supports:
 func (o WidsprofileOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }

@@ -67,6 +67,14 @@ type Local struct {
 	Comments                  pulumi.StringOutput    `pulumi:"comments"`
 	Csr                       pulumi.StringOutput    `pulumi:"csr"`
 	EnrollProtocol            pulumi.StringOutput    `pulumi:"enrollProtocol"`
+	EstCaId                   pulumi.StringOutput    `pulumi:"estCaId"`
+	EstClientCert             pulumi.StringOutput    `pulumi:"estClientCert"`
+	EstHttpPassword           pulumi.StringOutput    `pulumi:"estHttpPassword"`
+	EstHttpUsername           pulumi.StringOutput    `pulumi:"estHttpUsername"`
+	EstServer                 pulumi.StringOutput    `pulumi:"estServer"`
+	EstServerCert             pulumi.StringOutput    `pulumi:"estServerCert"`
+	EstSrpPassword            pulumi.StringOutput    `pulumi:"estSrpPassword"`
+	EstSrpUsername            pulumi.StringOutput    `pulumi:"estSrpUsername"`
 	IkeLocalid                pulumi.StringOutput    `pulumi:"ikeLocalid"`
 	IkeLocalidType            pulumi.StringOutput    `pulumi:"ikeLocalidType"`
 	LastUpdated               pulumi.IntOutput       `pulumi:"lastUpdated"`
@@ -148,6 +156,14 @@ type localState struct {
 	Comments                  *string `pulumi:"comments"`
 	Csr                       *string `pulumi:"csr"`
 	EnrollProtocol            *string `pulumi:"enrollProtocol"`
+	EstCaId                   *string `pulumi:"estCaId"`
+	EstClientCert             *string `pulumi:"estClientCert"`
+	EstHttpPassword           *string `pulumi:"estHttpPassword"`
+	EstHttpUsername           *string `pulumi:"estHttpUsername"`
+	EstServer                 *string `pulumi:"estServer"`
+	EstServerCert             *string `pulumi:"estServerCert"`
+	EstSrpPassword            *string `pulumi:"estSrpPassword"`
+	EstSrpUsername            *string `pulumi:"estSrpUsername"`
 	IkeLocalid                *string `pulumi:"ikeLocalid"`
 	IkeLocalidType            *string `pulumi:"ikeLocalidType"`
 	LastUpdated               *int    `pulumi:"lastUpdated"`
@@ -182,6 +198,14 @@ type LocalState struct {
 	Comments                  pulumi.StringPtrInput
 	Csr                       pulumi.StringPtrInput
 	EnrollProtocol            pulumi.StringPtrInput
+	EstCaId                   pulumi.StringPtrInput
+	EstClientCert             pulumi.StringPtrInput
+	EstHttpPassword           pulumi.StringPtrInput
+	EstHttpUsername           pulumi.StringPtrInput
+	EstServer                 pulumi.StringPtrInput
+	EstServerCert             pulumi.StringPtrInput
+	EstSrpPassword            pulumi.StringPtrInput
+	EstSrpUsername            pulumi.StringPtrInput
 	IkeLocalid                pulumi.StringPtrInput
 	IkeLocalidType            pulumi.StringPtrInput
 	LastUpdated               pulumi.IntPtrInput
@@ -220,6 +244,14 @@ type localArgs struct {
 	Comments                  *string `pulumi:"comments"`
 	Csr                       *string `pulumi:"csr"`
 	EnrollProtocol            *string `pulumi:"enrollProtocol"`
+	EstCaId                   *string `pulumi:"estCaId"`
+	EstClientCert             *string `pulumi:"estClientCert"`
+	EstHttpPassword           *string `pulumi:"estHttpPassword"`
+	EstHttpUsername           *string `pulumi:"estHttpUsername"`
+	EstServer                 *string `pulumi:"estServer"`
+	EstServerCert             *string `pulumi:"estServerCert"`
+	EstSrpPassword            *string `pulumi:"estSrpPassword"`
+	EstSrpUsername            *string `pulumi:"estSrpUsername"`
 	IkeLocalid                *string `pulumi:"ikeLocalid"`
 	IkeLocalidType            *string `pulumi:"ikeLocalidType"`
 	LastUpdated               *int    `pulumi:"lastUpdated"`
@@ -255,6 +287,14 @@ type LocalArgs struct {
 	Comments                  pulumi.StringPtrInput
 	Csr                       pulumi.StringPtrInput
 	EnrollProtocol            pulumi.StringPtrInput
+	EstCaId                   pulumi.StringPtrInput
+	EstClientCert             pulumi.StringPtrInput
+	EstHttpPassword           pulumi.StringPtrInput
+	EstHttpUsername           pulumi.StringPtrInput
+	EstServer                 pulumi.StringPtrInput
+	EstServerCert             pulumi.StringPtrInput
+	EstSrpPassword            pulumi.StringPtrInput
+	EstSrpUsername            pulumi.StringPtrInput
 	IkeLocalid                pulumi.StringPtrInput
 	IkeLocalidType            pulumi.StringPtrInput
 	LastUpdated               pulumi.IntPtrInput
@@ -421,6 +461,38 @@ func (o LocalOutput) Csr() pulumi.StringOutput {
 
 func (o LocalOutput) EnrollProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EnrollProtocol }).(pulumi.StringOutput)
+}
+
+func (o LocalOutput) EstCaId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstCaId }).(pulumi.StringOutput)
+}
+
+func (o LocalOutput) EstClientCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstClientCert }).(pulumi.StringOutput)
+}
+
+func (o LocalOutput) EstHttpPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstHttpPassword }).(pulumi.StringOutput)
+}
+
+func (o LocalOutput) EstHttpUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstHttpUsername }).(pulumi.StringOutput)
+}
+
+func (o LocalOutput) EstServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstServer }).(pulumi.StringOutput)
+}
+
+func (o LocalOutput) EstServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstServerCert }).(pulumi.StringOutput)
+}
+
+func (o LocalOutput) EstSrpPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstSrpPassword }).(pulumi.StringOutput)
+}
+
+func (o LocalOutput) EstSrpUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstSrpUsername }).(pulumi.StringOutput)
 }
 
 func (o LocalOutput) IkeLocalid() pulumi.StringOutput {

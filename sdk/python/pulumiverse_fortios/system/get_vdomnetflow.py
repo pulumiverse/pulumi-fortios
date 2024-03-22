@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'GetVdomnetflowResult',
@@ -21,13 +22,16 @@ class GetVdomnetflowResult:
     """
     A collection of values returned by getVdomnetflow.
     """
-    def __init__(__self__, collector_ip=None, collector_port=None, id=None, interface=None, interface_select_method=None, source_ip=None, vdom_netflow=None, vdomparam=None):
+    def __init__(__self__, collector_ip=None, collector_port=None, collectors=None, id=None, interface=None, interface_select_method=None, source_ip=None, vdom_netflow=None, vdomparam=None):
         if collector_ip and not isinstance(collector_ip, str):
             raise TypeError("Expected argument 'collector_ip' to be a str")
         pulumi.set(__self__, "collector_ip", collector_ip)
         if collector_port and not isinstance(collector_port, int):
             raise TypeError("Expected argument 'collector_port' to be a int")
         pulumi.set(__self__, "collector_port", collector_port)
+        if collectors and not isinstance(collectors, list):
+            raise TypeError("Expected argument 'collectors' to be a list")
+        pulumi.set(__self__, "collectors", collectors)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -51,7 +55,7 @@ class GetVdomnetflowResult:
     @pulumi.getter(name="collectorIp")
     def collector_ip(self) -> str:
         """
-        NetFlow collector IP address.
+        Collector IP.
         """
         return pulumi.get(self, "collector_ip")
 
@@ -62,6 +66,14 @@ class GetVdomnetflowResult:
         NetFlow collector port number.
         """
         return pulumi.get(self, "collector_port")
+
+    @property
+    @pulumi.getter
+    def collectors(self) -> Sequence['outputs.GetVdomnetflowCollectorResult']:
+        """
+        Netflow collectors. The structure of `collectors` block is documented below.
+        """
+        return pulumi.get(self, "collectors")
 
     @property
     @pulumi.getter
@@ -117,6 +129,7 @@ class AwaitableGetVdomnetflowResult(GetVdomnetflowResult):
         return GetVdomnetflowResult(
             collector_ip=self.collector_ip,
             collector_port=self.collector_port,
+            collectors=self.collectors,
             id=self.id,
             interface=self.interface,
             interface_select_method=self.interface_select_method,
@@ -141,6 +154,7 @@ def get_vdomnetflow(vdomparam: Optional[str] = None,
     return AwaitableGetVdomnetflowResult(
         collector_ip=pulumi.get(__ret__, 'collector_ip'),
         collector_port=pulumi.get(__ret__, 'collector_port'),
+        collectors=pulumi.get(__ret__, 'collectors'),
         id=pulumi.get(__ret__, 'id'),
         interface=pulumi.get(__ret__, 'interface'),
         interface_select_method=pulumi.get(__ret__, 'interface_select_method'),

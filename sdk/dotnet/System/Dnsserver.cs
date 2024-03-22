@@ -68,6 +68,18 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Doh { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("doh3")]
+        public Output<string> Doh3 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("doq")]
+        public Output<string> Doq { get; private set; } = null!;
+
+        /// <summary>
         /// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
         /// </summary>
         [Output("mode")]
@@ -145,6 +157,18 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Doh { get; set; }
 
         /// <summary>
+        /// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("doh3")]
+        public Input<string>? Doh3 { get; set; }
+
+        /// <summary>
+        /// Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("doq")]
+        public Input<string>? Doq { get; set; }
+
+        /// <summary>
         /// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
         /// </summary>
         [Input("mode")]
@@ -181,6 +205,18 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("doh")]
         public Input<string>? Doh { get; set; }
+
+        /// <summary>
+        /// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("doh3")]
+        public Input<string>? Doh3 { get; set; }
+
+        /// <summary>
+        /// Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("doq")]
+        public Input<string>? Doq { get; set; }
 
         /// <summary>
         /// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.

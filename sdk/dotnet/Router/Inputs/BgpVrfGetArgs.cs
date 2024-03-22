@@ -68,7 +68,7 @@ namespace Pulumiverse.Fortios.Router.Inputs
         public Input<string>? Role { get; set; }
 
         /// <summary>
-        /// Origin VRF ID (0 - 63).
+        /// Origin VRF ID. On FortiOS versions 7.2.0-7.2.3: 0 - 63. On FortiOS versions &gt;= 7.2.4: 0 - 251.
         /// </summary>
         [Input("vrf")]
         public Input<string>? Vrf { get; set; }

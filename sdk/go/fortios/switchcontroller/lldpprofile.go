@@ -67,6 +67,18 @@ type Lldpprofile struct {
 
 	// Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
 	AutoIsl pulumi.StringOutput `pulumi:"autoIsl"`
+	// Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+	AutoIslAuth pulumi.StringOutput `pulumi:"autoIslAuth"`
+	// Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+	AutoIslAuthEncrypt pulumi.StringOutput `pulumi:"autoIslAuthEncrypt"`
+	// Auto inter-switch LAG authentication identity.
+	AutoIslAuthIdentity pulumi.StringOutput `pulumi:"autoIslAuthIdentity"`
+	// Auto inter-switch LAG macsec profile for encryption.
+	AutoIslAuthMacsecProfile pulumi.StringOutput `pulumi:"autoIslAuthMacsecProfile"`
+	// Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+	AutoIslAuthReauth pulumi.IntOutput `pulumi:"autoIslAuthReauth"`
+	// Auto inter-switch LAG authentication user certificate.
+	AutoIslAuthUser pulumi.StringOutput `pulumi:"autoIslAuthUser"`
 	// Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
 	AutoIslHelloTimer pulumi.IntOutput `pulumi:"autoIslHelloTimer"`
 	// Auto inter-switch LAG port group ID (0 - 9).
@@ -79,6 +91,8 @@ type Lldpprofile struct {
 	CustomTlvs LldpprofileCustomTlvArrayOutput `pulumi:"customTlvs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
 	MedLocationServices LldpprofileMedLocationServiceArrayOutput `pulumi:"medLocationServices"`
 	// Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `medNetworkPolicy` block is documented below.
@@ -127,6 +141,18 @@ func GetLldpprofile(ctx *pulumi.Context,
 type lldpprofileState struct {
 	// Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
 	AutoIsl *string `pulumi:"autoIsl"`
+	// Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+	AutoIslAuth *string `pulumi:"autoIslAuth"`
+	// Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+	AutoIslAuthEncrypt *string `pulumi:"autoIslAuthEncrypt"`
+	// Auto inter-switch LAG authentication identity.
+	AutoIslAuthIdentity *string `pulumi:"autoIslAuthIdentity"`
+	// Auto inter-switch LAG macsec profile for encryption.
+	AutoIslAuthMacsecProfile *string `pulumi:"autoIslAuthMacsecProfile"`
+	// Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+	AutoIslAuthReauth *int `pulumi:"autoIslAuthReauth"`
+	// Auto inter-switch LAG authentication user certificate.
+	AutoIslAuthUser *string `pulumi:"autoIslAuthUser"`
 	// Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
 	AutoIslHelloTimer *int `pulumi:"autoIslHelloTimer"`
 	// Auto inter-switch LAG port group ID (0 - 9).
@@ -139,6 +165,8 @@ type lldpprofileState struct {
 	CustomTlvs []LldpprofileCustomTlv `pulumi:"customTlvs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
 	MedLocationServices []LldpprofileMedLocationService `pulumi:"medLocationServices"`
 	// Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `medNetworkPolicy` block is documented below.
@@ -158,6 +186,18 @@ type lldpprofileState struct {
 type LldpprofileState struct {
 	// Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
 	AutoIsl pulumi.StringPtrInput
+	// Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+	AutoIslAuth pulumi.StringPtrInput
+	// Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+	AutoIslAuthEncrypt pulumi.StringPtrInput
+	// Auto inter-switch LAG authentication identity.
+	AutoIslAuthIdentity pulumi.StringPtrInput
+	// Auto inter-switch LAG macsec profile for encryption.
+	AutoIslAuthMacsecProfile pulumi.StringPtrInput
+	// Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+	AutoIslAuthReauth pulumi.IntPtrInput
+	// Auto inter-switch LAG authentication user certificate.
+	AutoIslAuthUser pulumi.StringPtrInput
 	// Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
 	AutoIslHelloTimer pulumi.IntPtrInput
 	// Auto inter-switch LAG port group ID (0 - 9).
@@ -170,6 +210,8 @@ type LldpprofileState struct {
 	CustomTlvs LldpprofileCustomTlvArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
 	MedLocationServices LldpprofileMedLocationServiceArrayInput
 	// Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `medNetworkPolicy` block is documented below.
@@ -193,6 +235,18 @@ func (LldpprofileState) ElementType() reflect.Type {
 type lldpprofileArgs struct {
 	// Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
 	AutoIsl *string `pulumi:"autoIsl"`
+	// Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+	AutoIslAuth *string `pulumi:"autoIslAuth"`
+	// Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+	AutoIslAuthEncrypt *string `pulumi:"autoIslAuthEncrypt"`
+	// Auto inter-switch LAG authentication identity.
+	AutoIslAuthIdentity *string `pulumi:"autoIslAuthIdentity"`
+	// Auto inter-switch LAG macsec profile for encryption.
+	AutoIslAuthMacsecProfile *string `pulumi:"autoIslAuthMacsecProfile"`
+	// Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+	AutoIslAuthReauth *int `pulumi:"autoIslAuthReauth"`
+	// Auto inter-switch LAG authentication user certificate.
+	AutoIslAuthUser *string `pulumi:"autoIslAuthUser"`
 	// Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
 	AutoIslHelloTimer *int `pulumi:"autoIslHelloTimer"`
 	// Auto inter-switch LAG port group ID (0 - 9).
@@ -205,6 +259,8 @@ type lldpprofileArgs struct {
 	CustomTlvs []LldpprofileCustomTlv `pulumi:"customTlvs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
 	MedLocationServices []LldpprofileMedLocationService `pulumi:"medLocationServices"`
 	// Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `medNetworkPolicy` block is documented below.
@@ -225,6 +281,18 @@ type lldpprofileArgs struct {
 type LldpprofileArgs struct {
 	// Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
 	AutoIsl pulumi.StringPtrInput
+	// Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+	AutoIslAuth pulumi.StringPtrInput
+	// Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+	AutoIslAuthEncrypt pulumi.StringPtrInput
+	// Auto inter-switch LAG authentication identity.
+	AutoIslAuthIdentity pulumi.StringPtrInput
+	// Auto inter-switch LAG macsec profile for encryption.
+	AutoIslAuthMacsecProfile pulumi.StringPtrInput
+	// Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+	AutoIslAuthReauth pulumi.IntPtrInput
+	// Auto inter-switch LAG authentication user certificate.
+	AutoIslAuthUser pulumi.StringPtrInput
 	// Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
 	AutoIslHelloTimer pulumi.IntPtrInput
 	// Auto inter-switch LAG port group ID (0 - 9).
@@ -237,6 +305,8 @@ type LldpprofileArgs struct {
 	CustomTlvs LldpprofileCustomTlvArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
 	MedLocationServices LldpprofileMedLocationServiceArrayInput
 	// Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `medNetworkPolicy` block is documented below.
@@ -345,6 +415,36 @@ func (o LldpprofileOutput) AutoIsl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Lldpprofile) pulumi.StringOutput { return v.AutoIsl }).(pulumi.StringOutput)
 }
 
+// Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+func (o LldpprofileOutput) AutoIslAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *Lldpprofile) pulumi.StringOutput { return v.AutoIslAuth }).(pulumi.StringOutput)
+}
+
+// Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+func (o LldpprofileOutput) AutoIslAuthEncrypt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Lldpprofile) pulumi.StringOutput { return v.AutoIslAuthEncrypt }).(pulumi.StringOutput)
+}
+
+// Auto inter-switch LAG authentication identity.
+func (o LldpprofileOutput) AutoIslAuthIdentity() pulumi.StringOutput {
+	return o.ApplyT(func(v *Lldpprofile) pulumi.StringOutput { return v.AutoIslAuthIdentity }).(pulumi.StringOutput)
+}
+
+// Auto inter-switch LAG macsec profile for encryption.
+func (o LldpprofileOutput) AutoIslAuthMacsecProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Lldpprofile) pulumi.StringOutput { return v.AutoIslAuthMacsecProfile }).(pulumi.StringOutput)
+}
+
+// Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+func (o LldpprofileOutput) AutoIslAuthReauth() pulumi.IntOutput {
+	return o.ApplyT(func(v *Lldpprofile) pulumi.IntOutput { return v.AutoIslAuthReauth }).(pulumi.IntOutput)
+}
+
+// Auto inter-switch LAG authentication user certificate.
+func (o LldpprofileOutput) AutoIslAuthUser() pulumi.StringOutput {
+	return o.ApplyT(func(v *Lldpprofile) pulumi.StringOutput { return v.AutoIslAuthUser }).(pulumi.StringOutput)
+}
+
 // Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
 func (o LldpprofileOutput) AutoIslHelloTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v *Lldpprofile) pulumi.IntOutput { return v.AutoIslHelloTimer }).(pulumi.IntOutput)
@@ -373,6 +473,11 @@ func (o LldpprofileOutput) CustomTlvs() LldpprofileCustomTlvArrayOutput {
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o LldpprofileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Lldpprofile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o LldpprofileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Lldpprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.

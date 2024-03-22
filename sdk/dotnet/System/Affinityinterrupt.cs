@@ -41,6 +41,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> AffinityCpumask { get; private set; } = null!;
 
         /// <summary>
+        /// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+        /// </summary>
+        [Output("defaultAffinityCpumask")]
+        public Output<string> DefaultAffinityCpumask { get; private set; } = null!;
+
+        /// <summary>
         /// ID of the interrupt affinity setting.
         /// </summary>
         [Output("fosid")]
@@ -112,6 +118,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string> AffinityCpumask { get; set; } = null!;
 
         /// <summary>
+        /// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+        /// </summary>
+        [Input("defaultAffinityCpumask")]
+        public Input<string>? DefaultAffinityCpumask { get; set; }
+
+        /// <summary>
         /// ID of the interrupt affinity setting.
         /// </summary>
         [Input("fosid", required: true)]
@@ -142,6 +154,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("affinityCpumask")]
         public Input<string>? AffinityCpumask { get; set; }
+
+        /// <summary>
+        /// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+        /// </summary>
+        [Input("defaultAffinityCpumask")]
+        public Input<string>? DefaultAffinityCpumask { get; set; }
 
         /// <summary>
         /// ID of the interrupt affinity setting.

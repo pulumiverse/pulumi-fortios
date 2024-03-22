@@ -20,6 +20,7 @@ class Nat64Args:
                  always_synthesize_aaaa_record: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  generate_ipv6_fragment_header: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat46_force_ipv4_packet_forwarding: Optional[pulumi.Input[str]] = None,
                  secondary_prefix_status: Optional[pulumi.Input[str]] = None,
                  secondary_prefixes: Optional[pulumi.Input[Sequence[pulumi.Input['Nat64SecondaryPrefixArgs']]]] = None,
@@ -31,6 +32,7 @@ class Nat64Args:
         :param pulumi.Input[str] always_synthesize_aaaa_record: Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] generate_ipv6_fragment_header: Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nat46_force_ipv4_packet_forwarding: Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] secondary_prefix_status: Enable/disable secondary NAT64 prefix. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Nat64SecondaryPrefixArgs']]] secondary_prefixes: Secondary NAT64 prefix. The structure of `secondary_prefix` block is documented below.
@@ -44,6 +46,8 @@ class Nat64Args:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if generate_ipv6_fragment_header is not None:
             pulumi.set(__self__, "generate_ipv6_fragment_header", generate_ipv6_fragment_header)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if nat46_force_ipv4_packet_forwarding is not None:
             pulumi.set(__self__, "nat46_force_ipv4_packet_forwarding", nat46_force_ipv4_packet_forwarding)
         if secondary_prefix_status is not None:
@@ -102,6 +106,18 @@ class Nat64Args:
     @generate_ipv6_fragment_header.setter
     def generate_ipv6_fragment_header(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "generate_ipv6_fragment_header", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="nat46ForceIpv4PacketForwarding")
@@ -170,6 +186,7 @@ class _Nat64State:
                  always_synthesize_aaaa_record: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  generate_ipv6_fragment_header: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat46_force_ipv4_packet_forwarding: Optional[pulumi.Input[str]] = None,
                  nat64_prefix: Optional[pulumi.Input[str]] = None,
                  secondary_prefix_status: Optional[pulumi.Input[str]] = None,
@@ -181,6 +198,7 @@ class _Nat64State:
         :param pulumi.Input[str] always_synthesize_aaaa_record: Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] generate_ipv6_fragment_header: Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nat46_force_ipv4_packet_forwarding: Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat64_prefix: NAT64 prefix must be ::/96 (default = 64:ff9b::/96).
         :param pulumi.Input[str] secondary_prefix_status: Enable/disable secondary NAT64 prefix. Valid values: `enable`, `disable`.
@@ -194,6 +212,8 @@ class _Nat64State:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if generate_ipv6_fragment_header is not None:
             pulumi.set(__self__, "generate_ipv6_fragment_header", generate_ipv6_fragment_header)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if nat46_force_ipv4_packet_forwarding is not None:
             pulumi.set(__self__, "nat46_force_ipv4_packet_forwarding", nat46_force_ipv4_packet_forwarding)
         if nat64_prefix is not None:
@@ -242,6 +262,18 @@ class _Nat64State:
     @generate_ipv6_fragment_header.setter
     def generate_ipv6_fragment_header(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "generate_ipv6_fragment_header", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="nat46ForceIpv4PacketForwarding")
@@ -324,6 +356,7 @@ class Nat64(pulumi.CustomResource):
                  always_synthesize_aaaa_record: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  generate_ipv6_fragment_header: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat46_force_ipv4_packet_forwarding: Optional[pulumi.Input[str]] = None,
                  nat64_prefix: Optional[pulumi.Input[str]] = None,
                  secondary_prefix_status: Optional[pulumi.Input[str]] = None,
@@ -374,6 +407,7 @@ class Nat64(pulumi.CustomResource):
         :param pulumi.Input[str] always_synthesize_aaaa_record: Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] generate_ipv6_fragment_header: Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nat46_force_ipv4_packet_forwarding: Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat64_prefix: NAT64 prefix must be ::/96 (default = 64:ff9b::/96).
         :param pulumi.Input[str] secondary_prefix_status: Enable/disable secondary NAT64 prefix. Valid values: `enable`, `disable`.
@@ -443,6 +477,7 @@ class Nat64(pulumi.CustomResource):
                  always_synthesize_aaaa_record: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  generate_ipv6_fragment_header: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat46_force_ipv4_packet_forwarding: Optional[pulumi.Input[str]] = None,
                  nat64_prefix: Optional[pulumi.Input[str]] = None,
                  secondary_prefix_status: Optional[pulumi.Input[str]] = None,
@@ -461,6 +496,7 @@ class Nat64(pulumi.CustomResource):
             __props__.__dict__["always_synthesize_aaaa_record"] = always_synthesize_aaaa_record
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["generate_ipv6_fragment_header"] = generate_ipv6_fragment_header
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["nat46_force_ipv4_packet_forwarding"] = nat46_force_ipv4_packet_forwarding
             if nat64_prefix is None and not opts.urn:
                 raise TypeError("Missing required property 'nat64_prefix'")
@@ -482,6 +518,7 @@ class Nat64(pulumi.CustomResource):
             always_synthesize_aaaa_record: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             generate_ipv6_fragment_header: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             nat46_force_ipv4_packet_forwarding: Optional[pulumi.Input[str]] = None,
             nat64_prefix: Optional[pulumi.Input[str]] = None,
             secondary_prefix_status: Optional[pulumi.Input[str]] = None,
@@ -498,6 +535,7 @@ class Nat64(pulumi.CustomResource):
         :param pulumi.Input[str] always_synthesize_aaaa_record: Enable/disable AAAA record synthesis (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] generate_ipv6_fragment_header: Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nat46_force_ipv4_packet_forwarding: Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat64_prefix: NAT64 prefix must be ::/96 (default = 64:ff9b::/96).
         :param pulumi.Input[str] secondary_prefix_status: Enable/disable secondary NAT64 prefix. Valid values: `enable`, `disable`.
@@ -512,6 +550,7 @@ class Nat64(pulumi.CustomResource):
         __props__.__dict__["always_synthesize_aaaa_record"] = always_synthesize_aaaa_record
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["generate_ipv6_fragment_header"] = generate_ipv6_fragment_header
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["nat46_force_ipv4_packet_forwarding"] = nat46_force_ipv4_packet_forwarding
         __props__.__dict__["nat64_prefix"] = nat64_prefix
         __props__.__dict__["secondary_prefix_status"] = secondary_prefix_status
@@ -543,6 +582,14 @@ class Nat64(pulumi.CustomResource):
         Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "generate_ipv6_fragment_header")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="nat46ForceIpv4PacketForwarding")

@@ -101,6 +101,8 @@ type Linkmonitor struct {
 	GatewayIp pulumi.StringOutput `pulumi:"gatewayIp"`
 	// Gateway IPv6 address used to probe the server.
 	GatewayIp6 pulumi.StringOutput `pulumi:"gatewayIp6"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// HA election priority (1 - 50).
 	HaPriority pulumi.IntOutput `pulumi:"haPriority"`
 	// String in the http-agent field in the HTTP header.
@@ -215,6 +217,8 @@ type linkmonitorState struct {
 	GatewayIp *string `pulumi:"gatewayIp"`
 	// Gateway IPv6 address used to probe the server.
 	GatewayIp6 *string `pulumi:"gatewayIp6"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// HA election priority (1 - 50).
 	HaPriority *int `pulumi:"haPriority"`
 	// String in the http-agent field in the HTTP header.
@@ -290,6 +294,8 @@ type LinkmonitorState struct {
 	GatewayIp pulumi.StringPtrInput
 	// Gateway IPv6 address used to probe the server.
 	GatewayIp6 pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// HA election priority (1 - 50).
 	HaPriority pulumi.IntPtrInput
 	// String in the http-agent field in the HTTP header.
@@ -369,6 +375,8 @@ type linkmonitorArgs struct {
 	GatewayIp *string `pulumi:"gatewayIp"`
 	// Gateway IPv6 address used to probe the server.
 	GatewayIp6 *string `pulumi:"gatewayIp6"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// HA election priority (1 - 50).
 	HaPriority *int `pulumi:"haPriority"`
 	// String in the http-agent field in the HTTP header.
@@ -445,6 +453,8 @@ type LinkmonitorArgs struct {
 	GatewayIp pulumi.StringPtrInput
 	// Gateway IPv6 address used to probe the server.
 	GatewayIp6 pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// HA election priority (1 - 50).
 	HaPriority pulumi.IntPtrInput
 	// String in the http-agent field in the HTTP header.
@@ -628,6 +638,11 @@ func (o LinkmonitorOutput) GatewayIp() pulumi.StringOutput {
 // Gateway IPv6 address used to probe the server.
 func (o LinkmonitorOutput) GatewayIp6() pulumi.StringOutput {
 	return o.ApplyT(func(v *Linkmonitor) pulumi.StringOutput { return v.GatewayIp6 }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o LinkmonitorOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Linkmonitor) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // HA election priority (1 - 50).

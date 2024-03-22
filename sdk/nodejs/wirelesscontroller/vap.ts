@@ -104,7 +104,7 @@ export class Vap extends pulumi.CustomResource {
      */
     public readonly atfWeight!: pulumi.Output<number>;
     /**
-     * Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+     * Authentication protocol.
      */
     public readonly auth!: pulumi.Output<string>;
     /**
@@ -151,6 +151,10 @@ export class Vap extends pulumi.CustomResource {
      * Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
      */
     public readonly captivePortalAuthTimeout!: pulumi.Output<number>;
+    /**
+     * Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+     */
+    public readonly captivePortalFwAccounting!: pulumi.Output<string>;
     /**
      * Secret key to access the macauth RADIUS server.
      */
@@ -263,6 +267,10 @@ export class Vap extends pulumi.CustomResource {
      * GAS fragmentation limit (512 - 4096, default = 1024).
      */
     public readonly gasFragmentationLimit!: pulumi.Output<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
      */
@@ -436,6 +444,14 @@ export class Vap extends pulumi.CustomResource {
      */
     public readonly multicastRate!: pulumi.Output<string>;
     /**
+     * Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+     */
+    public readonly n80211k!: pulumi.Output<string>;
+    /**
+     * Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+     */
+    public readonly n80211v!: pulumi.Output<string>;
+    /**
      * Enable/disable network access control. Valid values: `enable`, `disable`.
      */
     public readonly nac!: pulumi.Output<string>;
@@ -556,6 +572,10 @@ export class Vap extends pulumi.CustomResource {
      */
     public readonly radiusMacAuth!: pulumi.Output<string>;
     /**
+     * Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+     */
+    public readonly radiusMacAuthBlockInterval!: pulumi.Output<number>;
+    /**
      * RADIUS-based MAC authentication server.
      */
     public readonly radiusMacAuthServer!: pulumi.Output<string>;
@@ -576,7 +596,7 @@ export class Vap extends pulumi.CustomResource {
      */
     public readonly radiusServer!: pulumi.Output<string>;
     /**
-     * Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+     * Allowed data rates for 802.11a.
      */
     public readonly rates11a!: pulumi.Output<string>;
     /**
@@ -604,7 +624,7 @@ export class Vap extends pulumi.CustomResource {
      */
     public readonly rates11axSs34!: pulumi.Output<string>;
     /**
-     * Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+     * Allowed data rates for 802.11b/g.
      */
     public readonly rates11bg!: pulumi.Output<string>;
     /**
@@ -616,6 +636,10 @@ export class Vap extends pulumi.CustomResource {
      */
     public readonly rates11nSs34!: pulumi.Output<string>;
     /**
+     * Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+     */
+    public readonly roamingAcctInterimUpdate!: pulumi.Output<string>;
+    /**
      * SAE-Groups. Valid values: `19`, `20`, `21`.
      */
     public readonly saeGroups!: pulumi.Output<string>;
@@ -623,6 +647,10 @@ export class Vap extends pulumi.CustomResource {
      * Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
      */
     public readonly saeH2eOnly!: pulumi.Output<string>;
+    /**
+     * Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly saeHnpOnly!: pulumi.Output<string>;
     /**
      * WPA3 SAE password to be used to authenticate WiFi users.
      */
@@ -793,6 +821,7 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["bstmRssiDisassocTimer"] = state ? state.bstmRssiDisassocTimer : undefined;
             resourceInputs["captivePortalAcName"] = state ? state.captivePortalAcName : undefined;
             resourceInputs["captivePortalAuthTimeout"] = state ? state.captivePortalAuthTimeout : undefined;
+            resourceInputs["captivePortalFwAccounting"] = state ? state.captivePortalFwAccounting : undefined;
             resourceInputs["captivePortalMacauthRadiusSecret"] = state ? state.captivePortalMacauthRadiusSecret : undefined;
             resourceInputs["captivePortalMacauthRadiusServer"] = state ? state.captivePortalMacauthRadiusServer : undefined;
             resourceInputs["captivePortalRadiusSecret"] = state ? state.captivePortalRadiusSecret : undefined;
@@ -821,6 +850,7 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["ftR0KeyLifetime"] = state ? state.ftR0KeyLifetime : undefined;
             resourceInputs["gasComebackDelay"] = state ? state.gasComebackDelay : undefined;
             resourceInputs["gasFragmentationLimit"] = state ? state.gasFragmentationLimit : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gtkRekey"] = state ? state.gtkRekey : undefined;
             resourceInputs["gtkRekeyIntv"] = state ? state.gtkRekeyIntv : undefined;
             resourceInputs["highEfficiency"] = state ? state.highEfficiency : undefined;
@@ -864,6 +894,8 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["muMimo"] = state ? state.muMimo : undefined;
             resourceInputs["multicastEnhance"] = state ? state.multicastEnhance : undefined;
             resourceInputs["multicastRate"] = state ? state.multicastRate : undefined;
+            resourceInputs["n80211k"] = state ? state.n80211k : undefined;
+            resourceInputs["n80211v"] = state ? state.n80211v : undefined;
             resourceInputs["nac"] = state ? state.nac : undefined;
             resourceInputs["nacProfile"] = state ? state.nacProfile : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -894,6 +926,7 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["radio5gThreshold"] = state ? state.radio5gThreshold : undefined;
             resourceInputs["radioSensitivity"] = state ? state.radioSensitivity : undefined;
             resourceInputs["radiusMacAuth"] = state ? state.radiusMacAuth : undefined;
+            resourceInputs["radiusMacAuthBlockInterval"] = state ? state.radiusMacAuthBlockInterval : undefined;
             resourceInputs["radiusMacAuthServer"] = state ? state.radiusMacAuthServer : undefined;
             resourceInputs["radiusMacAuthUsergroups"] = state ? state.radiusMacAuthUsergroups : undefined;
             resourceInputs["radiusMacMpskAuth"] = state ? state.radiusMacMpskAuth : undefined;
@@ -909,8 +942,10 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["rates11bg"] = state ? state.rates11bg : undefined;
             resourceInputs["rates11nSs12"] = state ? state.rates11nSs12 : undefined;
             resourceInputs["rates11nSs34"] = state ? state.rates11nSs34 : undefined;
+            resourceInputs["roamingAcctInterimUpdate"] = state ? state.roamingAcctInterimUpdate : undefined;
             resourceInputs["saeGroups"] = state ? state.saeGroups : undefined;
             resourceInputs["saeH2eOnly"] = state ? state.saeH2eOnly : undefined;
+            resourceInputs["saeHnpOnly"] = state ? state.saeHnpOnly : undefined;
             resourceInputs["saePassword"] = state ? state.saePassword : undefined;
             resourceInputs["saePk"] = state ? state.saePk : undefined;
             resourceInputs["saePrivateKey"] = state ? state.saePrivateKey : undefined;
@@ -970,6 +1005,7 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["bstmRssiDisassocTimer"] = args ? args.bstmRssiDisassocTimer : undefined;
             resourceInputs["captivePortalAcName"] = args ? args.captivePortalAcName : undefined;
             resourceInputs["captivePortalAuthTimeout"] = args ? args.captivePortalAuthTimeout : undefined;
+            resourceInputs["captivePortalFwAccounting"] = args ? args.captivePortalFwAccounting : undefined;
             resourceInputs["captivePortalMacauthRadiusSecret"] = args?.captivePortalMacauthRadiusSecret ? pulumi.secret(args.captivePortalMacauthRadiusSecret) : undefined;
             resourceInputs["captivePortalMacauthRadiusServer"] = args ? args.captivePortalMacauthRadiusServer : undefined;
             resourceInputs["captivePortalRadiusSecret"] = args?.captivePortalRadiusSecret ? pulumi.secret(args.captivePortalRadiusSecret) : undefined;
@@ -998,6 +1034,7 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["ftR0KeyLifetime"] = args ? args.ftR0KeyLifetime : undefined;
             resourceInputs["gasComebackDelay"] = args ? args.gasComebackDelay : undefined;
             resourceInputs["gasFragmentationLimit"] = args ? args.gasFragmentationLimit : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gtkRekey"] = args ? args.gtkRekey : undefined;
             resourceInputs["gtkRekeyIntv"] = args ? args.gtkRekeyIntv : undefined;
             resourceInputs["highEfficiency"] = args ? args.highEfficiency : undefined;
@@ -1041,6 +1078,8 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["muMimo"] = args ? args.muMimo : undefined;
             resourceInputs["multicastEnhance"] = args ? args.multicastEnhance : undefined;
             resourceInputs["multicastRate"] = args ? args.multicastRate : undefined;
+            resourceInputs["n80211k"] = args ? args.n80211k : undefined;
+            resourceInputs["n80211v"] = args ? args.n80211v : undefined;
             resourceInputs["nac"] = args ? args.nac : undefined;
             resourceInputs["nacProfile"] = args ? args.nacProfile : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -1071,6 +1110,7 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["radio5gThreshold"] = args ? args.radio5gThreshold : undefined;
             resourceInputs["radioSensitivity"] = args ? args.radioSensitivity : undefined;
             resourceInputs["radiusMacAuth"] = args ? args.radiusMacAuth : undefined;
+            resourceInputs["radiusMacAuthBlockInterval"] = args ? args.radiusMacAuthBlockInterval : undefined;
             resourceInputs["radiusMacAuthServer"] = args ? args.radiusMacAuthServer : undefined;
             resourceInputs["radiusMacAuthUsergroups"] = args ? args.radiusMacAuthUsergroups : undefined;
             resourceInputs["radiusMacMpskAuth"] = args ? args.radiusMacMpskAuth : undefined;
@@ -1086,8 +1126,10 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["rates11bg"] = args ? args.rates11bg : undefined;
             resourceInputs["rates11nSs12"] = args ? args.rates11nSs12 : undefined;
             resourceInputs["rates11nSs34"] = args ? args.rates11nSs34 : undefined;
+            resourceInputs["roamingAcctInterimUpdate"] = args ? args.roamingAcctInterimUpdate : undefined;
             resourceInputs["saeGroups"] = args ? args.saeGroups : undefined;
             resourceInputs["saeH2eOnly"] = args ? args.saeH2eOnly : undefined;
+            resourceInputs["saeHnpOnly"] = args ? args.saeHnpOnly : undefined;
             resourceInputs["saePassword"] = args?.saePassword ? pulumi.secret(args.saePassword) : undefined;
             resourceInputs["saePk"] = args ? args.saePk : undefined;
             resourceInputs["saePrivateKey"] = args ? args.saePrivateKey : undefined;
@@ -1182,7 +1224,7 @@ export interface VapState {
      */
     atfWeight?: pulumi.Input<number>;
     /**
-     * Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+     * Authentication protocol.
      */
     auth?: pulumi.Input<string>;
     /**
@@ -1229,6 +1271,10 @@ export interface VapState {
      * Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
      */
     captivePortalAuthTimeout?: pulumi.Input<number>;
+    /**
+     * Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+     */
+    captivePortalFwAccounting?: pulumi.Input<string>;
     /**
      * Secret key to access the macauth RADIUS server.
      */
@@ -1341,6 +1387,10 @@ export interface VapState {
      * GAS fragmentation limit (512 - 4096, default = 1024).
      */
     gasFragmentationLimit?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
      */
@@ -1514,6 +1564,14 @@ export interface VapState {
      */
     multicastRate?: pulumi.Input<string>;
     /**
+     * Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+     */
+    n80211k?: pulumi.Input<string>;
+    /**
+     * Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+     */
+    n80211v?: pulumi.Input<string>;
+    /**
      * Enable/disable network access control. Valid values: `enable`, `disable`.
      */
     nac?: pulumi.Input<string>;
@@ -1634,6 +1692,10 @@ export interface VapState {
      */
     radiusMacAuth?: pulumi.Input<string>;
     /**
+     * Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+     */
+    radiusMacAuthBlockInterval?: pulumi.Input<number>;
+    /**
      * RADIUS-based MAC authentication server.
      */
     radiusMacAuthServer?: pulumi.Input<string>;
@@ -1654,7 +1716,7 @@ export interface VapState {
      */
     radiusServer?: pulumi.Input<string>;
     /**
-     * Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+     * Allowed data rates for 802.11a.
      */
     rates11a?: pulumi.Input<string>;
     /**
@@ -1682,7 +1744,7 @@ export interface VapState {
      */
     rates11axSs34?: pulumi.Input<string>;
     /**
-     * Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+     * Allowed data rates for 802.11b/g.
      */
     rates11bg?: pulumi.Input<string>;
     /**
@@ -1694,6 +1756,10 @@ export interface VapState {
      */
     rates11nSs34?: pulumi.Input<string>;
     /**
+     * Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+     */
+    roamingAcctInterimUpdate?: pulumi.Input<string>;
+    /**
      * SAE-Groups. Valid values: `19`, `20`, `21`.
      */
     saeGroups?: pulumi.Input<string>;
@@ -1701,6 +1767,10 @@ export interface VapState {
      * Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
      */
     saeH2eOnly?: pulumi.Input<string>;
+    /**
+     * Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+     */
+    saeHnpOnly?: pulumi.Input<string>;
     /**
      * WPA3 SAE password to be used to authenticate WiFi users.
      */
@@ -1888,7 +1958,7 @@ export interface VapArgs {
      */
     atfWeight?: pulumi.Input<number>;
     /**
-     * Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+     * Authentication protocol.
      */
     auth?: pulumi.Input<string>;
     /**
@@ -1935,6 +2005,10 @@ export interface VapArgs {
      * Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
      */
     captivePortalAuthTimeout?: pulumi.Input<number>;
+    /**
+     * Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+     */
+    captivePortalFwAccounting?: pulumi.Input<string>;
     /**
      * Secret key to access the macauth RADIUS server.
      */
@@ -2047,6 +2121,10 @@ export interface VapArgs {
      * GAS fragmentation limit (512 - 4096, default = 1024).
      */
     gasFragmentationLimit?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
      */
@@ -2220,6 +2298,14 @@ export interface VapArgs {
      */
     multicastRate?: pulumi.Input<string>;
     /**
+     * Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+     */
+    n80211k?: pulumi.Input<string>;
+    /**
+     * Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+     */
+    n80211v?: pulumi.Input<string>;
+    /**
      * Enable/disable network access control. Valid values: `enable`, `disable`.
      */
     nac?: pulumi.Input<string>;
@@ -2340,6 +2426,10 @@ export interface VapArgs {
      */
     radiusMacAuth?: pulumi.Input<string>;
     /**
+     * Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+     */
+    radiusMacAuthBlockInterval?: pulumi.Input<number>;
+    /**
      * RADIUS-based MAC authentication server.
      */
     radiusMacAuthServer?: pulumi.Input<string>;
@@ -2360,7 +2450,7 @@ export interface VapArgs {
      */
     radiusServer?: pulumi.Input<string>;
     /**
-     * Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+     * Allowed data rates for 802.11a.
      */
     rates11a?: pulumi.Input<string>;
     /**
@@ -2388,7 +2478,7 @@ export interface VapArgs {
      */
     rates11axSs34?: pulumi.Input<string>;
     /**
-     * Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+     * Allowed data rates for 802.11b/g.
      */
     rates11bg?: pulumi.Input<string>;
     /**
@@ -2400,6 +2490,10 @@ export interface VapArgs {
      */
     rates11nSs34?: pulumi.Input<string>;
     /**
+     * Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+     */
+    roamingAcctInterimUpdate?: pulumi.Input<string>;
+    /**
      * SAE-Groups. Valid values: `19`, `20`, `21`.
      */
     saeGroups?: pulumi.Input<string>;
@@ -2407,6 +2501,10 @@ export interface VapArgs {
      * Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
      */
     saeH2eOnly?: pulumi.Input<string>;
+    /**
+     * Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+     */
+    saeHnpOnly?: pulumi.Input<string>;
     /**
      * WPA3 SAE password to be used to authenticate WiFi users.
      */

@@ -22,7 +22,7 @@ class GetAddress6Result:
     """
     A collection of values returned by getAddress6.
     """
-    def __init__(__self__, cache_ttl=None, color=None, comment=None, country=None, end_ip=None, end_mac=None, epg_name=None, fabric_object=None, fqdn=None, host=None, host_type=None, id=None, ip6=None, lists=None, macaddrs=None, name=None, obj_id=None, sdn=None, sdn_tag=None, start_ip=None, start_mac=None, subnet_segments=None, taggings=None, template=None, tenant=None, type=None, uuid=None, vdomparam=None, visibility=None):
+    def __init__(__self__, cache_ttl=None, color=None, comment=None, country=None, end_ip=None, end_mac=None, epg_name=None, fabric_object=None, fqdn=None, host=None, host_type=None, id=None, ip6=None, lists=None, macaddrs=None, name=None, obj_id=None, route_tag=None, sdn=None, sdn_tag=None, start_ip=None, start_mac=None, subnet_segments=None, taggings=None, template=None, tenant=None, type=None, uuid=None, vdomparam=None, visibility=None):
         if cache_ttl and not isinstance(cache_ttl, int):
             raise TypeError("Expected argument 'cache_ttl' to be a int")
         pulumi.set(__self__, "cache_ttl", cache_ttl)
@@ -74,6 +74,9 @@ class GetAddress6Result:
         if obj_id and not isinstance(obj_id, str):
             raise TypeError("Expected argument 'obj_id' to be a str")
         pulumi.set(__self__, "obj_id", obj_id)
+        if route_tag and not isinstance(route_tag, int):
+            raise TypeError("Expected argument 'route_tag' to be a int")
+        pulumi.set(__self__, "route_tag", route_tag)
         if sdn and not isinstance(sdn, str):
             raise TypeError("Expected argument 'sdn' to be a str")
         pulumi.set(__self__, "sdn", sdn)
@@ -248,6 +251,14 @@ class GetAddress6Result:
         return pulumi.get(self, "obj_id")
 
     @property
+    @pulumi.getter(name="routeTag")
+    def route_tag(self) -> int:
+        """
+        route-tag address.
+        """
+        return pulumi.get(self, "route_tag")
+
+    @property
     @pulumi.getter
     def sdn(self) -> str:
         """
@@ -364,6 +375,7 @@ class AwaitableGetAddress6Result(GetAddress6Result):
             macaddrs=self.macaddrs,
             name=self.name,
             obj_id=self.obj_id,
+            route_tag=self.route_tag,
             sdn=self.sdn,
             sdn_tag=self.sdn_tag,
             start_ip=self.start_ip,
@@ -412,6 +424,7 @@ def get_address6(name: Optional[str] = None,
         macaddrs=pulumi.get(__ret__, 'macaddrs'),
         name=pulumi.get(__ret__, 'name'),
         obj_id=pulumi.get(__ret__, 'obj_id'),
+        route_tag=pulumi.get(__ret__, 'route_tag'),
         sdn=pulumi.get(__ret__, 'sdn'),
         sdn_tag=pulumi.get(__ret__, 'sdn_tag'),
         start_ip=pulumi.get(__ret__, 'start_ip'),

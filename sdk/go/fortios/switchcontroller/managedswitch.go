@@ -44,6 +44,8 @@ type Managedswitch struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
 	DhcpServerAccessList pulumi.StringOutput `pulumi:"dhcpServerAccessList"`
+	// Configure FortiSwitch DHCP snooping static clients. The structure of `dhcpSnoopingStaticClient` block is documented below.
+	DhcpSnoopingStaticClients ManagedswitchDhcpSnoopingStaticClientArrayOutput `pulumi:"dhcpSnoopingStaticClients"`
 	// Directly connected FortiSwitch.
 	DirectlyConnected pulumi.IntOutput `pulumi:"directlyConnected"`
 	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
@@ -68,6 +70,8 @@ type Managedswitch struct {
 	FswWan2Admin pulumi.StringOutput `pulumi:"fswWan2Admin"`
 	// FortiSwitch WAN2 peer port.
 	FswWan2Peer pulumi.StringOutput `pulumi:"fswWan2Peer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
 	IgmpSnooping ManagedswitchIgmpSnoopingOutput `pulumi:"igmpSnooping"`
 	// IP source guard. The structure of `ipSourceGuard` block is documented below.
@@ -78,6 +82,8 @@ type Managedswitch struct {
 	MaxAllowedTrunkMembers pulumi.IntOutput `pulumi:"maxAllowedTrunkMembers"`
 	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
 	MclagIgmpSnoopingAware pulumi.StringOutput `pulumi:"mclagIgmpSnoopingAware"`
+	// FortiLink management mode.
+	MgmtMode pulumi.IntOutput `pulumi:"mgmtMode"`
 	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
 	Mirrors ManagedswitchMirrorArrayOutput `pulumi:"mirrors"`
 	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
@@ -104,12 +110,30 @@ type Managedswitch struct {
 	Ports ManagedswitchPortArrayOutput `pulumi:"ports"`
 	// Pre-provisioned managed switch.
 	PreProvisioned pulumi.IntOutput `pulumi:"preProvisioned"`
+	// PTP profile configuration.
+	PtpProfile pulumi.StringOutput `pulumi:"ptpProfile"`
+	// Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+	PtpStatus pulumi.StringOutput `pulumi:"ptpStatus"`
+	// Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	PurdueLevel pulumi.StringOutput `pulumi:"purdueLevel"`
 	// Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
 	QosDropPolicy pulumi.StringOutput `pulumi:"qosDropPolicy"`
 	// Set QoS RED/WRED drop probability.
 	QosRedProbability pulumi.IntOutput `pulumi:"qosRedProbability"`
+	// NAS-IP address.
+	RadiusNasIp pulumi.StringOutput `pulumi:"radiusNasIp"`
+	// Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+	RadiusNasIpOverride pulumi.StringOutput `pulumi:"radiusNasIpOverride"`
 	// Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
 	RemoteLogs ManagedswitchRemoteLogArrayOutput `pulumi:"remoteLogs"`
+	// Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+	RouteOffload pulumi.StringOutput `pulumi:"routeOffload"`
+	// Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+	RouteOffloadMclag pulumi.StringOutput `pulumi:"routeOffloadMclag"`
+	// Configure route offload MCLAG IP address. The structure of `routeOffloadRouter` block is documented below.
+	RouteOffloadRouters ManagedswitchRouteOffloadRouterArrayOutput `pulumi:"routeOffloadRouters"`
+	// Managed-switch serial number.
+	Sn pulumi.StringOutput `pulumi:"sn"`
 	// Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
 	SnmpCommunities ManagedswitchSnmpCommunityArrayOutput `pulumi:"snmpCommunities"`
 	// Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmpSysinfo` block is documented below.
@@ -142,12 +166,16 @@ type Managedswitch struct {
 	SwitchStpSettings ManagedswitchSwitchStpSettingsOutput `pulumi:"switchStpSettings"`
 	// TDR supported.
 	TdrSupported pulumi.StringOutput `pulumi:"tdrSupported"`
+	// SOCKS tunnel management discovered.
+	TunnelDiscovered pulumi.IntOutput `pulumi:"tunnelDiscovered"`
 	// Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// FortiSwitch version.
 	Version pulumi.IntOutput `pulumi:"version"`
+	// Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+	Vlans ManagedswitchVlanArrayOutput `pulumi:"vlans"`
 }
 
 // NewManagedswitch registers a new resource with the given unique name, arguments, and options.
@@ -196,6 +224,8 @@ type managedswitchState struct {
 	Description *string `pulumi:"description"`
 	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
 	DhcpServerAccessList *string `pulumi:"dhcpServerAccessList"`
+	// Configure FortiSwitch DHCP snooping static clients. The structure of `dhcpSnoopingStaticClient` block is documented below.
+	DhcpSnoopingStaticClients []ManagedswitchDhcpSnoopingStaticClient `pulumi:"dhcpSnoopingStaticClients"`
 	// Directly connected FortiSwitch.
 	DirectlyConnected *int `pulumi:"directlyConnected"`
 	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
@@ -220,6 +250,8 @@ type managedswitchState struct {
 	FswWan2Admin *string `pulumi:"fswWan2Admin"`
 	// FortiSwitch WAN2 peer port.
 	FswWan2Peer *string `pulumi:"fswWan2Peer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
 	IgmpSnooping *ManagedswitchIgmpSnooping `pulumi:"igmpSnooping"`
 	// IP source guard. The structure of `ipSourceGuard` block is documented below.
@@ -230,6 +262,8 @@ type managedswitchState struct {
 	MaxAllowedTrunkMembers *int `pulumi:"maxAllowedTrunkMembers"`
 	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
 	MclagIgmpSnoopingAware *string `pulumi:"mclagIgmpSnoopingAware"`
+	// FortiLink management mode.
+	MgmtMode *int `pulumi:"mgmtMode"`
 	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
 	Mirrors []ManagedswitchMirror `pulumi:"mirrors"`
 	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
@@ -256,12 +290,30 @@ type managedswitchState struct {
 	Ports []ManagedswitchPort `pulumi:"ports"`
 	// Pre-provisioned managed switch.
 	PreProvisioned *int `pulumi:"preProvisioned"`
+	// PTP profile configuration.
+	PtpProfile *string `pulumi:"ptpProfile"`
+	// Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+	PtpStatus *string `pulumi:"ptpStatus"`
+	// Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	PurdueLevel *string `pulumi:"purdueLevel"`
 	// Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
 	QosDropPolicy *string `pulumi:"qosDropPolicy"`
 	// Set QoS RED/WRED drop probability.
 	QosRedProbability *int `pulumi:"qosRedProbability"`
+	// NAS-IP address.
+	RadiusNasIp *string `pulumi:"radiusNasIp"`
+	// Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+	RadiusNasIpOverride *string `pulumi:"radiusNasIpOverride"`
 	// Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
 	RemoteLogs []ManagedswitchRemoteLog `pulumi:"remoteLogs"`
+	// Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+	RouteOffload *string `pulumi:"routeOffload"`
+	// Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+	RouteOffloadMclag *string `pulumi:"routeOffloadMclag"`
+	// Configure route offload MCLAG IP address. The structure of `routeOffloadRouter` block is documented below.
+	RouteOffloadRouters []ManagedswitchRouteOffloadRouter `pulumi:"routeOffloadRouters"`
+	// Managed-switch serial number.
+	Sn *string `pulumi:"sn"`
 	// Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
 	SnmpCommunities []ManagedswitchSnmpCommunity `pulumi:"snmpCommunities"`
 	// Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmpSysinfo` block is documented below.
@@ -294,12 +346,16 @@ type managedswitchState struct {
 	SwitchStpSettings *ManagedswitchSwitchStpSettings `pulumi:"switchStpSettings"`
 	// TDR supported.
 	TdrSupported *string `pulumi:"tdrSupported"`
+	// SOCKS tunnel management discovered.
+	TunnelDiscovered *int `pulumi:"tunnelDiscovered"`
 	// Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
 	Type *string `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// FortiSwitch version.
 	Version *int `pulumi:"version"`
+	// Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+	Vlans []ManagedswitchVlan `pulumi:"vlans"`
 }
 
 type ManagedswitchState struct {
@@ -313,6 +369,8 @@ type ManagedswitchState struct {
 	Description pulumi.StringPtrInput
 	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
 	DhcpServerAccessList pulumi.StringPtrInput
+	// Configure FortiSwitch DHCP snooping static clients. The structure of `dhcpSnoopingStaticClient` block is documented below.
+	DhcpSnoopingStaticClients ManagedswitchDhcpSnoopingStaticClientArrayInput
 	// Directly connected FortiSwitch.
 	DirectlyConnected pulumi.IntPtrInput
 	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
@@ -337,6 +395,8 @@ type ManagedswitchState struct {
 	FswWan2Admin pulumi.StringPtrInput
 	// FortiSwitch WAN2 peer port.
 	FswWan2Peer pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
 	IgmpSnooping ManagedswitchIgmpSnoopingPtrInput
 	// IP source guard. The structure of `ipSourceGuard` block is documented below.
@@ -347,6 +407,8 @@ type ManagedswitchState struct {
 	MaxAllowedTrunkMembers pulumi.IntPtrInput
 	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
 	MclagIgmpSnoopingAware pulumi.StringPtrInput
+	// FortiLink management mode.
+	MgmtMode pulumi.IntPtrInput
 	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
 	Mirrors ManagedswitchMirrorArrayInput
 	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
@@ -373,12 +435,30 @@ type ManagedswitchState struct {
 	Ports ManagedswitchPortArrayInput
 	// Pre-provisioned managed switch.
 	PreProvisioned pulumi.IntPtrInput
+	// PTP profile configuration.
+	PtpProfile pulumi.StringPtrInput
+	// Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+	PtpStatus pulumi.StringPtrInput
+	// Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	PurdueLevel pulumi.StringPtrInput
 	// Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
 	QosDropPolicy pulumi.StringPtrInput
 	// Set QoS RED/WRED drop probability.
 	QosRedProbability pulumi.IntPtrInput
+	// NAS-IP address.
+	RadiusNasIp pulumi.StringPtrInput
+	// Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+	RadiusNasIpOverride pulumi.StringPtrInput
 	// Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
 	RemoteLogs ManagedswitchRemoteLogArrayInput
+	// Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+	RouteOffload pulumi.StringPtrInput
+	// Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+	RouteOffloadMclag pulumi.StringPtrInput
+	// Configure route offload MCLAG IP address. The structure of `routeOffloadRouter` block is documented below.
+	RouteOffloadRouters ManagedswitchRouteOffloadRouterArrayInput
+	// Managed-switch serial number.
+	Sn pulumi.StringPtrInput
 	// Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
 	SnmpCommunities ManagedswitchSnmpCommunityArrayInput
 	// Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmpSysinfo` block is documented below.
@@ -411,12 +491,16 @@ type ManagedswitchState struct {
 	SwitchStpSettings ManagedswitchSwitchStpSettingsPtrInput
 	// TDR supported.
 	TdrSupported pulumi.StringPtrInput
+	// SOCKS tunnel management discovered.
+	TunnelDiscovered pulumi.IntPtrInput
 	// Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
 	Type pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// FortiSwitch version.
 	Version pulumi.IntPtrInput
+	// Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+	Vlans ManagedswitchVlanArrayInput
 }
 
 func (ManagedswitchState) ElementType() reflect.Type {
@@ -434,6 +518,8 @@ type managedswitchArgs struct {
 	Description *string `pulumi:"description"`
 	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
 	DhcpServerAccessList *string `pulumi:"dhcpServerAccessList"`
+	// Configure FortiSwitch DHCP snooping static clients. The structure of `dhcpSnoopingStaticClient` block is documented below.
+	DhcpSnoopingStaticClients []ManagedswitchDhcpSnoopingStaticClient `pulumi:"dhcpSnoopingStaticClients"`
 	// Directly connected FortiSwitch.
 	DirectlyConnected *int `pulumi:"directlyConnected"`
 	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
@@ -458,6 +544,8 @@ type managedswitchArgs struct {
 	FswWan2Admin *string `pulumi:"fswWan2Admin"`
 	// FortiSwitch WAN2 peer port.
 	FswWan2Peer *string `pulumi:"fswWan2Peer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
 	IgmpSnooping *ManagedswitchIgmpSnooping `pulumi:"igmpSnooping"`
 	// IP source guard. The structure of `ipSourceGuard` block is documented below.
@@ -468,6 +556,8 @@ type managedswitchArgs struct {
 	MaxAllowedTrunkMembers *int `pulumi:"maxAllowedTrunkMembers"`
 	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
 	MclagIgmpSnoopingAware *string `pulumi:"mclagIgmpSnoopingAware"`
+	// FortiLink management mode.
+	MgmtMode *int `pulumi:"mgmtMode"`
 	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
 	Mirrors []ManagedswitchMirror `pulumi:"mirrors"`
 	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
@@ -494,12 +584,30 @@ type managedswitchArgs struct {
 	Ports []ManagedswitchPort `pulumi:"ports"`
 	// Pre-provisioned managed switch.
 	PreProvisioned *int `pulumi:"preProvisioned"`
+	// PTP profile configuration.
+	PtpProfile *string `pulumi:"ptpProfile"`
+	// Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+	PtpStatus *string `pulumi:"ptpStatus"`
+	// Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	PurdueLevel *string `pulumi:"purdueLevel"`
 	// Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
 	QosDropPolicy *string `pulumi:"qosDropPolicy"`
 	// Set QoS RED/WRED drop probability.
 	QosRedProbability *int `pulumi:"qosRedProbability"`
+	// NAS-IP address.
+	RadiusNasIp *string `pulumi:"radiusNasIp"`
+	// Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+	RadiusNasIpOverride *string `pulumi:"radiusNasIpOverride"`
 	// Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
 	RemoteLogs []ManagedswitchRemoteLog `pulumi:"remoteLogs"`
+	// Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+	RouteOffload *string `pulumi:"routeOffload"`
+	// Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+	RouteOffloadMclag *string `pulumi:"routeOffloadMclag"`
+	// Configure route offload MCLAG IP address. The structure of `routeOffloadRouter` block is documented below.
+	RouteOffloadRouters []ManagedswitchRouteOffloadRouter `pulumi:"routeOffloadRouters"`
+	// Managed-switch serial number.
+	Sn *string `pulumi:"sn"`
 	// Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
 	SnmpCommunities []ManagedswitchSnmpCommunity `pulumi:"snmpCommunities"`
 	// Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmpSysinfo` block is documented below.
@@ -532,12 +640,16 @@ type managedswitchArgs struct {
 	SwitchStpSettings *ManagedswitchSwitchStpSettings `pulumi:"switchStpSettings"`
 	// TDR supported.
 	TdrSupported *string `pulumi:"tdrSupported"`
+	// SOCKS tunnel management discovered.
+	TunnelDiscovered *int `pulumi:"tunnelDiscovered"`
 	// Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
 	Type *string `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// FortiSwitch version.
 	Version *int `pulumi:"version"`
+	// Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+	Vlans []ManagedswitchVlan `pulumi:"vlans"`
 }
 
 // The set of arguments for constructing a Managedswitch resource.
@@ -552,6 +664,8 @@ type ManagedswitchArgs struct {
 	Description pulumi.StringPtrInput
 	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
 	DhcpServerAccessList pulumi.StringPtrInput
+	// Configure FortiSwitch DHCP snooping static clients. The structure of `dhcpSnoopingStaticClient` block is documented below.
+	DhcpSnoopingStaticClients ManagedswitchDhcpSnoopingStaticClientArrayInput
 	// Directly connected FortiSwitch.
 	DirectlyConnected pulumi.IntPtrInput
 	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
@@ -576,6 +690,8 @@ type ManagedswitchArgs struct {
 	FswWan2Admin pulumi.StringPtrInput
 	// FortiSwitch WAN2 peer port.
 	FswWan2Peer pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
 	IgmpSnooping ManagedswitchIgmpSnoopingPtrInput
 	// IP source guard. The structure of `ipSourceGuard` block is documented below.
@@ -586,6 +702,8 @@ type ManagedswitchArgs struct {
 	MaxAllowedTrunkMembers pulumi.IntPtrInput
 	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
 	MclagIgmpSnoopingAware pulumi.StringPtrInput
+	// FortiLink management mode.
+	MgmtMode pulumi.IntPtrInput
 	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
 	Mirrors ManagedswitchMirrorArrayInput
 	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
@@ -612,12 +730,30 @@ type ManagedswitchArgs struct {
 	Ports ManagedswitchPortArrayInput
 	// Pre-provisioned managed switch.
 	PreProvisioned pulumi.IntPtrInput
+	// PTP profile configuration.
+	PtpProfile pulumi.StringPtrInput
+	// Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+	PtpStatus pulumi.StringPtrInput
+	// Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	PurdueLevel pulumi.StringPtrInput
 	// Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
 	QosDropPolicy pulumi.StringPtrInput
 	// Set QoS RED/WRED drop probability.
 	QosRedProbability pulumi.IntPtrInput
+	// NAS-IP address.
+	RadiusNasIp pulumi.StringPtrInput
+	// Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+	RadiusNasIpOverride pulumi.StringPtrInput
 	// Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
 	RemoteLogs ManagedswitchRemoteLogArrayInput
+	// Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+	RouteOffload pulumi.StringPtrInput
+	// Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+	RouteOffloadMclag pulumi.StringPtrInput
+	// Configure route offload MCLAG IP address. The structure of `routeOffloadRouter` block is documented below.
+	RouteOffloadRouters ManagedswitchRouteOffloadRouterArrayInput
+	// Managed-switch serial number.
+	Sn pulumi.StringPtrInput
 	// Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
 	SnmpCommunities ManagedswitchSnmpCommunityArrayInput
 	// Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmpSysinfo` block is documented below.
@@ -650,12 +786,16 @@ type ManagedswitchArgs struct {
 	SwitchStpSettings ManagedswitchSwitchStpSettingsPtrInput
 	// TDR supported.
 	TdrSupported pulumi.StringPtrInput
+	// SOCKS tunnel management discovered.
+	TunnelDiscovered pulumi.IntPtrInput
 	// Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
 	Type pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// FortiSwitch version.
 	Version pulumi.IntPtrInput
+	// Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+	Vlans ManagedswitchVlanArrayInput
 }
 
 func (ManagedswitchArgs) ElementType() reflect.Type {
@@ -770,6 +910,13 @@ func (o ManagedswitchOutput) DhcpServerAccessList() pulumi.StringOutput {
 	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.DhcpServerAccessList }).(pulumi.StringOutput)
 }
 
+// Configure FortiSwitch DHCP snooping static clients. The structure of `dhcpSnoopingStaticClient` block is documented below.
+func (o ManagedswitchOutput) DhcpSnoopingStaticClients() ManagedswitchDhcpSnoopingStaticClientArrayOutput {
+	return o.ApplyT(func(v *Managedswitch) ManagedswitchDhcpSnoopingStaticClientArrayOutput {
+		return v.DhcpSnoopingStaticClients
+	}).(ManagedswitchDhcpSnoopingStaticClientArrayOutput)
+}
+
 // Directly connected FortiSwitch.
 func (o ManagedswitchOutput) DirectlyConnected() pulumi.IntOutput {
 	return o.ApplyT(func(v *Managedswitch) pulumi.IntOutput { return v.DirectlyConnected }).(pulumi.IntOutput)
@@ -830,6 +977,11 @@ func (o ManagedswitchOutput) FswWan2Peer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.FswWan2Peer }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ManagedswitchOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Managedswitch) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
 func (o ManagedswitchOutput) IgmpSnooping() ManagedswitchIgmpSnoopingOutput {
 	return o.ApplyT(func(v *Managedswitch) ManagedswitchIgmpSnoopingOutput { return v.IgmpSnooping }).(ManagedswitchIgmpSnoopingOutput)
@@ -853,6 +1005,11 @@ func (o ManagedswitchOutput) MaxAllowedTrunkMembers() pulumi.IntOutput {
 // Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
 func (o ManagedswitchOutput) MclagIgmpSnoopingAware() pulumi.StringOutput {
 	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.MclagIgmpSnoopingAware }).(pulumi.StringOutput)
+}
+
+// FortiLink management mode.
+func (o ManagedswitchOutput) MgmtMode() pulumi.IntOutput {
+	return o.ApplyT(func(v *Managedswitch) pulumi.IntOutput { return v.MgmtMode }).(pulumi.IntOutput)
 }
 
 // Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
@@ -920,6 +1077,21 @@ func (o ManagedswitchOutput) PreProvisioned() pulumi.IntOutput {
 	return o.ApplyT(func(v *Managedswitch) pulumi.IntOutput { return v.PreProvisioned }).(pulumi.IntOutput)
 }
 
+// PTP profile configuration.
+func (o ManagedswitchOutput) PtpProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.PtpProfile }).(pulumi.StringOutput)
+}
+
+// Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+func (o ManagedswitchOutput) PtpStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.PtpStatus }).(pulumi.StringOutput)
+}
+
+// Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+func (o ManagedswitchOutput) PurdueLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.PurdueLevel }).(pulumi.StringOutput)
+}
+
 // Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
 func (o ManagedswitchOutput) QosDropPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.QosDropPolicy }).(pulumi.StringOutput)
@@ -930,9 +1102,39 @@ func (o ManagedswitchOutput) QosRedProbability() pulumi.IntOutput {
 	return o.ApplyT(func(v *Managedswitch) pulumi.IntOutput { return v.QosRedProbability }).(pulumi.IntOutput)
 }
 
+// NAS-IP address.
+func (o ManagedswitchOutput) RadiusNasIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.RadiusNasIp }).(pulumi.StringOutput)
+}
+
+// Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+func (o ManagedswitchOutput) RadiusNasIpOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.RadiusNasIpOverride }).(pulumi.StringOutput)
+}
+
 // Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
 func (o ManagedswitchOutput) RemoteLogs() ManagedswitchRemoteLogArrayOutput {
 	return o.ApplyT(func(v *Managedswitch) ManagedswitchRemoteLogArrayOutput { return v.RemoteLogs }).(ManagedswitchRemoteLogArrayOutput)
+}
+
+// Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+func (o ManagedswitchOutput) RouteOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.RouteOffload }).(pulumi.StringOutput)
+}
+
+// Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+func (o ManagedswitchOutput) RouteOffloadMclag() pulumi.StringOutput {
+	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.RouteOffloadMclag }).(pulumi.StringOutput)
+}
+
+// Configure route offload MCLAG IP address. The structure of `routeOffloadRouter` block is documented below.
+func (o ManagedswitchOutput) RouteOffloadRouters() ManagedswitchRouteOffloadRouterArrayOutput {
+	return o.ApplyT(func(v *Managedswitch) ManagedswitchRouteOffloadRouterArrayOutput { return v.RouteOffloadRouters }).(ManagedswitchRouteOffloadRouterArrayOutput)
+}
+
+// Managed-switch serial number.
+func (o ManagedswitchOutput) Sn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.Sn }).(pulumi.StringOutput)
 }
 
 // Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
@@ -1015,6 +1217,11 @@ func (o ManagedswitchOutput) TdrSupported() pulumi.StringOutput {
 	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.TdrSupported }).(pulumi.StringOutput)
 }
 
+// SOCKS tunnel management discovered.
+func (o ManagedswitchOutput) TunnelDiscovered() pulumi.IntOutput {
+	return o.ApplyT(func(v *Managedswitch) pulumi.IntOutput { return v.TunnelDiscovered }).(pulumi.IntOutput)
+}
+
 // Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
 func (o ManagedswitchOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
@@ -1028,6 +1235,11 @@ func (o ManagedswitchOutput) Vdomparam() pulumi.StringPtrOutput {
 // FortiSwitch version.
 func (o ManagedswitchOutput) Version() pulumi.IntOutput {
 	return o.ApplyT(func(v *Managedswitch) pulumi.IntOutput { return v.Version }).(pulumi.IntOutput)
+}
+
+// Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+func (o ManagedswitchOutput) Vlans() ManagedswitchVlanArrayOutput {
+	return o.ApplyT(func(v *Managedswitch) ManagedswitchVlanArrayOutput { return v.Vlans }).(ManagedswitchVlanArrayOutput)
 }
 
 type ManagedswitchArrayOutput struct{ *pulumi.OutputState }

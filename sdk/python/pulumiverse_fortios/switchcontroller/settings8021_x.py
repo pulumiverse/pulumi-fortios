@@ -16,6 +16,11 @@ class Settings8021XArgs:
     def __init__(__self__, *,
                  link_down_auth: Optional[pulumi.Input[str]] = None,
                  mab_reauth: Optional[pulumi.Input[str]] = None,
+                 mac_called_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_calling_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_case: Optional[pulumi.Input[str]] = None,
+                 mac_password_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  max_reauth_attempt: Optional[pulumi.Input[int]] = None,
                  reauth_period: Optional[pulumi.Input[int]] = None,
                  tx_period: Optional[pulumi.Input[int]] = None,
@@ -24,6 +29,11 @@ class Settings8021XArgs:
         The set of arguments for constructing a Settings8021X resource.
         :param pulumi.Input[str] link_down_auth: Interface-reauthentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
         :param pulumi.Input[str] mab_reauth: Enable/disable MAB re-authentication. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] mac_called_station_delimiter: MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_case: MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
         :param pulumi.Input[int] max_reauth_attempt: Maximum number of authentication attempts (0 - 15, default = 3).
         :param pulumi.Input[int] reauth_period: Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
         :param pulumi.Input[int] tx_period: 802.1X Tx period (seconds, default=30).
@@ -33,6 +43,16 @@ class Settings8021XArgs:
             pulumi.set(__self__, "link_down_auth", link_down_auth)
         if mab_reauth is not None:
             pulumi.set(__self__, "mab_reauth", mab_reauth)
+        if mac_called_station_delimiter is not None:
+            pulumi.set(__self__, "mac_called_station_delimiter", mac_called_station_delimiter)
+        if mac_calling_station_delimiter is not None:
+            pulumi.set(__self__, "mac_calling_station_delimiter", mac_calling_station_delimiter)
+        if mac_case is not None:
+            pulumi.set(__self__, "mac_case", mac_case)
+        if mac_password_delimiter is not None:
+            pulumi.set(__self__, "mac_password_delimiter", mac_password_delimiter)
+        if mac_username_delimiter is not None:
+            pulumi.set(__self__, "mac_username_delimiter", mac_username_delimiter)
         if max_reauth_attempt is not None:
             pulumi.set(__self__, "max_reauth_attempt", max_reauth_attempt)
         if reauth_period is not None:
@@ -65,6 +85,66 @@ class Settings8021XArgs:
     @mab_reauth.setter
     def mab_reauth(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mab_reauth", value)
+
+    @property
+    @pulumi.getter(name="macCalledStationDelimiter")
+    def mac_called_station_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_called_station_delimiter")
+
+    @mac_called_station_delimiter.setter
+    def mac_called_station_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_called_station_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macCallingStationDelimiter")
+    def mac_calling_station_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_calling_station_delimiter")
+
+    @mac_calling_station_delimiter.setter
+    def mac_calling_station_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_calling_station_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macCase")
+    def mac_case(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        """
+        return pulumi.get(self, "mac_case")
+
+    @mac_case.setter
+    def mac_case(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_case", value)
+
+    @property
+    @pulumi.getter(name="macPasswordDelimiter")
+    def mac_password_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_password_delimiter")
+
+    @mac_password_delimiter.setter
+    def mac_password_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_password_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macUsernameDelimiter")
+    def mac_username_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_username_delimiter")
+
+    @mac_username_delimiter.setter
+    def mac_username_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_username_delimiter", value)
 
     @property
     @pulumi.getter(name="maxReauthAttempt")
@@ -120,6 +200,11 @@ class _Settings8021XState:
     def __init__(__self__, *,
                  link_down_auth: Optional[pulumi.Input[str]] = None,
                  mab_reauth: Optional[pulumi.Input[str]] = None,
+                 mac_called_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_calling_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_case: Optional[pulumi.Input[str]] = None,
+                 mac_password_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  max_reauth_attempt: Optional[pulumi.Input[int]] = None,
                  reauth_period: Optional[pulumi.Input[int]] = None,
                  tx_period: Optional[pulumi.Input[int]] = None,
@@ -128,6 +213,11 @@ class _Settings8021XState:
         Input properties used for looking up and filtering Settings8021X resources.
         :param pulumi.Input[str] link_down_auth: Interface-reauthentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
         :param pulumi.Input[str] mab_reauth: Enable/disable MAB re-authentication. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] mac_called_station_delimiter: MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_case: MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
         :param pulumi.Input[int] max_reauth_attempt: Maximum number of authentication attempts (0 - 15, default = 3).
         :param pulumi.Input[int] reauth_period: Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
         :param pulumi.Input[int] tx_period: 802.1X Tx period (seconds, default=30).
@@ -137,6 +227,16 @@ class _Settings8021XState:
             pulumi.set(__self__, "link_down_auth", link_down_auth)
         if mab_reauth is not None:
             pulumi.set(__self__, "mab_reauth", mab_reauth)
+        if mac_called_station_delimiter is not None:
+            pulumi.set(__self__, "mac_called_station_delimiter", mac_called_station_delimiter)
+        if mac_calling_station_delimiter is not None:
+            pulumi.set(__self__, "mac_calling_station_delimiter", mac_calling_station_delimiter)
+        if mac_case is not None:
+            pulumi.set(__self__, "mac_case", mac_case)
+        if mac_password_delimiter is not None:
+            pulumi.set(__self__, "mac_password_delimiter", mac_password_delimiter)
+        if mac_username_delimiter is not None:
+            pulumi.set(__self__, "mac_username_delimiter", mac_username_delimiter)
         if max_reauth_attempt is not None:
             pulumi.set(__self__, "max_reauth_attempt", max_reauth_attempt)
         if reauth_period is not None:
@@ -169,6 +269,66 @@ class _Settings8021XState:
     @mab_reauth.setter
     def mab_reauth(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mab_reauth", value)
+
+    @property
+    @pulumi.getter(name="macCalledStationDelimiter")
+    def mac_called_station_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_called_station_delimiter")
+
+    @mac_called_station_delimiter.setter
+    def mac_called_station_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_called_station_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macCallingStationDelimiter")
+    def mac_calling_station_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_calling_station_delimiter")
+
+    @mac_calling_station_delimiter.setter
+    def mac_calling_station_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_calling_station_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macCase")
+    def mac_case(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        """
+        return pulumi.get(self, "mac_case")
+
+    @mac_case.setter
+    def mac_case(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_case", value)
+
+    @property
+    @pulumi.getter(name="macPasswordDelimiter")
+    def mac_password_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_password_delimiter")
+
+    @mac_password_delimiter.setter
+    def mac_password_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_password_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macUsernameDelimiter")
+    def mac_username_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_username_delimiter")
+
+    @mac_username_delimiter.setter
+    def mac_username_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_username_delimiter", value)
 
     @property
     @pulumi.getter(name="maxReauthAttempt")
@@ -226,6 +386,11 @@ class Settings8021X(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  link_down_auth: Optional[pulumi.Input[str]] = None,
                  mab_reauth: Optional[pulumi.Input[str]] = None,
+                 mac_called_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_calling_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_case: Optional[pulumi.Input[str]] = None,
+                 mac_password_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  max_reauth_attempt: Optional[pulumi.Input[int]] = None,
                  reauth_period: Optional[pulumi.Input[int]] = None,
                  tx_period: Optional[pulumi.Input[int]] = None,
@@ -270,6 +435,11 @@ class Settings8021X(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] link_down_auth: Interface-reauthentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
         :param pulumi.Input[str] mab_reauth: Enable/disable MAB re-authentication. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] mac_called_station_delimiter: MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_case: MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
         :param pulumi.Input[int] max_reauth_attempt: Maximum number of authentication attempts (0 - 15, default = 3).
         :param pulumi.Input[int] reauth_period: Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
         :param pulumi.Input[int] tx_period: 802.1X Tx period (seconds, default=30).
@@ -333,6 +503,11 @@ class Settings8021X(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  link_down_auth: Optional[pulumi.Input[str]] = None,
                  mab_reauth: Optional[pulumi.Input[str]] = None,
+                 mac_called_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_calling_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_case: Optional[pulumi.Input[str]] = None,
+                 mac_password_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  max_reauth_attempt: Optional[pulumi.Input[int]] = None,
                  reauth_period: Optional[pulumi.Input[int]] = None,
                  tx_period: Optional[pulumi.Input[int]] = None,
@@ -348,6 +523,11 @@ class Settings8021X(pulumi.CustomResource):
 
             __props__.__dict__["link_down_auth"] = link_down_auth
             __props__.__dict__["mab_reauth"] = mab_reauth
+            __props__.__dict__["mac_called_station_delimiter"] = mac_called_station_delimiter
+            __props__.__dict__["mac_calling_station_delimiter"] = mac_calling_station_delimiter
+            __props__.__dict__["mac_case"] = mac_case
+            __props__.__dict__["mac_password_delimiter"] = mac_password_delimiter
+            __props__.__dict__["mac_username_delimiter"] = mac_username_delimiter
             __props__.__dict__["max_reauth_attempt"] = max_reauth_attempt
             __props__.__dict__["reauth_period"] = reauth_period
             __props__.__dict__["tx_period"] = tx_period
@@ -364,6 +544,11 @@ class Settings8021X(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             link_down_auth: Optional[pulumi.Input[str]] = None,
             mab_reauth: Optional[pulumi.Input[str]] = None,
+            mac_called_station_delimiter: Optional[pulumi.Input[str]] = None,
+            mac_calling_station_delimiter: Optional[pulumi.Input[str]] = None,
+            mac_case: Optional[pulumi.Input[str]] = None,
+            mac_password_delimiter: Optional[pulumi.Input[str]] = None,
+            mac_username_delimiter: Optional[pulumi.Input[str]] = None,
             max_reauth_attempt: Optional[pulumi.Input[int]] = None,
             reauth_period: Optional[pulumi.Input[int]] = None,
             tx_period: Optional[pulumi.Input[int]] = None,
@@ -377,6 +562,11 @@ class Settings8021X(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] link_down_auth: Interface-reauthentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
         :param pulumi.Input[str] mab_reauth: Enable/disable MAB re-authentication. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] mac_called_station_delimiter: MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_case: MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
         :param pulumi.Input[int] max_reauth_attempt: Maximum number of authentication attempts (0 - 15, default = 3).
         :param pulumi.Input[int] reauth_period: Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
         :param pulumi.Input[int] tx_period: 802.1X Tx period (seconds, default=30).
@@ -388,6 +578,11 @@ class Settings8021X(pulumi.CustomResource):
 
         __props__.__dict__["link_down_auth"] = link_down_auth
         __props__.__dict__["mab_reauth"] = mab_reauth
+        __props__.__dict__["mac_called_station_delimiter"] = mac_called_station_delimiter
+        __props__.__dict__["mac_calling_station_delimiter"] = mac_calling_station_delimiter
+        __props__.__dict__["mac_case"] = mac_case
+        __props__.__dict__["mac_password_delimiter"] = mac_password_delimiter
+        __props__.__dict__["mac_username_delimiter"] = mac_username_delimiter
         __props__.__dict__["max_reauth_attempt"] = max_reauth_attempt
         __props__.__dict__["reauth_period"] = reauth_period
         __props__.__dict__["tx_period"] = tx_period
@@ -409,6 +604,46 @@ class Settings8021X(pulumi.CustomResource):
         Enable/disable MAB re-authentication. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "mab_reauth")
+
+    @property
+    @pulumi.getter(name="macCalledStationDelimiter")
+    def mac_called_station_delimiter(self) -> pulumi.Output[str]:
+        """
+        MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_called_station_delimiter")
+
+    @property
+    @pulumi.getter(name="macCallingStationDelimiter")
+    def mac_calling_station_delimiter(self) -> pulumi.Output[str]:
+        """
+        MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_calling_station_delimiter")
+
+    @property
+    @pulumi.getter(name="macCase")
+    def mac_case(self) -> pulumi.Output[str]:
+        """
+        MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        """
+        return pulumi.get(self, "mac_case")
+
+    @property
+    @pulumi.getter(name="macPasswordDelimiter")
+    def mac_password_delimiter(self) -> pulumi.Output[str]:
+        """
+        MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_password_delimiter")
+
+    @property
+    @pulumi.getter(name="macUsernameDelimiter")
+    def mac_username_delimiter(self) -> pulumi.Output[str]:
+        """
+        MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_username_delimiter")
 
     @property
     @pulumi.getter(name="maxReauthAttempt")

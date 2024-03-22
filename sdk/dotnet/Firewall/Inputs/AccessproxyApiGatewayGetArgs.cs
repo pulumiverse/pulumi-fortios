@@ -26,6 +26,18 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         }
 
         /// <summary>
+        /// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("h2Support")]
+        public Input<string>? H2Support { get; set; }
+
+        /// <summary>
+        /// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("h3Support")]
+        public Input<string>? H3Support { get; set; }
+
+        /// <summary>
         /// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
         /// </summary>
         [Input("httpCookieAge")]
@@ -84,6 +96,12 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         /// </summary>
         [Input("persistence")]
         public Input<string>? Persistence { get; set; }
+
+        /// <summary>
+        /// QUIC setting. The structure of `quic` block is documented below.
+        /// </summary>
+        [Input("quic")]
+        public Input<Inputs.AccessproxyApiGatewayQuicGetArgs>? Quic { get; set; }
 
         [Input("realservers")]
         private InputList<Inputs.AccessproxyApiGatewayRealserverGetArgs>? _realservers;
@@ -150,6 +168,12 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         /// </summary>
         [Input("sslMinVersion")]
         public Input<string>? SslMinVersion { get; set; }
+
+        /// <summary>
+        /// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("sslRenegotiation")]
+        public Input<string>? SslRenegotiation { get; set; }
 
         /// <summary>
         /// SSL-VPN web portal.

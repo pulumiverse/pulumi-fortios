@@ -113,6 +113,14 @@ export class Shapingpolicy extends pulumi.CustomResource {
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     /**
+     * VLAN CoS bit pattern.
+     */
+    public readonly cos!: pulumi.Output<string>;
+    /**
+     * VLAN CoS evaluated bits.
+     */
+    public readonly cosMask!: pulumi.Output<string>;
+    /**
      * Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
      */
     public readonly diffservForward!: pulumi.Output<string>;
@@ -135,7 +143,7 @@ export class Shapingpolicy extends pulumi.CustomResource {
     /**
      * IPv4 destination address and address group names. The structure of `dstaddr` block is documented below.
      */
-    public readonly dstaddrs!: pulumi.Output<outputs.firewall.ShapingpolicyDstaddr[]>;
+    public readonly dstaddrs!: pulumi.Output<outputs.firewall.ShapingpolicyDstaddr[] | undefined>;
     /**
      * One or more outgoing (egress) interfaces. The structure of `dstintf` block is documented below.
      */
@@ -148,6 +156,10 @@ export class Shapingpolicy extends pulumi.CustomResource {
      * Shaping policy ID.
      */
     public readonly fosid!: pulumi.Output<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
      */
@@ -219,7 +231,7 @@ export class Shapingpolicy extends pulumi.CustomResource {
     /**
      * Service and service group names. The structure of `service` block is documented below.
      */
-    public readonly services!: pulumi.Output<outputs.firewall.ShapingpolicyService[]>;
+    public readonly services!: pulumi.Output<outputs.firewall.ShapingpolicyService[] | undefined>;
     /**
      * IPv6 source address and address group names. The structure of `srcaddr6` block is documented below.
      */
@@ -257,6 +269,10 @@ export class Shapingpolicy extends pulumi.CustomResource {
      */
     public readonly trafficShaperReverse!: pulumi.Output<string>;
     /**
+     * Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+     */
+    public readonly trafficType!: pulumi.Output<string>;
+    /**
      * IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.
      */
     public readonly urlCategories!: pulumi.Output<outputs.firewall.ShapingpolicyUrlCategory[] | undefined>;
@@ -291,6 +307,8 @@ export class Shapingpolicy extends pulumi.CustomResource {
             resourceInputs["applications"] = state ? state.applications : undefined;
             resourceInputs["classId"] = state ? state.classId : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["cos"] = state ? state.cos : undefined;
+            resourceInputs["cosMask"] = state ? state.cosMask : undefined;
             resourceInputs["diffservForward"] = state ? state.diffservForward : undefined;
             resourceInputs["diffservReverse"] = state ? state.diffservReverse : undefined;
             resourceInputs["diffservcodeForward"] = state ? state.diffservcodeForward : undefined;
@@ -300,6 +318,7 @@ export class Shapingpolicy extends pulumi.CustomResource {
             resourceInputs["dstintfs"] = state ? state.dstintfs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["internetService"] = state ? state.internetService : undefined;
             resourceInputs["internetServiceCustomGroups"] = state ? state.internetServiceCustomGroups : undefined;
@@ -327,20 +346,15 @@ export class Shapingpolicy extends pulumi.CustomResource {
             resourceInputs["tosNegate"] = state ? state.tosNegate : undefined;
             resourceInputs["trafficShaper"] = state ? state.trafficShaper : undefined;
             resourceInputs["trafficShaperReverse"] = state ? state.trafficShaperReverse : undefined;
+            resourceInputs["trafficType"] = state ? state.trafficType : undefined;
             resourceInputs["urlCategories"] = state ? state.urlCategories : undefined;
             resourceInputs["users"] = state ? state.users : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as ShapingpolicyArgs | undefined;
-            if ((!args || args.dstaddrs === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'dstaddrs'");
-            }
             if ((!args || args.dstintfs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'dstintfs'");
-            }
-            if ((!args || args.services === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'services'");
             }
             if ((!args || args.srcaddrs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'srcaddrs'");
@@ -350,6 +364,8 @@ export class Shapingpolicy extends pulumi.CustomResource {
             resourceInputs["applications"] = args ? args.applications : undefined;
             resourceInputs["classId"] = args ? args.classId : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["cos"] = args ? args.cos : undefined;
+            resourceInputs["cosMask"] = args ? args.cosMask : undefined;
             resourceInputs["diffservForward"] = args ? args.diffservForward : undefined;
             resourceInputs["diffservReverse"] = args ? args.diffservReverse : undefined;
             resourceInputs["diffservcodeForward"] = args ? args.diffservcodeForward : undefined;
@@ -359,6 +375,7 @@ export class Shapingpolicy extends pulumi.CustomResource {
             resourceInputs["dstintfs"] = args ? args.dstintfs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["internetService"] = args ? args.internetService : undefined;
             resourceInputs["internetServiceCustomGroups"] = args ? args.internetServiceCustomGroups : undefined;
@@ -386,6 +403,7 @@ export class Shapingpolicy extends pulumi.CustomResource {
             resourceInputs["tosNegate"] = args ? args.tosNegate : undefined;
             resourceInputs["trafficShaper"] = args ? args.trafficShaper : undefined;
             resourceInputs["trafficShaperReverse"] = args ? args.trafficShaperReverse : undefined;
+            resourceInputs["trafficType"] = args ? args.trafficType : undefined;
             resourceInputs["urlCategories"] = args ? args.urlCategories : undefined;
             resourceInputs["users"] = args ? args.users : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
@@ -420,6 +438,14 @@ export interface ShapingpolicyState {
      * Comments.
      */
     comment?: pulumi.Input<string>;
+    /**
+     * VLAN CoS bit pattern.
+     */
+    cos?: pulumi.Input<string>;
+    /**
+     * VLAN CoS evaluated bits.
+     */
+    cosMask?: pulumi.Input<string>;
     /**
      * Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
      */
@@ -456,6 +482,10 @@ export interface ShapingpolicyState {
      * Shaping policy ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
      */
@@ -565,6 +595,10 @@ export interface ShapingpolicyState {
      */
     trafficShaperReverse?: pulumi.Input<string>;
     /**
+     * Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+     */
+    trafficType?: pulumi.Input<string>;
+    /**
      * IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.
      */
     urlCategories?: pulumi.Input<pulumi.Input<inputs.firewall.ShapingpolicyUrlCategory>[]>;
@@ -607,6 +641,14 @@ export interface ShapingpolicyArgs {
      */
     comment?: pulumi.Input<string>;
     /**
+     * VLAN CoS bit pattern.
+     */
+    cos?: pulumi.Input<string>;
+    /**
+     * VLAN CoS evaluated bits.
+     */
+    cosMask?: pulumi.Input<string>;
+    /**
      * Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
      */
     diffservForward?: pulumi.Input<string>;
@@ -629,7 +671,7 @@ export interface ShapingpolicyArgs {
     /**
      * IPv4 destination address and address group names. The structure of `dstaddr` block is documented below.
      */
-    dstaddrs: pulumi.Input<pulumi.Input<inputs.firewall.ShapingpolicyDstaddr>[]>;
+    dstaddrs?: pulumi.Input<pulumi.Input<inputs.firewall.ShapingpolicyDstaddr>[]>;
     /**
      * One or more outgoing (egress) interfaces. The structure of `dstintf` block is documented below.
      */
@@ -642,6 +684,10 @@ export interface ShapingpolicyArgs {
      * Shaping policy ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
      */
@@ -713,7 +759,7 @@ export interface ShapingpolicyArgs {
     /**
      * Service and service group names. The structure of `service` block is documented below.
      */
-    services: pulumi.Input<pulumi.Input<inputs.firewall.ShapingpolicyService>[]>;
+    services?: pulumi.Input<pulumi.Input<inputs.firewall.ShapingpolicyService>[]>;
     /**
      * IPv6 source address and address group names. The structure of `srcaddr6` block is documented below.
      */
@@ -750,6 +796,10 @@ export interface ShapingpolicyArgs {
      * Traffic shaper to apply to response traffic received by the firewall policy.
      */
     trafficShaperReverse?: pulumi.Input<string>;
+    /**
+     * Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+     */
+    trafficType?: pulumi.Input<string>;
     /**
      * IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.
      */

@@ -69,6 +69,8 @@ type Vdomexception struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Index <1-4096>.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Name of the configuration object that can be configured independently for all VDOMs.
 	Object pulumi.StringOutput `pulumi:"object"`
 	// Object ID.
@@ -118,6 +120,8 @@ type vdomexceptionState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Index <1-4096>.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Name of the configuration object that can be configured independently for all VDOMs.
 	Object *string `pulumi:"object"`
 	// Object ID.
@@ -135,6 +139,8 @@ type VdomexceptionState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Index <1-4096>.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Name of the configuration object that can be configured independently for all VDOMs.
 	Object pulumi.StringPtrInput
 	// Object ID.
@@ -156,6 +162,8 @@ type vdomexceptionArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Index <1-4096>.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Name of the configuration object that can be configured independently for all VDOMs.
 	Object string `pulumi:"object"`
 	// Object ID.
@@ -174,6 +182,8 @@ type VdomexceptionArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Index <1-4096>.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Name of the configuration object that can be configured independently for all VDOMs.
 	Object pulumi.StringInput
 	// Object ID.
@@ -281,6 +291,11 @@ func (o VdomexceptionOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Index <1-4096>.
 func (o VdomexceptionOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vdomexception) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o VdomexceptionOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Vdomexception) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Name of the configuration object that can be configured independently for all VDOMs.

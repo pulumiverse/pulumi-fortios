@@ -46,10 +46,12 @@ class AutomationactionArgs:
                  email_subject: Optional[pulumi.Input[str]] = None,
                  email_tos: Optional[pulumi.Input[Sequence[pulumi.Input['AutomationactionEmailToArgs']]]] = None,
                  execute_security_fabric: Optional[pulumi.Input[str]] = None,
+                 forticare_email: Optional[pulumi.Input[str]] = None,
                  gcp_function: Optional[pulumi.Input[str]] = None,
                  gcp_function_domain: Optional[pulumi.Input[str]] = None,
                  gcp_function_region: Optional[pulumi.Input[str]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['AutomationactionHeaderArgs']]]] = None,
                  http_body: Optional[pulumi.Input[str]] = None,
                  http_headers: Optional[pulumi.Input[Sequence[pulumi.Input['AutomationactionHttpHeaderArgs']]]] = None,
@@ -105,10 +107,12 @@ class AutomationactionArgs:
         :param pulumi.Input[str] email_subject: Email subject.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationactionEmailToArgs']]] email_tos: Email addresses. The structure of `email_to` block is documented below.
         :param pulumi.Input[str] execute_security_fabric: Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] forticare_email: Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gcp_function: Google Cloud function name.
         :param pulumi.Input[str] gcp_function_domain: Google Cloud function domain.
         :param pulumi.Input[str] gcp_function_region: Google Cloud function region.
         :param pulumi.Input[str] gcp_project: Google Cloud Platform project name.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationactionHeaderArgs']]] headers: Request headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] http_body: Request body (if necessary). Should be serialized json string.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationactionHttpHeaderArgs']]] http_headers: Request headers. The structure of `http_headers` block is documented below.
@@ -193,6 +197,8 @@ class AutomationactionArgs:
             pulumi.set(__self__, "email_tos", email_tos)
         if execute_security_fabric is not None:
             pulumi.set(__self__, "execute_security_fabric", execute_security_fabric)
+        if forticare_email is not None:
+            pulumi.set(__self__, "forticare_email", forticare_email)
         if gcp_function is not None:
             pulumi.set(__self__, "gcp_function", gcp_function)
         if gcp_function_domain is not None:
@@ -201,6 +207,8 @@ class AutomationactionArgs:
             pulumi.set(__self__, "gcp_function_region", gcp_function_region)
         if gcp_project is not None:
             pulumi.set(__self__, "gcp_project", gcp_project)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
         if http_body is not None:
@@ -609,6 +617,18 @@ class AutomationactionArgs:
         pulumi.set(self, "execute_security_fabric", value)
 
     @property
+    @pulumi.getter(name="forticareEmail")
+    def forticare_email(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "forticare_email")
+
+    @forticare_email.setter
+    def forticare_email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forticare_email", value)
+
+    @property
     @pulumi.getter(name="gcpFunction")
     def gcp_function(self) -> Optional[pulumi.Input[str]]:
         """
@@ -655,6 +675,18 @@ class AutomationactionArgs:
     @gcp_project.setter
     def gcp_project(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gcp_project", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -966,10 +998,12 @@ class _AutomationactionState:
                  email_subject: Optional[pulumi.Input[str]] = None,
                  email_tos: Optional[pulumi.Input[Sequence[pulumi.Input['AutomationactionEmailToArgs']]]] = None,
                  execute_security_fabric: Optional[pulumi.Input[str]] = None,
+                 forticare_email: Optional[pulumi.Input[str]] = None,
                  gcp_function: Optional[pulumi.Input[str]] = None,
                  gcp_function_domain: Optional[pulumi.Input[str]] = None,
                  gcp_function_region: Optional[pulumi.Input[str]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['AutomationactionHeaderArgs']]]] = None,
                  http_body: Optional[pulumi.Input[str]] = None,
                  http_headers: Optional[pulumi.Input[Sequence[pulumi.Input['AutomationactionHttpHeaderArgs']]]] = None,
@@ -1025,10 +1059,12 @@ class _AutomationactionState:
         :param pulumi.Input[str] email_subject: Email subject.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationactionEmailToArgs']]] email_tos: Email addresses. The structure of `email_to` block is documented below.
         :param pulumi.Input[str] execute_security_fabric: Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] forticare_email: Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gcp_function: Google Cloud function name.
         :param pulumi.Input[str] gcp_function_domain: Google Cloud function domain.
         :param pulumi.Input[str] gcp_function_region: Google Cloud function region.
         :param pulumi.Input[str] gcp_project: Google Cloud Platform project name.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationactionHeaderArgs']]] headers: Request headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] http_body: Request body (if necessary). Should be serialized json string.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationactionHttpHeaderArgs']]] http_headers: Request headers. The structure of `http_headers` block is documented below.
@@ -1113,6 +1149,8 @@ class _AutomationactionState:
             pulumi.set(__self__, "email_tos", email_tos)
         if execute_security_fabric is not None:
             pulumi.set(__self__, "execute_security_fabric", execute_security_fabric)
+        if forticare_email is not None:
+            pulumi.set(__self__, "forticare_email", forticare_email)
         if gcp_function is not None:
             pulumi.set(__self__, "gcp_function", gcp_function)
         if gcp_function_domain is not None:
@@ -1121,6 +1159,8 @@ class _AutomationactionState:
             pulumi.set(__self__, "gcp_function_region", gcp_function_region)
         if gcp_project is not None:
             pulumi.set(__self__, "gcp_project", gcp_project)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
         if http_body is not None:
@@ -1529,6 +1569,18 @@ class _AutomationactionState:
         pulumi.set(self, "execute_security_fabric", value)
 
     @property
+    @pulumi.getter(name="forticareEmail")
+    def forticare_email(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "forticare_email")
+
+    @forticare_email.setter
+    def forticare_email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forticare_email", value)
+
+    @property
     @pulumi.getter(name="gcpFunction")
     def gcp_function(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1575,6 +1627,18 @@ class _AutomationactionState:
     @gcp_project.setter
     def gcp_project(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gcp_project", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1888,10 +1952,12 @@ class Automationaction(pulumi.CustomResource):
                  email_subject: Optional[pulumi.Input[str]] = None,
                  email_tos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionEmailToArgs']]]]] = None,
                  execute_security_fabric: Optional[pulumi.Input[str]] = None,
+                 forticare_email: Optional[pulumi.Input[str]] = None,
                  gcp_function: Optional[pulumi.Input[str]] = None,
                  gcp_function_domain: Optional[pulumi.Input[str]] = None,
                  gcp_function_region: Optional[pulumi.Input[str]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHeaderArgs']]]]] = None,
                  http_body: Optional[pulumi.Input[str]] = None,
                  http_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHttpHeaderArgs']]]]] = None,
@@ -1988,10 +2054,12 @@ class Automationaction(pulumi.CustomResource):
         :param pulumi.Input[str] email_subject: Email subject.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionEmailToArgs']]]] email_tos: Email addresses. The structure of `email_to` block is documented below.
         :param pulumi.Input[str] execute_security_fabric: Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] forticare_email: Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gcp_function: Google Cloud function name.
         :param pulumi.Input[str] gcp_function_domain: Google Cloud function domain.
         :param pulumi.Input[str] gcp_function_region: Google Cloud function region.
         :param pulumi.Input[str] gcp_project: Google Cloud Platform project name.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHeaderArgs']]]] headers: Request headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] http_body: Request body (if necessary). Should be serialized json string.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHttpHeaderArgs']]]] http_headers: Request headers. The structure of `http_headers` block is documented below.
@@ -2107,10 +2175,12 @@ class Automationaction(pulumi.CustomResource):
                  email_subject: Optional[pulumi.Input[str]] = None,
                  email_tos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionEmailToArgs']]]]] = None,
                  execute_security_fabric: Optional[pulumi.Input[str]] = None,
+                 forticare_email: Optional[pulumi.Input[str]] = None,
                  gcp_function: Optional[pulumi.Input[str]] = None,
                  gcp_function_domain: Optional[pulumi.Input[str]] = None,
                  gcp_function_region: Optional[pulumi.Input[str]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHeaderArgs']]]]] = None,
                  http_body: Optional[pulumi.Input[str]] = None,
                  http_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHttpHeaderArgs']]]]] = None,
@@ -2173,10 +2243,12 @@ class Automationaction(pulumi.CustomResource):
             __props__.__dict__["email_subject"] = email_subject
             __props__.__dict__["email_tos"] = email_tos
             __props__.__dict__["execute_security_fabric"] = execute_security_fabric
+            __props__.__dict__["forticare_email"] = forticare_email
             __props__.__dict__["gcp_function"] = gcp_function
             __props__.__dict__["gcp_function_domain"] = gcp_function_domain
             __props__.__dict__["gcp_function_region"] = gcp_function_region
             __props__.__dict__["gcp_project"] = gcp_project
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["headers"] = headers
             __props__.__dict__["http_body"] = http_body
             __props__.__dict__["http_headers"] = http_headers
@@ -2242,10 +2314,12 @@ class Automationaction(pulumi.CustomResource):
             email_subject: Optional[pulumi.Input[str]] = None,
             email_tos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionEmailToArgs']]]]] = None,
             execute_security_fabric: Optional[pulumi.Input[str]] = None,
+            forticare_email: Optional[pulumi.Input[str]] = None,
             gcp_function: Optional[pulumi.Input[str]] = None,
             gcp_function_domain: Optional[pulumi.Input[str]] = None,
             gcp_function_region: Optional[pulumi.Input[str]] = None,
             gcp_project: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHeaderArgs']]]]] = None,
             http_body: Optional[pulumi.Input[str]] = None,
             http_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHttpHeaderArgs']]]]] = None,
@@ -2306,10 +2380,12 @@ class Automationaction(pulumi.CustomResource):
         :param pulumi.Input[str] email_subject: Email subject.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionEmailToArgs']]]] email_tos: Email addresses. The structure of `email_to` block is documented below.
         :param pulumi.Input[str] execute_security_fabric: Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] forticare_email: Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gcp_function: Google Cloud function name.
         :param pulumi.Input[str] gcp_function_domain: Google Cloud function domain.
         :param pulumi.Input[str] gcp_function_region: Google Cloud function region.
         :param pulumi.Input[str] gcp_project: Google Cloud Platform project name.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHeaderArgs']]]] headers: Request headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] http_body: Request body (if necessary). Should be serialized json string.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHttpHeaderArgs']]]] http_headers: Request headers. The structure of `http_headers` block is documented below.
@@ -2368,10 +2444,12 @@ class Automationaction(pulumi.CustomResource):
         __props__.__dict__["email_subject"] = email_subject
         __props__.__dict__["email_tos"] = email_tos
         __props__.__dict__["execute_security_fabric"] = execute_security_fabric
+        __props__.__dict__["forticare_email"] = forticare_email
         __props__.__dict__["gcp_function"] = gcp_function
         __props__.__dict__["gcp_function_domain"] = gcp_function_domain
         __props__.__dict__["gcp_function_region"] = gcp_function_region
         __props__.__dict__["gcp_project"] = gcp_project
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["headers"] = headers
         __props__.__dict__["http_body"] = http_body
         __props__.__dict__["http_headers"] = http_headers
@@ -2638,6 +2716,14 @@ class Automationaction(pulumi.CustomResource):
         return pulumi.get(self, "execute_security_fabric")
 
     @property
+    @pulumi.getter(name="forticareEmail")
+    def forticare_email(self) -> pulumi.Output[str]:
+        """
+        Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "forticare_email")
+
+    @property
     @pulumi.getter(name="gcpFunction")
     def gcp_function(self) -> pulumi.Output[str]:
         """
@@ -2668,6 +2754,14 @@ class Automationaction(pulumi.CustomResource):
         Google Cloud Platform project name.
         """
         return pulumi.get(self, "gcp_project")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

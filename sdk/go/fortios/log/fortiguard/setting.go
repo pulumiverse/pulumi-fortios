@@ -83,7 +83,7 @@ type Setting struct {
 	Priority pulumi.StringOutput `pulumi:"priority"`
 	// Source IP address used to connect FortiCloud.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
 	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -145,7 +145,7 @@ type settingState struct {
 	Priority *string `pulumi:"priority"`
 	// Source IP address used to connect FortiCloud.
 	SourceIp *string `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
@@ -178,7 +178,7 @@ type SettingState struct {
 	Priority pulumi.StringPtrInput
 	// Source IP address used to connect FortiCloud.
 	SourceIp pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
@@ -215,7 +215,7 @@ type settingArgs struct {
 	Priority *string `pulumi:"priority"`
 	// Source IP address used to connect FortiCloud.
 	SourceIp *string `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
@@ -249,7 +249,7 @@ type SettingArgs struct {
 	Priority pulumi.StringPtrInput
 	// Source IP address used to connect FortiCloud.
 	SourceIp pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
@@ -392,7 +392,7 @@ func (o SettingOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
 }
 
-// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 func (o SettingOutput) SslMinProtoVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
 }

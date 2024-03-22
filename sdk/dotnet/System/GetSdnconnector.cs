@@ -75,6 +75,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string AccessKey;
         /// <summary>
+        /// Enable/disable AWS alternative resource IP.
+        /// </summary>
+        public readonly string AltResourceIp;
+        /// <summary>
         /// IBM cloud API key or service ID API key.
         /// </summary>
         public readonly string ApiKey;
@@ -91,9 +95,13 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string ClientSecret;
         /// <summary>
-        /// Compartment ID.
+        /// OCI compartment ID.
         /// </summary>
         public readonly string CompartmentId;
+        /// <summary>
+        /// Configure OCI compartment list. The structure of `compartment_list` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetSdnconnectorCompartmentListResult> CompartmentLists;
         /// <summary>
         /// Compute generation for IBM cloud infrastructure.
         /// </summary>
@@ -175,6 +183,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string OciRegion;
         /// <summary>
+        /// Configure OCI region list. The structure of `oci_region_list` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetSdnconnectorOciRegionListResult> OciRegionLists;
+        /// <summary>
         /// OCI region type.
         /// </summary>
         public readonly string OciRegionType;
@@ -187,7 +199,11 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string PrivateKey;
         /// <summary>
-        /// AWS region name.
+        /// SDN proxy.
+        /// </summary>
+        public readonly string Proxy;
+        /// <summary>
+        /// OCI region.
         /// </summary>
         public readonly string Region;
         /// <summary>
@@ -218,6 +234,14 @@ namespace Pulumiverse.Fortios.System
         /// Server address of the remote SDN connector.
         /// </summary>
         public readonly string Server;
+        /// <summary>
+        /// Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+        /// </summary>
+        public readonly string ServerCaCert;
+        /// <summary>
+        /// Trust servers that contain this certificate only.
+        /// </summary>
+        public readonly string ServerCert;
         /// <summary>
         /// Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
         /// </summary>
@@ -288,6 +312,8 @@ namespace Pulumiverse.Fortios.System
         private GetSdnconnectorResult(
             string accessKey,
 
+            string altResourceIp,
+
             string apiKey,
 
             string azureRegion,
@@ -297,6 +323,8 @@ namespace Pulumiverse.Fortios.System
             string clientSecret,
 
             string compartmentId,
+
+            ImmutableArray<Outputs.GetSdnconnectorCompartmentListResult> compartmentLists,
 
             int computeGeneration,
 
@@ -338,11 +366,15 @@ namespace Pulumiverse.Fortios.System
 
             string ociRegion,
 
+            ImmutableArray<Outputs.GetSdnconnectorOciRegionListResult> ociRegionLists,
+
             string ociRegionType,
 
             string password,
 
             string privateKey,
+
+            string proxy,
 
             string region,
 
@@ -359,6 +391,10 @@ namespace Pulumiverse.Fortios.System
             string secretToken,
 
             string server,
+
+            string serverCaCert,
+
+            string serverCert,
 
             ImmutableArray<Outputs.GetSdnconnectorServerListResult> serverLists,
 
@@ -395,11 +431,13 @@ namespace Pulumiverse.Fortios.System
             string vpcId)
         {
             AccessKey = accessKey;
+            AltResourceIp = altResourceIp;
             ApiKey = apiKey;
             AzureRegion = azureRegion;
             ClientId = clientId;
             ClientSecret = clientSecret;
             CompartmentId = compartmentId;
+            CompartmentLists = compartmentLists;
             ComputeGeneration = computeGeneration;
             Domain = domain;
             ExternalAccountLists = externalAccountLists;
@@ -420,9 +458,11 @@ namespace Pulumiverse.Fortios.System
             OciCert = ociCert;
             OciFingerprint = ociFingerprint;
             OciRegion = ociRegion;
+            OciRegionLists = ociRegionLists;
             OciRegionType = ociRegionType;
             Password = password;
             PrivateKey = privateKey;
+            Proxy = proxy;
             Region = region;
             ResourceGroup = resourceGroup;
             ResourceUrl = resourceUrl;
@@ -431,6 +471,8 @@ namespace Pulumiverse.Fortios.System
             SecretKey = secretKey;
             SecretToken = secretToken;
             Server = server;
+            ServerCaCert = serverCaCert;
+            ServerCert = serverCert;
             ServerLists = serverLists;
             ServerPort = serverPort;
             ServiceAccount = serviceAccount;

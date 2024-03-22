@@ -131,6 +131,54 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Output<string> EnrollProtocol { get; private set; } = null!;
 
         /// <summary>
+        /// CA identifier of the CA server for signing via EST.
+        /// </summary>
+        [Output("estCaId")]
+        public Output<string> EstCaId { get; private set; } = null!;
+
+        /// <summary>
+        /// Certificate used to authenticate this FortiGate to EST server.
+        /// </summary>
+        [Output("estClientCert")]
+        public Output<string> EstClientCert { get; private set; } = null!;
+
+        /// <summary>
+        /// HTTP Authentication password for signing via EST.
+        /// </summary>
+        [Output("estHttpPassword")]
+        public Output<string> EstHttpPassword { get; private set; } = null!;
+
+        /// <summary>
+        /// HTTP Authentication username for signing via EST.
+        /// </summary>
+        [Output("estHttpUsername")]
+        public Output<string> EstHttpUsername { get; private set; } = null!;
+
+        /// <summary>
+        /// Address and port for EST server (e.g. https://example.com:1234).
+        /// </summary>
+        [Output("estServer")]
+        public Output<string> EstServer { get; private set; } = null!;
+
+        /// <summary>
+        /// EST server's certificate must be verifiable by this certificate to be authenticated.
+        /// </summary>
+        [Output("estServerCert")]
+        public Output<string> EstServerCert { get; private set; } = null!;
+
+        /// <summary>
+        /// EST SRP authentication password.
+        /// </summary>
+        [Output("estSrpPassword")]
+        public Output<string> EstSrpPassword { get; private set; } = null!;
+
+        /// <summary>
+        /// EST SRP authentication username.
+        /// </summary>
+        [Output("estSrpUsername")]
+        public Output<string> EstSrpUsername { get; private set; } = null!;
+
+        /// <summary>
         /// Local ID the FortiGate uses for authentication as a VPN client.
         /// </summary>
         [Output("ikeLocalid")]
@@ -381,6 +429,54 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Input<string>? EnrollProtocol { get; set; }
 
         /// <summary>
+        /// CA identifier of the CA server for signing via EST.
+        /// </summary>
+        [Input("estCaId")]
+        public Input<string>? EstCaId { get; set; }
+
+        /// <summary>
+        /// Certificate used to authenticate this FortiGate to EST server.
+        /// </summary>
+        [Input("estClientCert")]
+        public Input<string>? EstClientCert { get; set; }
+
+        /// <summary>
+        /// HTTP Authentication password for signing via EST.
+        /// </summary>
+        [Input("estHttpPassword")]
+        public Input<string>? EstHttpPassword { get; set; }
+
+        /// <summary>
+        /// HTTP Authentication username for signing via EST.
+        /// </summary>
+        [Input("estHttpUsername")]
+        public Input<string>? EstHttpUsername { get; set; }
+
+        /// <summary>
+        /// Address and port for EST server (e.g. https://example.com:1234).
+        /// </summary>
+        [Input("estServer")]
+        public Input<string>? EstServer { get; set; }
+
+        /// <summary>
+        /// EST server's certificate must be verifiable by this certificate to be authenticated.
+        /// </summary>
+        [Input("estServerCert")]
+        public Input<string>? EstServerCert { get; set; }
+
+        /// <summary>
+        /// EST SRP authentication password.
+        /// </summary>
+        [Input("estSrpPassword")]
+        public Input<string>? EstSrpPassword { get; set; }
+
+        /// <summary>
+        /// EST SRP authentication username.
+        /// </summary>
+        [Input("estSrpUsername")]
+        public Input<string>? EstSrpUsername { get; set; }
+
+        /// <summary>
         /// Local ID the FortiGate uses for authentication as a VPN client.
         /// </summary>
         [Input("ikeLocalid")]
@@ -613,6 +709,54 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         /// </summary>
         [Input("enrollProtocol")]
         public Input<string>? EnrollProtocol { get; set; }
+
+        /// <summary>
+        /// CA identifier of the CA server for signing via EST.
+        /// </summary>
+        [Input("estCaId")]
+        public Input<string>? EstCaId { get; set; }
+
+        /// <summary>
+        /// Certificate used to authenticate this FortiGate to EST server.
+        /// </summary>
+        [Input("estClientCert")]
+        public Input<string>? EstClientCert { get; set; }
+
+        /// <summary>
+        /// HTTP Authentication password for signing via EST.
+        /// </summary>
+        [Input("estHttpPassword")]
+        public Input<string>? EstHttpPassword { get; set; }
+
+        /// <summary>
+        /// HTTP Authentication username for signing via EST.
+        /// </summary>
+        [Input("estHttpUsername")]
+        public Input<string>? EstHttpUsername { get; set; }
+
+        /// <summary>
+        /// Address and port for EST server (e.g. https://example.com:1234).
+        /// </summary>
+        [Input("estServer")]
+        public Input<string>? EstServer { get; set; }
+
+        /// <summary>
+        /// EST server's certificate must be verifiable by this certificate to be authenticated.
+        /// </summary>
+        [Input("estServerCert")]
+        public Input<string>? EstServerCert { get; set; }
+
+        /// <summary>
+        /// EST SRP authentication password.
+        /// </summary>
+        [Input("estSrpPassword")]
+        public Input<string>? EstSrpPassword { get; set; }
+
+        /// <summary>
+        /// EST SRP authentication username.
+        /// </summary>
+        [Input("estSrpUsername")]
+        public Input<string>? EstSrpUsername { get; set; }
 
         /// <summary>
         /// Local ID the FortiGate uses for authentication as a VPN client.

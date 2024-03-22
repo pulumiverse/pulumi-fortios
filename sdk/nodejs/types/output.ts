@@ -32,7 +32,7 @@ export namespace antivirus {
          */
         fortiai: string;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr: string;
         /**
@@ -165,7 +165,7 @@ export namespace antivirus {
          */
         fortiai: string;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr: string;
         /**
@@ -216,7 +216,7 @@ export namespace antivirus {
          */
         fortiai: string;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr: string;
         /**
@@ -275,7 +275,7 @@ export namespace antivirus {
          */
         fortiai: string;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr: string;
         /**
@@ -388,7 +388,7 @@ export namespace antivirus {
          */
         fortiai: string;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr: string;
         /**
@@ -454,7 +454,7 @@ export namespace antivirus {
          */
         fortiai: string;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr: string;
         /**
@@ -532,7 +532,7 @@ export namespace antivirus {
          */
         fortiai: string;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr: string;
         /**
@@ -579,7 +579,7 @@ export namespace antivirus {
          */
         fortiai: string;
         /**
-         * Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
          */
         fortindr: string;
         /**
@@ -898,6 +898,261 @@ export namespace authentication {
 
 }
 
+export namespace casb {
+    export interface ProfileSaasApplication {
+        /**
+         * CASB profile access rule. The structure of `accessRule` block is documented below.
+         */
+        accessRules?: outputs.casb.ProfileSaasApplicationAccessRule[];
+        /**
+         * CASB profile custom control. The structure of `customControl` block is documented below.
+         */
+        customControls?: outputs.casb.ProfileSaasApplicationCustomControl[];
+        /**
+         * Enable/disable domain control. Valid values: `enable`, `disable`.
+         */
+        domainControl: string;
+        /**
+         * CASB profile domain control domains. The structure of `domainControlDomains` block is documented below.
+         */
+        domainControlDomains?: outputs.casb.ProfileSaasApplicationDomainControlDomain[];
+        /**
+         * Enable/disable log settings. Valid values: `enable`, `disable`.
+         */
+        log: string;
+        /**
+         * CASB profile SaaS application name.
+         */
+        name: string;
+        /**
+         * Enable/disable safe search. Valid values: `enable`, `disable`.
+         */
+        safeSearch: string;
+        /**
+         * CASB profile safe search control. The structure of `safeSearchControl` block is documented below.
+         */
+        safeSearchControls?: outputs.casb.ProfileSaasApplicationSafeSearchControl[];
+        /**
+         * Enable/disable setting. Valid values: `enable`, `disable`.
+         */
+        status: string;
+        /**
+         * Enable/disable tenant control. Valid values: `enable`, `disable`.
+         */
+        tenantControl: string;
+        /**
+         * CASB profile tenant control tenants. The structure of `tenantControlTenants` block is documented below.
+         */
+        tenantControlTenants?: outputs.casb.ProfileSaasApplicationTenantControlTenant[];
+    }
+
+    export interface ProfileSaasApplicationAccessRule {
+        /**
+         * CASB access rule action. Valid values: `bypass`, `block`, `monitor`.
+         */
+        action: string;
+        /**
+         * CASB bypass options. Valid values: `av`, `dlp`, `web-filter`, `file-filter`, `video-filter`.
+         */
+        bypass: string;
+        /**
+         * CASB access rule activity name.
+         */
+        name: string;
+    }
+
+    export interface ProfileSaasApplicationCustomControl {
+        /**
+         * CASB custom control user activity name.
+         */
+        name: string;
+        /**
+         * CASB custom control option. The structure of `option` block is documented below.
+         */
+        options?: outputs.casb.ProfileSaasApplicationCustomControlOption[];
+    }
+
+    export interface ProfileSaasApplicationCustomControlOption {
+        /**
+         * CASB custom control option name.
+         */
+        name: string;
+        /**
+         * CASB custom control user input. The structure of `userInput` block is documented below.
+         */
+        userInputs?: outputs.casb.ProfileSaasApplicationCustomControlOptionUserInput[];
+    }
+
+    export interface ProfileSaasApplicationCustomControlOptionUserInput {
+        /**
+         * user input value.
+         */
+        value: string;
+    }
+
+    export interface ProfileSaasApplicationDomainControlDomain {
+        /**
+         * Domain control domain name.
+         */
+        name: string;
+    }
+
+    export interface ProfileSaasApplicationSafeSearchControl {
+        /**
+         * Safe search control name.
+         */
+        name: string;
+    }
+
+    export interface ProfileSaasApplicationTenantControlTenant {
+        /**
+         * Tenant control tenants name.
+         */
+        name: string;
+    }
+
+    export interface SaasapplicationDomain {
+        /**
+         * Domain list separated by space.
+         */
+        domain: string;
+    }
+
+    export interface UseractivityControlOption {
+        /**
+         * CASB control option name.
+         */
+        name: string;
+        /**
+         * CASB control option operations. The structure of `operations` block is documented below.
+         */
+        operations?: outputs.casb.UseractivityControlOptionOperation[];
+        /**
+         * CASB control option status. Valid values: `enable`, `disable`.
+         */
+        status: string;
+    }
+
+    export interface UseractivityControlOptionOperation {
+        /**
+         * CASB operation action. Valid values: `append`, `prepend`, `replace`, `new`, `new-on-not-found`, `delete`.
+         */
+        action: string;
+        /**
+         * CASB operation search case sensitive. Valid values: `enable`, `disable`.
+         */
+        caseSensitive: string;
+        /**
+         * CASB operation direction. Valid values: `request`.
+         */
+        direction: string;
+        /**
+         * CASB operation header name to search.
+         */
+        headerName: string;
+        /**
+         * CASB control option operation name.
+         */
+        name: string;
+        /**
+         * CASB operation key to search.
+         */
+        searchKey: string;
+        /**
+         * CASB operation search pattern. Valid values: `simple`, `substr`, `regexp`.
+         */
+        searchPattern: string;
+        /**
+         * CASB operation target. Valid values: `header`, `path`.
+         */
+        target: string;
+        /**
+         * Enable/disable value from user input. Valid values: `enable`, `disable`.
+         */
+        valueFromInput: string;
+        /**
+         * CASB operation new values. The structure of `values` block is documented below.
+         */
+        values?: outputs.casb.UseractivityControlOptionOperationValue[];
+    }
+
+    export interface UseractivityControlOptionOperationValue {
+        /**
+         * Operation value.
+         */
+        value: string;
+    }
+
+    export interface UseractivityMatch {
+        /**
+         * CASB user activity match rules ID.
+         */
+        id: number;
+        /**
+         * CASB user activity rules. The structure of `rules` block is documented below.
+         */
+        rules?: outputs.casb.UseractivityMatchRule[];
+        /**
+         * CASB user activity rules strategy. Valid values: `and`, `or`.
+         */
+        strategy: string;
+    }
+
+    export interface UseractivityMatchRule {
+        /**
+         * CASB user activity match case sensitive. Valid values: `enable`, `disable`.
+         */
+        caseSensitive: string;
+        /**
+         * CASB user activity domain list. The structure of `domains` block is documented below.
+         */
+        domains?: outputs.casb.UseractivityMatchRuleDomain[];
+        /**
+         * CASB user activity rule header name.
+         */
+        headerName: string;
+        /**
+         * CASB user activity rule ID.
+         */
+        id: number;
+        /**
+         * CASB user activity rule match pattern. Valid values: `simple`, `substr`, `regexp`.
+         */
+        matchPattern: string;
+        /**
+         * CASB user activity rule match value.
+         */
+        matchValue: string;
+        /**
+         * CASB user activity method list. The structure of `methods` block is documented below.
+         */
+        methods?: outputs.casb.UseractivityMatchRuleMethod[];
+        /**
+         * Enable/disable what the matching strategy must not be. Valid values: `enable`, `disable`.
+         */
+        negate: string;
+        /**
+         * CASB user activity rule type. Valid values: `domains`, `host`, `path`, `header`, `header-value`, `method`.
+         */
+        type: string;
+    }
+
+    export interface UseractivityMatchRuleDomain {
+        /**
+         * Domain list separated by space.
+         */
+        domain: string;
+    }
+
+    export interface UseractivityMatchRuleMethod {
+        /**
+         * User activity method.
+         */
+        method: string;
+    }
+
+}
+
 export namespace cifs {
     export interface ProfileFileFilter {
         /**
@@ -989,6 +1244,21 @@ export namespace dlp {
         type: string;
     }
 
+    export interface ExactdatamatchColumn {
+        /**
+         * Column index.
+         */
+        index: number;
+        /**
+         * Enable/disable optional match. Valid values: `enable`, `disable`.
+         */
+        optional: string;
+        /**
+         * Data-type for this column.
+         */
+        type: string;
+    }
+
     export interface FilepatternEntry {
         /**
          * Select a file type.
@@ -1018,7 +1288,7 @@ export namespace dlp {
          */
         expiry: string;
         /**
-         * Match files this size or larger (0 - 4294967295 kbytes).
+         * Match files greater than or equal to this size (KB).
          */
         fileSize: number;
         /**
@@ -1114,7 +1384,7 @@ export namespace dlp {
          */
         companyIdentifier: string;
         /**
-         * Quarantine duration in days, hours, minutes format (dddhhmm).
+         * Quarantine duration in days, hours, minutes (format = dddhhmm).
          */
         expiry: string;
         /**
@@ -2762,6 +3032,13 @@ export namespace filter {
             log: string;
         }
 
+        export interface ProfileTransparentDnsDatabase {
+            /**
+             * DNS database zone name.
+             */
+            name: string;
+        }
+
     }
 
     export namespace email {
@@ -3149,7 +3426,7 @@ export namespace filter {
              */
             comment?: string;
             /**
-             * Traffic direction. (HTTP, FTP, SSH, CIFS only) Valid values: `incoming`, `outgoing`, `any`.
+             * Traffic direction. On FortiOS versions 6.4.1-7.4.1: HTTP, FTP, SSH, CIFS only. On FortiOS versions >= 7.4.2: HTTP, FTP, SSH, CIFS, and MAPI only. Valid values: `incoming`, `outgoing`, `any`.
              */
             direction: string;
             /**
@@ -3532,6 +3809,60 @@ export namespace filter {
     }
 
     export namespace video {
+        export interface KeywordWord {
+            /**
+             * Comment.
+             */
+            comment?: string;
+            /**
+             * Name.
+             */
+            name: string;
+            /**
+             * Pattern type. Valid values: `wildcard`, `regex`.
+             */
+            patternType: string;
+            /**
+             * Enable(consider)/disable(ignore) this keyword. Valid values: `enable`, `disable`.
+             */
+            status: string;
+        }
+
+        export interface ProfileFilter {
+            /**
+             * VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+             */
+            action: string;
+            /**
+             * FortiGuard category ID.
+             */
+            category: string;
+            /**
+             * Channel ID.
+             */
+            channel: string;
+            /**
+             * Comment.
+             */
+            comment?: string;
+            /**
+             * ID.
+             */
+            id: number;
+            /**
+             * Video filter keyword ID.
+             */
+            keyword: number;
+            /**
+             * Enable/disable logging. Valid values: `enable`, `disable`.
+             */
+            log: string;
+            /**
+             * Filter type. Valid values: `category`, `channel`, `title`, `description`.
+             */
+            type: string;
+        }
+
         export interface ProfileFortiguardCategory {
             /**
              * Configure VideoFilter FortiGuard category. The structure of `filters` block is documented below.
@@ -4062,6 +4393,14 @@ export namespace firewall {
          */
         applications?: outputs.firewall.Accessproxy6ApiGatewayApplication[];
         /**
+         * HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+         */
+        h2Support: string;
+        /**
+         * HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+         */
+        h3Support: string;
+        /**
          * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
          */
         httpCookieAge: number;
@@ -4101,6 +4440,10 @@ export namespace firewall {
          * Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
          */
         persistence: string;
+        /**
+         * QUIC setting. The structure of `quic` block is documented below.
+         */
+        quic: outputs.firewall.Accessproxy6ApiGatewayQuic;
         /**
          * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
          */
@@ -4138,6 +4481,10 @@ export namespace firewall {
          */
         sslMinVersion: string;
         /**
+         * Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+         */
+        sslRenegotiation: string;
+        /**
          * SSL-VPN web portal.
          */
         sslVpnWebPortal: string;
@@ -4160,6 +4507,14 @@ export namespace firewall {
          * SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
          */
         applications?: outputs.firewall.Accessproxy6ApiGateway6Application[];
+        /**
+         * HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+         */
+        h2Support: string;
+        /**
+         * HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+         */
+        h3Support: string;
         /**
          * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
          */
@@ -4201,6 +4556,10 @@ export namespace firewall {
          */
         persistence: string;
         /**
+         * QUIC setting. The structure of `quic` block is documented below.
+         */
+        quic: outputs.firewall.Accessproxy6ApiGateway6Quic;
+        /**
          * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
          */
         realservers?: outputs.firewall.Accessproxy6ApiGateway6Realserver[];
@@ -4237,6 +4596,10 @@ export namespace firewall {
          */
         sslMinVersion: string;
         /**
+         * Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+         */
+        sslRenegotiation: string;
+        /**
          * SSL-VPN web portal.
          */
         sslVpnWebPortal: string;
@@ -4261,6 +4624,41 @@ export namespace firewall {
         name: string;
     }
 
+    export interface Accessproxy6ApiGateway6Quic {
+        /**
+         * ACK delay exponent (1 - 20, default = 3).
+         */
+        ackDelayExponent: number;
+        /**
+         * Active connection ID limit (1 - 8, default = 2).
+         */
+        activeConnectionIdLimit: number;
+        /**
+         * Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+         */
+        activeMigration: string;
+        /**
+         * Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+         */
+        greaseQuicBit: string;
+        /**
+         * Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+         */
+        maxAckDelay: number;
+        /**
+         * Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+         */
+        maxDatagramFrameSize: number;
+        /**
+         * Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+         */
+        maxIdleTimeout: number;
+        /**
+         * Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+         */
+        maxUdpPayloadSize: number;
+    }
+
     export interface Accessproxy6ApiGateway6Realserver {
         /**
          * Type of address. Valid values: `ip`, `fqdn`.
@@ -4274,6 +4672,10 @@ export namespace firewall {
          * Wildcard domain name of the real server.
          */
         domain: string;
+        /**
+         * Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+         */
+        externalAuth: string;
         /**
          * Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
          */
@@ -4323,6 +4725,14 @@ export namespace firewall {
          */
         status: string;
         /**
+         * Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+         */
+        translateHost: string;
+        /**
+         * Tunnel encryption. Valid values: `enable`, `disable`.
+         */
+        tunnelEncryption: string;
+        /**
          * TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
          */
         type: string;
@@ -4361,6 +4771,41 @@ export namespace firewall {
         name: string;
     }
 
+    export interface Accessproxy6ApiGatewayQuic {
+        /**
+         * ACK delay exponent (1 - 20, default = 3).
+         */
+        ackDelayExponent: number;
+        /**
+         * Active connection ID limit (1 - 8, default = 2).
+         */
+        activeConnectionIdLimit: number;
+        /**
+         * Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+         */
+        activeMigration: string;
+        /**
+         * Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+         */
+        greaseQuicBit: string;
+        /**
+         * Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+         */
+        maxAckDelay: number;
+        /**
+         * Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+         */
+        maxDatagramFrameSize: number;
+        /**
+         * Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+         */
+        maxIdleTimeout: number;
+        /**
+         * Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+         */
+        maxUdpPayloadSize: number;
+    }
+
     export interface Accessproxy6ApiGatewayRealserver {
         /**
          * Type of address. Valid values: `ip`, `fqdn`.
@@ -4374,6 +4819,10 @@ export namespace firewall {
          * Wildcard domain name of the real server.
          */
         domain: string;
+        /**
+         * Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+         */
+        externalAuth: string;
         /**
          * Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
          */
@@ -4423,6 +4872,14 @@ export namespace firewall {
          */
         status: string;
         /**
+         * Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+         */
+        translateHost: string;
+        /**
+         * Tunnel encryption. Valid values: `enable`, `disable`.
+         */
+        tunnelEncryption: string;
+        /**
          * TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
          */
         type: string;
@@ -4460,6 +4917,14 @@ export namespace firewall {
          */
         applications?: outputs.firewall.AccessproxyApiGatewayApplication[];
         /**
+         * HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+         */
+        h2Support: string;
+        /**
+         * HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+         */
+        h3Support: string;
+        /**
          * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
          */
         httpCookieAge: number;
@@ -4499,6 +4964,10 @@ export namespace firewall {
          * Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
          */
         persistence: string;
+        /**
+         * QUIC setting. The structure of `quic` block is documented below.
+         */
+        quic: outputs.firewall.AccessproxyApiGatewayQuic;
         /**
          * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
          */
@@ -4536,6 +5005,10 @@ export namespace firewall {
          */
         sslMinVersion: string;
         /**
+         * Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+         */
+        sslRenegotiation: string;
+        /**
          * SSL-VPN web portal.
          */
         sslVpnWebPortal: string;
@@ -4558,6 +5031,14 @@ export namespace firewall {
          * SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
          */
         applications?: outputs.firewall.AccessproxyApiGateway6Application[];
+        /**
+         * HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+         */
+        h2Support: string;
+        /**
+         * HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+         */
+        h3Support: string;
         /**
          * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
          */
@@ -4599,6 +5080,10 @@ export namespace firewall {
          */
         persistence: string;
         /**
+         * QUIC setting. The structure of `quic` block is documented below.
+         */
+        quic: outputs.firewall.AccessproxyApiGateway6Quic;
+        /**
          * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
          */
         realservers?: outputs.firewall.AccessproxyApiGateway6Realserver[];
@@ -4635,6 +5120,10 @@ export namespace firewall {
          */
         sslMinVersion: string;
         /**
+         * Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+         */
+        sslRenegotiation: string;
+        /**
          * SSL-VPN web portal.
          */
         sslVpnWebPortal: string;
@@ -4659,6 +5148,41 @@ export namespace firewall {
         name: string;
     }
 
+    export interface AccessproxyApiGateway6Quic {
+        /**
+         * ACK delay exponent (1 - 20, default = 3).
+         */
+        ackDelayExponent: number;
+        /**
+         * Active connection ID limit (1 - 8, default = 2).
+         */
+        activeConnectionIdLimit: number;
+        /**
+         * Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+         */
+        activeMigration: string;
+        /**
+         * Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+         */
+        greaseQuicBit: string;
+        /**
+         * Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+         */
+        maxAckDelay: number;
+        /**
+         * Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+         */
+        maxDatagramFrameSize: number;
+        /**
+         * Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+         */
+        maxIdleTimeout: number;
+        /**
+         * Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+         */
+        maxUdpPayloadSize: number;
+    }
+
     export interface AccessproxyApiGateway6Realserver {
         /**
          * Type of address. Valid values: `ip`, `fqdn`.
@@ -4672,6 +5196,10 @@ export namespace firewall {
          * Wildcard domain name of the real server.
          */
         domain: string;
+        /**
+         * Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+         */
+        externalAuth: string;
         /**
          * Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
          */
@@ -4721,6 +5249,14 @@ export namespace firewall {
          */
         status: string;
         /**
+         * Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+         */
+        translateHost: string;
+        /**
+         * Tunnel encryption. Valid values: `enable`, `disable`.
+         */
+        tunnelEncryption: string;
+        /**
          * TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
          */
         type: string;
@@ -4759,6 +5295,41 @@ export namespace firewall {
         name: string;
     }
 
+    export interface AccessproxyApiGatewayQuic {
+        /**
+         * ACK delay exponent (1 - 20, default = 3).
+         */
+        ackDelayExponent: number;
+        /**
+         * Active connection ID limit (1 - 8, default = 2).
+         */
+        activeConnectionIdLimit: number;
+        /**
+         * Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+         */
+        activeMigration: string;
+        /**
+         * Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+         */
+        greaseQuicBit: string;
+        /**
+         * Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+         */
+        maxAckDelay: number;
+        /**
+         * Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+         */
+        maxDatagramFrameSize: number;
+        /**
+         * Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+         */
+        maxIdleTimeout: number;
+        /**
+         * Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+         */
+        maxUdpPayloadSize: number;
+    }
+
     export interface AccessproxyApiGatewayRealserver {
         /**
          * Type of address. Valid values: `ip`, `fqdn`.
@@ -4772,6 +5343,10 @@ export namespace firewall {
          * Wildcard domain name of the real server.
          */
         domain: string;
+        /**
+         * Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+         */
+        externalAuth: string;
         /**
          * Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
          */
@@ -4820,6 +5395,14 @@ export namespace firewall {
          * Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
          */
         status: string;
+        /**
+         * Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+         */
+        translateHost: string;
+        /**
+         * Tunnel encryption. Valid values: `enable`, `disable`.
+         */
+        tunnelEncryption: string;
         /**
          * TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
          */
@@ -4999,6 +5582,13 @@ export namespace firewall {
         name: string;
     }
 
+    export interface Addrgrp6ExcludeMember {
+        /**
+         * Address6 name.
+         */
+        name: string;
+    }
+
     export interface Addrgrp6Member {
         /**
          * Address6/addrgrp6 name.
@@ -5120,6 +5710,10 @@ export namespace firewall {
         name: string;
     }
 
+    export interface CentralsnatmapSortStatePolicyList {
+        policyid: string;
+    }
+
     export interface CentralsnatmapSrcintf {
         /**
          * Interface name.
@@ -5171,11 +5765,11 @@ export namespace firewall {
          */
         status: string;
         /**
-         * Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
          */
         threshold: number;
         /**
-         * Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+         * Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
          */
         thresholddefault: number;
     }
@@ -5231,11 +5825,11 @@ export namespace firewall {
          */
         status: string;
         /**
-         * Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
          */
         threshold: number;
         /**
-         * Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+         * Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
          */
         thresholddefault: number;
     }
@@ -5385,6 +5979,13 @@ export namespace firewall {
     export interface GetAddressTaggingTag {
         /**
          * Specify the name of the desired firewall address.
+         */
+        name: string;
+    }
+
+    export interface GetAddrgrp6ExcludeMember {
+        /**
+         * Specify the name of the desired firewall addrgrp6.
          */
         name: string;
     }
@@ -6307,6 +6908,13 @@ export namespace firewall {
         userAgentString: string;
     }
 
+    export interface GetPolicyPcpPoolname {
+        /**
+         * Mirror Interface name.
+         */
+        name: string;
+    }
+
     export interface GetPolicyPoolname {
         /**
          * Mirror Interface name.
@@ -6392,6 +7000,13 @@ export namespace firewall {
     }
 
     export interface GetPolicyZtnaEmsTag {
+        /**
+         * Mirror Interface name.
+         */
+        name: string;
+    }
+
+    export interface GetPolicyZtnaEmsTagSecondary {
         /**
          * Mirror Interface name.
          */
@@ -6678,6 +7293,10 @@ export namespace firewall {
          * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
          */
         uncompressedOversizeLimit: number;
+        /**
+         * Configure the action the FortiGate unit will take on unknown content-encoding.
+         */
+        unknownContentEncoding: string;
         /**
          * How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1.
          */
@@ -7077,6 +7696,34 @@ export namespace firewall {
     }
 
     export interface GetProxypolicyGroup {
+        /**
+         * Group name.
+         */
+        name: string;
+    }
+
+    export interface GetProxypolicyInternetService6Custom {
+        /**
+         * Group name.
+         */
+        name: string;
+    }
+
+    export interface GetProxypolicyInternetService6CustomGroup {
+        /**
+         * Group name.
+         */
+        name: string;
+    }
+
+    export interface GetProxypolicyInternetService6Group {
+        /**
+         * Group name.
+         */
+        name: string;
+    }
+
+    export interface GetProxypolicyInternetService6Name {
         /**
          * Group name.
          */
@@ -7517,6 +8164,13 @@ export namespace firewall {
          * Internet Service name.
          */
         name: string;
+    }
+
+    export interface InternetservicesubappSubApp {
+        /**
+         * Subapp ID.
+         */
+        id: number;
     }
 
     export interface Localinpolicy6Dstaddr {
@@ -8018,6 +8672,13 @@ export namespace firewall {
         userAgentString: string;
     }
 
+    export interface PolicyPcpPoolname {
+        /**
+         * PCP pool name.
+         */
+        name: string;
+    }
+
     export interface PolicyPoolname {
         /**
          * IPv6 pool name.
@@ -8051,6 +8712,12 @@ export namespace firewall {
          * Security group tag.
          */
         id: number;
+    }
+
+    export interface PolicySortStatePolicyList {
+        action: string;
+        name: string;
+        policyid: string;
     }
 
     export interface PolicySrcVendorMac {
@@ -8111,6 +8778,13 @@ export namespace firewall {
         name: string;
     }
 
+    export interface PolicyZtnaEmsTagSecondary {
+        /**
+         * Address name.
+         */
+        name: string;
+    }
+
     export interface PolicyZtnaGeoTag {
         /**
          * Address name.
@@ -8128,7 +8802,7 @@ export namespace firewall {
          */
         options: string;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit: number;
         /**
@@ -8152,15 +8826,15 @@ export namespace firewall {
          */
         status: string;
         /**
-         * Maximum dynamic TCP window size (default = 8MB).
+         * Maximum dynamic TCP window size.
          */
         tcpWindowMaximum: number;
         /**
-         * Minimum dynamic TCP window size (default = 128KB).
+         * Minimum dynamic TCP window size.
          */
         tcpWindowMinimum: number;
         /**
-         * Set TCP static window size (default = 256KB).
+         * Set TCP static window size.
          */
         tcpWindowSize: number;
         /**
@@ -8172,7 +8846,7 @@ export namespace firewall {
          */
         uncompressedNestLimit: number;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit: number;
     }
@@ -8201,11 +8875,11 @@ export namespace firewall {
 
     export interface ProfileprotocoloptionsFtp {
         /**
-         * Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+         * Number of bytes to send in each transmission for client comforting (bytes). On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
          */
         comfortAmount: number;
         /**
-         * Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+         * Interval between successive transmissions of data for client comforting (seconds).
          */
         comfortInterval: number;
         /**
@@ -8221,7 +8895,7 @@ export namespace firewall {
          */
         options: string;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit: number;
         /**
@@ -8241,7 +8915,7 @@ export namespace firewall {
          */
         status: string;
         /**
-         * Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+         * Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
          */
         streamBasedUncompressedLimit: number;
         /**
@@ -8265,7 +8939,7 @@ export namespace firewall {
          */
         uncompressedNestLimit: number;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit: number;
     }
@@ -8280,11 +8954,11 @@ export namespace firewall {
          */
         blockPageStatusCode: number;
         /**
-         * Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+         * Amount of data to send in a transmission for client comforting. On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
          */
         comfortAmount: number;
         /**
-         * Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+         * Interval between successive transmissions of data for client comforting (seconds).
          */
         comfortInterval: number;
         /**
@@ -8312,7 +8986,7 @@ export namespace firewall {
          */
         options: string;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB). On FortiOS versions 6.2.0-7.2.3: 1 - 383 MB, default = 10.
          */
         oversizeLimit: number;
         /**
@@ -8348,7 +9022,7 @@ export namespace firewall {
          */
         status: string;
         /**
-         * Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+         * Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
          */
         streamBasedUncompressedLimit: number;
         /**
@@ -8364,15 +9038,15 @@ export namespace firewall {
          */
         switchingProtocols: string;
         /**
-         * Maximum dynamic TCP window size (default = 8MB).
+         * Maximum dynamic TCP window size.
          */
         tcpWindowMaximum: number;
         /**
-         * Minimum dynamic TCP window size (default = 128KB).
+         * Minimum dynamic TCP window size.
          */
         tcpWindowMinimum: number;
         /**
-         * Set TCP static window size (default = 256KB).
+         * Set TCP static window size.
          */
         tcpWindowSize: number;
         /**
@@ -8388,9 +9062,13 @@ export namespace firewall {
          */
         uncompressedNestLimit: number;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit: number;
+        /**
+         * Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
+         */
+        unknownContentEncoding: string;
         /**
          * How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: `reject`, `tunnel`, `best-effort`.
          */
@@ -8411,7 +9089,7 @@ export namespace firewall {
          */
         options: string;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit: number;
         /**
@@ -8439,7 +9117,7 @@ export namespace firewall {
          */
         uncompressedNestLimit: number;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit: number;
     }
@@ -8461,7 +9139,7 @@ export namespace firewall {
          */
         options: string;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit: number;
         /**
@@ -8481,7 +9159,7 @@ export namespace firewall {
          */
         uncompressedNestLimit: number;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit: number;
     }
@@ -8496,7 +9174,7 @@ export namespace firewall {
          */
         options: string;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit: number;
         /**
@@ -8520,7 +9198,7 @@ export namespace firewall {
          */
         uncompressedNestLimit: number;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit: number;
     }
@@ -8535,7 +9213,7 @@ export namespace firewall {
          */
         options: string;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit: number;
         /**
@@ -8563,7 +9241,7 @@ export namespace firewall {
          */
         uncompressedNestLimit: number;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit: number;
     }
@@ -8578,7 +9256,7 @@ export namespace firewall {
          */
         options: string;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit: number;
         /**
@@ -8610,18 +9288,18 @@ export namespace firewall {
          */
         uncompressedNestLimit: number;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit: number;
     }
 
     export interface ProfileprotocoloptionsSsh {
         /**
-         * Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
+         * Number of bytes to send in each transmission for client comforting (bytes).
          */
         comfortAmount: number;
         /**
-         * Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+         * Interval between successive transmissions of data for client comforting (seconds).
          */
         comfortInterval: number;
         /**
@@ -8629,7 +9307,7 @@ export namespace firewall {
          */
         options: string;
         /**
-         * Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+         * Maximum in-memory file size that can be scanned (MB).
          */
         oversizeLimit: number;
         /**
@@ -8641,7 +9319,7 @@ export namespace firewall {
          */
         sslOffloaded: string;
         /**
-         * Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+         * Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
          */
         streamBasedUncompressedLimit: number;
         /**
@@ -8665,7 +9343,7 @@ export namespace firewall {
          */
         uncompressedNestLimit: number;
         /**
-         * Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+         * Maximum in-memory uncompressed file size that can be scanned (MB).
          */
         uncompressedOversizeLimit: number;
     }
@@ -8796,6 +9474,34 @@ export namespace firewall {
         name: string;
     }
 
+    export interface ProxypolicyInternetService6Custom {
+        /**
+         * Policy name.
+         */
+        name: string;
+    }
+
+    export interface ProxypolicyInternetService6CustomGroup {
+        /**
+         * Policy name.
+         */
+        name: string;
+    }
+
+    export interface ProxypolicyInternetService6Group {
+        /**
+         * Policy name.
+         */
+        name: string;
+    }
+
+    export interface ProxypolicyInternetService6Name {
+        /**
+         * Policy name.
+         */
+        name: string;
+    }
+
     export interface ProxypolicyInternetServiceCustom {
         /**
          * Custom name.
@@ -8805,7 +9511,7 @@ export namespace firewall {
 
     export interface ProxypolicyInternetServiceCustomGroup {
         /**
-         * Custom Internet Service group name.
+         * Custom Internet Service IPv6 group name.
          */
         name: string;
     }
@@ -8843,6 +9549,12 @@ export namespace firewall {
          * Address name.
          */
         name: string;
+    }
+
+    export interface ProxypolicySortStatePolicyList {
+        action: string;
+        name: string;
+        policyid: string;
     }
 
     export interface ProxypolicySrcaddr {
@@ -8888,12 +9600,6 @@ export namespace firewall {
     }
 
     export interface SecurityPolicyseqStatePolicyList {
-        action: string;
-        name: string;
-        policyid: string;
-    }
-
-    export interface SecurityPolicysortStatePolicyList {
         action: string;
         name: string;
         policyid: string;
@@ -9093,6 +9799,12 @@ export namespace firewall {
          * Service name.
          */
         name: string;
+    }
+
+    export interface SecuritypolicySortStatePolicyList {
+        action: string;
+        name: string;
+        policyid: string;
     }
 
     export interface SecuritypolicySrcaddr {
@@ -9375,11 +10087,11 @@ export namespace firewall {
          */
         status: string;
         /**
-         * Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
          */
         threshold: number;
         /**
-         * Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+         * Number of detected instances (packets per second or concurrent session number) which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
          */
         thresholddefault: number;
     }
@@ -9412,6 +10124,10 @@ export namespace firewall {
          * Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
          */
         proxyAfterTcpHandshake: string;
+        /**
+         * QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+         */
+        quic: string;
         /**
          * Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
          */
@@ -9550,6 +10266,10 @@ export namespace firewall {
          * Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
          */
         proxyAfterTcpHandshake: string;
+        /**
+         * QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+         */
+        quic: string;
         /**
          * Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
          */
@@ -10119,6 +10839,41 @@ export namespace firewall {
         name: string;
     }
 
+    export interface Vip6Quic {
+        /**
+         * ACK delay exponent (1 - 20, default = 3).
+         */
+        ackDelayExponent: number;
+        /**
+         * Active connection ID limit (1 - 8, default = 2).
+         */
+        activeConnectionIdLimit: number;
+        /**
+         * Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+         */
+        activeMigration: string;
+        /**
+         * Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+         */
+        greaseQuicBit: string;
+        /**
+         * Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+         */
+        maxAckDelay: number;
+        /**
+         * Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+         */
+        maxDatagramFrameSize: number;
+        /**
+         * Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+         */
+        maxIdleTimeout: number;
+        /**
+         * Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+         */
+        maxUdpPayloadSize: number;
+    }
+
     export interface Vip6Realserver {
         /**
          * Only clients in this IP range can connect to this real server.
@@ -10160,6 +10915,10 @@ export namespace firewall {
          * Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
          */
         status: string;
+        /**
+         * Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+         */
+        translateHost: string;
         /**
          * Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
          */
@@ -10210,6 +10969,17 @@ export namespace firewall {
         name: string;
     }
 
+    export interface VipGslbPublicIp {
+        /**
+         * Index of this public IP setting.
+         */
+        index: number;
+        /**
+         * The publicly accessible IP address.
+         */
+        ip: string;
+    }
+
     export interface VipMappedip {
         /**
          * Mapped IP range.
@@ -10222,6 +10992,41 @@ export namespace firewall {
          * Health monitor name.
          */
         name: string;
+    }
+
+    export interface VipQuic {
+        /**
+         * ACK delay exponent (1 - 20, default = 3).
+         */
+        ackDelayExponent: number;
+        /**
+         * Active connection ID limit (1 - 8, default = 2).
+         */
+        activeConnectionIdLimit: number;
+        /**
+         * Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+         */
+        activeMigration: string;
+        /**
+         * Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+         */
+        greaseQuicBit: string;
+        /**
+         * Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+         */
+        maxAckDelay: number;
+        /**
+         * Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+         */
+        maxDatagramFrameSize: number;
+        /**
+         * Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+         */
+        maxIdleTimeout: number;
+        /**
+         * Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+         */
+        maxUdpPayloadSize: number;
     }
 
     export interface VipRealserver {
@@ -10269,6 +11074,10 @@ export namespace firewall {
          * Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
          */
         status: string;
+        /**
+         * Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+         */
+        translateHost: string;
         /**
          * Type of address. Valid values: `ip`, `address`.
          */
@@ -10880,7 +11689,7 @@ export namespace icap {
          */
         name: string;
         /**
-         * Optionally assign a weight of the ICAP server for weighted load balancing (1 - 100, default = 10)
+         * Optionally assign a weight of the forwarding server for weighted load balancing (1 - 100, default = 10).
          */
         weight: number;
     }
@@ -11312,6 +12121,10 @@ export namespace log {
          * Threat weight score for FortiSandbox medium risk malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
          */
         fsaMediumRisk: string;
+        /**
+         * Threat weight score for malware detected by inline block. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+         */
+        inlineBlock: string;
         /**
          * Threat weight score for virus (malware list) detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
          */
@@ -12694,9 +13507,17 @@ export namespace router {
          */
         activate6: string;
         /**
+         * Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
+         */
+        activateEvpn: string;
+        /**
          * Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
          */
         activateVpnv4: string;
+        /**
+         * Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
+         */
+        activateVpnv6: string;
         /**
          * Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
          */
@@ -12710,6 +13531,10 @@ export namespace router {
          */
         additionalPathVpnv4: string;
         /**
+         * Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+         */
+        additionalPathVpnv6: string;
+        /**
          * Number of IPv4 additional paths that can be advertised to this neighbor.
          */
         advAdditionalPath: number;
@@ -12721,6 +13546,10 @@ export namespace router {
          * Number of VPNv4 additional paths that can be advertised to this neighbor.
          */
         advAdditionalPathVpnv4: number;
+        /**
+         * Number of VPNv6 additional paths that can be advertised to this neighbor.
+         */
+        advAdditionalPathVpnv6: number;
         /**
          * Minimum interval (sec) between sending updates.
          */
@@ -12742,9 +13571,29 @@ export namespace router {
          */
         allowasInEnable6: string;
         /**
+         * Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+         */
+        allowasInEnableEvpn: string;
+        /**
+         * Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+         */
+        allowasInEnableVpnv4: string;
+        /**
+         * Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+         */
+        allowasInEnableVpnv6: string;
+        /**
+         * The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+         */
+        allowasInEvpn: number;
+        /**
          * The maximum number of occurrence of my AS number allowed for VPNv4 route.
          */
         allowasInVpnv4: number;
+        /**
+         * The maximum number of occurrence of my AS number allowed for VPNv6 route.
+         */
+        allowasInVpnv6: number;
         /**
          * Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
          */
@@ -12765,6 +13614,14 @@ export namespace router {
          * List of attributes that should be unchanged for VPNv4 route. Valid values: `as-path`, `med`, `next-hop`.
          */
         attributeUnchangedVpnv4: string;
+        /**
+         * List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+         */
+        attributeUnchangedVpnv6: string;
+        /**
+         * Key-chain name for TCP authentication options.
+         */
+        authOptions: string;
         /**
          * Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
          */
@@ -12790,9 +13647,17 @@ export namespace router {
          */
         capabilityGracefulRestart6: string;
         /**
+         * Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+         */
+        capabilityGracefulRestartEvpn: string;
+        /**
          * Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
          */
         capabilityGracefulRestartVpnv4: string;
+        /**
+         * Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+         */
+        capabilityGracefulRestartVpnv6: string;
         /**
          * Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
          */
@@ -12842,6 +13707,10 @@ export namespace router {
          */
         distributeListInVpnv4: string;
         /**
+         * Filter for VPNv6 updates from this neighbor.
+         */
+        distributeListInVpnv6: string;
+        /**
          * Filter for IPv4 updates to this neighbor.
          */
         distributeListOut: string;
@@ -12853,6 +13722,10 @@ export namespace router {
          * Filter for VPNv4 updates to this neighbor.
          */
         distributeListOutVpnv4: string;
+        /**
+         * Filter for VPNv6 updates to this neighbor.
+         */
+        distributeListOutVpnv6: string;
         /**
          * Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
          */
@@ -12874,6 +13747,14 @@ export namespace router {
          */
         filterListIn6: string;
         /**
+         * BGP filter for VPNv4 inbound routes.
+         */
+        filterListInVpnv4: string;
+        /**
+         * BGP filter for VPNv6 inbound routes.
+         */
+        filterListInVpnv6: string;
+        /**
          * BGP filter for IPv4 outbound routes.
          */
         filterListOut: string;
@@ -12881,6 +13762,14 @@ export namespace router {
          * BGP filter for IPv6 outbound routes.
          */
         filterListOut6: string;
+        /**
+         * BGP filter for VPNv4 outbound routes.
+         */
+        filterListOutVpnv4: string;
+        /**
+         * BGP filter for VPNv6 outbound routes.
+         */
+        filterListOutVpnv6: string;
         /**
          * Interval (sec) before peer considered dead.
          */
@@ -12922,6 +13811,10 @@ export namespace router {
          */
         maximumPrefix6: number;
         /**
+         * Maximum number of L2VPN EVPN prefixes to accept from this peer.
+         */
+        maximumPrefixEvpn: number;
+        /**
          * Maximum IPv4 prefix threshold value (1 - 100 percent).
          */
         maximumPrefixThreshold: number;
@@ -12930,13 +13823,25 @@ export namespace router {
          */
         maximumPrefixThreshold6: number;
         /**
+         * Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+         */
+        maximumPrefixThresholdEvpn: number;
+        /**
          * Maximum VPNv4 prefix threshold value (1 - 100 percent).
          */
         maximumPrefixThresholdVpnv4: number;
         /**
+         * Maximum VPNv6 prefix threshold value (1 - 100 percent).
+         */
+        maximumPrefixThresholdVpnv6: number;
+        /**
          * Maximum number of VPNv4 prefixes to accept from this peer.
          */
         maximumPrefixVpnv4: number;
+        /**
+         * Maximum number of VPNv6 prefixes to accept from this peer.
+         */
+        maximumPrefixVpnv6: number;
         /**
          * Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
          */
@@ -12946,9 +13851,17 @@ export namespace router {
          */
         maximumPrefixWarningOnly6: string;
         /**
+         * Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
+         */
+        maximumPrefixWarningOnlyEvpn: string;
+        /**
          * Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
          */
         maximumPrefixWarningOnlyVpnv4: string;
+        /**
+         * Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
+         */
+        maximumPrefixWarningOnlyVpnv6: string;
         /**
          * Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
          */
@@ -12969,6 +13882,10 @@ export namespace router {
          * Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor. Valid values: `enable`, `disable`.
          */
         nextHopSelfVpnv4: string;
+        /**
+         * Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
+         */
+        nextHopSelfVpnv6: string;
         /**
          * Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
          */
@@ -12994,6 +13911,10 @@ export namespace router {
          */
         prefixListInVpnv4: string;
         /**
+         * Inbound filter for VPNv6 updates from this neighbor.
+         */
+        prefixListInVpnv6: string;
+        /**
          * IPv4 Outbound filter for updates to this neighbor.
          */
         prefixListOut: string;
@@ -13005,6 +13926,10 @@ export namespace router {
          * Outbound filter for VPNv4 updates to this neighbor.
          */
         prefixListOutVpnv4: string;
+        /**
+         * Outbound filter for VPNv6 updates to this neighbor.
+         */
+        prefixListOutVpnv6: string;
         /**
          * AS number of neighbor.
          */
@@ -13018,9 +13943,17 @@ export namespace router {
          */
         removePrivateAs6: string;
         /**
+         * Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
+         */
+        removePrivateAsEvpn: string;
+        /**
          * Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
          */
         removePrivateAsVpnv4: string;
+        /**
+         * Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
+         */
+        removePrivateAsVpnv6: string;
         /**
          * Graceful restart delay time (sec, 0 = global default).
          */
@@ -13038,9 +13971,17 @@ export namespace router {
          */
         routeMapIn6: string;
         /**
+         * L2VPN EVPN inbound route map filter.
+         */
+        routeMapInEvpn: string;
+        /**
          * VPNv4 inbound route map filter.
          */
         routeMapInVpnv4: string;
+        /**
+         * VPNv6 inbound route map filter.
+         */
+        routeMapInVpnv6: string;
         /**
          * IPv4 Outbound route map filter.
          */
@@ -13054,6 +13995,10 @@ export namespace router {
          */
         routeMapOut6Preferable: string;
         /**
+         * L2VPN EVPN outbound route map filter.
+         */
+        routeMapOutEvpn: string;
+        /**
          * IPv4 outbound route map filter if the peer is preferred.
          */
         routeMapOutPreferable: string;
@@ -13066,6 +14011,14 @@ export namespace router {
          */
         routeMapOutVpnv4Preferable: string;
         /**
+         * VPNv6 outbound route map filter.
+         */
+        routeMapOutVpnv6: string;
+        /**
+         * VPNv6 outbound route map filter if this neighbor is preferred.
+         */
+        routeMapOutVpnv6Preferable: string;
+        /**
          * Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
          */
         routeReflectorClient: string;
@@ -13074,9 +14027,17 @@ export namespace router {
          */
         routeReflectorClient6: string;
         /**
+         * Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeReflectorClientEvpn: string;
+        /**
          * Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
          */
         routeReflectorClientVpnv4: string;
+        /**
+         * Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeReflectorClientVpnv6: string;
         /**
          * Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
          */
@@ -13086,9 +14047,17 @@ export namespace router {
          */
         routeServerClient6: string;
         /**
+         * Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeServerClientEvpn: string;
+        /**
          * Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
          */
         routeServerClientVpnv4: string;
+        /**
+         * Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeServerClientVpnv6: string;
         /**
          * IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
          */
@@ -13098,9 +14067,17 @@ export namespace router {
          */
         sendCommunity6: string;
         /**
+         * Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
+         */
+        sendCommunityEvpn: string;
+        /**
          * Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
          */
         sendCommunityVpnv4: string;
+        /**
+         * Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+         */
+        sendCommunityVpnv6: string;
         /**
          * Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
          */
@@ -13114,9 +14091,17 @@ export namespace router {
          */
         softReconfiguration6: string;
         /**
+         * Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
+         */
+        softReconfigurationEvpn: string;
+        /**
          * Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
          */
         softReconfigurationVpnv4: string;
+        /**
+         * Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+         */
+        softReconfigurationVpnv6: string;
         /**
          * Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
          */
@@ -13183,9 +14168,17 @@ export namespace router {
          */
         activate6: string;
         /**
+         * Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
+         */
+        activateEvpn: string;
+        /**
          * Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
          */
         activateVpnv4: string;
+        /**
+         * Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
+         */
+        activateVpnv6: string;
         /**
          * Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
          */
@@ -13199,6 +14192,10 @@ export namespace router {
          */
         additionalPathVpnv4: string;
         /**
+         * Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+         */
+        additionalPathVpnv6: string;
+        /**
          * Number of IPv4 additional paths that can be advertised to this neighbor.
          */
         advAdditionalPath: number;
@@ -13210,6 +14207,10 @@ export namespace router {
          * Number of VPNv4 additional paths that can be advertised to this neighbor.
          */
         advAdditionalPathVpnv4: number;
+        /**
+         * Number of VPNv6 additional paths that can be advertised to this neighbor.
+         */
+        advAdditionalPathVpnv6: number;
         /**
          * Minimum interval (sec) between sending updates.
          */
@@ -13231,9 +14232,29 @@ export namespace router {
          */
         allowasInEnable6: string;
         /**
+         * Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+         */
+        allowasInEnableEvpn: string;
+        /**
+         * Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+         */
+        allowasInEnableVpnv4: string;
+        /**
+         * Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+         */
+        allowasInEnableVpnv6: string;
+        /**
+         * The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+         */
+        allowasInEvpn: number;
+        /**
          * The maximum number of occurrence of my AS number allowed for VPNv4 route.
          */
         allowasInVpnv4: number;
+        /**
+         * The maximum number of occurrence of my AS number allowed for VPNv6 route.
+         */
+        allowasInVpnv6: number;
         /**
          * Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
          */
@@ -13254,6 +14275,14 @@ export namespace router {
          * List of attributes that should be unchanged for VPNv4 route. Valid values: `as-path`, `med`, `next-hop`.
          */
         attributeUnchangedVpnv4: string;
+        /**
+         * List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+         */
+        attributeUnchangedVpnv6: string;
+        /**
+         * Key-chain name for TCP authentication options.
+         */
+        authOptions: string;
         /**
          * Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
          */
@@ -13279,9 +14308,17 @@ export namespace router {
          */
         capabilityGracefulRestart6: string;
         /**
+         * Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+         */
+        capabilityGracefulRestartEvpn: string;
+        /**
          * Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
          */
         capabilityGracefulRestartVpnv4: string;
+        /**
+         * Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+         */
+        capabilityGracefulRestartVpnv6: string;
         /**
          * Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
          */
@@ -13323,6 +14360,10 @@ export namespace router {
          */
         distributeListInVpnv4: string;
         /**
+         * Filter for VPNv6 updates from this neighbor.
+         */
+        distributeListInVpnv6: string;
+        /**
          * Filter for IPv4 updates to this neighbor.
          */
         distributeListOut: string;
@@ -13334,6 +14375,10 @@ export namespace router {
          * Filter for VPNv4 updates to this neighbor.
          */
         distributeListOutVpnv4: string;
+        /**
+         * Filter for VPNv6 updates to this neighbor.
+         */
+        distributeListOutVpnv6: string;
         /**
          * Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
          */
@@ -13355,6 +14400,14 @@ export namespace router {
          */
         filterListIn6: string;
         /**
+         * BGP filter for VPNv4 inbound routes.
+         */
+        filterListInVpnv4: string;
+        /**
+         * BGP filter for VPNv6 inbound routes.
+         */
+        filterListInVpnv6: string;
+        /**
          * BGP filter for IPv4 outbound routes.
          */
         filterListOut: string;
@@ -13362,6 +14415,14 @@ export namespace router {
          * BGP filter for IPv6 outbound routes.
          */
         filterListOut6: string;
+        /**
+         * BGP filter for VPNv4 outbound routes.
+         */
+        filterListOutVpnv4: string;
+        /**
+         * BGP filter for VPNv6 outbound routes.
+         */
+        filterListOutVpnv6: string;
         /**
          * Interval (sec) before peer considered dead.
          */
@@ -13399,6 +14460,10 @@ export namespace router {
          */
         maximumPrefix6: number;
         /**
+         * Maximum number of L2VPN EVPN prefixes to accept from this peer.
+         */
+        maximumPrefixEvpn: number;
+        /**
          * Maximum IPv4 prefix threshold value (1 - 100 percent).
          */
         maximumPrefixThreshold: number;
@@ -13407,13 +14472,25 @@ export namespace router {
          */
         maximumPrefixThreshold6: number;
         /**
+         * Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+         */
+        maximumPrefixThresholdEvpn: number;
+        /**
          * Maximum VPNv4 prefix threshold value (1 - 100 percent).
          */
         maximumPrefixThresholdVpnv4: number;
         /**
+         * Maximum VPNv6 prefix threshold value (1 - 100 percent).
+         */
+        maximumPrefixThresholdVpnv6: number;
+        /**
          * Maximum number of VPNv4 prefixes to accept from this peer.
          */
         maximumPrefixVpnv4: number;
+        /**
+         * Maximum number of VPNv6 prefixes to accept from this peer.
+         */
+        maximumPrefixVpnv6: number;
         /**
          * Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
          */
@@ -13423,9 +14500,17 @@ export namespace router {
          */
         maximumPrefixWarningOnly6: string;
         /**
+         * Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
+         */
+        maximumPrefixWarningOnlyEvpn: string;
+        /**
          * Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
          */
         maximumPrefixWarningOnlyVpnv4: string;
+        /**
+         * Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
+         */
+        maximumPrefixWarningOnlyVpnv6: string;
         /**
          * Neighbor group name.
          */
@@ -13451,6 +14536,10 @@ export namespace router {
          */
         nextHopSelfVpnv4: string;
         /**
+         * Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
+         */
+        nextHopSelfVpnv6: string;
+        /**
          * Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
          */
         overrideCapability: string;
@@ -13458,6 +14547,10 @@ export namespace router {
          * Enable/disable sending of open messages to this neighbor. Valid values: `enable`, `disable`.
          */
         passive: string;
+        /**
+         * Password used in MD5 authentication.
+         */
+        password?: string;
         /**
          * IPv4 Inbound filter for updates from this neighbor.
          */
@@ -13471,6 +14564,10 @@ export namespace router {
          */
         prefixListInVpnv4: string;
         /**
+         * Inbound filter for VPNv6 updates from this neighbor.
+         */
+        prefixListInVpnv6: string;
+        /**
          * IPv4 Outbound filter for updates to this neighbor.
          */
         prefixListOut: string;
@@ -13482,6 +14579,10 @@ export namespace router {
          * Outbound filter for VPNv4 updates to this neighbor.
          */
         prefixListOutVpnv4: string;
+        /**
+         * Outbound filter for VPNv6 updates to this neighbor.
+         */
+        prefixListOutVpnv6: string;
         /**
          * AS number of neighbor.
          */
@@ -13495,9 +14596,17 @@ export namespace router {
          */
         removePrivateAs6: string;
         /**
+         * Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
+         */
+        removePrivateAsEvpn: string;
+        /**
          * Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
          */
         removePrivateAsVpnv4: string;
+        /**
+         * Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
+         */
+        removePrivateAsVpnv6: string;
         /**
          * Graceful restart delay time (sec, 0 = global default).
          */
@@ -13515,9 +14624,17 @@ export namespace router {
          */
         routeMapIn6: string;
         /**
+         * L2VPN EVPN inbound route map filter.
+         */
+        routeMapInEvpn: string;
+        /**
          * VPNv4 inbound route map filter.
          */
         routeMapInVpnv4: string;
+        /**
+         * VPNv6 inbound route map filter.
+         */
+        routeMapInVpnv6: string;
         /**
          * IPv4 Outbound route map filter.
          */
@@ -13531,6 +14648,10 @@ export namespace router {
          */
         routeMapOut6Preferable: string;
         /**
+         * L2VPN EVPN outbound route map filter.
+         */
+        routeMapOutEvpn: string;
+        /**
          * IPv4 outbound route map filter if the peer is preferred.
          */
         routeMapOutPreferable: string;
@@ -13543,6 +14664,14 @@ export namespace router {
          */
         routeMapOutVpnv4Preferable: string;
         /**
+         * VPNv6 outbound route map filter.
+         */
+        routeMapOutVpnv6: string;
+        /**
+         * VPNv6 outbound route map filter if this neighbor is preferred.
+         */
+        routeMapOutVpnv6Preferable: string;
+        /**
          * Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
          */
         routeReflectorClient: string;
@@ -13551,9 +14680,17 @@ export namespace router {
          */
         routeReflectorClient6: string;
         /**
+         * Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeReflectorClientEvpn: string;
+        /**
          * Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
          */
         routeReflectorClientVpnv4: string;
+        /**
+         * Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeReflectorClientVpnv6: string;
         /**
          * Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
          */
@@ -13563,9 +14700,17 @@ export namespace router {
          */
         routeServerClient6: string;
         /**
+         * Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeServerClientEvpn: string;
+        /**
          * Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
          */
         routeServerClientVpnv4: string;
+        /**
+         * Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+         */
+        routeServerClientVpnv6: string;
         /**
          * IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
          */
@@ -13575,9 +14720,17 @@ export namespace router {
          */
         sendCommunity6: string;
         /**
+         * Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
+         */
+        sendCommunityEvpn: string;
+        /**
          * Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
          */
         sendCommunityVpnv4: string;
+        /**
+         * Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+         */
+        sendCommunityVpnv6: string;
         /**
          * Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
          */
@@ -13591,9 +14744,17 @@ export namespace router {
          */
         softReconfiguration6: string;
         /**
+         * Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
+         */
+        softReconfigurationEvpn: string;
+        /**
          * Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
          */
         softReconfigurationVpnv4: string;
+        /**
+         * Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+         */
+        softReconfigurationVpnv6: string;
         /**
          * Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
          */
@@ -13712,7 +14873,7 @@ export namespace router {
         /**
          * Route map name.
          */
-        routeMap: string;
+        routeMap?: string;
         /**
          * Status Valid values: `enable`, `disable`.
          */
@@ -13727,7 +14888,7 @@ export namespace router {
         /**
          * Route map of VRF leaking.
          */
-        routeMap: string;
+        routeMap?: string;
         /**
          * Status Valid values: `enable`, `disable`.
          */
@@ -13760,20 +14921,54 @@ export namespace router {
          */
         role: string;
         /**
-         * Origin VRF ID (0 - 63).
+         * Origin VRF ID. On FortiOS versions 7.2.0-7.2.3: 0 - 63. On FortiOS versions >= 7.2.4: 0 - 251.
          */
         vrf: string;
     }
 
     export interface BgpVrf6 {
         /**
+         * List of export route target. The structure of `exportRt` block is documented below.
+         */
+        exportRts?: outputs.router.BgpVrf6ExportRt[];
+        /**
+         * Import route map.
+         */
+        importRouteMap: string;
+        /**
+         * List of import route target. The structure of `importRt` block is documented below.
+         */
+        importRts?: outputs.router.BgpVrf6ImportRt[];
+        /**
          * Target VRF table. The structure of `leakTarget` block is documented below.
          */
         leakTargets?: outputs.router.BgpVrf6LeakTarget[];
         /**
+         * Route Distinguisher: AA:NN|A.B.C.D:NN.
+         */
+        rd: string;
+        /**
+         * VRF role. Valid values: `standalone`, `ce`, `pe`.
+         */
+        role: string;
+        /**
          * BGP VRF leaking table. The structure of `vrf` block is documented below.
          */
         vrf: string;
+    }
+
+    export interface BgpVrf6ExportRt {
+        /**
+         * Attribute: AA:NN|A.B.C.D:NN.
+         */
+        routeTarget: string;
+    }
+
+    export interface BgpVrf6ImportRt {
+        /**
+         * Attribute: AA:NN|A.B.C.D:NN
+         */
+        routeTarget: string;
     }
 
     export interface BgpVrf6LeakTarget {
@@ -13786,21 +14981,21 @@ export namespace router {
          */
         routeMap: string;
         /**
-         * Target VRF ID (0 - 63).
+         * Target VRF ID. On FortiOS versions 7.2.0-7.2.3: 0 - 63. On FortiOS versions >= 7.2.4: 0 - 251.
          */
         vrf: string;
     }
 
     export interface BgpVrfExportRt {
         /**
-         * Attribute: AA|AA:NN.
+         * Attribute: AA:NN|A.B.C.D:NN.
          */
         routeTarget: string;
     }
 
     export interface BgpVrfImportRt {
         /**
-         * Attribute: AA|AA:NN.
+         * Attribute: AA:NN|A.B.C.D:NN
          */
         routeTarget: string;
     }
@@ -13811,7 +15006,7 @@ export namespace router {
          */
         targets?: outputs.router.BgpVrfLeakTarget[];
         /**
-         * Origin VRF ID <0 - 31>.
+         * Origin VRF ID (0 - 31).
          */
         vrf: string;
     }
@@ -13837,7 +15032,7 @@ export namespace router {
          */
         routeMap: string;
         /**
-         * Target VRF ID <0 - 31>.
+         * Target VRF ID (0 - 31).
          */
         vrf: string;
     }
@@ -13852,7 +15047,7 @@ export namespace router {
          */
         routeMap: string;
         /**
-         * Target VRF ID <0 - 31>.
+         * Target VRF ID (0 - 31).
          */
         vrf: string;
     }
@@ -13874,6 +15069,29 @@ export namespace router {
          * Ordered list of COMMUNITY attributes as a regular expression.
          */
         regexp: string;
+    }
+
+    export interface ExtcommunitylistRule {
+        /**
+         * Permit or deny route-based operations, based on the route's EXTENDED COMMUNITY attribute. Valid values: `deny`, `permit`.
+         */
+        action: string;
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Extended community specifications for matching a reserved extended community.
+         */
+        match: string;
+        /**
+         * Ordered list of EXTENDED COMMUNITY attributes as a regular expression.
+         */
+        regexp: string;
+        /**
+         * Type of extended community. Valid values: `rt`, `soo`.
+         */
+        type: string;
     }
 
     export interface GetAccesslist6Rule {
@@ -14107,9 +15325,17 @@ export namespace router {
          */
         activate6: string;
         /**
+         * Enable/disable address family L2VPN EVPN for this neighbor.
+         */
+        activateEvpn: string;
+        /**
          * Enable/disable address family VPNv4 for this neighbor.
          */
         activateVpnv4: string;
+        /**
+         * Enable/disable address family VPNv6 for this neighbor.
+         */
+        activateVpnv6: string;
         /**
          * Enable/disable IPv4 additional-path capability.
          */
@@ -14123,6 +15349,10 @@ export namespace router {
          */
         additionalPathVpnv4: string;
         /**
+         * Enable/disable VPNv6 additional-path capability.
+         */
+        additionalPathVpnv6: string;
+        /**
          * Number of IPv4 additional paths that can be advertised to this neighbor.
          */
         advAdditionalPath: number;
@@ -14134,6 +15364,10 @@ export namespace router {
          * Number of VPNv4 additional paths that can be advertised to this neighbor.
          */
         advAdditionalPathVpnv4: number;
+        /**
+         * Number of VPNv6 additional paths that can be advertised to this neighbor.
+         */
+        advAdditionalPathVpnv6: number;
         /**
          * Minimum interval (sec) between sending updates.
          */
@@ -14155,9 +15389,29 @@ export namespace router {
          */
         allowasInEnable6: string;
         /**
+         * Enable/disable to allow my AS in AS path for L2VPN EVPN route.
+         */
+        allowasInEnableEvpn: string;
+        /**
+         * Enable/disable to allow my AS in AS path for VPNv4 route.
+         */
+        allowasInEnableVpnv4: string;
+        /**
+         * Enable/disable use of my AS in AS path for VPNv6 route.
+         */
+        allowasInEnableVpnv6: string;
+        /**
+         * The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+         */
+        allowasInEvpn: number;
+        /**
          * The maximum number of occurrence of my AS number allowed for VPNv4 route.
          */
         allowasInVpnv4: number;
+        /**
+         * The maximum number of occurrence of my AS number allowed for VPNv6 route.
+         */
+        allowasInVpnv6: number;
         /**
          * Enable/disable replace peer AS with own AS for IPv4.
          */
@@ -14178,6 +15432,14 @@ export namespace router {
          * List of attributes that should be unchanged for VPNv4 route.
          */
         attributeUnchangedVpnv4: string;
+        /**
+         * List of attributes that should not be changed for VPNv6 route.
+         */
+        attributeUnchangedVpnv6: string;
+        /**
+         * Key-chain name for TCP authentication options.
+         */
+        authOptions: string;
         /**
          * Enable/disable BFD for this neighbor.
          */
@@ -14203,9 +15465,17 @@ export namespace router {
          */
         capabilityGracefulRestart6: string;
         /**
+         * Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor.
+         */
+        capabilityGracefulRestartEvpn: string;
+        /**
          * Enable/disable advertise VPNv4 graceful restart capability to this neighbor.
          */
         capabilityGracefulRestartVpnv4: string;
+        /**
+         * Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor.
+         */
+        capabilityGracefulRestartVpnv6: string;
         /**
          * Accept/Send IPv4 ORF lists to/from this neighbor.
          */
@@ -14255,6 +15525,10 @@ export namespace router {
          */
         distributeListInVpnv4: string;
         /**
+         * Filter for VPNv6 updates from this neighbor.
+         */
+        distributeListInVpnv6: string;
+        /**
          * Filter for IPv4 updates to this neighbor.
          */
         distributeListOut: string;
@@ -14266,6 +15540,10 @@ export namespace router {
          * Filter for VPNv4 updates to this neighbor.
          */
         distributeListOutVpnv4: string;
+        /**
+         * Filter for VPNv6 updates to this neighbor.
+         */
+        distributeListOutVpnv6: string;
         /**
          * Don't negotiate capabilities with this neighbor
          */
@@ -14287,6 +15565,14 @@ export namespace router {
          */
         filterListIn6: string;
         /**
+         * BGP filter for VPNv4 inbound routes.
+         */
+        filterListInVpnv4: string;
+        /**
+         * BGP filter for VPNv6 inbound routes.
+         */
+        filterListInVpnv6: string;
+        /**
          * BGP filter for IPv4 outbound routes.
          */
         filterListOut: string;
@@ -14294,6 +15580,14 @@ export namespace router {
          * BGP filter for IPv6 outbound routes.
          */
         filterListOut6: string;
+        /**
+         * BGP filter for VPNv4 outbound routes.
+         */
+        filterListOutVpnv4: string;
+        /**
+         * BGP filter for VPNv6 outbound routes.
+         */
+        filterListOutVpnv6: string;
         /**
          * Interval (sec) before peer considered dead.
          */
@@ -14335,6 +15629,10 @@ export namespace router {
          */
         maximumPrefix6: number;
         /**
+         * Maximum number of L2VPN EVPN prefixes to accept from this peer.
+         */
+        maximumPrefixEvpn: number;
+        /**
          * Maximum IPv4 prefix threshold value (1 - 100 percent).
          */
         maximumPrefixThreshold: number;
@@ -14343,13 +15641,25 @@ export namespace router {
          */
         maximumPrefixThreshold6: number;
         /**
+         * Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+         */
+        maximumPrefixThresholdEvpn: number;
+        /**
          * Maximum VPNv4 prefix threshold value (1 - 100 percent).
          */
         maximumPrefixThresholdVpnv4: number;
         /**
+         * Maximum VPNv6 prefix threshold value (1 - 100 percent).
+         */
+        maximumPrefixThresholdVpnv6: number;
+        /**
          * Maximum number of VPNv4 prefixes to accept from this peer.
          */
         maximumPrefixVpnv4: number;
+        /**
+         * Maximum number of VPNv6 prefixes to accept from this peer.
+         */
+        maximumPrefixVpnv6: number;
         /**
          * Enable/disable IPv4 Only give warning message when limit is exceeded.
          */
@@ -14359,9 +15669,17 @@ export namespace router {
          */
         maximumPrefixWarningOnly6: string;
         /**
+         * Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes.
+         */
+        maximumPrefixWarningOnlyEvpn: string;
+        /**
          * Enable/disable only giving warning message when limit is exceeded for VPNv4 routes.
          */
         maximumPrefixWarningOnlyVpnv4: string;
+        /**
+         * Enable/disable warning message when limit is exceeded for VPNv6 routes.
+         */
+        maximumPrefixWarningOnlyVpnv6: string;
         /**
          * Enable/disable IPv4 next-hop calculation for this neighbor.
          */
@@ -14382,6 +15700,10 @@ export namespace router {
          * Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor.
          */
         nextHopSelfVpnv4: string;
+        /**
+         * Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor.
+         */
+        nextHopSelfVpnv6: string;
         /**
          * Enable/disable override result of capability negotiation.
          */
@@ -14407,6 +15729,10 @@ export namespace router {
          */
         prefixListInVpnv4: string;
         /**
+         * Inbound filter for VPNv6 updates from this neighbor.
+         */
+        prefixListInVpnv6: string;
+        /**
          * IPv4 Outbound filter for updates to this neighbor.
          */
         prefixListOut: string;
@@ -14418,6 +15744,10 @@ export namespace router {
          * Outbound filter for VPNv4 updates to this neighbor.
          */
         prefixListOutVpnv4: string;
+        /**
+         * Outbound filter for VPNv6 updates to this neighbor.
+         */
+        prefixListOutVpnv6: string;
         /**
          * AS number of neighbor.
          */
@@ -14431,9 +15761,17 @@ export namespace router {
          */
         removePrivateAs6: string;
         /**
+         * Enable/disable removing private AS number from L2VPN EVPN outbound updates.
+         */
+        removePrivateAsEvpn: string;
+        /**
          * Enable/disable remove private AS number from VPNv4 outbound updates.
          */
         removePrivateAsVpnv4: string;
+        /**
+         * Enable/disable to remove private AS number from VPNv6 outbound updates.
+         */
+        removePrivateAsVpnv6: string;
         /**
          * Graceful restart delay time (sec, 0 = global default).
          */
@@ -14451,9 +15789,17 @@ export namespace router {
          */
         routeMapIn6: string;
         /**
+         * L2VPN EVPN inbound route map filter.
+         */
+        routeMapInEvpn: string;
+        /**
          * VPNv4 inbound route map filter.
          */
         routeMapInVpnv4: string;
+        /**
+         * VPNv6 inbound route map filter.
+         */
+        routeMapInVpnv6: string;
         /**
          * IPv4 Outbound route map filter.
          */
@@ -14467,6 +15813,10 @@ export namespace router {
          */
         routeMapOut6Preferable: string;
         /**
+         * L2VPN EVPN outbound route map filter.
+         */
+        routeMapOutEvpn: string;
+        /**
          * IPv4 outbound route map filter if the peer is preferred.
          */
         routeMapOutPreferable: string;
@@ -14479,6 +15829,14 @@ export namespace router {
          */
         routeMapOutVpnv4Preferable: string;
         /**
+         * VPNv6 outbound route map filter.
+         */
+        routeMapOutVpnv6: string;
+        /**
+         * VPNv6 outbound route map filter if this neighbor is preferred.
+         */
+        routeMapOutVpnv6Preferable: string;
+        /**
          * Enable/disable IPv4 AS route reflector client.
          */
         routeReflectorClient: string;
@@ -14487,9 +15845,17 @@ export namespace router {
          */
         routeReflectorClient6: string;
         /**
+         * Enable/disable L2VPN EVPN AS route reflector client for this neighbor.
+         */
+        routeReflectorClientEvpn: string;
+        /**
          * Enable/disable VPNv4 AS route reflector client for this neighbor.
          */
         routeReflectorClientVpnv4: string;
+        /**
+         * Enable/disable VPNv6 AS route reflector client for this neighbor.
+         */
+        routeReflectorClientVpnv6: string;
         /**
          * Enable/disable IPv4 AS route server client.
          */
@@ -14499,9 +15865,17 @@ export namespace router {
          */
         routeServerClient6: string;
         /**
+         * Enable/disable L2VPN EVPN AS route server client for this neighbor.
+         */
+        routeServerClientEvpn: string;
+        /**
          * Enable/disable VPNv4 AS route server client for this neighbor.
          */
         routeServerClientVpnv4: string;
+        /**
+         * Enable/disable VPNv6 AS route server client for this neighbor.
+         */
+        routeServerClientVpnv6: string;
         /**
          * IPv4 Send community attribute to neighbor.
          */
@@ -14511,9 +15885,17 @@ export namespace router {
          */
         sendCommunity6: string;
         /**
+         * Enable/disable sending community attribute to neighbor for L2VPN EVPN address family.
+         */
+        sendCommunityEvpn: string;
+        /**
          * Send community attribute to neighbor for VPNv4 address family.
          */
         sendCommunityVpnv4: string;
+        /**
+         * Enable/disable sending community attribute to this neighbor for VPNv6 address family.
+         */
+        sendCommunityVpnv6: string;
         /**
          * Enable/disable shutdown this neighbor.
          */
@@ -14527,9 +15909,17 @@ export namespace router {
          */
         softReconfiguration6: string;
         /**
+         * Enable/disable L2VPN EVPN inbound soft reconfiguration.
+         */
+        softReconfigurationEvpn: string;
+        /**
          * Enable/disable allow VPNv4 inbound soft reconfiguration.
          */
         softReconfigurationVpnv4: string;
+        /**
+         * Enable/disable VPNv6 inbound soft reconfiguration.
+         */
+        softReconfigurationVpnv6: string;
         /**
          * Enable/disable stale route after neighbor down.
          */
@@ -14596,9 +15986,17 @@ export namespace router {
          */
         activate6: string;
         /**
+         * Enable/disable address family L2VPN EVPN for this neighbor.
+         */
+        activateEvpn: string;
+        /**
          * Enable/disable address family VPNv4 for this neighbor.
          */
         activateVpnv4: string;
+        /**
+         * Enable/disable address family VPNv6 for this neighbor.
+         */
+        activateVpnv6: string;
         /**
          * Enable/disable IPv4 additional-path capability.
          */
@@ -14612,6 +16010,10 @@ export namespace router {
          */
         additionalPathVpnv4: string;
         /**
+         * Enable/disable VPNv6 additional-path capability.
+         */
+        additionalPathVpnv6: string;
+        /**
          * Number of IPv4 additional paths that can be advertised to this neighbor.
          */
         advAdditionalPath: number;
@@ -14623,6 +16025,10 @@ export namespace router {
          * Number of VPNv4 additional paths that can be advertised to this neighbor.
          */
         advAdditionalPathVpnv4: number;
+        /**
+         * Number of VPNv6 additional paths that can be advertised to this neighbor.
+         */
+        advAdditionalPathVpnv6: number;
         /**
          * Minimum interval (sec) between sending updates.
          */
@@ -14644,9 +16050,29 @@ export namespace router {
          */
         allowasInEnable6: string;
         /**
+         * Enable/disable to allow my AS in AS path for L2VPN EVPN route.
+         */
+        allowasInEnableEvpn: string;
+        /**
+         * Enable/disable to allow my AS in AS path for VPNv4 route.
+         */
+        allowasInEnableVpnv4: string;
+        /**
+         * Enable/disable use of my AS in AS path for VPNv6 route.
+         */
+        allowasInEnableVpnv6: string;
+        /**
+         * The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+         */
+        allowasInEvpn: number;
+        /**
          * The maximum number of occurrence of my AS number allowed for VPNv4 route.
          */
         allowasInVpnv4: number;
+        /**
+         * The maximum number of occurrence of my AS number allowed for VPNv6 route.
+         */
+        allowasInVpnv6: number;
         /**
          * Enable/disable replace peer AS with own AS for IPv4.
          */
@@ -14667,6 +16093,14 @@ export namespace router {
          * List of attributes that should be unchanged for VPNv4 route.
          */
         attributeUnchangedVpnv4: string;
+        /**
+         * List of attributes that should not be changed for VPNv6 route.
+         */
+        attributeUnchangedVpnv6: string;
+        /**
+         * Key-chain name for TCP authentication options.
+         */
+        authOptions: string;
         /**
          * Enable/disable BFD for this neighbor.
          */
@@ -14692,9 +16126,17 @@ export namespace router {
          */
         capabilityGracefulRestart6: string;
         /**
+         * Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor.
+         */
+        capabilityGracefulRestartEvpn: string;
+        /**
          * Enable/disable advertise VPNv4 graceful restart capability to this neighbor.
          */
         capabilityGracefulRestartVpnv4: string;
+        /**
+         * Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor.
+         */
+        capabilityGracefulRestartVpnv6: string;
         /**
          * Accept/Send IPv4 ORF lists to/from this neighbor.
          */
@@ -14736,6 +16178,10 @@ export namespace router {
          */
         distributeListInVpnv4: string;
         /**
+         * Filter for VPNv6 updates from this neighbor.
+         */
+        distributeListInVpnv6: string;
+        /**
          * Filter for IPv4 updates to this neighbor.
          */
         distributeListOut: string;
@@ -14747,6 +16193,10 @@ export namespace router {
          * Filter for VPNv4 updates to this neighbor.
          */
         distributeListOutVpnv4: string;
+        /**
+         * Filter for VPNv6 updates to this neighbor.
+         */
+        distributeListOutVpnv6: string;
         /**
          * Don't negotiate capabilities with this neighbor
          */
@@ -14768,6 +16218,14 @@ export namespace router {
          */
         filterListIn6: string;
         /**
+         * BGP filter for VPNv4 inbound routes.
+         */
+        filterListInVpnv4: string;
+        /**
+         * BGP filter for VPNv6 inbound routes.
+         */
+        filterListInVpnv6: string;
+        /**
          * BGP filter for IPv4 outbound routes.
          */
         filterListOut: string;
@@ -14775,6 +16233,14 @@ export namespace router {
          * BGP filter for IPv6 outbound routes.
          */
         filterListOut6: string;
+        /**
+         * BGP filter for VPNv4 outbound routes.
+         */
+        filterListOutVpnv4: string;
+        /**
+         * BGP filter for VPNv6 outbound routes.
+         */
+        filterListOutVpnv6: string;
         /**
          * Interval (sec) before peer considered dead.
          */
@@ -14812,6 +16278,10 @@ export namespace router {
          */
         maximumPrefix6: number;
         /**
+         * Maximum number of L2VPN EVPN prefixes to accept from this peer.
+         */
+        maximumPrefixEvpn: number;
+        /**
          * Maximum IPv4 prefix threshold value (1 - 100 percent).
          */
         maximumPrefixThreshold: number;
@@ -14820,13 +16290,25 @@ export namespace router {
          */
         maximumPrefixThreshold6: number;
         /**
+         * Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+         */
+        maximumPrefixThresholdEvpn: number;
+        /**
          * Maximum VPNv4 prefix threshold value (1 - 100 percent).
          */
         maximumPrefixThresholdVpnv4: number;
         /**
+         * Maximum VPNv6 prefix threshold value (1 - 100 percent).
+         */
+        maximumPrefixThresholdVpnv6: number;
+        /**
          * Maximum number of VPNv4 prefixes to accept from this peer.
          */
         maximumPrefixVpnv4: number;
+        /**
+         * Maximum number of VPNv6 prefixes to accept from this peer.
+         */
+        maximumPrefixVpnv6: number;
         /**
          * Enable/disable IPv4 Only give warning message when limit is exceeded.
          */
@@ -14836,9 +16318,17 @@ export namespace router {
          */
         maximumPrefixWarningOnly6: string;
         /**
+         * Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes.
+         */
+        maximumPrefixWarningOnlyEvpn: string;
+        /**
          * Enable/disable only giving warning message when limit is exceeded for VPNv4 routes.
          */
         maximumPrefixWarningOnlyVpnv4: string;
+        /**
+         * Enable/disable warning message when limit is exceeded for VPNv6 routes.
+         */
+        maximumPrefixWarningOnlyVpnv6: string;
         /**
          * Distribute list entry name.
          */
@@ -14864,6 +16354,10 @@ export namespace router {
          */
         nextHopSelfVpnv4: string;
         /**
+         * Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor.
+         */
+        nextHopSelfVpnv6: string;
+        /**
          * Enable/disable override result of capability negotiation.
          */
         overrideCapability: string;
@@ -14871,6 +16365,10 @@ export namespace router {
          * Enable/disable sending of open messages to this neighbor.
          */
         passive: string;
+        /**
+         * Password used in MD5 authentication.
+         */
+        password: string;
         /**
          * IPv4 Inbound filter for updates from this neighbor.
          */
@@ -14884,6 +16382,10 @@ export namespace router {
          */
         prefixListInVpnv4: string;
         /**
+         * Inbound filter for VPNv6 updates from this neighbor.
+         */
+        prefixListInVpnv6: string;
+        /**
          * IPv4 Outbound filter for updates to this neighbor.
          */
         prefixListOut: string;
@@ -14895,6 +16397,10 @@ export namespace router {
          * Outbound filter for VPNv4 updates to this neighbor.
          */
         prefixListOutVpnv4: string;
+        /**
+         * Outbound filter for VPNv6 updates to this neighbor.
+         */
+        prefixListOutVpnv6: string;
         /**
          * AS number of neighbor.
          */
@@ -14908,9 +16414,17 @@ export namespace router {
          */
         removePrivateAs6: string;
         /**
+         * Enable/disable removing private AS number from L2VPN EVPN outbound updates.
+         */
+        removePrivateAsEvpn: string;
+        /**
          * Enable/disable remove private AS number from VPNv4 outbound updates.
          */
         removePrivateAsVpnv4: string;
+        /**
+         * Enable/disable to remove private AS number from VPNv6 outbound updates.
+         */
+        removePrivateAsVpnv6: string;
         /**
          * Graceful restart delay time (sec, 0 = global default).
          */
@@ -14928,9 +16442,17 @@ export namespace router {
          */
         routeMapIn6: string;
         /**
+         * L2VPN EVPN inbound route map filter.
+         */
+        routeMapInEvpn: string;
+        /**
          * VPNv4 inbound route map filter.
          */
         routeMapInVpnv4: string;
+        /**
+         * VPNv6 inbound route map filter.
+         */
+        routeMapInVpnv6: string;
         /**
          * IPv4 Outbound route map filter.
          */
@@ -14944,6 +16466,10 @@ export namespace router {
          */
         routeMapOut6Preferable: string;
         /**
+         * L2VPN EVPN outbound route map filter.
+         */
+        routeMapOutEvpn: string;
+        /**
          * IPv4 outbound route map filter if the peer is preferred.
          */
         routeMapOutPreferable: string;
@@ -14956,6 +16482,14 @@ export namespace router {
          */
         routeMapOutVpnv4Preferable: string;
         /**
+         * VPNv6 outbound route map filter.
+         */
+        routeMapOutVpnv6: string;
+        /**
+         * VPNv6 outbound route map filter if this neighbor is preferred.
+         */
+        routeMapOutVpnv6Preferable: string;
+        /**
          * Enable/disable IPv4 AS route reflector client.
          */
         routeReflectorClient: string;
@@ -14964,9 +16498,17 @@ export namespace router {
          */
         routeReflectorClient6: string;
         /**
+         * Enable/disable L2VPN EVPN AS route reflector client for this neighbor.
+         */
+        routeReflectorClientEvpn: string;
+        /**
          * Enable/disable VPNv4 AS route reflector client for this neighbor.
          */
         routeReflectorClientVpnv4: string;
+        /**
+         * Enable/disable VPNv6 AS route reflector client for this neighbor.
+         */
+        routeReflectorClientVpnv6: string;
         /**
          * Enable/disable IPv4 AS route server client.
          */
@@ -14976,9 +16518,17 @@ export namespace router {
          */
         routeServerClient6: string;
         /**
+         * Enable/disable L2VPN EVPN AS route server client for this neighbor.
+         */
+        routeServerClientEvpn: string;
+        /**
          * Enable/disable VPNv4 AS route server client for this neighbor.
          */
         routeServerClientVpnv4: string;
+        /**
+         * Enable/disable VPNv6 AS route server client for this neighbor.
+         */
+        routeServerClientVpnv6: string;
         /**
          * IPv4 Send community attribute to neighbor.
          */
@@ -14988,9 +16538,17 @@ export namespace router {
          */
         sendCommunity6: string;
         /**
+         * Enable/disable sending community attribute to neighbor for L2VPN EVPN address family.
+         */
+        sendCommunityEvpn: string;
+        /**
          * Send community attribute to neighbor for VPNv4 address family.
          */
         sendCommunityVpnv4: string;
+        /**
+         * Enable/disable sending community attribute to this neighbor for VPNv6 address family.
+         */
+        sendCommunityVpnv6: string;
         /**
          * Enable/disable shutdown this neighbor.
          */
@@ -15004,9 +16562,17 @@ export namespace router {
          */
         softReconfiguration6: string;
         /**
+         * Enable/disable L2VPN EVPN inbound soft reconfiguration.
+         */
+        softReconfigurationEvpn: string;
+        /**
          * Enable/disable allow VPNv4 inbound soft reconfiguration.
          */
         softReconfigurationVpnv4: string;
+        /**
+         * Enable/disable VPNv6 inbound soft reconfiguration.
+         */
+        softReconfigurationVpnv6: string;
         /**
          * Enable/disable stale route after neighbor down.
          */
@@ -15165,7 +16731,7 @@ export namespace router {
          */
         leakTargets: outputs.router.GetBgpVrfLeakTarget[];
         /**
-         * Route Distinguisher: AA|AA:NN.
+         * Route Distinguisher: AA:NN|A.B.C.D:NN.
          */
         rd: string;
         /**
@@ -15180,13 +16746,47 @@ export namespace router {
 
     export interface GetBgpVrf6 {
         /**
+         * List of export route target. The structure of `exportRt` block is documented below.
+         */
+        exportRts: outputs.router.GetBgpVrf6ExportRt[];
+        /**
+         * Import route map.
+         */
+        importRouteMap: string;
+        /**
+         * List of import route target. The structure of `importRt` block is documented below.
+         */
+        importRts: outputs.router.GetBgpVrf6ImportRt[];
+        /**
          * Target VRF table. The structure of `leakTarget` block is documented below.
          */
         leakTargets: outputs.router.GetBgpVrf6LeakTarget[];
         /**
+         * Route Distinguisher: AA:NN|A.B.C.D:NN.
+         */
+        rd: string;
+        /**
+         * VRF role.
+         */
+        role: string;
+        /**
          * Target VRF ID <0 - 31>.
          */
         vrf: string;
+    }
+
+    export interface GetBgpVrf6ExportRt {
+        /**
+         * Attribute: AA:NN|A.B.C.D:NN
+         */
+        routeTarget: string;
+    }
+
+    export interface GetBgpVrf6ImportRt {
+        /**
+         * Attribute: AA:NN|A.B.C.D:NN
+         */
+        routeTarget: string;
     }
 
     export interface GetBgpVrf6LeakTarget {
@@ -15206,14 +16806,14 @@ export namespace router {
 
     export interface GetBgpVrfExportRt {
         /**
-         * Attribute: AA|AA:NN.
+         * Attribute: AA:NN|A.B.C.D:NN
          */
         routeTarget: string;
     }
 
     export interface GetBgpVrfImportRt {
         /**
-         * Attribute: AA|AA:NN.
+         * Attribute: AA:NN|A.B.C.D:NN
          */
         routeTarget: string;
     }
@@ -15761,6 +17361,10 @@ export namespace router {
          * Maximum retries of null register (1 - 20, default = 1).
          */
         nullRegisterRetries: number;
+        /**
+         * Enable/disable use of SDWAN when checking RPF neighbor and sending of REG packet.
+         */
+        pimUseSdwan: string;
         /**
          * Limit of packets/sec per source registered through this RP (0 - 65535, default = 0 which means unlimited).
          */
@@ -17017,6 +18621,14 @@ export namespace router {
          */
         matchCommunityExact: string;
         /**
+         * Match BGP extended community list.
+         */
+        matchExtcommunity: string;
+        /**
+         * Enable/disable exact matching of extended communities.
+         */
+        matchExtcommunityExact: string;
+        /**
          * BGP flag value to match (0 - 65535)
          */
         matchFlags: number;
@@ -17137,6 +18749,10 @@ export namespace router {
          */
         setIpNexthop: string;
         /**
+         * IP address of preferred source.
+         */
+        setIpPrefsrc: string;
+        /**
          * BGP local preference path attribute.
          */
         setLocalPreference: number;
@@ -17168,6 +18784,18 @@ export namespace router {
          * Tag value.
          */
         setTag: number;
+        /**
+         * IP address of VPNv4 next-hop.
+         */
+        setVpnv4Nexthop: string;
+        /**
+         * IPv6 global address of VPNv6 next-hop.
+         */
+        setVpnv6Nexthop: string;
+        /**
+         * IPv6 link-local address of VPNv6 next-hop.
+         */
+        setVpnv6NexthopLocal: string;
         /**
          * BGP weight for routing table.
          */
@@ -17345,7 +18973,7 @@ export namespace router {
          */
         id: number;
         /**
-         * IS-IS net xx.xxxx. ... .xxxx.xx.
+         * IS-IS networks (format = xx.xxxx.  .xxxx.xx.).
          */
         net: string;
     }
@@ -17440,7 +19068,7 @@ export namespace router {
          */
         acceptLifetime: string;
         /**
-         * Cryptographic algorithm. Valid values: `md5`, `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, `hmac-sha512`.
+         * Cryptographic algorithm.
          */
         algorithm: string;
         /**
@@ -17448,7 +19076,7 @@ export namespace router {
          */
         id: number;
         /**
-         * Password for the key (max. = 35 characters).
+         * Password for the key. On FortiOS versions 6.2.0-7.0.0: max. = 35 characters. On FortiOS versions 7.0.1-7.0.3: maximum = 64 characters.
          */
         keyString: string;
         /**
@@ -17459,11 +19087,11 @@ export namespace router {
 
     export interface Multicast6Interface {
         /**
-         * Time before old neighbour information expires (1 - 65535 sec, default = 105).
+         * Time before old neighbor information expires in seconds (1 - 65535, default = 105).
          */
         helloHoldtime: number;
         /**
-         * Interval between sending PIM hello messages  (1 - 65535 sec, default = 30)..
+         * Interval between sending PIM hello messages in seconds (1 - 65535, default = 30).
          */
         helloInterval: number;
         /**
@@ -17611,7 +19239,7 @@ export namespace router {
          */
         queryMaxResponseTime: number;
         /**
-         * Timeout between queries before becoming querier for network (60 - 900, default = 255).
+         * Timeout between queries before becoming querying unit for network (60 - 900, default = 255).
          */
         queryTimeout: number;
         /**
@@ -17688,6 +19316,10 @@ export namespace router {
          * Maximum retries of null register (1 - 20, default = 1).
          */
         nullRegisterRetries: number;
+        /**
+         * Enable/disable use of SDWAN when checking RPF neighbor and sending of REG packet. Valid values: `enable`, `disable`.
+         */
+        pimUseSdwan: string;
         /**
          * Limit of packets/sec per source registered through this RP (0 - 65535, default = 0 which means unlimited).
          */
@@ -18948,6 +20580,14 @@ export namespace router {
          */
         matchCommunityExact: string;
         /**
+         * Match BGP extended community list.
+         */
+        matchExtcommunity: string;
+        /**
+         * Enable/disable exact matching of extended communities. Valid values: `enable`, `disable`.
+         */
+        matchExtcommunityExact: string;
+        /**
          * BGP flag value to match (0 - 65535)
          */
         matchFlags: number;
@@ -19068,6 +20708,10 @@ export namespace router {
          */
         setIpNexthop: string;
         /**
+         * IP address of preferred source.
+         */
+        setIpPrefsrc: string;
+        /**
          * BGP local preference path attribute.
          */
         setLocalPreference: number;
@@ -19100,6 +20744,18 @@ export namespace router {
          */
         setTag: number;
         /**
+         * IP address of VPNv4 next-hop.
+         */
+        setVpnv4Nexthop: string;
+        /**
+         * IPv6 global address of VPNv6 next-hop.
+         */
+        setVpnv6Nexthop: string;
+        /**
+         * IPv6 link-local address of VPNv6 next-hop.
+         */
+        setVpnv6NexthopLocal: string;
+        /**
          * BGP weight for routing table.
          */
         setWeight: number;
@@ -19107,7 +20763,7 @@ export namespace router {
 
     export interface RoutemapRuleSetAspath {
         /**
-         * AS number (0 - 42949672). NOTE: Use quotes for repeating numbers, e.g.: "1 1 2"
+         * AS number. Use quotes for repeating numbers, For example, "1 1 2". On FortiOS versions 6.2.0-7.0.0: 0 - 42949672. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295.
          */
         as: string;
     }
@@ -19128,7 +20784,7 @@ export namespace router {
 
     export interface RoutemapRuleSetExtcommunitySoo {
         /**
-         * AA:NN
+         * Community (format = AA:NN).
          */
         community: string;
     }
@@ -19260,6 +20916,61 @@ export namespace router {
         }
 
     }
+}
+
+export namespace rule {
+    export interface FmwpMetadata {
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Meta ID.
+         */
+        metaid: number;
+        /**
+         * Value ID.
+         */
+        valueid: number;
+    }
+
+    export interface OtdtMetadata {
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Meta ID.
+         */
+        metaid: number;
+        /**
+         * Value ID.
+         */
+        valueid: number;
+    }
+
+    export interface OtdtParameter {
+        /**
+         * Parameter name.
+         */
+        name: string;
+    }
+
+    export interface OtvpMetadata {
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Meta ID.
+         */
+        metaid: number;
+        /**
+         * Value ID.
+         */
+        valueid: number;
+    }
+
 }
 
 export namespace switchcontroller {
@@ -19672,6 +21383,29 @@ export namespace switchcontroller {
         commandName: string;
     }
 
+    export interface ManagedswitchDhcpSnoopingStaticClient {
+        /**
+         * Client static IP address.
+         */
+        ip: string;
+        /**
+         * Client MAC address.
+         */
+        mac: string;
+        /**
+         * Client name.
+         */
+        name: string;
+        /**
+         * Interface name.
+         */
+        port: string;
+        /**
+         * VLAN name.
+         */
+        vlan: string;
+    }
+
     export interface ManagedswitchIgmpSnooping {
         /**
          * Maximum time to retain a multicast snooping entry for which no packets have been seen (15 - 3600 sec, default = 300).
@@ -19801,6 +21535,26 @@ export namespace switchcontroller {
          */
         mabReauth: string;
         /**
+         * MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+         */
+        macCalledStationDelimiter: string;
+        /**
+         * MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+         */
+        macCallingStationDelimiter: string;
+        /**
+         * MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+         */
+        macCase: string;
+        /**
+         * MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+         */
+        macPasswordDelimiter: string;
+        /**
+         * MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+         */
+        macUsernameDelimiter: string;
+        /**
          * Maximum number of authentication attempts (0 - 15, default = 3).
          */
         maxReauthAttempt: number;
@@ -19820,6 +21574,10 @@ export namespace switchcontroller {
          */
         accessMode: string;
         /**
+         * ACL groups on this port. The structure of `aclGroup` block is documented below.
+         */
+        aclGroups?: outputs.switchcontroller.ManagedswitchPortAclGroup[];
+        /**
          * LACP member select mode. Valid values: `bandwidth`, `count`.
          */
         aggregatorMode: string;
@@ -19836,6 +21594,10 @@ export namespace switchcontroller {
          */
         arpInspectionTrust: string;
         /**
+         * Peer to Peer Authenticated port.
+         */
+        authenticatedPort: number;
+        /**
          * Enable/disable Link Aggregation Group (LAG) bundling for non-FortiLink interfaces. Valid values: `enable`, `disable`.
          */
         bundle: string;
@@ -19843,6 +21605,10 @@ export namespace switchcontroller {
          * Description for port.
          */
         description: string;
+        /**
+         * Configure DHCP snooping option 82 override. The structure of `dhcpSnoopOption82Override` block is documented below.
+         */
+        dhcpSnoopOption82Overrides?: outputs.switchcontroller.ManagedswitchPortDhcpSnoopOption82Override[];
         /**
          * Enable/disable allowance of DHCP with option-82 on untrusted interface. Valid values: `enable`, `disable`.
          */
@@ -19859,6 +21625,10 @@ export namespace switchcontroller {
          * Enable/disable this interface as an edge port, bridging connections between workstations and/or computers. Valid values: `enable`, `disable`.
          */
         edgePort: string;
+        /**
+         * Peer to Peer Encrypted port.
+         */
+        encryptedPort: number;
         /**
          * Switch controller export tag name. The structure of `exportTags` block is documented below.
          */
@@ -19880,7 +21650,7 @@ export namespace switchcontroller {
          */
         fecCapable: number;
         /**
-         * State of forward error correction. Valid values: `disabled`, `cl74`, `cl91`.
+         * State of forward error correction.
          */
         fecState: string;
         /**
@@ -19924,6 +21694,10 @@ export namespace switchcontroller {
          */
         fortilinkPort: number;
         /**
+         * ACLs on this port. The structure of `fortiswitchAcls` block is documented below.
+         */
+        fortiswitchAcls?: outputs.switchcontroller.ManagedswitchPortFortiswitchAcl[];
+        /**
          * Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
          */
         igmpSnooping: string;
@@ -19956,6 +21730,10 @@ export namespace switchcontroller {
          */
         islPeerDeviceName: string;
         /**
+         * ISL peer device serial number.
+         */
+        islPeerDeviceSn: string;
+        /**
          * ISL peer port name.
          */
         islPeerPortName: string;
@@ -19967,6 +21745,10 @@ export namespace switchcontroller {
          * Limit the number of dynamic MAC addresses on this Port (1 - 128, 0 = no limit, default).
          */
         learningLimit: number;
+        /**
+         * Port link status. Valid values: `up`, `down`.
+         */
+        linkStatus: string;
         /**
          * LLDP port TLV profile.
          */
@@ -20060,6 +21842,22 @@ export namespace switchcontroller {
          */
         poeMaxPower: string;
         /**
+         * PoE mode IEEE 802.3BT capable.
+         */
+        poeModeBtCabable: number;
+        /**
+         * Configure PoE port mode. Valid values: `ieee802-3af`, `ieee802-3at`, `ieee802-3bt`.
+         */
+        poePortMode: string;
+        /**
+         * Configure PoE port power. Valid values: `normal`, `perpetual`, `perpetual-fast`.
+         */
+        poePortPower: string;
+        /**
+         * Configure PoE port priority. Valid values: `critical-priority`, `high-priority`, `low-priority`, `medium-priority`.
+         */
+        poePortPriority: string;
+        /**
          * Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
          */
         poePreStandardDetection: string;
@@ -20104,9 +21902,17 @@ export namespace switchcontroller {
          */
         ptpPolicy: string;
         /**
+         * Enable/disable PTP policy on this FortiSwitch port. Valid values: `disable`, `enable`.
+         */
+        ptpStatus: string;
+        /**
          * Switch controller QoS policy from available options.
          */
         qosPolicy: string;
+        /**
+         * Peer to Peer Restricted Authenticated port.
+         */
+        restrictedAuthPort: number;
         /**
          * Enable/disable inter-operability with rapid PVST on this interface. Valid values: `disabled`, `enabled`.
          */
@@ -20189,7 +21995,29 @@ export namespace switchcontroller {
         vlan: string;
     }
 
+    export interface ManagedswitchPortAclGroup {
+        /**
+         * ACL group name.
+         */
+        name: string;
+    }
+
     export interface ManagedswitchPortAllowedVlan {
+        /**
+         * VLAN name.
+         */
+        vlanName: string;
+    }
+
+    export interface ManagedswitchPortDhcpSnoopOption82Override {
+        /**
+         * Circuit ID string.
+         */
+        circuitId: string;
+        /**
+         * Remote ID string.
+         */
+        remoteId: string;
         /**
          * VLAN name.
          */
@@ -20201,6 +22029,15 @@ export namespace switchcontroller {
          * Switch tag name.
          */
         tagName: string;
+    }
+
+    export interface ManagedswitchPortFortiswitchAcl {
+        /**
+         * ACL ID.
+         *
+         * The `dhcpSnoopOption82Override` block supports:
+         */
+        id: number;
     }
 
     export interface ManagedswitchPortInterfaceTag {
@@ -20253,6 +22090,17 @@ export namespace switchcontroller {
          * Enable/disable logging by FortiSwitch device to a remote syslog server. Valid values: `enable`, `disable`.
          */
         status: string;
+    }
+
+    export interface ManagedswitchRouteOffloadRouter {
+        /**
+         * Router IP address.
+         */
+        routerIp: string;
+        /**
+         * VLAN name.
+         */
+        vlanName: string;
     }
 
     export interface ManagedswitchSnmpCommunity {
@@ -20524,6 +22372,17 @@ export namespace switchcontroller {
         status: string;
     }
 
+    export interface ManagedswitchVlan {
+        /**
+         * 802.1x Radius (Tunnel-Private-Group-Id) VLANID assign-by-name priority. A smaller value has a higher priority.
+         */
+        assignmentPriority: number;
+        /**
+         * VLAN name.
+         */
+        vlanName: string;
+    }
+
     export interface QuarantineTarget {
         /**
          * Description for the quarantine MAC.
@@ -20764,6 +22623,50 @@ export namespace switchcontroller {
     }
 }
 
+export namespace switchcontrolleracl {
+    export interface GroupIngress {
+        /**
+         * ACL ID.
+         */
+        id: number;
+    }
+
+    export interface IngressAction {
+        /**
+         * Enable/disable count. Valid values: `enable`, `disable`.
+         */
+        count: string;
+        /**
+         * Enable/disable drop. Valid values: `enable`, `disable`.
+         */
+        drop: string;
+    }
+
+    export interface IngressClassifier {
+        /**
+         * Destination IP address to be matched.
+         */
+        dstIpPrefix: string;
+        /**
+         * Destination MAC address to be matched.
+         */
+        dstMac: string;
+        /**
+         * Source IP address to be matched.
+         */
+        srcIpPrefix: string;
+        /**
+         * Source MAC address to be matched.
+         */
+        srcMac: string;
+        /**
+         * VLAN ID to be matched.
+         */
+        vlan: number;
+    }
+
+}
+
 export namespace system {
     export interface AccprofileFwgrpPermission {
         /**
@@ -20851,6 +22754,14 @@ export namespace system {
          */
         applicationControl: string;
         /**
+         * Inline CASB filter profile and settings Valid values: `none`, `read`, `read-write`.
+         */
+        casb: string;
+        /**
+         * DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+         */
+        dataLeakPrevention: string;
+        /**
          * DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
          */
         dataLossPrevention: string;
@@ -20886,6 +22797,10 @@ export namespace system {
          * Video filter profiles and settings. Valid values: `none`, `read`, `read-write`.
          */
         videofilter: string;
+        /**
+         * Virtual patch profiles and settings. Valid values: `none`, `read`, `read-write`.
+         */
+        virtualPatch: string;
         /**
          * VoIP profiles and settings. Valid values: `none`, `read`, `read-write`.
          */
@@ -21408,6 +23323,17 @@ export namespace system {
          * Serial.
          */
         serial: string;
+        /**
+         * Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
+         */
+        vdoms?: outputs.system.CsfFabricConnectorVdom[];
+    }
+
+    export interface CsfFabricConnectorVdom {
+        /**
+         * Virtual domain name.
+         */
+        name: string;
     }
 
     export interface CsfFabricDevice {
@@ -21463,6 +23389,10 @@ export namespace system {
          */
         haMembers: string;
         /**
+         * Index of the downstream in tree.
+         */
+        index: number;
+        /**
          * Name.
          */
         name: string;
@@ -21484,6 +23414,13 @@ export namespace system {
          * Interface name.
          */
         interfaceName: string;
+    }
+
+    export interface DeviceupgradeKnownHaMember {
+        /**
+         * Serial number of HA member
+         */
+        serial: string;
     }
 
     export interface DnsDomain {
@@ -21539,6 +23476,105 @@ export namespace system {
         type: string;
     }
 
+    export interface EvpnExportRt {
+        /**
+         * Route target: AA|AA:NN.
+         */
+        routeTarget: string;
+    }
+
+    export interface EvpnImportRt {
+        /**
+         * Route target: AA|AA:NN.
+         */
+        routeTarget: string;
+    }
+
+    export interface FabricvpnAdvertisedSubnet {
+        /**
+         * Access policy direction. Valid values: `inbound`, `bidirectional`.
+         */
+        access: string;
+        /**
+         * Underlying BGP network.
+         */
+        bgpNetwork: number;
+        /**
+         * Underlying firewall address.
+         */
+        firewallAddress: string;
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Underlying policies.
+         */
+        policies: number;
+        /**
+         * Network prefix.
+         */
+        prefix: string;
+    }
+
+    export interface FabricvpnOverlay {
+        /**
+         * Underlying BGP neighbor entry.
+         */
+        bgpNeighbor: string;
+        /**
+         * Underlying BGP neighbor group entry.
+         */
+        bgpNeighborGroup: string;
+        /**
+         * Underlying BGP neighbor range entry.
+         */
+        bgpNeighborRange: number;
+        /**
+         * Underlying BGP network.
+         */
+        bgpNetwork: number;
+        /**
+         * Underlying interface name.
+         */
+        interface: string;
+        /**
+         * IPsec interface.
+         */
+        ipsecPhase1: string;
+        /**
+         * Overlay name.
+         */
+        name: string;
+        /**
+         * The overlay policy to allow ADVPN thru traffic.
+         */
+        overlayPolicy: number;
+        /**
+         * IPv4 address and subnet mask for the overlay tunnel , syntax: X.X.X.X/24.
+         */
+        overlayTunnelBlock: string;
+        /**
+         * IP address of the hub gateway (Set by hub).
+         */
+        remoteGw: string;
+        /**
+         * Underlying router policy.
+         */
+        routePolicy: number;
+        /**
+         * Reference to SD-WAN member entry.
+         */
+        sdwanMember: number;
+    }
+
+    export interface FederatedupgradeKnownHaMember {
+        /**
+         * Serial number of HA member
+         */
+        serial: string;
+    }
+
     export interface FederatedupgradeNodeList {
         /**
          * The serial of the FortiGate that controls this device
@@ -21548,6 +23584,10 @@ export namespace system {
          * What type of device this node represents.
          */
         deviceType: string;
+        /**
+         * Maximum number of minutes to allow for immediate upgrade preparation.
+         */
+        maximumMinutes: number;
         /**
          * Serial number of the node to include.
          */
@@ -21686,6 +23726,14 @@ export namespace system {
          */
         applicationControl: string;
         /**
+         * Inline CASB filter profile and settings
+         */
+        casb: string;
+        /**
+         * DLP profiles and settings.
+         */
+        dataLeakPrevention: string;
+        /**
          * DLP profiles and settings.
          */
         dataLossPrevention: string;
@@ -21721,6 +23769,10 @@ export namespace system {
          * Video filter profiles and settings.
          */
         videofilter: string;
+        /**
+         * Virtual patch profiles and settings.
+         */
+        virtualPatch: string;
         /**
          * VoIP profiles and settings.
          */
@@ -21965,7 +24017,7 @@ export namespace system {
 
     export interface GetAutomationtriggerField {
         /**
-         * Log ID.
+         * Entry ID.
          */
         id: number;
         /**
@@ -21980,7 +24032,7 @@ export namespace system {
 
     export interface GetAutomationtriggerLogidBlock {
         /**
-         * Log ID.
+         * Entry ID.
          */
         id: number;
     }
@@ -22092,6 +24144,17 @@ export namespace system {
          * Serial.
          */
         serial: string;
+        /**
+         * Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
+         */
+        vdoms: outputs.system.GetCsfFabricConnectorVdom[];
+    }
+
+    export interface GetCsfFabricConnectorVdom {
+        /**
+         * Device name.
+         */
+        name: string;
     }
 
     export interface GetCsfFabricDevice {
@@ -22146,6 +24209,10 @@ export namespace system {
          * HA members.
          */
         haMembers: string;
+        /**
+         * Index of the downstream in tree.
+         */
+        index: number;
         /**
          * Device name.
          */
@@ -22221,6 +24288,13 @@ export namespace system {
          * Resource record type.
          */
         type: string;
+    }
+
+    export interface GetGlobalInternetServiceDownloadList {
+        /**
+         * Internet Service ID.
+         */
+        id: number;
     }
 
     export interface GetHaHaMgmtInterface {
@@ -22317,6 +24391,10 @@ export namespace system {
          * Remote IP monitoring failover threshold (0 - 50).
          */
         pingserverFailoverThreshold: number;
+        /**
+         * Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+         */
+        pingserverFlipTimeout: number;
         /**
          * Interfaces to check for remote IP monitoring.
          */
@@ -22429,6 +24507,10 @@ export namespace system {
          */
         dhcp6PrefixHintVlt: number;
         /**
+         * DHCP6 relay interface ID.
+         */
+        dhcp6RelayInterfaceId: string;
+        /**
          * DHCPv6 relay IP address.
          */
         dhcp6RelayIp: string;
@@ -22436,6 +24518,14 @@ export namespace system {
          * Enable/disable DHCPv6 relay.
          */
         dhcp6RelayService: string;
+        /**
+         * Enable/disable use of address on this interface as the source address of the relay message.
+         */
+        dhcp6RelaySourceInterface: string;
+        /**
+         * IPv6 address used by the DHCP6 relay as its source IP.
+         */
+        dhcp6RelaySourceIp: string;
         /**
          * DHCPv6 relay type.
          */
@@ -22687,6 +24777,10 @@ export namespace system {
          */
         advInterval: number;
         /**
+         * Enable/disable ignoring of default route when checking destination.
+         */
+        ignoreDefaultRoute: string;
+        /**
          * Enable/disable preempt mode.
          */
         preempt: string;
@@ -22767,6 +24861,10 @@ export namespace system {
          * PING server status.
          */
         pingServStatus: number;
+        /**
+         * DHCP relay IP address.
+         */
+        secipRelayIp: string;
     }
 
     export interface GetInterfaceSecurityGroup {
@@ -22938,6 +25036,33 @@ export namespace system {
         interfaceName: string;
     }
 
+    export interface GetNetflowCollector {
+        /**
+         * Collector IP.
+         */
+        collectorIp: string;
+        /**
+         * NetFlow collector port number.
+         */
+        collectorPort: number;
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Specify outgoing interface to reach server.
+         */
+        interface: string;
+        /**
+         * Specify how to select outgoing interface to reach server.
+         */
+        interfaceSelectMethod: string;
+        /**
+         * Source IP address for communication with the NetFlow agent.
+         */
+        sourceIp: string;
+    }
+
     export interface GetNtpInterface {
         /**
          * Interface name.
@@ -22962,6 +25087,10 @@ export namespace system {
          * Specify how to select outgoing interface to reach server.
          */
         interfaceSelectMethod: string;
+        /**
+         * Choose to connect to IPv4 or/and IPv6 NTP server.
+         */
+        ipType: string;
         /**
          * Key for MD5/SHA1 authentication.
          */
@@ -23348,6 +25477,13 @@ export namespace system {
         msgType: string;
     }
 
+    export interface GetSdnconnectorCompartmentList {
+        /**
+         * OCI compartment ID.
+         */
+        compartmentId: string;
+    }
+
     export interface GetSdnconnectorExternalAccountList {
         /**
          * AWS external ID.
@@ -23365,7 +25501,7 @@ export namespace system {
 
     export interface GetSdnconnectorExternalAccountListRegionList {
         /**
-         * AWS region name.
+         * OCI region.
          */
         region: string;
     }
@@ -23432,6 +25568,13 @@ export namespace system {
         resourceGroup: string;
     }
 
+    export interface GetSdnconnectorOciRegionList {
+        /**
+         * OCI region.
+         */
+        region: string;
+    }
+
     export interface GetSdnconnectorRoute {
         /**
          * Specify the name of the desired system sdnconnector.
@@ -23490,6 +25633,10 @@ export namespace system {
          */
         protocol: number;
         /**
+         * Refresh direction: Both, outgoing, incoming
+         */
+        refreshDirection: string;
+        /**
          * Start port number.
          */
         startPort: number;
@@ -23499,11 +25646,92 @@ export namespace system {
         timeout: string;
     }
 
+    export interface GetSflowCollector {
+        /**
+         * IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+         */
+        collectorIp: string;
+        /**
+         * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+         */
+        collectorPort: number;
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Specify outgoing interface to reach server.
+         */
+        interface: string;
+        /**
+         * Specify how to select outgoing interface to reach server.
+         */
+        interfaceSelectMethod: string;
+        /**
+         * Source IP address for sFlow agent.
+         */
+        sourceIp: string;
+    }
+
     export interface GetVdomexceptionVdom {
         /**
          * VDOM name.
          */
         name: string;
+    }
+
+    export interface GetVdomnetflowCollector {
+        /**
+         * Collector IP.
+         */
+        collectorIp: string;
+        /**
+         * NetFlow collector port number.
+         */
+        collectorPort: number;
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Specify outgoing interface to reach server.
+         */
+        interface: string;
+        /**
+         * Specify how to select outgoing interface to reach server.
+         */
+        interfaceSelectMethod: string;
+        /**
+         * Source IP address for communication with the NetFlow agent.
+         */
+        sourceIp: string;
+    }
+
+    export interface GetVdomsflowCollector {
+        /**
+         * IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+         */
+        collectorIp: string;
+        /**
+         * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+         */
+        collectorPort: number;
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Specify outgoing interface to reach server.
+         */
+        interface: string;
+        /**
+         * Specify how to select outgoing interface to reach server.
+         */
+        interfaceSelectMethod: string;
+        /**
+         * Source IP address for sFlow agent.
+         */
+        sourceIp: string;
     }
 
     export interface GetVirtualwanlinkFailAlertInterface {
@@ -24151,46 +26379,141 @@ export namespace system {
         name: string;
     }
 
-    export interface HaHaMgmtInterface {
-        dst: string;
-        gateway: string;
-        gateway6: string;
+    export interface GlobalInternetServiceDownloadList {
+        /**
+         * Internet Service ID.
+         */
         id: number;
+    }
+
+    export interface HaHaMgmtInterface {
+        /**
+         * Default route destination for reserved HA management interface.
+         */
+        dst: string;
+        /**
+         * Default route gateway for reserved HA management interface.
+         */
+        gateway: string;
+        /**
+         * Default IPv6 gateway for reserved HA management interface.
+         */
+        gateway6: string;
+        /**
+         * Table ID.
+         */
+        id: number;
+        /**
+         * Interface to reserve for HA management.
+         */
         interface: string;
     }
 
     export interface HaSecondaryVcluster {
+        /**
+         * Interfaces to check for port monitoring (or link failure).
+         */
         monitor: string;
+        /**
+         * Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+         */
         override: string;
+        /**
+         * Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+         */
         overrideWaitTime: number;
+        /**
+         * Remote IP monitoring failover threshold (0 - 50).
+         */
         pingserverFailoverThreshold: number;
+        /**
+         * Interfaces to check for remote IP monitoring.
+         */
         pingserverMonitorInterface: string;
+        /**
+         * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+         */
         pingserverSecondaryForceReset: string;
+        /**
+         * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+         */
         pingserverSlaveForceReset: string;
+        /**
+         * Increase the priority to select the primary unit (0 - 255).
+         */
         priority: number;
+        /**
+         * Cluster ID.
+         */
         vclusterId: number;
+        /**
+         * VDOMs in virtual cluster 2.
+         */
         vdom: string;
     }
 
     export interface HaUnicastPeer {
+        /**
+         * Table ID.
+         */
         id: number;
+        /**
+         * Unicast peer IP.
+         */
         peerIp: string;
     }
 
     export interface HaVcluster {
+        /**
+         * Interfaces to check for port monitoring (or link failure).
+         */
         monitor: string;
+        /**
+         * Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+         */
         override: string;
+        /**
+         * Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+         */
         overrideWaitTime: number;
+        /**
+         * Remote IP monitoring failover threshold (0 - 50).
+         */
         pingserverFailoverThreshold: number;
+        /**
+         * Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+         */
+        pingserverFlipTimeout: number;
+        /**
+         * Interfaces to check for remote IP monitoring.
+         */
         pingserverMonitorInterface: string;
+        /**
+         * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+         */
         pingserverSecondaryForceReset: string;
+        /**
+         * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+         */
         pingserverSlaveForceReset: string;
+        /**
+         * Increase the priority to select the primary unit (0 - 255).
+         */
         priority: number;
+        /**
+         * ID.
+         */
         vclusterId: number;
+        /**
+         * Virtual domain(s) in the virtual cluster. The structure of `vdom` block is documented below.
+         */
         vdoms?: outputs.system.HaVclusterVdom[];
     }
 
     export interface HaVclusterVdom {
+        /**
+         * Virtual domain name.
+         */
         name: string;
     }
 
@@ -24528,6 +26851,10 @@ export namespace system {
          */
         dhcp6PrefixHintVlt: number;
         /**
+         * DHCP6 relay interface ID.
+         */
+        dhcp6RelayInterfaceId: string;
+        /**
          * DHCPv6 relay IP address.
          */
         dhcp6RelayIp: string;
@@ -24535,6 +26862,14 @@ export namespace system {
          * Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
          */
         dhcp6RelayService: string;
+        /**
+         * Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
+         */
+        dhcp6RelaySourceInterface: string;
+        /**
+         * IPv6 address used by the DHCP6 relay as its source IP.
+         */
+        dhcp6RelaySourceIp: string;
         /**
          * DHCPv6 relay type. Valid values: `regular`.
          */
@@ -24796,6 +27131,10 @@ export namespace system {
          */
         advInterval: number;
         /**
+         * Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
+         */
+        ignoreDefaultRoute: string;
+        /**
          * Enable/disable preempt mode. Valid values: `enable`, `disable`.
          */
         preempt: string;
@@ -24876,6 +27215,10 @@ export namespace system {
          * PING server status.
          */
         pingServStatus: number;
+        /**
+         * DHCP relay IP address.
+         */
+        secipRelayIp: string;
     }
 
     export interface InterfaceSecurityGroup {
@@ -25081,7 +27424,7 @@ export namespace system {
          */
         port: number;
         /**
-         * Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
+         * Protocols used to monitor the server.
          */
         protocol: string;
         /**
@@ -25121,6 +27464,33 @@ export namespace system {
          * Interface name.
          */
         interfaceName: string;
+    }
+
+    export interface NetflowCollector {
+        /**
+         * Collector IP.
+         */
+        collectorIp: string;
+        /**
+         * NetFlow collector port number.
+         */
+        collectorPort: number;
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Specify outgoing interface to reach server.
+         */
+        interface: string;
+        /**
+         * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+         */
+        interfaceSelectMethod: string;
+        /**
+         * Source IP address for communication with the NetFlow agent.
+         */
+        sourceIp: string;
     }
 
     export interface NpuPriorityProtocol {
@@ -25163,6 +27533,10 @@ export namespace system {
          */
         interfaceSelectMethod: string;
         /**
+         * Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
+         */
+        ipType: string;
+        /**
          * Key for MD5/SHA1 authentication.
          */
         key?: string;
@@ -25185,6 +27559,106 @@ export namespace system {
          * Tag name.
          */
         name: string;
+    }
+
+    export interface PcpserverPool {
+        /**
+         * Allowed PCP opcode. Valid values: `map`, `peer`, `announce`.
+         */
+        allowOpcode: string;
+        /**
+         * Number of multicast announcements.
+         */
+        announcementCount: number;
+        /**
+         * Enable to respond to ARP requests for external IP (default = enable). Valid values: `disable`, `enable`.
+         */
+        arpReply: string;
+        /**
+         * Mapping limit per client (0 - 65535, default = 0, 0 = unlimited).
+         */
+        clientMappingLimit: number;
+        /**
+         * Subnets from which PCP requests are accepted. The structure of `clientSubnet` block is documented below.
+         */
+        clientSubnets?: outputs.system.PcpserverPoolClientSubnet[];
+        /**
+         * Description.
+         */
+        description: string;
+        /**
+         * External interface name.
+         */
+        extIntf: string;
+        /**
+         * IP address or address range on the external interface that you want to map to an address on the internal network.
+         */
+        extip: string;
+        /**
+         * Incoming port number range that you want to map to a port number on the internal network.
+         */
+        extport: string;
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Internal interface name. The structure of `intlIntf` block is documented below.
+         */
+        intlIntfs?: outputs.system.PcpserverPoolIntlIntf[];
+        /**
+         * Filter limit per mapping (0 - 5, default = 1).
+         */
+        mappingFilterLimit: number;
+        /**
+         * Maximal lifetime of a PCP mapping in seconds (3600 - 604800, default = 86400).
+         */
+        maximalLifetime: number;
+        /**
+         * Minimal lifetime of a PCP mapping in seconds (60 - 300, default = 120).
+         */
+        minimalLifetime: number;
+        /**
+         * Enable/disable multicast announcements. Valid values: `enable`, `disable`.
+         */
+        multicastAnnouncement: string;
+        /**
+         * PCP pool name.
+         */
+        name: string;
+        /**
+         * Minimum delay (in seconds) the PCP Server will wait before recycling mappings that have expired (0 - 3600, default = 0).
+         */
+        recycleDelay: number;
+        /**
+         * Allow/disallow third party option. Valid values: `allow`, `disallow`.
+         */
+        thirdParty: string;
+        /**
+         * Subnets from which third party requests are accepted. The structure of `thirdPartySubnet` block is documented below.
+         */
+        thirdPartySubnets?: outputs.system.PcpserverPoolThirdPartySubnet[];
+    }
+
+    export interface PcpserverPoolClientSubnet {
+        /**
+         * Client subnets.
+         */
+        subnet: string;
+    }
+
+    export interface PcpserverPoolIntlIntf {
+        /**
+         * Interface name.
+         */
+        interfaceName: string;
+    }
+
+    export interface PcpserverPoolThirdPartySubnet {
+        /**
+         * Third party subnets.
+         */
+        subnet: string;
     }
 
     export interface PtpServerInterface {
@@ -25625,6 +28099,13 @@ export namespace system {
         type: string;
     }
 
+    export interface SdnconnectorCompartmentList {
+        /**
+         * OCI compartment ID.
+         */
+        compartmentId: string;
+    }
+
     export interface SdnconnectorExternalAccountList {
         /**
          * AWS external ID.
@@ -25707,6 +28188,13 @@ export namespace system {
          * Resource group of Azure public IP.
          */
         resourceGroup: string;
+    }
+
+    export interface SdnconnectorOciRegionList {
+        /**
+         * OCI region.
+         */
+        region: string;
     }
 
     export interface SdnconnectorRoute {
@@ -25873,6 +28361,10 @@ export namespace system {
          */
         addrMode: string;
         /**
+         * Traffic class ID.
+         */
+        classId: number;
+        /**
          * The mode determining how to detect the server.
          */
         detectMode: string;
@@ -26001,6 +28493,10 @@ export namespace system {
          */
         source: string;
         /**
+         * Source IPv6 addressused in the health-check packet to server.
+         */
+        source6: string;
+        /**
          * Enable/disable system DNS as the probe server. Valid values: `disable`, `enable`.
          */
         systemDns: string;
@@ -26114,6 +28610,10 @@ export namespace system {
          */
         interface: string;
         /**
+         * Preferred source of route for this member.
+         */
+        preferredSource: string;
+        /**
          * Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
          */
         priority: number;
@@ -26142,6 +28642,10 @@ export namespace system {
          */
         status: string;
         /**
+         * Measured transport group (0 - 255).
+         */
+        transportGroup: number;
+        /**
          * Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).
          */
         volumeRatio: number;
@@ -26169,6 +28673,10 @@ export namespace system {
          */
         member: number;
         /**
+         * Member sequence number list. The structure of `memberBlock` block is documented below.
+         */
+        memberBlocks?: outputs.system.SdwanNeighborMemberBlock[];
+        /**
          * Minimum number of members which meet SLA when the neighbor is preferred.
          */
         minimumSlaMeetMembers: number;
@@ -26181,9 +28689,20 @@ export namespace system {
          */
         role: string;
         /**
+         * SD-WAN service ID to work with the neighbor.
+         */
+        serviceId: number;
+        /**
          * SLA ID.
          */
         slaId: number;
+    }
+
+    export interface SdwanNeighborMemberBlock {
+        /**
+         * Member sequence number.
+         */
+        seqNum: number;
     }
 
     export interface SdwanService {
@@ -26191,6 +28710,10 @@ export namespace system {
          * Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
          */
         addrMode: string;
+        /**
+         * Set/unset the service as agent use exclusively. Valid values: `enable`, `disable`.
+         */
+        agentExclusive: string;
         /**
          * Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.
          */
@@ -26231,6 +28754,10 @@ export namespace system {
          * End destination port number.
          */
         endPort: number;
+        /**
+         * End source port number.
+         */
+        endSrcPort: number;
         /**
          * Enable/disable SD-WAN service gateway. Valid values: `enable`, `disable`.
          */
@@ -26316,11 +28843,15 @@ export namespace system {
          */
         linkCostThreshold: number;
         /**
+         * Enable/disable load-balance. Valid values: `enable`, `disable`.
+         */
+        loadBalance: string;
+        /**
          * Minimum number of members which meet SLA.
          */
         minimumSlaMeetMembers: number;
         /**
-         * Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
+         * Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN.
          */
         mode: string;
         /**
@@ -26360,9 +28891,25 @@ export namespace system {
          */
         routeTag: number;
         /**
+         * Enable/disable shortcut for this service. Valid values: `enable`, `disable`.
+         */
+        shortcut: string;
+        /**
+         * High priority of ADVPN shortcut for this service. Valid values: `enable`, `disable`, `auto`.
+         */
+        shortcutPriority: string;
+        /**
+         * Enable/disable shortcut-stickiness of ADVPN. Valid values: `enable`, `disable`.
+         */
+        shortcutStickiness: string;
+        /**
          * Method to compare SLA value for SLA mode. Valid values: `order`, `number`.
          */
         slaCompareMethod: string;
+        /**
+         * Enable/disable SLA stickiness (default = disable). Valid values: `enable`, `disable`.
+         */
+        slaStickiness: string;
         /**
          * Service level agreement (SLA). The structure of `sla` block is documented below.
          */
@@ -26388,6 +28935,10 @@ export namespace system {
          */
         startPort: number;
         /**
+         * Start source port number.
+         */
+        startSrcPort: number;
+        /**
          * Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
          */
         status: string;
@@ -26411,6 +28962,10 @@ export namespace system {
          * User name. The structure of `users` block is documented below.
          */
         users?: outputs.system.SdwanServiceUser[];
+        /**
+         * Enable/disable zone mode. Valid values: `enable`, `disable`.
+         */
+        zoneMode: string;
     }
 
     export interface SdwanServiceDst {
@@ -26552,6 +29107,18 @@ export namespace system {
 
     export interface SdwanZone {
         /**
+         * Health check for ADVPN local overlay link quality.
+         */
+        advpnHealthCheck: string;
+        /**
+         * Enable/disable selection of ADVPN based on SDWAN information. Valid values: `enable`, `disable`.
+         */
+        advpnSelect: string;
+        /**
+         * Minimum number of members which meet SLA when the neighbor is preferred.
+         */
+        minimumSlaMeetMembers: number;
+        /**
          * Zone name.
          */
         name: string;
@@ -26575,6 +29142,10 @@ export namespace system {
          */
         protocol: number;
         /**
+         * Refresh direction: Both, outgoing, incoming Valid values: `both`, `outgoing`, `incoming`.
+         */
+        refreshDirection: string;
+        /**
          * Start port number.
          */
         startPort: number;
@@ -26591,6 +29162,33 @@ export namespace system {
         name: string;
     }
 
+    export interface SflowCollector {
+        /**
+         * IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+         */
+        collectorIp: string;
+        /**
+         * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+         */
+        collectorPort: number;
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Specify outgoing interface to reach server.
+         */
+        interface: string;
+        /**
+         * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+         */
+        interfaceSelectMethod: string;
+        /**
+         * Source IP address for sFlow agent.
+         */
+        sourceIp: string;
+    }
+
     export interface SpeedtestscheduleSchedule {
         /**
          * Name of a firewall recurring schedule.
@@ -26600,6 +29198,10 @@ export namespace system {
 
     export interface SpeedtestserverHost {
         /**
+         * Speed test host distance.
+         */
+        distance: number;
+        /**
          * Server host ID.
          */
         id: number;
@@ -26607,6 +29209,14 @@ export namespace system {
          * Server host IPv4 address.
          */
         ip: string;
+        /**
+         * Speed test host latitude.
+         */
+        latitude: string;
+        /**
+         * Speed test host longitude.
+         */
+        longitude: string;
         /**
          * Speed test host password.
          */
@@ -26629,6 +29239,13 @@ export namespace system {
     }
 
     export interface SsoforticloudadminVdom {
+        /**
+         * Virtual domain name.
+         */
+        name: string;
+    }
+
+    export interface SsofortigatecloudadminVdom {
         /**
          * Virtual domain name.
          */
@@ -26764,6 +29381,60 @@ export namespace system {
          * VDOM name.
          */
         name: string;
+    }
+
+    export interface VdomnetflowCollector {
+        /**
+         * Collector IP.
+         */
+        collectorIp: string;
+        /**
+         * NetFlow collector port number.
+         */
+        collectorPort: number;
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Specify outgoing interface to reach server.
+         */
+        interface: string;
+        /**
+         * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+         */
+        interfaceSelectMethod: string;
+        /**
+         * Source IP address for communication with the NetFlow agent.
+         */
+        sourceIp: string;
+    }
+
+    export interface VdomsflowCollector {
+        /**
+         * IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+         */
+        collectorIp: string;
+        /**
+         * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+         */
+        collectorPort: number;
+        /**
+         * ID.
+         */
+        id: number;
+        /**
+         * Specify outgoing interface to reach server.
+         */
+        interface: string;
+        /**
+         * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+         */
+        interfaceSelectMethod: string;
+        /**
+         * Source IP address for sFlow agent.
+         */
+        sourceIp: string;
     }
 
     export interface VirtualswitchPort {
@@ -27442,9 +30113,21 @@ export namespace system {
              */
             id: number;
             /**
+             * Lease time in seconds, 0 means default lease time.
+             */
+            leaseTime: number;
+            /**
              * Start of IP range.
              */
             startIp: string;
+            /**
+             * Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+             */
+            uciMatch: string;
+            /**
+             * UCI strings.
+             */
+            uciStrings: outputs.system.dhcp.GetServerExcludeRangeUciString[];
             /**
              * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
              */
@@ -27453,6 +30136,13 @@ export namespace system {
              * VCI strings.
              */
             vciStrings: outputs.system.dhcp.GetServerExcludeRangeVciString[];
+        }
+
+        export interface GetServerExcludeRangeUciString {
+            /**
+             * UCI strings.
+             */
+            uciString: string;
         }
 
         export interface GetServerExcludeRangeVciString {
@@ -27472,9 +30162,21 @@ export namespace system {
              */
             id: number;
             /**
+             * Lease time in seconds, 0 means default lease time.
+             */
+            leaseTime: number;
+            /**
              * Start of IP range.
              */
             startIp: string;
+            /**
+             * Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+             */
+            uciMatch: string;
+            /**
+             * UCI strings.
+             */
+            uciStrings: outputs.system.dhcp.GetServerIpRangeUciString[];
             /**
              * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
              */
@@ -27483,6 +30185,13 @@ export namespace system {
              * VCI strings.
              */
             vciStrings: outputs.system.dhcp.GetServerIpRangeVciString[];
+        }
+
+        export interface GetServerIpRangeUciString {
+            /**
+             * UCI strings.
+             */
+            uciString: string;
         }
 
         export interface GetServerIpRangeVciString {
@@ -27510,6 +30219,14 @@ export namespace system {
              */
             type: string;
             /**
+             * Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+             */
+            uciMatch: string;
+            /**
+             * UCI strings.
+             */
+            uciStrings: outputs.system.dhcp.GetServerOptionUciString[];
+            /**
              * DHCP option value.
              */
             value: string;
@@ -27521,6 +30238,13 @@ export namespace system {
              * VCI strings.
              */
             vciStrings: outputs.system.dhcp.GetServerOptionVciString[];
+        }
+
+        export interface GetServerOptionUciString {
+            /**
+             * UCI strings.
+             */
+            uciString: string;
         }
 
         export interface GetServerOptionVciString {
@@ -27597,9 +30321,21 @@ export namespace system {
              */
             id: number;
             /**
+             * Lease time in seconds, 0 means default lease time.
+             */
+            leaseTime: number;
+            /**
              * Start of IP range.
              */
             startIp: string;
+            /**
+             * Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+             */
+            uciMatch: string;
+            /**
+             * One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+             */
+            uciStrings?: outputs.system.dhcp.ServerExcludeRangeUciString[];
             /**
              * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
              */
@@ -27608,6 +30344,13 @@ export namespace system {
              * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
              */
             vciStrings?: outputs.system.dhcp.ServerExcludeRangeVciString[];
+        }
+
+        export interface ServerExcludeRangeUciString {
+            /**
+             * UCI strings.
+             */
+            uciString: string;
         }
 
         export interface ServerExcludeRangeVciString {
@@ -27627,9 +30370,21 @@ export namespace system {
              */
             id: number;
             /**
+             * Lease time in seconds, 0 means default lease time.
+             */
+            leaseTime: number;
+            /**
              * Start of IP range.
              */
             startIp: string;
+            /**
+             * Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+             */
+            uciMatch: string;
+            /**
+             * One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+             */
+            uciStrings?: outputs.system.dhcp.ServerIpRangeUciString[];
             /**
              * Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
              */
@@ -27638,6 +30393,13 @@ export namespace system {
              * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
              */
             vciStrings?: outputs.system.dhcp.ServerIpRangeVciString[];
+        }
+
+        export interface ServerIpRangeUciString {
+            /**
+             * UCI strings.
+             */
+            uciString: string;
         }
 
         export interface ServerIpRangeVciString {
@@ -27665,6 +30427,14 @@ export namespace system {
              */
             type: string;
             /**
+             * Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this option. Valid values: `disable`, `enable`.
+             */
+            uciMatch: string;
+            /**
+             * One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+             */
+            uciStrings?: outputs.system.dhcp.ServerOptionUciString[];
+            /**
              * DHCP option value.
              */
             value: string;
@@ -27676,6 +30446,13 @@ export namespace system {
              * One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
              */
             vciStrings?: outputs.system.dhcp.ServerOptionVciString[];
+        }
+
+        export interface ServerOptionUciString {
+            /**
+             * UCI strings.
+             */
+            uciString: string;
         }
 
         export interface ServerOptionVciString {
@@ -28445,6 +31222,13 @@ export namespace user {
         name: string;
     }
 
+    export interface NacpolicySeverity {
+        /**
+         * Enter multiple severity levels, where 0 = Info, 1 = Low, ..., 4 = Critical
+         */
+        severityNum: number;
+    }
+
     export interface NacpolicySwitchGroup {
         /**
          * Managed FortiSwitch group name from available options.
@@ -28614,6 +31398,42 @@ export namespace user {
 
 }
 
+export namespace virtualpatch {
+    export interface ProfileExemption {
+        /**
+         * Device MAC addresses. The structure of `device` block is documented below.
+         */
+        devices?: outputs.virtualpatch.ProfileExemptionDevice[];
+        /**
+         * IDs.
+         */
+        id: number;
+        /**
+         * Patch signature rule IDs. The structure of `rule` block is documented below.
+         */
+        rules?: outputs.virtualpatch.ProfileExemptionRule[];
+        /**
+         * Enable/disable exemption. Valid values: `enable`, `disable`.
+         */
+        status: string;
+    }
+
+    export interface ProfileExemptionDevice {
+        /**
+         * Device MAC address.
+         */
+        mac: string;
+    }
+
+    export interface ProfileExemptionRule {
+        /**
+         * Rule IDs.
+         */
+        id: number;
+    }
+
+}
+
 export namespace voip {
     export interface ProfileMsrp {
         /**
@@ -28747,6 +31567,10 @@ export namespace voip {
          */
         byeRateTrack: string;
         /**
+         * Validate PCRE regular expression for Call-Id header value.
+         */
+        callIdRegex?: string;
+        /**
          * Continue tracking calls with no RTP for this many minutes.
          */
         callKeepalive: number;
@@ -28762,6 +31586,10 @@ export namespace voip {
          * Fixup contact anyway even if contact's IP:port doesn't match session's IP:port. Valid values: `disable`, `enable`.
          */
         contactFixup: string;
+        /**
+         * Validate PCRE regular expression for Content-Type header value.
+         */
+        contentTypeRegex?: string;
         /**
          * Enable/disable restrict RTP source IP to be the same as SIP source IP when HNT is enabled. Valid values: `disable`, `enable`.
          */
@@ -29119,6 +31947,29 @@ export namespace voip {
 }
 
 export namespace vpn {
+    export interface KmipserverServerList {
+        /**
+         * Client certificate to use for connectivity to the KMIP server.
+         */
+        cert: string;
+        /**
+         * ID
+         */
+        id: number;
+        /**
+         * KMIP server port.
+         */
+        port: number;
+        /**
+         * KMIP server FQDN or IP address.
+         */
+        server: string;
+        /**
+         * Enable/disable KMIP server. Valid values: `enable`, `disable`.
+         */
+        status: string;
+    }
+
     export interface OcvpnForticlientAccess {
         /**
          * FortiClient user authentication groups. The structure of `authGroups` block is documented below.
@@ -29217,6 +32068,13 @@ export namespace vpn {
         name: string;
     }
 
+    export interface QkdCertificate {
+        /**
+         * Certificate name.
+         */
+        name: string;
+    }
+
     export namespace certificate {
         export interface SettingCrlVerification {
             /**
@@ -29288,10 +32146,17 @@ export namespace vpn {
         export interface Phase1Certificate {
             /**
              * Certificate name.
+             */
+            name: string;
+        }
+
+        export interface Phase1InternalDomainList {
+            /**
+             * Domain name.
              *
              * The `ipv4ExcludeRange` block supports:
              */
-            name: string;
+            domainName: string;
         }
 
         export interface Phase1Ipv4ExcludeRange {
@@ -29334,10 +32199,17 @@ export namespace vpn {
         export interface Phase1interfaceCertificate {
             /**
              * Certificate name.
+             */
+            name: string;
+        }
+
+        export interface Phase1interfaceInternalDomainList {
+            /**
+             * Domain name.
              *
              * The `ipv4ExcludeRange` block supports:
              */
-            name: string;
+            domainName: string;
         }
 
         export interface Phase1interfaceIpv4ExcludeRange {
@@ -29373,6 +32245,135 @@ export namespace vpn {
     }
 
     export namespace ssl {
+        export interface GetSettingsAuthenticationRule {
+            /**
+             * SSL VPN authentication method restriction.
+             */
+            auth: string;
+            /**
+             * SSL VPN cipher strength.
+             */
+            cipher: string;
+            /**
+             * Enable/disable SSL VPN client certificate restrictive.
+             */
+            clientCert: string;
+            /**
+             * User groups. The structure of `groups` block is documented below.
+             */
+            groups: outputs.vpn.ssl.GetSettingsAuthenticationRuleGroup[];
+            /**
+             * ID (0 - 4294967295).
+             */
+            id: number;
+            /**
+             * SSL VPN portal.
+             */
+            portal: string;
+            /**
+             * SSL VPN realm.
+             */
+            realm: string;
+            /**
+             * Enable/disable negated source IPv6 address match.
+             */
+            sourceAddress6Negate: string;
+            /**
+             * IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
+             */
+            sourceAddress6s: outputs.vpn.ssl.GetSettingsAuthenticationRuleSourceAddress6[];
+            /**
+             * Enable/disable negated source address match.
+             */
+            sourceAddressNegate: string;
+            /**
+             * Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
+             */
+            sourceAddresses: outputs.vpn.ssl.GetSettingsAuthenticationRuleSourceAddress[];
+            /**
+             * SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
+             */
+            sourceInterfaces: outputs.vpn.ssl.GetSettingsAuthenticationRuleSourceInterface[];
+            /**
+             * Name of user peer.
+             */
+            userPeer: string;
+            /**
+             * User name. The structure of `users` block is documented below.
+             */
+            users: outputs.vpn.ssl.GetSettingsAuthenticationRuleUser[];
+        }
+
+        export interface GetSettingsAuthenticationRuleGroup {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export interface GetSettingsAuthenticationRuleSourceAddress {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export interface GetSettingsAuthenticationRuleSourceAddress6 {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export interface GetSettingsAuthenticationRuleSourceInterface {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export interface GetSettingsAuthenticationRuleUser {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export interface GetSettingsSourceAddress {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export interface GetSettingsSourceAddress6 {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export interface GetSettingsSourceInterface {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export interface GetSettingsTunnelIpPool {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
+        export interface GetSettingsTunnelIpv6Pool {
+            /**
+             * Group name.
+             */
+            name: string;
+        }
+
         export interface SettingsAuthenticationRule {
             /**
              * SSL VPN authentication method restriction.
@@ -29672,6 +32673,10 @@ export namespace vpn {
                  */
                 url?: string;
                 /**
+                 * Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+                 */
+                vncKeyboardLayout: string;
+                /**
                  * Screen width (range from 640 - 65535, default = 1024).
                  */
                 width: number;
@@ -29714,6 +32719,48 @@ export namespace vpn {
                  * Portal name.
                  */
                 name: string;
+            }
+
+            export interface PortalLandingPage {
+                /**
+                 * Form data. The structure of `formData` block is documented below.
+                 */
+                formDatas?: outputs.vpn.ssl.web.PortalLandingPageFormData[];
+                /**
+                 * Landing page log out URL.
+                 */
+                logoutUrl?: string;
+                /**
+                 * Single sign-on. Valid values: `disable`, `static`, `auto`.
+                 */
+                sso: string;
+                /**
+                 * Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+                 */
+                ssoCredential: string;
+                /**
+                 * SSO password.
+                 */
+                ssoPassword?: string;
+                /**
+                 * SSO user name.
+                 */
+                ssoUsername?: string;
+                /**
+                 * Landing page URL.
+                 */
+                url?: string;
+            }
+
+            export interface PortalLandingPageFormData {
+                /**
+                 * Name.
+                 */
+                name: string;
+                /**
+                 * Value.
+                 */
+                value?: string;
             }
 
             export interface PortalMacAddrCheckRule {
@@ -29913,6 +32960,10 @@ export namespace vpn {
                  */
                 url?: string;
                 /**
+                 * Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+                 */
+                vncKeyboardLayout: string;
+                /**
                  * Screen width (range from 640 - 65535, default = 1024).
                  */
                 width: number;
@@ -30050,6 +33101,10 @@ export namespace vpn {
                  * URL parameter.
                  */
                 url?: string;
+                /**
+                 * Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+                 */
+                vncKeyboardLayout: string;
                 /**
                  * Screen width (range from 640 - 65535, default = 1024).
                  */
@@ -31129,6 +34184,13 @@ export namespace webproxy {
         name: string;
     }
 
+    export interface ExplicitSecureWebProxyCert {
+        /**
+         * Certificate list.
+         */
+        name: string;
+    }
+
     export interface ForwardservergroupServerList {
         /**
          * Forward server name.
@@ -31156,7 +34218,7 @@ export namespace webproxy {
 
     export interface ProfileHeader {
         /**
-         * Action when the HTTP header is forwarded. Valid values: `add-to-request`, `add-to-response`, `remove-from-request`, `remove-from-response`.
+         * Action when the HTTP header is forwarded.
          */
         action: string;
         /**
@@ -31331,7 +34393,7 @@ export namespace wirelesscontroller {
          */
         policyId: number;
         /**
-         * Bonjour services for the VLAN connecting to the Bonjour network. Valid values: `all`, `airplay`, `afp`, `bit-torrent`, `ftp`, `ichat`, `itunes`, `printers`, `samba`, `scanners`, `ssh`, `chromecast`.
+         * Bonjour services for the VLAN connecting to the Bonjour network.
          */
         services: string;
         /**
@@ -31681,6 +34743,20 @@ export namespace wirelesscontroller {
          * Schedule name.
          */
         name: string;
+    }
+
+    export interface WidsprofileApScanChannelList2g5g {
+        /**
+         * Channel 6g number.
+         */
+        chan: string;
+    }
+
+    export interface WidsprofileApScanChannelList6g {
+        /**
+         * Channel 6g number.
+         */
+        chan: string;
     }
 
     export interface WtpLan {
@@ -32385,6 +35461,58 @@ export namespace wirelesscontroller {
          */
         fortipresenceUnassoc: string;
         /**
+         * Enable/disable PoleStar BLE NAO Track Real Time Location Service (RTLS) support (default = disable). Valid values: `enable`, `disable`.
+         */
+        polestar: string;
+        /**
+         * Time that measurements should be accumulated in seconds (default = 2).
+         */
+        polestarAccumulationInterval: number;
+        /**
+         * Tags and asset addrgrp list to be reported.
+         */
+        polestarAssetAddrgrpList: string;
+        /**
+         * Tags and asset UUID list 1 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+         */
+        polestarAssetUuidList1: string;
+        /**
+         * Tags and asset UUID list 2 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+         */
+        polestarAssetUuidList2: string;
+        /**
+         * Tags and asset UUID list 3 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+         */
+        polestarAssetUuidList3: string;
+        /**
+         * Tags and asset UUID list 4 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+         */
+        polestarAssetUuidList4: string;
+        /**
+         * Select the protocol to report Measurements, Advertising Data, or Location Data to NAO Cloud. (default = WSS). Valid values: `WSS`.
+         */
+        polestarProtocol: string;
+        /**
+         * Time between reporting accumulated measurements in seconds (default = 2).
+         */
+        polestarReportingInterval: number;
+        /**
+         * FQDN of PoleStar Nao Track Server (default = ws.nao-cloud.com).
+         */
+        polestarServerFqdn: string;
+        /**
+         * Path of PoleStar Nao Track Server (default = /v1/token/<access_token>/pst-v2).
+         */
+        polestarServerPath: string;
+        /**
+         * Port of PoleStar Nao Track Server (default = 443).
+         */
+        polestarServerPort: number;
+        /**
+         * Access Token of PoleStar Nao Track Server.
+         */
+        polestarServerToken: string;
+        /**
          * Enable/disable client station locating services for all clients, whether associated or not (default = disable). Valid values: `enable`, `disable`.
          */
         stationLocate: string;
@@ -32570,6 +35698,10 @@ export namespace wirelesscontroller {
          */
         maxDistance: number;
         /**
+         * Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+         */
+        mimoMode: string;
+        /**
          * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode: string;
@@ -32577,6 +35709,14 @@ export namespace wirelesscontroller {
          * Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
          */
         n80211d: string;
+        /**
+         * Optional antenna used on FAP (default = none).
+         */
+        optionalAntenna: string;
+        /**
+         * Optional antenna gain in dBi (0 to 20, default = 0).
+         */
+        optionalAntennaGain: string;
         /**
          * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
          */
@@ -32610,9 +35750,17 @@ export namespace wirelesscontroller {
          */
         samBssid: string;
         /**
+         * CA certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samCaCertificate: string;
+        /**
          * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
          */
         samCaptivePortal: string;
+        /**
+         * Client certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samClientCertificate: string;
         /**
          * Failure identification on the page after an incorrect login.
          */
@@ -32638,15 +35786,27 @@ export namespace wirelesscontroller {
          */
         samCwpUsername: string;
         /**
+         * Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+         */
+        samEapMethod: string;
+        /**
          * Passphrase for WiFi network connection.
          */
         samPassword?: string;
+        /**
+         * Private key for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKey: string;
+        /**
+         * Password for private key file for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKeyPassword?: string;
         /**
          * SAM report interval (sec), 0 for a one-time report.
          */
         samReportIntv: number;
         /**
-         * Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+         * Select WiFi network security type (default = "wpa-personal").
          */
         samSecurityType: string;
         /**
@@ -32875,6 +36035,10 @@ export namespace wirelesscontroller {
          */
         maxDistance: number;
         /**
+         * Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+         */
+        mimoMode: string;
+        /**
          * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode: string;
@@ -32882,6 +36046,14 @@ export namespace wirelesscontroller {
          * Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
          */
         n80211d: string;
+        /**
+         * Optional antenna used on FAP (default = none).
+         */
+        optionalAntenna: string;
+        /**
+         * Optional antenna gain in dBi (0 to 20, default = 0).
+         */
+        optionalAntennaGain: string;
         /**
          * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
          */
@@ -32915,9 +36087,17 @@ export namespace wirelesscontroller {
          */
         samBssid: string;
         /**
+         * CA certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samCaCertificate: string;
+        /**
          * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
          */
         samCaptivePortal: string;
+        /**
+         * Client certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samClientCertificate: string;
         /**
          * Failure identification on the page after an incorrect login.
          */
@@ -32943,15 +36123,27 @@ export namespace wirelesscontroller {
          */
         samCwpUsername: string;
         /**
+         * Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+         */
+        samEapMethod: string;
+        /**
          * Passphrase for WiFi network connection.
          */
         samPassword?: string;
+        /**
+         * Private key for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKey: string;
+        /**
+         * Password for private key file for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKeyPassword?: string;
         /**
          * SAM report interval (sec), 0 for a one-time report.
          */
         samReportIntv: number;
         /**
-         * Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+         * Select WiFi network security type (default = "wpa-personal").
          */
         samSecurityType: string;
         /**
@@ -33180,6 +36372,10 @@ export namespace wirelesscontroller {
          */
         maxDistance: number;
         /**
+         * Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+         */
+        mimoMode: string;
+        /**
          * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode: string;
@@ -33187,6 +36383,14 @@ export namespace wirelesscontroller {
          * Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
          */
         n80211d: string;
+        /**
+         * Optional antenna used on FAP (default = none).
+         */
+        optionalAntenna: string;
+        /**
+         * Optional antenna gain in dBi (0 to 20, default = 0).
+         */
+        optionalAntennaGain: string;
         /**
          * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
          */
@@ -33216,9 +36420,17 @@ export namespace wirelesscontroller {
          */
         samBssid: string;
         /**
+         * CA certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samCaCertificate: string;
+        /**
          * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
          */
         samCaptivePortal: string;
+        /**
+         * Client certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samClientCertificate: string;
         /**
          * Failure identification on the page after an incorrect login.
          */
@@ -33244,15 +36456,27 @@ export namespace wirelesscontroller {
          */
         samCwpUsername: string;
         /**
+         * Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+         */
+        samEapMethod: string;
+        /**
          * Passphrase for WiFi network connection.
          */
         samPassword?: string;
+        /**
+         * Private key for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKey: string;
+        /**
+         * Password for private key file for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKeyPassword?: string;
         /**
          * SAM report interval (sec), 0 for a one-time report.
          */
         samReportIntv: number;
         /**
-         * Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+         * Select WiFi network security type (default = "wpa-personal").
          */
         samSecurityType: string;
         /**
@@ -33481,6 +36705,10 @@ export namespace wirelesscontroller {
          */
         maxDistance: number;
         /**
+         * Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+         */
+        mimoMode: string;
+        /**
          * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
          */
         mode: string;
@@ -33488,6 +36716,14 @@ export namespace wirelesscontroller {
          * Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
          */
         n80211d: string;
+        /**
+         * Optional antenna used on FAP (default = none).
+         */
+        optionalAntenna: string;
+        /**
+         * Optional antenna gain in dBi (0 to 20, default = 0).
+         */
+        optionalAntennaGain: string;
         /**
          * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
          */
@@ -33517,9 +36753,17 @@ export namespace wirelesscontroller {
          */
         samBssid: string;
         /**
+         * CA certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samCaCertificate: string;
+        /**
          * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
          */
         samCaptivePortal: string;
+        /**
+         * Client certificate for WPA2/WPA3-ENTERPRISE.
+         */
+        samClientCertificate: string;
         /**
          * Failure identification on the page after an incorrect login.
          */
@@ -33545,15 +36789,27 @@ export namespace wirelesscontroller {
          */
         samCwpUsername: string;
         /**
+         * Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+         */
+        samEapMethod: string;
+        /**
          * Passphrase for WiFi network connection.
          */
         samPassword?: string;
+        /**
+         * Private key for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKey: string;
+        /**
+         * Password for private key file for WPA2/WPA3-ENTERPRISE.
+         */
+        samPrivateKeyPassword?: string;
         /**
          * SAM report interval (sec), 0 for a one-time report.
          */
         samReportIntv: number;
         /**
-         * Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+         * Select WiFi network security type (default = "wpa-personal").
          */
         samSecurityType: string;
         /**

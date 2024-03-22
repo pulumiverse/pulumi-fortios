@@ -70,6 +70,12 @@ namespace Pulumiverse.Fortios.Firewall.Schedule
         public Output<string> End { get; private set; } = null!;
 
         /// <summary>
+        /// Schedule end date and time, in epoch format.
+        /// </summary>
+        [Output("endUtc")]
+        public Output<string> EndUtc { get; private set; } = null!;
+
+        /// <summary>
         /// Write an event log message this many days before the schedule expires.
         /// </summary>
         [Output("expirationDays")]
@@ -92,6 +98,12 @@ namespace Pulumiverse.Fortios.Firewall.Schedule
         /// </summary>
         [Output("start")]
         public Output<string> Start { get; private set; } = null!;
+
+        /// <summary>
+        /// Schedule start date and time, in epoch format.
+        /// </summary>
+        [Output("startUtc")]
+        public Output<string> StartUtc { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -159,6 +171,12 @@ namespace Pulumiverse.Fortios.Firewall.Schedule
         public Input<string> End { get; set; } = null!;
 
         /// <summary>
+        /// Schedule end date and time, in epoch format.
+        /// </summary>
+        [Input("endUtc")]
+        public Input<string>? EndUtc { get; set; }
+
+        /// <summary>
         /// Write an event log message this many days before the schedule expires.
         /// </summary>
         [Input("expirationDays")]
@@ -181,6 +199,12 @@ namespace Pulumiverse.Fortios.Firewall.Schedule
         /// </summary>
         [Input("start", required: true)]
         public Input<string> Start { get; set; } = null!;
+
+        /// <summary>
+        /// Schedule start date and time, in epoch format.
+        /// </summary>
+        [Input("startUtc")]
+        public Input<string>? StartUtc { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -209,6 +233,12 @@ namespace Pulumiverse.Fortios.Firewall.Schedule
         public Input<string>? End { get; set; }
 
         /// <summary>
+        /// Schedule end date and time, in epoch format.
+        /// </summary>
+        [Input("endUtc")]
+        public Input<string>? EndUtc { get; set; }
+
+        /// <summary>
         /// Write an event log message this many days before the schedule expires.
         /// </summary>
         [Input("expirationDays")]
@@ -231,6 +261,12 @@ namespace Pulumiverse.Fortios.Firewall.Schedule
         /// </summary>
         [Input("start")]
         public Input<string>? Start { get; set; }
+
+        /// <summary>
+        /// Schedule start date and time, in epoch format.
+        /// </summary>
+        [Input("startUtc")]
+        public Input<string>? StartUtc { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

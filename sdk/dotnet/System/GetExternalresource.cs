@@ -107,6 +107,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string Resource;
         /// <summary>
+        /// Certificate verification option.
+        /// </summary>
+        public readonly string ServerIdentityCheck;
+        /// <summary>
         /// Source IPv4 address used to communicate with server.
         /// </summary>
         public readonly string SourceIp;
@@ -156,6 +160,8 @@ namespace Pulumiverse.Fortios.System
 
             string resource,
 
+            string serverIdentityCheck,
+
             string sourceIp,
 
             string status,
@@ -181,6 +187,7 @@ namespace Pulumiverse.Fortios.System
             Password = password;
             RefreshRate = refreshRate;
             Resource = resource;
+            ServerIdentityCheck = serverIdentityCheck;
             SourceIp = sourceIp;
             Status = status;
             Type = type;

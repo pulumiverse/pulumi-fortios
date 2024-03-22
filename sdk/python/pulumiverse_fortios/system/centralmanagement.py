@@ -27,6 +27,8 @@ class CentralmanagementArgs:
                  fmg_source_ip: Optional[pulumi.Input[str]] = None,
                  fmg_source_ip6: Optional[pulumi.Input[str]] = None,
                  fmg_update_port: Optional[pulumi.Input[str]] = None,
+                 fortigate_cloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  include_default_servers: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -52,6 +54,8 @@ class CentralmanagementArgs:
         :param pulumi.Input[str] fmg_source_ip: IPv4 source address that this FortiGate uses when communicating with FortiManager.
         :param pulumi.Input[str] fmg_source_ip6: IPv6 source address that this FortiGate uses when communicating with FortiManager.
         :param pulumi.Input[str] fmg_update_port: Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
+        :param pulumi.Input[str] fortigate_cloud_sso_default_profile: Override access profile.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] include_default_servers: Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -87,6 +91,10 @@ class CentralmanagementArgs:
             pulumi.set(__self__, "fmg_source_ip6", fmg_source_ip6)
         if fmg_update_port is not None:
             pulumi.set(__self__, "fmg_update_port", fmg_update_port)
+        if fortigate_cloud_sso_default_profile is not None:
+            pulumi.set(__self__, "fortigate_cloud_sso_default_profile", fortigate_cloud_sso_default_profile)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if include_default_servers is not None:
             pulumi.set(__self__, "include_default_servers", include_default_servers)
         if interface is not None:
@@ -243,6 +251,30 @@ class CentralmanagementArgs:
     @fmg_update_port.setter
     def fmg_update_port(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fmg_update_port", value)
+
+    @property
+    @pulumi.getter(name="fortigateCloudSsoDefaultProfile")
+    def fortigate_cloud_sso_default_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Override access profile.
+        """
+        return pulumi.get(self, "fortigate_cloud_sso_default_profile")
+
+    @fortigate_cloud_sso_default_profile.setter
+    def fortigate_cloud_sso_default_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortigate_cloud_sso_default_profile", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="includeDefaultServers")
@@ -403,6 +435,8 @@ class _CentralmanagementState:
                  fmg_source_ip: Optional[pulumi.Input[str]] = None,
                  fmg_source_ip6: Optional[pulumi.Input[str]] = None,
                  fmg_update_port: Optional[pulumi.Input[str]] = None,
+                 fortigate_cloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  include_default_servers: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -428,6 +462,8 @@ class _CentralmanagementState:
         :param pulumi.Input[str] fmg_source_ip: IPv4 source address that this FortiGate uses when communicating with FortiManager.
         :param pulumi.Input[str] fmg_source_ip6: IPv6 source address that this FortiGate uses when communicating with FortiManager.
         :param pulumi.Input[str] fmg_update_port: Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
+        :param pulumi.Input[str] fortigate_cloud_sso_default_profile: Override access profile.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] include_default_servers: Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -463,6 +499,10 @@ class _CentralmanagementState:
             pulumi.set(__self__, "fmg_source_ip6", fmg_source_ip6)
         if fmg_update_port is not None:
             pulumi.set(__self__, "fmg_update_port", fmg_update_port)
+        if fortigate_cloud_sso_default_profile is not None:
+            pulumi.set(__self__, "fortigate_cloud_sso_default_profile", fortigate_cloud_sso_default_profile)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if include_default_servers is not None:
             pulumi.set(__self__, "include_default_servers", include_default_servers)
         if interface is not None:
@@ -619,6 +659,30 @@ class _CentralmanagementState:
     @fmg_update_port.setter
     def fmg_update_port(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fmg_update_port", value)
+
+    @property
+    @pulumi.getter(name="fortigateCloudSsoDefaultProfile")
+    def fortigate_cloud_sso_default_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Override access profile.
+        """
+        return pulumi.get(self, "fortigate_cloud_sso_default_profile")
+
+    @fortigate_cloud_sso_default_profile.setter
+    def fortigate_cloud_sso_default_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortigate_cloud_sso_default_profile", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="includeDefaultServers")
@@ -781,6 +845,8 @@ class Centralmanagement(pulumi.CustomResource):
                  fmg_source_ip: Optional[pulumi.Input[str]] = None,
                  fmg_source_ip6: Optional[pulumi.Input[str]] = None,
                  fmg_update_port: Optional[pulumi.Input[str]] = None,
+                 fortigate_cloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  include_default_servers: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -863,6 +929,8 @@ class Centralmanagement(pulumi.CustomResource):
         :param pulumi.Input[str] fmg_source_ip: IPv4 source address that this FortiGate uses when communicating with FortiManager.
         :param pulumi.Input[str] fmg_source_ip6: IPv6 source address that this FortiGate uses when communicating with FortiManager.
         :param pulumi.Input[str] fmg_update_port: Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
+        :param pulumi.Input[str] fortigate_cloud_sso_default_profile: Override access profile.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] include_default_servers: Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -964,6 +1032,8 @@ class Centralmanagement(pulumi.CustomResource):
                  fmg_source_ip: Optional[pulumi.Input[str]] = None,
                  fmg_source_ip6: Optional[pulumi.Input[str]] = None,
                  fmg_update_port: Optional[pulumi.Input[str]] = None,
+                 fortigate_cloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  include_default_servers: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -996,6 +1066,8 @@ class Centralmanagement(pulumi.CustomResource):
             __props__.__dict__["fmg_source_ip"] = fmg_source_ip
             __props__.__dict__["fmg_source_ip6"] = fmg_source_ip6
             __props__.__dict__["fmg_update_port"] = fmg_update_port
+            __props__.__dict__["fortigate_cloud_sso_default_profile"] = fortigate_cloud_sso_default_profile
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["include_default_servers"] = include_default_servers
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
@@ -1029,6 +1101,8 @@ class Centralmanagement(pulumi.CustomResource):
             fmg_source_ip: Optional[pulumi.Input[str]] = None,
             fmg_source_ip6: Optional[pulumi.Input[str]] = None,
             fmg_update_port: Optional[pulumi.Input[str]] = None,
+            fortigate_cloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             include_default_servers: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -1059,6 +1133,8 @@ class Centralmanagement(pulumi.CustomResource):
         :param pulumi.Input[str] fmg_source_ip: IPv4 source address that this FortiGate uses when communicating with FortiManager.
         :param pulumi.Input[str] fmg_source_ip6: IPv6 source address that this FortiGate uses when communicating with FortiManager.
         :param pulumi.Input[str] fmg_update_port: Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
+        :param pulumi.Input[str] fortigate_cloud_sso_default_profile: Override access profile.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] include_default_servers: Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -1087,6 +1163,8 @@ class Centralmanagement(pulumi.CustomResource):
         __props__.__dict__["fmg_source_ip"] = fmg_source_ip
         __props__.__dict__["fmg_source_ip6"] = fmg_source_ip6
         __props__.__dict__["fmg_update_port"] = fmg_update_port
+        __props__.__dict__["fortigate_cloud_sso_default_profile"] = fortigate_cloud_sso_default_profile
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["include_default_servers"] = include_default_servers
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
@@ -1188,6 +1266,22 @@ class Centralmanagement(pulumi.CustomResource):
         Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
         """
         return pulumi.get(self, "fmg_update_port")
+
+    @property
+    @pulumi.getter(name="fortigateCloudSsoDefaultProfile")
+    def fortigate_cloud_sso_default_profile(self) -> pulumi.Output[str]:
+        """
+        Override access profile.
+        """
+        return pulumi.get(self, "fortigate_cloud_sso_default_profile")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="includeDefaultServers")

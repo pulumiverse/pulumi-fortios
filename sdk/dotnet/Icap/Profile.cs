@@ -76,6 +76,12 @@ namespace Pulumiverse.Fortios.Icap
         public Output<string> ChunkEncap { get; private set; } = null!;
 
         /// <summary>
+        /// Comment.
+        /// </summary>
+        [Output("comment")]
+        public Output<string?> Comment { get; private set; } = null!;
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Output("dynamicSortSubtable")]
@@ -110,6 +116,12 @@ namespace Pulumiverse.Fortios.Icap
         /// </summary>
         [Output("fileTransferServer")]
         public Output<string> FileTransferServer { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
@@ -309,6 +321,12 @@ namespace Pulumiverse.Fortios.Icap
         public Input<string>? ChunkEncap { get; set; }
 
         /// <summary>
+        /// Comment.
+        /// </summary>
+        [Input("comment")]
+        public Input<string>? Comment { get; set; }
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Input("dynamicSortSubtable")]
@@ -343,6 +361,12 @@ namespace Pulumiverse.Fortios.Icap
         /// </summary>
         [Input("fileTransferServer")]
         public Input<string>? FileTransferServer { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
@@ -515,6 +539,12 @@ namespace Pulumiverse.Fortios.Icap
         public Input<string>? ChunkEncap { get; set; }
 
         /// <summary>
+        /// Comment.
+        /// </summary>
+        [Input("comment")]
+        public Input<string>? Comment { get; set; }
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Input("dynamicSortSubtable")]
@@ -549,6 +579,12 @@ namespace Pulumiverse.Fortios.Icap
         /// </summary>
         [Input("fileTransferServer")]
         public Input<string>? FileTransferServer { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.

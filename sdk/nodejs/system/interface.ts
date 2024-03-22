@@ -182,6 +182,10 @@ export class Interface extends pulumi.CustomResource {
      */
     public readonly dedicatedTo!: pulumi.Output<string>;
     /**
+     * default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+     */
+    public readonly defaultPurdueLevel!: pulumi.Output<string>;
+    /**
      * Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
      */
     public readonly defaultgw!: pulumi.Output<string>;
@@ -226,6 +230,10 @@ export class Interface extends pulumi.CustomResource {
      */
     public readonly devindex!: pulumi.Output<number>;
     /**
+     * Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+     */
+    public readonly dhcpBroadcastFlag!: pulumi.Output<string>;
+    /**
      * Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
      */
     public readonly dhcpClasslessRouteAddition!: pulumi.Output<string>;
@@ -237,6 +245,10 @@ export class Interface extends pulumi.CustomResource {
      * Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
      */
     public readonly dhcpRelayAgentOption!: pulumi.Output<string>;
+    /**
+     * DHCP relay circuit ID.
+     */
+    public readonly dhcpRelayCircuitId!: pulumi.Output<string>;
     /**
      * Specify outgoing interface to reach server.
      */
@@ -262,6 +274,10 @@ export class Interface extends pulumi.CustomResource {
      */
     public readonly dhcpRelayService!: pulumi.Output<string>;
     /**
+     * IP address used by the DHCP relay as its source IP.
+     */
+    public readonly dhcpRelaySourceIp!: pulumi.Output<string>;
+    /**
      * DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
      */
     public readonly dhcpRelayType!: pulumi.Output<string>;
@@ -269,6 +285,10 @@ export class Interface extends pulumi.CustomResource {
      * DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
      */
     public readonly dhcpRenewTime!: pulumi.Output<number>;
+    /**
+     * Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+     */
+    public readonly dhcpSmartRelay!: pulumi.Output<string>;
     /**
      * Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
      */
@@ -410,6 +430,10 @@ export class Interface extends pulumi.CustomResource {
      */
     public readonly forwardErrorCorrection!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
      */
     public readonly gwdetect!: pulumi.Output<string>;
@@ -462,7 +486,7 @@ export class Interface extends pulumi.CustomResource {
      */
     public readonly ip!: pulumi.Output<string>;
     /**
-     * Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+     * Enable/disable automatic IP address assignment of this interface by FortiIPAM.
      */
     public readonly ipManagedByFortiipam!: pulumi.Output<string>;
     /**
@@ -862,6 +886,18 @@ export class Interface extends pulumi.CustomResource {
      */
     public readonly switchControllerNetflowCollect!: pulumi.Output<string>;
     /**
+     * Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+     */
+    public readonly switchControllerOffload!: pulumi.Output<string>;
+    /**
+     * Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+     */
+    public readonly switchControllerOffloadGw!: pulumi.Output<string>;
+    /**
+     * IP for routing offload on FortiSwitch.
+     */
+    public readonly switchControllerOffloadIp!: pulumi.Output<string>;
+    /**
      * Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
      */
     public readonly switchControllerRspanMode!: pulumi.Output<string>;
@@ -1012,6 +1048,7 @@ export class Interface extends pulumi.CustomResource {
             resourceInputs["clientOptions"] = state ? state.clientOptions : undefined;
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["dedicatedTo"] = state ? state.dedicatedTo : undefined;
+            resourceInputs["defaultPurdueLevel"] = state ? state.defaultPurdueLevel : undefined;
             resourceInputs["defaultgw"] = state ? state.defaultgw : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["detectedPeerMtu"] = state ? state.detectedPeerMtu : undefined;
@@ -1023,17 +1060,21 @@ export class Interface extends pulumi.CustomResource {
             resourceInputs["deviceNetscan"] = state ? state.deviceNetscan : undefined;
             resourceInputs["deviceUserIdentification"] = state ? state.deviceUserIdentification : undefined;
             resourceInputs["devindex"] = state ? state.devindex : undefined;
+            resourceInputs["dhcpBroadcastFlag"] = state ? state.dhcpBroadcastFlag : undefined;
             resourceInputs["dhcpClasslessRouteAddition"] = state ? state.dhcpClasslessRouteAddition : undefined;
             resourceInputs["dhcpClientIdentifier"] = state ? state.dhcpClientIdentifier : undefined;
             resourceInputs["dhcpRelayAgentOption"] = state ? state.dhcpRelayAgentOption : undefined;
+            resourceInputs["dhcpRelayCircuitId"] = state ? state.dhcpRelayCircuitId : undefined;
             resourceInputs["dhcpRelayInterface"] = state ? state.dhcpRelayInterface : undefined;
             resourceInputs["dhcpRelayInterfaceSelectMethod"] = state ? state.dhcpRelayInterfaceSelectMethod : undefined;
             resourceInputs["dhcpRelayIp"] = state ? state.dhcpRelayIp : undefined;
             resourceInputs["dhcpRelayLinkSelection"] = state ? state.dhcpRelayLinkSelection : undefined;
             resourceInputs["dhcpRelayRequestAllServer"] = state ? state.dhcpRelayRequestAllServer : undefined;
             resourceInputs["dhcpRelayService"] = state ? state.dhcpRelayService : undefined;
+            resourceInputs["dhcpRelaySourceIp"] = state ? state.dhcpRelaySourceIp : undefined;
             resourceInputs["dhcpRelayType"] = state ? state.dhcpRelayType : undefined;
             resourceInputs["dhcpRenewTime"] = state ? state.dhcpRenewTime : undefined;
+            resourceInputs["dhcpSmartRelay"] = state ? state.dhcpSmartRelay : undefined;
             resourceInputs["dhcpSnoopingServerLists"] = state ? state.dhcpSnoopingServerLists : undefined;
             resourceInputs["discRetryTimeout"] = state ? state.discRetryTimeout : undefined;
             resourceInputs["disconnectThreshold"] = state ? state.disconnectThreshold : undefined;
@@ -1069,6 +1110,7 @@ export class Interface extends pulumi.CustomResource {
             resourceInputs["fortilinkStacking"] = state ? state.fortilinkStacking : undefined;
             resourceInputs["forwardDomain"] = state ? state.forwardDomain : undefined;
             resourceInputs["forwardErrorCorrection"] = state ? state.forwardErrorCorrection : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gwdetect"] = state ? state.gwdetect : undefined;
             resourceInputs["haPriority"] = state ? state.haPriority : undefined;
             resourceInputs["icmpAcceptRedirect"] = state ? state.icmpAcceptRedirect : undefined;
@@ -1182,6 +1224,9 @@ export class Interface extends pulumi.CustomResource {
             resourceInputs["switchControllerMgmtVlan"] = state ? state.switchControllerMgmtVlan : undefined;
             resourceInputs["switchControllerNac"] = state ? state.switchControllerNac : undefined;
             resourceInputs["switchControllerNetflowCollect"] = state ? state.switchControllerNetflowCollect : undefined;
+            resourceInputs["switchControllerOffload"] = state ? state.switchControllerOffload : undefined;
+            resourceInputs["switchControllerOffloadGw"] = state ? state.switchControllerOffloadGw : undefined;
+            resourceInputs["switchControllerOffloadIp"] = state ? state.switchControllerOffloadIp : undefined;
             resourceInputs["switchControllerRspanMode"] = state ? state.switchControllerRspanMode : undefined;
             resourceInputs["switchControllerSourceIp"] = state ? state.switchControllerSourceIp : undefined;
             resourceInputs["switchControllerTrafficPolicy"] = state ? state.switchControllerTrafficPolicy : undefined;
@@ -1240,6 +1285,7 @@ export class Interface extends pulumi.CustomResource {
             resourceInputs["clientOptions"] = args ? args.clientOptions : undefined;
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["dedicatedTo"] = args ? args.dedicatedTo : undefined;
+            resourceInputs["defaultPurdueLevel"] = args ? args.defaultPurdueLevel : undefined;
             resourceInputs["defaultgw"] = args ? args.defaultgw : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["detectedPeerMtu"] = args ? args.detectedPeerMtu : undefined;
@@ -1251,17 +1297,21 @@ export class Interface extends pulumi.CustomResource {
             resourceInputs["deviceNetscan"] = args ? args.deviceNetscan : undefined;
             resourceInputs["deviceUserIdentification"] = args ? args.deviceUserIdentification : undefined;
             resourceInputs["devindex"] = args ? args.devindex : undefined;
+            resourceInputs["dhcpBroadcastFlag"] = args ? args.dhcpBroadcastFlag : undefined;
             resourceInputs["dhcpClasslessRouteAddition"] = args ? args.dhcpClasslessRouteAddition : undefined;
             resourceInputs["dhcpClientIdentifier"] = args ? args.dhcpClientIdentifier : undefined;
             resourceInputs["dhcpRelayAgentOption"] = args ? args.dhcpRelayAgentOption : undefined;
+            resourceInputs["dhcpRelayCircuitId"] = args ? args.dhcpRelayCircuitId : undefined;
             resourceInputs["dhcpRelayInterface"] = args ? args.dhcpRelayInterface : undefined;
             resourceInputs["dhcpRelayInterfaceSelectMethod"] = args ? args.dhcpRelayInterfaceSelectMethod : undefined;
             resourceInputs["dhcpRelayIp"] = args ? args.dhcpRelayIp : undefined;
             resourceInputs["dhcpRelayLinkSelection"] = args ? args.dhcpRelayLinkSelection : undefined;
             resourceInputs["dhcpRelayRequestAllServer"] = args ? args.dhcpRelayRequestAllServer : undefined;
             resourceInputs["dhcpRelayService"] = args ? args.dhcpRelayService : undefined;
+            resourceInputs["dhcpRelaySourceIp"] = args ? args.dhcpRelaySourceIp : undefined;
             resourceInputs["dhcpRelayType"] = args ? args.dhcpRelayType : undefined;
             resourceInputs["dhcpRenewTime"] = args ? args.dhcpRenewTime : undefined;
+            resourceInputs["dhcpSmartRelay"] = args ? args.dhcpSmartRelay : undefined;
             resourceInputs["dhcpSnoopingServerLists"] = args ? args.dhcpSnoopingServerLists : undefined;
             resourceInputs["discRetryTimeout"] = args ? args.discRetryTimeout : undefined;
             resourceInputs["disconnectThreshold"] = args ? args.disconnectThreshold : undefined;
@@ -1297,6 +1347,7 @@ export class Interface extends pulumi.CustomResource {
             resourceInputs["fortilinkStacking"] = args ? args.fortilinkStacking : undefined;
             resourceInputs["forwardDomain"] = args ? args.forwardDomain : undefined;
             resourceInputs["forwardErrorCorrection"] = args ? args.forwardErrorCorrection : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gwdetect"] = args ? args.gwdetect : undefined;
             resourceInputs["haPriority"] = args ? args.haPriority : undefined;
             resourceInputs["icmpAcceptRedirect"] = args ? args.icmpAcceptRedirect : undefined;
@@ -1410,6 +1461,9 @@ export class Interface extends pulumi.CustomResource {
             resourceInputs["switchControllerMgmtVlan"] = args ? args.switchControllerMgmtVlan : undefined;
             resourceInputs["switchControllerNac"] = args ? args.switchControllerNac : undefined;
             resourceInputs["switchControllerNetflowCollect"] = args ? args.switchControllerNetflowCollect : undefined;
+            resourceInputs["switchControllerOffload"] = args ? args.switchControllerOffload : undefined;
+            resourceInputs["switchControllerOffloadGw"] = args ? args.switchControllerOffloadGw : undefined;
+            resourceInputs["switchControllerOffloadIp"] = args ? args.switchControllerOffloadIp : undefined;
             resourceInputs["switchControllerRspanMode"] = args ? args.switchControllerRspanMode : undefined;
             resourceInputs["switchControllerSourceIp"] = args ? args.switchControllerSourceIp : undefined;
             resourceInputs["switchControllerTrafficPolicy"] = args ? args.switchControllerTrafficPolicy : undefined;
@@ -1551,6 +1605,10 @@ export interface InterfaceState {
      */
     dedicatedTo?: pulumi.Input<string>;
     /**
+     * default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+     */
+    defaultPurdueLevel?: pulumi.Input<string>;
+    /**
      * Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
      */
     defaultgw?: pulumi.Input<string>;
@@ -1595,6 +1653,10 @@ export interface InterfaceState {
      */
     devindex?: pulumi.Input<number>;
     /**
+     * Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+     */
+    dhcpBroadcastFlag?: pulumi.Input<string>;
+    /**
      * Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
      */
     dhcpClasslessRouteAddition?: pulumi.Input<string>;
@@ -1606,6 +1668,10 @@ export interface InterfaceState {
      * Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
      */
     dhcpRelayAgentOption?: pulumi.Input<string>;
+    /**
+     * DHCP relay circuit ID.
+     */
+    dhcpRelayCircuitId?: pulumi.Input<string>;
     /**
      * Specify outgoing interface to reach server.
      */
@@ -1631,6 +1697,10 @@ export interface InterfaceState {
      */
     dhcpRelayService?: pulumi.Input<string>;
     /**
+     * IP address used by the DHCP relay as its source IP.
+     */
+    dhcpRelaySourceIp?: pulumi.Input<string>;
+    /**
      * DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
      */
     dhcpRelayType?: pulumi.Input<string>;
@@ -1638,6 +1708,10 @@ export interface InterfaceState {
      * DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
      */
     dhcpRenewTime?: pulumi.Input<number>;
+    /**
+     * Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+     */
+    dhcpSmartRelay?: pulumi.Input<string>;
     /**
      * Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
      */
@@ -1779,6 +1853,10 @@ export interface InterfaceState {
      */
     forwardErrorCorrection?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
      */
     gwdetect?: pulumi.Input<string>;
@@ -1831,7 +1909,7 @@ export interface InterfaceState {
      */
     ip?: pulumi.Input<string>;
     /**
-     * Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+     * Enable/disable automatic IP address assignment of this interface by FortiIPAM.
      */
     ipManagedByFortiipam?: pulumi.Input<string>;
     /**
@@ -2230,6 +2308,18 @@ export interface InterfaceState {
      * NetFlow collection and processing. Valid values: `disable`, `enable`.
      */
     switchControllerNetflowCollect?: pulumi.Input<string>;
+    /**
+     * Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+     */
+    switchControllerOffload?: pulumi.Input<string>;
+    /**
+     * Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+     */
+    switchControllerOffloadGw?: pulumi.Input<string>;
+    /**
+     * IP for routing offload on FortiSwitch.
+     */
+    switchControllerOffloadIp?: pulumi.Input<string>;
     /**
      * Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
      */
@@ -2449,6 +2539,10 @@ export interface InterfaceArgs {
      */
     dedicatedTo?: pulumi.Input<string>;
     /**
+     * default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+     */
+    defaultPurdueLevel?: pulumi.Input<string>;
+    /**
      * Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
      */
     defaultgw?: pulumi.Input<string>;
@@ -2493,6 +2587,10 @@ export interface InterfaceArgs {
      */
     devindex?: pulumi.Input<number>;
     /**
+     * Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+     */
+    dhcpBroadcastFlag?: pulumi.Input<string>;
+    /**
      * Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
      */
     dhcpClasslessRouteAddition?: pulumi.Input<string>;
@@ -2504,6 +2602,10 @@ export interface InterfaceArgs {
      * Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
      */
     dhcpRelayAgentOption?: pulumi.Input<string>;
+    /**
+     * DHCP relay circuit ID.
+     */
+    dhcpRelayCircuitId?: pulumi.Input<string>;
     /**
      * Specify outgoing interface to reach server.
      */
@@ -2529,6 +2631,10 @@ export interface InterfaceArgs {
      */
     dhcpRelayService?: pulumi.Input<string>;
     /**
+     * IP address used by the DHCP relay as its source IP.
+     */
+    dhcpRelaySourceIp?: pulumi.Input<string>;
+    /**
      * DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
      */
     dhcpRelayType?: pulumi.Input<string>;
@@ -2536,6 +2642,10 @@ export interface InterfaceArgs {
      * DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
      */
     dhcpRenewTime?: pulumi.Input<number>;
+    /**
+     * Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+     */
+    dhcpSmartRelay?: pulumi.Input<string>;
     /**
      * Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
      */
@@ -2677,6 +2787,10 @@ export interface InterfaceArgs {
      */
     forwardErrorCorrection?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
      */
     gwdetect?: pulumi.Input<string>;
@@ -2729,7 +2843,7 @@ export interface InterfaceArgs {
      */
     ip?: pulumi.Input<string>;
     /**
-     * Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+     * Enable/disable automatic IP address assignment of this interface by FortiIPAM.
      */
     ipManagedByFortiipam?: pulumi.Input<string>;
     /**
@@ -3128,6 +3242,18 @@ export interface InterfaceArgs {
      * NetFlow collection and processing. Valid values: `disable`, `enable`.
      */
     switchControllerNetflowCollect?: pulumi.Input<string>;
+    /**
+     * Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+     */
+    switchControllerOffload?: pulumi.Input<string>;
+    /**
+     * Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+     */
+    switchControllerOffloadGw?: pulumi.Input<string>;
+    /**
+     * IP for routing offload on FortiSwitch.
+     */
+    switchControllerOffloadIp?: pulumi.Input<string>;
     /**
      * Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
      */

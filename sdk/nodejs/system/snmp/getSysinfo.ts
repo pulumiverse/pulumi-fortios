@@ -59,6 +59,14 @@ export interface GetSysinfoResult {
      */
     readonly status: string;
     /**
+     * Free memory usage when trap is sent.
+     */
+    readonly trapFreeMemoryThreshold: number;
+    /**
+     * Freeable memory usage when trap is sent.
+     */
+    readonly trapFreeableMemoryThreshold: number;
+    /**
      * CPU usage when trap is sent.
      */
     readonly trapHighCpuThreshold: number;

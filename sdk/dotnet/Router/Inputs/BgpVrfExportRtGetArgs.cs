@@ -14,7 +14,7 @@ namespace Pulumiverse.Fortios.Router.Inputs
     public sealed class BgpVrfExportRtGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Attribute: AA|AA:NN.
+        /// Attribute: AA:NN|A.B.C.D:NN.
         /// </summary>
         [Input("routeTarget")]
         public Input<string>? RouteTarget { get; set; }

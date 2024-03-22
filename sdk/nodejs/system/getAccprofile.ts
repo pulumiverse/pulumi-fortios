@@ -49,6 +49,26 @@ export interface GetAccprofileResult {
      */
     readonly authgrp: string;
     /**
+     * Enable/disable permission to run config commands.
+     */
+    readonly cliConfig: string;
+    /**
+     * Enable/disable permission to run diagnostic commands.
+     */
+    readonly cliDiagnose: string;
+    /**
+     * Enable/disable permission to run execute commands.
+     */
+    readonly cliExec: string;
+    /**
+     * Enable/disable permission to run get commands.
+     */
+    readonly cliGet: string;
+    /**
+     * Enable/disable permission to run show commands.
+     */
+    readonly cliShow: string;
+    /**
      * Comment.
      */
     readonly comments: string;

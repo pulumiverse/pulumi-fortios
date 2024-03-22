@@ -171,6 +171,12 @@ namespace Pulumiverse.Fortios.Filter.Web
         public Output<Outputs.ProfileFtgdWf> FtgdWf { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("httpsReplacemsg")]
@@ -315,6 +321,12 @@ namespace Pulumiverse.Fortios.Filter.Web
         public Output<string> WebFilterVbsLog { get; private set; } = null!;
 
         /// <summary>
+        /// Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+        /// </summary>
+        [Output("webFlowLogEncoding")]
+        public Output<string> WebFlowLogEncoding { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable logging rating errors. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("webFtgdErrLog")]
@@ -456,6 +468,12 @@ namespace Pulumiverse.Fortios.Filter.Web
         /// </summary>
         [Input("ftgdWf")]
         public Input<Inputs.ProfileFtgdWfArgs>? FtgdWf { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
@@ -602,6 +620,12 @@ namespace Pulumiverse.Fortios.Filter.Web
         public Input<string>? WebFilterVbsLog { get; set; }
 
         /// <summary>
+        /// Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+        /// </summary>
+        [Input("webFlowLogEncoding")]
+        public Input<string>? WebFlowLogEncoding { get; set; }
+
+        /// <summary>
         /// Enable/disable logging rating errors. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("webFtgdErrLog")]
@@ -716,6 +740,12 @@ namespace Pulumiverse.Fortios.Filter.Web
         /// </summary>
         [Input("ftgdWf")]
         public Input<Inputs.ProfileFtgdWfGetArgs>? FtgdWf { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
@@ -860,6 +890,12 @@ namespace Pulumiverse.Fortios.Filter.Web
         /// </summary>
         [Input("webFilterVbsLog")]
         public Input<string>? WebFilterVbsLog { get; set; }
+
+        /// <summary>
+        /// Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+        /// </summary>
+        [Input("webFlowLogEncoding")]
+        public Input<string>? WebFlowLogEncoding { get; set; }
 
         /// <summary>
         /// Enable/disable logging rating errors. Valid values: `enable`, `disable`.

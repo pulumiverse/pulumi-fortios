@@ -20,6 +20,7 @@ class VlanArgs:
                  color: Optional[pulumi.Input[int]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  portal_message_override_group: Optional[pulumi.Input[str]] = None,
                  portal_message_overrides: Optional[pulumi.Input['VlanPortalMessageOverridesArgs']] = None,
@@ -36,6 +37,7 @@ class VlanArgs:
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Switch VLAN name.
         :param pulumi.Input[str] portal_message_override_group: Specify captive portal replacement message override group.
         :param pulumi.Input['VlanPortalMessageOverridesArgs'] portal_message_overrides: Individual message overrides. The structure of `portal_message_overrides` block is documented below.
@@ -55,6 +57,8 @@ class VlanArgs:
             pulumi.set(__self__, "comments", comments)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if portal_message_override_group is not None:
@@ -123,6 +127,18 @@ class VlanArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -252,6 +268,7 @@ class _VlanState:
                  color: Optional[pulumi.Input[int]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  portal_message_override_group: Optional[pulumi.Input[str]] = None,
                  portal_message_overrides: Optional[pulumi.Input['VlanPortalMessageOverridesArgs']] = None,
@@ -268,6 +285,7 @@ class _VlanState:
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Switch VLAN name.
         :param pulumi.Input[str] portal_message_override_group: Specify captive portal replacement message override group.
         :param pulumi.Input['VlanPortalMessageOverridesArgs'] portal_message_overrides: Individual message overrides. The structure of `portal_message_overrides` block is documented below.
@@ -287,6 +305,8 @@ class _VlanState:
             pulumi.set(__self__, "comments", comments)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if portal_message_override_group is not None:
@@ -355,6 +375,18 @@ class _VlanState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -486,6 +518,7 @@ class Vlan(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  portal_message_override_group: Optional[pulumi.Input[str]] = None,
                  portal_message_overrides: Optional[pulumi.Input[pulumi.InputType['VlanPortalMessageOverridesArgs']]] = None,
@@ -524,6 +557,7 @@ class Vlan(pulumi.CustomResource):
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Switch VLAN name.
         :param pulumi.Input[str] portal_message_override_group: Specify captive portal replacement message override group.
         :param pulumi.Input[pulumi.InputType['VlanPortalMessageOverridesArgs']] portal_message_overrides: Individual message overrides. The structure of `portal_message_overrides` block is documented below.
@@ -581,6 +615,7 @@ class Vlan(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  portal_message_override_group: Optional[pulumi.Input[str]] = None,
                  portal_message_overrides: Optional[pulumi.Input[pulumi.InputType['VlanPortalMessageOverridesArgs']]] = None,
@@ -604,6 +639,7 @@ class Vlan(pulumi.CustomResource):
             __props__.__dict__["color"] = color
             __props__.__dict__["comments"] = comments
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["portal_message_override_group"] = portal_message_override_group
             __props__.__dict__["portal_message_overrides"] = portal_message_overrides
@@ -628,6 +664,7 @@ class Vlan(pulumi.CustomResource):
             color: Optional[pulumi.Input[int]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             portal_message_override_group: Optional[pulumi.Input[str]] = None,
             portal_message_overrides: Optional[pulumi.Input[pulumi.InputType['VlanPortalMessageOverridesArgs']]] = None,
@@ -649,6 +686,7 @@ class Vlan(pulumi.CustomResource):
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Switch VLAN name.
         :param pulumi.Input[str] portal_message_override_group: Specify captive portal replacement message override group.
         :param pulumi.Input[pulumi.InputType['VlanPortalMessageOverridesArgs']] portal_message_overrides: Individual message overrides. The structure of `portal_message_overrides` block is documented below.
@@ -668,6 +706,7 @@ class Vlan(pulumi.CustomResource):
         __props__.__dict__["color"] = color
         __props__.__dict__["comments"] = comments
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["portal_message_override_group"] = portal_message_override_group
         __props__.__dict__["portal_message_overrides"] = portal_message_overrides
@@ -711,6 +750,14 @@ class Vlan(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

@@ -70,6 +70,12 @@ namespace Pulumiverse.Fortios.User
     public partial class Ldap : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        /// </summary>
+        [Output("accountKeyCertField")]
+        public Output<string> AccountKeyCertField { get; private set; } = null!;
+
+        /// <summary>
         /// Account key filter, using the UPN as the search filter.
         /// </summary>
         [Output("accountKeyFilter")]
@@ -80,6 +86,12 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Output("accountKeyProcessing")]
         public Output<string> AccountKeyProcessing { get; private set; } = null!;
+
+        /// <summary>
+        /// Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+        /// </summary>
+        [Output("accountKeyUpnSan")]
+        public Output<string> AccountKeyUpnSan { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
@@ -244,7 +256,7 @@ namespace Pulumiverse.Fortios.User
         public Output<int> SourcePort { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Output("sslMinProtoVersion")]
         public Output<string> SslMinProtoVersion { get; private set; } = null!;
@@ -355,6 +367,12 @@ namespace Pulumiverse.Fortios.User
     public sealed class LdapArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        /// </summary>
+        [Input("accountKeyCertField")]
+        public Input<string>? AccountKeyCertField { get; set; }
+
+        /// <summary>
         /// Account key filter, using the UPN as the search filter.
         /// </summary>
         [Input("accountKeyFilter")]
@@ -365,6 +383,12 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("accountKeyProcessing")]
         public Input<string>? AccountKeyProcessing { get; set; }
+
+        /// <summary>
+        /// Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+        /// </summary>
+        [Input("accountKeyUpnSan")]
+        public Input<string>? AccountKeyUpnSan { get; set; }
 
         /// <summary>
         /// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
@@ -539,7 +563,7 @@ namespace Pulumiverse.Fortios.User
         public Input<int>? SourcePort { get; set; }
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Input("sslMinProtoVersion")]
         public Input<string>? SslMinProtoVersion { get; set; }
@@ -607,6 +631,12 @@ namespace Pulumiverse.Fortios.User
     public sealed class LdapState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        /// </summary>
+        [Input("accountKeyCertField")]
+        public Input<string>? AccountKeyCertField { get; set; }
+
+        /// <summary>
         /// Account key filter, using the UPN as the search filter.
         /// </summary>
         [Input("accountKeyFilter")]
@@ -617,6 +647,12 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("accountKeyProcessing")]
         public Input<string>? AccountKeyProcessing { get; set; }
+
+        /// <summary>
+        /// Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+        /// </summary>
+        [Input("accountKeyUpnSan")]
+        public Input<string>? AccountKeyUpnSan { get; set; }
 
         /// <summary>
         /// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
@@ -791,7 +827,7 @@ namespace Pulumiverse.Fortios.User
         public Input<int>? SourcePort { get; set; }
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Input("sslMinProtoVersion")]
         public Input<string>? SslMinProtoVersion { get; set; }

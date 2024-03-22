@@ -75,6 +75,18 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         /// </summary>
         public readonly string BandwidthUnit;
         /// <summary>
+        /// VLAN CoS mark.
+        /// </summary>
+        public readonly string Cos;
+        /// <summary>
+        /// Enable/disable VLAN CoS marking.
+        /// </summary>
+        public readonly string CosMarking;
+        /// <summary>
+        /// Select VLAN CoS marking method.
+        /// </summary>
+        public readonly string CosMarkingMethod;
+        /// <summary>
         /// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper.
         /// </summary>
         public readonly string Diffserv;
@@ -95,6 +107,10 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         /// </summary>
         public readonly int ExceedClassId;
         /// <summary>
+        /// VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+        /// </summary>
+        public readonly string ExceedCos;
+        /// <summary>
         /// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
         /// </summary>
         public readonly string ExceedDscp;
@@ -110,6 +126,10 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         /// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
         /// </summary>
         public readonly int MaximumBandwidth;
+        /// <summary>
+        /// VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+        /// </summary>
+        public readonly string MaximumCos;
         /// <summary>
         /// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
         /// </summary>
@@ -136,6 +156,12 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         private GetTrafficshaperResult(
             string bandwidthUnit,
 
+            string cos,
+
+            string cosMarking,
+
+            string cosMarkingMethod,
+
             string diffserv,
 
             string diffservcode,
@@ -146,6 +172,8 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
 
             int exceedClassId,
 
+            string exceedCos,
+
             string exceedDscp,
 
             int guaranteedBandwidth,
@@ -153,6 +181,8 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
             string id,
 
             int maximumBandwidth,
+
+            string maximumCos,
 
             string maximumDscp,
 
@@ -167,15 +197,20 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
             string? vdomparam)
         {
             BandwidthUnit = bandwidthUnit;
+            Cos = cos;
+            CosMarking = cosMarking;
+            CosMarkingMethod = cosMarkingMethod;
             Diffserv = diffserv;
             Diffservcode = diffservcode;
             DscpMarkingMethod = dscpMarkingMethod;
             ExceedBandwidth = exceedBandwidth;
             ExceedClassId = exceedClassId;
+            ExceedCos = exceedCos;
             ExceedDscp = exceedDscp;
             GuaranteedBandwidth = guaranteedBandwidth;
             Id = id;
             MaximumBandwidth = maximumBandwidth;
+            MaximumCos = maximumCos;
             MaximumDscp = maximumDscp;
             Name = name;
             Overhead = overhead;

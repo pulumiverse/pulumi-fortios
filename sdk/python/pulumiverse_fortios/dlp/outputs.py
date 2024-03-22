@@ -12,6 +12,7 @@ from . import outputs
 
 __all__ = [
     'DictionaryEntry',
+    'ExactdatamatchColumn',
     'FilepatternEntry',
     'ProfileRule',
     'ProfileRuleSensitivity',
@@ -131,6 +132,49 @@ class DictionaryEntry(dict):
 
 
 @pulumi.output_type
+class ExactdatamatchColumn(dict):
+    def __init__(__self__, *,
+                 index: Optional[int] = None,
+                 optional: Optional[str] = None,
+                 type: Optional[str] = None):
+        """
+        :param int index: Column index.
+        :param str optional: Enable/disable optional match. Valid values: `enable`, `disable`.
+        :param str type: Data-type for this column.
+        """
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+        if optional is not None:
+            pulumi.set(__self__, "optional", optional)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def index(self) -> Optional[int]:
+        """
+        Column index.
+        """
+        return pulumi.get(self, "index")
+
+    @property
+    @pulumi.getter
+    def optional(self) -> Optional[str]:
+        """
+        Enable/disable optional match. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "optional")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Data-type for this column.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class FilepatternEntry(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -237,7 +281,7 @@ class ProfileRule(dict):
         :param str action: Action to take with content that this DLP profile matches. Valid values: `allow`, `log-only`, `block`, `quarantine-ip`.
         :param str archive: Enable/disable DLP archiving. Valid values: `disable`, `enable`.
         :param str expiry: Quarantine duration in days, hours, minutes (format = dddhhmm).
-        :param int file_size: Match files this size or larger (0 - 4294967295 kbytes).
+        :param int file_size: Match files greater than or equal to this size (KB).
         :param int file_type: Select the number of a DLP file pattern table to match.
         :param str filter_by: Select the type of content to match. Valid values: `sensor`, `mip`, `fingerprint`, `encrypted`, `none`.
         :param int id: ID.
@@ -309,7 +353,7 @@ class ProfileRule(dict):
     @pulumi.getter(name="fileSize")
     def file_size(self) -> Optional[int]:
         """
-        Match files this size or larger (0 - 4294967295 kbytes).
+        Match files greater than or equal to this size (KB).
         """
         return pulumi.get(self, "file_size")
 
@@ -545,7 +589,7 @@ class SensorFilter(dict):
         :param str action: Action to take with content that this DLP sensor matches. Valid values: `allow`, `log-only`, `block`, `quarantine-ip`.
         :param str archive: Enable/disable DLP archiving. Valid values: `disable`, `enable`.
         :param str company_identifier: Enter a company identifier watermark to match. Only watermarks that your company has placed on the files are matched.
-        :param str expiry: Quarantine duration in days, hours, minutes format (dddhhmm).
+        :param str expiry: Quarantine duration in days, hours, minutes (format = dddhhmm).
         :param int file_size: Match files this size or larger (0 - 4294967295 kbytes).
         :param int file_type: Select the number of a DLP file pattern table to match.
         :param str filter_by: Select the type of content to match.
@@ -620,7 +664,7 @@ class SensorFilter(dict):
     @pulumi.getter
     def expiry(self) -> Optional[str]:
         """
-        Quarantine duration in days, hours, minutes format (dddhhmm).
+        Quarantine duration in days, hours, minutes (format = dddhhmm).
         """
         return pulumi.get(self, "expiry")
 

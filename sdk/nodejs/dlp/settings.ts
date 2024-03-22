@@ -70,7 +70,7 @@ export class Settings extends pulumi.CustomResource {
     }
 
     /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+     * Maximum percentage of available memory allocated to caching (1 - 15).
      */
     public readonly cacheMemPercent!: pulumi.Output<number>;
     /**
@@ -132,7 +132,7 @@ export class Settings extends pulumi.CustomResource {
  */
 export interface SettingsState {
     /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+     * Maximum percentage of available memory allocated to caching (1 - 15).
      */
     cacheMemPercent?: pulumi.Input<number>;
     /**
@@ -162,7 +162,7 @@ export interface SettingsState {
  */
 export interface SettingsArgs {
     /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+     * Maximum percentage of available memory allocated to caching (1 - 15).
      */
     cacheMemPercent?: pulumi.Input<number>;
     /**

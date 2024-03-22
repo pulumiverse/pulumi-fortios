@@ -14,6 +14,7 @@ __all__ = [
     'ExplicitPacPolicyDstaddrArgs',
     'ExplicitPacPolicySrcaddr6Args',
     'ExplicitPacPolicySrcaddrArgs',
+    'ExplicitSecureWebProxyCertArgs',
     'ForwardservergroupServerListArgs',
     'GlobalLearnClientIpSrcaddr6Args',
     'GlobalLearnClientIpSrcaddrArgs',
@@ -227,6 +228,29 @@ class ExplicitPacPolicySrcaddrArgs:
 
 
 @pulumi.input_type
+class ExplicitSecureWebProxyCertArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Certificate list.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Certificate list.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
 class ForwardservergroupServerListArgs:
     def __init__(__self__, *,
                  name: Optional[pulumi.Input[str]] = None,
@@ -324,7 +348,7 @@ class ProfileHeaderArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] action: Action when the HTTP header is forwarded. Valid values: `add-to-request`, `add-to-response`, `remove-from-request`, `remove-from-response`.
+        :param pulumi.Input[str] action: Action when the HTTP header is forwarded.
         :param pulumi.Input[str] add_option: Configure options to append content to existing HTTP header or add new HTTP header. Valid values: `append`, `new-on-not-found`, `new`.
         :param pulumi.Input[str] base64_encoding: Enable/disable use of base64 encoding of HTTP content. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] content: HTTP header content.
@@ -357,7 +381,7 @@ class ProfileHeaderArgs:
     @pulumi.getter
     def action(self) -> Optional[pulumi.Input[str]]:
         """
-        Action when the HTTP header is forwarded. Valid values: `add-to-request`, `add-to-response`, `remove-from-request`, `remove-from-response`.
+        Action when the HTTP header is forwarded.
         """
         return pulumi.get(self, "action")
 

@@ -27,6 +27,10 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? Domain;
         /// <summary>
+        /// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? ExternalAuth;
+        /// <summary>
         /// Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
         /// </summary>
         public readonly string? HealthCheck;
@@ -75,6 +79,14 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? Status;
         /// <summary>
+        /// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? TranslateHost;
+        /// <summary>
+        /// Tunnel encryption. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? TunnelEncryption;
+        /// <summary>
         /// TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
         /// </summary>
         public readonly string? Type;
@@ -90,6 +102,8 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
             string? address,
 
             string? domain,
+
+            string? externalAuth,
 
             string? healthCheck,
 
@@ -115,6 +129,10 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
 
             string? status,
 
+            string? translateHost,
+
+            string? tunnelEncryption,
+
             string? type,
 
             int? weight)
@@ -122,6 +140,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
             AddrType = addrType;
             Address = address;
             Domain = domain;
+            ExternalAuth = externalAuth;
             HealthCheck = healthCheck;
             HealthCheckProto = healthCheckProto;
             HolddownInterval = holddownInterval;
@@ -134,6 +153,8 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
             SshHostKeyValidation = sshHostKeyValidation;
             SshHostKeys = sshHostKeys;
             Status = status;
+            TranslateHost = translateHost;
+            TunnelEncryption = tunnelEncryption;
             Type = type;
             Weight = weight;
         }

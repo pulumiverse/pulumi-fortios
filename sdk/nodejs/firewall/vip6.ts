@@ -153,6 +153,18 @@ export class Vip6 extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+     */
+    public readonly h2Support!: pulumi.Output<string>;
+    /**
+     * Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly h3Support!: pulumi.Output<string>;
+    /**
      * Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
      */
     public readonly httpCookieAge!: pulumi.Output<number>;
@@ -241,6 +253,10 @@ export class Vip6 extends pulumi.CustomResource {
      */
     public readonly natSourceVip!: pulumi.Output<string>;
     /**
+     * Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+     */
+    public readonly ndpReply!: pulumi.Output<string>;
+    /**
      * Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
      */
     public readonly outlookWebAccess!: pulumi.Output<string>;
@@ -256,6 +272,10 @@ export class Vip6 extends pulumi.CustomResource {
      * Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
      */
     public readonly protocol!: pulumi.Output<string>;
+    /**
+     * QUIC setting. The structure of `quic` block is documented below.
+     */
+    public readonly quic!: pulumi.Output<outputs.firewall.Vip6Quic>;
     /**
      * Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
      */
@@ -393,6 +413,10 @@ export class Vip6 extends pulumi.CustomResource {
      */
     public readonly sslServerMinVersion!: pulumi.Output<string>;
     /**
+     * Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+     */
+    public readonly sslServerRenegotiation!: pulumi.Output<string>;
+    /**
      * Maximum number of FortiGate to Server SSL session states to keep.
      */
     public readonly sslServerSessionStateMax!: pulumi.Output<number>;
@@ -447,6 +471,9 @@ export class Vip6 extends pulumi.CustomResource {
             resourceInputs["extip"] = state ? state.extip : undefined;
             resourceInputs["extport"] = state ? state.extport : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["h2Support"] = state ? state.h2Support : undefined;
+            resourceInputs["h3Support"] = state ? state.h3Support : undefined;
             resourceInputs["httpCookieAge"] = state ? state.httpCookieAge : undefined;
             resourceInputs["httpCookieDomain"] = state ? state.httpCookieDomain : undefined;
             resourceInputs["httpCookieDomainFromHost"] = state ? state.httpCookieDomainFromHost : undefined;
@@ -469,10 +496,12 @@ export class Vip6 extends pulumi.CustomResource {
             resourceInputs["nat64"] = state ? state.nat64 : undefined;
             resourceInputs["nat66"] = state ? state.nat66 : undefined;
             resourceInputs["natSourceVip"] = state ? state.natSourceVip : undefined;
+            resourceInputs["ndpReply"] = state ? state.ndpReply : undefined;
             resourceInputs["outlookWebAccess"] = state ? state.outlookWebAccess : undefined;
             resourceInputs["persistence"] = state ? state.persistence : undefined;
             resourceInputs["portforward"] = state ? state.portforward : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["quic"] = state ? state.quic : undefined;
             resourceInputs["realservers"] = state ? state.realservers : undefined;
             resourceInputs["serverType"] = state ? state.serverType : undefined;
             resourceInputs["srcFilters"] = state ? state.srcFilters : undefined;
@@ -507,6 +536,7 @@ export class Vip6 extends pulumi.CustomResource {
             resourceInputs["sslServerCipherSuites"] = state ? state.sslServerCipherSuites : undefined;
             resourceInputs["sslServerMaxVersion"] = state ? state.sslServerMaxVersion : undefined;
             resourceInputs["sslServerMinVersion"] = state ? state.sslServerMinVersion : undefined;
+            resourceInputs["sslServerRenegotiation"] = state ? state.sslServerRenegotiation : undefined;
             resourceInputs["sslServerSessionStateMax"] = state ? state.sslServerSessionStateMax : undefined;
             resourceInputs["sslServerSessionStateTimeout"] = state ? state.sslServerSessionStateTimeout : undefined;
             resourceInputs["sslServerSessionStateType"] = state ? state.sslServerSessionStateType : undefined;
@@ -532,6 +562,9 @@ export class Vip6 extends pulumi.CustomResource {
             resourceInputs["extip"] = args ? args.extip : undefined;
             resourceInputs["extport"] = args ? args.extport : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["h2Support"] = args ? args.h2Support : undefined;
+            resourceInputs["h3Support"] = args ? args.h3Support : undefined;
             resourceInputs["httpCookieAge"] = args ? args.httpCookieAge : undefined;
             resourceInputs["httpCookieDomain"] = args ? args.httpCookieDomain : undefined;
             resourceInputs["httpCookieDomainFromHost"] = args ? args.httpCookieDomainFromHost : undefined;
@@ -554,10 +587,12 @@ export class Vip6 extends pulumi.CustomResource {
             resourceInputs["nat64"] = args ? args.nat64 : undefined;
             resourceInputs["nat66"] = args ? args.nat66 : undefined;
             resourceInputs["natSourceVip"] = args ? args.natSourceVip : undefined;
+            resourceInputs["ndpReply"] = args ? args.ndpReply : undefined;
             resourceInputs["outlookWebAccess"] = args ? args.outlookWebAccess : undefined;
             resourceInputs["persistence"] = args ? args.persistence : undefined;
             resourceInputs["portforward"] = args ? args.portforward : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["quic"] = args ? args.quic : undefined;
             resourceInputs["realservers"] = args ? args.realservers : undefined;
             resourceInputs["serverType"] = args ? args.serverType : undefined;
             resourceInputs["srcFilters"] = args ? args.srcFilters : undefined;
@@ -592,6 +627,7 @@ export class Vip6 extends pulumi.CustomResource {
             resourceInputs["sslServerCipherSuites"] = args ? args.sslServerCipherSuites : undefined;
             resourceInputs["sslServerMaxVersion"] = args ? args.sslServerMaxVersion : undefined;
             resourceInputs["sslServerMinVersion"] = args ? args.sslServerMinVersion : undefined;
+            resourceInputs["sslServerRenegotiation"] = args ? args.sslServerRenegotiation : undefined;
             resourceInputs["sslServerSessionStateMax"] = args ? args.sslServerSessionStateMax : undefined;
             resourceInputs["sslServerSessionStateTimeout"] = args ? args.sslServerSessionStateTimeout : undefined;
             resourceInputs["sslServerSessionStateType"] = args ? args.sslServerSessionStateType : undefined;
@@ -646,6 +682,18 @@ export interface Vip6State {
      * Custom defined ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+     */
+    h2Support?: pulumi.Input<string>;
+    /**
+     * Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+     */
+    h3Support?: pulumi.Input<string>;
     /**
      * Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
      */
@@ -735,6 +783,10 @@ export interface Vip6State {
      */
     natSourceVip?: pulumi.Input<string>;
     /**
+     * Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+     */
+    ndpReply?: pulumi.Input<string>;
+    /**
      * Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
      */
     outlookWebAccess?: pulumi.Input<string>;
@@ -750,6 +802,10 @@ export interface Vip6State {
      * Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
      */
     protocol?: pulumi.Input<string>;
+    /**
+     * QUIC setting. The structure of `quic` block is documented below.
+     */
+    quic?: pulumi.Input<inputs.firewall.Vip6Quic>;
     /**
      * Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
      */
@@ -887,6 +943,10 @@ export interface Vip6State {
      */
     sslServerMinVersion?: pulumi.Input<string>;
     /**
+     * Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+     */
+    sslServerRenegotiation?: pulumi.Input<string>;
+    /**
      * Maximum number of FortiGate to Server SSL session states to keep.
      */
     sslServerSessionStateMax?: pulumi.Input<number>;
@@ -960,6 +1020,18 @@ export interface Vip6Args {
      * Custom defined ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+     */
+    h2Support?: pulumi.Input<string>;
+    /**
+     * Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+     */
+    h3Support?: pulumi.Input<string>;
     /**
      * Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
      */
@@ -1049,6 +1121,10 @@ export interface Vip6Args {
      */
     natSourceVip?: pulumi.Input<string>;
     /**
+     * Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+     */
+    ndpReply?: pulumi.Input<string>;
+    /**
      * Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
      */
     outlookWebAccess?: pulumi.Input<string>;
@@ -1064,6 +1140,10 @@ export interface Vip6Args {
      * Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
      */
     protocol?: pulumi.Input<string>;
+    /**
+     * QUIC setting. The structure of `quic` block is documented below.
+     */
+    quic?: pulumi.Input<inputs.firewall.Vip6Quic>;
     /**
      * Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
      */
@@ -1200,6 +1280,10 @@ export interface Vip6Args {
      * Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
      */
     sslServerMinVersion?: pulumi.Input<string>;
+    /**
+     * Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+     */
+    sslServerRenegotiation?: pulumi.Input<string>;
     /**
      * Maximum number of FortiGate to Server SSL session states to keep.
      */

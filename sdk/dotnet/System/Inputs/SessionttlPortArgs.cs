@@ -32,6 +32,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<int>? Protocol { get; set; }
 
         /// <summary>
+        /// Refresh direction: Both, outgoing, incoming Valid values: `both`, `outgoing`, `incoming`.
+        /// </summary>
+        [Input("refreshDirection")]
+        public Input<string>? RefreshDirection { get; set; }
+
+        /// <summary>
         /// Start port number.
         /// </summary>
         [Input("startPort")]

@@ -15,6 +15,18 @@ namespace Pulumiverse.Fortios.System.Outputs
     public sealed class SdwanZone
     {
         /// <summary>
+        /// Health check for ADVPN local overlay link quality.
+        /// </summary>
+        public readonly string? AdvpnHealthCheck;
+        /// <summary>
+        /// Enable/disable selection of ADVPN based on SDWAN information. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? AdvpnSelect;
+        /// <summary>
+        /// Minimum number of members which meet SLA when the neighbor is preferred.
+        /// </summary>
+        public readonly int? MinimumSlaMeetMembers;
+        /// <summary>
         /// Zone name.
         /// </summary>
         public readonly string? Name;
@@ -25,10 +37,19 @@ namespace Pulumiverse.Fortios.System.Outputs
 
         [OutputConstructor]
         private SdwanZone(
+            string? advpnHealthCheck,
+
+            string? advpnSelect,
+
+            int? minimumSlaMeetMembers,
+
             string? name,
 
             string? serviceSlaTieBreak)
         {
+            AdvpnHealthCheck = advpnHealthCheck;
+            AdvpnSelect = advpnSelect;
+            MinimumSlaMeetMembers = minimumSlaMeetMembers;
             Name = name;
             ServiceSlaTieBreak = serviceSlaTieBreak;
         }

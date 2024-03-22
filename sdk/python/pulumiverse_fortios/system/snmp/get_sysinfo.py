@@ -21,7 +21,7 @@ class GetSysinfoResult:
     """
     A collection of values returned by getSysinfo.
     """
-    def __init__(__self__, contact_info=None, description=None, engine_id=None, engine_id_type=None, id=None, location=None, status=None, trap_high_cpu_threshold=None, trap_log_full_threshold=None, trap_low_memory_threshold=None, vdomparam=None):
+    def __init__(__self__, contact_info=None, description=None, engine_id=None, engine_id_type=None, id=None, location=None, status=None, trap_free_memory_threshold=None, trap_freeable_memory_threshold=None, trap_high_cpu_threshold=None, trap_log_full_threshold=None, trap_low_memory_threshold=None, vdomparam=None):
         if contact_info and not isinstance(contact_info, str):
             raise TypeError("Expected argument 'contact_info' to be a str")
         pulumi.set(__self__, "contact_info", contact_info)
@@ -43,6 +43,12 @@ class GetSysinfoResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if trap_free_memory_threshold and not isinstance(trap_free_memory_threshold, int):
+            raise TypeError("Expected argument 'trap_free_memory_threshold' to be a int")
+        pulumi.set(__self__, "trap_free_memory_threshold", trap_free_memory_threshold)
+        if trap_freeable_memory_threshold and not isinstance(trap_freeable_memory_threshold, int):
+            raise TypeError("Expected argument 'trap_freeable_memory_threshold' to be a int")
+        pulumi.set(__self__, "trap_freeable_memory_threshold", trap_freeable_memory_threshold)
         if trap_high_cpu_threshold and not isinstance(trap_high_cpu_threshold, int):
             raise TypeError("Expected argument 'trap_high_cpu_threshold' to be a int")
         pulumi.set(__self__, "trap_high_cpu_threshold", trap_high_cpu_threshold)
@@ -113,6 +119,22 @@ class GetSysinfoResult:
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter(name="trapFreeMemoryThreshold")
+    def trap_free_memory_threshold(self) -> int:
+        """
+        Free memory usage when trap is sent.
+        """
+        return pulumi.get(self, "trap_free_memory_threshold")
+
+    @property
+    @pulumi.getter(name="trapFreeableMemoryThreshold")
+    def trap_freeable_memory_threshold(self) -> int:
+        """
+        Freeable memory usage when trap is sent.
+        """
+        return pulumi.get(self, "trap_freeable_memory_threshold")
+
+    @property
     @pulumi.getter(name="trapHighCpuThreshold")
     def trap_high_cpu_threshold(self) -> int:
         """
@@ -155,6 +177,8 @@ class AwaitableGetSysinfoResult(GetSysinfoResult):
             id=self.id,
             location=self.location,
             status=self.status,
+            trap_free_memory_threshold=self.trap_free_memory_threshold,
+            trap_freeable_memory_threshold=self.trap_freeable_memory_threshold,
             trap_high_cpu_threshold=self.trap_high_cpu_threshold,
             trap_log_full_threshold=self.trap_log_full_threshold,
             trap_low_memory_threshold=self.trap_low_memory_threshold,
@@ -182,6 +206,8 @@ def get_sysinfo(vdomparam: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'),
         status=pulumi.get(__ret__, 'status'),
+        trap_free_memory_threshold=pulumi.get(__ret__, 'trap_free_memory_threshold'),
+        trap_freeable_memory_threshold=pulumi.get(__ret__, 'trap_freeable_memory_threshold'),
         trap_high_cpu_threshold=pulumi.get(__ret__, 'trap_high_cpu_threshold'),
         trap_log_full_threshold=pulumi.get(__ret__, 'trap_log_full_threshold'),
         trap_low_memory_threshold=pulumi.get(__ret__, 'trap_low_memory_threshold'),

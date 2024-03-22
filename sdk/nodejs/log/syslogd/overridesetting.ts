@@ -80,6 +80,10 @@ export class Overridesetting extends pulumi.CustomResource {
      */
     public readonly format!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Specify outgoing interface to reach server.
      */
     public readonly interface!: pulumi.Output<string>;
@@ -116,7 +120,7 @@ export class Overridesetting extends pulumi.CustomResource {
      */
     public readonly sourceIp!: pulumi.Output<string>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     public readonly sslMinProtoVersion!: pulumi.Output<string>;
     /**
@@ -151,6 +155,7 @@ export class Overridesetting extends pulumi.CustomResource {
             resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
             resourceInputs["facility"] = state ? state.facility : undefined;
             resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
             resourceInputs["maxLogRate"] = state ? state.maxLogRate : undefined;
@@ -172,6 +177,7 @@ export class Overridesetting extends pulumi.CustomResource {
             resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
             resourceInputs["facility"] = args ? args.facility : undefined;
             resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
             resourceInputs["maxLogRate"] = args ? args.maxLogRate : undefined;
@@ -220,6 +226,10 @@ export interface OverridesettingState {
      */
     format?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Specify outgoing interface to reach server.
      */
     interface?: pulumi.Input<string>;
@@ -256,7 +266,7 @@ export interface OverridesettingState {
      */
     sourceIp?: pulumi.Input<string>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     sslMinProtoVersion?: pulumi.Input<string>;
     /**
@@ -302,6 +312,10 @@ export interface OverridesettingArgs {
      */
     format?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Specify outgoing interface to reach server.
      */
     interface?: pulumi.Input<string>;
@@ -338,7 +352,7 @@ export interface OverridesettingArgs {
      */
     sourceIp?: pulumi.Input<string>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     sslMinProtoVersion?: pulumi.Input<string>;
     /**

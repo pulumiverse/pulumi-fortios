@@ -97,6 +97,10 @@ export class Proxyaddress extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * HTTP header name as a regular expression.
      */
     public readonly header!: pulumi.Output<string>;
@@ -145,9 +149,17 @@ export class Proxyaddress extends pulumi.CustomResource {
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
+     * Names of browsers to be used as user agent.
      */
     public readonly ua!: pulumi.Output<string>;
+    /**
+     * Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+     */
+    public readonly uaMaxVer!: pulumi.Output<string>;
+    /**
+     * Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+     */
+    public readonly uaMinVer!: pulumi.Output<string>;
     /**
      * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
      */
@@ -180,6 +192,7 @@ export class Proxyaddress extends pulumi.CustomResource {
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["header"] = state ? state.header : undefined;
             resourceInputs["headerGroups"] = state ? state.headerGroups : undefined;
             resourceInputs["headerName"] = state ? state.headerName : undefined;
@@ -193,6 +206,8 @@ export class Proxyaddress extends pulumi.CustomResource {
             resourceInputs["taggings"] = state ? state.taggings : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["ua"] = state ? state.ua : undefined;
+            resourceInputs["uaMaxVer"] = state ? state.uaMaxVer : undefined;
+            resourceInputs["uaMinVer"] = state ? state.uaMinVer : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["visibility"] = state ? state.visibility : undefined;
@@ -204,6 +219,7 @@ export class Proxyaddress extends pulumi.CustomResource {
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["header"] = args ? args.header : undefined;
             resourceInputs["headerGroups"] = args ? args.headerGroups : undefined;
             resourceInputs["headerName"] = args ? args.headerName : undefined;
@@ -217,6 +233,8 @@ export class Proxyaddress extends pulumi.CustomResource {
             resourceInputs["taggings"] = args ? args.taggings : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["ua"] = args ? args.ua : undefined;
+            resourceInputs["uaMaxVer"] = args ? args.uaMaxVer : undefined;
+            resourceInputs["uaMinVer"] = args ? args.uaMinVer : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["visibility"] = args ? args.visibility : undefined;
@@ -254,6 +272,10 @@ export interface ProxyaddressState {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * HTTP header name as a regular expression.
      */
@@ -303,9 +325,17 @@ export interface ProxyaddressState {
      */
     type?: pulumi.Input<string>;
     /**
-     * Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
+     * Names of browsers to be used as user agent.
      */
     ua?: pulumi.Input<string>;
+    /**
+     * Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+     */
+    uaMaxVer?: pulumi.Input<string>;
+    /**
+     * Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+     */
+    uaMinVer?: pulumi.Input<string>;
     /**
      * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
      */
@@ -349,6 +379,10 @@ export interface ProxyaddressArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * HTTP header name as a regular expression.
      */
     header?: pulumi.Input<string>;
@@ -397,9 +431,17 @@ export interface ProxyaddressArgs {
      */
     type?: pulumi.Input<string>;
     /**
-     * Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
+     * Names of browsers to be used as user agent.
      */
     ua?: pulumi.Input<string>;
+    /**
+     * Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+     */
+    uaMaxVer?: pulumi.Input<string>;
+    /**
+     * Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+     */
+    uaMinVer?: pulumi.Input<string>;
     /**
      * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
      */

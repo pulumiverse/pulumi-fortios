@@ -16,22 +16,24 @@ __all__ = ['ShapingpolicyArgs', 'Shapingpolicy']
 @pulumi.input_type
 class ShapingpolicyArgs:
     def __init__(__self__, *,
-                 dstaddrs: pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstaddrArgs']]],
                  dstintfs: pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstintfArgs']]],
-                 services: pulumi.Input[Sequence[pulumi.Input['ShapingpolicyServiceArgs']]],
                  srcaddrs: pulumi.Input[Sequence[pulumi.Input['ShapingpolicySrcaddrArgs']]],
                  app_categories: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyAppCategoryArgs']]]] = None,
                  app_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyAppGroupArgs']]]] = None,
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyApplicationArgs']]]] = None,
                  class_id: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_mask: Optional[pulumi.Input[str]] = None,
                  diffserv_forward: Optional[pulumi.Input[str]] = None,
                  diffserv_reverse: Optional[pulumi.Input[str]] = None,
                  diffservcode_forward: Optional[pulumi.Input[str]] = None,
                  diffservcode_rev: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstaddr6Args']]]] = None,
+                 dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyGroupArgs']]]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyInternetServiceCustomGroupArgs']]]] = None,
@@ -49,6 +51,7 @@ class ShapingpolicyArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  per_ip_shaper: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
+                 services: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyServiceArgs']]]] = None,
                  srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicySrcaddr6Args']]]] = None,
                  srcintfs: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicySrcintfArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -57,28 +60,31 @@ class ShapingpolicyArgs:
                  tos_negate: Optional[pulumi.Input[str]] = None,
                  traffic_shaper: Optional[pulumi.Input[str]] = None,
                  traffic_shaper_reverse: Optional[pulumi.Input[str]] = None,
+                 traffic_type: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyUrlCategoryArgs']]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyUserArgs']]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Shapingpolicy resource.
-        :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstaddrArgs']]] dstaddrs: IPv4 destination address and address group names. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstintfArgs']]] dstintfs: One or more outgoing (egress) interfaces. The structure of `dstintf` block is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyServiceArgs']]] services: Service and service group names. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicySrcaddrArgs']]] srcaddrs: IPv4 source address and address group names. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyAppCategoryArgs']]] app_categories: IDs of one or more application categories that this shaper applies application control traffic shaping to. The structure of `app_category` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyAppGroupArgs']]] app_groups: One or more application group names. The structure of `app_group` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyApplicationArgs']]] applications: IDs of one or more applications that this shaper applies application control traffic shaping to. The structure of `application` block is documented below.
         :param pulumi.Input[int] class_id: Traffic class ID.
         :param pulumi.Input[str] comment: Comments.
+        :param pulumi.Input[str] cos: VLAN CoS bit pattern.
+        :param pulumi.Input[str] cos_mask: VLAN CoS evaluated bits.
         :param pulumi.Input[str] diffserv_forward: Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffserv_reverse: Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffservcode_forward: Change packet's DiffServ to this value.
         :param pulumi.Input[str] diffservcode_rev: Change packet's reverse (reply) DiffServ to this value.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstaddr6Args']]] dstaddr6s: IPv6 destination address and address group names. The structure of `dstaddr6` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstaddrArgs']]] dstaddrs: IPv4 destination address and address group names. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: Shaping policy ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyGroupArgs']]] groups: Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyInternetServiceCustomGroupArgs']]] internet_service_custom_groups: Custom Internet Service group name. The structure of `internet_service_custom_group` block is documented below.
@@ -96,6 +102,7 @@ class ShapingpolicyArgs:
         :param pulumi.Input[str] name: Shaping policy name.
         :param pulumi.Input[str] per_ip_shaper: Per-IP traffic shaper to apply with this policy.
         :param pulumi.Input[str] schedule: Schedule name.
+        :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyServiceArgs']]] services: Service and service group names. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicySrcaddr6Args']]] srcaddr6s: IPv6 source address and address group names. The structure of `srcaddr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicySrcintfArgs']]] srcintfs: One or more incoming (ingress) interfaces. The structure of `srcintf` block is documented below.
         :param pulumi.Input[str] status: Enable/disable this traffic shaping policy. Valid values: `enable`, `disable`.
@@ -104,14 +111,13 @@ class ShapingpolicyArgs:
         :param pulumi.Input[str] tos_negate: Enable negated TOS match. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] traffic_shaper: Traffic shaper to apply to traffic forwarded by the firewall policy.
         :param pulumi.Input[str] traffic_shaper_reverse: Traffic shaper to apply to response traffic received by the firewall policy.
+        :param pulumi.Input[str] traffic_type: Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyUrlCategoryArgs']]] url_categories: IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `url_category` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyUserArgs']]] users: Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
-        pulumi.set(__self__, "dstaddrs", dstaddrs)
         pulumi.set(__self__, "dstintfs", dstintfs)
-        pulumi.set(__self__, "services", services)
         pulumi.set(__self__, "srcaddrs", srcaddrs)
         if app_categories is not None:
             pulumi.set(__self__, "app_categories", app_categories)
@@ -123,6 +129,10 @@ class ShapingpolicyArgs:
             pulumi.set(__self__, "class_id", class_id)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if cos is not None:
+            pulumi.set(__self__, "cos", cos)
+        if cos_mask is not None:
+            pulumi.set(__self__, "cos_mask", cos_mask)
         if diffserv_forward is not None:
             pulumi.set(__self__, "diffserv_forward", diffserv_forward)
         if diffserv_reverse is not None:
@@ -133,10 +143,14 @@ class ShapingpolicyArgs:
             pulumi.set(__self__, "diffservcode_rev", diffservcode_rev)
         if dstaddr6s is not None:
             pulumi.set(__self__, "dstaddr6s", dstaddr6s)
+        if dstaddrs is not None:
+            pulumi.set(__self__, "dstaddrs", dstaddrs)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if internet_service is not None:
@@ -171,6 +185,8 @@ class ShapingpolicyArgs:
             pulumi.set(__self__, "per_ip_shaper", per_ip_shaper)
         if schedule is not None:
             pulumi.set(__self__, "schedule", schedule)
+        if services is not None:
+            pulumi.set(__self__, "services", services)
         if srcaddr6s is not None:
             pulumi.set(__self__, "srcaddr6s", srcaddr6s)
         if srcintfs is not None:
@@ -187,6 +203,8 @@ class ShapingpolicyArgs:
             pulumi.set(__self__, "traffic_shaper", traffic_shaper)
         if traffic_shaper_reverse is not None:
             pulumi.set(__self__, "traffic_shaper_reverse", traffic_shaper_reverse)
+        if traffic_type is not None:
+            pulumi.set(__self__, "traffic_type", traffic_type)
         if url_categories is not None:
             pulumi.set(__self__, "url_categories", url_categories)
         if users is not None:
@@ -195,18 +213,6 @@ class ShapingpolicyArgs:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
-
-    @property
-    @pulumi.getter
-    def dstaddrs(self) -> pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstaddrArgs']]]:
-        """
-        IPv4 destination address and address group names. The structure of `dstaddr` block is documented below.
-        """
-        return pulumi.get(self, "dstaddrs")
-
-    @dstaddrs.setter
-    def dstaddrs(self, value: pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstaddrArgs']]]):
-        pulumi.set(self, "dstaddrs", value)
 
     @property
     @pulumi.getter
@@ -219,18 +225,6 @@ class ShapingpolicyArgs:
     @dstintfs.setter
     def dstintfs(self, value: pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstintfArgs']]]):
         pulumi.set(self, "dstintfs", value)
-
-    @property
-    @pulumi.getter
-    def services(self) -> pulumi.Input[Sequence[pulumi.Input['ShapingpolicyServiceArgs']]]:
-        """
-        Service and service group names. The structure of `service` block is documented below.
-        """
-        return pulumi.get(self, "services")
-
-    @services.setter
-    def services(self, value: pulumi.Input[Sequence[pulumi.Input['ShapingpolicyServiceArgs']]]):
-        pulumi.set(self, "services", value)
 
     @property
     @pulumi.getter
@@ -305,6 +299,30 @@ class ShapingpolicyArgs:
         pulumi.set(self, "comment", value)
 
     @property
+    @pulumi.getter
+    def cos(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN CoS bit pattern.
+        """
+        return pulumi.get(self, "cos")
+
+    @cos.setter
+    def cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos", value)
+
+    @property
+    @pulumi.getter(name="cosMask")
+    def cos_mask(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN CoS evaluated bits.
+        """
+        return pulumi.get(self, "cos_mask")
+
+    @cos_mask.setter
+    def cos_mask(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos_mask", value)
+
+    @property
     @pulumi.getter(name="diffservForward")
     def diffserv_forward(self) -> Optional[pulumi.Input[str]]:
         """
@@ -365,6 +383,18 @@ class ShapingpolicyArgs:
         pulumi.set(self, "dstaddr6s", value)
 
     @property
+    @pulumi.getter
+    def dstaddrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstaddrArgs']]]]:
+        """
+        IPv4 destination address and address group names. The structure of `dstaddr` block is documented below.
+        """
+        return pulumi.get(self, "dstaddrs")
+
+    @dstaddrs.setter
+    def dstaddrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstaddrArgs']]]]):
+        pulumi.set(self, "dstaddrs", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -387,6 +417,18 @@ class ShapingpolicyArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -594,6 +636,18 @@ class ShapingpolicyArgs:
 
     @property
     @pulumi.getter
+    def services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyServiceArgs']]]]:
+        """
+        Service and service group names. The structure of `service` block is documented below.
+        """
+        return pulumi.get(self, "services")
+
+    @services.setter
+    def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyServiceArgs']]]]):
+        pulumi.set(self, "services", value)
+
+    @property
+    @pulumi.getter
     def srcaddr6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicySrcaddr6Args']]]]:
         """
         IPv6 source address and address group names. The structure of `srcaddr6` block is documented below.
@@ -689,6 +743,18 @@ class ShapingpolicyArgs:
         pulumi.set(self, "traffic_shaper_reverse", value)
 
     @property
+    @pulumi.getter(name="trafficType")
+    def traffic_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+        """
+        return pulumi.get(self, "traffic_type")
+
+    @traffic_type.setter
+    def traffic_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "traffic_type", value)
+
+    @property
     @pulumi.getter(name="urlCategories")
     def url_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyUrlCategoryArgs']]]]:
         """
@@ -745,6 +811,8 @@ class _ShapingpolicyState:
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyApplicationArgs']]]] = None,
                  class_id: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_mask: Optional[pulumi.Input[str]] = None,
                  diffserv_forward: Optional[pulumi.Input[str]] = None,
                  diffserv_reverse: Optional[pulumi.Input[str]] = None,
                  diffservcode_forward: Optional[pulumi.Input[str]] = None,
@@ -754,6 +822,7 @@ class _ShapingpolicyState:
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstintfArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyGroupArgs']]]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyInternetServiceCustomGroupArgs']]]] = None,
@@ -781,6 +850,7 @@ class _ShapingpolicyState:
                  tos_negate: Optional[pulumi.Input[str]] = None,
                  traffic_shaper: Optional[pulumi.Input[str]] = None,
                  traffic_shaper_reverse: Optional[pulumi.Input[str]] = None,
+                 traffic_type: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyUrlCategoryArgs']]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyUserArgs']]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -792,6 +862,8 @@ class _ShapingpolicyState:
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyApplicationArgs']]] applications: IDs of one or more applications that this shaper applies application control traffic shaping to. The structure of `application` block is documented below.
         :param pulumi.Input[int] class_id: Traffic class ID.
         :param pulumi.Input[str] comment: Comments.
+        :param pulumi.Input[str] cos: VLAN CoS bit pattern.
+        :param pulumi.Input[str] cos_mask: VLAN CoS evaluated bits.
         :param pulumi.Input[str] diffserv_forward: Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffserv_reverse: Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffservcode_forward: Change packet's DiffServ to this value.
@@ -801,6 +873,7 @@ class _ShapingpolicyState:
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyDstintfArgs']]] dstintfs: One or more outgoing (egress) interfaces. The structure of `dstintf` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: Shaping policy ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyGroupArgs']]] groups: Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyInternetServiceCustomGroupArgs']]] internet_service_custom_groups: Custom Internet Service group name. The structure of `internet_service_custom_group` block is documented below.
@@ -828,6 +901,7 @@ class _ShapingpolicyState:
         :param pulumi.Input[str] tos_negate: Enable negated TOS match. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] traffic_shaper: Traffic shaper to apply to traffic forwarded by the firewall policy.
         :param pulumi.Input[str] traffic_shaper_reverse: Traffic shaper to apply to response traffic received by the firewall policy.
+        :param pulumi.Input[str] traffic_type: Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyUrlCategoryArgs']]] url_categories: IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `url_category` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingpolicyUserArgs']]] users: Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -843,6 +917,10 @@ class _ShapingpolicyState:
             pulumi.set(__self__, "class_id", class_id)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if cos is not None:
+            pulumi.set(__self__, "cos", cos)
+        if cos_mask is not None:
+            pulumi.set(__self__, "cos_mask", cos_mask)
         if diffserv_forward is not None:
             pulumi.set(__self__, "diffserv_forward", diffserv_forward)
         if diffserv_reverse is not None:
@@ -861,6 +939,8 @@ class _ShapingpolicyState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if internet_service is not None:
@@ -915,6 +995,8 @@ class _ShapingpolicyState:
             pulumi.set(__self__, "traffic_shaper", traffic_shaper)
         if traffic_shaper_reverse is not None:
             pulumi.set(__self__, "traffic_shaper_reverse", traffic_shaper_reverse)
+        if traffic_type is not None:
+            pulumi.set(__self__, "traffic_type", traffic_type)
         if url_categories is not None:
             pulumi.set(__self__, "url_categories", url_categories)
         if users is not None:
@@ -983,6 +1065,30 @@ class _ShapingpolicyState:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter
+    def cos(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN CoS bit pattern.
+        """
+        return pulumi.get(self, "cos")
+
+    @cos.setter
+    def cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos", value)
+
+    @property
+    @pulumi.getter(name="cosMask")
+    def cos_mask(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN CoS evaluated bits.
+        """
+        return pulumi.get(self, "cos_mask")
+
+    @cos_mask.setter
+    def cos_mask(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos_mask", value)
 
     @property
     @pulumi.getter(name="diffservForward")
@@ -1091,6 +1197,18 @@ class _ShapingpolicyState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1417,6 +1535,18 @@ class _ShapingpolicyState:
         pulumi.set(self, "traffic_shaper_reverse", value)
 
     @property
+    @pulumi.getter(name="trafficType")
+    def traffic_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+        """
+        return pulumi.get(self, "traffic_type")
+
+    @traffic_type.setter
+    def traffic_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "traffic_type", value)
+
+    @property
     @pulumi.getter(name="urlCategories")
     def url_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ShapingpolicyUrlCategoryArgs']]]]:
         """
@@ -1475,6 +1605,8 @@ class Shapingpolicy(pulumi.CustomResource):
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyApplicationArgs']]]]] = None,
                  class_id: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_mask: Optional[pulumi.Input[str]] = None,
                  diffserv_forward: Optional[pulumi.Input[str]] = None,
                  diffserv_reverse: Optional[pulumi.Input[str]] = None,
                  diffservcode_forward: Optional[pulumi.Input[str]] = None,
@@ -1484,6 +1616,7 @@ class Shapingpolicy(pulumi.CustomResource):
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyDstintfArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyGroupArgs']]]]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyInternetServiceCustomGroupArgs']]]]] = None,
@@ -1511,6 +1644,7 @@ class Shapingpolicy(pulumi.CustomResource):
                  tos_negate: Optional[pulumi.Input[str]] = None,
                  traffic_shaper: Optional[pulumi.Input[str]] = None,
                  traffic_shaper_reverse: Optional[pulumi.Input[str]] = None,
+                 traffic_type: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyUrlCategoryArgs']]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyUserArgs']]]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -1580,6 +1714,8 @@ class Shapingpolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyApplicationArgs']]]] applications: IDs of one or more applications that this shaper applies application control traffic shaping to. The structure of `application` block is documented below.
         :param pulumi.Input[int] class_id: Traffic class ID.
         :param pulumi.Input[str] comment: Comments.
+        :param pulumi.Input[str] cos: VLAN CoS bit pattern.
+        :param pulumi.Input[str] cos_mask: VLAN CoS evaluated bits.
         :param pulumi.Input[str] diffserv_forward: Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffserv_reverse: Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffservcode_forward: Change packet's DiffServ to this value.
@@ -1589,6 +1725,7 @@ class Shapingpolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyDstintfArgs']]]] dstintfs: One or more outgoing (egress) interfaces. The structure of `dstintf` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: Shaping policy ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyGroupArgs']]]] groups: Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyInternetServiceCustomGroupArgs']]]] internet_service_custom_groups: Custom Internet Service group name. The structure of `internet_service_custom_group` block is documented below.
@@ -1616,6 +1753,7 @@ class Shapingpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] tos_negate: Enable negated TOS match. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] traffic_shaper: Traffic shaper to apply to traffic forwarded by the firewall policy.
         :param pulumi.Input[str] traffic_shaper_reverse: Traffic shaper to apply to response traffic received by the firewall policy.
+        :param pulumi.Input[str] traffic_type: Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyUrlCategoryArgs']]]] url_categories: IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `url_category` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyUserArgs']]]] users: Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -1704,6 +1842,8 @@ class Shapingpolicy(pulumi.CustomResource):
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyApplicationArgs']]]]] = None,
                  class_id: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_mask: Optional[pulumi.Input[str]] = None,
                  diffserv_forward: Optional[pulumi.Input[str]] = None,
                  diffserv_reverse: Optional[pulumi.Input[str]] = None,
                  diffservcode_forward: Optional[pulumi.Input[str]] = None,
@@ -1713,6 +1853,7 @@ class Shapingpolicy(pulumi.CustomResource):
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyDstintfArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyGroupArgs']]]]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyInternetServiceCustomGroupArgs']]]]] = None,
@@ -1740,6 +1881,7 @@ class Shapingpolicy(pulumi.CustomResource):
                  tos_negate: Optional[pulumi.Input[str]] = None,
                  traffic_shaper: Optional[pulumi.Input[str]] = None,
                  traffic_shaper_reverse: Optional[pulumi.Input[str]] = None,
+                 traffic_type: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyUrlCategoryArgs']]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyUserArgs']]]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -1758,19 +1900,20 @@ class Shapingpolicy(pulumi.CustomResource):
             __props__.__dict__["applications"] = applications
             __props__.__dict__["class_id"] = class_id
             __props__.__dict__["comment"] = comment
+            __props__.__dict__["cos"] = cos
+            __props__.__dict__["cos_mask"] = cos_mask
             __props__.__dict__["diffserv_forward"] = diffserv_forward
             __props__.__dict__["diffserv_reverse"] = diffserv_reverse
             __props__.__dict__["diffservcode_forward"] = diffservcode_forward
             __props__.__dict__["diffservcode_rev"] = diffservcode_rev
             __props__.__dict__["dstaddr6s"] = dstaddr6s
-            if dstaddrs is None and not opts.urn:
-                raise TypeError("Missing required property 'dstaddrs'")
             __props__.__dict__["dstaddrs"] = dstaddrs
             if dstintfs is None and not opts.urn:
                 raise TypeError("Missing required property 'dstintfs'")
             __props__.__dict__["dstintfs"] = dstintfs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["groups"] = groups
             __props__.__dict__["internet_service"] = internet_service
             __props__.__dict__["internet_service_custom_groups"] = internet_service_custom_groups
@@ -1788,8 +1931,6 @@ class Shapingpolicy(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["per_ip_shaper"] = per_ip_shaper
             __props__.__dict__["schedule"] = schedule
-            if services is None and not opts.urn:
-                raise TypeError("Missing required property 'services'")
             __props__.__dict__["services"] = services
             __props__.__dict__["srcaddr6s"] = srcaddr6s
             if srcaddrs is None and not opts.urn:
@@ -1802,6 +1943,7 @@ class Shapingpolicy(pulumi.CustomResource):
             __props__.__dict__["tos_negate"] = tos_negate
             __props__.__dict__["traffic_shaper"] = traffic_shaper
             __props__.__dict__["traffic_shaper_reverse"] = traffic_shaper_reverse
+            __props__.__dict__["traffic_type"] = traffic_type
             __props__.__dict__["url_categories"] = url_categories
             __props__.__dict__["users"] = users
             __props__.__dict__["uuid"] = uuid
@@ -1821,6 +1963,8 @@ class Shapingpolicy(pulumi.CustomResource):
             applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyApplicationArgs']]]]] = None,
             class_id: Optional[pulumi.Input[int]] = None,
             comment: Optional[pulumi.Input[str]] = None,
+            cos: Optional[pulumi.Input[str]] = None,
+            cos_mask: Optional[pulumi.Input[str]] = None,
             diffserv_forward: Optional[pulumi.Input[str]] = None,
             diffserv_reverse: Optional[pulumi.Input[str]] = None,
             diffservcode_forward: Optional[pulumi.Input[str]] = None,
@@ -1830,6 +1974,7 @@ class Shapingpolicy(pulumi.CustomResource):
             dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyDstintfArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyGroupArgs']]]]] = None,
             internet_service: Optional[pulumi.Input[str]] = None,
             internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyInternetServiceCustomGroupArgs']]]]] = None,
@@ -1857,6 +2002,7 @@ class Shapingpolicy(pulumi.CustomResource):
             tos_negate: Optional[pulumi.Input[str]] = None,
             traffic_shaper: Optional[pulumi.Input[str]] = None,
             traffic_shaper_reverse: Optional[pulumi.Input[str]] = None,
+            traffic_type: Optional[pulumi.Input[str]] = None,
             url_categories: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyUrlCategoryArgs']]]]] = None,
             users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyUserArgs']]]]] = None,
             uuid: Optional[pulumi.Input[str]] = None,
@@ -1873,6 +2019,8 @@ class Shapingpolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyApplicationArgs']]]] applications: IDs of one or more applications that this shaper applies application control traffic shaping to. The structure of `application` block is documented below.
         :param pulumi.Input[int] class_id: Traffic class ID.
         :param pulumi.Input[str] comment: Comments.
+        :param pulumi.Input[str] cos: VLAN CoS bit pattern.
+        :param pulumi.Input[str] cos_mask: VLAN CoS evaluated bits.
         :param pulumi.Input[str] diffserv_forward: Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffserv_reverse: Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffservcode_forward: Change packet's DiffServ to this value.
@@ -1882,6 +2030,7 @@ class Shapingpolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyDstintfArgs']]]] dstintfs: One or more outgoing (egress) interfaces. The structure of `dstintf` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: Shaping policy ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyGroupArgs']]]] groups: Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyInternetServiceCustomGroupArgs']]]] internet_service_custom_groups: Custom Internet Service group name. The structure of `internet_service_custom_group` block is documented below.
@@ -1909,6 +2058,7 @@ class Shapingpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] tos_negate: Enable negated TOS match. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] traffic_shaper: Traffic shaper to apply to traffic forwarded by the firewall policy.
         :param pulumi.Input[str] traffic_shaper_reverse: Traffic shaper to apply to response traffic received by the firewall policy.
+        :param pulumi.Input[str] traffic_type: Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyUrlCategoryArgs']]]] url_categories: IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `url_category` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingpolicyUserArgs']]]] users: Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -1923,6 +2073,8 @@ class Shapingpolicy(pulumi.CustomResource):
         __props__.__dict__["applications"] = applications
         __props__.__dict__["class_id"] = class_id
         __props__.__dict__["comment"] = comment
+        __props__.__dict__["cos"] = cos
+        __props__.__dict__["cos_mask"] = cos_mask
         __props__.__dict__["diffserv_forward"] = diffserv_forward
         __props__.__dict__["diffserv_reverse"] = diffserv_reverse
         __props__.__dict__["diffservcode_forward"] = diffservcode_forward
@@ -1932,6 +2084,7 @@ class Shapingpolicy(pulumi.CustomResource):
         __props__.__dict__["dstintfs"] = dstintfs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["groups"] = groups
         __props__.__dict__["internet_service"] = internet_service
         __props__.__dict__["internet_service_custom_groups"] = internet_service_custom_groups
@@ -1959,6 +2112,7 @@ class Shapingpolicy(pulumi.CustomResource):
         __props__.__dict__["tos_negate"] = tos_negate
         __props__.__dict__["traffic_shaper"] = traffic_shaper
         __props__.__dict__["traffic_shaper_reverse"] = traffic_shaper_reverse
+        __props__.__dict__["traffic_type"] = traffic_type
         __props__.__dict__["url_categories"] = url_categories
         __props__.__dict__["users"] = users
         __props__.__dict__["uuid"] = uuid
@@ -2006,6 +2160,22 @@ class Shapingpolicy(pulumi.CustomResource):
         return pulumi.get(self, "comment")
 
     @property
+    @pulumi.getter
+    def cos(self) -> pulumi.Output[str]:
+        """
+        VLAN CoS bit pattern.
+        """
+        return pulumi.get(self, "cos")
+
+    @property
+    @pulumi.getter(name="cosMask")
+    def cos_mask(self) -> pulumi.Output[str]:
+        """
+        VLAN CoS evaluated bits.
+        """
+        return pulumi.get(self, "cos_mask")
+
+    @property
     @pulumi.getter(name="diffservForward")
     def diffserv_forward(self) -> pulumi.Output[str]:
         """
@@ -2047,7 +2217,7 @@ class Shapingpolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def dstaddrs(self) -> pulumi.Output[Sequence['outputs.ShapingpolicyDstaddr']]:
+    def dstaddrs(self) -> pulumi.Output[Optional[Sequence['outputs.ShapingpolicyDstaddr']]]:
         """
         IPv4 destination address and address group names. The structure of `dstaddr` block is documented below.
         """
@@ -2076,6 +2246,14 @@ class Shapingpolicy(pulumi.CustomResource):
         Shaping policy ID.
         """
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -2215,7 +2393,7 @@ class Shapingpolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def services(self) -> pulumi.Output[Sequence['outputs.ShapingpolicyService']]:
+    def services(self) -> pulumi.Output[Optional[Sequence['outputs.ShapingpolicyService']]]:
         """
         Service and service group names. The structure of `service` block is documented below.
         """
@@ -2292,6 +2470,14 @@ class Shapingpolicy(pulumi.CustomResource):
         Traffic shaper to apply to response traffic received by the firewall policy.
         """
         return pulumi.get(self, "traffic_shaper_reverse")
+
+    @property
+    @pulumi.getter(name="trafficType")
+    def traffic_type(self) -> pulumi.Output[str]:
+        """
+        Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+        """
+        return pulumi.get(self, "traffic_type")
 
     @property
     @pulumi.getter(name="urlCategories")

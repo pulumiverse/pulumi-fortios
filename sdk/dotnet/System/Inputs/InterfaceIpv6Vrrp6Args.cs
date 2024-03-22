@@ -26,6 +26,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<int>? AdvInterval { get; set; }
 
         /// <summary>
+        /// Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("ignoreDefaultRoute")]
+        public Input<string>? IgnoreDefaultRoute { get; set; }
+
+        /// <summary>
         /// Enable/disable preempt mode. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("preempt")]

@@ -89,8 +89,12 @@ type Dns struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// FQDN cache time to live in seconds (0 - 86400, default = 0).
 	FqdnCacheTtl pulumi.IntOutput `pulumi:"fqdnCacheTtl"`
+	// FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+	FqdnMaxRefresh pulumi.IntOutput `pulumi:"fqdnMaxRefresh"`
 	// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
 	FqdnMinRefresh pulumi.IntOutput `pulumi:"fqdnMinRefresh"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -174,8 +178,12 @@ type dnsState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// FQDN cache time to live in seconds (0 - 86400, default = 0).
 	FqdnCacheTtl *int `pulumi:"fqdnCacheTtl"`
+	// FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+	FqdnMaxRefresh *int `pulumi:"fqdnMaxRefresh"`
 	// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
 	FqdnMinRefresh *int `pulumi:"fqdnMinRefresh"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -227,8 +235,12 @@ type DnsState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// FQDN cache time to live in seconds (0 - 86400, default = 0).
 	FqdnCacheTtl pulumi.IntPtrInput
+	// FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+	FqdnMaxRefresh pulumi.IntPtrInput
 	// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
 	FqdnMinRefresh pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -284,8 +296,12 @@ type dnsArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// FQDN cache time to live in seconds (0 - 86400, default = 0).
 	FqdnCacheTtl *int `pulumi:"fqdnCacheTtl"`
+	// FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+	FqdnMaxRefresh *int `pulumi:"fqdnMaxRefresh"`
 	// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
 	FqdnMinRefresh *int `pulumi:"fqdnMinRefresh"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -338,8 +354,12 @@ type DnsArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// FQDN cache time to live in seconds (0 - 86400, default = 0).
 	FqdnCacheTtl pulumi.IntPtrInput
+	// FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+	FqdnMaxRefresh pulumi.IntPtrInput
 	// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
 	FqdnMinRefresh pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -504,9 +524,19 @@ func (o DnsOutput) FqdnCacheTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *Dns) pulumi.IntOutput { return v.FqdnCacheTtl }).(pulumi.IntOutput)
 }
 
+// FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+func (o DnsOutput) FqdnMaxRefresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *Dns) pulumi.IntOutput { return v.FqdnMaxRefresh }).(pulumi.IntOutput)
+}
+
 // FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
 func (o DnsOutput) FqdnMinRefresh() pulumi.IntOutput {
 	return o.ApplyT(func(v *Dns) pulumi.IntOutput { return v.FqdnMinRefresh }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o DnsOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Dns) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Specify outgoing interface to reach server.

@@ -93,7 +93,7 @@ export class Peripshaper extends pulumi.CustomResource {
      */
     public readonly diffservcodeRev!: pulumi.Output<string>;
     /**
-     * Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+     * Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
      */
     public readonly maxBandwidth!: pulumi.Output<number>;
     /**
@@ -185,7 +185,7 @@ export interface PeripshaperState {
      */
     diffservcodeRev?: pulumi.Input<string>;
     /**
-     * Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+     * Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
      */
     maxBandwidth?: pulumi.Input<number>;
     /**
@@ -235,7 +235,7 @@ export interface PeripshaperArgs {
      */
     diffservcodeRev?: pulumi.Input<string>;
     /**
-     * Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+     * Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
      */
     maxBandwidth?: pulumi.Input<number>;
     /**

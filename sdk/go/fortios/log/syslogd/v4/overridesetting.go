@@ -45,6 +45,8 @@ type Overridesetting struct {
 	Facility pulumi.StringOutput `pulumi:"facility"`
 	// Log format.
 	Format pulumi.StringOutput `pulumi:"format"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -63,7 +65,7 @@ type Overridesetting struct {
 	Server pulumi.StringOutput `pulumi:"server"`
 	// Source IP address of syslog.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
 	// Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -115,6 +117,8 @@ type overridesettingState struct {
 	Facility *string `pulumi:"facility"`
 	// Log format.
 	Format *string `pulumi:"format"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -133,7 +137,7 @@ type overridesettingState struct {
 	Server *string `pulumi:"server"`
 	// Source IP address of syslog.
 	SourceIp *string `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
@@ -156,6 +160,8 @@ type OverridesettingState struct {
 	Facility pulumi.StringPtrInput
 	// Log format.
 	Format pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -174,7 +180,7 @@ type OverridesettingState struct {
 	Server pulumi.StringPtrInput
 	// Source IP address of syslog.
 	SourceIp pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
@@ -201,6 +207,8 @@ type overridesettingArgs struct {
 	Facility *string `pulumi:"facility"`
 	// Log format.
 	Format *string `pulumi:"format"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -219,7 +227,7 @@ type overridesettingArgs struct {
 	Server *string `pulumi:"server"`
 	// Source IP address of syslog.
 	SourceIp *string `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
@@ -243,6 +251,8 @@ type OverridesettingArgs struct {
 	Facility pulumi.StringPtrInput
 	// Log format.
 	Format pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -261,7 +271,7 @@ type OverridesettingArgs struct {
 	Server pulumi.StringPtrInput
 	// Source IP address of syslog.
 	SourceIp pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Enable/disable remote syslog logging. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
@@ -388,6 +398,11 @@ func (o OverridesettingOutput) Format() pulumi.StringOutput {
 	return o.ApplyT(func(v *Overridesetting) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o OverridesettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Overridesetting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Specify outgoing interface to reach server.
 func (o OverridesettingOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *Overridesetting) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
@@ -433,7 +448,7 @@ func (o OverridesettingOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Overridesetting) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
 }
 
-// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 func (o OverridesettingOutput) SslMinProtoVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Overridesetting) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
 }

@@ -215,6 +215,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string DedicatedTo;
         /// <summary>
+        /// default purdue level of device detected on this interface.
+        /// </summary>
+        public readonly string DefaultPurdueLevel;
+        /// <summary>
         /// Enable to get the gateway IP from the DHCP or PPPoE server.
         /// </summary>
         public readonly string Defaultgw;
@@ -259,6 +263,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly int Devindex;
         /// <summary>
+        /// Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable).
+        /// </summary>
+        public readonly string DhcpBroadcastFlag;
+        /// <summary>
         /// Enable/disable addition of classless static routes retrieved from DHCP server.
         /// </summary>
         public readonly string DhcpClasslessRouteAddition;
@@ -270,6 +278,10 @@ namespace Pulumiverse.Fortios.System
         /// Enable/disable DHCP relay agent option.
         /// </summary>
         public readonly string DhcpRelayAgentOption;
+        /// <summary>
+        /// DHCP relay circuit ID.
+        /// </summary>
+        public readonly string DhcpRelayCircuitId;
         /// <summary>
         /// Specify outgoing interface to reach server.
         /// </summary>
@@ -295,6 +307,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string DhcpRelayService;
         /// <summary>
+        /// IP address used by the DHCP relay as its source IP.
+        /// </summary>
+        public readonly string DhcpRelaySourceIp;
+        /// <summary>
         /// DHCP relay type (regular or IPsec).
         /// </summary>
         public readonly string DhcpRelayType;
@@ -302,6 +318,10 @@ namespace Pulumiverse.Fortios.System
         /// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
         /// </summary>
         public readonly int DhcpRenewTime;
+        /// <summary>
+        /// Enable/disable DHCP smart relay.
+        /// </summary>
+        public readonly string DhcpSmartRelay;
         /// <summary>
         /// Configure DHCP server access list. The structure of `dhcp_snooping_server_list` block is documented below.
         /// </summary>
@@ -895,6 +915,18 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string SwitchControllerNetflowCollect;
         /// <summary>
+        /// Enable/disable managed FortiSwitch routing offload.
+        /// </summary>
+        public readonly string SwitchControllerOffload;
+        /// <summary>
+        /// Enable/disable managed FortiSwitch routing offload gateway.
+        /// </summary>
+        public readonly string SwitchControllerOffloadGw;
+        /// <summary>
+        /// IP for routing offload on FortiSwitch.
+        /// </summary>
+        public readonly string SwitchControllerOffloadIp;
+        /// <summary>
         /// Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface.
         /// </summary>
         public readonly string SwitchControllerRspanMode;
@@ -1054,6 +1086,8 @@ namespace Pulumiverse.Fortios.System
 
             string dedicatedTo,
 
+            string defaultPurdueLevel,
+
             string defaultgw,
 
             string description,
@@ -1076,11 +1110,15 @@ namespace Pulumiverse.Fortios.System
 
             int devindex,
 
+            string dhcpBroadcastFlag,
+
             string dhcpClasslessRouteAddition,
 
             string dhcpClientIdentifier,
 
             string dhcpRelayAgentOption,
+
+            string dhcpRelayCircuitId,
 
             string dhcpRelayInterface,
 
@@ -1094,9 +1132,13 @@ namespace Pulumiverse.Fortios.System
 
             string dhcpRelayService,
 
+            string dhcpRelaySourceIp,
+
             string dhcpRelayType,
 
             int dhcpRenewTime,
+
+            string dhcpSmartRelay,
 
             ImmutableArray<Outputs.GetInterfaceDhcpSnoopingServerListResult> dhcpSnoopingServerLists,
 
@@ -1394,6 +1436,12 @@ namespace Pulumiverse.Fortios.System
 
             string switchControllerNetflowCollect,
 
+            string switchControllerOffload,
+
+            string switchControllerOffloadGw,
+
+            string switchControllerOffloadIp,
+
             string switchControllerRspanMode,
 
             string switchControllerSourceIp,
@@ -1474,6 +1522,7 @@ namespace Pulumiverse.Fortios.System
             ClientOptions = clientOptions;
             Color = color;
             DedicatedTo = dedicatedTo;
+            DefaultPurdueLevel = defaultPurdueLevel;
             Defaultgw = defaultgw;
             Description = description;
             DetectedPeerMtu = detectedPeerMtu;
@@ -1485,17 +1534,21 @@ namespace Pulumiverse.Fortios.System
             DeviceNetscan = deviceNetscan;
             DeviceUserIdentification = deviceUserIdentification;
             Devindex = devindex;
+            DhcpBroadcastFlag = dhcpBroadcastFlag;
             DhcpClasslessRouteAddition = dhcpClasslessRouteAddition;
             DhcpClientIdentifier = dhcpClientIdentifier;
             DhcpRelayAgentOption = dhcpRelayAgentOption;
+            DhcpRelayCircuitId = dhcpRelayCircuitId;
             DhcpRelayInterface = dhcpRelayInterface;
             DhcpRelayInterfaceSelectMethod = dhcpRelayInterfaceSelectMethod;
             DhcpRelayIp = dhcpRelayIp;
             DhcpRelayLinkSelection = dhcpRelayLinkSelection;
             DhcpRelayRequestAllServer = dhcpRelayRequestAllServer;
             DhcpRelayService = dhcpRelayService;
+            DhcpRelaySourceIp = dhcpRelaySourceIp;
             DhcpRelayType = dhcpRelayType;
             DhcpRenewTime = dhcpRenewTime;
+            DhcpSmartRelay = dhcpSmartRelay;
             DhcpSnoopingServerLists = dhcpSnoopingServerLists;
             DiscRetryTimeout = discRetryTimeout;
             DisconnectThreshold = disconnectThreshold;
@@ -1644,6 +1697,9 @@ namespace Pulumiverse.Fortios.System
             SwitchControllerMgmtVlan = switchControllerMgmtVlan;
             SwitchControllerNac = switchControllerNac;
             SwitchControllerNetflowCollect = switchControllerNetflowCollect;
+            SwitchControllerOffload = switchControllerOffload;
+            SwitchControllerOffloadGw = switchControllerOffloadGw;
+            SwitchControllerOffloadIp = switchControllerOffloadIp;
             SwitchControllerRspanMode = switchControllerRspanMode;
             SwitchControllerSourceIp = switchControllerSourceIp;
             SwitchControllerTrafficPolicy = switchControllerTrafficPolicy;

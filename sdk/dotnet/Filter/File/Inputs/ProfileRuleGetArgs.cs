@@ -26,7 +26,7 @@ namespace Pulumiverse.Fortios.Filter.File.Inputs
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// Traffic direction. (HTTP, FTP, SSH, CIFS only) Valid values: `incoming`, `outgoing`, `any`.
+        /// Traffic direction. On FortiOS versions 6.4.1-7.4.1: HTTP, FTP, SSH, CIFS only. On FortiOS versions &gt;= 7.4.2: HTTP, FTP, SSH, CIFS, and MAPI only. Valid values: `incoming`, `outgoing`, `any`.
         /// </summary>
         [Input("direction")]
         public Input<string>? Direction { get; set; }

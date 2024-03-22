@@ -22,12 +22,14 @@ class NacpolicyArgs:
                  ems_tag: Optional[pulumi.Input[str]] = None,
                  family: Optional[pulumi.Input[str]] = None,
                  firewall_address: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  hw_vendor: Optional[pulumi.Input[str]] = None,
                  hw_version: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
+                 severities: Optional[pulumi.Input[Sequence[pulumi.Input['NacpolicySeverityArgs']]]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  ssid_policy: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -50,12 +52,14 @@ class NacpolicyArgs:
         :param pulumi.Input[str] ems_tag: NAC policy matching EMS tag.
         :param pulumi.Input[str] family: NAC policy matching family.
         :param pulumi.Input[str] firewall_address: Dynamic firewall address to associate MAC which match this policy.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: NAC policy matching host.
         :param pulumi.Input[str] hw_vendor: NAC policy matching hardware vendor.
         :param pulumi.Input[str] hw_version: NAC policy matching hardware version.
         :param pulumi.Input[str] mac: NAC policy matching MAC address.
         :param pulumi.Input[str] name: NAC policy name.
         :param pulumi.Input[str] os: NAC policy matching operating system.
+        :param pulumi.Input[Sequence[pulumi.Input['NacpolicySeverityArgs']]] severities: NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
         :param pulumi.Input[str] src: NAC policy matching source.
         :param pulumi.Input[str] ssid_policy: SSID policy to be applied on the matched NAC policy.
         :param pulumi.Input[str] status: Enable/disable NAC policy. Valid values: `enable`, `disable`.
@@ -83,6 +87,8 @@ class NacpolicyArgs:
             pulumi.set(__self__, "family", family)
         if firewall_address is not None:
             pulumi.set(__self__, "firewall_address", firewall_address)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if hw_vendor is not None:
@@ -95,6 +101,8 @@ class NacpolicyArgs:
             pulumi.set(__self__, "name", name)
         if os is not None:
             pulumi.set(__self__, "os", os)
+        if severities is not None:
+            pulumi.set(__self__, "severities", severities)
         if src is not None:
             pulumi.set(__self__, "src", src)
         if ssid_policy is not None:
@@ -197,6 +205,18 @@ class NacpolicyArgs:
         pulumi.set(self, "firewall_address", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
         """
@@ -267,6 +287,18 @@ class NacpolicyArgs:
     @os.setter
     def os(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "os", value)
+
+    @property
+    @pulumi.getter
+    def severities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NacpolicySeverityArgs']]]]:
+        """
+        NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+        """
+        return pulumi.get(self, "severities")
+
+    @severities.setter
+    def severities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NacpolicySeverityArgs']]]]):
+        pulumi.set(self, "severities", value)
 
     @property
     @pulumi.getter
@@ -446,12 +478,14 @@ class _NacpolicyState:
                  ems_tag: Optional[pulumi.Input[str]] = None,
                  family: Optional[pulumi.Input[str]] = None,
                  firewall_address: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  hw_vendor: Optional[pulumi.Input[str]] = None,
                  hw_version: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
+                 severities: Optional[pulumi.Input[Sequence[pulumi.Input['NacpolicySeverityArgs']]]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  ssid_policy: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -474,12 +508,14 @@ class _NacpolicyState:
         :param pulumi.Input[str] ems_tag: NAC policy matching EMS tag.
         :param pulumi.Input[str] family: NAC policy matching family.
         :param pulumi.Input[str] firewall_address: Dynamic firewall address to associate MAC which match this policy.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: NAC policy matching host.
         :param pulumi.Input[str] hw_vendor: NAC policy matching hardware vendor.
         :param pulumi.Input[str] hw_version: NAC policy matching hardware version.
         :param pulumi.Input[str] mac: NAC policy matching MAC address.
         :param pulumi.Input[str] name: NAC policy name.
         :param pulumi.Input[str] os: NAC policy matching operating system.
+        :param pulumi.Input[Sequence[pulumi.Input['NacpolicySeverityArgs']]] severities: NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
         :param pulumi.Input[str] src: NAC policy matching source.
         :param pulumi.Input[str] ssid_policy: SSID policy to be applied on the matched NAC policy.
         :param pulumi.Input[str] status: Enable/disable NAC policy. Valid values: `enable`, `disable`.
@@ -507,6 +543,8 @@ class _NacpolicyState:
             pulumi.set(__self__, "family", family)
         if firewall_address is not None:
             pulumi.set(__self__, "firewall_address", firewall_address)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if hw_vendor is not None:
@@ -519,6 +557,8 @@ class _NacpolicyState:
             pulumi.set(__self__, "name", name)
         if os is not None:
             pulumi.set(__self__, "os", os)
+        if severities is not None:
+            pulumi.set(__self__, "severities", severities)
         if src is not None:
             pulumi.set(__self__, "src", src)
         if ssid_policy is not None:
@@ -621,6 +661,18 @@ class _NacpolicyState:
         pulumi.set(self, "firewall_address", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
         """
@@ -691,6 +743,18 @@ class _NacpolicyState:
     @os.setter
     def os(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "os", value)
+
+    @property
+    @pulumi.getter
+    def severities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NacpolicySeverityArgs']]]]:
+        """
+        NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+        """
+        return pulumi.get(self, "severities")
+
+    @severities.setter
+    def severities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NacpolicySeverityArgs']]]]):
+        pulumi.set(self, "severities", value)
 
     @property
     @pulumi.getter
@@ -872,12 +936,14 @@ class Nacpolicy(pulumi.CustomResource):
                  ems_tag: Optional[pulumi.Input[str]] = None,
                  family: Optional[pulumi.Input[str]] = None,
                  firewall_address: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  hw_vendor: Optional[pulumi.Input[str]] = None,
                  hw_version: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
+                 severities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NacpolicySeverityArgs']]]]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  ssid_policy: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -922,12 +988,14 @@ class Nacpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] ems_tag: NAC policy matching EMS tag.
         :param pulumi.Input[str] family: NAC policy matching family.
         :param pulumi.Input[str] firewall_address: Dynamic firewall address to associate MAC which match this policy.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: NAC policy matching host.
         :param pulumi.Input[str] hw_vendor: NAC policy matching hardware vendor.
         :param pulumi.Input[str] hw_version: NAC policy matching hardware version.
         :param pulumi.Input[str] mac: NAC policy matching MAC address.
         :param pulumi.Input[str] name: NAC policy name.
         :param pulumi.Input[str] os: NAC policy matching operating system.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NacpolicySeverityArgs']]]] severities: NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
         :param pulumi.Input[str] src: NAC policy matching source.
         :param pulumi.Input[str] ssid_policy: SSID policy to be applied on the matched NAC policy.
         :param pulumi.Input[str] status: Enable/disable NAC policy. Valid values: `enable`, `disable`.
@@ -991,12 +1059,14 @@ class Nacpolicy(pulumi.CustomResource):
                  ems_tag: Optional[pulumi.Input[str]] = None,
                  family: Optional[pulumi.Input[str]] = None,
                  firewall_address: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  hw_vendor: Optional[pulumi.Input[str]] = None,
                  hw_version: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
+                 severities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NacpolicySeverityArgs']]]]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  ssid_policy: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -1026,12 +1096,14 @@ class Nacpolicy(pulumi.CustomResource):
             __props__.__dict__["ems_tag"] = ems_tag
             __props__.__dict__["family"] = family
             __props__.__dict__["firewall_address"] = firewall_address
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["host"] = host
             __props__.__dict__["hw_vendor"] = hw_vendor
             __props__.__dict__["hw_version"] = hw_version
             __props__.__dict__["mac"] = mac
             __props__.__dict__["name"] = name
             __props__.__dict__["os"] = os
+            __props__.__dict__["severities"] = severities
             __props__.__dict__["src"] = src
             __props__.__dict__["ssid_policy"] = ssid_policy
             __props__.__dict__["status"] = status
@@ -1062,12 +1134,14 @@ class Nacpolicy(pulumi.CustomResource):
             ems_tag: Optional[pulumi.Input[str]] = None,
             family: Optional[pulumi.Input[str]] = None,
             firewall_address: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             host: Optional[pulumi.Input[str]] = None,
             hw_vendor: Optional[pulumi.Input[str]] = None,
             hw_version: Optional[pulumi.Input[str]] = None,
             mac: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             os: Optional[pulumi.Input[str]] = None,
+            severities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NacpolicySeverityArgs']]]]] = None,
             src: Optional[pulumi.Input[str]] = None,
             ssid_policy: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -1095,12 +1169,14 @@ class Nacpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] ems_tag: NAC policy matching EMS tag.
         :param pulumi.Input[str] family: NAC policy matching family.
         :param pulumi.Input[str] firewall_address: Dynamic firewall address to associate MAC which match this policy.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: NAC policy matching host.
         :param pulumi.Input[str] hw_vendor: NAC policy matching hardware vendor.
         :param pulumi.Input[str] hw_version: NAC policy matching hardware version.
         :param pulumi.Input[str] mac: NAC policy matching MAC address.
         :param pulumi.Input[str] name: NAC policy name.
         :param pulumi.Input[str] os: NAC policy matching operating system.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NacpolicySeverityArgs']]]] severities: NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
         :param pulumi.Input[str] src: NAC policy matching source.
         :param pulumi.Input[str] ssid_policy: SSID policy to be applied on the matched NAC policy.
         :param pulumi.Input[str] status: Enable/disable NAC policy. Valid values: `enable`, `disable`.
@@ -1126,12 +1202,14 @@ class Nacpolicy(pulumi.CustomResource):
         __props__.__dict__["ems_tag"] = ems_tag
         __props__.__dict__["family"] = family
         __props__.__dict__["firewall_address"] = firewall_address
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["host"] = host
         __props__.__dict__["hw_vendor"] = hw_vendor
         __props__.__dict__["hw_version"] = hw_version
         __props__.__dict__["mac"] = mac
         __props__.__dict__["name"] = name
         __props__.__dict__["os"] = os
+        __props__.__dict__["severities"] = severities
         __props__.__dict__["src"] = src
         __props__.__dict__["ssid_policy"] = ssid_policy
         __props__.__dict__["status"] = status
@@ -1197,6 +1275,14 @@ class Nacpolicy(pulumi.CustomResource):
         return pulumi.get(self, "firewall_address")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def host(self) -> pulumi.Output[str]:
         """
@@ -1243,6 +1329,14 @@ class Nacpolicy(pulumi.CustomResource):
         NAC policy matching operating system.
         """
         return pulumi.get(self, "os")
+
+    @property
+    @pulumi.getter
+    def severities(self) -> pulumi.Output[Optional[Sequence['outputs.NacpolicySeverity']]]:
+        """
+        NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+        """
+        return pulumi.get(self, "severities")
 
     @property
     @pulumi.getter

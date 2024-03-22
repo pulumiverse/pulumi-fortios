@@ -22,7 +22,7 @@ class GetServerResult:
     """
     A collection of values returned by getServer.
     """
-    def __init__(__self__, auto_configuration=None, auto_managed_status=None, conflicted_ip_timeout=None, ddns_auth=None, ddns_key=None, ddns_keyname=None, ddns_server_ip=None, ddns_ttl=None, ddns_update=None, ddns_update_override=None, ddns_zone=None, default_gateway=None, dhcp_settings_from_fortiipam=None, dns_server1=None, dns_server2=None, dns_server3=None, dns_server4=None, dns_service=None, domain=None, exclude_ranges=None, filename=None, forticlient_on_net_status=None, fosid=None, id=None, interface=None, ip_mode=None, ip_ranges=None, ipsec_lease_hold=None, lease_time=None, mac_acl_default_action=None, netmask=None, next_server=None, ntp_server1=None, ntp_server2=None, ntp_server3=None, ntp_service=None, options=None, reserved_addresses=None, server_type=None, status=None, tftp_servers=None, timezone=None, timezone_option=None, vci_match=None, vci_strings=None, vdomparam=None, wifi_ac1=None, wifi_ac2=None, wifi_ac3=None, wifi_ac_service=None, wins_server1=None, wins_server2=None):
+    def __init__(__self__, auto_configuration=None, auto_managed_status=None, conflicted_ip_timeout=None, ddns_auth=None, ddns_key=None, ddns_keyname=None, ddns_server_ip=None, ddns_ttl=None, ddns_update=None, ddns_update_override=None, ddns_zone=None, default_gateway=None, dhcp_settings_from_fortiipam=None, dns_server1=None, dns_server2=None, dns_server3=None, dns_server4=None, dns_service=None, domain=None, exclude_ranges=None, filename=None, forticlient_on_net_status=None, fosid=None, id=None, interface=None, ip_mode=None, ip_ranges=None, ipsec_lease_hold=None, lease_time=None, mac_acl_default_action=None, netmask=None, next_server=None, ntp_server1=None, ntp_server2=None, ntp_server3=None, ntp_service=None, options=None, relay_agent=None, reserved_addresses=None, server_type=None, shared_subnet=None, status=None, tftp_servers=None, timezone=None, timezone_option=None, vci_match=None, vci_strings=None, vdomparam=None, wifi_ac1=None, wifi_ac2=None, wifi_ac3=None, wifi_ac_service=None, wins_server1=None, wins_server2=None):
         if auto_configuration and not isinstance(auto_configuration, str):
             raise TypeError("Expected argument 'auto_configuration' to be a str")
         pulumi.set(__self__, "auto_configuration", auto_configuration)
@@ -134,12 +134,18 @@ class GetServerResult:
         if options and not isinstance(options, list):
             raise TypeError("Expected argument 'options' to be a list")
         pulumi.set(__self__, "options", options)
+        if relay_agent and not isinstance(relay_agent, str):
+            raise TypeError("Expected argument 'relay_agent' to be a str")
+        pulumi.set(__self__, "relay_agent", relay_agent)
         if reserved_addresses and not isinstance(reserved_addresses, list):
             raise TypeError("Expected argument 'reserved_addresses' to be a list")
         pulumi.set(__self__, "reserved_addresses", reserved_addresses)
         if server_type and not isinstance(server_type, str):
             raise TypeError("Expected argument 'server_type' to be a str")
         pulumi.set(__self__, "server_type", server_type)
+        if shared_subnet and not isinstance(shared_subnet, str):
+            raise TypeError("Expected argument 'shared_subnet' to be a str")
+        pulumi.set(__self__, "shared_subnet", shared_subnet)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -408,7 +414,7 @@ class GetServerResult:
     @pulumi.getter(name="leaseTime")
     def lease_time(self) -> int:
         """
-        Lease time in seconds, 0 means unlimited.
+        Lease time in seconds, 0 means default lease time.
         """
         return pulumi.get(self, "lease_time")
 
@@ -477,6 +483,14 @@ class GetServerResult:
         return pulumi.get(self, "options")
 
     @property
+    @pulumi.getter(name="relayAgent")
+    def relay_agent(self) -> str:
+        """
+        Relay agent IP.
+        """
+        return pulumi.get(self, "relay_agent")
+
+    @property
     @pulumi.getter(name="reservedAddresses")
     def reserved_addresses(self) -> Sequence['outputs.GetServerReservedAddressResult']:
         """
@@ -491,6 +505,14 @@ class GetServerResult:
         DHCP server can be a normal DHCP server or an IPsec DHCP server.
         """
         return pulumi.get(self, "server_type")
+
+    @property
+    @pulumi.getter(name="sharedSubnet")
+    def shared_subnet(self) -> str:
+        """
+        Enable/disable shared subnet.
+        """
+        return pulumi.get(self, "shared_subnet")
 
     @property
     @pulumi.getter
@@ -637,8 +659,10 @@ class AwaitableGetServerResult(GetServerResult):
             ntp_server3=self.ntp_server3,
             ntp_service=self.ntp_service,
             options=self.options,
+            relay_agent=self.relay_agent,
             reserved_addresses=self.reserved_addresses,
             server_type=self.server_type,
+            shared_subnet=self.shared_subnet,
             status=self.status,
             tftp_servers=self.tftp_servers,
             timezone=self.timezone,
@@ -708,8 +732,10 @@ def get_server(fosid: Optional[int] = None,
         ntp_server3=pulumi.get(__ret__, 'ntp_server3'),
         ntp_service=pulumi.get(__ret__, 'ntp_service'),
         options=pulumi.get(__ret__, 'options'),
+        relay_agent=pulumi.get(__ret__, 'relay_agent'),
         reserved_addresses=pulumi.get(__ret__, 'reserved_addresses'),
         server_type=pulumi.get(__ret__, 'server_type'),
+        shared_subnet=pulumi.get(__ret__, 'shared_subnet'),
         status=pulumi.get(__ret__, 'status'),
         tftp_servers=pulumi.get(__ret__, 'tftp_servers'),
         timezone=pulumi.get(__ret__, 'timezone'),

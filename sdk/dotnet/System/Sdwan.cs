@@ -35,6 +35,12 @@ namespace Pulumiverse.Fortios.System
     public partial class Sdwan : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+        /// </summary>
+        [Output("appPerfLogPeriod")]
+        public Output<int> AppPerfLogPeriod { get; private set; } = null!;
+
+        /// <summary>
         /// Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
         /// </summary>
         [Output("duplicationMaxNum")]
@@ -63,6 +69,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("failDetect")]
         public Output<string> FailDetect { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `health_check` block is documented below.
@@ -184,6 +196,12 @@ namespace Pulumiverse.Fortios.System
     public sealed class SdwanArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+        /// </summary>
+        [Input("appPerfLogPeriod")]
+        public Input<int>? AppPerfLogPeriod { get; set; }
+
+        /// <summary>
         /// Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
         /// </summary>
         [Input("duplicationMaxNum")]
@@ -224,6 +242,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("failDetect")]
         public Input<string>? FailDetect { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("healthChecks")]
         private InputList<Inputs.SdwanHealthCheckArgs>? _healthChecks;
@@ -336,6 +360,12 @@ namespace Pulumiverse.Fortios.System
     public sealed class SdwanState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+        /// </summary>
+        [Input("appPerfLogPeriod")]
+        public Input<int>? AppPerfLogPeriod { get; set; }
+
+        /// <summary>
         /// Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
         /// </summary>
         [Input("duplicationMaxNum")]
@@ -376,6 +406,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("failDetect")]
         public Input<string>? FailDetect { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("healthChecks")]
         private InputList<Inputs.SdwanHealthCheckGetArgs>? _healthChecks;

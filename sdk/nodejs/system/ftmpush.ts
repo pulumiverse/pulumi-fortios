@@ -69,6 +69,10 @@ export class Ftmpush extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+     */
+    public readonly proxy!: pulumi.Output<string>;
+    /**
      * IPv4 address or domain name of FortiToken Mobile push services server.
      */
     public readonly server!: pulumi.Output<string>;
@@ -106,6 +110,7 @@ export class Ftmpush extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FtmpushState | undefined;
+            resourceInputs["proxy"] = state ? state.proxy : undefined;
             resourceInputs["server"] = state ? state.server : undefined;
             resourceInputs["serverCert"] = state ? state.serverCert : undefined;
             resourceInputs["serverIp"] = state ? state.serverIp : undefined;
@@ -114,6 +119,7 @@ export class Ftmpush extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FtmpushArgs | undefined;
+            resourceInputs["proxy"] = args ? args.proxy : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
             resourceInputs["serverCert"] = args ? args.serverCert : undefined;
             resourceInputs["serverIp"] = args ? args.serverIp : undefined;
@@ -130,6 +136,10 @@ export class Ftmpush extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Ftmpush resources.
  */
 export interface FtmpushState {
+    /**
+     * Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+     */
+    proxy?: pulumi.Input<string>;
     /**
      * IPv4 address or domain name of FortiToken Mobile push services server.
      */
@@ -160,6 +170,10 @@ export interface FtmpushState {
  * The set of arguments for constructing a Ftmpush resource.
  */
 export interface FtmpushArgs {
+    /**
+     * Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+     */
+    proxy?: pulumi.Input<string>;
     /**
      * IPv4 address or domain name of FortiToken Mobile push services server.
      */

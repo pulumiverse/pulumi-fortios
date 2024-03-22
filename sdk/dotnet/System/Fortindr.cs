@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Fortios.System
 {
     /// <summary>
-    /// Configure FortiNDR. Applies to FortiOS Version `&gt;= 7.2.0`.
+    /// Configure FortiNDR. Applies to FortiOS Version `&gt;= 7.0.8`.
     /// 
     /// ## Import
     /// 

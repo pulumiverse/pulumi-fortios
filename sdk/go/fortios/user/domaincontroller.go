@@ -96,6 +96,10 @@ type Domaincontroller struct {
 	AdldsIpAddress pulumi.StringOutput `pulumi:"adldsIpAddress"`
 	// Port number of AD LDS service (default = 389).
 	AdldsPort pulumi.IntOutput `pulumi:"adldsPort"`
+	// Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+	ChangeDetection pulumi.StringOutput `pulumi:"changeDetection"`
+	// Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+	ChangeDetectionPeriod pulumi.IntOutput `pulumi:"changeDetectionPeriod"`
 	// Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
 	DnsSrvLookup pulumi.StringOutput `pulumi:"dnsSrvLookup"`
 	// Domain DNS name.
@@ -104,6 +108,8 @@ type Domaincontroller struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers DomaincontrollerExtraServerArrayOutput `pulumi:"extraServers"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Hostname of the server to connect to.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// Specify outgoing interface to reach server.
@@ -182,6 +188,10 @@ type domaincontrollerState struct {
 	AdldsIpAddress *string `pulumi:"adldsIpAddress"`
 	// Port number of AD LDS service (default = 389).
 	AdldsPort *int `pulumi:"adldsPort"`
+	// Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+	ChangeDetection *string `pulumi:"changeDetection"`
+	// Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+	ChangeDetectionPeriod *int `pulumi:"changeDetectionPeriod"`
 	// Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
 	DnsSrvLookup *string `pulumi:"dnsSrvLookup"`
 	// Domain DNS name.
@@ -190,6 +200,8 @@ type domaincontrollerState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers []DomaincontrollerExtraServer `pulumi:"extraServers"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Hostname of the server to connect to.
 	Hostname *string `pulumi:"hostname"`
 	// Specify outgoing interface to reach server.
@@ -233,6 +245,10 @@ type DomaincontrollerState struct {
 	AdldsIpAddress pulumi.StringPtrInput
 	// Port number of AD LDS service (default = 389).
 	AdldsPort pulumi.IntPtrInput
+	// Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+	ChangeDetection pulumi.StringPtrInput
+	// Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+	ChangeDetectionPeriod pulumi.IntPtrInput
 	// Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
 	DnsSrvLookup pulumi.StringPtrInput
 	// Domain DNS name.
@@ -241,6 +257,8 @@ type DomaincontrollerState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers DomaincontrollerExtraServerArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Hostname of the server to connect to.
 	Hostname pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
@@ -288,6 +306,10 @@ type domaincontrollerArgs struct {
 	AdldsIpAddress *string `pulumi:"adldsIpAddress"`
 	// Port number of AD LDS service (default = 389).
 	AdldsPort *int `pulumi:"adldsPort"`
+	// Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+	ChangeDetection *string `pulumi:"changeDetection"`
+	// Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+	ChangeDetectionPeriod *int `pulumi:"changeDetectionPeriod"`
 	// Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
 	DnsSrvLookup *string `pulumi:"dnsSrvLookup"`
 	// Domain DNS name.
@@ -296,6 +318,8 @@ type domaincontrollerArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers []DomaincontrollerExtraServer `pulumi:"extraServers"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Hostname of the server to connect to.
 	Hostname *string `pulumi:"hostname"`
 	// Specify outgoing interface to reach server.
@@ -340,6 +364,10 @@ type DomaincontrollerArgs struct {
 	AdldsIpAddress pulumi.StringPtrInput
 	// Port number of AD LDS service (default = 389).
 	AdldsPort pulumi.IntPtrInput
+	// Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+	ChangeDetection pulumi.StringPtrInput
+	// Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+	ChangeDetectionPeriod pulumi.IntPtrInput
 	// Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
 	DnsSrvLookup pulumi.StringPtrInput
 	// Domain DNS name.
@@ -348,6 +376,8 @@ type DomaincontrollerArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers DomaincontrollerExtraServerArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Hostname of the server to connect to.
 	Hostname pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
@@ -492,6 +522,16 @@ func (o DomaincontrollerOutput) AdldsPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Domaincontroller) pulumi.IntOutput { return v.AdldsPort }).(pulumi.IntOutput)
 }
 
+// Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+func (o DomaincontrollerOutput) ChangeDetection() pulumi.StringOutput {
+	return o.ApplyT(func(v *Domaincontroller) pulumi.StringOutput { return v.ChangeDetection }).(pulumi.StringOutput)
+}
+
+// Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+func (o DomaincontrollerOutput) ChangeDetectionPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *Domaincontroller) pulumi.IntOutput { return v.ChangeDetectionPeriod }).(pulumi.IntOutput)
+}
+
 // Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
 func (o DomaincontrollerOutput) DnsSrvLookup() pulumi.StringOutput {
 	return o.ApplyT(func(v *Domaincontroller) pulumi.StringOutput { return v.DnsSrvLookup }).(pulumi.StringOutput)
@@ -510,6 +550,11 @@ func (o DomaincontrollerOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // extra servers. The structure of `extraServer` block is documented below.
 func (o DomaincontrollerOutput) ExtraServers() DomaincontrollerExtraServerArrayOutput {
 	return o.ApplyT(func(v *Domaincontroller) DomaincontrollerExtraServerArrayOutput { return v.ExtraServers }).(DomaincontrollerExtraServerArrayOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o DomaincontrollerOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Domaincontroller) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Hostname of the server to connect to.

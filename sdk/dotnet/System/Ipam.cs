@@ -35,10 +35,40 @@ namespace Pulumiverse.Fortios.System
     public partial class Ipam : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("automaticConflictResolution")]
+        public Output<string> AutomaticConflictResolution { get; private set; } = null!;
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Output("dynamicSortSubtable")]
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("manageLanAddresses")]
+        public Output<string> ManageLanAddresses { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("manageLanExtensionAddresses")]
+        public Output<string> ManageLanExtensionAddresses { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("manageSsidAddresses")]
+        public Output<string> ManageSsidAddresses { get; private set; } = null!;
 
         /// <summary>
         /// Configure IPAM pool subnet, Class A - Class B subnet.
@@ -53,13 +83,19 @@ namespace Pulumiverse.Fortios.System
         public Output<ImmutableArray<Outputs.IpamPool>> Pools { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("requireSubnetSizeMatch")]
+        public Output<string> RequireSubnetSizeMatch { get; private set; } = null!;
+
+        /// <summary>
         /// Configure IPAM allocation rules. The structure of `rules` block is documented below.
         /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<Outputs.IpamRule>> Rules { get; private set; } = null!;
 
         /// <summary>
-        /// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+        /// Configure the type of IPAM server to use.
         /// </summary>
         [Output("serverType")]
         public Output<string> ServerType { get; private set; } = null!;
@@ -124,10 +160,40 @@ namespace Pulumiverse.Fortios.System
     public sealed class IpamArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("automaticConflictResolution")]
+        public Input<string>? AutomaticConflictResolution { get; set; }
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("manageLanAddresses")]
+        public Input<string>? ManageLanAddresses { get; set; }
+
+        /// <summary>
+        /// Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("manageLanExtensionAddresses")]
+        public Input<string>? ManageLanExtensionAddresses { get; set; }
+
+        /// <summary>
+        /// Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("manageSsidAddresses")]
+        public Input<string>? ManageSsidAddresses { get; set; }
 
         /// <summary>
         /// Configure IPAM pool subnet, Class A - Class B subnet.
@@ -147,6 +213,12 @@ namespace Pulumiverse.Fortios.System
             set => _pools = value;
         }
 
+        /// <summary>
+        /// Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("requireSubnetSizeMatch")]
+        public Input<string>? RequireSubnetSizeMatch { get; set; }
+
         [Input("rules")]
         private InputList<Inputs.IpamRuleArgs>? _rules;
 
@@ -160,7 +232,7 @@ namespace Pulumiverse.Fortios.System
         }
 
         /// <summary>
-        /// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+        /// Configure the type of IPAM server to use.
         /// </summary>
         [Input("serverType")]
         public Input<string>? ServerType { get; set; }
@@ -186,10 +258,40 @@ namespace Pulumiverse.Fortios.System
     public sealed class IpamState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("automaticConflictResolution")]
+        public Input<string>? AutomaticConflictResolution { get; set; }
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("manageLanAddresses")]
+        public Input<string>? ManageLanAddresses { get; set; }
+
+        /// <summary>
+        /// Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("manageLanExtensionAddresses")]
+        public Input<string>? ManageLanExtensionAddresses { get; set; }
+
+        /// <summary>
+        /// Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("manageSsidAddresses")]
+        public Input<string>? ManageSsidAddresses { get; set; }
 
         /// <summary>
         /// Configure IPAM pool subnet, Class A - Class B subnet.
@@ -209,6 +311,12 @@ namespace Pulumiverse.Fortios.System
             set => _pools = value;
         }
 
+        /// <summary>
+        /// Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("requireSubnetSizeMatch")]
+        public Input<string>? RequireSubnetSizeMatch { get; set; }
+
         [Input("rules")]
         private InputList<Inputs.IpamRuleGetArgs>? _rules;
 
@@ -222,7 +330,7 @@ namespace Pulumiverse.Fortios.System
         }
 
         /// <summary>
-        /// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+        /// Configure the type of IPAM server to use.
         /// </summary>
         [Input("serverType")]
         public Input<string>? ServerType { get; set; }

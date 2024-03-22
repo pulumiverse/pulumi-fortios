@@ -97,6 +97,8 @@ type Policy8021X struct {
 	EapPassthru pulumi.StringOutput `pulumi:"eapPassthru"`
 	// Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
 	FramevidApply pulumi.StringOutput `pulumi:"framevidApply"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Guest authentication delay (1 - 900  sec, default = 30).
 	GuestAuthDelay pulumi.IntOutput `pulumi:"guestAuthDelay"`
 	// Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. Valid values: `disable`, `enable`.
@@ -173,6 +175,8 @@ type policy8021XState struct {
 	EapPassthru *string `pulumi:"eapPassthru"`
 	// Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
 	FramevidApply *string `pulumi:"framevidApply"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Guest authentication delay (1 - 900  sec, default = 30).
 	GuestAuthDelay *int `pulumi:"guestAuthDelay"`
 	// Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. Valid values: `disable`, `enable`.
@@ -220,6 +224,8 @@ type Policy8021XState struct {
 	EapPassthru pulumi.StringPtrInput
 	// Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
 	FramevidApply pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Guest authentication delay (1 - 900  sec, default = 30).
 	GuestAuthDelay pulumi.IntPtrInput
 	// Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. Valid values: `disable`, `enable`.
@@ -271,6 +277,8 @@ type policy8021XArgs struct {
 	EapPassthru *string `pulumi:"eapPassthru"`
 	// Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
 	FramevidApply *string `pulumi:"framevidApply"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Guest authentication delay (1 - 900  sec, default = 30).
 	GuestAuthDelay *int `pulumi:"guestAuthDelay"`
 	// Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. Valid values: `disable`, `enable`.
@@ -319,6 +327,8 @@ type Policy8021XArgs struct {
 	EapPassthru pulumi.StringPtrInput
 	// Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
 	FramevidApply pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Guest authentication delay (1 - 900  sec, default = 30).
 	GuestAuthDelay pulumi.IntPtrInput
 	// Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. Valid values: `disable`, `enable`.
@@ -480,6 +490,11 @@ func (o Policy8021XOutput) EapPassthru() pulumi.StringOutput {
 // Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
 func (o Policy8021XOutput) FramevidApply() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy8021X) pulumi.StringOutput { return v.FramevidApply }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Policy8021XOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Policy8021X) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Guest authentication delay (1 - 900  sec, default = 30).

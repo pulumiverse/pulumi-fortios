@@ -1,23 +1,19 @@
 module github.com/pulumiverse/pulumi-fortios/provider
 
-go 1.21
-
-toolchain go1.21.7
+go 1.21.8
 
 replace (
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240229143312-4f60ee4e2975
-	//github.com/pulumi/pulumi-java/pkg => ../../../code/pulumi-java/pkg
-	//github.com/pulumi/pulumi-terraform-bridge/v3 => ../../../code/pulumi-terraform-bridge
-	// github.com/pulumi/pulumi/pkg/v3 => ../../../code/pulumi/pkg
-	// github.com/pulumi/pulumi/sdk/v3 => ../../../code/pulumi/sdk
-	github.com/terraform-providers/terraform-provider-fortios => github.com/fortinetdev/terraform-provider-fortios v1.16.0
+	github.com/terraform-providers/terraform-provider-fortios => ../upstream
+	github.com/tmeckel/pulumi-tf-provider-cookiecutter/generator => ../../pulumi-tf-provider-cookiecutter/generator
 )
 
 require (
 	github.com/ettle/strcase v0.1.1
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.77.0
 	github.com/pulumi/pulumi/sdk/v3 v3.108.1
-	github.com/terraform-providers/terraform-provider-fortios v1.16.0
+	github.com/stretchr/testify v1.8.4
+	github.com/terraform-providers/terraform-provider-fortios v1.19.0
 )
 
 require (
@@ -200,7 +196,6 @@ require (
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/cobra v1.7.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/stretchr/testify v1.8.4 // indirect
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
 	github.com/tweekmonster/luser v0.0.0-20161003172636-3fa38070dbd7 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect

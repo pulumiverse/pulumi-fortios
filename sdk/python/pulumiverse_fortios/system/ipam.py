@@ -16,29 +16,53 @@ __all__ = ['IpamArgs', 'Ipam']
 @pulumi.input_type
 class IpamArgs:
     def __init__(__self__, *,
+                 automatic_conflict_resolution: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 manage_lan_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_lan_extension_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_ssid_addresses: Optional[pulumi.Input[str]] = None,
                  pool_subnet: Optional[pulumi.Input[str]] = None,
                  pools: Optional[pulumi.Input[Sequence[pulumi.Input['IpamPoolArgs']]]] = None,
+                 require_subnet_size_match: Optional[pulumi.Input[str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['IpamRuleArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Ipam resource.
+        :param pulumi.Input[str] automatic_conflict_resolution: Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] manage_lan_addresses: Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] manage_lan_extension_addresses: Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] manage_ssid_addresses: Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] pool_subnet: Configure IPAM pool subnet, Class A - Class B subnet.
         :param pulumi.Input[Sequence[pulumi.Input['IpamPoolArgs']]] pools: Configure IPAM pools. The structure of `pools` block is documented below.
+        :param pulumi.Input[str] require_subnet_size_match: Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['IpamRuleArgs']]] rules: Configure IPAM allocation rules. The structure of `rules` block is documented below.
-        :param pulumi.Input[str] server_type: Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+        :param pulumi.Input[str] server_type: Configure the type of IPAM server to use.
         :param pulumi.Input[str] status: Enable/disable IP address management services. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if automatic_conflict_resolution is not None:
+            pulumi.set(__self__, "automatic_conflict_resolution", automatic_conflict_resolution)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if manage_lan_addresses is not None:
+            pulumi.set(__self__, "manage_lan_addresses", manage_lan_addresses)
+        if manage_lan_extension_addresses is not None:
+            pulumi.set(__self__, "manage_lan_extension_addresses", manage_lan_extension_addresses)
+        if manage_ssid_addresses is not None:
+            pulumi.set(__self__, "manage_ssid_addresses", manage_ssid_addresses)
         if pool_subnet is not None:
             pulumi.set(__self__, "pool_subnet", pool_subnet)
         if pools is not None:
             pulumi.set(__self__, "pools", pools)
+        if require_subnet_size_match is not None:
+            pulumi.set(__self__, "require_subnet_size_match", require_subnet_size_match)
         if rules is not None:
             pulumi.set(__self__, "rules", rules)
         if server_type is not None:
@@ -47,6 +71,18 @@ class IpamArgs:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="automaticConflictResolution")
+    def automatic_conflict_resolution(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "automatic_conflict_resolution")
+
+    @automatic_conflict_resolution.setter
+    def automatic_conflict_resolution(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "automatic_conflict_resolution", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -59,6 +95,54 @@ class IpamArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="manageLanAddresses")
+    def manage_lan_addresses(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "manage_lan_addresses")
+
+    @manage_lan_addresses.setter
+    def manage_lan_addresses(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "manage_lan_addresses", value)
+
+    @property
+    @pulumi.getter(name="manageLanExtensionAddresses")
+    def manage_lan_extension_addresses(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "manage_lan_extension_addresses")
+
+    @manage_lan_extension_addresses.setter
+    def manage_lan_extension_addresses(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "manage_lan_extension_addresses", value)
+
+    @property
+    @pulumi.getter(name="manageSsidAddresses")
+    def manage_ssid_addresses(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "manage_ssid_addresses")
+
+    @manage_ssid_addresses.setter
+    def manage_ssid_addresses(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "manage_ssid_addresses", value)
 
     @property
     @pulumi.getter(name="poolSubnet")
@@ -85,6 +169,18 @@ class IpamArgs:
         pulumi.set(self, "pools", value)
 
     @property
+    @pulumi.getter(name="requireSubnetSizeMatch")
+    def require_subnet_size_match(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "require_subnet_size_match")
+
+    @require_subnet_size_match.setter
+    def require_subnet_size_match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "require_subnet_size_match", value)
+
+    @property
     @pulumi.getter
     def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpamRuleArgs']]]]:
         """
@@ -100,7 +196,7 @@ class IpamArgs:
     @pulumi.getter(name="serverType")
     def server_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+        Configure the type of IPAM server to use.
         """
         return pulumi.get(self, "server_type")
 
@@ -136,29 +232,53 @@ class IpamArgs:
 @pulumi.input_type
 class _IpamState:
     def __init__(__self__, *,
+                 automatic_conflict_resolution: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 manage_lan_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_lan_extension_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_ssid_addresses: Optional[pulumi.Input[str]] = None,
                  pool_subnet: Optional[pulumi.Input[str]] = None,
                  pools: Optional[pulumi.Input[Sequence[pulumi.Input['IpamPoolArgs']]]] = None,
+                 require_subnet_size_match: Optional[pulumi.Input[str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['IpamRuleArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Ipam resources.
+        :param pulumi.Input[str] automatic_conflict_resolution: Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] manage_lan_addresses: Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] manage_lan_extension_addresses: Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] manage_ssid_addresses: Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] pool_subnet: Configure IPAM pool subnet, Class A - Class B subnet.
         :param pulumi.Input[Sequence[pulumi.Input['IpamPoolArgs']]] pools: Configure IPAM pools. The structure of `pools` block is documented below.
+        :param pulumi.Input[str] require_subnet_size_match: Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['IpamRuleArgs']]] rules: Configure IPAM allocation rules. The structure of `rules` block is documented below.
-        :param pulumi.Input[str] server_type: Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+        :param pulumi.Input[str] server_type: Configure the type of IPAM server to use.
         :param pulumi.Input[str] status: Enable/disable IP address management services. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if automatic_conflict_resolution is not None:
+            pulumi.set(__self__, "automatic_conflict_resolution", automatic_conflict_resolution)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if manage_lan_addresses is not None:
+            pulumi.set(__self__, "manage_lan_addresses", manage_lan_addresses)
+        if manage_lan_extension_addresses is not None:
+            pulumi.set(__self__, "manage_lan_extension_addresses", manage_lan_extension_addresses)
+        if manage_ssid_addresses is not None:
+            pulumi.set(__self__, "manage_ssid_addresses", manage_ssid_addresses)
         if pool_subnet is not None:
             pulumi.set(__self__, "pool_subnet", pool_subnet)
         if pools is not None:
             pulumi.set(__self__, "pools", pools)
+        if require_subnet_size_match is not None:
+            pulumi.set(__self__, "require_subnet_size_match", require_subnet_size_match)
         if rules is not None:
             pulumi.set(__self__, "rules", rules)
         if server_type is not None:
@@ -167,6 +287,18 @@ class _IpamState:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="automaticConflictResolution")
+    def automatic_conflict_resolution(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "automatic_conflict_resolution")
+
+    @automatic_conflict_resolution.setter
+    def automatic_conflict_resolution(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "automatic_conflict_resolution", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -179,6 +311,54 @@ class _IpamState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="manageLanAddresses")
+    def manage_lan_addresses(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "manage_lan_addresses")
+
+    @manage_lan_addresses.setter
+    def manage_lan_addresses(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "manage_lan_addresses", value)
+
+    @property
+    @pulumi.getter(name="manageLanExtensionAddresses")
+    def manage_lan_extension_addresses(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "manage_lan_extension_addresses")
+
+    @manage_lan_extension_addresses.setter
+    def manage_lan_extension_addresses(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "manage_lan_extension_addresses", value)
+
+    @property
+    @pulumi.getter(name="manageSsidAddresses")
+    def manage_ssid_addresses(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "manage_ssid_addresses")
+
+    @manage_ssid_addresses.setter
+    def manage_ssid_addresses(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "manage_ssid_addresses", value)
 
     @property
     @pulumi.getter(name="poolSubnet")
@@ -205,6 +385,18 @@ class _IpamState:
         pulumi.set(self, "pools", value)
 
     @property
+    @pulumi.getter(name="requireSubnetSizeMatch")
+    def require_subnet_size_match(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "require_subnet_size_match")
+
+    @require_subnet_size_match.setter
+    def require_subnet_size_match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "require_subnet_size_match", value)
+
+    @property
     @pulumi.getter
     def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpamRuleArgs']]]]:
         """
@@ -220,7 +412,7 @@ class _IpamState:
     @pulumi.getter(name="serverType")
     def server_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+        Configure the type of IPAM server to use.
         """
         return pulumi.get(self, "server_type")
 
@@ -258,9 +450,15 @@ class Ipam(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 automatic_conflict_resolution: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 manage_lan_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_lan_extension_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_ssid_addresses: Optional[pulumi.Input[str]] = None,
                  pool_subnet: Optional[pulumi.Input[str]] = None,
                  pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamPoolArgs']]]]] = None,
+                 require_subnet_size_match: Optional[pulumi.Input[str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamRuleArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -289,11 +487,17 @@ class Ipam(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] automatic_conflict_resolution: Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] manage_lan_addresses: Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] manage_lan_extension_addresses: Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] manage_ssid_addresses: Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] pool_subnet: Configure IPAM pool subnet, Class A - Class B subnet.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamPoolArgs']]]] pools: Configure IPAM pools. The structure of `pools` block is documented below.
+        :param pulumi.Input[str] require_subnet_size_match: Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamRuleArgs']]]] rules: Configure IPAM allocation rules. The structure of `rules` block is documented below.
-        :param pulumi.Input[str] server_type: Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+        :param pulumi.Input[str] server_type: Configure the type of IPAM server to use.
         :param pulumi.Input[str] status: Enable/disable IP address management services. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -339,9 +543,15 @@ class Ipam(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 automatic_conflict_resolution: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 manage_lan_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_lan_extension_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_ssid_addresses: Optional[pulumi.Input[str]] = None,
                  pool_subnet: Optional[pulumi.Input[str]] = None,
                  pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamPoolArgs']]]]] = None,
+                 require_subnet_size_match: Optional[pulumi.Input[str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamRuleArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -355,9 +565,15 @@ class Ipam(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = IpamArgs.__new__(IpamArgs)
 
+            __props__.__dict__["automatic_conflict_resolution"] = automatic_conflict_resolution
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["manage_lan_addresses"] = manage_lan_addresses
+            __props__.__dict__["manage_lan_extension_addresses"] = manage_lan_extension_addresses
+            __props__.__dict__["manage_ssid_addresses"] = manage_ssid_addresses
             __props__.__dict__["pool_subnet"] = pool_subnet
             __props__.__dict__["pools"] = pools
+            __props__.__dict__["require_subnet_size_match"] = require_subnet_size_match
             __props__.__dict__["rules"] = rules
             __props__.__dict__["server_type"] = server_type
             __props__.__dict__["status"] = status
@@ -372,9 +588,15 @@ class Ipam(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            automatic_conflict_resolution: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            manage_lan_addresses: Optional[pulumi.Input[str]] = None,
+            manage_lan_extension_addresses: Optional[pulumi.Input[str]] = None,
+            manage_ssid_addresses: Optional[pulumi.Input[str]] = None,
             pool_subnet: Optional[pulumi.Input[str]] = None,
             pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamPoolArgs']]]]] = None,
+            require_subnet_size_match: Optional[pulumi.Input[str]] = None,
             rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamRuleArgs']]]]] = None,
             server_type: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -386,11 +608,17 @@ class Ipam(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] automatic_conflict_resolution: Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] manage_lan_addresses: Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] manage_lan_extension_addresses: Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] manage_ssid_addresses: Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] pool_subnet: Configure IPAM pool subnet, Class A - Class B subnet.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamPoolArgs']]]] pools: Configure IPAM pools. The structure of `pools` block is documented below.
+        :param pulumi.Input[str] require_subnet_size_match: Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamRuleArgs']]]] rules: Configure IPAM allocation rules. The structure of `rules` block is documented below.
-        :param pulumi.Input[str] server_type: Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+        :param pulumi.Input[str] server_type: Configure the type of IPAM server to use.
         :param pulumi.Input[str] status: Enable/disable IP address management services. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -398,14 +626,28 @@ class Ipam(pulumi.CustomResource):
 
         __props__ = _IpamState.__new__(_IpamState)
 
+        __props__.__dict__["automatic_conflict_resolution"] = automatic_conflict_resolution
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["manage_lan_addresses"] = manage_lan_addresses
+        __props__.__dict__["manage_lan_extension_addresses"] = manage_lan_extension_addresses
+        __props__.__dict__["manage_ssid_addresses"] = manage_ssid_addresses
         __props__.__dict__["pool_subnet"] = pool_subnet
         __props__.__dict__["pools"] = pools
+        __props__.__dict__["require_subnet_size_match"] = require_subnet_size_match
         __props__.__dict__["rules"] = rules
         __props__.__dict__["server_type"] = server_type
         __props__.__dict__["status"] = status
         __props__.__dict__["vdomparam"] = vdomparam
         return Ipam(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="automaticConflictResolution")
+    def automatic_conflict_resolution(self) -> pulumi.Output[str]:
+        """
+        Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "automatic_conflict_resolution")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -414,6 +656,38 @@ class Ipam(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="manageLanAddresses")
+    def manage_lan_addresses(self) -> pulumi.Output[str]:
+        """
+        Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "manage_lan_addresses")
+
+    @property
+    @pulumi.getter(name="manageLanExtensionAddresses")
+    def manage_lan_extension_addresses(self) -> pulumi.Output[str]:
+        """
+        Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "manage_lan_extension_addresses")
+
+    @property
+    @pulumi.getter(name="manageSsidAddresses")
+    def manage_ssid_addresses(self) -> pulumi.Output[str]:
+        """
+        Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "manage_ssid_addresses")
 
     @property
     @pulumi.getter(name="poolSubnet")
@@ -432,6 +706,14 @@ class Ipam(pulumi.CustomResource):
         return pulumi.get(self, "pools")
 
     @property
+    @pulumi.getter(name="requireSubnetSizeMatch")
+    def require_subnet_size_match(self) -> pulumi.Output[str]:
+        """
+        Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "require_subnet_size_match")
+
+    @property
     @pulumi.getter
     def rules(self) -> pulumi.Output[Optional[Sequence['outputs.IpamRule']]]:
         """
@@ -443,7 +725,7 @@ class Ipam(pulumi.CustomResource):
     @pulumi.getter(name="serverType")
     def server_type(self) -> pulumi.Output[str]:
         """
-        Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+        Configure the type of IPAM server to use.
         """
         return pulumi.get(self, "server_type")
 

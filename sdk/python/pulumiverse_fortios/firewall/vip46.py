@@ -24,6 +24,7 @@ class Vip46Args:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  mappedport: Optional[pulumi.Input[str]] = None,
                  monitors: Optional[pulumi.Input[Sequence[pulumi.Input['Vip46MonitorArgs']]]] = None,
@@ -47,6 +48,7 @@ class Vip46Args:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] extport: External service port.
         :param pulumi.Input[int] fosid: Custom defined id.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldb_method: Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
         :param pulumi.Input[str] mappedport: Mapped service port.
         :param pulumi.Input[Sequence[pulumi.Input['Vip46MonitorArgs']]] monitors: Health monitors. The structure of `monitor` block is documented below.
@@ -75,6 +77,8 @@ class Vip46Args:
             pulumi.set(__self__, "extport", extport)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ldb_method is not None:
             pulumi.set(__self__, "ldb_method", ldb_method)
         if mappedport is not None:
@@ -197,6 +201,18 @@ class Vip46Args:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ldbMethod")
@@ -365,6 +381,7 @@ class _Vip46State:
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  mappedip: Optional[pulumi.Input[str]] = None,
                  mappedport: Optional[pulumi.Input[str]] = None,
@@ -388,6 +405,7 @@ class _Vip46State:
         :param pulumi.Input[str] extip: Start-external-IP [-end-external-IP].
         :param pulumi.Input[str] extport: External service port.
         :param pulumi.Input[int] fosid: Custom defined id.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldb_method: Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
         :param pulumi.Input[str] mappedip: Start-mapped-IP [-end mapped-IP].
         :param pulumi.Input[str] mappedport: Mapped service port.
@@ -417,6 +435,8 @@ class _Vip46State:
             pulumi.set(__self__, "extport", extport)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ldb_method is not None:
             pulumi.set(__self__, "ldb_method", ldb_method)
         if mappedip is not None:
@@ -529,6 +549,18 @@ class _Vip46State:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ldbMethod")
@@ -711,6 +743,7 @@ class Vip46(pulumi.CustomResource):
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  mappedip: Optional[pulumi.Input[str]] = None,
                  mappedport: Optional[pulumi.Input[str]] = None,
@@ -778,6 +811,7 @@ class Vip46(pulumi.CustomResource):
         :param pulumi.Input[str] extip: Start-external-IP [-end-external-IP].
         :param pulumi.Input[str] extport: External service port.
         :param pulumi.Input[int] fosid: Custom defined id.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldb_method: Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
         :param pulumi.Input[str] mappedip: Start-mapped-IP [-end mapped-IP].
         :param pulumi.Input[str] mappedport: Mapped service port.
@@ -864,6 +898,7 @@ class Vip46(pulumi.CustomResource):
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  mappedip: Optional[pulumi.Input[str]] = None,
                  mappedport: Optional[pulumi.Input[str]] = None,
@@ -896,6 +931,7 @@ class Vip46(pulumi.CustomResource):
             __props__.__dict__["extip"] = extip
             __props__.__dict__["extport"] = extport
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ldb_method"] = ldb_method
             if mappedip is None and not opts.urn:
                 raise TypeError("Missing required property 'mappedip'")
@@ -929,6 +965,7 @@ class Vip46(pulumi.CustomResource):
             extip: Optional[pulumi.Input[str]] = None,
             extport: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ldb_method: Optional[pulumi.Input[str]] = None,
             mappedip: Optional[pulumi.Input[str]] = None,
             mappedport: Optional[pulumi.Input[str]] = None,
@@ -957,6 +994,7 @@ class Vip46(pulumi.CustomResource):
         :param pulumi.Input[str] extip: Start-external-IP [-end-external-IP].
         :param pulumi.Input[str] extport: External service port.
         :param pulumi.Input[int] fosid: Custom defined id.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldb_method: Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
         :param pulumi.Input[str] mappedip: Start-mapped-IP [-end mapped-IP].
         :param pulumi.Input[str] mappedport: Mapped service port.
@@ -983,6 +1021,7 @@ class Vip46(pulumi.CustomResource):
         __props__.__dict__["extip"] = extip
         __props__.__dict__["extport"] = extport
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ldb_method"] = ldb_method
         __props__.__dict__["mappedip"] = mappedip
         __props__.__dict__["mappedport"] = mappedport
@@ -1054,6 +1093,14 @@ class Vip46(pulumi.CustomResource):
         Custom defined id.
         """
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ldbMethod")

@@ -70,6 +70,8 @@ type Clustersync struct {
 	DownIntfsBeforeSessSyncs ClustersyncDownIntfsBeforeSessSyncArrayOutput `pulumi:"downIntfsBeforeSessSyncs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Heartbeat interval (1 - 10 sec).
 	HbInterval pulumi.IntOutput `pulumi:"hbInterval"`
 	// Lost heartbeat threshold (1 - 10).
@@ -134,6 +136,8 @@ type clustersyncState struct {
 	DownIntfsBeforeSessSyncs []ClustersyncDownIntfsBeforeSessSync `pulumi:"downIntfsBeforeSessSyncs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Heartbeat interval (1 - 10 sec).
 	HbInterval *int `pulumi:"hbInterval"`
 	// Lost heartbeat threshold (1 - 10).
@@ -169,6 +173,8 @@ type ClustersyncState struct {
 	DownIntfsBeforeSessSyncs ClustersyncDownIntfsBeforeSessSyncArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Heartbeat interval (1 - 10 sec).
 	HbInterval pulumi.IntPtrInput
 	// Lost heartbeat threshold (1 - 10).
@@ -208,6 +214,8 @@ type clustersyncArgs struct {
 	DownIntfsBeforeSessSyncs []ClustersyncDownIntfsBeforeSessSync `pulumi:"downIntfsBeforeSessSyncs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Heartbeat interval (1 - 10 sec).
 	HbInterval *int `pulumi:"hbInterval"`
 	// Lost heartbeat threshold (1 - 10).
@@ -244,6 +252,8 @@ type ClustersyncArgs struct {
 	DownIntfsBeforeSessSyncs ClustersyncDownIntfsBeforeSessSyncArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Heartbeat interval (1 - 10 sec).
 	HbInterval pulumi.IntPtrInput
 	// Lost heartbeat threshold (1 - 10).
@@ -369,6 +379,11 @@ func (o ClustersyncOutput) DownIntfsBeforeSessSyncs() ClustersyncDownIntfsBefore
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o ClustersyncOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Clustersync) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ClustersyncOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Clustersync) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Heartbeat interval (1 - 10 sec).

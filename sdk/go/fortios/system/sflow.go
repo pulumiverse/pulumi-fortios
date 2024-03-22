@@ -68,6 +68,12 @@ type Sflow struct {
 	CollectorIp pulumi.StringOutput `pulumi:"collectorIp"`
 	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
 	CollectorPort pulumi.IntOutput `pulumi:"collectorPort"`
+	// sFlow collectors. The structure of `collectors` block is documented below.
+	Collectors SflowCollectorArrayOutput `pulumi:"collectors"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -115,6 +121,12 @@ type sflowState struct {
 	CollectorIp *string `pulumi:"collectorIp"`
 	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
 	CollectorPort *int `pulumi:"collectorPort"`
+	// sFlow collectors. The structure of `collectors` block is documented below.
+	Collectors []SflowCollector `pulumi:"collectors"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -130,6 +142,12 @@ type SflowState struct {
 	CollectorIp pulumi.StringPtrInput
 	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
 	CollectorPort pulumi.IntPtrInput
+	// sFlow collectors. The structure of `collectors` block is documented below.
+	Collectors SflowCollectorArrayInput
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -149,6 +167,12 @@ type sflowArgs struct {
 	CollectorIp string `pulumi:"collectorIp"`
 	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
 	CollectorPort *int `pulumi:"collectorPort"`
+	// sFlow collectors. The structure of `collectors` block is documented below.
+	Collectors []SflowCollector `pulumi:"collectors"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -165,6 +189,12 @@ type SflowArgs struct {
 	CollectorIp pulumi.StringInput
 	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
 	CollectorPort pulumi.IntPtrInput
+	// sFlow collectors. The structure of `collectors` block is documented below.
+	Collectors SflowCollectorArrayInput
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -270,6 +300,21 @@ func (o SflowOutput) CollectorIp() pulumi.StringOutput {
 // UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
 func (o SflowOutput) CollectorPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Sflow) pulumi.IntOutput { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+// sFlow collectors. The structure of `collectors` block is documented below.
+func (o SflowOutput) Collectors() SflowCollectorArrayOutput {
+	return o.ApplyT(func(v *Sflow) SflowCollectorArrayOutput { return v.Collectors }).(SflowCollectorArrayOutput)
+}
+
+// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+func (o SflowOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Sflow) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SflowOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Sflow) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Specify outgoing interface to reach server.

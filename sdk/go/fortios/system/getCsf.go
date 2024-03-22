@@ -50,6 +50,12 @@ type LookupCsfResult struct {
 	FabricObjectUnification string `pulumi:"fabricObjectUnification"`
 	// Number of worker processes for Security Fabric daemon.
 	FabricWorkers int `pulumi:"fabricWorkers"`
+	// Enable/disable Security Fabric daemon file management.
+	FileMgmt string `pulumi:"fileMgmt"`
+	// Maximum amount of memory that can be used by the daemon files (in bytes).
+	FileQuota int `pulumi:"fileQuota"`
+	// Warn when the set percentage of quota has been used.
+	FileQuotaWarning int `pulumi:"fileQuotaWarning"`
 	// Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
 	FixedKey string `pulumi:"fixedKey"`
 	// Fabric FortiCloud account unification.
@@ -72,6 +78,8 @@ type LookupCsfResult struct {
 	Status string `pulumi:"status"`
 	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
 	TrustedLists []GetCsfTrustedList `pulumi:"trustedLists"`
+	// Unique ID of the current CSF node
+	Uid string `pulumi:"uid"`
 	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
 	Upstream string `pulumi:"upstream"`
 	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
@@ -169,6 +177,21 @@ func (o LookupCsfResultOutput) FabricWorkers() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupCsfResult) int { return v.FabricWorkers }).(pulumi.IntOutput)
 }
 
+// Enable/disable Security Fabric daemon file management.
+func (o LookupCsfResultOutput) FileMgmt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCsfResult) string { return v.FileMgmt }).(pulumi.StringOutput)
+}
+
+// Maximum amount of memory that can be used by the daemon files (in bytes).
+func (o LookupCsfResultOutput) FileQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupCsfResult) int { return v.FileQuota }).(pulumi.IntOutput)
+}
+
+// Warn when the set percentage of quota has been used.
+func (o LookupCsfResultOutput) FileQuotaWarning() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupCsfResult) int { return v.FileQuotaWarning }).(pulumi.IntOutput)
+}
+
 // Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
 func (o LookupCsfResultOutput) FixedKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCsfResult) string { return v.FixedKey }).(pulumi.StringOutput)
@@ -222,6 +245,11 @@ func (o LookupCsfResultOutput) Status() pulumi.StringOutput {
 // Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
 func (o LookupCsfResultOutput) TrustedLists() GetCsfTrustedListArrayOutput {
 	return o.ApplyT(func(v LookupCsfResult) []GetCsfTrustedList { return v.TrustedLists }).(GetCsfTrustedListArrayOutput)
+}
+
+// Unique ID of the current CSF node
+func (o LookupCsfResultOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCsfResult) string { return v.Uid }).(pulumi.StringOutput)
 }
 
 // IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.

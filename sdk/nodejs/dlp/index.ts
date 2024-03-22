@@ -15,6 +15,11 @@ export type Dictionary = import("./dictionary").Dictionary;
 export const Dictionary: typeof import("./dictionary").Dictionary = null as any;
 utilities.lazyLoad(exports, ["Dictionary"], () => require("./dictionary"));
 
+export { ExactdatamatchArgs, ExactdatamatchState } from "./exactdatamatch";
+export type Exactdatamatch = import("./exactdatamatch").Exactdatamatch;
+export const Exactdatamatch: typeof import("./exactdatamatch").Exactdatamatch = null as any;
+utilities.lazyLoad(exports, ["Exactdatamatch"], () => require("./exactdatamatch"));
+
 export { FilepatternArgs, FilepatternState } from "./filepattern";
 export type Filepattern = import("./filepattern").Filepattern;
 export const Filepattern: typeof import("./filepattern").Filepattern = null as any;
@@ -59,6 +64,8 @@ const _module = {
                 return new Datatype(name, <any>undefined, { urn })
             case "fortios:dlp/dictionary:Dictionary":
                 return new Dictionary(name, <any>undefined, { urn })
+            case "fortios:dlp/exactdatamatch:Exactdatamatch":
+                return new Exactdatamatch(name, <any>undefined, { urn })
             case "fortios:dlp/filepattern:Filepattern":
                 return new Filepattern(name, <any>undefined, { urn })
             case "fortios:dlp/fpdocsource:Fpdocsource":
@@ -80,6 +87,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("fortios", "dlp/datatype", _module)
 pulumi.runtime.registerResourceModule("fortios", "dlp/dictionary", _module)
+pulumi.runtime.registerResourceModule("fortios", "dlp/exactdatamatch", _module)
 pulumi.runtime.registerResourceModule("fortios", "dlp/filepattern", _module)
 pulumi.runtime.registerResourceModule("fortios", "dlp/fpdocsource", _module)
 pulumi.runtime.registerResourceModule("fortios", "dlp/fpsensitivity", _module)

@@ -71,6 +71,12 @@ namespace Pulumiverse.Fortios.Dlp
         public Output<string> FullArchiveProto { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("nacQuarLog")]
@@ -190,6 +196,12 @@ namespace Pulumiverse.Fortios.Dlp
         public Input<string>? FullArchiveProto { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("nacQuarLog")]
@@ -274,6 +286,12 @@ namespace Pulumiverse.Fortios.Dlp
         /// </summary>
         [Input("fullArchiveProto")]
         public Input<string>? FullArchiveProto { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.

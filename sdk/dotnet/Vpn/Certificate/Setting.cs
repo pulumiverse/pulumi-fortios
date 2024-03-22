@@ -178,6 +178,12 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Output<Outputs.SettingCrlVerification> CrlVerification { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Specify outgoing interface to reach server.
         /// </summary>
         [Output("interface")]
@@ -202,13 +208,43 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Output<string> OcspOption { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+        /// Enable/disable receiving certificates using the OCSP.
         /// </summary>
         [Output("ocspStatus")]
         public Output<string> OcspStatus { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+        /// </summary>
+        [Output("proxy")]
+        public Output<string> Proxy { get; private set; } = null!;
+
+        /// <summary>
+        /// Proxy server password.
+        /// </summary>
+        [Output("proxyPassword")]
+        public Output<string?> ProxyPassword { get; private set; } = null!;
+
+        /// <summary>
+        /// Proxy server port (1 - 65535, default = 8080).
+        /// </summary>
+        [Output("proxyPort")]
+        public Output<int> ProxyPort { get; private set; } = null!;
+
+        /// <summary>
+        /// Proxy server user name.
+        /// </summary>
+        [Output("proxyUsername")]
+        public Output<string> ProxyUsername { get; private set; } = null!;
+
+        /// <summary>
+        /// Source IP address for dynamic AIA and OCSP queries.
+        /// </summary>
+        [Output("sourceIp")]
+        public Output<string> SourceIp { get; private set; } = null!;
+
+        /// <summary>
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Output("sslMinProtoVersion")]
         public Output<string> SslMinProtoVersion { get; private set; } = null!;
@@ -405,6 +441,12 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Input<Inputs.SettingCrlVerificationArgs>? CrlVerification { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Specify outgoing interface to reach server.
         /// </summary>
         [Input("interface")]
@@ -429,13 +471,43 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Input<string>? OcspOption { get; set; }
 
         /// <summary>
-        /// Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+        /// Enable/disable receiving certificates using the OCSP.
         /// </summary>
         [Input("ocspStatus")]
         public Input<string>? OcspStatus { get; set; }
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+        /// </summary>
+        [Input("proxy")]
+        public Input<string>? Proxy { get; set; }
+
+        /// <summary>
+        /// Proxy server password.
+        /// </summary>
+        [Input("proxyPassword")]
+        public Input<string>? ProxyPassword { get; set; }
+
+        /// <summary>
+        /// Proxy server port (1 - 65535, default = 8080).
+        /// </summary>
+        [Input("proxyPort")]
+        public Input<int>? ProxyPort { get; set; }
+
+        /// <summary>
+        /// Proxy server user name.
+        /// </summary>
+        [Input("proxyUsername")]
+        public Input<string>? ProxyUsername { get; set; }
+
+        /// <summary>
+        /// Source IP address for dynamic AIA and OCSP queries.
+        /// </summary>
+        [Input("sourceIp")]
+        public Input<string>? SourceIp { get; set; }
+
+        /// <summary>
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Input("sslMinProtoVersion")]
         public Input<string>? SslMinProtoVersion { get; set; }
@@ -593,6 +665,12 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Input<Inputs.SettingCrlVerificationGetArgs>? CrlVerification { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Specify outgoing interface to reach server.
         /// </summary>
         [Input("interface")]
@@ -617,13 +695,43 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Input<string>? OcspOption { get; set; }
 
         /// <summary>
-        /// Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+        /// Enable/disable receiving certificates using the OCSP.
         /// </summary>
         [Input("ocspStatus")]
         public Input<string>? OcspStatus { get; set; }
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+        /// </summary>
+        [Input("proxy")]
+        public Input<string>? Proxy { get; set; }
+
+        /// <summary>
+        /// Proxy server password.
+        /// </summary>
+        [Input("proxyPassword")]
+        public Input<string>? ProxyPassword { get; set; }
+
+        /// <summary>
+        /// Proxy server port (1 - 65535, default = 8080).
+        /// </summary>
+        [Input("proxyPort")]
+        public Input<int>? ProxyPort { get; set; }
+
+        /// <summary>
+        /// Proxy server user name.
+        /// </summary>
+        [Input("proxyUsername")]
+        public Input<string>? ProxyUsername { get; set; }
+
+        /// <summary>
+        /// Source IP address for dynamic AIA and OCSP queries.
+        /// </summary>
+        [Input("sourceIp")]
+        public Input<string>? SourceIp { get; set; }
+
+        /// <summary>
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Input("sslMinProtoVersion")]
         public Input<string>? SslMinProtoVersion { get; set; }

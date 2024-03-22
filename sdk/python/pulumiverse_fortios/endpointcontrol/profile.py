@@ -22,6 +22,7 @@ class ProfileArgs:
                  forticlient_android_settings: Optional[pulumi.Input['ProfileForticlientAndroidSettingsArgs']] = None,
                  forticlient_ios_settings: Optional[pulumi.Input['ProfileForticlientIosSettingsArgs']] = None,
                  forticlient_winmac_settings: Optional[pulumi.Input['ProfileForticlientWinmacSettingsArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  on_net_addrs: Optional[pulumi.Input[Sequence[pulumi.Input['ProfileOnNetAddrArgs']]]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  replacemsg_override_group: Optional[pulumi.Input[str]] = None,
@@ -37,6 +38,7 @@ class ProfileArgs:
         :param pulumi.Input['ProfileForticlientAndroidSettingsArgs'] forticlient_android_settings: FortiClient settings for Android platform. The structure of `forticlient_android_settings` block is documented below.
         :param pulumi.Input['ProfileForticlientIosSettingsArgs'] forticlient_ios_settings: FortiClient settings for iOS platform. The structure of `forticlient_ios_settings` block is documented below.
         :param pulumi.Input['ProfileForticlientWinmacSettingsArgs'] forticlient_winmac_settings: FortiClient settings for Windows/Mac platform. The structure of `forticlient_winmac_settings` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['ProfileOnNetAddrArgs']]] on_net_addrs: Addresses for on-net detection. The structure of `on_net_addr` block is documented below.
         :param pulumi.Input[str] profile_name: Profile name.
         :param pulumi.Input[str] replacemsg_override_group: Select an endpoint control replacement message override group from available options.
@@ -57,6 +59,8 @@ class ProfileArgs:
             pulumi.set(__self__, "forticlient_ios_settings", forticlient_ios_settings)
         if forticlient_winmac_settings is not None:
             pulumi.set(__self__, "forticlient_winmac_settings", forticlient_winmac_settings)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if on_net_addrs is not None:
             pulumi.set(__self__, "on_net_addrs", on_net_addrs)
         if profile_name is not None:
@@ -143,6 +147,18 @@ class ProfileArgs:
     @forticlient_winmac_settings.setter
     def forticlient_winmac_settings(self, value: Optional[pulumi.Input['ProfileForticlientWinmacSettingsArgs']]):
         pulumi.set(self, "forticlient_winmac_settings", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="onNetAddrs")
@@ -238,6 +254,7 @@ class _ProfileState:
                  forticlient_android_settings: Optional[pulumi.Input['ProfileForticlientAndroidSettingsArgs']] = None,
                  forticlient_ios_settings: Optional[pulumi.Input['ProfileForticlientIosSettingsArgs']] = None,
                  forticlient_winmac_settings: Optional[pulumi.Input['ProfileForticlientWinmacSettingsArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  on_net_addrs: Optional[pulumi.Input[Sequence[pulumi.Input['ProfileOnNetAddrArgs']]]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  replacemsg_override_group: Optional[pulumi.Input[str]] = None,
@@ -253,6 +270,7 @@ class _ProfileState:
         :param pulumi.Input['ProfileForticlientAndroidSettingsArgs'] forticlient_android_settings: FortiClient settings for Android platform. The structure of `forticlient_android_settings` block is documented below.
         :param pulumi.Input['ProfileForticlientIosSettingsArgs'] forticlient_ios_settings: FortiClient settings for iOS platform. The structure of `forticlient_ios_settings` block is documented below.
         :param pulumi.Input['ProfileForticlientWinmacSettingsArgs'] forticlient_winmac_settings: FortiClient settings for Windows/Mac platform. The structure of `forticlient_winmac_settings` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['ProfileOnNetAddrArgs']]] on_net_addrs: Addresses for on-net detection. The structure of `on_net_addr` block is documented below.
         :param pulumi.Input[str] profile_name: Profile name.
         :param pulumi.Input[str] replacemsg_override_group: Select an endpoint control replacement message override group from available options.
@@ -273,6 +291,8 @@ class _ProfileState:
             pulumi.set(__self__, "forticlient_ios_settings", forticlient_ios_settings)
         if forticlient_winmac_settings is not None:
             pulumi.set(__self__, "forticlient_winmac_settings", forticlient_winmac_settings)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if on_net_addrs is not None:
             pulumi.set(__self__, "on_net_addrs", on_net_addrs)
         if profile_name is not None:
@@ -359,6 +379,18 @@ class _ProfileState:
     @forticlient_winmac_settings.setter
     def forticlient_winmac_settings(self, value: Optional[pulumi.Input['ProfileForticlientWinmacSettingsArgs']]):
         pulumi.set(self, "forticlient_winmac_settings", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="onNetAddrs")
@@ -456,6 +488,7 @@ class Profile(pulumi.CustomResource):
                  forticlient_android_settings: Optional[pulumi.Input[pulumi.InputType['ProfileForticlientAndroidSettingsArgs']]] = None,
                  forticlient_ios_settings: Optional[pulumi.Input[pulumi.InputType['ProfileForticlientIosSettingsArgs']]] = None,
                  forticlient_winmac_settings: Optional[pulumi.Input[pulumi.InputType['ProfileForticlientWinmacSettingsArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  on_net_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileOnNetAddrArgs']]]]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  replacemsg_override_group: Optional[pulumi.Input[str]] = None,
@@ -553,6 +586,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ProfileForticlientAndroidSettingsArgs']] forticlient_android_settings: FortiClient settings for Android platform. The structure of `forticlient_android_settings` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileForticlientIosSettingsArgs']] forticlient_ios_settings: FortiClient settings for iOS platform. The structure of `forticlient_ios_settings` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileForticlientWinmacSettingsArgs']] forticlient_winmac_settings: FortiClient settings for Windows/Mac platform. The structure of `forticlient_winmac_settings` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileOnNetAddrArgs']]]] on_net_addrs: Addresses for on-net detection. The structure of `on_net_addr` block is documented below.
         :param pulumi.Input[str] profile_name: Profile name.
         :param pulumi.Input[str] replacemsg_override_group: Select an endpoint control replacement message override group from available options.
@@ -669,6 +703,7 @@ class Profile(pulumi.CustomResource):
                  forticlient_android_settings: Optional[pulumi.Input[pulumi.InputType['ProfileForticlientAndroidSettingsArgs']]] = None,
                  forticlient_ios_settings: Optional[pulumi.Input[pulumi.InputType['ProfileForticlientIosSettingsArgs']]] = None,
                  forticlient_winmac_settings: Optional[pulumi.Input[pulumi.InputType['ProfileForticlientWinmacSettingsArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  on_net_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileOnNetAddrArgs']]]]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  replacemsg_override_group: Optional[pulumi.Input[str]] = None,
@@ -691,6 +726,7 @@ class Profile(pulumi.CustomResource):
             __props__.__dict__["forticlient_android_settings"] = forticlient_android_settings
             __props__.__dict__["forticlient_ios_settings"] = forticlient_ios_settings
             __props__.__dict__["forticlient_winmac_settings"] = forticlient_winmac_settings
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["on_net_addrs"] = on_net_addrs
             __props__.__dict__["profile_name"] = profile_name
             __props__.__dict__["replacemsg_override_group"] = replacemsg_override_group
@@ -714,6 +750,7 @@ class Profile(pulumi.CustomResource):
             forticlient_android_settings: Optional[pulumi.Input[pulumi.InputType['ProfileForticlientAndroidSettingsArgs']]] = None,
             forticlient_ios_settings: Optional[pulumi.Input[pulumi.InputType['ProfileForticlientIosSettingsArgs']]] = None,
             forticlient_winmac_settings: Optional[pulumi.Input[pulumi.InputType['ProfileForticlientWinmacSettingsArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             on_net_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileOnNetAddrArgs']]]]] = None,
             profile_name: Optional[pulumi.Input[str]] = None,
             replacemsg_override_group: Optional[pulumi.Input[str]] = None,
@@ -734,6 +771,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ProfileForticlientAndroidSettingsArgs']] forticlient_android_settings: FortiClient settings for Android platform. The structure of `forticlient_android_settings` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileForticlientIosSettingsArgs']] forticlient_ios_settings: FortiClient settings for iOS platform. The structure of `forticlient_ios_settings` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileForticlientWinmacSettingsArgs']] forticlient_winmac_settings: FortiClient settings for Windows/Mac platform. The structure of `forticlient_winmac_settings` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileOnNetAddrArgs']]]] on_net_addrs: Addresses for on-net detection. The structure of `on_net_addr` block is documented below.
         :param pulumi.Input[str] profile_name: Profile name.
         :param pulumi.Input[str] replacemsg_override_group: Select an endpoint control replacement message override group from available options.
@@ -752,6 +790,7 @@ class Profile(pulumi.CustomResource):
         __props__.__dict__["forticlient_android_settings"] = forticlient_android_settings
         __props__.__dict__["forticlient_ios_settings"] = forticlient_ios_settings
         __props__.__dict__["forticlient_winmac_settings"] = forticlient_winmac_settings
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["on_net_addrs"] = on_net_addrs
         __props__.__dict__["profile_name"] = profile_name
         __props__.__dict__["replacemsg_override_group"] = replacemsg_override_group
@@ -808,6 +847,14 @@ class Profile(pulumi.CustomResource):
         FortiClient settings for Windows/Mac platform. The structure of `forticlient_winmac_settings` block is documented below.
         """
         return pulumi.get(self, "forticlient_winmac_settings")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="onNetAddrs")

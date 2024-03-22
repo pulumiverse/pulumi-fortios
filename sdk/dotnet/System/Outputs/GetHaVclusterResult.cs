@@ -31,6 +31,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly int PingserverFailoverThreshold;
         /// <summary>
+        /// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        /// </summary>
+        public readonly int PingserverFlipTimeout;
+        /// <summary>
         /// Interfaces to check for remote IP monitoring.
         /// </summary>
         public readonly string PingserverMonitorInterface;
@@ -65,6 +69,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             int pingserverFailoverThreshold,
 
+            int pingserverFlipTimeout,
+
             string pingserverMonitorInterface,
 
             string pingserverSecondaryForceReset,
@@ -81,6 +87,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             Override = @override;
             OverrideWaitTime = overrideWaitTime;
             PingserverFailoverThreshold = pingserverFailoverThreshold;
+            PingserverFlipTimeout = pingserverFlipTimeout;
             PingserverMonitorInterface = pingserverMonitorInterface;
             PingserverSecondaryForceReset = pingserverSecondaryForceReset;
             PingserverSlaveForceReset = pingserverSlaveForceReset;

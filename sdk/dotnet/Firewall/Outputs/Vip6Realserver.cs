@@ -55,6 +55,10 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? Status;
         /// <summary>
+        /// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? TranslateHost;
+        /// <summary>
         /// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
         /// </summary>
         public readonly int? Weight;
@@ -81,6 +85,8 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
 
             string? status,
 
+            string? translateHost,
+
             int? weight)
         {
             ClientIp = clientIp;
@@ -93,6 +99,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
             Monitor = monitor;
             Port = port;
             Status = status;
+            TranslateHost = translateHost;
             Weight = weight;
         }
     }

@@ -36,6 +36,8 @@ type Affinityinterrupt struct {
 
 	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask pulumi.StringOutput `pulumi:"affinityCpumask"`
+	// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+	DefaultAffinityCpumask pulumi.StringOutput `pulumi:"defaultAffinityCpumask"`
 	// ID of the interrupt affinity setting.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
 	// Interrupt name.
@@ -85,6 +87,8 @@ func GetAffinityinterrupt(ctx *pulumi.Context,
 type affinityinterruptState struct {
 	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask *string `pulumi:"affinityCpumask"`
+	// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+	DefaultAffinityCpumask *string `pulumi:"defaultAffinityCpumask"`
 	// ID of the interrupt affinity setting.
 	Fosid *int `pulumi:"fosid"`
 	// Interrupt name.
@@ -96,6 +100,8 @@ type affinityinterruptState struct {
 type AffinityinterruptState struct {
 	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask pulumi.StringPtrInput
+	// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+	DefaultAffinityCpumask pulumi.StringPtrInput
 	// ID of the interrupt affinity setting.
 	Fosid pulumi.IntPtrInput
 	// Interrupt name.
@@ -111,6 +117,8 @@ func (AffinityinterruptState) ElementType() reflect.Type {
 type affinityinterruptArgs struct {
 	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask string `pulumi:"affinityCpumask"`
+	// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+	DefaultAffinityCpumask *string `pulumi:"defaultAffinityCpumask"`
 	// ID of the interrupt affinity setting.
 	Fosid int `pulumi:"fosid"`
 	// Interrupt name.
@@ -123,6 +131,8 @@ type affinityinterruptArgs struct {
 type AffinityinterruptArgs struct {
 	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask pulumi.StringInput
+	// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+	DefaultAffinityCpumask pulumi.StringPtrInput
 	// ID of the interrupt affinity setting.
 	Fosid pulumi.IntInput
 	// Interrupt name.
@@ -221,6 +231,11 @@ func (o AffinityinterruptOutput) ToAffinityinterruptOutputWithContext(ctx contex
 // Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 func (o AffinityinterruptOutput) AffinityCpumask() pulumi.StringOutput {
 	return o.ApplyT(func(v *Affinityinterrupt) pulumi.StringOutput { return v.AffinityCpumask }).(pulumi.StringOutput)
+}
+
+// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+func (o AffinityinterruptOutput) DefaultAffinityCpumask() pulumi.StringOutput {
+	return o.ApplyT(func(v *Affinityinterrupt) pulumi.StringOutput { return v.DefaultAffinityCpumask }).(pulumi.StringOutput)
 }
 
 // ID of the interrupt affinity setting.

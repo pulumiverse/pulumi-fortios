@@ -162,6 +162,8 @@ type Profileprotocoloptions struct {
 	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
 	// Configure FTP protocol options. The structure of `ftp` block is documented below.
 	Ftp ProfileprotocoloptionsFtpOutput `pulumi:"ftp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure HTTP protocol options. The structure of `http` block is documented below.
 	Http ProfileprotocoloptionsHttpOutput `pulumi:"http"`
 	// Configure IMAP protocol options. The structure of `imap` block is documented below.
@@ -232,6 +234,8 @@ type profileprotocoloptionsState struct {
 	FeatureSet *string `pulumi:"featureSet"`
 	// Configure FTP protocol options. The structure of `ftp` block is documented below.
 	Ftp *ProfileprotocoloptionsFtp `pulumi:"ftp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure HTTP protocol options. The structure of `http` block is documented below.
 	Http *ProfileprotocoloptionsHttp `pulumi:"http"`
 	// Configure IMAP protocol options. The structure of `imap` block is documented below.
@@ -273,6 +277,8 @@ type ProfileprotocoloptionsState struct {
 	FeatureSet pulumi.StringPtrInput
 	// Configure FTP protocol options. The structure of `ftp` block is documented below.
 	Ftp ProfileprotocoloptionsFtpPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure HTTP protocol options. The structure of `http` block is documented below.
 	Http ProfileprotocoloptionsHttpPtrInput
 	// Configure IMAP protocol options. The structure of `imap` block is documented below.
@@ -318,6 +324,8 @@ type profileprotocoloptionsArgs struct {
 	FeatureSet *string `pulumi:"featureSet"`
 	// Configure FTP protocol options. The structure of `ftp` block is documented below.
 	Ftp *ProfileprotocoloptionsFtp `pulumi:"ftp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure HTTP protocol options. The structure of `http` block is documented below.
 	Http *ProfileprotocoloptionsHttp `pulumi:"http"`
 	// Configure IMAP protocol options. The structure of `imap` block is documented below.
@@ -360,6 +368,8 @@ type ProfileprotocoloptionsArgs struct {
 	FeatureSet pulumi.StringPtrInput
 	// Configure FTP protocol options. The structure of `ftp` block is documented below.
 	Ftp ProfileprotocoloptionsFtpPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure HTTP protocol options. The structure of `http` block is documented below.
 	Http ProfileprotocoloptionsHttpPtrInput
 	// Configure IMAP protocol options. The structure of `imap` block is documented below.
@@ -500,6 +510,11 @@ func (o ProfileprotocoloptionsOutput) FeatureSet() pulumi.StringOutput {
 // Configure FTP protocol options. The structure of `ftp` block is documented below.
 func (o ProfileprotocoloptionsOutput) Ftp() ProfileprotocoloptionsFtpOutput {
 	return o.ApplyT(func(v *Profileprotocoloptions) ProfileprotocoloptionsFtpOutput { return v.Ftp }).(ProfileprotocoloptionsFtpOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProfileprotocoloptionsOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profileprotocoloptions) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Configure HTTP protocol options. The structure of `http` block is documented below.

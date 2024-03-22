@@ -57,10 +57,14 @@ type Setting struct {
 	FapcCompatibility pulumi.StringOutput `pulumi:"fapcCompatibility"`
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization pulumi.StringOutput `pulumi:"firmwareProvisionOnAuthorization"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids SettingOffendingSsidArrayOutput `pulumi:"offendingSsids"`
 	// Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
 	PhishingSsidDetect pulumi.StringOutput `pulumi:"phishingSsidDetect"`
+	// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+	RollingWtpUpgrade pulumi.StringOutput `pulumi:"rollingWtpUpgrade"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
@@ -121,10 +125,14 @@ type settingState struct {
 	FapcCompatibility *string `pulumi:"fapcCompatibility"`
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids []SettingOffendingSsid `pulumi:"offendingSsids"`
 	// Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
 	PhishingSsidDetect *string `pulumi:"phishingSsidDetect"`
+	// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+	RollingWtpUpgrade *string `pulumi:"rollingWtpUpgrade"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
@@ -156,10 +164,14 @@ type SettingState struct {
 	FapcCompatibility pulumi.StringPtrInput
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids SettingOffendingSsidArrayInput
 	// Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
 	PhishingSsidDetect pulumi.StringPtrInput
+	// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+	RollingWtpUpgrade pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
@@ -195,10 +207,14 @@ type settingArgs struct {
 	FapcCompatibility *string `pulumi:"fapcCompatibility"`
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids []SettingOffendingSsid `pulumi:"offendingSsids"`
 	// Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
 	PhishingSsidDetect *string `pulumi:"phishingSsidDetect"`
+	// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+	RollingWtpUpgrade *string `pulumi:"rollingWtpUpgrade"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
@@ -231,10 +247,14 @@ type SettingArgs struct {
 	FapcCompatibility pulumi.StringPtrInput
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids SettingOffendingSsidArrayInput
 	// Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
 	PhishingSsidDetect pulumi.StringPtrInput
+	// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+	RollingWtpUpgrade pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
@@ -388,6 +408,11 @@ func (o SettingOutput) FirmwareProvisionOnAuthorization() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.FirmwareProvisionOnAuthorization }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Configure offending SSID. The structure of `offendingSsid` block is documented below.
 func (o SettingOutput) OffendingSsids() SettingOffendingSsidArrayOutput {
 	return o.ApplyT(func(v *Setting) SettingOffendingSsidArrayOutput { return v.OffendingSsids }).(SettingOffendingSsidArrayOutput)
@@ -396,6 +421,11 @@ func (o SettingOutput) OffendingSsids() SettingOffendingSsidArrayOutput {
 // Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
 func (o SettingOutput) PhishingSsidDetect() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.PhishingSsidDetect }).(pulumi.StringOutput)
+}
+
+// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+func (o SettingOutput) RollingWtpUpgrade() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.RollingWtpUpgrade }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

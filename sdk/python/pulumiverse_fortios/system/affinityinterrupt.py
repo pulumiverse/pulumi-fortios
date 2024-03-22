@@ -17,17 +17,21 @@ class AffinityinterruptArgs:
                  affinity_cpumask: pulumi.Input[str],
                  fosid: pulumi.Input[int],
                  interrupt: pulumi.Input[str],
+                 default_affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Affinityinterrupt resource.
         :param pulumi.Input[str] affinity_cpumask: Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] fosid: ID of the interrupt affinity setting.
         :param pulumi.Input[str] interrupt: Interrupt name.
+        :param pulumi.Input[str] default_affinity_cpumask: Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         pulumi.set(__self__, "affinity_cpumask", affinity_cpumask)
         pulumi.set(__self__, "fosid", fosid)
         pulumi.set(__self__, "interrupt", interrupt)
+        if default_affinity_cpumask is not None:
+            pulumi.set(__self__, "default_affinity_cpumask", default_affinity_cpumask)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -68,6 +72,18 @@ class AffinityinterruptArgs:
         pulumi.set(self, "interrupt", value)
 
     @property
+    @pulumi.getter(name="defaultAffinityCpumask")
+    def default_affinity_cpumask(self) -> Optional[pulumi.Input[str]]:
+        """
+        Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+        """
+        return pulumi.get(self, "default_affinity_cpumask")
+
+    @default_affinity_cpumask.setter
+    def default_affinity_cpumask(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_affinity_cpumask", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -84,18 +100,22 @@ class AffinityinterruptArgs:
 class _AffinityinterruptState:
     def __init__(__self__, *,
                  affinity_cpumask: Optional[pulumi.Input[str]] = None,
+                 default_affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  interrupt: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Affinityinterrupt resources.
         :param pulumi.Input[str] affinity_cpumask: Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+        :param pulumi.Input[str] default_affinity_cpumask: Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] fosid: ID of the interrupt affinity setting.
         :param pulumi.Input[str] interrupt: Interrupt name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if affinity_cpumask is not None:
             pulumi.set(__self__, "affinity_cpumask", affinity_cpumask)
+        if default_affinity_cpumask is not None:
+            pulumi.set(__self__, "default_affinity_cpumask", default_affinity_cpumask)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
         if interrupt is not None:
@@ -114,6 +134,18 @@ class _AffinityinterruptState:
     @affinity_cpumask.setter
     def affinity_cpumask(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "affinity_cpumask", value)
+
+    @property
+    @pulumi.getter(name="defaultAffinityCpumask")
+    def default_affinity_cpumask(self) -> Optional[pulumi.Input[str]]:
+        """
+        Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+        """
+        return pulumi.get(self, "default_affinity_cpumask")
+
+    @default_affinity_cpumask.setter
+    def default_affinity_cpumask(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_affinity_cpumask", value)
 
     @property
     @pulumi.getter
@@ -158,6 +190,7 @@ class Affinityinterrupt(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  affinity_cpumask: Optional[pulumi.Input[str]] = None,
+                 default_affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  interrupt: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -186,6 +219,7 @@ class Affinityinterrupt(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] affinity_cpumask: Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+        :param pulumi.Input[str] default_affinity_cpumask: Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] fosid: ID of the interrupt affinity setting.
         :param pulumi.Input[str] interrupt: Interrupt name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -233,6 +267,7 @@ class Affinityinterrupt(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  affinity_cpumask: Optional[pulumi.Input[str]] = None,
+                 default_affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  interrupt: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -248,6 +283,7 @@ class Affinityinterrupt(pulumi.CustomResource):
             if affinity_cpumask is None and not opts.urn:
                 raise TypeError("Missing required property 'affinity_cpumask'")
             __props__.__dict__["affinity_cpumask"] = affinity_cpumask
+            __props__.__dict__["default_affinity_cpumask"] = default_affinity_cpumask
             if fosid is None and not opts.urn:
                 raise TypeError("Missing required property 'fosid'")
             __props__.__dict__["fosid"] = fosid
@@ -266,6 +302,7 @@ class Affinityinterrupt(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             affinity_cpumask: Optional[pulumi.Input[str]] = None,
+            default_affinity_cpumask: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
             interrupt: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Affinityinterrupt':
@@ -277,6 +314,7 @@ class Affinityinterrupt(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] affinity_cpumask: Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+        :param pulumi.Input[str] default_affinity_cpumask: Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] fosid: ID of the interrupt affinity setting.
         :param pulumi.Input[str] interrupt: Interrupt name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -286,6 +324,7 @@ class Affinityinterrupt(pulumi.CustomResource):
         __props__ = _AffinityinterruptState.__new__(_AffinityinterruptState)
 
         __props__.__dict__["affinity_cpumask"] = affinity_cpumask
+        __props__.__dict__["default_affinity_cpumask"] = default_affinity_cpumask
         __props__.__dict__["fosid"] = fosid
         __props__.__dict__["interrupt"] = interrupt
         __props__.__dict__["vdomparam"] = vdomparam
@@ -298,6 +337,14 @@ class Affinityinterrupt(pulumi.CustomResource):
         Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
         """
         return pulumi.get(self, "affinity_cpumask")
+
+    @property
+    @pulumi.getter(name="defaultAffinityCpumask")
+    def default_affinity_cpumask(self) -> pulumi.Output[str]:
+        """
+        Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+        """
+        return pulumi.get(self, "default_affinity_cpumask")
 
     @property
     @pulumi.getter

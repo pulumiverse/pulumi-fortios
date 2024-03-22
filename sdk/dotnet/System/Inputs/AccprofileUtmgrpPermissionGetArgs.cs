@@ -26,6 +26,18 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<string>? ApplicationControl { get; set; }
 
         /// <summary>
+        /// Inline CASB filter profile and settings Valid values: `none`, `read`, `read-write`.
+        /// </summary>
+        [Input("casb")]
+        public Input<string>? Casb { get; set; }
+
+        /// <summary>
+        /// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+        /// </summary>
+        [Input("dataLeakPrevention")]
+        public Input<string>? DataLeakPrevention { get; set; }
+
+        /// <summary>
         /// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
         /// </summary>
         [Input("dataLossPrevention")]
@@ -78,6 +90,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         /// </summary>
         [Input("videofilter")]
         public Input<string>? Videofilter { get; set; }
+
+        /// <summary>
+        /// Virtual patch profiles and settings. Valid values: `none`, `read`, `read-write`.
+        /// </summary>
+        [Input("virtualPatch")]
+        public Input<string>? VirtualPatch { get; set; }
 
         /// <summary>
         /// VoIP profiles and settings. Valid values: `none`, `read`, `read-write`.

@@ -145,6 +145,10 @@ export class Eventfilter extends pulumi.CustomResource {
      */
     public readonly wanOpt!: pulumi.Output<string>;
     /**
+     * Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+     */
+    public readonly webproxy!: pulumi.Output<string>;
+    /**
      * Enable/disable wireless event logging. Valid values: `enable`, `disable`.
      */
     public readonly wirelessActivity!: pulumi.Output<string>;
@@ -179,6 +183,7 @@ export class Eventfilter extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["vpn"] = state ? state.vpn : undefined;
             resourceInputs["wanOpt"] = state ? state.wanOpt : undefined;
+            resourceInputs["webproxy"] = state ? state.webproxy : undefined;
             resourceInputs["wirelessActivity"] = state ? state.wirelessActivity : undefined;
         } else {
             const args = argsOrState as EventfilterArgs | undefined;
@@ -199,6 +204,7 @@ export class Eventfilter extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["vpn"] = args ? args.vpn : undefined;
             resourceInputs["wanOpt"] = args ? args.wanOpt : undefined;
+            resourceInputs["webproxy"] = args ? args.webproxy : undefined;
             resourceInputs["wirelessActivity"] = args ? args.wirelessActivity : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -279,6 +285,10 @@ export interface EventfilterState {
      */
     wanOpt?: pulumi.Input<string>;
     /**
+     * Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+     */
+    webproxy?: pulumi.Input<string>;
+    /**
      * Enable/disable wireless event logging. Valid values: `enable`, `disable`.
      */
     wirelessActivity?: pulumi.Input<string>;
@@ -356,6 +366,10 @@ export interface EventfilterArgs {
      * Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
      */
     wanOpt?: pulumi.Input<string>;
+    /**
+     * Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+     */
+    webproxy?: pulumi.Input<string>;
     /**
      * Enable/disable wireless event logging. Valid values: `enable`, `disable`.
      */

@@ -37,8 +37,18 @@ type Profile struct {
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
 	// Enable/disable Dailymotion video source. Valid values: `enable`, `disable`.
 	Dailymotion pulumi.StringOutput `pulumi:"dailymotion"`
+	// Video filter default action. Valid values: `allow`, `monitor`, `block`.
+	DefaultAction pulumi.StringOutput `pulumi:"defaultAction"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// YouTube filter entries. The structure of `filters` block is documented below.
+	Filters ProfileFilterArrayOutput `pulumi:"filters"`
 	// Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
 	FortiguardCategory ProfileFortiguardCategoryOutput `pulumi:"fortiguardCategory"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// Enable/disable logging. Valid values: `enable`, `disable`.
+	Log pulumi.StringOutput `pulumi:"log"`
 	// Name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Replacement message group.
@@ -87,8 +97,18 @@ type profileState struct {
 	Comment *string `pulumi:"comment"`
 	// Enable/disable Dailymotion video source. Valid values: `enable`, `disable`.
 	Dailymotion *string `pulumi:"dailymotion"`
+	// Video filter default action. Valid values: `allow`, `monitor`, `block`.
+	DefaultAction *string `pulumi:"defaultAction"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// YouTube filter entries. The structure of `filters` block is documented below.
+	Filters []ProfileFilter `pulumi:"filters"`
 	// Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
 	FortiguardCategory *ProfileFortiguardCategory `pulumi:"fortiguardCategory"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Enable/disable logging. Valid values: `enable`, `disable`.
+	Log *string `pulumi:"log"`
 	// Name.
 	Name *string `pulumi:"name"`
 	// Replacement message group.
@@ -108,8 +128,18 @@ type ProfileState struct {
 	Comment pulumi.StringPtrInput
 	// Enable/disable Dailymotion video source. Valid values: `enable`, `disable`.
 	Dailymotion pulumi.StringPtrInput
+	// Video filter default action. Valid values: `allow`, `monitor`, `block`.
+	DefaultAction pulumi.StringPtrInput
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrInput
+	// YouTube filter entries. The structure of `filters` block is documented below.
+	Filters ProfileFilterArrayInput
 	// Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
 	FortiguardCategory ProfileFortiguardCategoryPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Enable/disable logging. Valid values: `enable`, `disable`.
+	Log pulumi.StringPtrInput
 	// Name.
 	Name pulumi.StringPtrInput
 	// Replacement message group.
@@ -133,8 +163,18 @@ type profileArgs struct {
 	Comment *string `pulumi:"comment"`
 	// Enable/disable Dailymotion video source. Valid values: `enable`, `disable`.
 	Dailymotion *string `pulumi:"dailymotion"`
+	// Video filter default action. Valid values: `allow`, `monitor`, `block`.
+	DefaultAction *string `pulumi:"defaultAction"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// YouTube filter entries. The structure of `filters` block is documented below.
+	Filters []ProfileFilter `pulumi:"filters"`
 	// Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
 	FortiguardCategory *ProfileFortiguardCategory `pulumi:"fortiguardCategory"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Enable/disable logging. Valid values: `enable`, `disable`.
+	Log *string `pulumi:"log"`
 	// Name.
 	Name *string `pulumi:"name"`
 	// Replacement message group.
@@ -155,8 +195,18 @@ type ProfileArgs struct {
 	Comment pulumi.StringPtrInput
 	// Enable/disable Dailymotion video source. Valid values: `enable`, `disable`.
 	Dailymotion pulumi.StringPtrInput
+	// Video filter default action. Valid values: `allow`, `monitor`, `block`.
+	DefaultAction pulumi.StringPtrInput
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrInput
+	// YouTube filter entries. The structure of `filters` block is documented below.
+	Filters ProfileFilterArrayInput
 	// Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
 	FortiguardCategory ProfileFortiguardCategoryPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Enable/disable logging. Valid values: `enable`, `disable`.
+	Log pulumi.StringPtrInput
 	// Name.
 	Name pulumi.StringPtrInput
 	// Replacement message group.
@@ -268,9 +318,34 @@ func (o ProfileOutput) Dailymotion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.Dailymotion }).(pulumi.StringOutput)
 }
 
+// Video filter default action. Valid values: `allow`, `monitor`, `block`.
+func (o ProfileOutput) DefaultAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.DefaultAction }).(pulumi.StringOutput)
+}
+
+// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+func (o ProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// YouTube filter entries. The structure of `filters` block is documented below.
+func (o ProfileOutput) Filters() ProfileFilterArrayOutput {
+	return o.ApplyT(func(v *Profile) ProfileFilterArrayOutput { return v.Filters }).(ProfileFilterArrayOutput)
+}
+
 // Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
 func (o ProfileOutput) FortiguardCategory() ProfileFortiguardCategoryOutput {
 	return o.ApplyT(func(v *Profile) ProfileFortiguardCategoryOutput { return v.FortiguardCategory }).(ProfileFortiguardCategoryOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable logging. Valid values: `enable`, `disable`.
+func (o ProfileOutput) Log() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.Log }).(pulumi.StringOutput)
 }
 
 // Name.

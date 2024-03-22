@@ -22,8 +22,10 @@ class HaArgs:
                  cpu_threshold: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 evpn_ttl: Optional[pulumi.Input[int]] = None,
                  failover_hold_time: Optional[pulumi.Input[int]] = None,
                  ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arps: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[int]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
@@ -41,6 +43,7 @@ class HaArgs:
                  http_proxy_threshold: Optional[pulumi.Input[str]] = None,
                  imap_proxy_threshold: Optional[pulumi.Input[str]] = None,
                  inter_cluster_session_sync: Optional[pulumi.Input[str]] = None,
+                 ipsec_phase2_proposal: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  l2ep_eth_type: Optional[pulumi.Input[str]] = None,
                  link_failed_signal: Optional[pulumi.Input[str]] = None,
@@ -92,6 +95,7 @@ class HaArgs:
                  unicast_status: Optional[pulumi.Input[str]] = None,
                  uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
                  uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
+                 upgrade_mode: Optional[pulumi.Input[str]] = None,
                  vcluster2: Optional[pulumi.Input[str]] = None,
                  vcluster_id: Optional[pulumi.Input[int]] = None,
                  vcluster_status: Optional[pulumi.Input[str]] = None,
@@ -101,6 +105,93 @@ class HaArgs:
                  weight: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Ha resource.
+        :param pulumi.Input[int] arps: Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+        :param pulumi.Input[int] arps_interval: Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+        :param pulumi.Input[str] authentication: Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cpu_threshold: Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+        :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] encryption: Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] evpn_ttl: HA EVPN FDB TTL on primary box (5 - 3600 sec).
+        :param pulumi.Input[int] failover_hold_time: Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+        :param pulumi.Input[str] ftp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] gratuitous_arps: Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] group_id: Cluster group ID  (0 - 255). Must be the same for all members.
+        :param pulumi.Input[str] group_name: Cluster group name. Must be the same for all members.
+        :param pulumi.Input[str] ha_direct: Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ha_eth_type: HA heartbeat packet Ethertype (4-digit hex).
+        :param pulumi.Input[Sequence[pulumi.Input['HaHaMgmtInterfaceArgs']]] ha_mgmt_interfaces: Reserve interfaces to manage individual cluster units. The structure of `ha_mgmt_interfaces` block is documented below.
+        :param pulumi.Input[str] ha_mgmt_status: Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ha_uptime_diff_margin: Normally you would only reduce this value for failover testing.
+        :param pulumi.Input[int] hb_interval: Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+        :param pulumi.Input[str] hb_interval_in_milliseconds: Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+        :param pulumi.Input[int] hb_lost_threshold: Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+        :param pulumi.Input[str] hbdev: Heartbeat interfaces. Must be the same for all members.
+        :param pulumi.Input[str] hc_eth_type: Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+        :param pulumi.Input[int] hello_holddown: Time to wait before changing from hello to work state (5 - 300 sec).
+        :param pulumi.Input[str] http_proxy_threshold: Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+        :param pulumi.Input[str] imap_proxy_threshold: Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+        :param pulumi.Input[str] inter_cluster_session_sync: Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipsec_phase2_proposal: IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+        :param pulumi.Input[str] key: key
+        :param pulumi.Input[str] l2ep_eth_type: Telnet session HA heartbeat packet Ethertype (4-digit hex).
+        :param pulumi.Input[str] link_failed_signal: Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] load_balance_all: Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] logical_sn: Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] memory_based_failover: Enable/disable memory based failover. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] memory_compatible_mode: Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] memory_failover_flip_timeout: Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+        :param pulumi.Input[int] memory_failover_monitor_period: Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+        :param pulumi.Input[int] memory_failover_sample_rate: Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+        :param pulumi.Input[int] memory_failover_threshold: Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+        :param pulumi.Input[str] memory_threshold: Dynamic weighted load balancing memory usage weight and high and low thresholds.
+        :param pulumi.Input[str] mode: HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+        :param pulumi.Input[str] monitor: Interfaces to check for port monitoring (or link failure).
+        :param pulumi.Input[int] multicast_ttl: HA multicast TTL on master (5 - 3600 sec).
+        :param pulumi.Input[str] nntp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+        :param pulumi.Input[str] override: Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] override_wait_time: Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        :param pulumi.Input[str] password: Cluster password. Must be the same for all members.
+        :param pulumi.Input[int] pingserver_failover_threshold: Remote IP monitoring failover threshold (0 - 50).
+        :param pulumi.Input[int] pingserver_flip_timeout: Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        :param pulumi.Input[str] pingserver_monitor_interface: Interfaces to check for remote IP monitoring.
+        :param pulumi.Input[str] pingserver_secondary_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pingserver_slave_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pop3_proxy_threshold: Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+        :param pulumi.Input[int] priority: Increase the priority to select the primary unit (0 - 255).
+        :param pulumi.Input[int] route_hold: Time to wait between routing table updates to the cluster (0 - 3600 sec).
+        :param pulumi.Input[int] route_ttl: TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+        :param pulumi.Input[int] route_wait: Time to wait before sending new routes to the cluster (0 - 3600 sec).
+        :param pulumi.Input[str] schedule: Type of A-A load balancing. Use none if you have external load balancers.
+        :param pulumi.Input['HaSecondaryVclusterArgs'] secondary_vcluster: Configure virtual cluster 2. The structure of `secondary_vcluster` block is documented below.
+        :param pulumi.Input[str] session_pickup: Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_connectionless: Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_delay: Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_expectation: Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_nat: Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_sync_dev: Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+        :param pulumi.Input[str] smtp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+        :param pulumi.Input[str] ssd_failover: Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] standalone_config_sync: Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] standalone_mgmt_vdom: Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sync_config: Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sync_packet_balance: Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] unicast_gateway: Default route gateway for unicast interface.
+        :param pulumi.Input[str] unicast_hb: Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] unicast_hb_netmask: Unicast heartbeat netmask.
+        :param pulumi.Input[str] unicast_hb_peerip: Unicast heartbeat peer IP.
+        :param pulumi.Input[Sequence[pulumi.Input['HaUnicastPeerArgs']]] unicast_peers: Number of unicast peers. The structure of `unicast_peers` block is documented below.
+        :param pulumi.Input[str] unicast_status: Enable/disable unicast connection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] uninterruptible_primary_wait: Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        :param pulumi.Input[str] uninterruptible_upgrade: Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] upgrade_mode: The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+        :param pulumi.Input[str] vcluster2: Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] vcluster_id: Cluster ID.
+        :param pulumi.Input[str] vcluster_status: Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['HaVclusterArgs']]] vclusters: Virtual cluster table. The structure of `vcluster` block is documented below.
+        :param pulumi.Input[str] vdom: VDOMs in virtual cluster 1.
+        :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] weight: Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
         """
         if arps is not None:
             pulumi.set(__self__, "arps", arps)
@@ -114,10 +205,14 @@ class HaArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if encryption is not None:
             pulumi.set(__self__, "encryption", encryption)
+        if evpn_ttl is not None:
+            pulumi.set(__self__, "evpn_ttl", evpn_ttl)
         if failover_hold_time is not None:
             pulumi.set(__self__, "failover_hold_time", failover_hold_time)
         if ftp_proxy_threshold is not None:
             pulumi.set(__self__, "ftp_proxy_threshold", ftp_proxy_threshold)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gratuitous_arps is not None:
             pulumi.set(__self__, "gratuitous_arps", gratuitous_arps)
         if group_id is not None:
@@ -152,6 +247,8 @@ class HaArgs:
             pulumi.set(__self__, "imap_proxy_threshold", imap_proxy_threshold)
         if inter_cluster_session_sync is not None:
             pulumi.set(__self__, "inter_cluster_session_sync", inter_cluster_session_sync)
+        if ipsec_phase2_proposal is not None:
+            pulumi.set(__self__, "ipsec_phase2_proposal", ipsec_phase2_proposal)
         if key is not None:
             pulumi.set(__self__, "key", key)
         if l2ep_eth_type is not None:
@@ -254,6 +351,8 @@ class HaArgs:
             pulumi.set(__self__, "uninterruptible_primary_wait", uninterruptible_primary_wait)
         if uninterruptible_upgrade is not None:
             pulumi.set(__self__, "uninterruptible_upgrade", uninterruptible_upgrade)
+        if upgrade_mode is not None:
+            pulumi.set(__self__, "upgrade_mode", upgrade_mode)
         if vcluster2 is not None:
             pulumi.set(__self__, "vcluster2", vcluster2)
         if vcluster_id is not None:
@@ -272,6 +371,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def arps(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+        """
         return pulumi.get(self, "arps")
 
     @arps.setter
@@ -281,6 +383,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="arpsInterval")
     def arps_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+        """
         return pulumi.get(self, "arps_interval")
 
     @arps_interval.setter
@@ -290,6 +395,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def authentication(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "authentication")
 
     @authentication.setter
@@ -299,6 +407,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="cpuThreshold")
     def cpu_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+        """
         return pulumi.get(self, "cpu_threshold")
 
     @cpu_threshold.setter
@@ -308,6 +419,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        """
         return pulumi.get(self, "dynamic_sort_subtable")
 
     @dynamic_sort_subtable.setter
@@ -317,6 +431,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def encryption(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "encryption")
 
     @encryption.setter
@@ -324,8 +441,23 @@ class HaArgs:
         pulumi.set(self, "encryption", value)
 
     @property
+    @pulumi.getter(name="evpnTtl")
+    def evpn_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        HA EVPN FDB TTL on primary box (5 - 3600 sec).
+        """
+        return pulumi.get(self, "evpn_ttl")
+
+    @evpn_ttl.setter
+    def evpn_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "evpn_ttl", value)
+
+    @property
     @pulumi.getter(name="failoverHoldTime")
     def failover_hold_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+        """
         return pulumi.get(self, "failover_hold_time")
 
     @failover_hold_time.setter
@@ -335,6 +467,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="ftpProxyThreshold")
     def ftp_proxy_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+        """
         return pulumi.get(self, "ftp_proxy_threshold")
 
     @ftp_proxy_threshold.setter
@@ -342,8 +477,23 @@ class HaArgs:
         pulumi.set(self, "ftp_proxy_threshold", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="gratuitousArps")
     def gratuitous_arps(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "gratuitous_arps")
 
     @gratuitous_arps.setter
@@ -353,6 +503,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="groupId")
     def group_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Cluster group ID  (0 - 255). Must be the same for all members.
+        """
         return pulumi.get(self, "group_id")
 
     @group_id.setter
@@ -362,6 +515,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="groupName")
     def group_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cluster group name. Must be the same for all members.
+        """
         return pulumi.get(self, "group_name")
 
     @group_name.setter
@@ -371,6 +527,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="haDirect")
     def ha_direct(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ha_direct")
 
     @ha_direct.setter
@@ -380,6 +539,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="haEthType")
     def ha_eth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        HA heartbeat packet Ethertype (4-digit hex).
+        """
         return pulumi.get(self, "ha_eth_type")
 
     @ha_eth_type.setter
@@ -389,6 +551,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="haMgmtInterfaces")
     def ha_mgmt_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HaHaMgmtInterfaceArgs']]]]:
+        """
+        Reserve interfaces to manage individual cluster units. The structure of `ha_mgmt_interfaces` block is documented below.
+        """
         return pulumi.get(self, "ha_mgmt_interfaces")
 
     @ha_mgmt_interfaces.setter
@@ -398,6 +563,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="haMgmtStatus")
     def ha_mgmt_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ha_mgmt_status")
 
     @ha_mgmt_status.setter
@@ -407,6 +575,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="haUptimeDiffMargin")
     def ha_uptime_diff_margin(self) -> Optional[pulumi.Input[int]]:
+        """
+        Normally you would only reduce this value for failover testing.
+        """
         return pulumi.get(self, "ha_uptime_diff_margin")
 
     @ha_uptime_diff_margin.setter
@@ -416,6 +587,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="hbInterval")
     def hb_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+        """
         return pulumi.get(self, "hb_interval")
 
     @hb_interval.setter
@@ -425,6 +599,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="hbIntervalInMilliseconds")
     def hb_interval_in_milliseconds(self) -> Optional[pulumi.Input[str]]:
+        """
+        Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+        """
         return pulumi.get(self, "hb_interval_in_milliseconds")
 
     @hb_interval_in_milliseconds.setter
@@ -434,6 +611,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="hbLostThreshold")
     def hb_lost_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+        """
         return pulumi.get(self, "hb_lost_threshold")
 
     @hb_lost_threshold.setter
@@ -443,6 +623,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def hbdev(self) -> Optional[pulumi.Input[str]]:
+        """
+        Heartbeat interfaces. Must be the same for all members.
+        """
         return pulumi.get(self, "hbdev")
 
     @hbdev.setter
@@ -452,6 +635,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="hcEthType")
     def hc_eth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+        """
         return pulumi.get(self, "hc_eth_type")
 
     @hc_eth_type.setter
@@ -461,6 +647,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="helloHolddown")
     def hello_holddown(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time to wait before changing from hello to work state (5 - 300 sec).
+        """
         return pulumi.get(self, "hello_holddown")
 
     @hello_holddown.setter
@@ -470,6 +659,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="httpProxyThreshold")
     def http_proxy_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+        """
         return pulumi.get(self, "http_proxy_threshold")
 
     @http_proxy_threshold.setter
@@ -479,6 +671,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="imapProxyThreshold")
     def imap_proxy_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+        """
         return pulumi.get(self, "imap_proxy_threshold")
 
     @imap_proxy_threshold.setter
@@ -488,6 +683,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="interClusterSessionSync")
     def inter_cluster_session_sync(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "inter_cluster_session_sync")
 
     @inter_cluster_session_sync.setter
@@ -495,8 +693,23 @@ class HaArgs:
         pulumi.set(self, "inter_cluster_session_sync", value)
 
     @property
+    @pulumi.getter(name="ipsecPhase2Proposal")
+    def ipsec_phase2_proposal(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+        """
+        return pulumi.get(self, "ipsec_phase2_proposal")
+
+    @ipsec_phase2_proposal.setter
+    def ipsec_phase2_proposal(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipsec_phase2_proposal", value)
+
+    @property
     @pulumi.getter
     def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        key
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -506,6 +719,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="l2epEthType")
     def l2ep_eth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Telnet session HA heartbeat packet Ethertype (4-digit hex).
+        """
         return pulumi.get(self, "l2ep_eth_type")
 
     @l2ep_eth_type.setter
@@ -515,6 +731,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="linkFailedSignal")
     def link_failed_signal(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "link_failed_signal")
 
     @link_failed_signal.setter
@@ -524,6 +743,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="loadBalanceAll")
     def load_balance_all(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "load_balance_all")
 
     @load_balance_all.setter
@@ -533,6 +755,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="logicalSn")
     def logical_sn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "logical_sn")
 
     @logical_sn.setter
@@ -542,6 +767,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="memoryBasedFailover")
     def memory_based_failover(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable memory based failover. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "memory_based_failover")
 
     @memory_based_failover.setter
@@ -551,6 +779,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="memoryCompatibleMode")
     def memory_compatible_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "memory_compatible_mode")
 
     @memory_compatible_mode.setter
@@ -560,6 +791,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="memoryFailoverFlipTimeout")
     def memory_failover_flip_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+        """
         return pulumi.get(self, "memory_failover_flip_timeout")
 
     @memory_failover_flip_timeout.setter
@@ -569,6 +803,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="memoryFailoverMonitorPeriod")
     def memory_failover_monitor_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+        """
         return pulumi.get(self, "memory_failover_monitor_period")
 
     @memory_failover_monitor_period.setter
@@ -578,6 +815,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="memoryFailoverSampleRate")
     def memory_failover_sample_rate(self) -> Optional[pulumi.Input[int]]:
+        """
+        Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+        """
         return pulumi.get(self, "memory_failover_sample_rate")
 
     @memory_failover_sample_rate.setter
@@ -587,6 +827,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="memoryFailoverThreshold")
     def memory_failover_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+        """
         return pulumi.get(self, "memory_failover_threshold")
 
     @memory_failover_threshold.setter
@@ -596,6 +839,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="memoryThreshold")
     def memory_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing memory usage weight and high and low thresholds.
+        """
         return pulumi.get(self, "memory_threshold")
 
     @memory_threshold.setter
@@ -605,6 +851,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -614,6 +863,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def monitor(self) -> Optional[pulumi.Input[str]]:
+        """
+        Interfaces to check for port monitoring (or link failure).
+        """
         return pulumi.get(self, "monitor")
 
     @monitor.setter
@@ -623,6 +875,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="multicastTtl")
     def multicast_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        HA multicast TTL on master (5 - 3600 sec).
+        """
         return pulumi.get(self, "multicast_ttl")
 
     @multicast_ttl.setter
@@ -632,6 +887,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="nntpProxyThreshold")
     def nntp_proxy_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+        """
         return pulumi.get(self, "nntp_proxy_threshold")
 
     @nntp_proxy_threshold.setter
@@ -641,6 +899,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def override(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "override")
 
     @override.setter
@@ -650,6 +911,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="overrideWaitTime")
     def override_wait_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        """
         return pulumi.get(self, "override_wait_time")
 
     @override_wait_time.setter
@@ -659,6 +923,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cluster password. Must be the same for all members.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -668,6 +935,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="pingserverFailoverThreshold")
     def pingserver_failover_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Remote IP monitoring failover threshold (0 - 50).
+        """
         return pulumi.get(self, "pingserver_failover_threshold")
 
     @pingserver_failover_threshold.setter
@@ -677,6 +947,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="pingserverFlipTimeout")
     def pingserver_flip_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        """
         return pulumi.get(self, "pingserver_flip_timeout")
 
     @pingserver_flip_timeout.setter
@@ -686,6 +959,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="pingserverMonitorInterface")
     def pingserver_monitor_interface(self) -> Optional[pulumi.Input[str]]:
+        """
+        Interfaces to check for remote IP monitoring.
+        """
         return pulumi.get(self, "pingserver_monitor_interface")
 
     @pingserver_monitor_interface.setter
@@ -695,6 +971,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="pingserverSecondaryForceReset")
     def pingserver_secondary_force_reset(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "pingserver_secondary_force_reset")
 
     @pingserver_secondary_force_reset.setter
@@ -704,6 +983,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="pingserverSlaveForceReset")
     def pingserver_slave_force_reset(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "pingserver_slave_force_reset")
 
     @pingserver_slave_force_reset.setter
@@ -713,6 +995,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="pop3ProxyThreshold")
     def pop3_proxy_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+        """
         return pulumi.get(self, "pop3_proxy_threshold")
 
     @pop3_proxy_threshold.setter
@@ -722,6 +1007,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        Increase the priority to select the primary unit (0 - 255).
+        """
         return pulumi.get(self, "priority")
 
     @priority.setter
@@ -731,6 +1019,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="routeHold")
     def route_hold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time to wait between routing table updates to the cluster (0 - 3600 sec).
+        """
         return pulumi.get(self, "route_hold")
 
     @route_hold.setter
@@ -740,6 +1031,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="routeTtl")
     def route_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+        """
         return pulumi.get(self, "route_ttl")
 
     @route_ttl.setter
@@ -749,6 +1043,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="routeWait")
     def route_wait(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time to wait before sending new routes to the cluster (0 - 3600 sec).
+        """
         return pulumi.get(self, "route_wait")
 
     @route_wait.setter
@@ -758,6 +1055,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of A-A load balancing. Use none if you have external load balancers.
+        """
         return pulumi.get(self, "schedule")
 
     @schedule.setter
@@ -767,6 +1067,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="secondaryVcluster")
     def secondary_vcluster(self) -> Optional[pulumi.Input['HaSecondaryVclusterArgs']]:
+        """
+        Configure virtual cluster 2. The structure of `secondary_vcluster` block is documented below.
+        """
         return pulumi.get(self, "secondary_vcluster")
 
     @secondary_vcluster.setter
@@ -776,6 +1079,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="sessionPickup")
     def session_pickup(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup")
 
     @session_pickup.setter
@@ -785,6 +1091,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="sessionPickupConnectionless")
     def session_pickup_connectionless(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup_connectionless")
 
     @session_pickup_connectionless.setter
@@ -794,6 +1103,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="sessionPickupDelay")
     def session_pickup_delay(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup_delay")
 
     @session_pickup_delay.setter
@@ -803,6 +1115,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="sessionPickupExpectation")
     def session_pickup_expectation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup_expectation")
 
     @session_pickup_expectation.setter
@@ -812,6 +1127,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="sessionPickupNat")
     def session_pickup_nat(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup_nat")
 
     @session_pickup_nat.setter
@@ -821,6 +1139,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="sessionSyncDev")
     def session_sync_dev(self) -> Optional[pulumi.Input[str]]:
+        """
+        Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+        """
         return pulumi.get(self, "session_sync_dev")
 
     @session_sync_dev.setter
@@ -830,6 +1151,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="smtpProxyThreshold")
     def smtp_proxy_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+        """
         return pulumi.get(self, "smtp_proxy_threshold")
 
     @smtp_proxy_threshold.setter
@@ -839,6 +1163,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="ssdFailover")
     def ssd_failover(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ssd_failover")
 
     @ssd_failover.setter
@@ -848,6 +1175,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="standaloneConfigSync")
     def standalone_config_sync(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "standalone_config_sync")
 
     @standalone_config_sync.setter
@@ -857,6 +1187,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="standaloneMgmtVdom")
     def standalone_mgmt_vdom(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "standalone_mgmt_vdom")
 
     @standalone_mgmt_vdom.setter
@@ -866,6 +1199,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="syncConfig")
     def sync_config(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "sync_config")
 
     @sync_config.setter
@@ -875,6 +1211,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="syncPacketBalance")
     def sync_packet_balance(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "sync_packet_balance")
 
     @sync_packet_balance.setter
@@ -884,6 +1223,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="unicastGateway")
     def unicast_gateway(self) -> Optional[pulumi.Input[str]]:
+        """
+        Default route gateway for unicast interface.
+        """
         return pulumi.get(self, "unicast_gateway")
 
     @unicast_gateway.setter
@@ -893,6 +1235,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="unicastHb")
     def unicast_hb(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "unicast_hb")
 
     @unicast_hb.setter
@@ -902,6 +1247,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="unicastHbNetmask")
     def unicast_hb_netmask(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unicast heartbeat netmask.
+        """
         return pulumi.get(self, "unicast_hb_netmask")
 
     @unicast_hb_netmask.setter
@@ -911,6 +1259,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="unicastHbPeerip")
     def unicast_hb_peerip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unicast heartbeat peer IP.
+        """
         return pulumi.get(self, "unicast_hb_peerip")
 
     @unicast_hb_peerip.setter
@@ -920,6 +1271,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="unicastPeers")
     def unicast_peers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HaUnicastPeerArgs']]]]:
+        """
+        Number of unicast peers. The structure of `unicast_peers` block is documented below.
+        """
         return pulumi.get(self, "unicast_peers")
 
     @unicast_peers.setter
@@ -929,6 +1283,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="unicastStatus")
     def unicast_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable unicast connection. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "unicast_status")
 
     @unicast_status.setter
@@ -938,6 +1295,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="uninterruptiblePrimaryWait")
     def uninterruptible_primary_wait(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        """
         return pulumi.get(self, "uninterruptible_primary_wait")
 
     @uninterruptible_primary_wait.setter
@@ -947,6 +1307,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="uninterruptibleUpgrade")
     def uninterruptible_upgrade(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "uninterruptible_upgrade")
 
     @uninterruptible_upgrade.setter
@@ -954,8 +1317,23 @@ class HaArgs:
         pulumi.set(self, "uninterruptible_upgrade", value)
 
     @property
+    @pulumi.getter(name="upgradeMode")
+    def upgrade_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+        """
+        return pulumi.get(self, "upgrade_mode")
+
+    @upgrade_mode.setter
+    def upgrade_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "upgrade_mode", value)
+
+    @property
     @pulumi.getter
     def vcluster2(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "vcluster2")
 
     @vcluster2.setter
@@ -965,6 +1343,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="vclusterId")
     def vcluster_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Cluster ID.
+        """
         return pulumi.get(self, "vcluster_id")
 
     @vcluster_id.setter
@@ -974,6 +1355,9 @@ class HaArgs:
     @property
     @pulumi.getter(name="vclusterStatus")
     def vcluster_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "vcluster_status")
 
     @vcluster_status.setter
@@ -983,6 +1367,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def vclusters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HaVclusterArgs']]]]:
+        """
+        Virtual cluster table. The structure of `vcluster` block is documented below.
+        """
         return pulumi.get(self, "vclusters")
 
     @vclusters.setter
@@ -992,6 +1379,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def vdom(self) -> Optional[pulumi.Input[str]]:
+        """
+        VDOMs in virtual cluster 1.
+        """
         return pulumi.get(self, "vdom")
 
     @vdom.setter
@@ -1001,6 +1391,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        """
         return pulumi.get(self, "vdomparam")
 
     @vdomparam.setter
@@ -1010,6 +1403,9 @@ class HaArgs:
     @property
     @pulumi.getter
     def weight(self) -> Optional[pulumi.Input[str]]:
+        """
+        Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
+        """
         return pulumi.get(self, "weight")
 
     @weight.setter
@@ -1026,8 +1422,10 @@ class _HaState:
                  cpu_threshold: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 evpn_ttl: Optional[pulumi.Input[int]] = None,
                  failover_hold_time: Optional[pulumi.Input[int]] = None,
                  ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arps: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[int]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
@@ -1045,6 +1443,7 @@ class _HaState:
                  http_proxy_threshold: Optional[pulumi.Input[str]] = None,
                  imap_proxy_threshold: Optional[pulumi.Input[str]] = None,
                  inter_cluster_session_sync: Optional[pulumi.Input[str]] = None,
+                 ipsec_phase2_proposal: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  l2ep_eth_type: Optional[pulumi.Input[str]] = None,
                  link_failed_signal: Optional[pulumi.Input[str]] = None,
@@ -1096,6 +1495,7 @@ class _HaState:
                  unicast_status: Optional[pulumi.Input[str]] = None,
                  uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
                  uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
+                 upgrade_mode: Optional[pulumi.Input[str]] = None,
                  vcluster2: Optional[pulumi.Input[str]] = None,
                  vcluster_id: Optional[pulumi.Input[int]] = None,
                  vcluster_status: Optional[pulumi.Input[str]] = None,
@@ -1105,6 +1505,93 @@ class _HaState:
                  weight: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Ha resources.
+        :param pulumi.Input[int] arps: Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+        :param pulumi.Input[int] arps_interval: Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+        :param pulumi.Input[str] authentication: Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cpu_threshold: Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+        :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] encryption: Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] evpn_ttl: HA EVPN FDB TTL on primary box (5 - 3600 sec).
+        :param pulumi.Input[int] failover_hold_time: Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+        :param pulumi.Input[str] ftp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] gratuitous_arps: Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] group_id: Cluster group ID  (0 - 255). Must be the same for all members.
+        :param pulumi.Input[str] group_name: Cluster group name. Must be the same for all members.
+        :param pulumi.Input[str] ha_direct: Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ha_eth_type: HA heartbeat packet Ethertype (4-digit hex).
+        :param pulumi.Input[Sequence[pulumi.Input['HaHaMgmtInterfaceArgs']]] ha_mgmt_interfaces: Reserve interfaces to manage individual cluster units. The structure of `ha_mgmt_interfaces` block is documented below.
+        :param pulumi.Input[str] ha_mgmt_status: Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ha_uptime_diff_margin: Normally you would only reduce this value for failover testing.
+        :param pulumi.Input[int] hb_interval: Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+        :param pulumi.Input[str] hb_interval_in_milliseconds: Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+        :param pulumi.Input[int] hb_lost_threshold: Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+        :param pulumi.Input[str] hbdev: Heartbeat interfaces. Must be the same for all members.
+        :param pulumi.Input[str] hc_eth_type: Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+        :param pulumi.Input[int] hello_holddown: Time to wait before changing from hello to work state (5 - 300 sec).
+        :param pulumi.Input[str] http_proxy_threshold: Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+        :param pulumi.Input[str] imap_proxy_threshold: Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+        :param pulumi.Input[str] inter_cluster_session_sync: Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipsec_phase2_proposal: IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+        :param pulumi.Input[str] key: key
+        :param pulumi.Input[str] l2ep_eth_type: Telnet session HA heartbeat packet Ethertype (4-digit hex).
+        :param pulumi.Input[str] link_failed_signal: Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] load_balance_all: Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] logical_sn: Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] memory_based_failover: Enable/disable memory based failover. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] memory_compatible_mode: Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] memory_failover_flip_timeout: Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+        :param pulumi.Input[int] memory_failover_monitor_period: Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+        :param pulumi.Input[int] memory_failover_sample_rate: Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+        :param pulumi.Input[int] memory_failover_threshold: Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+        :param pulumi.Input[str] memory_threshold: Dynamic weighted load balancing memory usage weight and high and low thresholds.
+        :param pulumi.Input[str] mode: HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+        :param pulumi.Input[str] monitor: Interfaces to check for port monitoring (or link failure).
+        :param pulumi.Input[int] multicast_ttl: HA multicast TTL on master (5 - 3600 sec).
+        :param pulumi.Input[str] nntp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+        :param pulumi.Input[str] override: Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] override_wait_time: Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        :param pulumi.Input[str] password: Cluster password. Must be the same for all members.
+        :param pulumi.Input[int] pingserver_failover_threshold: Remote IP monitoring failover threshold (0 - 50).
+        :param pulumi.Input[int] pingserver_flip_timeout: Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        :param pulumi.Input[str] pingserver_monitor_interface: Interfaces to check for remote IP monitoring.
+        :param pulumi.Input[str] pingserver_secondary_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pingserver_slave_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pop3_proxy_threshold: Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+        :param pulumi.Input[int] priority: Increase the priority to select the primary unit (0 - 255).
+        :param pulumi.Input[int] route_hold: Time to wait between routing table updates to the cluster (0 - 3600 sec).
+        :param pulumi.Input[int] route_ttl: TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+        :param pulumi.Input[int] route_wait: Time to wait before sending new routes to the cluster (0 - 3600 sec).
+        :param pulumi.Input[str] schedule: Type of A-A load balancing. Use none if you have external load balancers.
+        :param pulumi.Input['HaSecondaryVclusterArgs'] secondary_vcluster: Configure virtual cluster 2. The structure of `secondary_vcluster` block is documented below.
+        :param pulumi.Input[str] session_pickup: Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_connectionless: Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_delay: Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_expectation: Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_nat: Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_sync_dev: Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+        :param pulumi.Input[str] smtp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+        :param pulumi.Input[str] ssd_failover: Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] standalone_config_sync: Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] standalone_mgmt_vdom: Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sync_config: Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sync_packet_balance: Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] unicast_gateway: Default route gateway for unicast interface.
+        :param pulumi.Input[str] unicast_hb: Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] unicast_hb_netmask: Unicast heartbeat netmask.
+        :param pulumi.Input[str] unicast_hb_peerip: Unicast heartbeat peer IP.
+        :param pulumi.Input[Sequence[pulumi.Input['HaUnicastPeerArgs']]] unicast_peers: Number of unicast peers. The structure of `unicast_peers` block is documented below.
+        :param pulumi.Input[str] unicast_status: Enable/disable unicast connection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] uninterruptible_primary_wait: Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        :param pulumi.Input[str] uninterruptible_upgrade: Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] upgrade_mode: The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+        :param pulumi.Input[str] vcluster2: Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] vcluster_id: Cluster ID.
+        :param pulumi.Input[str] vcluster_status: Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['HaVclusterArgs']]] vclusters: Virtual cluster table. The structure of `vcluster` block is documented below.
+        :param pulumi.Input[str] vdom: VDOMs in virtual cluster 1.
+        :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] weight: Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
         """
         if arps is not None:
             pulumi.set(__self__, "arps", arps)
@@ -1118,10 +1605,14 @@ class _HaState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if encryption is not None:
             pulumi.set(__self__, "encryption", encryption)
+        if evpn_ttl is not None:
+            pulumi.set(__self__, "evpn_ttl", evpn_ttl)
         if failover_hold_time is not None:
             pulumi.set(__self__, "failover_hold_time", failover_hold_time)
         if ftp_proxy_threshold is not None:
             pulumi.set(__self__, "ftp_proxy_threshold", ftp_proxy_threshold)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gratuitous_arps is not None:
             pulumi.set(__self__, "gratuitous_arps", gratuitous_arps)
         if group_id is not None:
@@ -1156,6 +1647,8 @@ class _HaState:
             pulumi.set(__self__, "imap_proxy_threshold", imap_proxy_threshold)
         if inter_cluster_session_sync is not None:
             pulumi.set(__self__, "inter_cluster_session_sync", inter_cluster_session_sync)
+        if ipsec_phase2_proposal is not None:
+            pulumi.set(__self__, "ipsec_phase2_proposal", ipsec_phase2_proposal)
         if key is not None:
             pulumi.set(__self__, "key", key)
         if l2ep_eth_type is not None:
@@ -1258,6 +1751,8 @@ class _HaState:
             pulumi.set(__self__, "uninterruptible_primary_wait", uninterruptible_primary_wait)
         if uninterruptible_upgrade is not None:
             pulumi.set(__self__, "uninterruptible_upgrade", uninterruptible_upgrade)
+        if upgrade_mode is not None:
+            pulumi.set(__self__, "upgrade_mode", upgrade_mode)
         if vcluster2 is not None:
             pulumi.set(__self__, "vcluster2", vcluster2)
         if vcluster_id is not None:
@@ -1276,6 +1771,9 @@ class _HaState:
     @property
     @pulumi.getter
     def arps(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+        """
         return pulumi.get(self, "arps")
 
     @arps.setter
@@ -1285,6 +1783,9 @@ class _HaState:
     @property
     @pulumi.getter(name="arpsInterval")
     def arps_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+        """
         return pulumi.get(self, "arps_interval")
 
     @arps_interval.setter
@@ -1294,6 +1795,9 @@ class _HaState:
     @property
     @pulumi.getter
     def authentication(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "authentication")
 
     @authentication.setter
@@ -1303,6 +1807,9 @@ class _HaState:
     @property
     @pulumi.getter(name="cpuThreshold")
     def cpu_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+        """
         return pulumi.get(self, "cpu_threshold")
 
     @cpu_threshold.setter
@@ -1312,6 +1819,9 @@ class _HaState:
     @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        """
         return pulumi.get(self, "dynamic_sort_subtable")
 
     @dynamic_sort_subtable.setter
@@ -1321,6 +1831,9 @@ class _HaState:
     @property
     @pulumi.getter
     def encryption(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "encryption")
 
     @encryption.setter
@@ -1328,8 +1841,23 @@ class _HaState:
         pulumi.set(self, "encryption", value)
 
     @property
+    @pulumi.getter(name="evpnTtl")
+    def evpn_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        HA EVPN FDB TTL on primary box (5 - 3600 sec).
+        """
+        return pulumi.get(self, "evpn_ttl")
+
+    @evpn_ttl.setter
+    def evpn_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "evpn_ttl", value)
+
+    @property
     @pulumi.getter(name="failoverHoldTime")
     def failover_hold_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+        """
         return pulumi.get(self, "failover_hold_time")
 
     @failover_hold_time.setter
@@ -1339,6 +1867,9 @@ class _HaState:
     @property
     @pulumi.getter(name="ftpProxyThreshold")
     def ftp_proxy_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+        """
         return pulumi.get(self, "ftp_proxy_threshold")
 
     @ftp_proxy_threshold.setter
@@ -1346,8 +1877,23 @@ class _HaState:
         pulumi.set(self, "ftp_proxy_threshold", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="gratuitousArps")
     def gratuitous_arps(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "gratuitous_arps")
 
     @gratuitous_arps.setter
@@ -1357,6 +1903,9 @@ class _HaState:
     @property
     @pulumi.getter(name="groupId")
     def group_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Cluster group ID  (0 - 255). Must be the same for all members.
+        """
         return pulumi.get(self, "group_id")
 
     @group_id.setter
@@ -1366,6 +1915,9 @@ class _HaState:
     @property
     @pulumi.getter(name="groupName")
     def group_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cluster group name. Must be the same for all members.
+        """
         return pulumi.get(self, "group_name")
 
     @group_name.setter
@@ -1375,6 +1927,9 @@ class _HaState:
     @property
     @pulumi.getter(name="haDirect")
     def ha_direct(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ha_direct")
 
     @ha_direct.setter
@@ -1384,6 +1939,9 @@ class _HaState:
     @property
     @pulumi.getter(name="haEthType")
     def ha_eth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        HA heartbeat packet Ethertype (4-digit hex).
+        """
         return pulumi.get(self, "ha_eth_type")
 
     @ha_eth_type.setter
@@ -1393,6 +1951,9 @@ class _HaState:
     @property
     @pulumi.getter(name="haMgmtInterfaces")
     def ha_mgmt_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HaHaMgmtInterfaceArgs']]]]:
+        """
+        Reserve interfaces to manage individual cluster units. The structure of `ha_mgmt_interfaces` block is documented below.
+        """
         return pulumi.get(self, "ha_mgmt_interfaces")
 
     @ha_mgmt_interfaces.setter
@@ -1402,6 +1963,9 @@ class _HaState:
     @property
     @pulumi.getter(name="haMgmtStatus")
     def ha_mgmt_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ha_mgmt_status")
 
     @ha_mgmt_status.setter
@@ -1411,6 +1975,9 @@ class _HaState:
     @property
     @pulumi.getter(name="haUptimeDiffMargin")
     def ha_uptime_diff_margin(self) -> Optional[pulumi.Input[int]]:
+        """
+        Normally you would only reduce this value for failover testing.
+        """
         return pulumi.get(self, "ha_uptime_diff_margin")
 
     @ha_uptime_diff_margin.setter
@@ -1420,6 +1987,9 @@ class _HaState:
     @property
     @pulumi.getter(name="hbInterval")
     def hb_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+        """
         return pulumi.get(self, "hb_interval")
 
     @hb_interval.setter
@@ -1429,6 +1999,9 @@ class _HaState:
     @property
     @pulumi.getter(name="hbIntervalInMilliseconds")
     def hb_interval_in_milliseconds(self) -> Optional[pulumi.Input[str]]:
+        """
+        Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+        """
         return pulumi.get(self, "hb_interval_in_milliseconds")
 
     @hb_interval_in_milliseconds.setter
@@ -1438,6 +2011,9 @@ class _HaState:
     @property
     @pulumi.getter(name="hbLostThreshold")
     def hb_lost_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+        """
         return pulumi.get(self, "hb_lost_threshold")
 
     @hb_lost_threshold.setter
@@ -1447,6 +2023,9 @@ class _HaState:
     @property
     @pulumi.getter
     def hbdev(self) -> Optional[pulumi.Input[str]]:
+        """
+        Heartbeat interfaces. Must be the same for all members.
+        """
         return pulumi.get(self, "hbdev")
 
     @hbdev.setter
@@ -1456,6 +2035,9 @@ class _HaState:
     @property
     @pulumi.getter(name="hcEthType")
     def hc_eth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+        """
         return pulumi.get(self, "hc_eth_type")
 
     @hc_eth_type.setter
@@ -1465,6 +2047,9 @@ class _HaState:
     @property
     @pulumi.getter(name="helloHolddown")
     def hello_holddown(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time to wait before changing from hello to work state (5 - 300 sec).
+        """
         return pulumi.get(self, "hello_holddown")
 
     @hello_holddown.setter
@@ -1474,6 +2059,9 @@ class _HaState:
     @property
     @pulumi.getter(name="httpProxyThreshold")
     def http_proxy_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+        """
         return pulumi.get(self, "http_proxy_threshold")
 
     @http_proxy_threshold.setter
@@ -1483,6 +2071,9 @@ class _HaState:
     @property
     @pulumi.getter(name="imapProxyThreshold")
     def imap_proxy_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+        """
         return pulumi.get(self, "imap_proxy_threshold")
 
     @imap_proxy_threshold.setter
@@ -1492,6 +2083,9 @@ class _HaState:
     @property
     @pulumi.getter(name="interClusterSessionSync")
     def inter_cluster_session_sync(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "inter_cluster_session_sync")
 
     @inter_cluster_session_sync.setter
@@ -1499,8 +2093,23 @@ class _HaState:
         pulumi.set(self, "inter_cluster_session_sync", value)
 
     @property
+    @pulumi.getter(name="ipsecPhase2Proposal")
+    def ipsec_phase2_proposal(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+        """
+        return pulumi.get(self, "ipsec_phase2_proposal")
+
+    @ipsec_phase2_proposal.setter
+    def ipsec_phase2_proposal(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipsec_phase2_proposal", value)
+
+    @property
     @pulumi.getter
     def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        key
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -1510,6 +2119,9 @@ class _HaState:
     @property
     @pulumi.getter(name="l2epEthType")
     def l2ep_eth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Telnet session HA heartbeat packet Ethertype (4-digit hex).
+        """
         return pulumi.get(self, "l2ep_eth_type")
 
     @l2ep_eth_type.setter
@@ -1519,6 +2131,9 @@ class _HaState:
     @property
     @pulumi.getter(name="linkFailedSignal")
     def link_failed_signal(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "link_failed_signal")
 
     @link_failed_signal.setter
@@ -1528,6 +2143,9 @@ class _HaState:
     @property
     @pulumi.getter(name="loadBalanceAll")
     def load_balance_all(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "load_balance_all")
 
     @load_balance_all.setter
@@ -1537,6 +2155,9 @@ class _HaState:
     @property
     @pulumi.getter(name="logicalSn")
     def logical_sn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "logical_sn")
 
     @logical_sn.setter
@@ -1546,6 +2167,9 @@ class _HaState:
     @property
     @pulumi.getter(name="memoryBasedFailover")
     def memory_based_failover(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable memory based failover. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "memory_based_failover")
 
     @memory_based_failover.setter
@@ -1555,6 +2179,9 @@ class _HaState:
     @property
     @pulumi.getter(name="memoryCompatibleMode")
     def memory_compatible_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "memory_compatible_mode")
 
     @memory_compatible_mode.setter
@@ -1564,6 +2191,9 @@ class _HaState:
     @property
     @pulumi.getter(name="memoryFailoverFlipTimeout")
     def memory_failover_flip_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+        """
         return pulumi.get(self, "memory_failover_flip_timeout")
 
     @memory_failover_flip_timeout.setter
@@ -1573,6 +2203,9 @@ class _HaState:
     @property
     @pulumi.getter(name="memoryFailoverMonitorPeriod")
     def memory_failover_monitor_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+        """
         return pulumi.get(self, "memory_failover_monitor_period")
 
     @memory_failover_monitor_period.setter
@@ -1582,6 +2215,9 @@ class _HaState:
     @property
     @pulumi.getter(name="memoryFailoverSampleRate")
     def memory_failover_sample_rate(self) -> Optional[pulumi.Input[int]]:
+        """
+        Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+        """
         return pulumi.get(self, "memory_failover_sample_rate")
 
     @memory_failover_sample_rate.setter
@@ -1591,6 +2227,9 @@ class _HaState:
     @property
     @pulumi.getter(name="memoryFailoverThreshold")
     def memory_failover_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+        """
         return pulumi.get(self, "memory_failover_threshold")
 
     @memory_failover_threshold.setter
@@ -1600,6 +2239,9 @@ class _HaState:
     @property
     @pulumi.getter(name="memoryThreshold")
     def memory_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing memory usage weight and high and low thresholds.
+        """
         return pulumi.get(self, "memory_threshold")
 
     @memory_threshold.setter
@@ -1609,6 +2251,9 @@ class _HaState:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -1618,6 +2263,9 @@ class _HaState:
     @property
     @pulumi.getter
     def monitor(self) -> Optional[pulumi.Input[str]]:
+        """
+        Interfaces to check for port monitoring (or link failure).
+        """
         return pulumi.get(self, "monitor")
 
     @monitor.setter
@@ -1627,6 +2275,9 @@ class _HaState:
     @property
     @pulumi.getter(name="multicastTtl")
     def multicast_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        HA multicast TTL on master (5 - 3600 sec).
+        """
         return pulumi.get(self, "multicast_ttl")
 
     @multicast_ttl.setter
@@ -1636,6 +2287,9 @@ class _HaState:
     @property
     @pulumi.getter(name="nntpProxyThreshold")
     def nntp_proxy_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+        """
         return pulumi.get(self, "nntp_proxy_threshold")
 
     @nntp_proxy_threshold.setter
@@ -1645,6 +2299,9 @@ class _HaState:
     @property
     @pulumi.getter
     def override(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "override")
 
     @override.setter
@@ -1654,6 +2311,9 @@ class _HaState:
     @property
     @pulumi.getter(name="overrideWaitTime")
     def override_wait_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        """
         return pulumi.get(self, "override_wait_time")
 
     @override_wait_time.setter
@@ -1663,6 +2323,9 @@ class _HaState:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cluster password. Must be the same for all members.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -1672,6 +2335,9 @@ class _HaState:
     @property
     @pulumi.getter(name="pingserverFailoverThreshold")
     def pingserver_failover_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Remote IP monitoring failover threshold (0 - 50).
+        """
         return pulumi.get(self, "pingserver_failover_threshold")
 
     @pingserver_failover_threshold.setter
@@ -1681,6 +2347,9 @@ class _HaState:
     @property
     @pulumi.getter(name="pingserverFlipTimeout")
     def pingserver_flip_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        """
         return pulumi.get(self, "pingserver_flip_timeout")
 
     @pingserver_flip_timeout.setter
@@ -1690,6 +2359,9 @@ class _HaState:
     @property
     @pulumi.getter(name="pingserverMonitorInterface")
     def pingserver_monitor_interface(self) -> Optional[pulumi.Input[str]]:
+        """
+        Interfaces to check for remote IP monitoring.
+        """
         return pulumi.get(self, "pingserver_monitor_interface")
 
     @pingserver_monitor_interface.setter
@@ -1699,6 +2371,9 @@ class _HaState:
     @property
     @pulumi.getter(name="pingserverSecondaryForceReset")
     def pingserver_secondary_force_reset(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "pingserver_secondary_force_reset")
 
     @pingserver_secondary_force_reset.setter
@@ -1708,6 +2383,9 @@ class _HaState:
     @property
     @pulumi.getter(name="pingserverSlaveForceReset")
     def pingserver_slave_force_reset(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "pingserver_slave_force_reset")
 
     @pingserver_slave_force_reset.setter
@@ -1717,6 +2395,9 @@ class _HaState:
     @property
     @pulumi.getter(name="pop3ProxyThreshold")
     def pop3_proxy_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+        """
         return pulumi.get(self, "pop3_proxy_threshold")
 
     @pop3_proxy_threshold.setter
@@ -1726,6 +2407,9 @@ class _HaState:
     @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        Increase the priority to select the primary unit (0 - 255).
+        """
         return pulumi.get(self, "priority")
 
     @priority.setter
@@ -1735,6 +2419,9 @@ class _HaState:
     @property
     @pulumi.getter(name="routeHold")
     def route_hold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time to wait between routing table updates to the cluster (0 - 3600 sec).
+        """
         return pulumi.get(self, "route_hold")
 
     @route_hold.setter
@@ -1744,6 +2431,9 @@ class _HaState:
     @property
     @pulumi.getter(name="routeTtl")
     def route_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+        """
         return pulumi.get(self, "route_ttl")
 
     @route_ttl.setter
@@ -1753,6 +2443,9 @@ class _HaState:
     @property
     @pulumi.getter(name="routeWait")
     def route_wait(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time to wait before sending new routes to the cluster (0 - 3600 sec).
+        """
         return pulumi.get(self, "route_wait")
 
     @route_wait.setter
@@ -1762,6 +2455,9 @@ class _HaState:
     @property
     @pulumi.getter
     def schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of A-A load balancing. Use none if you have external load balancers.
+        """
         return pulumi.get(self, "schedule")
 
     @schedule.setter
@@ -1771,6 +2467,9 @@ class _HaState:
     @property
     @pulumi.getter(name="secondaryVcluster")
     def secondary_vcluster(self) -> Optional[pulumi.Input['HaSecondaryVclusterArgs']]:
+        """
+        Configure virtual cluster 2. The structure of `secondary_vcluster` block is documented below.
+        """
         return pulumi.get(self, "secondary_vcluster")
 
     @secondary_vcluster.setter
@@ -1780,6 +2479,9 @@ class _HaState:
     @property
     @pulumi.getter(name="sessionPickup")
     def session_pickup(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup")
 
     @session_pickup.setter
@@ -1789,6 +2491,9 @@ class _HaState:
     @property
     @pulumi.getter(name="sessionPickupConnectionless")
     def session_pickup_connectionless(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup_connectionless")
 
     @session_pickup_connectionless.setter
@@ -1798,6 +2503,9 @@ class _HaState:
     @property
     @pulumi.getter(name="sessionPickupDelay")
     def session_pickup_delay(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup_delay")
 
     @session_pickup_delay.setter
@@ -1807,6 +2515,9 @@ class _HaState:
     @property
     @pulumi.getter(name="sessionPickupExpectation")
     def session_pickup_expectation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup_expectation")
 
     @session_pickup_expectation.setter
@@ -1816,6 +2527,9 @@ class _HaState:
     @property
     @pulumi.getter(name="sessionPickupNat")
     def session_pickup_nat(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup_nat")
 
     @session_pickup_nat.setter
@@ -1825,6 +2539,9 @@ class _HaState:
     @property
     @pulumi.getter(name="sessionSyncDev")
     def session_sync_dev(self) -> Optional[pulumi.Input[str]]:
+        """
+        Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+        """
         return pulumi.get(self, "session_sync_dev")
 
     @session_sync_dev.setter
@@ -1834,6 +2551,9 @@ class _HaState:
     @property
     @pulumi.getter(name="smtpProxyThreshold")
     def smtp_proxy_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+        """
         return pulumi.get(self, "smtp_proxy_threshold")
 
     @smtp_proxy_threshold.setter
@@ -1843,6 +2563,9 @@ class _HaState:
     @property
     @pulumi.getter(name="ssdFailover")
     def ssd_failover(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ssd_failover")
 
     @ssd_failover.setter
@@ -1852,6 +2575,9 @@ class _HaState:
     @property
     @pulumi.getter(name="standaloneConfigSync")
     def standalone_config_sync(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "standalone_config_sync")
 
     @standalone_config_sync.setter
@@ -1861,6 +2587,9 @@ class _HaState:
     @property
     @pulumi.getter(name="standaloneMgmtVdom")
     def standalone_mgmt_vdom(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "standalone_mgmt_vdom")
 
     @standalone_mgmt_vdom.setter
@@ -1870,6 +2599,9 @@ class _HaState:
     @property
     @pulumi.getter(name="syncConfig")
     def sync_config(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "sync_config")
 
     @sync_config.setter
@@ -1879,6 +2611,9 @@ class _HaState:
     @property
     @pulumi.getter(name="syncPacketBalance")
     def sync_packet_balance(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "sync_packet_balance")
 
     @sync_packet_balance.setter
@@ -1888,6 +2623,9 @@ class _HaState:
     @property
     @pulumi.getter(name="unicastGateway")
     def unicast_gateway(self) -> Optional[pulumi.Input[str]]:
+        """
+        Default route gateway for unicast interface.
+        """
         return pulumi.get(self, "unicast_gateway")
 
     @unicast_gateway.setter
@@ -1897,6 +2635,9 @@ class _HaState:
     @property
     @pulumi.getter(name="unicastHb")
     def unicast_hb(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "unicast_hb")
 
     @unicast_hb.setter
@@ -1906,6 +2647,9 @@ class _HaState:
     @property
     @pulumi.getter(name="unicastHbNetmask")
     def unicast_hb_netmask(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unicast heartbeat netmask.
+        """
         return pulumi.get(self, "unicast_hb_netmask")
 
     @unicast_hb_netmask.setter
@@ -1915,6 +2659,9 @@ class _HaState:
     @property
     @pulumi.getter(name="unicastHbPeerip")
     def unicast_hb_peerip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unicast heartbeat peer IP.
+        """
         return pulumi.get(self, "unicast_hb_peerip")
 
     @unicast_hb_peerip.setter
@@ -1924,6 +2671,9 @@ class _HaState:
     @property
     @pulumi.getter(name="unicastPeers")
     def unicast_peers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HaUnicastPeerArgs']]]]:
+        """
+        Number of unicast peers. The structure of `unicast_peers` block is documented below.
+        """
         return pulumi.get(self, "unicast_peers")
 
     @unicast_peers.setter
@@ -1933,6 +2683,9 @@ class _HaState:
     @property
     @pulumi.getter(name="unicastStatus")
     def unicast_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable unicast connection. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "unicast_status")
 
     @unicast_status.setter
@@ -1942,6 +2695,9 @@ class _HaState:
     @property
     @pulumi.getter(name="uninterruptiblePrimaryWait")
     def uninterruptible_primary_wait(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        """
         return pulumi.get(self, "uninterruptible_primary_wait")
 
     @uninterruptible_primary_wait.setter
@@ -1951,6 +2707,9 @@ class _HaState:
     @property
     @pulumi.getter(name="uninterruptibleUpgrade")
     def uninterruptible_upgrade(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "uninterruptible_upgrade")
 
     @uninterruptible_upgrade.setter
@@ -1958,8 +2717,23 @@ class _HaState:
         pulumi.set(self, "uninterruptible_upgrade", value)
 
     @property
+    @pulumi.getter(name="upgradeMode")
+    def upgrade_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+        """
+        return pulumi.get(self, "upgrade_mode")
+
+    @upgrade_mode.setter
+    def upgrade_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "upgrade_mode", value)
+
+    @property
     @pulumi.getter
     def vcluster2(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "vcluster2")
 
     @vcluster2.setter
@@ -1969,6 +2743,9 @@ class _HaState:
     @property
     @pulumi.getter(name="vclusterId")
     def vcluster_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Cluster ID.
+        """
         return pulumi.get(self, "vcluster_id")
 
     @vcluster_id.setter
@@ -1978,6 +2755,9 @@ class _HaState:
     @property
     @pulumi.getter(name="vclusterStatus")
     def vcluster_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "vcluster_status")
 
     @vcluster_status.setter
@@ -1987,6 +2767,9 @@ class _HaState:
     @property
     @pulumi.getter
     def vclusters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HaVclusterArgs']]]]:
+        """
+        Virtual cluster table. The structure of `vcluster` block is documented below.
+        """
         return pulumi.get(self, "vclusters")
 
     @vclusters.setter
@@ -1996,6 +2779,9 @@ class _HaState:
     @property
     @pulumi.getter
     def vdom(self) -> Optional[pulumi.Input[str]]:
+        """
+        VDOMs in virtual cluster 1.
+        """
         return pulumi.get(self, "vdom")
 
     @vdom.setter
@@ -2005,6 +2791,9 @@ class _HaState:
     @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        """
         return pulumi.get(self, "vdomparam")
 
     @vdomparam.setter
@@ -2014,6 +2803,9 @@ class _HaState:
     @property
     @pulumi.getter
     def weight(self) -> Optional[pulumi.Input[str]]:
+        """
+        Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
+        """
         return pulumi.get(self, "weight")
 
     @weight.setter
@@ -2032,8 +2824,10 @@ class Ha(pulumi.CustomResource):
                  cpu_threshold: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 evpn_ttl: Optional[pulumi.Input[int]] = None,
                  failover_hold_time: Optional[pulumi.Input[int]] = None,
                  ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arps: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[int]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
@@ -2051,6 +2845,7 @@ class Ha(pulumi.CustomResource):
                  http_proxy_threshold: Optional[pulumi.Input[str]] = None,
                  imap_proxy_threshold: Optional[pulumi.Input[str]] = None,
                  inter_cluster_session_sync: Optional[pulumi.Input[str]] = None,
+                 ipsec_phase2_proposal: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  l2ep_eth_type: Optional[pulumi.Input[str]] = None,
                  link_failed_signal: Optional[pulumi.Input[str]] = None,
@@ -2102,6 +2897,7 @@ class Ha(pulumi.CustomResource):
                  unicast_status: Optional[pulumi.Input[str]] = None,
                  uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
                  uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
+                 upgrade_mode: Optional[pulumi.Input[str]] = None,
                  vcluster2: Optional[pulumi.Input[str]] = None,
                  vcluster_id: Optional[pulumi.Input[int]] = None,
                  vcluster_status: Optional[pulumi.Input[str]] = None,
@@ -2113,35 +2909,159 @@ class Ha(pulumi.CustomResource):
         """
         Configure HA.
 
-        By design considerations, the feature is using the system.Autoscript resource as documented below.
-
-        ## Example1
+        ## Example Usage
 
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
-        trname = fortios.system.Autoscript("trname",
-            interval=1,
-            output_size=10,
-            repeat=1,
-            script=\"\"\"config system ha
-            set session-pickup enable
-            set session-pickup-connectionless enable
-            set session-pickup-expectation enable
-            set session-pickup-nat enable
-            set override disable
-        end
-
-
-        \"\"\",
-            start="auto")
+        trname = fortios.system.Ha("trname",
+            cpu_threshold="5 0 0",
+            encryption="disable",
+            ftp_proxy_threshold="5 0 0",
+            gratuitous_arps="enable",
+            group_id=0,
+            ha_direct="disable",
+            ha_eth_type="8890",
+            ha_mgmt_status="disable",
+            ha_uptime_diff_margin=300,
+            hb_interval=2,
+            hb_lost_threshold=20,
+            hc_eth_type="8891",
+            hello_holddown=20,
+            http_proxy_threshold="5 0 0",
+            imap_proxy_threshold="5 0 0",
+            inter_cluster_session_sync="disable",
+            l2ep_eth_type="8893",
+            link_failed_signal="disable",
+            load_balance_all="disable",
+            memory_compatible_mode="disable",
+            memory_threshold="5 0 0",
+            mode="standalone",
+            multicast_ttl=600,
+            nntp_proxy_threshold="5 0 0",
+            override="disable",
+            override_wait_time=0,
+            secondary_vcluster=fortios.system.HaSecondaryVclusterArgs(
+                override="enable",
+                override_wait_time=0,
+                pingserver_failover_threshold=0,
+                pingserver_slave_force_reset="enable",
+                priority=128,
+                vcluster_id=1,
+            ),
+            weight="40 ")
         ```
         <!--End PulumiCodeChooser -->
 
+        ## Import
+
+        System Ha can be imported using any of these accepted formats:
+
+        ```sh
+        $ pulumi import fortios:system/ha:Ha labelname SystemHa
+        ```
+
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
+
+        ```sh
+        $ pulumi import fortios:system/ha:Ha labelname SystemHa
+        ```
+
+        $ unset "FORTIOS_IMPORT_TABLE"
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] arps: Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+        :param pulumi.Input[int] arps_interval: Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+        :param pulumi.Input[str] authentication: Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cpu_threshold: Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+        :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] encryption: Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] evpn_ttl: HA EVPN FDB TTL on primary box (5 - 3600 sec).
+        :param pulumi.Input[int] failover_hold_time: Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+        :param pulumi.Input[str] ftp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] gratuitous_arps: Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] group_id: Cluster group ID  (0 - 255). Must be the same for all members.
+        :param pulumi.Input[str] group_name: Cluster group name. Must be the same for all members.
+        :param pulumi.Input[str] ha_direct: Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ha_eth_type: HA heartbeat packet Ethertype (4-digit hex).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HaHaMgmtInterfaceArgs']]]] ha_mgmt_interfaces: Reserve interfaces to manage individual cluster units. The structure of `ha_mgmt_interfaces` block is documented below.
+        :param pulumi.Input[str] ha_mgmt_status: Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ha_uptime_diff_margin: Normally you would only reduce this value for failover testing.
+        :param pulumi.Input[int] hb_interval: Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+        :param pulumi.Input[str] hb_interval_in_milliseconds: Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+        :param pulumi.Input[int] hb_lost_threshold: Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+        :param pulumi.Input[str] hbdev: Heartbeat interfaces. Must be the same for all members.
+        :param pulumi.Input[str] hc_eth_type: Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+        :param pulumi.Input[int] hello_holddown: Time to wait before changing from hello to work state (5 - 300 sec).
+        :param pulumi.Input[str] http_proxy_threshold: Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+        :param pulumi.Input[str] imap_proxy_threshold: Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+        :param pulumi.Input[str] inter_cluster_session_sync: Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipsec_phase2_proposal: IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+        :param pulumi.Input[str] key: key
+        :param pulumi.Input[str] l2ep_eth_type: Telnet session HA heartbeat packet Ethertype (4-digit hex).
+        :param pulumi.Input[str] link_failed_signal: Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] load_balance_all: Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] logical_sn: Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] memory_based_failover: Enable/disable memory based failover. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] memory_compatible_mode: Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] memory_failover_flip_timeout: Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+        :param pulumi.Input[int] memory_failover_monitor_period: Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+        :param pulumi.Input[int] memory_failover_sample_rate: Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+        :param pulumi.Input[int] memory_failover_threshold: Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+        :param pulumi.Input[str] memory_threshold: Dynamic weighted load balancing memory usage weight and high and low thresholds.
+        :param pulumi.Input[str] mode: HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+        :param pulumi.Input[str] monitor: Interfaces to check for port monitoring (or link failure).
+        :param pulumi.Input[int] multicast_ttl: HA multicast TTL on master (5 - 3600 sec).
+        :param pulumi.Input[str] nntp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+        :param pulumi.Input[str] override: Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] override_wait_time: Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        :param pulumi.Input[str] password: Cluster password. Must be the same for all members.
+        :param pulumi.Input[int] pingserver_failover_threshold: Remote IP monitoring failover threshold (0 - 50).
+        :param pulumi.Input[int] pingserver_flip_timeout: Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        :param pulumi.Input[str] pingserver_monitor_interface: Interfaces to check for remote IP monitoring.
+        :param pulumi.Input[str] pingserver_secondary_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pingserver_slave_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pop3_proxy_threshold: Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+        :param pulumi.Input[int] priority: Increase the priority to select the primary unit (0 - 255).
+        :param pulumi.Input[int] route_hold: Time to wait between routing table updates to the cluster (0 - 3600 sec).
+        :param pulumi.Input[int] route_ttl: TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+        :param pulumi.Input[int] route_wait: Time to wait before sending new routes to the cluster (0 - 3600 sec).
+        :param pulumi.Input[str] schedule: Type of A-A load balancing. Use none if you have external load balancers.
+        :param pulumi.Input[pulumi.InputType['HaSecondaryVclusterArgs']] secondary_vcluster: Configure virtual cluster 2. The structure of `secondary_vcluster` block is documented below.
+        :param pulumi.Input[str] session_pickup: Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_connectionless: Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_delay: Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_expectation: Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_nat: Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_sync_dev: Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+        :param pulumi.Input[str] smtp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+        :param pulumi.Input[str] ssd_failover: Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] standalone_config_sync: Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] standalone_mgmt_vdom: Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sync_config: Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sync_packet_balance: Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] unicast_gateway: Default route gateway for unicast interface.
+        :param pulumi.Input[str] unicast_hb: Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] unicast_hb_netmask: Unicast heartbeat netmask.
+        :param pulumi.Input[str] unicast_hb_peerip: Unicast heartbeat peer IP.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HaUnicastPeerArgs']]]] unicast_peers: Number of unicast peers. The structure of `unicast_peers` block is documented below.
+        :param pulumi.Input[str] unicast_status: Enable/disable unicast connection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] uninterruptible_primary_wait: Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        :param pulumi.Input[str] uninterruptible_upgrade: Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] upgrade_mode: The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+        :param pulumi.Input[str] vcluster2: Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] vcluster_id: Cluster ID.
+        :param pulumi.Input[str] vcluster_status: Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HaVclusterArgs']]]] vclusters: Virtual cluster table. The structure of `vcluster` block is documented below.
+        :param pulumi.Input[str] vdom: VDOMs in virtual cluster 1.
+        :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] weight: Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
         """
         ...
     @overload
@@ -2152,32 +3072,69 @@ class Ha(pulumi.CustomResource):
         """
         Configure HA.
 
-        By design considerations, the feature is using the system.Autoscript resource as documented below.
-
-        ## Example1
+        ## Example Usage
 
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
-        trname = fortios.system.Autoscript("trname",
-            interval=1,
-            output_size=10,
-            repeat=1,
-            script=\"\"\"config system ha
-            set session-pickup enable
-            set session-pickup-connectionless enable
-            set session-pickup-expectation enable
-            set session-pickup-nat enable
-            set override disable
-        end
-
-
-        \"\"\",
-            start="auto")
+        trname = fortios.system.Ha("trname",
+            cpu_threshold="5 0 0",
+            encryption="disable",
+            ftp_proxy_threshold="5 0 0",
+            gratuitous_arps="enable",
+            group_id=0,
+            ha_direct="disable",
+            ha_eth_type="8890",
+            ha_mgmt_status="disable",
+            ha_uptime_diff_margin=300,
+            hb_interval=2,
+            hb_lost_threshold=20,
+            hc_eth_type="8891",
+            hello_holddown=20,
+            http_proxy_threshold="5 0 0",
+            imap_proxy_threshold="5 0 0",
+            inter_cluster_session_sync="disable",
+            l2ep_eth_type="8893",
+            link_failed_signal="disable",
+            load_balance_all="disable",
+            memory_compatible_mode="disable",
+            memory_threshold="5 0 0",
+            mode="standalone",
+            multicast_ttl=600,
+            nntp_proxy_threshold="5 0 0",
+            override="disable",
+            override_wait_time=0,
+            secondary_vcluster=fortios.system.HaSecondaryVclusterArgs(
+                override="enable",
+                override_wait_time=0,
+                pingserver_failover_threshold=0,
+                pingserver_slave_force_reset="enable",
+                priority=128,
+                vcluster_id=1,
+            ),
+            weight="40 ")
         ```
         <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        System Ha can be imported using any of these accepted formats:
+
+        ```sh
+        $ pulumi import fortios:system/ha:Ha labelname SystemHa
+        ```
+
+        If you do not want to import arguments of block:
+
+        $ export "FORTIOS_IMPORT_TABLE"="false"
+
+        ```sh
+        $ pulumi import fortios:system/ha:Ha labelname SystemHa
+        ```
+
+        $ unset "FORTIOS_IMPORT_TABLE"
 
         :param str resource_name: The name of the resource.
         :param HaArgs args: The arguments to use to populate this resource's properties.
@@ -2200,8 +3157,10 @@ class Ha(pulumi.CustomResource):
                  cpu_threshold: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 evpn_ttl: Optional[pulumi.Input[int]] = None,
                  failover_hold_time: Optional[pulumi.Input[int]] = None,
                  ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arps: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[int]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
@@ -2219,6 +3178,7 @@ class Ha(pulumi.CustomResource):
                  http_proxy_threshold: Optional[pulumi.Input[str]] = None,
                  imap_proxy_threshold: Optional[pulumi.Input[str]] = None,
                  inter_cluster_session_sync: Optional[pulumi.Input[str]] = None,
+                 ipsec_phase2_proposal: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  l2ep_eth_type: Optional[pulumi.Input[str]] = None,
                  link_failed_signal: Optional[pulumi.Input[str]] = None,
@@ -2270,6 +3230,7 @@ class Ha(pulumi.CustomResource):
                  unicast_status: Optional[pulumi.Input[str]] = None,
                  uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
                  uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
+                 upgrade_mode: Optional[pulumi.Input[str]] = None,
                  vcluster2: Optional[pulumi.Input[str]] = None,
                  vcluster_id: Optional[pulumi.Input[int]] = None,
                  vcluster_status: Optional[pulumi.Input[str]] = None,
@@ -2292,8 +3253,10 @@ class Ha(pulumi.CustomResource):
             __props__.__dict__["cpu_threshold"] = cpu_threshold
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["encryption"] = encryption
+            __props__.__dict__["evpn_ttl"] = evpn_ttl
             __props__.__dict__["failover_hold_time"] = failover_hold_time
             __props__.__dict__["ftp_proxy_threshold"] = ftp_proxy_threshold
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gratuitous_arps"] = gratuitous_arps
             __props__.__dict__["group_id"] = group_id
             __props__.__dict__["group_name"] = group_name
@@ -2311,6 +3274,7 @@ class Ha(pulumi.CustomResource):
             __props__.__dict__["http_proxy_threshold"] = http_proxy_threshold
             __props__.__dict__["imap_proxy_threshold"] = imap_proxy_threshold
             __props__.__dict__["inter_cluster_session_sync"] = inter_cluster_session_sync
+            __props__.__dict__["ipsec_phase2_proposal"] = ipsec_phase2_proposal
             __props__.__dict__["key"] = None if key is None else pulumi.Output.secret(key)
             __props__.__dict__["l2ep_eth_type"] = l2ep_eth_type
             __props__.__dict__["link_failed_signal"] = link_failed_signal
@@ -2362,6 +3326,7 @@ class Ha(pulumi.CustomResource):
             __props__.__dict__["unicast_status"] = unicast_status
             __props__.__dict__["uninterruptible_primary_wait"] = uninterruptible_primary_wait
             __props__.__dict__["uninterruptible_upgrade"] = uninterruptible_upgrade
+            __props__.__dict__["upgrade_mode"] = upgrade_mode
             __props__.__dict__["vcluster2"] = vcluster2
             __props__.__dict__["vcluster_id"] = vcluster_id
             __props__.__dict__["vcluster_status"] = vcluster_status
@@ -2387,8 +3352,10 @@ class Ha(pulumi.CustomResource):
             cpu_threshold: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             encryption: Optional[pulumi.Input[str]] = None,
+            evpn_ttl: Optional[pulumi.Input[int]] = None,
             failover_hold_time: Optional[pulumi.Input[int]] = None,
             ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gratuitous_arps: Optional[pulumi.Input[str]] = None,
             group_id: Optional[pulumi.Input[int]] = None,
             group_name: Optional[pulumi.Input[str]] = None,
@@ -2406,6 +3373,7 @@ class Ha(pulumi.CustomResource):
             http_proxy_threshold: Optional[pulumi.Input[str]] = None,
             imap_proxy_threshold: Optional[pulumi.Input[str]] = None,
             inter_cluster_session_sync: Optional[pulumi.Input[str]] = None,
+            ipsec_phase2_proposal: Optional[pulumi.Input[str]] = None,
             key: Optional[pulumi.Input[str]] = None,
             l2ep_eth_type: Optional[pulumi.Input[str]] = None,
             link_failed_signal: Optional[pulumi.Input[str]] = None,
@@ -2457,6 +3425,7 @@ class Ha(pulumi.CustomResource):
             unicast_status: Optional[pulumi.Input[str]] = None,
             uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
             uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
+            upgrade_mode: Optional[pulumi.Input[str]] = None,
             vcluster2: Optional[pulumi.Input[str]] = None,
             vcluster_id: Optional[pulumi.Input[int]] = None,
             vcluster_status: Optional[pulumi.Input[str]] = None,
@@ -2471,6 +3440,93 @@ class Ha(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] arps: Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+        :param pulumi.Input[int] arps_interval: Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+        :param pulumi.Input[str] authentication: Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cpu_threshold: Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+        :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] encryption: Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] evpn_ttl: HA EVPN FDB TTL on primary box (5 - 3600 sec).
+        :param pulumi.Input[int] failover_hold_time: Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+        :param pulumi.Input[str] ftp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] gratuitous_arps: Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] group_id: Cluster group ID  (0 - 255). Must be the same for all members.
+        :param pulumi.Input[str] group_name: Cluster group name. Must be the same for all members.
+        :param pulumi.Input[str] ha_direct: Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ha_eth_type: HA heartbeat packet Ethertype (4-digit hex).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HaHaMgmtInterfaceArgs']]]] ha_mgmt_interfaces: Reserve interfaces to manage individual cluster units. The structure of `ha_mgmt_interfaces` block is documented below.
+        :param pulumi.Input[str] ha_mgmt_status: Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ha_uptime_diff_margin: Normally you would only reduce this value for failover testing.
+        :param pulumi.Input[int] hb_interval: Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+        :param pulumi.Input[str] hb_interval_in_milliseconds: Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+        :param pulumi.Input[int] hb_lost_threshold: Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+        :param pulumi.Input[str] hbdev: Heartbeat interfaces. Must be the same for all members.
+        :param pulumi.Input[str] hc_eth_type: Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+        :param pulumi.Input[int] hello_holddown: Time to wait before changing from hello to work state (5 - 300 sec).
+        :param pulumi.Input[str] http_proxy_threshold: Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+        :param pulumi.Input[str] imap_proxy_threshold: Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+        :param pulumi.Input[str] inter_cluster_session_sync: Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipsec_phase2_proposal: IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+        :param pulumi.Input[str] key: key
+        :param pulumi.Input[str] l2ep_eth_type: Telnet session HA heartbeat packet Ethertype (4-digit hex).
+        :param pulumi.Input[str] link_failed_signal: Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] load_balance_all: Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] logical_sn: Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] memory_based_failover: Enable/disable memory based failover. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] memory_compatible_mode: Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] memory_failover_flip_timeout: Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+        :param pulumi.Input[int] memory_failover_monitor_period: Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+        :param pulumi.Input[int] memory_failover_sample_rate: Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+        :param pulumi.Input[int] memory_failover_threshold: Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+        :param pulumi.Input[str] memory_threshold: Dynamic weighted load balancing memory usage weight and high and low thresholds.
+        :param pulumi.Input[str] mode: HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+        :param pulumi.Input[str] monitor: Interfaces to check for port monitoring (or link failure).
+        :param pulumi.Input[int] multicast_ttl: HA multicast TTL on master (5 - 3600 sec).
+        :param pulumi.Input[str] nntp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+        :param pulumi.Input[str] override: Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] override_wait_time: Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        :param pulumi.Input[str] password: Cluster password. Must be the same for all members.
+        :param pulumi.Input[int] pingserver_failover_threshold: Remote IP monitoring failover threshold (0 - 50).
+        :param pulumi.Input[int] pingserver_flip_timeout: Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        :param pulumi.Input[str] pingserver_monitor_interface: Interfaces to check for remote IP monitoring.
+        :param pulumi.Input[str] pingserver_secondary_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pingserver_slave_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pop3_proxy_threshold: Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+        :param pulumi.Input[int] priority: Increase the priority to select the primary unit (0 - 255).
+        :param pulumi.Input[int] route_hold: Time to wait between routing table updates to the cluster (0 - 3600 sec).
+        :param pulumi.Input[int] route_ttl: TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+        :param pulumi.Input[int] route_wait: Time to wait before sending new routes to the cluster (0 - 3600 sec).
+        :param pulumi.Input[str] schedule: Type of A-A load balancing. Use none if you have external load balancers.
+        :param pulumi.Input[pulumi.InputType['HaSecondaryVclusterArgs']] secondary_vcluster: Configure virtual cluster 2. The structure of `secondary_vcluster` block is documented below.
+        :param pulumi.Input[str] session_pickup: Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_connectionless: Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_delay: Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_expectation: Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_pickup_nat: Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] session_sync_dev: Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+        :param pulumi.Input[str] smtp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+        :param pulumi.Input[str] ssd_failover: Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] standalone_config_sync: Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] standalone_mgmt_vdom: Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sync_config: Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sync_packet_balance: Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] unicast_gateway: Default route gateway for unicast interface.
+        :param pulumi.Input[str] unicast_hb: Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] unicast_hb_netmask: Unicast heartbeat netmask.
+        :param pulumi.Input[str] unicast_hb_peerip: Unicast heartbeat peer IP.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HaUnicastPeerArgs']]]] unicast_peers: Number of unicast peers. The structure of `unicast_peers` block is documented below.
+        :param pulumi.Input[str] unicast_status: Enable/disable unicast connection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] uninterruptible_primary_wait: Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        :param pulumi.Input[str] uninterruptible_upgrade: Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] upgrade_mode: The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+        :param pulumi.Input[str] vcluster2: Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] vcluster_id: Cluster ID.
+        :param pulumi.Input[str] vcluster_status: Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HaVclusterArgs']]]] vclusters: Virtual cluster table. The structure of `vcluster` block is documented below.
+        :param pulumi.Input[str] vdom: VDOMs in virtual cluster 1.
+        :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] weight: Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -2482,8 +3538,10 @@ class Ha(pulumi.CustomResource):
         __props__.__dict__["cpu_threshold"] = cpu_threshold
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["encryption"] = encryption
+        __props__.__dict__["evpn_ttl"] = evpn_ttl
         __props__.__dict__["failover_hold_time"] = failover_hold_time
         __props__.__dict__["ftp_proxy_threshold"] = ftp_proxy_threshold
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gratuitous_arps"] = gratuitous_arps
         __props__.__dict__["group_id"] = group_id
         __props__.__dict__["group_name"] = group_name
@@ -2501,6 +3559,7 @@ class Ha(pulumi.CustomResource):
         __props__.__dict__["http_proxy_threshold"] = http_proxy_threshold
         __props__.__dict__["imap_proxy_threshold"] = imap_proxy_threshold
         __props__.__dict__["inter_cluster_session_sync"] = inter_cluster_session_sync
+        __props__.__dict__["ipsec_phase2_proposal"] = ipsec_phase2_proposal
         __props__.__dict__["key"] = key
         __props__.__dict__["l2ep_eth_type"] = l2ep_eth_type
         __props__.__dict__["link_failed_signal"] = link_failed_signal
@@ -2552,6 +3611,7 @@ class Ha(pulumi.CustomResource):
         __props__.__dict__["unicast_status"] = unicast_status
         __props__.__dict__["uninterruptible_primary_wait"] = uninterruptible_primary_wait
         __props__.__dict__["uninterruptible_upgrade"] = uninterruptible_upgrade
+        __props__.__dict__["upgrade_mode"] = upgrade_mode
         __props__.__dict__["vcluster2"] = vcluster2
         __props__.__dict__["vcluster_id"] = vcluster_id
         __props__.__dict__["vcluster_status"] = vcluster_status
@@ -2564,415 +3624,696 @@ class Ha(pulumi.CustomResource):
     @property
     @pulumi.getter
     def arps(self) -> pulumi.Output[int]:
+        """
+        Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+        """
         return pulumi.get(self, "arps")
 
     @property
     @pulumi.getter(name="arpsInterval")
     def arps_interval(self) -> pulumi.Output[int]:
+        """
+        Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+        """
         return pulumi.get(self, "arps_interval")
 
     @property
     @pulumi.getter
     def authentication(self) -> pulumi.Output[str]:
+        """
+        Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "authentication")
 
     @property
     @pulumi.getter(name="cpuThreshold")
     def cpu_threshold(self) -> pulumi.Output[str]:
+        """
+        Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+        """
         return pulumi.get(self, "cpu_threshold")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
+        """
+        Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        """
         return pulumi.get(self, "dynamic_sort_subtable")
 
     @property
     @pulumi.getter
     def encryption(self) -> pulumi.Output[str]:
+        """
+        Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "encryption")
+
+    @property
+    @pulumi.getter(name="evpnTtl")
+    def evpn_ttl(self) -> pulumi.Output[int]:
+        """
+        HA EVPN FDB TTL on primary box (5 - 3600 sec).
+        """
+        return pulumi.get(self, "evpn_ttl")
 
     @property
     @pulumi.getter(name="failoverHoldTime")
     def failover_hold_time(self) -> pulumi.Output[int]:
+        """
+        Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+        """
         return pulumi.get(self, "failover_hold_time")
 
     @property
     @pulumi.getter(name="ftpProxyThreshold")
     def ftp_proxy_threshold(self) -> pulumi.Output[str]:
+        """
+        Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+        """
         return pulumi.get(self, "ftp_proxy_threshold")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="gratuitousArps")
     def gratuitous_arps(self) -> pulumi.Output[str]:
+        """
+        Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "gratuitous_arps")
 
     @property
     @pulumi.getter(name="groupId")
     def group_id(self) -> pulumi.Output[int]:
+        """
+        Cluster group ID  (0 - 255). Must be the same for all members.
+        """
         return pulumi.get(self, "group_id")
 
     @property
     @pulumi.getter(name="groupName")
     def group_name(self) -> pulumi.Output[str]:
+        """
+        Cluster group name. Must be the same for all members.
+        """
         return pulumi.get(self, "group_name")
 
     @property
     @pulumi.getter(name="haDirect")
     def ha_direct(self) -> pulumi.Output[str]:
+        """
+        Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ha_direct")
 
     @property
     @pulumi.getter(name="haEthType")
     def ha_eth_type(self) -> pulumi.Output[str]:
+        """
+        HA heartbeat packet Ethertype (4-digit hex).
+        """
         return pulumi.get(self, "ha_eth_type")
 
     @property
     @pulumi.getter(name="haMgmtInterfaces")
     def ha_mgmt_interfaces(self) -> pulumi.Output[Optional[Sequence['outputs.HaHaMgmtInterface']]]:
+        """
+        Reserve interfaces to manage individual cluster units. The structure of `ha_mgmt_interfaces` block is documented below.
+        """
         return pulumi.get(self, "ha_mgmt_interfaces")
 
     @property
     @pulumi.getter(name="haMgmtStatus")
     def ha_mgmt_status(self) -> pulumi.Output[str]:
+        """
+        Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ha_mgmt_status")
 
     @property
     @pulumi.getter(name="haUptimeDiffMargin")
     def ha_uptime_diff_margin(self) -> pulumi.Output[int]:
+        """
+        Normally you would only reduce this value for failover testing.
+        """
         return pulumi.get(self, "ha_uptime_diff_margin")
 
     @property
     @pulumi.getter(name="hbInterval")
     def hb_interval(self) -> pulumi.Output[int]:
+        """
+        Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+        """
         return pulumi.get(self, "hb_interval")
 
     @property
     @pulumi.getter(name="hbIntervalInMilliseconds")
     def hb_interval_in_milliseconds(self) -> pulumi.Output[str]:
+        """
+        Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+        """
         return pulumi.get(self, "hb_interval_in_milliseconds")
 
     @property
     @pulumi.getter(name="hbLostThreshold")
     def hb_lost_threshold(self) -> pulumi.Output[int]:
+        """
+        Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+        """
         return pulumi.get(self, "hb_lost_threshold")
 
     @property
     @pulumi.getter
     def hbdev(self) -> pulumi.Output[str]:
+        """
+        Heartbeat interfaces. Must be the same for all members.
+        """
         return pulumi.get(self, "hbdev")
 
     @property
     @pulumi.getter(name="hcEthType")
     def hc_eth_type(self) -> pulumi.Output[str]:
+        """
+        Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+        """
         return pulumi.get(self, "hc_eth_type")
 
     @property
     @pulumi.getter(name="helloHolddown")
     def hello_holddown(self) -> pulumi.Output[int]:
+        """
+        Time to wait before changing from hello to work state (5 - 300 sec).
+        """
         return pulumi.get(self, "hello_holddown")
 
     @property
     @pulumi.getter(name="httpProxyThreshold")
     def http_proxy_threshold(self) -> pulumi.Output[str]:
+        """
+        Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+        """
         return pulumi.get(self, "http_proxy_threshold")
 
     @property
     @pulumi.getter(name="imapProxyThreshold")
     def imap_proxy_threshold(self) -> pulumi.Output[str]:
+        """
+        Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+        """
         return pulumi.get(self, "imap_proxy_threshold")
 
     @property
     @pulumi.getter(name="interClusterSessionSync")
     def inter_cluster_session_sync(self) -> pulumi.Output[str]:
+        """
+        Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "inter_cluster_session_sync")
+
+    @property
+    @pulumi.getter(name="ipsecPhase2Proposal")
+    def ipsec_phase2_proposal(self) -> pulumi.Output[str]:
+        """
+        IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+        """
+        return pulumi.get(self, "ipsec_phase2_proposal")
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Output[Optional[str]]:
+        """
+        key
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="l2epEthType")
     def l2ep_eth_type(self) -> pulumi.Output[str]:
+        """
+        Telnet session HA heartbeat packet Ethertype (4-digit hex).
+        """
         return pulumi.get(self, "l2ep_eth_type")
 
     @property
     @pulumi.getter(name="linkFailedSignal")
     def link_failed_signal(self) -> pulumi.Output[str]:
+        """
+        Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "link_failed_signal")
 
     @property
     @pulumi.getter(name="loadBalanceAll")
     def load_balance_all(self) -> pulumi.Output[str]:
+        """
+        Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "load_balance_all")
 
     @property
     @pulumi.getter(name="logicalSn")
     def logical_sn(self) -> pulumi.Output[str]:
+        """
+        Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "logical_sn")
 
     @property
     @pulumi.getter(name="memoryBasedFailover")
     def memory_based_failover(self) -> pulumi.Output[str]:
+        """
+        Enable/disable memory based failover. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "memory_based_failover")
 
     @property
     @pulumi.getter(name="memoryCompatibleMode")
     def memory_compatible_mode(self) -> pulumi.Output[str]:
+        """
+        Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "memory_compatible_mode")
 
     @property
     @pulumi.getter(name="memoryFailoverFlipTimeout")
     def memory_failover_flip_timeout(self) -> pulumi.Output[int]:
+        """
+        Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+        """
         return pulumi.get(self, "memory_failover_flip_timeout")
 
     @property
     @pulumi.getter(name="memoryFailoverMonitorPeriod")
     def memory_failover_monitor_period(self) -> pulumi.Output[int]:
+        """
+        Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+        """
         return pulumi.get(self, "memory_failover_monitor_period")
 
     @property
     @pulumi.getter(name="memoryFailoverSampleRate")
     def memory_failover_sample_rate(self) -> pulumi.Output[int]:
+        """
+        Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+        """
         return pulumi.get(self, "memory_failover_sample_rate")
 
     @property
     @pulumi.getter(name="memoryFailoverThreshold")
     def memory_failover_threshold(self) -> pulumi.Output[int]:
+        """
+        Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+        """
         return pulumi.get(self, "memory_failover_threshold")
 
     @property
     @pulumi.getter(name="memoryThreshold")
     def memory_threshold(self) -> pulumi.Output[str]:
+        """
+        Dynamic weighted load balancing memory usage weight and high and low thresholds.
+        """
         return pulumi.get(self, "memory_threshold")
 
     @property
     @pulumi.getter
     def mode(self) -> pulumi.Output[str]:
+        """
+        HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+        """
         return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
     def monitor(self) -> pulumi.Output[str]:
+        """
+        Interfaces to check for port monitoring (or link failure).
+        """
         return pulumi.get(self, "monitor")
 
     @property
     @pulumi.getter(name="multicastTtl")
     def multicast_ttl(self) -> pulumi.Output[int]:
+        """
+        HA multicast TTL on master (5 - 3600 sec).
+        """
         return pulumi.get(self, "multicast_ttl")
 
     @property
     @pulumi.getter(name="nntpProxyThreshold")
     def nntp_proxy_threshold(self) -> pulumi.Output[str]:
+        """
+        Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+        """
         return pulumi.get(self, "nntp_proxy_threshold")
 
     @property
     @pulumi.getter
     def override(self) -> pulumi.Output[str]:
+        """
+        Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "override")
 
     @property
     @pulumi.getter(name="overrideWaitTime")
     def override_wait_time(self) -> pulumi.Output[int]:
+        """
+        Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        """
         return pulumi.get(self, "override_wait_time")
 
     @property
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Cluster password. Must be the same for all members.
+        """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter(name="pingserverFailoverThreshold")
     def pingserver_failover_threshold(self) -> pulumi.Output[int]:
+        """
+        Remote IP monitoring failover threshold (0 - 50).
+        """
         return pulumi.get(self, "pingserver_failover_threshold")
 
     @property
     @pulumi.getter(name="pingserverFlipTimeout")
     def pingserver_flip_timeout(self) -> pulumi.Output[int]:
+        """
+        Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        """
         return pulumi.get(self, "pingserver_flip_timeout")
 
     @property
     @pulumi.getter(name="pingserverMonitorInterface")
     def pingserver_monitor_interface(self) -> pulumi.Output[str]:
+        """
+        Interfaces to check for remote IP monitoring.
+        """
         return pulumi.get(self, "pingserver_monitor_interface")
 
     @property
     @pulumi.getter(name="pingserverSecondaryForceReset")
     def pingserver_secondary_force_reset(self) -> pulumi.Output[str]:
+        """
+        Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "pingserver_secondary_force_reset")
 
     @property
     @pulumi.getter(name="pingserverSlaveForceReset")
     def pingserver_slave_force_reset(self) -> pulumi.Output[str]:
+        """
+        Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "pingserver_slave_force_reset")
 
     @property
     @pulumi.getter(name="pop3ProxyThreshold")
     def pop3_proxy_threshold(self) -> pulumi.Output[str]:
+        """
+        Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+        """
         return pulumi.get(self, "pop3_proxy_threshold")
 
     @property
     @pulumi.getter
     def priority(self) -> pulumi.Output[int]:
+        """
+        Increase the priority to select the primary unit (0 - 255).
+        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="routeHold")
     def route_hold(self) -> pulumi.Output[int]:
+        """
+        Time to wait between routing table updates to the cluster (0 - 3600 sec).
+        """
         return pulumi.get(self, "route_hold")
 
     @property
     @pulumi.getter(name="routeTtl")
     def route_ttl(self) -> pulumi.Output[int]:
+        """
+        TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+        """
         return pulumi.get(self, "route_ttl")
 
     @property
     @pulumi.getter(name="routeWait")
     def route_wait(self) -> pulumi.Output[int]:
+        """
+        Time to wait before sending new routes to the cluster (0 - 3600 sec).
+        """
         return pulumi.get(self, "route_wait")
 
     @property
     @pulumi.getter
     def schedule(self) -> pulumi.Output[str]:
+        """
+        Type of A-A load balancing. Use none if you have external load balancers.
+        """
         return pulumi.get(self, "schedule")
 
     @property
     @pulumi.getter(name="secondaryVcluster")
     def secondary_vcluster(self) -> pulumi.Output['outputs.HaSecondaryVcluster']:
+        """
+        Configure virtual cluster 2. The structure of `secondary_vcluster` block is documented below.
+        """
         return pulumi.get(self, "secondary_vcluster")
 
     @property
     @pulumi.getter(name="sessionPickup")
     def session_pickup(self) -> pulumi.Output[str]:
+        """
+        Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup")
 
     @property
     @pulumi.getter(name="sessionPickupConnectionless")
     def session_pickup_connectionless(self) -> pulumi.Output[str]:
+        """
+        Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup_connectionless")
 
     @property
     @pulumi.getter(name="sessionPickupDelay")
     def session_pickup_delay(self) -> pulumi.Output[str]:
+        """
+        Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup_delay")
 
     @property
     @pulumi.getter(name="sessionPickupExpectation")
     def session_pickup_expectation(self) -> pulumi.Output[str]:
+        """
+        Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup_expectation")
 
     @property
     @pulumi.getter(name="sessionPickupNat")
     def session_pickup_nat(self) -> pulumi.Output[str]:
+        """
+        Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "session_pickup_nat")
 
     @property
     @pulumi.getter(name="sessionSyncDev")
     def session_sync_dev(self) -> pulumi.Output[str]:
+        """
+        Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+        """
         return pulumi.get(self, "session_sync_dev")
 
     @property
     @pulumi.getter(name="smtpProxyThreshold")
     def smtp_proxy_threshold(self) -> pulumi.Output[str]:
+        """
+        Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+        """
         return pulumi.get(self, "smtp_proxy_threshold")
 
     @property
     @pulumi.getter(name="ssdFailover")
     def ssd_failover(self) -> pulumi.Output[str]:
+        """
+        Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ssd_failover")
 
     @property
     @pulumi.getter(name="standaloneConfigSync")
     def standalone_config_sync(self) -> pulumi.Output[str]:
+        """
+        Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "standalone_config_sync")
 
     @property
     @pulumi.getter(name="standaloneMgmtVdom")
     def standalone_mgmt_vdom(self) -> pulumi.Output[str]:
+        """
+        Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "standalone_mgmt_vdom")
 
     @property
     @pulumi.getter(name="syncConfig")
     def sync_config(self) -> pulumi.Output[str]:
+        """
+        Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "sync_config")
 
     @property
     @pulumi.getter(name="syncPacketBalance")
     def sync_packet_balance(self) -> pulumi.Output[str]:
+        """
+        Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "sync_packet_balance")
 
     @property
     @pulumi.getter(name="unicastGateway")
     def unicast_gateway(self) -> pulumi.Output[str]:
+        """
+        Default route gateway for unicast interface.
+        """
         return pulumi.get(self, "unicast_gateway")
 
     @property
     @pulumi.getter(name="unicastHb")
     def unicast_hb(self) -> pulumi.Output[str]:
+        """
+        Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "unicast_hb")
 
     @property
     @pulumi.getter(name="unicastHbNetmask")
     def unicast_hb_netmask(self) -> pulumi.Output[str]:
+        """
+        Unicast heartbeat netmask.
+        """
         return pulumi.get(self, "unicast_hb_netmask")
 
     @property
     @pulumi.getter(name="unicastHbPeerip")
     def unicast_hb_peerip(self) -> pulumi.Output[str]:
+        """
+        Unicast heartbeat peer IP.
+        """
         return pulumi.get(self, "unicast_hb_peerip")
 
     @property
     @pulumi.getter(name="unicastPeers")
     def unicast_peers(self) -> pulumi.Output[Optional[Sequence['outputs.HaUnicastPeer']]]:
+        """
+        Number of unicast peers. The structure of `unicast_peers` block is documented below.
+        """
         return pulumi.get(self, "unicast_peers")
 
     @property
     @pulumi.getter(name="unicastStatus")
     def unicast_status(self) -> pulumi.Output[str]:
+        """
+        Enable/disable unicast connection. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "unicast_status")
 
     @property
     @pulumi.getter(name="uninterruptiblePrimaryWait")
     def uninterruptible_primary_wait(self) -> pulumi.Output[int]:
+        """
+        Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        """
         return pulumi.get(self, "uninterruptible_primary_wait")
 
     @property
     @pulumi.getter(name="uninterruptibleUpgrade")
     def uninterruptible_upgrade(self) -> pulumi.Output[str]:
+        """
+        Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "uninterruptible_upgrade")
+
+    @property
+    @pulumi.getter(name="upgradeMode")
+    def upgrade_mode(self) -> pulumi.Output[str]:
+        """
+        The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+        """
+        return pulumi.get(self, "upgrade_mode")
 
     @property
     @pulumi.getter
     def vcluster2(self) -> pulumi.Output[str]:
+        """
+        Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "vcluster2")
 
     @property
     @pulumi.getter(name="vclusterId")
     def vcluster_id(self) -> pulumi.Output[int]:
+        """
+        Cluster ID.
+        """
         return pulumi.get(self, "vcluster_id")
 
     @property
     @pulumi.getter(name="vclusterStatus")
     def vcluster_status(self) -> pulumi.Output[str]:
+        """
+        Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "vcluster_status")
 
     @property
     @pulumi.getter
     def vclusters(self) -> pulumi.Output[Optional[Sequence['outputs.HaVcluster']]]:
+        """
+        Virtual cluster table. The structure of `vcluster` block is documented below.
+        """
         return pulumi.get(self, "vclusters")
 
     @property
     @pulumi.getter
     def vdom(self) -> pulumi.Output[str]:
+        """
+        VDOMs in virtual cluster 1.
+        """
         return pulumi.get(self, "vdom")
 
     @property
     @pulumi.getter
     def vdomparam(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        """
         return pulumi.get(self, "vdomparam")
 
     @property
     @pulumi.getter
     def weight(self) -> pulumi.Output[str]:
+        """
+        Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
+        """
         return pulumi.get(self, "weight")
 

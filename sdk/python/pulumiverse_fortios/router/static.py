@@ -26,15 +26,18 @@ class StaticArgs:
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[int]] = None,
                  internet_service_custom: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
+                 preferred_source: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
                  sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input['StaticSdwanZoneArgs']]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tag: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_wan_link: Optional[pulumi.Input[str]] = None,
                  vrf: Optional[pulumi.Input[int]] = None,
@@ -51,15 +54,18 @@ class StaticArgs:
         :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] gateway: Gateway IP for this route.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] internet_service: Application ID in the Internet service database.
         :param pulumi.Input[str] internet_service_custom: Application name in the Internet service custom database.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
+        :param pulumi.Input[str] preferred_source: Preferred source IP for this route.
+        :param pulumi.Input[int] priority: Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
         :param pulumi.Input[str] sdwan: Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['StaticSdwanZoneArgs']]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
         :param pulumi.Input[str] src: Source prefix for this route.
         :param pulumi.Input[str] status: Enable/disable this static route. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] tag: Route tag.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] virtual_wan_link: Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] vrf: Virtual Routing Forwarding ID.
@@ -85,12 +91,16 @@ class StaticArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if internet_service is not None:
             pulumi.set(__self__, "internet_service", internet_service)
         if internet_service_custom is not None:
             pulumi.set(__self__, "internet_service_custom", internet_service_custom)
         if link_monitor_exempt is not None:
             pulumi.set(__self__, "link_monitor_exempt", link_monitor_exempt)
+        if preferred_source is not None:
+            pulumi.set(__self__, "preferred_source", preferred_source)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
         if sdwan is not None:
@@ -103,6 +113,8 @@ class StaticArgs:
             pulumi.set(__self__, "src", src)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tag is not None:
+            pulumi.set(__self__, "tag", tag)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if virtual_wan_link is not None:
@@ -233,6 +245,18 @@ class StaticArgs:
         pulumi.set(self, "gateway", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="internetService")
     def internet_service(self) -> Optional[pulumi.Input[int]]:
         """
@@ -269,10 +293,22 @@ class StaticArgs:
         pulumi.set(self, "link_monitor_exempt", value)
 
     @property
+    @pulumi.getter(name="preferredSource")
+    def preferred_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Preferred source IP for this route.
+        """
+        return pulumi.get(self, "preferred_source")
+
+    @preferred_source.setter
+    def preferred_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "preferred_source", value)
+
+    @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        Administrative priority (0 - 4294967295).
+        Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
         """
         return pulumi.get(self, "priority")
 
@@ -339,6 +375,18 @@ class StaticArgs:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def tag(self) -> Optional[pulumi.Input[int]]:
+        """
+        Route tag.
+        """
+        return pulumi.get(self, "tag")
+
+    @tag.setter
+    def tag(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "tag", value)
 
     @property
     @pulumi.getter
@@ -402,15 +450,18 @@ class _StaticState:
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[int]] = None,
                  internet_service_custom: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
+                 preferred_source: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
                  sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input['StaticSdwanZoneArgs']]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tag: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_wan_link: Optional[pulumi.Input[str]] = None,
                  vrf: Optional[pulumi.Input[int]] = None,
@@ -427,15 +478,18 @@ class _StaticState:
         :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] gateway: Gateway IP for this route.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] internet_service: Application ID in the Internet service database.
         :param pulumi.Input[str] internet_service_custom: Application name in the Internet service custom database.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
+        :param pulumi.Input[str] preferred_source: Preferred source IP for this route.
+        :param pulumi.Input[int] priority: Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
         :param pulumi.Input[str] sdwan: Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['StaticSdwanZoneArgs']]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
         :param pulumi.Input[str] src: Source prefix for this route.
         :param pulumi.Input[str] status: Enable/disable this static route. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] tag: Route tag.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] virtual_wan_link: Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] vrf: Virtual Routing Forwarding ID.
@@ -461,12 +515,16 @@ class _StaticState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if internet_service is not None:
             pulumi.set(__self__, "internet_service", internet_service)
         if internet_service_custom is not None:
             pulumi.set(__self__, "internet_service_custom", internet_service_custom)
         if link_monitor_exempt is not None:
             pulumi.set(__self__, "link_monitor_exempt", link_monitor_exempt)
+        if preferred_source is not None:
+            pulumi.set(__self__, "preferred_source", preferred_source)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
         if sdwan is not None:
@@ -479,6 +537,8 @@ class _StaticState:
             pulumi.set(__self__, "src", src)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tag is not None:
+            pulumi.set(__self__, "tag", tag)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if virtual_wan_link is not None:
@@ -609,6 +669,18 @@ class _StaticState:
         pulumi.set(self, "gateway", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="internetService")
     def internet_service(self) -> Optional[pulumi.Input[int]]:
         """
@@ -645,10 +717,22 @@ class _StaticState:
         pulumi.set(self, "link_monitor_exempt", value)
 
     @property
+    @pulumi.getter(name="preferredSource")
+    def preferred_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Preferred source IP for this route.
+        """
+        return pulumi.get(self, "preferred_source")
+
+    @preferred_source.setter
+    def preferred_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "preferred_source", value)
+
+    @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        Administrative priority (0 - 4294967295).
+        Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
         """
         return pulumi.get(self, "priority")
 
@@ -715,6 +799,18 @@ class _StaticState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def tag(self) -> Optional[pulumi.Input[int]]:
+        """
+        Route tag.
+        """
+        return pulumi.get(self, "tag")
+
+    @tag.setter
+    def tag(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "tag", value)
 
     @property
     @pulumi.getter
@@ -780,15 +876,18 @@ class Static(pulumi.CustomResource):
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[int]] = None,
                  internet_service_custom: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
+                 preferred_source: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
                  sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StaticSdwanZoneArgs']]]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tag: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_wan_link: Optional[pulumi.Input[str]] = None,
                  vrf: Optional[pulumi.Input[int]] = None,
@@ -854,15 +953,18 @@ class Static(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] gateway: Gateway IP for this route.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] internet_service: Application ID in the Internet service database.
         :param pulumi.Input[str] internet_service_custom: Application name in the Internet service custom database.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
+        :param pulumi.Input[str] preferred_source: Preferred source IP for this route.
+        :param pulumi.Input[int] priority: Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
         :param pulumi.Input[str] sdwan: Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StaticSdwanZoneArgs']]]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
         :param pulumi.Input[str] src: Source prefix for this route.
         :param pulumi.Input[str] status: Enable/disable this static route. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] tag: Route tag.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] virtual_wan_link: Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] vrf: Virtual Routing Forwarding ID.
@@ -947,15 +1049,18 @@ class Static(pulumi.CustomResource):
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[int]] = None,
                  internet_service_custom: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
+                 preferred_source: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
                  sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StaticSdwanZoneArgs']]]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tag: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_wan_link: Optional[pulumi.Input[str]] = None,
                  vrf: Optional[pulumi.Input[int]] = None,
@@ -979,15 +1084,18 @@ class Static(pulumi.CustomResource):
             __props__.__dict__["dynamic_gateway"] = dynamic_gateway
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["gateway"] = gateway
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["internet_service"] = internet_service
             __props__.__dict__["internet_service_custom"] = internet_service_custom
             __props__.__dict__["link_monitor_exempt"] = link_monitor_exempt
+            __props__.__dict__["preferred_source"] = preferred_source
             __props__.__dict__["priority"] = priority
             __props__.__dict__["sdwan"] = sdwan
             __props__.__dict__["sdwan_zones"] = sdwan_zones
             __props__.__dict__["seq_num"] = seq_num
             __props__.__dict__["src"] = src
             __props__.__dict__["status"] = status
+            __props__.__dict__["tag"] = tag
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["virtual_wan_link"] = virtual_wan_link
             __props__.__dict__["vrf"] = vrf
@@ -1012,15 +1120,18 @@ class Static(pulumi.CustomResource):
             dynamic_gateway: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             gateway: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             internet_service: Optional[pulumi.Input[int]] = None,
             internet_service_custom: Optional[pulumi.Input[str]] = None,
             link_monitor_exempt: Optional[pulumi.Input[str]] = None,
+            preferred_source: Optional[pulumi.Input[str]] = None,
             priority: Optional[pulumi.Input[int]] = None,
             sdwan: Optional[pulumi.Input[str]] = None,
             sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StaticSdwanZoneArgs']]]]] = None,
             seq_num: Optional[pulumi.Input[int]] = None,
             src: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tag: Optional[pulumi.Input[int]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             virtual_wan_link: Optional[pulumi.Input[str]] = None,
             vrf: Optional[pulumi.Input[int]] = None,
@@ -1042,15 +1153,18 @@ class Static(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] gateway: Gateway IP for this route.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] internet_service: Application ID in the Internet service database.
         :param pulumi.Input[str] internet_service_custom: Application name in the Internet service custom database.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
+        :param pulumi.Input[str] preferred_source: Preferred source IP for this route.
+        :param pulumi.Input[int] priority: Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
         :param pulumi.Input[str] sdwan: Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StaticSdwanZoneArgs']]]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
         :param pulumi.Input[str] src: Source prefix for this route.
         :param pulumi.Input[str] status: Enable/disable this static route. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] tag: Route tag.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] virtual_wan_link: Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] vrf: Virtual Routing Forwarding ID.
@@ -1070,15 +1184,18 @@ class Static(pulumi.CustomResource):
         __props__.__dict__["dynamic_gateway"] = dynamic_gateway
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["gateway"] = gateway
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["internet_service"] = internet_service
         __props__.__dict__["internet_service_custom"] = internet_service_custom
         __props__.__dict__["link_monitor_exempt"] = link_monitor_exempt
+        __props__.__dict__["preferred_source"] = preferred_source
         __props__.__dict__["priority"] = priority
         __props__.__dict__["sdwan"] = sdwan
         __props__.__dict__["sdwan_zones"] = sdwan_zones
         __props__.__dict__["seq_num"] = seq_num
         __props__.__dict__["src"] = src
         __props__.__dict__["status"] = status
+        __props__.__dict__["tag"] = tag
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["virtual_wan_link"] = virtual_wan_link
         __props__.__dict__["vrf"] = vrf
@@ -1166,6 +1283,14 @@ class Static(pulumi.CustomResource):
         return pulumi.get(self, "gateway")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="internetService")
     def internet_service(self) -> pulumi.Output[int]:
         """
@@ -1190,10 +1315,18 @@ class Static(pulumi.CustomResource):
         return pulumi.get(self, "link_monitor_exempt")
 
     @property
+    @pulumi.getter(name="preferredSource")
+    def preferred_source(self) -> pulumi.Output[str]:
+        """
+        Preferred source IP for this route.
+        """
+        return pulumi.get(self, "preferred_source")
+
+    @property
     @pulumi.getter
     def priority(self) -> pulumi.Output[int]:
         """
-        Administrative priority (0 - 4294967295).
+        Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
         """
         return pulumi.get(self, "priority")
 
@@ -1236,6 +1369,14 @@ class Static(pulumi.CustomResource):
         Enable/disable this static route. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tag(self) -> pulumi.Output[int]:
+        """
+        Route tag.
+        """
+        return pulumi.get(self, "tag")
 
     @property
     @pulumi.getter

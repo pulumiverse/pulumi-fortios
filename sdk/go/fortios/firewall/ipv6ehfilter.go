@@ -72,7 +72,7 @@ type Ipv6ehfilter struct {
 	DestOpt pulumi.StringOutput `pulumi:"destOpt"`
 	// Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
 	Fragment pulumi.StringOutput `pulumi:"fragment"`
-	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
 	HdoptType pulumi.IntOutput `pulumi:"hdoptType"`
 	// Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
 	HopOpt pulumi.StringOutput `pulumi:"hopOpt"`
@@ -122,7 +122,7 @@ type ipv6ehfilterState struct {
 	DestOpt *string `pulumi:"destOpt"`
 	// Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
 	Fragment *string `pulumi:"fragment"`
-	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
 	HdoptType *int `pulumi:"hdoptType"`
 	// Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
 	HopOpt *string `pulumi:"hopOpt"`
@@ -143,7 +143,7 @@ type Ipv6ehfilterState struct {
 	DestOpt pulumi.StringPtrInput
 	// Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
 	Fragment pulumi.StringPtrInput
-	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
 	HdoptType pulumi.IntPtrInput
 	// Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
 	HopOpt pulumi.StringPtrInput
@@ -168,7 +168,7 @@ type ipv6ehfilterArgs struct {
 	DestOpt *string `pulumi:"destOpt"`
 	// Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
 	Fragment *string `pulumi:"fragment"`
-	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
 	HdoptType *int `pulumi:"hdoptType"`
 	// Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
 	HopOpt *string `pulumi:"hopOpt"`
@@ -190,7 +190,7 @@ type Ipv6ehfilterArgs struct {
 	DestOpt pulumi.StringPtrInput
 	// Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
 	Fragment pulumi.StringPtrInput
-	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+	// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
 	HdoptType pulumi.IntPtrInput
 	// Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
 	HopOpt pulumi.StringPtrInput
@@ -306,7 +306,7 @@ func (o Ipv6ehfilterOutput) Fragment() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ipv6ehfilter) pulumi.StringOutput { return v.Fragment }).(pulumi.StringOutput)
 }
 
-// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
 func (o Ipv6ehfilterOutput) HdoptType() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ipv6ehfilter) pulumi.IntOutput { return v.HdoptType }).(pulumi.IntOutput)
 }

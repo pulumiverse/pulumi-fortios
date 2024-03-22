@@ -60,7 +60,7 @@ class SettingArgs:
         :param pulumi.Input[int] max_log_file_size: Maximum log file size before rolling (1 - 100 Mbytes).
         :param pulumi.Input[int] max_policy_packet_capture_size: Maximum size of policy sniffer in MB (0 means unlimited).
         :param pulumi.Input[int] maximum_log_age: Delete log files older than (days).
-        :param pulumi.Input[int] report_quota: Report quota (MB).
+        :param pulumi.Input[int] report_quota: Report db quota (MB).
         :param pulumi.Input[str] roll_day: Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] roll_schedule: Frequency to check log file for rolling. Valid values: `daily`, `weekly`.
         :param pulumi.Input[str] roll_time: Time of day to roll the log file (hh:mm).
@@ -301,7 +301,7 @@ class SettingArgs:
     @pulumi.getter(name="reportQuota")
     def report_quota(self) -> Optional[pulumi.Input[int]]:
         """
-        Report quota (MB).
+        Report db quota (MB).
         """
         return pulumi.get(self, "report_quota")
 
@@ -562,7 +562,7 @@ class _SettingState:
         :param pulumi.Input[int] max_log_file_size: Maximum log file size before rolling (1 - 100 Mbytes).
         :param pulumi.Input[int] max_policy_packet_capture_size: Maximum size of policy sniffer in MB (0 means unlimited).
         :param pulumi.Input[int] maximum_log_age: Delete log files older than (days).
-        :param pulumi.Input[int] report_quota: Report quota (MB).
+        :param pulumi.Input[int] report_quota: Report db quota (MB).
         :param pulumi.Input[str] roll_day: Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] roll_schedule: Frequency to check log file for rolling. Valid values: `daily`, `weekly`.
         :param pulumi.Input[str] roll_time: Time of day to roll the log file (hh:mm).
@@ -793,7 +793,7 @@ class _SettingState:
     @pulumi.getter(name="reportQuota")
     def report_quota(self) -> Optional[pulumi.Input[int]]:
         """
-        Report quota (MB).
+        Report db quota (MB).
         """
         return pulumi.get(self, "report_quota")
 
@@ -1126,7 +1126,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[int] max_log_file_size: Maximum log file size before rolling (1 - 100 Mbytes).
         :param pulumi.Input[int] max_policy_packet_capture_size: Maximum size of policy sniffer in MB (0 means unlimited).
         :param pulumi.Input[int] maximum_log_age: Delete log files older than (days).
-        :param pulumi.Input[int] report_quota: Report quota (MB).
+        :param pulumi.Input[int] report_quota: Report db quota (MB).
         :param pulumi.Input[str] roll_day: Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] roll_schedule: Frequency to check log file for rolling. Valid values: `daily`, `weekly`.
         :param pulumi.Input[str] roll_time: Time of day to roll the log file (hh:mm).
@@ -1359,7 +1359,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[int] max_log_file_size: Maximum log file size before rolling (1 - 100 Mbytes).
         :param pulumi.Input[int] max_policy_packet_capture_size: Maximum size of policy sniffer in MB (0 means unlimited).
         :param pulumi.Input[int] maximum_log_age: Delete log files older than (days).
-        :param pulumi.Input[int] report_quota: Report quota (MB).
+        :param pulumi.Input[int] report_quota: Report db quota (MB).
         :param pulumi.Input[str] roll_day: Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] roll_schedule: Frequency to check log file for rolling. Valid values: `daily`, `weekly`.
         :param pulumi.Input[str] roll_time: Time of day to roll the log file (hh:mm).
@@ -1516,7 +1516,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="reportQuota")
     def report_quota(self) -> pulumi.Output[int]:
         """
-        Report quota (MB).
+        Report db quota (MB).
         """
         return pulumi.get(self, "report_quota")
 

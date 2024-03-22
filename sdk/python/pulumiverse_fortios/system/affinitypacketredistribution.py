@@ -18,6 +18,7 @@ class AffinitypacketredistributionArgs:
                  fosid: pulumi.Input[int],
                  interface: pulumi.Input[str],
                  rxqid: pulumi.Input[int],
+                 round_robin: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Affinitypacketredistribution resource.
@@ -25,12 +26,15 @@ class AffinitypacketredistributionArgs:
         :param pulumi.Input[int] fosid: ID of the packet redistribution setting.
         :param pulumi.Input[str] interface: Physical interface name on which to perform packet redistribution.
         :param pulumi.Input[int] rxqid: ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
+        :param pulumi.Input[str] round_robin: Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         pulumi.set(__self__, "affinity_cpumask", affinity_cpumask)
         pulumi.set(__self__, "fosid", fosid)
         pulumi.set(__self__, "interface", interface)
         pulumi.set(__self__, "rxqid", rxqid)
+        if round_robin is not None:
+            pulumi.set(__self__, "round_robin", round_robin)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -83,6 +87,18 @@ class AffinitypacketredistributionArgs:
         pulumi.set(self, "rxqid", value)
 
     @property
+    @pulumi.getter(name="roundRobin")
+    def round_robin(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "round_robin")
+
+    @round_robin.setter
+    def round_robin(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "round_robin", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -101,6 +117,7 @@ class _AffinitypacketredistributionState:
                  affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 round_robin: Optional[pulumi.Input[str]] = None,
                  rxqid: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -108,6 +125,7 @@ class _AffinitypacketredistributionState:
         :param pulumi.Input[str] affinity_cpumask: Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] fosid: ID of the packet redistribution setting.
         :param pulumi.Input[str] interface: Physical interface name on which to perform packet redistribution.
+        :param pulumi.Input[str] round_robin: Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] rxqid: ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -117,6 +135,8 @@ class _AffinitypacketredistributionState:
             pulumi.set(__self__, "fosid", fosid)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if round_robin is not None:
+            pulumi.set(__self__, "round_robin", round_robin)
         if rxqid is not None:
             pulumi.set(__self__, "rxqid", rxqid)
         if vdomparam is not None:
@@ -159,6 +179,18 @@ class _AffinitypacketredistributionState:
         pulumi.set(self, "interface", value)
 
     @property
+    @pulumi.getter(name="roundRobin")
+    def round_robin(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "round_robin")
+
+    @round_robin.setter
+    def round_robin(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "round_robin", value)
+
+    @property
     @pulumi.getter
     def rxqid(self) -> Optional[pulumi.Input[int]]:
         """
@@ -191,6 +223,7 @@ class Affinitypacketredistribution(pulumi.CustomResource):
                  affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 round_robin: Optional[pulumi.Input[str]] = None,
                  rxqid: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -220,6 +253,7 @@ class Affinitypacketredistribution(pulumi.CustomResource):
         :param pulumi.Input[str] affinity_cpumask: Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] fosid: ID of the packet redistribution setting.
         :param pulumi.Input[str] interface: Physical interface name on which to perform packet redistribution.
+        :param pulumi.Input[str] round_robin: Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] rxqid: ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -268,6 +302,7 @@ class Affinitypacketredistribution(pulumi.CustomResource):
                  affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 round_robin: Optional[pulumi.Input[str]] = None,
                  rxqid: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -288,6 +323,7 @@ class Affinitypacketredistribution(pulumi.CustomResource):
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
+            __props__.__dict__["round_robin"] = round_robin
             if rxqid is None and not opts.urn:
                 raise TypeError("Missing required property 'rxqid'")
             __props__.__dict__["rxqid"] = rxqid
@@ -305,6 +341,7 @@ class Affinitypacketredistribution(pulumi.CustomResource):
             affinity_cpumask: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
             interface: Optional[pulumi.Input[str]] = None,
+            round_robin: Optional[pulumi.Input[str]] = None,
             rxqid: Optional[pulumi.Input[int]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Affinitypacketredistribution':
         """
@@ -317,6 +354,7 @@ class Affinitypacketredistribution(pulumi.CustomResource):
         :param pulumi.Input[str] affinity_cpumask: Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] fosid: ID of the packet redistribution setting.
         :param pulumi.Input[str] interface: Physical interface name on which to perform packet redistribution.
+        :param pulumi.Input[str] round_robin: Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] rxqid: ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -327,6 +365,7 @@ class Affinitypacketredistribution(pulumi.CustomResource):
         __props__.__dict__["affinity_cpumask"] = affinity_cpumask
         __props__.__dict__["fosid"] = fosid
         __props__.__dict__["interface"] = interface
+        __props__.__dict__["round_robin"] = round_robin
         __props__.__dict__["rxqid"] = rxqid
         __props__.__dict__["vdomparam"] = vdomparam
         return Affinitypacketredistribution(resource_name, opts=opts, __props__=__props__)
@@ -354,6 +393,14 @@ class Affinitypacketredistribution(pulumi.CustomResource):
         Physical interface name on which to perform packet redistribution.
         """
         return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="roundRobin")
+    def round_robin(self) -> pulumi.Output[str]:
+        """
+        Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "round_robin")
 
     @property
     @pulumi.getter

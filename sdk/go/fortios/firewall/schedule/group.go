@@ -82,6 +82,8 @@ type Group struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Schedules added to the schedule group. The structure of `member` block is documented below.
 	Members GroupMemberArrayOutput `pulumi:"members"`
 	// Schedule group name.
@@ -129,6 +131,8 @@ type groupState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Schedules added to the schedule group. The structure of `member` block is documented below.
 	Members []GroupMember `pulumi:"members"`
 	// Schedule group name.
@@ -144,6 +148,8 @@ type GroupState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Schedules added to the schedule group. The structure of `member` block is documented below.
 	Members GroupMemberArrayInput
 	// Schedule group name.
@@ -163,6 +169,8 @@ type groupArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Schedules added to the schedule group. The structure of `member` block is documented below.
 	Members []GroupMember `pulumi:"members"`
 	// Schedule group name.
@@ -179,6 +187,8 @@ type GroupArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Schedules added to the schedule group. The structure of `member` block is documented below.
 	Members GroupMemberArrayInput
 	// Schedule group name.
@@ -287,6 +297,11 @@ func (o GroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Security Fabric global object setting. Valid values: `enable`, `disable`.
 func (o GroupOutput) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o GroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Schedules added to the schedule group. The structure of `member` block is documented below.

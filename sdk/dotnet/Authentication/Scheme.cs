@@ -95,6 +95,12 @@ namespace Pulumiverse.Fortios.Authentication
         public Output<string> FssoGuest { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Kerberos keytab setting.
         /// </summary>
         [Output("kerberosKeytab")]
@@ -232,6 +238,12 @@ namespace Pulumiverse.Fortios.Authentication
         public Input<string>? FssoGuest { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Kerberos keytab setting.
         /// </summary>
         [Input("kerberosKeytab")]
@@ -334,6 +346,12 @@ namespace Pulumiverse.Fortios.Authentication
         /// </summary>
         [Input("fssoGuest")]
         public Input<string>? FssoGuest { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Kerberos keytab setting.

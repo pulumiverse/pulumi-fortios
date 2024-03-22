@@ -14,10 +14,25 @@ namespace Pulumiverse.Fortios.System.Outputs
     [OutputType]
     public sealed class HaHaMgmtInterface
     {
+        /// <summary>
+        /// Default route destination for reserved HA management interface.
+        /// </summary>
         public readonly string? Dst;
+        /// <summary>
+        /// Default route gateway for reserved HA management interface.
+        /// </summary>
         public readonly string? Gateway;
+        /// <summary>
+        /// Default IPv6 gateway for reserved HA management interface.
+        /// </summary>
         public readonly string? Gateway6;
+        /// <summary>
+        /// Table ID.
+        /// </summary>
         public readonly int? Id;
+        /// <summary>
+        /// Interface to reserve for HA management.
+        /// </summary>
         public readonly string? Interface;
 
         [OutputConstructor]

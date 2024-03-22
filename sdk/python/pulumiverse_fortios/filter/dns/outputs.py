@@ -17,6 +17,7 @@ __all__ = [
     'ProfileExternalIpBlocklist',
     'ProfileFtgdDns',
     'ProfileFtgdDnsFilter',
+    'ProfileTransparentDnsDatabase',
 ]
 
 @pulumi.output_type
@@ -357,5 +358,24 @@ class ProfileFtgdDnsFilter(dict):
         Enable/disable DNS filter logging for this DNS profile. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "log")
+
+
+@pulumi.output_type
+class ProfileTransparentDnsDatabase(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: DNS database zone name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        DNS database zone name.
+        """
+        return pulumi.get(self, "name")
 
 

@@ -56,7 +56,7 @@ type LookupAutomationtriggerResult struct {
 	LicenseType string `pulumi:"licenseType"`
 	// Log ID to trigger event.
 	Logid int `pulumi:"logid"`
-	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+	// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
 	LogidBlocks []GetAutomationtriggerLogidBlock `pulumi:"logidBlocks"`
 	// Name.
 	Name string `pulumi:"name"`
@@ -183,7 +183,7 @@ func (o LookupAutomationtriggerResultOutput) Logid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupAutomationtriggerResult) int { return v.Logid }).(pulumi.IntOutput)
 }
 
-// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
 func (o LookupAutomationtriggerResultOutput) LogidBlocks() GetAutomationtriggerLogidBlockArrayOutput {
 	return o.ApplyT(func(v LookupAutomationtriggerResult) []GetAutomationtriggerLogidBlock { return v.LogidBlocks }).(GetAutomationtriggerLogidBlockArrayOutput)
 }

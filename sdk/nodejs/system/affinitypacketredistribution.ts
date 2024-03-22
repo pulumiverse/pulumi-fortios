@@ -66,6 +66,10 @@ export class Affinitypacketredistribution extends pulumi.CustomResource {
      */
     public readonly interface!: pulumi.Output<string>;
     /**
+     * Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+     */
+    public readonly roundRobin!: pulumi.Output<string>;
+    /**
      * ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
      */
     public readonly rxqid!: pulumi.Output<number>;
@@ -90,6 +94,7 @@ export class Affinitypacketredistribution extends pulumi.CustomResource {
             resourceInputs["affinityCpumask"] = state ? state.affinityCpumask : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["roundRobin"] = state ? state.roundRobin : undefined;
             resourceInputs["rxqid"] = state ? state.rxqid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -109,6 +114,7 @@ export class Affinitypacketredistribution extends pulumi.CustomResource {
             resourceInputs["affinityCpumask"] = args ? args.affinityCpumask : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["roundRobin"] = args ? args.roundRobin : undefined;
             resourceInputs["rxqid"] = args ? args.rxqid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -133,6 +139,10 @@ export interface AffinitypacketredistributionState {
      * Physical interface name on which to perform packet redistribution.
      */
     interface?: pulumi.Input<string>;
+    /**
+     * Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+     */
+    roundRobin?: pulumi.Input<string>;
     /**
      * ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
      */
@@ -159,6 +169,10 @@ export interface AffinitypacketredistributionArgs {
      * Physical interface name on which to perform packet redistribution.
      */
     interface: pulumi.Input<string>;
+    /**
+     * Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+     */
+    roundRobin?: pulumi.Input<string>;
     /**
      * ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
      */

@@ -32,6 +32,7 @@ class IppoolArgs:
                  source_endip: Optional[pulumi.Input[str]] = None,
                  source_startip: Optional[pulumi.Input[str]] = None,
                  startport: Optional[pulumi.Input[int]] = None,
+                 subnet_broadcast_in_ippool: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -42,7 +43,7 @@ class IppoolArgs:
         :param pulumi.Input[str] arp_intf: Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
         :param pulumi.Input[str] arp_reply: Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] associated_interface: Associated interface name.
-        :param pulumi.Input[int] block_size: Number of addresses in a block (64 to 4096, default = 128).
+        :param pulumi.Input[int] block_size: Number of addresses in a block (64 - 4096, default = 128).
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] endport: Final port number (inclusive) in the range for the address pool (Default: 65533).
         :param pulumi.Input[str] name: IP pool name.
@@ -50,11 +51,12 @@ class IppoolArgs:
         :param pulumi.Input[int] num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8).
         :param pulumi.Input[int] pba_timeout: Port block allocation timeout (seconds).
         :param pulumi.Input[str] permit_any_host: Enable/disable full cone NAT. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] port_per_user: Number of port for each user (32 to 60416, default = 0, auto).
+        :param pulumi.Input[int] port_per_user: Number of port for each user (32 - 60416, default = 0, which is auto).
         :param pulumi.Input[str] source_endip: Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[str] source_startip: First IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[int] startport: First port number (inclusive) in the range for the address pool (Default: 5117).
-        :param pulumi.Input[str] type: IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+        :param pulumi.Input[str] subnet_broadcast_in_ippool: Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] type: IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         pulumi.set(__self__, "endip", endip)
@@ -91,6 +93,8 @@ class IppoolArgs:
             pulumi.set(__self__, "source_startip", source_startip)
         if startport is not None:
             pulumi.set(__self__, "startport", startport)
+        if subnet_broadcast_in_ippool is not None:
+            pulumi.set(__self__, "subnet_broadcast_in_ippool", subnet_broadcast_in_ippool)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if vdomparam is not None:
@@ -172,7 +176,7 @@ class IppoolArgs:
     @pulumi.getter(name="blockSize")
     def block_size(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of addresses in a block (64 to 4096, default = 128).
+        Number of addresses in a block (64 - 4096, default = 128).
         """
         return pulumi.get(self, "block_size")
 
@@ -268,7 +272,7 @@ class IppoolArgs:
     @pulumi.getter(name="portPerUser")
     def port_per_user(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of port for each user (32 to 60416, default = 0, auto).
+        Number of port for each user (32 - 60416, default = 0, which is auto).
         """
         return pulumi.get(self, "port_per_user")
 
@@ -313,10 +317,22 @@ class IppoolArgs:
         pulumi.set(self, "startport", value)
 
     @property
+    @pulumi.getter(name="subnetBroadcastInIppool")
+    def subnet_broadcast_in_ippool(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "subnet_broadcast_in_ippool")
+
+    @subnet_broadcast_in_ippool.setter
+    def subnet_broadcast_in_ippool(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_broadcast_in_ippool", value)
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+        IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
         """
         return pulumi.get(self, "type")
 
@@ -358,6 +374,7 @@ class _IppoolState:
                  source_startip: Optional[pulumi.Input[str]] = None,
                  startip: Optional[pulumi.Input[str]] = None,
                  startport: Optional[pulumi.Input[int]] = None,
+                 subnet_broadcast_in_ippool: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -366,7 +383,7 @@ class _IppoolState:
         :param pulumi.Input[str] arp_intf: Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
         :param pulumi.Input[str] arp_reply: Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] associated_interface: Associated interface name.
-        :param pulumi.Input[int] block_size: Number of addresses in a block (64 to 4096, default = 128).
+        :param pulumi.Input[int] block_size: Number of addresses in a block (64 - 4096, default = 128).
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] endip: Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[int] endport: Final port number (inclusive) in the range for the address pool (Default: 65533).
@@ -375,12 +392,13 @@ class _IppoolState:
         :param pulumi.Input[int] num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8).
         :param pulumi.Input[int] pba_timeout: Port block allocation timeout (seconds).
         :param pulumi.Input[str] permit_any_host: Enable/disable full cone NAT. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] port_per_user: Number of port for each user (32 to 60416, default = 0, auto).
+        :param pulumi.Input[int] port_per_user: Number of port for each user (32 - 60416, default = 0, which is auto).
         :param pulumi.Input[str] source_endip: Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[str] source_startip: First IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[str] startip: First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[int] startport: First port number (inclusive) in the range for the address pool (Default: 5117).
-        :param pulumi.Input[str] type: IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+        :param pulumi.Input[str] subnet_broadcast_in_ippool: Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] type: IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if add_nat64_route is not None:
@@ -419,6 +437,8 @@ class _IppoolState:
             pulumi.set(__self__, "startip", startip)
         if startport is not None:
             pulumi.set(__self__, "startport", startport)
+        if subnet_broadcast_in_ippool is not None:
+            pulumi.set(__self__, "subnet_broadcast_in_ippool", subnet_broadcast_in_ippool)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if vdomparam is not None:
@@ -476,7 +496,7 @@ class _IppoolState:
     @pulumi.getter(name="blockSize")
     def block_size(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of addresses in a block (64 to 4096, default = 128).
+        Number of addresses in a block (64 - 4096, default = 128).
         """
         return pulumi.get(self, "block_size")
 
@@ -584,7 +604,7 @@ class _IppoolState:
     @pulumi.getter(name="portPerUser")
     def port_per_user(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of port for each user (32 to 60416, default = 0, auto).
+        Number of port for each user (32 - 60416, default = 0, which is auto).
         """
         return pulumi.get(self, "port_per_user")
 
@@ -641,10 +661,22 @@ class _IppoolState:
         pulumi.set(self, "startport", value)
 
     @property
+    @pulumi.getter(name="subnetBroadcastInIppool")
+    def subnet_broadcast_in_ippool(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "subnet_broadcast_in_ippool")
+
+    @subnet_broadcast_in_ippool.setter
+    def subnet_broadcast_in_ippool(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_broadcast_in_ippool", value)
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+        IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
         """
         return pulumi.get(self, "type")
 
@@ -688,6 +720,7 @@ class Ippool(pulumi.CustomResource):
                  source_startip: Optional[pulumi.Input[str]] = None,
                  startip: Optional[pulumi.Input[str]] = None,
                  startport: Optional[pulumi.Input[int]] = None,
+                 subnet_broadcast_in_ippool: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -739,7 +772,7 @@ class Ippool(pulumi.CustomResource):
         :param pulumi.Input[str] arp_intf: Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
         :param pulumi.Input[str] arp_reply: Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] associated_interface: Associated interface name.
-        :param pulumi.Input[int] block_size: Number of addresses in a block (64 to 4096, default = 128).
+        :param pulumi.Input[int] block_size: Number of addresses in a block (64 - 4096, default = 128).
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] endip: Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[int] endport: Final port number (inclusive) in the range for the address pool (Default: 65533).
@@ -748,12 +781,13 @@ class Ippool(pulumi.CustomResource):
         :param pulumi.Input[int] num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8).
         :param pulumi.Input[int] pba_timeout: Port block allocation timeout (seconds).
         :param pulumi.Input[str] permit_any_host: Enable/disable full cone NAT. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] port_per_user: Number of port for each user (32 to 60416, default = 0, auto).
+        :param pulumi.Input[int] port_per_user: Number of port for each user (32 - 60416, default = 0, which is auto).
         :param pulumi.Input[str] source_endip: Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[str] source_startip: First IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[str] startip: First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[int] startport: First port number (inclusive) in the range for the address pool (Default: 5117).
-        :param pulumi.Input[str] type: IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+        :param pulumi.Input[str] subnet_broadcast_in_ippool: Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] type: IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -837,6 +871,7 @@ class Ippool(pulumi.CustomResource):
                  source_startip: Optional[pulumi.Input[str]] = None,
                  startip: Optional[pulumi.Input[str]] = None,
                  startport: Optional[pulumi.Input[int]] = None,
+                 subnet_broadcast_in_ippool: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -870,6 +905,7 @@ class Ippool(pulumi.CustomResource):
                 raise TypeError("Missing required property 'startip'")
             __props__.__dict__["startip"] = startip
             __props__.__dict__["startport"] = startport
+            __props__.__dict__["subnet_broadcast_in_ippool"] = subnet_broadcast_in_ippool
             __props__.__dict__["type"] = type
             __props__.__dict__["vdomparam"] = vdomparam
         super(Ippool, __self__).__init__(
@@ -900,6 +936,7 @@ class Ippool(pulumi.CustomResource):
             source_startip: Optional[pulumi.Input[str]] = None,
             startip: Optional[pulumi.Input[str]] = None,
             startport: Optional[pulumi.Input[int]] = None,
+            subnet_broadcast_in_ippool: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Ippool':
         """
@@ -913,7 +950,7 @@ class Ippool(pulumi.CustomResource):
         :param pulumi.Input[str] arp_intf: Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
         :param pulumi.Input[str] arp_reply: Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] associated_interface: Associated interface name.
-        :param pulumi.Input[int] block_size: Number of addresses in a block (64 to 4096, default = 128).
+        :param pulumi.Input[int] block_size: Number of addresses in a block (64 - 4096, default = 128).
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] endip: Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[int] endport: Final port number (inclusive) in the range for the address pool (Default: 65533).
@@ -922,12 +959,13 @@ class Ippool(pulumi.CustomResource):
         :param pulumi.Input[int] num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8).
         :param pulumi.Input[int] pba_timeout: Port block allocation timeout (seconds).
         :param pulumi.Input[str] permit_any_host: Enable/disable full cone NAT. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] port_per_user: Number of port for each user (32 to 60416, default = 0, auto).
+        :param pulumi.Input[int] port_per_user: Number of port for each user (32 - 60416, default = 0, which is auto).
         :param pulumi.Input[str] source_endip: Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[str] source_startip: First IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[str] startip: First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[int] startport: First port number (inclusive) in the range for the address pool (Default: 5117).
-        :param pulumi.Input[str] type: IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+        :param pulumi.Input[str] subnet_broadcast_in_ippool: Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] type: IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -952,6 +990,7 @@ class Ippool(pulumi.CustomResource):
         __props__.__dict__["source_startip"] = source_startip
         __props__.__dict__["startip"] = startip
         __props__.__dict__["startport"] = startport
+        __props__.__dict__["subnet_broadcast_in_ippool"] = subnet_broadcast_in_ippool
         __props__.__dict__["type"] = type
         __props__.__dict__["vdomparam"] = vdomparam
         return Ippool(resource_name, opts=opts, __props__=__props__)
@@ -992,7 +1031,7 @@ class Ippool(pulumi.CustomResource):
     @pulumi.getter(name="blockSize")
     def block_size(self) -> pulumi.Output[int]:
         """
-        Number of addresses in a block (64 to 4096, default = 128).
+        Number of addresses in a block (64 - 4096, default = 128).
         """
         return pulumi.get(self, "block_size")
 
@@ -1064,7 +1103,7 @@ class Ippool(pulumi.CustomResource):
     @pulumi.getter(name="portPerUser")
     def port_per_user(self) -> pulumi.Output[int]:
         """
-        Number of port for each user (32 to 60416, default = 0, auto).
+        Number of port for each user (32 - 60416, default = 0, which is auto).
         """
         return pulumi.get(self, "port_per_user")
 
@@ -1101,10 +1140,18 @@ class Ippool(pulumi.CustomResource):
         return pulumi.get(self, "startport")
 
     @property
+    @pulumi.getter(name="subnetBroadcastInIppool")
+    def subnet_broadcast_in_ippool(self) -> pulumi.Output[str]:
+        """
+        Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "subnet_broadcast_in_ippool")
+
+    @property
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+        IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
         """
         return pulumi.get(self, "type")
 

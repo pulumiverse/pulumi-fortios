@@ -62,6 +62,8 @@ type LookupSamlResult struct {
 	LimitRelaystate string `pulumi:"limitRelaystate"`
 	// SAML server entry name.
 	Name string `pulumi:"name"`
+	// Enable/disable signalling of IDP to force user re-authentication (default = disable).
+	Reauth string `pulumi:"reauth"`
 	// SP single logout URL.
 	SingleLogoutUrl string `pulumi:"singleLogoutUrl"`
 	// SP single sign-on URL.
@@ -186,6 +188,11 @@ func (o LookupSamlResultOutput) LimitRelaystate() pulumi.StringOutput {
 // SAML server entry name.
 func (o LookupSamlResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSamlResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Enable/disable signalling of IDP to force user re-authentication (default = disable).
+func (o LookupSamlResultOutput) Reauth() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSamlResult) string { return v.Reauth }).(pulumi.StringOutput)
 }
 
 // SP single logout URL.

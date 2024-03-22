@@ -40,6 +40,7 @@ class IkeArgs:
                  dh_multiprocess: Optional[pulumi.Input[str]] = None,
                  dh_worker_count: Optional[pulumi.Input[int]] = None,
                  embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Ike resource.
@@ -67,6 +68,7 @@ class IkeArgs:
         :param pulumi.Input[str] dh_multiprocess: Enable/disable multiprocess Diffie-Hellman daemon for IKE. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dh_worker_count: Number of Diffie-Hellman workers to start.
         :param pulumi.Input[int] embryonic_limit: Maximum number of IPsec tunnels to negotiate simultaneously.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
                
                The `dh_group_1` block supports:
@@ -119,6 +121,8 @@ class IkeArgs:
             pulumi.set(__self__, "dh_worker_count", dh_worker_count)
         if embryonic_limit is not None:
             pulumi.set(__self__, "embryonic_limit", embryonic_limit)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -409,6 +413,18 @@ class IkeArgs:
     @embryonic_limit.setter
     def embryonic_limit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "embryonic_limit", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -452,6 +468,7 @@ class _IkeState:
                  dh_multiprocess: Optional[pulumi.Input[str]] = None,
                  dh_worker_count: Optional[pulumi.Input[int]] = None,
                  embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Ike resources.
@@ -479,6 +496,7 @@ class _IkeState:
         :param pulumi.Input[str] dh_multiprocess: Enable/disable multiprocess Diffie-Hellman daemon for IKE. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dh_worker_count: Number of Diffie-Hellman workers to start.
         :param pulumi.Input[int] embryonic_limit: Maximum number of IPsec tunnels to negotiate simultaneously.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
                
                The `dh_group_1` block supports:
@@ -531,6 +549,8 @@ class _IkeState:
             pulumi.set(__self__, "dh_worker_count", dh_worker_count)
         if embryonic_limit is not None:
             pulumi.set(__self__, "embryonic_limit", embryonic_limit)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -821,6 +841,18 @@ class _IkeState:
     @embryonic_limit.setter
     def embryonic_limit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "embryonic_limit", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -866,6 +898,7 @@ class Ike(pulumi.CustomResource):
                  dh_multiprocess: Optional[pulumi.Input[str]] = None,
                  dh_worker_count: Optional[pulumi.Input[int]] = None,
                  embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -915,6 +948,7 @@ class Ike(pulumi.CustomResource):
         :param pulumi.Input[str] dh_multiprocess: Enable/disable multiprocess Diffie-Hellman daemon for IKE. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dh_worker_count: Number of Diffie-Hellman workers to start.
         :param pulumi.Input[int] embryonic_limit: Maximum number of IPsec tunnels to negotiate simultaneously.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
                
                The `dh_group_1` block supports:
@@ -985,6 +1019,7 @@ class Ike(pulumi.CustomResource):
                  dh_multiprocess: Optional[pulumi.Input[str]] = None,
                  dh_worker_count: Optional[pulumi.Input[int]] = None,
                  embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1019,6 +1054,7 @@ class Ike(pulumi.CustomResource):
             __props__.__dict__["dh_multiprocess"] = dh_multiprocess
             __props__.__dict__["dh_worker_count"] = dh_worker_count
             __props__.__dict__["embryonic_limit"] = embryonic_limit
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["vdomparam"] = vdomparam
         super(Ike, __self__).__init__(
             'fortios:system/ike:Ike',
@@ -1054,6 +1090,7 @@ class Ike(pulumi.CustomResource):
             dh_multiprocess: Optional[pulumi.Input[str]] = None,
             dh_worker_count: Optional[pulumi.Input[int]] = None,
             embryonic_limit: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Ike':
         """
         Get an existing Ike resource's state with the given name, id, and optional extra
@@ -1086,6 +1123,7 @@ class Ike(pulumi.CustomResource):
         :param pulumi.Input[str] dh_multiprocess: Enable/disable multiprocess Diffie-Hellman daemon for IKE. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dh_worker_count: Number of Diffie-Hellman workers to start.
         :param pulumi.Input[int] embryonic_limit: Maximum number of IPsec tunnels to negotiate simultaneously.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
                
                The `dh_group_1` block supports:
@@ -1118,6 +1156,7 @@ class Ike(pulumi.CustomResource):
         __props__.__dict__["dh_multiprocess"] = dh_multiprocess
         __props__.__dict__["dh_worker_count"] = dh_worker_count
         __props__.__dict__["embryonic_limit"] = embryonic_limit
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["vdomparam"] = vdomparam
         return Ike(resource_name, opts=opts, __props__=__props__)
 
@@ -1312,6 +1351,14 @@ class Ike(pulumi.CustomResource):
         Maximum number of IPsec tunnels to negotiate simultaneously.
         """
         return pulumi.get(self, "embryonic_limit")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

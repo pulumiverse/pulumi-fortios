@@ -66,6 +66,8 @@ type LookupAddress6Result struct {
 	Name string `pulumi:"name"`
 	// Object ID for NSX.
 	ObjId string `pulumi:"objId"`
+	// route-tag address.
+	RouteTag int `pulumi:"routeTag"`
 	// SDN.
 	Sdn string `pulumi:"sdn"`
 	// SDN Tag.
@@ -214,6 +216,11 @@ func (o LookupAddress6ResultOutput) Name() pulumi.StringOutput {
 // Object ID for NSX.
 func (o LookupAddress6ResultOutput) ObjId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAddress6Result) string { return v.ObjId }).(pulumi.StringOutput)
+}
+
+// route-tag address.
+func (o LookupAddress6ResultOutput) RouteTag() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupAddress6Result) int { return v.RouteTag }).(pulumi.IntOutput)
 }
 
 // SDN.

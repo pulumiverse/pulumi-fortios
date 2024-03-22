@@ -27,6 +27,7 @@ class MobiletunnelArgs:
                  roaming_interface: pulumi.Input[str],
                  tunnel_mode: pulumi.Input[str],
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  home_address: Optional[pulumi.Input[str]] = None,
                  n_mhae_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -46,6 +47,7 @@ class MobiletunnelArgs:
         :param pulumi.Input[str] roaming_interface: Select the associated interface name from available options.
         :param pulumi.Input[str] tunnel_mode: NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] home_address: Home IP address (Format: xxx.xxx.xxx.xxx).
         :param pulumi.Input[str] n_mhae_key: NEMO authentication key.
         :param pulumi.Input[str] name: Tunnel name.
@@ -65,6 +67,8 @@ class MobiletunnelArgs:
         pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if home_address is not None:
             pulumi.set(__self__, "home_address", home_address)
         if n_mhae_key is not None:
@@ -211,6 +215,18 @@ class MobiletunnelArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="homeAddress")
     def home_address(self) -> Optional[pulumi.Input[str]]:
         """
@@ -287,6 +303,7 @@ class MobiletunnelArgs:
 class _MobiletunnelState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hash_algorithm: Optional[pulumi.Input[str]] = None,
                  home_address: Optional[pulumi.Input[str]] = None,
                  home_agent: Optional[pulumi.Input[str]] = None,
@@ -306,6 +323,7 @@ class _MobiletunnelState:
         """
         Input properties used for looking up and filtering Mobiletunnel resources.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hash_algorithm: Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
         :param pulumi.Input[str] home_address: Home IP address (Format: xxx.xxx.xxx.xxx).
         :param pulumi.Input[str] home_agent: IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
@@ -325,6 +343,8 @@ class _MobiletunnelState:
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hash_algorithm is not None:
             pulumi.set(__self__, "hash_algorithm", hash_algorithm)
         if home_address is not None:
@@ -369,6 +389,18 @@ class _MobiletunnelState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="hashAlgorithm")
@@ -569,6 +601,7 @@ class Mobiletunnel(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hash_algorithm: Optional[pulumi.Input[str]] = None,
                  home_address: Optional[pulumi.Input[str]] = None,
                  home_agent: Optional[pulumi.Input[str]] = None,
@@ -634,6 +667,7 @@ class Mobiletunnel(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hash_algorithm: Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
         :param pulumi.Input[str] home_address: Home IP address (Format: xxx.xxx.xxx.xxx).
         :param pulumi.Input[str] home_agent: IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
@@ -718,6 +752,7 @@ class Mobiletunnel(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hash_algorithm: Optional[pulumi.Input[str]] = None,
                  home_address: Optional[pulumi.Input[str]] = None,
                  home_agent: Optional[pulumi.Input[str]] = None,
@@ -744,6 +779,7 @@ class Mobiletunnel(pulumi.CustomResource):
             __props__ = MobiletunnelArgs.__new__(MobiletunnelArgs)
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if hash_algorithm is None and not opts.urn:
                 raise TypeError("Missing required property 'hash_algorithm'")
             __props__.__dict__["hash_algorithm"] = hash_algorithm
@@ -793,6 +829,7 @@ class Mobiletunnel(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hash_algorithm: Optional[pulumi.Input[str]] = None,
             home_address: Optional[pulumi.Input[str]] = None,
             home_agent: Optional[pulumi.Input[str]] = None,
@@ -817,6 +854,7 @@ class Mobiletunnel(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hash_algorithm: Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
         :param pulumi.Input[str] home_address: Home IP address (Format: xxx.xxx.xxx.xxx).
         :param pulumi.Input[str] home_agent: IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
@@ -839,6 +877,7 @@ class Mobiletunnel(pulumi.CustomResource):
         __props__ = _MobiletunnelState.__new__(_MobiletunnelState)
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hash_algorithm"] = hash_algorithm
         __props__.__dict__["home_address"] = home_address
         __props__.__dict__["home_agent"] = home_agent
@@ -864,6 +903,14 @@ class Mobiletunnel(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="hashAlgorithm")

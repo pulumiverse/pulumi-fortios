@@ -33,6 +33,8 @@ import (
 type Setting struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+	FabricSync pulumi.StringOutput `pulumi:"fabricSync"`
 	// Maximum number of automation stitches that are allowed to run concurrently.
 	MaxConcurrentStitches pulumi.IntOutput `pulumi:"maxConcurrentStitches"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -69,6 +71,8 @@ func GetSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Setting resources.
 type settingState struct {
+	// Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+	FabricSync *string `pulumi:"fabricSync"`
 	// Maximum number of automation stitches that are allowed to run concurrently.
 	MaxConcurrentStitches *int `pulumi:"maxConcurrentStitches"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -76,6 +80,8 @@ type settingState struct {
 }
 
 type SettingState struct {
+	// Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+	FabricSync pulumi.StringPtrInput
 	// Maximum number of automation stitches that are allowed to run concurrently.
 	MaxConcurrentStitches pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -87,6 +93,8 @@ func (SettingState) ElementType() reflect.Type {
 }
 
 type settingArgs struct {
+	// Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+	FabricSync *string `pulumi:"fabricSync"`
 	// Maximum number of automation stitches that are allowed to run concurrently.
 	MaxConcurrentStitches *int `pulumi:"maxConcurrentStitches"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -95,6 +103,8 @@ type settingArgs struct {
 
 // The set of arguments for constructing a Setting resource.
 type SettingArgs struct {
+	// Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+	FabricSync pulumi.StringPtrInput
 	// Maximum number of automation stitches that are allowed to run concurrently.
 	MaxConcurrentStitches pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -186,6 +196,11 @@ func (o SettingOutput) ToSettingOutput() SettingOutput {
 
 func (o SettingOutput) ToSettingOutputWithContext(ctx context.Context) SettingOutput {
 	return o
+}
+
+// Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+func (o SettingOutput) FabricSync() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.FabricSync }).(pulumi.StringOutput)
 }
 
 // Maximum number of automation stitches that are allowed to run concurrently.

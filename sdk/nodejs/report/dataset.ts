@@ -78,6 +78,10 @@ export class Dataset extends pulumi.CustomResource {
      */
     public readonly fields!: pulumi.Output<outputs.report.DatasetField[] | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -113,6 +117,7 @@ export class Dataset extends pulumi.CustomResource {
             const state = argsOrState as DatasetState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fields"] = state ? state.fields : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["parameters"] = state ? state.parameters : undefined;
             resourceInputs["policy"] = state ? state.policy : undefined;
@@ -122,6 +127,7 @@ export class Dataset extends pulumi.CustomResource {
             const args = argsOrState as DatasetArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fields"] = args ? args.fields : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["parameters"] = args ? args.parameters : undefined;
             resourceInputs["policy"] = args ? args.policy : undefined;
@@ -145,6 +151,10 @@ export interface DatasetState {
      * Fields. The structure of `field` block is documented below.
      */
     fields?: pulumi.Input<pulumi.Input<inputs.report.DatasetField>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Name.
      */
@@ -179,6 +189,10 @@ export interface DatasetArgs {
      * Fields. The structure of `field` block is documented below.
      */
     fields?: pulumi.Input<pulumi.Input<inputs.report.DatasetField>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Name.
      */

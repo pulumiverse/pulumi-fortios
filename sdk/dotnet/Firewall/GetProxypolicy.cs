@@ -95,6 +95,10 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly string BlockNotification;
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        public readonly string CasbProfile;
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         public readonly string CifsProfile;
@@ -107,9 +111,17 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly string DecryptedTrafficMirror;
         /// <summary>
+        /// Enable/disable detection of HTTPS in HTTP request.
+        /// </summary>
+        public readonly string DetectHttpsInHttpRequest;
+        /// <summary>
         /// When enabled, the ownership enforcement will be done at policy level.
         /// </summary>
         public readonly string DeviceOwnership;
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        public readonly string DiameterFilterProfile;
         /// <summary>
         /// Web proxy disclaimer setting: by domain, policy, or user.
         /// </summary>
@@ -171,6 +183,30 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly string InternetService;
         /// <summary>
+        /// Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used.
+        /// </summary>
+        public readonly string InternetService6;
+        /// <summary>
+        /// Custom Internet Service IPv6 group name. The structure of `internet_service6_custom_group` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetProxypolicyInternetService6CustomGroupResult> InternetService6CustomGroups;
+        /// <summary>
+        /// Custom Internet Service IPv6 name. The structure of `internet_service6_custom` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetProxypolicyInternetService6CustomResult> InternetService6Customs;
+        /// <summary>
+        /// Internet Service IPv6 group name. The structure of `internet_service6_group` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetProxypolicyInternetService6GroupResult> InternetService6Groups;
+        /// <summary>
+        /// Internet Service IPv6 name. The structure of `internet_service6_name` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetProxypolicyInternetService6NameResult> InternetService6Names;
+        /// <summary>
+        /// When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6.
+        /// </summary>
+        public readonly string InternetService6Negate;
+        /// <summary>
         /// Custom Internet Service group name. The structure of `internet_service_custom_group` block is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetProxypolicyInternetServiceCustomGroupResult> InternetServiceCustomGroups;
@@ -198,6 +234,10 @@ namespace Pulumiverse.Fortios.Firewall
         /// Name of an existing IPS sensor.
         /// </summary>
         public readonly string IpsSensor;
+        /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        public readonly string IpsVoipFilter;
         /// <summary>
         /// VDOM-specific GUI visible label.
         /// </summary>
@@ -328,6 +368,10 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly string VideofilterProfile;
         /// <summary>
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        public readonly string VirtualPatchProfile;
+        /// <summary>
         /// Name of an existing VoIP profile.
         /// </summary>
         public readonly string VoipProfile;
@@ -378,13 +422,19 @@ namespace Pulumiverse.Fortios.Firewall
 
             string blockNotification,
 
+            string casbProfile,
+
             string cifsProfile,
 
             string comments,
 
             string decryptedTrafficMirror,
 
+            string detectHttpsInHttpRequest,
+
             string deviceOwnership,
+
+            string diameterFilterProfile,
 
             string disclaimer,
 
@@ -416,6 +466,18 @@ namespace Pulumiverse.Fortios.Firewall
 
             string internetService,
 
+            string internetService6,
+
+            ImmutableArray<Outputs.GetProxypolicyInternetService6CustomGroupResult> internetService6CustomGroups,
+
+            ImmutableArray<Outputs.GetProxypolicyInternetService6CustomResult> internetService6Customs,
+
+            ImmutableArray<Outputs.GetProxypolicyInternetService6GroupResult> internetService6Groups,
+
+            ImmutableArray<Outputs.GetProxypolicyInternetService6NameResult> internetService6Names,
+
+            string internetService6Negate,
+
             ImmutableArray<Outputs.GetProxypolicyInternetServiceCustomGroupResult> internetServiceCustomGroups,
 
             ImmutableArray<Outputs.GetProxypolicyInternetServiceCustomResult> internetServiceCustoms,
@@ -429,6 +491,8 @@ namespace Pulumiverse.Fortios.Firewall
             string internetServiceNegate,
 
             string ipsSensor,
+
+            string ipsVoipFilter,
 
             string label,
 
@@ -496,6 +560,8 @@ namespace Pulumiverse.Fortios.Firewall
 
             string videofilterProfile,
 
+            string virtualPatchProfile,
+
             string voipProfile,
 
             string wafProfile,
@@ -520,10 +586,13 @@ namespace Pulumiverse.Fortios.Firewall
             ApplicationList = applicationList;
             AvProfile = avProfile;
             BlockNotification = blockNotification;
+            CasbProfile = casbProfile;
             CifsProfile = cifsProfile;
             Comments = comments;
             DecryptedTrafficMirror = decryptedTrafficMirror;
+            DetectHttpsInHttpRequest = detectHttpsInHttpRequest;
             DeviceOwnership = deviceOwnership;
+            DiameterFilterProfile = diameterFilterProfile;
             Disclaimer = disclaimer;
             DlpProfile = dlpProfile;
             DlpSensor = dlpSensor;
@@ -539,6 +608,12 @@ namespace Pulumiverse.Fortios.Firewall
             IcapProfile = icapProfile;
             Id = id;
             InternetService = internetService;
+            InternetService6 = internetService6;
+            InternetService6CustomGroups = internetService6CustomGroups;
+            InternetService6Customs = internetService6Customs;
+            InternetService6Groups = internetService6Groups;
+            InternetService6Names = internetService6Names;
+            InternetService6Negate = internetService6Negate;
             InternetServiceCustomGroups = internetServiceCustomGroups;
             InternetServiceCustoms = internetServiceCustoms;
             InternetServiceGroups = internetServiceGroups;
@@ -546,6 +621,7 @@ namespace Pulumiverse.Fortios.Firewall
             InternetServiceNames = internetServiceNames;
             InternetServiceNegate = internetServiceNegate;
             IpsSensor = ipsSensor;
+            IpsVoipFilter = ipsVoipFilter;
             Label = label;
             Logtraffic = logtraffic;
             LogtrafficStart = logtrafficStart;
@@ -579,6 +655,7 @@ namespace Pulumiverse.Fortios.Firewall
             Uuid = uuid;
             Vdomparam = vdomparam;
             VideofilterProfile = videofilterProfile;
+            VirtualPatchProfile = virtualPatchProfile;
             VoipProfile = voipProfile;
             WafProfile = wafProfile;
             Webcache = webcache;

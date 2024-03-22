@@ -47,6 +47,12 @@ namespace Pulumiverse.Fortios.Dpdk
         public Output<string> Elasticbuffer { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
         /// </summary>
         [Output("hugepagePercentage")]
@@ -81,6 +87,12 @@ namespace Pulumiverse.Fortios.Dpdk
         /// </summary>
         [Output("perSessionAccounting")]
         public Output<string> PerSessionAccounting { get; private set; } = null!;
+
+        /// <summary>
+        /// Special arguments for device
+        /// </summary>
+        [Output("protects")]
+        public Output<string> Protects { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
@@ -160,6 +172,12 @@ namespace Pulumiverse.Fortios.Dpdk
         public Input<string>? Elasticbuffer { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
         /// </summary>
         [Input("hugepagePercentage")]
@@ -202,6 +220,12 @@ namespace Pulumiverse.Fortios.Dpdk
         public Input<string>? PerSessionAccounting { get; set; }
 
         /// <summary>
+        /// Special arguments for device
+        /// </summary>
+        [Input("protects")]
+        public Input<string>? Protects { get; set; }
+
+        /// <summary>
         /// Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("sleepOnIdle")]
@@ -238,6 +262,12 @@ namespace Pulumiverse.Fortios.Dpdk
         /// </summary>
         [Input("elasticbuffer")]
         public Input<string>? Elasticbuffer { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
@@ -280,6 +310,12 @@ namespace Pulumiverse.Fortios.Dpdk
         /// </summary>
         [Input("perSessionAccounting")]
         public Input<string>? PerSessionAccounting { get; set; }
+
+        /// <summary>
+        /// Special arguments for device
+        /// </summary>
+        [Input("protects")]
+        public Input<string>? Protects { get; set; }
 
         /// <summary>
         /// Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.

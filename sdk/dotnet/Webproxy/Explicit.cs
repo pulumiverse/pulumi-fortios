@@ -53,6 +53,18 @@ namespace Pulumiverse.Fortios.Webproxy
         public Output<string> FtpOverHttp { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
+        /// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+        /// </summary>
+        [Output("httpConnectionMode")]
+        public Output<string> HttpConnectionMode { get; private set; } = null!;
+
+        /// <summary>
         /// Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
         /// </summary>
         [Output("httpIncomingPort")]
@@ -167,6 +179,18 @@ namespace Pulumiverse.Fortios.Webproxy
         public Output<string> SecDefaultAction { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+        /// </summary>
+        [Output("secureWebProxy")]
+        public Output<string> SecureWebProxy { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of certificates for secure web proxy. The structure of `secure_web_proxy_cert` block is documented below.
+        /// </summary>
+        [Output("secureWebProxyCerts")]
+        public Output<ImmutableArray<Outputs.ExplicitSecureWebProxyCert>> SecureWebProxyCerts { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("socks")]
@@ -183,6 +207,12 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Output("sslAlgorithm")]
         public Output<string> SslAlgorithm { get; private set; } = null!;
+
+        /// <summary>
+        /// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+        /// </summary>
+        [Output("sslDhBits")]
+        public Output<string> SslDhBits { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
@@ -278,6 +308,18 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Input("ftpOverHttp")]
         public Input<string>? FtpOverHttp { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+        /// </summary>
+        [Input("httpConnectionMode")]
+        public Input<string>? HttpConnectionMode { get; set; }
 
         /// <summary>
         /// Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
@@ -400,6 +442,24 @@ namespace Pulumiverse.Fortios.Webproxy
         public Input<string>? SecDefaultAction { get; set; }
 
         /// <summary>
+        /// Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+        /// </summary>
+        [Input("secureWebProxy")]
+        public Input<string>? SecureWebProxy { get; set; }
+
+        [Input("secureWebProxyCerts")]
+        private InputList<Inputs.ExplicitSecureWebProxyCertArgs>? _secureWebProxyCerts;
+
+        /// <summary>
+        /// Name of certificates for secure web proxy. The structure of `secure_web_proxy_cert` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ExplicitSecureWebProxyCertArgs> SecureWebProxyCerts
+        {
+            get => _secureWebProxyCerts ?? (_secureWebProxyCerts = new InputList<Inputs.ExplicitSecureWebProxyCertArgs>());
+            set => _secureWebProxyCerts = value;
+        }
+
+        /// <summary>
         /// Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("socks")]
@@ -416,6 +476,12 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Input("sslAlgorithm")]
         public Input<string>? SslAlgorithm { get; set; }
+
+        /// <summary>
+        /// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+        /// </summary>
+        [Input("sslDhBits")]
+        public Input<string>? SslDhBits { get; set; }
 
         /// <summary>
         /// Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
@@ -472,6 +538,18 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Input("ftpOverHttp")]
         public Input<string>? FtpOverHttp { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+        /// </summary>
+        [Input("httpConnectionMode")]
+        public Input<string>? HttpConnectionMode { get; set; }
 
         /// <summary>
         /// Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
@@ -594,6 +672,24 @@ namespace Pulumiverse.Fortios.Webproxy
         public Input<string>? SecDefaultAction { get; set; }
 
         /// <summary>
+        /// Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+        /// </summary>
+        [Input("secureWebProxy")]
+        public Input<string>? SecureWebProxy { get; set; }
+
+        [Input("secureWebProxyCerts")]
+        private InputList<Inputs.ExplicitSecureWebProxyCertGetArgs>? _secureWebProxyCerts;
+
+        /// <summary>
+        /// Name of certificates for secure web proxy. The structure of `secure_web_proxy_cert` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ExplicitSecureWebProxyCertGetArgs> SecureWebProxyCerts
+        {
+            get => _secureWebProxyCerts ?? (_secureWebProxyCerts = new InputList<Inputs.ExplicitSecureWebProxyCertGetArgs>());
+            set => _secureWebProxyCerts = value;
+        }
+
+        /// <summary>
         /// Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("socks")]
@@ -610,6 +706,12 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Input("sslAlgorithm")]
         public Input<string>? SslAlgorithm { get; set; }
+
+        /// <summary>
+        /// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+        /// </summary>
+        [Input("sslDhBits")]
+        public Input<string>? SslDhBits { get; set; }
 
         /// <summary>
         /// Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.

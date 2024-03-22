@@ -107,6 +107,8 @@ type Rip struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Garbage timer in seconds.
 	GarbageTimer pulumi.IntOutput `pulumi:"garbageTimer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// RIP interface configuration. The structure of `interface` block is documented below.
 	Interfaces RipInterfaceArrayOutput `pulumi:"interfaces"`
 	// Maximum metric allowed to output(0 means 'not set').
@@ -175,6 +177,8 @@ type ripState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Garbage timer in seconds.
 	GarbageTimer *int `pulumi:"garbageTimer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// RIP interface configuration. The structure of `interface` block is documented below.
 	Interfaces []RipInterface `pulumi:"interfaces"`
 	// Maximum metric allowed to output(0 means 'not set').
@@ -214,6 +218,8 @@ type RipState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Garbage timer in seconds.
 	GarbageTimer pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// RIP interface configuration. The structure of `interface` block is documented below.
 	Interfaces RipInterfaceArrayInput
 	// Maximum metric allowed to output(0 means 'not set').
@@ -257,6 +263,8 @@ type ripArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Garbage timer in seconds.
 	GarbageTimer *int `pulumi:"garbageTimer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// RIP interface configuration. The structure of `interface` block is documented below.
 	Interfaces []RipInterface `pulumi:"interfaces"`
 	// Maximum metric allowed to output(0 means 'not set').
@@ -297,6 +305,8 @@ type RipArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Garbage timer in seconds.
 	GarbageTimer pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// RIP interface configuration. The structure of `interface` block is documented below.
 	Interfaces RipInterfaceArrayInput
 	// Maximum metric allowed to output(0 means 'not set').
@@ -438,6 +448,11 @@ func (o RipOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Garbage timer in seconds.
 func (o RipOutput) GarbageTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v *Rip) pulumi.IntOutput { return v.GarbageTimer }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o RipOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Rip) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // RIP interface configuration. The structure of `interface` block is documented below.

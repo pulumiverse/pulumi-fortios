@@ -26,7 +26,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? Options { get; set; }
 
         /// <summary>
-        /// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        /// Maximum in-memory file size that can be scanned (MB).
         /// </summary>
         [Input("oversizeLimit")]
         public Input<int>? OversizeLimit { get; set; }
@@ -68,19 +68,19 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// Maximum dynamic TCP window size (default = 8MB).
+        /// Maximum dynamic TCP window size.
         /// </summary>
         [Input("tcpWindowMaximum")]
         public Input<int>? TcpWindowMaximum { get; set; }
 
         /// <summary>
-        /// Minimum dynamic TCP window size (default = 128KB).
+        /// Minimum dynamic TCP window size.
         /// </summary>
         [Input("tcpWindowMinimum")]
         public Input<int>? TcpWindowMinimum { get; set; }
 
         /// <summary>
-        /// Set TCP static window size (default = 256KB).
+        /// Set TCP static window size.
         /// </summary>
         [Input("tcpWindowSize")]
         public Input<int>? TcpWindowSize { get; set; }
@@ -98,7 +98,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<int>? UncompressedNestLimit { get; set; }
 
         /// <summary>
-        /// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        /// Maximum in-memory uncompressed file size that can be scanned (MB).
         /// </summary>
         [Input("uncompressedOversizeLimit")]
         public Input<int>? UncompressedOversizeLimit { get; set; }

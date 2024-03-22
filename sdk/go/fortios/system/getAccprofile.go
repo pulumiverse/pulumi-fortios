@@ -38,6 +38,16 @@ type LookupAccprofileResult struct {
 	AdmintimeoutOverride string `pulumi:"admintimeoutOverride"`
 	// Administrator access to Users and Devices.
 	Authgrp string `pulumi:"authgrp"`
+	// Enable/disable permission to run config commands.
+	CliConfig string `pulumi:"cliConfig"`
+	// Enable/disable permission to run diagnostic commands.
+	CliDiagnose string `pulumi:"cliDiagnose"`
+	// Enable/disable permission to run execute commands.
+	CliExec string `pulumi:"cliExec"`
+	// Enable/disable permission to run get commands.
+	CliGet string `pulumi:"cliGet"`
+	// Enable/disable permission to run show commands.
+	CliShow string `pulumi:"cliShow"`
 	// Comment.
 	Comments string `pulumi:"comments"`
 	// FortiView.
@@ -138,6 +148,31 @@ func (o LookupAccprofileResultOutput) AdmintimeoutOverride() pulumi.StringOutput
 // Administrator access to Users and Devices.
 func (o LookupAccprofileResultOutput) Authgrp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccprofileResult) string { return v.Authgrp }).(pulumi.StringOutput)
+}
+
+// Enable/disable permission to run config commands.
+func (o LookupAccprofileResultOutput) CliConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccprofileResult) string { return v.CliConfig }).(pulumi.StringOutput)
+}
+
+// Enable/disable permission to run diagnostic commands.
+func (o LookupAccprofileResultOutput) CliDiagnose() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccprofileResult) string { return v.CliDiagnose }).(pulumi.StringOutput)
+}
+
+// Enable/disable permission to run execute commands.
+func (o LookupAccprofileResultOutput) CliExec() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccprofileResult) string { return v.CliExec }).(pulumi.StringOutput)
+}
+
+// Enable/disable permission to run get commands.
+func (o LookupAccprofileResultOutput) CliGet() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccprofileResult) string { return v.CliGet }).(pulumi.StringOutput)
+}
+
+// Enable/disable permission to run show commands.
+func (o LookupAccprofileResultOutput) CliShow() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAccprofileResult) string { return v.CliShow }).(pulumi.StringOutput)
 }
 
 // Comment.

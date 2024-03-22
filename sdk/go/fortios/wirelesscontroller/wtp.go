@@ -40,6 +40,10 @@ type Wtp struct {
 	Allowaccess pulumi.StringOutput `pulumi:"allowaccess"`
 	// AP local configuration profile name.
 	ApcfgProfile pulumi.StringOutput `pulumi:"apcfgProfile"`
+	// Override BLE Major ID.
+	BleMajorId pulumi.IntOutput `pulumi:"bleMajorId"`
+	// Override BLE Minor ID.
+	BleMinorId pulumi.IntOutput `pulumi:"bleMinorId"`
 	// Bonjour profile name.
 	BonjourProfile pulumi.StringOutput `pulumi:"bonjourProfile"`
 	// WTP latitude coordinate.
@@ -52,6 +56,8 @@ type Wtp struct {
 	FirmwareProvision pulumi.StringOutput `pulumi:"firmwareProvision"`
 	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
 	FirmwareProvisionLatest pulumi.StringOutput `pulumi:"firmwareProvisionLatest"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload pulumi.StringOutput `pulumi:"imageDownload"`
 	// Index (0 - 4294967295).
@@ -86,6 +92,8 @@ type Wtp struct {
 	OverrideSplitTunnel pulumi.StringOutput `pulumi:"overrideSplitTunnel"`
 	// Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
 	OverrideWanPortMode pulumi.StringOutput `pulumi:"overrideWanPortMode"`
+	// Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	PurdueLevel pulumi.StringOutput `pulumi:"purdueLevel"`
 	// Configuration options for radio 1. The structure of `radio1` block is documented below.
 	Radio1 WtpRadio1Output `pulumi:"radio1"`
 	// Configuration options for radio 2. The structure of `radio2` block is documented below.
@@ -170,6 +178,10 @@ type wtpState struct {
 	Allowaccess *string `pulumi:"allowaccess"`
 	// AP local configuration profile name.
 	ApcfgProfile *string `pulumi:"apcfgProfile"`
+	// Override BLE Major ID.
+	BleMajorId *int `pulumi:"bleMajorId"`
+	// Override BLE Minor ID.
+	BleMinorId *int `pulumi:"bleMinorId"`
 	// Bonjour profile name.
 	BonjourProfile *string `pulumi:"bonjourProfile"`
 	// WTP latitude coordinate.
@@ -182,6 +194,8 @@ type wtpState struct {
 	FirmwareProvision *string `pulumi:"firmwareProvision"`
 	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
 	FirmwareProvisionLatest *string `pulumi:"firmwareProvisionLatest"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload *string `pulumi:"imageDownload"`
 	// Index (0 - 4294967295).
@@ -216,6 +230,8 @@ type wtpState struct {
 	OverrideSplitTunnel *string `pulumi:"overrideSplitTunnel"`
 	// Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
 	OverrideWanPortMode *string `pulumi:"overrideWanPortMode"`
+	// Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	PurdueLevel *string `pulumi:"purdueLevel"`
 	// Configuration options for radio 1. The structure of `radio1` block is documented below.
 	Radio1 *WtpRadio1 `pulumi:"radio1"`
 	// Configuration options for radio 2. The structure of `radio2` block is documented below.
@@ -261,6 +277,10 @@ type WtpState struct {
 	Allowaccess pulumi.StringPtrInput
 	// AP local configuration profile name.
 	ApcfgProfile pulumi.StringPtrInput
+	// Override BLE Major ID.
+	BleMajorId pulumi.IntPtrInput
+	// Override BLE Minor ID.
+	BleMinorId pulumi.IntPtrInput
 	// Bonjour profile name.
 	BonjourProfile pulumi.StringPtrInput
 	// WTP latitude coordinate.
@@ -273,6 +293,8 @@ type WtpState struct {
 	FirmwareProvision pulumi.StringPtrInput
 	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
 	FirmwareProvisionLatest pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload pulumi.StringPtrInput
 	// Index (0 - 4294967295).
@@ -307,6 +329,8 @@ type WtpState struct {
 	OverrideSplitTunnel pulumi.StringPtrInput
 	// Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
 	OverrideWanPortMode pulumi.StringPtrInput
+	// Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	PurdueLevel pulumi.StringPtrInput
 	// Configuration options for radio 1. The structure of `radio1` block is documented below.
 	Radio1 WtpRadio1PtrInput
 	// Configuration options for radio 2. The structure of `radio2` block is documented below.
@@ -356,6 +380,10 @@ type wtpArgs struct {
 	Allowaccess *string `pulumi:"allowaccess"`
 	// AP local configuration profile name.
 	ApcfgProfile *string `pulumi:"apcfgProfile"`
+	// Override BLE Major ID.
+	BleMajorId *int `pulumi:"bleMajorId"`
+	// Override BLE Minor ID.
+	BleMinorId *int `pulumi:"bleMinorId"`
 	// Bonjour profile name.
 	BonjourProfile *string `pulumi:"bonjourProfile"`
 	// WTP latitude coordinate.
@@ -368,6 +396,8 @@ type wtpArgs struct {
 	FirmwareProvision *string `pulumi:"firmwareProvision"`
 	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
 	FirmwareProvisionLatest *string `pulumi:"firmwareProvisionLatest"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload *string `pulumi:"imageDownload"`
 	// Index (0 - 4294967295).
@@ -402,6 +432,8 @@ type wtpArgs struct {
 	OverrideSplitTunnel *string `pulumi:"overrideSplitTunnel"`
 	// Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
 	OverrideWanPortMode *string `pulumi:"overrideWanPortMode"`
+	// Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	PurdueLevel *string `pulumi:"purdueLevel"`
 	// Configuration options for radio 1. The structure of `radio1` block is documented below.
 	Radio1 *WtpRadio1 `pulumi:"radio1"`
 	// Configuration options for radio 2. The structure of `radio2` block is documented below.
@@ -448,6 +480,10 @@ type WtpArgs struct {
 	Allowaccess pulumi.StringPtrInput
 	// AP local configuration profile name.
 	ApcfgProfile pulumi.StringPtrInput
+	// Override BLE Major ID.
+	BleMajorId pulumi.IntPtrInput
+	// Override BLE Minor ID.
+	BleMinorId pulumi.IntPtrInput
 	// Bonjour profile name.
 	BonjourProfile pulumi.StringPtrInput
 	// WTP latitude coordinate.
@@ -460,6 +496,8 @@ type WtpArgs struct {
 	FirmwareProvision pulumi.StringPtrInput
 	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
 	FirmwareProvisionLatest pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload pulumi.StringPtrInput
 	// Index (0 - 4294967295).
@@ -494,6 +532,8 @@ type WtpArgs struct {
 	OverrideSplitTunnel pulumi.StringPtrInput
 	// Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
 	OverrideWanPortMode pulumi.StringPtrInput
+	// Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	PurdueLevel pulumi.StringPtrInput
 	// Configuration options for radio 1. The structure of `radio1` block is documented below.
 	Radio1 WtpRadio1PtrInput
 	// Configuration options for radio 2. The structure of `radio2` block is documented below.
@@ -634,6 +674,16 @@ func (o WtpOutput) ApcfgProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Wtp) pulumi.StringOutput { return v.ApcfgProfile }).(pulumi.StringOutput)
 }
 
+// Override BLE Major ID.
+func (o WtpOutput) BleMajorId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Wtp) pulumi.IntOutput { return v.BleMajorId }).(pulumi.IntOutput)
+}
+
+// Override BLE Minor ID.
+func (o WtpOutput) BleMinorId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Wtp) pulumi.IntOutput { return v.BleMinorId }).(pulumi.IntOutput)
+}
+
 // Bonjour profile name.
 func (o WtpOutput) BonjourProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Wtp) pulumi.StringOutput { return v.BonjourProfile }).(pulumi.StringOutput)
@@ -662,6 +712,11 @@ func (o WtpOutput) FirmwareProvision() pulumi.StringOutput {
 // Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
 func (o WtpOutput) FirmwareProvisionLatest() pulumi.StringOutput {
 	return o.ApplyT(func(v *Wtp) pulumi.StringOutput { return v.FirmwareProvisionLatest }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o WtpOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Wtp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable WTP image download. Valid values: `enable`, `disable`.
@@ -747,6 +802,11 @@ func (o WtpOutput) OverrideSplitTunnel() pulumi.StringOutput {
 // Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
 func (o WtpOutput) OverrideWanPortMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Wtp) pulumi.StringOutput { return v.OverrideWanPortMode }).(pulumi.StringOutput)
+}
+
+// Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+func (o WtpOutput) PurdueLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *Wtp) pulumi.StringOutput { return v.PurdueLevel }).(pulumi.StringOutput)
 }
 
 // Configuration options for radio 1. The structure of `radio1` block is documented below.

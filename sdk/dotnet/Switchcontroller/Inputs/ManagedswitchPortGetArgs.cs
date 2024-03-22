@@ -19,6 +19,18 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         [Input("accessMode")]
         public Input<string>? AccessMode { get; set; }
 
+        [Input("aclGroups")]
+        private InputList<Inputs.ManagedswitchPortAclGroupGetArgs>? _aclGroups;
+
+        /// <summary>
+        /// ACL groups on this port. The structure of `acl_group` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ManagedswitchPortAclGroupGetArgs> AclGroups
+        {
+            get => _aclGroups ?? (_aclGroups = new InputList<Inputs.ManagedswitchPortAclGroupGetArgs>());
+            set => _aclGroups = value;
+        }
+
         /// <summary>
         /// LACP member select mode. Valid values: `bandwidth`, `count`.
         /// </summary>
@@ -50,6 +62,12 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         public Input<string>? ArpInspectionTrust { get; set; }
 
         /// <summary>
+        /// Peer to Peer Authenticated port.
+        /// </summary>
+        [Input("authenticatedPort")]
+        public Input<int>? AuthenticatedPort { get; set; }
+
+        /// <summary>
         /// Enable/disable Link Aggregation Group (LAG) bundling for non-FortiLink interfaces. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("bundle")]
@@ -60,6 +78,18 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        [Input("dhcpSnoopOption82Overrides")]
+        private InputList<Inputs.ManagedswitchPortDhcpSnoopOption82OverrideGetArgs>? _dhcpSnoopOption82Overrides;
+
+        /// <summary>
+        /// Configure DHCP snooping option 82 override. The structure of `dhcp_snoop_option82_override` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ManagedswitchPortDhcpSnoopOption82OverrideGetArgs> DhcpSnoopOption82Overrides
+        {
+            get => _dhcpSnoopOption82Overrides ?? (_dhcpSnoopOption82Overrides = new InputList<Inputs.ManagedswitchPortDhcpSnoopOption82OverrideGetArgs>());
+            set => _dhcpSnoopOption82Overrides = value;
+        }
 
         /// <summary>
         /// Enable/disable allowance of DHCP with option-82 on untrusted interface. Valid values: `enable`, `disable`.
@@ -84,6 +114,12 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         /// </summary>
         [Input("edgePort")]
         public Input<string>? EdgePort { get; set; }
+
+        /// <summary>
+        /// Peer to Peer Encrypted port.
+        /// </summary>
+        [Input("encryptedPort")]
+        public Input<int>? EncryptedPort { get; set; }
 
         [Input("exportTags")]
         private InputList<Inputs.ManagedswitchPortExportTagGetArgs>? _exportTags;
@@ -122,7 +158,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         public Input<int>? FecCapable { get; set; }
 
         /// <summary>
-        /// State of forward error correction. Valid values: `disabled`, `cl74`, `cl91`.
+        /// State of forward error correction.
         /// </summary>
         [Input("fecState")]
         public Input<string>? FecState { get; set; }
@@ -187,6 +223,18 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         [Input("fortilinkPort")]
         public Input<int>? FortilinkPort { get; set; }
 
+        [Input("fortiswitchAcls")]
+        private InputList<Inputs.ManagedswitchPortFortiswitchAclGetArgs>? _fortiswitchAcls;
+
+        /// <summary>
+        /// ACLs on this port. The structure of `fortiswitch_acls` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ManagedswitchPortFortiswitchAclGetArgs> FortiswitchAcls
+        {
+            get => _fortiswitchAcls ?? (_fortiswitchAcls = new InputList<Inputs.ManagedswitchPortFortiswitchAclGetArgs>());
+            set => _fortiswitchAcls = value;
+        }
+
         /// <summary>
         /// Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
         /// </summary>
@@ -242,6 +290,12 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         public Input<string>? IslPeerDeviceName { get; set; }
 
         /// <summary>
+        /// ISL peer device serial number.
+        /// </summary>
+        [Input("islPeerDeviceSn")]
+        public Input<string>? IslPeerDeviceSn { get; set; }
+
+        /// <summary>
         /// ISL peer port name.
         /// </summary>
         [Input("islPeerPortName")]
@@ -258,6 +312,12 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         /// </summary>
         [Input("learningLimit")]
         public Input<int>? LearningLimit { get; set; }
+
+        /// <summary>
+        /// Port link status. Valid values: `up`, `down`.
+        /// </summary>
+        [Input("linkStatus")]
+        public Input<string>? LinkStatus { get; set; }
 
         /// <summary>
         /// LLDP port TLV profile.
@@ -404,6 +464,30 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         public Input<string>? PoeMaxPower { get; set; }
 
         /// <summary>
+        /// PoE mode IEEE 802.3BT capable.
+        /// </summary>
+        [Input("poeModeBtCabable")]
+        public Input<int>? PoeModeBtCabable { get; set; }
+
+        /// <summary>
+        /// Configure PoE port mode. Valid values: `ieee802-3af`, `ieee802-3at`, `ieee802-3bt`.
+        /// </summary>
+        [Input("poePortMode")]
+        public Input<string>? PoePortMode { get; set; }
+
+        /// <summary>
+        /// Configure PoE port power. Valid values: `normal`, `perpetual`, `perpetual-fast`.
+        /// </summary>
+        [Input("poePortPower")]
+        public Input<string>? PoePortPower { get; set; }
+
+        /// <summary>
+        /// Configure PoE port priority. Valid values: `critical-priority`, `high-priority`, `low-priority`, `medium-priority`.
+        /// </summary>
+        [Input("poePortPriority")]
+        public Input<string>? PoePortPriority { get; set; }
+
+        /// <summary>
         /// Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("poePreStandardDetection")]
@@ -470,10 +554,22 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         public Input<string>? PtpPolicy { get; set; }
 
         /// <summary>
+        /// Enable/disable PTP policy on this FortiSwitch port. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("ptpStatus")]
+        public Input<string>? PtpStatus { get; set; }
+
+        /// <summary>
         /// Switch controller QoS policy from available options.
         /// </summary>
         [Input("qosPolicy")]
         public Input<string>? QosPolicy { get; set; }
+
+        /// <summary>
+        /// Peer to Peer Restricted Authenticated port.
+        /// </summary>
+        [Input("restrictedAuthPort")]
+        public Input<int>? RestrictedAuthPort { get; set; }
 
         /// <summary>
         /// Enable/disable inter-operability with rapid PVST on this interface. Valid values: `disabled`, `enabled`.

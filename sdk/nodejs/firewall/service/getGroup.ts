@@ -64,6 +64,10 @@ export interface GetGroupResult {
      * Enable/disable web proxy service group.
      */
     readonly proxy: string;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    readonly uuid: string;
     readonly vdomparam?: string;
 }
 /**

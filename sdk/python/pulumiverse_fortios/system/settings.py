@@ -38,6 +38,7 @@ class SettingsArgs:
                  default_policy_expiry_days: Optional[pulumi.Input[int]] = None,
                  default_voip_alg_mode: Optional[pulumi.Input[str]] = None,
                  deny_tcp_with_icmp: Optional[pulumi.Input[str]] = None,
+                 detect_unknown_esp: Optional[pulumi.Input[str]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dhcp6_server_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_proxy: Optional[pulumi.Input[str]] = None,
@@ -55,19 +56,23 @@ class SettingsArgs:
                  fw_session_hairpin: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  gateway6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_advanced_policy: Optional[pulumi.Input[str]] = None,
                  gui_advanced_wireless_features: Optional[pulumi.Input[str]] = None,
                  gui_allow_unnamed_policy: Optional[pulumi.Input[str]] = None,
                  gui_antivirus: Optional[pulumi.Input[str]] = None,
                  gui_ap_profile: Optional[pulumi.Input[str]] = None,
                  gui_application_control: Optional[pulumi.Input[str]] = None,
+                 gui_casb: Optional[pulumi.Input[str]] = None,
                  gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input['SettingsGuiDefaultPolicyColumnArgs']]]] = None,
                  gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
                  gui_dlp: Optional[pulumi.Input[str]] = None,
+                 gui_dlp_profile: Optional[pulumi.Input[str]] = None,
                  gui_dns_database: Optional[pulumi.Input[str]] = None,
                  gui_dnsfilter: Optional[pulumi.Input[str]] = None,
                  gui_domain_ip_reputation: Optional[pulumi.Input[str]] = None,
                  gui_dos_policy: Optional[pulumi.Input[str]] = None,
+                 gui_dynamic_device_os_id: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_profile_display: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_routing: Optional[pulumi.Input[str]] = None,
                  gui_email_collection: Optional[pulumi.Input[str]] = None,
@@ -94,15 +99,19 @@ class SettingsArgs:
                  gui_policy_based_ipsec: Optional[pulumi.Input[str]] = None,
                  gui_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  gui_policy_learning: Optional[pulumi.Input[str]] = None,
+                 gui_proxy_inspection: Optional[pulumi.Input[str]] = None,
                  gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+                 gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
                  gui_security_profile_group: Optional[pulumi.Input[str]] = None,
                  gui_spamfilter: Optional[pulumi.Input[str]] = None,
+                 gui_sslvpn: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_realms: Optional[pulumi.Input[str]] = None,
                  gui_switch_controller: Optional[pulumi.Input[str]] = None,
                  gui_threat_weight: Optional[pulumi.Input[str]] = None,
                  gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
                  gui_videofilter: Optional[pulumi.Input[str]] = None,
+                 gui_virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  gui_voip_profile: Optional[pulumi.Input[str]] = None,
                  gui_vpn: Optional[pulumi.Input[str]] = None,
                  gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -120,8 +129,10 @@ class SettingsArgs:
                  ike_port: Optional[pulumi.Input[int]] = None,
                  ike_quick_crash_detect: Optional[pulumi.Input[str]] = None,
                  ike_session_resume: Optional[pulumi.Input[str]] = None,
+                 ike_tcp_port: Optional[pulumi.Input[int]] = None,
                  implicit_allow_dns: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
+                 internet_service_database_cache: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  lan_extension_controller_addr: Optional[pulumi.Input[str]] = None,
@@ -186,6 +197,7 @@ class SettingsArgs:
         :param pulumi.Input[int] default_policy_expiry_days: Default policy expiry in days (0 - 365 days, default = 30).
         :param pulumi.Input[str] default_voip_alg_mode: Configure how the FortiGate handles VoIP traffic when a policy that accepts the traffic doesn't include a VoIP profile. Valid values: `proxy-based`, `kernel-helper-based`.
         :param pulumi.Input[str] deny_tcp_with_icmp: Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] detect_unknown_esp: Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] device: Interface to use for management access for NAT mode.
         :param pulumi.Input[str] dhcp6_server_ip: DHCPv6 server IPv6 address.
         :param pulumi.Input[str] dhcp_proxy: Enable/disable the DHCP Proxy. Valid values: `enable`, `disable`.
@@ -203,19 +215,23 @@ class SettingsArgs:
         :param pulumi.Input[str] fw_session_hairpin: Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gateway: Transparent mode IPv4 default gateway IP address.
         :param pulumi.Input[str] gateway6: Transparent mode IPv4 default gateway IP address.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gui_advanced_policy: Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_advanced_wireless_features: Enable/disable advanced wireless features in GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_unnamed_policy: Enable/disable the requirement for policy naming on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_antivirus: Enable/disable AntiVirus on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_ap_profile: Enable/disable FortiAP profiles on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_application_control: Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_casb: Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SettingsGuiDefaultPolicyColumnArgs']]] gui_default_policy_columns: Default columns to display for policy lists on GUI. The structure of `gui_default_policy_columns` block is documented below.
         :param pulumi.Input[str] gui_dhcp_advanced: Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dlp: Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_dlp_profile: Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dns_database: Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dnsfilter: Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_domain_ip_reputation: Enable/disable Domain and IP Reputation on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dos_policy: Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_dynamic_device_os_id: Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dynamic_profile_display: Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dynamic_routing: Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_email_collection: Enable/disable email collection on the GUI. Valid values: `enable`, `disable`.
@@ -242,15 +258,19 @@ class SettingsArgs:
         :param pulumi.Input[str] gui_policy_based_ipsec: Enable/disable policy-based IPsec VPN on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_policy_disclaimer: Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_policy_learning: Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_proxy_inspection: Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_replacement_message_groups: Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_route_tag_address_creation: Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_security_profile_group: Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_spamfilter: Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_sslvpn: Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_sslvpn_personal_bookmarks: Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_sslvpn_realms: Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_switch_controller: Enable/disable the switch controller on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_threat_weight: Enable/disable threat weight on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_traffic_shaping: Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_videofilter: Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_virtual_patch_profile: Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_voip_profile: Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_vpn: Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_waf_profile: Enable/disable Web Application Firewall on the GUI. Valid values: `enable`, `disable`.
@@ -268,8 +288,10 @@ class SettingsArgs:
         :param pulumi.Input[int] ike_port: UDP port for IKE/IPsec traffic (default 500).
         :param pulumi.Input[str] ike_quick_crash_detect: Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ike_session_resume: Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ike_tcp_port: TCP port for IKE/IPsec traffic (default 4500).
         :param pulumi.Input[str] implicit_allow_dns: Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] inspection_mode: Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
+        :param pulumi.Input[str] internet_service_database_cache: Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ip: IP address and netmask.
         :param pulumi.Input[str] ip6: IPv6 address prefix for NAT mode.
         :param pulumi.Input[str] lan_extension_controller_addr: Controller IP address or FQDN to connect.
@@ -355,6 +377,8 @@ class SettingsArgs:
             pulumi.set(__self__, "default_voip_alg_mode", default_voip_alg_mode)
         if deny_tcp_with_icmp is not None:
             pulumi.set(__self__, "deny_tcp_with_icmp", deny_tcp_with_icmp)
+        if detect_unknown_esp is not None:
+            pulumi.set(__self__, "detect_unknown_esp", detect_unknown_esp)
         if device is not None:
             pulumi.set(__self__, "device", device)
         if dhcp6_server_ip is not None:
@@ -389,6 +413,8 @@ class SettingsArgs:
             pulumi.set(__self__, "gateway", gateway)
         if gateway6 is not None:
             pulumi.set(__self__, "gateway6", gateway6)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gui_advanced_policy is not None:
             pulumi.set(__self__, "gui_advanced_policy", gui_advanced_policy)
         if gui_advanced_wireless_features is not None:
@@ -401,12 +427,16 @@ class SettingsArgs:
             pulumi.set(__self__, "gui_ap_profile", gui_ap_profile)
         if gui_application_control is not None:
             pulumi.set(__self__, "gui_application_control", gui_application_control)
+        if gui_casb is not None:
+            pulumi.set(__self__, "gui_casb", gui_casb)
         if gui_default_policy_columns is not None:
             pulumi.set(__self__, "gui_default_policy_columns", gui_default_policy_columns)
         if gui_dhcp_advanced is not None:
             pulumi.set(__self__, "gui_dhcp_advanced", gui_dhcp_advanced)
         if gui_dlp is not None:
             pulumi.set(__self__, "gui_dlp", gui_dlp)
+        if gui_dlp_profile is not None:
+            pulumi.set(__self__, "gui_dlp_profile", gui_dlp_profile)
         if gui_dns_database is not None:
             pulumi.set(__self__, "gui_dns_database", gui_dns_database)
         if gui_dnsfilter is not None:
@@ -415,6 +445,8 @@ class SettingsArgs:
             pulumi.set(__self__, "gui_domain_ip_reputation", gui_domain_ip_reputation)
         if gui_dos_policy is not None:
             pulumi.set(__self__, "gui_dos_policy", gui_dos_policy)
+        if gui_dynamic_device_os_id is not None:
+            pulumi.set(__self__, "gui_dynamic_device_os_id", gui_dynamic_device_os_id)
         if gui_dynamic_profile_display is not None:
             pulumi.set(__self__, "gui_dynamic_profile_display", gui_dynamic_profile_display)
         if gui_dynamic_routing is not None:
@@ -467,12 +499,18 @@ class SettingsArgs:
             pulumi.set(__self__, "gui_policy_disclaimer", gui_policy_disclaimer)
         if gui_policy_learning is not None:
             pulumi.set(__self__, "gui_policy_learning", gui_policy_learning)
+        if gui_proxy_inspection is not None:
+            pulumi.set(__self__, "gui_proxy_inspection", gui_proxy_inspection)
         if gui_replacement_message_groups is not None:
             pulumi.set(__self__, "gui_replacement_message_groups", gui_replacement_message_groups)
+        if gui_route_tag_address_creation is not None:
+            pulumi.set(__self__, "gui_route_tag_address_creation", gui_route_tag_address_creation)
         if gui_security_profile_group is not None:
             pulumi.set(__self__, "gui_security_profile_group", gui_security_profile_group)
         if gui_spamfilter is not None:
             pulumi.set(__self__, "gui_spamfilter", gui_spamfilter)
+        if gui_sslvpn is not None:
+            pulumi.set(__self__, "gui_sslvpn", gui_sslvpn)
         if gui_sslvpn_personal_bookmarks is not None:
             pulumi.set(__self__, "gui_sslvpn_personal_bookmarks", gui_sslvpn_personal_bookmarks)
         if gui_sslvpn_realms is not None:
@@ -485,6 +523,8 @@ class SettingsArgs:
             pulumi.set(__self__, "gui_traffic_shaping", gui_traffic_shaping)
         if gui_videofilter is not None:
             pulumi.set(__self__, "gui_videofilter", gui_videofilter)
+        if gui_virtual_patch_profile is not None:
+            pulumi.set(__self__, "gui_virtual_patch_profile", gui_virtual_patch_profile)
         if gui_voip_profile is not None:
             pulumi.set(__self__, "gui_voip_profile", gui_voip_profile)
         if gui_vpn is not None:
@@ -519,10 +559,14 @@ class SettingsArgs:
             pulumi.set(__self__, "ike_quick_crash_detect", ike_quick_crash_detect)
         if ike_session_resume is not None:
             pulumi.set(__self__, "ike_session_resume", ike_session_resume)
+        if ike_tcp_port is not None:
+            pulumi.set(__self__, "ike_tcp_port", ike_tcp_port)
         if implicit_allow_dns is not None:
             pulumi.set(__self__, "implicit_allow_dns", implicit_allow_dns)
         if inspection_mode is not None:
             pulumi.set(__self__, "inspection_mode", inspection_mode)
+        if internet_service_database_cache is not None:
+            pulumi.set(__self__, "internet_service_database_cache", internet_service_database_cache)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
         if ip6 is not None:
@@ -869,6 +913,18 @@ class SettingsArgs:
         pulumi.set(self, "deny_tcp_with_icmp", value)
 
     @property
+    @pulumi.getter(name="detectUnknownEsp")
+    def detect_unknown_esp(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "detect_unknown_esp")
+
+    @detect_unknown_esp.setter
+    def detect_unknown_esp(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "detect_unknown_esp", value)
+
+    @property
     @pulumi.getter
     def device(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1073,6 +1129,18 @@ class SettingsArgs:
         pulumi.set(self, "gateway6", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="guiAdvancedPolicy")
     def gui_advanced_policy(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1145,6 +1213,18 @@ class SettingsArgs:
         pulumi.set(self, "gui_application_control", value)
 
     @property
+    @pulumi.getter(name="guiCasb")
+    def gui_casb(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_casb")
+
+    @gui_casb.setter
+    def gui_casb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_casb", value)
+
+    @property
     @pulumi.getter(name="guiDefaultPolicyColumns")
     def gui_default_policy_columns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SettingsGuiDefaultPolicyColumnArgs']]]]:
         """
@@ -1179,6 +1259,18 @@ class SettingsArgs:
     @gui_dlp.setter
     def gui_dlp(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_dlp", value)
+
+    @property
+    @pulumi.getter(name="guiDlpProfile")
+    def gui_dlp_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_dlp_profile")
+
+    @gui_dlp_profile.setter
+    def gui_dlp_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_dlp_profile", value)
 
     @property
     @pulumi.getter(name="guiDnsDatabase")
@@ -1227,6 +1319,18 @@ class SettingsArgs:
     @gui_dos_policy.setter
     def gui_dos_policy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_dos_policy", value)
+
+    @property
+    @pulumi.getter(name="guiDynamicDeviceOsId")
+    def gui_dynamic_device_os_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_dynamic_device_os_id")
+
+    @gui_dynamic_device_os_id.setter
+    def gui_dynamic_device_os_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_dynamic_device_os_id", value)
 
     @property
     @pulumi.getter(name="guiDynamicProfileDisplay")
@@ -1541,6 +1645,18 @@ class SettingsArgs:
         pulumi.set(self, "gui_policy_learning", value)
 
     @property
+    @pulumi.getter(name="guiProxyInspection")
+    def gui_proxy_inspection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_proxy_inspection")
+
+    @gui_proxy_inspection.setter
+    def gui_proxy_inspection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_proxy_inspection", value)
+
+    @property
     @pulumi.getter(name="guiReplacementMessageGroups")
     def gui_replacement_message_groups(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1551,6 +1667,18 @@ class SettingsArgs:
     @gui_replacement_message_groups.setter
     def gui_replacement_message_groups(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_replacement_message_groups", value)
+
+    @property
+    @pulumi.getter(name="guiRouteTagAddressCreation")
+    def gui_route_tag_address_creation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_route_tag_address_creation")
+
+    @gui_route_tag_address_creation.setter
+    def gui_route_tag_address_creation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_route_tag_address_creation", value)
 
     @property
     @pulumi.getter(name="guiSecurityProfileGroup")
@@ -1575,6 +1703,18 @@ class SettingsArgs:
     @gui_spamfilter.setter
     def gui_spamfilter(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_spamfilter", value)
+
+    @property
+    @pulumi.getter(name="guiSslvpn")
+    def gui_sslvpn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_sslvpn")
+
+    @gui_sslvpn.setter
+    def gui_sslvpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_sslvpn", value)
 
     @property
     @pulumi.getter(name="guiSslvpnPersonalBookmarks")
@@ -1647,6 +1787,18 @@ class SettingsArgs:
     @gui_videofilter.setter
     def gui_videofilter(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_videofilter", value)
+
+    @property
+    @pulumi.getter(name="guiVirtualPatchProfile")
+    def gui_virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_virtual_patch_profile")
+
+    @gui_virtual_patch_profile.setter
+    def gui_virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_virtual_patch_profile", value)
 
     @property
     @pulumi.getter(name="guiVoipProfile")
@@ -1853,6 +2005,18 @@ class SettingsArgs:
         pulumi.set(self, "ike_session_resume", value)
 
     @property
+    @pulumi.getter(name="ikeTcpPort")
+    def ike_tcp_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP port for IKE/IPsec traffic (default 4500).
+        """
+        return pulumi.get(self, "ike_tcp_port")
+
+    @ike_tcp_port.setter
+    def ike_tcp_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ike_tcp_port", value)
+
+    @property
     @pulumi.getter(name="implicitAllowDns")
     def implicit_allow_dns(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1875,6 +2039,18 @@ class SettingsArgs:
     @inspection_mode.setter
     def inspection_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "inspection_mode", value)
+
+    @property
+    @pulumi.getter(name="internetServiceDatabaseCache")
+    def internet_service_database_cache(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "internet_service_database_cache")
+
+    @internet_service_database_cache.setter
+    def internet_service_database_cache(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service_database_cache", value)
 
     @property
     @pulumi.getter
@@ -2382,6 +2558,7 @@ class _SettingsState:
                  default_policy_expiry_days: Optional[pulumi.Input[int]] = None,
                  default_voip_alg_mode: Optional[pulumi.Input[str]] = None,
                  deny_tcp_with_icmp: Optional[pulumi.Input[str]] = None,
+                 detect_unknown_esp: Optional[pulumi.Input[str]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dhcp6_server_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_proxy: Optional[pulumi.Input[str]] = None,
@@ -2399,19 +2576,23 @@ class _SettingsState:
                  fw_session_hairpin: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  gateway6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_advanced_policy: Optional[pulumi.Input[str]] = None,
                  gui_advanced_wireless_features: Optional[pulumi.Input[str]] = None,
                  gui_allow_unnamed_policy: Optional[pulumi.Input[str]] = None,
                  gui_antivirus: Optional[pulumi.Input[str]] = None,
                  gui_ap_profile: Optional[pulumi.Input[str]] = None,
                  gui_application_control: Optional[pulumi.Input[str]] = None,
+                 gui_casb: Optional[pulumi.Input[str]] = None,
                  gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input['SettingsGuiDefaultPolicyColumnArgs']]]] = None,
                  gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
                  gui_dlp: Optional[pulumi.Input[str]] = None,
+                 gui_dlp_profile: Optional[pulumi.Input[str]] = None,
                  gui_dns_database: Optional[pulumi.Input[str]] = None,
                  gui_dnsfilter: Optional[pulumi.Input[str]] = None,
                  gui_domain_ip_reputation: Optional[pulumi.Input[str]] = None,
                  gui_dos_policy: Optional[pulumi.Input[str]] = None,
+                 gui_dynamic_device_os_id: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_profile_display: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_routing: Optional[pulumi.Input[str]] = None,
                  gui_email_collection: Optional[pulumi.Input[str]] = None,
@@ -2438,15 +2619,19 @@ class _SettingsState:
                  gui_policy_based_ipsec: Optional[pulumi.Input[str]] = None,
                  gui_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  gui_policy_learning: Optional[pulumi.Input[str]] = None,
+                 gui_proxy_inspection: Optional[pulumi.Input[str]] = None,
                  gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+                 gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
                  gui_security_profile_group: Optional[pulumi.Input[str]] = None,
                  gui_spamfilter: Optional[pulumi.Input[str]] = None,
+                 gui_sslvpn: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_realms: Optional[pulumi.Input[str]] = None,
                  gui_switch_controller: Optional[pulumi.Input[str]] = None,
                  gui_threat_weight: Optional[pulumi.Input[str]] = None,
                  gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
                  gui_videofilter: Optional[pulumi.Input[str]] = None,
+                 gui_virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  gui_voip_profile: Optional[pulumi.Input[str]] = None,
                  gui_vpn: Optional[pulumi.Input[str]] = None,
                  gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -2464,8 +2649,10 @@ class _SettingsState:
                  ike_port: Optional[pulumi.Input[int]] = None,
                  ike_quick_crash_detect: Optional[pulumi.Input[str]] = None,
                  ike_session_resume: Optional[pulumi.Input[str]] = None,
+                 ike_tcp_port: Optional[pulumi.Input[int]] = None,
                  implicit_allow_dns: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
+                 internet_service_database_cache: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  lan_extension_controller_addr: Optional[pulumi.Input[str]] = None,
@@ -2530,6 +2717,7 @@ class _SettingsState:
         :param pulumi.Input[int] default_policy_expiry_days: Default policy expiry in days (0 - 365 days, default = 30).
         :param pulumi.Input[str] default_voip_alg_mode: Configure how the FortiGate handles VoIP traffic when a policy that accepts the traffic doesn't include a VoIP profile. Valid values: `proxy-based`, `kernel-helper-based`.
         :param pulumi.Input[str] deny_tcp_with_icmp: Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] detect_unknown_esp: Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] device: Interface to use for management access for NAT mode.
         :param pulumi.Input[str] dhcp6_server_ip: DHCPv6 server IPv6 address.
         :param pulumi.Input[str] dhcp_proxy: Enable/disable the DHCP Proxy. Valid values: `enable`, `disable`.
@@ -2547,19 +2735,23 @@ class _SettingsState:
         :param pulumi.Input[str] fw_session_hairpin: Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gateway: Transparent mode IPv4 default gateway IP address.
         :param pulumi.Input[str] gateway6: Transparent mode IPv4 default gateway IP address.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gui_advanced_policy: Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_advanced_wireless_features: Enable/disable advanced wireless features in GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_unnamed_policy: Enable/disable the requirement for policy naming on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_antivirus: Enable/disable AntiVirus on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_ap_profile: Enable/disable FortiAP profiles on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_application_control: Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_casb: Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SettingsGuiDefaultPolicyColumnArgs']]] gui_default_policy_columns: Default columns to display for policy lists on GUI. The structure of `gui_default_policy_columns` block is documented below.
         :param pulumi.Input[str] gui_dhcp_advanced: Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dlp: Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_dlp_profile: Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dns_database: Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dnsfilter: Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_domain_ip_reputation: Enable/disable Domain and IP Reputation on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dos_policy: Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_dynamic_device_os_id: Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dynamic_profile_display: Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dynamic_routing: Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_email_collection: Enable/disable email collection on the GUI. Valid values: `enable`, `disable`.
@@ -2586,15 +2778,19 @@ class _SettingsState:
         :param pulumi.Input[str] gui_policy_based_ipsec: Enable/disable policy-based IPsec VPN on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_policy_disclaimer: Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_policy_learning: Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_proxy_inspection: Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_replacement_message_groups: Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_route_tag_address_creation: Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_security_profile_group: Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_spamfilter: Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_sslvpn: Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_sslvpn_personal_bookmarks: Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_sslvpn_realms: Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_switch_controller: Enable/disable the switch controller on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_threat_weight: Enable/disable threat weight on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_traffic_shaping: Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_videofilter: Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_virtual_patch_profile: Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_voip_profile: Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_vpn: Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_waf_profile: Enable/disable Web Application Firewall on the GUI. Valid values: `enable`, `disable`.
@@ -2612,8 +2808,10 @@ class _SettingsState:
         :param pulumi.Input[int] ike_port: UDP port for IKE/IPsec traffic (default 500).
         :param pulumi.Input[str] ike_quick_crash_detect: Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ike_session_resume: Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ike_tcp_port: TCP port for IKE/IPsec traffic (default 4500).
         :param pulumi.Input[str] implicit_allow_dns: Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] inspection_mode: Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
+        :param pulumi.Input[str] internet_service_database_cache: Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ip: IP address and netmask.
         :param pulumi.Input[str] ip6: IPv6 address prefix for NAT mode.
         :param pulumi.Input[str] lan_extension_controller_addr: Controller IP address or FQDN to connect.
@@ -2699,6 +2897,8 @@ class _SettingsState:
             pulumi.set(__self__, "default_voip_alg_mode", default_voip_alg_mode)
         if deny_tcp_with_icmp is not None:
             pulumi.set(__self__, "deny_tcp_with_icmp", deny_tcp_with_icmp)
+        if detect_unknown_esp is not None:
+            pulumi.set(__self__, "detect_unknown_esp", detect_unknown_esp)
         if device is not None:
             pulumi.set(__self__, "device", device)
         if dhcp6_server_ip is not None:
@@ -2733,6 +2933,8 @@ class _SettingsState:
             pulumi.set(__self__, "gateway", gateway)
         if gateway6 is not None:
             pulumi.set(__self__, "gateway6", gateway6)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gui_advanced_policy is not None:
             pulumi.set(__self__, "gui_advanced_policy", gui_advanced_policy)
         if gui_advanced_wireless_features is not None:
@@ -2745,12 +2947,16 @@ class _SettingsState:
             pulumi.set(__self__, "gui_ap_profile", gui_ap_profile)
         if gui_application_control is not None:
             pulumi.set(__self__, "gui_application_control", gui_application_control)
+        if gui_casb is not None:
+            pulumi.set(__self__, "gui_casb", gui_casb)
         if gui_default_policy_columns is not None:
             pulumi.set(__self__, "gui_default_policy_columns", gui_default_policy_columns)
         if gui_dhcp_advanced is not None:
             pulumi.set(__self__, "gui_dhcp_advanced", gui_dhcp_advanced)
         if gui_dlp is not None:
             pulumi.set(__self__, "gui_dlp", gui_dlp)
+        if gui_dlp_profile is not None:
+            pulumi.set(__self__, "gui_dlp_profile", gui_dlp_profile)
         if gui_dns_database is not None:
             pulumi.set(__self__, "gui_dns_database", gui_dns_database)
         if gui_dnsfilter is not None:
@@ -2759,6 +2965,8 @@ class _SettingsState:
             pulumi.set(__self__, "gui_domain_ip_reputation", gui_domain_ip_reputation)
         if gui_dos_policy is not None:
             pulumi.set(__self__, "gui_dos_policy", gui_dos_policy)
+        if gui_dynamic_device_os_id is not None:
+            pulumi.set(__self__, "gui_dynamic_device_os_id", gui_dynamic_device_os_id)
         if gui_dynamic_profile_display is not None:
             pulumi.set(__self__, "gui_dynamic_profile_display", gui_dynamic_profile_display)
         if gui_dynamic_routing is not None:
@@ -2811,12 +3019,18 @@ class _SettingsState:
             pulumi.set(__self__, "gui_policy_disclaimer", gui_policy_disclaimer)
         if gui_policy_learning is not None:
             pulumi.set(__self__, "gui_policy_learning", gui_policy_learning)
+        if gui_proxy_inspection is not None:
+            pulumi.set(__self__, "gui_proxy_inspection", gui_proxy_inspection)
         if gui_replacement_message_groups is not None:
             pulumi.set(__self__, "gui_replacement_message_groups", gui_replacement_message_groups)
+        if gui_route_tag_address_creation is not None:
+            pulumi.set(__self__, "gui_route_tag_address_creation", gui_route_tag_address_creation)
         if gui_security_profile_group is not None:
             pulumi.set(__self__, "gui_security_profile_group", gui_security_profile_group)
         if gui_spamfilter is not None:
             pulumi.set(__self__, "gui_spamfilter", gui_spamfilter)
+        if gui_sslvpn is not None:
+            pulumi.set(__self__, "gui_sslvpn", gui_sslvpn)
         if gui_sslvpn_personal_bookmarks is not None:
             pulumi.set(__self__, "gui_sslvpn_personal_bookmarks", gui_sslvpn_personal_bookmarks)
         if gui_sslvpn_realms is not None:
@@ -2829,6 +3043,8 @@ class _SettingsState:
             pulumi.set(__self__, "gui_traffic_shaping", gui_traffic_shaping)
         if gui_videofilter is not None:
             pulumi.set(__self__, "gui_videofilter", gui_videofilter)
+        if gui_virtual_patch_profile is not None:
+            pulumi.set(__self__, "gui_virtual_patch_profile", gui_virtual_patch_profile)
         if gui_voip_profile is not None:
             pulumi.set(__self__, "gui_voip_profile", gui_voip_profile)
         if gui_vpn is not None:
@@ -2863,10 +3079,14 @@ class _SettingsState:
             pulumi.set(__self__, "ike_quick_crash_detect", ike_quick_crash_detect)
         if ike_session_resume is not None:
             pulumi.set(__self__, "ike_session_resume", ike_session_resume)
+        if ike_tcp_port is not None:
+            pulumi.set(__self__, "ike_tcp_port", ike_tcp_port)
         if implicit_allow_dns is not None:
             pulumi.set(__self__, "implicit_allow_dns", implicit_allow_dns)
         if inspection_mode is not None:
             pulumi.set(__self__, "inspection_mode", inspection_mode)
+        if internet_service_database_cache is not None:
+            pulumi.set(__self__, "internet_service_database_cache", internet_service_database_cache)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
         if ip6 is not None:
@@ -3213,6 +3433,18 @@ class _SettingsState:
         pulumi.set(self, "deny_tcp_with_icmp", value)
 
     @property
+    @pulumi.getter(name="detectUnknownEsp")
+    def detect_unknown_esp(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "detect_unknown_esp")
+
+    @detect_unknown_esp.setter
+    def detect_unknown_esp(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "detect_unknown_esp", value)
+
+    @property
     @pulumi.getter
     def device(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3417,6 +3649,18 @@ class _SettingsState:
         pulumi.set(self, "gateway6", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="guiAdvancedPolicy")
     def gui_advanced_policy(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3489,6 +3733,18 @@ class _SettingsState:
         pulumi.set(self, "gui_application_control", value)
 
     @property
+    @pulumi.getter(name="guiCasb")
+    def gui_casb(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_casb")
+
+    @gui_casb.setter
+    def gui_casb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_casb", value)
+
+    @property
     @pulumi.getter(name="guiDefaultPolicyColumns")
     def gui_default_policy_columns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SettingsGuiDefaultPolicyColumnArgs']]]]:
         """
@@ -3523,6 +3779,18 @@ class _SettingsState:
     @gui_dlp.setter
     def gui_dlp(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_dlp", value)
+
+    @property
+    @pulumi.getter(name="guiDlpProfile")
+    def gui_dlp_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_dlp_profile")
+
+    @gui_dlp_profile.setter
+    def gui_dlp_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_dlp_profile", value)
 
     @property
     @pulumi.getter(name="guiDnsDatabase")
@@ -3571,6 +3839,18 @@ class _SettingsState:
     @gui_dos_policy.setter
     def gui_dos_policy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_dos_policy", value)
+
+    @property
+    @pulumi.getter(name="guiDynamicDeviceOsId")
+    def gui_dynamic_device_os_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_dynamic_device_os_id")
+
+    @gui_dynamic_device_os_id.setter
+    def gui_dynamic_device_os_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_dynamic_device_os_id", value)
 
     @property
     @pulumi.getter(name="guiDynamicProfileDisplay")
@@ -3885,6 +4165,18 @@ class _SettingsState:
         pulumi.set(self, "gui_policy_learning", value)
 
     @property
+    @pulumi.getter(name="guiProxyInspection")
+    def gui_proxy_inspection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_proxy_inspection")
+
+    @gui_proxy_inspection.setter
+    def gui_proxy_inspection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_proxy_inspection", value)
+
+    @property
     @pulumi.getter(name="guiReplacementMessageGroups")
     def gui_replacement_message_groups(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3895,6 +4187,18 @@ class _SettingsState:
     @gui_replacement_message_groups.setter
     def gui_replacement_message_groups(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_replacement_message_groups", value)
+
+    @property
+    @pulumi.getter(name="guiRouteTagAddressCreation")
+    def gui_route_tag_address_creation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_route_tag_address_creation")
+
+    @gui_route_tag_address_creation.setter
+    def gui_route_tag_address_creation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_route_tag_address_creation", value)
 
     @property
     @pulumi.getter(name="guiSecurityProfileGroup")
@@ -3919,6 +4223,18 @@ class _SettingsState:
     @gui_spamfilter.setter
     def gui_spamfilter(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_spamfilter", value)
+
+    @property
+    @pulumi.getter(name="guiSslvpn")
+    def gui_sslvpn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_sslvpn")
+
+    @gui_sslvpn.setter
+    def gui_sslvpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_sslvpn", value)
 
     @property
     @pulumi.getter(name="guiSslvpnPersonalBookmarks")
@@ -3991,6 +4307,18 @@ class _SettingsState:
     @gui_videofilter.setter
     def gui_videofilter(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_videofilter", value)
+
+    @property
+    @pulumi.getter(name="guiVirtualPatchProfile")
+    def gui_virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_virtual_patch_profile")
+
+    @gui_virtual_patch_profile.setter
+    def gui_virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_virtual_patch_profile", value)
 
     @property
     @pulumi.getter(name="guiVoipProfile")
@@ -4197,6 +4525,18 @@ class _SettingsState:
         pulumi.set(self, "ike_session_resume", value)
 
     @property
+    @pulumi.getter(name="ikeTcpPort")
+    def ike_tcp_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP port for IKE/IPsec traffic (default 4500).
+        """
+        return pulumi.get(self, "ike_tcp_port")
+
+    @ike_tcp_port.setter
+    def ike_tcp_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ike_tcp_port", value)
+
+    @property
     @pulumi.getter(name="implicitAllowDns")
     def implicit_allow_dns(self) -> Optional[pulumi.Input[str]]:
         """
@@ -4219,6 +4559,18 @@ class _SettingsState:
     @inspection_mode.setter
     def inspection_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "inspection_mode", value)
+
+    @property
+    @pulumi.getter(name="internetServiceDatabaseCache")
+    def internet_service_database_cache(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "internet_service_database_cache")
+
+    @internet_service_database_cache.setter
+    def internet_service_database_cache(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service_database_cache", value)
 
     @property
     @pulumi.getter
@@ -4728,6 +5080,7 @@ class Settings(pulumi.CustomResource):
                  default_policy_expiry_days: Optional[pulumi.Input[int]] = None,
                  default_voip_alg_mode: Optional[pulumi.Input[str]] = None,
                  deny_tcp_with_icmp: Optional[pulumi.Input[str]] = None,
+                 detect_unknown_esp: Optional[pulumi.Input[str]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dhcp6_server_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_proxy: Optional[pulumi.Input[str]] = None,
@@ -4745,19 +5098,23 @@ class Settings(pulumi.CustomResource):
                  fw_session_hairpin: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  gateway6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_advanced_policy: Optional[pulumi.Input[str]] = None,
                  gui_advanced_wireless_features: Optional[pulumi.Input[str]] = None,
                  gui_allow_unnamed_policy: Optional[pulumi.Input[str]] = None,
                  gui_antivirus: Optional[pulumi.Input[str]] = None,
                  gui_ap_profile: Optional[pulumi.Input[str]] = None,
                  gui_application_control: Optional[pulumi.Input[str]] = None,
+                 gui_casb: Optional[pulumi.Input[str]] = None,
                  gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingsGuiDefaultPolicyColumnArgs']]]]] = None,
                  gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
                  gui_dlp: Optional[pulumi.Input[str]] = None,
+                 gui_dlp_profile: Optional[pulumi.Input[str]] = None,
                  gui_dns_database: Optional[pulumi.Input[str]] = None,
                  gui_dnsfilter: Optional[pulumi.Input[str]] = None,
                  gui_domain_ip_reputation: Optional[pulumi.Input[str]] = None,
                  gui_dos_policy: Optional[pulumi.Input[str]] = None,
+                 gui_dynamic_device_os_id: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_profile_display: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_routing: Optional[pulumi.Input[str]] = None,
                  gui_email_collection: Optional[pulumi.Input[str]] = None,
@@ -4784,15 +5141,19 @@ class Settings(pulumi.CustomResource):
                  gui_policy_based_ipsec: Optional[pulumi.Input[str]] = None,
                  gui_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  gui_policy_learning: Optional[pulumi.Input[str]] = None,
+                 gui_proxy_inspection: Optional[pulumi.Input[str]] = None,
                  gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+                 gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
                  gui_security_profile_group: Optional[pulumi.Input[str]] = None,
                  gui_spamfilter: Optional[pulumi.Input[str]] = None,
+                 gui_sslvpn: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_realms: Optional[pulumi.Input[str]] = None,
                  gui_switch_controller: Optional[pulumi.Input[str]] = None,
                  gui_threat_weight: Optional[pulumi.Input[str]] = None,
                  gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
                  gui_videofilter: Optional[pulumi.Input[str]] = None,
+                 gui_virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  gui_voip_profile: Optional[pulumi.Input[str]] = None,
                  gui_vpn: Optional[pulumi.Input[str]] = None,
                  gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -4810,8 +5171,10 @@ class Settings(pulumi.CustomResource):
                  ike_port: Optional[pulumi.Input[int]] = None,
                  ike_quick_crash_detect: Optional[pulumi.Input[str]] = None,
                  ike_session_resume: Optional[pulumi.Input[str]] = None,
+                 ike_tcp_port: Optional[pulumi.Input[int]] = None,
                  implicit_allow_dns: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
+                 internet_service_database_cache: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  lan_extension_controller_addr: Optional[pulumi.Input[str]] = None,
@@ -4914,6 +5277,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[int] default_policy_expiry_days: Default policy expiry in days (0 - 365 days, default = 30).
         :param pulumi.Input[str] default_voip_alg_mode: Configure how the FortiGate handles VoIP traffic when a policy that accepts the traffic doesn't include a VoIP profile. Valid values: `proxy-based`, `kernel-helper-based`.
         :param pulumi.Input[str] deny_tcp_with_icmp: Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] detect_unknown_esp: Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] device: Interface to use for management access for NAT mode.
         :param pulumi.Input[str] dhcp6_server_ip: DHCPv6 server IPv6 address.
         :param pulumi.Input[str] dhcp_proxy: Enable/disable the DHCP Proxy. Valid values: `enable`, `disable`.
@@ -4931,19 +5295,23 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] fw_session_hairpin: Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gateway: Transparent mode IPv4 default gateway IP address.
         :param pulumi.Input[str] gateway6: Transparent mode IPv4 default gateway IP address.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gui_advanced_policy: Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_advanced_wireless_features: Enable/disable advanced wireless features in GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_unnamed_policy: Enable/disable the requirement for policy naming on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_antivirus: Enable/disable AntiVirus on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_ap_profile: Enable/disable FortiAP profiles on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_application_control: Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_casb: Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingsGuiDefaultPolicyColumnArgs']]]] gui_default_policy_columns: Default columns to display for policy lists on GUI. The structure of `gui_default_policy_columns` block is documented below.
         :param pulumi.Input[str] gui_dhcp_advanced: Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dlp: Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_dlp_profile: Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dns_database: Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dnsfilter: Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_domain_ip_reputation: Enable/disable Domain and IP Reputation on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dos_policy: Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_dynamic_device_os_id: Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dynamic_profile_display: Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dynamic_routing: Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_email_collection: Enable/disable email collection on the GUI. Valid values: `enable`, `disable`.
@@ -4970,15 +5338,19 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] gui_policy_based_ipsec: Enable/disable policy-based IPsec VPN on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_policy_disclaimer: Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_policy_learning: Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_proxy_inspection: Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_replacement_message_groups: Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_route_tag_address_creation: Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_security_profile_group: Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_spamfilter: Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_sslvpn: Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_sslvpn_personal_bookmarks: Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_sslvpn_realms: Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_switch_controller: Enable/disable the switch controller on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_threat_weight: Enable/disable threat weight on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_traffic_shaping: Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_videofilter: Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_virtual_patch_profile: Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_voip_profile: Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_vpn: Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_waf_profile: Enable/disable Web Application Firewall on the GUI. Valid values: `enable`, `disable`.
@@ -4996,8 +5368,10 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[int] ike_port: UDP port for IKE/IPsec traffic (default 500).
         :param pulumi.Input[str] ike_quick_crash_detect: Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ike_session_resume: Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ike_tcp_port: TCP port for IKE/IPsec traffic (default 4500).
         :param pulumi.Input[str] implicit_allow_dns: Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] inspection_mode: Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
+        :param pulumi.Input[str] internet_service_database_cache: Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ip: IP address and netmask.
         :param pulumi.Input[str] ip6: IPv6 address prefix for NAT mode.
         :param pulumi.Input[str] lan_extension_controller_addr: Controller IP address or FQDN to connect.
@@ -5119,6 +5493,7 @@ class Settings(pulumi.CustomResource):
                  default_policy_expiry_days: Optional[pulumi.Input[int]] = None,
                  default_voip_alg_mode: Optional[pulumi.Input[str]] = None,
                  deny_tcp_with_icmp: Optional[pulumi.Input[str]] = None,
+                 detect_unknown_esp: Optional[pulumi.Input[str]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dhcp6_server_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_proxy: Optional[pulumi.Input[str]] = None,
@@ -5136,19 +5511,23 @@ class Settings(pulumi.CustomResource):
                  fw_session_hairpin: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  gateway6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_advanced_policy: Optional[pulumi.Input[str]] = None,
                  gui_advanced_wireless_features: Optional[pulumi.Input[str]] = None,
                  gui_allow_unnamed_policy: Optional[pulumi.Input[str]] = None,
                  gui_antivirus: Optional[pulumi.Input[str]] = None,
                  gui_ap_profile: Optional[pulumi.Input[str]] = None,
                  gui_application_control: Optional[pulumi.Input[str]] = None,
+                 gui_casb: Optional[pulumi.Input[str]] = None,
                  gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingsGuiDefaultPolicyColumnArgs']]]]] = None,
                  gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
                  gui_dlp: Optional[pulumi.Input[str]] = None,
+                 gui_dlp_profile: Optional[pulumi.Input[str]] = None,
                  gui_dns_database: Optional[pulumi.Input[str]] = None,
                  gui_dnsfilter: Optional[pulumi.Input[str]] = None,
                  gui_domain_ip_reputation: Optional[pulumi.Input[str]] = None,
                  gui_dos_policy: Optional[pulumi.Input[str]] = None,
+                 gui_dynamic_device_os_id: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_profile_display: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_routing: Optional[pulumi.Input[str]] = None,
                  gui_email_collection: Optional[pulumi.Input[str]] = None,
@@ -5175,15 +5554,19 @@ class Settings(pulumi.CustomResource):
                  gui_policy_based_ipsec: Optional[pulumi.Input[str]] = None,
                  gui_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  gui_policy_learning: Optional[pulumi.Input[str]] = None,
+                 gui_proxy_inspection: Optional[pulumi.Input[str]] = None,
                  gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+                 gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
                  gui_security_profile_group: Optional[pulumi.Input[str]] = None,
                  gui_spamfilter: Optional[pulumi.Input[str]] = None,
+                 gui_sslvpn: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_realms: Optional[pulumi.Input[str]] = None,
                  gui_switch_controller: Optional[pulumi.Input[str]] = None,
                  gui_threat_weight: Optional[pulumi.Input[str]] = None,
                  gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
                  gui_videofilter: Optional[pulumi.Input[str]] = None,
+                 gui_virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  gui_voip_profile: Optional[pulumi.Input[str]] = None,
                  gui_vpn: Optional[pulumi.Input[str]] = None,
                  gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -5201,8 +5584,10 @@ class Settings(pulumi.CustomResource):
                  ike_port: Optional[pulumi.Input[int]] = None,
                  ike_quick_crash_detect: Optional[pulumi.Input[str]] = None,
                  ike_session_resume: Optional[pulumi.Input[str]] = None,
+                 ike_tcp_port: Optional[pulumi.Input[int]] = None,
                  implicit_allow_dns: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
+                 internet_service_database_cache: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  lan_extension_controller_addr: Optional[pulumi.Input[str]] = None,
@@ -5274,6 +5659,7 @@ class Settings(pulumi.CustomResource):
             __props__.__dict__["default_policy_expiry_days"] = default_policy_expiry_days
             __props__.__dict__["default_voip_alg_mode"] = default_voip_alg_mode
             __props__.__dict__["deny_tcp_with_icmp"] = deny_tcp_with_icmp
+            __props__.__dict__["detect_unknown_esp"] = detect_unknown_esp
             __props__.__dict__["device"] = device
             __props__.__dict__["dhcp6_server_ip"] = dhcp6_server_ip
             __props__.__dict__["dhcp_proxy"] = dhcp_proxy
@@ -5291,19 +5677,23 @@ class Settings(pulumi.CustomResource):
             __props__.__dict__["fw_session_hairpin"] = fw_session_hairpin
             __props__.__dict__["gateway"] = gateway
             __props__.__dict__["gateway6"] = gateway6
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gui_advanced_policy"] = gui_advanced_policy
             __props__.__dict__["gui_advanced_wireless_features"] = gui_advanced_wireless_features
             __props__.__dict__["gui_allow_unnamed_policy"] = gui_allow_unnamed_policy
             __props__.__dict__["gui_antivirus"] = gui_antivirus
             __props__.__dict__["gui_ap_profile"] = gui_ap_profile
             __props__.__dict__["gui_application_control"] = gui_application_control
+            __props__.__dict__["gui_casb"] = gui_casb
             __props__.__dict__["gui_default_policy_columns"] = gui_default_policy_columns
             __props__.__dict__["gui_dhcp_advanced"] = gui_dhcp_advanced
             __props__.__dict__["gui_dlp"] = gui_dlp
+            __props__.__dict__["gui_dlp_profile"] = gui_dlp_profile
             __props__.__dict__["gui_dns_database"] = gui_dns_database
             __props__.__dict__["gui_dnsfilter"] = gui_dnsfilter
             __props__.__dict__["gui_domain_ip_reputation"] = gui_domain_ip_reputation
             __props__.__dict__["gui_dos_policy"] = gui_dos_policy
+            __props__.__dict__["gui_dynamic_device_os_id"] = gui_dynamic_device_os_id
             __props__.__dict__["gui_dynamic_profile_display"] = gui_dynamic_profile_display
             __props__.__dict__["gui_dynamic_routing"] = gui_dynamic_routing
             __props__.__dict__["gui_email_collection"] = gui_email_collection
@@ -5330,15 +5720,19 @@ class Settings(pulumi.CustomResource):
             __props__.__dict__["gui_policy_based_ipsec"] = gui_policy_based_ipsec
             __props__.__dict__["gui_policy_disclaimer"] = gui_policy_disclaimer
             __props__.__dict__["gui_policy_learning"] = gui_policy_learning
+            __props__.__dict__["gui_proxy_inspection"] = gui_proxy_inspection
             __props__.__dict__["gui_replacement_message_groups"] = gui_replacement_message_groups
+            __props__.__dict__["gui_route_tag_address_creation"] = gui_route_tag_address_creation
             __props__.__dict__["gui_security_profile_group"] = gui_security_profile_group
             __props__.__dict__["gui_spamfilter"] = gui_spamfilter
+            __props__.__dict__["gui_sslvpn"] = gui_sslvpn
             __props__.__dict__["gui_sslvpn_personal_bookmarks"] = gui_sslvpn_personal_bookmarks
             __props__.__dict__["gui_sslvpn_realms"] = gui_sslvpn_realms
             __props__.__dict__["gui_switch_controller"] = gui_switch_controller
             __props__.__dict__["gui_threat_weight"] = gui_threat_weight
             __props__.__dict__["gui_traffic_shaping"] = gui_traffic_shaping
             __props__.__dict__["gui_videofilter"] = gui_videofilter
+            __props__.__dict__["gui_virtual_patch_profile"] = gui_virtual_patch_profile
             __props__.__dict__["gui_voip_profile"] = gui_voip_profile
             __props__.__dict__["gui_vpn"] = gui_vpn
             __props__.__dict__["gui_waf_profile"] = gui_waf_profile
@@ -5356,8 +5750,10 @@ class Settings(pulumi.CustomResource):
             __props__.__dict__["ike_port"] = ike_port
             __props__.__dict__["ike_quick_crash_detect"] = ike_quick_crash_detect
             __props__.__dict__["ike_session_resume"] = ike_session_resume
+            __props__.__dict__["ike_tcp_port"] = ike_tcp_port
             __props__.__dict__["implicit_allow_dns"] = implicit_allow_dns
             __props__.__dict__["inspection_mode"] = inspection_mode
+            __props__.__dict__["internet_service_database_cache"] = internet_service_database_cache
             __props__.__dict__["ip"] = ip
             __props__.__dict__["ip6"] = ip6
             __props__.__dict__["lan_extension_controller_addr"] = lan_extension_controller_addr
@@ -5430,6 +5826,7 @@ class Settings(pulumi.CustomResource):
             default_policy_expiry_days: Optional[pulumi.Input[int]] = None,
             default_voip_alg_mode: Optional[pulumi.Input[str]] = None,
             deny_tcp_with_icmp: Optional[pulumi.Input[str]] = None,
+            detect_unknown_esp: Optional[pulumi.Input[str]] = None,
             device: Optional[pulumi.Input[str]] = None,
             dhcp6_server_ip: Optional[pulumi.Input[str]] = None,
             dhcp_proxy: Optional[pulumi.Input[str]] = None,
@@ -5447,19 +5844,23 @@ class Settings(pulumi.CustomResource):
             fw_session_hairpin: Optional[pulumi.Input[str]] = None,
             gateway: Optional[pulumi.Input[str]] = None,
             gateway6: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gui_advanced_policy: Optional[pulumi.Input[str]] = None,
             gui_advanced_wireless_features: Optional[pulumi.Input[str]] = None,
             gui_allow_unnamed_policy: Optional[pulumi.Input[str]] = None,
             gui_antivirus: Optional[pulumi.Input[str]] = None,
             gui_ap_profile: Optional[pulumi.Input[str]] = None,
             gui_application_control: Optional[pulumi.Input[str]] = None,
+            gui_casb: Optional[pulumi.Input[str]] = None,
             gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingsGuiDefaultPolicyColumnArgs']]]]] = None,
             gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
             gui_dlp: Optional[pulumi.Input[str]] = None,
+            gui_dlp_profile: Optional[pulumi.Input[str]] = None,
             gui_dns_database: Optional[pulumi.Input[str]] = None,
             gui_dnsfilter: Optional[pulumi.Input[str]] = None,
             gui_domain_ip_reputation: Optional[pulumi.Input[str]] = None,
             gui_dos_policy: Optional[pulumi.Input[str]] = None,
+            gui_dynamic_device_os_id: Optional[pulumi.Input[str]] = None,
             gui_dynamic_profile_display: Optional[pulumi.Input[str]] = None,
             gui_dynamic_routing: Optional[pulumi.Input[str]] = None,
             gui_email_collection: Optional[pulumi.Input[str]] = None,
@@ -5486,15 +5887,19 @@ class Settings(pulumi.CustomResource):
             gui_policy_based_ipsec: Optional[pulumi.Input[str]] = None,
             gui_policy_disclaimer: Optional[pulumi.Input[str]] = None,
             gui_policy_learning: Optional[pulumi.Input[str]] = None,
+            gui_proxy_inspection: Optional[pulumi.Input[str]] = None,
             gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+            gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
             gui_security_profile_group: Optional[pulumi.Input[str]] = None,
             gui_spamfilter: Optional[pulumi.Input[str]] = None,
+            gui_sslvpn: Optional[pulumi.Input[str]] = None,
             gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
             gui_sslvpn_realms: Optional[pulumi.Input[str]] = None,
             gui_switch_controller: Optional[pulumi.Input[str]] = None,
             gui_threat_weight: Optional[pulumi.Input[str]] = None,
             gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
             gui_videofilter: Optional[pulumi.Input[str]] = None,
+            gui_virtual_patch_profile: Optional[pulumi.Input[str]] = None,
             gui_voip_profile: Optional[pulumi.Input[str]] = None,
             gui_vpn: Optional[pulumi.Input[str]] = None,
             gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -5512,8 +5917,10 @@ class Settings(pulumi.CustomResource):
             ike_port: Optional[pulumi.Input[int]] = None,
             ike_quick_crash_detect: Optional[pulumi.Input[str]] = None,
             ike_session_resume: Optional[pulumi.Input[str]] = None,
+            ike_tcp_port: Optional[pulumi.Input[int]] = None,
             implicit_allow_dns: Optional[pulumi.Input[str]] = None,
             inspection_mode: Optional[pulumi.Input[str]] = None,
+            internet_service_database_cache: Optional[pulumi.Input[str]] = None,
             ip: Optional[pulumi.Input[str]] = None,
             ip6: Optional[pulumi.Input[str]] = None,
             lan_extension_controller_addr: Optional[pulumi.Input[str]] = None,
@@ -5583,6 +5990,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[int] default_policy_expiry_days: Default policy expiry in days (0 - 365 days, default = 30).
         :param pulumi.Input[str] default_voip_alg_mode: Configure how the FortiGate handles VoIP traffic when a policy that accepts the traffic doesn't include a VoIP profile. Valid values: `proxy-based`, `kernel-helper-based`.
         :param pulumi.Input[str] deny_tcp_with_icmp: Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] detect_unknown_esp: Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] device: Interface to use for management access for NAT mode.
         :param pulumi.Input[str] dhcp6_server_ip: DHCPv6 server IPv6 address.
         :param pulumi.Input[str] dhcp_proxy: Enable/disable the DHCP Proxy. Valid values: `enable`, `disable`.
@@ -5600,19 +6008,23 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] fw_session_hairpin: Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gateway: Transparent mode IPv4 default gateway IP address.
         :param pulumi.Input[str] gateway6: Transparent mode IPv4 default gateway IP address.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gui_advanced_policy: Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_advanced_wireless_features: Enable/disable advanced wireless features in GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_unnamed_policy: Enable/disable the requirement for policy naming on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_antivirus: Enable/disable AntiVirus on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_ap_profile: Enable/disable FortiAP profiles on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_application_control: Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_casb: Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingsGuiDefaultPolicyColumnArgs']]]] gui_default_policy_columns: Default columns to display for policy lists on GUI. The structure of `gui_default_policy_columns` block is documented below.
         :param pulumi.Input[str] gui_dhcp_advanced: Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dlp: Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_dlp_profile: Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dns_database: Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dnsfilter: Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_domain_ip_reputation: Enable/disable Domain and IP Reputation on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dos_policy: Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_dynamic_device_os_id: Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dynamic_profile_display: Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_dynamic_routing: Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_email_collection: Enable/disable email collection on the GUI. Valid values: `enable`, `disable`.
@@ -5639,15 +6051,19 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] gui_policy_based_ipsec: Enable/disable policy-based IPsec VPN on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_policy_disclaimer: Enable/disable policy disclaimer on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_policy_learning: Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_proxy_inspection: Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_replacement_message_groups: Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_route_tag_address_creation: Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_security_profile_group: Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_spamfilter: Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_sslvpn: Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_sslvpn_personal_bookmarks: Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_sslvpn_realms: Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_switch_controller: Enable/disable the switch controller on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_threat_weight: Enable/disable threat weight on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_traffic_shaping: Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_videofilter: Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_virtual_patch_profile: Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_voip_profile: Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_vpn: Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_waf_profile: Enable/disable Web Application Firewall on the GUI. Valid values: `enable`, `disable`.
@@ -5665,8 +6081,10 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[int] ike_port: UDP port for IKE/IPsec traffic (default 500).
         :param pulumi.Input[str] ike_quick_crash_detect: Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ike_session_resume: Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ike_tcp_port: TCP port for IKE/IPsec traffic (default 4500).
         :param pulumi.Input[str] implicit_allow_dns: Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] inspection_mode: Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
+        :param pulumi.Input[str] internet_service_database_cache: Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ip: IP address and netmask.
         :param pulumi.Input[str] ip6: IPv6 address prefix for NAT mode.
         :param pulumi.Input[str] lan_extension_controller_addr: Controller IP address or FQDN to connect.
@@ -5734,6 +6152,7 @@ class Settings(pulumi.CustomResource):
         __props__.__dict__["default_policy_expiry_days"] = default_policy_expiry_days
         __props__.__dict__["default_voip_alg_mode"] = default_voip_alg_mode
         __props__.__dict__["deny_tcp_with_icmp"] = deny_tcp_with_icmp
+        __props__.__dict__["detect_unknown_esp"] = detect_unknown_esp
         __props__.__dict__["device"] = device
         __props__.__dict__["dhcp6_server_ip"] = dhcp6_server_ip
         __props__.__dict__["dhcp_proxy"] = dhcp_proxy
@@ -5751,19 +6170,23 @@ class Settings(pulumi.CustomResource):
         __props__.__dict__["fw_session_hairpin"] = fw_session_hairpin
         __props__.__dict__["gateway"] = gateway
         __props__.__dict__["gateway6"] = gateway6
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gui_advanced_policy"] = gui_advanced_policy
         __props__.__dict__["gui_advanced_wireless_features"] = gui_advanced_wireless_features
         __props__.__dict__["gui_allow_unnamed_policy"] = gui_allow_unnamed_policy
         __props__.__dict__["gui_antivirus"] = gui_antivirus
         __props__.__dict__["gui_ap_profile"] = gui_ap_profile
         __props__.__dict__["gui_application_control"] = gui_application_control
+        __props__.__dict__["gui_casb"] = gui_casb
         __props__.__dict__["gui_default_policy_columns"] = gui_default_policy_columns
         __props__.__dict__["gui_dhcp_advanced"] = gui_dhcp_advanced
         __props__.__dict__["gui_dlp"] = gui_dlp
+        __props__.__dict__["gui_dlp_profile"] = gui_dlp_profile
         __props__.__dict__["gui_dns_database"] = gui_dns_database
         __props__.__dict__["gui_dnsfilter"] = gui_dnsfilter
         __props__.__dict__["gui_domain_ip_reputation"] = gui_domain_ip_reputation
         __props__.__dict__["gui_dos_policy"] = gui_dos_policy
+        __props__.__dict__["gui_dynamic_device_os_id"] = gui_dynamic_device_os_id
         __props__.__dict__["gui_dynamic_profile_display"] = gui_dynamic_profile_display
         __props__.__dict__["gui_dynamic_routing"] = gui_dynamic_routing
         __props__.__dict__["gui_email_collection"] = gui_email_collection
@@ -5790,15 +6213,19 @@ class Settings(pulumi.CustomResource):
         __props__.__dict__["gui_policy_based_ipsec"] = gui_policy_based_ipsec
         __props__.__dict__["gui_policy_disclaimer"] = gui_policy_disclaimer
         __props__.__dict__["gui_policy_learning"] = gui_policy_learning
+        __props__.__dict__["gui_proxy_inspection"] = gui_proxy_inspection
         __props__.__dict__["gui_replacement_message_groups"] = gui_replacement_message_groups
+        __props__.__dict__["gui_route_tag_address_creation"] = gui_route_tag_address_creation
         __props__.__dict__["gui_security_profile_group"] = gui_security_profile_group
         __props__.__dict__["gui_spamfilter"] = gui_spamfilter
+        __props__.__dict__["gui_sslvpn"] = gui_sslvpn
         __props__.__dict__["gui_sslvpn_personal_bookmarks"] = gui_sslvpn_personal_bookmarks
         __props__.__dict__["gui_sslvpn_realms"] = gui_sslvpn_realms
         __props__.__dict__["gui_switch_controller"] = gui_switch_controller
         __props__.__dict__["gui_threat_weight"] = gui_threat_weight
         __props__.__dict__["gui_traffic_shaping"] = gui_traffic_shaping
         __props__.__dict__["gui_videofilter"] = gui_videofilter
+        __props__.__dict__["gui_virtual_patch_profile"] = gui_virtual_patch_profile
         __props__.__dict__["gui_voip_profile"] = gui_voip_profile
         __props__.__dict__["gui_vpn"] = gui_vpn
         __props__.__dict__["gui_waf_profile"] = gui_waf_profile
@@ -5816,8 +6243,10 @@ class Settings(pulumi.CustomResource):
         __props__.__dict__["ike_port"] = ike_port
         __props__.__dict__["ike_quick_crash_detect"] = ike_quick_crash_detect
         __props__.__dict__["ike_session_resume"] = ike_session_resume
+        __props__.__dict__["ike_tcp_port"] = ike_tcp_port
         __props__.__dict__["implicit_allow_dns"] = implicit_allow_dns
         __props__.__dict__["inspection_mode"] = inspection_mode
+        __props__.__dict__["internet_service_database_cache"] = internet_service_database_cache
         __props__.__dict__["ip"] = ip
         __props__.__dict__["ip6"] = ip6
         __props__.__dict__["lan_extension_controller_addr"] = lan_extension_controller_addr
@@ -6037,6 +6466,14 @@ class Settings(pulumi.CustomResource):
         return pulumi.get(self, "deny_tcp_with_icmp")
 
     @property
+    @pulumi.getter(name="detectUnknownEsp")
+    def detect_unknown_esp(self) -> pulumi.Output[str]:
+        """
+        Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "detect_unknown_esp")
+
+    @property
     @pulumi.getter
     def device(self) -> pulumi.Output[str]:
         """
@@ -6173,6 +6610,14 @@ class Settings(pulumi.CustomResource):
         return pulumi.get(self, "gateway6")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="guiAdvancedPolicy")
     def gui_advanced_policy(self) -> pulumi.Output[str]:
         """
@@ -6221,6 +6666,14 @@ class Settings(pulumi.CustomResource):
         return pulumi.get(self, "gui_application_control")
 
     @property
+    @pulumi.getter(name="guiCasb")
+    def gui_casb(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_casb")
+
+    @property
     @pulumi.getter(name="guiDefaultPolicyColumns")
     def gui_default_policy_columns(self) -> pulumi.Output[Optional[Sequence['outputs.SettingsGuiDefaultPolicyColumn']]]:
         """
@@ -6243,6 +6696,14 @@ class Settings(pulumi.CustomResource):
         Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "gui_dlp")
+
+    @property
+    @pulumi.getter(name="guiDlpProfile")
+    def gui_dlp_profile(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_dlp_profile")
 
     @property
     @pulumi.getter(name="guiDnsDatabase")
@@ -6275,6 +6736,14 @@ class Settings(pulumi.CustomResource):
         Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "gui_dos_policy")
+
+    @property
+    @pulumi.getter(name="guiDynamicDeviceOsId")
+    def gui_dynamic_device_os_id(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_dynamic_device_os_id")
 
     @property
     @pulumi.getter(name="guiDynamicProfileDisplay")
@@ -6485,12 +6954,28 @@ class Settings(pulumi.CustomResource):
         return pulumi.get(self, "gui_policy_learning")
 
     @property
+    @pulumi.getter(name="guiProxyInspection")
+    def gui_proxy_inspection(self) -> pulumi.Output[str]:
+        """
+        Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_proxy_inspection")
+
+    @property
     @pulumi.getter(name="guiReplacementMessageGroups")
     def gui_replacement_message_groups(self) -> pulumi.Output[str]:
         """
         Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "gui_replacement_message_groups")
+
+    @property
+    @pulumi.getter(name="guiRouteTagAddressCreation")
+    def gui_route_tag_address_creation(self) -> pulumi.Output[str]:
+        """
+        Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_route_tag_address_creation")
 
     @property
     @pulumi.getter(name="guiSecurityProfileGroup")
@@ -6507,6 +6992,14 @@ class Settings(pulumi.CustomResource):
         Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "gui_spamfilter")
+
+    @property
+    @pulumi.getter(name="guiSslvpn")
+    def gui_sslvpn(self) -> pulumi.Output[str]:
+        """
+        Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_sslvpn")
 
     @property
     @pulumi.getter(name="guiSslvpnPersonalBookmarks")
@@ -6555,6 +7048,14 @@ class Settings(pulumi.CustomResource):
         Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "gui_videofilter")
+
+    @property
+    @pulumi.getter(name="guiVirtualPatchProfile")
+    def gui_virtual_patch_profile(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_virtual_patch_profile")
 
     @property
     @pulumi.getter(name="guiVoipProfile")
@@ -6693,6 +7194,14 @@ class Settings(pulumi.CustomResource):
         return pulumi.get(self, "ike_session_resume")
 
     @property
+    @pulumi.getter(name="ikeTcpPort")
+    def ike_tcp_port(self) -> pulumi.Output[int]:
+        """
+        TCP port for IKE/IPsec traffic (default 4500).
+        """
+        return pulumi.get(self, "ike_tcp_port")
+
+    @property
     @pulumi.getter(name="implicitAllowDns")
     def implicit_allow_dns(self) -> pulumi.Output[str]:
         """
@@ -6707,6 +7216,14 @@ class Settings(pulumi.CustomResource):
         Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
         """
         return pulumi.get(self, "inspection_mode")
+
+    @property
+    @pulumi.getter(name="internetServiceDatabaseCache")
+    def internet_service_database_cache(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "internet_service_database_cache")
 
     @property
     @pulumi.getter

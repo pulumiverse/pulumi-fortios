@@ -81,6 +81,10 @@ export class Fortiguard extends pulumi.CustomResource {
      */
     public readonly cacheMemPercent!: pulumi.Output<number>;
     /**
+     * Maximum permille of available memory allocated to caching (1 - 150).
+     */
+    public readonly cacheMemPermille!: pulumi.Output<number>;
+    /**
      * Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
      */
     public readonly cacheMode!: pulumi.Output<string>;
@@ -92,6 +96,10 @@ export class Fortiguard extends pulumi.CustomResource {
      * Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
      */
     public readonly closePorts!: pulumi.Output<string>;
+    /**
+     * Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+     */
+    public readonly embedImage!: pulumi.Output<string>;
     /**
      * Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
      */
@@ -143,9 +151,11 @@ export class Fortiguard extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as FortiguardState | undefined;
             resourceInputs["cacheMemPercent"] = state ? state.cacheMemPercent : undefined;
+            resourceInputs["cacheMemPermille"] = state ? state.cacheMemPermille : undefined;
             resourceInputs["cacheMode"] = state ? state.cacheMode : undefined;
             resourceInputs["cachePrefixMatch"] = state ? state.cachePrefixMatch : undefined;
             resourceInputs["closePorts"] = state ? state.closePorts : undefined;
+            resourceInputs["embedImage"] = state ? state.embedImage : undefined;
             resourceInputs["ovrdAuthHttps"] = state ? state.ovrdAuthHttps : undefined;
             resourceInputs["ovrdAuthPort"] = state ? state.ovrdAuthPort : undefined;
             resourceInputs["ovrdAuthPortHttp"] = state ? state.ovrdAuthPortHttp : undefined;
@@ -158,9 +168,11 @@ export class Fortiguard extends pulumi.CustomResource {
         } else {
             const args = argsOrState as FortiguardArgs | undefined;
             resourceInputs["cacheMemPercent"] = args ? args.cacheMemPercent : undefined;
+            resourceInputs["cacheMemPermille"] = args ? args.cacheMemPermille : undefined;
             resourceInputs["cacheMode"] = args ? args.cacheMode : undefined;
             resourceInputs["cachePrefixMatch"] = args ? args.cachePrefixMatch : undefined;
             resourceInputs["closePorts"] = args ? args.closePorts : undefined;
+            resourceInputs["embedImage"] = args ? args.embedImage : undefined;
             resourceInputs["ovrdAuthHttps"] = args ? args.ovrdAuthHttps : undefined;
             resourceInputs["ovrdAuthPort"] = args ? args.ovrdAuthPort : undefined;
             resourceInputs["ovrdAuthPortHttp"] = args ? args.ovrdAuthPortHttp : undefined;
@@ -185,6 +197,10 @@ export interface FortiguardState {
      */
     cacheMemPercent?: pulumi.Input<number>;
     /**
+     * Maximum permille of available memory allocated to caching (1 - 150).
+     */
+    cacheMemPermille?: pulumi.Input<number>;
+    /**
      * Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
      */
     cacheMode?: pulumi.Input<string>;
@@ -196,6 +212,10 @@ export interface FortiguardState {
      * Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
      */
     closePorts?: pulumi.Input<string>;
+    /**
+     * Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+     */
+    embedImage?: pulumi.Input<string>;
     /**
      * Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
      */
@@ -243,6 +263,10 @@ export interface FortiguardArgs {
      */
     cacheMemPercent?: pulumi.Input<number>;
     /**
+     * Maximum permille of available memory allocated to caching (1 - 150).
+     */
+    cacheMemPermille?: pulumi.Input<number>;
+    /**
      * Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
      */
     cacheMode?: pulumi.Input<string>;
@@ -254,6 +278,10 @@ export interface FortiguardArgs {
      * Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
      */
     closePorts?: pulumi.Input<string>;
+    /**
+     * Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+     */
+    embedImage?: pulumi.Input<string>;
     /**
      * Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
      */

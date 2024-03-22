@@ -67,6 +67,8 @@ type Geoipoverride struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.
 	Ip6Ranges GeoipoverrideIp6RangeArrayOutput `pulumi:"ip6Ranges"`
 	// Table of IP ranges assigned to country. The structure of `ipRange` block is documented below.
@@ -113,6 +115,8 @@ type geoipoverrideState struct {
 	Description *string `pulumi:"description"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.
 	Ip6Ranges []GeoipoverrideIp6Range `pulumi:"ip6Ranges"`
 	// Table of IP ranges assigned to country. The structure of `ipRange` block is documented below.
@@ -130,6 +134,8 @@ type GeoipoverrideState struct {
 	Description pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.
 	Ip6Ranges GeoipoverrideIp6RangeArrayInput
 	// Table of IP ranges assigned to country. The structure of `ipRange` block is documented below.
@@ -151,6 +157,8 @@ type geoipoverrideArgs struct {
 	Description *string `pulumi:"description"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.
 	Ip6Ranges []GeoipoverrideIp6Range `pulumi:"ip6Ranges"`
 	// Table of IP ranges assigned to country. The structure of `ipRange` block is documented below.
@@ -169,6 +177,8 @@ type GeoipoverrideArgs struct {
 	Description pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.
 	Ip6Ranges GeoipoverrideIp6RangeArrayInput
 	// Table of IP ranges assigned to country. The structure of `ipRange` block is documented below.
@@ -279,6 +289,11 @@ func (o GeoipoverrideOutput) Description() pulumi.StringOutput {
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o GeoipoverrideOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Geoipoverride) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o GeoipoverrideOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Geoipoverride) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Table of IPv6 ranges assigned to country. The structure of `ip6Range` block is documented below.

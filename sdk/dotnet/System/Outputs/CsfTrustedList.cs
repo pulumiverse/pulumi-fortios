@@ -35,6 +35,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? HaMembers;
         /// <summary>
+        /// Index of the downstream in tree.
+        /// </summary>
+        public readonly int? Index;
+        /// <summary>
         /// Name.
         /// </summary>
         public readonly string? Name;
@@ -55,6 +59,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             string? haMembers,
 
+            int? index,
+
             string? name,
 
             string? serial)
@@ -64,6 +70,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             Certificate = certificate;
             DownstreamAuthorization = downstreamAuthorization;
             HaMembers = haMembers;
+            Index = index;
             Name = name;
             Serial = serial;
         }

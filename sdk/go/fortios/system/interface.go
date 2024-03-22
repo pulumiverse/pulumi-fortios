@@ -125,6 +125,8 @@ type Interface struct {
 	Color pulumi.IntOutput `pulumi:"color"`
 	// Configure interface for single purpose. Valid values: `none`, `management`.
 	DedicatedTo pulumi.StringOutput `pulumi:"dedicatedTo"`
+	// default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	DefaultPurdueLevel pulumi.StringOutput `pulumi:"defaultPurdueLevel"`
 	// Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
 	Defaultgw pulumi.StringOutput `pulumi:"defaultgw"`
 	// Description.
@@ -147,12 +149,16 @@ type Interface struct {
 	DeviceUserIdentification pulumi.StringOutput `pulumi:"deviceUserIdentification"`
 	// Device Index.
 	Devindex pulumi.IntOutput `pulumi:"devindex"`
+	// Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+	DhcpBroadcastFlag pulumi.StringOutput `pulumi:"dhcpBroadcastFlag"`
 	// Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
 	DhcpClasslessRouteAddition pulumi.StringOutput `pulumi:"dhcpClasslessRouteAddition"`
 	// DHCP client identifier.
 	DhcpClientIdentifier pulumi.StringOutput `pulumi:"dhcpClientIdentifier"`
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
 	DhcpRelayAgentOption pulumi.StringOutput `pulumi:"dhcpRelayAgentOption"`
+	// DHCP relay circuit ID.
+	DhcpRelayCircuitId pulumi.StringOutput `pulumi:"dhcpRelayCircuitId"`
 	// Specify outgoing interface to reach server.
 	DhcpRelayInterface pulumi.StringOutput `pulumi:"dhcpRelayInterface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -165,10 +171,14 @@ type Interface struct {
 	DhcpRelayRequestAllServer pulumi.StringOutput `pulumi:"dhcpRelayRequestAllServer"`
 	// Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
 	DhcpRelayService pulumi.StringOutput `pulumi:"dhcpRelayService"`
+	// IP address used by the DHCP relay as its source IP.
+	DhcpRelaySourceIp pulumi.StringOutput `pulumi:"dhcpRelaySourceIp"`
 	// DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
 	DhcpRelayType pulumi.StringOutput `pulumi:"dhcpRelayType"`
 	// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 	DhcpRenewTime pulumi.IntOutput `pulumi:"dhcpRenewTime"`
+	// Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+	DhcpSmartRelay pulumi.StringOutput `pulumi:"dhcpSmartRelay"`
 	// Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
 	DhcpSnoopingServerLists InterfaceDhcpSnoopingServerListArrayOutput `pulumi:"dhcpSnoopingServerLists"`
 	// Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
@@ -239,6 +249,8 @@ type Interface struct {
 	ForwardDomain pulumi.IntOutput `pulumi:"forwardDomain"`
 	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
 	ForwardErrorCorrection pulumi.StringOutput `pulumi:"forwardErrorCorrection"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect pulumi.StringOutput `pulumi:"gwdetect"`
 	// HA election priority for the PING server.
@@ -265,7 +277,7 @@ type Interface struct {
 	Internal pulumi.IntOutput `pulumi:"internal"`
 	// Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
 	Ip pulumi.StringOutput `pulumi:"ip"`
-	// Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+	// Enable/disable automatic IP address assignment of this interface by FortiIPAM.
 	IpManagedByFortiipam pulumi.StringOutput `pulumi:"ipManagedByFortiipam"`
 	// Enable/disable IP/MAC binding. Valid values: `enable`, `disable`.
 	Ipmac pulumi.StringOutput `pulumi:"ipmac"`
@@ -465,6 +477,12 @@ type Interface struct {
 	SwitchControllerNac pulumi.StringOutput `pulumi:"switchControllerNac"`
 	// NetFlow collection and processing. Valid values: `disable`, `enable`.
 	SwitchControllerNetflowCollect pulumi.StringOutput `pulumi:"switchControllerNetflowCollect"`
+	// Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+	SwitchControllerOffload pulumi.StringOutput `pulumi:"switchControllerOffload"`
+	// Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+	SwitchControllerOffloadGw pulumi.StringOutput `pulumi:"switchControllerOffloadGw"`
+	// IP for routing offload on FortiSwitch.
+	SwitchControllerOffloadIp pulumi.StringOutput `pulumi:"switchControllerOffloadIp"`
 	// Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
 	SwitchControllerRspanMode pulumi.StringOutput `pulumi:"switchControllerRspanMode"`
 	// Source IP address used in FortiLink over L3 connections. Valid values: `outbound`, `fixed`.
@@ -621,6 +639,8 @@ type interfaceState struct {
 	Color *int `pulumi:"color"`
 	// Configure interface for single purpose. Valid values: `none`, `management`.
 	DedicatedTo *string `pulumi:"dedicatedTo"`
+	// default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	DefaultPurdueLevel *string `pulumi:"defaultPurdueLevel"`
 	// Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
 	Defaultgw *string `pulumi:"defaultgw"`
 	// Description.
@@ -643,12 +663,16 @@ type interfaceState struct {
 	DeviceUserIdentification *string `pulumi:"deviceUserIdentification"`
 	// Device Index.
 	Devindex *int `pulumi:"devindex"`
+	// Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+	DhcpBroadcastFlag *string `pulumi:"dhcpBroadcastFlag"`
 	// Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
 	DhcpClasslessRouteAddition *string `pulumi:"dhcpClasslessRouteAddition"`
 	// DHCP client identifier.
 	DhcpClientIdentifier *string `pulumi:"dhcpClientIdentifier"`
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
 	DhcpRelayAgentOption *string `pulumi:"dhcpRelayAgentOption"`
+	// DHCP relay circuit ID.
+	DhcpRelayCircuitId *string `pulumi:"dhcpRelayCircuitId"`
 	// Specify outgoing interface to reach server.
 	DhcpRelayInterface *string `pulumi:"dhcpRelayInterface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -661,10 +685,14 @@ type interfaceState struct {
 	DhcpRelayRequestAllServer *string `pulumi:"dhcpRelayRequestAllServer"`
 	// Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
 	DhcpRelayService *string `pulumi:"dhcpRelayService"`
+	// IP address used by the DHCP relay as its source IP.
+	DhcpRelaySourceIp *string `pulumi:"dhcpRelaySourceIp"`
 	// DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
 	DhcpRelayType *string `pulumi:"dhcpRelayType"`
 	// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 	DhcpRenewTime *int `pulumi:"dhcpRenewTime"`
+	// Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+	DhcpSmartRelay *string `pulumi:"dhcpSmartRelay"`
 	// Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
 	DhcpSnoopingServerLists []InterfaceDhcpSnoopingServerList `pulumi:"dhcpSnoopingServerLists"`
 	// Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
@@ -735,6 +763,8 @@ type interfaceState struct {
 	ForwardDomain *int `pulumi:"forwardDomain"`
 	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
 	ForwardErrorCorrection *string `pulumi:"forwardErrorCorrection"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect *string `pulumi:"gwdetect"`
 	// HA election priority for the PING server.
@@ -761,7 +791,7 @@ type interfaceState struct {
 	Internal *int `pulumi:"internal"`
 	// Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
 	Ip *string `pulumi:"ip"`
-	// Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+	// Enable/disable automatic IP address assignment of this interface by FortiIPAM.
 	IpManagedByFortiipam *string `pulumi:"ipManagedByFortiipam"`
 	// Enable/disable IP/MAC binding. Valid values: `enable`, `disable`.
 	Ipmac *string `pulumi:"ipmac"`
@@ -961,6 +991,12 @@ type interfaceState struct {
 	SwitchControllerNac *string `pulumi:"switchControllerNac"`
 	// NetFlow collection and processing. Valid values: `disable`, `enable`.
 	SwitchControllerNetflowCollect *string `pulumi:"switchControllerNetflowCollect"`
+	// Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+	SwitchControllerOffload *string `pulumi:"switchControllerOffload"`
+	// Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+	SwitchControllerOffloadGw *string `pulumi:"switchControllerOffloadGw"`
+	// IP for routing offload on FortiSwitch.
+	SwitchControllerOffloadIp *string `pulumi:"switchControllerOffloadIp"`
 	// Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
 	SwitchControllerRspanMode *string `pulumi:"switchControllerRspanMode"`
 	// Source IP address used in FortiLink over L3 connections. Valid values: `outbound`, `fixed`.
@@ -1070,6 +1106,8 @@ type InterfaceState struct {
 	Color pulumi.IntPtrInput
 	// Configure interface for single purpose. Valid values: `none`, `management`.
 	DedicatedTo pulumi.StringPtrInput
+	// default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	DefaultPurdueLevel pulumi.StringPtrInput
 	// Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
 	Defaultgw pulumi.StringPtrInput
 	// Description.
@@ -1092,12 +1130,16 @@ type InterfaceState struct {
 	DeviceUserIdentification pulumi.StringPtrInput
 	// Device Index.
 	Devindex pulumi.IntPtrInput
+	// Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+	DhcpBroadcastFlag pulumi.StringPtrInput
 	// Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
 	DhcpClasslessRouteAddition pulumi.StringPtrInput
 	// DHCP client identifier.
 	DhcpClientIdentifier pulumi.StringPtrInput
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
 	DhcpRelayAgentOption pulumi.StringPtrInput
+	// DHCP relay circuit ID.
+	DhcpRelayCircuitId pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	DhcpRelayInterface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -1110,10 +1152,14 @@ type InterfaceState struct {
 	DhcpRelayRequestAllServer pulumi.StringPtrInput
 	// Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
 	DhcpRelayService pulumi.StringPtrInput
+	// IP address used by the DHCP relay as its source IP.
+	DhcpRelaySourceIp pulumi.StringPtrInput
 	// DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
 	DhcpRelayType pulumi.StringPtrInput
 	// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 	DhcpRenewTime pulumi.IntPtrInput
+	// Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+	DhcpSmartRelay pulumi.StringPtrInput
 	// Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
 	DhcpSnoopingServerLists InterfaceDhcpSnoopingServerListArrayInput
 	// Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
@@ -1184,6 +1230,8 @@ type InterfaceState struct {
 	ForwardDomain pulumi.IntPtrInput
 	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
 	ForwardErrorCorrection pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect pulumi.StringPtrInput
 	// HA election priority for the PING server.
@@ -1210,7 +1258,7 @@ type InterfaceState struct {
 	Internal pulumi.IntPtrInput
 	// Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
 	Ip pulumi.StringPtrInput
-	// Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+	// Enable/disable automatic IP address assignment of this interface by FortiIPAM.
 	IpManagedByFortiipam pulumi.StringPtrInput
 	// Enable/disable IP/MAC binding. Valid values: `enable`, `disable`.
 	Ipmac pulumi.StringPtrInput
@@ -1410,6 +1458,12 @@ type InterfaceState struct {
 	SwitchControllerNac pulumi.StringPtrInput
 	// NetFlow collection and processing. Valid values: `disable`, `enable`.
 	SwitchControllerNetflowCollect pulumi.StringPtrInput
+	// Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+	SwitchControllerOffload pulumi.StringPtrInput
+	// Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+	SwitchControllerOffloadGw pulumi.StringPtrInput
+	// IP for routing offload on FortiSwitch.
+	SwitchControllerOffloadIp pulumi.StringPtrInput
 	// Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
 	SwitchControllerRspanMode pulumi.StringPtrInput
 	// Source IP address used in FortiLink over L3 connections. Valid values: `outbound`, `fixed`.
@@ -1523,6 +1577,8 @@ type interfaceArgs struct {
 	Color *int `pulumi:"color"`
 	// Configure interface for single purpose. Valid values: `none`, `management`.
 	DedicatedTo *string `pulumi:"dedicatedTo"`
+	// default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	DefaultPurdueLevel *string `pulumi:"defaultPurdueLevel"`
 	// Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
 	Defaultgw *string `pulumi:"defaultgw"`
 	// Description.
@@ -1545,12 +1601,16 @@ type interfaceArgs struct {
 	DeviceUserIdentification *string `pulumi:"deviceUserIdentification"`
 	// Device Index.
 	Devindex *int `pulumi:"devindex"`
+	// Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+	DhcpBroadcastFlag *string `pulumi:"dhcpBroadcastFlag"`
 	// Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
 	DhcpClasslessRouteAddition *string `pulumi:"dhcpClasslessRouteAddition"`
 	// DHCP client identifier.
 	DhcpClientIdentifier *string `pulumi:"dhcpClientIdentifier"`
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
 	DhcpRelayAgentOption *string `pulumi:"dhcpRelayAgentOption"`
+	// DHCP relay circuit ID.
+	DhcpRelayCircuitId *string `pulumi:"dhcpRelayCircuitId"`
 	// Specify outgoing interface to reach server.
 	DhcpRelayInterface *string `pulumi:"dhcpRelayInterface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -1563,10 +1623,14 @@ type interfaceArgs struct {
 	DhcpRelayRequestAllServer *string `pulumi:"dhcpRelayRequestAllServer"`
 	// Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
 	DhcpRelayService *string `pulumi:"dhcpRelayService"`
+	// IP address used by the DHCP relay as its source IP.
+	DhcpRelaySourceIp *string `pulumi:"dhcpRelaySourceIp"`
 	// DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
 	DhcpRelayType *string `pulumi:"dhcpRelayType"`
 	// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 	DhcpRenewTime *int `pulumi:"dhcpRenewTime"`
+	// Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+	DhcpSmartRelay *string `pulumi:"dhcpSmartRelay"`
 	// Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
 	DhcpSnoopingServerLists []InterfaceDhcpSnoopingServerList `pulumi:"dhcpSnoopingServerLists"`
 	// Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
@@ -1637,6 +1701,8 @@ type interfaceArgs struct {
 	ForwardDomain *int `pulumi:"forwardDomain"`
 	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
 	ForwardErrorCorrection *string `pulumi:"forwardErrorCorrection"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect *string `pulumi:"gwdetect"`
 	// HA election priority for the PING server.
@@ -1663,7 +1729,7 @@ type interfaceArgs struct {
 	Internal *int `pulumi:"internal"`
 	// Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
 	Ip *string `pulumi:"ip"`
-	// Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+	// Enable/disable automatic IP address assignment of this interface by FortiIPAM.
 	IpManagedByFortiipam *string `pulumi:"ipManagedByFortiipam"`
 	// Enable/disable IP/MAC binding. Valid values: `enable`, `disable`.
 	Ipmac *string `pulumi:"ipmac"`
@@ -1863,6 +1929,12 @@ type interfaceArgs struct {
 	SwitchControllerNac *string `pulumi:"switchControllerNac"`
 	// NetFlow collection and processing. Valid values: `disable`, `enable`.
 	SwitchControllerNetflowCollect *string `pulumi:"switchControllerNetflowCollect"`
+	// Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+	SwitchControllerOffload *string `pulumi:"switchControllerOffload"`
+	// Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+	SwitchControllerOffloadGw *string `pulumi:"switchControllerOffloadGw"`
+	// IP for routing offload on FortiSwitch.
+	SwitchControllerOffloadIp *string `pulumi:"switchControllerOffloadIp"`
 	// Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
 	SwitchControllerRspanMode *string `pulumi:"switchControllerRspanMode"`
 	// Source IP address used in FortiLink over L3 connections. Valid values: `outbound`, `fixed`.
@@ -1973,6 +2045,8 @@ type InterfaceArgs struct {
 	Color pulumi.IntPtrInput
 	// Configure interface for single purpose. Valid values: `none`, `management`.
 	DedicatedTo pulumi.StringPtrInput
+	// default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+	DefaultPurdueLevel pulumi.StringPtrInput
 	// Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
 	Defaultgw pulumi.StringPtrInput
 	// Description.
@@ -1995,12 +2069,16 @@ type InterfaceArgs struct {
 	DeviceUserIdentification pulumi.StringPtrInput
 	// Device Index.
 	Devindex pulumi.IntPtrInput
+	// Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+	DhcpBroadcastFlag pulumi.StringPtrInput
 	// Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
 	DhcpClasslessRouteAddition pulumi.StringPtrInput
 	// DHCP client identifier.
 	DhcpClientIdentifier pulumi.StringPtrInput
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
 	DhcpRelayAgentOption pulumi.StringPtrInput
+	// DHCP relay circuit ID.
+	DhcpRelayCircuitId pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	DhcpRelayInterface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -2013,10 +2091,14 @@ type InterfaceArgs struct {
 	DhcpRelayRequestAllServer pulumi.StringPtrInput
 	// Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
 	DhcpRelayService pulumi.StringPtrInput
+	// IP address used by the DHCP relay as its source IP.
+	DhcpRelaySourceIp pulumi.StringPtrInput
 	// DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
 	DhcpRelayType pulumi.StringPtrInput
 	// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 	DhcpRenewTime pulumi.IntPtrInput
+	// Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+	DhcpSmartRelay pulumi.StringPtrInput
 	// Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
 	DhcpSnoopingServerLists InterfaceDhcpSnoopingServerListArrayInput
 	// Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
@@ -2087,6 +2169,8 @@ type InterfaceArgs struct {
 	ForwardDomain pulumi.IntPtrInput
 	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
 	ForwardErrorCorrection pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect pulumi.StringPtrInput
 	// HA election priority for the PING server.
@@ -2113,7 +2197,7 @@ type InterfaceArgs struct {
 	Internal pulumi.IntPtrInput
 	// Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
 	Ip pulumi.StringPtrInput
-	// Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+	// Enable/disable automatic IP address assignment of this interface by FortiIPAM.
 	IpManagedByFortiipam pulumi.StringPtrInput
 	// Enable/disable IP/MAC binding. Valid values: `enable`, `disable`.
 	Ipmac pulumi.StringPtrInput
@@ -2313,6 +2397,12 @@ type InterfaceArgs struct {
 	SwitchControllerNac pulumi.StringPtrInput
 	// NetFlow collection and processing. Valid values: `disable`, `enable`.
 	SwitchControllerNetflowCollect pulumi.StringPtrInput
+	// Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+	SwitchControllerOffload pulumi.StringPtrInput
+	// Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+	SwitchControllerOffloadGw pulumi.StringPtrInput
+	// IP for routing offload on FortiSwitch.
+	SwitchControllerOffloadIp pulumi.StringPtrInput
 	// Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
 	SwitchControllerRspanMode pulumi.StringPtrInput
 	// Source IP address used in FortiLink over L3 connections. Valid values: `outbound`, `fixed`.
@@ -2583,6 +2673,11 @@ func (o InterfaceOutput) DedicatedTo() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.DedicatedTo }).(pulumi.StringOutput)
 }
 
+// default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+func (o InterfaceOutput) DefaultPurdueLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.DefaultPurdueLevel }).(pulumi.StringOutput)
+}
+
 // Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
 func (o InterfaceOutput) Defaultgw() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.Defaultgw }).(pulumi.StringOutput)
@@ -2638,6 +2733,11 @@ func (o InterfaceOutput) Devindex() pulumi.IntOutput {
 	return o.ApplyT(func(v *Interface) pulumi.IntOutput { return v.Devindex }).(pulumi.IntOutput)
 }
 
+// Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+func (o InterfaceOutput) DhcpBroadcastFlag() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.DhcpBroadcastFlag }).(pulumi.StringOutput)
+}
+
 // Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
 func (o InterfaceOutput) DhcpClasslessRouteAddition() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.DhcpClasslessRouteAddition }).(pulumi.StringOutput)
@@ -2651,6 +2751,11 @@ func (o InterfaceOutput) DhcpClientIdentifier() pulumi.StringOutput {
 // Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
 func (o InterfaceOutput) DhcpRelayAgentOption() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.DhcpRelayAgentOption }).(pulumi.StringOutput)
+}
+
+// DHCP relay circuit ID.
+func (o InterfaceOutput) DhcpRelayCircuitId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.DhcpRelayCircuitId }).(pulumi.StringOutput)
 }
 
 // Specify outgoing interface to reach server.
@@ -2683,6 +2788,11 @@ func (o InterfaceOutput) DhcpRelayService() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.DhcpRelayService }).(pulumi.StringOutput)
 }
 
+// IP address used by the DHCP relay as its source IP.
+func (o InterfaceOutput) DhcpRelaySourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.DhcpRelaySourceIp }).(pulumi.StringOutput)
+}
+
 // DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
 func (o InterfaceOutput) DhcpRelayType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.DhcpRelayType }).(pulumi.StringOutput)
@@ -2691,6 +2801,11 @@ func (o InterfaceOutput) DhcpRelayType() pulumi.StringOutput {
 // DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 func (o InterfaceOutput) DhcpRenewTime() pulumi.IntOutput {
 	return o.ApplyT(func(v *Interface) pulumi.IntOutput { return v.DhcpRenewTime }).(pulumi.IntOutput)
+}
+
+// Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+func (o InterfaceOutput) DhcpSmartRelay() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.DhcpSmartRelay }).(pulumi.StringOutput)
 }
 
 // Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
@@ -2868,6 +2983,11 @@ func (o InterfaceOutput) ForwardErrorCorrection() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.ForwardErrorCorrection }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o InterfaceOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Interface) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 func (o InterfaceOutput) Gwdetect() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.Gwdetect }).(pulumi.StringOutput)
@@ -2933,7 +3053,7 @@ func (o InterfaceOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
 }
 
-// Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+// Enable/disable automatic IP address assignment of this interface by FortiIPAM.
 func (o InterfaceOutput) IpManagedByFortiipam() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.IpManagedByFortiipam }).(pulumi.StringOutput)
 }
@@ -3431,6 +3551,21 @@ func (o InterfaceOutput) SwitchControllerNac() pulumi.StringOutput {
 // NetFlow collection and processing. Valid values: `disable`, `enable`.
 func (o InterfaceOutput) SwitchControllerNetflowCollect() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.SwitchControllerNetflowCollect }).(pulumi.StringOutput)
+}
+
+// Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+func (o InterfaceOutput) SwitchControllerOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.SwitchControllerOffload }).(pulumi.StringOutput)
+}
+
+// Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+func (o InterfaceOutput) SwitchControllerOffloadGw() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.SwitchControllerOffloadGw }).(pulumi.StringOutput)
+}
+
+// IP for routing offload on FortiSwitch.
+func (o InterfaceOutput) SwitchControllerOffloadIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.SwitchControllerOffloadIp }).(pulumi.StringOutput)
 }
 
 // Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.

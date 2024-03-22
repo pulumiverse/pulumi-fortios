@@ -71,6 +71,10 @@ export interface GetExternalresourceResult {
      */
     readonly resource: string;
     /**
+     * Certificate verification option.
+     */
+    readonly serverIdentityCheck: string;
+    /**
      * Source IPv4 address used to communicate with server.
      */
     readonly sourceIp: string;

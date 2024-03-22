@@ -14,7 +14,7 @@ namespace Pulumiverse.Fortios.Router.Inputs
     public sealed class RoutemapRuleSetExtcommunitySooGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// AA:NN
+        /// Community (format = AA:NN).
         /// </summary>
         [Input("community")]
         public Input<string>? Community { get; set; }

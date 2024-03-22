@@ -110,6 +110,14 @@ export class Interfacepolicy extends pulumi.CustomResource {
      */
     public readonly avProfileStatus!: pulumi.Output<string>;
     /**
+     * CASB profile.
+     */
+    public readonly casbProfile!: pulumi.Output<string>;
+    /**
+     * Enable/disable CASB. Valid values: `enable`, `disable`.
+     */
+    public readonly casbProfileStatus!: pulumi.Output<string>;
+    /**
      * Comments.
      */
     public readonly comments!: pulumi.Output<string | undefined>;
@@ -149,6 +157,10 @@ export class Interfacepolicy extends pulumi.CustomResource {
      * Enable/disable email filter. Valid values: `enable`, `disable`.
      */
     public readonly emailfilterProfileStatus!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Monitored interface name from available interfaces.
      */
@@ -198,6 +210,10 @@ export class Interfacepolicy extends pulumi.CustomResource {
      */
     public readonly status!: pulumi.Output<string>;
     /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    public readonly uuid!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -228,6 +244,8 @@ export class Interfacepolicy extends pulumi.CustomResource {
             resourceInputs["applicationListStatus"] = state ? state.applicationListStatus : undefined;
             resourceInputs["avProfile"] = state ? state.avProfile : undefined;
             resourceInputs["avProfileStatus"] = state ? state.avProfileStatus : undefined;
+            resourceInputs["casbProfile"] = state ? state.casbProfile : undefined;
+            resourceInputs["casbProfileStatus"] = state ? state.casbProfileStatus : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["dlpProfile"] = state ? state.dlpProfile : undefined;
             resourceInputs["dlpProfileStatus"] = state ? state.dlpProfileStatus : undefined;
@@ -238,6 +256,7 @@ export class Interfacepolicy extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
             resourceInputs["emailfilterProfileStatus"] = state ? state.emailfilterProfileStatus : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
             resourceInputs["ipsSensorStatus"] = state ? state.ipsSensorStatus : undefined;
@@ -250,6 +269,7 @@ export class Interfacepolicy extends pulumi.CustomResource {
             resourceInputs["spamfilterProfileStatus"] = state ? state.spamfilterProfileStatus : undefined;
             resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
             resourceInputs["webfilterProfileStatus"] = state ? state.webfilterProfileStatus : undefined;
@@ -272,6 +292,8 @@ export class Interfacepolicy extends pulumi.CustomResource {
             resourceInputs["applicationListStatus"] = args ? args.applicationListStatus : undefined;
             resourceInputs["avProfile"] = args ? args.avProfile : undefined;
             resourceInputs["avProfileStatus"] = args ? args.avProfileStatus : undefined;
+            resourceInputs["casbProfile"] = args ? args.casbProfile : undefined;
+            resourceInputs["casbProfileStatus"] = args ? args.casbProfileStatus : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["dlpProfile"] = args ? args.dlpProfile : undefined;
             resourceInputs["dlpProfileStatus"] = args ? args.dlpProfileStatus : undefined;
@@ -282,6 +304,7 @@ export class Interfacepolicy extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
             resourceInputs["emailfilterProfileStatus"] = args ? args.emailfilterProfileStatus : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
             resourceInputs["ipsSensorStatus"] = args ? args.ipsSensorStatus : undefined;
@@ -294,6 +317,7 @@ export class Interfacepolicy extends pulumi.CustomResource {
             resourceInputs["spamfilterProfileStatus"] = args ? args.spamfilterProfileStatus : undefined;
             resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
             resourceInputs["webfilterProfileStatus"] = args ? args.webfilterProfileStatus : undefined;
@@ -327,6 +351,14 @@ export interface InterfacepolicyState {
      * Enable/disable antivirus. Valid values: `enable`, `disable`.
      */
     avProfileStatus?: pulumi.Input<string>;
+    /**
+     * CASB profile.
+     */
+    casbProfile?: pulumi.Input<string>;
+    /**
+     * Enable/disable CASB. Valid values: `enable`, `disable`.
+     */
+    casbProfileStatus?: pulumi.Input<string>;
     /**
      * Comments.
      */
@@ -367,6 +399,10 @@ export interface InterfacepolicyState {
      * Enable/disable email filter. Valid values: `enable`, `disable`.
      */
     emailfilterProfileStatus?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Monitored interface name from available interfaces.
      */
@@ -416,6 +452,10 @@ export interface InterfacepolicyState {
      */
     status?: pulumi.Input<string>;
     /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    uuid?: pulumi.Input<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
@@ -453,6 +493,14 @@ export interface InterfacepolicyArgs {
      * Enable/disable antivirus. Valid values: `enable`, `disable`.
      */
     avProfileStatus?: pulumi.Input<string>;
+    /**
+     * CASB profile.
+     */
+    casbProfile?: pulumi.Input<string>;
+    /**
+     * Enable/disable CASB. Valid values: `enable`, `disable`.
+     */
+    casbProfileStatus?: pulumi.Input<string>;
     /**
      * Comments.
      */
@@ -493,6 +541,10 @@ export interface InterfacepolicyArgs {
      * Enable/disable email filter. Valid values: `enable`, `disable`.
      */
     emailfilterProfileStatus?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Monitored interface name from available interfaces.
      */
@@ -541,6 +593,10 @@ export interface InterfacepolicyArgs {
      * Enable/disable this policy. Valid values: `enable`, `disable`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    uuid?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

@@ -31,6 +31,18 @@ namespace Pulumiverse.Fortios.System.Inputs
         [Input("member")]
         public Input<int>? Member { get; set; }
 
+        [Input("memberBlocks")]
+        private InputList<Inputs.SdwanNeighborMemberBlockArgs>? _memberBlocks;
+
+        /// <summary>
+        /// Member sequence number list. The structure of `member_block` block is documented below.
+        /// </summary>
+        public InputList<Inputs.SdwanNeighborMemberBlockArgs> MemberBlocks
+        {
+            get => _memberBlocks ?? (_memberBlocks = new InputList<Inputs.SdwanNeighborMemberBlockArgs>());
+            set => _memberBlocks = value;
+        }
+
         /// <summary>
         /// Minimum number of members which meet SLA when the neighbor is preferred.
         /// </summary>
@@ -48,6 +60,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
+
+        /// <summary>
+        /// SD-WAN service ID to work with the neighbor.
+        /// </summary>
+        [Input("serviceId")]
+        public Input<int>? ServiceId { get; set; }
 
         /// <summary>
         /// SLA ID.

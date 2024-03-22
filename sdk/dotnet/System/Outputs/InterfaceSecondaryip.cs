@@ -46,6 +46,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// PING server status.
         /// </summary>
         public readonly int? PingServStatus;
+        /// <summary>
+        /// DHCP relay IP address.
+        /// </summary>
+        public readonly string? SecipRelayIp;
 
         [OutputConstructor]
         private InterfaceSecondaryip(
@@ -63,7 +67,9 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             string? ip,
 
-            int? pingServStatus)
+            int? pingServStatus,
+
+            string? secipRelayIp)
         {
             Allowaccess = allowaccess;
             Detectprotocol = detectprotocol;
@@ -73,6 +79,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             Id = id;
             Ip = ip;
             PingServStatus = pingServStatus;
+            SecipRelayIp = secipRelayIp;
         }
     }
 }

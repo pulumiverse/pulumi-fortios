@@ -31,6 +31,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string InterfaceSelectMethod;
         /// <summary>
+        /// Choose to connect to IPv4 or/and IPv6 NTP server.
+        /// </summary>
+        public readonly string IpType;
+        /// <summary>
         /// Key for MD5/SHA1 authentication.
         /// </summary>
         public readonly string Key;
@@ -57,6 +61,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             string interfaceSelectMethod,
 
+            string ipType,
+
             string key,
 
             int keyId,
@@ -69,6 +75,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             Id = id;
             Interface = @interface;
             InterfaceSelectMethod = interfaceSelectMethod;
+            IpType = ipType;
             Key = key;
             KeyId = keyId;
             Ntpv3 = ntpv3;

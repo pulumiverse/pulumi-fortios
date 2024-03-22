@@ -19,6 +19,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? AddrMode;
         /// <summary>
+        /// Traffic class ID.
+        /// </summary>
+        public readonly int? ClassId;
+        /// <summary>
         /// The mode determining how to detect the server.
         /// </summary>
         public readonly string? DetectMode;
@@ -147,6 +151,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? Source;
         /// <summary>
+        /// Source IPv6 addressused in the health-check packet to server.
+        /// </summary>
+        public readonly string? Source6;
+        /// <summary>
         /// Enable/disable system DNS as the probe server. Valid values: `disable`, `enable`.
         /// </summary>
         public readonly string? SystemDns;
@@ -194,6 +202,8 @@ namespace Pulumiverse.Fortios.System.Outputs
         [OutputConstructor]
         private SdwanHealthCheck(
             string? addrMode,
+
+            int? classId,
 
             string? detectMode,
 
@@ -259,6 +269,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             string? source,
 
+            string? source6,
+
             string? systemDns,
 
             int? thresholdAlertJitter,
@@ -282,6 +294,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             int? vrf)
         {
             AddrMode = addrMode;
+            ClassId = classId;
             DetectMode = detectMode;
             Diffservcode = diffservcode;
             DnsMatchIp = dnsMatchIp;
@@ -314,6 +327,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             SlaPassLogPeriod = slaPassLogPeriod;
             Slas = slas;
             Source = source;
+            Source6 = source6;
             SystemDns = systemDns;
             ThresholdAlertJitter = thresholdAlertJitter;
             ThresholdAlertLatency = thresholdAlertLatency;

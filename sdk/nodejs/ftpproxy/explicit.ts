@@ -85,6 +85,10 @@ export class Explicit extends pulumi.CustomResource {
      */
     public readonly secDefaultAction!: pulumi.Output<string>;
     /**
+     * Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+     */
+    public readonly serverDataMode!: pulumi.Output<string>;
+    /**
      * Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
      */
     public readonly ssl!: pulumi.Output<string>;
@@ -93,7 +97,7 @@ export class Explicit extends pulumi.CustomResource {
      */
     public readonly sslAlgorithm!: pulumi.Output<string>;
     /**
-     * Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+     * Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
      */
     public readonly sslCert!: pulumi.Output<string>;
     /**
@@ -126,6 +130,7 @@ export class Explicit extends pulumi.CustomResource {
             resourceInputs["incomingPort"] = state ? state.incomingPort : undefined;
             resourceInputs["outgoingIp"] = state ? state.outgoingIp : undefined;
             resourceInputs["secDefaultAction"] = state ? state.secDefaultAction : undefined;
+            resourceInputs["serverDataMode"] = state ? state.serverDataMode : undefined;
             resourceInputs["ssl"] = state ? state.ssl : undefined;
             resourceInputs["sslAlgorithm"] = state ? state.sslAlgorithm : undefined;
             resourceInputs["sslCert"] = state ? state.sslCert : undefined;
@@ -138,6 +143,7 @@ export class Explicit extends pulumi.CustomResource {
             resourceInputs["incomingPort"] = args ? args.incomingPort : undefined;
             resourceInputs["outgoingIp"] = args ? args.outgoingIp : undefined;
             resourceInputs["secDefaultAction"] = args ? args.secDefaultAction : undefined;
+            resourceInputs["serverDataMode"] = args ? args.serverDataMode : undefined;
             resourceInputs["ssl"] = args ? args.ssl : undefined;
             resourceInputs["sslAlgorithm"] = args ? args.sslAlgorithm : undefined;
             resourceInputs["sslCert"] = args ? args.sslCert : undefined;
@@ -171,6 +177,10 @@ export interface ExplicitState {
      */
     secDefaultAction?: pulumi.Input<string>;
     /**
+     * Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+     */
+    serverDataMode?: pulumi.Input<string>;
+    /**
      * Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
      */
     ssl?: pulumi.Input<string>;
@@ -179,7 +189,7 @@ export interface ExplicitState {
      */
     sslAlgorithm?: pulumi.Input<string>;
     /**
-     * Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+     * Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
      */
     sslCert?: pulumi.Input<string>;
     /**
@@ -217,6 +227,10 @@ export interface ExplicitArgs {
      */
     secDefaultAction?: pulumi.Input<string>;
     /**
+     * Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+     */
+    serverDataMode?: pulumi.Input<string>;
+    /**
      * Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
      */
     ssl?: pulumi.Input<string>;
@@ -225,7 +239,7 @@ export interface ExplicitArgs {
      */
     sslAlgorithm?: pulumi.Input<string>;
     /**
-     * Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+     * Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
      */
     sslCert?: pulumi.Input<string>;
     /**

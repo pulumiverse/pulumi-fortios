@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 export class CentralsnatmapSort extends pulumi.CustomResource {
@@ -33,10 +35,12 @@ export class CentralsnatmapSort extends pulumi.CustomResource {
     }
 
     public readonly comment!: pulumi.Output<string | undefined>;
-    public readonly forceRecreate!: pulumi.Output<string | undefined>;
+    public readonly forceRecreate!: pulumi.Output<string>;
+    public readonly manualOrders!: pulumi.Output<string[]>;
     public readonly sortby!: pulumi.Output<string>;
     public readonly sortdirection!: pulumi.Output<string>;
-    public readonly status!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly statePolicyLists!: pulumi.Output<outputs.firewall.CentralsnatmapSortStatePolicyList[]>;
+    public readonly status!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -54,8 +58,10 @@ export class CentralsnatmapSort extends pulumi.CustomResource {
             const state = argsOrState as CentralsnatmapSortState | undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["forceRecreate"] = state ? state.forceRecreate : undefined;
+            resourceInputs["manualOrders"] = state ? state.manualOrders : undefined;
             resourceInputs["sortby"] = state ? state.sortby : undefined;
             resourceInputs["sortdirection"] = state ? state.sortdirection : undefined;
+            resourceInputs["statePolicyLists"] = state ? state.statePolicyLists : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -68,10 +74,12 @@ export class CentralsnatmapSort extends pulumi.CustomResource {
             }
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["forceRecreate"] = args ? args.forceRecreate : undefined;
+            resourceInputs["manualOrders"] = args ? args.manualOrders : undefined;
             resourceInputs["sortby"] = args ? args.sortby : undefined;
             resourceInputs["sortdirection"] = args ? args.sortdirection : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["statePolicyLists"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CentralsnatmapSort.__pulumiType, name, resourceInputs, opts);
@@ -84,8 +92,10 @@ export class CentralsnatmapSort extends pulumi.CustomResource {
 export interface CentralsnatmapSortState {
     comment?: pulumi.Input<string>;
     forceRecreate?: pulumi.Input<string>;
+    manualOrders?: pulumi.Input<pulumi.Input<string>[]>;
     sortby?: pulumi.Input<string>;
     sortdirection?: pulumi.Input<string>;
+    statePolicyLists?: pulumi.Input<pulumi.Input<inputs.firewall.CentralsnatmapSortStatePolicyList>[]>;
     status?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -96,6 +106,7 @@ export interface CentralsnatmapSortState {
 export interface CentralsnatmapSortArgs {
     comment?: pulumi.Input<string>;
     forceRecreate?: pulumi.Input<string>;
+    manualOrders?: pulumi.Input<pulumi.Input<string>[]>;
     sortby: pulumi.Input<string>;
     sortdirection: pulumi.Input<string>;
     status?: pulumi.Input<string>;

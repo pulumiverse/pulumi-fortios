@@ -38,6 +38,24 @@ namespace Pulumiverse.Fortios.System.Dhcp.Inputs
         public Input<string>? Type { get; set; }
 
         /// <summary>
+        /// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this option. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("uciMatch")]
+        public Input<string>? UciMatch { get; set; }
+
+        [Input("uciStrings")]
+        private InputList<Inputs.ServerOptionUciStringGetArgs>? _uciStrings;
+
+        /// <summary>
+        /// One or more UCI strings in quotes separated by spaces. The structure of `uci_string` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ServerOptionUciStringGetArgs> UciStrings
+        {
+            get => _uciStrings ?? (_uciStrings = new InputList<Inputs.ServerOptionUciStringGetArgs>());
+            set => _uciStrings = value;
+        }
+
+        /// <summary>
         /// DHCP option value.
         /// </summary>
         [Input("value")]

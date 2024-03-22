@@ -88,7 +88,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> AssociatedInterface { get; private set; } = null!;
 
         /// <summary>
-        /// Number of addresses in a block (64 to 4096, default = 128).
+        /// Number of addresses in a block (64 - 4096, default = 128).
         /// </summary>
         [Output("blockSize")]
         public Output<int> BlockSize { get; private set; } = null!;
@@ -142,7 +142,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> PermitAnyHost { get; private set; } = null!;
 
         /// <summary>
-        /// Number of port for each user (32 to 60416, default = 0, auto).
+        /// Number of port for each user (32 - 60416, default = 0, which is auto).
         /// </summary>
         [Output("portPerUser")]
         public Output<int> PortPerUser { get; private set; } = null!;
@@ -172,7 +172,13 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<int> Startport { get; private set; } = null!;
 
         /// <summary>
-        /// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+        /// Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("subnetBroadcastInIppool")]
+        public Output<string> SubnetBroadcastInIppool { get; private set; } = null!;
+
+        /// <summary>
+        /// IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions &gt;= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -255,7 +261,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? AssociatedInterface { get; set; }
 
         /// <summary>
-        /// Number of addresses in a block (64 to 4096, default = 128).
+        /// Number of addresses in a block (64 - 4096, default = 128).
         /// </summary>
         [Input("blockSize")]
         public Input<int>? BlockSize { get; set; }
@@ -309,7 +315,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? PermitAnyHost { get; set; }
 
         /// <summary>
-        /// Number of port for each user (32 to 60416, default = 0, auto).
+        /// Number of port for each user (32 - 60416, default = 0, which is auto).
         /// </summary>
         [Input("portPerUser")]
         public Input<int>? PortPerUser { get; set; }
@@ -339,7 +345,13 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? Startport { get; set; }
 
         /// <summary>
-        /// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+        /// Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("subnetBroadcastInIppool")]
+        public Input<string>? SubnetBroadcastInIppool { get; set; }
+
+        /// <summary>
+        /// IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions &gt;= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -383,7 +395,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? AssociatedInterface { get; set; }
 
         /// <summary>
-        /// Number of addresses in a block (64 to 4096, default = 128).
+        /// Number of addresses in a block (64 - 4096, default = 128).
         /// </summary>
         [Input("blockSize")]
         public Input<int>? BlockSize { get; set; }
@@ -437,7 +449,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? PermitAnyHost { get; set; }
 
         /// <summary>
-        /// Number of port for each user (32 to 60416, default = 0, auto).
+        /// Number of port for each user (32 - 60416, default = 0, which is auto).
         /// </summary>
         [Input("portPerUser")]
         public Input<int>? PortPerUser { get; set; }
@@ -467,7 +479,13 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? Startport { get; set; }
 
         /// <summary>
-        /// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+        /// Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("subnetBroadcastInIppool")]
+        public Input<string>? SubnetBroadcastInIppool { get; set; }
+
+        /// <summary>
+        /// IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions &gt;= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

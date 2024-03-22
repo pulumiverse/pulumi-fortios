@@ -62,16 +62,64 @@ namespace Pulumiverse.Fortios.User
         public Output<int> ExpireDays { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable password expiration. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("expireStatus")]
+        public Output<string> ExpireStatus { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("expiredPasswordRenewal")]
         public Output<string> ExpiredPasswordRenewal { get; private set; } = null!;
 
         /// <summary>
+        /// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
+        /// </summary>
+        [Output("minChangeCharacters")]
+        public Output<int> MinChangeCharacters { get; private set; } = null!;
+
+        /// <summary>
+        /// Minimum number of lowercase characters in password (0 - 128, default = 0).
+        /// </summary>
+        [Output("minLowerCaseLetter")]
+        public Output<int> MinLowerCaseLetter { get; private set; } = null!;
+
+        /// <summary>
+        /// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
+        /// </summary>
+        [Output("minNonAlphanumeric")]
+        public Output<int> MinNonAlphanumeric { get; private set; } = null!;
+
+        /// <summary>
+        /// Minimum number of numeric characters in password (0 - 128, default = 0).
+        /// </summary>
+        [Output("minNumber")]
+        public Output<int> MinNumber { get; private set; } = null!;
+
+        /// <summary>
+        /// Minimum number of uppercase characters in password (0 - 128, default = 0).
+        /// </summary>
+        [Output("minUpperCaseLetter")]
+        public Output<int> MinUpperCaseLetter { get; private set; } = null!;
+
+        /// <summary>
+        /// Minimum password length (8 - 128, default = 8).
+        /// </summary>
+        [Output("minimumLength")]
+        public Output<int> MinimumLength { get; private set; } = null!;
+
+        /// <summary>
         /// Password policy name.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("reusePassword")]
+        public Output<string> ReusePassword { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -139,16 +187,64 @@ namespace Pulumiverse.Fortios.User
         public Input<int>? ExpireDays { get; set; }
 
         /// <summary>
+        /// Enable/disable password expiration. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("expireStatus")]
+        public Input<string>? ExpireStatus { get; set; }
+
+        /// <summary>
         /// Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("expiredPasswordRenewal")]
         public Input<string>? ExpiredPasswordRenewal { get; set; }
 
         /// <summary>
+        /// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
+        /// </summary>
+        [Input("minChangeCharacters")]
+        public Input<int>? MinChangeCharacters { get; set; }
+
+        /// <summary>
+        /// Minimum number of lowercase characters in password (0 - 128, default = 0).
+        /// </summary>
+        [Input("minLowerCaseLetter")]
+        public Input<int>? MinLowerCaseLetter { get; set; }
+
+        /// <summary>
+        /// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
+        /// </summary>
+        [Input("minNonAlphanumeric")]
+        public Input<int>? MinNonAlphanumeric { get; set; }
+
+        /// <summary>
+        /// Minimum number of numeric characters in password (0 - 128, default = 0).
+        /// </summary>
+        [Input("minNumber")]
+        public Input<int>? MinNumber { get; set; }
+
+        /// <summary>
+        /// Minimum number of uppercase characters in password (0 - 128, default = 0).
+        /// </summary>
+        [Input("minUpperCaseLetter")]
+        public Input<int>? MinUpperCaseLetter { get; set; }
+
+        /// <summary>
+        /// Minimum password length (8 - 128, default = 8).
+        /// </summary>
+        [Input("minimumLength")]
+        public Input<int>? MinimumLength { get; set; }
+
+        /// <summary>
         /// Password policy name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("reusePassword")]
+        public Input<string>? ReusePassword { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -177,16 +273,64 @@ namespace Pulumiverse.Fortios.User
         public Input<int>? ExpireDays { get; set; }
 
         /// <summary>
+        /// Enable/disable password expiration. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("expireStatus")]
+        public Input<string>? ExpireStatus { get; set; }
+
+        /// <summary>
         /// Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("expiredPasswordRenewal")]
         public Input<string>? ExpiredPasswordRenewal { get; set; }
 
         /// <summary>
+        /// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
+        /// </summary>
+        [Input("minChangeCharacters")]
+        public Input<int>? MinChangeCharacters { get; set; }
+
+        /// <summary>
+        /// Minimum number of lowercase characters in password (0 - 128, default = 0).
+        /// </summary>
+        [Input("minLowerCaseLetter")]
+        public Input<int>? MinLowerCaseLetter { get; set; }
+
+        /// <summary>
+        /// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
+        /// </summary>
+        [Input("minNonAlphanumeric")]
+        public Input<int>? MinNonAlphanumeric { get; set; }
+
+        /// <summary>
+        /// Minimum number of numeric characters in password (0 - 128, default = 0).
+        /// </summary>
+        [Input("minNumber")]
+        public Input<int>? MinNumber { get; set; }
+
+        /// <summary>
+        /// Minimum number of uppercase characters in password (0 - 128, default = 0).
+        /// </summary>
+        [Input("minUpperCaseLetter")]
+        public Input<int>? MinUpperCaseLetter { get; set; }
+
+        /// <summary>
+        /// Minimum password length (8 - 128, default = 8).
+        /// </summary>
+        [Input("minimumLength")]
+        public Input<int>? MinimumLength { get; set; }
+
+        /// <summary>
         /// Password policy name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("reusePassword")]
+        public Input<string>? ReusePassword { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

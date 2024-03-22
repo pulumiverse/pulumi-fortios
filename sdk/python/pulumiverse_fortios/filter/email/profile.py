@@ -20,6 +20,7 @@ class ProfileArgs:
                  external: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input['ProfileFileFilterArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gmail: Optional[pulumi.Input['ProfileGmailArgs']] = None,
                  imap: Optional[pulumi.Input['ProfileImapArgs']] = None,
                  mapi: Optional[pulumi.Input['ProfileMapiArgs']] = None,
@@ -48,6 +49,7 @@ class ProfileArgs:
         :param pulumi.Input[str] external: Enable/disable external Email inspection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input['ProfileFileFilterArgs'] file_filter: File filter. The structure of `file_filter` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileGmailArgs'] gmail: Gmail. The structure of `gmail` block is documented below.
         :param pulumi.Input['ProfileImapArgs'] imap: IMAP. The structure of `imap` block is documented below.
         :param pulumi.Input['ProfileMapiArgs'] mapi: MAPI. The structure of `mapi` block is documented below.
@@ -79,6 +81,8 @@ class ProfileArgs:
             pulumi.set(__self__, "feature_set", feature_set)
         if file_filter is not None:
             pulumi.set(__self__, "file_filter", file_filter)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gmail is not None:
             pulumi.set(__self__, "gmail", gmail)
         if imap is not None:
@@ -171,6 +175,18 @@ class ProfileArgs:
     @file_filter.setter
     def file_filter(self, value: Optional[pulumi.Input['ProfileFileFilterArgs']]):
         pulumi.set(self, "file_filter", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -444,6 +460,7 @@ class _ProfileState:
                  external: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input['ProfileFileFilterArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gmail: Optional[pulumi.Input['ProfileGmailArgs']] = None,
                  imap: Optional[pulumi.Input['ProfileImapArgs']] = None,
                  mapi: Optional[pulumi.Input['ProfileMapiArgs']] = None,
@@ -472,6 +489,7 @@ class _ProfileState:
         :param pulumi.Input[str] external: Enable/disable external Email inspection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input['ProfileFileFilterArgs'] file_filter: File filter. The structure of `file_filter` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileGmailArgs'] gmail: Gmail. The structure of `gmail` block is documented below.
         :param pulumi.Input['ProfileImapArgs'] imap: IMAP. The structure of `imap` block is documented below.
         :param pulumi.Input['ProfileMapiArgs'] mapi: MAPI. The structure of `mapi` block is documented below.
@@ -503,6 +521,8 @@ class _ProfileState:
             pulumi.set(__self__, "feature_set", feature_set)
         if file_filter is not None:
             pulumi.set(__self__, "file_filter", file_filter)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gmail is not None:
             pulumi.set(__self__, "gmail", gmail)
         if imap is not None:
@@ -595,6 +615,18 @@ class _ProfileState:
     @file_filter.setter
     def file_filter(self, value: Optional[pulumi.Input['ProfileFileFilterArgs']]):
         pulumi.set(self, "file_filter", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -870,6 +902,7 @@ class Profile(pulumi.CustomResource):
                  external: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input[pulumi.InputType['ProfileFileFilterArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gmail: Optional[pulumi.Input[pulumi.InputType['ProfileGmailArgs']]] = None,
                  imap: Optional[pulumi.Input[pulumi.InputType['ProfileImapArgs']]] = None,
                  mapi: Optional[pulumi.Input[pulumi.InputType['ProfileMapiArgs']]] = None,
@@ -920,6 +953,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] external: Enable/disable external Email inspection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input[pulumi.InputType['ProfileFileFilterArgs']] file_filter: File filter. The structure of `file_filter` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileGmailArgs']] gmail: Gmail. The structure of `gmail` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileImapArgs']] imap: IMAP. The structure of `imap` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileMapiArgs']] mapi: MAPI. The structure of `mapi` block is documented below.
@@ -989,6 +1023,7 @@ class Profile(pulumi.CustomResource):
                  external: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input[pulumi.InputType['ProfileFileFilterArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gmail: Optional[pulumi.Input[pulumi.InputType['ProfileGmailArgs']]] = None,
                  imap: Optional[pulumi.Input[pulumi.InputType['ProfileImapArgs']]] = None,
                  mapi: Optional[pulumi.Input[pulumi.InputType['ProfileMapiArgs']]] = None,
@@ -1024,6 +1059,7 @@ class Profile(pulumi.CustomResource):
             __props__.__dict__["external"] = external
             __props__.__dict__["feature_set"] = feature_set
             __props__.__dict__["file_filter"] = file_filter
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gmail"] = gmail
             __props__.__dict__["imap"] = imap
             __props__.__dict__["mapi"] = mapi
@@ -1060,6 +1096,7 @@ class Profile(pulumi.CustomResource):
             external: Optional[pulumi.Input[str]] = None,
             feature_set: Optional[pulumi.Input[str]] = None,
             file_filter: Optional[pulumi.Input[pulumi.InputType['ProfileFileFilterArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gmail: Optional[pulumi.Input[pulumi.InputType['ProfileGmailArgs']]] = None,
             imap: Optional[pulumi.Input[pulumi.InputType['ProfileImapArgs']]] = None,
             mapi: Optional[pulumi.Input[pulumi.InputType['ProfileMapiArgs']]] = None,
@@ -1093,6 +1130,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] external: Enable/disable external Email inspection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input[pulumi.InputType['ProfileFileFilterArgs']] file_filter: File filter. The structure of `file_filter` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileGmailArgs']] gmail: Gmail. The structure of `gmail` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileImapArgs']] imap: IMAP. The structure of `imap` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileMapiArgs']] mapi: MAPI. The structure of `mapi` block is documented below.
@@ -1124,6 +1162,7 @@ class Profile(pulumi.CustomResource):
         __props__.__dict__["external"] = external
         __props__.__dict__["feature_set"] = feature_set
         __props__.__dict__["file_filter"] = file_filter
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gmail"] = gmail
         __props__.__dict__["imap"] = imap
         __props__.__dict__["mapi"] = mapi
@@ -1179,6 +1218,14 @@ class Profile(pulumi.CustomResource):
         File filter. The structure of `file_filter` block is documented below.
         """
         return pulumi.get(self, "file_filter")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

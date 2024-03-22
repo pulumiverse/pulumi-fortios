@@ -23,6 +23,7 @@ __all__ = [
     'GroupGuest',
     'GroupMatch',
     'GroupMember',
+    'NacpolicySeverity',
     'NacpolicySwitchGroup',
     'NacpolicySwitchScope',
     'PeergrpMember',
@@ -575,6 +576,42 @@ class GroupMember(dict):
         Group member name.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class NacpolicySeverity(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "severityNum":
+            suggest = "severity_num"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NacpolicySeverity. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NacpolicySeverity.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NacpolicySeverity.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 severity_num: Optional[int] = None):
+        """
+        :param int severity_num: Enter multiple severity levels, where 0 = Info, 1 = Low, ..., 4 = Critical
+        """
+        if severity_num is not None:
+            pulumi.set(__self__, "severity_num", severity_num)
+
+    @property
+    @pulumi.getter(name="severityNum")
+    def severity_num(self) -> Optional[int]:
+        """
+        Enter multiple severity levels, where 0 = Info, 1 = Low, ..., 4 = Critical
+        """
+        return pulumi.get(self, "severity_num")
 
 
 @pulumi.output_type

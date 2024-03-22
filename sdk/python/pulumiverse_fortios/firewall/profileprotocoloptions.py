@@ -21,6 +21,7 @@ class ProfileprotocoloptionsArgs:
                  dns: Optional[pulumi.Input['ProfileprotocoloptionsDnsArgs']] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input['ProfileprotocoloptionsFtpArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input['ProfileprotocoloptionsHttpArgs']] = None,
                  imap: Optional[pulumi.Input['ProfileprotocoloptionsImapArgs']] = None,
                  mail_signature: Optional[pulumi.Input['ProfileprotocoloptionsMailSignatureArgs']] = None,
@@ -42,6 +43,7 @@ class ProfileprotocoloptionsArgs:
         :param pulumi.Input['ProfileprotocoloptionsDnsArgs'] dns: Configure DNS protocol options. The structure of `dns` block is documented below.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input['ProfileprotocoloptionsFtpArgs'] ftp: Configure FTP protocol options. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileprotocoloptionsHttpArgs'] http: Configure HTTP protocol options. The structure of `http` block is documented below.
         :param pulumi.Input['ProfileprotocoloptionsImapArgs'] imap: Configure IMAP protocol options. The structure of `imap` block is documented below.
         :param pulumi.Input['ProfileprotocoloptionsMailSignatureArgs'] mail_signature: Configure Mail signature. The structure of `mail_signature` block is documented below.
@@ -67,6 +69,8 @@ class ProfileprotocoloptionsArgs:
             pulumi.set(__self__, "feature_set", feature_set)
         if ftp is not None:
             pulumi.set(__self__, "ftp", ftp)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http is not None:
             pulumi.set(__self__, "http", http)
         if imap is not None:
@@ -155,6 +159,18 @@ class ProfileprotocoloptionsArgs:
     @ftp.setter
     def ftp(self, value: Optional[pulumi.Input['ProfileprotocoloptionsFtpArgs']]):
         pulumi.set(self, "ftp", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -333,6 +349,7 @@ class _ProfileprotocoloptionsState:
                  dns: Optional[pulumi.Input['ProfileprotocoloptionsDnsArgs']] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input['ProfileprotocoloptionsFtpArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input['ProfileprotocoloptionsHttpArgs']] = None,
                  imap: Optional[pulumi.Input['ProfileprotocoloptionsImapArgs']] = None,
                  mail_signature: Optional[pulumi.Input['ProfileprotocoloptionsMailSignatureArgs']] = None,
@@ -354,6 +371,7 @@ class _ProfileprotocoloptionsState:
         :param pulumi.Input['ProfileprotocoloptionsDnsArgs'] dns: Configure DNS protocol options. The structure of `dns` block is documented below.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input['ProfileprotocoloptionsFtpArgs'] ftp: Configure FTP protocol options. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileprotocoloptionsHttpArgs'] http: Configure HTTP protocol options. The structure of `http` block is documented below.
         :param pulumi.Input['ProfileprotocoloptionsImapArgs'] imap: Configure IMAP protocol options. The structure of `imap` block is documented below.
         :param pulumi.Input['ProfileprotocoloptionsMailSignatureArgs'] mail_signature: Configure Mail signature. The structure of `mail_signature` block is documented below.
@@ -379,6 +397,8 @@ class _ProfileprotocoloptionsState:
             pulumi.set(__self__, "feature_set", feature_set)
         if ftp is not None:
             pulumi.set(__self__, "ftp", ftp)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http is not None:
             pulumi.set(__self__, "http", http)
         if imap is not None:
@@ -467,6 +487,18 @@ class _ProfileprotocoloptionsState:
     @ftp.setter
     def ftp(self, value: Optional[pulumi.Input['ProfileprotocoloptionsFtpArgs']]):
         pulumi.set(self, "ftp", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -647,6 +679,7 @@ class Profileprotocoloptions(pulumi.CustomResource):
                  dns: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsDnsArgs']]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsFtpArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsHttpArgs']]] = None,
                  imap: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsImapArgs']]] = None,
                  mail_signature: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsMailSignatureArgs']]] = None,
@@ -793,6 +826,7 @@ class Profileprotocoloptions(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ProfileprotocoloptionsDnsArgs']] dns: Configure DNS protocol options. The structure of `dns` block is documented below.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input[pulumi.InputType['ProfileprotocoloptionsFtpArgs']] ftp: Configure FTP protocol options. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileprotocoloptionsHttpArgs']] http: Configure HTTP protocol options. The structure of `http` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileprotocoloptionsImapArgs']] imap: Configure IMAP protocol options. The structure of `imap` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileprotocoloptionsMailSignatureArgs']] mail_signature: Configure Mail signature. The structure of `mail_signature` block is documented below.
@@ -958,6 +992,7 @@ class Profileprotocoloptions(pulumi.CustomResource):
                  dns: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsDnsArgs']]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsFtpArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsHttpArgs']]] = None,
                  imap: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsImapArgs']]] = None,
                  mail_signature: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsMailSignatureArgs']]] = None,
@@ -986,6 +1021,7 @@ class Profileprotocoloptions(pulumi.CustomResource):
             __props__.__dict__["dns"] = dns
             __props__.__dict__["feature_set"] = feature_set
             __props__.__dict__["ftp"] = ftp
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["http"] = http
             __props__.__dict__["imap"] = imap
             __props__.__dict__["mail_signature"] = mail_signature
@@ -1015,6 +1051,7 @@ class Profileprotocoloptions(pulumi.CustomResource):
             dns: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsDnsArgs']]] = None,
             feature_set: Optional[pulumi.Input[str]] = None,
             ftp: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsFtpArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             http: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsHttpArgs']]] = None,
             imap: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsImapArgs']]] = None,
             mail_signature: Optional[pulumi.Input[pulumi.InputType['ProfileprotocoloptionsMailSignatureArgs']]] = None,
@@ -1041,6 +1078,7 @@ class Profileprotocoloptions(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ProfileprotocoloptionsDnsArgs']] dns: Configure DNS protocol options. The structure of `dns` block is documented below.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input[pulumi.InputType['ProfileprotocoloptionsFtpArgs']] ftp: Configure FTP protocol options. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileprotocoloptionsHttpArgs']] http: Configure HTTP protocol options. The structure of `http` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileprotocoloptionsImapArgs']] imap: Configure IMAP protocol options. The structure of `imap` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileprotocoloptionsMailSignatureArgs']] mail_signature: Configure Mail signature. The structure of `mail_signature` block is documented below.
@@ -1065,6 +1103,7 @@ class Profileprotocoloptions(pulumi.CustomResource):
         __props__.__dict__["dns"] = dns
         __props__.__dict__["feature_set"] = feature_set
         __props__.__dict__["ftp"] = ftp
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["http"] = http
         __props__.__dict__["imap"] = imap
         __props__.__dict__["mail_signature"] = mail_signature
@@ -1120,6 +1159,14 @@ class Profileprotocoloptions(pulumi.CustomResource):
         Configure FTP protocol options. The structure of `ftp` block is documented below.
         """
         return pulumi.get(self, "ftp")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

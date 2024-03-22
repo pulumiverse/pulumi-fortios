@@ -176,6 +176,10 @@ export class Server extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * DHCP server can assign IP configurations to clients connected to this interface.
      */
     public readonly interface!: pulumi.Output<string>;
@@ -228,6 +232,10 @@ export class Server extends pulumi.CustomResource {
      */
     public readonly options!: pulumi.Output<outputs.system.dhcp.ServerOption[] | undefined>;
     /**
+     * Relay agent IP.
+     */
+    public readonly relayAgent!: pulumi.Output<string>;
+    /**
      * Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reservedAddress` block is documented below.
      */
     public readonly reservedAddresses!: pulumi.Output<outputs.system.dhcp.ServerReservedAddress[] | undefined>;
@@ -235,6 +243,10 @@ export class Server extends pulumi.CustomResource {
      * DHCP server can be a normal DHCP server or an IPsec DHCP server. Valid values: `regular`, `ipsec`.
      */
     public readonly serverType!: pulumi.Output<string>;
+    /**
+     * Enable/disable shared subnet. Valid values: `disable`, `enable`.
+     */
+    public readonly sharedSubnet!: pulumi.Output<string>;
     /**
      * Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
      */
@@ -244,7 +256,7 @@ export class Server extends pulumi.CustomResource {
      */
     public readonly tftpServers!: pulumi.Output<outputs.system.dhcp.ServerTftpServer[] | undefined>;
     /**
-     * Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+     * Select the time zone to be assigned to DHCP clients.
      */
     public readonly timezone!: pulumi.Output<string>;
     /**
@@ -325,6 +337,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["filename"] = state ? state.filename : undefined;
             resourceInputs["forticlientOnNetStatus"] = state ? state.forticlientOnNetStatus : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["ipMode"] = state ? state.ipMode : undefined;
             resourceInputs["ipRanges"] = state ? state.ipRanges : undefined;
@@ -338,8 +351,10 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["ntpServer3"] = state ? state.ntpServer3 : undefined;
             resourceInputs["ntpService"] = state ? state.ntpService : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
+            resourceInputs["relayAgent"] = state ? state.relayAgent : undefined;
             resourceInputs["reservedAddresses"] = state ? state.reservedAddresses : undefined;
             resourceInputs["serverType"] = state ? state.serverType : undefined;
+            resourceInputs["sharedSubnet"] = state ? state.sharedSubnet : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tftpServers"] = state ? state.tftpServers : undefined;
             resourceInputs["timezone"] = state ? state.timezone : undefined;
@@ -385,6 +400,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["filename"] = args ? args.filename : undefined;
             resourceInputs["forticlientOnNetStatus"] = args ? args.forticlientOnNetStatus : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["ipMode"] = args ? args.ipMode : undefined;
             resourceInputs["ipRanges"] = args ? args.ipRanges : undefined;
@@ -398,8 +414,10 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["ntpServer3"] = args ? args.ntpServer3 : undefined;
             resourceInputs["ntpService"] = args ? args.ntpService : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
+            resourceInputs["relayAgent"] = args ? args.relayAgent : undefined;
             resourceInputs["reservedAddresses"] = args ? args.reservedAddresses : undefined;
             resourceInputs["serverType"] = args ? args.serverType : undefined;
+            resourceInputs["sharedSubnet"] = args ? args.sharedSubnet : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["tftpServers"] = args ? args.tftpServers : undefined;
             resourceInputs["timezone"] = args ? args.timezone : undefined;
@@ -522,6 +540,10 @@ export interface ServerState {
      */
     fosid?: pulumi.Input<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * DHCP server can assign IP configurations to clients connected to this interface.
      */
     interface?: pulumi.Input<string>;
@@ -574,6 +596,10 @@ export interface ServerState {
      */
     options?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerOption>[]>;
     /**
+     * Relay agent IP.
+     */
+    relayAgent?: pulumi.Input<string>;
+    /**
      * Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reservedAddress` block is documented below.
      */
     reservedAddresses?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerReservedAddress>[]>;
@@ -581,6 +607,10 @@ export interface ServerState {
      * DHCP server can be a normal DHCP server or an IPsec DHCP server. Valid values: `regular`, `ipsec`.
      */
     serverType?: pulumi.Input<string>;
+    /**
+     * Enable/disable shared subnet. Valid values: `disable`, `enable`.
+     */
+    sharedSubnet?: pulumi.Input<string>;
     /**
      * Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
      */
@@ -590,7 +620,7 @@ export interface ServerState {
      */
     tftpServers?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerTftpServer>[]>;
     /**
-     * Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+     * Select the time zone to be assigned to DHCP clients.
      */
     timezone?: pulumi.Input<string>;
     /**
@@ -736,6 +766,10 @@ export interface ServerArgs {
      */
     fosid?: pulumi.Input<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * DHCP server can assign IP configurations to clients connected to this interface.
      */
     interface: pulumi.Input<string>;
@@ -788,6 +822,10 @@ export interface ServerArgs {
      */
     options?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerOption>[]>;
     /**
+     * Relay agent IP.
+     */
+    relayAgent?: pulumi.Input<string>;
+    /**
      * Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reservedAddress` block is documented below.
      */
     reservedAddresses?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerReservedAddress>[]>;
@@ -795,6 +833,10 @@ export interface ServerArgs {
      * DHCP server can be a normal DHCP server or an IPsec DHCP server. Valid values: `regular`, `ipsec`.
      */
     serverType?: pulumi.Input<string>;
+    /**
+     * Enable/disable shared subnet. Valid values: `disable`, `enable`.
+     */
+    sharedSubnet?: pulumi.Input<string>;
     /**
      * Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
      */
@@ -804,7 +846,7 @@ export interface ServerArgs {
      */
     tftpServers?: pulumi.Input<pulumi.Input<inputs.system.dhcp.ServerTftpServer>[]>;
     /**
-     * Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+     * Select the time zone to be assigned to DHCP clients.
      */
     timezone?: pulumi.Input<string>;
     /**

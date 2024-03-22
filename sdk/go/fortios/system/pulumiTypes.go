@@ -794,6 +794,10 @@ type AccprofileUtmgrpPermission struct {
 	Antivirus *string `pulumi:"antivirus"`
 	// Application Control profiles and settings. Valid values: `none`, `read`, `read-write`.
 	ApplicationControl *string `pulumi:"applicationControl"`
+	// Inline CASB filter profile and settings Valid values: `none`, `read`, `read-write`.
+	Casb *string `pulumi:"casb"`
+	// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+	DataLeakPrevention *string `pulumi:"dataLeakPrevention"`
 	// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
 	DataLossPrevention *string `pulumi:"dataLossPrevention"`
 	// DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
@@ -812,6 +816,8 @@ type AccprofileUtmgrpPermission struct {
 	Spamfilter *string `pulumi:"spamfilter"`
 	// Video filter profiles and settings. Valid values: `none`, `read`, `read-write`.
 	Videofilter *string `pulumi:"videofilter"`
+	// Virtual patch profiles and settings. Valid values: `none`, `read`, `read-write`.
+	VirtualPatch *string `pulumi:"virtualPatch"`
 	// VoIP profiles and settings. Valid values: `none`, `read`, `read-write`.
 	Voip *string `pulumi:"voip"`
 	// Web Application Firewall profiles and settings. Valid values: `none`, `read`, `read-write`.
@@ -836,6 +842,10 @@ type AccprofileUtmgrpPermissionArgs struct {
 	Antivirus pulumi.StringPtrInput `pulumi:"antivirus"`
 	// Application Control profiles and settings. Valid values: `none`, `read`, `read-write`.
 	ApplicationControl pulumi.StringPtrInput `pulumi:"applicationControl"`
+	// Inline CASB filter profile and settings Valid values: `none`, `read`, `read-write`.
+	Casb pulumi.StringPtrInput `pulumi:"casb"`
+	// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+	DataLeakPrevention pulumi.StringPtrInput `pulumi:"dataLeakPrevention"`
 	// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
 	DataLossPrevention pulumi.StringPtrInput `pulumi:"dataLossPrevention"`
 	// DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
@@ -854,6 +864,8 @@ type AccprofileUtmgrpPermissionArgs struct {
 	Spamfilter pulumi.StringPtrInput `pulumi:"spamfilter"`
 	// Video filter profiles and settings. Valid values: `none`, `read`, `read-write`.
 	Videofilter pulumi.StringPtrInput `pulumi:"videofilter"`
+	// Virtual patch profiles and settings. Valid values: `none`, `read`, `read-write`.
+	VirtualPatch pulumi.StringPtrInput `pulumi:"virtualPatch"`
 	// VoIP profiles and settings. Valid values: `none`, `read`, `read-write`.
 	Voip pulumi.StringPtrInput `pulumi:"voip"`
 	// Web Application Firewall profiles and settings. Valid values: `none`, `read`, `read-write`.
@@ -949,6 +961,16 @@ func (o AccprofileUtmgrpPermissionOutput) ApplicationControl() pulumi.StringPtrO
 	return o.ApplyT(func(v AccprofileUtmgrpPermission) *string { return v.ApplicationControl }).(pulumi.StringPtrOutput)
 }
 
+// Inline CASB filter profile and settings Valid values: `none`, `read`, `read-write`.
+func (o AccprofileUtmgrpPermissionOutput) Casb() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccprofileUtmgrpPermission) *string { return v.Casb }).(pulumi.StringPtrOutput)
+}
+
+// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+func (o AccprofileUtmgrpPermissionOutput) DataLeakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccprofileUtmgrpPermission) *string { return v.DataLeakPrevention }).(pulumi.StringPtrOutput)
+}
+
 // DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
 func (o AccprofileUtmgrpPermissionOutput) DataLossPrevention() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccprofileUtmgrpPermission) *string { return v.DataLossPrevention }).(pulumi.StringPtrOutput)
@@ -992,6 +1014,11 @@ func (o AccprofileUtmgrpPermissionOutput) Spamfilter() pulumi.StringPtrOutput {
 // Video filter profiles and settings. Valid values: `none`, `read`, `read-write`.
 func (o AccprofileUtmgrpPermissionOutput) Videofilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccprofileUtmgrpPermission) *string { return v.Videofilter }).(pulumi.StringPtrOutput)
+}
+
+// Virtual patch profiles and settings. Valid values: `none`, `read`, `read-write`.
+func (o AccprofileUtmgrpPermissionOutput) VirtualPatch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccprofileUtmgrpPermission) *string { return v.VirtualPatch }).(pulumi.StringPtrOutput)
 }
 
 // VoIP profiles and settings. Valid values: `none`, `read`, `read-write`.
@@ -1050,6 +1077,26 @@ func (o AccprofileUtmgrpPermissionPtrOutput) ApplicationControl() pulumi.StringP
 			return nil
 		}
 		return v.ApplicationControl
+	}).(pulumi.StringPtrOutput)
+}
+
+// Inline CASB filter profile and settings Valid values: `none`, `read`, `read-write`.
+func (o AccprofileUtmgrpPermissionPtrOutput) Casb() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AccprofileUtmgrpPermission) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Casb
+	}).(pulumi.StringPtrOutput)
+}
+
+// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+func (o AccprofileUtmgrpPermissionPtrOutput) DataLeakPrevention() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AccprofileUtmgrpPermission) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DataLeakPrevention
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -1140,6 +1187,16 @@ func (o AccprofileUtmgrpPermissionPtrOutput) Videofilter() pulumi.StringPtrOutpu
 			return nil
 		}
 		return v.Videofilter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Virtual patch profiles and settings. Valid values: `none`, `read`, `read-write`.
+func (o AccprofileUtmgrpPermissionPtrOutput) VirtualPatch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AccprofileUtmgrpPermission) *string {
+		if v == nil {
+			return nil
+		}
+		return v.VirtualPatch
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -4922,6 +4979,8 @@ type CsfFabricConnector struct {
 	ConfigurationWriteAccess *string `pulumi:"configurationWriteAccess"`
 	// Serial.
 	Serial *string `pulumi:"serial"`
+	// Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
+	Vdoms []CsfFabricConnectorVdom `pulumi:"vdoms"`
 }
 
 // CsfFabricConnectorInput is an input type that accepts CsfFabricConnectorArgs and CsfFabricConnectorOutput values.
@@ -4942,6 +5001,8 @@ type CsfFabricConnectorArgs struct {
 	ConfigurationWriteAccess pulumi.StringPtrInput `pulumi:"configurationWriteAccess"`
 	// Serial.
 	Serial pulumi.StringPtrInput `pulumi:"serial"`
+	// Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
+	Vdoms CsfFabricConnectorVdomArrayInput `pulumi:"vdoms"`
 }
 
 func (CsfFabricConnectorArgs) ElementType() reflect.Type {
@@ -5010,6 +5071,11 @@ func (o CsfFabricConnectorOutput) Serial() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CsfFabricConnector) *string { return v.Serial }).(pulumi.StringPtrOutput)
 }
 
+// Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
+func (o CsfFabricConnectorOutput) Vdoms() CsfFabricConnectorVdomArrayOutput {
+	return o.ApplyT(func(v CsfFabricConnector) []CsfFabricConnectorVdom { return v.Vdoms }).(CsfFabricConnectorVdomArrayOutput)
+}
+
 type CsfFabricConnectorArrayOutput struct{ *pulumi.OutputState }
 
 func (CsfFabricConnectorArrayOutput) ElementType() reflect.Type {
@@ -5028,6 +5094,103 @@ func (o CsfFabricConnectorArrayOutput) Index(i pulumi.IntInput) CsfFabricConnect
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CsfFabricConnector {
 		return vs[0].([]CsfFabricConnector)[vs[1].(int)]
 	}).(CsfFabricConnectorOutput)
+}
+
+type CsfFabricConnectorVdom struct {
+	// Virtual domain name.
+	Name *string `pulumi:"name"`
+}
+
+// CsfFabricConnectorVdomInput is an input type that accepts CsfFabricConnectorVdomArgs and CsfFabricConnectorVdomOutput values.
+// You can construct a concrete instance of `CsfFabricConnectorVdomInput` via:
+//
+//	CsfFabricConnectorVdomArgs{...}
+type CsfFabricConnectorVdomInput interface {
+	pulumi.Input
+
+	ToCsfFabricConnectorVdomOutput() CsfFabricConnectorVdomOutput
+	ToCsfFabricConnectorVdomOutputWithContext(context.Context) CsfFabricConnectorVdomOutput
+}
+
+type CsfFabricConnectorVdomArgs struct {
+	// Virtual domain name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (CsfFabricConnectorVdomArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsfFabricConnectorVdom)(nil)).Elem()
+}
+
+func (i CsfFabricConnectorVdomArgs) ToCsfFabricConnectorVdomOutput() CsfFabricConnectorVdomOutput {
+	return i.ToCsfFabricConnectorVdomOutputWithContext(context.Background())
+}
+
+func (i CsfFabricConnectorVdomArgs) ToCsfFabricConnectorVdomOutputWithContext(ctx context.Context) CsfFabricConnectorVdomOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsfFabricConnectorVdomOutput)
+}
+
+// CsfFabricConnectorVdomArrayInput is an input type that accepts CsfFabricConnectorVdomArray and CsfFabricConnectorVdomArrayOutput values.
+// You can construct a concrete instance of `CsfFabricConnectorVdomArrayInput` via:
+//
+//	CsfFabricConnectorVdomArray{ CsfFabricConnectorVdomArgs{...} }
+type CsfFabricConnectorVdomArrayInput interface {
+	pulumi.Input
+
+	ToCsfFabricConnectorVdomArrayOutput() CsfFabricConnectorVdomArrayOutput
+	ToCsfFabricConnectorVdomArrayOutputWithContext(context.Context) CsfFabricConnectorVdomArrayOutput
+}
+
+type CsfFabricConnectorVdomArray []CsfFabricConnectorVdomInput
+
+func (CsfFabricConnectorVdomArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsfFabricConnectorVdom)(nil)).Elem()
+}
+
+func (i CsfFabricConnectorVdomArray) ToCsfFabricConnectorVdomArrayOutput() CsfFabricConnectorVdomArrayOutput {
+	return i.ToCsfFabricConnectorVdomArrayOutputWithContext(context.Background())
+}
+
+func (i CsfFabricConnectorVdomArray) ToCsfFabricConnectorVdomArrayOutputWithContext(ctx context.Context) CsfFabricConnectorVdomArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsfFabricConnectorVdomArrayOutput)
+}
+
+type CsfFabricConnectorVdomOutput struct{ *pulumi.OutputState }
+
+func (CsfFabricConnectorVdomOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsfFabricConnectorVdom)(nil)).Elem()
+}
+
+func (o CsfFabricConnectorVdomOutput) ToCsfFabricConnectorVdomOutput() CsfFabricConnectorVdomOutput {
+	return o
+}
+
+func (o CsfFabricConnectorVdomOutput) ToCsfFabricConnectorVdomOutputWithContext(ctx context.Context) CsfFabricConnectorVdomOutput {
+	return o
+}
+
+// Virtual domain name.
+func (o CsfFabricConnectorVdomOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CsfFabricConnectorVdom) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type CsfFabricConnectorVdomArrayOutput struct{ *pulumi.OutputState }
+
+func (CsfFabricConnectorVdomArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsfFabricConnectorVdom)(nil)).Elem()
+}
+
+func (o CsfFabricConnectorVdomArrayOutput) ToCsfFabricConnectorVdomArrayOutput() CsfFabricConnectorVdomArrayOutput {
+	return o
+}
+
+func (o CsfFabricConnectorVdomArrayOutput) ToCsfFabricConnectorVdomArrayOutputWithContext(ctx context.Context) CsfFabricConnectorVdomArrayOutput {
+	return o
+}
+
+func (o CsfFabricConnectorVdomArrayOutput) Index(i pulumi.IntInput) CsfFabricConnectorVdomOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CsfFabricConnectorVdom {
+		return vs[0].([]CsfFabricConnectorVdom)[vs[1].(int)]
+	}).(CsfFabricConnectorVdomOutput)
 }
 
 type CsfFabricDevice struct {
@@ -5192,6 +5355,8 @@ type CsfTrustedList struct {
 	DownstreamAuthorization *string `pulumi:"downstreamAuthorization"`
 	// HA members.
 	HaMembers *string `pulumi:"haMembers"`
+	// Index of the downstream in tree.
+	Index *int `pulumi:"index"`
 	// Name.
 	Name *string `pulumi:"name"`
 	// Serial.
@@ -5220,6 +5385,8 @@ type CsfTrustedListArgs struct {
 	DownstreamAuthorization pulumi.StringPtrInput `pulumi:"downstreamAuthorization"`
 	// HA members.
 	HaMembers pulumi.StringPtrInput `pulumi:"haMembers"`
+	// Index of the downstream in tree.
+	Index pulumi.IntPtrInput `pulumi:"index"`
 	// Name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Serial.
@@ -5300,6 +5467,11 @@ func (o CsfTrustedListOutput) DownstreamAuthorization() pulumi.StringPtrOutput {
 // HA members.
 func (o CsfTrustedListOutput) HaMembers() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CsfTrustedList) *string { return v.HaMembers }).(pulumi.StringPtrOutput)
+}
+
+// Index of the downstream in tree.
+func (o CsfTrustedListOutput) Index() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CsfTrustedList) *int { return v.Index }).(pulumi.IntPtrOutput)
 }
 
 // Name.
@@ -5524,6 +5696,103 @@ func (o DdnsMonitorInterfaceArrayOutput) Index(i pulumi.IntInput) DdnsMonitorInt
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DdnsMonitorInterface {
 		return vs[0].([]DdnsMonitorInterface)[vs[1].(int)]
 	}).(DdnsMonitorInterfaceOutput)
+}
+
+type DeviceupgradeKnownHaMember struct {
+	// Serial number of HA member
+	Serial *string `pulumi:"serial"`
+}
+
+// DeviceupgradeKnownHaMemberInput is an input type that accepts DeviceupgradeKnownHaMemberArgs and DeviceupgradeKnownHaMemberOutput values.
+// You can construct a concrete instance of `DeviceupgradeKnownHaMemberInput` via:
+//
+//	DeviceupgradeKnownHaMemberArgs{...}
+type DeviceupgradeKnownHaMemberInput interface {
+	pulumi.Input
+
+	ToDeviceupgradeKnownHaMemberOutput() DeviceupgradeKnownHaMemberOutput
+	ToDeviceupgradeKnownHaMemberOutputWithContext(context.Context) DeviceupgradeKnownHaMemberOutput
+}
+
+type DeviceupgradeKnownHaMemberArgs struct {
+	// Serial number of HA member
+	Serial pulumi.StringPtrInput `pulumi:"serial"`
+}
+
+func (DeviceupgradeKnownHaMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeviceupgradeKnownHaMember)(nil)).Elem()
+}
+
+func (i DeviceupgradeKnownHaMemberArgs) ToDeviceupgradeKnownHaMemberOutput() DeviceupgradeKnownHaMemberOutput {
+	return i.ToDeviceupgradeKnownHaMemberOutputWithContext(context.Background())
+}
+
+func (i DeviceupgradeKnownHaMemberArgs) ToDeviceupgradeKnownHaMemberOutputWithContext(ctx context.Context) DeviceupgradeKnownHaMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeviceupgradeKnownHaMemberOutput)
+}
+
+// DeviceupgradeKnownHaMemberArrayInput is an input type that accepts DeviceupgradeKnownHaMemberArray and DeviceupgradeKnownHaMemberArrayOutput values.
+// You can construct a concrete instance of `DeviceupgradeKnownHaMemberArrayInput` via:
+//
+//	DeviceupgradeKnownHaMemberArray{ DeviceupgradeKnownHaMemberArgs{...} }
+type DeviceupgradeKnownHaMemberArrayInput interface {
+	pulumi.Input
+
+	ToDeviceupgradeKnownHaMemberArrayOutput() DeviceupgradeKnownHaMemberArrayOutput
+	ToDeviceupgradeKnownHaMemberArrayOutputWithContext(context.Context) DeviceupgradeKnownHaMemberArrayOutput
+}
+
+type DeviceupgradeKnownHaMemberArray []DeviceupgradeKnownHaMemberInput
+
+func (DeviceupgradeKnownHaMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DeviceupgradeKnownHaMember)(nil)).Elem()
+}
+
+func (i DeviceupgradeKnownHaMemberArray) ToDeviceupgradeKnownHaMemberArrayOutput() DeviceupgradeKnownHaMemberArrayOutput {
+	return i.ToDeviceupgradeKnownHaMemberArrayOutputWithContext(context.Background())
+}
+
+func (i DeviceupgradeKnownHaMemberArray) ToDeviceupgradeKnownHaMemberArrayOutputWithContext(ctx context.Context) DeviceupgradeKnownHaMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeviceupgradeKnownHaMemberArrayOutput)
+}
+
+type DeviceupgradeKnownHaMemberOutput struct{ *pulumi.OutputState }
+
+func (DeviceupgradeKnownHaMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeviceupgradeKnownHaMember)(nil)).Elem()
+}
+
+func (o DeviceupgradeKnownHaMemberOutput) ToDeviceupgradeKnownHaMemberOutput() DeviceupgradeKnownHaMemberOutput {
+	return o
+}
+
+func (o DeviceupgradeKnownHaMemberOutput) ToDeviceupgradeKnownHaMemberOutputWithContext(ctx context.Context) DeviceupgradeKnownHaMemberOutput {
+	return o
+}
+
+// Serial number of HA member
+func (o DeviceupgradeKnownHaMemberOutput) Serial() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeviceupgradeKnownHaMember) *string { return v.Serial }).(pulumi.StringPtrOutput)
+}
+
+type DeviceupgradeKnownHaMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (DeviceupgradeKnownHaMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DeviceupgradeKnownHaMember)(nil)).Elem()
+}
+
+func (o DeviceupgradeKnownHaMemberArrayOutput) ToDeviceupgradeKnownHaMemberArrayOutput() DeviceupgradeKnownHaMemberArrayOutput {
+	return o
+}
+
+func (o DeviceupgradeKnownHaMemberArrayOutput) ToDeviceupgradeKnownHaMemberArrayOutputWithContext(ctx context.Context) DeviceupgradeKnownHaMemberArrayOutput {
+	return o
+}
+
+func (o DeviceupgradeKnownHaMemberArrayOutput) Index(i pulumi.IntInput) DeviceupgradeKnownHaMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeviceupgradeKnownHaMember {
+		return vs[0].([]DeviceupgradeKnownHaMember)[vs[1].(int)]
+	}).(DeviceupgradeKnownHaMemberOutput)
 }
 
 type DnsDomain struct {
@@ -5889,11 +6158,642 @@ func (o DnsdatabaseDnsEntryArrayOutput) Index(i pulumi.IntInput) DnsdatabaseDnsE
 	}).(DnsdatabaseDnsEntryOutput)
 }
 
+type EvpnExportRt struct {
+	// Route target: AA|AA:NN.
+	RouteTarget *string `pulumi:"routeTarget"`
+}
+
+// EvpnExportRtInput is an input type that accepts EvpnExportRtArgs and EvpnExportRtOutput values.
+// You can construct a concrete instance of `EvpnExportRtInput` via:
+//
+//	EvpnExportRtArgs{...}
+type EvpnExportRtInput interface {
+	pulumi.Input
+
+	ToEvpnExportRtOutput() EvpnExportRtOutput
+	ToEvpnExportRtOutputWithContext(context.Context) EvpnExportRtOutput
+}
+
+type EvpnExportRtArgs struct {
+	// Route target: AA|AA:NN.
+	RouteTarget pulumi.StringPtrInput `pulumi:"routeTarget"`
+}
+
+func (EvpnExportRtArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EvpnExportRt)(nil)).Elem()
+}
+
+func (i EvpnExportRtArgs) ToEvpnExportRtOutput() EvpnExportRtOutput {
+	return i.ToEvpnExportRtOutputWithContext(context.Background())
+}
+
+func (i EvpnExportRtArgs) ToEvpnExportRtOutputWithContext(ctx context.Context) EvpnExportRtOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EvpnExportRtOutput)
+}
+
+// EvpnExportRtArrayInput is an input type that accepts EvpnExportRtArray and EvpnExportRtArrayOutput values.
+// You can construct a concrete instance of `EvpnExportRtArrayInput` via:
+//
+//	EvpnExportRtArray{ EvpnExportRtArgs{...} }
+type EvpnExportRtArrayInput interface {
+	pulumi.Input
+
+	ToEvpnExportRtArrayOutput() EvpnExportRtArrayOutput
+	ToEvpnExportRtArrayOutputWithContext(context.Context) EvpnExportRtArrayOutput
+}
+
+type EvpnExportRtArray []EvpnExportRtInput
+
+func (EvpnExportRtArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EvpnExportRt)(nil)).Elem()
+}
+
+func (i EvpnExportRtArray) ToEvpnExportRtArrayOutput() EvpnExportRtArrayOutput {
+	return i.ToEvpnExportRtArrayOutputWithContext(context.Background())
+}
+
+func (i EvpnExportRtArray) ToEvpnExportRtArrayOutputWithContext(ctx context.Context) EvpnExportRtArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EvpnExportRtArrayOutput)
+}
+
+type EvpnExportRtOutput struct{ *pulumi.OutputState }
+
+func (EvpnExportRtOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EvpnExportRt)(nil)).Elem()
+}
+
+func (o EvpnExportRtOutput) ToEvpnExportRtOutput() EvpnExportRtOutput {
+	return o
+}
+
+func (o EvpnExportRtOutput) ToEvpnExportRtOutputWithContext(ctx context.Context) EvpnExportRtOutput {
+	return o
+}
+
+// Route target: AA|AA:NN.
+func (o EvpnExportRtOutput) RouteTarget() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EvpnExportRt) *string { return v.RouteTarget }).(pulumi.StringPtrOutput)
+}
+
+type EvpnExportRtArrayOutput struct{ *pulumi.OutputState }
+
+func (EvpnExportRtArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EvpnExportRt)(nil)).Elem()
+}
+
+func (o EvpnExportRtArrayOutput) ToEvpnExportRtArrayOutput() EvpnExportRtArrayOutput {
+	return o
+}
+
+func (o EvpnExportRtArrayOutput) ToEvpnExportRtArrayOutputWithContext(ctx context.Context) EvpnExportRtArrayOutput {
+	return o
+}
+
+func (o EvpnExportRtArrayOutput) Index(i pulumi.IntInput) EvpnExportRtOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EvpnExportRt {
+		return vs[0].([]EvpnExportRt)[vs[1].(int)]
+	}).(EvpnExportRtOutput)
+}
+
+type EvpnImportRt struct {
+	// Route target: AA|AA:NN.
+	RouteTarget *string `pulumi:"routeTarget"`
+}
+
+// EvpnImportRtInput is an input type that accepts EvpnImportRtArgs and EvpnImportRtOutput values.
+// You can construct a concrete instance of `EvpnImportRtInput` via:
+//
+//	EvpnImportRtArgs{...}
+type EvpnImportRtInput interface {
+	pulumi.Input
+
+	ToEvpnImportRtOutput() EvpnImportRtOutput
+	ToEvpnImportRtOutputWithContext(context.Context) EvpnImportRtOutput
+}
+
+type EvpnImportRtArgs struct {
+	// Route target: AA|AA:NN.
+	RouteTarget pulumi.StringPtrInput `pulumi:"routeTarget"`
+}
+
+func (EvpnImportRtArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EvpnImportRt)(nil)).Elem()
+}
+
+func (i EvpnImportRtArgs) ToEvpnImportRtOutput() EvpnImportRtOutput {
+	return i.ToEvpnImportRtOutputWithContext(context.Background())
+}
+
+func (i EvpnImportRtArgs) ToEvpnImportRtOutputWithContext(ctx context.Context) EvpnImportRtOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EvpnImportRtOutput)
+}
+
+// EvpnImportRtArrayInput is an input type that accepts EvpnImportRtArray and EvpnImportRtArrayOutput values.
+// You can construct a concrete instance of `EvpnImportRtArrayInput` via:
+//
+//	EvpnImportRtArray{ EvpnImportRtArgs{...} }
+type EvpnImportRtArrayInput interface {
+	pulumi.Input
+
+	ToEvpnImportRtArrayOutput() EvpnImportRtArrayOutput
+	ToEvpnImportRtArrayOutputWithContext(context.Context) EvpnImportRtArrayOutput
+}
+
+type EvpnImportRtArray []EvpnImportRtInput
+
+func (EvpnImportRtArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EvpnImportRt)(nil)).Elem()
+}
+
+func (i EvpnImportRtArray) ToEvpnImportRtArrayOutput() EvpnImportRtArrayOutput {
+	return i.ToEvpnImportRtArrayOutputWithContext(context.Background())
+}
+
+func (i EvpnImportRtArray) ToEvpnImportRtArrayOutputWithContext(ctx context.Context) EvpnImportRtArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EvpnImportRtArrayOutput)
+}
+
+type EvpnImportRtOutput struct{ *pulumi.OutputState }
+
+func (EvpnImportRtOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EvpnImportRt)(nil)).Elem()
+}
+
+func (o EvpnImportRtOutput) ToEvpnImportRtOutput() EvpnImportRtOutput {
+	return o
+}
+
+func (o EvpnImportRtOutput) ToEvpnImportRtOutputWithContext(ctx context.Context) EvpnImportRtOutput {
+	return o
+}
+
+// Route target: AA|AA:NN.
+func (o EvpnImportRtOutput) RouteTarget() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EvpnImportRt) *string { return v.RouteTarget }).(pulumi.StringPtrOutput)
+}
+
+type EvpnImportRtArrayOutput struct{ *pulumi.OutputState }
+
+func (EvpnImportRtArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EvpnImportRt)(nil)).Elem()
+}
+
+func (o EvpnImportRtArrayOutput) ToEvpnImportRtArrayOutput() EvpnImportRtArrayOutput {
+	return o
+}
+
+func (o EvpnImportRtArrayOutput) ToEvpnImportRtArrayOutputWithContext(ctx context.Context) EvpnImportRtArrayOutput {
+	return o
+}
+
+func (o EvpnImportRtArrayOutput) Index(i pulumi.IntInput) EvpnImportRtOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EvpnImportRt {
+		return vs[0].([]EvpnImportRt)[vs[1].(int)]
+	}).(EvpnImportRtOutput)
+}
+
+type FabricvpnAdvertisedSubnet struct {
+	// Access policy direction. Valid values: `inbound`, `bidirectional`.
+	Access *string `pulumi:"access"`
+	// Underlying BGP network.
+	BgpNetwork *int `pulumi:"bgpNetwork"`
+	// Underlying firewall address.
+	FirewallAddress *string `pulumi:"firewallAddress"`
+	// ID.
+	Id *int `pulumi:"id"`
+	// Underlying policies.
+	Policies *int `pulumi:"policies"`
+	// Network prefix.
+	Prefix *string `pulumi:"prefix"`
+}
+
+// FabricvpnAdvertisedSubnetInput is an input type that accepts FabricvpnAdvertisedSubnetArgs and FabricvpnAdvertisedSubnetOutput values.
+// You can construct a concrete instance of `FabricvpnAdvertisedSubnetInput` via:
+//
+//	FabricvpnAdvertisedSubnetArgs{...}
+type FabricvpnAdvertisedSubnetInput interface {
+	pulumi.Input
+
+	ToFabricvpnAdvertisedSubnetOutput() FabricvpnAdvertisedSubnetOutput
+	ToFabricvpnAdvertisedSubnetOutputWithContext(context.Context) FabricvpnAdvertisedSubnetOutput
+}
+
+type FabricvpnAdvertisedSubnetArgs struct {
+	// Access policy direction. Valid values: `inbound`, `bidirectional`.
+	Access pulumi.StringPtrInput `pulumi:"access"`
+	// Underlying BGP network.
+	BgpNetwork pulumi.IntPtrInput `pulumi:"bgpNetwork"`
+	// Underlying firewall address.
+	FirewallAddress pulumi.StringPtrInput `pulumi:"firewallAddress"`
+	// ID.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Underlying policies.
+	Policies pulumi.IntPtrInput `pulumi:"policies"`
+	// Network prefix.
+	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
+}
+
+func (FabricvpnAdvertisedSubnetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FabricvpnAdvertisedSubnet)(nil)).Elem()
+}
+
+func (i FabricvpnAdvertisedSubnetArgs) ToFabricvpnAdvertisedSubnetOutput() FabricvpnAdvertisedSubnetOutput {
+	return i.ToFabricvpnAdvertisedSubnetOutputWithContext(context.Background())
+}
+
+func (i FabricvpnAdvertisedSubnetArgs) ToFabricvpnAdvertisedSubnetOutputWithContext(ctx context.Context) FabricvpnAdvertisedSubnetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FabricvpnAdvertisedSubnetOutput)
+}
+
+// FabricvpnAdvertisedSubnetArrayInput is an input type that accepts FabricvpnAdvertisedSubnetArray and FabricvpnAdvertisedSubnetArrayOutput values.
+// You can construct a concrete instance of `FabricvpnAdvertisedSubnetArrayInput` via:
+//
+//	FabricvpnAdvertisedSubnetArray{ FabricvpnAdvertisedSubnetArgs{...} }
+type FabricvpnAdvertisedSubnetArrayInput interface {
+	pulumi.Input
+
+	ToFabricvpnAdvertisedSubnetArrayOutput() FabricvpnAdvertisedSubnetArrayOutput
+	ToFabricvpnAdvertisedSubnetArrayOutputWithContext(context.Context) FabricvpnAdvertisedSubnetArrayOutput
+}
+
+type FabricvpnAdvertisedSubnetArray []FabricvpnAdvertisedSubnetInput
+
+func (FabricvpnAdvertisedSubnetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FabricvpnAdvertisedSubnet)(nil)).Elem()
+}
+
+func (i FabricvpnAdvertisedSubnetArray) ToFabricvpnAdvertisedSubnetArrayOutput() FabricvpnAdvertisedSubnetArrayOutput {
+	return i.ToFabricvpnAdvertisedSubnetArrayOutputWithContext(context.Background())
+}
+
+func (i FabricvpnAdvertisedSubnetArray) ToFabricvpnAdvertisedSubnetArrayOutputWithContext(ctx context.Context) FabricvpnAdvertisedSubnetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FabricvpnAdvertisedSubnetArrayOutput)
+}
+
+type FabricvpnAdvertisedSubnetOutput struct{ *pulumi.OutputState }
+
+func (FabricvpnAdvertisedSubnetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FabricvpnAdvertisedSubnet)(nil)).Elem()
+}
+
+func (o FabricvpnAdvertisedSubnetOutput) ToFabricvpnAdvertisedSubnetOutput() FabricvpnAdvertisedSubnetOutput {
+	return o
+}
+
+func (o FabricvpnAdvertisedSubnetOutput) ToFabricvpnAdvertisedSubnetOutputWithContext(ctx context.Context) FabricvpnAdvertisedSubnetOutput {
+	return o
+}
+
+// Access policy direction. Valid values: `inbound`, `bidirectional`.
+func (o FabricvpnAdvertisedSubnetOutput) Access() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FabricvpnAdvertisedSubnet) *string { return v.Access }).(pulumi.StringPtrOutput)
+}
+
+// Underlying BGP network.
+func (o FabricvpnAdvertisedSubnetOutput) BgpNetwork() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FabricvpnAdvertisedSubnet) *int { return v.BgpNetwork }).(pulumi.IntPtrOutput)
+}
+
+// Underlying firewall address.
+func (o FabricvpnAdvertisedSubnetOutput) FirewallAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FabricvpnAdvertisedSubnet) *string { return v.FirewallAddress }).(pulumi.StringPtrOutput)
+}
+
+// ID.
+func (o FabricvpnAdvertisedSubnetOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FabricvpnAdvertisedSubnet) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+// Underlying policies.
+func (o FabricvpnAdvertisedSubnetOutput) Policies() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FabricvpnAdvertisedSubnet) *int { return v.Policies }).(pulumi.IntPtrOutput)
+}
+
+// Network prefix.
+func (o FabricvpnAdvertisedSubnetOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FabricvpnAdvertisedSubnet) *string { return v.Prefix }).(pulumi.StringPtrOutput)
+}
+
+type FabricvpnAdvertisedSubnetArrayOutput struct{ *pulumi.OutputState }
+
+func (FabricvpnAdvertisedSubnetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FabricvpnAdvertisedSubnet)(nil)).Elem()
+}
+
+func (o FabricvpnAdvertisedSubnetArrayOutput) ToFabricvpnAdvertisedSubnetArrayOutput() FabricvpnAdvertisedSubnetArrayOutput {
+	return o
+}
+
+func (o FabricvpnAdvertisedSubnetArrayOutput) ToFabricvpnAdvertisedSubnetArrayOutputWithContext(ctx context.Context) FabricvpnAdvertisedSubnetArrayOutput {
+	return o
+}
+
+func (o FabricvpnAdvertisedSubnetArrayOutput) Index(i pulumi.IntInput) FabricvpnAdvertisedSubnetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FabricvpnAdvertisedSubnet {
+		return vs[0].([]FabricvpnAdvertisedSubnet)[vs[1].(int)]
+	}).(FabricvpnAdvertisedSubnetOutput)
+}
+
+type FabricvpnOverlay struct {
+	// Underlying BGP neighbor entry.
+	BgpNeighbor *string `pulumi:"bgpNeighbor"`
+	// Underlying BGP neighbor group entry.
+	BgpNeighborGroup *string `pulumi:"bgpNeighborGroup"`
+	// Underlying BGP neighbor range entry.
+	BgpNeighborRange *int `pulumi:"bgpNeighborRange"`
+	// Underlying BGP network.
+	BgpNetwork *int `pulumi:"bgpNetwork"`
+	// Underlying interface name.
+	Interface *string `pulumi:"interface"`
+	// IPsec interface.
+	IpsecPhase1 *string `pulumi:"ipsecPhase1"`
+	// Overlay name.
+	Name *string `pulumi:"name"`
+	// The overlay policy to allow ADVPN thru traffic.
+	OverlayPolicy *int `pulumi:"overlayPolicy"`
+	// IPv4 address and subnet mask for the overlay tunnel , syntax: X.X.X.X/24.
+	OverlayTunnelBlock *string `pulumi:"overlayTunnelBlock"`
+	// IP address of the hub gateway (Set by hub).
+	RemoteGw *string `pulumi:"remoteGw"`
+	// Underlying router policy.
+	RoutePolicy *int `pulumi:"routePolicy"`
+	// Reference to SD-WAN member entry.
+	SdwanMember *int `pulumi:"sdwanMember"`
+}
+
+// FabricvpnOverlayInput is an input type that accepts FabricvpnOverlayArgs and FabricvpnOverlayOutput values.
+// You can construct a concrete instance of `FabricvpnOverlayInput` via:
+//
+//	FabricvpnOverlayArgs{...}
+type FabricvpnOverlayInput interface {
+	pulumi.Input
+
+	ToFabricvpnOverlayOutput() FabricvpnOverlayOutput
+	ToFabricvpnOverlayOutputWithContext(context.Context) FabricvpnOverlayOutput
+}
+
+type FabricvpnOverlayArgs struct {
+	// Underlying BGP neighbor entry.
+	BgpNeighbor pulumi.StringPtrInput `pulumi:"bgpNeighbor"`
+	// Underlying BGP neighbor group entry.
+	BgpNeighborGroup pulumi.StringPtrInput `pulumi:"bgpNeighborGroup"`
+	// Underlying BGP neighbor range entry.
+	BgpNeighborRange pulumi.IntPtrInput `pulumi:"bgpNeighborRange"`
+	// Underlying BGP network.
+	BgpNetwork pulumi.IntPtrInput `pulumi:"bgpNetwork"`
+	// Underlying interface name.
+	Interface pulumi.StringPtrInput `pulumi:"interface"`
+	// IPsec interface.
+	IpsecPhase1 pulumi.StringPtrInput `pulumi:"ipsecPhase1"`
+	// Overlay name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The overlay policy to allow ADVPN thru traffic.
+	OverlayPolicy pulumi.IntPtrInput `pulumi:"overlayPolicy"`
+	// IPv4 address and subnet mask for the overlay tunnel , syntax: X.X.X.X/24.
+	OverlayTunnelBlock pulumi.StringPtrInput `pulumi:"overlayTunnelBlock"`
+	// IP address of the hub gateway (Set by hub).
+	RemoteGw pulumi.StringPtrInput `pulumi:"remoteGw"`
+	// Underlying router policy.
+	RoutePolicy pulumi.IntPtrInput `pulumi:"routePolicy"`
+	// Reference to SD-WAN member entry.
+	SdwanMember pulumi.IntPtrInput `pulumi:"sdwanMember"`
+}
+
+func (FabricvpnOverlayArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FabricvpnOverlay)(nil)).Elem()
+}
+
+func (i FabricvpnOverlayArgs) ToFabricvpnOverlayOutput() FabricvpnOverlayOutput {
+	return i.ToFabricvpnOverlayOutputWithContext(context.Background())
+}
+
+func (i FabricvpnOverlayArgs) ToFabricvpnOverlayOutputWithContext(ctx context.Context) FabricvpnOverlayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FabricvpnOverlayOutput)
+}
+
+// FabricvpnOverlayArrayInput is an input type that accepts FabricvpnOverlayArray and FabricvpnOverlayArrayOutput values.
+// You can construct a concrete instance of `FabricvpnOverlayArrayInput` via:
+//
+//	FabricvpnOverlayArray{ FabricvpnOverlayArgs{...} }
+type FabricvpnOverlayArrayInput interface {
+	pulumi.Input
+
+	ToFabricvpnOverlayArrayOutput() FabricvpnOverlayArrayOutput
+	ToFabricvpnOverlayArrayOutputWithContext(context.Context) FabricvpnOverlayArrayOutput
+}
+
+type FabricvpnOverlayArray []FabricvpnOverlayInput
+
+func (FabricvpnOverlayArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FabricvpnOverlay)(nil)).Elem()
+}
+
+func (i FabricvpnOverlayArray) ToFabricvpnOverlayArrayOutput() FabricvpnOverlayArrayOutput {
+	return i.ToFabricvpnOverlayArrayOutputWithContext(context.Background())
+}
+
+func (i FabricvpnOverlayArray) ToFabricvpnOverlayArrayOutputWithContext(ctx context.Context) FabricvpnOverlayArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FabricvpnOverlayArrayOutput)
+}
+
+type FabricvpnOverlayOutput struct{ *pulumi.OutputState }
+
+func (FabricvpnOverlayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FabricvpnOverlay)(nil)).Elem()
+}
+
+func (o FabricvpnOverlayOutput) ToFabricvpnOverlayOutput() FabricvpnOverlayOutput {
+	return o
+}
+
+func (o FabricvpnOverlayOutput) ToFabricvpnOverlayOutputWithContext(ctx context.Context) FabricvpnOverlayOutput {
+	return o
+}
+
+// Underlying BGP neighbor entry.
+func (o FabricvpnOverlayOutput) BgpNeighbor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FabricvpnOverlay) *string { return v.BgpNeighbor }).(pulumi.StringPtrOutput)
+}
+
+// Underlying BGP neighbor group entry.
+func (o FabricvpnOverlayOutput) BgpNeighborGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FabricvpnOverlay) *string { return v.BgpNeighborGroup }).(pulumi.StringPtrOutput)
+}
+
+// Underlying BGP neighbor range entry.
+func (o FabricvpnOverlayOutput) BgpNeighborRange() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FabricvpnOverlay) *int { return v.BgpNeighborRange }).(pulumi.IntPtrOutput)
+}
+
+// Underlying BGP network.
+func (o FabricvpnOverlayOutput) BgpNetwork() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FabricvpnOverlay) *int { return v.BgpNetwork }).(pulumi.IntPtrOutput)
+}
+
+// Underlying interface name.
+func (o FabricvpnOverlayOutput) Interface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FabricvpnOverlay) *string { return v.Interface }).(pulumi.StringPtrOutput)
+}
+
+// IPsec interface.
+func (o FabricvpnOverlayOutput) IpsecPhase1() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FabricvpnOverlay) *string { return v.IpsecPhase1 }).(pulumi.StringPtrOutput)
+}
+
+// Overlay name.
+func (o FabricvpnOverlayOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FabricvpnOverlay) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The overlay policy to allow ADVPN thru traffic.
+func (o FabricvpnOverlayOutput) OverlayPolicy() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FabricvpnOverlay) *int { return v.OverlayPolicy }).(pulumi.IntPtrOutput)
+}
+
+// IPv4 address and subnet mask for the overlay tunnel , syntax: X.X.X.X/24.
+func (o FabricvpnOverlayOutput) OverlayTunnelBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FabricvpnOverlay) *string { return v.OverlayTunnelBlock }).(pulumi.StringPtrOutput)
+}
+
+// IP address of the hub gateway (Set by hub).
+func (o FabricvpnOverlayOutput) RemoteGw() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FabricvpnOverlay) *string { return v.RemoteGw }).(pulumi.StringPtrOutput)
+}
+
+// Underlying router policy.
+func (o FabricvpnOverlayOutput) RoutePolicy() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FabricvpnOverlay) *int { return v.RoutePolicy }).(pulumi.IntPtrOutput)
+}
+
+// Reference to SD-WAN member entry.
+func (o FabricvpnOverlayOutput) SdwanMember() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FabricvpnOverlay) *int { return v.SdwanMember }).(pulumi.IntPtrOutput)
+}
+
+type FabricvpnOverlayArrayOutput struct{ *pulumi.OutputState }
+
+func (FabricvpnOverlayArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FabricvpnOverlay)(nil)).Elem()
+}
+
+func (o FabricvpnOverlayArrayOutput) ToFabricvpnOverlayArrayOutput() FabricvpnOverlayArrayOutput {
+	return o
+}
+
+func (o FabricvpnOverlayArrayOutput) ToFabricvpnOverlayArrayOutputWithContext(ctx context.Context) FabricvpnOverlayArrayOutput {
+	return o
+}
+
+func (o FabricvpnOverlayArrayOutput) Index(i pulumi.IntInput) FabricvpnOverlayOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FabricvpnOverlay {
+		return vs[0].([]FabricvpnOverlay)[vs[1].(int)]
+	}).(FabricvpnOverlayOutput)
+}
+
+type FederatedupgradeKnownHaMember struct {
+	// Serial number of HA member
+	Serial *string `pulumi:"serial"`
+}
+
+// FederatedupgradeKnownHaMemberInput is an input type that accepts FederatedupgradeKnownHaMemberArgs and FederatedupgradeKnownHaMemberOutput values.
+// You can construct a concrete instance of `FederatedupgradeKnownHaMemberInput` via:
+//
+//	FederatedupgradeKnownHaMemberArgs{...}
+type FederatedupgradeKnownHaMemberInput interface {
+	pulumi.Input
+
+	ToFederatedupgradeKnownHaMemberOutput() FederatedupgradeKnownHaMemberOutput
+	ToFederatedupgradeKnownHaMemberOutputWithContext(context.Context) FederatedupgradeKnownHaMemberOutput
+}
+
+type FederatedupgradeKnownHaMemberArgs struct {
+	// Serial number of HA member
+	Serial pulumi.StringPtrInput `pulumi:"serial"`
+}
+
+func (FederatedupgradeKnownHaMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedupgradeKnownHaMember)(nil)).Elem()
+}
+
+func (i FederatedupgradeKnownHaMemberArgs) ToFederatedupgradeKnownHaMemberOutput() FederatedupgradeKnownHaMemberOutput {
+	return i.ToFederatedupgradeKnownHaMemberOutputWithContext(context.Background())
+}
+
+func (i FederatedupgradeKnownHaMemberArgs) ToFederatedupgradeKnownHaMemberOutputWithContext(ctx context.Context) FederatedupgradeKnownHaMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedupgradeKnownHaMemberOutput)
+}
+
+// FederatedupgradeKnownHaMemberArrayInput is an input type that accepts FederatedupgradeKnownHaMemberArray and FederatedupgradeKnownHaMemberArrayOutput values.
+// You can construct a concrete instance of `FederatedupgradeKnownHaMemberArrayInput` via:
+//
+//	FederatedupgradeKnownHaMemberArray{ FederatedupgradeKnownHaMemberArgs{...} }
+type FederatedupgradeKnownHaMemberArrayInput interface {
+	pulumi.Input
+
+	ToFederatedupgradeKnownHaMemberArrayOutput() FederatedupgradeKnownHaMemberArrayOutput
+	ToFederatedupgradeKnownHaMemberArrayOutputWithContext(context.Context) FederatedupgradeKnownHaMemberArrayOutput
+}
+
+type FederatedupgradeKnownHaMemberArray []FederatedupgradeKnownHaMemberInput
+
+func (FederatedupgradeKnownHaMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FederatedupgradeKnownHaMember)(nil)).Elem()
+}
+
+func (i FederatedupgradeKnownHaMemberArray) ToFederatedupgradeKnownHaMemberArrayOutput() FederatedupgradeKnownHaMemberArrayOutput {
+	return i.ToFederatedupgradeKnownHaMemberArrayOutputWithContext(context.Background())
+}
+
+func (i FederatedupgradeKnownHaMemberArray) ToFederatedupgradeKnownHaMemberArrayOutputWithContext(ctx context.Context) FederatedupgradeKnownHaMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedupgradeKnownHaMemberArrayOutput)
+}
+
+type FederatedupgradeKnownHaMemberOutput struct{ *pulumi.OutputState }
+
+func (FederatedupgradeKnownHaMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedupgradeKnownHaMember)(nil)).Elem()
+}
+
+func (o FederatedupgradeKnownHaMemberOutput) ToFederatedupgradeKnownHaMemberOutput() FederatedupgradeKnownHaMemberOutput {
+	return o
+}
+
+func (o FederatedupgradeKnownHaMemberOutput) ToFederatedupgradeKnownHaMemberOutputWithContext(ctx context.Context) FederatedupgradeKnownHaMemberOutput {
+	return o
+}
+
+// Serial number of HA member
+func (o FederatedupgradeKnownHaMemberOutput) Serial() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedupgradeKnownHaMember) *string { return v.Serial }).(pulumi.StringPtrOutput)
+}
+
+type FederatedupgradeKnownHaMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (FederatedupgradeKnownHaMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FederatedupgradeKnownHaMember)(nil)).Elem()
+}
+
+func (o FederatedupgradeKnownHaMemberArrayOutput) ToFederatedupgradeKnownHaMemberArrayOutput() FederatedupgradeKnownHaMemberArrayOutput {
+	return o
+}
+
+func (o FederatedupgradeKnownHaMemberArrayOutput) ToFederatedupgradeKnownHaMemberArrayOutputWithContext(ctx context.Context) FederatedupgradeKnownHaMemberArrayOutput {
+	return o
+}
+
+func (o FederatedupgradeKnownHaMemberArrayOutput) Index(i pulumi.IntInput) FederatedupgradeKnownHaMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FederatedupgradeKnownHaMember {
+		return vs[0].([]FederatedupgradeKnownHaMember)[vs[1].(int)]
+	}).(FederatedupgradeKnownHaMemberOutput)
+}
+
 type FederatedupgradeNodeList struct {
 	// The serial of the FortiGate that controls this device
 	CoordinatingFortigate *string `pulumi:"coordinatingFortigate"`
 	// What type of device this node represents.
 	DeviceType *string `pulumi:"deviceType"`
+	// Maximum number of minutes to allow for immediate upgrade preparation.
+	MaximumMinutes *int `pulumi:"maximumMinutes"`
 	// Serial number of the node to include.
 	Serial *string `pulumi:"serial"`
 	// When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
@@ -5922,6 +6822,8 @@ type FederatedupgradeNodeListArgs struct {
 	CoordinatingFortigate pulumi.StringPtrInput `pulumi:"coordinatingFortigate"`
 	// What type of device this node represents.
 	DeviceType pulumi.StringPtrInput `pulumi:"deviceType"`
+	// Maximum number of minutes to allow for immediate upgrade preparation.
+	MaximumMinutes pulumi.IntPtrInput `pulumi:"maximumMinutes"`
 	// Serial number of the node to include.
 	Serial pulumi.StringPtrInput `pulumi:"serial"`
 	// When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
@@ -5993,6 +6895,11 @@ func (o FederatedupgradeNodeListOutput) CoordinatingFortigate() pulumi.StringPtr
 // What type of device this node represents.
 func (o FederatedupgradeNodeListOutput) DeviceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedupgradeNodeList) *string { return v.DeviceType }).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of minutes to allow for immediate upgrade preparation.
+func (o FederatedupgradeNodeListOutput) MaximumMinutes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FederatedupgradeNodeList) *int { return v.MaximumMinutes }).(pulumi.IntPtrOutput)
 }
 
 // Serial number of the node to include.
@@ -6270,11 +7177,113 @@ func (o GeoipoverrideIpRangeArrayOutput) Index(i pulumi.IntInput) GeoipoverrideI
 	}).(GeoipoverrideIpRangeOutput)
 }
 
+type GlobalInternetServiceDownloadList struct {
+	// Internet Service ID.
+	Id *int `pulumi:"id"`
+}
+
+// GlobalInternetServiceDownloadListInput is an input type that accepts GlobalInternetServiceDownloadListArgs and GlobalInternetServiceDownloadListOutput values.
+// You can construct a concrete instance of `GlobalInternetServiceDownloadListInput` via:
+//
+//	GlobalInternetServiceDownloadListArgs{...}
+type GlobalInternetServiceDownloadListInput interface {
+	pulumi.Input
+
+	ToGlobalInternetServiceDownloadListOutput() GlobalInternetServiceDownloadListOutput
+	ToGlobalInternetServiceDownloadListOutputWithContext(context.Context) GlobalInternetServiceDownloadListOutput
+}
+
+type GlobalInternetServiceDownloadListArgs struct {
+	// Internet Service ID.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+}
+
+func (GlobalInternetServiceDownloadListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalInternetServiceDownloadList)(nil)).Elem()
+}
+
+func (i GlobalInternetServiceDownloadListArgs) ToGlobalInternetServiceDownloadListOutput() GlobalInternetServiceDownloadListOutput {
+	return i.ToGlobalInternetServiceDownloadListOutputWithContext(context.Background())
+}
+
+func (i GlobalInternetServiceDownloadListArgs) ToGlobalInternetServiceDownloadListOutputWithContext(ctx context.Context) GlobalInternetServiceDownloadListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalInternetServiceDownloadListOutput)
+}
+
+// GlobalInternetServiceDownloadListArrayInput is an input type that accepts GlobalInternetServiceDownloadListArray and GlobalInternetServiceDownloadListArrayOutput values.
+// You can construct a concrete instance of `GlobalInternetServiceDownloadListArrayInput` via:
+//
+//	GlobalInternetServiceDownloadListArray{ GlobalInternetServiceDownloadListArgs{...} }
+type GlobalInternetServiceDownloadListArrayInput interface {
+	pulumi.Input
+
+	ToGlobalInternetServiceDownloadListArrayOutput() GlobalInternetServiceDownloadListArrayOutput
+	ToGlobalInternetServiceDownloadListArrayOutputWithContext(context.Context) GlobalInternetServiceDownloadListArrayOutput
+}
+
+type GlobalInternetServiceDownloadListArray []GlobalInternetServiceDownloadListInput
+
+func (GlobalInternetServiceDownloadListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GlobalInternetServiceDownloadList)(nil)).Elem()
+}
+
+func (i GlobalInternetServiceDownloadListArray) ToGlobalInternetServiceDownloadListArrayOutput() GlobalInternetServiceDownloadListArrayOutput {
+	return i.ToGlobalInternetServiceDownloadListArrayOutputWithContext(context.Background())
+}
+
+func (i GlobalInternetServiceDownloadListArray) ToGlobalInternetServiceDownloadListArrayOutputWithContext(ctx context.Context) GlobalInternetServiceDownloadListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalInternetServiceDownloadListArrayOutput)
+}
+
+type GlobalInternetServiceDownloadListOutput struct{ *pulumi.OutputState }
+
+func (GlobalInternetServiceDownloadListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalInternetServiceDownloadList)(nil)).Elem()
+}
+
+func (o GlobalInternetServiceDownloadListOutput) ToGlobalInternetServiceDownloadListOutput() GlobalInternetServiceDownloadListOutput {
+	return o
+}
+
+func (o GlobalInternetServiceDownloadListOutput) ToGlobalInternetServiceDownloadListOutputWithContext(ctx context.Context) GlobalInternetServiceDownloadListOutput {
+	return o
+}
+
+// Internet Service ID.
+func (o GlobalInternetServiceDownloadListOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalInternetServiceDownloadList) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+type GlobalInternetServiceDownloadListArrayOutput struct{ *pulumi.OutputState }
+
+func (GlobalInternetServiceDownloadListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GlobalInternetServiceDownloadList)(nil)).Elem()
+}
+
+func (o GlobalInternetServiceDownloadListArrayOutput) ToGlobalInternetServiceDownloadListArrayOutput() GlobalInternetServiceDownloadListArrayOutput {
+	return o
+}
+
+func (o GlobalInternetServiceDownloadListArrayOutput) ToGlobalInternetServiceDownloadListArrayOutputWithContext(ctx context.Context) GlobalInternetServiceDownloadListArrayOutput {
+	return o
+}
+
+func (o GlobalInternetServiceDownloadListArrayOutput) Index(i pulumi.IntInput) GlobalInternetServiceDownloadListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GlobalInternetServiceDownloadList {
+		return vs[0].([]GlobalInternetServiceDownloadList)[vs[1].(int)]
+	}).(GlobalInternetServiceDownloadListOutput)
+}
+
 type HaHaMgmtInterface struct {
-	Dst       *string `pulumi:"dst"`
-	Gateway   *string `pulumi:"gateway"`
-	Gateway6  *string `pulumi:"gateway6"`
-	Id        *int    `pulumi:"id"`
+	// Default route destination for reserved HA management interface.
+	Dst *string `pulumi:"dst"`
+	// Default route gateway for reserved HA management interface.
+	Gateway *string `pulumi:"gateway"`
+	// Default IPv6 gateway for reserved HA management interface.
+	Gateway6 *string `pulumi:"gateway6"`
+	// Table ID.
+	Id *int `pulumi:"id"`
+	// Interface to reserve for HA management.
 	Interface *string `pulumi:"interface"`
 }
 
@@ -6290,10 +7299,15 @@ type HaHaMgmtInterfaceInput interface {
 }
 
 type HaHaMgmtInterfaceArgs struct {
-	Dst       pulumi.StringPtrInput `pulumi:"dst"`
-	Gateway   pulumi.StringPtrInput `pulumi:"gateway"`
-	Gateway6  pulumi.StringPtrInput `pulumi:"gateway6"`
-	Id        pulumi.IntPtrInput    `pulumi:"id"`
+	// Default route destination for reserved HA management interface.
+	Dst pulumi.StringPtrInput `pulumi:"dst"`
+	// Default route gateway for reserved HA management interface.
+	Gateway pulumi.StringPtrInput `pulumi:"gateway"`
+	// Default IPv6 gateway for reserved HA management interface.
+	Gateway6 pulumi.StringPtrInput `pulumi:"gateway6"`
+	// Table ID.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Interface to reserve for HA management.
 	Interface pulumi.StringPtrInput `pulumi:"interface"`
 }
 
@@ -6348,22 +7362,27 @@ func (o HaHaMgmtInterfaceOutput) ToHaHaMgmtInterfaceOutputWithContext(ctx contex
 	return o
 }
 
+// Default route destination for reserved HA management interface.
 func (o HaHaMgmtInterfaceOutput) Dst() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaHaMgmtInterface) *string { return v.Dst }).(pulumi.StringPtrOutput)
 }
 
+// Default route gateway for reserved HA management interface.
 func (o HaHaMgmtInterfaceOutput) Gateway() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaHaMgmtInterface) *string { return v.Gateway }).(pulumi.StringPtrOutput)
 }
 
+// Default IPv6 gateway for reserved HA management interface.
 func (o HaHaMgmtInterfaceOutput) Gateway6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaHaMgmtInterface) *string { return v.Gateway6 }).(pulumi.StringPtrOutput)
 }
 
+// Table ID.
 func (o HaHaMgmtInterfaceOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v HaHaMgmtInterface) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
+// Interface to reserve for HA management.
 func (o HaHaMgmtInterfaceOutput) Interface() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaHaMgmtInterface) *string { return v.Interface }).(pulumi.StringPtrOutput)
 }
@@ -6389,16 +7408,26 @@ func (o HaHaMgmtInterfaceArrayOutput) Index(i pulumi.IntInput) HaHaMgmtInterface
 }
 
 type HaSecondaryVcluster struct {
-	Monitor                       *string `pulumi:"monitor"`
-	Override                      *string `pulumi:"override"`
-	OverrideWaitTime              *int    `pulumi:"overrideWaitTime"`
-	PingserverFailoverThreshold   *int    `pulumi:"pingserverFailoverThreshold"`
-	PingserverMonitorInterface    *string `pulumi:"pingserverMonitorInterface"`
+	// Interfaces to check for port monitoring (or link failure).
+	Monitor *string `pulumi:"monitor"`
+	// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+	Override *string `pulumi:"override"`
+	// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+	OverrideWaitTime *int `pulumi:"overrideWaitTime"`
+	// Remote IP monitoring failover threshold (0 - 50).
+	PingserverFailoverThreshold *int `pulumi:"pingserverFailoverThreshold"`
+	// Interfaces to check for remote IP monitoring.
+	PingserverMonitorInterface *string `pulumi:"pingserverMonitorInterface"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
 	PingserverSecondaryForceReset *string `pulumi:"pingserverSecondaryForceReset"`
-	PingserverSlaveForceReset     *string `pulumi:"pingserverSlaveForceReset"`
-	Priority                      *int    `pulumi:"priority"`
-	VclusterId                    *int    `pulumi:"vclusterId"`
-	Vdom                          *string `pulumi:"vdom"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSlaveForceReset *string `pulumi:"pingserverSlaveForceReset"`
+	// Increase the priority to select the primary unit (0 - 255).
+	Priority *int `pulumi:"priority"`
+	// Cluster ID.
+	VclusterId *int `pulumi:"vclusterId"`
+	// VDOMs in virtual cluster 2.
+	Vdom *string `pulumi:"vdom"`
 }
 
 // HaSecondaryVclusterInput is an input type that accepts HaSecondaryVclusterArgs and HaSecondaryVclusterOutput values.
@@ -6413,16 +7442,26 @@ type HaSecondaryVclusterInput interface {
 }
 
 type HaSecondaryVclusterArgs struct {
-	Monitor                       pulumi.StringPtrInput `pulumi:"monitor"`
-	Override                      pulumi.StringPtrInput `pulumi:"override"`
-	OverrideWaitTime              pulumi.IntPtrInput    `pulumi:"overrideWaitTime"`
-	PingserverFailoverThreshold   pulumi.IntPtrInput    `pulumi:"pingserverFailoverThreshold"`
-	PingserverMonitorInterface    pulumi.StringPtrInput `pulumi:"pingserverMonitorInterface"`
+	// Interfaces to check for port monitoring (or link failure).
+	Monitor pulumi.StringPtrInput `pulumi:"monitor"`
+	// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+	Override pulumi.StringPtrInput `pulumi:"override"`
+	// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+	OverrideWaitTime pulumi.IntPtrInput `pulumi:"overrideWaitTime"`
+	// Remote IP monitoring failover threshold (0 - 50).
+	PingserverFailoverThreshold pulumi.IntPtrInput `pulumi:"pingserverFailoverThreshold"`
+	// Interfaces to check for remote IP monitoring.
+	PingserverMonitorInterface pulumi.StringPtrInput `pulumi:"pingserverMonitorInterface"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
 	PingserverSecondaryForceReset pulumi.StringPtrInput `pulumi:"pingserverSecondaryForceReset"`
-	PingserverSlaveForceReset     pulumi.StringPtrInput `pulumi:"pingserverSlaveForceReset"`
-	Priority                      pulumi.IntPtrInput    `pulumi:"priority"`
-	VclusterId                    pulumi.IntPtrInput    `pulumi:"vclusterId"`
-	Vdom                          pulumi.StringPtrInput `pulumi:"vdom"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSlaveForceReset pulumi.StringPtrInput `pulumi:"pingserverSlaveForceReset"`
+	// Increase the priority to select the primary unit (0 - 255).
+	Priority pulumi.IntPtrInput `pulumi:"priority"`
+	// Cluster ID.
+	VclusterId pulumi.IntPtrInput `pulumi:"vclusterId"`
+	// VDOMs in virtual cluster 2.
+	Vdom pulumi.StringPtrInput `pulumi:"vdom"`
 }
 
 func (HaSecondaryVclusterArgs) ElementType() reflect.Type {
@@ -6502,42 +7541,52 @@ func (o HaSecondaryVclusterOutput) ToHaSecondaryVclusterPtrOutputWithContext(ctx
 	}).(HaSecondaryVclusterPtrOutput)
 }
 
+// Interfaces to check for port monitoring (or link failure).
 func (o HaSecondaryVclusterOutput) Monitor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *string { return v.Monitor }).(pulumi.StringPtrOutput)
 }
 
+// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
 func (o HaSecondaryVclusterOutput) Override() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *string { return v.Override }).(pulumi.StringPtrOutput)
 }
 
+// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
 func (o HaSecondaryVclusterOutput) OverrideWaitTime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *int { return v.OverrideWaitTime }).(pulumi.IntPtrOutput)
 }
 
+// Remote IP monitoring failover threshold (0 - 50).
 func (o HaSecondaryVclusterOutput) PingserverFailoverThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *int { return v.PingserverFailoverThreshold }).(pulumi.IntPtrOutput)
 }
 
+// Interfaces to check for remote IP monitoring.
 func (o HaSecondaryVclusterOutput) PingserverMonitorInterface() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *string { return v.PingserverMonitorInterface }).(pulumi.StringPtrOutput)
 }
 
+// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
 func (o HaSecondaryVclusterOutput) PingserverSecondaryForceReset() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *string { return v.PingserverSecondaryForceReset }).(pulumi.StringPtrOutput)
 }
 
+// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
 func (o HaSecondaryVclusterOutput) PingserverSlaveForceReset() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *string { return v.PingserverSlaveForceReset }).(pulumi.StringPtrOutput)
 }
 
+// Increase the priority to select the primary unit (0 - 255).
 func (o HaSecondaryVclusterOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
+// Cluster ID.
 func (o HaSecondaryVclusterOutput) VclusterId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *int { return v.VclusterId }).(pulumi.IntPtrOutput)
 }
 
+// VDOMs in virtual cluster 2.
 func (o HaSecondaryVclusterOutput) Vdom() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *string { return v.Vdom }).(pulumi.StringPtrOutput)
 }
@@ -6566,6 +7615,7 @@ func (o HaSecondaryVclusterPtrOutput) Elem() HaSecondaryVclusterOutput {
 	}).(HaSecondaryVclusterOutput)
 }
 
+// Interfaces to check for port monitoring (or link failure).
 func (o HaSecondaryVclusterPtrOutput) Monitor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *HaSecondaryVcluster) *string {
 		if v == nil {
@@ -6575,6 +7625,7 @@ func (o HaSecondaryVclusterPtrOutput) Monitor() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
 func (o HaSecondaryVclusterPtrOutput) Override() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *HaSecondaryVcluster) *string {
 		if v == nil {
@@ -6584,6 +7635,7 @@ func (o HaSecondaryVclusterPtrOutput) Override() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
 func (o HaSecondaryVclusterPtrOutput) OverrideWaitTime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *HaSecondaryVcluster) *int {
 		if v == nil {
@@ -6593,6 +7645,7 @@ func (o HaSecondaryVclusterPtrOutput) OverrideWaitTime() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Remote IP monitoring failover threshold (0 - 50).
 func (o HaSecondaryVclusterPtrOutput) PingserverFailoverThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *HaSecondaryVcluster) *int {
 		if v == nil {
@@ -6602,6 +7655,7 @@ func (o HaSecondaryVclusterPtrOutput) PingserverFailoverThreshold() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
+// Interfaces to check for remote IP monitoring.
 func (o HaSecondaryVclusterPtrOutput) PingserverMonitorInterface() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *HaSecondaryVcluster) *string {
 		if v == nil {
@@ -6611,6 +7665,7 @@ func (o HaSecondaryVclusterPtrOutput) PingserverMonitorInterface() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
 func (o HaSecondaryVclusterPtrOutput) PingserverSecondaryForceReset() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *HaSecondaryVcluster) *string {
 		if v == nil {
@@ -6620,6 +7675,7 @@ func (o HaSecondaryVclusterPtrOutput) PingserverSecondaryForceReset() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
+// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
 func (o HaSecondaryVclusterPtrOutput) PingserverSlaveForceReset() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *HaSecondaryVcluster) *string {
 		if v == nil {
@@ -6629,6 +7685,7 @@ func (o HaSecondaryVclusterPtrOutput) PingserverSlaveForceReset() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
+// Increase the priority to select the primary unit (0 - 255).
 func (o HaSecondaryVclusterPtrOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *HaSecondaryVcluster) *int {
 		if v == nil {
@@ -6638,6 +7695,7 @@ func (o HaSecondaryVclusterPtrOutput) Priority() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Cluster ID.
 func (o HaSecondaryVclusterPtrOutput) VclusterId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *HaSecondaryVcluster) *int {
 		if v == nil {
@@ -6647,6 +7705,7 @@ func (o HaSecondaryVclusterPtrOutput) VclusterId() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// VDOMs in virtual cluster 2.
 func (o HaSecondaryVclusterPtrOutput) Vdom() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *HaSecondaryVcluster) *string {
 		if v == nil {
@@ -6657,7 +7716,9 @@ func (o HaSecondaryVclusterPtrOutput) Vdom() pulumi.StringPtrOutput {
 }
 
 type HaUnicastPeer struct {
-	Id     *int    `pulumi:"id"`
+	// Table ID.
+	Id *int `pulumi:"id"`
+	// Unicast peer IP.
 	PeerIp *string `pulumi:"peerIp"`
 }
 
@@ -6673,7 +7734,9 @@ type HaUnicastPeerInput interface {
 }
 
 type HaUnicastPeerArgs struct {
-	Id     pulumi.IntPtrInput    `pulumi:"id"`
+	// Table ID.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Unicast peer IP.
 	PeerIp pulumi.StringPtrInput `pulumi:"peerIp"`
 }
 
@@ -6728,10 +7791,12 @@ func (o HaUnicastPeerOutput) ToHaUnicastPeerOutputWithContext(ctx context.Contex
 	return o
 }
 
+// Table ID.
 func (o HaUnicastPeerOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v HaUnicastPeer) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
+// Unicast peer IP.
 func (o HaUnicastPeerOutput) PeerIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaUnicastPeer) *string { return v.PeerIp }).(pulumi.StringPtrOutput)
 }
@@ -6757,16 +7822,28 @@ func (o HaUnicastPeerArrayOutput) Index(i pulumi.IntInput) HaUnicastPeerOutput {
 }
 
 type HaVcluster struct {
-	Monitor                       *string          `pulumi:"monitor"`
-	Override                      *string          `pulumi:"override"`
-	OverrideWaitTime              *int             `pulumi:"overrideWaitTime"`
-	PingserverFailoverThreshold   *int             `pulumi:"pingserverFailoverThreshold"`
-	PingserverMonitorInterface    *string          `pulumi:"pingserverMonitorInterface"`
-	PingserverSecondaryForceReset *string          `pulumi:"pingserverSecondaryForceReset"`
-	PingserverSlaveForceReset     *string          `pulumi:"pingserverSlaveForceReset"`
-	Priority                      *int             `pulumi:"priority"`
-	VclusterId                    *int             `pulumi:"vclusterId"`
-	Vdoms                         []HaVclusterVdom `pulumi:"vdoms"`
+	// Interfaces to check for port monitoring (or link failure).
+	Monitor *string `pulumi:"monitor"`
+	// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+	Override *string `pulumi:"override"`
+	// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+	OverrideWaitTime *int `pulumi:"overrideWaitTime"`
+	// Remote IP monitoring failover threshold (0 - 50).
+	PingserverFailoverThreshold *int `pulumi:"pingserverFailoverThreshold"`
+	// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+	PingserverFlipTimeout *int `pulumi:"pingserverFlipTimeout"`
+	// Interfaces to check for remote IP monitoring.
+	PingserverMonitorInterface *string `pulumi:"pingserverMonitorInterface"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSecondaryForceReset *string `pulumi:"pingserverSecondaryForceReset"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSlaveForceReset *string `pulumi:"pingserverSlaveForceReset"`
+	// Increase the priority to select the primary unit (0 - 255).
+	Priority *int `pulumi:"priority"`
+	// ID.
+	VclusterId *int `pulumi:"vclusterId"`
+	// Virtual domain(s) in the virtual cluster. The structure of `vdom` block is documented below.
+	Vdoms []HaVclusterVdom `pulumi:"vdoms"`
 }
 
 // HaVclusterInput is an input type that accepts HaVclusterArgs and HaVclusterOutput values.
@@ -6781,16 +7858,28 @@ type HaVclusterInput interface {
 }
 
 type HaVclusterArgs struct {
-	Monitor                       pulumi.StringPtrInput    `pulumi:"monitor"`
-	Override                      pulumi.StringPtrInput    `pulumi:"override"`
-	OverrideWaitTime              pulumi.IntPtrInput       `pulumi:"overrideWaitTime"`
-	PingserverFailoverThreshold   pulumi.IntPtrInput       `pulumi:"pingserverFailoverThreshold"`
-	PingserverMonitorInterface    pulumi.StringPtrInput    `pulumi:"pingserverMonitorInterface"`
-	PingserverSecondaryForceReset pulumi.StringPtrInput    `pulumi:"pingserverSecondaryForceReset"`
-	PingserverSlaveForceReset     pulumi.StringPtrInput    `pulumi:"pingserverSlaveForceReset"`
-	Priority                      pulumi.IntPtrInput       `pulumi:"priority"`
-	VclusterId                    pulumi.IntPtrInput       `pulumi:"vclusterId"`
-	Vdoms                         HaVclusterVdomArrayInput `pulumi:"vdoms"`
+	// Interfaces to check for port monitoring (or link failure).
+	Monitor pulumi.StringPtrInput `pulumi:"monitor"`
+	// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+	Override pulumi.StringPtrInput `pulumi:"override"`
+	// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+	OverrideWaitTime pulumi.IntPtrInput `pulumi:"overrideWaitTime"`
+	// Remote IP monitoring failover threshold (0 - 50).
+	PingserverFailoverThreshold pulumi.IntPtrInput `pulumi:"pingserverFailoverThreshold"`
+	// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+	PingserverFlipTimeout pulumi.IntPtrInput `pulumi:"pingserverFlipTimeout"`
+	// Interfaces to check for remote IP monitoring.
+	PingserverMonitorInterface pulumi.StringPtrInput `pulumi:"pingserverMonitorInterface"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSecondaryForceReset pulumi.StringPtrInput `pulumi:"pingserverSecondaryForceReset"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSlaveForceReset pulumi.StringPtrInput `pulumi:"pingserverSlaveForceReset"`
+	// Increase the priority to select the primary unit (0 - 255).
+	Priority pulumi.IntPtrInput `pulumi:"priority"`
+	// ID.
+	VclusterId pulumi.IntPtrInput `pulumi:"vclusterId"`
+	// Virtual domain(s) in the virtual cluster. The structure of `vdom` block is documented below.
+	Vdoms HaVclusterVdomArrayInput `pulumi:"vdoms"`
 }
 
 func (HaVclusterArgs) ElementType() reflect.Type {
@@ -6844,42 +7933,57 @@ func (o HaVclusterOutput) ToHaVclusterOutputWithContext(ctx context.Context) HaV
 	return o
 }
 
+// Interfaces to check for port monitoring (or link failure).
 func (o HaVclusterOutput) Monitor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaVcluster) *string { return v.Monitor }).(pulumi.StringPtrOutput)
 }
 
+// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
 func (o HaVclusterOutput) Override() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaVcluster) *string { return v.Override }).(pulumi.StringPtrOutput)
 }
 
+// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
 func (o HaVclusterOutput) OverrideWaitTime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v HaVcluster) *int { return v.OverrideWaitTime }).(pulumi.IntPtrOutput)
 }
 
+// Remote IP monitoring failover threshold (0 - 50).
 func (o HaVclusterOutput) PingserverFailoverThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v HaVcluster) *int { return v.PingserverFailoverThreshold }).(pulumi.IntPtrOutput)
 }
 
+// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+func (o HaVclusterOutput) PingserverFlipTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v HaVcluster) *int { return v.PingserverFlipTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Interfaces to check for remote IP monitoring.
 func (o HaVclusterOutput) PingserverMonitorInterface() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaVcluster) *string { return v.PingserverMonitorInterface }).(pulumi.StringPtrOutput)
 }
 
+// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
 func (o HaVclusterOutput) PingserverSecondaryForceReset() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaVcluster) *string { return v.PingserverSecondaryForceReset }).(pulumi.StringPtrOutput)
 }
 
+// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
 func (o HaVclusterOutput) PingserverSlaveForceReset() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaVcluster) *string { return v.PingserverSlaveForceReset }).(pulumi.StringPtrOutput)
 }
 
+// Increase the priority to select the primary unit (0 - 255).
 func (o HaVclusterOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v HaVcluster) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
+// ID.
 func (o HaVclusterOutput) VclusterId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v HaVcluster) *int { return v.VclusterId }).(pulumi.IntPtrOutput)
 }
 
+// Virtual domain(s) in the virtual cluster. The structure of `vdom` block is documented below.
 func (o HaVclusterOutput) Vdoms() HaVclusterVdomArrayOutput {
 	return o.ApplyT(func(v HaVcluster) []HaVclusterVdom { return v.Vdoms }).(HaVclusterVdomArrayOutput)
 }
@@ -6905,6 +8009,7 @@ func (o HaVclusterArrayOutput) Index(i pulumi.IntInput) HaVclusterOutput {
 }
 
 type HaVclusterVdom struct {
+	// Virtual domain name.
 	Name *string `pulumi:"name"`
 }
 
@@ -6920,6 +8025,7 @@ type HaVclusterVdomInput interface {
 }
 
 type HaVclusterVdomArgs struct {
+	// Virtual domain name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -6974,6 +8080,7 @@ func (o HaVclusterVdomOutput) ToHaVclusterVdomOutputWithContext(ctx context.Cont
 	return o
 }
 
+// Virtual domain name.
 func (o HaVclusterVdomOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaVclusterVdom) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -10328,10 +11435,16 @@ type InterfaceIpv6 struct {
 	Dhcp6PrefixHintPlt *int `pulumi:"dhcp6PrefixHintPlt"`
 	// DHCPv6 prefix hint valid life time (sec).
 	Dhcp6PrefixHintVlt *int `pulumi:"dhcp6PrefixHintVlt"`
+	// DHCP6 relay interface ID.
+	Dhcp6RelayInterfaceId *string `pulumi:"dhcp6RelayInterfaceId"`
 	// DHCPv6 relay IP address.
 	Dhcp6RelayIp *string `pulumi:"dhcp6RelayIp"`
 	// Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
 	Dhcp6RelayService *string `pulumi:"dhcp6RelayService"`
+	// Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
+	Dhcp6RelaySourceInterface *string `pulumi:"dhcp6RelaySourceInterface"`
+	// IPv6 address used by the DHCP6 relay as its source IP.
+	Dhcp6RelaySourceIp *string `pulumi:"dhcp6RelaySourceIp"`
 	// DHCPv6 relay type. Valid values: `regular`.
 	Dhcp6RelayType *string `pulumi:"dhcp6RelayType"`
 	// Enable/disable sending of ICMPv6 redirects. Valid values: `enable`, `disable`.
@@ -10436,10 +11549,16 @@ type InterfaceIpv6Args struct {
 	Dhcp6PrefixHintPlt pulumi.IntPtrInput `pulumi:"dhcp6PrefixHintPlt"`
 	// DHCPv6 prefix hint valid life time (sec).
 	Dhcp6PrefixHintVlt pulumi.IntPtrInput `pulumi:"dhcp6PrefixHintVlt"`
+	// DHCP6 relay interface ID.
+	Dhcp6RelayInterfaceId pulumi.StringPtrInput `pulumi:"dhcp6RelayInterfaceId"`
 	// DHCPv6 relay IP address.
 	Dhcp6RelayIp pulumi.StringPtrInput `pulumi:"dhcp6RelayIp"`
 	// Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
 	Dhcp6RelayService pulumi.StringPtrInput `pulumi:"dhcp6RelayService"`
+	// Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
+	Dhcp6RelaySourceInterface pulumi.StringPtrInput `pulumi:"dhcp6RelaySourceInterface"`
+	// IPv6 address used by the DHCP6 relay as its source IP.
+	Dhcp6RelaySourceIp pulumi.StringPtrInput `pulumi:"dhcp6RelaySourceIp"`
 	// DHCPv6 relay type. Valid values: `regular`.
 	Dhcp6RelayType pulumi.StringPtrInput `pulumi:"dhcp6RelayType"`
 	// Enable/disable sending of ICMPv6 redirects. Valid values: `enable`, `disable`.
@@ -10636,6 +11755,11 @@ func (o InterfaceIpv6Output) Dhcp6PrefixHintVlt() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.Dhcp6PrefixHintVlt }).(pulumi.IntPtrOutput)
 }
 
+// DHCP6 relay interface ID.
+func (o InterfaceIpv6Output) Dhcp6RelayInterfaceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6RelayInterfaceId }).(pulumi.StringPtrOutput)
+}
+
 // DHCPv6 relay IP address.
 func (o InterfaceIpv6Output) Dhcp6RelayIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6RelayIp }).(pulumi.StringPtrOutput)
@@ -10644,6 +11768,16 @@ func (o InterfaceIpv6Output) Dhcp6RelayIp() pulumi.StringPtrOutput {
 // Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
 func (o InterfaceIpv6Output) Dhcp6RelayService() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6RelayService }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
+func (o InterfaceIpv6Output) Dhcp6RelaySourceInterface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6RelaySourceInterface }).(pulumi.StringPtrOutput)
+}
+
+// IPv6 address used by the DHCP6 relay as its source IP.
+func (o InterfaceIpv6Output) Dhcp6RelaySourceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6RelaySourceIp }).(pulumi.StringPtrOutput)
 }
 
 // DHCPv6 relay type. Valid values: `regular`.
@@ -10937,6 +12071,16 @@ func (o InterfaceIpv6PtrOutput) Dhcp6PrefixHintVlt() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// DHCP6 relay interface ID.
+func (o InterfaceIpv6PtrOutput) Dhcp6RelayInterfaceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InterfaceIpv6) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Dhcp6RelayInterfaceId
+	}).(pulumi.StringPtrOutput)
+}
+
 // DHCPv6 relay IP address.
 func (o InterfaceIpv6PtrOutput) Dhcp6RelayIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
@@ -10954,6 +12098,26 @@ func (o InterfaceIpv6PtrOutput) Dhcp6RelayService() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.Dhcp6RelayService
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
+func (o InterfaceIpv6PtrOutput) Dhcp6RelaySourceInterface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InterfaceIpv6) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Dhcp6RelaySourceInterface
+	}).(pulumi.StringPtrOutput)
+}
+
+// IPv6 address used by the DHCP6 relay as its source IP.
+func (o InterfaceIpv6PtrOutput) Dhcp6RelaySourceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InterfaceIpv6) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Dhcp6RelaySourceIp
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -11967,6 +13131,8 @@ type InterfaceIpv6Vrrp6 struct {
 	AcceptMode *string `pulumi:"acceptMode"`
 	// Advertisement interval (1 - 255 seconds).
 	AdvInterval *int `pulumi:"advInterval"`
+	// Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
+	IgnoreDefaultRoute *string `pulumi:"ignoreDefaultRoute"`
 	// Enable/disable preempt mode. Valid values: `enable`, `disable`.
 	Preempt *string `pulumi:"preempt"`
 	// Priority of learned routes.
@@ -12001,6 +13167,8 @@ type InterfaceIpv6Vrrp6Args struct {
 	AcceptMode pulumi.StringPtrInput `pulumi:"acceptMode"`
 	// Advertisement interval (1 - 255 seconds).
 	AdvInterval pulumi.IntPtrInput `pulumi:"advInterval"`
+	// Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
+	IgnoreDefaultRoute pulumi.StringPtrInput `pulumi:"ignoreDefaultRoute"`
 	// Enable/disable preempt mode. Valid values: `enable`, `disable`.
 	Preempt pulumi.StringPtrInput `pulumi:"preempt"`
 	// Priority of learned routes.
@@ -12078,6 +13246,11 @@ func (o InterfaceIpv6Vrrp6Output) AcceptMode() pulumi.StringPtrOutput {
 // Advertisement interval (1 - 255 seconds).
 func (o InterfaceIpv6Vrrp6Output) AdvInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Vrrp6) *int { return v.AdvInterval }).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
+func (o InterfaceIpv6Vrrp6Output) IgnoreDefaultRoute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InterfaceIpv6Vrrp6) *string { return v.IgnoreDefaultRoute }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable preempt mode. Valid values: `enable`, `disable`.
@@ -12351,6 +13524,8 @@ type InterfaceSecondaryip struct {
 	Ip *string `pulumi:"ip"`
 	// PING server status.
 	PingServStatus *int `pulumi:"pingServStatus"`
+	// DHCP relay IP address.
+	SecipRelayIp *string `pulumi:"secipRelayIp"`
 }
 
 // InterfaceSecondaryipInput is an input type that accepts InterfaceSecondaryipArgs and InterfaceSecondaryipOutput values.
@@ -12381,6 +13556,8 @@ type InterfaceSecondaryipArgs struct {
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// PING server status.
 	PingServStatus pulumi.IntPtrInput `pulumi:"pingServStatus"`
+	// DHCP relay IP address.
+	SecipRelayIp pulumi.StringPtrInput `pulumi:"secipRelayIp"`
 }
 
 func (InterfaceSecondaryipArgs) ElementType() reflect.Type {
@@ -12472,6 +13649,11 @@ func (o InterfaceSecondaryipOutput) Ip() pulumi.StringPtrOutput {
 // PING server status.
 func (o InterfaceSecondaryipOutput) PingServStatus() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceSecondaryip) *int { return v.PingServStatus }).(pulumi.IntPtrOutput)
+}
+
+// DHCP relay IP address.
+func (o InterfaceSecondaryipOutput) SecipRelayIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InterfaceSecondaryip) *string { return v.SecipRelayIp }).(pulumi.StringPtrOutput)
 }
 
 type InterfaceSecondaryipArrayOutput struct{ *pulumi.OutputState }
@@ -13984,7 +15166,7 @@ type LinkmonitorServerList struct {
 	Id *int `pulumi:"id"`
 	// Port number of the traffic to be used to monitor the server.
 	Port *int `pulumi:"port"`
-	// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
+	// Protocols used to monitor the server.
 	Protocol *string `pulumi:"protocol"`
 	// Weight of the monitor to this dst (0 - 255).
 	Weight *int `pulumi:"weight"`
@@ -14008,7 +15190,7 @@ type LinkmonitorServerListArgs struct {
 	Id pulumi.IntPtrInput `pulumi:"id"`
 	// Port number of the traffic to be used to monitor the server.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
+	// Protocols used to monitor the server.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 	// Weight of the monitor to this dst (0 - 255).
 	Weight pulumi.IntPtrInput `pulumi:"weight"`
@@ -14080,7 +15262,7 @@ func (o LinkmonitorServerListOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LinkmonitorServerList) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
+// Protocols used to monitor the server.
 func (o LinkmonitorServerListOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LinkmonitorServerList) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
@@ -14428,6 +15610,148 @@ func (o NdproxyMemberArrayOutput) Index(i pulumi.IntInput) NdproxyMemberOutput {
 	}).(NdproxyMemberOutput)
 }
 
+type NetflowCollector struct {
+	// Collector IP.
+	CollectorIp *string `pulumi:"collectorIp"`
+	// NetFlow collector port number.
+	CollectorPort *int `pulumi:"collectorPort"`
+	// ID.
+	Id *int `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
+	// Source IP address for communication with the NetFlow agent.
+	SourceIp *string `pulumi:"sourceIp"`
+}
+
+// NetflowCollectorInput is an input type that accepts NetflowCollectorArgs and NetflowCollectorOutput values.
+// You can construct a concrete instance of `NetflowCollectorInput` via:
+//
+//	NetflowCollectorArgs{...}
+type NetflowCollectorInput interface {
+	pulumi.Input
+
+	ToNetflowCollectorOutput() NetflowCollectorOutput
+	ToNetflowCollectorOutputWithContext(context.Context) NetflowCollectorOutput
+}
+
+type NetflowCollectorArgs struct {
+	// Collector IP.
+	CollectorIp pulumi.StringPtrInput `pulumi:"collectorIp"`
+	// NetFlow collector port number.
+	CollectorPort pulumi.IntPtrInput `pulumi:"collectorPort"`
+	// ID.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput `pulumi:"interfaceSelectMethod"`
+	// Source IP address for communication with the NetFlow agent.
+	SourceIp pulumi.StringPtrInput `pulumi:"sourceIp"`
+}
+
+func (NetflowCollectorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetflowCollector)(nil)).Elem()
+}
+
+func (i NetflowCollectorArgs) ToNetflowCollectorOutput() NetflowCollectorOutput {
+	return i.ToNetflowCollectorOutputWithContext(context.Background())
+}
+
+func (i NetflowCollectorArgs) ToNetflowCollectorOutputWithContext(ctx context.Context) NetflowCollectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetflowCollectorOutput)
+}
+
+// NetflowCollectorArrayInput is an input type that accepts NetflowCollectorArray and NetflowCollectorArrayOutput values.
+// You can construct a concrete instance of `NetflowCollectorArrayInput` via:
+//
+//	NetflowCollectorArray{ NetflowCollectorArgs{...} }
+type NetflowCollectorArrayInput interface {
+	pulumi.Input
+
+	ToNetflowCollectorArrayOutput() NetflowCollectorArrayOutput
+	ToNetflowCollectorArrayOutputWithContext(context.Context) NetflowCollectorArrayOutput
+}
+
+type NetflowCollectorArray []NetflowCollectorInput
+
+func (NetflowCollectorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetflowCollector)(nil)).Elem()
+}
+
+func (i NetflowCollectorArray) ToNetflowCollectorArrayOutput() NetflowCollectorArrayOutput {
+	return i.ToNetflowCollectorArrayOutputWithContext(context.Background())
+}
+
+func (i NetflowCollectorArray) ToNetflowCollectorArrayOutputWithContext(ctx context.Context) NetflowCollectorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetflowCollectorArrayOutput)
+}
+
+type NetflowCollectorOutput struct{ *pulumi.OutputState }
+
+func (NetflowCollectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetflowCollector)(nil)).Elem()
+}
+
+func (o NetflowCollectorOutput) ToNetflowCollectorOutput() NetflowCollectorOutput {
+	return o
+}
+
+func (o NetflowCollectorOutput) ToNetflowCollectorOutputWithContext(ctx context.Context) NetflowCollectorOutput {
+	return o
+}
+
+// Collector IP.
+func (o NetflowCollectorOutput) CollectorIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetflowCollector) *string { return v.CollectorIp }).(pulumi.StringPtrOutput)
+}
+
+// NetFlow collector port number.
+func (o NetflowCollectorOutput) CollectorPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NetflowCollector) *int { return v.CollectorPort }).(pulumi.IntPtrOutput)
+}
+
+// ID.
+func (o NetflowCollectorOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NetflowCollector) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o NetflowCollectorOutput) Interface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetflowCollector) *string { return v.Interface }).(pulumi.StringPtrOutput)
+}
+
+// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+func (o NetflowCollectorOutput) InterfaceSelectMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetflowCollector) *string { return v.InterfaceSelectMethod }).(pulumi.StringPtrOutput)
+}
+
+// Source IP address for communication with the NetFlow agent.
+func (o NetflowCollectorOutput) SourceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetflowCollector) *string { return v.SourceIp }).(pulumi.StringPtrOutput)
+}
+
+type NetflowCollectorArrayOutput struct{ *pulumi.OutputState }
+
+func (NetflowCollectorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetflowCollector)(nil)).Elem()
+}
+
+func (o NetflowCollectorArrayOutput) ToNetflowCollectorArrayOutput() NetflowCollectorArrayOutput {
+	return o
+}
+
+func (o NetflowCollectorArrayOutput) ToNetflowCollectorArrayOutputWithContext(ctx context.Context) NetflowCollectorArrayOutput {
+	return o
+}
+
+func (o NetflowCollectorArrayOutput) Index(i pulumi.IntInput) NetflowCollectorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NetflowCollector {
+		return vs[0].([]NetflowCollector)[vs[1].(int)]
+	}).(NetflowCollectorOutput)
+}
+
 type NpuPriorityProtocol struct {
 	// Enable/disable NPU BFD priority protocol. Valid values: `enable`, `disable`.
 	Bfd *string `pulumi:"bfd"`
@@ -14709,6 +16033,8 @@ type NtpNtpserver struct {
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
+	// Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
+	IpType *string `pulumi:"ipType"`
 	// Key for MD5/SHA1 authentication.
 	Key *string `pulumi:"key"`
 	// Key ID for authentication.
@@ -14739,6 +16065,8 @@ type NtpNtpserverArgs struct {
 	Interface pulumi.StringPtrInput `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
 	InterfaceSelectMethod pulumi.StringPtrInput `pulumi:"interfaceSelectMethod"`
+	// Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
+	IpType pulumi.StringPtrInput `pulumi:"ipType"`
 	// Key for MD5/SHA1 authentication.
 	Key pulumi.StringPtrInput `pulumi:"key"`
 	// Key ID for authentication.
@@ -14818,6 +16146,11 @@ func (o NtpNtpserverOutput) Interface() pulumi.StringPtrOutput {
 // Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
 func (o NtpNtpserverOutput) InterfaceSelectMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NtpNtpserver) *string { return v.InterfaceSelectMethod }).(pulumi.StringPtrOutput)
+}
+
+// Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
+func (o NtpNtpserverOutput) IpType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NtpNtpserver) *string { return v.IpType }).(pulumi.StringPtrOutput)
 }
 
 // Key for MD5/SHA1 authentication.
@@ -14955,6 +16288,556 @@ func (o ObjecttaggingTagArrayOutput) Index(i pulumi.IntInput) ObjecttaggingTagOu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ObjecttaggingTag {
 		return vs[0].([]ObjecttaggingTag)[vs[1].(int)]
 	}).(ObjecttaggingTagOutput)
+}
+
+type PcpserverPool struct {
+	// Allowed PCP opcode. Valid values: `map`, `peer`, `announce`.
+	AllowOpcode *string `pulumi:"allowOpcode"`
+	// Number of multicast announcements.
+	AnnouncementCount *int `pulumi:"announcementCount"`
+	// Enable to respond to ARP requests for external IP (default = enable). Valid values: `disable`, `enable`.
+	ArpReply *string `pulumi:"arpReply"`
+	// Mapping limit per client (0 - 65535, default = 0, 0 = unlimited).
+	ClientMappingLimit *int `pulumi:"clientMappingLimit"`
+	// Subnets from which PCP requests are accepted. The structure of `clientSubnet` block is documented below.
+	ClientSubnets []PcpserverPoolClientSubnet `pulumi:"clientSubnets"`
+	// Description.
+	Description *string `pulumi:"description"`
+	// External interface name.
+	ExtIntf *string `pulumi:"extIntf"`
+	// IP address or address range on the external interface that you want to map to an address on the internal network.
+	Extip *string `pulumi:"extip"`
+	// Incoming port number range that you want to map to a port number on the internal network.
+	Extport *string `pulumi:"extport"`
+	// ID.
+	Id *int `pulumi:"id"`
+	// Internal interface name. The structure of `intlIntf` block is documented below.
+	IntlIntfs []PcpserverPoolIntlIntf `pulumi:"intlIntfs"`
+	// Filter limit per mapping (0 - 5, default = 1).
+	MappingFilterLimit *int `pulumi:"mappingFilterLimit"`
+	// Maximal lifetime of a PCP mapping in seconds (3600 - 604800, default = 86400).
+	MaximalLifetime *int `pulumi:"maximalLifetime"`
+	// Minimal lifetime of a PCP mapping in seconds (60 - 300, default = 120).
+	MinimalLifetime *int `pulumi:"minimalLifetime"`
+	// Enable/disable multicast announcements. Valid values: `enable`, `disable`.
+	MulticastAnnouncement *string `pulumi:"multicastAnnouncement"`
+	// PCP pool name.
+	Name *string `pulumi:"name"`
+	// Minimum delay (in seconds) the PCP Server will wait before recycling mappings that have expired (0 - 3600, default = 0).
+	RecycleDelay *int `pulumi:"recycleDelay"`
+	// Allow/disallow third party option. Valid values: `allow`, `disallow`.
+	ThirdParty *string `pulumi:"thirdParty"`
+	// Subnets from which third party requests are accepted. The structure of `thirdPartySubnet` block is documented below.
+	ThirdPartySubnets []PcpserverPoolThirdPartySubnet `pulumi:"thirdPartySubnets"`
+}
+
+// PcpserverPoolInput is an input type that accepts PcpserverPoolArgs and PcpserverPoolOutput values.
+// You can construct a concrete instance of `PcpserverPoolInput` via:
+//
+//	PcpserverPoolArgs{...}
+type PcpserverPoolInput interface {
+	pulumi.Input
+
+	ToPcpserverPoolOutput() PcpserverPoolOutput
+	ToPcpserverPoolOutputWithContext(context.Context) PcpserverPoolOutput
+}
+
+type PcpserverPoolArgs struct {
+	// Allowed PCP opcode. Valid values: `map`, `peer`, `announce`.
+	AllowOpcode pulumi.StringPtrInput `pulumi:"allowOpcode"`
+	// Number of multicast announcements.
+	AnnouncementCount pulumi.IntPtrInput `pulumi:"announcementCount"`
+	// Enable to respond to ARP requests for external IP (default = enable). Valid values: `disable`, `enable`.
+	ArpReply pulumi.StringPtrInput `pulumi:"arpReply"`
+	// Mapping limit per client (0 - 65535, default = 0, 0 = unlimited).
+	ClientMappingLimit pulumi.IntPtrInput `pulumi:"clientMappingLimit"`
+	// Subnets from which PCP requests are accepted. The structure of `clientSubnet` block is documented below.
+	ClientSubnets PcpserverPoolClientSubnetArrayInput `pulumi:"clientSubnets"`
+	// Description.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// External interface name.
+	ExtIntf pulumi.StringPtrInput `pulumi:"extIntf"`
+	// IP address or address range on the external interface that you want to map to an address on the internal network.
+	Extip pulumi.StringPtrInput `pulumi:"extip"`
+	// Incoming port number range that you want to map to a port number on the internal network.
+	Extport pulumi.StringPtrInput `pulumi:"extport"`
+	// ID.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Internal interface name. The structure of `intlIntf` block is documented below.
+	IntlIntfs PcpserverPoolIntlIntfArrayInput `pulumi:"intlIntfs"`
+	// Filter limit per mapping (0 - 5, default = 1).
+	MappingFilterLimit pulumi.IntPtrInput `pulumi:"mappingFilterLimit"`
+	// Maximal lifetime of a PCP mapping in seconds (3600 - 604800, default = 86400).
+	MaximalLifetime pulumi.IntPtrInput `pulumi:"maximalLifetime"`
+	// Minimal lifetime of a PCP mapping in seconds (60 - 300, default = 120).
+	MinimalLifetime pulumi.IntPtrInput `pulumi:"minimalLifetime"`
+	// Enable/disable multicast announcements. Valid values: `enable`, `disable`.
+	MulticastAnnouncement pulumi.StringPtrInput `pulumi:"multicastAnnouncement"`
+	// PCP pool name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Minimum delay (in seconds) the PCP Server will wait before recycling mappings that have expired (0 - 3600, default = 0).
+	RecycleDelay pulumi.IntPtrInput `pulumi:"recycleDelay"`
+	// Allow/disallow third party option. Valid values: `allow`, `disallow`.
+	ThirdParty pulumi.StringPtrInput `pulumi:"thirdParty"`
+	// Subnets from which third party requests are accepted. The structure of `thirdPartySubnet` block is documented below.
+	ThirdPartySubnets PcpserverPoolThirdPartySubnetArrayInput `pulumi:"thirdPartySubnets"`
+}
+
+func (PcpserverPoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PcpserverPool)(nil)).Elem()
+}
+
+func (i PcpserverPoolArgs) ToPcpserverPoolOutput() PcpserverPoolOutput {
+	return i.ToPcpserverPoolOutputWithContext(context.Background())
+}
+
+func (i PcpserverPoolArgs) ToPcpserverPoolOutputWithContext(ctx context.Context) PcpserverPoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PcpserverPoolOutput)
+}
+
+// PcpserverPoolArrayInput is an input type that accepts PcpserverPoolArray and PcpserverPoolArrayOutput values.
+// You can construct a concrete instance of `PcpserverPoolArrayInput` via:
+//
+//	PcpserverPoolArray{ PcpserverPoolArgs{...} }
+type PcpserverPoolArrayInput interface {
+	pulumi.Input
+
+	ToPcpserverPoolArrayOutput() PcpserverPoolArrayOutput
+	ToPcpserverPoolArrayOutputWithContext(context.Context) PcpserverPoolArrayOutput
+}
+
+type PcpserverPoolArray []PcpserverPoolInput
+
+func (PcpserverPoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PcpserverPool)(nil)).Elem()
+}
+
+func (i PcpserverPoolArray) ToPcpserverPoolArrayOutput() PcpserverPoolArrayOutput {
+	return i.ToPcpserverPoolArrayOutputWithContext(context.Background())
+}
+
+func (i PcpserverPoolArray) ToPcpserverPoolArrayOutputWithContext(ctx context.Context) PcpserverPoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PcpserverPoolArrayOutput)
+}
+
+type PcpserverPoolOutput struct{ *pulumi.OutputState }
+
+func (PcpserverPoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PcpserverPool)(nil)).Elem()
+}
+
+func (o PcpserverPoolOutput) ToPcpserverPoolOutput() PcpserverPoolOutput {
+	return o
+}
+
+func (o PcpserverPoolOutput) ToPcpserverPoolOutputWithContext(ctx context.Context) PcpserverPoolOutput {
+	return o
+}
+
+// Allowed PCP opcode. Valid values: `map`, `peer`, `announce`.
+func (o PcpserverPoolOutput) AllowOpcode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *string { return v.AllowOpcode }).(pulumi.StringPtrOutput)
+}
+
+// Number of multicast announcements.
+func (o PcpserverPoolOutput) AnnouncementCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *int { return v.AnnouncementCount }).(pulumi.IntPtrOutput)
+}
+
+// Enable to respond to ARP requests for external IP (default = enable). Valid values: `disable`, `enable`.
+func (o PcpserverPoolOutput) ArpReply() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *string { return v.ArpReply }).(pulumi.StringPtrOutput)
+}
+
+// Mapping limit per client (0 - 65535, default = 0, 0 = unlimited).
+func (o PcpserverPoolOutput) ClientMappingLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *int { return v.ClientMappingLimit }).(pulumi.IntPtrOutput)
+}
+
+// Subnets from which PCP requests are accepted. The structure of `clientSubnet` block is documented below.
+func (o PcpserverPoolOutput) ClientSubnets() PcpserverPoolClientSubnetArrayOutput {
+	return o.ApplyT(func(v PcpserverPool) []PcpserverPoolClientSubnet { return v.ClientSubnets }).(PcpserverPoolClientSubnetArrayOutput)
+}
+
+// Description.
+func (o PcpserverPoolOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// External interface name.
+func (o PcpserverPoolOutput) ExtIntf() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *string { return v.ExtIntf }).(pulumi.StringPtrOutput)
+}
+
+// IP address or address range on the external interface that you want to map to an address on the internal network.
+func (o PcpserverPoolOutput) Extip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *string { return v.Extip }).(pulumi.StringPtrOutput)
+}
+
+// Incoming port number range that you want to map to a port number on the internal network.
+func (o PcpserverPoolOutput) Extport() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *string { return v.Extport }).(pulumi.StringPtrOutput)
+}
+
+// ID.
+func (o PcpserverPoolOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+// Internal interface name. The structure of `intlIntf` block is documented below.
+func (o PcpserverPoolOutput) IntlIntfs() PcpserverPoolIntlIntfArrayOutput {
+	return o.ApplyT(func(v PcpserverPool) []PcpserverPoolIntlIntf { return v.IntlIntfs }).(PcpserverPoolIntlIntfArrayOutput)
+}
+
+// Filter limit per mapping (0 - 5, default = 1).
+func (o PcpserverPoolOutput) MappingFilterLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *int { return v.MappingFilterLimit }).(pulumi.IntPtrOutput)
+}
+
+// Maximal lifetime of a PCP mapping in seconds (3600 - 604800, default = 86400).
+func (o PcpserverPoolOutput) MaximalLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *int { return v.MaximalLifetime }).(pulumi.IntPtrOutput)
+}
+
+// Minimal lifetime of a PCP mapping in seconds (60 - 300, default = 120).
+func (o PcpserverPoolOutput) MinimalLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *int { return v.MinimalLifetime }).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable multicast announcements. Valid values: `enable`, `disable`.
+func (o PcpserverPoolOutput) MulticastAnnouncement() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *string { return v.MulticastAnnouncement }).(pulumi.StringPtrOutput)
+}
+
+// PCP pool name.
+func (o PcpserverPoolOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Minimum delay (in seconds) the PCP Server will wait before recycling mappings that have expired (0 - 3600, default = 0).
+func (o PcpserverPoolOutput) RecycleDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *int { return v.RecycleDelay }).(pulumi.IntPtrOutput)
+}
+
+// Allow/disallow third party option. Valid values: `allow`, `disallow`.
+func (o PcpserverPoolOutput) ThirdParty() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PcpserverPool) *string { return v.ThirdParty }).(pulumi.StringPtrOutput)
+}
+
+// Subnets from which third party requests are accepted. The structure of `thirdPartySubnet` block is documented below.
+func (o PcpserverPoolOutput) ThirdPartySubnets() PcpserverPoolThirdPartySubnetArrayOutput {
+	return o.ApplyT(func(v PcpserverPool) []PcpserverPoolThirdPartySubnet { return v.ThirdPartySubnets }).(PcpserverPoolThirdPartySubnetArrayOutput)
+}
+
+type PcpserverPoolArrayOutput struct{ *pulumi.OutputState }
+
+func (PcpserverPoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PcpserverPool)(nil)).Elem()
+}
+
+func (o PcpserverPoolArrayOutput) ToPcpserverPoolArrayOutput() PcpserverPoolArrayOutput {
+	return o
+}
+
+func (o PcpserverPoolArrayOutput) ToPcpserverPoolArrayOutputWithContext(ctx context.Context) PcpserverPoolArrayOutput {
+	return o
+}
+
+func (o PcpserverPoolArrayOutput) Index(i pulumi.IntInput) PcpserverPoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PcpserverPool {
+		return vs[0].([]PcpserverPool)[vs[1].(int)]
+	}).(PcpserverPoolOutput)
+}
+
+type PcpserverPoolClientSubnet struct {
+	// Client subnets.
+	Subnet *string `pulumi:"subnet"`
+}
+
+// PcpserverPoolClientSubnetInput is an input type that accepts PcpserverPoolClientSubnetArgs and PcpserverPoolClientSubnetOutput values.
+// You can construct a concrete instance of `PcpserverPoolClientSubnetInput` via:
+//
+//	PcpserverPoolClientSubnetArgs{...}
+type PcpserverPoolClientSubnetInput interface {
+	pulumi.Input
+
+	ToPcpserverPoolClientSubnetOutput() PcpserverPoolClientSubnetOutput
+	ToPcpserverPoolClientSubnetOutputWithContext(context.Context) PcpserverPoolClientSubnetOutput
+}
+
+type PcpserverPoolClientSubnetArgs struct {
+	// Client subnets.
+	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
+}
+
+func (PcpserverPoolClientSubnetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PcpserverPoolClientSubnet)(nil)).Elem()
+}
+
+func (i PcpserverPoolClientSubnetArgs) ToPcpserverPoolClientSubnetOutput() PcpserverPoolClientSubnetOutput {
+	return i.ToPcpserverPoolClientSubnetOutputWithContext(context.Background())
+}
+
+func (i PcpserverPoolClientSubnetArgs) ToPcpserverPoolClientSubnetOutputWithContext(ctx context.Context) PcpserverPoolClientSubnetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PcpserverPoolClientSubnetOutput)
+}
+
+// PcpserverPoolClientSubnetArrayInput is an input type that accepts PcpserverPoolClientSubnetArray and PcpserverPoolClientSubnetArrayOutput values.
+// You can construct a concrete instance of `PcpserverPoolClientSubnetArrayInput` via:
+//
+//	PcpserverPoolClientSubnetArray{ PcpserverPoolClientSubnetArgs{...} }
+type PcpserverPoolClientSubnetArrayInput interface {
+	pulumi.Input
+
+	ToPcpserverPoolClientSubnetArrayOutput() PcpserverPoolClientSubnetArrayOutput
+	ToPcpserverPoolClientSubnetArrayOutputWithContext(context.Context) PcpserverPoolClientSubnetArrayOutput
+}
+
+type PcpserverPoolClientSubnetArray []PcpserverPoolClientSubnetInput
+
+func (PcpserverPoolClientSubnetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PcpserverPoolClientSubnet)(nil)).Elem()
+}
+
+func (i PcpserverPoolClientSubnetArray) ToPcpserverPoolClientSubnetArrayOutput() PcpserverPoolClientSubnetArrayOutput {
+	return i.ToPcpserverPoolClientSubnetArrayOutputWithContext(context.Background())
+}
+
+func (i PcpserverPoolClientSubnetArray) ToPcpserverPoolClientSubnetArrayOutputWithContext(ctx context.Context) PcpserverPoolClientSubnetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PcpserverPoolClientSubnetArrayOutput)
+}
+
+type PcpserverPoolClientSubnetOutput struct{ *pulumi.OutputState }
+
+func (PcpserverPoolClientSubnetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PcpserverPoolClientSubnet)(nil)).Elem()
+}
+
+func (o PcpserverPoolClientSubnetOutput) ToPcpserverPoolClientSubnetOutput() PcpserverPoolClientSubnetOutput {
+	return o
+}
+
+func (o PcpserverPoolClientSubnetOutput) ToPcpserverPoolClientSubnetOutputWithContext(ctx context.Context) PcpserverPoolClientSubnetOutput {
+	return o
+}
+
+// Client subnets.
+func (o PcpserverPoolClientSubnetOutput) Subnet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PcpserverPoolClientSubnet) *string { return v.Subnet }).(pulumi.StringPtrOutput)
+}
+
+type PcpserverPoolClientSubnetArrayOutput struct{ *pulumi.OutputState }
+
+func (PcpserverPoolClientSubnetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PcpserverPoolClientSubnet)(nil)).Elem()
+}
+
+func (o PcpserverPoolClientSubnetArrayOutput) ToPcpserverPoolClientSubnetArrayOutput() PcpserverPoolClientSubnetArrayOutput {
+	return o
+}
+
+func (o PcpserverPoolClientSubnetArrayOutput) ToPcpserverPoolClientSubnetArrayOutputWithContext(ctx context.Context) PcpserverPoolClientSubnetArrayOutput {
+	return o
+}
+
+func (o PcpserverPoolClientSubnetArrayOutput) Index(i pulumi.IntInput) PcpserverPoolClientSubnetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PcpserverPoolClientSubnet {
+		return vs[0].([]PcpserverPoolClientSubnet)[vs[1].(int)]
+	}).(PcpserverPoolClientSubnetOutput)
+}
+
+type PcpserverPoolIntlIntf struct {
+	// Interface name.
+	InterfaceName *string `pulumi:"interfaceName"`
+}
+
+// PcpserverPoolIntlIntfInput is an input type that accepts PcpserverPoolIntlIntfArgs and PcpserverPoolIntlIntfOutput values.
+// You can construct a concrete instance of `PcpserverPoolIntlIntfInput` via:
+//
+//	PcpserverPoolIntlIntfArgs{...}
+type PcpserverPoolIntlIntfInput interface {
+	pulumi.Input
+
+	ToPcpserverPoolIntlIntfOutput() PcpserverPoolIntlIntfOutput
+	ToPcpserverPoolIntlIntfOutputWithContext(context.Context) PcpserverPoolIntlIntfOutput
+}
+
+type PcpserverPoolIntlIntfArgs struct {
+	// Interface name.
+	InterfaceName pulumi.StringPtrInput `pulumi:"interfaceName"`
+}
+
+func (PcpserverPoolIntlIntfArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PcpserverPoolIntlIntf)(nil)).Elem()
+}
+
+func (i PcpserverPoolIntlIntfArgs) ToPcpserverPoolIntlIntfOutput() PcpserverPoolIntlIntfOutput {
+	return i.ToPcpserverPoolIntlIntfOutputWithContext(context.Background())
+}
+
+func (i PcpserverPoolIntlIntfArgs) ToPcpserverPoolIntlIntfOutputWithContext(ctx context.Context) PcpserverPoolIntlIntfOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PcpserverPoolIntlIntfOutput)
+}
+
+// PcpserverPoolIntlIntfArrayInput is an input type that accepts PcpserverPoolIntlIntfArray and PcpserverPoolIntlIntfArrayOutput values.
+// You can construct a concrete instance of `PcpserverPoolIntlIntfArrayInput` via:
+//
+//	PcpserverPoolIntlIntfArray{ PcpserverPoolIntlIntfArgs{...} }
+type PcpserverPoolIntlIntfArrayInput interface {
+	pulumi.Input
+
+	ToPcpserverPoolIntlIntfArrayOutput() PcpserverPoolIntlIntfArrayOutput
+	ToPcpserverPoolIntlIntfArrayOutputWithContext(context.Context) PcpserverPoolIntlIntfArrayOutput
+}
+
+type PcpserverPoolIntlIntfArray []PcpserverPoolIntlIntfInput
+
+func (PcpserverPoolIntlIntfArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PcpserverPoolIntlIntf)(nil)).Elem()
+}
+
+func (i PcpserverPoolIntlIntfArray) ToPcpserverPoolIntlIntfArrayOutput() PcpserverPoolIntlIntfArrayOutput {
+	return i.ToPcpserverPoolIntlIntfArrayOutputWithContext(context.Background())
+}
+
+func (i PcpserverPoolIntlIntfArray) ToPcpserverPoolIntlIntfArrayOutputWithContext(ctx context.Context) PcpserverPoolIntlIntfArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PcpserverPoolIntlIntfArrayOutput)
+}
+
+type PcpserverPoolIntlIntfOutput struct{ *pulumi.OutputState }
+
+func (PcpserverPoolIntlIntfOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PcpserverPoolIntlIntf)(nil)).Elem()
+}
+
+func (o PcpserverPoolIntlIntfOutput) ToPcpserverPoolIntlIntfOutput() PcpserverPoolIntlIntfOutput {
+	return o
+}
+
+func (o PcpserverPoolIntlIntfOutput) ToPcpserverPoolIntlIntfOutputWithContext(ctx context.Context) PcpserverPoolIntlIntfOutput {
+	return o
+}
+
+// Interface name.
+func (o PcpserverPoolIntlIntfOutput) InterfaceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PcpserverPoolIntlIntf) *string { return v.InterfaceName }).(pulumi.StringPtrOutput)
+}
+
+type PcpserverPoolIntlIntfArrayOutput struct{ *pulumi.OutputState }
+
+func (PcpserverPoolIntlIntfArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PcpserverPoolIntlIntf)(nil)).Elem()
+}
+
+func (o PcpserverPoolIntlIntfArrayOutput) ToPcpserverPoolIntlIntfArrayOutput() PcpserverPoolIntlIntfArrayOutput {
+	return o
+}
+
+func (o PcpserverPoolIntlIntfArrayOutput) ToPcpserverPoolIntlIntfArrayOutputWithContext(ctx context.Context) PcpserverPoolIntlIntfArrayOutput {
+	return o
+}
+
+func (o PcpserverPoolIntlIntfArrayOutput) Index(i pulumi.IntInput) PcpserverPoolIntlIntfOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PcpserverPoolIntlIntf {
+		return vs[0].([]PcpserverPoolIntlIntf)[vs[1].(int)]
+	}).(PcpserverPoolIntlIntfOutput)
+}
+
+type PcpserverPoolThirdPartySubnet struct {
+	// Third party subnets.
+	Subnet *string `pulumi:"subnet"`
+}
+
+// PcpserverPoolThirdPartySubnetInput is an input type that accepts PcpserverPoolThirdPartySubnetArgs and PcpserverPoolThirdPartySubnetOutput values.
+// You can construct a concrete instance of `PcpserverPoolThirdPartySubnetInput` via:
+//
+//	PcpserverPoolThirdPartySubnetArgs{...}
+type PcpserverPoolThirdPartySubnetInput interface {
+	pulumi.Input
+
+	ToPcpserverPoolThirdPartySubnetOutput() PcpserverPoolThirdPartySubnetOutput
+	ToPcpserverPoolThirdPartySubnetOutputWithContext(context.Context) PcpserverPoolThirdPartySubnetOutput
+}
+
+type PcpserverPoolThirdPartySubnetArgs struct {
+	// Third party subnets.
+	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
+}
+
+func (PcpserverPoolThirdPartySubnetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PcpserverPoolThirdPartySubnet)(nil)).Elem()
+}
+
+func (i PcpserverPoolThirdPartySubnetArgs) ToPcpserverPoolThirdPartySubnetOutput() PcpserverPoolThirdPartySubnetOutput {
+	return i.ToPcpserverPoolThirdPartySubnetOutputWithContext(context.Background())
+}
+
+func (i PcpserverPoolThirdPartySubnetArgs) ToPcpserverPoolThirdPartySubnetOutputWithContext(ctx context.Context) PcpserverPoolThirdPartySubnetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PcpserverPoolThirdPartySubnetOutput)
+}
+
+// PcpserverPoolThirdPartySubnetArrayInput is an input type that accepts PcpserverPoolThirdPartySubnetArray and PcpserverPoolThirdPartySubnetArrayOutput values.
+// You can construct a concrete instance of `PcpserverPoolThirdPartySubnetArrayInput` via:
+//
+//	PcpserverPoolThirdPartySubnetArray{ PcpserverPoolThirdPartySubnetArgs{...} }
+type PcpserverPoolThirdPartySubnetArrayInput interface {
+	pulumi.Input
+
+	ToPcpserverPoolThirdPartySubnetArrayOutput() PcpserverPoolThirdPartySubnetArrayOutput
+	ToPcpserverPoolThirdPartySubnetArrayOutputWithContext(context.Context) PcpserverPoolThirdPartySubnetArrayOutput
+}
+
+type PcpserverPoolThirdPartySubnetArray []PcpserverPoolThirdPartySubnetInput
+
+func (PcpserverPoolThirdPartySubnetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PcpserverPoolThirdPartySubnet)(nil)).Elem()
+}
+
+func (i PcpserverPoolThirdPartySubnetArray) ToPcpserverPoolThirdPartySubnetArrayOutput() PcpserverPoolThirdPartySubnetArrayOutput {
+	return i.ToPcpserverPoolThirdPartySubnetArrayOutputWithContext(context.Background())
+}
+
+func (i PcpserverPoolThirdPartySubnetArray) ToPcpserverPoolThirdPartySubnetArrayOutputWithContext(ctx context.Context) PcpserverPoolThirdPartySubnetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PcpserverPoolThirdPartySubnetArrayOutput)
+}
+
+type PcpserverPoolThirdPartySubnetOutput struct{ *pulumi.OutputState }
+
+func (PcpserverPoolThirdPartySubnetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PcpserverPoolThirdPartySubnet)(nil)).Elem()
+}
+
+func (o PcpserverPoolThirdPartySubnetOutput) ToPcpserverPoolThirdPartySubnetOutput() PcpserverPoolThirdPartySubnetOutput {
+	return o
+}
+
+func (o PcpserverPoolThirdPartySubnetOutput) ToPcpserverPoolThirdPartySubnetOutputWithContext(ctx context.Context) PcpserverPoolThirdPartySubnetOutput {
+	return o
+}
+
+// Third party subnets.
+func (o PcpserverPoolThirdPartySubnetOutput) Subnet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PcpserverPoolThirdPartySubnet) *string { return v.Subnet }).(pulumi.StringPtrOutput)
+}
+
+type PcpserverPoolThirdPartySubnetArrayOutput struct{ *pulumi.OutputState }
+
+func (PcpserverPoolThirdPartySubnetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PcpserverPoolThirdPartySubnet)(nil)).Elem()
+}
+
+func (o PcpserverPoolThirdPartySubnetArrayOutput) ToPcpserverPoolThirdPartySubnetArrayOutput() PcpserverPoolThirdPartySubnetArrayOutput {
+	return o
+}
+
+func (o PcpserverPoolThirdPartySubnetArrayOutput) ToPcpserverPoolThirdPartySubnetArrayOutputWithContext(ctx context.Context) PcpserverPoolThirdPartySubnetArrayOutput {
+	return o
+}
+
+func (o PcpserverPoolThirdPartySubnetArrayOutput) Index(i pulumi.IntInput) PcpserverPoolThirdPartySubnetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PcpserverPoolThirdPartySubnet {
+		return vs[0].([]PcpserverPoolThirdPartySubnet)[vs[1].(int)]
+	}).(PcpserverPoolThirdPartySubnetOutput)
 }
 
 type PtpServerInterface struct {
@@ -17730,6 +19613,103 @@ func (o SamlServiceProviderAssertionAttributeArrayOutput) Index(i pulumi.IntInpu
 	}).(SamlServiceProviderAssertionAttributeOutput)
 }
 
+type SdnconnectorCompartmentList struct {
+	// OCI compartment ID.
+	CompartmentId *string `pulumi:"compartmentId"`
+}
+
+// SdnconnectorCompartmentListInput is an input type that accepts SdnconnectorCompartmentListArgs and SdnconnectorCompartmentListOutput values.
+// You can construct a concrete instance of `SdnconnectorCompartmentListInput` via:
+//
+//	SdnconnectorCompartmentListArgs{...}
+type SdnconnectorCompartmentListInput interface {
+	pulumi.Input
+
+	ToSdnconnectorCompartmentListOutput() SdnconnectorCompartmentListOutput
+	ToSdnconnectorCompartmentListOutputWithContext(context.Context) SdnconnectorCompartmentListOutput
+}
+
+type SdnconnectorCompartmentListArgs struct {
+	// OCI compartment ID.
+	CompartmentId pulumi.StringPtrInput `pulumi:"compartmentId"`
+}
+
+func (SdnconnectorCompartmentListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SdnconnectorCompartmentList)(nil)).Elem()
+}
+
+func (i SdnconnectorCompartmentListArgs) ToSdnconnectorCompartmentListOutput() SdnconnectorCompartmentListOutput {
+	return i.ToSdnconnectorCompartmentListOutputWithContext(context.Background())
+}
+
+func (i SdnconnectorCompartmentListArgs) ToSdnconnectorCompartmentListOutputWithContext(ctx context.Context) SdnconnectorCompartmentListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SdnconnectorCompartmentListOutput)
+}
+
+// SdnconnectorCompartmentListArrayInput is an input type that accepts SdnconnectorCompartmentListArray and SdnconnectorCompartmentListArrayOutput values.
+// You can construct a concrete instance of `SdnconnectorCompartmentListArrayInput` via:
+//
+//	SdnconnectorCompartmentListArray{ SdnconnectorCompartmentListArgs{...} }
+type SdnconnectorCompartmentListArrayInput interface {
+	pulumi.Input
+
+	ToSdnconnectorCompartmentListArrayOutput() SdnconnectorCompartmentListArrayOutput
+	ToSdnconnectorCompartmentListArrayOutputWithContext(context.Context) SdnconnectorCompartmentListArrayOutput
+}
+
+type SdnconnectorCompartmentListArray []SdnconnectorCompartmentListInput
+
+func (SdnconnectorCompartmentListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SdnconnectorCompartmentList)(nil)).Elem()
+}
+
+func (i SdnconnectorCompartmentListArray) ToSdnconnectorCompartmentListArrayOutput() SdnconnectorCompartmentListArrayOutput {
+	return i.ToSdnconnectorCompartmentListArrayOutputWithContext(context.Background())
+}
+
+func (i SdnconnectorCompartmentListArray) ToSdnconnectorCompartmentListArrayOutputWithContext(ctx context.Context) SdnconnectorCompartmentListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SdnconnectorCompartmentListArrayOutput)
+}
+
+type SdnconnectorCompartmentListOutput struct{ *pulumi.OutputState }
+
+func (SdnconnectorCompartmentListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SdnconnectorCompartmentList)(nil)).Elem()
+}
+
+func (o SdnconnectorCompartmentListOutput) ToSdnconnectorCompartmentListOutput() SdnconnectorCompartmentListOutput {
+	return o
+}
+
+func (o SdnconnectorCompartmentListOutput) ToSdnconnectorCompartmentListOutputWithContext(ctx context.Context) SdnconnectorCompartmentListOutput {
+	return o
+}
+
+// OCI compartment ID.
+func (o SdnconnectorCompartmentListOutput) CompartmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SdnconnectorCompartmentList) *string { return v.CompartmentId }).(pulumi.StringPtrOutput)
+}
+
+type SdnconnectorCompartmentListArrayOutput struct{ *pulumi.OutputState }
+
+func (SdnconnectorCompartmentListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SdnconnectorCompartmentList)(nil)).Elem()
+}
+
+func (o SdnconnectorCompartmentListArrayOutput) ToSdnconnectorCompartmentListArrayOutput() SdnconnectorCompartmentListArrayOutput {
+	return o
+}
+
+func (o SdnconnectorCompartmentListArrayOutput) ToSdnconnectorCompartmentListArrayOutputWithContext(ctx context.Context) SdnconnectorCompartmentListArrayOutput {
+	return o
+}
+
+func (o SdnconnectorCompartmentListArrayOutput) Index(i pulumi.IntInput) SdnconnectorCompartmentListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SdnconnectorCompartmentList {
+		return vs[0].([]SdnconnectorCompartmentList)[vs[1].(int)]
+	}).(SdnconnectorCompartmentListOutput)
+}
+
 type SdnconnectorExternalAccountList struct {
 	// AWS external ID.
 	ExternalId *string `pulumi:"externalId"`
@@ -18569,6 +20549,103 @@ func (o SdnconnectorNicIpArrayOutput) Index(i pulumi.IntInput) SdnconnectorNicIp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SdnconnectorNicIp {
 		return vs[0].([]SdnconnectorNicIp)[vs[1].(int)]
 	}).(SdnconnectorNicIpOutput)
+}
+
+type SdnconnectorOciRegionList struct {
+	// OCI region.
+	Region *string `pulumi:"region"`
+}
+
+// SdnconnectorOciRegionListInput is an input type that accepts SdnconnectorOciRegionListArgs and SdnconnectorOciRegionListOutput values.
+// You can construct a concrete instance of `SdnconnectorOciRegionListInput` via:
+//
+//	SdnconnectorOciRegionListArgs{...}
+type SdnconnectorOciRegionListInput interface {
+	pulumi.Input
+
+	ToSdnconnectorOciRegionListOutput() SdnconnectorOciRegionListOutput
+	ToSdnconnectorOciRegionListOutputWithContext(context.Context) SdnconnectorOciRegionListOutput
+}
+
+type SdnconnectorOciRegionListArgs struct {
+	// OCI region.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (SdnconnectorOciRegionListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SdnconnectorOciRegionList)(nil)).Elem()
+}
+
+func (i SdnconnectorOciRegionListArgs) ToSdnconnectorOciRegionListOutput() SdnconnectorOciRegionListOutput {
+	return i.ToSdnconnectorOciRegionListOutputWithContext(context.Background())
+}
+
+func (i SdnconnectorOciRegionListArgs) ToSdnconnectorOciRegionListOutputWithContext(ctx context.Context) SdnconnectorOciRegionListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SdnconnectorOciRegionListOutput)
+}
+
+// SdnconnectorOciRegionListArrayInput is an input type that accepts SdnconnectorOciRegionListArray and SdnconnectorOciRegionListArrayOutput values.
+// You can construct a concrete instance of `SdnconnectorOciRegionListArrayInput` via:
+//
+//	SdnconnectorOciRegionListArray{ SdnconnectorOciRegionListArgs{...} }
+type SdnconnectorOciRegionListArrayInput interface {
+	pulumi.Input
+
+	ToSdnconnectorOciRegionListArrayOutput() SdnconnectorOciRegionListArrayOutput
+	ToSdnconnectorOciRegionListArrayOutputWithContext(context.Context) SdnconnectorOciRegionListArrayOutput
+}
+
+type SdnconnectorOciRegionListArray []SdnconnectorOciRegionListInput
+
+func (SdnconnectorOciRegionListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SdnconnectorOciRegionList)(nil)).Elem()
+}
+
+func (i SdnconnectorOciRegionListArray) ToSdnconnectorOciRegionListArrayOutput() SdnconnectorOciRegionListArrayOutput {
+	return i.ToSdnconnectorOciRegionListArrayOutputWithContext(context.Background())
+}
+
+func (i SdnconnectorOciRegionListArray) ToSdnconnectorOciRegionListArrayOutputWithContext(ctx context.Context) SdnconnectorOciRegionListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SdnconnectorOciRegionListArrayOutput)
+}
+
+type SdnconnectorOciRegionListOutput struct{ *pulumi.OutputState }
+
+func (SdnconnectorOciRegionListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SdnconnectorOciRegionList)(nil)).Elem()
+}
+
+func (o SdnconnectorOciRegionListOutput) ToSdnconnectorOciRegionListOutput() SdnconnectorOciRegionListOutput {
+	return o
+}
+
+func (o SdnconnectorOciRegionListOutput) ToSdnconnectorOciRegionListOutputWithContext(ctx context.Context) SdnconnectorOciRegionListOutput {
+	return o
+}
+
+// OCI region.
+func (o SdnconnectorOciRegionListOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SdnconnectorOciRegionList) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+type SdnconnectorOciRegionListArrayOutput struct{ *pulumi.OutputState }
+
+func (SdnconnectorOciRegionListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SdnconnectorOciRegionList)(nil)).Elem()
+}
+
+func (o SdnconnectorOciRegionListArrayOutput) ToSdnconnectorOciRegionListArrayOutput() SdnconnectorOciRegionListArrayOutput {
+	return o
+}
+
+func (o SdnconnectorOciRegionListArrayOutput) ToSdnconnectorOciRegionListArrayOutputWithContext(ctx context.Context) SdnconnectorOciRegionListArrayOutput {
+	return o
+}
+
+func (o SdnconnectorOciRegionListArrayOutput) Index(i pulumi.IntInput) SdnconnectorOciRegionListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SdnconnectorOciRegionList {
+		return vs[0].([]SdnconnectorOciRegionList)[vs[1].(int)]
+	}).(SdnconnectorOciRegionListOutput)
 }
 
 type SdnconnectorRoute struct {
@@ -20067,6 +22144,8 @@ func (o SdwanFailAlertInterfaceArrayOutput) Index(i pulumi.IntInput) SdwanFailAl
 type SdwanHealthCheck struct {
 	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
 	AddrMode *string `pulumi:"addrMode"`
+	// Traffic class ID.
+	ClassId *int `pulumi:"classId"`
 	// The mode determining how to detect the server.
 	DetectMode *string `pulumi:"detectMode"`
 	// Differentiated services code point (DSCP) in the IP header of the probe packet.
@@ -20131,6 +22210,8 @@ type SdwanHealthCheck struct {
 	Slas []SdwanHealthCheckSla `pulumi:"slas"`
 	// Source IP address used in the health-check packet to the server.
 	Source *string `pulumi:"source"`
+	// Source IPv6 addressused in the health-check packet to server.
+	Source6 *string `pulumi:"source6"`
 	// Enable/disable system DNS as the probe server. Valid values: `disable`, `enable`.
 	SystemDns *string `pulumi:"systemDns"`
 	// Alert threshold for jitter (ms, default = 0).
@@ -20169,6 +22250,8 @@ type SdwanHealthCheckInput interface {
 type SdwanHealthCheckArgs struct {
 	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
 	AddrMode pulumi.StringPtrInput `pulumi:"addrMode"`
+	// Traffic class ID.
+	ClassId pulumi.IntPtrInput `pulumi:"classId"`
 	// The mode determining how to detect the server.
 	DetectMode pulumi.StringPtrInput `pulumi:"detectMode"`
 	// Differentiated services code point (DSCP) in the IP header of the probe packet.
@@ -20233,6 +22316,8 @@ type SdwanHealthCheckArgs struct {
 	Slas SdwanHealthCheckSlaArrayInput `pulumi:"slas"`
 	// Source IP address used in the health-check packet to the server.
 	Source pulumi.StringPtrInput `pulumi:"source"`
+	// Source IPv6 addressused in the health-check packet to server.
+	Source6 pulumi.StringPtrInput `pulumi:"source6"`
 	// Enable/disable system DNS as the probe server. Valid values: `disable`, `enable`.
 	SystemDns pulumi.StringPtrInput `pulumi:"systemDns"`
 	// Alert threshold for jitter (ms, default = 0).
@@ -20311,6 +22396,11 @@ func (o SdwanHealthCheckOutput) ToSdwanHealthCheckOutputWithContext(ctx context.
 // Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
 func (o SdwanHealthCheckOutput) AddrMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *string { return v.AddrMode }).(pulumi.StringPtrOutput)
+}
+
+// Traffic class ID.
+func (o SdwanHealthCheckOutput) ClassId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SdwanHealthCheck) *int { return v.ClassId }).(pulumi.IntPtrOutput)
 }
 
 // The mode determining how to detect the server.
@@ -20471,6 +22561,11 @@ func (o SdwanHealthCheckOutput) Slas() SdwanHealthCheckSlaArrayOutput {
 // Source IP address used in the health-check packet to the server.
 func (o SdwanHealthCheckOutput) Source() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *string { return v.Source }).(pulumi.StringPtrOutput)
+}
+
+// Source IPv6 addressused in the health-check packet to server.
+func (o SdwanHealthCheckOutput) Source6() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SdwanHealthCheck) *string { return v.Source6 }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable system DNS as the probe server. Valid values: `disable`, `enable`.
@@ -20818,6 +22913,8 @@ type SdwanMember struct {
 	IngressSpilloverThreshold *int `pulumi:"ingressSpilloverThreshold"`
 	// Interface name.
 	Interface *string `pulumi:"interface"`
+	// Preferred source of route for this member.
+	PreferredSource *string `pulumi:"preferredSource"`
 	// Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
 	Priority *int `pulumi:"priority"`
 	// Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.
@@ -20832,6 +22929,8 @@ type SdwanMember struct {
 	SpilloverThreshold *int `pulumi:"spilloverThreshold"`
 	// Enable/disable this interface in the SD-WAN. Valid values: `disable`, `enable`.
 	Status *string `pulumi:"status"`
+	// Measured transport group (0 - 255).
+	TransportGroup *int `pulumi:"transportGroup"`
 	// Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).
 	VolumeRatio *int `pulumi:"volumeRatio"`
 	// Weight of this interface for weighted load balancing. (1 - 255) More traffic is directed to interfaces with higher weights.
@@ -20864,6 +22963,8 @@ type SdwanMemberArgs struct {
 	IngressSpilloverThreshold pulumi.IntPtrInput `pulumi:"ingressSpilloverThreshold"`
 	// Interface name.
 	Interface pulumi.StringPtrInput `pulumi:"interface"`
+	// Preferred source of route for this member.
+	PreferredSource pulumi.StringPtrInput `pulumi:"preferredSource"`
 	// Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
 	// Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.
@@ -20878,6 +22979,8 @@ type SdwanMemberArgs struct {
 	SpilloverThreshold pulumi.IntPtrInput `pulumi:"spilloverThreshold"`
 	// Enable/disable this interface in the SD-WAN. Valid values: `disable`, `enable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Measured transport group (0 - 255).
+	TransportGroup pulumi.IntPtrInput `pulumi:"transportGroup"`
 	// Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).
 	VolumeRatio pulumi.IntPtrInput `pulumi:"volumeRatio"`
 	// Weight of this interface for weighted load balancing. (1 - 255) More traffic is directed to interfaces with higher weights.
@@ -20967,6 +23070,11 @@ func (o SdwanMemberOutput) Interface() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanMember) *string { return v.Interface }).(pulumi.StringPtrOutput)
 }
 
+// Preferred source of route for this member.
+func (o SdwanMemberOutput) PreferredSource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SdwanMember) *string { return v.PreferredSource }).(pulumi.StringPtrOutput)
+}
+
 // Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
 func (o SdwanMemberOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanMember) *int { return v.Priority }).(pulumi.IntPtrOutput)
@@ -21000,6 +23108,11 @@ func (o SdwanMemberOutput) SpilloverThreshold() pulumi.IntPtrOutput {
 // Enable/disable this interface in the SD-WAN. Valid values: `disable`, `enable`.
 func (o SdwanMemberOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanMember) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Measured transport group (0 - 255).
+func (o SdwanMemberOutput) TransportGroup() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SdwanMember) *int { return v.TransportGroup }).(pulumi.IntPtrOutput)
 }
 
 // Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).
@@ -21044,12 +23157,16 @@ type SdwanNeighbor struct {
 	Ip *string `pulumi:"ip"`
 	// Member sequence number.
 	Member *int `pulumi:"member"`
+	// Member sequence number list. The structure of `memberBlock` block is documented below.
+	MemberBlocks []SdwanNeighborMemberBlock `pulumi:"memberBlocks"`
 	// Minimum number of members which meet SLA when the neighbor is preferred.
 	MinimumSlaMeetMembers *int `pulumi:"minimumSlaMeetMembers"`
 	// What metric to select the neighbor. Valid values: `sla`, `speedtest`.
 	Mode *string `pulumi:"mode"`
 	// Role of neighbor. Valid values: `standalone`, `primary`, `secondary`.
 	Role *string `pulumi:"role"`
+	// SD-WAN service ID to work with the neighbor.
+	ServiceId *int `pulumi:"serviceId"`
 	// SLA ID.
 	SlaId *int `pulumi:"slaId"`
 }
@@ -21072,12 +23189,16 @@ type SdwanNeighborArgs struct {
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// Member sequence number.
 	Member pulumi.IntPtrInput `pulumi:"member"`
+	// Member sequence number list. The structure of `memberBlock` block is documented below.
+	MemberBlocks SdwanNeighborMemberBlockArrayInput `pulumi:"memberBlocks"`
 	// Minimum number of members which meet SLA when the neighbor is preferred.
 	MinimumSlaMeetMembers pulumi.IntPtrInput `pulumi:"minimumSlaMeetMembers"`
 	// What metric to select the neighbor. Valid values: `sla`, `speedtest`.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
 	// Role of neighbor. Valid values: `standalone`, `primary`, `secondary`.
 	Role pulumi.StringPtrInput `pulumi:"role"`
+	// SD-WAN service ID to work with the neighbor.
+	ServiceId pulumi.IntPtrInput `pulumi:"serviceId"`
 	// SLA ID.
 	SlaId pulumi.IntPtrInput `pulumi:"slaId"`
 }
@@ -21148,6 +23269,11 @@ func (o SdwanNeighborOutput) Member() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanNeighbor) *int { return v.Member }).(pulumi.IntPtrOutput)
 }
 
+// Member sequence number list. The structure of `memberBlock` block is documented below.
+func (o SdwanNeighborOutput) MemberBlocks() SdwanNeighborMemberBlockArrayOutput {
+	return o.ApplyT(func(v SdwanNeighbor) []SdwanNeighborMemberBlock { return v.MemberBlocks }).(SdwanNeighborMemberBlockArrayOutput)
+}
+
 // Minimum number of members which meet SLA when the neighbor is preferred.
 func (o SdwanNeighborOutput) MinimumSlaMeetMembers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanNeighbor) *int { return v.MinimumSlaMeetMembers }).(pulumi.IntPtrOutput)
@@ -21161,6 +23287,11 @@ func (o SdwanNeighborOutput) Mode() pulumi.StringPtrOutput {
 // Role of neighbor. Valid values: `standalone`, `primary`, `secondary`.
 func (o SdwanNeighborOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanNeighbor) *string { return v.Role }).(pulumi.StringPtrOutput)
+}
+
+// SD-WAN service ID to work with the neighbor.
+func (o SdwanNeighborOutput) ServiceId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SdwanNeighbor) *int { return v.ServiceId }).(pulumi.IntPtrOutput)
 }
 
 // SLA ID.
@@ -21188,9 +23319,108 @@ func (o SdwanNeighborArrayOutput) Index(i pulumi.IntInput) SdwanNeighborOutput {
 	}).(SdwanNeighborOutput)
 }
 
+type SdwanNeighborMemberBlock struct {
+	// Member sequence number.
+	SeqNum *int `pulumi:"seqNum"`
+}
+
+// SdwanNeighborMemberBlockInput is an input type that accepts SdwanNeighborMemberBlockArgs and SdwanNeighborMemberBlockOutput values.
+// You can construct a concrete instance of `SdwanNeighborMemberBlockInput` via:
+//
+//	SdwanNeighborMemberBlockArgs{...}
+type SdwanNeighborMemberBlockInput interface {
+	pulumi.Input
+
+	ToSdwanNeighborMemberBlockOutput() SdwanNeighborMemberBlockOutput
+	ToSdwanNeighborMemberBlockOutputWithContext(context.Context) SdwanNeighborMemberBlockOutput
+}
+
+type SdwanNeighborMemberBlockArgs struct {
+	// Member sequence number.
+	SeqNum pulumi.IntPtrInput `pulumi:"seqNum"`
+}
+
+func (SdwanNeighborMemberBlockArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SdwanNeighborMemberBlock)(nil)).Elem()
+}
+
+func (i SdwanNeighborMemberBlockArgs) ToSdwanNeighborMemberBlockOutput() SdwanNeighborMemberBlockOutput {
+	return i.ToSdwanNeighborMemberBlockOutputWithContext(context.Background())
+}
+
+func (i SdwanNeighborMemberBlockArgs) ToSdwanNeighborMemberBlockOutputWithContext(ctx context.Context) SdwanNeighborMemberBlockOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SdwanNeighborMemberBlockOutput)
+}
+
+// SdwanNeighborMemberBlockArrayInput is an input type that accepts SdwanNeighborMemberBlockArray and SdwanNeighborMemberBlockArrayOutput values.
+// You can construct a concrete instance of `SdwanNeighborMemberBlockArrayInput` via:
+//
+//	SdwanNeighborMemberBlockArray{ SdwanNeighborMemberBlockArgs{...} }
+type SdwanNeighborMemberBlockArrayInput interface {
+	pulumi.Input
+
+	ToSdwanNeighborMemberBlockArrayOutput() SdwanNeighborMemberBlockArrayOutput
+	ToSdwanNeighborMemberBlockArrayOutputWithContext(context.Context) SdwanNeighborMemberBlockArrayOutput
+}
+
+type SdwanNeighborMemberBlockArray []SdwanNeighborMemberBlockInput
+
+func (SdwanNeighborMemberBlockArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SdwanNeighborMemberBlock)(nil)).Elem()
+}
+
+func (i SdwanNeighborMemberBlockArray) ToSdwanNeighborMemberBlockArrayOutput() SdwanNeighborMemberBlockArrayOutput {
+	return i.ToSdwanNeighborMemberBlockArrayOutputWithContext(context.Background())
+}
+
+func (i SdwanNeighborMemberBlockArray) ToSdwanNeighborMemberBlockArrayOutputWithContext(ctx context.Context) SdwanNeighborMemberBlockArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SdwanNeighborMemberBlockArrayOutput)
+}
+
+type SdwanNeighborMemberBlockOutput struct{ *pulumi.OutputState }
+
+func (SdwanNeighborMemberBlockOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SdwanNeighborMemberBlock)(nil)).Elem()
+}
+
+func (o SdwanNeighborMemberBlockOutput) ToSdwanNeighborMemberBlockOutput() SdwanNeighborMemberBlockOutput {
+	return o
+}
+
+func (o SdwanNeighborMemberBlockOutput) ToSdwanNeighborMemberBlockOutputWithContext(ctx context.Context) SdwanNeighborMemberBlockOutput {
+	return o
+}
+
+// Member sequence number.
+func (o SdwanNeighborMemberBlockOutput) SeqNum() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SdwanNeighborMemberBlock) *int { return v.SeqNum }).(pulumi.IntPtrOutput)
+}
+
+type SdwanNeighborMemberBlockArrayOutput struct{ *pulumi.OutputState }
+
+func (SdwanNeighborMemberBlockArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SdwanNeighborMemberBlock)(nil)).Elem()
+}
+
+func (o SdwanNeighborMemberBlockArrayOutput) ToSdwanNeighborMemberBlockArrayOutput() SdwanNeighborMemberBlockArrayOutput {
+	return o
+}
+
+func (o SdwanNeighborMemberBlockArrayOutput) ToSdwanNeighborMemberBlockArrayOutputWithContext(ctx context.Context) SdwanNeighborMemberBlockArrayOutput {
+	return o
+}
+
+func (o SdwanNeighborMemberBlockArrayOutput) Index(i pulumi.IntInput) SdwanNeighborMemberBlockOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SdwanNeighborMemberBlock {
+		return vs[0].([]SdwanNeighborMemberBlock)[vs[1].(int)]
+	}).(SdwanNeighborMemberBlockOutput)
+}
+
 type SdwanService struct {
 	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
 	AddrMode *string `pulumi:"addrMode"`
+	// Set/unset the service as agent use exclusively. Valid values: `enable`, `disable`.
+	AgentExclusive *string `pulumi:"agentExclusive"`
 	// Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.
 	BandwidthWeight *int `pulumi:"bandwidthWeight"`
 	// Enable/disable use of SD-WAN as default service. Valid values: `enable`, `disable`.
@@ -21211,6 +23441,8 @@ type SdwanService struct {
 	Dsts []SdwanServiceDst `pulumi:"dsts"`
 	// End destination port number.
 	EndPort *int `pulumi:"endPort"`
+	// End source port number.
+	EndSrcPort *int `pulumi:"endSrcPort"`
 	// Enable/disable SD-WAN service gateway. Valid values: `enable`, `disable`.
 	Gateway *string `pulumi:"gateway"`
 	// User groups. The structure of `groups` block is documented below.
@@ -21253,9 +23485,11 @@ type SdwanService struct {
 	LinkCostFactor *string `pulumi:"linkCostFactor"`
 	// Percentage threshold change of link cost values that will result in policy route regeneration (0 - 10000000, default = 10).
 	LinkCostThreshold *int `pulumi:"linkCostThreshold"`
+	// Enable/disable load-balance. Valid values: `enable`, `disable`.
+	LoadBalance *string `pulumi:"loadBalance"`
 	// Minimum number of members which meet SLA.
 	MinimumSlaMeetMembers *int `pulumi:"minimumSlaMeetMembers"`
-	// Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
+	// Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN.
 	Mode *string `pulumi:"mode"`
 	// Service and service group name.
 	Name *string `pulumi:"name"`
@@ -21275,8 +23509,16 @@ type SdwanService struct {
 	Role *string `pulumi:"role"`
 	// IPv4 route map route-tag.
 	RouteTag *int `pulumi:"routeTag"`
+	// Enable/disable shortcut for this service. Valid values: `enable`, `disable`.
+	Shortcut *string `pulumi:"shortcut"`
+	// High priority of ADVPN shortcut for this service. Valid values: `enable`, `disable`, `auto`.
+	ShortcutPriority *string `pulumi:"shortcutPriority"`
+	// Enable/disable shortcut-stickiness of ADVPN. Valid values: `enable`, `disable`.
+	ShortcutStickiness *string `pulumi:"shortcutStickiness"`
 	// Method to compare SLA value for SLA mode. Valid values: `order`, `number`.
 	SlaCompareMethod *string `pulumi:"slaCompareMethod"`
+	// Enable/disable SLA stickiness (default = disable). Valid values: `enable`, `disable`.
+	SlaStickiness *string `pulumi:"slaStickiness"`
 	// Service level agreement (SLA). The structure of `sla` block is documented below.
 	Slas []SdwanServiceSla `pulumi:"slas"`
 	// Source address6 name. The structure of `src6` block is documented below.
@@ -21289,6 +23531,8 @@ type SdwanService struct {
 	StandaloneAction *string `pulumi:"standaloneAction"`
 	// Start destination port number.
 	StartPort *int `pulumi:"startPort"`
+	// Start source port number.
+	StartSrcPort *int `pulumi:"startSrcPort"`
 	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Method of selecting member if more than one meets the SLA.
@@ -21301,6 +23545,8 @@ type SdwanService struct {
 	UseShortcutSla *string `pulumi:"useShortcutSla"`
 	// User name. The structure of `users` block is documented below.
 	Users []SdwanServiceUser `pulumi:"users"`
+	// Enable/disable zone mode. Valid values: `enable`, `disable`.
+	ZoneMode *string `pulumi:"zoneMode"`
 }
 
 // SdwanServiceInput is an input type that accepts SdwanServiceArgs and SdwanServiceOutput values.
@@ -21317,6 +23563,8 @@ type SdwanServiceInput interface {
 type SdwanServiceArgs struct {
 	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
 	AddrMode pulumi.StringPtrInput `pulumi:"addrMode"`
+	// Set/unset the service as agent use exclusively. Valid values: `enable`, `disable`.
+	AgentExclusive pulumi.StringPtrInput `pulumi:"agentExclusive"`
 	// Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.
 	BandwidthWeight pulumi.IntPtrInput `pulumi:"bandwidthWeight"`
 	// Enable/disable use of SD-WAN as default service. Valid values: `enable`, `disable`.
@@ -21337,6 +23585,8 @@ type SdwanServiceArgs struct {
 	Dsts SdwanServiceDstArrayInput `pulumi:"dsts"`
 	// End destination port number.
 	EndPort pulumi.IntPtrInput `pulumi:"endPort"`
+	// End source port number.
+	EndSrcPort pulumi.IntPtrInput `pulumi:"endSrcPort"`
 	// Enable/disable SD-WAN service gateway. Valid values: `enable`, `disable`.
 	Gateway pulumi.StringPtrInput `pulumi:"gateway"`
 	// User groups. The structure of `groups` block is documented below.
@@ -21379,9 +23629,11 @@ type SdwanServiceArgs struct {
 	LinkCostFactor pulumi.StringPtrInput `pulumi:"linkCostFactor"`
 	// Percentage threshold change of link cost values that will result in policy route regeneration (0 - 10000000, default = 10).
 	LinkCostThreshold pulumi.IntPtrInput `pulumi:"linkCostThreshold"`
+	// Enable/disable load-balance. Valid values: `enable`, `disable`.
+	LoadBalance pulumi.StringPtrInput `pulumi:"loadBalance"`
 	// Minimum number of members which meet SLA.
 	MinimumSlaMeetMembers pulumi.IntPtrInput `pulumi:"minimumSlaMeetMembers"`
-	// Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
+	// Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
 	// Service and service group name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
@@ -21401,8 +23653,16 @@ type SdwanServiceArgs struct {
 	Role pulumi.StringPtrInput `pulumi:"role"`
 	// IPv4 route map route-tag.
 	RouteTag pulumi.IntPtrInput `pulumi:"routeTag"`
+	// Enable/disable shortcut for this service. Valid values: `enable`, `disable`.
+	Shortcut pulumi.StringPtrInput `pulumi:"shortcut"`
+	// High priority of ADVPN shortcut for this service. Valid values: `enable`, `disable`, `auto`.
+	ShortcutPriority pulumi.StringPtrInput `pulumi:"shortcutPriority"`
+	// Enable/disable shortcut-stickiness of ADVPN. Valid values: `enable`, `disable`.
+	ShortcutStickiness pulumi.StringPtrInput `pulumi:"shortcutStickiness"`
 	// Method to compare SLA value for SLA mode. Valid values: `order`, `number`.
 	SlaCompareMethod pulumi.StringPtrInput `pulumi:"slaCompareMethod"`
+	// Enable/disable SLA stickiness (default = disable). Valid values: `enable`, `disable`.
+	SlaStickiness pulumi.StringPtrInput `pulumi:"slaStickiness"`
 	// Service level agreement (SLA). The structure of `sla` block is documented below.
 	Slas SdwanServiceSlaArrayInput `pulumi:"slas"`
 	// Source address6 name. The structure of `src6` block is documented below.
@@ -21415,6 +23675,8 @@ type SdwanServiceArgs struct {
 	StandaloneAction pulumi.StringPtrInput `pulumi:"standaloneAction"`
 	// Start destination port number.
 	StartPort pulumi.IntPtrInput `pulumi:"startPort"`
+	// Start source port number.
+	StartSrcPort pulumi.IntPtrInput `pulumi:"startSrcPort"`
 	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// Method of selecting member if more than one meets the SLA.
@@ -21427,6 +23689,8 @@ type SdwanServiceArgs struct {
 	UseShortcutSla pulumi.StringPtrInput `pulumi:"useShortcutSla"`
 	// User name. The structure of `users` block is documented below.
 	Users SdwanServiceUserArrayInput `pulumi:"users"`
+	// Enable/disable zone mode. Valid values: `enable`, `disable`.
+	ZoneMode pulumi.StringPtrInput `pulumi:"zoneMode"`
 }
 
 func (SdwanServiceArgs) ElementType() reflect.Type {
@@ -21485,6 +23749,11 @@ func (o SdwanServiceOutput) AddrMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanService) *string { return v.AddrMode }).(pulumi.StringPtrOutput)
 }
 
+// Set/unset the service as agent use exclusively. Valid values: `enable`, `disable`.
+func (o SdwanServiceOutput) AgentExclusive() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SdwanService) *string { return v.AgentExclusive }).(pulumi.StringPtrOutput)
+}
+
 // Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.
 func (o SdwanServiceOutput) BandwidthWeight() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanService) *int { return v.BandwidthWeight }).(pulumi.IntPtrOutput)
@@ -21533,6 +23802,11 @@ func (o SdwanServiceOutput) Dsts() SdwanServiceDstArrayOutput {
 // End destination port number.
 func (o SdwanServiceOutput) EndPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanService) *int { return v.EndPort }).(pulumi.IntPtrOutput)
+}
+
+// End source port number.
+func (o SdwanServiceOutput) EndSrcPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SdwanService) *int { return v.EndSrcPort }).(pulumi.IntPtrOutput)
 }
 
 // Enable/disable SD-WAN service gateway. Valid values: `enable`, `disable`.
@@ -21642,12 +23916,17 @@ func (o SdwanServiceOutput) LinkCostThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanService) *int { return v.LinkCostThreshold }).(pulumi.IntPtrOutput)
 }
 
+// Enable/disable load-balance. Valid values: `enable`, `disable`.
+func (o SdwanServiceOutput) LoadBalance() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SdwanService) *string { return v.LoadBalance }).(pulumi.StringPtrOutput)
+}
+
 // Minimum number of members which meet SLA.
 func (o SdwanServiceOutput) MinimumSlaMeetMembers() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanService) *int { return v.MinimumSlaMeetMembers }).(pulumi.IntPtrOutput)
 }
 
-// Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
+// Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN.
 func (o SdwanServiceOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanService) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
@@ -21697,9 +23976,29 @@ func (o SdwanServiceOutput) RouteTag() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanService) *int { return v.RouteTag }).(pulumi.IntPtrOutput)
 }
 
+// Enable/disable shortcut for this service. Valid values: `enable`, `disable`.
+func (o SdwanServiceOutput) Shortcut() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SdwanService) *string { return v.Shortcut }).(pulumi.StringPtrOutput)
+}
+
+// High priority of ADVPN shortcut for this service. Valid values: `enable`, `disable`, `auto`.
+func (o SdwanServiceOutput) ShortcutPriority() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SdwanService) *string { return v.ShortcutPriority }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable shortcut-stickiness of ADVPN. Valid values: `enable`, `disable`.
+func (o SdwanServiceOutput) ShortcutStickiness() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SdwanService) *string { return v.ShortcutStickiness }).(pulumi.StringPtrOutput)
+}
+
 // Method to compare SLA value for SLA mode. Valid values: `order`, `number`.
 func (o SdwanServiceOutput) SlaCompareMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanService) *string { return v.SlaCompareMethod }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable SLA stickiness (default = disable). Valid values: `enable`, `disable`.
+func (o SdwanServiceOutput) SlaStickiness() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SdwanService) *string { return v.SlaStickiness }).(pulumi.StringPtrOutput)
 }
 
 // Service level agreement (SLA). The structure of `sla` block is documented below.
@@ -21732,6 +24031,11 @@ func (o SdwanServiceOutput) StartPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanService) *int { return v.StartPort }).(pulumi.IntPtrOutput)
 }
 
+// Start source port number.
+func (o SdwanServiceOutput) StartSrcPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SdwanService) *int { return v.StartSrcPort }).(pulumi.IntPtrOutput)
+}
+
 // Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
 func (o SdwanServiceOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanService) *string { return v.Status }).(pulumi.StringPtrOutput)
@@ -21760,6 +24064,11 @@ func (o SdwanServiceOutput) UseShortcutSla() pulumi.StringPtrOutput {
 // User name. The structure of `users` block is documented below.
 func (o SdwanServiceOutput) Users() SdwanServiceUserArrayOutput {
 	return o.ApplyT(func(v SdwanService) []SdwanServiceUser { return v.Users }).(SdwanServiceUserArrayOutput)
+}
+
+// Enable/disable zone mode. Valid values: `enable`, `disable`.
+func (o SdwanServiceOutput) ZoneMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SdwanService) *string { return v.ZoneMode }).(pulumi.StringPtrOutput)
 }
 
 type SdwanServiceArrayOutput struct{ *pulumi.OutputState }
@@ -23635,6 +25944,12 @@ func (o SdwanServiceUserArrayOutput) Index(i pulumi.IntInput) SdwanServiceUserOu
 }
 
 type SdwanZone struct {
+	// Health check for ADVPN local overlay link quality.
+	AdvpnHealthCheck *string `pulumi:"advpnHealthCheck"`
+	// Enable/disable selection of ADVPN based on SDWAN information. Valid values: `enable`, `disable`.
+	AdvpnSelect *string `pulumi:"advpnSelect"`
+	// Minimum number of members which meet SLA when the neighbor is preferred.
+	MinimumSlaMeetMembers *int `pulumi:"minimumSlaMeetMembers"`
 	// Zone name.
 	Name *string `pulumi:"name"`
 	// Method of selecting member if more than one meets the SLA.
@@ -23653,6 +25968,12 @@ type SdwanZoneInput interface {
 }
 
 type SdwanZoneArgs struct {
+	// Health check for ADVPN local overlay link quality.
+	AdvpnHealthCheck pulumi.StringPtrInput `pulumi:"advpnHealthCheck"`
+	// Enable/disable selection of ADVPN based on SDWAN information. Valid values: `enable`, `disable`.
+	AdvpnSelect pulumi.StringPtrInput `pulumi:"advpnSelect"`
+	// Minimum number of members which meet SLA when the neighbor is preferred.
+	MinimumSlaMeetMembers pulumi.IntPtrInput `pulumi:"minimumSlaMeetMembers"`
 	// Zone name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Method of selecting member if more than one meets the SLA.
@@ -23710,6 +26031,21 @@ func (o SdwanZoneOutput) ToSdwanZoneOutputWithContext(ctx context.Context) Sdwan
 	return o
 }
 
+// Health check for ADVPN local overlay link quality.
+func (o SdwanZoneOutput) AdvpnHealthCheck() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SdwanZone) *string { return v.AdvpnHealthCheck }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable selection of ADVPN based on SDWAN information. Valid values: `enable`, `disable`.
+func (o SdwanZoneOutput) AdvpnSelect() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SdwanZone) *string { return v.AdvpnSelect }).(pulumi.StringPtrOutput)
+}
+
+// Minimum number of members which meet SLA when the neighbor is preferred.
+func (o SdwanZoneOutput) MinimumSlaMeetMembers() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SdwanZone) *int { return v.MinimumSlaMeetMembers }).(pulumi.IntPtrOutput)
+}
+
 // Zone name.
 func (o SdwanZoneOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanZone) *string { return v.Name }).(pulumi.StringPtrOutput)
@@ -23747,6 +26083,8 @@ type SessionttlPort struct {
 	Id *int `pulumi:"id"`
 	// Protocol (0 - 255).
 	Protocol *int `pulumi:"protocol"`
+	// Refresh direction: Both, outgoing, incoming Valid values: `both`, `outgoing`, `incoming`.
+	RefreshDirection *string `pulumi:"refreshDirection"`
 	// Start port number.
 	StartPort *int `pulumi:"startPort"`
 	// Session timeout (TTL).
@@ -23771,6 +26109,8 @@ type SessionttlPortArgs struct {
 	Id pulumi.IntPtrInput `pulumi:"id"`
 	// Protocol (0 - 255).
 	Protocol pulumi.IntPtrInput `pulumi:"protocol"`
+	// Refresh direction: Both, outgoing, incoming Valid values: `both`, `outgoing`, `incoming`.
+	RefreshDirection pulumi.StringPtrInput `pulumi:"refreshDirection"`
 	// Start port number.
 	StartPort pulumi.IntPtrInput `pulumi:"startPort"`
 	// Session timeout (TTL).
@@ -23841,6 +26181,11 @@ func (o SessionttlPortOutput) Id() pulumi.IntPtrOutput {
 // Protocol (0 - 255).
 func (o SessionttlPortOutput) Protocol() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SessionttlPort) *int { return v.Protocol }).(pulumi.IntPtrOutput)
+}
+
+// Refresh direction: Both, outgoing, incoming Valid values: `both`, `outgoing`, `incoming`.
+func (o SessionttlPortOutput) RefreshDirection() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SessionttlPort) *string { return v.RefreshDirection }).(pulumi.StringPtrOutput)
 }
 
 // Start port number.
@@ -23970,6 +26315,148 @@ func (o SettingsGuiDefaultPolicyColumnArrayOutput) Index(i pulumi.IntInput) Sett
 	}).(SettingsGuiDefaultPolicyColumnOutput)
 }
 
+type SflowCollector struct {
+	// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+	CollectorIp *string `pulumi:"collectorIp"`
+	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+	CollectorPort *int `pulumi:"collectorPort"`
+	// ID.
+	Id *int `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
+	// Source IP address for sFlow agent.
+	SourceIp *string `pulumi:"sourceIp"`
+}
+
+// SflowCollectorInput is an input type that accepts SflowCollectorArgs and SflowCollectorOutput values.
+// You can construct a concrete instance of `SflowCollectorInput` via:
+//
+//	SflowCollectorArgs{...}
+type SflowCollectorInput interface {
+	pulumi.Input
+
+	ToSflowCollectorOutput() SflowCollectorOutput
+	ToSflowCollectorOutputWithContext(context.Context) SflowCollectorOutput
+}
+
+type SflowCollectorArgs struct {
+	// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+	CollectorIp pulumi.StringPtrInput `pulumi:"collectorIp"`
+	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+	CollectorPort pulumi.IntPtrInput `pulumi:"collectorPort"`
+	// ID.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput `pulumi:"interfaceSelectMethod"`
+	// Source IP address for sFlow agent.
+	SourceIp pulumi.StringPtrInput `pulumi:"sourceIp"`
+}
+
+func (SflowCollectorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SflowCollector)(nil)).Elem()
+}
+
+func (i SflowCollectorArgs) ToSflowCollectorOutput() SflowCollectorOutput {
+	return i.ToSflowCollectorOutputWithContext(context.Background())
+}
+
+func (i SflowCollectorArgs) ToSflowCollectorOutputWithContext(ctx context.Context) SflowCollectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SflowCollectorOutput)
+}
+
+// SflowCollectorArrayInput is an input type that accepts SflowCollectorArray and SflowCollectorArrayOutput values.
+// You can construct a concrete instance of `SflowCollectorArrayInput` via:
+//
+//	SflowCollectorArray{ SflowCollectorArgs{...} }
+type SflowCollectorArrayInput interface {
+	pulumi.Input
+
+	ToSflowCollectorArrayOutput() SflowCollectorArrayOutput
+	ToSflowCollectorArrayOutputWithContext(context.Context) SflowCollectorArrayOutput
+}
+
+type SflowCollectorArray []SflowCollectorInput
+
+func (SflowCollectorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SflowCollector)(nil)).Elem()
+}
+
+func (i SflowCollectorArray) ToSflowCollectorArrayOutput() SflowCollectorArrayOutput {
+	return i.ToSflowCollectorArrayOutputWithContext(context.Background())
+}
+
+func (i SflowCollectorArray) ToSflowCollectorArrayOutputWithContext(ctx context.Context) SflowCollectorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SflowCollectorArrayOutput)
+}
+
+type SflowCollectorOutput struct{ *pulumi.OutputState }
+
+func (SflowCollectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SflowCollector)(nil)).Elem()
+}
+
+func (o SflowCollectorOutput) ToSflowCollectorOutput() SflowCollectorOutput {
+	return o
+}
+
+func (o SflowCollectorOutput) ToSflowCollectorOutputWithContext(ctx context.Context) SflowCollectorOutput {
+	return o
+}
+
+// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+func (o SflowCollectorOutput) CollectorIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SflowCollector) *string { return v.CollectorIp }).(pulumi.StringPtrOutput)
+}
+
+// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+func (o SflowCollectorOutput) CollectorPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SflowCollector) *int { return v.CollectorPort }).(pulumi.IntPtrOutput)
+}
+
+// ID.
+func (o SflowCollectorOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SflowCollector) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o SflowCollectorOutput) Interface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SflowCollector) *string { return v.Interface }).(pulumi.StringPtrOutput)
+}
+
+// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+func (o SflowCollectorOutput) InterfaceSelectMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SflowCollector) *string { return v.InterfaceSelectMethod }).(pulumi.StringPtrOutput)
+}
+
+// Source IP address for sFlow agent.
+func (o SflowCollectorOutput) SourceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SflowCollector) *string { return v.SourceIp }).(pulumi.StringPtrOutput)
+}
+
+type SflowCollectorArrayOutput struct{ *pulumi.OutputState }
+
+func (SflowCollectorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SflowCollector)(nil)).Elem()
+}
+
+func (o SflowCollectorArrayOutput) ToSflowCollectorArrayOutput() SflowCollectorArrayOutput {
+	return o
+}
+
+func (o SflowCollectorArrayOutput) ToSflowCollectorArrayOutputWithContext(ctx context.Context) SflowCollectorArrayOutput {
+	return o
+}
+
+func (o SflowCollectorArrayOutput) Index(i pulumi.IntInput) SflowCollectorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SflowCollector {
+		return vs[0].([]SflowCollector)[vs[1].(int)]
+	}).(SflowCollectorOutput)
+}
+
 type SpeedtestscheduleSchedule struct {
 	// Name of a firewall recurring schedule.
 	Name *string `pulumi:"name"`
@@ -24068,10 +26555,16 @@ func (o SpeedtestscheduleScheduleArrayOutput) Index(i pulumi.IntInput) Speedtest
 }
 
 type SpeedtestserverHost struct {
+	// Speed test host distance.
+	Distance *int `pulumi:"distance"`
 	// Server host ID.
 	Id *int `pulumi:"id"`
 	// Server host IPv4 address.
 	Ip *string `pulumi:"ip"`
+	// Speed test host latitude.
+	Latitude *string `pulumi:"latitude"`
+	// Speed test host longitude.
+	Longitude *string `pulumi:"longitude"`
 	// Speed test host password.
 	Password *string `pulumi:"password"`
 	// Server host port number to communicate with client.
@@ -24092,10 +26585,16 @@ type SpeedtestserverHostInput interface {
 }
 
 type SpeedtestserverHostArgs struct {
+	// Speed test host distance.
+	Distance pulumi.IntPtrInput `pulumi:"distance"`
 	// Server host ID.
 	Id pulumi.IntPtrInput `pulumi:"id"`
 	// Server host IPv4 address.
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
+	// Speed test host latitude.
+	Latitude pulumi.StringPtrInput `pulumi:"latitude"`
+	// Speed test host longitude.
+	Longitude pulumi.StringPtrInput `pulumi:"longitude"`
 	// Speed test host password.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Server host port number to communicate with client.
@@ -24155,6 +26654,11 @@ func (o SpeedtestserverHostOutput) ToSpeedtestserverHostOutputWithContext(ctx co
 	return o
 }
 
+// Speed test host distance.
+func (o SpeedtestserverHostOutput) Distance() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SpeedtestserverHost) *int { return v.Distance }).(pulumi.IntPtrOutput)
+}
+
 // Server host ID.
 func (o SpeedtestserverHostOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SpeedtestserverHost) *int { return v.Id }).(pulumi.IntPtrOutput)
@@ -24163,6 +26667,16 @@ func (o SpeedtestserverHostOutput) Id() pulumi.IntPtrOutput {
 // Server host IPv4 address.
 func (o SpeedtestserverHostOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SpeedtestserverHost) *string { return v.Ip }).(pulumi.StringPtrOutput)
+}
+
+// Speed test host latitude.
+func (o SpeedtestserverHostOutput) Latitude() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SpeedtestserverHost) *string { return v.Latitude }).(pulumi.StringPtrOutput)
+}
+
+// Speed test host longitude.
+func (o SpeedtestserverHostOutput) Longitude() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SpeedtestserverHost) *string { return v.Longitude }).(pulumi.StringPtrOutput)
 }
 
 // Speed test host password.
@@ -24392,6 +26906,103 @@ func (o SsoforticloudadminVdomArrayOutput) Index(i pulumi.IntInput) Ssoforticlou
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SsoforticloudadminVdom {
 		return vs[0].([]SsoforticloudadminVdom)[vs[1].(int)]
 	}).(SsoforticloudadminVdomOutput)
+}
+
+type SsofortigatecloudadminVdom struct {
+	// Virtual domain name.
+	Name *string `pulumi:"name"`
+}
+
+// SsofortigatecloudadminVdomInput is an input type that accepts SsofortigatecloudadminVdomArgs and SsofortigatecloudadminVdomOutput values.
+// You can construct a concrete instance of `SsofortigatecloudadminVdomInput` via:
+//
+//	SsofortigatecloudadminVdomArgs{...}
+type SsofortigatecloudadminVdomInput interface {
+	pulumi.Input
+
+	ToSsofortigatecloudadminVdomOutput() SsofortigatecloudadminVdomOutput
+	ToSsofortigatecloudadminVdomOutputWithContext(context.Context) SsofortigatecloudadminVdomOutput
+}
+
+type SsofortigatecloudadminVdomArgs struct {
+	// Virtual domain name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (SsofortigatecloudadminVdomArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsofortigatecloudadminVdom)(nil)).Elem()
+}
+
+func (i SsofortigatecloudadminVdomArgs) ToSsofortigatecloudadminVdomOutput() SsofortigatecloudadminVdomOutput {
+	return i.ToSsofortigatecloudadminVdomOutputWithContext(context.Background())
+}
+
+func (i SsofortigatecloudadminVdomArgs) ToSsofortigatecloudadminVdomOutputWithContext(ctx context.Context) SsofortigatecloudadminVdomOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsofortigatecloudadminVdomOutput)
+}
+
+// SsofortigatecloudadminVdomArrayInput is an input type that accepts SsofortigatecloudadminVdomArray and SsofortigatecloudadminVdomArrayOutput values.
+// You can construct a concrete instance of `SsofortigatecloudadminVdomArrayInput` via:
+//
+//	SsofortigatecloudadminVdomArray{ SsofortigatecloudadminVdomArgs{...} }
+type SsofortigatecloudadminVdomArrayInput interface {
+	pulumi.Input
+
+	ToSsofortigatecloudadminVdomArrayOutput() SsofortigatecloudadminVdomArrayOutput
+	ToSsofortigatecloudadminVdomArrayOutputWithContext(context.Context) SsofortigatecloudadminVdomArrayOutput
+}
+
+type SsofortigatecloudadminVdomArray []SsofortigatecloudadminVdomInput
+
+func (SsofortigatecloudadminVdomArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SsofortigatecloudadminVdom)(nil)).Elem()
+}
+
+func (i SsofortigatecloudadminVdomArray) ToSsofortigatecloudadminVdomArrayOutput() SsofortigatecloudadminVdomArrayOutput {
+	return i.ToSsofortigatecloudadminVdomArrayOutputWithContext(context.Background())
+}
+
+func (i SsofortigatecloudadminVdomArray) ToSsofortigatecloudadminVdomArrayOutputWithContext(ctx context.Context) SsofortigatecloudadminVdomArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SsofortigatecloudadminVdomArrayOutput)
+}
+
+type SsofortigatecloudadminVdomOutput struct{ *pulumi.OutputState }
+
+func (SsofortigatecloudadminVdomOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SsofortigatecloudadminVdom)(nil)).Elem()
+}
+
+func (o SsofortigatecloudadminVdomOutput) ToSsofortigatecloudadminVdomOutput() SsofortigatecloudadminVdomOutput {
+	return o
+}
+
+func (o SsofortigatecloudadminVdomOutput) ToSsofortigatecloudadminVdomOutputWithContext(ctx context.Context) SsofortigatecloudadminVdomOutput {
+	return o
+}
+
+// Virtual domain name.
+func (o SsofortigatecloudadminVdomOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SsofortigatecloudadminVdom) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type SsofortigatecloudadminVdomArrayOutput struct{ *pulumi.OutputState }
+
+func (SsofortigatecloudadminVdomArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SsofortigatecloudadminVdom)(nil)).Elem()
+}
+
+func (o SsofortigatecloudadminVdomArrayOutput) ToSsofortigatecloudadminVdomArrayOutput() SsofortigatecloudadminVdomArrayOutput {
+	return o
+}
+
+func (o SsofortigatecloudadminVdomArrayOutput) ToSsofortigatecloudadminVdomArrayOutputWithContext(ctx context.Context) SsofortigatecloudadminVdomArrayOutput {
+	return o
+}
+
+func (o SsofortigatecloudadminVdomArrayOutput) Index(i pulumi.IntInput) SsofortigatecloudadminVdomOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SsofortigatecloudadminVdom {
+		return vs[0].([]SsofortigatecloudadminVdom)[vs[1].(int)]
+	}).(SsofortigatecloudadminVdomOutput)
 }
 
 type StandaloneclusterClusterPeer struct {
@@ -25524,6 +28135,290 @@ func (o VdomexceptionVdomArrayOutput) Index(i pulumi.IntInput) VdomexceptionVdom
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VdomexceptionVdom {
 		return vs[0].([]VdomexceptionVdom)[vs[1].(int)]
 	}).(VdomexceptionVdomOutput)
+}
+
+type VdomnetflowCollector struct {
+	// Collector IP.
+	CollectorIp *string `pulumi:"collectorIp"`
+	// NetFlow collector port number.
+	CollectorPort *int `pulumi:"collectorPort"`
+	// ID.
+	Id *int `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
+	// Source IP address for communication with the NetFlow agent.
+	SourceIp *string `pulumi:"sourceIp"`
+}
+
+// VdomnetflowCollectorInput is an input type that accepts VdomnetflowCollectorArgs and VdomnetflowCollectorOutput values.
+// You can construct a concrete instance of `VdomnetflowCollectorInput` via:
+//
+//	VdomnetflowCollectorArgs{...}
+type VdomnetflowCollectorInput interface {
+	pulumi.Input
+
+	ToVdomnetflowCollectorOutput() VdomnetflowCollectorOutput
+	ToVdomnetflowCollectorOutputWithContext(context.Context) VdomnetflowCollectorOutput
+}
+
+type VdomnetflowCollectorArgs struct {
+	// Collector IP.
+	CollectorIp pulumi.StringPtrInput `pulumi:"collectorIp"`
+	// NetFlow collector port number.
+	CollectorPort pulumi.IntPtrInput `pulumi:"collectorPort"`
+	// ID.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput `pulumi:"interfaceSelectMethod"`
+	// Source IP address for communication with the NetFlow agent.
+	SourceIp pulumi.StringPtrInput `pulumi:"sourceIp"`
+}
+
+func (VdomnetflowCollectorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VdomnetflowCollector)(nil)).Elem()
+}
+
+func (i VdomnetflowCollectorArgs) ToVdomnetflowCollectorOutput() VdomnetflowCollectorOutput {
+	return i.ToVdomnetflowCollectorOutputWithContext(context.Background())
+}
+
+func (i VdomnetflowCollectorArgs) ToVdomnetflowCollectorOutputWithContext(ctx context.Context) VdomnetflowCollectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VdomnetflowCollectorOutput)
+}
+
+// VdomnetflowCollectorArrayInput is an input type that accepts VdomnetflowCollectorArray and VdomnetflowCollectorArrayOutput values.
+// You can construct a concrete instance of `VdomnetflowCollectorArrayInput` via:
+//
+//	VdomnetflowCollectorArray{ VdomnetflowCollectorArgs{...} }
+type VdomnetflowCollectorArrayInput interface {
+	pulumi.Input
+
+	ToVdomnetflowCollectorArrayOutput() VdomnetflowCollectorArrayOutput
+	ToVdomnetflowCollectorArrayOutputWithContext(context.Context) VdomnetflowCollectorArrayOutput
+}
+
+type VdomnetflowCollectorArray []VdomnetflowCollectorInput
+
+func (VdomnetflowCollectorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VdomnetflowCollector)(nil)).Elem()
+}
+
+func (i VdomnetflowCollectorArray) ToVdomnetflowCollectorArrayOutput() VdomnetflowCollectorArrayOutput {
+	return i.ToVdomnetflowCollectorArrayOutputWithContext(context.Background())
+}
+
+func (i VdomnetflowCollectorArray) ToVdomnetflowCollectorArrayOutputWithContext(ctx context.Context) VdomnetflowCollectorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VdomnetflowCollectorArrayOutput)
+}
+
+type VdomnetflowCollectorOutput struct{ *pulumi.OutputState }
+
+func (VdomnetflowCollectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VdomnetflowCollector)(nil)).Elem()
+}
+
+func (o VdomnetflowCollectorOutput) ToVdomnetflowCollectorOutput() VdomnetflowCollectorOutput {
+	return o
+}
+
+func (o VdomnetflowCollectorOutput) ToVdomnetflowCollectorOutputWithContext(ctx context.Context) VdomnetflowCollectorOutput {
+	return o
+}
+
+// Collector IP.
+func (o VdomnetflowCollectorOutput) CollectorIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VdomnetflowCollector) *string { return v.CollectorIp }).(pulumi.StringPtrOutput)
+}
+
+// NetFlow collector port number.
+func (o VdomnetflowCollectorOutput) CollectorPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VdomnetflowCollector) *int { return v.CollectorPort }).(pulumi.IntPtrOutput)
+}
+
+// ID.
+func (o VdomnetflowCollectorOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VdomnetflowCollector) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o VdomnetflowCollectorOutput) Interface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VdomnetflowCollector) *string { return v.Interface }).(pulumi.StringPtrOutput)
+}
+
+// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+func (o VdomnetflowCollectorOutput) InterfaceSelectMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VdomnetflowCollector) *string { return v.InterfaceSelectMethod }).(pulumi.StringPtrOutput)
+}
+
+// Source IP address for communication with the NetFlow agent.
+func (o VdomnetflowCollectorOutput) SourceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VdomnetflowCollector) *string { return v.SourceIp }).(pulumi.StringPtrOutput)
+}
+
+type VdomnetflowCollectorArrayOutput struct{ *pulumi.OutputState }
+
+func (VdomnetflowCollectorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VdomnetflowCollector)(nil)).Elem()
+}
+
+func (o VdomnetflowCollectorArrayOutput) ToVdomnetflowCollectorArrayOutput() VdomnetflowCollectorArrayOutput {
+	return o
+}
+
+func (o VdomnetflowCollectorArrayOutput) ToVdomnetflowCollectorArrayOutputWithContext(ctx context.Context) VdomnetflowCollectorArrayOutput {
+	return o
+}
+
+func (o VdomnetflowCollectorArrayOutput) Index(i pulumi.IntInput) VdomnetflowCollectorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VdomnetflowCollector {
+		return vs[0].([]VdomnetflowCollector)[vs[1].(int)]
+	}).(VdomnetflowCollectorOutput)
+}
+
+type VdomsflowCollector struct {
+	// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+	CollectorIp *string `pulumi:"collectorIp"`
+	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+	CollectorPort *int `pulumi:"collectorPort"`
+	// ID.
+	Id *int `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
+	// Source IP address for sFlow agent.
+	SourceIp *string `pulumi:"sourceIp"`
+}
+
+// VdomsflowCollectorInput is an input type that accepts VdomsflowCollectorArgs and VdomsflowCollectorOutput values.
+// You can construct a concrete instance of `VdomsflowCollectorInput` via:
+//
+//	VdomsflowCollectorArgs{...}
+type VdomsflowCollectorInput interface {
+	pulumi.Input
+
+	ToVdomsflowCollectorOutput() VdomsflowCollectorOutput
+	ToVdomsflowCollectorOutputWithContext(context.Context) VdomsflowCollectorOutput
+}
+
+type VdomsflowCollectorArgs struct {
+	// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+	CollectorIp pulumi.StringPtrInput `pulumi:"collectorIp"`
+	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+	CollectorPort pulumi.IntPtrInput `pulumi:"collectorPort"`
+	// ID.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput `pulumi:"interfaceSelectMethod"`
+	// Source IP address for sFlow agent.
+	SourceIp pulumi.StringPtrInput `pulumi:"sourceIp"`
+}
+
+func (VdomsflowCollectorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VdomsflowCollector)(nil)).Elem()
+}
+
+func (i VdomsflowCollectorArgs) ToVdomsflowCollectorOutput() VdomsflowCollectorOutput {
+	return i.ToVdomsflowCollectorOutputWithContext(context.Background())
+}
+
+func (i VdomsflowCollectorArgs) ToVdomsflowCollectorOutputWithContext(ctx context.Context) VdomsflowCollectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VdomsflowCollectorOutput)
+}
+
+// VdomsflowCollectorArrayInput is an input type that accepts VdomsflowCollectorArray and VdomsflowCollectorArrayOutput values.
+// You can construct a concrete instance of `VdomsflowCollectorArrayInput` via:
+//
+//	VdomsflowCollectorArray{ VdomsflowCollectorArgs{...} }
+type VdomsflowCollectorArrayInput interface {
+	pulumi.Input
+
+	ToVdomsflowCollectorArrayOutput() VdomsflowCollectorArrayOutput
+	ToVdomsflowCollectorArrayOutputWithContext(context.Context) VdomsflowCollectorArrayOutput
+}
+
+type VdomsflowCollectorArray []VdomsflowCollectorInput
+
+func (VdomsflowCollectorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VdomsflowCollector)(nil)).Elem()
+}
+
+func (i VdomsflowCollectorArray) ToVdomsflowCollectorArrayOutput() VdomsflowCollectorArrayOutput {
+	return i.ToVdomsflowCollectorArrayOutputWithContext(context.Background())
+}
+
+func (i VdomsflowCollectorArray) ToVdomsflowCollectorArrayOutputWithContext(ctx context.Context) VdomsflowCollectorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VdomsflowCollectorArrayOutput)
+}
+
+type VdomsflowCollectorOutput struct{ *pulumi.OutputState }
+
+func (VdomsflowCollectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VdomsflowCollector)(nil)).Elem()
+}
+
+func (o VdomsflowCollectorOutput) ToVdomsflowCollectorOutput() VdomsflowCollectorOutput {
+	return o
+}
+
+func (o VdomsflowCollectorOutput) ToVdomsflowCollectorOutputWithContext(ctx context.Context) VdomsflowCollectorOutput {
+	return o
+}
+
+// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+func (o VdomsflowCollectorOutput) CollectorIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VdomsflowCollector) *string { return v.CollectorIp }).(pulumi.StringPtrOutput)
+}
+
+// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+func (o VdomsflowCollectorOutput) CollectorPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VdomsflowCollector) *int { return v.CollectorPort }).(pulumi.IntPtrOutput)
+}
+
+// ID.
+func (o VdomsflowCollectorOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VdomsflowCollector) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o VdomsflowCollectorOutput) Interface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VdomsflowCollector) *string { return v.Interface }).(pulumi.StringPtrOutput)
+}
+
+// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+func (o VdomsflowCollectorOutput) InterfaceSelectMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VdomsflowCollector) *string { return v.InterfaceSelectMethod }).(pulumi.StringPtrOutput)
+}
+
+// Source IP address for sFlow agent.
+func (o VdomsflowCollectorOutput) SourceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VdomsflowCollector) *string { return v.SourceIp }).(pulumi.StringPtrOutput)
+}
+
+type VdomsflowCollectorArrayOutput struct{ *pulumi.OutputState }
+
+func (VdomsflowCollectorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VdomsflowCollector)(nil)).Elem()
+}
+
+func (o VdomsflowCollectorArrayOutput) ToVdomsflowCollectorArrayOutput() VdomsflowCollectorArrayOutput {
+	return o
+}
+
+func (o VdomsflowCollectorArrayOutput) ToVdomsflowCollectorArrayOutputWithContext(ctx context.Context) VdomsflowCollectorArrayOutput {
+	return o
+}
+
+func (o VdomsflowCollectorArrayOutput) Index(i pulumi.IntInput) VdomsflowCollectorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VdomsflowCollector {
+		return vs[0].([]VdomsflowCollector)[vs[1].(int)]
+	}).(VdomsflowCollectorOutput)
 }
 
 type VirtualswitchPort struct {
@@ -30222,6 +33117,10 @@ type GetAccprofileUtmgrpPermission struct {
 	Antivirus string `pulumi:"antivirus"`
 	// Application Control profiles and settings.
 	ApplicationControl string `pulumi:"applicationControl"`
+	// Inline CASB filter profile and settings
+	Casb string `pulumi:"casb"`
+	// DLP profiles and settings.
+	DataLeakPrevention string `pulumi:"dataLeakPrevention"`
 	// DLP profiles and settings.
 	DataLossPrevention string `pulumi:"dataLossPrevention"`
 	// DNS Filter profiles and settings.
@@ -30240,6 +33139,8 @@ type GetAccprofileUtmgrpPermission struct {
 	Spamfilter string `pulumi:"spamfilter"`
 	// Video filter profiles and settings.
 	Videofilter string `pulumi:"videofilter"`
+	// Virtual patch profiles and settings.
+	VirtualPatch string `pulumi:"virtualPatch"`
 	// VoIP profiles and settings.
 	Voip string `pulumi:"voip"`
 	// Web Application Firewall profiles and settings.
@@ -30264,6 +33165,10 @@ type GetAccprofileUtmgrpPermissionArgs struct {
 	Antivirus pulumi.StringInput `pulumi:"antivirus"`
 	// Application Control profiles and settings.
 	ApplicationControl pulumi.StringInput `pulumi:"applicationControl"`
+	// Inline CASB filter profile and settings
+	Casb pulumi.StringInput `pulumi:"casb"`
+	// DLP profiles and settings.
+	DataLeakPrevention pulumi.StringInput `pulumi:"dataLeakPrevention"`
 	// DLP profiles and settings.
 	DataLossPrevention pulumi.StringInput `pulumi:"dataLossPrevention"`
 	// DNS Filter profiles and settings.
@@ -30282,6 +33187,8 @@ type GetAccprofileUtmgrpPermissionArgs struct {
 	Spamfilter pulumi.StringInput `pulumi:"spamfilter"`
 	// Video filter profiles and settings.
 	Videofilter pulumi.StringInput `pulumi:"videofilter"`
+	// Virtual patch profiles and settings.
+	VirtualPatch pulumi.StringInput `pulumi:"virtualPatch"`
 	// VoIP profiles and settings.
 	Voip pulumi.StringInput `pulumi:"voip"`
 	// Web Application Firewall profiles and settings.
@@ -30351,6 +33258,16 @@ func (o GetAccprofileUtmgrpPermissionOutput) ApplicationControl() pulumi.StringO
 	return o.ApplyT(func(v GetAccprofileUtmgrpPermission) string { return v.ApplicationControl }).(pulumi.StringOutput)
 }
 
+// Inline CASB filter profile and settings
+func (o GetAccprofileUtmgrpPermissionOutput) Casb() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccprofileUtmgrpPermission) string { return v.Casb }).(pulumi.StringOutput)
+}
+
+// DLP profiles and settings.
+func (o GetAccprofileUtmgrpPermissionOutput) DataLeakPrevention() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccprofileUtmgrpPermission) string { return v.DataLeakPrevention }).(pulumi.StringOutput)
+}
+
 // DLP profiles and settings.
 func (o GetAccprofileUtmgrpPermissionOutput) DataLossPrevention() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccprofileUtmgrpPermission) string { return v.DataLossPrevention }).(pulumi.StringOutput)
@@ -30394,6 +33311,11 @@ func (o GetAccprofileUtmgrpPermissionOutput) Spamfilter() pulumi.StringOutput {
 // Video filter profiles and settings.
 func (o GetAccprofileUtmgrpPermissionOutput) Videofilter() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccprofileUtmgrpPermission) string { return v.Videofilter }).(pulumi.StringOutput)
+}
+
+// Virtual patch profiles and settings.
+func (o GetAccprofileUtmgrpPermissionOutput) VirtualPatch() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccprofileUtmgrpPermission) string { return v.VirtualPatch }).(pulumi.StringOutput)
 }
 
 // VoIP profiles and settings.
@@ -32245,7 +35167,7 @@ func (o GetAutomationdestinationDestinationArrayOutput) Index(i pulumi.IntInput)
 }
 
 type GetAutomationtriggerField struct {
-	// Log ID.
+	// Entry ID.
 	Id int `pulumi:"id"`
 	// Specify the name of the desired system automationtrigger.
 	Name string `pulumi:"name"`
@@ -32265,7 +35187,7 @@ type GetAutomationtriggerFieldInput interface {
 }
 
 type GetAutomationtriggerFieldArgs struct {
-	// Log ID.
+	// Entry ID.
 	Id pulumi.IntInput `pulumi:"id"`
 	// Specify the name of the desired system automationtrigger.
 	Name pulumi.StringInput `pulumi:"name"`
@@ -32324,7 +35246,7 @@ func (o GetAutomationtriggerFieldOutput) ToGetAutomationtriggerFieldOutputWithCo
 	return o
 }
 
-// Log ID.
+// Entry ID.
 func (o GetAutomationtriggerFieldOutput) Id() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAutomationtriggerField) int { return v.Id }).(pulumi.IntOutput)
 }
@@ -32360,7 +35282,7 @@ func (o GetAutomationtriggerFieldArrayOutput) Index(i pulumi.IntInput) GetAutoma
 }
 
 type GetAutomationtriggerLogidBlock struct {
-	// Log ID.
+	// Entry ID.
 	Id int `pulumi:"id"`
 }
 
@@ -32376,7 +35298,7 @@ type GetAutomationtriggerLogidBlockInput interface {
 }
 
 type GetAutomationtriggerLogidBlockArgs struct {
-	// Log ID.
+	// Entry ID.
 	Id pulumi.IntInput `pulumi:"id"`
 }
 
@@ -32431,7 +35353,7 @@ func (o GetAutomationtriggerLogidBlockOutput) ToGetAutomationtriggerLogidBlockOu
 	return o
 }
 
-// Log ID.
+// Entry ID.
 func (o GetAutomationtriggerLogidBlockOutput) Id() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAutomationtriggerLogidBlock) int { return v.Id }).(pulumi.IntOutput)
 }
@@ -33164,6 +36086,8 @@ type GetCsfFabricConnector struct {
 	ConfigurationWriteAccess string `pulumi:"configurationWriteAccess"`
 	// Serial.
 	Serial string `pulumi:"serial"`
+	// Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
+	Vdoms []GetCsfFabricConnectorVdom `pulumi:"vdoms"`
 }
 
 // GetCsfFabricConnectorInput is an input type that accepts GetCsfFabricConnectorArgs and GetCsfFabricConnectorOutput values.
@@ -33184,6 +36108,8 @@ type GetCsfFabricConnectorArgs struct {
 	ConfigurationWriteAccess pulumi.StringInput `pulumi:"configurationWriteAccess"`
 	// Serial.
 	Serial pulumi.StringInput `pulumi:"serial"`
+	// Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
+	Vdoms GetCsfFabricConnectorVdomArrayInput `pulumi:"vdoms"`
 }
 
 func (GetCsfFabricConnectorArgs) ElementType() reflect.Type {
@@ -33252,6 +36178,11 @@ func (o GetCsfFabricConnectorOutput) Serial() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCsfFabricConnector) string { return v.Serial }).(pulumi.StringOutput)
 }
 
+// Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
+func (o GetCsfFabricConnectorOutput) Vdoms() GetCsfFabricConnectorVdomArrayOutput {
+	return o.ApplyT(func(v GetCsfFabricConnector) []GetCsfFabricConnectorVdom { return v.Vdoms }).(GetCsfFabricConnectorVdomArrayOutput)
+}
+
 type GetCsfFabricConnectorArrayOutput struct{ *pulumi.OutputState }
 
 func (GetCsfFabricConnectorArrayOutput) ElementType() reflect.Type {
@@ -33270,6 +36201,103 @@ func (o GetCsfFabricConnectorArrayOutput) Index(i pulumi.IntInput) GetCsfFabricC
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCsfFabricConnector {
 		return vs[0].([]GetCsfFabricConnector)[vs[1].(int)]
 	}).(GetCsfFabricConnectorOutput)
+}
+
+type GetCsfFabricConnectorVdom struct {
+	// Device name.
+	Name string `pulumi:"name"`
+}
+
+// GetCsfFabricConnectorVdomInput is an input type that accepts GetCsfFabricConnectorVdomArgs and GetCsfFabricConnectorVdomOutput values.
+// You can construct a concrete instance of `GetCsfFabricConnectorVdomInput` via:
+//
+//	GetCsfFabricConnectorVdomArgs{...}
+type GetCsfFabricConnectorVdomInput interface {
+	pulumi.Input
+
+	ToGetCsfFabricConnectorVdomOutput() GetCsfFabricConnectorVdomOutput
+	ToGetCsfFabricConnectorVdomOutputWithContext(context.Context) GetCsfFabricConnectorVdomOutput
+}
+
+type GetCsfFabricConnectorVdomArgs struct {
+	// Device name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetCsfFabricConnectorVdomArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCsfFabricConnectorVdom)(nil)).Elem()
+}
+
+func (i GetCsfFabricConnectorVdomArgs) ToGetCsfFabricConnectorVdomOutput() GetCsfFabricConnectorVdomOutput {
+	return i.ToGetCsfFabricConnectorVdomOutputWithContext(context.Background())
+}
+
+func (i GetCsfFabricConnectorVdomArgs) ToGetCsfFabricConnectorVdomOutputWithContext(ctx context.Context) GetCsfFabricConnectorVdomOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCsfFabricConnectorVdomOutput)
+}
+
+// GetCsfFabricConnectorVdomArrayInput is an input type that accepts GetCsfFabricConnectorVdomArray and GetCsfFabricConnectorVdomArrayOutput values.
+// You can construct a concrete instance of `GetCsfFabricConnectorVdomArrayInput` via:
+//
+//	GetCsfFabricConnectorVdomArray{ GetCsfFabricConnectorVdomArgs{...} }
+type GetCsfFabricConnectorVdomArrayInput interface {
+	pulumi.Input
+
+	ToGetCsfFabricConnectorVdomArrayOutput() GetCsfFabricConnectorVdomArrayOutput
+	ToGetCsfFabricConnectorVdomArrayOutputWithContext(context.Context) GetCsfFabricConnectorVdomArrayOutput
+}
+
+type GetCsfFabricConnectorVdomArray []GetCsfFabricConnectorVdomInput
+
+func (GetCsfFabricConnectorVdomArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCsfFabricConnectorVdom)(nil)).Elem()
+}
+
+func (i GetCsfFabricConnectorVdomArray) ToGetCsfFabricConnectorVdomArrayOutput() GetCsfFabricConnectorVdomArrayOutput {
+	return i.ToGetCsfFabricConnectorVdomArrayOutputWithContext(context.Background())
+}
+
+func (i GetCsfFabricConnectorVdomArray) ToGetCsfFabricConnectorVdomArrayOutputWithContext(ctx context.Context) GetCsfFabricConnectorVdomArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCsfFabricConnectorVdomArrayOutput)
+}
+
+type GetCsfFabricConnectorVdomOutput struct{ *pulumi.OutputState }
+
+func (GetCsfFabricConnectorVdomOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCsfFabricConnectorVdom)(nil)).Elem()
+}
+
+func (o GetCsfFabricConnectorVdomOutput) ToGetCsfFabricConnectorVdomOutput() GetCsfFabricConnectorVdomOutput {
+	return o
+}
+
+func (o GetCsfFabricConnectorVdomOutput) ToGetCsfFabricConnectorVdomOutputWithContext(ctx context.Context) GetCsfFabricConnectorVdomOutput {
+	return o
+}
+
+// Device name.
+func (o GetCsfFabricConnectorVdomOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCsfFabricConnectorVdom) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetCsfFabricConnectorVdomArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCsfFabricConnectorVdomArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCsfFabricConnectorVdom)(nil)).Elem()
+}
+
+func (o GetCsfFabricConnectorVdomArrayOutput) ToGetCsfFabricConnectorVdomArrayOutput() GetCsfFabricConnectorVdomArrayOutput {
+	return o
+}
+
+func (o GetCsfFabricConnectorVdomArrayOutput) ToGetCsfFabricConnectorVdomArrayOutputWithContext(ctx context.Context) GetCsfFabricConnectorVdomArrayOutput {
+	return o
+}
+
+func (o GetCsfFabricConnectorVdomArrayOutput) Index(i pulumi.IntInput) GetCsfFabricConnectorVdomOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCsfFabricConnectorVdom {
+		return vs[0].([]GetCsfFabricConnectorVdom)[vs[1].(int)]
+	}).(GetCsfFabricConnectorVdomOutput)
 }
 
 type GetCsfFabricDevice struct {
@@ -33434,6 +36462,8 @@ type GetCsfTrustedList struct {
 	DownstreamAuthorization string `pulumi:"downstreamAuthorization"`
 	// HA members.
 	HaMembers string `pulumi:"haMembers"`
+	// Index of the downstream in tree.
+	Index int `pulumi:"index"`
 	// Device name.
 	Name string `pulumi:"name"`
 	// Serial.
@@ -33462,6 +36492,8 @@ type GetCsfTrustedListArgs struct {
 	DownstreamAuthorization pulumi.StringInput `pulumi:"downstreamAuthorization"`
 	// HA members.
 	HaMembers pulumi.StringInput `pulumi:"haMembers"`
+	// Index of the downstream in tree.
+	Index pulumi.IntInput `pulumi:"index"`
 	// Device name.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Serial.
@@ -33542,6 +36574,11 @@ func (o GetCsfTrustedListOutput) DownstreamAuthorization() pulumi.StringOutput {
 // HA members.
 func (o GetCsfTrustedListOutput) HaMembers() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCsfTrustedList) string { return v.HaMembers }).(pulumi.StringOutput)
+}
+
+// Index of the downstream in tree.
+func (o GetCsfTrustedListOutput) Index() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCsfTrustedList) int { return v.Index }).(pulumi.IntOutput)
 }
 
 // Device name.
@@ -34131,6 +37168,103 @@ func (o GetDnsdatabaseDnsEntryArrayOutput) Index(i pulumi.IntInput) GetDnsdataba
 	}).(GetDnsdatabaseDnsEntryOutput)
 }
 
+type GetGlobalInternetServiceDownloadList struct {
+	// Internet Service ID.
+	Id int `pulumi:"id"`
+}
+
+// GetGlobalInternetServiceDownloadListInput is an input type that accepts GetGlobalInternetServiceDownloadListArgs and GetGlobalInternetServiceDownloadListOutput values.
+// You can construct a concrete instance of `GetGlobalInternetServiceDownloadListInput` via:
+//
+//	GetGlobalInternetServiceDownloadListArgs{...}
+type GetGlobalInternetServiceDownloadListInput interface {
+	pulumi.Input
+
+	ToGetGlobalInternetServiceDownloadListOutput() GetGlobalInternetServiceDownloadListOutput
+	ToGetGlobalInternetServiceDownloadListOutputWithContext(context.Context) GetGlobalInternetServiceDownloadListOutput
+}
+
+type GetGlobalInternetServiceDownloadListArgs struct {
+	// Internet Service ID.
+	Id pulumi.IntInput `pulumi:"id"`
+}
+
+func (GetGlobalInternetServiceDownloadListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGlobalInternetServiceDownloadList)(nil)).Elem()
+}
+
+func (i GetGlobalInternetServiceDownloadListArgs) ToGetGlobalInternetServiceDownloadListOutput() GetGlobalInternetServiceDownloadListOutput {
+	return i.ToGetGlobalInternetServiceDownloadListOutputWithContext(context.Background())
+}
+
+func (i GetGlobalInternetServiceDownloadListArgs) ToGetGlobalInternetServiceDownloadListOutputWithContext(ctx context.Context) GetGlobalInternetServiceDownloadListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGlobalInternetServiceDownloadListOutput)
+}
+
+// GetGlobalInternetServiceDownloadListArrayInput is an input type that accepts GetGlobalInternetServiceDownloadListArray and GetGlobalInternetServiceDownloadListArrayOutput values.
+// You can construct a concrete instance of `GetGlobalInternetServiceDownloadListArrayInput` via:
+//
+//	GetGlobalInternetServiceDownloadListArray{ GetGlobalInternetServiceDownloadListArgs{...} }
+type GetGlobalInternetServiceDownloadListArrayInput interface {
+	pulumi.Input
+
+	ToGetGlobalInternetServiceDownloadListArrayOutput() GetGlobalInternetServiceDownloadListArrayOutput
+	ToGetGlobalInternetServiceDownloadListArrayOutputWithContext(context.Context) GetGlobalInternetServiceDownloadListArrayOutput
+}
+
+type GetGlobalInternetServiceDownloadListArray []GetGlobalInternetServiceDownloadListInput
+
+func (GetGlobalInternetServiceDownloadListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGlobalInternetServiceDownloadList)(nil)).Elem()
+}
+
+func (i GetGlobalInternetServiceDownloadListArray) ToGetGlobalInternetServiceDownloadListArrayOutput() GetGlobalInternetServiceDownloadListArrayOutput {
+	return i.ToGetGlobalInternetServiceDownloadListArrayOutputWithContext(context.Background())
+}
+
+func (i GetGlobalInternetServiceDownloadListArray) ToGetGlobalInternetServiceDownloadListArrayOutputWithContext(ctx context.Context) GetGlobalInternetServiceDownloadListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGlobalInternetServiceDownloadListArrayOutput)
+}
+
+type GetGlobalInternetServiceDownloadListOutput struct{ *pulumi.OutputState }
+
+func (GetGlobalInternetServiceDownloadListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGlobalInternetServiceDownloadList)(nil)).Elem()
+}
+
+func (o GetGlobalInternetServiceDownloadListOutput) ToGetGlobalInternetServiceDownloadListOutput() GetGlobalInternetServiceDownloadListOutput {
+	return o
+}
+
+func (o GetGlobalInternetServiceDownloadListOutput) ToGetGlobalInternetServiceDownloadListOutputWithContext(ctx context.Context) GetGlobalInternetServiceDownloadListOutput {
+	return o
+}
+
+// Internet Service ID.
+func (o GetGlobalInternetServiceDownloadListOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGlobalInternetServiceDownloadList) int { return v.Id }).(pulumi.IntOutput)
+}
+
+type GetGlobalInternetServiceDownloadListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGlobalInternetServiceDownloadListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGlobalInternetServiceDownloadList)(nil)).Elem()
+}
+
+func (o GetGlobalInternetServiceDownloadListArrayOutput) ToGetGlobalInternetServiceDownloadListArrayOutput() GetGlobalInternetServiceDownloadListArrayOutput {
+	return o
+}
+
+func (o GetGlobalInternetServiceDownloadListArrayOutput) ToGetGlobalInternetServiceDownloadListArrayOutputWithContext(ctx context.Context) GetGlobalInternetServiceDownloadListArrayOutput {
+	return o
+}
+
+func (o GetGlobalInternetServiceDownloadListArrayOutput) Index(i pulumi.IntInput) GetGlobalInternetServiceDownloadListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGlobalInternetServiceDownloadList {
+		return vs[0].([]GetGlobalInternetServiceDownloadList)[vs[1].(int)]
+	}).(GetGlobalInternetServiceDownloadListOutput)
+}
+
 type GetHaHaMgmtInterface struct {
 	// Default route destination for reserved HA management interface.
 	Dst string `pulumi:"dst"`
@@ -34557,6 +37691,8 @@ type GetHaVcluster struct {
 	OverrideWaitTime int `pulumi:"overrideWaitTime"`
 	// Remote IP monitoring failover threshold (0 - 50).
 	PingserverFailoverThreshold int `pulumi:"pingserverFailoverThreshold"`
+	// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+	PingserverFlipTimeout int `pulumi:"pingserverFlipTimeout"`
 	// Interfaces to check for remote IP monitoring.
 	PingserverMonitorInterface string `pulumi:"pingserverMonitorInterface"`
 	// Enable to force the cluster to negotiate after a remote IP monitoring failover.
@@ -34591,6 +37727,8 @@ type GetHaVclusterArgs struct {
 	OverrideWaitTime pulumi.IntInput `pulumi:"overrideWaitTime"`
 	// Remote IP monitoring failover threshold (0 - 50).
 	PingserverFailoverThreshold pulumi.IntInput `pulumi:"pingserverFailoverThreshold"`
+	// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+	PingserverFlipTimeout pulumi.IntInput `pulumi:"pingserverFlipTimeout"`
 	// Interfaces to check for remote IP monitoring.
 	PingserverMonitorInterface pulumi.StringInput `pulumi:"pingserverMonitorInterface"`
 	// Enable to force the cluster to negotiate after a remote IP monitoring failover.
@@ -34674,6 +37812,11 @@ func (o GetHaVclusterOutput) OverrideWaitTime() pulumi.IntOutput {
 // Remote IP monitoring failover threshold (0 - 50).
 func (o GetHaVclusterOutput) PingserverFailoverThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v GetHaVcluster) int { return v.PingserverFailoverThreshold }).(pulumi.IntOutput)
+}
+
+// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+func (o GetHaVclusterOutput) PingserverFlipTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetHaVcluster) int { return v.PingserverFlipTimeout }).(pulumi.IntOutput)
 }
 
 // Interfaces to check for remote IP monitoring.
@@ -35178,10 +38321,16 @@ type GetInterfaceIpv6 struct {
 	Dhcp6PrefixHintPlt int `pulumi:"dhcp6PrefixHintPlt"`
 	// DHCPv6 prefix hint valid life time (sec).
 	Dhcp6PrefixHintVlt int `pulumi:"dhcp6PrefixHintVlt"`
+	// DHCP6 relay interface ID.
+	Dhcp6RelayInterfaceId string `pulumi:"dhcp6RelayInterfaceId"`
 	// DHCPv6 relay IP address.
 	Dhcp6RelayIp string `pulumi:"dhcp6RelayIp"`
 	// Enable/disable DHCPv6 relay.
 	Dhcp6RelayService string `pulumi:"dhcp6RelayService"`
+	// Enable/disable use of address on this interface as the source address of the relay message.
+	Dhcp6RelaySourceInterface string `pulumi:"dhcp6RelaySourceInterface"`
+	// IPv6 address used by the DHCP6 relay as its source IP.
+	Dhcp6RelaySourceIp string `pulumi:"dhcp6RelaySourceIp"`
 	// DHCPv6 relay type.
 	Dhcp6RelayType string `pulumi:"dhcp6RelayType"`
 	// Enable/disable sending of ICMPv6 redirects.
@@ -35284,10 +38433,16 @@ type GetInterfaceIpv6Args struct {
 	Dhcp6PrefixHintPlt pulumi.IntInput `pulumi:"dhcp6PrefixHintPlt"`
 	// DHCPv6 prefix hint valid life time (sec).
 	Dhcp6PrefixHintVlt pulumi.IntInput `pulumi:"dhcp6PrefixHintVlt"`
+	// DHCP6 relay interface ID.
+	Dhcp6RelayInterfaceId pulumi.StringInput `pulumi:"dhcp6RelayInterfaceId"`
 	// DHCPv6 relay IP address.
 	Dhcp6RelayIp pulumi.StringInput `pulumi:"dhcp6RelayIp"`
 	// Enable/disable DHCPv6 relay.
 	Dhcp6RelayService pulumi.StringInput `pulumi:"dhcp6RelayService"`
+	// Enable/disable use of address on this interface as the source address of the relay message.
+	Dhcp6RelaySourceInterface pulumi.StringInput `pulumi:"dhcp6RelaySourceInterface"`
+	// IPv6 address used by the DHCP6 relay as its source IP.
+	Dhcp6RelaySourceIp pulumi.StringInput `pulumi:"dhcp6RelaySourceIp"`
 	// DHCPv6 relay type.
 	Dhcp6RelayType pulumi.StringInput `pulumi:"dhcp6RelayType"`
 	// Enable/disable sending of ICMPv6 redirects.
@@ -35456,6 +38611,11 @@ func (o GetInterfaceIpv6Output) Dhcp6PrefixHintVlt() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInterfaceIpv6) int { return v.Dhcp6PrefixHintVlt }).(pulumi.IntOutput)
 }
 
+// DHCP6 relay interface ID.
+func (o GetInterfaceIpv6Output) Dhcp6RelayInterfaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterfaceIpv6) string { return v.Dhcp6RelayInterfaceId }).(pulumi.StringOutput)
+}
+
 // DHCPv6 relay IP address.
 func (o GetInterfaceIpv6Output) Dhcp6RelayIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInterfaceIpv6) string { return v.Dhcp6RelayIp }).(pulumi.StringOutput)
@@ -35464,6 +38624,16 @@ func (o GetInterfaceIpv6Output) Dhcp6RelayIp() pulumi.StringOutput {
 // Enable/disable DHCPv6 relay.
 func (o GetInterfaceIpv6Output) Dhcp6RelayService() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInterfaceIpv6) string { return v.Dhcp6RelayService }).(pulumi.StringOutput)
+}
+
+// Enable/disable use of address on this interface as the source address of the relay message.
+func (o GetInterfaceIpv6Output) Dhcp6RelaySourceInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterfaceIpv6) string { return v.Dhcp6RelaySourceInterface }).(pulumi.StringOutput)
+}
+
+// IPv6 address used by the DHCP6 relay as its source IP.
+func (o GetInterfaceIpv6Output) Dhcp6RelaySourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterfaceIpv6) string { return v.Dhcp6RelaySourceIp }).(pulumi.StringOutput)
 }
 
 // DHCPv6 relay type.
@@ -36295,6 +39465,8 @@ type GetInterfaceIpv6Vrrp6 struct {
 	AcceptMode string `pulumi:"acceptMode"`
 	// Advertisement interval (1 - 255 seconds).
 	AdvInterval int `pulumi:"advInterval"`
+	// Enable/disable ignoring of default route when checking destination.
+	IgnoreDefaultRoute string `pulumi:"ignoreDefaultRoute"`
 	// Enable/disable preempt mode.
 	Preempt string `pulumi:"preempt"`
 	// Priority of the virtual router (1 - 255).
@@ -36329,6 +39501,8 @@ type GetInterfaceIpv6Vrrp6Args struct {
 	AcceptMode pulumi.StringInput `pulumi:"acceptMode"`
 	// Advertisement interval (1 - 255 seconds).
 	AdvInterval pulumi.IntInput `pulumi:"advInterval"`
+	// Enable/disable ignoring of default route when checking destination.
+	IgnoreDefaultRoute pulumi.StringInput `pulumi:"ignoreDefaultRoute"`
 	// Enable/disable preempt mode.
 	Preempt pulumi.StringInput `pulumi:"preempt"`
 	// Priority of the virtual router (1 - 255).
@@ -36406,6 +39580,11 @@ func (o GetInterfaceIpv6Vrrp6Output) AcceptMode() pulumi.StringOutput {
 // Advertisement interval (1 - 255 seconds).
 func (o GetInterfaceIpv6Vrrp6Output) AdvInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInterfaceIpv6Vrrp6) int { return v.AdvInterval }).(pulumi.IntOutput)
+}
+
+// Enable/disable ignoring of default route when checking destination.
+func (o GetInterfaceIpv6Vrrp6Output) IgnoreDefaultRoute() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterfaceIpv6Vrrp6) string { return v.IgnoreDefaultRoute }).(pulumi.StringOutput)
 }
 
 // Enable/disable preempt mode.
@@ -36679,6 +39858,8 @@ type GetInterfaceSecondaryip struct {
 	Ip string `pulumi:"ip"`
 	// PING server status.
 	PingServStatus int `pulumi:"pingServStatus"`
+	// DHCP relay IP address.
+	SecipRelayIp string `pulumi:"secipRelayIp"`
 }
 
 // GetInterfaceSecondaryipInput is an input type that accepts GetInterfaceSecondaryipArgs and GetInterfaceSecondaryipOutput values.
@@ -36709,6 +39890,8 @@ type GetInterfaceSecondaryipArgs struct {
 	Ip pulumi.StringInput `pulumi:"ip"`
 	// PING server status.
 	PingServStatus pulumi.IntInput `pulumi:"pingServStatus"`
+	// DHCP relay IP address.
+	SecipRelayIp pulumi.StringInput `pulumi:"secipRelayIp"`
 }
 
 func (GetInterfaceSecondaryipArgs) ElementType() reflect.Type {
@@ -36800,6 +39983,11 @@ func (o GetInterfaceSecondaryipOutput) Ip() pulumi.StringOutput {
 // PING server status.
 func (o GetInterfaceSecondaryipOutput) PingServStatus() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInterfaceSecondaryip) int { return v.PingServStatus }).(pulumi.IntOutput)
+}
+
+// DHCP relay IP address.
+func (o GetInterfaceSecondaryipOutput) SecipRelayIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterfaceSecondaryip) string { return v.SecipRelayIp }).(pulumi.StringOutput)
 }
 
 type GetInterfaceSecondaryipArrayOutput struct{ *pulumi.OutputState }
@@ -38096,6 +41284,148 @@ func (o GetNdproxyMemberArrayOutput) Index(i pulumi.IntInput) GetNdproxyMemberOu
 	}).(GetNdproxyMemberOutput)
 }
 
+type GetNetflowCollector struct {
+	// Collector IP.
+	CollectorIp string `pulumi:"collectorIp"`
+	// NetFlow collector port number.
+	CollectorPort int `pulumi:"collectorPort"`
+	// ID.
+	Id int `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server.
+	InterfaceSelectMethod string `pulumi:"interfaceSelectMethod"`
+	// Source IP address for communication with the NetFlow agent.
+	SourceIp string `pulumi:"sourceIp"`
+}
+
+// GetNetflowCollectorInput is an input type that accepts GetNetflowCollectorArgs and GetNetflowCollectorOutput values.
+// You can construct a concrete instance of `GetNetflowCollectorInput` via:
+//
+//	GetNetflowCollectorArgs{...}
+type GetNetflowCollectorInput interface {
+	pulumi.Input
+
+	ToGetNetflowCollectorOutput() GetNetflowCollectorOutput
+	ToGetNetflowCollectorOutputWithContext(context.Context) GetNetflowCollectorOutput
+}
+
+type GetNetflowCollectorArgs struct {
+	// Collector IP.
+	CollectorIp pulumi.StringInput `pulumi:"collectorIp"`
+	// NetFlow collector port number.
+	CollectorPort pulumi.IntInput `pulumi:"collectorPort"`
+	// ID.
+	Id pulumi.IntInput `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringInput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server.
+	InterfaceSelectMethod pulumi.StringInput `pulumi:"interfaceSelectMethod"`
+	// Source IP address for communication with the NetFlow agent.
+	SourceIp pulumi.StringInput `pulumi:"sourceIp"`
+}
+
+func (GetNetflowCollectorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNetflowCollector)(nil)).Elem()
+}
+
+func (i GetNetflowCollectorArgs) ToGetNetflowCollectorOutput() GetNetflowCollectorOutput {
+	return i.ToGetNetflowCollectorOutputWithContext(context.Background())
+}
+
+func (i GetNetflowCollectorArgs) ToGetNetflowCollectorOutputWithContext(ctx context.Context) GetNetflowCollectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNetflowCollectorOutput)
+}
+
+// GetNetflowCollectorArrayInput is an input type that accepts GetNetflowCollectorArray and GetNetflowCollectorArrayOutput values.
+// You can construct a concrete instance of `GetNetflowCollectorArrayInput` via:
+//
+//	GetNetflowCollectorArray{ GetNetflowCollectorArgs{...} }
+type GetNetflowCollectorArrayInput interface {
+	pulumi.Input
+
+	ToGetNetflowCollectorArrayOutput() GetNetflowCollectorArrayOutput
+	ToGetNetflowCollectorArrayOutputWithContext(context.Context) GetNetflowCollectorArrayOutput
+}
+
+type GetNetflowCollectorArray []GetNetflowCollectorInput
+
+func (GetNetflowCollectorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNetflowCollector)(nil)).Elem()
+}
+
+func (i GetNetflowCollectorArray) ToGetNetflowCollectorArrayOutput() GetNetflowCollectorArrayOutput {
+	return i.ToGetNetflowCollectorArrayOutputWithContext(context.Background())
+}
+
+func (i GetNetflowCollectorArray) ToGetNetflowCollectorArrayOutputWithContext(ctx context.Context) GetNetflowCollectorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNetflowCollectorArrayOutput)
+}
+
+type GetNetflowCollectorOutput struct{ *pulumi.OutputState }
+
+func (GetNetflowCollectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNetflowCollector)(nil)).Elem()
+}
+
+func (o GetNetflowCollectorOutput) ToGetNetflowCollectorOutput() GetNetflowCollectorOutput {
+	return o
+}
+
+func (o GetNetflowCollectorOutput) ToGetNetflowCollectorOutputWithContext(ctx context.Context) GetNetflowCollectorOutput {
+	return o
+}
+
+// Collector IP.
+func (o GetNetflowCollectorOutput) CollectorIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNetflowCollector) string { return v.CollectorIp }).(pulumi.StringOutput)
+}
+
+// NetFlow collector port number.
+func (o GetNetflowCollectorOutput) CollectorPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNetflowCollector) int { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+// ID.
+func (o GetNetflowCollectorOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNetflowCollector) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o GetNetflowCollectorOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNetflowCollector) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// Specify how to select outgoing interface to reach server.
+func (o GetNetflowCollectorOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNetflowCollector) string { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+// Source IP address for communication with the NetFlow agent.
+func (o GetNetflowCollectorOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNetflowCollector) string { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+type GetNetflowCollectorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNetflowCollectorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNetflowCollector)(nil)).Elem()
+}
+
+func (o GetNetflowCollectorArrayOutput) ToGetNetflowCollectorArrayOutput() GetNetflowCollectorArrayOutput {
+	return o
+}
+
+func (o GetNetflowCollectorArrayOutput) ToGetNetflowCollectorArrayOutputWithContext(ctx context.Context) GetNetflowCollectorArrayOutput {
+	return o
+}
+
+func (o GetNetflowCollectorArrayOutput) Index(i pulumi.IntInput) GetNetflowCollectorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNetflowCollector {
+		return vs[0].([]GetNetflowCollector)[vs[1].(int)]
+	}).(GetNetflowCollectorOutput)
+}
+
 type GetNtpInterface struct {
 	// Interface name.
 	InterfaceName string `pulumi:"interfaceName"`
@@ -38202,6 +41532,8 @@ type GetNtpNtpserver struct {
 	Interface string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server.
 	InterfaceSelectMethod string `pulumi:"interfaceSelectMethod"`
+	// Choose to connect to IPv4 or/and IPv6 NTP server.
+	IpType string `pulumi:"ipType"`
 	// Key for MD5/SHA1 authentication.
 	Key string `pulumi:"key"`
 	// Key ID for authentication.
@@ -38232,6 +41564,8 @@ type GetNtpNtpserverArgs struct {
 	Interface pulumi.StringInput `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server.
 	InterfaceSelectMethod pulumi.StringInput `pulumi:"interfaceSelectMethod"`
+	// Choose to connect to IPv4 or/and IPv6 NTP server.
+	IpType pulumi.StringInput `pulumi:"ipType"`
 	// Key for MD5/SHA1 authentication.
 	Key pulumi.StringInput `pulumi:"key"`
 	// Key ID for authentication.
@@ -38311,6 +41645,11 @@ func (o GetNtpNtpserverOutput) Interface() pulumi.StringOutput {
 // Specify how to select outgoing interface to reach server.
 func (o GetNtpNtpserverOutput) InterfaceSelectMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNtpNtpserver) string { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+// Choose to connect to IPv4 or/and IPv6 NTP server.
+func (o GetNtpNtpserverOutput) IpType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNtpNtpserver) string { return v.IpType }).(pulumi.StringOutput)
 }
 
 // Key for MD5/SHA1 authentication.
@@ -40806,6 +44145,103 @@ func (o GetReplacemsggroupWebproxyArrayOutput) Index(i pulumi.IntInput) GetRepla
 	}).(GetReplacemsggroupWebproxyOutput)
 }
 
+type GetSdnconnectorCompartmentList struct {
+	// OCI compartment ID.
+	CompartmentId string `pulumi:"compartmentId"`
+}
+
+// GetSdnconnectorCompartmentListInput is an input type that accepts GetSdnconnectorCompartmentListArgs and GetSdnconnectorCompartmentListOutput values.
+// You can construct a concrete instance of `GetSdnconnectorCompartmentListInput` via:
+//
+//	GetSdnconnectorCompartmentListArgs{...}
+type GetSdnconnectorCompartmentListInput interface {
+	pulumi.Input
+
+	ToGetSdnconnectorCompartmentListOutput() GetSdnconnectorCompartmentListOutput
+	ToGetSdnconnectorCompartmentListOutputWithContext(context.Context) GetSdnconnectorCompartmentListOutput
+}
+
+type GetSdnconnectorCompartmentListArgs struct {
+	// OCI compartment ID.
+	CompartmentId pulumi.StringInput `pulumi:"compartmentId"`
+}
+
+func (GetSdnconnectorCompartmentListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSdnconnectorCompartmentList)(nil)).Elem()
+}
+
+func (i GetSdnconnectorCompartmentListArgs) ToGetSdnconnectorCompartmentListOutput() GetSdnconnectorCompartmentListOutput {
+	return i.ToGetSdnconnectorCompartmentListOutputWithContext(context.Background())
+}
+
+func (i GetSdnconnectorCompartmentListArgs) ToGetSdnconnectorCompartmentListOutputWithContext(ctx context.Context) GetSdnconnectorCompartmentListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSdnconnectorCompartmentListOutput)
+}
+
+// GetSdnconnectorCompartmentListArrayInput is an input type that accepts GetSdnconnectorCompartmentListArray and GetSdnconnectorCompartmentListArrayOutput values.
+// You can construct a concrete instance of `GetSdnconnectorCompartmentListArrayInput` via:
+//
+//	GetSdnconnectorCompartmentListArray{ GetSdnconnectorCompartmentListArgs{...} }
+type GetSdnconnectorCompartmentListArrayInput interface {
+	pulumi.Input
+
+	ToGetSdnconnectorCompartmentListArrayOutput() GetSdnconnectorCompartmentListArrayOutput
+	ToGetSdnconnectorCompartmentListArrayOutputWithContext(context.Context) GetSdnconnectorCompartmentListArrayOutput
+}
+
+type GetSdnconnectorCompartmentListArray []GetSdnconnectorCompartmentListInput
+
+func (GetSdnconnectorCompartmentListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSdnconnectorCompartmentList)(nil)).Elem()
+}
+
+func (i GetSdnconnectorCompartmentListArray) ToGetSdnconnectorCompartmentListArrayOutput() GetSdnconnectorCompartmentListArrayOutput {
+	return i.ToGetSdnconnectorCompartmentListArrayOutputWithContext(context.Background())
+}
+
+func (i GetSdnconnectorCompartmentListArray) ToGetSdnconnectorCompartmentListArrayOutputWithContext(ctx context.Context) GetSdnconnectorCompartmentListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSdnconnectorCompartmentListArrayOutput)
+}
+
+type GetSdnconnectorCompartmentListOutput struct{ *pulumi.OutputState }
+
+func (GetSdnconnectorCompartmentListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSdnconnectorCompartmentList)(nil)).Elem()
+}
+
+func (o GetSdnconnectorCompartmentListOutput) ToGetSdnconnectorCompartmentListOutput() GetSdnconnectorCompartmentListOutput {
+	return o
+}
+
+func (o GetSdnconnectorCompartmentListOutput) ToGetSdnconnectorCompartmentListOutputWithContext(ctx context.Context) GetSdnconnectorCompartmentListOutput {
+	return o
+}
+
+// OCI compartment ID.
+func (o GetSdnconnectorCompartmentListOutput) CompartmentId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSdnconnectorCompartmentList) string { return v.CompartmentId }).(pulumi.StringOutput)
+}
+
+type GetSdnconnectorCompartmentListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSdnconnectorCompartmentListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSdnconnectorCompartmentList)(nil)).Elem()
+}
+
+func (o GetSdnconnectorCompartmentListArrayOutput) ToGetSdnconnectorCompartmentListArrayOutput() GetSdnconnectorCompartmentListArrayOutput {
+	return o
+}
+
+func (o GetSdnconnectorCompartmentListArrayOutput) ToGetSdnconnectorCompartmentListArrayOutputWithContext(ctx context.Context) GetSdnconnectorCompartmentListArrayOutput {
+	return o
+}
+
+func (o GetSdnconnectorCompartmentListArrayOutput) Index(i pulumi.IntInput) GetSdnconnectorCompartmentListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSdnconnectorCompartmentList {
+		return vs[0].([]GetSdnconnectorCompartmentList)[vs[1].(int)]
+	}).(GetSdnconnectorCompartmentListOutput)
+}
+
 type GetSdnconnectorExternalAccountList struct {
 	// AWS external ID.
 	ExternalId string `pulumi:"externalId"`
@@ -40924,7 +44360,7 @@ func (o GetSdnconnectorExternalAccountListArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type GetSdnconnectorExternalAccountListRegionList struct {
-	// AWS region name.
+	// OCI region.
 	Region string `pulumi:"region"`
 }
 
@@ -40940,7 +44376,7 @@ type GetSdnconnectorExternalAccountListRegionListInput interface {
 }
 
 type GetSdnconnectorExternalAccountListRegionListArgs struct {
-	// AWS region name.
+	// OCI region.
 	Region pulumi.StringInput `pulumi:"region"`
 }
 
@@ -40995,7 +44431,7 @@ func (o GetSdnconnectorExternalAccountListRegionListOutput) ToGetSdnconnectorExt
 	return o
 }
 
-// AWS region name.
+// OCI region.
 func (o GetSdnconnectorExternalAccountListRegionListOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSdnconnectorExternalAccountListRegionList) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -41649,6 +45085,103 @@ func (o GetSdnconnectorNicIpArrayOutput) Index(i pulumi.IntInput) GetSdnconnecto
 	}).(GetSdnconnectorNicIpOutput)
 }
 
+type GetSdnconnectorOciRegionList struct {
+	// OCI region.
+	Region string `pulumi:"region"`
+}
+
+// GetSdnconnectorOciRegionListInput is an input type that accepts GetSdnconnectorOciRegionListArgs and GetSdnconnectorOciRegionListOutput values.
+// You can construct a concrete instance of `GetSdnconnectorOciRegionListInput` via:
+//
+//	GetSdnconnectorOciRegionListArgs{...}
+type GetSdnconnectorOciRegionListInput interface {
+	pulumi.Input
+
+	ToGetSdnconnectorOciRegionListOutput() GetSdnconnectorOciRegionListOutput
+	ToGetSdnconnectorOciRegionListOutputWithContext(context.Context) GetSdnconnectorOciRegionListOutput
+}
+
+type GetSdnconnectorOciRegionListArgs struct {
+	// OCI region.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetSdnconnectorOciRegionListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSdnconnectorOciRegionList)(nil)).Elem()
+}
+
+func (i GetSdnconnectorOciRegionListArgs) ToGetSdnconnectorOciRegionListOutput() GetSdnconnectorOciRegionListOutput {
+	return i.ToGetSdnconnectorOciRegionListOutputWithContext(context.Background())
+}
+
+func (i GetSdnconnectorOciRegionListArgs) ToGetSdnconnectorOciRegionListOutputWithContext(ctx context.Context) GetSdnconnectorOciRegionListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSdnconnectorOciRegionListOutput)
+}
+
+// GetSdnconnectorOciRegionListArrayInput is an input type that accepts GetSdnconnectorOciRegionListArray and GetSdnconnectorOciRegionListArrayOutput values.
+// You can construct a concrete instance of `GetSdnconnectorOciRegionListArrayInput` via:
+//
+//	GetSdnconnectorOciRegionListArray{ GetSdnconnectorOciRegionListArgs{...} }
+type GetSdnconnectorOciRegionListArrayInput interface {
+	pulumi.Input
+
+	ToGetSdnconnectorOciRegionListArrayOutput() GetSdnconnectorOciRegionListArrayOutput
+	ToGetSdnconnectorOciRegionListArrayOutputWithContext(context.Context) GetSdnconnectorOciRegionListArrayOutput
+}
+
+type GetSdnconnectorOciRegionListArray []GetSdnconnectorOciRegionListInput
+
+func (GetSdnconnectorOciRegionListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSdnconnectorOciRegionList)(nil)).Elem()
+}
+
+func (i GetSdnconnectorOciRegionListArray) ToGetSdnconnectorOciRegionListArrayOutput() GetSdnconnectorOciRegionListArrayOutput {
+	return i.ToGetSdnconnectorOciRegionListArrayOutputWithContext(context.Background())
+}
+
+func (i GetSdnconnectorOciRegionListArray) ToGetSdnconnectorOciRegionListArrayOutputWithContext(ctx context.Context) GetSdnconnectorOciRegionListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSdnconnectorOciRegionListArrayOutput)
+}
+
+type GetSdnconnectorOciRegionListOutput struct{ *pulumi.OutputState }
+
+func (GetSdnconnectorOciRegionListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSdnconnectorOciRegionList)(nil)).Elem()
+}
+
+func (o GetSdnconnectorOciRegionListOutput) ToGetSdnconnectorOciRegionListOutput() GetSdnconnectorOciRegionListOutput {
+	return o
+}
+
+func (o GetSdnconnectorOciRegionListOutput) ToGetSdnconnectorOciRegionListOutputWithContext(ctx context.Context) GetSdnconnectorOciRegionListOutput {
+	return o
+}
+
+// OCI region.
+func (o GetSdnconnectorOciRegionListOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSdnconnectorOciRegionList) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetSdnconnectorOciRegionListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSdnconnectorOciRegionListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSdnconnectorOciRegionList)(nil)).Elem()
+}
+
+func (o GetSdnconnectorOciRegionListArrayOutput) ToGetSdnconnectorOciRegionListArrayOutput() GetSdnconnectorOciRegionListArrayOutput {
+	return o
+}
+
+func (o GetSdnconnectorOciRegionListArrayOutput) ToGetSdnconnectorOciRegionListArrayOutputWithContext(ctx context.Context) GetSdnconnectorOciRegionListArrayOutput {
+	return o
+}
+
+func (o GetSdnconnectorOciRegionListArrayOutput) Index(i pulumi.IntInput) GetSdnconnectorOciRegionListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSdnconnectorOciRegionList {
+		return vs[0].([]GetSdnconnectorOciRegionList)[vs[1].(int)]
+	}).(GetSdnconnectorOciRegionListOutput)
+}
+
 type GetSdnconnectorRoute struct {
 	// Specify the name of the desired system sdnconnector.
 	Name string `pulumi:"name"`
@@ -42080,6 +45613,8 @@ type GetSessionttlPort struct {
 	Id int `pulumi:"id"`
 	// Protocol (0 - 255).
 	Protocol int `pulumi:"protocol"`
+	// Refresh direction: Both, outgoing, incoming
+	RefreshDirection string `pulumi:"refreshDirection"`
 	// Start port number.
 	StartPort int `pulumi:"startPort"`
 	// Session timeout (TTL).
@@ -42104,6 +45639,8 @@ type GetSessionttlPortArgs struct {
 	Id pulumi.IntInput `pulumi:"id"`
 	// Protocol (0 - 255).
 	Protocol pulumi.IntInput `pulumi:"protocol"`
+	// Refresh direction: Both, outgoing, incoming
+	RefreshDirection pulumi.StringInput `pulumi:"refreshDirection"`
 	// Start port number.
 	StartPort pulumi.IntInput `pulumi:"startPort"`
 	// Session timeout (TTL).
@@ -42176,6 +45713,11 @@ func (o GetSessionttlPortOutput) Protocol() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSessionttlPort) int { return v.Protocol }).(pulumi.IntOutput)
 }
 
+// Refresh direction: Both, outgoing, incoming
+func (o GetSessionttlPortOutput) RefreshDirection() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSessionttlPort) string { return v.RefreshDirection }).(pulumi.StringOutput)
+}
+
 // Start port number.
 func (o GetSessionttlPortOutput) StartPort() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSessionttlPort) int { return v.StartPort }).(pulumi.IntOutput)
@@ -42204,6 +45746,148 @@ func (o GetSessionttlPortArrayOutput) Index(i pulumi.IntInput) GetSessionttlPort
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSessionttlPort {
 		return vs[0].([]GetSessionttlPort)[vs[1].(int)]
 	}).(GetSessionttlPortOutput)
+}
+
+type GetSflowCollector struct {
+	// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+	CollectorIp string `pulumi:"collectorIp"`
+	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+	CollectorPort int `pulumi:"collectorPort"`
+	// ID.
+	Id int `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server.
+	InterfaceSelectMethod string `pulumi:"interfaceSelectMethod"`
+	// Source IP address for sFlow agent.
+	SourceIp string `pulumi:"sourceIp"`
+}
+
+// GetSflowCollectorInput is an input type that accepts GetSflowCollectorArgs and GetSflowCollectorOutput values.
+// You can construct a concrete instance of `GetSflowCollectorInput` via:
+//
+//	GetSflowCollectorArgs{...}
+type GetSflowCollectorInput interface {
+	pulumi.Input
+
+	ToGetSflowCollectorOutput() GetSflowCollectorOutput
+	ToGetSflowCollectorOutputWithContext(context.Context) GetSflowCollectorOutput
+}
+
+type GetSflowCollectorArgs struct {
+	// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+	CollectorIp pulumi.StringInput `pulumi:"collectorIp"`
+	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+	CollectorPort pulumi.IntInput `pulumi:"collectorPort"`
+	// ID.
+	Id pulumi.IntInput `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringInput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server.
+	InterfaceSelectMethod pulumi.StringInput `pulumi:"interfaceSelectMethod"`
+	// Source IP address for sFlow agent.
+	SourceIp pulumi.StringInput `pulumi:"sourceIp"`
+}
+
+func (GetSflowCollectorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSflowCollector)(nil)).Elem()
+}
+
+func (i GetSflowCollectorArgs) ToGetSflowCollectorOutput() GetSflowCollectorOutput {
+	return i.ToGetSflowCollectorOutputWithContext(context.Background())
+}
+
+func (i GetSflowCollectorArgs) ToGetSflowCollectorOutputWithContext(ctx context.Context) GetSflowCollectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSflowCollectorOutput)
+}
+
+// GetSflowCollectorArrayInput is an input type that accepts GetSflowCollectorArray and GetSflowCollectorArrayOutput values.
+// You can construct a concrete instance of `GetSflowCollectorArrayInput` via:
+//
+//	GetSflowCollectorArray{ GetSflowCollectorArgs{...} }
+type GetSflowCollectorArrayInput interface {
+	pulumi.Input
+
+	ToGetSflowCollectorArrayOutput() GetSflowCollectorArrayOutput
+	ToGetSflowCollectorArrayOutputWithContext(context.Context) GetSflowCollectorArrayOutput
+}
+
+type GetSflowCollectorArray []GetSflowCollectorInput
+
+func (GetSflowCollectorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSflowCollector)(nil)).Elem()
+}
+
+func (i GetSflowCollectorArray) ToGetSflowCollectorArrayOutput() GetSflowCollectorArrayOutput {
+	return i.ToGetSflowCollectorArrayOutputWithContext(context.Background())
+}
+
+func (i GetSflowCollectorArray) ToGetSflowCollectorArrayOutputWithContext(ctx context.Context) GetSflowCollectorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSflowCollectorArrayOutput)
+}
+
+type GetSflowCollectorOutput struct{ *pulumi.OutputState }
+
+func (GetSflowCollectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSflowCollector)(nil)).Elem()
+}
+
+func (o GetSflowCollectorOutput) ToGetSflowCollectorOutput() GetSflowCollectorOutput {
+	return o
+}
+
+func (o GetSflowCollectorOutput) ToGetSflowCollectorOutputWithContext(ctx context.Context) GetSflowCollectorOutput {
+	return o
+}
+
+// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+func (o GetSflowCollectorOutput) CollectorIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSflowCollector) string { return v.CollectorIp }).(pulumi.StringOutput)
+}
+
+// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+func (o GetSflowCollectorOutput) CollectorPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSflowCollector) int { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+// ID.
+func (o GetSflowCollectorOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSflowCollector) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o GetSflowCollectorOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSflowCollector) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// Specify how to select outgoing interface to reach server.
+func (o GetSflowCollectorOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSflowCollector) string { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+// Source IP address for sFlow agent.
+func (o GetSflowCollectorOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSflowCollector) string { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+type GetSflowCollectorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSflowCollectorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSflowCollector)(nil)).Elem()
+}
+
+func (o GetSflowCollectorArrayOutput) ToGetSflowCollectorArrayOutput() GetSflowCollectorArrayOutput {
+	return o
+}
+
+func (o GetSflowCollectorArrayOutput) ToGetSflowCollectorArrayOutputWithContext(ctx context.Context) GetSflowCollectorArrayOutput {
+	return o
+}
+
+func (o GetSflowCollectorArrayOutput) Index(i pulumi.IntInput) GetSflowCollectorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSflowCollector {
+		return vs[0].([]GetSflowCollector)[vs[1].(int)]
+	}).(GetSflowCollectorOutput)
 }
 
 type GetVdomexceptionVdom struct {
@@ -42301,6 +45985,290 @@ func (o GetVdomexceptionVdomArrayOutput) Index(i pulumi.IntInput) GetVdomexcepti
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVdomexceptionVdom {
 		return vs[0].([]GetVdomexceptionVdom)[vs[1].(int)]
 	}).(GetVdomexceptionVdomOutput)
+}
+
+type GetVdomnetflowCollector struct {
+	// Collector IP.
+	CollectorIp string `pulumi:"collectorIp"`
+	// NetFlow collector port number.
+	CollectorPort int `pulumi:"collectorPort"`
+	// ID.
+	Id int `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server.
+	InterfaceSelectMethod string `pulumi:"interfaceSelectMethod"`
+	// Source IP address for communication with the NetFlow agent.
+	SourceIp string `pulumi:"sourceIp"`
+}
+
+// GetVdomnetflowCollectorInput is an input type that accepts GetVdomnetflowCollectorArgs and GetVdomnetflowCollectorOutput values.
+// You can construct a concrete instance of `GetVdomnetflowCollectorInput` via:
+//
+//	GetVdomnetflowCollectorArgs{...}
+type GetVdomnetflowCollectorInput interface {
+	pulumi.Input
+
+	ToGetVdomnetflowCollectorOutput() GetVdomnetflowCollectorOutput
+	ToGetVdomnetflowCollectorOutputWithContext(context.Context) GetVdomnetflowCollectorOutput
+}
+
+type GetVdomnetflowCollectorArgs struct {
+	// Collector IP.
+	CollectorIp pulumi.StringInput `pulumi:"collectorIp"`
+	// NetFlow collector port number.
+	CollectorPort pulumi.IntInput `pulumi:"collectorPort"`
+	// ID.
+	Id pulumi.IntInput `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringInput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server.
+	InterfaceSelectMethod pulumi.StringInput `pulumi:"interfaceSelectMethod"`
+	// Source IP address for communication with the NetFlow agent.
+	SourceIp pulumi.StringInput `pulumi:"sourceIp"`
+}
+
+func (GetVdomnetflowCollectorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVdomnetflowCollector)(nil)).Elem()
+}
+
+func (i GetVdomnetflowCollectorArgs) ToGetVdomnetflowCollectorOutput() GetVdomnetflowCollectorOutput {
+	return i.ToGetVdomnetflowCollectorOutputWithContext(context.Background())
+}
+
+func (i GetVdomnetflowCollectorArgs) ToGetVdomnetflowCollectorOutputWithContext(ctx context.Context) GetVdomnetflowCollectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVdomnetflowCollectorOutput)
+}
+
+// GetVdomnetflowCollectorArrayInput is an input type that accepts GetVdomnetflowCollectorArray and GetVdomnetflowCollectorArrayOutput values.
+// You can construct a concrete instance of `GetVdomnetflowCollectorArrayInput` via:
+//
+//	GetVdomnetflowCollectorArray{ GetVdomnetflowCollectorArgs{...} }
+type GetVdomnetflowCollectorArrayInput interface {
+	pulumi.Input
+
+	ToGetVdomnetflowCollectorArrayOutput() GetVdomnetflowCollectorArrayOutput
+	ToGetVdomnetflowCollectorArrayOutputWithContext(context.Context) GetVdomnetflowCollectorArrayOutput
+}
+
+type GetVdomnetflowCollectorArray []GetVdomnetflowCollectorInput
+
+func (GetVdomnetflowCollectorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVdomnetflowCollector)(nil)).Elem()
+}
+
+func (i GetVdomnetflowCollectorArray) ToGetVdomnetflowCollectorArrayOutput() GetVdomnetflowCollectorArrayOutput {
+	return i.ToGetVdomnetflowCollectorArrayOutputWithContext(context.Background())
+}
+
+func (i GetVdomnetflowCollectorArray) ToGetVdomnetflowCollectorArrayOutputWithContext(ctx context.Context) GetVdomnetflowCollectorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVdomnetflowCollectorArrayOutput)
+}
+
+type GetVdomnetflowCollectorOutput struct{ *pulumi.OutputState }
+
+func (GetVdomnetflowCollectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVdomnetflowCollector)(nil)).Elem()
+}
+
+func (o GetVdomnetflowCollectorOutput) ToGetVdomnetflowCollectorOutput() GetVdomnetflowCollectorOutput {
+	return o
+}
+
+func (o GetVdomnetflowCollectorOutput) ToGetVdomnetflowCollectorOutputWithContext(ctx context.Context) GetVdomnetflowCollectorOutput {
+	return o
+}
+
+// Collector IP.
+func (o GetVdomnetflowCollectorOutput) CollectorIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVdomnetflowCollector) string { return v.CollectorIp }).(pulumi.StringOutput)
+}
+
+// NetFlow collector port number.
+func (o GetVdomnetflowCollectorOutput) CollectorPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVdomnetflowCollector) int { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+// ID.
+func (o GetVdomnetflowCollectorOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVdomnetflowCollector) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o GetVdomnetflowCollectorOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVdomnetflowCollector) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// Specify how to select outgoing interface to reach server.
+func (o GetVdomnetflowCollectorOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVdomnetflowCollector) string { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+// Source IP address for communication with the NetFlow agent.
+func (o GetVdomnetflowCollectorOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVdomnetflowCollector) string { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+type GetVdomnetflowCollectorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVdomnetflowCollectorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVdomnetflowCollector)(nil)).Elem()
+}
+
+func (o GetVdomnetflowCollectorArrayOutput) ToGetVdomnetflowCollectorArrayOutput() GetVdomnetflowCollectorArrayOutput {
+	return o
+}
+
+func (o GetVdomnetflowCollectorArrayOutput) ToGetVdomnetflowCollectorArrayOutputWithContext(ctx context.Context) GetVdomnetflowCollectorArrayOutput {
+	return o
+}
+
+func (o GetVdomnetflowCollectorArrayOutput) Index(i pulumi.IntInput) GetVdomnetflowCollectorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVdomnetflowCollector {
+		return vs[0].([]GetVdomnetflowCollector)[vs[1].(int)]
+	}).(GetVdomnetflowCollectorOutput)
+}
+
+type GetVdomsflowCollector struct {
+	// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+	CollectorIp string `pulumi:"collectorIp"`
+	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+	CollectorPort int `pulumi:"collectorPort"`
+	// ID.
+	Id int `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server.
+	InterfaceSelectMethod string `pulumi:"interfaceSelectMethod"`
+	// Source IP address for sFlow agent.
+	SourceIp string `pulumi:"sourceIp"`
+}
+
+// GetVdomsflowCollectorInput is an input type that accepts GetVdomsflowCollectorArgs and GetVdomsflowCollectorOutput values.
+// You can construct a concrete instance of `GetVdomsflowCollectorInput` via:
+//
+//	GetVdomsflowCollectorArgs{...}
+type GetVdomsflowCollectorInput interface {
+	pulumi.Input
+
+	ToGetVdomsflowCollectorOutput() GetVdomsflowCollectorOutput
+	ToGetVdomsflowCollectorOutputWithContext(context.Context) GetVdomsflowCollectorOutput
+}
+
+type GetVdomsflowCollectorArgs struct {
+	// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+	CollectorIp pulumi.StringInput `pulumi:"collectorIp"`
+	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+	CollectorPort pulumi.IntInput `pulumi:"collectorPort"`
+	// ID.
+	Id pulumi.IntInput `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringInput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server.
+	InterfaceSelectMethod pulumi.StringInput `pulumi:"interfaceSelectMethod"`
+	// Source IP address for sFlow agent.
+	SourceIp pulumi.StringInput `pulumi:"sourceIp"`
+}
+
+func (GetVdomsflowCollectorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVdomsflowCollector)(nil)).Elem()
+}
+
+func (i GetVdomsflowCollectorArgs) ToGetVdomsflowCollectorOutput() GetVdomsflowCollectorOutput {
+	return i.ToGetVdomsflowCollectorOutputWithContext(context.Background())
+}
+
+func (i GetVdomsflowCollectorArgs) ToGetVdomsflowCollectorOutputWithContext(ctx context.Context) GetVdomsflowCollectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVdomsflowCollectorOutput)
+}
+
+// GetVdomsflowCollectorArrayInput is an input type that accepts GetVdomsflowCollectorArray and GetVdomsflowCollectorArrayOutput values.
+// You can construct a concrete instance of `GetVdomsflowCollectorArrayInput` via:
+//
+//	GetVdomsflowCollectorArray{ GetVdomsflowCollectorArgs{...} }
+type GetVdomsflowCollectorArrayInput interface {
+	pulumi.Input
+
+	ToGetVdomsflowCollectorArrayOutput() GetVdomsflowCollectorArrayOutput
+	ToGetVdomsflowCollectorArrayOutputWithContext(context.Context) GetVdomsflowCollectorArrayOutput
+}
+
+type GetVdomsflowCollectorArray []GetVdomsflowCollectorInput
+
+func (GetVdomsflowCollectorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVdomsflowCollector)(nil)).Elem()
+}
+
+func (i GetVdomsflowCollectorArray) ToGetVdomsflowCollectorArrayOutput() GetVdomsflowCollectorArrayOutput {
+	return i.ToGetVdomsflowCollectorArrayOutputWithContext(context.Background())
+}
+
+func (i GetVdomsflowCollectorArray) ToGetVdomsflowCollectorArrayOutputWithContext(ctx context.Context) GetVdomsflowCollectorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVdomsflowCollectorArrayOutput)
+}
+
+type GetVdomsflowCollectorOutput struct{ *pulumi.OutputState }
+
+func (GetVdomsflowCollectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVdomsflowCollector)(nil)).Elem()
+}
+
+func (o GetVdomsflowCollectorOutput) ToGetVdomsflowCollectorOutput() GetVdomsflowCollectorOutput {
+	return o
+}
+
+func (o GetVdomsflowCollectorOutput) ToGetVdomsflowCollectorOutputWithContext(ctx context.Context) GetVdomsflowCollectorOutput {
+	return o
+}
+
+// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+func (o GetVdomsflowCollectorOutput) CollectorIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVdomsflowCollector) string { return v.CollectorIp }).(pulumi.StringOutput)
+}
+
+// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+func (o GetVdomsflowCollectorOutput) CollectorPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVdomsflowCollector) int { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+// ID.
+func (o GetVdomsflowCollectorOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVdomsflowCollector) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o GetVdomsflowCollectorOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVdomsflowCollector) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// Specify how to select outgoing interface to reach server.
+func (o GetVdomsflowCollectorOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVdomsflowCollector) string { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+// Source IP address for sFlow agent.
+func (o GetVdomsflowCollectorOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVdomsflowCollector) string { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+type GetVdomsflowCollectorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVdomsflowCollectorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVdomsflowCollector)(nil)).Elem()
+}
+
+func (o GetVdomsflowCollectorArrayOutput) ToGetVdomsflowCollectorArrayOutput() GetVdomsflowCollectorArrayOutput {
+	return o
+}
+
+func (o GetVdomsflowCollectorArrayOutput) ToGetVdomsflowCollectorArrayOutputWithContext(ctx context.Context) GetVdomsflowCollectorArrayOutput {
+	return o
+}
+
+func (o GetVdomsflowCollectorArrayOutput) Index(i pulumi.IntInput) GetVdomsflowCollectorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVdomsflowCollector {
+		return vs[0].([]GetVdomsflowCollector)[vs[1].(int)]
+	}).(GetVdomsflowCollectorOutput)
 }
 
 type GetVirtualwanlinkFailAlertInterface struct {
@@ -46366,6 +50334,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersyncSyncvdArrayInput)(nil)).Elem(), ClustersyncSyncvdArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CsfFabricConnectorInput)(nil)).Elem(), CsfFabricConnectorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CsfFabricConnectorArrayInput)(nil)).Elem(), CsfFabricConnectorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsfFabricConnectorVdomInput)(nil)).Elem(), CsfFabricConnectorVdomArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsfFabricConnectorVdomArrayInput)(nil)).Elem(), CsfFabricConnectorVdomArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CsfFabricDeviceInput)(nil)).Elem(), CsfFabricDeviceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CsfFabricDeviceArrayInput)(nil)).Elem(), CsfFabricDeviceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CsfTrustedListInput)(nil)).Elem(), CsfTrustedListArgs{})
@@ -46374,18 +50344,32 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DdnsDdnsServerAddrArrayInput)(nil)).Elem(), DdnsDdnsServerAddrArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DdnsMonitorInterfaceInput)(nil)).Elem(), DdnsMonitorInterfaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DdnsMonitorInterfaceArrayInput)(nil)).Elem(), DdnsMonitorInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeviceupgradeKnownHaMemberInput)(nil)).Elem(), DeviceupgradeKnownHaMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeviceupgradeKnownHaMemberArrayInput)(nil)).Elem(), DeviceupgradeKnownHaMemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsDomainInput)(nil)).Elem(), DnsDomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsDomainArrayInput)(nil)).Elem(), DnsDomainArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsServerHostnameInput)(nil)).Elem(), DnsServerHostnameArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsServerHostnameArrayInput)(nil)).Elem(), DnsServerHostnameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsdatabaseDnsEntryInput)(nil)).Elem(), DnsdatabaseDnsEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsdatabaseDnsEntryArrayInput)(nil)).Elem(), DnsdatabaseDnsEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EvpnExportRtInput)(nil)).Elem(), EvpnExportRtArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EvpnExportRtArrayInput)(nil)).Elem(), EvpnExportRtArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EvpnImportRtInput)(nil)).Elem(), EvpnImportRtArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EvpnImportRtArrayInput)(nil)).Elem(), EvpnImportRtArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FabricvpnAdvertisedSubnetInput)(nil)).Elem(), FabricvpnAdvertisedSubnetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FabricvpnAdvertisedSubnetArrayInput)(nil)).Elem(), FabricvpnAdvertisedSubnetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FabricvpnOverlayInput)(nil)).Elem(), FabricvpnOverlayArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FabricvpnOverlayArrayInput)(nil)).Elem(), FabricvpnOverlayArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedupgradeKnownHaMemberInput)(nil)).Elem(), FederatedupgradeKnownHaMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedupgradeKnownHaMemberArrayInput)(nil)).Elem(), FederatedupgradeKnownHaMemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedupgradeNodeListInput)(nil)).Elem(), FederatedupgradeNodeListArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedupgradeNodeListArrayInput)(nil)).Elem(), FederatedupgradeNodeListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GeoipoverrideIp6RangeInput)(nil)).Elem(), GeoipoverrideIp6RangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GeoipoverrideIp6RangeArrayInput)(nil)).Elem(), GeoipoverrideIp6RangeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GeoipoverrideIpRangeInput)(nil)).Elem(), GeoipoverrideIpRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GeoipoverrideIpRangeArrayInput)(nil)).Elem(), GeoipoverrideIpRangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalInternetServiceDownloadListInput)(nil)).Elem(), GlobalInternetServiceDownloadListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalInternetServiceDownloadListArrayInput)(nil)).Elem(), GlobalInternetServiceDownloadListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HaHaMgmtInterfaceInput)(nil)).Elem(), HaHaMgmtInterfaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HaHaMgmtInterfaceArrayInput)(nil)).Elem(), HaHaMgmtInterfaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HaSecondaryVclusterInput)(nil)).Elem(), HaSecondaryVclusterArgs{})
@@ -46490,6 +50474,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*Nat64SecondaryPrefixArrayInput)(nil)).Elem(), Nat64SecondaryPrefixArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NdproxyMemberInput)(nil)).Elem(), NdproxyMemberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NdproxyMemberArrayInput)(nil)).Elem(), NdproxyMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetflowCollectorInput)(nil)).Elem(), NetflowCollectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetflowCollectorArrayInput)(nil)).Elem(), NetflowCollectorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NpuPriorityProtocolInput)(nil)).Elem(), NpuPriorityProtocolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NpuPriorityProtocolPtrInput)(nil)).Elem(), NpuPriorityProtocolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NtpInterfaceInput)(nil)).Elem(), NtpInterfaceArgs{})
@@ -46498,6 +50484,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NtpNtpserverArrayInput)(nil)).Elem(), NtpNtpserverArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjecttaggingTagInput)(nil)).Elem(), ObjecttaggingTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjecttaggingTagArrayInput)(nil)).Elem(), ObjecttaggingTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PcpserverPoolInput)(nil)).Elem(), PcpserverPoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PcpserverPoolArrayInput)(nil)).Elem(), PcpserverPoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PcpserverPoolClientSubnetInput)(nil)).Elem(), PcpserverPoolClientSubnetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PcpserverPoolClientSubnetArrayInput)(nil)).Elem(), PcpserverPoolClientSubnetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PcpserverPoolIntlIntfInput)(nil)).Elem(), PcpserverPoolIntlIntfArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PcpserverPoolIntlIntfArrayInput)(nil)).Elem(), PcpserverPoolIntlIntfArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PcpserverPoolThirdPartySubnetInput)(nil)).Elem(), PcpserverPoolThirdPartySubnetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PcpserverPoolThirdPartySubnetArrayInput)(nil)).Elem(), PcpserverPoolThirdPartySubnetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PtpServerInterfaceInput)(nil)).Elem(), PtpServerInterfaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PtpServerInterfaceArrayInput)(nil)).Elem(), PtpServerInterfaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReplacemsggroupAdminInput)(nil)).Elem(), ReplacemsggroupAdminArgs{})
@@ -46542,6 +50536,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SamlServiceProviderArrayInput)(nil)).Elem(), SamlServiceProviderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SamlServiceProviderAssertionAttributeInput)(nil)).Elem(), SamlServiceProviderAssertionAttributeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SamlServiceProviderAssertionAttributeArrayInput)(nil)).Elem(), SamlServiceProviderAssertionAttributeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SdnconnectorCompartmentListInput)(nil)).Elem(), SdnconnectorCompartmentListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SdnconnectorCompartmentListArrayInput)(nil)).Elem(), SdnconnectorCompartmentListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SdnconnectorExternalAccountListInput)(nil)).Elem(), SdnconnectorExternalAccountListArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SdnconnectorExternalAccountListArrayInput)(nil)).Elem(), SdnconnectorExternalAccountListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SdnconnectorExternalAccountListRegionListInput)(nil)).Elem(), SdnconnectorExternalAccountListRegionListArgs{})
@@ -46558,6 +50554,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SdnconnectorNicArrayInput)(nil)).Elem(), SdnconnectorNicArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SdnconnectorNicIpInput)(nil)).Elem(), SdnconnectorNicIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SdnconnectorNicIpArrayInput)(nil)).Elem(), SdnconnectorNicIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SdnconnectorOciRegionListInput)(nil)).Elem(), SdnconnectorOciRegionListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SdnconnectorOciRegionListArrayInput)(nil)).Elem(), SdnconnectorOciRegionListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SdnconnectorRouteInput)(nil)).Elem(), SdnconnectorRouteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SdnconnectorRouteArrayInput)(nil)).Elem(), SdnconnectorRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SdnconnectorRouteTableInput)(nil)).Elem(), SdnconnectorRouteTableArgs{})
@@ -46596,6 +50594,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SdwanMemberArrayInput)(nil)).Elem(), SdwanMemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SdwanNeighborInput)(nil)).Elem(), SdwanNeighborArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SdwanNeighborArrayInput)(nil)).Elem(), SdwanNeighborArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SdwanNeighborMemberBlockInput)(nil)).Elem(), SdwanNeighborMemberBlockArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SdwanNeighborMemberBlockArrayInput)(nil)).Elem(), SdwanNeighborMemberBlockArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SdwanServiceInput)(nil)).Elem(), SdwanServiceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SdwanServiceArrayInput)(nil)).Elem(), SdwanServiceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SdwanServiceDst6Input)(nil)).Elem(), SdwanServiceDst6Args{})
@@ -46642,6 +50642,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SessionttlPortArrayInput)(nil)).Elem(), SessionttlPortArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SettingsGuiDefaultPolicyColumnInput)(nil)).Elem(), SettingsGuiDefaultPolicyColumnArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SettingsGuiDefaultPolicyColumnArrayInput)(nil)).Elem(), SettingsGuiDefaultPolicyColumnArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SflowCollectorInput)(nil)).Elem(), SflowCollectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SflowCollectorArrayInput)(nil)).Elem(), SflowCollectorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SpeedtestscheduleScheduleInput)(nil)).Elem(), SpeedtestscheduleScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SpeedtestscheduleScheduleArrayInput)(nil)).Elem(), SpeedtestscheduleScheduleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SpeedtestserverHostInput)(nil)).Elem(), SpeedtestserverHostArgs{})
@@ -46650,6 +50652,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SsoadminVdomArrayInput)(nil)).Elem(), SsoadminVdomArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SsoforticloudadminVdomInput)(nil)).Elem(), SsoforticloudadminVdomArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SsoforticloudadminVdomArrayInput)(nil)).Elem(), SsoforticloudadminVdomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsofortigatecloudadminVdomInput)(nil)).Elem(), SsofortigatecloudadminVdomArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SsofortigatecloudadminVdomArrayInput)(nil)).Elem(), SsofortigatecloudadminVdomArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StandaloneclusterClusterPeerInput)(nil)).Elem(), StandaloneclusterClusterPeerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StandaloneclusterClusterPeerArrayInput)(nil)).Elem(), StandaloneclusterClusterPeerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StandaloneclusterClusterPeerDownIntfsBeforeSessSyncInput)(nil)).Elem(), StandaloneclusterClusterPeerDownIntfsBeforeSessSyncArgs{})
@@ -46668,6 +50672,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VdomdnsServerHostnameArrayInput)(nil)).Elem(), VdomdnsServerHostnameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VdomexceptionVdomInput)(nil)).Elem(), VdomexceptionVdomArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VdomexceptionVdomArrayInput)(nil)).Elem(), VdomexceptionVdomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VdomnetflowCollectorInput)(nil)).Elem(), VdomnetflowCollectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VdomnetflowCollectorArrayInput)(nil)).Elem(), VdomnetflowCollectorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VdomsflowCollectorInput)(nil)).Elem(), VdomsflowCollectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VdomsflowCollectorArrayInput)(nil)).Elem(), VdomsflowCollectorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VirtualswitchPortInput)(nil)).Elem(), VirtualswitchPortArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VirtualswitchPortArrayInput)(nil)).Elem(), VirtualswitchPortArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VirtualwanlinkFailAlertInterfaceInput)(nil)).Elem(), VirtualwanlinkFailAlertInterfaceArgs{})
@@ -46794,6 +50802,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersyncSyncvdArrayInput)(nil)).Elem(), GetClustersyncSyncvdArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCsfFabricConnectorInput)(nil)).Elem(), GetCsfFabricConnectorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCsfFabricConnectorArrayInput)(nil)).Elem(), GetCsfFabricConnectorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCsfFabricConnectorVdomInput)(nil)).Elem(), GetCsfFabricConnectorVdomArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCsfFabricConnectorVdomArrayInput)(nil)).Elem(), GetCsfFabricConnectorVdomArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCsfFabricDeviceInput)(nil)).Elem(), GetCsfFabricDeviceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCsfFabricDeviceArrayInput)(nil)).Elem(), GetCsfFabricDeviceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCsfTrustedListInput)(nil)).Elem(), GetCsfTrustedListArgs{})
@@ -46808,6 +50818,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDnsServerHostnameArrayInput)(nil)).Elem(), GetDnsServerHostnameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDnsdatabaseDnsEntryInput)(nil)).Elem(), GetDnsdatabaseDnsEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDnsdatabaseDnsEntryArrayInput)(nil)).Elem(), GetDnsdatabaseDnsEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalInternetServiceDownloadListInput)(nil)).Elem(), GetGlobalInternetServiceDownloadListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalInternetServiceDownloadListArrayInput)(nil)).Elem(), GetGlobalInternetServiceDownloadListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHaHaMgmtInterfaceInput)(nil)).Elem(), GetHaHaMgmtInterfaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHaHaMgmtInterfaceArrayInput)(nil)).Elem(), GetHaHaMgmtInterfaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHaSecondaryVclusterInput)(nil)).Elem(), GetHaSecondaryVclusterArgs{})
@@ -46866,6 +50878,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNat64SecondaryPrefixArrayInput)(nil)).Elem(), GetNat64SecondaryPrefixArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNdproxyMemberInput)(nil)).Elem(), GetNdproxyMemberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNdproxyMemberArrayInput)(nil)).Elem(), GetNdproxyMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNetflowCollectorInput)(nil)).Elem(), GetNetflowCollectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNetflowCollectorArrayInput)(nil)).Elem(), GetNetflowCollectorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNtpInterfaceInput)(nil)).Elem(), GetNtpInterfaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNtpInterfaceArrayInput)(nil)).Elem(), GetNtpInterfaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNtpNtpserverInput)(nil)).Elem(), GetNtpNtpserverArgs{})
@@ -46910,6 +50924,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetReplacemsggroupUtmArrayInput)(nil)).Elem(), GetReplacemsggroupUtmArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetReplacemsggroupWebproxyInput)(nil)).Elem(), GetReplacemsggroupWebproxyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetReplacemsggroupWebproxyArrayInput)(nil)).Elem(), GetReplacemsggroupWebproxyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorCompartmentListInput)(nil)).Elem(), GetSdnconnectorCompartmentListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorCompartmentListArrayInput)(nil)).Elem(), GetSdnconnectorCompartmentListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorExternalAccountListInput)(nil)).Elem(), GetSdnconnectorExternalAccountListArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorExternalAccountListArrayInput)(nil)).Elem(), GetSdnconnectorExternalAccountListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorExternalAccountListRegionListInput)(nil)).Elem(), GetSdnconnectorExternalAccountListRegionListArgs{})
@@ -46926,6 +50942,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorNicArrayInput)(nil)).Elem(), GetSdnconnectorNicArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorNicIpInput)(nil)).Elem(), GetSdnconnectorNicIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorNicIpArrayInput)(nil)).Elem(), GetSdnconnectorNicIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorOciRegionListInput)(nil)).Elem(), GetSdnconnectorOciRegionListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorOciRegionListArrayInput)(nil)).Elem(), GetSdnconnectorOciRegionListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorRouteInput)(nil)).Elem(), GetSdnconnectorRouteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorRouteArrayInput)(nil)).Elem(), GetSdnconnectorRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorRouteTableInput)(nil)).Elem(), GetSdnconnectorRouteTableArgs{})
@@ -46936,8 +50954,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSdnconnectorServerListArrayInput)(nil)).Elem(), GetSdnconnectorServerListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSessionttlPortInput)(nil)).Elem(), GetSessionttlPortArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSessionttlPortArrayInput)(nil)).Elem(), GetSessionttlPortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSflowCollectorInput)(nil)).Elem(), GetSflowCollectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSflowCollectorArrayInput)(nil)).Elem(), GetSflowCollectorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVdomexceptionVdomInput)(nil)).Elem(), GetVdomexceptionVdomArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVdomexceptionVdomArrayInput)(nil)).Elem(), GetVdomexceptionVdomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVdomnetflowCollectorInput)(nil)).Elem(), GetVdomnetflowCollectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVdomnetflowCollectorArrayInput)(nil)).Elem(), GetVdomnetflowCollectorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVdomsflowCollectorInput)(nil)).Elem(), GetVdomsflowCollectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVdomsflowCollectorArrayInput)(nil)).Elem(), GetVdomsflowCollectorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVirtualwanlinkFailAlertInterfaceInput)(nil)).Elem(), GetVirtualwanlinkFailAlertInterfaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVirtualwanlinkFailAlertInterfaceArrayInput)(nil)).Elem(), GetVirtualwanlinkFailAlertInterfaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVirtualwanlinkHealthCheckInput)(nil)).Elem(), GetVirtualwanlinkHealthCheckArgs{})
@@ -47074,6 +51098,8 @@ func init() {
 	pulumi.RegisterOutputType(ClustersyncSyncvdArrayOutput{})
 	pulumi.RegisterOutputType(CsfFabricConnectorOutput{})
 	pulumi.RegisterOutputType(CsfFabricConnectorArrayOutput{})
+	pulumi.RegisterOutputType(CsfFabricConnectorVdomOutput{})
+	pulumi.RegisterOutputType(CsfFabricConnectorVdomArrayOutput{})
 	pulumi.RegisterOutputType(CsfFabricDeviceOutput{})
 	pulumi.RegisterOutputType(CsfFabricDeviceArrayOutput{})
 	pulumi.RegisterOutputType(CsfTrustedListOutput{})
@@ -47082,18 +51108,32 @@ func init() {
 	pulumi.RegisterOutputType(DdnsDdnsServerAddrArrayOutput{})
 	pulumi.RegisterOutputType(DdnsMonitorInterfaceOutput{})
 	pulumi.RegisterOutputType(DdnsMonitorInterfaceArrayOutput{})
+	pulumi.RegisterOutputType(DeviceupgradeKnownHaMemberOutput{})
+	pulumi.RegisterOutputType(DeviceupgradeKnownHaMemberArrayOutput{})
 	pulumi.RegisterOutputType(DnsDomainOutput{})
 	pulumi.RegisterOutputType(DnsDomainArrayOutput{})
 	pulumi.RegisterOutputType(DnsServerHostnameOutput{})
 	pulumi.RegisterOutputType(DnsServerHostnameArrayOutput{})
 	pulumi.RegisterOutputType(DnsdatabaseDnsEntryOutput{})
 	pulumi.RegisterOutputType(DnsdatabaseDnsEntryArrayOutput{})
+	pulumi.RegisterOutputType(EvpnExportRtOutput{})
+	pulumi.RegisterOutputType(EvpnExportRtArrayOutput{})
+	pulumi.RegisterOutputType(EvpnImportRtOutput{})
+	pulumi.RegisterOutputType(EvpnImportRtArrayOutput{})
+	pulumi.RegisterOutputType(FabricvpnAdvertisedSubnetOutput{})
+	pulumi.RegisterOutputType(FabricvpnAdvertisedSubnetArrayOutput{})
+	pulumi.RegisterOutputType(FabricvpnOverlayOutput{})
+	pulumi.RegisterOutputType(FabricvpnOverlayArrayOutput{})
+	pulumi.RegisterOutputType(FederatedupgradeKnownHaMemberOutput{})
+	pulumi.RegisterOutputType(FederatedupgradeKnownHaMemberArrayOutput{})
 	pulumi.RegisterOutputType(FederatedupgradeNodeListOutput{})
 	pulumi.RegisterOutputType(FederatedupgradeNodeListArrayOutput{})
 	pulumi.RegisterOutputType(GeoipoverrideIp6RangeOutput{})
 	pulumi.RegisterOutputType(GeoipoverrideIp6RangeArrayOutput{})
 	pulumi.RegisterOutputType(GeoipoverrideIpRangeOutput{})
 	pulumi.RegisterOutputType(GeoipoverrideIpRangeArrayOutput{})
+	pulumi.RegisterOutputType(GlobalInternetServiceDownloadListOutput{})
+	pulumi.RegisterOutputType(GlobalInternetServiceDownloadListArrayOutput{})
 	pulumi.RegisterOutputType(HaHaMgmtInterfaceOutput{})
 	pulumi.RegisterOutputType(HaHaMgmtInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(HaSecondaryVclusterOutput{})
@@ -47198,6 +51238,8 @@ func init() {
 	pulumi.RegisterOutputType(Nat64SecondaryPrefixArrayOutput{})
 	pulumi.RegisterOutputType(NdproxyMemberOutput{})
 	pulumi.RegisterOutputType(NdproxyMemberArrayOutput{})
+	pulumi.RegisterOutputType(NetflowCollectorOutput{})
+	pulumi.RegisterOutputType(NetflowCollectorArrayOutput{})
 	pulumi.RegisterOutputType(NpuPriorityProtocolOutput{})
 	pulumi.RegisterOutputType(NpuPriorityProtocolPtrOutput{})
 	pulumi.RegisterOutputType(NtpInterfaceOutput{})
@@ -47206,6 +51248,14 @@ func init() {
 	pulumi.RegisterOutputType(NtpNtpserverArrayOutput{})
 	pulumi.RegisterOutputType(ObjecttaggingTagOutput{})
 	pulumi.RegisterOutputType(ObjecttaggingTagArrayOutput{})
+	pulumi.RegisterOutputType(PcpserverPoolOutput{})
+	pulumi.RegisterOutputType(PcpserverPoolArrayOutput{})
+	pulumi.RegisterOutputType(PcpserverPoolClientSubnetOutput{})
+	pulumi.RegisterOutputType(PcpserverPoolClientSubnetArrayOutput{})
+	pulumi.RegisterOutputType(PcpserverPoolIntlIntfOutput{})
+	pulumi.RegisterOutputType(PcpserverPoolIntlIntfArrayOutput{})
+	pulumi.RegisterOutputType(PcpserverPoolThirdPartySubnetOutput{})
+	pulumi.RegisterOutputType(PcpserverPoolThirdPartySubnetArrayOutput{})
 	pulumi.RegisterOutputType(PtpServerInterfaceOutput{})
 	pulumi.RegisterOutputType(PtpServerInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(ReplacemsggroupAdminOutput{})
@@ -47250,6 +51300,8 @@ func init() {
 	pulumi.RegisterOutputType(SamlServiceProviderArrayOutput{})
 	pulumi.RegisterOutputType(SamlServiceProviderAssertionAttributeOutput{})
 	pulumi.RegisterOutputType(SamlServiceProviderAssertionAttributeArrayOutput{})
+	pulumi.RegisterOutputType(SdnconnectorCompartmentListOutput{})
+	pulumi.RegisterOutputType(SdnconnectorCompartmentListArrayOutput{})
 	pulumi.RegisterOutputType(SdnconnectorExternalAccountListOutput{})
 	pulumi.RegisterOutputType(SdnconnectorExternalAccountListArrayOutput{})
 	pulumi.RegisterOutputType(SdnconnectorExternalAccountListRegionListOutput{})
@@ -47266,6 +51318,8 @@ func init() {
 	pulumi.RegisterOutputType(SdnconnectorNicArrayOutput{})
 	pulumi.RegisterOutputType(SdnconnectorNicIpOutput{})
 	pulumi.RegisterOutputType(SdnconnectorNicIpArrayOutput{})
+	pulumi.RegisterOutputType(SdnconnectorOciRegionListOutput{})
+	pulumi.RegisterOutputType(SdnconnectorOciRegionListArrayOutput{})
 	pulumi.RegisterOutputType(SdnconnectorRouteOutput{})
 	pulumi.RegisterOutputType(SdnconnectorRouteArrayOutput{})
 	pulumi.RegisterOutputType(SdnconnectorRouteTableOutput{})
@@ -47304,6 +51358,8 @@ func init() {
 	pulumi.RegisterOutputType(SdwanMemberArrayOutput{})
 	pulumi.RegisterOutputType(SdwanNeighborOutput{})
 	pulumi.RegisterOutputType(SdwanNeighborArrayOutput{})
+	pulumi.RegisterOutputType(SdwanNeighborMemberBlockOutput{})
+	pulumi.RegisterOutputType(SdwanNeighborMemberBlockArrayOutput{})
 	pulumi.RegisterOutputType(SdwanServiceOutput{})
 	pulumi.RegisterOutputType(SdwanServiceArrayOutput{})
 	pulumi.RegisterOutputType(SdwanServiceDst6Output{})
@@ -47350,6 +51406,8 @@ func init() {
 	pulumi.RegisterOutputType(SessionttlPortArrayOutput{})
 	pulumi.RegisterOutputType(SettingsGuiDefaultPolicyColumnOutput{})
 	pulumi.RegisterOutputType(SettingsGuiDefaultPolicyColumnArrayOutput{})
+	pulumi.RegisterOutputType(SflowCollectorOutput{})
+	pulumi.RegisterOutputType(SflowCollectorArrayOutput{})
 	pulumi.RegisterOutputType(SpeedtestscheduleScheduleOutput{})
 	pulumi.RegisterOutputType(SpeedtestscheduleScheduleArrayOutput{})
 	pulumi.RegisterOutputType(SpeedtestserverHostOutput{})
@@ -47358,6 +51416,8 @@ func init() {
 	pulumi.RegisterOutputType(SsoadminVdomArrayOutput{})
 	pulumi.RegisterOutputType(SsoforticloudadminVdomOutput{})
 	pulumi.RegisterOutputType(SsoforticloudadminVdomArrayOutput{})
+	pulumi.RegisterOutputType(SsofortigatecloudadminVdomOutput{})
+	pulumi.RegisterOutputType(SsofortigatecloudadminVdomArrayOutput{})
 	pulumi.RegisterOutputType(StandaloneclusterClusterPeerOutput{})
 	pulumi.RegisterOutputType(StandaloneclusterClusterPeerArrayOutput{})
 	pulumi.RegisterOutputType(StandaloneclusterClusterPeerDownIntfsBeforeSessSyncOutput{})
@@ -47376,6 +51436,10 @@ func init() {
 	pulumi.RegisterOutputType(VdomdnsServerHostnameArrayOutput{})
 	pulumi.RegisterOutputType(VdomexceptionVdomOutput{})
 	pulumi.RegisterOutputType(VdomexceptionVdomArrayOutput{})
+	pulumi.RegisterOutputType(VdomnetflowCollectorOutput{})
+	pulumi.RegisterOutputType(VdomnetflowCollectorArrayOutput{})
+	pulumi.RegisterOutputType(VdomsflowCollectorOutput{})
+	pulumi.RegisterOutputType(VdomsflowCollectorArrayOutput{})
 	pulumi.RegisterOutputType(VirtualswitchPortOutput{})
 	pulumi.RegisterOutputType(VirtualswitchPortArrayOutput{})
 	pulumi.RegisterOutputType(VirtualwanlinkFailAlertInterfaceOutput{})
@@ -47502,6 +51566,8 @@ func init() {
 	pulumi.RegisterOutputType(GetClustersyncSyncvdArrayOutput{})
 	pulumi.RegisterOutputType(GetCsfFabricConnectorOutput{})
 	pulumi.RegisterOutputType(GetCsfFabricConnectorArrayOutput{})
+	pulumi.RegisterOutputType(GetCsfFabricConnectorVdomOutput{})
+	pulumi.RegisterOutputType(GetCsfFabricConnectorVdomArrayOutput{})
 	pulumi.RegisterOutputType(GetCsfFabricDeviceOutput{})
 	pulumi.RegisterOutputType(GetCsfFabricDeviceArrayOutput{})
 	pulumi.RegisterOutputType(GetCsfTrustedListOutput{})
@@ -47516,6 +51582,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDnsServerHostnameArrayOutput{})
 	pulumi.RegisterOutputType(GetDnsdatabaseDnsEntryOutput{})
 	pulumi.RegisterOutputType(GetDnsdatabaseDnsEntryArrayOutput{})
+	pulumi.RegisterOutputType(GetGlobalInternetServiceDownloadListOutput{})
+	pulumi.RegisterOutputType(GetGlobalInternetServiceDownloadListArrayOutput{})
 	pulumi.RegisterOutputType(GetHaHaMgmtInterfaceOutput{})
 	pulumi.RegisterOutputType(GetHaHaMgmtInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(GetHaSecondaryVclusterOutput{})
@@ -47574,6 +51642,8 @@ func init() {
 	pulumi.RegisterOutputType(GetNat64SecondaryPrefixArrayOutput{})
 	pulumi.RegisterOutputType(GetNdproxyMemberOutput{})
 	pulumi.RegisterOutputType(GetNdproxyMemberArrayOutput{})
+	pulumi.RegisterOutputType(GetNetflowCollectorOutput{})
+	pulumi.RegisterOutputType(GetNetflowCollectorArrayOutput{})
 	pulumi.RegisterOutputType(GetNtpInterfaceOutput{})
 	pulumi.RegisterOutputType(GetNtpInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(GetNtpNtpserverOutput{})
@@ -47618,6 +51688,8 @@ func init() {
 	pulumi.RegisterOutputType(GetReplacemsggroupUtmArrayOutput{})
 	pulumi.RegisterOutputType(GetReplacemsggroupWebproxyOutput{})
 	pulumi.RegisterOutputType(GetReplacemsggroupWebproxyArrayOutput{})
+	pulumi.RegisterOutputType(GetSdnconnectorCompartmentListOutput{})
+	pulumi.RegisterOutputType(GetSdnconnectorCompartmentListArrayOutput{})
 	pulumi.RegisterOutputType(GetSdnconnectorExternalAccountListOutput{})
 	pulumi.RegisterOutputType(GetSdnconnectorExternalAccountListArrayOutput{})
 	pulumi.RegisterOutputType(GetSdnconnectorExternalAccountListRegionListOutput{})
@@ -47634,6 +51706,8 @@ func init() {
 	pulumi.RegisterOutputType(GetSdnconnectorNicArrayOutput{})
 	pulumi.RegisterOutputType(GetSdnconnectorNicIpOutput{})
 	pulumi.RegisterOutputType(GetSdnconnectorNicIpArrayOutput{})
+	pulumi.RegisterOutputType(GetSdnconnectorOciRegionListOutput{})
+	pulumi.RegisterOutputType(GetSdnconnectorOciRegionListArrayOutput{})
 	pulumi.RegisterOutputType(GetSdnconnectorRouteOutput{})
 	pulumi.RegisterOutputType(GetSdnconnectorRouteArrayOutput{})
 	pulumi.RegisterOutputType(GetSdnconnectorRouteTableOutput{})
@@ -47644,8 +51718,14 @@ func init() {
 	pulumi.RegisterOutputType(GetSdnconnectorServerListArrayOutput{})
 	pulumi.RegisterOutputType(GetSessionttlPortOutput{})
 	pulumi.RegisterOutputType(GetSessionttlPortArrayOutput{})
+	pulumi.RegisterOutputType(GetSflowCollectorOutput{})
+	pulumi.RegisterOutputType(GetSflowCollectorArrayOutput{})
 	pulumi.RegisterOutputType(GetVdomexceptionVdomOutput{})
 	pulumi.RegisterOutputType(GetVdomexceptionVdomArrayOutput{})
+	pulumi.RegisterOutputType(GetVdomnetflowCollectorOutput{})
+	pulumi.RegisterOutputType(GetVdomnetflowCollectorArrayOutput{})
+	pulumi.RegisterOutputType(GetVdomsflowCollectorOutput{})
+	pulumi.RegisterOutputType(GetVdomsflowCollectorArrayOutput{})
 	pulumi.RegisterOutputType(GetVirtualwanlinkFailAlertInterfaceOutput{})
 	pulumi.RegisterOutputType(GetVirtualwanlinkFailAlertInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(GetVirtualwanlinkHealthCheckOutput{})

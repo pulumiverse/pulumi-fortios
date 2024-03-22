@@ -85,6 +85,10 @@ export class Mobiletunnel extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
      */
     public readonly hashAlgorithm!: pulumi.Output<string>;
@@ -163,6 +167,7 @@ export class Mobiletunnel extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as MobiletunnelState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hashAlgorithm"] = state ? state.hashAlgorithm : undefined;
             resourceInputs["homeAddress"] = state ? state.homeAddress : undefined;
             resourceInputs["homeAgent"] = state ? state.homeAgent : undefined;
@@ -212,6 +217,7 @@ export class Mobiletunnel extends pulumi.CustomResource {
                 throw new Error("Missing required property 'tunnelMode'");
             }
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hashAlgorithm"] = args ? args.hashAlgorithm : undefined;
             resourceInputs["homeAddress"] = args ? args.homeAddress : undefined;
             resourceInputs["homeAgent"] = args ? args.homeAgent : undefined;
@@ -244,6 +250,10 @@ export interface MobiletunnelState {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
      */
@@ -318,6 +328,10 @@ export interface MobiletunnelArgs {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
      */

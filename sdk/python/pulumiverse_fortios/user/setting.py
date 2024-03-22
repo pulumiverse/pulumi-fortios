@@ -35,7 +35,9 @@ class SettingArgs:
                  auth_timeout: Optional[pulumi.Input[int]] = None,
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 default_user_password_policy: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  radius_ses_timeout_act: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -55,12 +57,14 @@ class SettingArgs:
         :param pulumi.Input[str] auth_src_mac: Enable/disable source MAC for user identity. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_ssl_allow_renegotiation: Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_ssl_max_proto_version: Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
-        :param pulumi.Input[str] auth_ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] auth_ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] auth_ssl_sigalgs: Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
         :param pulumi.Input[int] auth_timeout: Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
         :param pulumi.Input[str] auth_timeout_type: Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
         :param pulumi.Input[str] auth_type: Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
+        :param pulumi.Input[str] default_user_password_policy: Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] per_policy_disclaimer: Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radius_ses_timeout_act: Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server session timeouts. Valid values: `hard-timeout`, `ignore-timeout`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -103,8 +107,12 @@ class SettingArgs:
             pulumi.set(__self__, "auth_timeout_type", auth_timeout_type)
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
+        if default_user_password_policy is not None:
+            pulumi.set(__self__, "default_user_password_policy", default_user_password_policy)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if per_policy_disclaimer is not None:
             pulumi.set(__self__, "per_policy_disclaimer", per_policy_disclaimer)
         if radius_ses_timeout_act is not None:
@@ -284,7 +292,7 @@ class SettingArgs:
     @pulumi.getter(name="authSslMinProtoVersion")
     def auth_ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "auth_ssl_min_proto_version")
 
@@ -341,6 +349,18 @@ class SettingArgs:
         pulumi.set(self, "auth_type", value)
 
     @property
+    @pulumi.getter(name="defaultUserPasswordPolicy")
+    def default_user_password_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+        """
+        return pulumi.get(self, "default_user_password_policy")
+
+    @default_user_password_policy.setter
+    def default_user_password_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_user_password_policy", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -351,6 +371,18 @@ class SettingArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="perPolicyDisclaimer")
@@ -411,7 +443,9 @@ class _SettingState:
                  auth_timeout: Optional[pulumi.Input[int]] = None,
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 default_user_password_policy: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  radius_ses_timeout_act: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -431,12 +465,14 @@ class _SettingState:
         :param pulumi.Input[str] auth_src_mac: Enable/disable source MAC for user identity. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_ssl_allow_renegotiation: Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_ssl_max_proto_version: Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
-        :param pulumi.Input[str] auth_ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] auth_ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] auth_ssl_sigalgs: Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
         :param pulumi.Input[int] auth_timeout: Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
         :param pulumi.Input[str] auth_timeout_type: Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
         :param pulumi.Input[str] auth_type: Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
+        :param pulumi.Input[str] default_user_password_policy: Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] per_policy_disclaimer: Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radius_ses_timeout_act: Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server session timeouts. Valid values: `hard-timeout`, `ignore-timeout`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -479,8 +515,12 @@ class _SettingState:
             pulumi.set(__self__, "auth_timeout_type", auth_timeout_type)
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
+        if default_user_password_policy is not None:
+            pulumi.set(__self__, "default_user_password_policy", default_user_password_policy)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if per_policy_disclaimer is not None:
             pulumi.set(__self__, "per_policy_disclaimer", per_policy_disclaimer)
         if radius_ses_timeout_act is not None:
@@ -660,7 +700,7 @@ class _SettingState:
     @pulumi.getter(name="authSslMinProtoVersion")
     def auth_ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "auth_ssl_min_proto_version")
 
@@ -717,6 +757,18 @@ class _SettingState:
         pulumi.set(self, "auth_type", value)
 
     @property
+    @pulumi.getter(name="defaultUserPasswordPolicy")
+    def default_user_password_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+        """
+        return pulumi.get(self, "default_user_password_policy")
+
+    @default_user_password_policy.setter
+    def default_user_password_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_user_password_policy", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -727,6 +779,18 @@ class _SettingState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="perPolicyDisclaimer")
@@ -789,7 +853,9 @@ class Setting(pulumi.CustomResource):
                  auth_timeout: Optional[pulumi.Input[int]] = None,
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 default_user_password_policy: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  radius_ses_timeout_act: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -857,12 +923,14 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] auth_src_mac: Enable/disable source MAC for user identity. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_ssl_allow_renegotiation: Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_ssl_max_proto_version: Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
-        :param pulumi.Input[str] auth_ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] auth_ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] auth_ssl_sigalgs: Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
         :param pulumi.Input[int] auth_timeout: Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
         :param pulumi.Input[str] auth_timeout_type: Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
         :param pulumi.Input[str] auth_type: Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
+        :param pulumi.Input[str] default_user_password_policy: Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] per_policy_disclaimer: Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radius_ses_timeout_act: Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server session timeouts. Valid values: `hard-timeout`, `ignore-timeout`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -954,7 +1022,9 @@ class Setting(pulumi.CustomResource):
                  auth_timeout: Optional[pulumi.Input[int]] = None,
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 default_user_password_policy: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  radius_ses_timeout_act: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -986,7 +1056,9 @@ class Setting(pulumi.CustomResource):
             __props__.__dict__["auth_timeout"] = auth_timeout
             __props__.__dict__["auth_timeout_type"] = auth_timeout_type
             __props__.__dict__["auth_type"] = auth_type
+            __props__.__dict__["default_user_password_policy"] = default_user_password_policy
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["per_policy_disclaimer"] = per_policy_disclaimer
             __props__.__dict__["radius_ses_timeout_act"] = radius_ses_timeout_act
             __props__.__dict__["vdomparam"] = vdomparam
@@ -1019,7 +1091,9 @@ class Setting(pulumi.CustomResource):
             auth_timeout: Optional[pulumi.Input[int]] = None,
             auth_timeout_type: Optional[pulumi.Input[str]] = None,
             auth_type: Optional[pulumi.Input[str]] = None,
+            default_user_password_policy: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
             radius_ses_timeout_act: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Setting':
@@ -1044,12 +1118,14 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] auth_src_mac: Enable/disable source MAC for user identity. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_ssl_allow_renegotiation: Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_ssl_max_proto_version: Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
-        :param pulumi.Input[str] auth_ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] auth_ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] auth_ssl_sigalgs: Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
         :param pulumi.Input[int] auth_timeout: Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
         :param pulumi.Input[str] auth_timeout_type: Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
         :param pulumi.Input[str] auth_type: Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
+        :param pulumi.Input[str] default_user_password_policy: Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] per_policy_disclaimer: Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radius_ses_timeout_act: Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server session timeouts. Valid values: `hard-timeout`, `ignore-timeout`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -1077,7 +1153,9 @@ class Setting(pulumi.CustomResource):
         __props__.__dict__["auth_timeout"] = auth_timeout
         __props__.__dict__["auth_timeout_type"] = auth_timeout_type
         __props__.__dict__["auth_type"] = auth_type
+        __props__.__dict__["default_user_password_policy"] = default_user_password_policy
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["per_policy_disclaimer"] = per_policy_disclaimer
         __props__.__dict__["radius_ses_timeout_act"] = radius_ses_timeout_act
         __props__.__dict__["vdomparam"] = vdomparam
@@ -1199,7 +1277,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="authSslMinProtoVersion")
     def auth_ssl_min_proto_version(self) -> pulumi.Output[str]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "auth_ssl_min_proto_version")
 
@@ -1236,12 +1314,28 @@ class Setting(pulumi.CustomResource):
         return pulumi.get(self, "auth_type")
 
     @property
+    @pulumi.getter(name="defaultUserPasswordPolicy")
+    def default_user_password_policy(self) -> pulumi.Output[str]:
+        """
+        Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+        """
+        return pulumi.get(self, "default_user_password_policy")
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         """
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="perPolicyDisclaimer")

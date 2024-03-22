@@ -129,6 +129,12 @@ namespace Pulumiverse.Fortios.Firewall.Service
         public Output<string> Fqdn { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Helper name.
         /// </summary>
         [Output("helper")]
@@ -219,7 +225,7 @@ namespace Pulumiverse.Fortios.Firewall.Service
         public Output<int> TcpTimewaitTimer { get; private set; } = null!;
 
         /// <summary>
-        /// UDP half close timeout (0 - 86400 sec, 0 = default).
+        /// Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
         /// </summary>
         [Output("udpIdleTimer")]
         public Output<int> UdpIdleTimer { get; private set; } = null!;
@@ -229,6 +235,12 @@ namespace Pulumiverse.Fortios.Firewall.Service
         /// </summary>
         [Output("udpPortrange")]
         public Output<string> UdpPortrange { get; private set; } = null!;
+
+        /// <summary>
+        /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        /// </summary>
+        [Output("uuid")]
+        public Output<string> Uuid { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -362,6 +374,12 @@ namespace Pulumiverse.Fortios.Firewall.Service
         public Input<string>? Fqdn { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Helper name.
         /// </summary>
         [Input("helper")]
@@ -452,7 +470,7 @@ namespace Pulumiverse.Fortios.Firewall.Service
         public Input<int>? TcpTimewaitTimer { get; set; }
 
         /// <summary>
-        /// UDP half close timeout (0 - 86400 sec, 0 = default).
+        /// Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
         /// </summary>
         [Input("udpIdleTimer")]
         public Input<int>? UdpIdleTimer { get; set; }
@@ -462,6 +480,12 @@ namespace Pulumiverse.Fortios.Firewall.Service
         /// </summary>
         [Input("udpPortrange")]
         public Input<string>? UdpPortrange { get; set; }
+
+        /// <summary>
+        /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        /// </summary>
+        [Input("uuid")]
+        public Input<string>? Uuid { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -556,6 +580,12 @@ namespace Pulumiverse.Fortios.Firewall.Service
         public Input<string>? Fqdn { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Helper name.
         /// </summary>
         [Input("helper")]
@@ -646,7 +676,7 @@ namespace Pulumiverse.Fortios.Firewall.Service
         public Input<int>? TcpTimewaitTimer { get; set; }
 
         /// <summary>
-        /// UDP half close timeout (0 - 86400 sec, 0 = default).
+        /// Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
         /// </summary>
         [Input("udpIdleTimer")]
         public Input<int>? UdpIdleTimer { get; set; }
@@ -656,6 +686,12 @@ namespace Pulumiverse.Fortios.Firewall.Service
         /// </summary>
         [Input("udpPortrange")]
         public Input<string>? UdpPortrange { get; set; }
+
+        /// <summary>
+        /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        /// </summary>
+        [Input("uuid")]
+        public Input<string>? Uuid { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

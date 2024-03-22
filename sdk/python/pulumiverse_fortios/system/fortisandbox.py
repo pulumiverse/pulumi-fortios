@@ -35,7 +35,7 @@ class FortisandboxArgs:
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] server: IPv4 or IPv6 address of the remote FortiSandbox.
         :param pulumi.Input[str] source_ip: Source IP address for communications to FortiSandbox.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable FortiSandbox. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -162,7 +162,7 @@ class FortisandboxArgs:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -219,7 +219,7 @@ class _FortisandboxState:
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] server: IPv4 or IPv6 address of the remote FortiSandbox.
         :param pulumi.Input[str] source_ip: Source IP address for communications to FortiSandbox.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable FortiSandbox. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -346,7 +346,7 @@ class _FortisandboxState:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -441,7 +441,7 @@ class Fortisandbox(pulumi.CustomResource):
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] server: IPv4 or IPv6 address of the remote FortiSandbox.
         :param pulumi.Input[str] source_ip: Source IP address for communications to FortiSandbox.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable FortiSandbox. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -568,7 +568,7 @@ class Fortisandbox(pulumi.CustomResource):
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] server: IPv4 or IPv6 address of the remote FortiSandbox.
         :param pulumi.Input[str] source_ip: Source IP address for communications to FortiSandbox.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable FortiSandbox. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -657,7 +657,7 @@ class Fortisandbox(pulumi.CustomResource):
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> pulumi.Output[str]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 

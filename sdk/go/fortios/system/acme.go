@@ -37,12 +37,16 @@ type Acme struct {
 	Accounts AcmeAccountArrayOutput `pulumi:"accounts"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
 	Interfaces AcmeInterfaceArrayOutput `pulumi:"interfaces"`
 	// Source IPv4 address used to connect to the ACME server.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Source IPv6 address used to connect to the ACME server.
 	SourceIp6 pulumi.StringOutput `pulumi:"sourceIp6"`
+	// Enable the use of 'ha-mgmt' interface to connect to the ACME server when 'ha-direct' is enabled in HA configuration Valid values: `enable`, `disable`.
+	UseHaDirect pulumi.StringOutput `pulumi:"useHaDirect"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -81,12 +85,16 @@ type acmeState struct {
 	Accounts []AcmeAccount `pulumi:"accounts"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
 	Interfaces []AcmeInterface `pulumi:"interfaces"`
 	// Source IPv4 address used to connect to the ACME server.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Source IPv6 address used to connect to the ACME server.
 	SourceIp6 *string `pulumi:"sourceIp6"`
+	// Enable the use of 'ha-mgmt' interface to connect to the ACME server when 'ha-direct' is enabled in HA configuration Valid values: `enable`, `disable`.
+	UseHaDirect *string `pulumi:"useHaDirect"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -96,12 +104,16 @@ type AcmeState struct {
 	Accounts AcmeAccountArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
 	Interfaces AcmeInterfaceArrayInput
 	// Source IPv4 address used to connect to the ACME server.
 	SourceIp pulumi.StringPtrInput
 	// Source IPv6 address used to connect to the ACME server.
 	SourceIp6 pulumi.StringPtrInput
+	// Enable the use of 'ha-mgmt' interface to connect to the ACME server when 'ha-direct' is enabled in HA configuration Valid values: `enable`, `disable`.
+	UseHaDirect pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -115,12 +127,16 @@ type acmeArgs struct {
 	Accounts []AcmeAccount `pulumi:"accounts"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
 	Interfaces []AcmeInterface `pulumi:"interfaces"`
 	// Source IPv4 address used to connect to the ACME server.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Source IPv6 address used to connect to the ACME server.
 	SourceIp6 *string `pulumi:"sourceIp6"`
+	// Enable the use of 'ha-mgmt' interface to connect to the ACME server when 'ha-direct' is enabled in HA configuration Valid values: `enable`, `disable`.
+	UseHaDirect *string `pulumi:"useHaDirect"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -131,12 +147,16 @@ type AcmeArgs struct {
 	Accounts AcmeAccountArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
 	Interfaces AcmeInterfaceArrayInput
 	// Source IPv4 address used to connect to the ACME server.
 	SourceIp pulumi.StringPtrInput
 	// Source IPv6 address used to connect to the ACME server.
 	SourceIp6 pulumi.StringPtrInput
+	// Enable the use of 'ha-mgmt' interface to connect to the ACME server when 'ha-direct' is enabled in HA configuration Valid values: `enable`, `disable`.
+	UseHaDirect pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -238,6 +258,11 @@ func (o AcmeOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Acme) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o AcmeOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Acme) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
 func (o AcmeOutput) Interfaces() AcmeInterfaceArrayOutput {
 	return o.ApplyT(func(v *Acme) AcmeInterfaceArrayOutput { return v.Interfaces }).(AcmeInterfaceArrayOutput)
@@ -251,6 +276,11 @@ func (o AcmeOutput) SourceIp() pulumi.StringOutput {
 // Source IPv6 address used to connect to the ACME server.
 func (o AcmeOutput) SourceIp6() pulumi.StringOutput {
 	return o.ApplyT(func(v *Acme) pulumi.StringOutput { return v.SourceIp6 }).(pulumi.StringOutput)
+}
+
+// Enable the use of 'ha-mgmt' interface to connect to the ACME server when 'ha-direct' is enabled in HA configuration Valid values: `enable`, `disable`.
+func (o AcmeOutput) UseHaDirect() pulumi.StringOutput {
+	return o.ApplyT(func(v *Acme) pulumi.StringOutput { return v.UseHaDirect }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

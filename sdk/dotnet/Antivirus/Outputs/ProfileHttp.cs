@@ -43,7 +43,7 @@ namespace Pulumiverse.Fortios.Antivirus.Outputs
         /// </summary>
         public readonly string? Fortiai;
         /// <summary>
-        /// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        /// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         /// </summary>
         public readonly string? Fortindr;
         /// <summary>

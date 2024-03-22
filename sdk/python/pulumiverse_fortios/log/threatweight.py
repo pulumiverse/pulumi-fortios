@@ -22,6 +22,7 @@ class ThreatweightArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failed_connection: Optional[pulumi.Input[str]] = None,
                  geolocations: Optional[pulumi.Input[Sequence[pulumi.Input['ThreatweightGeolocationArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ips: Optional[pulumi.Input['ThreatweightIpsArgs']] = None,
                  level: Optional[pulumi.Input['ThreatweightLevelArgs']] = None,
                  malware: Optional[pulumi.Input['ThreatweightMalwareArgs']] = None,
@@ -37,6 +38,7 @@ class ThreatweightArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] failed_connection: Threat weight score for failed connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param pulumi.Input[Sequence[pulumi.Input['ThreatweightGeolocationArgs']]] geolocations: Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ThreatweightIpsArgs'] ips: IPS threat weight settings. The structure of `ips` block is documented below.
         :param pulumi.Input['ThreatweightLevelArgs'] level: Score mapping for threat weight levels. The structure of `level` block is documented below.
         :param pulumi.Input['ThreatweightMalwareArgs'] malware: Anti-virus malware threat weight settings. The structure of `malware` block is documented below.
@@ -57,6 +59,8 @@ class ThreatweightArgs:
             pulumi.set(__self__, "failed_connection", failed_connection)
         if geolocations is not None:
             pulumi.set(__self__, "geolocations", geolocations)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ips is not None:
             pulumi.set(__self__, "ips", ips)
         if level is not None:
@@ -143,6 +147,18 @@ class ThreatweightArgs:
     @geolocations.setter
     def geolocations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ThreatweightGeolocationArgs']]]]):
         pulumi.set(self, "geolocations", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -238,6 +254,7 @@ class _ThreatweightState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failed_connection: Optional[pulumi.Input[str]] = None,
                  geolocations: Optional[pulumi.Input[Sequence[pulumi.Input['ThreatweightGeolocationArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ips: Optional[pulumi.Input['ThreatweightIpsArgs']] = None,
                  level: Optional[pulumi.Input['ThreatweightLevelArgs']] = None,
                  malware: Optional[pulumi.Input['ThreatweightMalwareArgs']] = None,
@@ -253,6 +270,7 @@ class _ThreatweightState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] failed_connection: Threat weight score for failed connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param pulumi.Input[Sequence[pulumi.Input['ThreatweightGeolocationArgs']]] geolocations: Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ThreatweightIpsArgs'] ips: IPS threat weight settings. The structure of `ips` block is documented below.
         :param pulumi.Input['ThreatweightLevelArgs'] level: Score mapping for threat weight levels. The structure of `level` block is documented below.
         :param pulumi.Input['ThreatweightMalwareArgs'] malware: Anti-virus malware threat weight settings. The structure of `malware` block is documented below.
@@ -273,6 +291,8 @@ class _ThreatweightState:
             pulumi.set(__self__, "failed_connection", failed_connection)
         if geolocations is not None:
             pulumi.set(__self__, "geolocations", geolocations)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ips is not None:
             pulumi.set(__self__, "ips", ips)
         if level is not None:
@@ -359,6 +379,18 @@ class _ThreatweightState:
     @geolocations.setter
     def geolocations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ThreatweightGeolocationArgs']]]]):
         pulumi.set(self, "geolocations", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -456,6 +488,7 @@ class Threatweight(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failed_connection: Optional[pulumi.Input[str]] = None,
                  geolocations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ThreatweightGeolocationArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ips: Optional[pulumi.Input[pulumi.InputType['ThreatweightIpsArgs']]] = None,
                  level: Optional[pulumi.Input[pulumi.InputType['ThreatweightLevelArgs']]] = None,
                  malware: Optional[pulumi.Input[pulumi.InputType['ThreatweightMalwareArgs']]] = None,
@@ -618,6 +651,7 @@ class Threatweight(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] failed_connection: Threat weight score for failed connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ThreatweightGeolocationArgs']]]] geolocations: Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ThreatweightIpsArgs']] ips: IPS threat weight settings. The structure of `ips` block is documented below.
         :param pulumi.Input[pulumi.InputType['ThreatweightLevelArgs']] level: Score mapping for threat weight levels. The structure of `level` block is documented below.
         :param pulumi.Input[pulumi.InputType['ThreatweightMalwareArgs']] malware: Anti-virus malware threat weight settings. The structure of `malware` block is documented below.
@@ -799,6 +833,7 @@ class Threatweight(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failed_connection: Optional[pulumi.Input[str]] = None,
                  geolocations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ThreatweightGeolocationArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ips: Optional[pulumi.Input[pulumi.InputType['ThreatweightIpsArgs']]] = None,
                  level: Optional[pulumi.Input[pulumi.InputType['ThreatweightLevelArgs']]] = None,
                  malware: Optional[pulumi.Input[pulumi.InputType['ThreatweightMalwareArgs']]] = None,
@@ -821,6 +856,7 @@ class Threatweight(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["failed_connection"] = failed_connection
             __props__.__dict__["geolocations"] = geolocations
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ips"] = ips
             __props__.__dict__["level"] = level
             __props__.__dict__["malware"] = malware
@@ -844,6 +880,7 @@ class Threatweight(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             failed_connection: Optional[pulumi.Input[str]] = None,
             geolocations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ThreatweightGeolocationArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ips: Optional[pulumi.Input[pulumi.InputType['ThreatweightIpsArgs']]] = None,
             level: Optional[pulumi.Input[pulumi.InputType['ThreatweightLevelArgs']]] = None,
             malware: Optional[pulumi.Input[pulumi.InputType['ThreatweightMalwareArgs']]] = None,
@@ -864,6 +901,7 @@ class Threatweight(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] failed_connection: Threat weight score for failed connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ThreatweightGeolocationArgs']]]] geolocations: Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ThreatweightIpsArgs']] ips: IPS threat weight settings. The structure of `ips` block is documented below.
         :param pulumi.Input[pulumi.InputType['ThreatweightLevelArgs']] level: Score mapping for threat weight levels. The structure of `level` block is documented below.
         :param pulumi.Input[pulumi.InputType['ThreatweightMalwareArgs']] malware: Anti-virus malware threat weight settings. The structure of `malware` block is documented below.
@@ -882,6 +920,7 @@ class Threatweight(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["failed_connection"] = failed_connection
         __props__.__dict__["geolocations"] = geolocations
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ips"] = ips
         __props__.__dict__["level"] = level
         __props__.__dict__["malware"] = malware
@@ -938,6 +977,14 @@ class Threatweight(pulumi.CustomResource):
         Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
         """
         return pulumi.get(self, "geolocations")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

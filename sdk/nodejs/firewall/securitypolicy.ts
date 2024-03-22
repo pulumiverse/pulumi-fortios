@@ -111,6 +111,10 @@ export class Securitypolicy extends pulumi.CustomResource {
      */
     public readonly avProfile!: pulumi.Output<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    public readonly casbProfile!: pulumi.Output<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     public readonly cifsProfile!: pulumi.Output<string>;
@@ -118,6 +122,10 @@ export class Securitypolicy extends pulumi.CustomResource {
      * Comment.
      */
     public readonly comments!: pulumi.Output<string | undefined>;
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    public readonly diameterFilterProfile!: pulumi.Output<string>;
     /**
      * Name of an existing DLP profile.
      */
@@ -134,6 +142,10 @@ export class Securitypolicy extends pulumi.CustomResource {
      * Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
      */
     public readonly dstaddr4s!: pulumi.Output<outputs.firewall.SecuritypolicyDstaddr4[] | undefined>;
+    /**
+     * When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+     */
+    public readonly dstaddr6Negate!: pulumi.Output<string>;
     /**
      * Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
      */
@@ -170,6 +182,10 @@ export class Securitypolicy extends pulumi.CustomResource {
      * Names of FSSO groups. The structure of `fssoGroups` block is documented below.
      */
     public readonly fssoGroups!: pulumi.Output<outputs.firewall.SecuritypolicyFssoGroup[] | undefined>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
      */
@@ -287,6 +303,10 @@ export class Securitypolicy extends pulumi.CustomResource {
      */
     public readonly ipsSensor!: pulumi.Output<string>;
     /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    public readonly ipsVoipFilter!: pulumi.Output<string>;
+    /**
      * Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
      */
     public readonly learningMode!: pulumi.Output<string>;
@@ -351,6 +371,10 @@ export class Securitypolicy extends pulumi.CustomResource {
      */
     public readonly srcaddr4s!: pulumi.Output<outputs.firewall.SecuritypolicySrcaddr4[] | undefined>;
     /**
+     * When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+     */
+    public readonly srcaddr6Negate!: pulumi.Output<string>;
+    /**
      * Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
      */
     public readonly srcaddr6s!: pulumi.Output<outputs.firewall.SecuritypolicySrcaddr6[] | undefined>;
@@ -383,6 +407,10 @@ export class Securitypolicy extends pulumi.CustomResource {
      */
     public readonly urlCategories!: pulumi.Output<outputs.firewall.SecuritypolicyUrlCategory[] | undefined>;
     /**
+     * URL categories or groups.
+     */
+    public readonly urlCategoryUnitary!: pulumi.Output<string>;
+    /**
      * Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
      */
     public readonly users!: pulumi.Output<outputs.firewall.SecuritypolicyUser[] | undefined>;
@@ -399,7 +427,11 @@ export class Securitypolicy extends pulumi.CustomResource {
      */
     public readonly videofilterProfile!: pulumi.Output<string>;
     /**
-     * Name of an existing VoIP profile.
+     * Name of an existing virtual-patch profile.
+     */
+    public readonly virtualPatchProfile!: pulumi.Output<string>;
+    /**
+     * Name of an existing VoIP (voipd) profile.
      */
     public readonly voipProfile!: pulumi.Output<string>;
     /**
@@ -426,12 +458,15 @@ export class Securitypolicy extends pulumi.CustomResource {
             resourceInputs["applicationList"] = state ? state.applicationList : undefined;
             resourceInputs["applications"] = state ? state.applications : undefined;
             resourceInputs["avProfile"] = state ? state.avProfile : undefined;
+            resourceInputs["casbProfile"] = state ? state.casbProfile : undefined;
             resourceInputs["cifsProfile"] = state ? state.cifsProfile : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["diameterFilterProfile"] = state ? state.diameterFilterProfile : undefined;
             resourceInputs["dlpProfile"] = state ? state.dlpProfile : undefined;
             resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
             resourceInputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
             resourceInputs["dstaddr4s"] = state ? state.dstaddr4s : undefined;
+            resourceInputs["dstaddr6Negate"] = state ? state.dstaddr6Negate : undefined;
             resourceInputs["dstaddr6s"] = state ? state.dstaddr6s : undefined;
             resourceInputs["dstaddrNegate"] = state ? state.dstaddrNegate : undefined;
             resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
@@ -441,6 +476,7 @@ export class Securitypolicy extends pulumi.CustomResource {
             resourceInputs["enforceDefaultAppPort"] = state ? state.enforceDefaultAppPort : undefined;
             resourceInputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
             resourceInputs["fssoGroups"] = state ? state.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["icapProfile"] = state ? state.icapProfile : undefined;
             resourceInputs["internetService"] = state ? state.internetService : undefined;
@@ -470,6 +506,7 @@ export class Securitypolicy extends pulumi.CustomResource {
             resourceInputs["internetServiceSrcNames"] = state ? state.internetServiceSrcNames : undefined;
             resourceInputs["internetServiceSrcNegate"] = state ? state.internetServiceSrcNegate : undefined;
             resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = state ? state.ipsVoipFilter : undefined;
             resourceInputs["learningMode"] = state ? state.learningMode : undefined;
             resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
             resourceInputs["logtrafficStart"] = state ? state.logtrafficStart : undefined;
@@ -486,6 +523,7 @@ export class Securitypolicy extends pulumi.CustomResource {
             resourceInputs["serviceNegate"] = state ? state.serviceNegate : undefined;
             resourceInputs["services"] = state ? state.services : undefined;
             resourceInputs["srcaddr4s"] = state ? state.srcaddr4s : undefined;
+            resourceInputs["srcaddr6Negate"] = state ? state.srcaddr6Negate : undefined;
             resourceInputs["srcaddr6s"] = state ? state.srcaddr6s : undefined;
             resourceInputs["srcaddrNegate"] = state ? state.srcaddrNegate : undefined;
             resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
@@ -494,10 +532,12 @@ export class Securitypolicy extends pulumi.CustomResource {
             resourceInputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["urlCategories"] = state ? state.urlCategories : undefined;
+            resourceInputs["urlCategoryUnitary"] = state ? state.urlCategoryUnitary : undefined;
             resourceInputs["users"] = state ? state.users : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = state ? state.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = state ? state.virtualPatchProfile : undefined;
             resourceInputs["voipProfile"] = state ? state.voipProfile : undefined;
             resourceInputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
         } else {
@@ -508,12 +548,15 @@ export class Securitypolicy extends pulumi.CustomResource {
             resourceInputs["applicationList"] = args ? args.applicationList : undefined;
             resourceInputs["applications"] = args ? args.applications : undefined;
             resourceInputs["avProfile"] = args ? args.avProfile : undefined;
+            resourceInputs["casbProfile"] = args ? args.casbProfile : undefined;
             resourceInputs["cifsProfile"] = args ? args.cifsProfile : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["diameterFilterProfile"] = args ? args.diameterFilterProfile : undefined;
             resourceInputs["dlpProfile"] = args ? args.dlpProfile : undefined;
             resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
             resourceInputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
             resourceInputs["dstaddr4s"] = args ? args.dstaddr4s : undefined;
+            resourceInputs["dstaddr6Negate"] = args ? args.dstaddr6Negate : undefined;
             resourceInputs["dstaddr6s"] = args ? args.dstaddr6s : undefined;
             resourceInputs["dstaddrNegate"] = args ? args.dstaddrNegate : undefined;
             resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
@@ -523,6 +566,7 @@ export class Securitypolicy extends pulumi.CustomResource {
             resourceInputs["enforceDefaultAppPort"] = args ? args.enforceDefaultAppPort : undefined;
             resourceInputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
             resourceInputs["fssoGroups"] = args ? args.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["icapProfile"] = args ? args.icapProfile : undefined;
             resourceInputs["internetService"] = args ? args.internetService : undefined;
@@ -552,6 +596,7 @@ export class Securitypolicy extends pulumi.CustomResource {
             resourceInputs["internetServiceSrcNames"] = args ? args.internetServiceSrcNames : undefined;
             resourceInputs["internetServiceSrcNegate"] = args ? args.internetServiceSrcNegate : undefined;
             resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = args ? args.ipsVoipFilter : undefined;
             resourceInputs["learningMode"] = args ? args.learningMode : undefined;
             resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
             resourceInputs["logtrafficStart"] = args ? args.logtrafficStart : undefined;
@@ -568,6 +613,7 @@ export class Securitypolicy extends pulumi.CustomResource {
             resourceInputs["serviceNegate"] = args ? args.serviceNegate : undefined;
             resourceInputs["services"] = args ? args.services : undefined;
             resourceInputs["srcaddr4s"] = args ? args.srcaddr4s : undefined;
+            resourceInputs["srcaddr6Negate"] = args ? args.srcaddr6Negate : undefined;
             resourceInputs["srcaddr6s"] = args ? args.srcaddr6s : undefined;
             resourceInputs["srcaddrNegate"] = args ? args.srcaddrNegate : undefined;
             resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
@@ -576,10 +622,12 @@ export class Securitypolicy extends pulumi.CustomResource {
             resourceInputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["urlCategories"] = args ? args.urlCategories : undefined;
+            resourceInputs["urlCategoryUnitary"] = args ? args.urlCategoryUnitary : undefined;
             resourceInputs["users"] = args ? args.users : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = args ? args.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = args ? args.virtualPatchProfile : undefined;
             resourceInputs["voipProfile"] = args ? args.voipProfile : undefined;
             resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
         }
@@ -617,6 +665,10 @@ export interface SecuritypolicyState {
      */
     avProfile?: pulumi.Input<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    casbProfile?: pulumi.Input<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     cifsProfile?: pulumi.Input<string>;
@@ -624,6 +676,10 @@ export interface SecuritypolicyState {
      * Comment.
      */
     comments?: pulumi.Input<string>;
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    diameterFilterProfile?: pulumi.Input<string>;
     /**
      * Name of an existing DLP profile.
      */
@@ -640,6 +696,10 @@ export interface SecuritypolicyState {
      * Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
      */
     dstaddr4s?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicyDstaddr4>[]>;
+    /**
+     * When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+     */
+    dstaddr6Negate?: pulumi.Input<string>;
     /**
      * Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
      */
@@ -676,6 +736,10 @@ export interface SecuritypolicyState {
      * Names of FSSO groups. The structure of `fssoGroups` block is documented below.
      */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicyFssoGroup>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
      */
@@ -793,6 +857,10 @@ export interface SecuritypolicyState {
      */
     ipsSensor?: pulumi.Input<string>;
     /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    ipsVoipFilter?: pulumi.Input<string>;
+    /**
      * Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
      */
     learningMode?: pulumi.Input<string>;
@@ -857,6 +925,10 @@ export interface SecuritypolicyState {
      */
     srcaddr4s?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicySrcaddr4>[]>;
     /**
+     * When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+     */
+    srcaddr6Negate?: pulumi.Input<string>;
+    /**
      * Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
      */
     srcaddr6s?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicySrcaddr6>[]>;
@@ -889,6 +961,10 @@ export interface SecuritypolicyState {
      */
     urlCategories?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicyUrlCategory>[]>;
     /**
+     * URL categories or groups.
+     */
+    urlCategoryUnitary?: pulumi.Input<string>;
+    /**
      * Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
      */
     users?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicyUser>[]>;
@@ -905,7 +981,11 @@ export interface SecuritypolicyState {
      */
     videofilterProfile?: pulumi.Input<string>;
     /**
-     * Name of an existing VoIP profile.
+     * Name of an existing virtual-patch profile.
+     */
+    virtualPatchProfile?: pulumi.Input<string>;
+    /**
+     * Name of an existing VoIP (voipd) profile.
      */
     voipProfile?: pulumi.Input<string>;
     /**
@@ -943,6 +1023,10 @@ export interface SecuritypolicyArgs {
      */
     avProfile?: pulumi.Input<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    casbProfile?: pulumi.Input<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     cifsProfile?: pulumi.Input<string>;
@@ -950,6 +1034,10 @@ export interface SecuritypolicyArgs {
      * Comment.
      */
     comments?: pulumi.Input<string>;
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    diameterFilterProfile?: pulumi.Input<string>;
     /**
      * Name of an existing DLP profile.
      */
@@ -966,6 +1054,10 @@ export interface SecuritypolicyArgs {
      * Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
      */
     dstaddr4s?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicyDstaddr4>[]>;
+    /**
+     * When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+     */
+    dstaddr6Negate?: pulumi.Input<string>;
     /**
      * Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
      */
@@ -1002,6 +1094,10 @@ export interface SecuritypolicyArgs {
      * Names of FSSO groups. The structure of `fssoGroups` block is documented below.
      */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicyFssoGroup>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
      */
@@ -1119,6 +1215,10 @@ export interface SecuritypolicyArgs {
      */
     ipsSensor?: pulumi.Input<string>;
     /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    ipsVoipFilter?: pulumi.Input<string>;
+    /**
      * Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
      */
     learningMode?: pulumi.Input<string>;
@@ -1183,6 +1283,10 @@ export interface SecuritypolicyArgs {
      */
     srcaddr4s?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicySrcaddr4>[]>;
     /**
+     * When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+     */
+    srcaddr6Negate?: pulumi.Input<string>;
+    /**
      * Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
      */
     srcaddr6s?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicySrcaddr6>[]>;
@@ -1215,6 +1319,10 @@ export interface SecuritypolicyArgs {
      */
     urlCategories?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicyUrlCategory>[]>;
     /**
+     * URL categories or groups.
+     */
+    urlCategoryUnitary?: pulumi.Input<string>;
+    /**
      * Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
      */
     users?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicyUser>[]>;
@@ -1231,7 +1339,11 @@ export interface SecuritypolicyArgs {
      */
     videofilterProfile?: pulumi.Input<string>;
     /**
-     * Name of an existing VoIP profile.
+     * Name of an existing virtual-patch profile.
+     */
+    virtualPatchProfile?: pulumi.Input<string>;
+    /**
+     * Name of an existing VoIP (voipd) profile.
      */
     voipProfile?: pulumi.Input<string>;
     /**

@@ -80,6 +80,12 @@ namespace Pulumiverse.Fortios.Webproxy
         public Output<string?> Comment { get; private set; } = null!;
 
         /// <summary>
+        /// Fast fallback configuration entry name.
+        /// </summary>
+        [Output("fastFallback")]
+        public Output<string> FastFallback { get; private set; } = null!;
+
+        /// <summary>
         /// Forward server name.
         /// </summary>
         [Output("forwardServer")]
@@ -169,6 +175,12 @@ namespace Pulumiverse.Fortios.Webproxy
         public Input<string>? Comment { get; set; }
 
         /// <summary>
+        /// Fast fallback configuration entry name.
+        /// </summary>
+        [Input("fastFallback")]
+        public Input<string>? FastFallback { get; set; }
+
+        /// <summary>
         /// Forward server name.
         /// </summary>
         [Input("forwardServer")]
@@ -217,6 +229,12 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
+
+        /// <summary>
+        /// Fast fallback configuration entry name.
+        /// </summary>
+        [Input("fastFallback")]
+        public Input<string>? FastFallback { get; set; }
 
         /// <summary>
         /// Forward server name.

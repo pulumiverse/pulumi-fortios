@@ -61,6 +61,10 @@ export interface GetProxypolicyResult {
      */
     readonly blockNotification: string;
     /**
+     * Name of an existing CASB profile.
+     */
+    readonly casbProfile: string;
+    /**
      * Name of an existing CIFS profile.
      */
     readonly cifsProfile: string;
@@ -73,9 +77,17 @@ export interface GetProxypolicyResult {
      */
     readonly decryptedTrafficMirror: string;
     /**
+     * Enable/disable detection of HTTPS in HTTP request.
+     */
+    readonly detectHttpsInHttpRequest: string;
+    /**
      * When enabled, the ownership enforcement will be done at policy level.
      */
     readonly deviceOwnership: string;
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    readonly diameterFilterProfile: string;
     /**
      * Web proxy disclaimer setting: by domain, policy, or user.
      */
@@ -137,6 +149,30 @@ export interface GetProxypolicyResult {
      */
     readonly internetService: string;
     /**
+     * Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used.
+     */
+    readonly internetService6: string;
+    /**
+     * Custom Internet Service IPv6 group name. The structure of `internetService6CustomGroup` block is documented below.
+     */
+    readonly internetService6CustomGroups: outputs.firewall.GetProxypolicyInternetService6CustomGroup[];
+    /**
+     * Custom Internet Service IPv6 name. The structure of `internetService6Custom` block is documented below.
+     */
+    readonly internetService6Customs: outputs.firewall.GetProxypolicyInternetService6Custom[];
+    /**
+     * Internet Service IPv6 group name. The structure of `internetService6Group` block is documented below.
+     */
+    readonly internetService6Groups: outputs.firewall.GetProxypolicyInternetService6Group[];
+    /**
+     * Internet Service IPv6 name. The structure of `internetService6Name` block is documented below.
+     */
+    readonly internetService6Names: outputs.firewall.GetProxypolicyInternetService6Name[];
+    /**
+     * When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6.
+     */
+    readonly internetService6Negate: string;
+    /**
      * Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
      */
     readonly internetServiceCustomGroups: outputs.firewall.GetProxypolicyInternetServiceCustomGroup[];
@@ -164,6 +200,10 @@ export interface GetProxypolicyResult {
      * Name of an existing IPS sensor.
      */
     readonly ipsSensor: string;
+    /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    readonly ipsVoipFilter: string;
     /**
      * VDOM-specific GUI visible label.
      */
@@ -293,6 +333,10 @@ export interface GetProxypolicyResult {
      * Name of an existing VideoFilter profile.
      */
     readonly videofilterProfile: string;
+    /**
+     * Name of an existing virtual-patch profile.
+     */
+    readonly virtualPatchProfile: string;
     /**
      * Name of an existing VoIP profile.
      */

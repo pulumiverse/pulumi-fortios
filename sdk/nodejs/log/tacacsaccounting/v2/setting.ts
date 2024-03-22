@@ -54,6 +54,14 @@ export class Setting extends pulumi.CustomResource {
     }
 
     /**
+     * Specify outgoing interface to reach server.
+     */
+    public readonly interface!: pulumi.Output<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    public readonly interfaceSelectMethod!: pulumi.Output<string>;
+    /**
      * Address of TACACS+ server.
      */
     public readonly server!: pulumi.Output<string>;
@@ -61,6 +69,10 @@ export class Setting extends pulumi.CustomResource {
      * Key to access the TACACS+ server.
      */
     public readonly serverKey!: pulumi.Output<string | undefined>;
+    /**
+     * Source IP address for communication to TACACS+ server.
+     */
+    public readonly sourceIp!: pulumi.Output<string>;
     /**
      * Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
      */
@@ -83,14 +95,20 @@ export class Setting extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SettingState | undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
             resourceInputs["server"] = state ? state.server : undefined;
             resourceInputs["serverKey"] = state ? state.serverKey : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SettingArgs | undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
             resourceInputs["serverKey"] = args ? args.serverKey : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -104,6 +122,14 @@ export class Setting extends pulumi.CustomResource {
  */
 export interface SettingState {
     /**
+     * Specify outgoing interface to reach server.
+     */
+    interface?: pulumi.Input<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    interfaceSelectMethod?: pulumi.Input<string>;
+    /**
      * Address of TACACS+ server.
      */
     server?: pulumi.Input<string>;
@@ -111,6 +137,10 @@ export interface SettingState {
      * Key to access the TACACS+ server.
      */
     serverKey?: pulumi.Input<string>;
+    /**
+     * Source IP address for communication to TACACS+ server.
+     */
+    sourceIp?: pulumi.Input<string>;
     /**
      * Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
      */
@@ -126,6 +156,14 @@ export interface SettingState {
  */
 export interface SettingArgs {
     /**
+     * Specify outgoing interface to reach server.
+     */
+    interface?: pulumi.Input<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    interfaceSelectMethod?: pulumi.Input<string>;
+    /**
      * Address of TACACS+ server.
      */
     server?: pulumi.Input<string>;
@@ -133,6 +171,10 @@ export interface SettingArgs {
      * Key to access the TACACS+ server.
      */
     serverKey?: pulumi.Input<string>;
+    /**
+     * Source IP address for communication to TACACS+ server.
+     */
+    sourceIp?: pulumi.Input<string>;
     /**
      * Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
      */

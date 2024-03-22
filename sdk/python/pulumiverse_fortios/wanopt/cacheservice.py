@@ -21,6 +21,7 @@ class CacheserviceArgs:
                  device_id: Optional[pulumi.Input[str]] = None,
                  dst_peers: Optional[pulumi.Input[Sequence[pulumi.Input['CacheserviceDstPeerArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  prefer_scenario: Optional[pulumi.Input[str]] = None,
                  src_peers: Optional[pulumi.Input[Sequence[pulumi.Input['CacheserviceSrcPeerArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -31,6 +32,7 @@ class CacheserviceArgs:
         :param pulumi.Input[str] device_id: Set identifier for this cache device.
         :param pulumi.Input[Sequence[pulumi.Input['CacheserviceDstPeerArgs']]] dst_peers: Modify cache-service destination peer list. The structure of `dst_peer` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] prefer_scenario: Set the preferred cache behavior towards the balance between latency and hit-ratio. Valid values: `balance`, `prefer-speed`, `prefer-cache`.
         :param pulumi.Input[Sequence[pulumi.Input['CacheserviceSrcPeerArgs']]] src_peers: Modify cache-service source peer list. The structure of `src_peer` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -45,6 +47,8 @@ class CacheserviceArgs:
             pulumi.set(__self__, "dst_peers", dst_peers)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if prefer_scenario is not None:
             pulumi.set(__self__, "prefer_scenario", prefer_scenario)
         if src_peers is not None:
@@ -111,6 +115,18 @@ class CacheserviceArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="preferScenario")
@@ -157,6 +173,7 @@ class _CacheserviceState:
                  device_id: Optional[pulumi.Input[str]] = None,
                  dst_peers: Optional[pulumi.Input[Sequence[pulumi.Input['CacheserviceDstPeerArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  prefer_scenario: Optional[pulumi.Input[str]] = None,
                  src_peers: Optional[pulumi.Input[Sequence[pulumi.Input['CacheserviceSrcPeerArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -167,6 +184,7 @@ class _CacheserviceState:
         :param pulumi.Input[str] device_id: Set identifier for this cache device.
         :param pulumi.Input[Sequence[pulumi.Input['CacheserviceDstPeerArgs']]] dst_peers: Modify cache-service destination peer list. The structure of `dst_peer` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] prefer_scenario: Set the preferred cache behavior towards the balance between latency and hit-ratio. Valid values: `balance`, `prefer-speed`, `prefer-cache`.
         :param pulumi.Input[Sequence[pulumi.Input['CacheserviceSrcPeerArgs']]] src_peers: Modify cache-service source peer list. The structure of `src_peer` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -181,6 +199,8 @@ class _CacheserviceState:
             pulumi.set(__self__, "dst_peers", dst_peers)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if prefer_scenario is not None:
             pulumi.set(__self__, "prefer_scenario", prefer_scenario)
         if src_peers is not None:
@@ -247,6 +267,18 @@ class _CacheserviceState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="preferScenario")
@@ -295,6 +327,7 @@ class Cacheservice(pulumi.CustomResource):
                  device_id: Optional[pulumi.Input[str]] = None,
                  dst_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CacheserviceDstPeerArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  prefer_scenario: Optional[pulumi.Input[str]] = None,
                  src_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CacheserviceSrcPeerArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -342,6 +375,7 @@ class Cacheservice(pulumi.CustomResource):
         :param pulumi.Input[str] device_id: Set identifier for this cache device.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CacheserviceDstPeerArgs']]]] dst_peers: Modify cache-service destination peer list. The structure of `dst_peer` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] prefer_scenario: Set the preferred cache behavior towards the balance between latency and hit-ratio. Valid values: `balance`, `prefer-speed`, `prefer-cache`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CacheserviceSrcPeerArgs']]]] src_peers: Modify cache-service source peer list. The structure of `src_peer` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -408,6 +442,7 @@ class Cacheservice(pulumi.CustomResource):
                  device_id: Optional[pulumi.Input[str]] = None,
                  dst_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CacheserviceDstPeerArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  prefer_scenario: Optional[pulumi.Input[str]] = None,
                  src_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CacheserviceSrcPeerArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -425,6 +460,7 @@ class Cacheservice(pulumi.CustomResource):
             __props__.__dict__["device_id"] = device_id
             __props__.__dict__["dst_peers"] = dst_peers
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["prefer_scenario"] = prefer_scenario
             __props__.__dict__["src_peers"] = src_peers
             __props__.__dict__["vdomparam"] = vdomparam
@@ -443,6 +479,7 @@ class Cacheservice(pulumi.CustomResource):
             device_id: Optional[pulumi.Input[str]] = None,
             dst_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CacheserviceDstPeerArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             prefer_scenario: Optional[pulumi.Input[str]] = None,
             src_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CacheserviceSrcPeerArgs']]]]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Cacheservice':
@@ -458,6 +495,7 @@ class Cacheservice(pulumi.CustomResource):
         :param pulumi.Input[str] device_id: Set identifier for this cache device.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CacheserviceDstPeerArgs']]]] dst_peers: Modify cache-service destination peer list. The structure of `dst_peer` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] prefer_scenario: Set the preferred cache behavior towards the balance between latency and hit-ratio. Valid values: `balance`, `prefer-speed`, `prefer-cache`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CacheserviceSrcPeerArgs']]]] src_peers: Modify cache-service source peer list. The structure of `src_peer` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -471,6 +509,7 @@ class Cacheservice(pulumi.CustomResource):
         __props__.__dict__["device_id"] = device_id
         __props__.__dict__["dst_peers"] = dst_peers
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["prefer_scenario"] = prefer_scenario
         __props__.__dict__["src_peers"] = src_peers
         __props__.__dict__["vdomparam"] = vdomparam
@@ -515,6 +554,14 @@ class Cacheservice(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="preferScenario")

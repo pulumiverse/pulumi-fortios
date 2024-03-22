@@ -84,10 +84,14 @@ type Overridefilter struct {
 	Filter pulumi.StringOutput `pulumi:"filter"`
 	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
 	FilterType pulumi.StringOutput `pulumi:"filterType"`
+	// Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+	FortiSwitch pulumi.StringOutput `pulumi:"fortiSwitch"`
 	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
 	ForwardTraffic pulumi.StringOutput `pulumi:"forwardTraffic"`
 	// Free Style Filters The structure of `freeStyle` block is documented below.
 	FreeStyles OverridefilterFreeStyleArrayOutput `pulumi:"freeStyles"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
 	Gtp pulumi.StringOutput `pulumi:"gtp"`
 	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
@@ -154,10 +158,14 @@ type overridefilterState struct {
 	Filter *string `pulumi:"filter"`
 	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
 	FilterType *string `pulumi:"filterType"`
+	// Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+	FortiSwitch *string `pulumi:"fortiSwitch"`
 	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
 	ForwardTraffic *string `pulumi:"forwardTraffic"`
 	// Free Style Filters The structure of `freeStyle` block is documented below.
 	FreeStyles []OverridefilterFreeStyle `pulumi:"freeStyles"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
 	Gtp *string `pulumi:"gtp"`
 	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
@@ -195,10 +203,14 @@ type OverridefilterState struct {
 	Filter pulumi.StringPtrInput
 	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
 	FilterType pulumi.StringPtrInput
+	// Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+	FortiSwitch pulumi.StringPtrInput
 	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
 	ForwardTraffic pulumi.StringPtrInput
 	// Free Style Filters The structure of `freeStyle` block is documented below.
 	FreeStyles OverridefilterFreeStyleArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
 	Gtp pulumi.StringPtrInput
 	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
@@ -240,10 +252,14 @@ type overridefilterArgs struct {
 	Filter *string `pulumi:"filter"`
 	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
 	FilterType *string `pulumi:"filterType"`
+	// Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+	FortiSwitch *string `pulumi:"fortiSwitch"`
 	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
 	ForwardTraffic *string `pulumi:"forwardTraffic"`
 	// Free Style Filters The structure of `freeStyle` block is documented below.
 	FreeStyles []OverridefilterFreeStyle `pulumi:"freeStyles"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
 	Gtp *string `pulumi:"gtp"`
 	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
@@ -282,10 +298,14 @@ type OverridefilterArgs struct {
 	Filter pulumi.StringPtrInput
 	// Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
 	FilterType pulumi.StringPtrInput
+	// Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+	FortiSwitch pulumi.StringPtrInput
 	// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
 	ForwardTraffic pulumi.StringPtrInput
 	// Free Style Filters The structure of `freeStyle` block is documented below.
 	FreeStyles OverridefilterFreeStyleArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
 	Gtp pulumi.StringPtrInput
 	// Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
@@ -427,6 +447,11 @@ func (o OverridefilterOutput) FilterType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Overridefilter) pulumi.StringOutput { return v.FilterType }).(pulumi.StringOutput)
 }
 
+// Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+func (o OverridefilterOutput) FortiSwitch() pulumi.StringOutput {
+	return o.ApplyT(func(v *Overridefilter) pulumi.StringOutput { return v.FortiSwitch }).(pulumi.StringOutput)
+}
+
 // Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
 func (o OverridefilterOutput) ForwardTraffic() pulumi.StringOutput {
 	return o.ApplyT(func(v *Overridefilter) pulumi.StringOutput { return v.ForwardTraffic }).(pulumi.StringOutput)
@@ -435,6 +460,11 @@ func (o OverridefilterOutput) ForwardTraffic() pulumi.StringOutput {
 // Free Style Filters The structure of `freeStyle` block is documented below.
 func (o OverridefilterOutput) FreeStyles() OverridefilterFreeStyleArrayOutput {
 	return o.ApplyT(func(v *Overridefilter) OverridefilterFreeStyleArrayOutput { return v.FreeStyles }).(OverridefilterFreeStyleArrayOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o OverridefilterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Overridefilter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable GTP messages logging. Valid values: `enable`, `disable`.

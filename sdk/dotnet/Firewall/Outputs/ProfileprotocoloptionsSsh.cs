@@ -15,11 +15,11 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
     public sealed class ProfileprotocoloptionsSsh
     {
         /// <summary>
-        /// Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
+        /// Number of bytes to send in each transmission for client comforting (bytes).
         /// </summary>
         public readonly int? ComfortAmount;
         /// <summary>
-        /// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+        /// Interval between successive transmissions of data for client comforting (seconds).
         /// </summary>
         public readonly int? ComfortInterval;
         /// <summary>
@@ -27,7 +27,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? Options;
         /// <summary>
-        /// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        /// Maximum in-memory file size that can be scanned (MB).
         /// </summary>
         public readonly int? OversizeLimit;
         /// <summary>
@@ -39,7 +39,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? SslOffloaded;
         /// <summary>
-        /// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+        /// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
         /// </summary>
         public readonly int? StreamBasedUncompressedLimit;
         /// <summary>
@@ -63,7 +63,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly int? UncompressedNestLimit;
         /// <summary>
-        /// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        /// Maximum in-memory uncompressed file size that can be scanned (MB).
         /// </summary>
         public readonly int? UncompressedOversizeLimit;
 

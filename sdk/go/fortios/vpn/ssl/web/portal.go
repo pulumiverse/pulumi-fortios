@@ -119,18 +119,26 @@ type Portal struct {
 	AutoConnect pulumi.StringOutput `pulumi:"autoConnect"`
 	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
 	BookmarkGroups PortalBookmarkGroupArrayOutput `pulumi:"bookmarkGroups"`
+	// Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+	ClientSrcRange pulumi.StringOutput `pulumi:"clientSrcRange"`
 	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
 	Clipboard pulumi.StringOutput `pulumi:"clipboard"`
 	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
 	CustomLang pulumi.StringOutput `pulumi:"customLang"`
 	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
 	CustomizeForticlientDownloadUrl pulumi.StringOutput `pulumi:"customizeForticlientDownloadUrl"`
+	// Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+	DefaultProtocol pulumi.StringOutput `pulumi:"defaultProtocol"`
 	// Screen height (range from 0 - 65535, default = 768).
 	DefaultWindowHeight pulumi.IntOutput `pulumi:"defaultWindowHeight"`
 	// Screen width (range from 0 - 65535, default = 1024).
 	DefaultWindowWidth pulumi.IntOutput `pulumi:"defaultWindowWidth"`
+	// Relay agent IPv6 link address to use in DHCP6 requests.
+	Dhcp6RaLinkaddr pulumi.StringOutput `pulumi:"dhcp6RaLinkaddr"`
 	// Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
 	DhcpIpOverlap pulumi.StringOutput `pulumi:"dhcpIpOverlap"`
+	// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+	DhcpRaGiaddr pulumi.StringOutput `pulumi:"dhcpRaGiaddr"`
 	// Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
 	DisplayBookmark pulumi.StringOutput `pulumi:"displayBookmark"`
 	// Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
@@ -149,10 +157,14 @@ type Portal struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
 	ExclusiveRouting pulumi.StringOutput `pulumi:"exclusiveRouting"`
+	// Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+	FocusBookmark pulumi.StringOutput `pulumi:"focusBookmark"`
 	// Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
 	ForticlientDownload pulumi.StringOutput `pulumi:"forticlientDownload"`
 	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
 	ForticlientDownloadMethod pulumi.StringOutput `pulumi:"forticlientDownloadMethod"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Web portal heading message.
 	Heading pulumi.StringOutput `pulumi:"heading"`
 	// Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
@@ -191,6 +203,10 @@ type Portal struct {
 	Ipv6WinsServer2 pulumi.StringOutput `pulumi:"ipv6WinsServer2"`
 	// Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
 	KeepAlive pulumi.StringOutput `pulumi:"keepAlive"`
+	// Landing page options. The structure of `landingPage` block is documented below.
+	LandingPage PortalLandingPageOutput `pulumi:"landingPage"`
+	// Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+	LandingPageMode pulumi.StringOutput `pulumi:"landingPageMode"`
 	// Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
 	LimitUserLogins pulumi.StringOutput `pulumi:"limitUserLogins"`
 	// Client MAC address action. Valid values: `allow`, `deny`.
@@ -297,18 +313,26 @@ type portalState struct {
 	AutoConnect *string `pulumi:"autoConnect"`
 	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
 	BookmarkGroups []PortalBookmarkGroup `pulumi:"bookmarkGroups"`
+	// Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+	ClientSrcRange *string `pulumi:"clientSrcRange"`
 	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
 	Clipboard *string `pulumi:"clipboard"`
 	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
 	CustomLang *string `pulumi:"customLang"`
 	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
 	CustomizeForticlientDownloadUrl *string `pulumi:"customizeForticlientDownloadUrl"`
+	// Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+	DefaultProtocol *string `pulumi:"defaultProtocol"`
 	// Screen height (range from 0 - 65535, default = 768).
 	DefaultWindowHeight *int `pulumi:"defaultWindowHeight"`
 	// Screen width (range from 0 - 65535, default = 1024).
 	DefaultWindowWidth *int `pulumi:"defaultWindowWidth"`
+	// Relay agent IPv6 link address to use in DHCP6 requests.
+	Dhcp6RaLinkaddr *string `pulumi:"dhcp6RaLinkaddr"`
 	// Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
 	DhcpIpOverlap *string `pulumi:"dhcpIpOverlap"`
+	// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+	DhcpRaGiaddr *string `pulumi:"dhcpRaGiaddr"`
 	// Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
 	DisplayBookmark *string `pulumi:"displayBookmark"`
 	// Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
@@ -327,10 +351,14 @@ type portalState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
 	ExclusiveRouting *string `pulumi:"exclusiveRouting"`
+	// Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+	FocusBookmark *string `pulumi:"focusBookmark"`
 	// Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
 	ForticlientDownload *string `pulumi:"forticlientDownload"`
 	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
 	ForticlientDownloadMethod *string `pulumi:"forticlientDownloadMethod"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Web portal heading message.
 	Heading *string `pulumi:"heading"`
 	// Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
@@ -369,6 +397,10 @@ type portalState struct {
 	Ipv6WinsServer2 *string `pulumi:"ipv6WinsServer2"`
 	// Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
 	KeepAlive *string `pulumi:"keepAlive"`
+	// Landing page options. The structure of `landingPage` block is documented below.
+	LandingPage *PortalLandingPage `pulumi:"landingPage"`
+	// Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+	LandingPageMode *string `pulumi:"landingPageMode"`
 	// Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
 	LimitUserLogins *string `pulumi:"limitUserLogins"`
 	// Client MAC address action. Valid values: `allow`, `deny`.
@@ -446,18 +478,26 @@ type PortalState struct {
 	AutoConnect pulumi.StringPtrInput
 	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
 	BookmarkGroups PortalBookmarkGroupArrayInput
+	// Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+	ClientSrcRange pulumi.StringPtrInput
 	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
 	Clipboard pulumi.StringPtrInput
 	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
 	CustomLang pulumi.StringPtrInput
 	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
 	CustomizeForticlientDownloadUrl pulumi.StringPtrInput
+	// Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+	DefaultProtocol pulumi.StringPtrInput
 	// Screen height (range from 0 - 65535, default = 768).
 	DefaultWindowHeight pulumi.IntPtrInput
 	// Screen width (range from 0 - 65535, default = 1024).
 	DefaultWindowWidth pulumi.IntPtrInput
+	// Relay agent IPv6 link address to use in DHCP6 requests.
+	Dhcp6RaLinkaddr pulumi.StringPtrInput
 	// Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
 	DhcpIpOverlap pulumi.StringPtrInput
+	// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+	DhcpRaGiaddr pulumi.StringPtrInput
 	// Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
 	DisplayBookmark pulumi.StringPtrInput
 	// Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
@@ -476,10 +516,14 @@ type PortalState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
 	ExclusiveRouting pulumi.StringPtrInput
+	// Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+	FocusBookmark pulumi.StringPtrInput
 	// Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
 	ForticlientDownload pulumi.StringPtrInput
 	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
 	ForticlientDownloadMethod pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Web portal heading message.
 	Heading pulumi.StringPtrInput
 	// Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
@@ -518,6 +562,10 @@ type PortalState struct {
 	Ipv6WinsServer2 pulumi.StringPtrInput
 	// Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
 	KeepAlive pulumi.StringPtrInput
+	// Landing page options. The structure of `landingPage` block is documented below.
+	LandingPage PortalLandingPagePtrInput
+	// Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+	LandingPageMode pulumi.StringPtrInput
 	// Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
 	LimitUserLogins pulumi.StringPtrInput
 	// Client MAC address action. Valid values: `allow`, `deny`.
@@ -599,18 +647,26 @@ type portalArgs struct {
 	AutoConnect *string `pulumi:"autoConnect"`
 	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
 	BookmarkGroups []PortalBookmarkGroup `pulumi:"bookmarkGroups"`
+	// Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+	ClientSrcRange *string `pulumi:"clientSrcRange"`
 	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
 	Clipboard *string `pulumi:"clipboard"`
 	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
 	CustomLang *string `pulumi:"customLang"`
 	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
 	CustomizeForticlientDownloadUrl *string `pulumi:"customizeForticlientDownloadUrl"`
+	// Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+	DefaultProtocol *string `pulumi:"defaultProtocol"`
 	// Screen height (range from 0 - 65535, default = 768).
 	DefaultWindowHeight *int `pulumi:"defaultWindowHeight"`
 	// Screen width (range from 0 - 65535, default = 1024).
 	DefaultWindowWidth *int `pulumi:"defaultWindowWidth"`
+	// Relay agent IPv6 link address to use in DHCP6 requests.
+	Dhcp6RaLinkaddr *string `pulumi:"dhcp6RaLinkaddr"`
 	// Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
 	DhcpIpOverlap *string `pulumi:"dhcpIpOverlap"`
+	// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+	DhcpRaGiaddr *string `pulumi:"dhcpRaGiaddr"`
 	// Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
 	DisplayBookmark *string `pulumi:"displayBookmark"`
 	// Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
@@ -629,10 +685,14 @@ type portalArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
 	ExclusiveRouting *string `pulumi:"exclusiveRouting"`
+	// Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+	FocusBookmark *string `pulumi:"focusBookmark"`
 	// Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
 	ForticlientDownload *string `pulumi:"forticlientDownload"`
 	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
 	ForticlientDownloadMethod *string `pulumi:"forticlientDownloadMethod"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Web portal heading message.
 	Heading *string `pulumi:"heading"`
 	// Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
@@ -671,6 +731,10 @@ type portalArgs struct {
 	Ipv6WinsServer2 *string `pulumi:"ipv6WinsServer2"`
 	// Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
 	KeepAlive *string `pulumi:"keepAlive"`
+	// Landing page options. The structure of `landingPage` block is documented below.
+	LandingPage *PortalLandingPage `pulumi:"landingPage"`
+	// Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+	LandingPageMode *string `pulumi:"landingPageMode"`
 	// Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
 	LimitUserLogins *string `pulumi:"limitUserLogins"`
 	// Client MAC address action. Valid values: `allow`, `deny`.
@@ -749,18 +813,26 @@ type PortalArgs struct {
 	AutoConnect pulumi.StringPtrInput
 	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
 	BookmarkGroups PortalBookmarkGroupArrayInput
+	// Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+	ClientSrcRange pulumi.StringPtrInput
 	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
 	Clipboard pulumi.StringPtrInput
 	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
 	CustomLang pulumi.StringPtrInput
 	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
 	CustomizeForticlientDownloadUrl pulumi.StringPtrInput
+	// Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+	DefaultProtocol pulumi.StringPtrInput
 	// Screen height (range from 0 - 65535, default = 768).
 	DefaultWindowHeight pulumi.IntPtrInput
 	// Screen width (range from 0 - 65535, default = 1024).
 	DefaultWindowWidth pulumi.IntPtrInput
+	// Relay agent IPv6 link address to use in DHCP6 requests.
+	Dhcp6RaLinkaddr pulumi.StringPtrInput
 	// Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
 	DhcpIpOverlap pulumi.StringPtrInput
+	// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+	DhcpRaGiaddr pulumi.StringPtrInput
 	// Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
 	DisplayBookmark pulumi.StringPtrInput
 	// Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
@@ -779,10 +851,14 @@ type PortalArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
 	ExclusiveRouting pulumi.StringPtrInput
+	// Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+	FocusBookmark pulumi.StringPtrInput
 	// Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
 	ForticlientDownload pulumi.StringPtrInput
 	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
 	ForticlientDownloadMethod pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Web portal heading message.
 	Heading pulumi.StringPtrInput
 	// Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
@@ -821,6 +897,10 @@ type PortalArgs struct {
 	Ipv6WinsServer2 pulumi.StringPtrInput
 	// Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
 	KeepAlive pulumi.StringPtrInput
+	// Landing page options. The structure of `landingPage` block is documented below.
+	LandingPage PortalLandingPagePtrInput
+	// Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+	LandingPageMode pulumi.StringPtrInput
 	// Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
 	LimitUserLogins pulumi.StringPtrInput
 	// Client MAC address action. Valid values: `allow`, `deny`.
@@ -993,6 +1073,11 @@ func (o PortalOutput) BookmarkGroups() PortalBookmarkGroupArrayOutput {
 	return o.ApplyT(func(v *Portal) PortalBookmarkGroupArrayOutput { return v.BookmarkGroups }).(PortalBookmarkGroupArrayOutput)
 }
 
+// Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+func (o PortalOutput) ClientSrcRange() pulumi.StringOutput {
+	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.ClientSrcRange }).(pulumi.StringOutput)
+}
+
 // Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
 func (o PortalOutput) Clipboard() pulumi.StringOutput {
 	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.Clipboard }).(pulumi.StringOutput)
@@ -1008,6 +1093,11 @@ func (o PortalOutput) CustomizeForticlientDownloadUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.CustomizeForticlientDownloadUrl }).(pulumi.StringOutput)
 }
 
+// Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+func (o PortalOutput) DefaultProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.DefaultProtocol }).(pulumi.StringOutput)
+}
+
 // Screen height (range from 0 - 65535, default = 768).
 func (o PortalOutput) DefaultWindowHeight() pulumi.IntOutput {
 	return o.ApplyT(func(v *Portal) pulumi.IntOutput { return v.DefaultWindowHeight }).(pulumi.IntOutput)
@@ -1018,9 +1108,19 @@ func (o PortalOutput) DefaultWindowWidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *Portal) pulumi.IntOutput { return v.DefaultWindowWidth }).(pulumi.IntOutput)
 }
 
+// Relay agent IPv6 link address to use in DHCP6 requests.
+func (o PortalOutput) Dhcp6RaLinkaddr() pulumi.StringOutput {
+	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.Dhcp6RaLinkaddr }).(pulumi.StringOutput)
+}
+
 // Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
 func (o PortalOutput) DhcpIpOverlap() pulumi.StringOutput {
 	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.DhcpIpOverlap }).(pulumi.StringOutput)
+}
+
+// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+func (o PortalOutput) DhcpRaGiaddr() pulumi.StringOutput {
+	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.DhcpRaGiaddr }).(pulumi.StringOutput)
 }
 
 // Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
@@ -1068,6 +1168,11 @@ func (o PortalOutput) ExclusiveRouting() pulumi.StringOutput {
 	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.ExclusiveRouting }).(pulumi.StringOutput)
 }
 
+// Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+func (o PortalOutput) FocusBookmark() pulumi.StringOutput {
+	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.FocusBookmark }).(pulumi.StringOutput)
+}
+
 // Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
 func (o PortalOutput) ForticlientDownload() pulumi.StringOutput {
 	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.ForticlientDownload }).(pulumi.StringOutput)
@@ -1076,6 +1181,11 @@ func (o PortalOutput) ForticlientDownload() pulumi.StringOutput {
 // FortiClient download method. Valid values: `direct`, `ssl-vpn`.
 func (o PortalOutput) ForticlientDownloadMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.ForticlientDownloadMethod }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o PortalOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Portal) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Web portal heading message.
@@ -1173,6 +1283,16 @@ func (o PortalOutput) Ipv6WinsServer2() pulumi.StringOutput {
 // Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
 func (o PortalOutput) KeepAlive() pulumi.StringOutput {
 	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.KeepAlive }).(pulumi.StringOutput)
+}
+
+// Landing page options. The structure of `landingPage` block is documented below.
+func (o PortalOutput) LandingPage() PortalLandingPageOutput {
+	return o.ApplyT(func(v *Portal) PortalLandingPageOutput { return v.LandingPage }).(PortalLandingPageOutput)
+}
+
+// Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+func (o PortalOutput) LandingPageMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.LandingPageMode }).(pulumi.StringOutput)
 }
 
 // Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.

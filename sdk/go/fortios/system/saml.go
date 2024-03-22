@@ -78,6 +78,8 @@ type Saml struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// SP entity ID.
 	EntityId pulumi.StringOutput `pulumi:"entityId"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// IDP certificate name.
 	IdpCert pulumi.StringOutput `pulumi:"idpCert"`
 	// IDP entity ID.
@@ -150,6 +152,8 @@ type samlState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// SP entity ID.
 	EntityId *string `pulumi:"entityId"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// IDP certificate name.
 	IdpCert *string `pulumi:"idpCert"`
 	// IDP entity ID.
@@ -193,6 +197,8 @@ type SamlState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// SP entity ID.
 	EntityId pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// IDP certificate name.
 	IdpCert pulumi.StringPtrInput
 	// IDP entity ID.
@@ -240,6 +246,8 @@ type samlArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// SP entity ID.
 	EntityId *string `pulumi:"entityId"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// IDP certificate name.
 	IdpCert *string `pulumi:"idpCert"`
 	// IDP entity ID.
@@ -284,6 +292,8 @@ type SamlArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// SP entity ID.
 	EntityId pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// IDP certificate name.
 	IdpCert pulumi.StringPtrInput
 	// IDP entity ID.
@@ -429,6 +439,11 @@ func (o SamlOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // SP entity ID.
 func (o SamlOutput) EntityId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Saml) pulumi.StringOutput { return v.EntityId }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SamlOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Saml) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // IDP certificate name.

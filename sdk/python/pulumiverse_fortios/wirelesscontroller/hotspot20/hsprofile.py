@@ -31,6 +31,7 @@ class HsprofileArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hessid: Optional[pulumi.Input[str]] = None,
                  ip_addr_type: Optional[pulumi.Input[str]] = None,
                  l2tif: Optional[pulumi.Input[str]] = None,
@@ -73,6 +74,7 @@ class HsprofileArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
         :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hessid: Homogeneous extended service set identifier (HESSID).
         :param pulumi.Input[str] ip_addr_type: IP address type name.
         :param pulumi.Input[str] l2tif: Enable/disable Layer 2 traffic inspection and filtering. Valid values: `enable`, `disable`.
@@ -129,6 +131,8 @@ class HsprofileArgs:
             pulumi.set(__self__, "gas_comeback_delay", gas_comeback_delay)
         if gas_fragmentation_limit is not None:
             pulumi.set(__self__, "gas_fragmentation_limit", gas_fragmentation_limit)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hessid is not None:
             pulumi.set(__self__, "hessid", hessid)
         if ip_addr_type is not None:
@@ -359,6 +363,18 @@ class HsprofileArgs:
     @gas_fragmentation_limit.setter
     def gas_fragmentation_limit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "gas_fragmentation_limit", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -679,6 +695,7 @@ class _HsprofileState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hessid: Optional[pulumi.Input[str]] = None,
                  ip_addr_type: Optional[pulumi.Input[str]] = None,
                  l2tif: Optional[pulumi.Input[str]] = None,
@@ -721,6 +738,7 @@ class _HsprofileState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
         :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hessid: Homogeneous extended service set identifier (HESSID).
         :param pulumi.Input[str] ip_addr_type: IP address type name.
         :param pulumi.Input[str] l2tif: Enable/disable Layer 2 traffic inspection and filtering. Valid values: `enable`, `disable`.
@@ -777,6 +795,8 @@ class _HsprofileState:
             pulumi.set(__self__, "gas_comeback_delay", gas_comeback_delay)
         if gas_fragmentation_limit is not None:
             pulumi.set(__self__, "gas_fragmentation_limit", gas_fragmentation_limit)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hessid is not None:
             pulumi.set(__self__, "hessid", hessid)
         if ip_addr_type is not None:
@@ -1007,6 +1027,18 @@ class _HsprofileState:
     @gas_fragmentation_limit.setter
     def gas_fragmentation_limit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "gas_fragmentation_limit", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1329,6 +1361,7 @@ class Hsprofile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hessid: Optional[pulumi.Input[str]] = None,
                  ip_addr_type: Optional[pulumi.Input[str]] = None,
                  l2tif: Optional[pulumi.Input[str]] = None,
@@ -1393,6 +1426,7 @@ class Hsprofile(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
         :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hessid: Homogeneous extended service set identifier (HESSID).
         :param pulumi.Input[str] ip_addr_type: IP address type name.
         :param pulumi.Input[str] l2tif: Enable/disable Layer 2 traffic inspection and filtering. Valid values: `enable`, `disable`.
@@ -1476,6 +1510,7 @@ class Hsprofile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hessid: Optional[pulumi.Input[str]] = None,
                  ip_addr_type: Optional[pulumi.Input[str]] = None,
                  l2tif: Optional[pulumi.Input[str]] = None,
@@ -1525,6 +1560,7 @@ class Hsprofile(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["gas_comeback_delay"] = gas_comeback_delay
             __props__.__dict__["gas_fragmentation_limit"] = gas_fragmentation_limit
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hessid"] = hessid
             __props__.__dict__["ip_addr_type"] = ip_addr_type
             __props__.__dict__["l2tif"] = l2tif
@@ -1575,6 +1611,7 @@ class Hsprofile(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             gas_comeback_delay: Optional[pulumi.Input[int]] = None,
             gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hessid: Optional[pulumi.Input[str]] = None,
             ip_addr_type: Optional[pulumi.Input[str]] = None,
             l2tif: Optional[pulumi.Input[str]] = None,
@@ -1622,6 +1659,7 @@ class Hsprofile(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
         :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hessid: Homogeneous extended service set identifier (HESSID).
         :param pulumi.Input[str] ip_addr_type: IP address type name.
         :param pulumi.Input[str] l2tif: Enable/disable Layer 2 traffic inspection and filtering. Valid values: `enable`, `disable`.
@@ -1667,6 +1705,7 @@ class Hsprofile(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["gas_comeback_delay"] = gas_comeback_delay
         __props__.__dict__["gas_fragmentation_limit"] = gas_fragmentation_limit
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hessid"] = hessid
         __props__.__dict__["ip_addr_type"] = ip_addr_type
         __props__.__dict__["l2tif"] = l2tif
@@ -1813,6 +1852,14 @@ class Hsprofile(pulumi.CustomResource):
         GAS fragmentation limit (512 - 4096, default = 1024).
         """
         return pulumi.get(self, "gas_fragmentation_limit")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

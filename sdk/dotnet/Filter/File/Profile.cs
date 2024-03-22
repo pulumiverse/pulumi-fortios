@@ -59,6 +59,12 @@ namespace Pulumiverse.Fortios.Filter.File
         public Output<string> FeatureSet { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable file-filter logging. Valid values: `disable`, `enable`.
         /// </summary>
         [Output("log")]
@@ -83,7 +89,7 @@ namespace Pulumiverse.Fortios.Filter.File
         public Output<ImmutableArray<Outputs.ProfileRule>> Rules { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+        /// Enable/disable archive contents scan. Valid values: `disable`, `enable`.
         /// </summary>
         [Output("scanArchiveContents")]
         public Output<string> ScanArchiveContents { get; private set; } = null!;
@@ -166,6 +172,12 @@ namespace Pulumiverse.Fortios.Filter.File
         public Input<string>? FeatureSet { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable file-filter logging. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("log")]
@@ -196,7 +208,7 @@ namespace Pulumiverse.Fortios.Filter.File
         }
 
         /// <summary>
-        /// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+        /// Enable/disable archive contents scan. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("scanArchiveContents")]
         public Input<string>? ScanArchiveContents { get; set; }
@@ -240,6 +252,12 @@ namespace Pulumiverse.Fortios.Filter.File
         public Input<string>? FeatureSet { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable file-filter logging. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("log")]
@@ -270,7 +288,7 @@ namespace Pulumiverse.Fortios.Filter.File
         }
 
         /// <summary>
-        /// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+        /// Enable/disable archive contents scan. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("scanArchiveContents")]
         public Input<string>? ScanArchiveContents { get; set; }

@@ -68,6 +68,14 @@ export class Dictionary extends pulumi.CustomResource {
      */
     public readonly entries!: pulumi.Output<outputs.dlp.DictionaryEntry[] | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable match-around support. Valid values: `enable`, `disable`.
+     */
+    public readonly matchAround!: pulumi.Output<string>;
+    /**
      * Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`.
      */
     public readonly matchType!: pulumi.Output<string>;
@@ -100,6 +108,8 @@ export class Dictionary extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = state ? state.entries : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["matchAround"] = state ? state.matchAround : undefined;
             resourceInputs["matchType"] = state ? state.matchType : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
@@ -109,6 +119,8 @@ export class Dictionary extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = args ? args.entries : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["matchAround"] = args ? args.matchAround : undefined;
             resourceInputs["matchType"] = args ? args.matchType : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
@@ -135,6 +147,14 @@ export interface DictionaryState {
      * DLP dictionary entries. The structure of `entries` block is documented below.
      */
     entries?: pulumi.Input<pulumi.Input<inputs.dlp.DictionaryEntry>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Enable/disable match-around support. Valid values: `enable`, `disable`.
+     */
+    matchAround?: pulumi.Input<string>;
     /**
      * Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`.
      */
@@ -169,6 +189,14 @@ export interface DictionaryArgs {
      * DLP dictionary entries. The structure of `entries` block is documented below.
      */
     entries?: pulumi.Input<pulumi.Input<inputs.dlp.DictionaryEntry>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Enable/disable match-around support. Valid values: `enable`, `disable`.
+     */
+    matchAround?: pulumi.Input<string>;
     /**
      * Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`.
      */

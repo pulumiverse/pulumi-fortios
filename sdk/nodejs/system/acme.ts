@@ -64,6 +64,10 @@ export class Acme extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
      */
     public readonly interfaces!: pulumi.Output<outputs.system.AcmeInterface[] | undefined>;
@@ -75,6 +79,10 @@ export class Acme extends pulumi.CustomResource {
      * Source IPv6 address used to connect to the ACME server.
      */
     public readonly sourceIp6!: pulumi.Output<string>;
+    /**
+     * Enable the use of 'ha-mgmt' interface to connect to the ACME server when 'ha-direct' is enabled in HA configuration Valid values: `enable`, `disable`.
+     */
+    public readonly useHaDirect!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -95,17 +103,21 @@ export class Acme extends pulumi.CustomResource {
             const state = argsOrState as AcmeState | undefined;
             resourceInputs["accounts"] = state ? state.accounts : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interfaces"] = state ? state.interfaces : undefined;
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
+            resourceInputs["useHaDirect"] = state ? state.useHaDirect : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as AcmeArgs | undefined;
             resourceInputs["accounts"] = args ? args.accounts : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interfaces"] = args ? args.interfaces : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
+            resourceInputs["useHaDirect"] = args ? args.useHaDirect : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -126,6 +138,10 @@ export interface AcmeState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
      */
     interfaces?: pulumi.Input<pulumi.Input<inputs.system.AcmeInterface>[]>;
@@ -137,6 +153,10 @@ export interface AcmeState {
      * Source IPv6 address used to connect to the ACME server.
      */
     sourceIp6?: pulumi.Input<string>;
+    /**
+     * Enable the use of 'ha-mgmt' interface to connect to the ACME server when 'ha-direct' is enabled in HA configuration Valid values: `enable`, `disable`.
+     */
+    useHaDirect?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -156,6 +176,10 @@ export interface AcmeArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Interface(s) on which the ACME client will listen for challenges. The structure of `interface` block is documented below.
      */
     interfaces?: pulumi.Input<pulumi.Input<inputs.system.AcmeInterface>[]>;
@@ -167,6 +191,10 @@ export interface AcmeArgs {
      * Source IPv6 address used to connect to the ACME server.
      */
     sourceIp6?: pulumi.Input<string>;
+    /**
+     * Enable the use of 'ha-mgmt' interface to connect to the ACME server when 'ha-direct' is enabled in HA configuration Valid values: `enable`, `disable`.
+     */
+    useHaDirect?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

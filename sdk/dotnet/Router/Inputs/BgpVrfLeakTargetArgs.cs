@@ -26,7 +26,7 @@ namespace Pulumiverse.Fortios.Router.Inputs
         public Input<string>? RouteMap { get; set; }
 
         /// <summary>
-        /// Target VRF ID &lt;0 - 31&gt;.
+        /// Target VRF ID (0 - 31).
         /// </summary>
         [Input("vrf")]
         public Input<string>? Vrf { get; set; }

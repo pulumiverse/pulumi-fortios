@@ -26,6 +26,7 @@ class ListArgs:
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['ListEntryArgs']]]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  force_inclusion_ssl_di_sigs: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[str]] = None,
                  other_application_action: Optional[pulumi.Input[str]] = None,
@@ -48,8 +49,9 @@ class ListArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ListEntryArgs']]] entries: Application list entries. The structure of `entries` block is documented below.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: List name.
-        :param pulumi.Input[str] options: Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+        :param pulumi.Input[str] options: Basic application protocol signatures allowed by default.
         :param pulumi.Input[str] other_application_action: Action for other applications. Valid values: `pass`, `block`.
         :param pulumi.Input[str] other_application_log: Enable/disable logging for other applications. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] p2p_black_list: P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
@@ -79,6 +81,8 @@ class ListArgs:
             pulumi.set(__self__, "extended_log", extended_log)
         if force_inclusion_ssl_di_sigs is not None:
             pulumi.set(__self__, "force_inclusion_ssl_di_sigs", force_inclusion_ssl_di_sigs)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if options is not None:
@@ -221,6 +225,18 @@ class ListArgs:
         pulumi.set(self, "force_inclusion_ssl_di_sigs", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -236,7 +252,7 @@ class ListArgs:
     @pulumi.getter
     def options(self) -> Optional[pulumi.Input[str]]:
         """
-        Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+        Basic application protocol signatures allowed by default.
         """
         return pulumi.get(self, "options")
 
@@ -354,6 +370,7 @@ class _ListState:
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['ListEntryArgs']]]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  force_inclusion_ssl_di_sigs: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[str]] = None,
                  other_application_action: Optional[pulumi.Input[str]] = None,
@@ -376,8 +393,9 @@ class _ListState:
         :param pulumi.Input[Sequence[pulumi.Input['ListEntryArgs']]] entries: Application list entries. The structure of `entries` block is documented below.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: List name.
-        :param pulumi.Input[str] options: Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+        :param pulumi.Input[str] options: Basic application protocol signatures allowed by default.
         :param pulumi.Input[str] other_application_action: Action for other applications. Valid values: `pass`, `block`.
         :param pulumi.Input[str] other_application_log: Enable/disable logging for other applications. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] p2p_black_list: P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
@@ -407,6 +425,8 @@ class _ListState:
             pulumi.set(__self__, "extended_log", extended_log)
         if force_inclusion_ssl_di_sigs is not None:
             pulumi.set(__self__, "force_inclusion_ssl_di_sigs", force_inclusion_ssl_di_sigs)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if options is not None:
@@ -549,6 +569,18 @@ class _ListState:
         pulumi.set(self, "force_inclusion_ssl_di_sigs", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -564,7 +596,7 @@ class _ListState:
     @pulumi.getter
     def options(self) -> Optional[pulumi.Input[str]]:
         """
-        Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+        Basic application protocol signatures allowed by default.
         """
         return pulumi.get(self, "options")
 
@@ -684,6 +716,7 @@ class List(pulumi.CustomResource):
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListEntryArgs']]]]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  force_inclusion_ssl_di_sigs: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[str]] = None,
                  other_application_action: Optional[pulumi.Input[str]] = None,
@@ -748,8 +781,9 @@ class List(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListEntryArgs']]]] entries: Application list entries. The structure of `entries` block is documented below.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: List name.
-        :param pulumi.Input[str] options: Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+        :param pulumi.Input[str] options: Basic application protocol signatures allowed by default.
         :param pulumi.Input[str] other_application_action: Action for other applications. Valid values: `pass`, `block`.
         :param pulumi.Input[str] other_application_log: Enable/disable logging for other applications. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] p2p_black_list: P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
@@ -831,6 +865,7 @@ class List(pulumi.CustomResource):
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListEntryArgs']]]]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  force_inclusion_ssl_di_sigs: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[str]] = None,
                  other_application_action: Optional[pulumi.Input[str]] = None,
@@ -860,6 +895,7 @@ class List(pulumi.CustomResource):
             __props__.__dict__["entries"] = entries
             __props__.__dict__["extended_log"] = extended_log
             __props__.__dict__["force_inclusion_ssl_di_sigs"] = force_inclusion_ssl_di_sigs
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["options"] = options
             __props__.__dict__["other_application_action"] = other_application_action
@@ -890,6 +926,7 @@ class List(pulumi.CustomResource):
             entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListEntryArgs']]]]] = None,
             extended_log: Optional[pulumi.Input[str]] = None,
             force_inclusion_ssl_di_sigs: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[str]] = None,
             other_application_action: Optional[pulumi.Input[str]] = None,
@@ -917,8 +954,9 @@ class List(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListEntryArgs']]]] entries: Application list entries. The structure of `entries` block is documented below.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: List name.
-        :param pulumi.Input[str] options: Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+        :param pulumi.Input[str] options: Basic application protocol signatures allowed by default.
         :param pulumi.Input[str] other_application_action: Action for other applications. Valid values: `pass`, `block`.
         :param pulumi.Input[str] other_application_log: Enable/disable logging for other applications. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] p2p_black_list: P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
@@ -942,6 +980,7 @@ class List(pulumi.CustomResource):
         __props__.__dict__["entries"] = entries
         __props__.__dict__["extended_log"] = extended_log
         __props__.__dict__["force_inclusion_ssl_di_sigs"] = force_inclusion_ssl_di_sigs
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["options"] = options
         __props__.__dict__["other_application_action"] = other_application_action
@@ -1035,6 +1074,14 @@ class List(pulumi.CustomResource):
         return pulumi.get(self, "force_inclusion_ssl_di_sigs")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
@@ -1046,7 +1093,7 @@ class List(pulumi.CustomResource):
     @pulumi.getter
     def options(self) -> pulumi.Output[str]:
         """
-        Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+        Basic application protocol signatures allowed by default.
         """
         return pulumi.get(self, "options")
 

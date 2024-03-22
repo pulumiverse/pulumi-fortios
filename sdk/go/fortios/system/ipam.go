@@ -33,15 +33,27 @@ import (
 type Ipam struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+	AutomaticConflictResolution pulumi.StringOutput `pulumi:"automaticConflictResolution"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+	ManageLanAddresses pulumi.StringOutput `pulumi:"manageLanAddresses"`
+	// Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+	ManageLanExtensionAddresses pulumi.StringOutput `pulumi:"manageLanExtensionAddresses"`
+	// Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+	ManageSsidAddresses pulumi.StringOutput `pulumi:"manageSsidAddresses"`
 	// Configure IPAM pool subnet, Class A - Class B subnet.
 	PoolSubnet pulumi.StringOutput `pulumi:"poolSubnet"`
 	// Configure IPAM pools. The structure of `pools` block is documented below.
 	Pools IpamPoolArrayOutput `pulumi:"pools"`
+	// Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+	RequireSubnetSizeMatch pulumi.StringOutput `pulumi:"requireSubnetSizeMatch"`
 	// Configure IPAM allocation rules. The structure of `rules` block is documented below.
 	Rules IpamRuleArrayOutput `pulumi:"rules"`
-	// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+	// Configure the type of IPAM server to use.
 	ServerType pulumi.StringOutput `pulumi:"serverType"`
 	// Enable/disable IP address management services. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -79,15 +91,27 @@ func GetIpam(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Ipam resources.
 type ipamState struct {
+	// Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+	AutomaticConflictResolution *string `pulumi:"automaticConflictResolution"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+	ManageLanAddresses *string `pulumi:"manageLanAddresses"`
+	// Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+	ManageLanExtensionAddresses *string `pulumi:"manageLanExtensionAddresses"`
+	// Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+	ManageSsidAddresses *string `pulumi:"manageSsidAddresses"`
 	// Configure IPAM pool subnet, Class A - Class B subnet.
 	PoolSubnet *string `pulumi:"poolSubnet"`
 	// Configure IPAM pools. The structure of `pools` block is documented below.
 	Pools []IpamPool `pulumi:"pools"`
+	// Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+	RequireSubnetSizeMatch *string `pulumi:"requireSubnetSizeMatch"`
 	// Configure IPAM allocation rules. The structure of `rules` block is documented below.
 	Rules []IpamRule `pulumi:"rules"`
-	// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+	// Configure the type of IPAM server to use.
 	ServerType *string `pulumi:"serverType"`
 	// Enable/disable IP address management services. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
@@ -96,15 +120,27 @@ type ipamState struct {
 }
 
 type IpamState struct {
+	// Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+	AutomaticConflictResolution pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+	ManageLanAddresses pulumi.StringPtrInput
+	// Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+	ManageLanExtensionAddresses pulumi.StringPtrInput
+	// Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+	ManageSsidAddresses pulumi.StringPtrInput
 	// Configure IPAM pool subnet, Class A - Class B subnet.
 	PoolSubnet pulumi.StringPtrInput
 	// Configure IPAM pools. The structure of `pools` block is documented below.
 	Pools IpamPoolArrayInput
+	// Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+	RequireSubnetSizeMatch pulumi.StringPtrInput
 	// Configure IPAM allocation rules. The structure of `rules` block is documented below.
 	Rules IpamRuleArrayInput
-	// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+	// Configure the type of IPAM server to use.
 	ServerType pulumi.StringPtrInput
 	// Enable/disable IP address management services. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
@@ -117,15 +153,27 @@ func (IpamState) ElementType() reflect.Type {
 }
 
 type ipamArgs struct {
+	// Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+	AutomaticConflictResolution *string `pulumi:"automaticConflictResolution"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+	ManageLanAddresses *string `pulumi:"manageLanAddresses"`
+	// Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+	ManageLanExtensionAddresses *string `pulumi:"manageLanExtensionAddresses"`
+	// Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+	ManageSsidAddresses *string `pulumi:"manageSsidAddresses"`
 	// Configure IPAM pool subnet, Class A - Class B subnet.
 	PoolSubnet *string `pulumi:"poolSubnet"`
 	// Configure IPAM pools. The structure of `pools` block is documented below.
 	Pools []IpamPool `pulumi:"pools"`
+	// Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+	RequireSubnetSizeMatch *string `pulumi:"requireSubnetSizeMatch"`
 	// Configure IPAM allocation rules. The structure of `rules` block is documented below.
 	Rules []IpamRule `pulumi:"rules"`
-	// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+	// Configure the type of IPAM server to use.
 	ServerType *string `pulumi:"serverType"`
 	// Enable/disable IP address management services. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
@@ -135,15 +183,27 @@ type ipamArgs struct {
 
 // The set of arguments for constructing a Ipam resource.
 type IpamArgs struct {
+	// Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+	AutomaticConflictResolution pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+	ManageLanAddresses pulumi.StringPtrInput
+	// Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+	ManageLanExtensionAddresses pulumi.StringPtrInput
+	// Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+	ManageSsidAddresses pulumi.StringPtrInput
 	// Configure IPAM pool subnet, Class A - Class B subnet.
 	PoolSubnet pulumi.StringPtrInput
 	// Configure IPAM pools. The structure of `pools` block is documented below.
 	Pools IpamPoolArrayInput
+	// Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+	RequireSubnetSizeMatch pulumi.StringPtrInput
 	// Configure IPAM allocation rules. The structure of `rules` block is documented below.
 	Rules IpamRuleArrayInput
-	// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+	// Configure the type of IPAM server to use.
 	ServerType pulumi.StringPtrInput
 	// Enable/disable IP address management services. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
@@ -238,9 +298,34 @@ func (o IpamOutput) ToIpamOutputWithContext(ctx context.Context) IpamOutput {
 	return o
 }
 
+// Enable/disable automatic conflict resolution. Valid values: `disable`, `enable`.
+func (o IpamOutput) AutomaticConflictResolution() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ipam) pulumi.StringOutput { return v.AutomaticConflictResolution }).(pulumi.StringOutput)
+}
+
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o IpamOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Ipam) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o IpamOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Ipam) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable default management of LAN interface addresses. Valid values: `disable`, `enable`.
+func (o IpamOutput) ManageLanAddresses() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ipam) pulumi.StringOutput { return v.ManageLanAddresses }).(pulumi.StringOutput)
+}
+
+// Enable/disable default management of FortiExtender LAN extension interface addresses. Valid values: `disable`, `enable`.
+func (o IpamOutput) ManageLanExtensionAddresses() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ipam) pulumi.StringOutput { return v.ManageLanExtensionAddresses }).(pulumi.StringOutput)
+}
+
+// Enable/disable default management of FortiAP SSID addresses. Valid values: `disable`, `enable`.
+func (o IpamOutput) ManageSsidAddresses() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ipam) pulumi.StringOutput { return v.ManageSsidAddresses }).(pulumi.StringOutput)
 }
 
 // Configure IPAM pool subnet, Class A - Class B subnet.
@@ -253,12 +338,17 @@ func (o IpamOutput) Pools() IpamPoolArrayOutput {
 	return o.ApplyT(func(v *Ipam) IpamPoolArrayOutput { return v.Pools }).(IpamPoolArrayOutput)
 }
 
+// Enable/disable reassignment of subnets to make requested and actual sizes match. Valid values: `disable`, `enable`.
+func (o IpamOutput) RequireSubnetSizeMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ipam) pulumi.StringOutput { return v.RequireSubnetSizeMatch }).(pulumi.StringOutput)
+}
+
 // Configure IPAM allocation rules. The structure of `rules` block is documented below.
 func (o IpamOutput) Rules() IpamRuleArrayOutput {
 	return o.ApplyT(func(v *Ipam) IpamRuleArrayOutput { return v.Rules }).(IpamRuleArrayOutput)
 }
 
-// Configure the type of IPAM server to use. Valid values: `cloud`, `fabric-root`.
+// Configure the type of IPAM server to use.
 func (o IpamOutput) ServerType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ipam) pulumi.StringOutput { return v.ServerType }).(pulumi.StringOutput)
 }

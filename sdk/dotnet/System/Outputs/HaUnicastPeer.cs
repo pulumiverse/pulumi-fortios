@@ -14,7 +14,13 @@ namespace Pulumiverse.Fortios.System.Outputs
     [OutputType]
     public sealed class HaUnicastPeer
     {
+        /// <summary>
+        /// Table ID.
+        /// </summary>
         public readonly int? Id;
+        /// <summary>
+        /// Unicast peer IP.
+        /// </summary>
         public readonly string? PeerIp;
 
         [OutputConstructor]

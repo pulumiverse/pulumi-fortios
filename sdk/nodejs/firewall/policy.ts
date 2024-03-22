@@ -127,7 +127,7 @@ export class Policy extends pulumi.CustomResource {
     }
 
     /**
-     * Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+     * Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
      */
     public readonly action!: pulumi.Output<string>;
     /**
@@ -183,6 +183,10 @@ export class Policy extends pulumi.CustomResource {
      */
     public readonly capturePacket!: pulumi.Output<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    public readonly casbProfile!: pulumi.Output<string | undefined>;
+    /**
      * Name of an existing CIFS profile.
      */
     public readonly cifsProfile!: pulumi.Output<string | undefined>;
@@ -206,6 +210,10 @@ export class Policy extends pulumi.CustomResource {
      * Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
      */
     public readonly devices!: pulumi.Output<outputs.firewall.PolicyDevice[] | undefined>;
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    public readonly diameterFilterProfile!: pulumi.Output<string | undefined>;
     /**
      * Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
      */
@@ -318,6 +326,10 @@ export class Policy extends pulumi.CustomResource {
      * Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
      */
     public readonly geoipMatch!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Label for the policy that appears when the GUI is in Global View mode.
      */
@@ -459,6 +471,10 @@ export class Policy extends pulumi.CustomResource {
      */
     public readonly ipsSensor!: pulumi.Output<string | undefined>;
     /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    public readonly ipsVoipFilter!: pulumi.Output<string | undefined>;
+    /**
      * Label for the policy that appears when the GUI is in Section View mode.
      */
     public readonly label!: pulumi.Output<string | undefined>;
@@ -543,6 +559,18 @@ export class Policy extends pulumi.CustomResource {
      */
     public readonly passiveWanHealthMeasurement!: pulumi.Output<string>;
     /**
+     * Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+     */
+    public readonly pcpInbound!: pulumi.Output<string>;
+    /**
+     * Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+     */
+    public readonly pcpOutbound!: pulumi.Output<string>;
+    /**
+     * PCP pool names. The structure of `pcpPoolname` block is documented below.
+     */
+    public readonly pcpPoolnames!: pulumi.Output<outputs.firewall.PolicyPcpPoolname[] | undefined>;
+    /**
      * Per-IP traffic shaper.
      */
     public readonly perIpShaper!: pulumi.Output<string | undefined>;
@@ -562,6 +590,10 @@ export class Policy extends pulumi.CustomResource {
      * Policy expiry date (YYYY-MM-DD HH:MM:SS).
      */
     public readonly policyExpiryDate!: pulumi.Output<string>;
+    /**
+     * Policy expiry date and time, in epoch format.
+     */
+    public readonly policyExpiryDateUtc!: pulumi.Output<string | undefined>;
     /**
      * Policy ID.
      */
@@ -779,6 +811,10 @@ export class Policy extends pulumi.CustomResource {
      */
     public readonly videofilterProfile!: pulumi.Output<string | undefined>;
     /**
+     * Name of an existing virtual-patch profile.
+     */
+    public readonly virtualPatchProfile!: pulumi.Output<string | undefined>;
+    /**
      * VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
      */
     public readonly vlanCosFwd!: pulumi.Output<number>;
@@ -791,7 +827,7 @@ export class Policy extends pulumi.CustomResource {
      */
     public readonly vlanFilter!: pulumi.Output<string | undefined>;
     /**
-     * Name of an existing VoIP profile.
+     * Name of an existing VoIP (voipd) profile.
      */
     public readonly voipProfile!: pulumi.Output<string | undefined>;
     /**
@@ -851,6 +887,14 @@ export class Policy extends pulumi.CustomResource {
      */
     public readonly wsso!: pulumi.Output<string | undefined>;
     /**
+     * Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+     */
+    public readonly ztnaDeviceOwnership!: pulumi.Output<string>;
+    /**
+     * Source ztna-ems-tag-secondary names. The structure of `ztnaEmsTagSecondary` block is documented below.
+     */
+    public readonly ztnaEmsTagSecondaries!: pulumi.Output<outputs.firewall.PolicyZtnaEmsTagSecondary[] | undefined>;
+    /**
      * Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
      */
     public readonly ztnaEmsTags!: pulumi.Output<outputs.firewall.PolicyZtnaEmsTag[] | undefined>;
@@ -859,9 +903,17 @@ export class Policy extends pulumi.CustomResource {
      */
     public readonly ztnaGeoTags!: pulumi.Output<outputs.firewall.PolicyZtnaGeoTag[] | undefined>;
     /**
+     * Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+     */
+    public readonly ztnaPolicyRedirect!: pulumi.Output<string>;
+    /**
      * Enable/disable zero trust access. Valid values: `enable`, `disable`.
      */
     public readonly ztnaStatus!: pulumi.Output<string>;
+    /**
+     * ZTNA tag matching logic. Valid values: `or`, `and`.
+     */
+    public readonly ztnaTagsMatchLogic!: pulumi.Output<string>;
 
     /**
      * Create a Policy resource with the given unique name, arguments, and options.
@@ -890,12 +942,14 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["blockNotification"] = state ? state.blockNotification : undefined;
             resourceInputs["captivePortalExempt"] = state ? state.captivePortalExempt : undefined;
             resourceInputs["capturePacket"] = state ? state.capturePacket : undefined;
+            resourceInputs["casbProfile"] = state ? state.casbProfile : undefined;
             resourceInputs["cifsProfile"] = state ? state.cifsProfile : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["customLogFields"] = state ? state.customLogFields : undefined;
             resourceInputs["decryptedTrafficMirror"] = state ? state.decryptedTrafficMirror : undefined;
             resourceInputs["delayTcpNpuSession"] = state ? state.delayTcpNpuSession : undefined;
             resourceInputs["devices"] = state ? state.devices : undefined;
+            resourceInputs["diameterFilterProfile"] = state ? state.diameterFilterProfile : undefined;
             resourceInputs["diffservCopy"] = state ? state.diffservCopy : undefined;
             resourceInputs["diffservForward"] = state ? state.diffservForward : undefined;
             resourceInputs["diffservReverse"] = state ? state.diffservReverse : undefined;
@@ -924,6 +978,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["fssoGroups"] = state ? state.fssoGroups : undefined;
             resourceInputs["geoipAnycast"] = state ? state.geoipAnycast : undefined;
             resourceInputs["geoipMatch"] = state ? state.geoipMatch : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["globalLabel"] = state ? state.globalLabel : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["httpPolicyRedirect"] = state ? state.httpPolicyRedirect : undefined;
@@ -959,6 +1014,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["internetServiceSrcNegate"] = state ? state.internetServiceSrcNegate : undefined;
             resourceInputs["ippool"] = state ? state.ippool : undefined;
             resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = state ? state.ipsVoipFilter : undefined;
             resourceInputs["label"] = state ? state.label : undefined;
             resourceInputs["learningMode"] = state ? state.learningMode : undefined;
             resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
@@ -980,11 +1036,15 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["ntlmGuest"] = state ? state.ntlmGuest : undefined;
             resourceInputs["outbound"] = state ? state.outbound : undefined;
             resourceInputs["passiveWanHealthMeasurement"] = state ? state.passiveWanHealthMeasurement : undefined;
+            resourceInputs["pcpInbound"] = state ? state.pcpInbound : undefined;
+            resourceInputs["pcpOutbound"] = state ? state.pcpOutbound : undefined;
+            resourceInputs["pcpPoolnames"] = state ? state.pcpPoolnames : undefined;
             resourceInputs["perIpShaper"] = state ? state.perIpShaper : undefined;
             resourceInputs["permitAnyHost"] = state ? state.permitAnyHost : undefined;
             resourceInputs["permitStunHost"] = state ? state.permitStunHost : undefined;
             resourceInputs["policyExpiry"] = state ? state.policyExpiry : undefined;
             resourceInputs["policyExpiryDate"] = state ? state.policyExpiryDate : undefined;
+            resourceInputs["policyExpiryDateUtc"] = state ? state.policyExpiryDateUtc : undefined;
             resourceInputs["policyid"] = state ? state.policyid : undefined;
             resourceInputs["poolname6s"] = state ? state.poolname6s : undefined;
             resourceInputs["poolnames"] = state ? state.poolnames : undefined;
@@ -1039,6 +1099,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = state ? state.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = state ? state.virtualPatchProfile : undefined;
             resourceInputs["vlanCosFwd"] = state ? state.vlanCosFwd : undefined;
             resourceInputs["vlanCosRev"] = state ? state.vlanCosRev : undefined;
             resourceInputs["vlanFilter"] = state ? state.vlanFilter : undefined;
@@ -1057,9 +1118,13 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["webproxyForwardServer"] = state ? state.webproxyForwardServer : undefined;
             resourceInputs["webproxyProfile"] = state ? state.webproxyProfile : undefined;
             resourceInputs["wsso"] = state ? state.wsso : undefined;
+            resourceInputs["ztnaDeviceOwnership"] = state ? state.ztnaDeviceOwnership : undefined;
+            resourceInputs["ztnaEmsTagSecondaries"] = state ? state.ztnaEmsTagSecondaries : undefined;
             resourceInputs["ztnaEmsTags"] = state ? state.ztnaEmsTags : undefined;
             resourceInputs["ztnaGeoTags"] = state ? state.ztnaGeoTags : undefined;
+            resourceInputs["ztnaPolicyRedirect"] = state ? state.ztnaPolicyRedirect : undefined;
             resourceInputs["ztnaStatus"] = state ? state.ztnaStatus : undefined;
+            resourceInputs["ztnaTagsMatchLogic"] = state ? state.ztnaTagsMatchLogic : undefined;
         } else {
             const args = argsOrState as PolicyArgs | undefined;
             if ((!args || args.dstintfs === undefined) && !opts.urn) {
@@ -1082,12 +1147,14 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["blockNotification"] = args ? args.blockNotification : undefined;
             resourceInputs["captivePortalExempt"] = args ? args.captivePortalExempt : undefined;
             resourceInputs["capturePacket"] = args ? args.capturePacket : undefined;
+            resourceInputs["casbProfile"] = args ? args.casbProfile : undefined;
             resourceInputs["cifsProfile"] = args ? args.cifsProfile : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["customLogFields"] = args ? args.customLogFields : undefined;
             resourceInputs["decryptedTrafficMirror"] = args ? args.decryptedTrafficMirror : undefined;
             resourceInputs["delayTcpNpuSession"] = args ? args.delayTcpNpuSession : undefined;
             resourceInputs["devices"] = args ? args.devices : undefined;
+            resourceInputs["diameterFilterProfile"] = args ? args.diameterFilterProfile : undefined;
             resourceInputs["diffservCopy"] = args ? args.diffservCopy : undefined;
             resourceInputs["diffservForward"] = args ? args.diffservForward : undefined;
             resourceInputs["diffservReverse"] = args ? args.diffservReverse : undefined;
@@ -1116,6 +1183,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["fssoGroups"] = args ? args.fssoGroups : undefined;
             resourceInputs["geoipAnycast"] = args ? args.geoipAnycast : undefined;
             resourceInputs["geoipMatch"] = args ? args.geoipMatch : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["globalLabel"] = args ? args.globalLabel : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["httpPolicyRedirect"] = args ? args.httpPolicyRedirect : undefined;
@@ -1151,6 +1219,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["internetServiceSrcNegate"] = args ? args.internetServiceSrcNegate : undefined;
             resourceInputs["ippool"] = args ? args.ippool : undefined;
             resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = args ? args.ipsVoipFilter : undefined;
             resourceInputs["label"] = args ? args.label : undefined;
             resourceInputs["learningMode"] = args ? args.learningMode : undefined;
             resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
@@ -1172,11 +1241,15 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["ntlmGuest"] = args ? args.ntlmGuest : undefined;
             resourceInputs["outbound"] = args ? args.outbound : undefined;
             resourceInputs["passiveWanHealthMeasurement"] = args ? args.passiveWanHealthMeasurement : undefined;
+            resourceInputs["pcpInbound"] = args ? args.pcpInbound : undefined;
+            resourceInputs["pcpOutbound"] = args ? args.pcpOutbound : undefined;
+            resourceInputs["pcpPoolnames"] = args ? args.pcpPoolnames : undefined;
             resourceInputs["perIpShaper"] = args ? args.perIpShaper : undefined;
             resourceInputs["permitAnyHost"] = args ? args.permitAnyHost : undefined;
             resourceInputs["permitStunHost"] = args ? args.permitStunHost : undefined;
             resourceInputs["policyExpiry"] = args ? args.policyExpiry : undefined;
             resourceInputs["policyExpiryDate"] = args ? args.policyExpiryDate : undefined;
+            resourceInputs["policyExpiryDateUtc"] = args ? args.policyExpiryDateUtc : undefined;
             resourceInputs["policyid"] = args ? args.policyid : undefined;
             resourceInputs["poolname6s"] = args ? args.poolname6s : undefined;
             resourceInputs["poolnames"] = args ? args.poolnames : undefined;
@@ -1231,6 +1304,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = args ? args.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = args ? args.virtualPatchProfile : undefined;
             resourceInputs["vlanCosFwd"] = args ? args.vlanCosFwd : undefined;
             resourceInputs["vlanCosRev"] = args ? args.vlanCosRev : undefined;
             resourceInputs["vlanFilter"] = args ? args.vlanFilter : undefined;
@@ -1249,9 +1323,13 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["webproxyForwardServer"] = args ? args.webproxyForwardServer : undefined;
             resourceInputs["webproxyProfile"] = args ? args.webproxyProfile : undefined;
             resourceInputs["wsso"] = args ? args.wsso : undefined;
+            resourceInputs["ztnaDeviceOwnership"] = args ? args.ztnaDeviceOwnership : undefined;
+            resourceInputs["ztnaEmsTagSecondaries"] = args ? args.ztnaEmsTagSecondaries : undefined;
             resourceInputs["ztnaEmsTags"] = args ? args.ztnaEmsTags : undefined;
             resourceInputs["ztnaGeoTags"] = args ? args.ztnaGeoTags : undefined;
+            resourceInputs["ztnaPolicyRedirect"] = args ? args.ztnaPolicyRedirect : undefined;
             resourceInputs["ztnaStatus"] = args ? args.ztnaStatus : undefined;
+            resourceInputs["ztnaTagsMatchLogic"] = args ? args.ztnaTagsMatchLogic : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Policy.__pulumiType, name, resourceInputs, opts);
@@ -1263,7 +1341,7 @@ export class Policy extends pulumi.CustomResource {
  */
 export interface PolicyState {
     /**
-     * Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+     * Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
      */
     action?: pulumi.Input<string>;
     /**
@@ -1319,6 +1397,10 @@ export interface PolicyState {
      */
     capturePacket?: pulumi.Input<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    casbProfile?: pulumi.Input<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     cifsProfile?: pulumi.Input<string>;
@@ -1342,6 +1424,10 @@ export interface PolicyState {
      * Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
      */
     devices?: pulumi.Input<pulumi.Input<inputs.firewall.PolicyDevice>[]>;
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    diameterFilterProfile?: pulumi.Input<string>;
     /**
      * Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
      */
@@ -1454,6 +1540,10 @@ export interface PolicyState {
      * Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
      */
     geoipMatch?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Label for the policy that appears when the GUI is in Global View mode.
      */
@@ -1595,6 +1685,10 @@ export interface PolicyState {
      */
     ipsSensor?: pulumi.Input<string>;
     /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    ipsVoipFilter?: pulumi.Input<string>;
+    /**
      * Label for the policy that appears when the GUI is in Section View mode.
      */
     label?: pulumi.Input<string>;
@@ -1679,6 +1773,18 @@ export interface PolicyState {
      */
     passiveWanHealthMeasurement?: pulumi.Input<string>;
     /**
+     * Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+     */
+    pcpInbound?: pulumi.Input<string>;
+    /**
+     * Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+     */
+    pcpOutbound?: pulumi.Input<string>;
+    /**
+     * PCP pool names. The structure of `pcpPoolname` block is documented below.
+     */
+    pcpPoolnames?: pulumi.Input<pulumi.Input<inputs.firewall.PolicyPcpPoolname>[]>;
+    /**
      * Per-IP traffic shaper.
      */
     perIpShaper?: pulumi.Input<string>;
@@ -1698,6 +1804,10 @@ export interface PolicyState {
      * Policy expiry date (YYYY-MM-DD HH:MM:SS).
      */
     policyExpiryDate?: pulumi.Input<string>;
+    /**
+     * Policy expiry date and time, in epoch format.
+     */
+    policyExpiryDateUtc?: pulumi.Input<string>;
     /**
      * Policy ID.
      */
@@ -1915,6 +2025,10 @@ export interface PolicyState {
      */
     videofilterProfile?: pulumi.Input<string>;
     /**
+     * Name of an existing virtual-patch profile.
+     */
+    virtualPatchProfile?: pulumi.Input<string>;
+    /**
      * VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
      */
     vlanCosFwd?: pulumi.Input<number>;
@@ -1927,7 +2041,7 @@ export interface PolicyState {
      */
     vlanFilter?: pulumi.Input<string>;
     /**
-     * Name of an existing VoIP profile.
+     * Name of an existing VoIP (voipd) profile.
      */
     voipProfile?: pulumi.Input<string>;
     /**
@@ -1987,6 +2101,14 @@ export interface PolicyState {
      */
     wsso?: pulumi.Input<string>;
     /**
+     * Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+     */
+    ztnaDeviceOwnership?: pulumi.Input<string>;
+    /**
+     * Source ztna-ems-tag-secondary names. The structure of `ztnaEmsTagSecondary` block is documented below.
+     */
+    ztnaEmsTagSecondaries?: pulumi.Input<pulumi.Input<inputs.firewall.PolicyZtnaEmsTagSecondary>[]>;
+    /**
      * Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
      */
     ztnaEmsTags?: pulumi.Input<pulumi.Input<inputs.firewall.PolicyZtnaEmsTag>[]>;
@@ -1995,9 +2117,17 @@ export interface PolicyState {
      */
     ztnaGeoTags?: pulumi.Input<pulumi.Input<inputs.firewall.PolicyZtnaGeoTag>[]>;
     /**
+     * Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+     */
+    ztnaPolicyRedirect?: pulumi.Input<string>;
+    /**
      * Enable/disable zero trust access. Valid values: `enable`, `disable`.
      */
     ztnaStatus?: pulumi.Input<string>;
+    /**
+     * ZTNA tag matching logic. Valid values: `or`, `and`.
+     */
+    ztnaTagsMatchLogic?: pulumi.Input<string>;
 }
 
 /**
@@ -2005,7 +2135,7 @@ export interface PolicyState {
  */
 export interface PolicyArgs {
     /**
-     * Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+     * Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
      */
     action?: pulumi.Input<string>;
     /**
@@ -2061,6 +2191,10 @@ export interface PolicyArgs {
      */
     capturePacket?: pulumi.Input<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    casbProfile?: pulumi.Input<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     cifsProfile?: pulumi.Input<string>;
@@ -2084,6 +2218,10 @@ export interface PolicyArgs {
      * Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
      */
     devices?: pulumi.Input<pulumi.Input<inputs.firewall.PolicyDevice>[]>;
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    diameterFilterProfile?: pulumi.Input<string>;
     /**
      * Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
      */
@@ -2196,6 +2334,10 @@ export interface PolicyArgs {
      * Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
      */
     geoipMatch?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Label for the policy that appears when the GUI is in Global View mode.
      */
@@ -2337,6 +2479,10 @@ export interface PolicyArgs {
      */
     ipsSensor?: pulumi.Input<string>;
     /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    ipsVoipFilter?: pulumi.Input<string>;
+    /**
      * Label for the policy that appears when the GUI is in Section View mode.
      */
     label?: pulumi.Input<string>;
@@ -2421,6 +2567,18 @@ export interface PolicyArgs {
      */
     passiveWanHealthMeasurement?: pulumi.Input<string>;
     /**
+     * Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+     */
+    pcpInbound?: pulumi.Input<string>;
+    /**
+     * Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+     */
+    pcpOutbound?: pulumi.Input<string>;
+    /**
+     * PCP pool names. The structure of `pcpPoolname` block is documented below.
+     */
+    pcpPoolnames?: pulumi.Input<pulumi.Input<inputs.firewall.PolicyPcpPoolname>[]>;
+    /**
      * Per-IP traffic shaper.
      */
     perIpShaper?: pulumi.Input<string>;
@@ -2440,6 +2598,10 @@ export interface PolicyArgs {
      * Policy expiry date (YYYY-MM-DD HH:MM:SS).
      */
     policyExpiryDate?: pulumi.Input<string>;
+    /**
+     * Policy expiry date and time, in epoch format.
+     */
+    policyExpiryDateUtc?: pulumi.Input<string>;
     /**
      * Policy ID.
      */
@@ -2657,6 +2819,10 @@ export interface PolicyArgs {
      */
     videofilterProfile?: pulumi.Input<string>;
     /**
+     * Name of an existing virtual-patch profile.
+     */
+    virtualPatchProfile?: pulumi.Input<string>;
+    /**
      * VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
      */
     vlanCosFwd?: pulumi.Input<number>;
@@ -2669,7 +2835,7 @@ export interface PolicyArgs {
      */
     vlanFilter?: pulumi.Input<string>;
     /**
-     * Name of an existing VoIP profile.
+     * Name of an existing VoIP (voipd) profile.
      */
     voipProfile?: pulumi.Input<string>;
     /**
@@ -2729,6 +2895,14 @@ export interface PolicyArgs {
      */
     wsso?: pulumi.Input<string>;
     /**
+     * Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+     */
+    ztnaDeviceOwnership?: pulumi.Input<string>;
+    /**
+     * Source ztna-ems-tag-secondary names. The structure of `ztnaEmsTagSecondary` block is documented below.
+     */
+    ztnaEmsTagSecondaries?: pulumi.Input<pulumi.Input<inputs.firewall.PolicyZtnaEmsTagSecondary>[]>;
+    /**
      * Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
      */
     ztnaEmsTags?: pulumi.Input<pulumi.Input<inputs.firewall.PolicyZtnaEmsTag>[]>;
@@ -2737,7 +2911,15 @@ export interface PolicyArgs {
      */
     ztnaGeoTags?: pulumi.Input<pulumi.Input<inputs.firewall.PolicyZtnaGeoTag>[]>;
     /**
+     * Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+     */
+    ztnaPolicyRedirect?: pulumi.Input<string>;
+    /**
      * Enable/disable zero trust access. Valid values: `enable`, `disable`.
      */
     ztnaStatus?: pulumi.Input<string>;
+    /**
+     * ZTNA tag matching logic. Valid values: `or`, `and`.
+     */
+    ztnaTagsMatchLogic?: pulumi.Input<string>;
 }

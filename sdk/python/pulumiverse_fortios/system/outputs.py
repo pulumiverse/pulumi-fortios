@@ -48,16 +48,24 @@ __all__ = [
     'ClustersyncSessionSyncFilterCustomService',
     'ClustersyncSyncvd',
     'CsfFabricConnector',
+    'CsfFabricConnectorVdom',
     'CsfFabricDevice',
     'CsfTrustedList',
     'DdnsDdnsServerAddr',
     'DdnsMonitorInterface',
+    'DeviceupgradeKnownHaMember',
     'DnsDomain',
     'DnsServerHostname',
     'DnsdatabaseDnsEntry',
+    'EvpnExportRt',
+    'EvpnImportRt',
+    'FabricvpnAdvertisedSubnet',
+    'FabricvpnOverlay',
+    'FederatedupgradeKnownHaMember',
     'FederatedupgradeNodeList',
     'GeoipoverrideIp6Range',
     'GeoipoverrideIpRange',
+    'GlobalInternetServiceDownloadList',
     'HaHaMgmtInterface',
     'HaSecondaryVcluster',
     'HaUnicastPeer',
@@ -110,10 +118,15 @@ __all__ = [
     'MobiletunnelNetwork',
     'Nat64SecondaryPrefix',
     'NdproxyMember',
+    'NetflowCollector',
     'NpuPriorityProtocol',
     'NtpInterface',
     'NtpNtpserver',
     'ObjecttaggingTag',
+    'PcpserverPool',
+    'PcpserverPoolClientSubnet',
+    'PcpserverPoolIntlIntf',
+    'PcpserverPoolThirdPartySubnet',
     'PtpServerInterface',
     'ReplacemsggroupAdmin',
     'ReplacemsggroupAlertmail',
@@ -136,6 +149,7 @@ __all__ = [
     'ReplacemsggroupWebproxy',
     'SamlServiceProvider',
     'SamlServiceProviderAssertionAttribute',
+    'SdnconnectorCompartmentList',
     'SdnconnectorExternalAccountList',
     'SdnconnectorExternalAccountListRegionList',
     'SdnconnectorExternalIp',
@@ -144,6 +158,7 @@ __all__ = [
     'SdnconnectorGcpProjectListGcpZoneList',
     'SdnconnectorNic',
     'SdnconnectorNicIp',
+    'SdnconnectorOciRegionList',
     'SdnconnectorRoute',
     'SdnconnectorRouteTable',
     'SdnconnectorRouteTableRoute',
@@ -163,6 +178,7 @@ __all__ = [
     'SdwanHealthCheckSla',
     'SdwanMember',
     'SdwanNeighbor',
+    'SdwanNeighborMemberBlock',
     'SdwanService',
     'SdwanServiceDst6',
     'SdwanServiceDst',
@@ -186,10 +202,12 @@ __all__ = [
     'SdwanZone',
     'SessionttlPort',
     'SettingsGuiDefaultPolicyColumn',
+    'SflowCollector',
     'SpeedtestscheduleSchedule',
     'SpeedtestserverHost',
     'SsoadminVdom',
     'SsoforticloudadminVdom',
+    'SsofortigatecloudadminVdom',
     'StandaloneclusterClusterPeer',
     'StandaloneclusterClusterPeerDownIntfsBeforeSessSync',
     'StandaloneclusterClusterPeerSessionSyncFilter',
@@ -199,6 +217,8 @@ __all__ = [
     'SwitchinterfaceSpanSourcePort',
     'VdomdnsServerHostname',
     'VdomexceptionVdom',
+    'VdomnetflowCollector',
+    'VdomsflowCollector',
     'VirtualswitchPort',
     'VirtualwanlinkFailAlertInterface',
     'VirtualwanlinkHealthCheck',
@@ -262,6 +282,7 @@ __all__ = [
     'GetClustersyncSessionSyncFilterCustomServiceResult',
     'GetClustersyncSyncvdResult',
     'GetCsfFabricConnectorResult',
+    'GetCsfFabricConnectorVdomResult',
     'GetCsfFabricDeviceResult',
     'GetCsfTrustedListResult',
     'GetDdnsDdnsServerAddrResult',
@@ -269,6 +290,7 @@ __all__ = [
     'GetDnsDomainResult',
     'GetDnsServerHostnameResult',
     'GetDnsdatabaseDnsEntryResult',
+    'GetGlobalInternetServiceDownloadListResult',
     'GetHaHaMgmtInterfaceResult',
     'GetHaSecondaryVclusterResult',
     'GetHaUnicastPeerResult',
@@ -298,6 +320,7 @@ __all__ = [
     'GetMobiletunnelNetworkResult',
     'GetNat64SecondaryPrefixResult',
     'GetNdproxyMemberResult',
+    'GetNetflowCollectorResult',
     'GetNtpInterfaceResult',
     'GetNtpNtpserverResult',
     'GetObjecttaggingTagResult',
@@ -320,6 +343,7 @@ __all__ = [
     'GetReplacemsggroupTrafficQuotaResult',
     'GetReplacemsggroupUtmResult',
     'GetReplacemsggroupWebproxyResult',
+    'GetSdnconnectorCompartmentListResult',
     'GetSdnconnectorExternalAccountListResult',
     'GetSdnconnectorExternalAccountListRegionListResult',
     'GetSdnconnectorExternalIpResult',
@@ -328,12 +352,16 @@ __all__ = [
     'GetSdnconnectorGcpProjectListGcpZoneListResult',
     'GetSdnconnectorNicResult',
     'GetSdnconnectorNicIpResult',
+    'GetSdnconnectorOciRegionListResult',
     'GetSdnconnectorRouteResult',
     'GetSdnconnectorRouteTableResult',
     'GetSdnconnectorRouteTableRouteResult',
     'GetSdnconnectorServerListResult',
     'GetSessionttlPortResult',
+    'GetSflowCollectorResult',
     'GetVdomexceptionVdomResult',
+    'GetVdomnetflowCollectorResult',
+    'GetVdomsflowCollectorResult',
     'GetVirtualwanlinkFailAlertInterfaceResult',
     'GetVirtualwanlinkHealthCheckResult',
     'GetVirtualwanlinkHealthCheckMemberResult',
@@ -634,12 +662,16 @@ class AccprofileUtmgrpPermission(dict):
         suggest = None
         if key == "applicationControl":
             suggest = "application_control"
+        elif key == "dataLeakPrevention":
+            suggest = "data_leak_prevention"
         elif key == "dataLossPrevention":
             suggest = "data_loss_prevention"
         elif key == "endpointControl":
             suggest = "endpoint_control"
         elif key == "fileFilter":
             suggest = "file_filter"
+        elif key == "virtualPatch":
+            suggest = "virtual_patch"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in AccprofileUtmgrpPermission. Access the value via the '{suggest}' property getter instead.")
@@ -655,6 +687,8 @@ class AccprofileUtmgrpPermission(dict):
     def __init__(__self__, *,
                  antivirus: Optional[str] = None,
                  application_control: Optional[str] = None,
+                 casb: Optional[str] = None,
+                 data_leak_prevention: Optional[str] = None,
                  data_loss_prevention: Optional[str] = None,
                  dnsfilter: Optional[str] = None,
                  emailfilter: Optional[str] = None,
@@ -664,12 +698,15 @@ class AccprofileUtmgrpPermission(dict):
                  ips: Optional[str] = None,
                  spamfilter: Optional[str] = None,
                  videofilter: Optional[str] = None,
+                 virtual_patch: Optional[str] = None,
                  voip: Optional[str] = None,
                  waf: Optional[str] = None,
                  webfilter: Optional[str] = None):
         """
         :param str antivirus: Antivirus profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str application_control: Application Control profiles and settings. Valid values: `none`, `read`, `read-write`.
+        :param str casb: Inline CASB filter profile and settings Valid values: `none`, `read`, `read-write`.
+        :param str data_leak_prevention: DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str data_loss_prevention: DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str dnsfilter: DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str emailfilter: AntiSpam filter and settings. Valid values: `none`, `read`, `read-write`.
@@ -679,6 +716,7 @@ class AccprofileUtmgrpPermission(dict):
         :param str ips: IPS profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str spamfilter: AntiSpam filter and settings. Valid values: `none`, `read`, `read-write`.
         :param str videofilter: Video filter profiles and settings. Valid values: `none`, `read`, `read-write`.
+        :param str virtual_patch: Virtual patch profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str voip: VoIP profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str waf: Web Application Firewall profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str webfilter: Web Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
@@ -687,6 +725,10 @@ class AccprofileUtmgrpPermission(dict):
             pulumi.set(__self__, "antivirus", antivirus)
         if application_control is not None:
             pulumi.set(__self__, "application_control", application_control)
+        if casb is not None:
+            pulumi.set(__self__, "casb", casb)
+        if data_leak_prevention is not None:
+            pulumi.set(__self__, "data_leak_prevention", data_leak_prevention)
         if data_loss_prevention is not None:
             pulumi.set(__self__, "data_loss_prevention", data_loss_prevention)
         if dnsfilter is not None:
@@ -705,6 +747,8 @@ class AccprofileUtmgrpPermission(dict):
             pulumi.set(__self__, "spamfilter", spamfilter)
         if videofilter is not None:
             pulumi.set(__self__, "videofilter", videofilter)
+        if virtual_patch is not None:
+            pulumi.set(__self__, "virtual_patch", virtual_patch)
         if voip is not None:
             pulumi.set(__self__, "voip", voip)
         if waf is not None:
@@ -727,6 +771,22 @@ class AccprofileUtmgrpPermission(dict):
         Application Control profiles and settings. Valid values: `none`, `read`, `read-write`.
         """
         return pulumi.get(self, "application_control")
+
+    @property
+    @pulumi.getter
+    def casb(self) -> Optional[str]:
+        """
+        Inline CASB filter profile and settings Valid values: `none`, `read`, `read-write`.
+        """
+        return pulumi.get(self, "casb")
+
+    @property
+    @pulumi.getter(name="dataLeakPrevention")
+    def data_leak_prevention(self) -> Optional[str]:
+        """
+        DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+        """
+        return pulumi.get(self, "data_leak_prevention")
 
     @property
     @pulumi.getter(name="dataLossPrevention")
@@ -799,6 +859,14 @@ class AccprofileUtmgrpPermission(dict):
         Video filter profiles and settings. Valid values: `none`, `read`, `read-write`.
         """
         return pulumi.get(self, "videofilter")
+
+    @property
+    @pulumi.getter(name="virtualPatch")
+    def virtual_patch(self) -> Optional[str]:
+        """
+        Virtual patch profiles and settings. Valid values: `none`, `read`, `read-write`.
+        """
+        return pulumi.get(self, "virtual_patch")
 
     @property
     @pulumi.getter
@@ -2530,11 +2598,13 @@ class CsfFabricConnector(dict):
     def __init__(__self__, *,
                  accprofile: Optional[str] = None,
                  configuration_write_access: Optional[str] = None,
-                 serial: Optional[str] = None):
+                 serial: Optional[str] = None,
+                 vdoms: Optional[Sequence['outputs.CsfFabricConnectorVdom']] = None):
         """
         :param str accprofile: Override access profile.
         :param str configuration_write_access: Enable/disable downstream device write access to configuration. Valid values: `enable`, `disable`.
         :param str serial: Serial.
+        :param Sequence['CsfFabricConnectorVdomArgs'] vdoms: Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
         """
         if accprofile is not None:
             pulumi.set(__self__, "accprofile", accprofile)
@@ -2542,6 +2612,8 @@ class CsfFabricConnector(dict):
             pulumi.set(__self__, "configuration_write_access", configuration_write_access)
         if serial is not None:
             pulumi.set(__self__, "serial", serial)
+        if vdoms is not None:
+            pulumi.set(__self__, "vdoms", vdoms)
 
     @property
     @pulumi.getter
@@ -2566,6 +2638,33 @@ class CsfFabricConnector(dict):
         Serial.
         """
         return pulumi.get(self, "serial")
+
+    @property
+    @pulumi.getter
+    def vdoms(self) -> Optional[Sequence['outputs.CsfFabricConnectorVdom']]:
+        """
+        Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
+        """
+        return pulumi.get(self, "vdoms")
+
+
+@pulumi.output_type
+class CsfFabricConnectorVdom(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Virtual domain name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Virtual domain name.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -2711,6 +2810,7 @@ class CsfTrustedList(dict):
                  certificate: Optional[str] = None,
                  downstream_authorization: Optional[str] = None,
                  ha_members: Optional[str] = None,
+                 index: Optional[int] = None,
                  name: Optional[str] = None,
                  serial: Optional[str] = None):
         """
@@ -2719,6 +2819,7 @@ class CsfTrustedList(dict):
         :param str certificate: Certificate.
         :param str downstream_authorization: Trust authorizations by this node's administrator. Valid values: `enable`, `disable`.
         :param str ha_members: HA members.
+        :param int index: Index of the downstream in tree.
         :param str name: Name.
         :param str serial: Serial.
         """
@@ -2732,6 +2833,8 @@ class CsfTrustedList(dict):
             pulumi.set(__self__, "downstream_authorization", downstream_authorization)
         if ha_members is not None:
             pulumi.set(__self__, "ha_members", ha_members)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if serial is not None:
@@ -2776,6 +2879,14 @@ class CsfTrustedList(dict):
         HA members.
         """
         return pulumi.get(self, "ha_members")
+
+    @property
+    @pulumi.getter
+    def index(self) -> Optional[int]:
+        """
+        Index of the downstream in tree.
+        """
+        return pulumi.get(self, "index")
 
     @property
     @pulumi.getter
@@ -2847,6 +2958,25 @@ class DdnsMonitorInterface(dict):
         Interface name.
         """
         return pulumi.get(self, "interface_name")
+
+
+@pulumi.output_type
+class DeviceupgradeKnownHaMember(dict):
+    def __init__(__self__, *,
+                 serial: Optional[str] = None):
+        """
+        :param str serial: Serial number of HA member
+        """
+        if serial is not None:
+            pulumi.set(__self__, "serial", serial)
+
+    @property
+    @pulumi.getter
+    def serial(self) -> Optional[str]:
+        """
+        Serial number of HA member
+        """
+        return pulumi.get(self, "serial")
 
 
 @pulumi.output_type
@@ -3020,6 +3150,381 @@ class DnsdatabaseDnsEntry(dict):
 
 
 @pulumi.output_type
+class EvpnExportRt(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "routeTarget":
+            suggest = "route_target"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EvpnExportRt. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EvpnExportRt.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EvpnExportRt.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 route_target: Optional[str] = None):
+        """
+        :param str route_target: Route target: AA|AA:NN.
+        """
+        if route_target is not None:
+            pulumi.set(__self__, "route_target", route_target)
+
+    @property
+    @pulumi.getter(name="routeTarget")
+    def route_target(self) -> Optional[str]:
+        """
+        Route target: AA|AA:NN.
+        """
+        return pulumi.get(self, "route_target")
+
+
+@pulumi.output_type
+class EvpnImportRt(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "routeTarget":
+            suggest = "route_target"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EvpnImportRt. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EvpnImportRt.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EvpnImportRt.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 route_target: Optional[str] = None):
+        """
+        :param str route_target: Route target: AA|AA:NN.
+        """
+        if route_target is not None:
+            pulumi.set(__self__, "route_target", route_target)
+
+    @property
+    @pulumi.getter(name="routeTarget")
+    def route_target(self) -> Optional[str]:
+        """
+        Route target: AA|AA:NN.
+        """
+        return pulumi.get(self, "route_target")
+
+
+@pulumi.output_type
+class FabricvpnAdvertisedSubnet(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bgpNetwork":
+            suggest = "bgp_network"
+        elif key == "firewallAddress":
+            suggest = "firewall_address"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FabricvpnAdvertisedSubnet. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FabricvpnAdvertisedSubnet.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FabricvpnAdvertisedSubnet.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 access: Optional[str] = None,
+                 bgp_network: Optional[int] = None,
+                 firewall_address: Optional[str] = None,
+                 id: Optional[int] = None,
+                 policies: Optional[int] = None,
+                 prefix: Optional[str] = None):
+        """
+        :param str access: Access policy direction. Valid values: `inbound`, `bidirectional`.
+        :param int bgp_network: Underlying BGP network.
+        :param str firewall_address: Underlying firewall address.
+        :param int id: ID.
+        :param int policies: Underlying policies.
+        :param str prefix: Network prefix.
+        """
+        if access is not None:
+            pulumi.set(__self__, "access", access)
+        if bgp_network is not None:
+            pulumi.set(__self__, "bgp_network", bgp_network)
+        if firewall_address is not None:
+            pulumi.set(__self__, "firewall_address", firewall_address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+
+    @property
+    @pulumi.getter
+    def access(self) -> Optional[str]:
+        """
+        Access policy direction. Valid values: `inbound`, `bidirectional`.
+        """
+        return pulumi.get(self, "access")
+
+    @property
+    @pulumi.getter(name="bgpNetwork")
+    def bgp_network(self) -> Optional[int]:
+        """
+        Underlying BGP network.
+        """
+        return pulumi.get(self, "bgp_network")
+
+    @property
+    @pulumi.getter(name="firewallAddress")
+    def firewall_address(self) -> Optional[str]:
+        """
+        Underlying firewall address.
+        """
+        return pulumi.get(self, "firewall_address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[int]:
+        """
+        Underlying policies.
+        """
+        return pulumi.get(self, "policies")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[str]:
+        """
+        Network prefix.
+        """
+        return pulumi.get(self, "prefix")
+
+
+@pulumi.output_type
+class FabricvpnOverlay(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bgpNeighbor":
+            suggest = "bgp_neighbor"
+        elif key == "bgpNeighborGroup":
+            suggest = "bgp_neighbor_group"
+        elif key == "bgpNeighborRange":
+            suggest = "bgp_neighbor_range"
+        elif key == "bgpNetwork":
+            suggest = "bgp_network"
+        elif key == "ipsecPhase1":
+            suggest = "ipsec_phase1"
+        elif key == "overlayPolicy":
+            suggest = "overlay_policy"
+        elif key == "overlayTunnelBlock":
+            suggest = "overlay_tunnel_block"
+        elif key == "remoteGw":
+            suggest = "remote_gw"
+        elif key == "routePolicy":
+            suggest = "route_policy"
+        elif key == "sdwanMember":
+            suggest = "sdwan_member"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FabricvpnOverlay. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FabricvpnOverlay.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FabricvpnOverlay.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bgp_neighbor: Optional[str] = None,
+                 bgp_neighbor_group: Optional[str] = None,
+                 bgp_neighbor_range: Optional[int] = None,
+                 bgp_network: Optional[int] = None,
+                 interface: Optional[str] = None,
+                 ipsec_phase1: Optional[str] = None,
+                 name: Optional[str] = None,
+                 overlay_policy: Optional[int] = None,
+                 overlay_tunnel_block: Optional[str] = None,
+                 remote_gw: Optional[str] = None,
+                 route_policy: Optional[int] = None,
+                 sdwan_member: Optional[int] = None):
+        """
+        :param str bgp_neighbor: Underlying BGP neighbor entry.
+        :param str bgp_neighbor_group: Underlying BGP neighbor group entry.
+        :param int bgp_neighbor_range: Underlying BGP neighbor range entry.
+        :param int bgp_network: Underlying BGP network.
+        :param str interface: Underlying interface name.
+        :param str ipsec_phase1: IPsec interface.
+        :param str name: Overlay name.
+        :param int overlay_policy: The overlay policy to allow ADVPN thru traffic.
+        :param str overlay_tunnel_block: IPv4 address and subnet mask for the overlay tunnel , syntax: X.X.X.X/24.
+        :param str remote_gw: IP address of the hub gateway (Set by hub).
+        :param int route_policy: Underlying router policy.
+        :param int sdwan_member: Reference to SD-WAN member entry.
+        """
+        if bgp_neighbor is not None:
+            pulumi.set(__self__, "bgp_neighbor", bgp_neighbor)
+        if bgp_neighbor_group is not None:
+            pulumi.set(__self__, "bgp_neighbor_group", bgp_neighbor_group)
+        if bgp_neighbor_range is not None:
+            pulumi.set(__self__, "bgp_neighbor_range", bgp_neighbor_range)
+        if bgp_network is not None:
+            pulumi.set(__self__, "bgp_network", bgp_network)
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if ipsec_phase1 is not None:
+            pulumi.set(__self__, "ipsec_phase1", ipsec_phase1)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if overlay_policy is not None:
+            pulumi.set(__self__, "overlay_policy", overlay_policy)
+        if overlay_tunnel_block is not None:
+            pulumi.set(__self__, "overlay_tunnel_block", overlay_tunnel_block)
+        if remote_gw is not None:
+            pulumi.set(__self__, "remote_gw", remote_gw)
+        if route_policy is not None:
+            pulumi.set(__self__, "route_policy", route_policy)
+        if sdwan_member is not None:
+            pulumi.set(__self__, "sdwan_member", sdwan_member)
+
+    @property
+    @pulumi.getter(name="bgpNeighbor")
+    def bgp_neighbor(self) -> Optional[str]:
+        """
+        Underlying BGP neighbor entry.
+        """
+        return pulumi.get(self, "bgp_neighbor")
+
+    @property
+    @pulumi.getter(name="bgpNeighborGroup")
+    def bgp_neighbor_group(self) -> Optional[str]:
+        """
+        Underlying BGP neighbor group entry.
+        """
+        return pulumi.get(self, "bgp_neighbor_group")
+
+    @property
+    @pulumi.getter(name="bgpNeighborRange")
+    def bgp_neighbor_range(self) -> Optional[int]:
+        """
+        Underlying BGP neighbor range entry.
+        """
+        return pulumi.get(self, "bgp_neighbor_range")
+
+    @property
+    @pulumi.getter(name="bgpNetwork")
+    def bgp_network(self) -> Optional[int]:
+        """
+        Underlying BGP network.
+        """
+        return pulumi.get(self, "bgp_network")
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[str]:
+        """
+        Underlying interface name.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="ipsecPhase1")
+    def ipsec_phase1(self) -> Optional[str]:
+        """
+        IPsec interface.
+        """
+        return pulumi.get(self, "ipsec_phase1")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Overlay name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="overlayPolicy")
+    def overlay_policy(self) -> Optional[int]:
+        """
+        The overlay policy to allow ADVPN thru traffic.
+        """
+        return pulumi.get(self, "overlay_policy")
+
+    @property
+    @pulumi.getter(name="overlayTunnelBlock")
+    def overlay_tunnel_block(self) -> Optional[str]:
+        """
+        IPv4 address and subnet mask for the overlay tunnel , syntax: X.X.X.X/24.
+        """
+        return pulumi.get(self, "overlay_tunnel_block")
+
+    @property
+    @pulumi.getter(name="remoteGw")
+    def remote_gw(self) -> Optional[str]:
+        """
+        IP address of the hub gateway (Set by hub).
+        """
+        return pulumi.get(self, "remote_gw")
+
+    @property
+    @pulumi.getter(name="routePolicy")
+    def route_policy(self) -> Optional[int]:
+        """
+        Underlying router policy.
+        """
+        return pulumi.get(self, "route_policy")
+
+    @property
+    @pulumi.getter(name="sdwanMember")
+    def sdwan_member(self) -> Optional[int]:
+        """
+        Reference to SD-WAN member entry.
+        """
+        return pulumi.get(self, "sdwan_member")
+
+
+@pulumi.output_type
+class FederatedupgradeKnownHaMember(dict):
+    def __init__(__self__, *,
+                 serial: Optional[str] = None):
+        """
+        :param str serial: Serial number of HA member
+        """
+        if serial is not None:
+            pulumi.set(__self__, "serial", serial)
+
+    @property
+    @pulumi.getter
+    def serial(self) -> Optional[str]:
+        """
+        Serial number of HA member
+        """
+        return pulumi.get(self, "serial")
+
+
+@pulumi.output_type
 class FederatedupgradeNodeList(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -3028,6 +3533,8 @@ class FederatedupgradeNodeList(dict):
             suggest = "coordinating_fortigate"
         elif key == "deviceType":
             suggest = "device_type"
+        elif key == "maximumMinutes":
+            suggest = "maximum_minutes"
         elif key == "setupTime":
             suggest = "setup_time"
         elif key == "upgradePath":
@@ -3047,6 +3554,7 @@ class FederatedupgradeNodeList(dict):
     def __init__(__self__, *,
                  coordinating_fortigate: Optional[str] = None,
                  device_type: Optional[str] = None,
+                 maximum_minutes: Optional[int] = None,
                  serial: Optional[str] = None,
                  setup_time: Optional[str] = None,
                  time: Optional[str] = None,
@@ -3055,6 +3563,7 @@ class FederatedupgradeNodeList(dict):
         """
         :param str coordinating_fortigate: The serial of the FortiGate that controls this device
         :param str device_type: What type of device this node represents.
+        :param int maximum_minutes: Maximum number of minutes to allow for immediate upgrade preparation.
         :param str serial: Serial number of the node to include.
         :param str setup_time: When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
         :param str time: Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
@@ -3065,6 +3574,8 @@ class FederatedupgradeNodeList(dict):
             pulumi.set(__self__, "coordinating_fortigate", coordinating_fortigate)
         if device_type is not None:
             pulumi.set(__self__, "device_type", device_type)
+        if maximum_minutes is not None:
+            pulumi.set(__self__, "maximum_minutes", maximum_minutes)
         if serial is not None:
             pulumi.set(__self__, "serial", serial)
         if setup_time is not None:
@@ -3091,6 +3602,14 @@ class FederatedupgradeNodeList(dict):
         What type of device this node represents.
         """
         return pulumi.get(self, "device_type")
+
+    @property
+    @pulumi.getter(name="maximumMinutes")
+    def maximum_minutes(self) -> Optional[int]:
+        """
+        Maximum number of minutes to allow for immediate upgrade preparation.
+        """
+        return pulumi.get(self, "maximum_minutes")
 
     @property
     @pulumi.getter
@@ -3258,6 +3777,25 @@ class GeoipoverrideIpRange(dict):
 
 
 @pulumi.output_type
+class GlobalInternetServiceDownloadList(dict):
+    def __init__(__self__, *,
+                 id: Optional[int] = None):
+        """
+        :param int id: Internet Service ID.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Internet Service ID.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class HaHaMgmtInterface(dict):
     def __init__(__self__, *,
                  dst: Optional[str] = None,
@@ -3265,6 +3803,13 @@ class HaHaMgmtInterface(dict):
                  gateway6: Optional[str] = None,
                  id: Optional[int] = None,
                  interface: Optional[str] = None):
+        """
+        :param str dst: Default route destination for reserved HA management interface.
+        :param str gateway: Default route gateway for reserved HA management interface.
+        :param str gateway6: Default IPv6 gateway for reserved HA management interface.
+        :param int id: Table ID.
+        :param str interface: Interface to reserve for HA management.
+        """
         if dst is not None:
             pulumi.set(__self__, "dst", dst)
         if gateway is not None:
@@ -3279,26 +3824,41 @@ class HaHaMgmtInterface(dict):
     @property
     @pulumi.getter
     def dst(self) -> Optional[str]:
+        """
+        Default route destination for reserved HA management interface.
+        """
         return pulumi.get(self, "dst")
 
     @property
     @pulumi.getter
     def gateway(self) -> Optional[str]:
+        """
+        Default route gateway for reserved HA management interface.
+        """
         return pulumi.get(self, "gateway")
 
     @property
     @pulumi.getter
     def gateway6(self) -> Optional[str]:
+        """
+        Default IPv6 gateway for reserved HA management interface.
+        """
         return pulumi.get(self, "gateway6")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[int]:
+        """
+        Table ID.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def interface(self) -> Optional[str]:
+        """
+        Interface to reserve for HA management.
+        """
         return pulumi.get(self, "interface")
 
 
@@ -3342,6 +3902,18 @@ class HaSecondaryVcluster(dict):
                  priority: Optional[int] = None,
                  vcluster_id: Optional[int] = None,
                  vdom: Optional[str] = None):
+        """
+        :param str monitor: Interfaces to check for port monitoring (or link failure).
+        :param str override: Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        :param int override_wait_time: Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        :param int pingserver_failover_threshold: Remote IP monitoring failover threshold (0 - 50).
+        :param str pingserver_monitor_interface: Interfaces to check for remote IP monitoring.
+        :param str pingserver_secondary_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        :param str pingserver_slave_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        :param int priority: Increase the priority to select the primary unit (0 - 255).
+        :param int vcluster_id: Cluster ID.
+        :param str vdom: VDOMs in virtual cluster 2.
+        """
         if monitor is not None:
             pulumi.set(__self__, "monitor", monitor)
         if override is not None:
@@ -3366,51 +3938,81 @@ class HaSecondaryVcluster(dict):
     @property
     @pulumi.getter
     def monitor(self) -> Optional[str]:
+        """
+        Interfaces to check for port monitoring (or link failure).
+        """
         return pulumi.get(self, "monitor")
 
     @property
     @pulumi.getter
     def override(self) -> Optional[str]:
+        """
+        Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "override")
 
     @property
     @pulumi.getter(name="overrideWaitTime")
     def override_wait_time(self) -> Optional[int]:
+        """
+        Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        """
         return pulumi.get(self, "override_wait_time")
 
     @property
     @pulumi.getter(name="pingserverFailoverThreshold")
     def pingserver_failover_threshold(self) -> Optional[int]:
+        """
+        Remote IP monitoring failover threshold (0 - 50).
+        """
         return pulumi.get(self, "pingserver_failover_threshold")
 
     @property
     @pulumi.getter(name="pingserverMonitorInterface")
     def pingserver_monitor_interface(self) -> Optional[str]:
+        """
+        Interfaces to check for remote IP monitoring.
+        """
         return pulumi.get(self, "pingserver_monitor_interface")
 
     @property
     @pulumi.getter(name="pingserverSecondaryForceReset")
     def pingserver_secondary_force_reset(self) -> Optional[str]:
+        """
+        Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "pingserver_secondary_force_reset")
 
     @property
     @pulumi.getter(name="pingserverSlaveForceReset")
     def pingserver_slave_force_reset(self) -> Optional[str]:
+        """
+        Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "pingserver_slave_force_reset")
 
     @property
     @pulumi.getter
     def priority(self) -> Optional[int]:
+        """
+        Increase the priority to select the primary unit (0 - 255).
+        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="vclusterId")
     def vcluster_id(self) -> Optional[int]:
+        """
+        Cluster ID.
+        """
         return pulumi.get(self, "vcluster_id")
 
     @property
     @pulumi.getter
     def vdom(self) -> Optional[str]:
+        """
+        VDOMs in virtual cluster 2.
+        """
         return pulumi.get(self, "vdom")
 
 
@@ -3436,6 +4038,10 @@ class HaUnicastPeer(dict):
     def __init__(__self__, *,
                  id: Optional[int] = None,
                  peer_ip: Optional[str] = None):
+        """
+        :param int id: Table ID.
+        :param str peer_ip: Unicast peer IP.
+        """
         if id is not None:
             pulumi.set(__self__, "id", id)
         if peer_ip is not None:
@@ -3444,11 +4050,17 @@ class HaUnicastPeer(dict):
     @property
     @pulumi.getter
     def id(self) -> Optional[int]:
+        """
+        Table ID.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="peerIp")
     def peer_ip(self) -> Optional[str]:
+        """
+        Unicast peer IP.
+        """
         return pulumi.get(self, "peer_ip")
 
 
@@ -3461,6 +4073,8 @@ class HaVcluster(dict):
             suggest = "override_wait_time"
         elif key == "pingserverFailoverThreshold":
             suggest = "pingserver_failover_threshold"
+        elif key == "pingserverFlipTimeout":
+            suggest = "pingserver_flip_timeout"
         elif key == "pingserverMonitorInterface":
             suggest = "pingserver_monitor_interface"
         elif key == "pingserverSecondaryForceReset":
@@ -3486,12 +4100,26 @@ class HaVcluster(dict):
                  override: Optional[str] = None,
                  override_wait_time: Optional[int] = None,
                  pingserver_failover_threshold: Optional[int] = None,
+                 pingserver_flip_timeout: Optional[int] = None,
                  pingserver_monitor_interface: Optional[str] = None,
                  pingserver_secondary_force_reset: Optional[str] = None,
                  pingserver_slave_force_reset: Optional[str] = None,
                  priority: Optional[int] = None,
                  vcluster_id: Optional[int] = None,
                  vdoms: Optional[Sequence['outputs.HaVclusterVdom']] = None):
+        """
+        :param str monitor: Interfaces to check for port monitoring (or link failure).
+        :param str override: Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        :param int override_wait_time: Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        :param int pingserver_failover_threshold: Remote IP monitoring failover threshold (0 - 50).
+        :param int pingserver_flip_timeout: Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        :param str pingserver_monitor_interface: Interfaces to check for remote IP monitoring.
+        :param str pingserver_secondary_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        :param str pingserver_slave_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        :param int priority: Increase the priority to select the primary unit (0 - 255).
+        :param int vcluster_id: ID.
+        :param Sequence['HaVclusterVdomArgs'] vdoms: Virtual domain(s) in the virtual cluster. The structure of `vdom` block is documented below.
+        """
         if monitor is not None:
             pulumi.set(__self__, "monitor", monitor)
         if override is not None:
@@ -3500,6 +4128,8 @@ class HaVcluster(dict):
             pulumi.set(__self__, "override_wait_time", override_wait_time)
         if pingserver_failover_threshold is not None:
             pulumi.set(__self__, "pingserver_failover_threshold", pingserver_failover_threshold)
+        if pingserver_flip_timeout is not None:
+            pulumi.set(__self__, "pingserver_flip_timeout", pingserver_flip_timeout)
         if pingserver_monitor_interface is not None:
             pulumi.set(__self__, "pingserver_monitor_interface", pingserver_monitor_interface)
         if pingserver_secondary_force_reset is not None:
@@ -3516,51 +4146,89 @@ class HaVcluster(dict):
     @property
     @pulumi.getter
     def monitor(self) -> Optional[str]:
+        """
+        Interfaces to check for port monitoring (or link failure).
+        """
         return pulumi.get(self, "monitor")
 
     @property
     @pulumi.getter
     def override(self) -> Optional[str]:
+        """
+        Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "override")
 
     @property
     @pulumi.getter(name="overrideWaitTime")
     def override_wait_time(self) -> Optional[int]:
+        """
+        Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        """
         return pulumi.get(self, "override_wait_time")
 
     @property
     @pulumi.getter(name="pingserverFailoverThreshold")
     def pingserver_failover_threshold(self) -> Optional[int]:
+        """
+        Remote IP monitoring failover threshold (0 - 50).
+        """
         return pulumi.get(self, "pingserver_failover_threshold")
+
+    @property
+    @pulumi.getter(name="pingserverFlipTimeout")
+    def pingserver_flip_timeout(self) -> Optional[int]:
+        """
+        Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        """
+        return pulumi.get(self, "pingserver_flip_timeout")
 
     @property
     @pulumi.getter(name="pingserverMonitorInterface")
     def pingserver_monitor_interface(self) -> Optional[str]:
+        """
+        Interfaces to check for remote IP monitoring.
+        """
         return pulumi.get(self, "pingserver_monitor_interface")
 
     @property
     @pulumi.getter(name="pingserverSecondaryForceReset")
     def pingserver_secondary_force_reset(self) -> Optional[str]:
+        """
+        Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "pingserver_secondary_force_reset")
 
     @property
     @pulumi.getter(name="pingserverSlaveForceReset")
     def pingserver_slave_force_reset(self) -> Optional[str]:
+        """
+        Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "pingserver_slave_force_reset")
 
     @property
     @pulumi.getter
     def priority(self) -> Optional[int]:
+        """
+        Increase the priority to select the primary unit (0 - 255).
+        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="vclusterId")
     def vcluster_id(self) -> Optional[int]:
+        """
+        ID.
+        """
         return pulumi.get(self, "vcluster_id")
 
     @property
     @pulumi.getter
     def vdoms(self) -> Optional[Sequence['outputs.HaVclusterVdom']]:
+        """
+        Virtual domain(s) in the virtual cluster. The structure of `vdom` block is documented below.
+        """
         return pulumi.get(self, "vdoms")
 
 
@@ -3568,12 +4236,18 @@ class HaVcluster(dict):
 class HaVclusterVdom(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
+        """
+        :param str name: Virtual domain name.
+        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Virtual domain name.
+        """
         return pulumi.get(self, "name")
 
 
@@ -4786,10 +5460,16 @@ class InterfaceIpv6(dict):
             suggest = "dhcp6_prefix_hint_plt"
         elif key == "dhcp6PrefixHintVlt":
             suggest = "dhcp6_prefix_hint_vlt"
+        elif key == "dhcp6RelayInterfaceId":
+            suggest = "dhcp6_relay_interface_id"
         elif key == "dhcp6RelayIp":
             suggest = "dhcp6_relay_ip"
         elif key == "dhcp6RelayService":
             suggest = "dhcp6_relay_service"
+        elif key == "dhcp6RelaySourceInterface":
+            suggest = "dhcp6_relay_source_interface"
+        elif key == "dhcp6RelaySourceIp":
+            suggest = "dhcp6_relay_source_ip"
         elif key == "dhcp6RelayType":
             suggest = "dhcp6_relay_type"
         elif key == "icmp6SendRedirect":
@@ -4880,8 +5560,11 @@ class InterfaceIpv6(dict):
                  dhcp6_prefix_hint: Optional[str] = None,
                  dhcp6_prefix_hint_plt: Optional[int] = None,
                  dhcp6_prefix_hint_vlt: Optional[int] = None,
+                 dhcp6_relay_interface_id: Optional[str] = None,
                  dhcp6_relay_ip: Optional[str] = None,
                  dhcp6_relay_service: Optional[str] = None,
+                 dhcp6_relay_source_interface: Optional[str] = None,
+                 dhcp6_relay_source_ip: Optional[str] = None,
                  dhcp6_relay_type: Optional[str] = None,
                  icmp6_send_redirect: Optional[str] = None,
                  interface_identifier: Optional[str] = None,
@@ -4927,8 +5610,11 @@ class InterfaceIpv6(dict):
         :param str dhcp6_prefix_hint: DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
         :param int dhcp6_prefix_hint_plt: DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
         :param int dhcp6_prefix_hint_vlt: DHCPv6 prefix hint valid life time (sec).
+        :param str dhcp6_relay_interface_id: DHCP6 relay interface ID.
         :param str dhcp6_relay_ip: DHCPv6 relay IP address.
         :param str dhcp6_relay_service: Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
+        :param str dhcp6_relay_source_interface: Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
+        :param str dhcp6_relay_source_ip: IPv6 address used by the DHCP6 relay as its source IP.
         :param str dhcp6_relay_type: DHCPv6 relay type. Valid values: `regular`.
         :param str icmp6_send_redirect: Enable/disable sending of ICMPv6 redirects. Valid values: `enable`, `disable`.
         :param str interface_identifier: IPv6 interface identifier.
@@ -4985,10 +5671,16 @@ class InterfaceIpv6(dict):
             pulumi.set(__self__, "dhcp6_prefix_hint_plt", dhcp6_prefix_hint_plt)
         if dhcp6_prefix_hint_vlt is not None:
             pulumi.set(__self__, "dhcp6_prefix_hint_vlt", dhcp6_prefix_hint_vlt)
+        if dhcp6_relay_interface_id is not None:
+            pulumi.set(__self__, "dhcp6_relay_interface_id", dhcp6_relay_interface_id)
         if dhcp6_relay_ip is not None:
             pulumi.set(__self__, "dhcp6_relay_ip", dhcp6_relay_ip)
         if dhcp6_relay_service is not None:
             pulumi.set(__self__, "dhcp6_relay_service", dhcp6_relay_service)
+        if dhcp6_relay_source_interface is not None:
+            pulumi.set(__self__, "dhcp6_relay_source_interface", dhcp6_relay_source_interface)
+        if dhcp6_relay_source_ip is not None:
+            pulumi.set(__self__, "dhcp6_relay_source_ip", dhcp6_relay_source_ip)
         if dhcp6_relay_type is not None:
             pulumi.set(__self__, "dhcp6_relay_type", dhcp6_relay_type)
         if icmp6_send_redirect is not None:
@@ -5133,6 +5825,14 @@ class InterfaceIpv6(dict):
         return pulumi.get(self, "dhcp6_prefix_hint_vlt")
 
     @property
+    @pulumi.getter(name="dhcp6RelayInterfaceId")
+    def dhcp6_relay_interface_id(self) -> Optional[str]:
+        """
+        DHCP6 relay interface ID.
+        """
+        return pulumi.get(self, "dhcp6_relay_interface_id")
+
+    @property
     @pulumi.getter(name="dhcp6RelayIp")
     def dhcp6_relay_ip(self) -> Optional[str]:
         """
@@ -5147,6 +5847,22 @@ class InterfaceIpv6(dict):
         Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "dhcp6_relay_service")
+
+    @property
+    @pulumi.getter(name="dhcp6RelaySourceInterface")
+    def dhcp6_relay_source_interface(self) -> Optional[str]:
+        """
+        Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dhcp6_relay_source_interface")
+
+    @property
+    @pulumi.getter(name="dhcp6RelaySourceIp")
+    def dhcp6_relay_source_ip(self) -> Optional[str]:
+        """
+        IPv6 address used by the DHCP6 relay as its source IP.
+        """
+        return pulumi.get(self, "dhcp6_relay_source_ip")
 
     @property
     @pulumi.getter(name="dhcp6RelayType")
@@ -5814,6 +6530,8 @@ class InterfaceIpv6Vrrp6(dict):
             suggest = "accept_mode"
         elif key == "advInterval":
             suggest = "adv_interval"
+        elif key == "ignoreDefaultRoute":
+            suggest = "ignore_default_route"
         elif key == "startTime":
             suggest = "start_time"
 
@@ -5831,6 +6549,7 @@ class InterfaceIpv6Vrrp6(dict):
     def __init__(__self__, *,
                  accept_mode: Optional[str] = None,
                  adv_interval: Optional[int] = None,
+                 ignore_default_route: Optional[str] = None,
                  preempt: Optional[str] = None,
                  priority: Optional[int] = None,
                  start_time: Optional[int] = None,
@@ -5842,6 +6561,7 @@ class InterfaceIpv6Vrrp6(dict):
         """
         :param str accept_mode: Enable/disable accept mode. Valid values: `enable`, `disable`.
         :param int adv_interval: Advertisement interval (1 - 255 seconds).
+        :param str ignore_default_route: Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
         :param str preempt: Enable/disable preempt mode. Valid values: `enable`, `disable`.
         :param int priority: Priority of learned routes.
         :param int start_time: Startup time (1 - 255 seconds).
@@ -5855,6 +6575,8 @@ class InterfaceIpv6Vrrp6(dict):
             pulumi.set(__self__, "accept_mode", accept_mode)
         if adv_interval is not None:
             pulumi.set(__self__, "adv_interval", adv_interval)
+        if ignore_default_route is not None:
+            pulumi.set(__self__, "ignore_default_route", ignore_default_route)
         if preempt is not None:
             pulumi.set(__self__, "preempt", preempt)
         if priority is not None:
@@ -5887,6 +6609,14 @@ class InterfaceIpv6Vrrp6(dict):
         Advertisement interval (1 - 255 seconds).
         """
         return pulumi.get(self, "adv_interval")
+
+    @property
+    @pulumi.getter(name="ignoreDefaultRoute")
+    def ignore_default_route(self) -> Optional[str]:
+        """
+        Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ignore_default_route")
 
     @property
     @pulumi.getter
@@ -6017,6 +6747,8 @@ class InterfaceSecondaryip(dict):
             suggest = "ha_priority"
         elif key == "pingServStatus":
             suggest = "ping_serv_status"
+        elif key == "secipRelayIp":
+            suggest = "secip_relay_ip"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in InterfaceSecondaryip. Access the value via the '{suggest}' property getter instead.")
@@ -6037,7 +6769,8 @@ class InterfaceSecondaryip(dict):
                  ha_priority: Optional[int] = None,
                  id: Optional[int] = None,
                  ip: Optional[str] = None,
-                 ping_serv_status: Optional[int] = None):
+                 ping_serv_status: Optional[int] = None,
+                 secip_relay_ip: Optional[str] = None):
         """
         :param str allowaccess: Management access settings for the secondary IP address.
         :param str detectprotocol: Protocols used to detect the server. Valid values: `ping`, `tcp-echo`, `udp-echo`.
@@ -6047,6 +6780,7 @@ class InterfaceSecondaryip(dict):
         :param int id: ID.
         :param str ip: Secondary IP address of the interface.
         :param int ping_serv_status: PING server status.
+        :param str secip_relay_ip: DHCP relay IP address.
         """
         if allowaccess is not None:
             pulumi.set(__self__, "allowaccess", allowaccess)
@@ -6064,6 +6798,8 @@ class InterfaceSecondaryip(dict):
             pulumi.set(__self__, "ip", ip)
         if ping_serv_status is not None:
             pulumi.set(__self__, "ping_serv_status", ping_serv_status)
+        if secip_relay_ip is not None:
+            pulumi.set(__self__, "secip_relay_ip", secip_relay_ip)
 
     @property
     @pulumi.getter
@@ -6128,6 +6864,14 @@ class InterfaceSecondaryip(dict):
         PING server status.
         """
         return pulumi.get(self, "ping_serv_status")
+
+    @property
+    @pulumi.getter(name="secipRelayIp")
+    def secip_relay_ip(self) -> Optional[str]:
+        """
+        DHCP relay IP address.
+        """
+        return pulumi.get(self, "secip_relay_ip")
 
 
 @pulumi.output_type
@@ -6725,7 +7469,7 @@ class LinkmonitorServerList(dict):
         :param str dst: IP address of the server to be monitored.
         :param int id: Server ID.
         :param int port: Port number of the traffic to be used to monitor the server.
-        :param str protocol: Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
+        :param str protocol: Protocols used to monitor the server.
         :param int weight: Weight of the monitor to this dst (0 - 255).
         """
         if dst is not None:
@@ -6767,7 +7511,7 @@ class LinkmonitorServerList(dict):
     @pulumi.getter
     def protocol(self) -> Optional[str]:
         """
-        Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
+        Protocols used to monitor the server.
         """
         return pulumi.get(self, "protocol")
 
@@ -6908,6 +7652,108 @@ class NdproxyMember(dict):
 
 
 @pulumi.output_type
+class NetflowCollector(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "collectorIp":
+            suggest = "collector_ip"
+        elif key == "collectorPort":
+            suggest = "collector_port"
+        elif key == "interfaceSelectMethod":
+            suggest = "interface_select_method"
+        elif key == "sourceIp":
+            suggest = "source_ip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NetflowCollector. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NetflowCollector.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NetflowCollector.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 collector_ip: Optional[str] = None,
+                 collector_port: Optional[int] = None,
+                 id: Optional[int] = None,
+                 interface: Optional[str] = None,
+                 interface_select_method: Optional[str] = None,
+                 source_ip: Optional[str] = None):
+        """
+        :param str collector_ip: Collector IP.
+        :param int collector_port: NetFlow collector port number.
+        :param int id: ID.
+        :param str interface: Specify outgoing interface to reach server.
+        :param str interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        :param str source_ip: Source IP address for communication with the NetFlow agent.
+        """
+        if collector_ip is not None:
+            pulumi.set(__self__, "collector_ip", collector_ip)
+        if collector_port is not None:
+            pulumi.set(__self__, "collector_port", collector_port)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if interface_select_method is not None:
+            pulumi.set(__self__, "interface_select_method", interface_select_method)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
+
+    @property
+    @pulumi.getter(name="collectorIp")
+    def collector_ip(self) -> Optional[str]:
+        """
+        Collector IP.
+        """
+        return pulumi.get(self, "collector_ip")
+
+    @property
+    @pulumi.getter(name="collectorPort")
+    def collector_port(self) -> Optional[int]:
+        """
+        NetFlow collector port number.
+        """
+        return pulumi.get(self, "collector_port")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[str]:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> Optional[str]:
+        """
+        Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[str]:
+        """
+        Source IP address for communication with the NetFlow agent.
+        """
+        return pulumi.get(self, "source_ip")
+
+
+@pulumi.output_type
 class NpuPriorityProtocol(dict):
     def __init__(__self__, *,
                  bfd: Optional[str] = None,
@@ -6993,6 +7839,8 @@ class NtpNtpserver(dict):
         suggest = None
         if key == "interfaceSelectMethod":
             suggest = "interface_select_method"
+        elif key == "ipType":
+            suggest = "ip_type"
         elif key == "keyId":
             suggest = "key_id"
 
@@ -7012,6 +7860,7 @@ class NtpNtpserver(dict):
                  id: Optional[int] = None,
                  interface: Optional[str] = None,
                  interface_select_method: Optional[str] = None,
+                 ip_type: Optional[str] = None,
                  key: Optional[str] = None,
                  key_id: Optional[int] = None,
                  ntpv3: Optional[str] = None,
@@ -7021,6 +7870,7 @@ class NtpNtpserver(dict):
         :param int id: NTP server ID.
         :param str interface: Specify outgoing interface to reach server.
         :param str interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        :param str ip_type: Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
         :param str key: Key for MD5/SHA1 authentication.
         :param int key_id: Key ID for authentication.
         :param str ntpv3: Enable to use NTPv3 instead of NTPv4. Valid values: `enable`, `disable`.
@@ -7034,6 +7884,8 @@ class NtpNtpserver(dict):
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
             pulumi.set(__self__, "interface_select_method", interface_select_method)
+        if ip_type is not None:
+            pulumi.set(__self__, "ip_type", ip_type)
         if key is not None:
             pulumi.set(__self__, "key", key)
         if key_id is not None:
@@ -7074,6 +7926,14 @@ class NtpNtpserver(dict):
         Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         """
         return pulumi.get(self, "interface_select_method")
+
+    @property
+    @pulumi.getter(name="ipType")
+    def ip_type(self) -> Optional[str]:
+        """
+        Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
+        """
+        return pulumi.get(self, "ip_type")
 
     @property
     @pulumi.getter
@@ -7125,6 +7985,358 @@ class ObjecttaggingTag(dict):
         Tag name.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class PcpserverPool(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowOpcode":
+            suggest = "allow_opcode"
+        elif key == "announcementCount":
+            suggest = "announcement_count"
+        elif key == "arpReply":
+            suggest = "arp_reply"
+        elif key == "clientMappingLimit":
+            suggest = "client_mapping_limit"
+        elif key == "clientSubnets":
+            suggest = "client_subnets"
+        elif key == "extIntf":
+            suggest = "ext_intf"
+        elif key == "intlIntfs":
+            suggest = "intl_intfs"
+        elif key == "mappingFilterLimit":
+            suggest = "mapping_filter_limit"
+        elif key == "maximalLifetime":
+            suggest = "maximal_lifetime"
+        elif key == "minimalLifetime":
+            suggest = "minimal_lifetime"
+        elif key == "multicastAnnouncement":
+            suggest = "multicast_announcement"
+        elif key == "recycleDelay":
+            suggest = "recycle_delay"
+        elif key == "thirdParty":
+            suggest = "third_party"
+        elif key == "thirdPartySubnets":
+            suggest = "third_party_subnets"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PcpserverPool. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PcpserverPool.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PcpserverPool.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 allow_opcode: Optional[str] = None,
+                 announcement_count: Optional[int] = None,
+                 arp_reply: Optional[str] = None,
+                 client_mapping_limit: Optional[int] = None,
+                 client_subnets: Optional[Sequence['outputs.PcpserverPoolClientSubnet']] = None,
+                 description: Optional[str] = None,
+                 ext_intf: Optional[str] = None,
+                 extip: Optional[str] = None,
+                 extport: Optional[str] = None,
+                 id: Optional[int] = None,
+                 intl_intfs: Optional[Sequence['outputs.PcpserverPoolIntlIntf']] = None,
+                 mapping_filter_limit: Optional[int] = None,
+                 maximal_lifetime: Optional[int] = None,
+                 minimal_lifetime: Optional[int] = None,
+                 multicast_announcement: Optional[str] = None,
+                 name: Optional[str] = None,
+                 recycle_delay: Optional[int] = None,
+                 third_party: Optional[str] = None,
+                 third_party_subnets: Optional[Sequence['outputs.PcpserverPoolThirdPartySubnet']] = None):
+        """
+        :param str allow_opcode: Allowed PCP opcode. Valid values: `map`, `peer`, `announce`.
+        :param int announcement_count: Number of multicast announcements.
+        :param str arp_reply: Enable to respond to ARP requests for external IP (default = enable). Valid values: `disable`, `enable`.
+        :param int client_mapping_limit: Mapping limit per client (0 - 65535, default = 0, 0 = unlimited).
+        :param Sequence['PcpserverPoolClientSubnetArgs'] client_subnets: Subnets from which PCP requests are accepted. The structure of `client_subnet` block is documented below.
+        :param str description: Description.
+        :param str ext_intf: External interface name.
+        :param str extip: IP address or address range on the external interface that you want to map to an address on the internal network.
+        :param str extport: Incoming port number range that you want to map to a port number on the internal network.
+        :param int id: ID.
+        :param Sequence['PcpserverPoolIntlIntfArgs'] intl_intfs: Internal interface name. The structure of `intl_intf` block is documented below.
+        :param int mapping_filter_limit: Filter limit per mapping (0 - 5, default = 1).
+        :param int maximal_lifetime: Maximal lifetime of a PCP mapping in seconds (3600 - 604800, default = 86400).
+        :param int minimal_lifetime: Minimal lifetime of a PCP mapping in seconds (60 - 300, default = 120).
+        :param str multicast_announcement: Enable/disable multicast announcements. Valid values: `enable`, `disable`.
+        :param str name: PCP pool name.
+        :param int recycle_delay: Minimum delay (in seconds) the PCP Server will wait before recycling mappings that have expired (0 - 3600, default = 0).
+        :param str third_party: Allow/disallow third party option. Valid values: `allow`, `disallow`.
+        :param Sequence['PcpserverPoolThirdPartySubnetArgs'] third_party_subnets: Subnets from which third party requests are accepted. The structure of `third_party_subnet` block is documented below.
+        """
+        if allow_opcode is not None:
+            pulumi.set(__self__, "allow_opcode", allow_opcode)
+        if announcement_count is not None:
+            pulumi.set(__self__, "announcement_count", announcement_count)
+        if arp_reply is not None:
+            pulumi.set(__self__, "arp_reply", arp_reply)
+        if client_mapping_limit is not None:
+            pulumi.set(__self__, "client_mapping_limit", client_mapping_limit)
+        if client_subnets is not None:
+            pulumi.set(__self__, "client_subnets", client_subnets)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if ext_intf is not None:
+            pulumi.set(__self__, "ext_intf", ext_intf)
+        if extip is not None:
+            pulumi.set(__self__, "extip", extip)
+        if extport is not None:
+            pulumi.set(__self__, "extport", extport)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if intl_intfs is not None:
+            pulumi.set(__self__, "intl_intfs", intl_intfs)
+        if mapping_filter_limit is not None:
+            pulumi.set(__self__, "mapping_filter_limit", mapping_filter_limit)
+        if maximal_lifetime is not None:
+            pulumi.set(__self__, "maximal_lifetime", maximal_lifetime)
+        if minimal_lifetime is not None:
+            pulumi.set(__self__, "minimal_lifetime", minimal_lifetime)
+        if multicast_announcement is not None:
+            pulumi.set(__self__, "multicast_announcement", multicast_announcement)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if recycle_delay is not None:
+            pulumi.set(__self__, "recycle_delay", recycle_delay)
+        if third_party is not None:
+            pulumi.set(__self__, "third_party", third_party)
+        if third_party_subnets is not None:
+            pulumi.set(__self__, "third_party_subnets", third_party_subnets)
+
+    @property
+    @pulumi.getter(name="allowOpcode")
+    def allow_opcode(self) -> Optional[str]:
+        """
+        Allowed PCP opcode. Valid values: `map`, `peer`, `announce`.
+        """
+        return pulumi.get(self, "allow_opcode")
+
+    @property
+    @pulumi.getter(name="announcementCount")
+    def announcement_count(self) -> Optional[int]:
+        """
+        Number of multicast announcements.
+        """
+        return pulumi.get(self, "announcement_count")
+
+    @property
+    @pulumi.getter(name="arpReply")
+    def arp_reply(self) -> Optional[str]:
+        """
+        Enable to respond to ARP requests for external IP (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "arp_reply")
+
+    @property
+    @pulumi.getter(name="clientMappingLimit")
+    def client_mapping_limit(self) -> Optional[int]:
+        """
+        Mapping limit per client (0 - 65535, default = 0, 0 = unlimited).
+        """
+        return pulumi.get(self, "client_mapping_limit")
+
+    @property
+    @pulumi.getter(name="clientSubnets")
+    def client_subnets(self) -> Optional[Sequence['outputs.PcpserverPoolClientSubnet']]:
+        """
+        Subnets from which PCP requests are accepted. The structure of `client_subnet` block is documented below.
+        """
+        return pulumi.get(self, "client_subnets")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="extIntf")
+    def ext_intf(self) -> Optional[str]:
+        """
+        External interface name.
+        """
+        return pulumi.get(self, "ext_intf")
+
+    @property
+    @pulumi.getter
+    def extip(self) -> Optional[str]:
+        """
+        IP address or address range on the external interface that you want to map to an address on the internal network.
+        """
+        return pulumi.get(self, "extip")
+
+    @property
+    @pulumi.getter
+    def extport(self) -> Optional[str]:
+        """
+        Incoming port number range that you want to map to a port number on the internal network.
+        """
+        return pulumi.get(self, "extport")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="intlIntfs")
+    def intl_intfs(self) -> Optional[Sequence['outputs.PcpserverPoolIntlIntf']]:
+        """
+        Internal interface name. The structure of `intl_intf` block is documented below.
+        """
+        return pulumi.get(self, "intl_intfs")
+
+    @property
+    @pulumi.getter(name="mappingFilterLimit")
+    def mapping_filter_limit(self) -> Optional[int]:
+        """
+        Filter limit per mapping (0 - 5, default = 1).
+        """
+        return pulumi.get(self, "mapping_filter_limit")
+
+    @property
+    @pulumi.getter(name="maximalLifetime")
+    def maximal_lifetime(self) -> Optional[int]:
+        """
+        Maximal lifetime of a PCP mapping in seconds (3600 - 604800, default = 86400).
+        """
+        return pulumi.get(self, "maximal_lifetime")
+
+    @property
+    @pulumi.getter(name="minimalLifetime")
+    def minimal_lifetime(self) -> Optional[int]:
+        """
+        Minimal lifetime of a PCP mapping in seconds (60 - 300, default = 120).
+        """
+        return pulumi.get(self, "minimal_lifetime")
+
+    @property
+    @pulumi.getter(name="multicastAnnouncement")
+    def multicast_announcement(self) -> Optional[str]:
+        """
+        Enable/disable multicast announcements. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "multicast_announcement")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        PCP pool name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="recycleDelay")
+    def recycle_delay(self) -> Optional[int]:
+        """
+        Minimum delay (in seconds) the PCP Server will wait before recycling mappings that have expired (0 - 3600, default = 0).
+        """
+        return pulumi.get(self, "recycle_delay")
+
+    @property
+    @pulumi.getter(name="thirdParty")
+    def third_party(self) -> Optional[str]:
+        """
+        Allow/disallow third party option. Valid values: `allow`, `disallow`.
+        """
+        return pulumi.get(self, "third_party")
+
+    @property
+    @pulumi.getter(name="thirdPartySubnets")
+    def third_party_subnets(self) -> Optional[Sequence['outputs.PcpserverPoolThirdPartySubnet']]:
+        """
+        Subnets from which third party requests are accepted. The structure of `third_party_subnet` block is documented below.
+        """
+        return pulumi.get(self, "third_party_subnets")
+
+
+@pulumi.output_type
+class PcpserverPoolClientSubnet(dict):
+    def __init__(__self__, *,
+                 subnet: Optional[str] = None):
+        """
+        :param str subnet: Client subnets.
+        """
+        if subnet is not None:
+            pulumi.set(__self__, "subnet", subnet)
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> Optional[str]:
+        """
+        Client subnets.
+        """
+        return pulumi.get(self, "subnet")
+
+
+@pulumi.output_type
+class PcpserverPoolIntlIntf(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "interfaceName":
+            suggest = "interface_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PcpserverPoolIntlIntf. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PcpserverPoolIntlIntf.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PcpserverPoolIntlIntf.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 interface_name: Optional[str] = None):
+        """
+        :param str interface_name: Interface name.
+        """
+        if interface_name is not None:
+            pulumi.set(__self__, "interface_name", interface_name)
+
+    @property
+    @pulumi.getter(name="interfaceName")
+    def interface_name(self) -> Optional[str]:
+        """
+        Interface name.
+        """
+        return pulumi.get(self, "interface_name")
+
+
+@pulumi.output_type
+class PcpserverPoolThirdPartySubnet(dict):
+    def __init__(__self__, *,
+                 subnet: Optional[str] = None):
+        """
+        :param str subnet: Third party subnets.
+        """
+        if subnet is not None:
+            pulumi.set(__self__, "subnet", subnet)
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> Optional[str]:
+        """
+        Third party subnets.
+        """
+        return pulumi.get(self, "subnet")
 
 
 @pulumi.output_type
@@ -8775,6 +9987,42 @@ class SamlServiceProviderAssertionAttribute(dict):
 
 
 @pulumi.output_type
+class SdnconnectorCompartmentList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "compartmentId":
+            suggest = "compartment_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SdnconnectorCompartmentList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SdnconnectorCompartmentList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SdnconnectorCompartmentList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 compartment_id: Optional[str] = None):
+        """
+        :param str compartment_id: OCI compartment ID.
+        """
+        if compartment_id is not None:
+            pulumi.set(__self__, "compartment_id", compartment_id)
+
+    @property
+    @pulumi.getter(name="compartmentId")
+    def compartment_id(self) -> Optional[str]:
+        """
+        OCI compartment ID.
+        """
+        return pulumi.get(self, "compartment_id")
+
+
+@pulumi.output_type
 class SdnconnectorExternalAccountList(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -9082,6 +10330,25 @@ class SdnconnectorNicIp(dict):
         Resource group of Azure public IP.
         """
         return pulumi.get(self, "resource_group")
+
+
+@pulumi.output_type
+class SdnconnectorOciRegionList(dict):
+    def __init__(__self__, *,
+                 region: Optional[str] = None):
+        """
+        :param str region: OCI region.
+        """
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        OCI region.
+        """
+        return pulumi.get(self, "region")
 
 
 @pulumi.output_type
@@ -9596,6 +10863,8 @@ class SdwanHealthCheck(dict):
         suggest = None
         if key == "addrMode":
             suggest = "addr_mode"
+        elif key == "classId":
+            suggest = "class_id"
         elif key == "detectMode":
             suggest = "detect_mode"
         elif key == "dnsMatchIp":
@@ -9668,6 +10937,7 @@ class SdwanHealthCheck(dict):
 
     def __init__(__self__, *,
                  addr_mode: Optional[str] = None,
+                 class_id: Optional[int] = None,
                  detect_mode: Optional[str] = None,
                  diffservcode: Optional[str] = None,
                  dns_match_ip: Optional[str] = None,
@@ -9700,6 +10970,7 @@ class SdwanHealthCheck(dict):
                  sla_pass_log_period: Optional[int] = None,
                  slas: Optional[Sequence['outputs.SdwanHealthCheckSla']] = None,
                  source: Optional[str] = None,
+                 source6: Optional[str] = None,
                  system_dns: Optional[str] = None,
                  threshold_alert_jitter: Optional[int] = None,
                  threshold_alert_latency: Optional[int] = None,
@@ -9713,6 +10984,7 @@ class SdwanHealthCheck(dict):
                  vrf: Optional[int] = None):
         """
         :param str addr_mode: Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
+        :param int class_id: Traffic class ID.
         :param str detect_mode: The mode determining how to detect the server.
         :param str diffservcode: Differentiated services code point (DSCP) in the IP header of the probe packet.
         :param str dns_match_ip: Response IP expected from DNS server if the protocol is DNS.
@@ -9745,6 +11017,7 @@ class SdwanHealthCheck(dict):
         :param int sla_pass_log_period: Time interval in seconds that SLA pass log messages will be generated (0 - 3600, default = 0).
         :param Sequence['SdwanHealthCheckSlaArgs'] slas: Service level agreement (SLA). The structure of `sla` block is documented below.
         :param str source: Source IP address used in the health-check packet to the server.
+        :param str source6: Source IPv6 addressused in the health-check packet to server.
         :param str system_dns: Enable/disable system DNS as the probe server. Valid values: `disable`, `enable`.
         :param int threshold_alert_jitter: Alert threshold for jitter (ms, default = 0).
         :param int threshold_alert_latency: Alert threshold for latency (ms, default = 0).
@@ -9759,6 +11032,8 @@ class SdwanHealthCheck(dict):
         """
         if addr_mode is not None:
             pulumi.set(__self__, "addr_mode", addr_mode)
+        if class_id is not None:
+            pulumi.set(__self__, "class_id", class_id)
         if detect_mode is not None:
             pulumi.set(__self__, "detect_mode", detect_mode)
         if diffservcode is not None:
@@ -9823,6 +11098,8 @@ class SdwanHealthCheck(dict):
             pulumi.set(__self__, "slas", slas)
         if source is not None:
             pulumi.set(__self__, "source", source)
+        if source6 is not None:
+            pulumi.set(__self__, "source6", source6)
         if system_dns is not None:
             pulumi.set(__self__, "system_dns", system_dns)
         if threshold_alert_jitter is not None:
@@ -9853,6 +11130,14 @@ class SdwanHealthCheck(dict):
         Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
         """
         return pulumi.get(self, "addr_mode")
+
+    @property
+    @pulumi.getter(name="classId")
+    def class_id(self) -> Optional[int]:
+        """
+        Traffic class ID.
+        """
+        return pulumi.get(self, "class_id")
 
     @property
     @pulumi.getter(name="detectMode")
@@ -10109,6 +11394,14 @@ class SdwanHealthCheck(dict):
         Source IP address used in the health-check packet to the server.
         """
         return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter
+    def source6(self) -> Optional[str]:
+        """
+        Source IPv6 addressused in the health-check packet to server.
+        """
+        return pulumi.get(self, "source6")
 
     @property
     @pulumi.getter(name="systemDns")
@@ -10374,10 +11667,14 @@ class SdwanMember(dict):
         suggest = None
         if key == "ingressSpilloverThreshold":
             suggest = "ingress_spillover_threshold"
+        elif key == "preferredSource":
+            suggest = "preferred_source"
         elif key == "seqNum":
             suggest = "seq_num"
         elif key == "spilloverThreshold":
             suggest = "spillover_threshold"
+        elif key == "transportGroup":
+            suggest = "transport_group"
         elif key == "volumeRatio":
             suggest = "volume_ratio"
 
@@ -10399,6 +11696,7 @@ class SdwanMember(dict):
                  gateway6: Optional[str] = None,
                  ingress_spillover_threshold: Optional[int] = None,
                  interface: Optional[str] = None,
+                 preferred_source: Optional[str] = None,
                  priority: Optional[int] = None,
                  priority6: Optional[int] = None,
                  seq_num: Optional[int] = None,
@@ -10406,6 +11704,7 @@ class SdwanMember(dict):
                  source6: Optional[str] = None,
                  spillover_threshold: Optional[int] = None,
                  status: Optional[str] = None,
+                 transport_group: Optional[int] = None,
                  volume_ratio: Optional[int] = None,
                  weight: Optional[int] = None,
                  zone: Optional[str] = None):
@@ -10416,6 +11715,7 @@ class SdwanMember(dict):
         :param str gateway6: IPv6 gateway.
         :param int ingress_spillover_threshold: Ingress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.
         :param str interface: Interface name.
+        :param str preferred_source: Preferred source of route for this member.
         :param int priority: Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
         :param int priority6: Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.
         :param int seq_num: Member sequence number.
@@ -10423,6 +11723,7 @@ class SdwanMember(dict):
         :param str source6: Source IPv6 address used in the health-check packet to the server.
         :param int spillover_threshold: Egress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.
         :param str status: Enable/disable this interface in the SD-WAN. Valid values: `disable`, `enable`.
+        :param int transport_group: Measured transport group (0 - 255).
         :param int volume_ratio: Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).
         :param int weight: Weight of this interface for weighted load balancing. (1 - 255) More traffic is directed to interfaces with higher weights.
         :param str zone: Zone name.
@@ -10439,6 +11740,8 @@ class SdwanMember(dict):
             pulumi.set(__self__, "ingress_spillover_threshold", ingress_spillover_threshold)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if preferred_source is not None:
+            pulumi.set(__self__, "preferred_source", preferred_source)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
         if priority6 is not None:
@@ -10453,6 +11756,8 @@ class SdwanMember(dict):
             pulumi.set(__self__, "spillover_threshold", spillover_threshold)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if transport_group is not None:
+            pulumi.set(__self__, "transport_group", transport_group)
         if volume_ratio is not None:
             pulumi.set(__self__, "volume_ratio", volume_ratio)
         if weight is not None:
@@ -10507,6 +11812,14 @@ class SdwanMember(dict):
         Interface name.
         """
         return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="preferredSource")
+    def preferred_source(self) -> Optional[str]:
+        """
+        Preferred source of route for this member.
+        """
+        return pulumi.get(self, "preferred_source")
 
     @property
     @pulumi.getter
@@ -10565,6 +11878,14 @@ class SdwanMember(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter(name="transportGroup")
+    def transport_group(self) -> Optional[int]:
+        """
+        Measured transport group (0 - 255).
+        """
+        return pulumi.get(self, "transport_group")
+
+    @property
     @pulumi.getter(name="volumeRatio")
     def volume_ratio(self) -> Optional[int]:
         """
@@ -10596,8 +11917,12 @@ class SdwanNeighbor(dict):
         suggest = None
         if key == "healthCheck":
             suggest = "health_check"
+        elif key == "memberBlocks":
+            suggest = "member_blocks"
         elif key == "minimumSlaMeetMembers":
             suggest = "minimum_sla_meet_members"
+        elif key == "serviceId":
+            suggest = "service_id"
         elif key == "slaId":
             suggest = "sla_id"
 
@@ -10616,17 +11941,21 @@ class SdwanNeighbor(dict):
                  health_check: Optional[str] = None,
                  ip: Optional[str] = None,
                  member: Optional[int] = None,
+                 member_blocks: Optional[Sequence['outputs.SdwanNeighborMemberBlock']] = None,
                  minimum_sla_meet_members: Optional[int] = None,
                  mode: Optional[str] = None,
                  role: Optional[str] = None,
+                 service_id: Optional[int] = None,
                  sla_id: Optional[int] = None):
         """
         :param str health_check: SD-WAN health-check name.
         :param str ip: IP/IPv6 address of neighbor.
         :param int member: Member sequence number.
+        :param Sequence['SdwanNeighborMemberBlockArgs'] member_blocks: Member sequence number list. The structure of `member_block` block is documented below.
         :param int minimum_sla_meet_members: Minimum number of members which meet SLA when the neighbor is preferred.
         :param str mode: What metric to select the neighbor. Valid values: `sla`, `speedtest`.
         :param str role: Role of neighbor. Valid values: `standalone`, `primary`, `secondary`.
+        :param int service_id: SD-WAN service ID to work with the neighbor.
         :param int sla_id: SLA ID.
         """
         if health_check is not None:
@@ -10635,12 +11964,16 @@ class SdwanNeighbor(dict):
             pulumi.set(__self__, "ip", ip)
         if member is not None:
             pulumi.set(__self__, "member", member)
+        if member_blocks is not None:
+            pulumi.set(__self__, "member_blocks", member_blocks)
         if minimum_sla_meet_members is not None:
             pulumi.set(__self__, "minimum_sla_meet_members", minimum_sla_meet_members)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
         if sla_id is not None:
             pulumi.set(__self__, "sla_id", sla_id)
 
@@ -10669,6 +12002,14 @@ class SdwanNeighbor(dict):
         return pulumi.get(self, "member")
 
     @property
+    @pulumi.getter(name="memberBlocks")
+    def member_blocks(self) -> Optional[Sequence['outputs.SdwanNeighborMemberBlock']]:
+        """
+        Member sequence number list. The structure of `member_block` block is documented below.
+        """
+        return pulumi.get(self, "member_blocks")
+
+    @property
     @pulumi.getter(name="minimumSlaMeetMembers")
     def minimum_sla_meet_members(self) -> Optional[int]:
         """
@@ -10693,6 +12034,14 @@ class SdwanNeighbor(dict):
         return pulumi.get(self, "role")
 
     @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[int]:
+        """
+        SD-WAN service ID to work with the neighbor.
+        """
+        return pulumi.get(self, "service_id")
+
+    @property
     @pulumi.getter(name="slaId")
     def sla_id(self) -> Optional[int]:
         """
@@ -10702,12 +12051,50 @@ class SdwanNeighbor(dict):
 
 
 @pulumi.output_type
+class SdwanNeighborMemberBlock(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "seqNum":
+            suggest = "seq_num"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SdwanNeighborMemberBlock. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SdwanNeighborMemberBlock.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SdwanNeighborMemberBlock.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 seq_num: Optional[int] = None):
+        """
+        :param int seq_num: Member sequence number.
+        """
+        if seq_num is not None:
+            pulumi.set(__self__, "seq_num", seq_num)
+
+    @property
+    @pulumi.getter(name="seqNum")
+    def seq_num(self) -> Optional[int]:
+        """
+        Member sequence number.
+        """
+        return pulumi.get(self, "seq_num")
+
+
+@pulumi.output_type
 class SdwanService(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
         if key == "addrMode":
             suggest = "addr_mode"
+        elif key == "agentExclusive":
+            suggest = "agent_exclusive"
         elif key == "bandwidthWeight":
             suggest = "bandwidth_weight"
         elif key == "dscpForward":
@@ -10722,6 +12109,8 @@ class SdwanService(dict):
             suggest = "dst_negate"
         elif key == "endPort":
             suggest = "end_port"
+        elif key == "endSrcPort":
+            suggest = "end_src_port"
         elif key == "hashMode":
             suggest = "hash_mode"
         elif key == "healthChecks":
@@ -10758,6 +12147,8 @@ class SdwanService(dict):
             suggest = "link_cost_factor"
         elif key == "linkCostThreshold":
             suggest = "link_cost_threshold"
+        elif key == "loadBalance":
+            suggest = "load_balance"
         elif key == "minimumSlaMeetMembers":
             suggest = "minimum_sla_meet_members"
         elif key == "packetLossWeight":
@@ -10772,20 +12163,30 @@ class SdwanService(dict):
             suggest = "quality_link"
         elif key == "routeTag":
             suggest = "route_tag"
+        elif key == "shortcutPriority":
+            suggest = "shortcut_priority"
+        elif key == "shortcutStickiness":
+            suggest = "shortcut_stickiness"
         elif key == "slaCompareMethod":
             suggest = "sla_compare_method"
+        elif key == "slaStickiness":
+            suggest = "sla_stickiness"
         elif key == "srcNegate":
             suggest = "src_negate"
         elif key == "standaloneAction":
             suggest = "standalone_action"
         elif key == "startPort":
             suggest = "start_port"
+        elif key == "startSrcPort":
+            suggest = "start_src_port"
         elif key == "tieBreak":
             suggest = "tie_break"
         elif key == "tosMask":
             suggest = "tos_mask"
         elif key == "useShortcutSla":
             suggest = "use_shortcut_sla"
+        elif key == "zoneMode":
+            suggest = "zone_mode"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SdwanService. Access the value via the '{suggest}' property getter instead.")
@@ -10800,6 +12201,7 @@ class SdwanService(dict):
 
     def __init__(__self__, *,
                  addr_mode: Optional[str] = None,
+                 agent_exclusive: Optional[str] = None,
                  bandwidth_weight: Optional[int] = None,
                  default: Optional[str] = None,
                  dscp_forward: Optional[str] = None,
@@ -10810,6 +12212,7 @@ class SdwanService(dict):
                  dst_negate: Optional[str] = None,
                  dsts: Optional[Sequence['outputs.SdwanServiceDst']] = None,
                  end_port: Optional[int] = None,
+                 end_src_port: Optional[int] = None,
                  gateway: Optional[str] = None,
                  groups: Optional[Sequence['outputs.SdwanServiceGroup']] = None,
                  hash_mode: Optional[str] = None,
@@ -10831,6 +12234,7 @@ class SdwanService(dict):
                  latency_weight: Optional[int] = None,
                  link_cost_factor: Optional[str] = None,
                  link_cost_threshold: Optional[int] = None,
+                 load_balance: Optional[str] = None,
                  minimum_sla_meet_members: Optional[int] = None,
                  mode: Optional[str] = None,
                  name: Optional[str] = None,
@@ -10842,21 +12246,28 @@ class SdwanService(dict):
                  quality_link: Optional[int] = None,
                  role: Optional[str] = None,
                  route_tag: Optional[int] = None,
+                 shortcut: Optional[str] = None,
+                 shortcut_priority: Optional[str] = None,
+                 shortcut_stickiness: Optional[str] = None,
                  sla_compare_method: Optional[str] = None,
+                 sla_stickiness: Optional[str] = None,
                  slas: Optional[Sequence['outputs.SdwanServiceSla']] = None,
                  src6s: Optional[Sequence['outputs.SdwanServiceSrc6']] = None,
                  src_negate: Optional[str] = None,
                  srcs: Optional[Sequence['outputs.SdwanServiceSrc']] = None,
                  standalone_action: Optional[str] = None,
                  start_port: Optional[int] = None,
+                 start_src_port: Optional[int] = None,
                  status: Optional[str] = None,
                  tie_break: Optional[str] = None,
                  tos: Optional[str] = None,
                  tos_mask: Optional[str] = None,
                  use_shortcut_sla: Optional[str] = None,
-                 users: Optional[Sequence['outputs.SdwanServiceUser']] = None):
+                 users: Optional[Sequence['outputs.SdwanServiceUser']] = None,
+                 zone_mode: Optional[str] = None):
         """
         :param str addr_mode: Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
+        :param str agent_exclusive: Set/unset the service as agent use exclusively. Valid values: `enable`, `disable`.
         :param int bandwidth_weight: Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.
         :param str default: Enable/disable use of SD-WAN as default service. Valid values: `enable`, `disable`.
         :param str dscp_forward: Enable/disable forward traffic DSCP tag. Valid values: `enable`, `disable`.
@@ -10867,6 +12278,7 @@ class SdwanService(dict):
         :param str dst_negate: Enable/disable negation of destination address match. Valid values: `enable`, `disable`.
         :param Sequence['SdwanServiceDstArgs'] dsts: Destination address name. The structure of `dst` block is documented below.
         :param int end_port: End destination port number.
+        :param int end_src_port: End source port number.
         :param str gateway: Enable/disable SD-WAN service gateway. Valid values: `enable`, `disable`.
         :param Sequence['SdwanServiceGroupArgs'] groups: User groups. The structure of `groups` block is documented below.
         :param str hash_mode: Hash algorithm for selected priority members for load balance mode. Valid values: `round-robin`, `source-ip-based`, `source-dest-ip-based`, `inbandwidth`, `outbandwidth`, `bibandwidth`.
@@ -10888,8 +12300,9 @@ class SdwanService(dict):
         :param int latency_weight: Coefficient of latency in the formula of custom-profile-1.
         :param str link_cost_factor: Link cost factor. Valid values: `latency`, `jitter`, `packet-loss`, `inbandwidth`, `outbandwidth`, `bibandwidth`, `custom-profile-1`.
         :param int link_cost_threshold: Percentage threshold change of link cost values that will result in policy route regeneration (0 - 10000000, default = 10).
+        :param str load_balance: Enable/disable load-balance. Valid values: `enable`, `disable`.
         :param int minimum_sla_meet_members: Minimum number of members which meet SLA.
-        :param str mode: Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
+        :param str mode: Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN.
         :param str name: Service and service group name.
         :param int packet_loss_weight: Coefficient of packet-loss in the formula of custom-profile-1.
         :param str passive_measurement: Enable/disable passive measurement based on the service criteria. Valid values: `enable`, `disable`.
@@ -10899,22 +12312,30 @@ class SdwanService(dict):
         :param int quality_link: Quality grade.
         :param str role: Service role to work with neighbor. Valid values: `standalone`, `primary`, `secondary`.
         :param int route_tag: IPv4 route map route-tag.
+        :param str shortcut: Enable/disable shortcut for this service. Valid values: `enable`, `disable`.
+        :param str shortcut_priority: High priority of ADVPN shortcut for this service. Valid values: `enable`, `disable`, `auto`.
+        :param str shortcut_stickiness: Enable/disable shortcut-stickiness of ADVPN. Valid values: `enable`, `disable`.
         :param str sla_compare_method: Method to compare SLA value for SLA mode. Valid values: `order`, `number`.
+        :param str sla_stickiness: Enable/disable SLA stickiness (default = disable). Valid values: `enable`, `disable`.
         :param Sequence['SdwanServiceSlaArgs'] slas: Service level agreement (SLA). The structure of `sla` block is documented below.
         :param Sequence['SdwanServiceSrc6Args'] src6s: Source address6 name. The structure of `src6` block is documented below.
         :param str src_negate: Enable/disable negation of source address match. Valid values: `enable`, `disable`.
         :param Sequence['SdwanServiceSrcArgs'] srcs: Source address name. The structure of `src` block is documented below.
         :param str standalone_action: Enable/disable service when selected neighbor role is standalone while service role is not standalone. Valid values: `enable`, `disable`.
         :param int start_port: Start destination port number.
+        :param int start_src_port: Start source port number.
         :param str status: Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
         :param str tie_break: Method of selecting member if more than one meets the SLA.
         :param str tos: Type of service bit pattern.
         :param str tos_mask: Type of service evaluated bits.
         :param str use_shortcut_sla: Enable/disable use of ADVPN shortcut for quality comparison. Valid values: `enable`, `disable`.
         :param Sequence['SdwanServiceUserArgs'] users: User name. The structure of `users` block is documented below.
+        :param str zone_mode: Enable/disable zone mode. Valid values: `enable`, `disable`.
         """
         if addr_mode is not None:
             pulumi.set(__self__, "addr_mode", addr_mode)
+        if agent_exclusive is not None:
+            pulumi.set(__self__, "agent_exclusive", agent_exclusive)
         if bandwidth_weight is not None:
             pulumi.set(__self__, "bandwidth_weight", bandwidth_weight)
         if default is not None:
@@ -10935,6 +12356,8 @@ class SdwanService(dict):
             pulumi.set(__self__, "dsts", dsts)
         if end_port is not None:
             pulumi.set(__self__, "end_port", end_port)
+        if end_src_port is not None:
+            pulumi.set(__self__, "end_src_port", end_src_port)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
         if groups is not None:
@@ -10977,6 +12400,8 @@ class SdwanService(dict):
             pulumi.set(__self__, "link_cost_factor", link_cost_factor)
         if link_cost_threshold is not None:
             pulumi.set(__self__, "link_cost_threshold", link_cost_threshold)
+        if load_balance is not None:
+            pulumi.set(__self__, "load_balance", load_balance)
         if minimum_sla_meet_members is not None:
             pulumi.set(__self__, "minimum_sla_meet_members", minimum_sla_meet_members)
         if mode is not None:
@@ -10999,8 +12424,16 @@ class SdwanService(dict):
             pulumi.set(__self__, "role", role)
         if route_tag is not None:
             pulumi.set(__self__, "route_tag", route_tag)
+        if shortcut is not None:
+            pulumi.set(__self__, "shortcut", shortcut)
+        if shortcut_priority is not None:
+            pulumi.set(__self__, "shortcut_priority", shortcut_priority)
+        if shortcut_stickiness is not None:
+            pulumi.set(__self__, "shortcut_stickiness", shortcut_stickiness)
         if sla_compare_method is not None:
             pulumi.set(__self__, "sla_compare_method", sla_compare_method)
+        if sla_stickiness is not None:
+            pulumi.set(__self__, "sla_stickiness", sla_stickiness)
         if slas is not None:
             pulumi.set(__self__, "slas", slas)
         if src6s is not None:
@@ -11013,6 +12446,8 @@ class SdwanService(dict):
             pulumi.set(__self__, "standalone_action", standalone_action)
         if start_port is not None:
             pulumi.set(__self__, "start_port", start_port)
+        if start_src_port is not None:
+            pulumi.set(__self__, "start_src_port", start_src_port)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tie_break is not None:
@@ -11025,6 +12460,8 @@ class SdwanService(dict):
             pulumi.set(__self__, "use_shortcut_sla", use_shortcut_sla)
         if users is not None:
             pulumi.set(__self__, "users", users)
+        if zone_mode is not None:
+            pulumi.set(__self__, "zone_mode", zone_mode)
 
     @property
     @pulumi.getter(name="addrMode")
@@ -11033,6 +12470,14 @@ class SdwanService(dict):
         Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
         """
         return pulumi.get(self, "addr_mode")
+
+    @property
+    @pulumi.getter(name="agentExclusive")
+    def agent_exclusive(self) -> Optional[str]:
+        """
+        Set/unset the service as agent use exclusively. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "agent_exclusive")
 
     @property
     @pulumi.getter(name="bandwidthWeight")
@@ -11113,6 +12558,14 @@ class SdwanService(dict):
         End destination port number.
         """
         return pulumi.get(self, "end_port")
+
+    @property
+    @pulumi.getter(name="endSrcPort")
+    def end_src_port(self) -> Optional[int]:
+        """
+        End source port number.
+        """
+        return pulumi.get(self, "end_src_port")
 
     @property
     @pulumi.getter
@@ -11283,6 +12736,14 @@ class SdwanService(dict):
         return pulumi.get(self, "link_cost_threshold")
 
     @property
+    @pulumi.getter(name="loadBalance")
+    def load_balance(self) -> Optional[str]:
+        """
+        Enable/disable load-balance. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "load_balance")
+
+    @property
     @pulumi.getter(name="minimumSlaMeetMembers")
     def minimum_sla_meet_members(self) -> Optional[int]:
         """
@@ -11294,7 +12755,7 @@ class SdwanService(dict):
     @pulumi.getter
     def mode(self) -> Optional[str]:
         """
-        Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
+        Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN.
         """
         return pulumi.get(self, "mode")
 
@@ -11371,12 +12832,44 @@ class SdwanService(dict):
         return pulumi.get(self, "route_tag")
 
     @property
+    @pulumi.getter
+    def shortcut(self) -> Optional[str]:
+        """
+        Enable/disable shortcut for this service. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "shortcut")
+
+    @property
+    @pulumi.getter(name="shortcutPriority")
+    def shortcut_priority(self) -> Optional[str]:
+        """
+        High priority of ADVPN shortcut for this service. Valid values: `enable`, `disable`, `auto`.
+        """
+        return pulumi.get(self, "shortcut_priority")
+
+    @property
+    @pulumi.getter(name="shortcutStickiness")
+    def shortcut_stickiness(self) -> Optional[str]:
+        """
+        Enable/disable shortcut-stickiness of ADVPN. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "shortcut_stickiness")
+
+    @property
     @pulumi.getter(name="slaCompareMethod")
     def sla_compare_method(self) -> Optional[str]:
         """
         Method to compare SLA value for SLA mode. Valid values: `order`, `number`.
         """
         return pulumi.get(self, "sla_compare_method")
+
+    @property
+    @pulumi.getter(name="slaStickiness")
+    def sla_stickiness(self) -> Optional[str]:
+        """
+        Enable/disable SLA stickiness (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "sla_stickiness")
 
     @property
     @pulumi.getter
@@ -11427,6 +12920,14 @@ class SdwanService(dict):
         return pulumi.get(self, "start_port")
 
     @property
+    @pulumi.getter(name="startSrcPort")
+    def start_src_port(self) -> Optional[int]:
+        """
+        Start source port number.
+        """
+        return pulumi.get(self, "start_src_port")
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[str]:
         """
@@ -11473,6 +12974,14 @@ class SdwanService(dict):
         User name. The structure of `users` block is documented below.
         """
         return pulumi.get(self, "users")
+
+    @property
+    @pulumi.getter(name="zoneMode")
+    def zone_mode(self) -> Optional[str]:
+        """
+        Enable/disable zone mode. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "zone_mode")
 
 
 @pulumi.output_type
@@ -11887,7 +13396,13 @@ class SdwanZone(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "serviceSlaTieBreak":
+        if key == "advpnHealthCheck":
+            suggest = "advpn_health_check"
+        elif key == "advpnSelect":
+            suggest = "advpn_select"
+        elif key == "minimumSlaMeetMembers":
+            suggest = "minimum_sla_meet_members"
+        elif key == "serviceSlaTieBreak":
             suggest = "service_sla_tie_break"
 
         if suggest:
@@ -11902,16 +13417,52 @@ class SdwanZone(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 advpn_health_check: Optional[str] = None,
+                 advpn_select: Optional[str] = None,
+                 minimum_sla_meet_members: Optional[int] = None,
                  name: Optional[str] = None,
                  service_sla_tie_break: Optional[str] = None):
         """
+        :param str advpn_health_check: Health check for ADVPN local overlay link quality.
+        :param str advpn_select: Enable/disable selection of ADVPN based on SDWAN information. Valid values: `enable`, `disable`.
+        :param int minimum_sla_meet_members: Minimum number of members which meet SLA when the neighbor is preferred.
         :param str name: Zone name.
         :param str service_sla_tie_break: Method of selecting member if more than one meets the SLA.
         """
+        if advpn_health_check is not None:
+            pulumi.set(__self__, "advpn_health_check", advpn_health_check)
+        if advpn_select is not None:
+            pulumi.set(__self__, "advpn_select", advpn_select)
+        if minimum_sla_meet_members is not None:
+            pulumi.set(__self__, "minimum_sla_meet_members", minimum_sla_meet_members)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if service_sla_tie_break is not None:
             pulumi.set(__self__, "service_sla_tie_break", service_sla_tie_break)
+
+    @property
+    @pulumi.getter(name="advpnHealthCheck")
+    def advpn_health_check(self) -> Optional[str]:
+        """
+        Health check for ADVPN local overlay link quality.
+        """
+        return pulumi.get(self, "advpn_health_check")
+
+    @property
+    @pulumi.getter(name="advpnSelect")
+    def advpn_select(self) -> Optional[str]:
+        """
+        Enable/disable selection of ADVPN based on SDWAN information. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "advpn_select")
+
+    @property
+    @pulumi.getter(name="minimumSlaMeetMembers")
+    def minimum_sla_meet_members(self) -> Optional[int]:
+        """
+        Minimum number of members which meet SLA when the neighbor is preferred.
+        """
+        return pulumi.get(self, "minimum_sla_meet_members")
 
     @property
     @pulumi.getter
@@ -11937,6 +13488,8 @@ class SessionttlPort(dict):
         suggest = None
         if key == "endPort":
             suggest = "end_port"
+        elif key == "refreshDirection":
+            suggest = "refresh_direction"
         elif key == "startPort":
             suggest = "start_port"
 
@@ -11955,12 +13508,14 @@ class SessionttlPort(dict):
                  end_port: Optional[int] = None,
                  id: Optional[int] = None,
                  protocol: Optional[int] = None,
+                 refresh_direction: Optional[str] = None,
                  start_port: Optional[int] = None,
                  timeout: Optional[str] = None):
         """
         :param int end_port: End port number.
         :param int id: Table entry ID.
         :param int protocol: Protocol (0 - 255).
+        :param str refresh_direction: Refresh direction: Both, outgoing, incoming Valid values: `both`, `outgoing`, `incoming`.
         :param int start_port: Start port number.
         :param str timeout: Session timeout (TTL).
         """
@@ -11970,6 +13525,8 @@ class SessionttlPort(dict):
             pulumi.set(__self__, "id", id)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if refresh_direction is not None:
+            pulumi.set(__self__, "refresh_direction", refresh_direction)
         if start_port is not None:
             pulumi.set(__self__, "start_port", start_port)
         if timeout is not None:
@@ -11998,6 +13555,14 @@ class SessionttlPort(dict):
         Protocol (0 - 255).
         """
         return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="refreshDirection")
+    def refresh_direction(self) -> Optional[str]:
+        """
+        Refresh direction: Both, outgoing, incoming Valid values: `both`, `outgoing`, `incoming`.
+        """
+        return pulumi.get(self, "refresh_direction")
 
     @property
     @pulumi.getter(name="startPort")
@@ -12036,6 +13601,108 @@ class SettingsGuiDefaultPolicyColumn(dict):
 
 
 @pulumi.output_type
+class SflowCollector(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "collectorIp":
+            suggest = "collector_ip"
+        elif key == "collectorPort":
+            suggest = "collector_port"
+        elif key == "interfaceSelectMethod":
+            suggest = "interface_select_method"
+        elif key == "sourceIp":
+            suggest = "source_ip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SflowCollector. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SflowCollector.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SflowCollector.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 collector_ip: Optional[str] = None,
+                 collector_port: Optional[int] = None,
+                 id: Optional[int] = None,
+                 interface: Optional[str] = None,
+                 interface_select_method: Optional[str] = None,
+                 source_ip: Optional[str] = None):
+        """
+        :param str collector_ip: IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+        :param int collector_port: UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+        :param int id: ID.
+        :param str interface: Specify outgoing interface to reach server.
+        :param str interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        :param str source_ip: Source IP address for sFlow agent.
+        """
+        if collector_ip is not None:
+            pulumi.set(__self__, "collector_ip", collector_ip)
+        if collector_port is not None:
+            pulumi.set(__self__, "collector_port", collector_port)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if interface_select_method is not None:
+            pulumi.set(__self__, "interface_select_method", interface_select_method)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
+
+    @property
+    @pulumi.getter(name="collectorIp")
+    def collector_ip(self) -> Optional[str]:
+        """
+        IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+        """
+        return pulumi.get(self, "collector_ip")
+
+    @property
+    @pulumi.getter(name="collectorPort")
+    def collector_port(self) -> Optional[int]:
+        """
+        UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+        """
+        return pulumi.get(self, "collector_port")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[str]:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> Optional[str]:
+        """
+        Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[str]:
+        """
+        Source IP address for sFlow agent.
+        """
+        return pulumi.get(self, "source_ip")
+
+
+@pulumi.output_type
 class SpeedtestscheduleSchedule(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
@@ -12057,28 +13724,48 @@ class SpeedtestscheduleSchedule(dict):
 @pulumi.output_type
 class SpeedtestserverHost(dict):
     def __init__(__self__, *,
+                 distance: Optional[int] = None,
                  id: Optional[int] = None,
                  ip: Optional[str] = None,
+                 latitude: Optional[str] = None,
+                 longitude: Optional[str] = None,
                  password: Optional[str] = None,
                  port: Optional[int] = None,
                  user: Optional[str] = None):
         """
+        :param int distance: Speed test host distance.
         :param int id: Server host ID.
         :param str ip: Server host IPv4 address.
+        :param str latitude: Speed test host latitude.
+        :param str longitude: Speed test host longitude.
         :param str password: Speed test host password.
         :param int port: Server host port number to communicate with client.
         :param str user: Speed test host user name.
         """
+        if distance is not None:
+            pulumi.set(__self__, "distance", distance)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if latitude is not None:
+            pulumi.set(__self__, "latitude", latitude)
+        if longitude is not None:
+            pulumi.set(__self__, "longitude", longitude)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if user is not None:
             pulumi.set(__self__, "user", user)
+
+    @property
+    @pulumi.getter
+    def distance(self) -> Optional[int]:
+        """
+        Speed test host distance.
+        """
+        return pulumi.get(self, "distance")
 
     @property
     @pulumi.getter
@@ -12095,6 +13782,22 @@ class SpeedtestserverHost(dict):
         Server host IPv4 address.
         """
         return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def latitude(self) -> Optional[str]:
+        """
+        Speed test host latitude.
+        """
+        return pulumi.get(self, "latitude")
+
+    @property
+    @pulumi.getter
+    def longitude(self) -> Optional[str]:
+        """
+        Speed test host longitude.
+        """
+        return pulumi.get(self, "longitude")
 
     @property
     @pulumi.getter
@@ -12142,6 +13845,25 @@ class SsoadminVdom(dict):
 
 @pulumi.output_type
 class SsoforticloudadminVdom(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Virtual domain name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Virtual domain name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class SsofortigatecloudadminVdom(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
@@ -12631,6 +14353,210 @@ class VdomexceptionVdom(dict):
         VDOM name.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class VdomnetflowCollector(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "collectorIp":
+            suggest = "collector_ip"
+        elif key == "collectorPort":
+            suggest = "collector_port"
+        elif key == "interfaceSelectMethod":
+            suggest = "interface_select_method"
+        elif key == "sourceIp":
+            suggest = "source_ip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VdomnetflowCollector. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VdomnetflowCollector.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VdomnetflowCollector.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 collector_ip: Optional[str] = None,
+                 collector_port: Optional[int] = None,
+                 id: Optional[int] = None,
+                 interface: Optional[str] = None,
+                 interface_select_method: Optional[str] = None,
+                 source_ip: Optional[str] = None):
+        """
+        :param str collector_ip: Collector IP.
+        :param int collector_port: NetFlow collector port number.
+        :param int id: ID.
+        :param str interface: Specify outgoing interface to reach server.
+        :param str interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        :param str source_ip: Source IP address for communication with the NetFlow agent.
+        """
+        if collector_ip is not None:
+            pulumi.set(__self__, "collector_ip", collector_ip)
+        if collector_port is not None:
+            pulumi.set(__self__, "collector_port", collector_port)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if interface_select_method is not None:
+            pulumi.set(__self__, "interface_select_method", interface_select_method)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
+
+    @property
+    @pulumi.getter(name="collectorIp")
+    def collector_ip(self) -> Optional[str]:
+        """
+        Collector IP.
+        """
+        return pulumi.get(self, "collector_ip")
+
+    @property
+    @pulumi.getter(name="collectorPort")
+    def collector_port(self) -> Optional[int]:
+        """
+        NetFlow collector port number.
+        """
+        return pulumi.get(self, "collector_port")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[str]:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> Optional[str]:
+        """
+        Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[str]:
+        """
+        Source IP address for communication with the NetFlow agent.
+        """
+        return pulumi.get(self, "source_ip")
+
+
+@pulumi.output_type
+class VdomsflowCollector(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "collectorIp":
+            suggest = "collector_ip"
+        elif key == "collectorPort":
+            suggest = "collector_port"
+        elif key == "interfaceSelectMethod":
+            suggest = "interface_select_method"
+        elif key == "sourceIp":
+            suggest = "source_ip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VdomsflowCollector. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VdomsflowCollector.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VdomsflowCollector.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 collector_ip: Optional[str] = None,
+                 collector_port: Optional[int] = None,
+                 id: Optional[int] = None,
+                 interface: Optional[str] = None,
+                 interface_select_method: Optional[str] = None,
+                 source_ip: Optional[str] = None):
+        """
+        :param str collector_ip: IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+        :param int collector_port: UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+        :param int id: ID.
+        :param str interface: Specify outgoing interface to reach server.
+        :param str interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        :param str source_ip: Source IP address for sFlow agent.
+        """
+        if collector_ip is not None:
+            pulumi.set(__self__, "collector_ip", collector_ip)
+        if collector_port is not None:
+            pulumi.set(__self__, "collector_port", collector_port)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if interface_select_method is not None:
+            pulumi.set(__self__, "interface_select_method", interface_select_method)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
+
+    @property
+    @pulumi.getter(name="collectorIp")
+    def collector_ip(self) -> Optional[str]:
+        """
+        IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+        """
+        return pulumi.get(self, "collector_ip")
+
+    @property
+    @pulumi.getter(name="collectorPort")
+    def collector_port(self) -> Optional[int]:
+        """
+        UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+        """
+        return pulumi.get(self, "collector_port")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[str]:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> Optional[str]:
+        """
+        Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[str]:
+        """
+        Source IP address for sFlow agent.
+        """
+        return pulumi.get(self, "source_ip")
 
 
 @pulumi.output_type
@@ -15063,6 +16989,8 @@ class GetAccprofileUtmgrpPermissionResult(dict):
     def __init__(__self__, *,
                  antivirus: str,
                  application_control: str,
+                 casb: str,
+                 data_leak_prevention: str,
                  data_loss_prevention: str,
                  dnsfilter: str,
                  emailfilter: str,
@@ -15072,12 +17000,15 @@ class GetAccprofileUtmgrpPermissionResult(dict):
                  ips: str,
                  spamfilter: str,
                  videofilter: str,
+                 virtual_patch: str,
                  voip: str,
                  waf: str,
                  webfilter: str):
         """
         :param str antivirus: Antivirus profiles and settings.
         :param str application_control: Application Control profiles and settings.
+        :param str casb: Inline CASB filter profile and settings
+        :param str data_leak_prevention: DLP profiles and settings.
         :param str data_loss_prevention: DLP profiles and settings.
         :param str dnsfilter: DNS Filter profiles and settings.
         :param str emailfilter: AntiSpam filter and settings.
@@ -15087,12 +17018,15 @@ class GetAccprofileUtmgrpPermissionResult(dict):
         :param str ips: IPS profiles and settings.
         :param str spamfilter: AntiSpam filter and settings.
         :param str videofilter: Video filter profiles and settings.
+        :param str virtual_patch: Virtual patch profiles and settings.
         :param str voip: VoIP profiles and settings.
         :param str waf: Web Application Firewall profiles and settings.
         :param str webfilter: Web Filter profiles and settings.
         """
         pulumi.set(__self__, "antivirus", antivirus)
         pulumi.set(__self__, "application_control", application_control)
+        pulumi.set(__self__, "casb", casb)
+        pulumi.set(__self__, "data_leak_prevention", data_leak_prevention)
         pulumi.set(__self__, "data_loss_prevention", data_loss_prevention)
         pulumi.set(__self__, "dnsfilter", dnsfilter)
         pulumi.set(__self__, "emailfilter", emailfilter)
@@ -15102,6 +17036,7 @@ class GetAccprofileUtmgrpPermissionResult(dict):
         pulumi.set(__self__, "ips", ips)
         pulumi.set(__self__, "spamfilter", spamfilter)
         pulumi.set(__self__, "videofilter", videofilter)
+        pulumi.set(__self__, "virtual_patch", virtual_patch)
         pulumi.set(__self__, "voip", voip)
         pulumi.set(__self__, "waf", waf)
         pulumi.set(__self__, "webfilter", webfilter)
@@ -15121,6 +17056,22 @@ class GetAccprofileUtmgrpPermissionResult(dict):
         Application Control profiles and settings.
         """
         return pulumi.get(self, "application_control")
+
+    @property
+    @pulumi.getter
+    def casb(self) -> str:
+        """
+        Inline CASB filter profile and settings
+        """
+        return pulumi.get(self, "casb")
+
+    @property
+    @pulumi.getter(name="dataLeakPrevention")
+    def data_leak_prevention(self) -> str:
+        """
+        DLP profiles and settings.
+        """
+        return pulumi.get(self, "data_leak_prevention")
 
     @property
     @pulumi.getter(name="dataLossPrevention")
@@ -15193,6 +17144,14 @@ class GetAccprofileUtmgrpPermissionResult(dict):
         Video filter profiles and settings.
         """
         return pulumi.get(self, "videofilter")
+
+    @property
+    @pulumi.getter(name="virtualPatch")
+    def virtual_patch(self) -> str:
+        """
+        Virtual patch profiles and settings.
+        """
+        return pulumi.get(self, "virtual_patch")
 
     @property
     @pulumi.getter
@@ -15833,7 +17792,7 @@ class GetAutomationtriggerFieldResult(dict):
                  name: str,
                  value: str):
         """
-        :param int id: Log ID.
+        :param int id: Entry ID.
         :param str name: Specify the name of the desired system automationtrigger.
         :param str value: Value.
         """
@@ -15845,7 +17804,7 @@ class GetAutomationtriggerFieldResult(dict):
     @pulumi.getter
     def id(self) -> int:
         """
-        Log ID.
+        Entry ID.
         """
         return pulumi.get(self, "id")
 
@@ -15871,7 +17830,7 @@ class GetAutomationtriggerLogidBlockResult(dict):
     def __init__(__self__, *,
                  id: int):
         """
-        :param int id: Log ID.
+        :param int id: Entry ID.
         """
         pulumi.set(__self__, "id", id)
 
@@ -15879,7 +17838,7 @@ class GetAutomationtriggerLogidBlockResult(dict):
     @pulumi.getter
     def id(self) -> int:
         """
-        Log ID.
+        Entry ID.
         """
         return pulumi.get(self, "id")
 
@@ -16140,15 +18099,18 @@ class GetCsfFabricConnectorResult(dict):
     def __init__(__self__, *,
                  accprofile: str,
                  configuration_write_access: str,
-                 serial: str):
+                 serial: str,
+                 vdoms: Sequence['outputs.GetCsfFabricConnectorVdomResult']):
         """
         :param str accprofile: Override access profile.
         :param str configuration_write_access: Enable/disable downstream device write access to configuration.
         :param str serial: Serial.
+        :param Sequence['GetCsfFabricConnectorVdomArgs'] vdoms: Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
         """
         pulumi.set(__self__, "accprofile", accprofile)
         pulumi.set(__self__, "configuration_write_access", configuration_write_access)
         pulumi.set(__self__, "serial", serial)
+        pulumi.set(__self__, "vdoms", vdoms)
 
     @property
     @pulumi.getter
@@ -16173,6 +18135,32 @@ class GetCsfFabricConnectorResult(dict):
         Serial.
         """
         return pulumi.get(self, "serial")
+
+    @property
+    @pulumi.getter
+    def vdoms(self) -> Sequence['outputs.GetCsfFabricConnectorVdomResult']:
+        """
+        Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
+        """
+        return pulumi.get(self, "vdoms")
+
+
+@pulumi.output_type
+class GetCsfFabricConnectorVdomResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Device name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Device name.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -16267,6 +18255,7 @@ class GetCsfTrustedListResult(dict):
                  certificate: str,
                  downstream_authorization: str,
                  ha_members: str,
+                 index: int,
                  name: str,
                  serial: str):
         """
@@ -16275,6 +18264,7 @@ class GetCsfTrustedListResult(dict):
         :param str certificate: Certificate.
         :param str downstream_authorization: Trust authorizations by this node's administrator.
         :param str ha_members: HA members.
+        :param int index: Index of the downstream in tree.
         :param str name: Device name.
         :param str serial: Serial.
         """
@@ -16283,6 +18273,7 @@ class GetCsfTrustedListResult(dict):
         pulumi.set(__self__, "certificate", certificate)
         pulumi.set(__self__, "downstream_authorization", downstream_authorization)
         pulumi.set(__self__, "ha_members", ha_members)
+        pulumi.set(__self__, "index", index)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "serial", serial)
 
@@ -16325,6 +18316,14 @@ class GetCsfTrustedListResult(dict):
         HA members.
         """
         return pulumi.get(self, "ha_members")
+
+    @property
+    @pulumi.getter
+    def index(self) -> int:
+        """
+        Index of the downstream in tree.
+        """
+        return pulumi.get(self, "index")
 
     @property
     @pulumi.getter
@@ -16519,6 +18518,24 @@ class GetDnsdatabaseDnsEntryResult(dict):
         Resource record type.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetGlobalInternetServiceDownloadListResult(dict):
+    def __init__(__self__, *,
+                 id: int):
+        """
+        :param int id: Internet Service ID.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        Internet Service ID.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -16736,6 +18753,7 @@ class GetHaVclusterResult(dict):
                  override: str,
                  override_wait_time: int,
                  pingserver_failover_threshold: int,
+                 pingserver_flip_timeout: int,
                  pingserver_monitor_interface: str,
                  pingserver_secondary_force_reset: str,
                  pingserver_slave_force_reset: str,
@@ -16747,6 +18765,7 @@ class GetHaVclusterResult(dict):
         :param str override: Enable and increase the priority of the unit that should always be primary (master).
         :param int override_wait_time: Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
         :param int pingserver_failover_threshold: Remote IP monitoring failover threshold (0 - 50).
+        :param int pingserver_flip_timeout: Time to wait in minutes before renegotiating after a remote IP monitoring failover.
         :param str pingserver_monitor_interface: Interfaces to check for remote IP monitoring.
         :param str pingserver_secondary_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover.
         :param str pingserver_slave_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover.
@@ -16758,6 +18777,7 @@ class GetHaVclusterResult(dict):
         pulumi.set(__self__, "override", override)
         pulumi.set(__self__, "override_wait_time", override_wait_time)
         pulumi.set(__self__, "pingserver_failover_threshold", pingserver_failover_threshold)
+        pulumi.set(__self__, "pingserver_flip_timeout", pingserver_flip_timeout)
         pulumi.set(__self__, "pingserver_monitor_interface", pingserver_monitor_interface)
         pulumi.set(__self__, "pingserver_secondary_force_reset", pingserver_secondary_force_reset)
         pulumi.set(__self__, "pingserver_slave_force_reset", pingserver_slave_force_reset)
@@ -16796,6 +18816,14 @@ class GetHaVclusterResult(dict):
         Remote IP monitoring failover threshold (0 - 50).
         """
         return pulumi.get(self, "pingserver_failover_threshold")
+
+    @property
+    @pulumi.getter(name="pingserverFlipTimeout")
+    def pingserver_flip_timeout(self) -> int:
+        """
+        Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        """
+        return pulumi.get(self, "pingserver_flip_timeout")
 
     @property
     @pulumi.getter(name="pingserverMonitorInterface")
@@ -16985,8 +19013,11 @@ class GetInterfaceIpv6Result(dict):
                  dhcp6_prefix_hint: str,
                  dhcp6_prefix_hint_plt: int,
                  dhcp6_prefix_hint_vlt: int,
+                 dhcp6_relay_interface_id: str,
                  dhcp6_relay_ip: str,
                  dhcp6_relay_service: str,
+                 dhcp6_relay_source_interface: str,
+                 dhcp6_relay_source_ip: str,
                  dhcp6_relay_type: str,
                  icmp6_send_redirect: str,
                  interface_identifier: str,
@@ -17032,8 +19063,11 @@ class GetInterfaceIpv6Result(dict):
         :param str dhcp6_prefix_hint: DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
         :param int dhcp6_prefix_hint_plt: DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
         :param int dhcp6_prefix_hint_vlt: DHCPv6 prefix hint valid life time (sec).
+        :param str dhcp6_relay_interface_id: DHCP6 relay interface ID.
         :param str dhcp6_relay_ip: DHCPv6 relay IP address.
         :param str dhcp6_relay_service: Enable/disable DHCPv6 relay.
+        :param str dhcp6_relay_source_interface: Enable/disable use of address on this interface as the source address of the relay message.
+        :param str dhcp6_relay_source_ip: IPv6 address used by the DHCP6 relay as its source IP.
         :param str dhcp6_relay_type: DHCPv6 relay type.
         :param str icmp6_send_redirect: Enable/disable sending of ICMPv6 redirects.
         :param str interface_identifier: IPv6 interface identifier.
@@ -17079,8 +19113,11 @@ class GetInterfaceIpv6Result(dict):
         pulumi.set(__self__, "dhcp6_prefix_hint", dhcp6_prefix_hint)
         pulumi.set(__self__, "dhcp6_prefix_hint_plt", dhcp6_prefix_hint_plt)
         pulumi.set(__self__, "dhcp6_prefix_hint_vlt", dhcp6_prefix_hint_vlt)
+        pulumi.set(__self__, "dhcp6_relay_interface_id", dhcp6_relay_interface_id)
         pulumi.set(__self__, "dhcp6_relay_ip", dhcp6_relay_ip)
         pulumi.set(__self__, "dhcp6_relay_service", dhcp6_relay_service)
+        pulumi.set(__self__, "dhcp6_relay_source_interface", dhcp6_relay_source_interface)
+        pulumi.set(__self__, "dhcp6_relay_source_ip", dhcp6_relay_source_ip)
         pulumi.set(__self__, "dhcp6_relay_type", dhcp6_relay_type)
         pulumi.set(__self__, "icmp6_send_redirect", icmp6_send_redirect)
         pulumi.set(__self__, "interface_identifier", interface_identifier)
@@ -17190,6 +19227,14 @@ class GetInterfaceIpv6Result(dict):
         return pulumi.get(self, "dhcp6_prefix_hint_vlt")
 
     @property
+    @pulumi.getter(name="dhcp6RelayInterfaceId")
+    def dhcp6_relay_interface_id(self) -> str:
+        """
+        DHCP6 relay interface ID.
+        """
+        return pulumi.get(self, "dhcp6_relay_interface_id")
+
+    @property
     @pulumi.getter(name="dhcp6RelayIp")
     def dhcp6_relay_ip(self) -> str:
         """
@@ -17204,6 +19249,22 @@ class GetInterfaceIpv6Result(dict):
         Enable/disable DHCPv6 relay.
         """
         return pulumi.get(self, "dhcp6_relay_service")
+
+    @property
+    @pulumi.getter(name="dhcp6RelaySourceInterface")
+    def dhcp6_relay_source_interface(self) -> str:
+        """
+        Enable/disable use of address on this interface as the source address of the relay message.
+        """
+        return pulumi.get(self, "dhcp6_relay_source_interface")
+
+    @property
+    @pulumi.getter(name="dhcp6RelaySourceIp")
+    def dhcp6_relay_source_ip(self) -> str:
+        """
+        IPv6 address used by the DHCP6 relay as its source IP.
+        """
+        return pulumi.get(self, "dhcp6_relay_source_ip")
 
     @property
     @pulumi.getter(name="dhcp6RelayType")
@@ -17757,6 +19818,7 @@ class GetInterfaceIpv6Vrrp6Result(dict):
     def __init__(__self__, *,
                  accept_mode: str,
                  adv_interval: int,
+                 ignore_default_route: str,
                  preempt: str,
                  priority: int,
                  start_time: int,
@@ -17768,6 +19830,7 @@ class GetInterfaceIpv6Vrrp6Result(dict):
         """
         :param str accept_mode: Enable/disable accept mode.
         :param int adv_interval: Advertisement interval (1 - 255 seconds).
+        :param str ignore_default_route: Enable/disable ignoring of default route when checking destination.
         :param str preempt: Enable/disable preempt mode.
         :param int priority: Priority of the virtual router (1 - 255).
         :param int start_time: Startup time (1 - 255 seconds).
@@ -17779,6 +19842,7 @@ class GetInterfaceIpv6Vrrp6Result(dict):
         """
         pulumi.set(__self__, "accept_mode", accept_mode)
         pulumi.set(__self__, "adv_interval", adv_interval)
+        pulumi.set(__self__, "ignore_default_route", ignore_default_route)
         pulumi.set(__self__, "preempt", preempt)
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "start_time", start_time)
@@ -17803,6 +19867,14 @@ class GetInterfaceIpv6Vrrp6Result(dict):
         Advertisement interval (1 - 255 seconds).
         """
         return pulumi.get(self, "adv_interval")
+
+    @property
+    @pulumi.getter(name="ignoreDefaultRoute")
+    def ignore_default_route(self) -> str:
+        """
+        Enable/disable ignoring of default route when checking destination.
+        """
+        return pulumi.get(self, "ignore_default_route")
 
     @property
     @pulumi.getter
@@ -17915,7 +19987,8 @@ class GetInterfaceSecondaryipResult(dict):
                  ha_priority: int,
                  id: int,
                  ip: str,
-                 ping_serv_status: int):
+                 ping_serv_status: int,
+                 secip_relay_ip: str):
         """
         :param str allowaccess: Management access settings for the secondary IP address.
         :param str detectprotocol: Protocols used to detect the server.
@@ -17925,6 +19998,7 @@ class GetInterfaceSecondaryipResult(dict):
         :param int id: ID.
         :param str ip: Secondary IP address of the interface.
         :param int ping_serv_status: PING server status.
+        :param str secip_relay_ip: DHCP relay IP address.
         """
         pulumi.set(__self__, "allowaccess", allowaccess)
         pulumi.set(__self__, "detectprotocol", detectprotocol)
@@ -17934,6 +20008,7 @@ class GetInterfaceSecondaryipResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip", ip)
         pulumi.set(__self__, "ping_serv_status", ping_serv_status)
+        pulumi.set(__self__, "secip_relay_ip", secip_relay_ip)
 
     @property
     @pulumi.getter
@@ -17998,6 +20073,14 @@ class GetInterfaceSecondaryipResult(dict):
         PING server status.
         """
         return pulumi.get(self, "ping_serv_status")
+
+    @property
+    @pulumi.getter(name="secipRelayIp")
+    def secip_relay_ip(self) -> str:
+        """
+        DHCP relay IP address.
+        """
+        return pulumi.get(self, "secip_relay_ip")
 
 
 @pulumi.output_type
@@ -18452,6 +20535,79 @@ class GetNdproxyMemberResult(dict):
 
 
 @pulumi.output_type
+class GetNetflowCollectorResult(dict):
+    def __init__(__self__, *,
+                 collector_ip: str,
+                 collector_port: int,
+                 id: int,
+                 interface: str,
+                 interface_select_method: str,
+                 source_ip: str):
+        """
+        :param str collector_ip: Collector IP.
+        :param int collector_port: NetFlow collector port number.
+        :param int id: ID.
+        :param str interface: Specify outgoing interface to reach server.
+        :param str interface_select_method: Specify how to select outgoing interface to reach server.
+        :param str source_ip: Source IP address for communication with the NetFlow agent.
+        """
+        pulumi.set(__self__, "collector_ip", collector_ip)
+        pulumi.set(__self__, "collector_port", collector_port)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "interface", interface)
+        pulumi.set(__self__, "interface_select_method", interface_select_method)
+        pulumi.set(__self__, "source_ip", source_ip)
+
+    @property
+    @pulumi.getter(name="collectorIp")
+    def collector_ip(self) -> str:
+        """
+        Collector IP.
+        """
+        return pulumi.get(self, "collector_ip")
+
+    @property
+    @pulumi.getter(name="collectorPort")
+    def collector_port(self) -> int:
+        """
+        NetFlow collector port number.
+        """
+        return pulumi.get(self, "collector_port")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def interface(self) -> str:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> str:
+        """
+        Specify how to select outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> str:
+        """
+        Source IP address for communication with the NetFlow agent.
+        """
+        return pulumi.get(self, "source_ip")
+
+
+@pulumi.output_type
 class GetNtpInterfaceResult(dict):
     def __init__(__self__, *,
                  interface_name: str):
@@ -18476,6 +20632,7 @@ class GetNtpNtpserverResult(dict):
                  id: int,
                  interface: str,
                  interface_select_method: str,
+                 ip_type: str,
                  key: str,
                  key_id: int,
                  ntpv3: str,
@@ -18485,6 +20642,7 @@ class GetNtpNtpserverResult(dict):
         :param int id: NTP server ID.
         :param str interface: Specify outgoing interface to reach server.
         :param str interface_select_method: Specify how to select outgoing interface to reach server.
+        :param str ip_type: Choose to connect to IPv4 or/and IPv6 NTP server.
         :param str key: Key for MD5/SHA1 authentication.
         :param int key_id: Key ID for authentication.
         :param str ntpv3: Enable to use NTPv3 instead of NTPv4.
@@ -18494,6 +20652,7 @@ class GetNtpNtpserverResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "interface", interface)
         pulumi.set(__self__, "interface_select_method", interface_select_method)
+        pulumi.set(__self__, "ip_type", ip_type)
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "key_id", key_id)
         pulumi.set(__self__, "ntpv3", ntpv3)
@@ -18530,6 +20689,14 @@ class GetNtpNtpserverResult(dict):
         Specify how to select outgoing interface to reach server.
         """
         return pulumi.get(self, "interface_select_method")
+
+    @property
+    @pulumi.getter(name="ipType")
+    def ip_type(self) -> str:
+        """
+        Choose to connect to IPv4 or/and IPv6 NTP server.
+        """
+        return pulumi.get(self, "ip_type")
 
     @property
     @pulumi.getter
@@ -19552,6 +21719,24 @@ class GetReplacemsggroupWebproxyResult(dict):
 
 
 @pulumi.output_type
+class GetSdnconnectorCompartmentListResult(dict):
+    def __init__(__self__, *,
+                 compartment_id: str):
+        """
+        :param str compartment_id: OCI compartment ID.
+        """
+        pulumi.set(__self__, "compartment_id", compartment_id)
+
+    @property
+    @pulumi.getter(name="compartmentId")
+    def compartment_id(self) -> str:
+        """
+        OCI compartment ID.
+        """
+        return pulumi.get(self, "compartment_id")
+
+
+@pulumi.output_type
 class GetSdnconnectorExternalAccountListResult(dict):
     def __init__(__self__, *,
                  external_id: str,
@@ -19596,7 +21781,7 @@ class GetSdnconnectorExternalAccountListRegionListResult(dict):
     def __init__(__self__, *,
                  region: str):
         """
-        :param str region: AWS region name.
+        :param str region: OCI region.
         """
         pulumi.set(__self__, "region", region)
 
@@ -19604,7 +21789,7 @@ class GetSdnconnectorExternalAccountListRegionListResult(dict):
     @pulumi.getter
     def region(self) -> str:
         """
-        AWS region name.
+        OCI region.
         """
         return pulumi.get(self, "region")
 
@@ -19773,6 +21958,24 @@ class GetSdnconnectorNicIpResult(dict):
 
 
 @pulumi.output_type
+class GetSdnconnectorOciRegionListResult(dict):
+    def __init__(__self__, *,
+                 region: str):
+        """
+        :param str region: OCI region.
+        """
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        OCI region.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
 class GetSdnconnectorRouteResult(dict):
     def __init__(__self__, *,
                  name: str):
@@ -19894,18 +22097,21 @@ class GetSessionttlPortResult(dict):
                  end_port: int,
                  id: int,
                  protocol: int,
+                 refresh_direction: str,
                  start_port: int,
                  timeout: str):
         """
         :param int end_port: End port number.
         :param int id: Table entry ID.
         :param int protocol: Protocol (0 - 255).
+        :param str refresh_direction: Refresh direction: Both, outgoing, incoming
         :param int start_port: Start port number.
         :param str timeout: Session timeout (TTL).
         """
         pulumi.set(__self__, "end_port", end_port)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "refresh_direction", refresh_direction)
         pulumi.set(__self__, "start_port", start_port)
         pulumi.set(__self__, "timeout", timeout)
 
@@ -19934,6 +22140,14 @@ class GetSessionttlPortResult(dict):
         return pulumi.get(self, "protocol")
 
     @property
+    @pulumi.getter(name="refreshDirection")
+    def refresh_direction(self) -> str:
+        """
+        Refresh direction: Both, outgoing, incoming
+        """
+        return pulumi.get(self, "refresh_direction")
+
+    @property
     @pulumi.getter(name="startPort")
     def start_port(self) -> int:
         """
@@ -19948,6 +22162,79 @@ class GetSessionttlPortResult(dict):
         Session timeout (TTL).
         """
         return pulumi.get(self, "timeout")
+
+
+@pulumi.output_type
+class GetSflowCollectorResult(dict):
+    def __init__(__self__, *,
+                 collector_ip: str,
+                 collector_port: int,
+                 id: int,
+                 interface: str,
+                 interface_select_method: str,
+                 source_ip: str):
+        """
+        :param str collector_ip: IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+        :param int collector_port: UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+        :param int id: ID.
+        :param str interface: Specify outgoing interface to reach server.
+        :param str interface_select_method: Specify how to select outgoing interface to reach server.
+        :param str source_ip: Source IP address for sFlow agent.
+        """
+        pulumi.set(__self__, "collector_ip", collector_ip)
+        pulumi.set(__self__, "collector_port", collector_port)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "interface", interface)
+        pulumi.set(__self__, "interface_select_method", interface_select_method)
+        pulumi.set(__self__, "source_ip", source_ip)
+
+    @property
+    @pulumi.getter(name="collectorIp")
+    def collector_ip(self) -> str:
+        """
+        IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+        """
+        return pulumi.get(self, "collector_ip")
+
+    @property
+    @pulumi.getter(name="collectorPort")
+    def collector_port(self) -> int:
+        """
+        UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+        """
+        return pulumi.get(self, "collector_port")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def interface(self) -> str:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> str:
+        """
+        Specify how to select outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> str:
+        """
+        Source IP address for sFlow agent.
+        """
+        return pulumi.get(self, "source_ip")
 
 
 @pulumi.output_type
@@ -19966,6 +22253,152 @@ class GetVdomexceptionVdomResult(dict):
         VDOM name.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetVdomnetflowCollectorResult(dict):
+    def __init__(__self__, *,
+                 collector_ip: str,
+                 collector_port: int,
+                 id: int,
+                 interface: str,
+                 interface_select_method: str,
+                 source_ip: str):
+        """
+        :param str collector_ip: Collector IP.
+        :param int collector_port: NetFlow collector port number.
+        :param int id: ID.
+        :param str interface: Specify outgoing interface to reach server.
+        :param str interface_select_method: Specify how to select outgoing interface to reach server.
+        :param str source_ip: Source IP address for communication with the NetFlow agent.
+        """
+        pulumi.set(__self__, "collector_ip", collector_ip)
+        pulumi.set(__self__, "collector_port", collector_port)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "interface", interface)
+        pulumi.set(__self__, "interface_select_method", interface_select_method)
+        pulumi.set(__self__, "source_ip", source_ip)
+
+    @property
+    @pulumi.getter(name="collectorIp")
+    def collector_ip(self) -> str:
+        """
+        Collector IP.
+        """
+        return pulumi.get(self, "collector_ip")
+
+    @property
+    @pulumi.getter(name="collectorPort")
+    def collector_port(self) -> int:
+        """
+        NetFlow collector port number.
+        """
+        return pulumi.get(self, "collector_port")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def interface(self) -> str:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> str:
+        """
+        Specify how to select outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> str:
+        """
+        Source IP address for communication with the NetFlow agent.
+        """
+        return pulumi.get(self, "source_ip")
+
+
+@pulumi.output_type
+class GetVdomsflowCollectorResult(dict):
+    def __init__(__self__, *,
+                 collector_ip: str,
+                 collector_port: int,
+                 id: int,
+                 interface: str,
+                 interface_select_method: str,
+                 source_ip: str):
+        """
+        :param str collector_ip: IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+        :param int collector_port: UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+        :param int id: ID.
+        :param str interface: Specify outgoing interface to reach server.
+        :param str interface_select_method: Specify how to select outgoing interface to reach server.
+        :param str source_ip: Source IP address for sFlow agent.
+        """
+        pulumi.set(__self__, "collector_ip", collector_ip)
+        pulumi.set(__self__, "collector_port", collector_port)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "interface", interface)
+        pulumi.set(__self__, "interface_select_method", interface_select_method)
+        pulumi.set(__self__, "source_ip", source_ip)
+
+    @property
+    @pulumi.getter(name="collectorIp")
+    def collector_ip(self) -> str:
+        """
+        IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
+        """
+        return pulumi.get(self, "collector_ip")
+
+    @property
+    @pulumi.getter(name="collectorPort")
+    def collector_port(self) -> int:
+        """
+        UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+        """
+        return pulumi.get(self, "collector_port")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def interface(self) -> str:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> str:
+        """
+        Specify how to select outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> str:
+        """
+        Source IP address for sFlow agent.
+        """
+        return pulumi.get(self, "source_ip")
 
 
 @pulumi.output_type

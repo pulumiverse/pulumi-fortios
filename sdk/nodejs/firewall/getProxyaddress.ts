@@ -113,6 +113,14 @@ export interface GetProxyaddressResult {
      */
     readonly ua: string;
     /**
+     * Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+     */
+    readonly uaMaxVer: string;
+    /**
+     * Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+     */
+    readonly uaMinVer: string;
+    /**
      * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
      */
     readonly uuid: string;

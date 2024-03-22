@@ -152,6 +152,24 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<ImmutableArray<Outputs.AddressFssoGroup>> FssoGroups { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
+        /// Dynamic address matching hardware model.
+        /// </summary>
+        [Output("hwModel")]
+        public Output<string?> HwModel { get; private set; } = null!;
+
+        /// <summary>
+        /// Dynamic address matching hardware vendor.
+        /// </summary>
+        [Output("hwVendor")]
+        public Output<string?> HwVendor { get; private set; } = null!;
+
+        /// <summary>
         /// Name of interface whose IP address is to be used.
         /// </summary>
         [Output("interface")]
@@ -206,10 +224,22 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> Organization { get; private set; } = null!;
 
         /// <summary>
+        /// Dynamic address matching operating system.
+        /// </summary>
+        [Output("os")]
+        public Output<string?> Os { get; private set; } = null!;
+
+        /// <summary>
         /// Policy group name.
         /// </summary>
         [Output("policyGroup")]
         public Output<string?> PolicyGroup { get; private set; } = null!;
+
+        /// <summary>
+        /// route-tag address.
+        /// </summary>
+        [Output("routeTag")]
+        public Output<int?> RouteTag { get; private set; } = null!;
 
         /// <summary>
         /// SDN.
@@ -258,6 +288,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("subnetName")]
         public Output<string?> SubnetName { get; private set; } = null!;
+
+        /// <summary>
+        /// Dynamic address matching software version.
+        /// </summary>
+        [Output("swVersion")]
+        public Output<string?> SwVersion { get; private set; } = null!;
 
         /// <summary>
         /// Tag detection level of dynamic address object.
@@ -463,6 +499,24 @@ namespace Pulumiverse.Fortios.Firewall
         }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Dynamic address matching hardware model.
+        /// </summary>
+        [Input("hwModel")]
+        public Input<string>? HwModel { get; set; }
+
+        /// <summary>
+        /// Dynamic address matching hardware vendor.
+        /// </summary>
+        [Input("hwVendor")]
+        public Input<string>? HwVendor { get; set; }
+
+        /// <summary>
         /// Name of interface whose IP address is to be used.
         /// </summary>
         [Input("interface")]
@@ -529,10 +583,22 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Organization { get; set; }
 
         /// <summary>
+        /// Dynamic address matching operating system.
+        /// </summary>
+        [Input("os")]
+        public Input<string>? Os { get; set; }
+
+        /// <summary>
         /// Policy group name.
         /// </summary>
         [Input("policyGroup")]
         public Input<string>? PolicyGroup { get; set; }
+
+        /// <summary>
+        /// route-tag address.
+        /// </summary>
+        [Input("routeTag")]
+        public Input<int>? RouteTag { get; set; }
 
         /// <summary>
         /// SDN.
@@ -581,6 +647,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("subnetName")]
         public Input<string>? SubnetName { get; set; }
+
+        /// <summary>
+        /// Dynamic address matching software version.
+        /// </summary>
+        [Input("swVersion")]
+        public Input<string>? SwVersion { get; set; }
 
         /// <summary>
         /// Tag detection level of dynamic address object.
@@ -753,6 +825,24 @@ namespace Pulumiverse.Fortios.Firewall
         }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Dynamic address matching hardware model.
+        /// </summary>
+        [Input("hwModel")]
+        public Input<string>? HwModel { get; set; }
+
+        /// <summary>
+        /// Dynamic address matching hardware vendor.
+        /// </summary>
+        [Input("hwVendor")]
+        public Input<string>? HwVendor { get; set; }
+
+        /// <summary>
         /// Name of interface whose IP address is to be used.
         /// </summary>
         [Input("interface")]
@@ -819,10 +909,22 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Organization { get; set; }
 
         /// <summary>
+        /// Dynamic address matching operating system.
+        /// </summary>
+        [Input("os")]
+        public Input<string>? Os { get; set; }
+
+        /// <summary>
         /// Policy group name.
         /// </summary>
         [Input("policyGroup")]
         public Input<string>? PolicyGroup { get; set; }
+
+        /// <summary>
+        /// route-tag address.
+        /// </summary>
+        [Input("routeTag")]
+        public Input<int>? RouteTag { get; set; }
 
         /// <summary>
         /// SDN.
@@ -871,6 +973,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("subnetName")]
         public Input<string>? SubnetName { get; set; }
+
+        /// <summary>
+        /// Dynamic address matching software version.
+        /// </summary>
+        [Input("swVersion")]
+        public Input<string>? SwVersion { get; set; }
 
         /// <summary>
         /// Tag detection level of dynamic address object.

@@ -91,12 +91,16 @@ type Setting struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
 	ExpolicyImplicitLog pulumi.StringOutput `pulumi:"expolicyImplicitLog"`
+	// Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
 	// Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
 	FazOverride pulumi.StringOutput `pulumi:"fazOverride"`
 	// Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
 	Fwpolicy6ImplicitLog pulumi.StringOutput `pulumi:"fwpolicy6ImplicitLog"`
 	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
 	FwpolicyImplicitLog pulumi.StringOutput `pulumi:"fwpolicyImplicitLog"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
 	LocalInAllow pulumi.StringOutput `pulumi:"localInAllow"`
 	// Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
@@ -115,6 +119,8 @@ type Setting struct {
 	LogPolicyName pulumi.StringOutput `pulumi:"logPolicyName"`
 	// Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
 	LogUserInUpper pulumi.StringOutput `pulumi:"logUserInUpper"`
+	// Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+	LongLiveSessionStat pulumi.StringOutput `pulumi:"longLiveSessionStat"`
 	// Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
 	NeighborEvent pulumi.StringOutput `pulumi:"neighborEvent"`
 	// Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
@@ -175,12 +181,16 @@ type settingState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
 	ExpolicyImplicitLog *string `pulumi:"expolicyImplicitLog"`
+	// Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+	ExtendedLog *string `pulumi:"extendedLog"`
 	// Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
 	FazOverride *string `pulumi:"fazOverride"`
 	// Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
 	Fwpolicy6ImplicitLog *string `pulumi:"fwpolicy6ImplicitLog"`
 	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
 	FwpolicyImplicitLog *string `pulumi:"fwpolicyImplicitLog"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
 	LocalInAllow *string `pulumi:"localInAllow"`
 	// Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
@@ -199,6 +209,8 @@ type settingState struct {
 	LogPolicyName *string `pulumi:"logPolicyName"`
 	// Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
 	LogUserInUpper *string `pulumi:"logUserInUpper"`
+	// Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+	LongLiveSessionStat *string `pulumi:"longLiveSessionStat"`
 	// Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
 	NeighborEvent *string `pulumi:"neighborEvent"`
 	// Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
@@ -230,12 +242,16 @@ type SettingState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
 	ExpolicyImplicitLog pulumi.StringPtrInput
+	// Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+	ExtendedLog pulumi.StringPtrInput
 	// Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
 	FazOverride pulumi.StringPtrInput
 	// Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
 	Fwpolicy6ImplicitLog pulumi.StringPtrInput
 	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
 	FwpolicyImplicitLog pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
 	LocalInAllow pulumi.StringPtrInput
 	// Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
@@ -254,6 +270,8 @@ type SettingState struct {
 	LogPolicyName pulumi.StringPtrInput
 	// Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
 	LogUserInUpper pulumi.StringPtrInput
+	// Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+	LongLiveSessionStat pulumi.StringPtrInput
 	// Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
 	NeighborEvent pulumi.StringPtrInput
 	// Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
@@ -289,12 +307,16 @@ type settingArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
 	ExpolicyImplicitLog *string `pulumi:"expolicyImplicitLog"`
+	// Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+	ExtendedLog *string `pulumi:"extendedLog"`
 	// Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
 	FazOverride *string `pulumi:"fazOverride"`
 	// Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
 	Fwpolicy6ImplicitLog *string `pulumi:"fwpolicy6ImplicitLog"`
 	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
 	FwpolicyImplicitLog *string `pulumi:"fwpolicyImplicitLog"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
 	LocalInAllow *string `pulumi:"localInAllow"`
 	// Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
@@ -313,6 +335,8 @@ type settingArgs struct {
 	LogPolicyName *string `pulumi:"logPolicyName"`
 	// Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
 	LogUserInUpper *string `pulumi:"logUserInUpper"`
+	// Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+	LongLiveSessionStat *string `pulumi:"longLiveSessionStat"`
 	// Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
 	NeighborEvent *string `pulumi:"neighborEvent"`
 	// Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
@@ -345,12 +369,16 @@ type SettingArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
 	ExpolicyImplicitLog pulumi.StringPtrInput
+	// Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+	ExtendedLog pulumi.StringPtrInput
 	// Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
 	FazOverride pulumi.StringPtrInput
 	// Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
 	Fwpolicy6ImplicitLog pulumi.StringPtrInput
 	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
 	FwpolicyImplicitLog pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
 	LocalInAllow pulumi.StringPtrInput
 	// Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
@@ -369,6 +397,8 @@ type SettingArgs struct {
 	LogPolicyName pulumi.StringPtrInput
 	// Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
 	LogUserInUpper pulumi.StringPtrInput
+	// Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+	LongLiveSessionStat pulumi.StringPtrInput
 	// Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
 	NeighborEvent pulumi.StringPtrInput
 	// Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
@@ -504,6 +534,11 @@ func (o SettingOutput) ExpolicyImplicitLog() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.ExpolicyImplicitLog }).(pulumi.StringOutput)
 }
 
+// Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+func (o SettingOutput) ExtendedLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.ExtendedLog }).(pulumi.StringOutput)
+}
+
 // Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
 func (o SettingOutput) FazOverride() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.FazOverride }).(pulumi.StringOutput)
@@ -517,6 +552,11 @@ func (o SettingOutput) Fwpolicy6ImplicitLog() pulumi.StringOutput {
 // Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
 func (o SettingOutput) FwpolicyImplicitLog() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.FwpolicyImplicitLog }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
@@ -562,6 +602,11 @@ func (o SettingOutput) LogPolicyName() pulumi.StringOutput {
 // Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
 func (o SettingOutput) LogUserInUpper() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.LogUserInUpper }).(pulumi.StringOutput)
+}
+
+// Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+func (o SettingOutput) LongLiveSessionStat() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.LongLiveSessionStat }).(pulumi.StringOutput)
 }
 
 // Enable/disable neighbor event logging. Valid values: `enable`, `disable`.

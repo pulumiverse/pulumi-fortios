@@ -19,6 +19,8 @@ class ExplicitArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftp_incoming_port: Optional[pulumi.Input[str]] = None,
                  ftp_over_http: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_connection_mode: Optional[pulumi.Input[str]] = None,
                  http_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_replacement_message: Optional[pulumi.Input[str]] = None,
@@ -38,9 +40,12 @@ class ExplicitArgs:
                  pref_dns_result: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy_certs: Optional[pulumi.Input[Sequence[pulumi.Input['ExplicitSecureWebProxyCertArgs']]]] = None,
                  socks: Optional[pulumi.Input[str]] = None,
                  socks_incoming_port: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
+                 ssl_dh_bits: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  strict_guest: Optional[pulumi.Input[str]] = None,
                  trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
@@ -51,6 +56,8 @@ class ExplicitArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] ftp_incoming_port: Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
         :param pulumi.Input[str] ftp_over_http: Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] http_connection_mode: HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
         :param pulumi.Input[str] http_incoming_port: Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
         :param pulumi.Input[str] https_incoming_port: Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
         :param pulumi.Input[str] https_replacement_message: Enable/disable sending the client a replacement message for HTTPS requests. Valid values: `enable`, `disable`.
@@ -70,9 +77,12 @@ class ExplicitArgs:
         :param pulumi.Input[str] pref_dns_result: Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] realm: Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
         :param pulumi.Input[str] sec_default_action: Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
+        :param pulumi.Input[str] secure_web_proxy: Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+        :param pulumi.Input[Sequence[pulumi.Input['ExplicitSecureWebProxyCertArgs']]] secure_web_proxy_certs: Name of certificates for secure web proxy. The structure of `secure_web_proxy_cert` block is documented below.
         :param pulumi.Input[str] socks: Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] socks_incoming_port: Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
         :param pulumi.Input[str] ssl_algorithm: Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
+        :param pulumi.Input[str] ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
         :param pulumi.Input[str] status: Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_guest: Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] trace_auth_no_rsp: Enable/disable logging timed-out authentication requests. Valid values: `enable`, `disable`.
@@ -85,6 +95,10 @@ class ExplicitArgs:
             pulumi.set(__self__, "ftp_incoming_port", ftp_incoming_port)
         if ftp_over_http is not None:
             pulumi.set(__self__, "ftp_over_http", ftp_over_http)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if http_connection_mode is not None:
+            pulumi.set(__self__, "http_connection_mode", http_connection_mode)
         if http_incoming_port is not None:
             pulumi.set(__self__, "http_incoming_port", http_incoming_port)
         if https_incoming_port is not None:
@@ -123,12 +137,18 @@ class ExplicitArgs:
             pulumi.set(__self__, "realm", realm)
         if sec_default_action is not None:
             pulumi.set(__self__, "sec_default_action", sec_default_action)
+        if secure_web_proxy is not None:
+            pulumi.set(__self__, "secure_web_proxy", secure_web_proxy)
+        if secure_web_proxy_certs is not None:
+            pulumi.set(__self__, "secure_web_proxy_certs", secure_web_proxy_certs)
         if socks is not None:
             pulumi.set(__self__, "socks", socks)
         if socks_incoming_port is not None:
             pulumi.set(__self__, "socks_incoming_port", socks_incoming_port)
         if ssl_algorithm is not None:
             pulumi.set(__self__, "ssl_algorithm", ssl_algorithm)
+        if ssl_dh_bits is not None:
+            pulumi.set(__self__, "ssl_dh_bits", ssl_dh_bits)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if strict_guest is not None:
@@ -175,6 +195,30 @@ class ExplicitArgs:
     @ftp_over_http.setter
     def ftp_over_http(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ftp_over_http", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="httpConnectionMode")
+    def http_connection_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+        """
+        return pulumi.get(self, "http_connection_mode")
+
+    @http_connection_mode.setter
+    def http_connection_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_connection_mode", value)
 
     @property
     @pulumi.getter(name="httpIncomingPort")
@@ -405,6 +449,30 @@ class ExplicitArgs:
         pulumi.set(self, "sec_default_action", value)
 
     @property
+    @pulumi.getter(name="secureWebProxy")
+    def secure_web_proxy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+        """
+        return pulumi.get(self, "secure_web_proxy")
+
+    @secure_web_proxy.setter
+    def secure_web_proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secure_web_proxy", value)
+
+    @property
+    @pulumi.getter(name="secureWebProxyCerts")
+    def secure_web_proxy_certs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ExplicitSecureWebProxyCertArgs']]]]:
+        """
+        Name of certificates for secure web proxy. The structure of `secure_web_proxy_cert` block is documented below.
+        """
+        return pulumi.get(self, "secure_web_proxy_certs")
+
+    @secure_web_proxy_certs.setter
+    def secure_web_proxy_certs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ExplicitSecureWebProxyCertArgs']]]]):
+        pulumi.set(self, "secure_web_proxy_certs", value)
+
+    @property
     @pulumi.getter
     def socks(self) -> Optional[pulumi.Input[str]]:
         """
@@ -439,6 +507,18 @@ class ExplicitArgs:
     @ssl_algorithm.setter
     def ssl_algorithm(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssl_algorithm", value)
+
+    @property
+    @pulumi.getter(name="sslDhBits")
+    def ssl_dh_bits(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+        """
+        return pulumi.get(self, "ssl_dh_bits")
+
+    @ssl_dh_bits.setter
+    def ssl_dh_bits(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_dh_bits", value)
 
     @property
     @pulumi.getter
@@ -507,6 +587,8 @@ class _ExplicitState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftp_incoming_port: Optional[pulumi.Input[str]] = None,
                  ftp_over_http: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_connection_mode: Optional[pulumi.Input[str]] = None,
                  http_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_replacement_message: Optional[pulumi.Input[str]] = None,
@@ -526,9 +608,12 @@ class _ExplicitState:
                  pref_dns_result: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy_certs: Optional[pulumi.Input[Sequence[pulumi.Input['ExplicitSecureWebProxyCertArgs']]]] = None,
                  socks: Optional[pulumi.Input[str]] = None,
                  socks_incoming_port: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
+                 ssl_dh_bits: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  strict_guest: Optional[pulumi.Input[str]] = None,
                  trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
@@ -539,6 +624,8 @@ class _ExplicitState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] ftp_incoming_port: Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
         :param pulumi.Input[str] ftp_over_http: Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] http_connection_mode: HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
         :param pulumi.Input[str] http_incoming_port: Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
         :param pulumi.Input[str] https_incoming_port: Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
         :param pulumi.Input[str] https_replacement_message: Enable/disable sending the client a replacement message for HTTPS requests. Valid values: `enable`, `disable`.
@@ -558,9 +645,12 @@ class _ExplicitState:
         :param pulumi.Input[str] pref_dns_result: Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] realm: Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
         :param pulumi.Input[str] sec_default_action: Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
+        :param pulumi.Input[str] secure_web_proxy: Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+        :param pulumi.Input[Sequence[pulumi.Input['ExplicitSecureWebProxyCertArgs']]] secure_web_proxy_certs: Name of certificates for secure web proxy. The structure of `secure_web_proxy_cert` block is documented below.
         :param pulumi.Input[str] socks: Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] socks_incoming_port: Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
         :param pulumi.Input[str] ssl_algorithm: Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
+        :param pulumi.Input[str] ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
         :param pulumi.Input[str] status: Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_guest: Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] trace_auth_no_rsp: Enable/disable logging timed-out authentication requests. Valid values: `enable`, `disable`.
@@ -573,6 +663,10 @@ class _ExplicitState:
             pulumi.set(__self__, "ftp_incoming_port", ftp_incoming_port)
         if ftp_over_http is not None:
             pulumi.set(__self__, "ftp_over_http", ftp_over_http)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if http_connection_mode is not None:
+            pulumi.set(__self__, "http_connection_mode", http_connection_mode)
         if http_incoming_port is not None:
             pulumi.set(__self__, "http_incoming_port", http_incoming_port)
         if https_incoming_port is not None:
@@ -611,12 +705,18 @@ class _ExplicitState:
             pulumi.set(__self__, "realm", realm)
         if sec_default_action is not None:
             pulumi.set(__self__, "sec_default_action", sec_default_action)
+        if secure_web_proxy is not None:
+            pulumi.set(__self__, "secure_web_proxy", secure_web_proxy)
+        if secure_web_proxy_certs is not None:
+            pulumi.set(__self__, "secure_web_proxy_certs", secure_web_proxy_certs)
         if socks is not None:
             pulumi.set(__self__, "socks", socks)
         if socks_incoming_port is not None:
             pulumi.set(__self__, "socks_incoming_port", socks_incoming_port)
         if ssl_algorithm is not None:
             pulumi.set(__self__, "ssl_algorithm", ssl_algorithm)
+        if ssl_dh_bits is not None:
+            pulumi.set(__self__, "ssl_dh_bits", ssl_dh_bits)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if strict_guest is not None:
@@ -663,6 +763,30 @@ class _ExplicitState:
     @ftp_over_http.setter
     def ftp_over_http(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ftp_over_http", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="httpConnectionMode")
+    def http_connection_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+        """
+        return pulumi.get(self, "http_connection_mode")
+
+    @http_connection_mode.setter
+    def http_connection_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_connection_mode", value)
 
     @property
     @pulumi.getter(name="httpIncomingPort")
@@ -893,6 +1017,30 @@ class _ExplicitState:
         pulumi.set(self, "sec_default_action", value)
 
     @property
+    @pulumi.getter(name="secureWebProxy")
+    def secure_web_proxy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+        """
+        return pulumi.get(self, "secure_web_proxy")
+
+    @secure_web_proxy.setter
+    def secure_web_proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secure_web_proxy", value)
+
+    @property
+    @pulumi.getter(name="secureWebProxyCerts")
+    def secure_web_proxy_certs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ExplicitSecureWebProxyCertArgs']]]]:
+        """
+        Name of certificates for secure web proxy. The structure of `secure_web_proxy_cert` block is documented below.
+        """
+        return pulumi.get(self, "secure_web_proxy_certs")
+
+    @secure_web_proxy_certs.setter
+    def secure_web_proxy_certs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ExplicitSecureWebProxyCertArgs']]]]):
+        pulumi.set(self, "secure_web_proxy_certs", value)
+
+    @property
     @pulumi.getter
     def socks(self) -> Optional[pulumi.Input[str]]:
         """
@@ -927,6 +1075,18 @@ class _ExplicitState:
     @ssl_algorithm.setter
     def ssl_algorithm(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssl_algorithm", value)
+
+    @property
+    @pulumi.getter(name="sslDhBits")
+    def ssl_dh_bits(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+        """
+        return pulumi.get(self, "ssl_dh_bits")
+
+    @ssl_dh_bits.setter
+    def ssl_dh_bits(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_dh_bits", value)
 
     @property
     @pulumi.getter
@@ -997,6 +1157,8 @@ class Explicit(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftp_incoming_port: Optional[pulumi.Input[str]] = None,
                  ftp_over_http: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_connection_mode: Optional[pulumi.Input[str]] = None,
                  http_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_replacement_message: Optional[pulumi.Input[str]] = None,
@@ -1016,9 +1178,12 @@ class Explicit(pulumi.CustomResource):
                  pref_dns_result: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy_certs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExplicitSecureWebProxyCertArgs']]]]] = None,
                  socks: Optional[pulumi.Input[str]] = None,
                  socks_incoming_port: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
+                 ssl_dh_bits: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  strict_guest: Optional[pulumi.Input[str]] = None,
                  trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
@@ -1051,6 +1216,8 @@ class Explicit(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] ftp_incoming_port: Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
         :param pulumi.Input[str] ftp_over_http: Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] http_connection_mode: HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
         :param pulumi.Input[str] http_incoming_port: Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
         :param pulumi.Input[str] https_incoming_port: Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
         :param pulumi.Input[str] https_replacement_message: Enable/disable sending the client a replacement message for HTTPS requests. Valid values: `enable`, `disable`.
@@ -1070,9 +1237,12 @@ class Explicit(pulumi.CustomResource):
         :param pulumi.Input[str] pref_dns_result: Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] realm: Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
         :param pulumi.Input[str] sec_default_action: Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
+        :param pulumi.Input[str] secure_web_proxy: Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExplicitSecureWebProxyCertArgs']]]] secure_web_proxy_certs: Name of certificates for secure web proxy. The structure of `secure_web_proxy_cert` block is documented below.
         :param pulumi.Input[str] socks: Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] socks_incoming_port: Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
         :param pulumi.Input[str] ssl_algorithm: Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
+        :param pulumi.Input[str] ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
         :param pulumi.Input[str] status: Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_guest: Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] trace_auth_no_rsp: Enable/disable logging timed-out authentication requests. Valid values: `enable`, `disable`.
@@ -1124,6 +1294,8 @@ class Explicit(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftp_incoming_port: Optional[pulumi.Input[str]] = None,
                  ftp_over_http: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_connection_mode: Optional[pulumi.Input[str]] = None,
                  http_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_replacement_message: Optional[pulumi.Input[str]] = None,
@@ -1143,9 +1315,12 @@ class Explicit(pulumi.CustomResource):
                  pref_dns_result: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy_certs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExplicitSecureWebProxyCertArgs']]]]] = None,
                  socks: Optional[pulumi.Input[str]] = None,
                  socks_incoming_port: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
+                 ssl_dh_bits: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  strict_guest: Optional[pulumi.Input[str]] = None,
                  trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
@@ -1163,6 +1338,8 @@ class Explicit(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["ftp_incoming_port"] = ftp_incoming_port
             __props__.__dict__["ftp_over_http"] = ftp_over_http
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["http_connection_mode"] = http_connection_mode
             __props__.__dict__["http_incoming_port"] = http_incoming_port
             __props__.__dict__["https_incoming_port"] = https_incoming_port
             __props__.__dict__["https_replacement_message"] = https_replacement_message
@@ -1182,9 +1359,12 @@ class Explicit(pulumi.CustomResource):
             __props__.__dict__["pref_dns_result"] = pref_dns_result
             __props__.__dict__["realm"] = realm
             __props__.__dict__["sec_default_action"] = sec_default_action
+            __props__.__dict__["secure_web_proxy"] = secure_web_proxy
+            __props__.__dict__["secure_web_proxy_certs"] = secure_web_proxy_certs
             __props__.__dict__["socks"] = socks
             __props__.__dict__["socks_incoming_port"] = socks_incoming_port
             __props__.__dict__["ssl_algorithm"] = ssl_algorithm
+            __props__.__dict__["ssl_dh_bits"] = ssl_dh_bits
             __props__.__dict__["status"] = status
             __props__.__dict__["strict_guest"] = strict_guest
             __props__.__dict__["trace_auth_no_rsp"] = trace_auth_no_rsp
@@ -1203,6 +1383,8 @@ class Explicit(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             ftp_incoming_port: Optional[pulumi.Input[str]] = None,
             ftp_over_http: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            http_connection_mode: Optional[pulumi.Input[str]] = None,
             http_incoming_port: Optional[pulumi.Input[str]] = None,
             https_incoming_port: Optional[pulumi.Input[str]] = None,
             https_replacement_message: Optional[pulumi.Input[str]] = None,
@@ -1222,9 +1404,12 @@ class Explicit(pulumi.CustomResource):
             pref_dns_result: Optional[pulumi.Input[str]] = None,
             realm: Optional[pulumi.Input[str]] = None,
             sec_default_action: Optional[pulumi.Input[str]] = None,
+            secure_web_proxy: Optional[pulumi.Input[str]] = None,
+            secure_web_proxy_certs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExplicitSecureWebProxyCertArgs']]]]] = None,
             socks: Optional[pulumi.Input[str]] = None,
             socks_incoming_port: Optional[pulumi.Input[str]] = None,
             ssl_algorithm: Optional[pulumi.Input[str]] = None,
+            ssl_dh_bits: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             strict_guest: Optional[pulumi.Input[str]] = None,
             trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
@@ -1240,6 +1425,8 @@ class Explicit(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] ftp_incoming_port: Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
         :param pulumi.Input[str] ftp_over_http: Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] http_connection_mode: HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
         :param pulumi.Input[str] http_incoming_port: Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
         :param pulumi.Input[str] https_incoming_port: Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
         :param pulumi.Input[str] https_replacement_message: Enable/disable sending the client a replacement message for HTTPS requests. Valid values: `enable`, `disable`.
@@ -1259,9 +1446,12 @@ class Explicit(pulumi.CustomResource):
         :param pulumi.Input[str] pref_dns_result: Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] realm: Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
         :param pulumi.Input[str] sec_default_action: Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
+        :param pulumi.Input[str] secure_web_proxy: Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExplicitSecureWebProxyCertArgs']]]] secure_web_proxy_certs: Name of certificates for secure web proxy. The structure of `secure_web_proxy_cert` block is documented below.
         :param pulumi.Input[str] socks: Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] socks_incoming_port: Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
         :param pulumi.Input[str] ssl_algorithm: Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
+        :param pulumi.Input[str] ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
         :param pulumi.Input[str] status: Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_guest: Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] trace_auth_no_rsp: Enable/disable logging timed-out authentication requests. Valid values: `enable`, `disable`.
@@ -1275,6 +1465,8 @@ class Explicit(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["ftp_incoming_port"] = ftp_incoming_port
         __props__.__dict__["ftp_over_http"] = ftp_over_http
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["http_connection_mode"] = http_connection_mode
         __props__.__dict__["http_incoming_port"] = http_incoming_port
         __props__.__dict__["https_incoming_port"] = https_incoming_port
         __props__.__dict__["https_replacement_message"] = https_replacement_message
@@ -1294,9 +1486,12 @@ class Explicit(pulumi.CustomResource):
         __props__.__dict__["pref_dns_result"] = pref_dns_result
         __props__.__dict__["realm"] = realm
         __props__.__dict__["sec_default_action"] = sec_default_action
+        __props__.__dict__["secure_web_proxy"] = secure_web_proxy
+        __props__.__dict__["secure_web_proxy_certs"] = secure_web_proxy_certs
         __props__.__dict__["socks"] = socks
         __props__.__dict__["socks_incoming_port"] = socks_incoming_port
         __props__.__dict__["ssl_algorithm"] = ssl_algorithm
+        __props__.__dict__["ssl_dh_bits"] = ssl_dh_bits
         __props__.__dict__["status"] = status
         __props__.__dict__["strict_guest"] = strict_guest
         __props__.__dict__["trace_auth_no_rsp"] = trace_auth_no_rsp
@@ -1327,6 +1522,22 @@ class Explicit(pulumi.CustomResource):
         Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ftp_over_http")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="httpConnectionMode")
+    def http_connection_mode(self) -> pulumi.Output[str]:
+        """
+        HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+        """
+        return pulumi.get(self, "http_connection_mode")
 
     @property
     @pulumi.getter(name="httpIncomingPort")
@@ -1481,6 +1692,22 @@ class Explicit(pulumi.CustomResource):
         return pulumi.get(self, "sec_default_action")
 
     @property
+    @pulumi.getter(name="secureWebProxy")
+    def secure_web_proxy(self) -> pulumi.Output[str]:
+        """
+        Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+        """
+        return pulumi.get(self, "secure_web_proxy")
+
+    @property
+    @pulumi.getter(name="secureWebProxyCerts")
+    def secure_web_proxy_certs(self) -> pulumi.Output[Optional[Sequence['outputs.ExplicitSecureWebProxyCert']]]:
+        """
+        Name of certificates for secure web proxy. The structure of `secure_web_proxy_cert` block is documented below.
+        """
+        return pulumi.get(self, "secure_web_proxy_certs")
+
+    @property
     @pulumi.getter
     def socks(self) -> pulumi.Output[str]:
         """
@@ -1503,6 +1730,14 @@ class Explicit(pulumi.CustomResource):
         Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
         """
         return pulumi.get(self, "ssl_algorithm")
+
+    @property
+    @pulumi.getter(name="sslDhBits")
+    def ssl_dh_bits(self) -> pulumi.Output[str]:
+        """
+        Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+        """
+        return pulumi.get(self, "ssl_dh_bits")
 
     @property
     @pulumi.getter

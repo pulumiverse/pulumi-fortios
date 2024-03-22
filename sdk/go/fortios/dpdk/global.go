@@ -37,6 +37,8 @@ type Global struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
 	Elasticbuffer pulumi.StringOutput `pulumi:"elasticbuffer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
 	HugepagePercentage pulumi.IntOutput `pulumi:"hugepagePercentage"`
 	// Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
@@ -49,6 +51,8 @@ type Global struct {
 	Multiqueue pulumi.StringOutput `pulumi:"multiqueue"`
 	// Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
 	PerSessionAccounting pulumi.StringOutput `pulumi:"perSessionAccounting"`
+	// Special arguments for device
+	Protects pulumi.StringOutput `pulumi:"protects"`
 	// Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
 	SleepOnIdle pulumi.StringOutput `pulumi:"sleepOnIdle"`
 	// Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
@@ -91,6 +95,8 @@ type globalState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
 	Elasticbuffer *string `pulumi:"elasticbuffer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
 	HugepagePercentage *int `pulumi:"hugepagePercentage"`
 	// Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
@@ -103,6 +109,8 @@ type globalState struct {
 	Multiqueue *string `pulumi:"multiqueue"`
 	// Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
 	PerSessionAccounting *string `pulumi:"perSessionAccounting"`
+	// Special arguments for device
+	Protects *string `pulumi:"protects"`
 	// Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
 	SleepOnIdle *string `pulumi:"sleepOnIdle"`
 	// Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
@@ -116,6 +124,8 @@ type GlobalState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
 	Elasticbuffer pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
 	HugepagePercentage pulumi.IntPtrInput
 	// Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
@@ -128,6 +138,8 @@ type GlobalState struct {
 	Multiqueue pulumi.StringPtrInput
 	// Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
 	PerSessionAccounting pulumi.StringPtrInput
+	// Special arguments for device
+	Protects pulumi.StringPtrInput
 	// Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
 	SleepOnIdle pulumi.StringPtrInput
 	// Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
@@ -145,6 +157,8 @@ type globalArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
 	Elasticbuffer *string `pulumi:"elasticbuffer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
 	HugepagePercentage *int `pulumi:"hugepagePercentage"`
 	// Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
@@ -157,6 +171,8 @@ type globalArgs struct {
 	Multiqueue *string `pulumi:"multiqueue"`
 	// Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
 	PerSessionAccounting *string `pulumi:"perSessionAccounting"`
+	// Special arguments for device
+	Protects *string `pulumi:"protects"`
 	// Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
 	SleepOnIdle *string `pulumi:"sleepOnIdle"`
 	// Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
@@ -171,6 +187,8 @@ type GlobalArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
 	Elasticbuffer pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
 	HugepagePercentage pulumi.IntPtrInput
 	// Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
@@ -183,6 +201,8 @@ type GlobalArgs struct {
 	Multiqueue pulumi.StringPtrInput
 	// Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
 	PerSessionAccounting pulumi.StringPtrInput
+	// Special arguments for device
+	Protects pulumi.StringPtrInput
 	// Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
 	SleepOnIdle pulumi.StringPtrInput
 	// Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
@@ -288,6 +308,11 @@ func (o GlobalOutput) Elasticbuffer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Elasticbuffer }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o GlobalOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Percentage of main memory allocated to hugepages, which are available for DPDK operation.
 func (o GlobalOutput) HugepagePercentage() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.HugepagePercentage }).(pulumi.IntOutput)
@@ -316,6 +341,11 @@ func (o GlobalOutput) Multiqueue() pulumi.StringOutput {
 // Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
 func (o GlobalOutput) PerSessionAccounting() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.PerSessionAccounting }).(pulumi.StringOutput)
+}
+
+// Special arguments for device
+func (o GlobalOutput) Protects() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Protects }).(pulumi.StringOutput)
 }
 
 // Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.

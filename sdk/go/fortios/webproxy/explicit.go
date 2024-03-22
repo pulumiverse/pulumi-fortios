@@ -39,6 +39,10 @@ type Explicit struct {
 	FtpIncomingPort pulumi.StringOutput `pulumi:"ftpIncomingPort"`
 	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
 	FtpOverHttp pulumi.StringOutput `pulumi:"ftpOverHttp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+	HttpConnectionMode pulumi.StringOutput `pulumi:"httpConnectionMode"`
 	// Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
 	HttpIncomingPort pulumi.StringOutput `pulumi:"httpIncomingPort"`
 	// Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
@@ -77,12 +81,18 @@ type Explicit struct {
 	Realm pulumi.StringOutput `pulumi:"realm"`
 	// Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
 	SecDefaultAction pulumi.StringOutput `pulumi:"secDefaultAction"`
+	// Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+	SecureWebProxy pulumi.StringOutput `pulumi:"secureWebProxy"`
+	// Name of certificates for secure web proxy. The structure of `secureWebProxyCert` block is documented below.
+	SecureWebProxyCerts ExplicitSecureWebProxyCertArrayOutput `pulumi:"secureWebProxyCerts"`
 	// Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
 	Socks pulumi.StringOutput `pulumi:"socks"`
 	// Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
 	SocksIncomingPort pulumi.StringOutput `pulumi:"socksIncomingPort"`
 	// Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm pulumi.StringOutput `pulumi:"sslAlgorithm"`
+	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+	SslDhBits pulumi.StringOutput `pulumi:"sslDhBits"`
 	// Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
@@ -131,6 +141,10 @@ type explicitState struct {
 	FtpIncomingPort *string `pulumi:"ftpIncomingPort"`
 	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
 	FtpOverHttp *string `pulumi:"ftpOverHttp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+	HttpConnectionMode *string `pulumi:"httpConnectionMode"`
 	// Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
 	HttpIncomingPort *string `pulumi:"httpIncomingPort"`
 	// Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
@@ -169,12 +183,18 @@ type explicitState struct {
 	Realm *string `pulumi:"realm"`
 	// Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
 	SecDefaultAction *string `pulumi:"secDefaultAction"`
+	// Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+	SecureWebProxy *string `pulumi:"secureWebProxy"`
+	// Name of certificates for secure web proxy. The structure of `secureWebProxyCert` block is documented below.
+	SecureWebProxyCerts []ExplicitSecureWebProxyCert `pulumi:"secureWebProxyCerts"`
 	// Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
 	Socks *string `pulumi:"socks"`
 	// Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
 	SocksIncomingPort *string `pulumi:"socksIncomingPort"`
 	// Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm *string `pulumi:"sslAlgorithm"`
+	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+	SslDhBits *string `pulumi:"sslDhBits"`
 	// Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
@@ -194,6 +214,10 @@ type ExplicitState struct {
 	FtpIncomingPort pulumi.StringPtrInput
 	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
 	FtpOverHttp pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+	HttpConnectionMode pulumi.StringPtrInput
 	// Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
 	HttpIncomingPort pulumi.StringPtrInput
 	// Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
@@ -232,12 +256,18 @@ type ExplicitState struct {
 	Realm pulumi.StringPtrInput
 	// Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
 	SecDefaultAction pulumi.StringPtrInput
+	// Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+	SecureWebProxy pulumi.StringPtrInput
+	// Name of certificates for secure web proxy. The structure of `secureWebProxyCert` block is documented below.
+	SecureWebProxyCerts ExplicitSecureWebProxyCertArrayInput
 	// Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
 	Socks pulumi.StringPtrInput
 	// Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
 	SocksIncomingPort pulumi.StringPtrInput
 	// Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm pulumi.StringPtrInput
+	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+	SslDhBits pulumi.StringPtrInput
 	// Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
@@ -261,6 +291,10 @@ type explicitArgs struct {
 	FtpIncomingPort *string `pulumi:"ftpIncomingPort"`
 	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
 	FtpOverHttp *string `pulumi:"ftpOverHttp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+	HttpConnectionMode *string `pulumi:"httpConnectionMode"`
 	// Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
 	HttpIncomingPort *string `pulumi:"httpIncomingPort"`
 	// Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
@@ -299,12 +333,18 @@ type explicitArgs struct {
 	Realm *string `pulumi:"realm"`
 	// Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
 	SecDefaultAction *string `pulumi:"secDefaultAction"`
+	// Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+	SecureWebProxy *string `pulumi:"secureWebProxy"`
+	// Name of certificates for secure web proxy. The structure of `secureWebProxyCert` block is documented below.
+	SecureWebProxyCerts []ExplicitSecureWebProxyCert `pulumi:"secureWebProxyCerts"`
 	// Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
 	Socks *string `pulumi:"socks"`
 	// Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
 	SocksIncomingPort *string `pulumi:"socksIncomingPort"`
 	// Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm *string `pulumi:"sslAlgorithm"`
+	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+	SslDhBits *string `pulumi:"sslDhBits"`
 	// Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
@@ -325,6 +365,10 @@ type ExplicitArgs struct {
 	FtpIncomingPort pulumi.StringPtrInput
 	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
 	FtpOverHttp pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+	HttpConnectionMode pulumi.StringPtrInput
 	// Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
 	HttpIncomingPort pulumi.StringPtrInput
 	// Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
@@ -363,12 +407,18 @@ type ExplicitArgs struct {
 	Realm pulumi.StringPtrInput
 	// Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
 	SecDefaultAction pulumi.StringPtrInput
+	// Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+	SecureWebProxy pulumi.StringPtrInput
+	// Name of certificates for secure web proxy. The structure of `secureWebProxyCert` block is documented below.
+	SecureWebProxyCerts ExplicitSecureWebProxyCertArrayInput
 	// Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
 	Socks pulumi.StringPtrInput
 	// Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
 	SocksIncomingPort pulumi.StringPtrInput
 	// Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm pulumi.StringPtrInput
+	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+	SslDhBits pulumi.StringPtrInput
 	// Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
@@ -483,6 +533,16 @@ func (o ExplicitOutput) FtpOverHttp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.FtpOverHttp }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ExplicitOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Explicit) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+func (o ExplicitOutput) HttpConnectionMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.HttpConnectionMode }).(pulumi.StringOutput)
+}
+
 // Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
 func (o ExplicitOutput) HttpIncomingPort() pulumi.StringOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.HttpIncomingPort }).(pulumi.StringOutput)
@@ -578,6 +638,16 @@ func (o ExplicitOutput) SecDefaultAction() pulumi.StringOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.SecDefaultAction }).(pulumi.StringOutput)
 }
 
+// Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+func (o ExplicitOutput) SecureWebProxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.SecureWebProxy }).(pulumi.StringOutput)
+}
+
+// Name of certificates for secure web proxy. The structure of `secureWebProxyCert` block is documented below.
+func (o ExplicitOutput) SecureWebProxyCerts() ExplicitSecureWebProxyCertArrayOutput {
+	return o.ApplyT(func(v *Explicit) ExplicitSecureWebProxyCertArrayOutput { return v.SecureWebProxyCerts }).(ExplicitSecureWebProxyCertArrayOutput)
+}
+
 // Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
 func (o ExplicitOutput) Socks() pulumi.StringOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.Socks }).(pulumi.StringOutput)
@@ -591,6 +661,11 @@ func (o ExplicitOutput) SocksIncomingPort() pulumi.StringOutput {
 // Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
 func (o ExplicitOutput) SslAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.SslAlgorithm }).(pulumi.StringOutput)
+}
+
+// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+func (o ExplicitOutput) SslDhBits() pulumi.StringOutput {
+	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.SslDhBits }).(pulumi.StringOutput)
 }
 
 // Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.

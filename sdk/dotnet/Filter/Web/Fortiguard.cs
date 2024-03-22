@@ -71,6 +71,12 @@ namespace Pulumiverse.Fortios.Filter.Web
         public Output<int> CacheMemPercent { get; private set; } = null!;
 
         /// <summary>
+        /// Maximum permille of available memory allocated to caching (1 - 150).
+        /// </summary>
+        [Output("cacheMemPermille")]
+        public Output<int> CacheMemPermille { get; private set; } = null!;
+
+        /// <summary>
         /// Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
         /// </summary>
         [Output("cacheMode")]
@@ -87,6 +93,12 @@ namespace Pulumiverse.Fortios.Filter.Web
         /// </summary>
         [Output("closePorts")]
         public Output<string> ClosePorts { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("embedImage")]
+        public Output<string> EmbedImage { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
@@ -196,6 +208,12 @@ namespace Pulumiverse.Fortios.Filter.Web
         public Input<int>? CacheMemPercent { get; set; }
 
         /// <summary>
+        /// Maximum permille of available memory allocated to caching (1 - 150).
+        /// </summary>
+        [Input("cacheMemPermille")]
+        public Input<int>? CacheMemPermille { get; set; }
+
+        /// <summary>
         /// Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
         /// </summary>
         [Input("cacheMode")]
@@ -212,6 +230,12 @@ namespace Pulumiverse.Fortios.Filter.Web
         /// </summary>
         [Input("closePorts")]
         public Input<string>? ClosePorts { get; set; }
+
+        /// <summary>
+        /// Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("embedImage")]
+        public Input<string>? EmbedImage { get; set; }
 
         /// <summary>
         /// Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
@@ -282,6 +306,12 @@ namespace Pulumiverse.Fortios.Filter.Web
         public Input<int>? CacheMemPercent { get; set; }
 
         /// <summary>
+        /// Maximum permille of available memory allocated to caching (1 - 150).
+        /// </summary>
+        [Input("cacheMemPermille")]
+        public Input<int>? CacheMemPermille { get; set; }
+
+        /// <summary>
         /// Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
         /// </summary>
         [Input("cacheMode")]
@@ -298,6 +328,12 @@ namespace Pulumiverse.Fortios.Filter.Web
         /// </summary>
         [Input("closePorts")]
         public Input<string>? ClosePorts { get; set; }
+
+        /// <summary>
+        /// Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("embedImage")]
+        public Input<string>? EmbedImage { get; set; }
 
         /// <summary>
         /// Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.

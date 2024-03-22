@@ -126,7 +126,7 @@ namespace Pulumiverse.Fortios.Alertemail
         public Output<int> ErrorInterval { get; private set; } = null!;
 
         /// <summary>
-        /// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        /// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
         /// </summary>
         [Output("fdsLicenseExpiringDays")]
         public Output<int> FdsLicenseExpiringDays { get; private set; } = null!;
@@ -210,19 +210,19 @@ namespace Pulumiverse.Fortios.Alertemail
         public Output<string> LogDiskUsageWarning { get; private set; } = null!;
 
         /// <summary>
-        /// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+        /// Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions &gt;= 6.4.1: max. 63 characters.
         /// </summary>
         [Output("mailto1")]
         public Output<string> Mailto1 { get; private set; } = null!;
 
         /// <summary>
-        /// Optional second email address to send alert email to (max. 64 characters).
+        /// Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions &gt;= 6.4.1: max. 63 characters.
         /// </summary>
         [Output("mailto2")]
         public Output<string> Mailto2 { get; private set; } = null!;
 
         /// <summary>
-        /// Optional third email address to send alert email to (max. 64 characters).
+        /// Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions &gt;= 6.4.1: max. 63 characters.
         /// </summary>
         [Output("mailto3")]
         public Output<string> Mailto3 { get; private set; } = null!;
@@ -258,7 +258,7 @@ namespace Pulumiverse.Fortios.Alertemail
         public Output<string> SslvpnAuthenticationErrorsLogs { get; private set; } = null!;
 
         /// <summary>
-        /// Name that appears in the From: field of alert emails (max. 36 characters).
+        /// Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions &gt;= 6.4.1: max. 63 characters.
         /// </summary>
         [Output("username")]
         public Output<string> Username { get; private set; } = null!;
@@ -395,7 +395,7 @@ namespace Pulumiverse.Fortios.Alertemail
         public Input<int>? ErrorInterval { get; set; }
 
         /// <summary>
-        /// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        /// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
         /// </summary>
         [Input("fdsLicenseExpiringDays")]
         public Input<int>? FdsLicenseExpiringDays { get; set; }
@@ -479,19 +479,19 @@ namespace Pulumiverse.Fortios.Alertemail
         public Input<string>? LogDiskUsageWarning { get; set; }
 
         /// <summary>
-        /// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+        /// Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions &gt;= 6.4.1: max. 63 characters.
         /// </summary>
         [Input("mailto1")]
         public Input<string>? Mailto1 { get; set; }
 
         /// <summary>
-        /// Optional second email address to send alert email to (max. 64 characters).
+        /// Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions &gt;= 6.4.1: max. 63 characters.
         /// </summary>
         [Input("mailto2")]
         public Input<string>? Mailto2 { get; set; }
 
         /// <summary>
-        /// Optional third email address to send alert email to (max. 64 characters).
+        /// Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions &gt;= 6.4.1: max. 63 characters.
         /// </summary>
         [Input("mailto3")]
         public Input<string>? Mailto3 { get; set; }
@@ -527,7 +527,7 @@ namespace Pulumiverse.Fortios.Alertemail
         public Input<string>? SslvpnAuthenticationErrorsLogs { get; set; }
 
         /// <summary>
-        /// Name that appears in the From: field of alert emails (max. 36 characters).
+        /// Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions &gt;= 6.4.1: max. 63 characters.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
@@ -625,7 +625,7 @@ namespace Pulumiverse.Fortios.Alertemail
         public Input<int>? ErrorInterval { get; set; }
 
         /// <summary>
-        /// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        /// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
         /// </summary>
         [Input("fdsLicenseExpiringDays")]
         public Input<int>? FdsLicenseExpiringDays { get; set; }
@@ -709,19 +709,19 @@ namespace Pulumiverse.Fortios.Alertemail
         public Input<string>? LogDiskUsageWarning { get; set; }
 
         /// <summary>
-        /// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+        /// Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions &gt;= 6.4.1: max. 63 characters.
         /// </summary>
         [Input("mailto1")]
         public Input<string>? Mailto1 { get; set; }
 
         /// <summary>
-        /// Optional second email address to send alert email to (max. 64 characters).
+        /// Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions &gt;= 6.4.1: max. 63 characters.
         /// </summary>
         [Input("mailto2")]
         public Input<string>? Mailto2 { get; set; }
 
         /// <summary>
-        /// Optional third email address to send alert email to (max. 64 characters).
+        /// Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions &gt;= 6.4.1: max. 63 characters.
         /// </summary>
         [Input("mailto3")]
         public Input<string>? Mailto3 { get; set; }
@@ -757,7 +757,7 @@ namespace Pulumiverse.Fortios.Alertemail
         public Input<string>? SslvpnAuthenticationErrorsLogs { get; set; }
 
         /// <summary>
-        /// Name that appears in the From: field of alert emails (max. 36 characters).
+        /// Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions &gt;= 6.4.1: max. 63 characters.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

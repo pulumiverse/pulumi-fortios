@@ -38,6 +38,7 @@ class ExtenderArgs:
                  enforce_bandwidth: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
                  extension_type: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_shared_secret: Optional[pulumi.Input[str]] = None,
                  ifname: Optional[pulumi.Input[str]] = None,
                  initiated_update: Optional[pulumi.Input[str]] = None,
@@ -95,6 +96,7 @@ class ExtenderArgs:
         :param pulumi.Input[str] enforce_bandwidth: Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ha_shared_secret: HA shared secret.
         :param pulumi.Input[str] ifname: FortiExtender interface name.
         :param pulumi.Input[str] initiated_update: Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
@@ -170,6 +172,8 @@ class ExtenderArgs:
             pulumi.set(__self__, "ext_name", ext_name)
         if extension_type is not None:
             pulumi.set(__self__, "extension_type", extension_type)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ha_shared_secret is not None:
             pulumi.set(__self__, "ha_shared_secret", ha_shared_secret)
         if ifname is not None:
@@ -500,6 +504,18 @@ class ExtenderArgs:
     @extension_type.setter
     def extension_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "extension_type", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="haSharedSecret")
@@ -922,6 +938,7 @@ class _ExtenderState:
                  ext_name: Optional[pulumi.Input[str]] = None,
                  extension_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_shared_secret: Optional[pulumi.Input[str]] = None,
                  ifname: Optional[pulumi.Input[str]] = None,
                  initiated_update: Optional[pulumi.Input[str]] = None,
@@ -979,6 +996,7 @@ class _ExtenderState:
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ha_shared_secret: HA shared secret.
         :param pulumi.Input[str] ifname: FortiExtender interface name.
         :param pulumi.Input[str] initiated_update: Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
@@ -1056,6 +1074,8 @@ class _ExtenderState:
             pulumi.set(__self__, "extension_type", extension_type)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ha_shared_secret is not None:
             pulumi.set(__self__, "ha_shared_secret", ha_shared_secret)
         if ifname is not None:
@@ -1376,6 +1396,18 @@ class _ExtenderState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="haSharedSecret")
@@ -1812,6 +1844,7 @@ class Extender(pulumi.CustomResource):
                  ext_name: Optional[pulumi.Input[str]] = None,
                  extension_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_shared_secret: Optional[pulumi.Input[str]] = None,
                  ifname: Optional[pulumi.Input[str]] = None,
                  initiated_update: Optional[pulumi.Input[str]] = None,
@@ -1849,8 +1882,7 @@ class Extender(pulumi.CustomResource):
                  __props__=None):
         """
         Extender controller configuration.
-
-        > The resource applies to FortiOS Version < 6.4.2. For FortiOS Version >= 6.4.2, see `extendercontroller.Extender1`.
+        The resource applies to FortiOS Version < 7.2.1. For FortiOS version >= 7.2.1, see `extensioncontroller.Extender`
 
         ## Example Usage
 
@@ -1923,6 +1955,7 @@ class Extender(pulumi.CustomResource):
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ha_shared_secret: HA shared secret.
         :param pulumi.Input[str] ifname: FortiExtender interface name.
         :param pulumi.Input[str] initiated_update: Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
@@ -1966,8 +1999,7 @@ class Extender(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Extender controller configuration.
-
-        > The resource applies to FortiOS Version < 6.4.2. For FortiOS Version >= 6.4.2, see `extendercontroller.Extender1`.
+        The resource applies to FortiOS Version < 7.2.1. For FortiOS version >= 7.2.1, see `extensioncontroller.Extender`
 
         ## Example Usage
 
@@ -2053,6 +2085,7 @@ class Extender(pulumi.CustomResource):
                  ext_name: Optional[pulumi.Input[str]] = None,
                  extension_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_shared_secret: Optional[pulumi.Input[str]] = None,
                  ifname: Optional[pulumi.Input[str]] = None,
                  initiated_update: Optional[pulumi.Input[str]] = None,
@@ -2121,6 +2154,7 @@ class Extender(pulumi.CustomResource):
             if fosid is None and not opts.urn:
                 raise TypeError("Missing required property 'fosid'")
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ha_shared_secret"] = None if ha_shared_secret is None else pulumi.Output.secret(ha_shared_secret)
             __props__.__dict__["ifname"] = ifname
             __props__.__dict__["initiated_update"] = initiated_update
@@ -2190,6 +2224,7 @@ class Extender(pulumi.CustomResource):
             ext_name: Optional[pulumi.Input[str]] = None,
             extension_type: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ha_shared_secret: Optional[pulumi.Input[str]] = None,
             ifname: Optional[pulumi.Input[str]] = None,
             initiated_update: Optional[pulumi.Input[str]] = None,
@@ -2252,6 +2287,7 @@ class Extender(pulumi.CustomResource):
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ha_shared_secret: HA shared secret.
         :param pulumi.Input[str] ifname: FortiExtender interface name.
         :param pulumi.Input[str] initiated_update: Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
@@ -2312,6 +2348,7 @@ class Extender(pulumi.CustomResource):
         __props__.__dict__["ext_name"] = ext_name
         __props__.__dict__["extension_type"] = extension_type
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ha_shared_secret"] = ha_shared_secret
         __props__.__dict__["ifname"] = ifname
         __props__.__dict__["initiated_update"] = initiated_update
@@ -2515,6 +2552,14 @@ class Extender(pulumi.CustomResource):
         FortiExtender serial number.
         """
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="haSharedSecret")

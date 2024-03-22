@@ -64,7 +64,7 @@ import (
 type Settings struct {
 	pulumi.CustomResourceState
 
-	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+	// Maximum percentage of available memory allocated to caching (1 - 15).
 	CacheMemPercent pulumi.IntOutput `pulumi:"cacheMemPercent"`
 	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
 	ChunkSize pulumi.IntOutput `pulumi:"chunkSize"`
@@ -108,7 +108,7 @@ func GetSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Settings resources.
 type settingsState struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+	// Maximum percentage of available memory allocated to caching (1 - 15).
 	CacheMemPercent *int `pulumi:"cacheMemPercent"`
 	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
 	ChunkSize *int `pulumi:"chunkSize"`
@@ -123,7 +123,7 @@ type settingsState struct {
 }
 
 type SettingsState struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+	// Maximum percentage of available memory allocated to caching (1 - 15).
 	CacheMemPercent pulumi.IntPtrInput
 	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
 	ChunkSize pulumi.IntPtrInput
@@ -142,7 +142,7 @@ func (SettingsState) ElementType() reflect.Type {
 }
 
 type settingsArgs struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+	// Maximum percentage of available memory allocated to caching (1 - 15).
 	CacheMemPercent *int `pulumi:"cacheMemPercent"`
 	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
 	ChunkSize *int `pulumi:"chunkSize"`
@@ -158,7 +158,7 @@ type settingsArgs struct {
 
 // The set of arguments for constructing a Settings resource.
 type SettingsArgs struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+	// Maximum percentage of available memory allocated to caching (1 - 15).
 	CacheMemPercent pulumi.IntPtrInput
 	// Maximum fingerprint chunk size.  **Changing will flush the entire database**.
 	ChunkSize pulumi.IntPtrInput
@@ -259,7 +259,7 @@ func (o SettingsOutput) ToSettingsOutputWithContext(ctx context.Context) Setting
 	return o
 }
 
-// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+// Maximum percentage of available memory allocated to caching (1 - 15).
 func (o SettingsOutput) CacheMemPercent() pulumi.IntOutput {
 	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.CacheMemPercent }).(pulumi.IntOutput)
 }

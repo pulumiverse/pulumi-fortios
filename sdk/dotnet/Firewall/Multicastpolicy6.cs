@@ -125,7 +125,19 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<int> Fosid { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of an existing IPS sensor.
+        /// </summary>
+        [Output("ipsSensor")]
+        public Output<string> IpsSensor { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable logging traffic accepted by this policy.
         /// </summary>
         [Output("logtraffic")]
         public Output<string> Logtraffic { get; private set; } = null!;
@@ -165,6 +177,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("utmStatus")]
+        public Output<string> UtmStatus { get; private set; } = null!;
 
         /// <summary>
         /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -280,7 +298,19 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
-        /// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Name of an existing IPS sensor.
+        /// </summary>
+        [Input("ipsSensor")]
+        public Input<string>? IpsSensor { get; set; }
+
+        /// <summary>
+        /// Enable/disable logging traffic accepted by this policy.
         /// </summary>
         [Input("logtraffic")]
         public Input<string>? Logtraffic { get; set; }
@@ -326,6 +356,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("utmStatus")]
+        public Input<string>? UtmStatus { get; set; }
 
         /// <summary>
         /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -402,7 +438,19 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
-        /// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Name of an existing IPS sensor.
+        /// </summary>
+        [Input("ipsSensor")]
+        public Input<string>? IpsSensor { get; set; }
+
+        /// <summary>
+        /// Enable/disable logging traffic accepted by this policy.
         /// </summary>
         [Input("logtraffic")]
         public Input<string>? Logtraffic { get; set; }
@@ -448,6 +496,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("utmStatus")]
+        public Input<string>? UtmStatus { get; set; }
 
         /// <summary>
         /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).

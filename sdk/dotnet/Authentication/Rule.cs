@@ -71,6 +71,18 @@ namespace Pulumiverse.Fortios.Authentication
         public Output<string?> Comments { get; private set; } = null!;
 
         /// <summary>
+        /// Depth to allow CORS access (default = 3).
+        /// </summary>
+        [Output("corsDepth")]
+        public Output<int> CorsDepth { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("corsStateful")]
+        public Output<string> CorsStateful { get; private set; } = null!;
+
+        /// <summary>
         /// Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
         /// </summary>
         [Output("dstaddr6s")]
@@ -89,6 +101,12 @@ namespace Pulumiverse.Fortios.Authentication
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("ipBased")]
@@ -101,7 +119,7 @@ namespace Pulumiverse.Fortios.Authentication
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
+        /// Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
@@ -219,6 +237,18 @@ namespace Pulumiverse.Fortios.Authentication
         [Input("comments")]
         public Input<string>? Comments { get; set; }
 
+        /// <summary>
+        /// Depth to allow CORS access (default = 3).
+        /// </summary>
+        [Input("corsDepth")]
+        public Input<int>? CorsDepth { get; set; }
+
+        /// <summary>
+        /// Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("corsStateful")]
+        public Input<string>? CorsStateful { get; set; }
+
         [Input("dstaddr6s")]
         private InputList<Inputs.RuleDstaddr6Args>? _dstaddr6s;
 
@@ -250,6 +280,12 @@ namespace Pulumiverse.Fortios.Authentication
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("ipBased")]
@@ -262,7 +298,7 @@ namespace Pulumiverse.Fortios.Authentication
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
+        /// Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
@@ -359,6 +395,18 @@ namespace Pulumiverse.Fortios.Authentication
         [Input("comments")]
         public Input<string>? Comments { get; set; }
 
+        /// <summary>
+        /// Depth to allow CORS access (default = 3).
+        /// </summary>
+        [Input("corsDepth")]
+        public Input<int>? CorsDepth { get; set; }
+
+        /// <summary>
+        /// Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("corsStateful")]
+        public Input<string>? CorsStateful { get; set; }
+
         [Input("dstaddr6s")]
         private InputList<Inputs.RuleDstaddr6GetArgs>? _dstaddr6s;
 
@@ -390,6 +438,12 @@ namespace Pulumiverse.Fortios.Authentication
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("ipBased")]
@@ -402,7 +456,7 @@ namespace Pulumiverse.Fortios.Authentication
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
+        /// Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }

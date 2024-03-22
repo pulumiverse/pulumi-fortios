@@ -105,6 +105,8 @@ type Eventfilter struct {
 	Vpn pulumi.StringOutput `pulumi:"vpn"`
 	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
 	WanOpt pulumi.StringOutput `pulumi:"wanOpt"`
+	// Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+	Webproxy pulumi.StringOutput `pulumi:"webproxy"`
 	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
 	WirelessActivity pulumi.StringOutput `pulumi:"wirelessActivity"`
 }
@@ -173,6 +175,8 @@ type eventfilterState struct {
 	Vpn *string `pulumi:"vpn"`
 	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
 	WanOpt *string `pulumi:"wanOpt"`
+	// Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+	Webproxy *string `pulumi:"webproxy"`
 	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
 	WirelessActivity *string `pulumi:"wirelessActivity"`
 }
@@ -212,6 +216,8 @@ type EventfilterState struct {
 	Vpn pulumi.StringPtrInput
 	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
 	WanOpt pulumi.StringPtrInput
+	// Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+	Webproxy pulumi.StringPtrInput
 	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
 	WirelessActivity pulumi.StringPtrInput
 }
@@ -255,6 +261,8 @@ type eventfilterArgs struct {
 	Vpn *string `pulumi:"vpn"`
 	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
 	WanOpt *string `pulumi:"wanOpt"`
+	// Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+	Webproxy *string `pulumi:"webproxy"`
 	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
 	WirelessActivity *string `pulumi:"wirelessActivity"`
 }
@@ -295,6 +303,8 @@ type EventfilterArgs struct {
 	Vpn pulumi.StringPtrInput
 	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
 	WanOpt pulumi.StringPtrInput
+	// Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+	Webproxy pulumi.StringPtrInput
 	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
 	WirelessActivity pulumi.StringPtrInput
 }
@@ -469,6 +479,11 @@ func (o EventfilterOutput) Vpn() pulumi.StringOutput {
 // Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
 func (o EventfilterOutput) WanOpt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Eventfilter) pulumi.StringOutput { return v.WanOpt }).(pulumi.StringOutput)
+}
+
+// Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+func (o EventfilterOutput) Webproxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *Eventfilter) pulumi.StringOutput { return v.Webproxy }).(pulumi.StringOutput)
 }
 
 // Enable/disable wireless event logging. Valid values: `enable`, `disable`.

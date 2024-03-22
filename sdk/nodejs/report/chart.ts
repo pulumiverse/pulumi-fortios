@@ -125,6 +125,10 @@ export class Chart extends pulumi.CustomResource {
      */
     public readonly favorite!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
      */
     public readonly graphType!: pulumi.Output<string>;
@@ -205,6 +209,7 @@ export class Chart extends pulumi.CustomResource {
             resourceInputs["drillDownCharts"] = state ? state.drillDownCharts : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["favorite"] = state ? state.favorite : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["graphType"] = state ? state.graphType : undefined;
             resourceInputs["legend"] = state ? state.legend : undefined;
             resourceInputs["legendFontSize"] = state ? state.legendFontSize : undefined;
@@ -238,6 +243,7 @@ export class Chart extends pulumi.CustomResource {
             resourceInputs["drillDownCharts"] = args ? args.drillDownCharts : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["favorite"] = args ? args.favorite : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["graphType"] = args ? args.graphType : undefined;
             resourceInputs["legend"] = args ? args.legend : undefined;
             resourceInputs["legendFontSize"] = args ? args.legendFontSize : undefined;
@@ -306,6 +312,10 @@ export interface ChartState {
      * Favorite. Valid values: `no`, `yes`.
      */
     favorite?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
      */
@@ -412,6 +422,10 @@ export interface ChartArgs {
      * Favorite. Valid values: `no`, `yes`.
      */
     favorite?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
      */

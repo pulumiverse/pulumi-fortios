@@ -79,6 +79,14 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string Doh;
         /// <summary>
+        /// Enable/disable DNS over QUIC/HTTP3/443 (default = disable).
+        /// </summary>
+        public readonly string Doh3;
+        /// <summary>
+        /// Enable/disable DNS over QUIC/853 (default = disable).
+        /// </summary>
+        public readonly string Doq;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -98,6 +106,10 @@ namespace Pulumiverse.Fortios.System
 
             string doh,
 
+            string doh3,
+
+            string doq,
+
             string id,
 
             string mode,
@@ -108,6 +120,8 @@ namespace Pulumiverse.Fortios.System
         {
             DnsfilterProfile = dnsfilterProfile;
             Doh = doh;
+            Doh3 = doh3;
+            Doq = doq;
             Id = id;
             Mode = mode;
             Name = name;

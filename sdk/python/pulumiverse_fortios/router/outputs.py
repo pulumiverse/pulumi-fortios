@@ -33,6 +33,8 @@ __all__ = [
     'BgpRedistribute6',
     'BgpRedistribute',
     'BgpVrf6',
+    'BgpVrf6ExportRt',
+    'BgpVrf6ImportRt',
     'BgpVrf6LeakTarget',
     'BgpVrf',
     'BgpVrfExportRt',
@@ -42,6 +44,7 @@ __all__ = [
     'BgpVrfLeak',
     'BgpVrfLeakTarget',
     'CommunitylistRule',
+    'ExtcommunitylistRule',
     'IsisIsisInterface',
     'IsisIsisNet',
     'IsisRedistribute6',
@@ -141,6 +144,8 @@ __all__ = [
     'GetBgpRedistribute6Result',
     'GetBgpRedistributeResult',
     'GetBgpVrf6Result',
+    'GetBgpVrf6ExportRtResult',
+    'GetBgpVrf6ImportRtResult',
     'GetBgpVrf6LeakTargetResult',
     'GetBgpVrfResult',
     'GetBgpVrfExportRtResult',
@@ -1033,20 +1038,28 @@ class BgpNeighbor(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "activateVpnv4":
+        if key == "activateEvpn":
+            suggest = "activate_evpn"
+        elif key == "activateVpnv4":
             suggest = "activate_vpnv4"
+        elif key == "activateVpnv6":
+            suggest = "activate_vpnv6"
         elif key == "additionalPath":
             suggest = "additional_path"
         elif key == "additionalPath6":
             suggest = "additional_path6"
         elif key == "additionalPathVpnv4":
             suggest = "additional_path_vpnv4"
+        elif key == "additionalPathVpnv6":
+            suggest = "additional_path_vpnv6"
         elif key == "advAdditionalPath":
             suggest = "adv_additional_path"
         elif key == "advAdditionalPath6":
             suggest = "adv_additional_path6"
         elif key == "advAdditionalPathVpnv4":
             suggest = "adv_additional_path_vpnv4"
+        elif key == "advAdditionalPathVpnv6":
+            suggest = "adv_additional_path_vpnv6"
         elif key == "advertisementInterval":
             suggest = "advertisement_interval"
         elif key == "allowasIn":
@@ -1057,8 +1070,18 @@ class BgpNeighbor(dict):
             suggest = "allowas_in_enable"
         elif key == "allowasInEnable6":
             suggest = "allowas_in_enable6"
+        elif key == "allowasInEnableEvpn":
+            suggest = "allowas_in_enable_evpn"
+        elif key == "allowasInEnableVpnv4":
+            suggest = "allowas_in_enable_vpnv4"
+        elif key == "allowasInEnableVpnv6":
+            suggest = "allowas_in_enable_vpnv6"
+        elif key == "allowasInEvpn":
+            suggest = "allowas_in_evpn"
         elif key == "allowasInVpnv4":
             suggest = "allowas_in_vpnv4"
+        elif key == "allowasInVpnv6":
+            suggest = "allowas_in_vpnv6"
         elif key == "asOverride":
             suggest = "as_override"
         elif key == "asOverride6":
@@ -1069,6 +1092,10 @@ class BgpNeighbor(dict):
             suggest = "attribute_unchanged6"
         elif key == "attributeUnchangedVpnv4":
             suggest = "attribute_unchanged_vpnv4"
+        elif key == "attributeUnchangedVpnv6":
+            suggest = "attribute_unchanged_vpnv6"
+        elif key == "authOptions":
+            suggest = "auth_options"
         elif key == "capabilityDefaultOriginate":
             suggest = "capability_default_originate"
         elif key == "capabilityDefaultOriginate6":
@@ -1079,8 +1106,12 @@ class BgpNeighbor(dict):
             suggest = "capability_graceful_restart"
         elif key == "capabilityGracefulRestart6":
             suggest = "capability_graceful_restart6"
+        elif key == "capabilityGracefulRestartEvpn":
+            suggest = "capability_graceful_restart_evpn"
         elif key == "capabilityGracefulRestartVpnv4":
             suggest = "capability_graceful_restart_vpnv4"
+        elif key == "capabilityGracefulRestartVpnv6":
+            suggest = "capability_graceful_restart_vpnv6"
         elif key == "capabilityOrf":
             suggest = "capability_orf"
         elif key == "capabilityOrf6":
@@ -1103,12 +1134,16 @@ class BgpNeighbor(dict):
             suggest = "distribute_list_in6"
         elif key == "distributeListInVpnv4":
             suggest = "distribute_list_in_vpnv4"
+        elif key == "distributeListInVpnv6":
+            suggest = "distribute_list_in_vpnv6"
         elif key == "distributeListOut":
             suggest = "distribute_list_out"
         elif key == "distributeListOut6":
             suggest = "distribute_list_out6"
         elif key == "distributeListOutVpnv4":
             suggest = "distribute_list_out_vpnv4"
+        elif key == "distributeListOutVpnv6":
+            suggest = "distribute_list_out_vpnv6"
         elif key == "dontCapabilityNegotiate":
             suggest = "dont_capability_negotiate"
         elif key == "ebgpEnforceMultihop":
@@ -1119,10 +1154,18 @@ class BgpNeighbor(dict):
             suggest = "filter_list_in"
         elif key == "filterListIn6":
             suggest = "filter_list_in6"
+        elif key == "filterListInVpnv4":
+            suggest = "filter_list_in_vpnv4"
+        elif key == "filterListInVpnv6":
+            suggest = "filter_list_in_vpnv6"
         elif key == "filterListOut":
             suggest = "filter_list_out"
         elif key == "filterListOut6":
             suggest = "filter_list_out6"
+        elif key == "filterListOutVpnv4":
+            suggest = "filter_list_out_vpnv4"
+        elif key == "filterListOutVpnv6":
+            suggest = "filter_list_out_vpnv6"
         elif key == "holdtimeTimer":
             suggest = "holdtime_timer"
         elif key == "keepAliveTimer":
@@ -1139,20 +1182,32 @@ class BgpNeighbor(dict):
             suggest = "maximum_prefix"
         elif key == "maximumPrefix6":
             suggest = "maximum_prefix6"
+        elif key == "maximumPrefixEvpn":
+            suggest = "maximum_prefix_evpn"
         elif key == "maximumPrefixThreshold":
             suggest = "maximum_prefix_threshold"
         elif key == "maximumPrefixThreshold6":
             suggest = "maximum_prefix_threshold6"
+        elif key == "maximumPrefixThresholdEvpn":
+            suggest = "maximum_prefix_threshold_evpn"
         elif key == "maximumPrefixThresholdVpnv4":
             suggest = "maximum_prefix_threshold_vpnv4"
+        elif key == "maximumPrefixThresholdVpnv6":
+            suggest = "maximum_prefix_threshold_vpnv6"
         elif key == "maximumPrefixVpnv4":
             suggest = "maximum_prefix_vpnv4"
+        elif key == "maximumPrefixVpnv6":
+            suggest = "maximum_prefix_vpnv6"
         elif key == "maximumPrefixWarningOnly":
             suggest = "maximum_prefix_warning_only"
         elif key == "maximumPrefixWarningOnly6":
             suggest = "maximum_prefix_warning_only6"
+        elif key == "maximumPrefixWarningOnlyEvpn":
+            suggest = "maximum_prefix_warning_only_evpn"
         elif key == "maximumPrefixWarningOnlyVpnv4":
             suggest = "maximum_prefix_warning_only_vpnv4"
+        elif key == "maximumPrefixWarningOnlyVpnv6":
+            suggest = "maximum_prefix_warning_only_vpnv6"
         elif key == "nextHopSelf":
             suggest = "next_hop_self"
         elif key == "nextHopSelf6":
@@ -1163,6 +1218,8 @@ class BgpNeighbor(dict):
             suggest = "next_hop_self_rr6"
         elif key == "nextHopSelfVpnv4":
             suggest = "next_hop_self_vpnv4"
+        elif key == "nextHopSelfVpnv6":
+            suggest = "next_hop_self_vpnv6"
         elif key == "overrideCapability":
             suggest = "override_capability"
         elif key == "prefixListIn":
@@ -1171,20 +1228,28 @@ class BgpNeighbor(dict):
             suggest = "prefix_list_in6"
         elif key == "prefixListInVpnv4":
             suggest = "prefix_list_in_vpnv4"
+        elif key == "prefixListInVpnv6":
+            suggest = "prefix_list_in_vpnv6"
         elif key == "prefixListOut":
             suggest = "prefix_list_out"
         elif key == "prefixListOut6":
             suggest = "prefix_list_out6"
         elif key == "prefixListOutVpnv4":
             suggest = "prefix_list_out_vpnv4"
+        elif key == "prefixListOutVpnv6":
+            suggest = "prefix_list_out_vpnv6"
         elif key == "remoteAs":
             suggest = "remote_as"
         elif key == "removePrivateAs":
             suggest = "remove_private_as"
         elif key == "removePrivateAs6":
             suggest = "remove_private_as6"
+        elif key == "removePrivateAsEvpn":
+            suggest = "remove_private_as_evpn"
         elif key == "removePrivateAsVpnv4":
             suggest = "remove_private_as_vpnv4"
+        elif key == "removePrivateAsVpnv6":
+            suggest = "remove_private_as_vpnv6"
         elif key == "restartTime":
             suggest = "restart_time"
         elif key == "retainStaleTime":
@@ -1193,44 +1258,70 @@ class BgpNeighbor(dict):
             suggest = "route_map_in"
         elif key == "routeMapIn6":
             suggest = "route_map_in6"
+        elif key == "routeMapInEvpn":
+            suggest = "route_map_in_evpn"
         elif key == "routeMapInVpnv4":
             suggest = "route_map_in_vpnv4"
+        elif key == "routeMapInVpnv6":
+            suggest = "route_map_in_vpnv6"
         elif key == "routeMapOut":
             suggest = "route_map_out"
         elif key == "routeMapOut6":
             suggest = "route_map_out6"
         elif key == "routeMapOut6Preferable":
             suggest = "route_map_out6_preferable"
+        elif key == "routeMapOutEvpn":
+            suggest = "route_map_out_evpn"
         elif key == "routeMapOutPreferable":
             suggest = "route_map_out_preferable"
         elif key == "routeMapOutVpnv4":
             suggest = "route_map_out_vpnv4"
         elif key == "routeMapOutVpnv4Preferable":
             suggest = "route_map_out_vpnv4_preferable"
+        elif key == "routeMapOutVpnv6":
+            suggest = "route_map_out_vpnv6"
+        elif key == "routeMapOutVpnv6Preferable":
+            suggest = "route_map_out_vpnv6_preferable"
         elif key == "routeReflectorClient":
             suggest = "route_reflector_client"
         elif key == "routeReflectorClient6":
             suggest = "route_reflector_client6"
+        elif key == "routeReflectorClientEvpn":
+            suggest = "route_reflector_client_evpn"
         elif key == "routeReflectorClientVpnv4":
             suggest = "route_reflector_client_vpnv4"
+        elif key == "routeReflectorClientVpnv6":
+            suggest = "route_reflector_client_vpnv6"
         elif key == "routeServerClient":
             suggest = "route_server_client"
         elif key == "routeServerClient6":
             suggest = "route_server_client6"
+        elif key == "routeServerClientEvpn":
+            suggest = "route_server_client_evpn"
         elif key == "routeServerClientVpnv4":
             suggest = "route_server_client_vpnv4"
+        elif key == "routeServerClientVpnv6":
+            suggest = "route_server_client_vpnv6"
         elif key == "sendCommunity":
             suggest = "send_community"
         elif key == "sendCommunity6":
             suggest = "send_community6"
+        elif key == "sendCommunityEvpn":
+            suggest = "send_community_evpn"
         elif key == "sendCommunityVpnv4":
             suggest = "send_community_vpnv4"
+        elif key == "sendCommunityVpnv6":
+            suggest = "send_community_vpnv6"
         elif key == "softReconfiguration":
             suggest = "soft_reconfiguration"
         elif key == "softReconfiguration6":
             suggest = "soft_reconfiguration6"
+        elif key == "softReconfigurationEvpn":
+            suggest = "soft_reconfiguration_evpn"
         elif key == "softReconfigurationVpnv4":
             suggest = "soft_reconfiguration_vpnv4"
+        elif key == "softReconfigurationVpnv6":
+            suggest = "soft_reconfiguration_vpnv6"
         elif key == "staleRoute":
             suggest = "stale_route"
         elif key == "strictCapabilityMatch":
@@ -1256,31 +1347,44 @@ class BgpNeighbor(dict):
     def __init__(__self__, *,
                  activate: Optional[str] = None,
                  activate6: Optional[str] = None,
+                 activate_evpn: Optional[str] = None,
                  activate_vpnv4: Optional[str] = None,
+                 activate_vpnv6: Optional[str] = None,
                  additional_path: Optional[str] = None,
                  additional_path6: Optional[str] = None,
                  additional_path_vpnv4: Optional[str] = None,
+                 additional_path_vpnv6: Optional[str] = None,
                  adv_additional_path: Optional[int] = None,
                  adv_additional_path6: Optional[int] = None,
                  adv_additional_path_vpnv4: Optional[int] = None,
+                 adv_additional_path_vpnv6: Optional[int] = None,
                  advertisement_interval: Optional[int] = None,
                  allowas_in: Optional[int] = None,
                  allowas_in6: Optional[int] = None,
                  allowas_in_enable: Optional[str] = None,
                  allowas_in_enable6: Optional[str] = None,
+                 allowas_in_enable_evpn: Optional[str] = None,
+                 allowas_in_enable_vpnv4: Optional[str] = None,
+                 allowas_in_enable_vpnv6: Optional[str] = None,
+                 allowas_in_evpn: Optional[int] = None,
                  allowas_in_vpnv4: Optional[int] = None,
+                 allowas_in_vpnv6: Optional[int] = None,
                  as_override: Optional[str] = None,
                  as_override6: Optional[str] = None,
                  attribute_unchanged: Optional[str] = None,
                  attribute_unchanged6: Optional[str] = None,
                  attribute_unchanged_vpnv4: Optional[str] = None,
+                 attribute_unchanged_vpnv6: Optional[str] = None,
+                 auth_options: Optional[str] = None,
                  bfd: Optional[str] = None,
                  capability_default_originate: Optional[str] = None,
                  capability_default_originate6: Optional[str] = None,
                  capability_dynamic: Optional[str] = None,
                  capability_graceful_restart: Optional[str] = None,
                  capability_graceful_restart6: Optional[str] = None,
+                 capability_graceful_restart_evpn: Optional[str] = None,
                  capability_graceful_restart_vpnv4: Optional[str] = None,
+                 capability_graceful_restart_vpnv6: Optional[str] = None,
                  capability_orf: Optional[str] = None,
                  capability_orf6: Optional[str] = None,
                  capability_route_refresh: Optional[str] = None,
@@ -1293,16 +1397,22 @@ class BgpNeighbor(dict):
                  distribute_list_in: Optional[str] = None,
                  distribute_list_in6: Optional[str] = None,
                  distribute_list_in_vpnv4: Optional[str] = None,
+                 distribute_list_in_vpnv6: Optional[str] = None,
                  distribute_list_out: Optional[str] = None,
                  distribute_list_out6: Optional[str] = None,
                  distribute_list_out_vpnv4: Optional[str] = None,
+                 distribute_list_out_vpnv6: Optional[str] = None,
                  dont_capability_negotiate: Optional[str] = None,
                  ebgp_enforce_multihop: Optional[str] = None,
                  ebgp_multihop_ttl: Optional[int] = None,
                  filter_list_in: Optional[str] = None,
                  filter_list_in6: Optional[str] = None,
+                 filter_list_in_vpnv4: Optional[str] = None,
+                 filter_list_in_vpnv6: Optional[str] = None,
                  filter_list_out: Optional[str] = None,
                  filter_list_out6: Optional[str] = None,
+                 filter_list_out_vpnv4: Optional[str] = None,
+                 filter_list_out_vpnv6: Optional[str] = None,
                  holdtime_timer: Optional[int] = None,
                  interface: Optional[str] = None,
                  ip: Optional[str] = None,
@@ -1313,55 +1423,79 @@ class BgpNeighbor(dict):
                  local_as_replace_as: Optional[str] = None,
                  maximum_prefix: Optional[int] = None,
                  maximum_prefix6: Optional[int] = None,
+                 maximum_prefix_evpn: Optional[int] = None,
                  maximum_prefix_threshold: Optional[int] = None,
                  maximum_prefix_threshold6: Optional[int] = None,
+                 maximum_prefix_threshold_evpn: Optional[int] = None,
                  maximum_prefix_threshold_vpnv4: Optional[int] = None,
+                 maximum_prefix_threshold_vpnv6: Optional[int] = None,
                  maximum_prefix_vpnv4: Optional[int] = None,
+                 maximum_prefix_vpnv6: Optional[int] = None,
                  maximum_prefix_warning_only: Optional[str] = None,
                  maximum_prefix_warning_only6: Optional[str] = None,
+                 maximum_prefix_warning_only_evpn: Optional[str] = None,
                  maximum_prefix_warning_only_vpnv4: Optional[str] = None,
+                 maximum_prefix_warning_only_vpnv6: Optional[str] = None,
                  next_hop_self: Optional[str] = None,
                  next_hop_self6: Optional[str] = None,
                  next_hop_self_rr: Optional[str] = None,
                  next_hop_self_rr6: Optional[str] = None,
                  next_hop_self_vpnv4: Optional[str] = None,
+                 next_hop_self_vpnv6: Optional[str] = None,
                  override_capability: Optional[str] = None,
                  passive: Optional[str] = None,
                  password: Optional[str] = None,
                  prefix_list_in: Optional[str] = None,
                  prefix_list_in6: Optional[str] = None,
                  prefix_list_in_vpnv4: Optional[str] = None,
+                 prefix_list_in_vpnv6: Optional[str] = None,
                  prefix_list_out: Optional[str] = None,
                  prefix_list_out6: Optional[str] = None,
                  prefix_list_out_vpnv4: Optional[str] = None,
+                 prefix_list_out_vpnv6: Optional[str] = None,
                  remote_as: Optional[int] = None,
                  remove_private_as: Optional[str] = None,
                  remove_private_as6: Optional[str] = None,
+                 remove_private_as_evpn: Optional[str] = None,
                  remove_private_as_vpnv4: Optional[str] = None,
+                 remove_private_as_vpnv6: Optional[str] = None,
                  restart_time: Optional[int] = None,
                  retain_stale_time: Optional[int] = None,
                  route_map_in: Optional[str] = None,
                  route_map_in6: Optional[str] = None,
+                 route_map_in_evpn: Optional[str] = None,
                  route_map_in_vpnv4: Optional[str] = None,
+                 route_map_in_vpnv6: Optional[str] = None,
                  route_map_out: Optional[str] = None,
                  route_map_out6: Optional[str] = None,
                  route_map_out6_preferable: Optional[str] = None,
+                 route_map_out_evpn: Optional[str] = None,
                  route_map_out_preferable: Optional[str] = None,
                  route_map_out_vpnv4: Optional[str] = None,
                  route_map_out_vpnv4_preferable: Optional[str] = None,
+                 route_map_out_vpnv6: Optional[str] = None,
+                 route_map_out_vpnv6_preferable: Optional[str] = None,
                  route_reflector_client: Optional[str] = None,
                  route_reflector_client6: Optional[str] = None,
+                 route_reflector_client_evpn: Optional[str] = None,
                  route_reflector_client_vpnv4: Optional[str] = None,
+                 route_reflector_client_vpnv6: Optional[str] = None,
                  route_server_client: Optional[str] = None,
                  route_server_client6: Optional[str] = None,
+                 route_server_client_evpn: Optional[str] = None,
                  route_server_client_vpnv4: Optional[str] = None,
+                 route_server_client_vpnv6: Optional[str] = None,
                  send_community: Optional[str] = None,
                  send_community6: Optional[str] = None,
+                 send_community_evpn: Optional[str] = None,
                  send_community_vpnv4: Optional[str] = None,
+                 send_community_vpnv6: Optional[str] = None,
                  shutdown: Optional[str] = None,
                  soft_reconfiguration: Optional[str] = None,
                  soft_reconfiguration6: Optional[str] = None,
+                 soft_reconfiguration_evpn: Optional[str] = None,
                  soft_reconfiguration_vpnv4: Optional[str] = None,
+                 soft_reconfiguration_vpnv6: Optional[str] = None,
                  stale_route: Optional[str] = None,
                  strict_capability_match: Optional[str] = None,
                  unsuppress_map: Optional[str] = None,
@@ -1371,31 +1505,44 @@ class BgpNeighbor(dict):
         """
         :param str activate: Enable/disable address family IPv4 for this neighbor. Valid values: `enable`, `disable`.
         :param str activate6: Enable/disable address family IPv6 for this neighbor. Valid values: `enable`, `disable`.
+        :param str activate_evpn: Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
         :param str activate_vpnv4: Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
+        :param str activate_vpnv6: Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
         :param str additional_path: Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
         :param str additional_path6: Enable/disable IPv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
         :param str additional_path_vpnv4: Enable/disable VPNv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+        :param str additional_path_vpnv6: Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
         :param int adv_additional_path: Number of IPv4 additional paths that can be advertised to this neighbor.
         :param int adv_additional_path6: Number of IPv6 additional paths that can be advertised to this neighbor.
         :param int adv_additional_path_vpnv4: Number of VPNv4 additional paths that can be advertised to this neighbor.
+        :param int adv_additional_path_vpnv6: Number of VPNv6 additional paths that can be advertised to this neighbor.
         :param int advertisement_interval: Minimum interval (sec) between sending updates.
         :param int allowas_in: IPv4 The maximum number of occurrence of my AS number allowed.
         :param int allowas_in6: IPv6 The maximum number of occurrence of my AS number allowed.
         :param str allowas_in_enable: Enable/disable IPv4 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
         :param str allowas_in_enable6: Enable/disable IPv6 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
+        :param str allowas_in_enable_evpn: Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+        :param str allowas_in_enable_vpnv4: Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+        :param str allowas_in_enable_vpnv6: Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+        :param int allowas_in_evpn: The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
         :param int allowas_in_vpnv4: The maximum number of occurrence of my AS number allowed for VPNv4 route.
+        :param int allowas_in_vpnv6: The maximum number of occurrence of my AS number allowed for VPNv6 route.
         :param str as_override: Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
         :param str as_override6: Enable/disable replace peer AS with own AS for IPv6. Valid values: `enable`, `disable`.
         :param str attribute_unchanged: IPv4 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
         :param str attribute_unchanged6: IPv6 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
         :param str attribute_unchanged_vpnv4: List of attributes that should be unchanged for VPNv4 route. Valid values: `as-path`, `med`, `next-hop`.
+        :param str attribute_unchanged_vpnv6: List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+        :param str auth_options: Key-chain name for TCP authentication options.
         :param str bfd: Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
         :param str capability_default_originate: Enable/disable advertise default IPv4 route to this neighbor. Valid values: `enable`, `disable`.
         :param str capability_default_originate6: Enable/disable advertise default IPv6 route to this neighbor. Valid values: `enable`, `disable`.
         :param str capability_dynamic: Enable/disable advertise dynamic capability to this neighbor. Valid values: `enable`, `disable`.
         :param str capability_graceful_restart: Enable/disable advertise IPv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
         :param str capability_graceful_restart6: Enable/disable advertise IPv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        :param str capability_graceful_restart_evpn: Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
         :param str capability_graceful_restart_vpnv4: Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        :param str capability_graceful_restart_vpnv6: Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
         :param str capability_orf: Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param str capability_orf6: Accept/Send IPv6 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param str capability_route_refresh: Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
@@ -1408,16 +1555,22 @@ class BgpNeighbor(dict):
         :param str distribute_list_in: Filter for IPv4 updates from this neighbor.
         :param str distribute_list_in6: Filter for IPv6 updates from this neighbor.
         :param str distribute_list_in_vpnv4: Filter for VPNv4 updates from this neighbor.
+        :param str distribute_list_in_vpnv6: Filter for VPNv6 updates from this neighbor.
         :param str distribute_list_out: Filter for IPv4 updates to this neighbor.
         :param str distribute_list_out6: Filter for IPv6 updates to this neighbor.
         :param str distribute_list_out_vpnv4: Filter for VPNv4 updates to this neighbor.
+        :param str distribute_list_out_vpnv6: Filter for VPNv6 updates to this neighbor.
         :param str dont_capability_negotiate: Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
         :param str ebgp_enforce_multihop: Enable/disable allow multi-hop EBGP neighbors. Valid values: `enable`, `disable`.
         :param int ebgp_multihop_ttl: EBGP multihop TTL for this peer.
         :param str filter_list_in: BGP filter for IPv4 inbound routes.
         :param str filter_list_in6: BGP filter for IPv6 inbound routes.
+        :param str filter_list_in_vpnv4: BGP filter for VPNv4 inbound routes.
+        :param str filter_list_in_vpnv6: BGP filter for VPNv6 inbound routes.
         :param str filter_list_out: BGP filter for IPv4 outbound routes.
         :param str filter_list_out6: BGP filter for IPv6 outbound routes.
+        :param str filter_list_out_vpnv4: BGP filter for VPNv4 outbound routes.
+        :param str filter_list_out_vpnv6: BGP filter for VPNv6 outbound routes.
         :param int holdtime_timer: Interval (sec) before peer considered dead.
         :param str interface: Interface
         :param str ip: IP/IPv6 address of neighbor.
@@ -1428,55 +1581,79 @@ class BgpNeighbor(dict):
         :param str local_as_replace_as: Replace real AS with local-as in outgoing updates. Valid values: `enable`, `disable`.
         :param int maximum_prefix: Maximum number of IPv4 prefixes to accept from this peer.
         :param int maximum_prefix6: Maximum number of IPv6 prefixes to accept from this peer.
+        :param int maximum_prefix_evpn: Maximum number of L2VPN EVPN prefixes to accept from this peer.
         :param int maximum_prefix_threshold: Maximum IPv4 prefix threshold value (1 - 100 percent).
         :param int maximum_prefix_threshold6: Maximum IPv6 prefix threshold value (1 - 100 percent).
+        :param int maximum_prefix_threshold_evpn: Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
         :param int maximum_prefix_threshold_vpnv4: Maximum VPNv4 prefix threshold value (1 - 100 percent).
+        :param int maximum_prefix_threshold_vpnv6: Maximum VPNv6 prefix threshold value (1 - 100 percent).
         :param int maximum_prefix_vpnv4: Maximum number of VPNv4 prefixes to accept from this peer.
+        :param int maximum_prefix_vpnv6: Maximum number of VPNv6 prefixes to accept from this peer.
         :param str maximum_prefix_warning_only: Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
         :param str maximum_prefix_warning_only6: Enable/disable IPv6 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
+        :param str maximum_prefix_warning_only_evpn: Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
         :param str maximum_prefix_warning_only_vpnv4: Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
+        :param str maximum_prefix_warning_only_vpnv6: Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
         :param str next_hop_self: Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
         :param str next_hop_self6: Enable/disable IPv6 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
         :param str next_hop_self_rr: Enable/disable setting nexthop's address to interface's IPv4 address for route-reflector routes. Valid values: `enable`, `disable`.
         :param str next_hop_self_rr6: Enable/disable setting nexthop's address to interface's IPv6 address for route-reflector routes. Valid values: `enable`, `disable`.
         :param str next_hop_self_vpnv4: Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor. Valid values: `enable`, `disable`.
+        :param str next_hop_self_vpnv6: Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
         :param str override_capability: Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
         :param str passive: Enable/disable sending of open messages to this neighbor. Valid values: `enable`, `disable`.
         :param str password: Password used in MD5 authentication.
         :param str prefix_list_in: IPv4 Inbound filter for updates from this neighbor.
         :param str prefix_list_in6: IPv6 Inbound filter for updates from this neighbor.
         :param str prefix_list_in_vpnv4: Inbound filter for VPNv4 updates from this neighbor.
+        :param str prefix_list_in_vpnv6: Inbound filter for VPNv6 updates from this neighbor.
         :param str prefix_list_out: IPv4 Outbound filter for updates to this neighbor.
         :param str prefix_list_out6: IPv6 Outbound filter for updates to this neighbor.
         :param str prefix_list_out_vpnv4: Outbound filter for VPNv4 updates to this neighbor.
+        :param str prefix_list_out_vpnv6: Outbound filter for VPNv6 updates to this neighbor.
         :param int remote_as: AS number of neighbor.
         :param str remove_private_as: Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
         :param str remove_private_as6: Enable/disable remove private AS number from IPv6 outbound updates. Valid values: `enable`, `disable`.
+        :param str remove_private_as_evpn: Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
         :param str remove_private_as_vpnv4: Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
+        :param str remove_private_as_vpnv6: Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
         :param int restart_time: Graceful restart delay time (sec, 0 = global default).
         :param int retain_stale_time: Time to retain stale routes.
         :param str route_map_in: IPv4 Inbound route map filter.
         :param str route_map_in6: IPv6 Inbound route map filter.
+        :param str route_map_in_evpn: L2VPN EVPN inbound route map filter.
         :param str route_map_in_vpnv4: VPNv4 inbound route map filter.
+        :param str route_map_in_vpnv6: VPNv6 inbound route map filter.
         :param str route_map_out: IPv4 Outbound route map filter.
         :param str route_map_out6: IPv6 Outbound route map filter.
         :param str route_map_out6_preferable: IPv6 outbound route map filter if the peer is preferred.
+        :param str route_map_out_evpn: L2VPN EVPN outbound route map filter.
         :param str route_map_out_preferable: IPv4 outbound route map filter if the peer is preferred.
         :param str route_map_out_vpnv4: VPNv4 outbound route map filter.
         :param str route_map_out_vpnv4_preferable: VPNv4 outbound route map filter if the peer is preferred.
+        :param str route_map_out_vpnv6: VPNv6 outbound route map filter.
+        :param str route_map_out_vpnv6_preferable: VPNv6 outbound route map filter if this neighbor is preferred.
         :param str route_reflector_client: Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
         :param str route_reflector_client6: Enable/disable IPv6 AS route reflector client. Valid values: `enable`, `disable`.
+        :param str route_reflector_client_evpn: Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
         :param str route_reflector_client_vpnv4: Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+        :param str route_reflector_client_vpnv6: Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
         :param str route_server_client: Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
         :param str route_server_client6: Enable/disable IPv6 AS route server client. Valid values: `enable`, `disable`.
+        :param str route_server_client_evpn: Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
         :param str route_server_client_vpnv4: Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+        :param str route_server_client_vpnv6: Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
         :param str send_community: IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
         :param str send_community6: IPv6 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
+        :param str send_community_evpn: Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
         :param str send_community_vpnv4: Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+        :param str send_community_vpnv6: Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
         :param str shutdown: Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
         :param str soft_reconfiguration: Enable/disable allow IPv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
         :param str soft_reconfiguration6: Enable/disable allow IPv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        :param str soft_reconfiguration_evpn: Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
         :param str soft_reconfiguration_vpnv4: Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        :param str soft_reconfiguration_vpnv6: Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
         :param str stale_route: Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
         :param str strict_capability_match: Enable/disable strict capability matching. Valid values: `enable`, `disable`.
         :param str unsuppress_map: IPv4 Route map to selectively unsuppress suppressed routes.
@@ -1488,20 +1665,28 @@ class BgpNeighbor(dict):
             pulumi.set(__self__, "activate", activate)
         if activate6 is not None:
             pulumi.set(__self__, "activate6", activate6)
+        if activate_evpn is not None:
+            pulumi.set(__self__, "activate_evpn", activate_evpn)
         if activate_vpnv4 is not None:
             pulumi.set(__self__, "activate_vpnv4", activate_vpnv4)
+        if activate_vpnv6 is not None:
+            pulumi.set(__self__, "activate_vpnv6", activate_vpnv6)
         if additional_path is not None:
             pulumi.set(__self__, "additional_path", additional_path)
         if additional_path6 is not None:
             pulumi.set(__self__, "additional_path6", additional_path6)
         if additional_path_vpnv4 is not None:
             pulumi.set(__self__, "additional_path_vpnv4", additional_path_vpnv4)
+        if additional_path_vpnv6 is not None:
+            pulumi.set(__self__, "additional_path_vpnv6", additional_path_vpnv6)
         if adv_additional_path is not None:
             pulumi.set(__self__, "adv_additional_path", adv_additional_path)
         if adv_additional_path6 is not None:
             pulumi.set(__self__, "adv_additional_path6", adv_additional_path6)
         if adv_additional_path_vpnv4 is not None:
             pulumi.set(__self__, "adv_additional_path_vpnv4", adv_additional_path_vpnv4)
+        if adv_additional_path_vpnv6 is not None:
+            pulumi.set(__self__, "adv_additional_path_vpnv6", adv_additional_path_vpnv6)
         if advertisement_interval is not None:
             pulumi.set(__self__, "advertisement_interval", advertisement_interval)
         if allowas_in is not None:
@@ -1512,8 +1697,18 @@ class BgpNeighbor(dict):
             pulumi.set(__self__, "allowas_in_enable", allowas_in_enable)
         if allowas_in_enable6 is not None:
             pulumi.set(__self__, "allowas_in_enable6", allowas_in_enable6)
+        if allowas_in_enable_evpn is not None:
+            pulumi.set(__self__, "allowas_in_enable_evpn", allowas_in_enable_evpn)
+        if allowas_in_enable_vpnv4 is not None:
+            pulumi.set(__self__, "allowas_in_enable_vpnv4", allowas_in_enable_vpnv4)
+        if allowas_in_enable_vpnv6 is not None:
+            pulumi.set(__self__, "allowas_in_enable_vpnv6", allowas_in_enable_vpnv6)
+        if allowas_in_evpn is not None:
+            pulumi.set(__self__, "allowas_in_evpn", allowas_in_evpn)
         if allowas_in_vpnv4 is not None:
             pulumi.set(__self__, "allowas_in_vpnv4", allowas_in_vpnv4)
+        if allowas_in_vpnv6 is not None:
+            pulumi.set(__self__, "allowas_in_vpnv6", allowas_in_vpnv6)
         if as_override is not None:
             pulumi.set(__self__, "as_override", as_override)
         if as_override6 is not None:
@@ -1524,6 +1719,10 @@ class BgpNeighbor(dict):
             pulumi.set(__self__, "attribute_unchanged6", attribute_unchanged6)
         if attribute_unchanged_vpnv4 is not None:
             pulumi.set(__self__, "attribute_unchanged_vpnv4", attribute_unchanged_vpnv4)
+        if attribute_unchanged_vpnv6 is not None:
+            pulumi.set(__self__, "attribute_unchanged_vpnv6", attribute_unchanged_vpnv6)
+        if auth_options is not None:
+            pulumi.set(__self__, "auth_options", auth_options)
         if bfd is not None:
             pulumi.set(__self__, "bfd", bfd)
         if capability_default_originate is not None:
@@ -1536,8 +1735,12 @@ class BgpNeighbor(dict):
             pulumi.set(__self__, "capability_graceful_restart", capability_graceful_restart)
         if capability_graceful_restart6 is not None:
             pulumi.set(__self__, "capability_graceful_restart6", capability_graceful_restart6)
+        if capability_graceful_restart_evpn is not None:
+            pulumi.set(__self__, "capability_graceful_restart_evpn", capability_graceful_restart_evpn)
         if capability_graceful_restart_vpnv4 is not None:
             pulumi.set(__self__, "capability_graceful_restart_vpnv4", capability_graceful_restart_vpnv4)
+        if capability_graceful_restart_vpnv6 is not None:
+            pulumi.set(__self__, "capability_graceful_restart_vpnv6", capability_graceful_restart_vpnv6)
         if capability_orf is not None:
             pulumi.set(__self__, "capability_orf", capability_orf)
         if capability_orf6 is not None:
@@ -1562,12 +1765,16 @@ class BgpNeighbor(dict):
             pulumi.set(__self__, "distribute_list_in6", distribute_list_in6)
         if distribute_list_in_vpnv4 is not None:
             pulumi.set(__self__, "distribute_list_in_vpnv4", distribute_list_in_vpnv4)
+        if distribute_list_in_vpnv6 is not None:
+            pulumi.set(__self__, "distribute_list_in_vpnv6", distribute_list_in_vpnv6)
         if distribute_list_out is not None:
             pulumi.set(__self__, "distribute_list_out", distribute_list_out)
         if distribute_list_out6 is not None:
             pulumi.set(__self__, "distribute_list_out6", distribute_list_out6)
         if distribute_list_out_vpnv4 is not None:
             pulumi.set(__self__, "distribute_list_out_vpnv4", distribute_list_out_vpnv4)
+        if distribute_list_out_vpnv6 is not None:
+            pulumi.set(__self__, "distribute_list_out_vpnv6", distribute_list_out_vpnv6)
         if dont_capability_negotiate is not None:
             pulumi.set(__self__, "dont_capability_negotiate", dont_capability_negotiate)
         if ebgp_enforce_multihop is not None:
@@ -1578,10 +1785,18 @@ class BgpNeighbor(dict):
             pulumi.set(__self__, "filter_list_in", filter_list_in)
         if filter_list_in6 is not None:
             pulumi.set(__self__, "filter_list_in6", filter_list_in6)
+        if filter_list_in_vpnv4 is not None:
+            pulumi.set(__self__, "filter_list_in_vpnv4", filter_list_in_vpnv4)
+        if filter_list_in_vpnv6 is not None:
+            pulumi.set(__self__, "filter_list_in_vpnv6", filter_list_in_vpnv6)
         if filter_list_out is not None:
             pulumi.set(__self__, "filter_list_out", filter_list_out)
         if filter_list_out6 is not None:
             pulumi.set(__self__, "filter_list_out6", filter_list_out6)
+        if filter_list_out_vpnv4 is not None:
+            pulumi.set(__self__, "filter_list_out_vpnv4", filter_list_out_vpnv4)
+        if filter_list_out_vpnv6 is not None:
+            pulumi.set(__self__, "filter_list_out_vpnv6", filter_list_out_vpnv6)
         if holdtime_timer is not None:
             pulumi.set(__self__, "holdtime_timer", holdtime_timer)
         if interface is not None:
@@ -1602,20 +1817,32 @@ class BgpNeighbor(dict):
             pulumi.set(__self__, "maximum_prefix", maximum_prefix)
         if maximum_prefix6 is not None:
             pulumi.set(__self__, "maximum_prefix6", maximum_prefix6)
+        if maximum_prefix_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_evpn", maximum_prefix_evpn)
         if maximum_prefix_threshold is not None:
             pulumi.set(__self__, "maximum_prefix_threshold", maximum_prefix_threshold)
         if maximum_prefix_threshold6 is not None:
             pulumi.set(__self__, "maximum_prefix_threshold6", maximum_prefix_threshold6)
+        if maximum_prefix_threshold_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_threshold_evpn", maximum_prefix_threshold_evpn)
         if maximum_prefix_threshold_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_threshold_vpnv4", maximum_prefix_threshold_vpnv4)
+        if maximum_prefix_threshold_vpnv6 is not None:
+            pulumi.set(__self__, "maximum_prefix_threshold_vpnv6", maximum_prefix_threshold_vpnv6)
         if maximum_prefix_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_vpnv4", maximum_prefix_vpnv4)
+        if maximum_prefix_vpnv6 is not None:
+            pulumi.set(__self__, "maximum_prefix_vpnv6", maximum_prefix_vpnv6)
         if maximum_prefix_warning_only is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only", maximum_prefix_warning_only)
         if maximum_prefix_warning_only6 is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only6", maximum_prefix_warning_only6)
+        if maximum_prefix_warning_only_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_warning_only_evpn", maximum_prefix_warning_only_evpn)
         if maximum_prefix_warning_only_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only_vpnv4", maximum_prefix_warning_only_vpnv4)
+        if maximum_prefix_warning_only_vpnv6 is not None:
+            pulumi.set(__self__, "maximum_prefix_warning_only_vpnv6", maximum_prefix_warning_only_vpnv6)
         if next_hop_self is not None:
             pulumi.set(__self__, "next_hop_self", next_hop_self)
         if next_hop_self6 is not None:
@@ -1626,6 +1853,8 @@ class BgpNeighbor(dict):
             pulumi.set(__self__, "next_hop_self_rr6", next_hop_self_rr6)
         if next_hop_self_vpnv4 is not None:
             pulumi.set(__self__, "next_hop_self_vpnv4", next_hop_self_vpnv4)
+        if next_hop_self_vpnv6 is not None:
+            pulumi.set(__self__, "next_hop_self_vpnv6", next_hop_self_vpnv6)
         if override_capability is not None:
             pulumi.set(__self__, "override_capability", override_capability)
         if passive is not None:
@@ -1638,20 +1867,28 @@ class BgpNeighbor(dict):
             pulumi.set(__self__, "prefix_list_in6", prefix_list_in6)
         if prefix_list_in_vpnv4 is not None:
             pulumi.set(__self__, "prefix_list_in_vpnv4", prefix_list_in_vpnv4)
+        if prefix_list_in_vpnv6 is not None:
+            pulumi.set(__self__, "prefix_list_in_vpnv6", prefix_list_in_vpnv6)
         if prefix_list_out is not None:
             pulumi.set(__self__, "prefix_list_out", prefix_list_out)
         if prefix_list_out6 is not None:
             pulumi.set(__self__, "prefix_list_out6", prefix_list_out6)
         if prefix_list_out_vpnv4 is not None:
             pulumi.set(__self__, "prefix_list_out_vpnv4", prefix_list_out_vpnv4)
+        if prefix_list_out_vpnv6 is not None:
+            pulumi.set(__self__, "prefix_list_out_vpnv6", prefix_list_out_vpnv6)
         if remote_as is not None:
             pulumi.set(__self__, "remote_as", remote_as)
         if remove_private_as is not None:
             pulumi.set(__self__, "remove_private_as", remove_private_as)
         if remove_private_as6 is not None:
             pulumi.set(__self__, "remove_private_as6", remove_private_as6)
+        if remove_private_as_evpn is not None:
+            pulumi.set(__self__, "remove_private_as_evpn", remove_private_as_evpn)
         if remove_private_as_vpnv4 is not None:
             pulumi.set(__self__, "remove_private_as_vpnv4", remove_private_as_vpnv4)
+        if remove_private_as_vpnv6 is not None:
+            pulumi.set(__self__, "remove_private_as_vpnv6", remove_private_as_vpnv6)
         if restart_time is not None:
             pulumi.set(__self__, "restart_time", restart_time)
         if retain_stale_time is not None:
@@ -1660,46 +1897,72 @@ class BgpNeighbor(dict):
             pulumi.set(__self__, "route_map_in", route_map_in)
         if route_map_in6 is not None:
             pulumi.set(__self__, "route_map_in6", route_map_in6)
+        if route_map_in_evpn is not None:
+            pulumi.set(__self__, "route_map_in_evpn", route_map_in_evpn)
         if route_map_in_vpnv4 is not None:
             pulumi.set(__self__, "route_map_in_vpnv4", route_map_in_vpnv4)
+        if route_map_in_vpnv6 is not None:
+            pulumi.set(__self__, "route_map_in_vpnv6", route_map_in_vpnv6)
         if route_map_out is not None:
             pulumi.set(__self__, "route_map_out", route_map_out)
         if route_map_out6 is not None:
             pulumi.set(__self__, "route_map_out6", route_map_out6)
         if route_map_out6_preferable is not None:
             pulumi.set(__self__, "route_map_out6_preferable", route_map_out6_preferable)
+        if route_map_out_evpn is not None:
+            pulumi.set(__self__, "route_map_out_evpn", route_map_out_evpn)
         if route_map_out_preferable is not None:
             pulumi.set(__self__, "route_map_out_preferable", route_map_out_preferable)
         if route_map_out_vpnv4 is not None:
             pulumi.set(__self__, "route_map_out_vpnv4", route_map_out_vpnv4)
         if route_map_out_vpnv4_preferable is not None:
             pulumi.set(__self__, "route_map_out_vpnv4_preferable", route_map_out_vpnv4_preferable)
+        if route_map_out_vpnv6 is not None:
+            pulumi.set(__self__, "route_map_out_vpnv6", route_map_out_vpnv6)
+        if route_map_out_vpnv6_preferable is not None:
+            pulumi.set(__self__, "route_map_out_vpnv6_preferable", route_map_out_vpnv6_preferable)
         if route_reflector_client is not None:
             pulumi.set(__self__, "route_reflector_client", route_reflector_client)
         if route_reflector_client6 is not None:
             pulumi.set(__self__, "route_reflector_client6", route_reflector_client6)
+        if route_reflector_client_evpn is not None:
+            pulumi.set(__self__, "route_reflector_client_evpn", route_reflector_client_evpn)
         if route_reflector_client_vpnv4 is not None:
             pulumi.set(__self__, "route_reflector_client_vpnv4", route_reflector_client_vpnv4)
+        if route_reflector_client_vpnv6 is not None:
+            pulumi.set(__self__, "route_reflector_client_vpnv6", route_reflector_client_vpnv6)
         if route_server_client is not None:
             pulumi.set(__self__, "route_server_client", route_server_client)
         if route_server_client6 is not None:
             pulumi.set(__self__, "route_server_client6", route_server_client6)
+        if route_server_client_evpn is not None:
+            pulumi.set(__self__, "route_server_client_evpn", route_server_client_evpn)
         if route_server_client_vpnv4 is not None:
             pulumi.set(__self__, "route_server_client_vpnv4", route_server_client_vpnv4)
+        if route_server_client_vpnv6 is not None:
+            pulumi.set(__self__, "route_server_client_vpnv6", route_server_client_vpnv6)
         if send_community is not None:
             pulumi.set(__self__, "send_community", send_community)
         if send_community6 is not None:
             pulumi.set(__self__, "send_community6", send_community6)
+        if send_community_evpn is not None:
+            pulumi.set(__self__, "send_community_evpn", send_community_evpn)
         if send_community_vpnv4 is not None:
             pulumi.set(__self__, "send_community_vpnv4", send_community_vpnv4)
+        if send_community_vpnv6 is not None:
+            pulumi.set(__self__, "send_community_vpnv6", send_community_vpnv6)
         if shutdown is not None:
             pulumi.set(__self__, "shutdown", shutdown)
         if soft_reconfiguration is not None:
             pulumi.set(__self__, "soft_reconfiguration", soft_reconfiguration)
         if soft_reconfiguration6 is not None:
             pulumi.set(__self__, "soft_reconfiguration6", soft_reconfiguration6)
+        if soft_reconfiguration_evpn is not None:
+            pulumi.set(__self__, "soft_reconfiguration_evpn", soft_reconfiguration_evpn)
         if soft_reconfiguration_vpnv4 is not None:
             pulumi.set(__self__, "soft_reconfiguration_vpnv4", soft_reconfiguration_vpnv4)
+        if soft_reconfiguration_vpnv6 is not None:
+            pulumi.set(__self__, "soft_reconfiguration_vpnv6", soft_reconfiguration_vpnv6)
         if stale_route is not None:
             pulumi.set(__self__, "stale_route", stale_route)
         if strict_capability_match is not None:
@@ -1730,12 +1993,28 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "activate6")
 
     @property
+    @pulumi.getter(name="activateEvpn")
+    def activate_evpn(self) -> Optional[str]:
+        """
+        Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "activate_evpn")
+
+    @property
     @pulumi.getter(name="activateVpnv4")
     def activate_vpnv4(self) -> Optional[str]:
         """
         Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "activate_vpnv4")
+
+    @property
+    @pulumi.getter(name="activateVpnv6")
+    def activate_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "activate_vpnv6")
 
     @property
     @pulumi.getter(name="additionalPath")
@@ -1762,6 +2041,14 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "additional_path_vpnv4")
 
     @property
+    @pulumi.getter(name="additionalPathVpnv6")
+    def additional_path_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+        """
+        return pulumi.get(self, "additional_path_vpnv6")
+
+    @property
     @pulumi.getter(name="advAdditionalPath")
     def adv_additional_path(self) -> Optional[int]:
         """
@@ -1784,6 +2071,14 @@ class BgpNeighbor(dict):
         Number of VPNv4 additional paths that can be advertised to this neighbor.
         """
         return pulumi.get(self, "adv_additional_path_vpnv4")
+
+    @property
+    @pulumi.getter(name="advAdditionalPathVpnv6")
+    def adv_additional_path_vpnv6(self) -> Optional[int]:
+        """
+        Number of VPNv6 additional paths that can be advertised to this neighbor.
+        """
+        return pulumi.get(self, "adv_additional_path_vpnv6")
 
     @property
     @pulumi.getter(name="advertisementInterval")
@@ -1826,12 +2121,52 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "allowas_in_enable6")
 
     @property
+    @pulumi.getter(name="allowasInEnableEvpn")
+    def allowas_in_enable_evpn(self) -> Optional[str]:
+        """
+        Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "allowas_in_enable_evpn")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv4")
+    def allowas_in_enable_vpnv4(self) -> Optional[str]:
+        """
+        Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "allowas_in_enable_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv6")
+    def allowas_in_enable_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "allowas_in_enable_vpnv6")
+
+    @property
+    @pulumi.getter(name="allowasInEvpn")
+    def allowas_in_evpn(self) -> Optional[int]:
+        """
+        The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+        """
+        return pulumi.get(self, "allowas_in_evpn")
+
+    @property
     @pulumi.getter(name="allowasInVpnv4")
     def allowas_in_vpnv4(self) -> Optional[int]:
         """
         The maximum number of occurrence of my AS number allowed for VPNv4 route.
         """
         return pulumi.get(self, "allowas_in_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInVpnv6")
+    def allowas_in_vpnv6(self) -> Optional[int]:
+        """
+        The maximum number of occurrence of my AS number allowed for VPNv6 route.
+        """
+        return pulumi.get(self, "allowas_in_vpnv6")
 
     @property
     @pulumi.getter(name="asOverride")
@@ -1872,6 +2207,22 @@ class BgpNeighbor(dict):
         List of attributes that should be unchanged for VPNv4 route. Valid values: `as-path`, `med`, `next-hop`.
         """
         return pulumi.get(self, "attribute_unchanged_vpnv4")
+
+    @property
+    @pulumi.getter(name="attributeUnchangedVpnv6")
+    def attribute_unchanged_vpnv6(self) -> Optional[str]:
+        """
+        List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+        """
+        return pulumi.get(self, "attribute_unchanged_vpnv6")
+
+    @property
+    @pulumi.getter(name="authOptions")
+    def auth_options(self) -> Optional[str]:
+        """
+        Key-chain name for TCP authentication options.
+        """
+        return pulumi.get(self, "auth_options")
 
     @property
     @pulumi.getter
@@ -1922,12 +2273,28 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "capability_graceful_restart6")
 
     @property
+    @pulumi.getter(name="capabilityGracefulRestartEvpn")
+    def capability_graceful_restart_evpn(self) -> Optional[str]:
+        """
+        Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "capability_graceful_restart_evpn")
+
+    @property
     @pulumi.getter(name="capabilityGracefulRestartVpnv4")
     def capability_graceful_restart_vpnv4(self) -> Optional[str]:
         """
         Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "capability_graceful_restart_vpnv4")
+
+    @property
+    @pulumi.getter(name="capabilityGracefulRestartVpnv6")
+    def capability_graceful_restart_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "capability_graceful_restart_vpnv6")
 
     @property
     @pulumi.getter(name="capabilityOrf")
@@ -2026,6 +2393,14 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "distribute_list_in_vpnv4")
 
     @property
+    @pulumi.getter(name="distributeListInVpnv6")
+    def distribute_list_in_vpnv6(self) -> Optional[str]:
+        """
+        Filter for VPNv6 updates from this neighbor.
+        """
+        return pulumi.get(self, "distribute_list_in_vpnv6")
+
+    @property
     @pulumi.getter(name="distributeListOut")
     def distribute_list_out(self) -> Optional[str]:
         """
@@ -2048,6 +2423,14 @@ class BgpNeighbor(dict):
         Filter for VPNv4 updates to this neighbor.
         """
         return pulumi.get(self, "distribute_list_out_vpnv4")
+
+    @property
+    @pulumi.getter(name="distributeListOutVpnv6")
+    def distribute_list_out_vpnv6(self) -> Optional[str]:
+        """
+        Filter for VPNv6 updates to this neighbor.
+        """
+        return pulumi.get(self, "distribute_list_out_vpnv6")
 
     @property
     @pulumi.getter(name="dontCapabilityNegotiate")
@@ -2090,6 +2473,22 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "filter_list_in6")
 
     @property
+    @pulumi.getter(name="filterListInVpnv4")
+    def filter_list_in_vpnv4(self) -> Optional[str]:
+        """
+        BGP filter for VPNv4 inbound routes.
+        """
+        return pulumi.get(self, "filter_list_in_vpnv4")
+
+    @property
+    @pulumi.getter(name="filterListInVpnv6")
+    def filter_list_in_vpnv6(self) -> Optional[str]:
+        """
+        BGP filter for VPNv6 inbound routes.
+        """
+        return pulumi.get(self, "filter_list_in_vpnv6")
+
+    @property
     @pulumi.getter(name="filterListOut")
     def filter_list_out(self) -> Optional[str]:
         """
@@ -2104,6 +2503,22 @@ class BgpNeighbor(dict):
         BGP filter for IPv6 outbound routes.
         """
         return pulumi.get(self, "filter_list_out6")
+
+    @property
+    @pulumi.getter(name="filterListOutVpnv4")
+    def filter_list_out_vpnv4(self) -> Optional[str]:
+        """
+        BGP filter for VPNv4 outbound routes.
+        """
+        return pulumi.get(self, "filter_list_out_vpnv4")
+
+    @property
+    @pulumi.getter(name="filterListOutVpnv6")
+    def filter_list_out_vpnv6(self) -> Optional[str]:
+        """
+        BGP filter for VPNv6 outbound routes.
+        """
+        return pulumi.get(self, "filter_list_out_vpnv6")
 
     @property
     @pulumi.getter(name="holdtimeTimer")
@@ -2186,6 +2601,14 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "maximum_prefix6")
 
     @property
+    @pulumi.getter(name="maximumPrefixEvpn")
+    def maximum_prefix_evpn(self) -> Optional[int]:
+        """
+        Maximum number of L2VPN EVPN prefixes to accept from this peer.
+        """
+        return pulumi.get(self, "maximum_prefix_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThreshold")
     def maximum_prefix_threshold(self) -> Optional[int]:
         """
@@ -2202,6 +2625,14 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "maximum_prefix_threshold6")
 
     @property
+    @pulumi.getter(name="maximumPrefixThresholdEvpn")
+    def maximum_prefix_threshold_evpn(self) -> Optional[int]:
+        """
+        Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+        """
+        return pulumi.get(self, "maximum_prefix_threshold_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThresholdVpnv4")
     def maximum_prefix_threshold_vpnv4(self) -> Optional[int]:
         """
@@ -2210,12 +2641,28 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "maximum_prefix_threshold_vpnv4")
 
     @property
+    @pulumi.getter(name="maximumPrefixThresholdVpnv6")
+    def maximum_prefix_threshold_vpnv6(self) -> Optional[int]:
+        """
+        Maximum VPNv6 prefix threshold value (1 - 100 percent).
+        """
+        return pulumi.get(self, "maximum_prefix_threshold_vpnv6")
+
+    @property
     @pulumi.getter(name="maximumPrefixVpnv4")
     def maximum_prefix_vpnv4(self) -> Optional[int]:
         """
         Maximum number of VPNv4 prefixes to accept from this peer.
         """
         return pulumi.get(self, "maximum_prefix_vpnv4")
+
+    @property
+    @pulumi.getter(name="maximumPrefixVpnv6")
+    def maximum_prefix_vpnv6(self) -> Optional[int]:
+        """
+        Maximum number of VPNv6 prefixes to accept from this peer.
+        """
+        return pulumi.get(self, "maximum_prefix_vpnv6")
 
     @property
     @pulumi.getter(name="maximumPrefixWarningOnly")
@@ -2234,12 +2681,28 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "maximum_prefix_warning_only6")
 
     @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyEvpn")
+    def maximum_prefix_warning_only_evpn(self) -> Optional[str]:
+        """
+        Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "maximum_prefix_warning_only_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixWarningOnlyVpnv4")
     def maximum_prefix_warning_only_vpnv4(self) -> Optional[str]:
         """
         Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "maximum_prefix_warning_only_vpnv4")
+
+    @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyVpnv6")
+    def maximum_prefix_warning_only_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "maximum_prefix_warning_only_vpnv6")
 
     @property
     @pulumi.getter(name="nextHopSelf")
@@ -2280,6 +2743,14 @@ class BgpNeighbor(dict):
         Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "next_hop_self_vpnv4")
+
+    @property
+    @pulumi.getter(name="nextHopSelfVpnv6")
+    def next_hop_self_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "next_hop_self_vpnv6")
 
     @property
     @pulumi.getter(name="overrideCapability")
@@ -2330,6 +2801,14 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "prefix_list_in_vpnv4")
 
     @property
+    @pulumi.getter(name="prefixListInVpnv6")
+    def prefix_list_in_vpnv6(self) -> Optional[str]:
+        """
+        Inbound filter for VPNv6 updates from this neighbor.
+        """
+        return pulumi.get(self, "prefix_list_in_vpnv6")
+
+    @property
     @pulumi.getter(name="prefixListOut")
     def prefix_list_out(self) -> Optional[str]:
         """
@@ -2352,6 +2831,14 @@ class BgpNeighbor(dict):
         Outbound filter for VPNv4 updates to this neighbor.
         """
         return pulumi.get(self, "prefix_list_out_vpnv4")
+
+    @property
+    @pulumi.getter(name="prefixListOutVpnv6")
+    def prefix_list_out_vpnv6(self) -> Optional[str]:
+        """
+        Outbound filter for VPNv6 updates to this neighbor.
+        """
+        return pulumi.get(self, "prefix_list_out_vpnv6")
 
     @property
     @pulumi.getter(name="remoteAs")
@@ -2378,12 +2865,28 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "remove_private_as6")
 
     @property
+    @pulumi.getter(name="removePrivateAsEvpn")
+    def remove_private_as_evpn(self) -> Optional[str]:
+        """
+        Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "remove_private_as_evpn")
+
+    @property
     @pulumi.getter(name="removePrivateAsVpnv4")
     def remove_private_as_vpnv4(self) -> Optional[str]:
         """
         Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "remove_private_as_vpnv4")
+
+    @property
+    @pulumi.getter(name="removePrivateAsVpnv6")
+    def remove_private_as_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "remove_private_as_vpnv6")
 
     @property
     @pulumi.getter(name="restartTime")
@@ -2418,12 +2921,28 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "route_map_in6")
 
     @property
+    @pulumi.getter(name="routeMapInEvpn")
+    def route_map_in_evpn(self) -> Optional[str]:
+        """
+        L2VPN EVPN inbound route map filter.
+        """
+        return pulumi.get(self, "route_map_in_evpn")
+
+    @property
     @pulumi.getter(name="routeMapInVpnv4")
     def route_map_in_vpnv4(self) -> Optional[str]:
         """
         VPNv4 inbound route map filter.
         """
         return pulumi.get(self, "route_map_in_vpnv4")
+
+    @property
+    @pulumi.getter(name="routeMapInVpnv6")
+    def route_map_in_vpnv6(self) -> Optional[str]:
+        """
+        VPNv6 inbound route map filter.
+        """
+        return pulumi.get(self, "route_map_in_vpnv6")
 
     @property
     @pulumi.getter(name="routeMapOut")
@@ -2450,6 +2969,14 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "route_map_out6_preferable")
 
     @property
+    @pulumi.getter(name="routeMapOutEvpn")
+    def route_map_out_evpn(self) -> Optional[str]:
+        """
+        L2VPN EVPN outbound route map filter.
+        """
+        return pulumi.get(self, "route_map_out_evpn")
+
+    @property
     @pulumi.getter(name="routeMapOutPreferable")
     def route_map_out_preferable(self) -> Optional[str]:
         """
@@ -2474,6 +3001,22 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "route_map_out_vpnv4_preferable")
 
     @property
+    @pulumi.getter(name="routeMapOutVpnv6")
+    def route_map_out_vpnv6(self) -> Optional[str]:
+        """
+        VPNv6 outbound route map filter.
+        """
+        return pulumi.get(self, "route_map_out_vpnv6")
+
+    @property
+    @pulumi.getter(name="routeMapOutVpnv6Preferable")
+    def route_map_out_vpnv6_preferable(self) -> Optional[str]:
+        """
+        VPNv6 outbound route map filter if this neighbor is preferred.
+        """
+        return pulumi.get(self, "route_map_out_vpnv6_preferable")
+
+    @property
     @pulumi.getter(name="routeReflectorClient")
     def route_reflector_client(self) -> Optional[str]:
         """
@@ -2490,12 +3033,28 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "route_reflector_client6")
 
     @property
+    @pulumi.getter(name="routeReflectorClientEvpn")
+    def route_reflector_client_evpn(self) -> Optional[str]:
+        """
+        Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "route_reflector_client_evpn")
+
+    @property
     @pulumi.getter(name="routeReflectorClientVpnv4")
     def route_reflector_client_vpnv4(self) -> Optional[str]:
         """
         Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "route_reflector_client_vpnv4")
+
+    @property
+    @pulumi.getter(name="routeReflectorClientVpnv6")
+    def route_reflector_client_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "route_reflector_client_vpnv6")
 
     @property
     @pulumi.getter(name="routeServerClient")
@@ -2514,12 +3073,28 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "route_server_client6")
 
     @property
+    @pulumi.getter(name="routeServerClientEvpn")
+    def route_server_client_evpn(self) -> Optional[str]:
+        """
+        Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "route_server_client_evpn")
+
+    @property
     @pulumi.getter(name="routeServerClientVpnv4")
     def route_server_client_vpnv4(self) -> Optional[str]:
         """
         Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "route_server_client_vpnv4")
+
+    @property
+    @pulumi.getter(name="routeServerClientVpnv6")
+    def route_server_client_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "route_server_client_vpnv6")
 
     @property
     @pulumi.getter(name="sendCommunity")
@@ -2538,12 +3113,28 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "send_community6")
 
     @property
+    @pulumi.getter(name="sendCommunityEvpn")
+    def send_community_evpn(self) -> Optional[str]:
+        """
+        Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
+        """
+        return pulumi.get(self, "send_community_evpn")
+
+    @property
     @pulumi.getter(name="sendCommunityVpnv4")
     def send_community_vpnv4(self) -> Optional[str]:
         """
         Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
         """
         return pulumi.get(self, "send_community_vpnv4")
+
+    @property
+    @pulumi.getter(name="sendCommunityVpnv6")
+    def send_community_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+        """
+        return pulumi.get(self, "send_community_vpnv6")
 
     @property
     @pulumi.getter
@@ -2570,12 +3161,28 @@ class BgpNeighbor(dict):
         return pulumi.get(self, "soft_reconfiguration6")
 
     @property
+    @pulumi.getter(name="softReconfigurationEvpn")
+    def soft_reconfiguration_evpn(self) -> Optional[str]:
+        """
+        Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "soft_reconfiguration_evpn")
+
+    @property
     @pulumi.getter(name="softReconfigurationVpnv4")
     def soft_reconfiguration_vpnv4(self) -> Optional[str]:
         """
         Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "soft_reconfiguration_vpnv4")
+
+    @property
+    @pulumi.getter(name="softReconfigurationVpnv6")
+    def soft_reconfiguration_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "soft_reconfiguration_vpnv6")
 
     @property
     @pulumi.getter(name="staleRoute")
@@ -2759,20 +3366,28 @@ class BgpNeighborGroup(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "activateVpnv4":
+        if key == "activateEvpn":
+            suggest = "activate_evpn"
+        elif key == "activateVpnv4":
             suggest = "activate_vpnv4"
+        elif key == "activateVpnv6":
+            suggest = "activate_vpnv6"
         elif key == "additionalPath":
             suggest = "additional_path"
         elif key == "additionalPath6":
             suggest = "additional_path6"
         elif key == "additionalPathVpnv4":
             suggest = "additional_path_vpnv4"
+        elif key == "additionalPathVpnv6":
+            suggest = "additional_path_vpnv6"
         elif key == "advAdditionalPath":
             suggest = "adv_additional_path"
         elif key == "advAdditionalPath6":
             suggest = "adv_additional_path6"
         elif key == "advAdditionalPathVpnv4":
             suggest = "adv_additional_path_vpnv4"
+        elif key == "advAdditionalPathVpnv6":
+            suggest = "adv_additional_path_vpnv6"
         elif key == "advertisementInterval":
             suggest = "advertisement_interval"
         elif key == "allowasIn":
@@ -2783,8 +3398,18 @@ class BgpNeighborGroup(dict):
             suggest = "allowas_in_enable"
         elif key == "allowasInEnable6":
             suggest = "allowas_in_enable6"
+        elif key == "allowasInEnableEvpn":
+            suggest = "allowas_in_enable_evpn"
+        elif key == "allowasInEnableVpnv4":
+            suggest = "allowas_in_enable_vpnv4"
+        elif key == "allowasInEnableVpnv6":
+            suggest = "allowas_in_enable_vpnv6"
+        elif key == "allowasInEvpn":
+            suggest = "allowas_in_evpn"
         elif key == "allowasInVpnv4":
             suggest = "allowas_in_vpnv4"
+        elif key == "allowasInVpnv6":
+            suggest = "allowas_in_vpnv6"
         elif key == "asOverride":
             suggest = "as_override"
         elif key == "asOverride6":
@@ -2795,6 +3420,10 @@ class BgpNeighborGroup(dict):
             suggest = "attribute_unchanged6"
         elif key == "attributeUnchangedVpnv4":
             suggest = "attribute_unchanged_vpnv4"
+        elif key == "attributeUnchangedVpnv6":
+            suggest = "attribute_unchanged_vpnv6"
+        elif key == "authOptions":
+            suggest = "auth_options"
         elif key == "capabilityDefaultOriginate":
             suggest = "capability_default_originate"
         elif key == "capabilityDefaultOriginate6":
@@ -2805,8 +3434,12 @@ class BgpNeighborGroup(dict):
             suggest = "capability_graceful_restart"
         elif key == "capabilityGracefulRestart6":
             suggest = "capability_graceful_restart6"
+        elif key == "capabilityGracefulRestartEvpn":
+            suggest = "capability_graceful_restart_evpn"
         elif key == "capabilityGracefulRestartVpnv4":
             suggest = "capability_graceful_restart_vpnv4"
+        elif key == "capabilityGracefulRestartVpnv6":
+            suggest = "capability_graceful_restart_vpnv6"
         elif key == "capabilityOrf":
             suggest = "capability_orf"
         elif key == "capabilityOrf6":
@@ -2825,12 +3458,16 @@ class BgpNeighborGroup(dict):
             suggest = "distribute_list_in6"
         elif key == "distributeListInVpnv4":
             suggest = "distribute_list_in_vpnv4"
+        elif key == "distributeListInVpnv6":
+            suggest = "distribute_list_in_vpnv6"
         elif key == "distributeListOut":
             suggest = "distribute_list_out"
         elif key == "distributeListOut6":
             suggest = "distribute_list_out6"
         elif key == "distributeListOutVpnv4":
             suggest = "distribute_list_out_vpnv4"
+        elif key == "distributeListOutVpnv6":
+            suggest = "distribute_list_out_vpnv6"
         elif key == "dontCapabilityNegotiate":
             suggest = "dont_capability_negotiate"
         elif key == "ebgpEnforceMultihop":
@@ -2841,10 +3478,18 @@ class BgpNeighborGroup(dict):
             suggest = "filter_list_in"
         elif key == "filterListIn6":
             suggest = "filter_list_in6"
+        elif key == "filterListInVpnv4":
+            suggest = "filter_list_in_vpnv4"
+        elif key == "filterListInVpnv6":
+            suggest = "filter_list_in_vpnv6"
         elif key == "filterListOut":
             suggest = "filter_list_out"
         elif key == "filterListOut6":
             suggest = "filter_list_out6"
+        elif key == "filterListOutVpnv4":
+            suggest = "filter_list_out_vpnv4"
+        elif key == "filterListOutVpnv6":
+            suggest = "filter_list_out_vpnv6"
         elif key == "holdtimeTimer":
             suggest = "holdtime_timer"
         elif key == "keepAliveTimer":
@@ -2861,20 +3506,32 @@ class BgpNeighborGroup(dict):
             suggest = "maximum_prefix"
         elif key == "maximumPrefix6":
             suggest = "maximum_prefix6"
+        elif key == "maximumPrefixEvpn":
+            suggest = "maximum_prefix_evpn"
         elif key == "maximumPrefixThreshold":
             suggest = "maximum_prefix_threshold"
         elif key == "maximumPrefixThreshold6":
             suggest = "maximum_prefix_threshold6"
+        elif key == "maximumPrefixThresholdEvpn":
+            suggest = "maximum_prefix_threshold_evpn"
         elif key == "maximumPrefixThresholdVpnv4":
             suggest = "maximum_prefix_threshold_vpnv4"
+        elif key == "maximumPrefixThresholdVpnv6":
+            suggest = "maximum_prefix_threshold_vpnv6"
         elif key == "maximumPrefixVpnv4":
             suggest = "maximum_prefix_vpnv4"
+        elif key == "maximumPrefixVpnv6":
+            suggest = "maximum_prefix_vpnv6"
         elif key == "maximumPrefixWarningOnly":
             suggest = "maximum_prefix_warning_only"
         elif key == "maximumPrefixWarningOnly6":
             suggest = "maximum_prefix_warning_only6"
+        elif key == "maximumPrefixWarningOnlyEvpn":
+            suggest = "maximum_prefix_warning_only_evpn"
         elif key == "maximumPrefixWarningOnlyVpnv4":
             suggest = "maximum_prefix_warning_only_vpnv4"
+        elif key == "maximumPrefixWarningOnlyVpnv6":
+            suggest = "maximum_prefix_warning_only_vpnv6"
         elif key == "nextHopSelf":
             suggest = "next_hop_self"
         elif key == "nextHopSelf6":
@@ -2885,6 +3542,8 @@ class BgpNeighborGroup(dict):
             suggest = "next_hop_self_rr6"
         elif key == "nextHopSelfVpnv4":
             suggest = "next_hop_self_vpnv4"
+        elif key == "nextHopSelfVpnv6":
+            suggest = "next_hop_self_vpnv6"
         elif key == "overrideCapability":
             suggest = "override_capability"
         elif key == "prefixListIn":
@@ -2893,20 +3552,28 @@ class BgpNeighborGroup(dict):
             suggest = "prefix_list_in6"
         elif key == "prefixListInVpnv4":
             suggest = "prefix_list_in_vpnv4"
+        elif key == "prefixListInVpnv6":
+            suggest = "prefix_list_in_vpnv6"
         elif key == "prefixListOut":
             suggest = "prefix_list_out"
         elif key == "prefixListOut6":
             suggest = "prefix_list_out6"
         elif key == "prefixListOutVpnv4":
             suggest = "prefix_list_out_vpnv4"
+        elif key == "prefixListOutVpnv6":
+            suggest = "prefix_list_out_vpnv6"
         elif key == "remoteAs":
             suggest = "remote_as"
         elif key == "removePrivateAs":
             suggest = "remove_private_as"
         elif key == "removePrivateAs6":
             suggest = "remove_private_as6"
+        elif key == "removePrivateAsEvpn":
+            suggest = "remove_private_as_evpn"
         elif key == "removePrivateAsVpnv4":
             suggest = "remove_private_as_vpnv4"
+        elif key == "removePrivateAsVpnv6":
+            suggest = "remove_private_as_vpnv6"
         elif key == "restartTime":
             suggest = "restart_time"
         elif key == "retainStaleTime":
@@ -2915,44 +3582,70 @@ class BgpNeighborGroup(dict):
             suggest = "route_map_in"
         elif key == "routeMapIn6":
             suggest = "route_map_in6"
+        elif key == "routeMapInEvpn":
+            suggest = "route_map_in_evpn"
         elif key == "routeMapInVpnv4":
             suggest = "route_map_in_vpnv4"
+        elif key == "routeMapInVpnv6":
+            suggest = "route_map_in_vpnv6"
         elif key == "routeMapOut":
             suggest = "route_map_out"
         elif key == "routeMapOut6":
             suggest = "route_map_out6"
         elif key == "routeMapOut6Preferable":
             suggest = "route_map_out6_preferable"
+        elif key == "routeMapOutEvpn":
+            suggest = "route_map_out_evpn"
         elif key == "routeMapOutPreferable":
             suggest = "route_map_out_preferable"
         elif key == "routeMapOutVpnv4":
             suggest = "route_map_out_vpnv4"
         elif key == "routeMapOutVpnv4Preferable":
             suggest = "route_map_out_vpnv4_preferable"
+        elif key == "routeMapOutVpnv6":
+            suggest = "route_map_out_vpnv6"
+        elif key == "routeMapOutVpnv6Preferable":
+            suggest = "route_map_out_vpnv6_preferable"
         elif key == "routeReflectorClient":
             suggest = "route_reflector_client"
         elif key == "routeReflectorClient6":
             suggest = "route_reflector_client6"
+        elif key == "routeReflectorClientEvpn":
+            suggest = "route_reflector_client_evpn"
         elif key == "routeReflectorClientVpnv4":
             suggest = "route_reflector_client_vpnv4"
+        elif key == "routeReflectorClientVpnv6":
+            suggest = "route_reflector_client_vpnv6"
         elif key == "routeServerClient":
             suggest = "route_server_client"
         elif key == "routeServerClient6":
             suggest = "route_server_client6"
+        elif key == "routeServerClientEvpn":
+            suggest = "route_server_client_evpn"
         elif key == "routeServerClientVpnv4":
             suggest = "route_server_client_vpnv4"
+        elif key == "routeServerClientVpnv6":
+            suggest = "route_server_client_vpnv6"
         elif key == "sendCommunity":
             suggest = "send_community"
         elif key == "sendCommunity6":
             suggest = "send_community6"
+        elif key == "sendCommunityEvpn":
+            suggest = "send_community_evpn"
         elif key == "sendCommunityVpnv4":
             suggest = "send_community_vpnv4"
+        elif key == "sendCommunityVpnv6":
+            suggest = "send_community_vpnv6"
         elif key == "softReconfiguration":
             suggest = "soft_reconfiguration"
         elif key == "softReconfiguration6":
             suggest = "soft_reconfiguration6"
+        elif key == "softReconfigurationEvpn":
+            suggest = "soft_reconfiguration_evpn"
         elif key == "softReconfigurationVpnv4":
             suggest = "soft_reconfiguration_vpnv4"
+        elif key == "softReconfigurationVpnv6":
+            suggest = "soft_reconfiguration_vpnv6"
         elif key == "staleRoute":
             suggest = "stale_route"
         elif key == "strictCapabilityMatch":
@@ -2978,31 +3671,44 @@ class BgpNeighborGroup(dict):
     def __init__(__self__, *,
                  activate: Optional[str] = None,
                  activate6: Optional[str] = None,
+                 activate_evpn: Optional[str] = None,
                  activate_vpnv4: Optional[str] = None,
+                 activate_vpnv6: Optional[str] = None,
                  additional_path: Optional[str] = None,
                  additional_path6: Optional[str] = None,
                  additional_path_vpnv4: Optional[str] = None,
+                 additional_path_vpnv6: Optional[str] = None,
                  adv_additional_path: Optional[int] = None,
                  adv_additional_path6: Optional[int] = None,
                  adv_additional_path_vpnv4: Optional[int] = None,
+                 adv_additional_path_vpnv6: Optional[int] = None,
                  advertisement_interval: Optional[int] = None,
                  allowas_in: Optional[int] = None,
                  allowas_in6: Optional[int] = None,
                  allowas_in_enable: Optional[str] = None,
                  allowas_in_enable6: Optional[str] = None,
+                 allowas_in_enable_evpn: Optional[str] = None,
+                 allowas_in_enable_vpnv4: Optional[str] = None,
+                 allowas_in_enable_vpnv6: Optional[str] = None,
+                 allowas_in_evpn: Optional[int] = None,
                  allowas_in_vpnv4: Optional[int] = None,
+                 allowas_in_vpnv6: Optional[int] = None,
                  as_override: Optional[str] = None,
                  as_override6: Optional[str] = None,
                  attribute_unchanged: Optional[str] = None,
                  attribute_unchanged6: Optional[str] = None,
                  attribute_unchanged_vpnv4: Optional[str] = None,
+                 attribute_unchanged_vpnv6: Optional[str] = None,
+                 auth_options: Optional[str] = None,
                  bfd: Optional[str] = None,
                  capability_default_originate: Optional[str] = None,
                  capability_default_originate6: Optional[str] = None,
                  capability_dynamic: Optional[str] = None,
                  capability_graceful_restart: Optional[str] = None,
                  capability_graceful_restart6: Optional[str] = None,
+                 capability_graceful_restart_evpn: Optional[str] = None,
                  capability_graceful_restart_vpnv4: Optional[str] = None,
+                 capability_graceful_restart_vpnv6: Optional[str] = None,
                  capability_orf: Optional[str] = None,
                  capability_orf6: Optional[str] = None,
                  capability_route_refresh: Optional[str] = None,
@@ -3013,16 +3719,22 @@ class BgpNeighborGroup(dict):
                  distribute_list_in: Optional[str] = None,
                  distribute_list_in6: Optional[str] = None,
                  distribute_list_in_vpnv4: Optional[str] = None,
+                 distribute_list_in_vpnv6: Optional[str] = None,
                  distribute_list_out: Optional[str] = None,
                  distribute_list_out6: Optional[str] = None,
                  distribute_list_out_vpnv4: Optional[str] = None,
+                 distribute_list_out_vpnv6: Optional[str] = None,
                  dont_capability_negotiate: Optional[str] = None,
                  ebgp_enforce_multihop: Optional[str] = None,
                  ebgp_multihop_ttl: Optional[int] = None,
                  filter_list_in: Optional[str] = None,
                  filter_list_in6: Optional[str] = None,
+                 filter_list_in_vpnv4: Optional[str] = None,
+                 filter_list_in_vpnv6: Optional[str] = None,
                  filter_list_out: Optional[str] = None,
                  filter_list_out6: Optional[str] = None,
+                 filter_list_out_vpnv4: Optional[str] = None,
+                 filter_list_out_vpnv6: Optional[str] = None,
                  holdtime_timer: Optional[int] = None,
                  interface: Optional[str] = None,
                  keep_alive_timer: Optional[int] = None,
@@ -3032,55 +3744,80 @@ class BgpNeighborGroup(dict):
                  local_as_replace_as: Optional[str] = None,
                  maximum_prefix: Optional[int] = None,
                  maximum_prefix6: Optional[int] = None,
+                 maximum_prefix_evpn: Optional[int] = None,
                  maximum_prefix_threshold: Optional[int] = None,
                  maximum_prefix_threshold6: Optional[int] = None,
+                 maximum_prefix_threshold_evpn: Optional[int] = None,
                  maximum_prefix_threshold_vpnv4: Optional[int] = None,
+                 maximum_prefix_threshold_vpnv6: Optional[int] = None,
                  maximum_prefix_vpnv4: Optional[int] = None,
+                 maximum_prefix_vpnv6: Optional[int] = None,
                  maximum_prefix_warning_only: Optional[str] = None,
                  maximum_prefix_warning_only6: Optional[str] = None,
+                 maximum_prefix_warning_only_evpn: Optional[str] = None,
                  maximum_prefix_warning_only_vpnv4: Optional[str] = None,
+                 maximum_prefix_warning_only_vpnv6: Optional[str] = None,
                  name: Optional[str] = None,
                  next_hop_self: Optional[str] = None,
                  next_hop_self6: Optional[str] = None,
                  next_hop_self_rr: Optional[str] = None,
                  next_hop_self_rr6: Optional[str] = None,
                  next_hop_self_vpnv4: Optional[str] = None,
+                 next_hop_self_vpnv6: Optional[str] = None,
                  override_capability: Optional[str] = None,
                  passive: Optional[str] = None,
+                 password: Optional[str] = None,
                  prefix_list_in: Optional[str] = None,
                  prefix_list_in6: Optional[str] = None,
                  prefix_list_in_vpnv4: Optional[str] = None,
+                 prefix_list_in_vpnv6: Optional[str] = None,
                  prefix_list_out: Optional[str] = None,
                  prefix_list_out6: Optional[str] = None,
                  prefix_list_out_vpnv4: Optional[str] = None,
+                 prefix_list_out_vpnv6: Optional[str] = None,
                  remote_as: Optional[int] = None,
                  remove_private_as: Optional[str] = None,
                  remove_private_as6: Optional[str] = None,
+                 remove_private_as_evpn: Optional[str] = None,
                  remove_private_as_vpnv4: Optional[str] = None,
+                 remove_private_as_vpnv6: Optional[str] = None,
                  restart_time: Optional[int] = None,
                  retain_stale_time: Optional[int] = None,
                  route_map_in: Optional[str] = None,
                  route_map_in6: Optional[str] = None,
+                 route_map_in_evpn: Optional[str] = None,
                  route_map_in_vpnv4: Optional[str] = None,
+                 route_map_in_vpnv6: Optional[str] = None,
                  route_map_out: Optional[str] = None,
                  route_map_out6: Optional[str] = None,
                  route_map_out6_preferable: Optional[str] = None,
+                 route_map_out_evpn: Optional[str] = None,
                  route_map_out_preferable: Optional[str] = None,
                  route_map_out_vpnv4: Optional[str] = None,
                  route_map_out_vpnv4_preferable: Optional[str] = None,
+                 route_map_out_vpnv6: Optional[str] = None,
+                 route_map_out_vpnv6_preferable: Optional[str] = None,
                  route_reflector_client: Optional[str] = None,
                  route_reflector_client6: Optional[str] = None,
+                 route_reflector_client_evpn: Optional[str] = None,
                  route_reflector_client_vpnv4: Optional[str] = None,
+                 route_reflector_client_vpnv6: Optional[str] = None,
                  route_server_client: Optional[str] = None,
                  route_server_client6: Optional[str] = None,
+                 route_server_client_evpn: Optional[str] = None,
                  route_server_client_vpnv4: Optional[str] = None,
+                 route_server_client_vpnv6: Optional[str] = None,
                  send_community: Optional[str] = None,
                  send_community6: Optional[str] = None,
+                 send_community_evpn: Optional[str] = None,
                  send_community_vpnv4: Optional[str] = None,
+                 send_community_vpnv6: Optional[str] = None,
                  shutdown: Optional[str] = None,
                  soft_reconfiguration: Optional[str] = None,
                  soft_reconfiguration6: Optional[str] = None,
+                 soft_reconfiguration_evpn: Optional[str] = None,
                  soft_reconfiguration_vpnv4: Optional[str] = None,
+                 soft_reconfiguration_vpnv6: Optional[str] = None,
                  stale_route: Optional[str] = None,
                  strict_capability_match: Optional[str] = None,
                  unsuppress_map: Optional[str] = None,
@@ -3090,31 +3827,44 @@ class BgpNeighborGroup(dict):
         """
         :param str activate: Enable/disable address family IPv4 for this neighbor. Valid values: `enable`, `disable`.
         :param str activate6: Enable/disable address family IPv6 for this neighbor. Valid values: `enable`, `disable`.
+        :param str activate_evpn: Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
         :param str activate_vpnv4: Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
+        :param str activate_vpnv6: Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
         :param str additional_path: Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
         :param str additional_path6: Enable/disable IPv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
         :param str additional_path_vpnv4: Enable/disable VPNv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+        :param str additional_path_vpnv6: Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
         :param int adv_additional_path: Number of IPv4 additional paths that can be advertised to this neighbor.
         :param int adv_additional_path6: Number of IPv6 additional paths that can be advertised to this neighbor.
         :param int adv_additional_path_vpnv4: Number of VPNv4 additional paths that can be advertised to this neighbor.
+        :param int adv_additional_path_vpnv6: Number of VPNv6 additional paths that can be advertised to this neighbor.
         :param int advertisement_interval: Minimum interval (sec) between sending updates.
         :param int allowas_in: IPv4 The maximum number of occurrence of my AS number allowed.
         :param int allowas_in6: IPv6 The maximum number of occurrence of my AS number allowed.
         :param str allowas_in_enable: Enable/disable IPv4 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
         :param str allowas_in_enable6: Enable/disable IPv6 Enable to allow my AS in AS path. Valid values: `enable`, `disable`.
+        :param str allowas_in_enable_evpn: Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+        :param str allowas_in_enable_vpnv4: Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+        :param str allowas_in_enable_vpnv6: Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+        :param int allowas_in_evpn: The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
         :param int allowas_in_vpnv4: The maximum number of occurrence of my AS number allowed for VPNv4 route.
+        :param int allowas_in_vpnv6: The maximum number of occurrence of my AS number allowed for VPNv6 route.
         :param str as_override: Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
         :param str as_override6: Enable/disable replace peer AS with own AS for IPv6. Valid values: `enable`, `disable`.
         :param str attribute_unchanged: IPv4 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
         :param str attribute_unchanged6: IPv6 List of attributes that should be unchanged. Valid values: `as-path`, `med`, `next-hop`.
         :param str attribute_unchanged_vpnv4: List of attributes that should be unchanged for VPNv4 route. Valid values: `as-path`, `med`, `next-hop`.
+        :param str attribute_unchanged_vpnv6: List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+        :param str auth_options: Key-chain name for TCP authentication options.
         :param str bfd: Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
         :param str capability_default_originate: Enable/disable advertise default IPv4 route to this neighbor. Valid values: `enable`, `disable`.
         :param str capability_default_originate6: Enable/disable advertise default IPv6 route to this neighbor. Valid values: `enable`, `disable`.
         :param str capability_dynamic: Enable/disable advertise dynamic capability to this neighbor. Valid values: `enable`, `disable`.
         :param str capability_graceful_restart: Enable/disable advertise IPv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
         :param str capability_graceful_restart6: Enable/disable advertise IPv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        :param str capability_graceful_restart_evpn: Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
         :param str capability_graceful_restart_vpnv4: Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        :param str capability_graceful_restart_vpnv6: Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
         :param str capability_orf: Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param str capability_orf6: Accept/Send IPv6 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param str capability_route_refresh: Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
@@ -3125,16 +3875,22 @@ class BgpNeighborGroup(dict):
         :param str distribute_list_in: Filter for IPv4 updates from this neighbor.
         :param str distribute_list_in6: Filter for IPv6 updates from this neighbor.
         :param str distribute_list_in_vpnv4: Filter for VPNv4 updates from this neighbor.
+        :param str distribute_list_in_vpnv6: Filter for VPNv6 updates from this neighbor.
         :param str distribute_list_out: Filter for IPv4 updates to this neighbor.
         :param str distribute_list_out6: Filter for IPv6 updates to this neighbor.
         :param str distribute_list_out_vpnv4: Filter for VPNv4 updates to this neighbor.
+        :param str distribute_list_out_vpnv6: Filter for VPNv6 updates to this neighbor.
         :param str dont_capability_negotiate: Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
         :param str ebgp_enforce_multihop: Enable/disable allow multi-hop EBGP neighbors. Valid values: `enable`, `disable`.
         :param int ebgp_multihop_ttl: EBGP multihop TTL for this peer.
         :param str filter_list_in: BGP filter for IPv4 inbound routes.
         :param str filter_list_in6: BGP filter for IPv6 inbound routes.
+        :param str filter_list_in_vpnv4: BGP filter for VPNv4 inbound routes.
+        :param str filter_list_in_vpnv6: BGP filter for VPNv6 inbound routes.
         :param str filter_list_out: BGP filter for IPv4 outbound routes.
         :param str filter_list_out6: BGP filter for IPv6 outbound routes.
+        :param str filter_list_out_vpnv4: BGP filter for VPNv4 outbound routes.
+        :param str filter_list_out_vpnv6: BGP filter for VPNv6 outbound routes.
         :param int holdtime_timer: Interval (sec) before peer considered dead.
         :param str interface: Interface
         :param int keep_alive_timer: Keep alive timer interval (sec).
@@ -3144,55 +3900,80 @@ class BgpNeighborGroup(dict):
         :param str local_as_replace_as: Replace real AS with local-as in outgoing updates. Valid values: `enable`, `disable`.
         :param int maximum_prefix: Maximum number of IPv4 prefixes to accept from this peer.
         :param int maximum_prefix6: Maximum number of IPv6 prefixes to accept from this peer.
+        :param int maximum_prefix_evpn: Maximum number of L2VPN EVPN prefixes to accept from this peer.
         :param int maximum_prefix_threshold: Maximum IPv4 prefix threshold value (1 - 100 percent).
         :param int maximum_prefix_threshold6: Maximum IPv6 prefix threshold value (1 - 100 percent).
+        :param int maximum_prefix_threshold_evpn: Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
         :param int maximum_prefix_threshold_vpnv4: Maximum VPNv4 prefix threshold value (1 - 100 percent).
+        :param int maximum_prefix_threshold_vpnv6: Maximum VPNv6 prefix threshold value (1 - 100 percent).
         :param int maximum_prefix_vpnv4: Maximum number of VPNv4 prefixes to accept from this peer.
+        :param int maximum_prefix_vpnv6: Maximum number of VPNv6 prefixes to accept from this peer.
         :param str maximum_prefix_warning_only: Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
         :param str maximum_prefix_warning_only6: Enable/disable IPv6 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
+        :param str maximum_prefix_warning_only_evpn: Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
         :param str maximum_prefix_warning_only_vpnv4: Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
+        :param str maximum_prefix_warning_only_vpnv6: Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
         :param str name: Neighbor group name.
         :param str next_hop_self: Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
         :param str next_hop_self6: Enable/disable IPv6 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
         :param str next_hop_self_rr: Enable/disable setting nexthop's address to interface's IPv4 address for route-reflector routes. Valid values: `enable`, `disable`.
         :param str next_hop_self_rr6: Enable/disable setting nexthop's address to interface's IPv6 address for route-reflector routes. Valid values: `enable`, `disable`.
         :param str next_hop_self_vpnv4: Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor. Valid values: `enable`, `disable`.
+        :param str next_hop_self_vpnv6: Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
         :param str override_capability: Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
         :param str passive: Enable/disable sending of open messages to this neighbor. Valid values: `enable`, `disable`.
+        :param str password: Password used in MD5 authentication.
         :param str prefix_list_in: IPv4 Inbound filter for updates from this neighbor.
         :param str prefix_list_in6: IPv6 Inbound filter for updates from this neighbor.
         :param str prefix_list_in_vpnv4: Inbound filter for VPNv4 updates from this neighbor.
+        :param str prefix_list_in_vpnv6: Inbound filter for VPNv6 updates from this neighbor.
         :param str prefix_list_out: IPv4 Outbound filter for updates to this neighbor.
         :param str prefix_list_out6: IPv6 Outbound filter for updates to this neighbor.
         :param str prefix_list_out_vpnv4: Outbound filter for VPNv4 updates to this neighbor.
+        :param str prefix_list_out_vpnv6: Outbound filter for VPNv6 updates to this neighbor.
         :param int remote_as: AS number of neighbor.
         :param str remove_private_as: Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
         :param str remove_private_as6: Enable/disable remove private AS number from IPv6 outbound updates. Valid values: `enable`, `disable`.
+        :param str remove_private_as_evpn: Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
         :param str remove_private_as_vpnv4: Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
+        :param str remove_private_as_vpnv6: Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
         :param int restart_time: Graceful restart delay time (sec, 0 = global default).
         :param int retain_stale_time: Time to retain stale routes.
         :param str route_map_in: IPv4 Inbound route map filter.
         :param str route_map_in6: IPv6 Inbound route map filter.
+        :param str route_map_in_evpn: L2VPN EVPN inbound route map filter.
         :param str route_map_in_vpnv4: VPNv4 inbound route map filter.
+        :param str route_map_in_vpnv6: VPNv6 inbound route map filter.
         :param str route_map_out: IPv4 Outbound route map filter.
         :param str route_map_out6: IPv6 Outbound route map filter.
         :param str route_map_out6_preferable: IPv6 outbound route map filter if the peer is preferred.
+        :param str route_map_out_evpn: L2VPN EVPN outbound route map filter.
         :param str route_map_out_preferable: IPv4 outbound route map filter if the peer is preferred.
         :param str route_map_out_vpnv4: VPNv4 outbound route map filter.
         :param str route_map_out_vpnv4_preferable: VPNv4 outbound route map filter if the peer is preferred.
+        :param str route_map_out_vpnv6: VPNv6 outbound route map filter.
+        :param str route_map_out_vpnv6_preferable: VPNv6 outbound route map filter if this neighbor is preferred.
         :param str route_reflector_client: Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
         :param str route_reflector_client6: Enable/disable IPv6 AS route reflector client. Valid values: `enable`, `disable`.
+        :param str route_reflector_client_evpn: Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
         :param str route_reflector_client_vpnv4: Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+        :param str route_reflector_client_vpnv6: Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
         :param str route_server_client: Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
         :param str route_server_client6: Enable/disable IPv6 AS route server client. Valid values: `enable`, `disable`.
+        :param str route_server_client_evpn: Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
         :param str route_server_client_vpnv4: Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+        :param str route_server_client_vpnv6: Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
         :param str send_community: IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
         :param str send_community6: IPv6 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
+        :param str send_community_evpn: Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
         :param str send_community_vpnv4: Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+        :param str send_community_vpnv6: Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
         :param str shutdown: Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
         :param str soft_reconfiguration: Enable/disable allow IPv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
         :param str soft_reconfiguration6: Enable/disable allow IPv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        :param str soft_reconfiguration_evpn: Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
         :param str soft_reconfiguration_vpnv4: Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        :param str soft_reconfiguration_vpnv6: Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
         :param str stale_route: Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
         :param str strict_capability_match: Enable/disable strict capability matching. Valid values: `enable`, `disable`.
         :param str unsuppress_map: IPv4 Route map to selectively unsuppress suppressed routes.
@@ -3204,20 +3985,28 @@ class BgpNeighborGroup(dict):
             pulumi.set(__self__, "activate", activate)
         if activate6 is not None:
             pulumi.set(__self__, "activate6", activate6)
+        if activate_evpn is not None:
+            pulumi.set(__self__, "activate_evpn", activate_evpn)
         if activate_vpnv4 is not None:
             pulumi.set(__self__, "activate_vpnv4", activate_vpnv4)
+        if activate_vpnv6 is not None:
+            pulumi.set(__self__, "activate_vpnv6", activate_vpnv6)
         if additional_path is not None:
             pulumi.set(__self__, "additional_path", additional_path)
         if additional_path6 is not None:
             pulumi.set(__self__, "additional_path6", additional_path6)
         if additional_path_vpnv4 is not None:
             pulumi.set(__self__, "additional_path_vpnv4", additional_path_vpnv4)
+        if additional_path_vpnv6 is not None:
+            pulumi.set(__self__, "additional_path_vpnv6", additional_path_vpnv6)
         if adv_additional_path is not None:
             pulumi.set(__self__, "adv_additional_path", adv_additional_path)
         if adv_additional_path6 is not None:
             pulumi.set(__self__, "adv_additional_path6", adv_additional_path6)
         if adv_additional_path_vpnv4 is not None:
             pulumi.set(__self__, "adv_additional_path_vpnv4", adv_additional_path_vpnv4)
+        if adv_additional_path_vpnv6 is not None:
+            pulumi.set(__self__, "adv_additional_path_vpnv6", adv_additional_path_vpnv6)
         if advertisement_interval is not None:
             pulumi.set(__self__, "advertisement_interval", advertisement_interval)
         if allowas_in is not None:
@@ -3228,8 +4017,18 @@ class BgpNeighborGroup(dict):
             pulumi.set(__self__, "allowas_in_enable", allowas_in_enable)
         if allowas_in_enable6 is not None:
             pulumi.set(__self__, "allowas_in_enable6", allowas_in_enable6)
+        if allowas_in_enable_evpn is not None:
+            pulumi.set(__self__, "allowas_in_enable_evpn", allowas_in_enable_evpn)
+        if allowas_in_enable_vpnv4 is not None:
+            pulumi.set(__self__, "allowas_in_enable_vpnv4", allowas_in_enable_vpnv4)
+        if allowas_in_enable_vpnv6 is not None:
+            pulumi.set(__self__, "allowas_in_enable_vpnv6", allowas_in_enable_vpnv6)
+        if allowas_in_evpn is not None:
+            pulumi.set(__self__, "allowas_in_evpn", allowas_in_evpn)
         if allowas_in_vpnv4 is not None:
             pulumi.set(__self__, "allowas_in_vpnv4", allowas_in_vpnv4)
+        if allowas_in_vpnv6 is not None:
+            pulumi.set(__self__, "allowas_in_vpnv6", allowas_in_vpnv6)
         if as_override is not None:
             pulumi.set(__self__, "as_override", as_override)
         if as_override6 is not None:
@@ -3240,6 +4039,10 @@ class BgpNeighborGroup(dict):
             pulumi.set(__self__, "attribute_unchanged6", attribute_unchanged6)
         if attribute_unchanged_vpnv4 is not None:
             pulumi.set(__self__, "attribute_unchanged_vpnv4", attribute_unchanged_vpnv4)
+        if attribute_unchanged_vpnv6 is not None:
+            pulumi.set(__self__, "attribute_unchanged_vpnv6", attribute_unchanged_vpnv6)
+        if auth_options is not None:
+            pulumi.set(__self__, "auth_options", auth_options)
         if bfd is not None:
             pulumi.set(__self__, "bfd", bfd)
         if capability_default_originate is not None:
@@ -3252,8 +4055,12 @@ class BgpNeighborGroup(dict):
             pulumi.set(__self__, "capability_graceful_restart", capability_graceful_restart)
         if capability_graceful_restart6 is not None:
             pulumi.set(__self__, "capability_graceful_restart6", capability_graceful_restart6)
+        if capability_graceful_restart_evpn is not None:
+            pulumi.set(__self__, "capability_graceful_restart_evpn", capability_graceful_restart_evpn)
         if capability_graceful_restart_vpnv4 is not None:
             pulumi.set(__self__, "capability_graceful_restart_vpnv4", capability_graceful_restart_vpnv4)
+        if capability_graceful_restart_vpnv6 is not None:
+            pulumi.set(__self__, "capability_graceful_restart_vpnv6", capability_graceful_restart_vpnv6)
         if capability_orf is not None:
             pulumi.set(__self__, "capability_orf", capability_orf)
         if capability_orf6 is not None:
@@ -3274,12 +4081,16 @@ class BgpNeighborGroup(dict):
             pulumi.set(__self__, "distribute_list_in6", distribute_list_in6)
         if distribute_list_in_vpnv4 is not None:
             pulumi.set(__self__, "distribute_list_in_vpnv4", distribute_list_in_vpnv4)
+        if distribute_list_in_vpnv6 is not None:
+            pulumi.set(__self__, "distribute_list_in_vpnv6", distribute_list_in_vpnv6)
         if distribute_list_out is not None:
             pulumi.set(__self__, "distribute_list_out", distribute_list_out)
         if distribute_list_out6 is not None:
             pulumi.set(__self__, "distribute_list_out6", distribute_list_out6)
         if distribute_list_out_vpnv4 is not None:
             pulumi.set(__self__, "distribute_list_out_vpnv4", distribute_list_out_vpnv4)
+        if distribute_list_out_vpnv6 is not None:
+            pulumi.set(__self__, "distribute_list_out_vpnv6", distribute_list_out_vpnv6)
         if dont_capability_negotiate is not None:
             pulumi.set(__self__, "dont_capability_negotiate", dont_capability_negotiate)
         if ebgp_enforce_multihop is not None:
@@ -3290,10 +4101,18 @@ class BgpNeighborGroup(dict):
             pulumi.set(__self__, "filter_list_in", filter_list_in)
         if filter_list_in6 is not None:
             pulumi.set(__self__, "filter_list_in6", filter_list_in6)
+        if filter_list_in_vpnv4 is not None:
+            pulumi.set(__self__, "filter_list_in_vpnv4", filter_list_in_vpnv4)
+        if filter_list_in_vpnv6 is not None:
+            pulumi.set(__self__, "filter_list_in_vpnv6", filter_list_in_vpnv6)
         if filter_list_out is not None:
             pulumi.set(__self__, "filter_list_out", filter_list_out)
         if filter_list_out6 is not None:
             pulumi.set(__self__, "filter_list_out6", filter_list_out6)
+        if filter_list_out_vpnv4 is not None:
+            pulumi.set(__self__, "filter_list_out_vpnv4", filter_list_out_vpnv4)
+        if filter_list_out_vpnv6 is not None:
+            pulumi.set(__self__, "filter_list_out_vpnv6", filter_list_out_vpnv6)
         if holdtime_timer is not None:
             pulumi.set(__self__, "holdtime_timer", holdtime_timer)
         if interface is not None:
@@ -3312,20 +4131,32 @@ class BgpNeighborGroup(dict):
             pulumi.set(__self__, "maximum_prefix", maximum_prefix)
         if maximum_prefix6 is not None:
             pulumi.set(__self__, "maximum_prefix6", maximum_prefix6)
+        if maximum_prefix_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_evpn", maximum_prefix_evpn)
         if maximum_prefix_threshold is not None:
             pulumi.set(__self__, "maximum_prefix_threshold", maximum_prefix_threshold)
         if maximum_prefix_threshold6 is not None:
             pulumi.set(__self__, "maximum_prefix_threshold6", maximum_prefix_threshold6)
+        if maximum_prefix_threshold_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_threshold_evpn", maximum_prefix_threshold_evpn)
         if maximum_prefix_threshold_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_threshold_vpnv4", maximum_prefix_threshold_vpnv4)
+        if maximum_prefix_threshold_vpnv6 is not None:
+            pulumi.set(__self__, "maximum_prefix_threshold_vpnv6", maximum_prefix_threshold_vpnv6)
         if maximum_prefix_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_vpnv4", maximum_prefix_vpnv4)
+        if maximum_prefix_vpnv6 is not None:
+            pulumi.set(__self__, "maximum_prefix_vpnv6", maximum_prefix_vpnv6)
         if maximum_prefix_warning_only is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only", maximum_prefix_warning_only)
         if maximum_prefix_warning_only6 is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only6", maximum_prefix_warning_only6)
+        if maximum_prefix_warning_only_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_warning_only_evpn", maximum_prefix_warning_only_evpn)
         if maximum_prefix_warning_only_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only_vpnv4", maximum_prefix_warning_only_vpnv4)
+        if maximum_prefix_warning_only_vpnv6 is not None:
+            pulumi.set(__self__, "maximum_prefix_warning_only_vpnv6", maximum_prefix_warning_only_vpnv6)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if next_hop_self is not None:
@@ -3338,30 +4169,42 @@ class BgpNeighborGroup(dict):
             pulumi.set(__self__, "next_hop_self_rr6", next_hop_self_rr6)
         if next_hop_self_vpnv4 is not None:
             pulumi.set(__self__, "next_hop_self_vpnv4", next_hop_self_vpnv4)
+        if next_hop_self_vpnv6 is not None:
+            pulumi.set(__self__, "next_hop_self_vpnv6", next_hop_self_vpnv6)
         if override_capability is not None:
             pulumi.set(__self__, "override_capability", override_capability)
         if passive is not None:
             pulumi.set(__self__, "passive", passive)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if prefix_list_in is not None:
             pulumi.set(__self__, "prefix_list_in", prefix_list_in)
         if prefix_list_in6 is not None:
             pulumi.set(__self__, "prefix_list_in6", prefix_list_in6)
         if prefix_list_in_vpnv4 is not None:
             pulumi.set(__self__, "prefix_list_in_vpnv4", prefix_list_in_vpnv4)
+        if prefix_list_in_vpnv6 is not None:
+            pulumi.set(__self__, "prefix_list_in_vpnv6", prefix_list_in_vpnv6)
         if prefix_list_out is not None:
             pulumi.set(__self__, "prefix_list_out", prefix_list_out)
         if prefix_list_out6 is not None:
             pulumi.set(__self__, "prefix_list_out6", prefix_list_out6)
         if prefix_list_out_vpnv4 is not None:
             pulumi.set(__self__, "prefix_list_out_vpnv4", prefix_list_out_vpnv4)
+        if prefix_list_out_vpnv6 is not None:
+            pulumi.set(__self__, "prefix_list_out_vpnv6", prefix_list_out_vpnv6)
         if remote_as is not None:
             pulumi.set(__self__, "remote_as", remote_as)
         if remove_private_as is not None:
             pulumi.set(__self__, "remove_private_as", remove_private_as)
         if remove_private_as6 is not None:
             pulumi.set(__self__, "remove_private_as6", remove_private_as6)
+        if remove_private_as_evpn is not None:
+            pulumi.set(__self__, "remove_private_as_evpn", remove_private_as_evpn)
         if remove_private_as_vpnv4 is not None:
             pulumi.set(__self__, "remove_private_as_vpnv4", remove_private_as_vpnv4)
+        if remove_private_as_vpnv6 is not None:
+            pulumi.set(__self__, "remove_private_as_vpnv6", remove_private_as_vpnv6)
         if restart_time is not None:
             pulumi.set(__self__, "restart_time", restart_time)
         if retain_stale_time is not None:
@@ -3370,46 +4213,72 @@ class BgpNeighborGroup(dict):
             pulumi.set(__self__, "route_map_in", route_map_in)
         if route_map_in6 is not None:
             pulumi.set(__self__, "route_map_in6", route_map_in6)
+        if route_map_in_evpn is not None:
+            pulumi.set(__self__, "route_map_in_evpn", route_map_in_evpn)
         if route_map_in_vpnv4 is not None:
             pulumi.set(__self__, "route_map_in_vpnv4", route_map_in_vpnv4)
+        if route_map_in_vpnv6 is not None:
+            pulumi.set(__self__, "route_map_in_vpnv6", route_map_in_vpnv6)
         if route_map_out is not None:
             pulumi.set(__self__, "route_map_out", route_map_out)
         if route_map_out6 is not None:
             pulumi.set(__self__, "route_map_out6", route_map_out6)
         if route_map_out6_preferable is not None:
             pulumi.set(__self__, "route_map_out6_preferable", route_map_out6_preferable)
+        if route_map_out_evpn is not None:
+            pulumi.set(__self__, "route_map_out_evpn", route_map_out_evpn)
         if route_map_out_preferable is not None:
             pulumi.set(__self__, "route_map_out_preferable", route_map_out_preferable)
         if route_map_out_vpnv4 is not None:
             pulumi.set(__self__, "route_map_out_vpnv4", route_map_out_vpnv4)
         if route_map_out_vpnv4_preferable is not None:
             pulumi.set(__self__, "route_map_out_vpnv4_preferable", route_map_out_vpnv4_preferable)
+        if route_map_out_vpnv6 is not None:
+            pulumi.set(__self__, "route_map_out_vpnv6", route_map_out_vpnv6)
+        if route_map_out_vpnv6_preferable is not None:
+            pulumi.set(__self__, "route_map_out_vpnv6_preferable", route_map_out_vpnv6_preferable)
         if route_reflector_client is not None:
             pulumi.set(__self__, "route_reflector_client", route_reflector_client)
         if route_reflector_client6 is not None:
             pulumi.set(__self__, "route_reflector_client6", route_reflector_client6)
+        if route_reflector_client_evpn is not None:
+            pulumi.set(__self__, "route_reflector_client_evpn", route_reflector_client_evpn)
         if route_reflector_client_vpnv4 is not None:
             pulumi.set(__self__, "route_reflector_client_vpnv4", route_reflector_client_vpnv4)
+        if route_reflector_client_vpnv6 is not None:
+            pulumi.set(__self__, "route_reflector_client_vpnv6", route_reflector_client_vpnv6)
         if route_server_client is not None:
             pulumi.set(__self__, "route_server_client", route_server_client)
         if route_server_client6 is not None:
             pulumi.set(__self__, "route_server_client6", route_server_client6)
+        if route_server_client_evpn is not None:
+            pulumi.set(__self__, "route_server_client_evpn", route_server_client_evpn)
         if route_server_client_vpnv4 is not None:
             pulumi.set(__self__, "route_server_client_vpnv4", route_server_client_vpnv4)
+        if route_server_client_vpnv6 is not None:
+            pulumi.set(__self__, "route_server_client_vpnv6", route_server_client_vpnv6)
         if send_community is not None:
             pulumi.set(__self__, "send_community", send_community)
         if send_community6 is not None:
             pulumi.set(__self__, "send_community6", send_community6)
+        if send_community_evpn is not None:
+            pulumi.set(__self__, "send_community_evpn", send_community_evpn)
         if send_community_vpnv4 is not None:
             pulumi.set(__self__, "send_community_vpnv4", send_community_vpnv4)
+        if send_community_vpnv6 is not None:
+            pulumi.set(__self__, "send_community_vpnv6", send_community_vpnv6)
         if shutdown is not None:
             pulumi.set(__self__, "shutdown", shutdown)
         if soft_reconfiguration is not None:
             pulumi.set(__self__, "soft_reconfiguration", soft_reconfiguration)
         if soft_reconfiguration6 is not None:
             pulumi.set(__self__, "soft_reconfiguration6", soft_reconfiguration6)
+        if soft_reconfiguration_evpn is not None:
+            pulumi.set(__self__, "soft_reconfiguration_evpn", soft_reconfiguration_evpn)
         if soft_reconfiguration_vpnv4 is not None:
             pulumi.set(__self__, "soft_reconfiguration_vpnv4", soft_reconfiguration_vpnv4)
+        if soft_reconfiguration_vpnv6 is not None:
+            pulumi.set(__self__, "soft_reconfiguration_vpnv6", soft_reconfiguration_vpnv6)
         if stale_route is not None:
             pulumi.set(__self__, "stale_route", stale_route)
         if strict_capability_match is not None:
@@ -3440,12 +4309,28 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "activate6")
 
     @property
+    @pulumi.getter(name="activateEvpn")
+    def activate_evpn(self) -> Optional[str]:
+        """
+        Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "activate_evpn")
+
+    @property
     @pulumi.getter(name="activateVpnv4")
     def activate_vpnv4(self) -> Optional[str]:
         """
         Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "activate_vpnv4")
+
+    @property
+    @pulumi.getter(name="activateVpnv6")
+    def activate_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "activate_vpnv6")
 
     @property
     @pulumi.getter(name="additionalPath")
@@ -3472,6 +4357,14 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "additional_path_vpnv4")
 
     @property
+    @pulumi.getter(name="additionalPathVpnv6")
+    def additional_path_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+        """
+        return pulumi.get(self, "additional_path_vpnv6")
+
+    @property
     @pulumi.getter(name="advAdditionalPath")
     def adv_additional_path(self) -> Optional[int]:
         """
@@ -3494,6 +4387,14 @@ class BgpNeighborGroup(dict):
         Number of VPNv4 additional paths that can be advertised to this neighbor.
         """
         return pulumi.get(self, "adv_additional_path_vpnv4")
+
+    @property
+    @pulumi.getter(name="advAdditionalPathVpnv6")
+    def adv_additional_path_vpnv6(self) -> Optional[int]:
+        """
+        Number of VPNv6 additional paths that can be advertised to this neighbor.
+        """
+        return pulumi.get(self, "adv_additional_path_vpnv6")
 
     @property
     @pulumi.getter(name="advertisementInterval")
@@ -3536,12 +4437,52 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "allowas_in_enable6")
 
     @property
+    @pulumi.getter(name="allowasInEnableEvpn")
+    def allowas_in_enable_evpn(self) -> Optional[str]:
+        """
+        Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "allowas_in_enable_evpn")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv4")
+    def allowas_in_enable_vpnv4(self) -> Optional[str]:
+        """
+        Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "allowas_in_enable_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv6")
+    def allowas_in_enable_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "allowas_in_enable_vpnv6")
+
+    @property
+    @pulumi.getter(name="allowasInEvpn")
+    def allowas_in_evpn(self) -> Optional[int]:
+        """
+        The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+        """
+        return pulumi.get(self, "allowas_in_evpn")
+
+    @property
     @pulumi.getter(name="allowasInVpnv4")
     def allowas_in_vpnv4(self) -> Optional[int]:
         """
         The maximum number of occurrence of my AS number allowed for VPNv4 route.
         """
         return pulumi.get(self, "allowas_in_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInVpnv6")
+    def allowas_in_vpnv6(self) -> Optional[int]:
+        """
+        The maximum number of occurrence of my AS number allowed for VPNv6 route.
+        """
+        return pulumi.get(self, "allowas_in_vpnv6")
 
     @property
     @pulumi.getter(name="asOverride")
@@ -3582,6 +4523,22 @@ class BgpNeighborGroup(dict):
         List of attributes that should be unchanged for VPNv4 route. Valid values: `as-path`, `med`, `next-hop`.
         """
         return pulumi.get(self, "attribute_unchanged_vpnv4")
+
+    @property
+    @pulumi.getter(name="attributeUnchangedVpnv6")
+    def attribute_unchanged_vpnv6(self) -> Optional[str]:
+        """
+        List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+        """
+        return pulumi.get(self, "attribute_unchanged_vpnv6")
+
+    @property
+    @pulumi.getter(name="authOptions")
+    def auth_options(self) -> Optional[str]:
+        """
+        Key-chain name for TCP authentication options.
+        """
+        return pulumi.get(self, "auth_options")
 
     @property
     @pulumi.getter
@@ -3632,12 +4589,28 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "capability_graceful_restart6")
 
     @property
+    @pulumi.getter(name="capabilityGracefulRestartEvpn")
+    def capability_graceful_restart_evpn(self) -> Optional[str]:
+        """
+        Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "capability_graceful_restart_evpn")
+
+    @property
     @pulumi.getter(name="capabilityGracefulRestartVpnv4")
     def capability_graceful_restart_vpnv4(self) -> Optional[str]:
         """
         Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "capability_graceful_restart_vpnv4")
+
+    @property
+    @pulumi.getter(name="capabilityGracefulRestartVpnv6")
+    def capability_graceful_restart_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "capability_graceful_restart_vpnv6")
 
     @property
     @pulumi.getter(name="capabilityOrf")
@@ -3720,6 +4693,14 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "distribute_list_in_vpnv4")
 
     @property
+    @pulumi.getter(name="distributeListInVpnv6")
+    def distribute_list_in_vpnv6(self) -> Optional[str]:
+        """
+        Filter for VPNv6 updates from this neighbor.
+        """
+        return pulumi.get(self, "distribute_list_in_vpnv6")
+
+    @property
     @pulumi.getter(name="distributeListOut")
     def distribute_list_out(self) -> Optional[str]:
         """
@@ -3742,6 +4723,14 @@ class BgpNeighborGroup(dict):
         Filter for VPNv4 updates to this neighbor.
         """
         return pulumi.get(self, "distribute_list_out_vpnv4")
+
+    @property
+    @pulumi.getter(name="distributeListOutVpnv6")
+    def distribute_list_out_vpnv6(self) -> Optional[str]:
+        """
+        Filter for VPNv6 updates to this neighbor.
+        """
+        return pulumi.get(self, "distribute_list_out_vpnv6")
 
     @property
     @pulumi.getter(name="dontCapabilityNegotiate")
@@ -3784,6 +4773,22 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "filter_list_in6")
 
     @property
+    @pulumi.getter(name="filterListInVpnv4")
+    def filter_list_in_vpnv4(self) -> Optional[str]:
+        """
+        BGP filter for VPNv4 inbound routes.
+        """
+        return pulumi.get(self, "filter_list_in_vpnv4")
+
+    @property
+    @pulumi.getter(name="filterListInVpnv6")
+    def filter_list_in_vpnv6(self) -> Optional[str]:
+        """
+        BGP filter for VPNv6 inbound routes.
+        """
+        return pulumi.get(self, "filter_list_in_vpnv6")
+
+    @property
     @pulumi.getter(name="filterListOut")
     def filter_list_out(self) -> Optional[str]:
         """
@@ -3798,6 +4803,22 @@ class BgpNeighborGroup(dict):
         BGP filter for IPv6 outbound routes.
         """
         return pulumi.get(self, "filter_list_out6")
+
+    @property
+    @pulumi.getter(name="filterListOutVpnv4")
+    def filter_list_out_vpnv4(self) -> Optional[str]:
+        """
+        BGP filter for VPNv4 outbound routes.
+        """
+        return pulumi.get(self, "filter_list_out_vpnv4")
+
+    @property
+    @pulumi.getter(name="filterListOutVpnv6")
+    def filter_list_out_vpnv6(self) -> Optional[str]:
+        """
+        BGP filter for VPNv6 outbound routes.
+        """
+        return pulumi.get(self, "filter_list_out_vpnv6")
 
     @property
     @pulumi.getter(name="holdtimeTimer")
@@ -3872,6 +4893,14 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "maximum_prefix6")
 
     @property
+    @pulumi.getter(name="maximumPrefixEvpn")
+    def maximum_prefix_evpn(self) -> Optional[int]:
+        """
+        Maximum number of L2VPN EVPN prefixes to accept from this peer.
+        """
+        return pulumi.get(self, "maximum_prefix_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThreshold")
     def maximum_prefix_threshold(self) -> Optional[int]:
         """
@@ -3888,6 +4917,14 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "maximum_prefix_threshold6")
 
     @property
+    @pulumi.getter(name="maximumPrefixThresholdEvpn")
+    def maximum_prefix_threshold_evpn(self) -> Optional[int]:
+        """
+        Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+        """
+        return pulumi.get(self, "maximum_prefix_threshold_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThresholdVpnv4")
     def maximum_prefix_threshold_vpnv4(self) -> Optional[int]:
         """
@@ -3896,12 +4933,28 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "maximum_prefix_threshold_vpnv4")
 
     @property
+    @pulumi.getter(name="maximumPrefixThresholdVpnv6")
+    def maximum_prefix_threshold_vpnv6(self) -> Optional[int]:
+        """
+        Maximum VPNv6 prefix threshold value (1 - 100 percent).
+        """
+        return pulumi.get(self, "maximum_prefix_threshold_vpnv6")
+
+    @property
     @pulumi.getter(name="maximumPrefixVpnv4")
     def maximum_prefix_vpnv4(self) -> Optional[int]:
         """
         Maximum number of VPNv4 prefixes to accept from this peer.
         """
         return pulumi.get(self, "maximum_prefix_vpnv4")
+
+    @property
+    @pulumi.getter(name="maximumPrefixVpnv6")
+    def maximum_prefix_vpnv6(self) -> Optional[int]:
+        """
+        Maximum number of VPNv6 prefixes to accept from this peer.
+        """
+        return pulumi.get(self, "maximum_prefix_vpnv6")
 
     @property
     @pulumi.getter(name="maximumPrefixWarningOnly")
@@ -3920,12 +4973,28 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "maximum_prefix_warning_only6")
 
     @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyEvpn")
+    def maximum_prefix_warning_only_evpn(self) -> Optional[str]:
+        """
+        Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "maximum_prefix_warning_only_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixWarningOnlyVpnv4")
     def maximum_prefix_warning_only_vpnv4(self) -> Optional[str]:
         """
         Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "maximum_prefix_warning_only_vpnv4")
+
+    @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyVpnv6")
+    def maximum_prefix_warning_only_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "maximum_prefix_warning_only_vpnv6")
 
     @property
     @pulumi.getter
@@ -3976,6 +5045,14 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "next_hop_self_vpnv4")
 
     @property
+    @pulumi.getter(name="nextHopSelfVpnv6")
+    def next_hop_self_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "next_hop_self_vpnv6")
+
+    @property
     @pulumi.getter(name="overrideCapability")
     def override_capability(self) -> Optional[str]:
         """
@@ -3990,6 +5067,14 @@ class BgpNeighborGroup(dict):
         Enable/disable sending of open messages to this neighbor. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "passive")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        Password used in MD5 authentication.
+        """
+        return pulumi.get(self, "password")
 
     @property
     @pulumi.getter(name="prefixListIn")
@@ -4016,6 +5101,14 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "prefix_list_in_vpnv4")
 
     @property
+    @pulumi.getter(name="prefixListInVpnv6")
+    def prefix_list_in_vpnv6(self) -> Optional[str]:
+        """
+        Inbound filter for VPNv6 updates from this neighbor.
+        """
+        return pulumi.get(self, "prefix_list_in_vpnv6")
+
+    @property
     @pulumi.getter(name="prefixListOut")
     def prefix_list_out(self) -> Optional[str]:
         """
@@ -4038,6 +5131,14 @@ class BgpNeighborGroup(dict):
         Outbound filter for VPNv4 updates to this neighbor.
         """
         return pulumi.get(self, "prefix_list_out_vpnv4")
+
+    @property
+    @pulumi.getter(name="prefixListOutVpnv6")
+    def prefix_list_out_vpnv6(self) -> Optional[str]:
+        """
+        Outbound filter for VPNv6 updates to this neighbor.
+        """
+        return pulumi.get(self, "prefix_list_out_vpnv6")
 
     @property
     @pulumi.getter(name="remoteAs")
@@ -4064,12 +5165,28 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "remove_private_as6")
 
     @property
+    @pulumi.getter(name="removePrivateAsEvpn")
+    def remove_private_as_evpn(self) -> Optional[str]:
+        """
+        Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "remove_private_as_evpn")
+
+    @property
     @pulumi.getter(name="removePrivateAsVpnv4")
     def remove_private_as_vpnv4(self) -> Optional[str]:
         """
         Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "remove_private_as_vpnv4")
+
+    @property
+    @pulumi.getter(name="removePrivateAsVpnv6")
+    def remove_private_as_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "remove_private_as_vpnv6")
 
     @property
     @pulumi.getter(name="restartTime")
@@ -4104,12 +5221,28 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "route_map_in6")
 
     @property
+    @pulumi.getter(name="routeMapInEvpn")
+    def route_map_in_evpn(self) -> Optional[str]:
+        """
+        L2VPN EVPN inbound route map filter.
+        """
+        return pulumi.get(self, "route_map_in_evpn")
+
+    @property
     @pulumi.getter(name="routeMapInVpnv4")
     def route_map_in_vpnv4(self) -> Optional[str]:
         """
         VPNv4 inbound route map filter.
         """
         return pulumi.get(self, "route_map_in_vpnv4")
+
+    @property
+    @pulumi.getter(name="routeMapInVpnv6")
+    def route_map_in_vpnv6(self) -> Optional[str]:
+        """
+        VPNv6 inbound route map filter.
+        """
+        return pulumi.get(self, "route_map_in_vpnv6")
 
     @property
     @pulumi.getter(name="routeMapOut")
@@ -4136,6 +5269,14 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "route_map_out6_preferable")
 
     @property
+    @pulumi.getter(name="routeMapOutEvpn")
+    def route_map_out_evpn(self) -> Optional[str]:
+        """
+        L2VPN EVPN outbound route map filter.
+        """
+        return pulumi.get(self, "route_map_out_evpn")
+
+    @property
     @pulumi.getter(name="routeMapOutPreferable")
     def route_map_out_preferable(self) -> Optional[str]:
         """
@@ -4160,6 +5301,22 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "route_map_out_vpnv4_preferable")
 
     @property
+    @pulumi.getter(name="routeMapOutVpnv6")
+    def route_map_out_vpnv6(self) -> Optional[str]:
+        """
+        VPNv6 outbound route map filter.
+        """
+        return pulumi.get(self, "route_map_out_vpnv6")
+
+    @property
+    @pulumi.getter(name="routeMapOutVpnv6Preferable")
+    def route_map_out_vpnv6_preferable(self) -> Optional[str]:
+        """
+        VPNv6 outbound route map filter if this neighbor is preferred.
+        """
+        return pulumi.get(self, "route_map_out_vpnv6_preferable")
+
+    @property
     @pulumi.getter(name="routeReflectorClient")
     def route_reflector_client(self) -> Optional[str]:
         """
@@ -4176,12 +5333,28 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "route_reflector_client6")
 
     @property
+    @pulumi.getter(name="routeReflectorClientEvpn")
+    def route_reflector_client_evpn(self) -> Optional[str]:
+        """
+        Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "route_reflector_client_evpn")
+
+    @property
     @pulumi.getter(name="routeReflectorClientVpnv4")
     def route_reflector_client_vpnv4(self) -> Optional[str]:
         """
         Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "route_reflector_client_vpnv4")
+
+    @property
+    @pulumi.getter(name="routeReflectorClientVpnv6")
+    def route_reflector_client_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "route_reflector_client_vpnv6")
 
     @property
     @pulumi.getter(name="routeServerClient")
@@ -4200,12 +5373,28 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "route_server_client6")
 
     @property
+    @pulumi.getter(name="routeServerClientEvpn")
+    def route_server_client_evpn(self) -> Optional[str]:
+        """
+        Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "route_server_client_evpn")
+
+    @property
     @pulumi.getter(name="routeServerClientVpnv4")
     def route_server_client_vpnv4(self) -> Optional[str]:
         """
         Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "route_server_client_vpnv4")
+
+    @property
+    @pulumi.getter(name="routeServerClientVpnv6")
+    def route_server_client_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "route_server_client_vpnv6")
 
     @property
     @pulumi.getter(name="sendCommunity")
@@ -4224,12 +5413,28 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "send_community6")
 
     @property
+    @pulumi.getter(name="sendCommunityEvpn")
+    def send_community_evpn(self) -> Optional[str]:
+        """
+        Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
+        """
+        return pulumi.get(self, "send_community_evpn")
+
+    @property
     @pulumi.getter(name="sendCommunityVpnv4")
     def send_community_vpnv4(self) -> Optional[str]:
         """
         Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
         """
         return pulumi.get(self, "send_community_vpnv4")
+
+    @property
+    @pulumi.getter(name="sendCommunityVpnv6")
+    def send_community_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+        """
+        return pulumi.get(self, "send_community_vpnv6")
 
     @property
     @pulumi.getter
@@ -4256,12 +5461,28 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "soft_reconfiguration6")
 
     @property
+    @pulumi.getter(name="softReconfigurationEvpn")
+    def soft_reconfiguration_evpn(self) -> Optional[str]:
+        """
+        Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "soft_reconfiguration_evpn")
+
+    @property
     @pulumi.getter(name="softReconfigurationVpnv4")
     def soft_reconfiguration_vpnv4(self) -> Optional[str]:
         """
         Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "soft_reconfiguration_vpnv4")
+
+    @property
+    @pulumi.getter(name="softReconfigurationVpnv6")
+    def soft_reconfiguration_vpnv6(self) -> Optional[str]:
+        """
+        Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "soft_reconfiguration_vpnv6")
 
     @property
     @pulumi.getter(name="staleRoute")
@@ -4757,7 +5978,13 @@ class BgpVrf6(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "leakTargets":
+        if key == "exportRts":
+            suggest = "export_rts"
+        elif key == "importRouteMap":
+            suggest = "import_route_map"
+        elif key == "importRts":
+            suggest = "import_rts"
+        elif key == "leakTargets":
             suggest = "leak_targets"
 
         if suggest:
@@ -4772,16 +5999,60 @@ class BgpVrf6(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 export_rts: Optional[Sequence['outputs.BgpVrf6ExportRt']] = None,
+                 import_route_map: Optional[str] = None,
+                 import_rts: Optional[Sequence['outputs.BgpVrf6ImportRt']] = None,
                  leak_targets: Optional[Sequence['outputs.BgpVrf6LeakTarget']] = None,
+                 rd: Optional[str] = None,
+                 role: Optional[str] = None,
                  vrf: Optional[str] = None):
         """
+        :param Sequence['BgpVrf6ExportRtArgs'] export_rts: List of export route target. The structure of `export_rt` block is documented below.
+        :param str import_route_map: Import route map.
+        :param Sequence['BgpVrf6ImportRtArgs'] import_rts: List of import route target. The structure of `import_rt` block is documented below.
         :param Sequence['BgpVrf6LeakTargetArgs'] leak_targets: Target VRF table. The structure of `leak_target` block is documented below.
+        :param str rd: Route Distinguisher: AA:NN|A.B.C.D:NN.
+        :param str role: VRF role. Valid values: `standalone`, `ce`, `pe`.
         :param str vrf: BGP VRF leaking table. The structure of `vrf` block is documented below.
         """
+        if export_rts is not None:
+            pulumi.set(__self__, "export_rts", export_rts)
+        if import_route_map is not None:
+            pulumi.set(__self__, "import_route_map", import_route_map)
+        if import_rts is not None:
+            pulumi.set(__self__, "import_rts", import_rts)
         if leak_targets is not None:
             pulumi.set(__self__, "leak_targets", leak_targets)
+        if rd is not None:
+            pulumi.set(__self__, "rd", rd)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
         if vrf is not None:
             pulumi.set(__self__, "vrf", vrf)
+
+    @property
+    @pulumi.getter(name="exportRts")
+    def export_rts(self) -> Optional[Sequence['outputs.BgpVrf6ExportRt']]:
+        """
+        List of export route target. The structure of `export_rt` block is documented below.
+        """
+        return pulumi.get(self, "export_rts")
+
+    @property
+    @pulumi.getter(name="importRouteMap")
+    def import_route_map(self) -> Optional[str]:
+        """
+        Import route map.
+        """
+        return pulumi.get(self, "import_route_map")
+
+    @property
+    @pulumi.getter(name="importRts")
+    def import_rts(self) -> Optional[Sequence['outputs.BgpVrf6ImportRt']]:
+        """
+        List of import route target. The structure of `import_rt` block is documented below.
+        """
+        return pulumi.get(self, "import_rts")
 
     @property
     @pulumi.getter(name="leakTargets")
@@ -4793,11 +6064,99 @@ class BgpVrf6(dict):
 
     @property
     @pulumi.getter
+    def rd(self) -> Optional[str]:
+        """
+        Route Distinguisher: AA:NN|A.B.C.D:NN.
+        """
+        return pulumi.get(self, "rd")
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[str]:
+        """
+        VRF role. Valid values: `standalone`, `ce`, `pe`.
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter
     def vrf(self) -> Optional[str]:
         """
         BGP VRF leaking table. The structure of `vrf` block is documented below.
         """
         return pulumi.get(self, "vrf")
+
+
+@pulumi.output_type
+class BgpVrf6ExportRt(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "routeTarget":
+            suggest = "route_target"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BgpVrf6ExportRt. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BgpVrf6ExportRt.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BgpVrf6ExportRt.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 route_target: Optional[str] = None):
+        """
+        :param str route_target: Attribute: AA:NN|A.B.C.D:NN.
+        """
+        if route_target is not None:
+            pulumi.set(__self__, "route_target", route_target)
+
+    @property
+    @pulumi.getter(name="routeTarget")
+    def route_target(self) -> Optional[str]:
+        """
+        Attribute: AA:NN|A.B.C.D:NN.
+        """
+        return pulumi.get(self, "route_target")
+
+
+@pulumi.output_type
+class BgpVrf6ImportRt(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "routeTarget":
+            suggest = "route_target"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BgpVrf6ImportRt. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BgpVrf6ImportRt.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BgpVrf6ImportRt.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 route_target: Optional[str] = None):
+        """
+        :param str route_target: Attribute: AA:NN|A.B.C.D:NN
+        """
+        if route_target is not None:
+            pulumi.set(__self__, "route_target", route_target)
+
+    @property
+    @pulumi.getter(name="routeTarget")
+    def route_target(self) -> Optional[str]:
+        """
+        Attribute: AA:NN|A.B.C.D:NN
+        """
+        return pulumi.get(self, "route_target")
 
 
 @pulumi.output_type
@@ -4826,7 +6185,7 @@ class BgpVrf6LeakTarget(dict):
         """
         :param str interface: Interface which is used to leak routes to target VRF.
         :param str route_map: Route map of VRF leaking.
-        :param str vrf: Target VRF ID (0 - 63).
+        :param str vrf: Target VRF ID. On FortiOS versions 7.2.0-7.2.3: 0 - 63. On FortiOS versions >= 7.2.4: 0 - 251.
         """
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
@@ -4855,7 +6214,7 @@ class BgpVrf6LeakTarget(dict):
     @pulumi.getter
     def vrf(self) -> Optional[str]:
         """
-        Target VRF ID (0 - 63).
+        Target VRF ID. On FortiOS versions 7.2.0-7.2.3: 0 - 63. On FortiOS versions >= 7.2.4: 0 - 251.
         """
         return pulumi.get(self, "vrf")
 
@@ -4900,7 +6259,7 @@ class BgpVrf(dict):
         :param Sequence['BgpVrfLeakTargetArgs'] leak_targets: Target VRF table. The structure of `leak_target` block is documented below.
         :param str rd: Route Distinguisher: AA|AA:NN.
         :param str role: VRF role. Valid values: `standalone`, `ce`, `pe`.
-        :param str vrf: Origin VRF ID (0 - 63).
+        :param str vrf: Origin VRF ID. On FortiOS versions 7.2.0-7.2.3: 0 - 63. On FortiOS versions >= 7.2.4: 0 - 251.
         """
         if export_rts is not None:
             pulumi.set(__self__, "export_rts", export_rts)
@@ -4969,7 +6328,7 @@ class BgpVrf(dict):
     @pulumi.getter
     def vrf(self) -> Optional[str]:
         """
-        Origin VRF ID (0 - 63).
+        Origin VRF ID. On FortiOS versions 7.2.0-7.2.3: 0 - 63. On FortiOS versions >= 7.2.4: 0 - 251.
         """
         return pulumi.get(self, "vrf")
 
@@ -4996,7 +6355,7 @@ class BgpVrfExportRt(dict):
     def __init__(__self__, *,
                  route_target: Optional[str] = None):
         """
-        :param str route_target: Attribute: AA|AA:NN.
+        :param str route_target: Attribute: AA:NN|A.B.C.D:NN.
         """
         if route_target is not None:
             pulumi.set(__self__, "route_target", route_target)
@@ -5005,7 +6364,7 @@ class BgpVrfExportRt(dict):
     @pulumi.getter(name="routeTarget")
     def route_target(self) -> Optional[str]:
         """
-        Attribute: AA|AA:NN.
+        Attribute: AA:NN|A.B.C.D:NN.
         """
         return pulumi.get(self, "route_target")
 
@@ -5032,7 +6391,7 @@ class BgpVrfImportRt(dict):
     def __init__(__self__, *,
                  route_target: Optional[str] = None):
         """
-        :param str route_target: Attribute: AA|AA:NN.
+        :param str route_target: Attribute: AA:NN|A.B.C.D:NN
         """
         if route_target is not None:
             pulumi.set(__self__, "route_target", route_target)
@@ -5041,7 +6400,7 @@ class BgpVrfImportRt(dict):
     @pulumi.getter(name="routeTarget")
     def route_target(self) -> Optional[str]:
         """
-        Attribute: AA|AA:NN.
+        Attribute: AA:NN|A.B.C.D:NN
         """
         return pulumi.get(self, "route_target")
 
@@ -5103,7 +6462,7 @@ class BgpVrfLeak6Target(dict):
         """
         :param str interface: Interface which is used to leak routes to target VRF.
         :param str route_map: Route map of VRF leaking.
-        :param str vrf: Target VRF ID <0 - 31>.
+        :param str vrf: Target VRF ID (0 - 31).
         """
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
@@ -5132,7 +6491,7 @@ class BgpVrfLeak6Target(dict):
     @pulumi.getter
     def vrf(self) -> Optional[str]:
         """
-        Target VRF ID <0 - 31>.
+        Target VRF ID (0 - 31).
         """
         return pulumi.get(self, "vrf")
 
@@ -5144,7 +6503,7 @@ class BgpVrfLeak(dict):
                  vrf: Optional[str] = None):
         """
         :param Sequence['BgpVrfLeakTargetArgs'] targets: Target VRF table. The structure of `target` block is documented below.
-        :param str vrf: Origin VRF ID <0 - 31>.
+        :param str vrf: Origin VRF ID (0 - 31).
         """
         if targets is not None:
             pulumi.set(__self__, "targets", targets)
@@ -5163,7 +6522,7 @@ class BgpVrfLeak(dict):
     @pulumi.getter
     def vrf(self) -> Optional[str]:
         """
-        Origin VRF ID <0 - 31>.
+        Origin VRF ID (0 - 31).
         """
         return pulumi.get(self, "vrf")
 
@@ -5194,7 +6553,7 @@ class BgpVrfLeakTarget(dict):
         """
         :param str interface: Interface which is used to leak routes to target VRF.
         :param str route_map: Route map of VRF leaking.
-        :param str vrf: Target VRF ID <0 - 31>.
+        :param str vrf: Target VRF ID (0 - 31).
         """
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
@@ -5223,7 +6582,7 @@ class BgpVrfLeakTarget(dict):
     @pulumi.getter
     def vrf(self) -> Optional[str]:
         """
-        Target VRF ID <0 - 31>.
+        Target VRF ID (0 - 31).
         """
         return pulumi.get(self, "vrf")
 
@@ -5281,6 +6640,73 @@ class CommunitylistRule(dict):
         Ordered list of COMMUNITY attributes as a regular expression.
         """
         return pulumi.get(self, "regexp")
+
+
+@pulumi.output_type
+class ExtcommunitylistRule(dict):
+    def __init__(__self__, *,
+                 action: Optional[str] = None,
+                 id: Optional[int] = None,
+                 match: Optional[str] = None,
+                 regexp: Optional[str] = None,
+                 type: Optional[str] = None):
+        """
+        :param str action: Permit or deny route-based operations, based on the route's EXTENDED COMMUNITY attribute. Valid values: `deny`, `permit`.
+        :param int id: ID.
+        :param str match: Extended community specifications for matching a reserved extended community.
+        :param str regexp: Ordered list of EXTENDED COMMUNITY attributes as a regular expression.
+        :param str type: Type of extended community. Valid values: `rt`, `soo`.
+        """
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if regexp is not None:
+            pulumi.set(__self__, "regexp", regexp)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        """
+        Permit or deny route-based operations, based on the route's EXTENDED COMMUNITY attribute. Valid values: `deny`, `permit`.
+        """
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        """
+        Extended community specifications for matching a reserved extended community.
+        """
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def regexp(self) -> Optional[str]:
+        """
+        Ordered list of EXTENDED COMMUNITY attributes as a regular expression.
+        """
+        return pulumi.get(self, "regexp")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type of extended community. Valid values: `rt`, `soo`.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -5726,7 +7152,7 @@ class IsisIsisNet(dict):
                  net: Optional[str] = None):
         """
         :param int id: isis-net ID.
-        :param str net: IS-IS net xx.xxxx. ... .xxxx.xx.
+        :param str net: IS-IS networks (format = xx.xxxx.  .xxxx.xx.).
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -5745,7 +7171,7 @@ class IsisIsisNet(dict):
     @pulumi.getter
     def net(self) -> Optional[str]:
         """
-        IS-IS net xx.xxxx. ... .xxxx.xx.
+        IS-IS networks (format = xx.xxxx.  .xxxx.xx.).
         """
         return pulumi.get(self, "net")
 
@@ -6059,9 +7485,9 @@ class KeychainKey(dict):
                  send_lifetime: Optional[str] = None):
         """
         :param str accept_lifetime: Lifetime of received authentication key (format: hh:mm:ss day month year).
-        :param str algorithm: Cryptographic algorithm. Valid values: `md5`, `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, `hmac-sha512`.
+        :param str algorithm: Cryptographic algorithm.
         :param int id: Key ID (0 - 2147483647).
-        :param str key_string: Password for the key (max. = 35 characters).
+        :param str key_string: Password for the key. On FortiOS versions 6.2.0-7.0.0: max. = 35 characters. On FortiOS versions 7.0.1-7.0.3: maximum = 64 characters.
         :param str send_lifetime: Lifetime of sent authentication key (format: hh:mm:ss day month year).
         """
         if accept_lifetime is not None:
@@ -6087,7 +7513,7 @@ class KeychainKey(dict):
     @pulumi.getter
     def algorithm(self) -> Optional[str]:
         """
-        Cryptographic algorithm. Valid values: `md5`, `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, `hmac-sha512`.
+        Cryptographic algorithm.
         """
         return pulumi.get(self, "algorithm")
 
@@ -6103,7 +7529,7 @@ class KeychainKey(dict):
     @pulumi.getter(name="keyString")
     def key_string(self) -> Optional[str]:
         """
-        Password for the key (max. = 35 characters).
+        Password for the key. On FortiOS versions 6.2.0-7.0.0: max. = 35 characters. On FortiOS versions 7.0.1-7.0.3: maximum = 64 characters.
         """
         return pulumi.get(self, "key_string")
 
@@ -6142,8 +7568,8 @@ class Multicast6Interface(dict):
                  hello_interval: Optional[int] = None,
                  name: Optional[str] = None):
         """
-        :param int hello_holdtime: Time before old neighbour information expires (1 - 65535 sec, default = 105).
-        :param int hello_interval: Interval between sending PIM hello messages  (1 - 65535 sec, default = 30)..
+        :param int hello_holdtime: Time before old neighbor information expires in seconds (1 - 65535, default = 105).
+        :param int hello_interval: Interval between sending PIM hello messages in seconds (1 - 65535, default = 30).
         :param str name: Interface name.
         """
         if hello_holdtime is not None:
@@ -6157,7 +7583,7 @@ class Multicast6Interface(dict):
     @pulumi.getter(name="helloHoldtime")
     def hello_holdtime(self) -> Optional[int]:
         """
-        Time before old neighbour information expires (1 - 65535 sec, default = 105).
+        Time before old neighbor information expires in seconds (1 - 65535, default = 105).
         """
         return pulumi.get(self, "hello_holdtime")
 
@@ -6165,7 +7591,7 @@ class Multicast6Interface(dict):
     @pulumi.getter(name="helloInterval")
     def hello_interval(self) -> Optional[int]:
         """
-        Interval between sending PIM hello messages  (1 - 65535 sec, default = 30)..
+        Interval between sending PIM hello messages in seconds (1 - 65535, default = 30).
         """
         return pulumi.get(self, "hello_interval")
 
@@ -6648,7 +8074,7 @@ class MulticastInterfaceIgmp(dict):
         :param int last_member_query_interval: Timeout between IGMPv2 leave and removing group (1 - 65535 msec, default = 1000).
         :param int query_interval: Interval between queries to IGMP hosts (1 - 65535 sec, default = 125).
         :param int query_max_response_time: Maximum time to wait for a IGMP query response (1 - 25 sec, default = 10).
-        :param int query_timeout: Timeout between queries before becoming querier for network (60 - 900, default = 255).
+        :param int query_timeout: Timeout between queries before becoming querying unit for network (60 - 900, default = 255).
         :param str router_alert_check: Enable/disable require IGMP packets contain router alert option. Valid values: `enable`, `disable`.
         :param str version: Maximum version of IGMP to support. Valid values: `3`, `2`, `1`.
         """
@@ -6723,7 +8149,7 @@ class MulticastInterfaceIgmp(dict):
     @pulumi.getter(name="queryTimeout")
     def query_timeout(self) -> Optional[int]:
         """
-        Timeout between queries before becoming querier for network (60 - 900, default = 255).
+        Timeout between queries before becoming querying unit for network (60 - 900, default = 255).
         """
         return pulumi.get(self, "query_timeout")
 
@@ -6796,6 +8222,8 @@ class MulticastPimSmGlobal(dict):
             suggest = "message_interval"
         elif key == "nullRegisterRetries":
             suggest = "null_register_retries"
+        elif key == "pimUseSdwan":
+            suggest = "pim_use_sdwan"
         elif key == "registerRateLimit":
             suggest = "register_rate_limit"
         elif key == "registerRpReachability":
@@ -6845,6 +8273,7 @@ class MulticastPimSmGlobal(dict):
                  join_prune_holdtime: Optional[int] = None,
                  message_interval: Optional[int] = None,
                  null_register_retries: Optional[int] = None,
+                 pim_use_sdwan: Optional[str] = None,
                  register_rate_limit: Optional[int] = None,
                  register_rp_reachability: Optional[str] = None,
                  register_source: Optional[str] = None,
@@ -6872,6 +8301,7 @@ class MulticastPimSmGlobal(dict):
         :param int join_prune_holdtime: Join/prune holdtime (1 - 65535, default = 210).
         :param int message_interval: Period of time between sending periodic PIM join/prune messages in seconds (1 - 65535, default = 60).
         :param int null_register_retries: Maximum retries of null register (1 - 20, default = 1).
+        :param str pim_use_sdwan: Enable/disable use of SDWAN when checking RPF neighbor and sending of REG packet. Valid values: `enable`, `disable`.
         :param int register_rate_limit: Limit of packets/sec per source registered through this RP (0 - 65535, default = 0 which means unlimited).
         :param str register_rp_reachability: Enable/disable check RP is reachable before registering packets. Valid values: `enable`, `disable`.
         :param str register_source: Override source address in register packets. Valid values: `disable`, `interface`, `ip-address`.
@@ -6913,6 +8343,8 @@ class MulticastPimSmGlobal(dict):
             pulumi.set(__self__, "message_interval", message_interval)
         if null_register_retries is not None:
             pulumi.set(__self__, "null_register_retries", null_register_retries)
+        if pim_use_sdwan is not None:
+            pulumi.set(__self__, "pim_use_sdwan", pim_use_sdwan)
         if register_rate_limit is not None:
             pulumi.set(__self__, "register_rate_limit", register_rate_limit)
         if register_rp_reachability is not None:
@@ -7049,6 +8481,14 @@ class MulticastPimSmGlobal(dict):
         Maximum retries of null register (1 - 20, default = 1).
         """
         return pulumi.get(self, "null_register_retries")
+
+    @property
+    @pulumi.getter(name="pimUseSdwan")
+    def pim_use_sdwan(self) -> Optional[str]:
+        """
+        Enable/disable use of SDWAN when checking RPF neighbor and sending of REG packet. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "pim_use_sdwan")
 
     @property
     @pulumi.getter(name="registerRateLimit")
@@ -11167,6 +12607,10 @@ class RoutemapRule(dict):
             suggest = "match_community"
         elif key == "matchCommunityExact":
             suggest = "match_community_exact"
+        elif key == "matchExtcommunity":
+            suggest = "match_extcommunity"
+        elif key == "matchExtcommunityExact":
+            suggest = "match_extcommunity_exact"
         elif key == "matchFlags":
             suggest = "match_flags"
         elif key == "matchInterface":
@@ -11227,6 +12671,8 @@ class RoutemapRule(dict):
             suggest = "set_ip6_nexthop_local"
         elif key == "setIpNexthop":
             suggest = "set_ip_nexthop"
+        elif key == "setIpPrefsrc":
+            suggest = "set_ip_prefsrc"
         elif key == "setLocalPreference":
             suggest = "set_local_preference"
         elif key == "setMetric":
@@ -11243,6 +12689,12 @@ class RoutemapRule(dict):
             suggest = "set_route_tag"
         elif key == "setTag":
             suggest = "set_tag"
+        elif key == "setVpnv4Nexthop":
+            suggest = "set_vpnv4_nexthop"
+        elif key == "setVpnv6Nexthop":
+            suggest = "set_vpnv6_nexthop"
+        elif key == "setVpnv6NexthopLocal":
+            suggest = "set_vpnv6_nexthop_local"
         elif key == "setWeight":
             suggest = "set_weight"
 
@@ -11263,6 +12715,8 @@ class RoutemapRule(dict):
                  match_as_path: Optional[str] = None,
                  match_community: Optional[str] = None,
                  match_community_exact: Optional[str] = None,
+                 match_extcommunity: Optional[str] = None,
+                 match_extcommunity_exact: Optional[str] = None,
                  match_flags: Optional[int] = None,
                  match_interface: Optional[str] = None,
                  match_ip6_address: Optional[str] = None,
@@ -11293,6 +12747,7 @@ class RoutemapRule(dict):
                  set_ip6_nexthop: Optional[str] = None,
                  set_ip6_nexthop_local: Optional[str] = None,
                  set_ip_nexthop: Optional[str] = None,
+                 set_ip_prefsrc: Optional[str] = None,
                  set_local_preference: Optional[int] = None,
                  set_metric: Optional[int] = None,
                  set_metric_type: Optional[str] = None,
@@ -11301,6 +12756,9 @@ class RoutemapRule(dict):
                  set_priority: Optional[int] = None,
                  set_route_tag: Optional[int] = None,
                  set_tag: Optional[int] = None,
+                 set_vpnv4_nexthop: Optional[str] = None,
+                 set_vpnv6_nexthop: Optional[str] = None,
+                 set_vpnv6_nexthop_local: Optional[str] = None,
                  set_weight: Optional[int] = None):
         """
         :param str action: Action. Valid values: `permit`, `deny`.
@@ -11308,6 +12766,8 @@ class RoutemapRule(dict):
         :param str match_as_path: Match BGP AS path list.
         :param str match_community: Match BGP community list.
         :param str match_community_exact: Enable/disable exact matching of communities. Valid values: `enable`, `disable`.
+        :param str match_extcommunity: Match BGP extended community list.
+        :param str match_extcommunity_exact: Enable/disable exact matching of extended communities. Valid values: `enable`, `disable`.
         :param int match_flags: BGP flag value to match (0 - 65535)
         :param str match_interface: Match interface configuration.
         :param str match_ip6_address: Match IPv6 address permitted by access-list6 or prefix-list6.
@@ -11338,6 +12798,7 @@ class RoutemapRule(dict):
         :param str set_ip6_nexthop: IPv6 global address of next hop.
         :param str set_ip6_nexthop_local: IPv6 local address of next hop.
         :param str set_ip_nexthop: IP address of next hop.
+        :param str set_ip_prefsrc: IP address of preferred source.
         :param int set_local_preference: BGP local preference path attribute.
         :param int set_metric: Metric value.
         :param str set_metric_type: Metric type.
@@ -11346,6 +12807,9 @@ class RoutemapRule(dict):
         :param int set_priority: Priority for routing table.
         :param int set_route_tag: Route tag for routing table.
         :param int set_tag: Tag value.
+        :param str set_vpnv4_nexthop: IP address of VPNv4 next-hop.
+        :param str set_vpnv6_nexthop: IPv6 global address of VPNv6 next-hop.
+        :param str set_vpnv6_nexthop_local: IPv6 link-local address of VPNv6 next-hop.
         :param int set_weight: BGP weight for routing table.
         """
         if action is not None:
@@ -11358,6 +12822,10 @@ class RoutemapRule(dict):
             pulumi.set(__self__, "match_community", match_community)
         if match_community_exact is not None:
             pulumi.set(__self__, "match_community_exact", match_community_exact)
+        if match_extcommunity is not None:
+            pulumi.set(__self__, "match_extcommunity", match_extcommunity)
+        if match_extcommunity_exact is not None:
+            pulumi.set(__self__, "match_extcommunity_exact", match_extcommunity_exact)
         if match_flags is not None:
             pulumi.set(__self__, "match_flags", match_flags)
         if match_interface is not None:
@@ -11418,6 +12886,8 @@ class RoutemapRule(dict):
             pulumi.set(__self__, "set_ip6_nexthop_local", set_ip6_nexthop_local)
         if set_ip_nexthop is not None:
             pulumi.set(__self__, "set_ip_nexthop", set_ip_nexthop)
+        if set_ip_prefsrc is not None:
+            pulumi.set(__self__, "set_ip_prefsrc", set_ip_prefsrc)
         if set_local_preference is not None:
             pulumi.set(__self__, "set_local_preference", set_local_preference)
         if set_metric is not None:
@@ -11434,6 +12904,12 @@ class RoutemapRule(dict):
             pulumi.set(__self__, "set_route_tag", set_route_tag)
         if set_tag is not None:
             pulumi.set(__self__, "set_tag", set_tag)
+        if set_vpnv4_nexthop is not None:
+            pulumi.set(__self__, "set_vpnv4_nexthop", set_vpnv4_nexthop)
+        if set_vpnv6_nexthop is not None:
+            pulumi.set(__self__, "set_vpnv6_nexthop", set_vpnv6_nexthop)
+        if set_vpnv6_nexthop_local is not None:
+            pulumi.set(__self__, "set_vpnv6_nexthop_local", set_vpnv6_nexthop_local)
         if set_weight is not None:
             pulumi.set(__self__, "set_weight", set_weight)
 
@@ -11476,6 +12952,22 @@ class RoutemapRule(dict):
         Enable/disable exact matching of communities. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "match_community_exact")
+
+    @property
+    @pulumi.getter(name="matchExtcommunity")
+    def match_extcommunity(self) -> Optional[str]:
+        """
+        Match BGP extended community list.
+        """
+        return pulumi.get(self, "match_extcommunity")
+
+    @property
+    @pulumi.getter(name="matchExtcommunityExact")
+    def match_extcommunity_exact(self) -> Optional[str]:
+        """
+        Enable/disable exact matching of extended communities. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "match_extcommunity_exact")
 
     @property
     @pulumi.getter(name="matchFlags")
@@ -11718,6 +13210,14 @@ class RoutemapRule(dict):
         return pulumi.get(self, "set_ip_nexthop")
 
     @property
+    @pulumi.getter(name="setIpPrefsrc")
+    def set_ip_prefsrc(self) -> Optional[str]:
+        """
+        IP address of preferred source.
+        """
+        return pulumi.get(self, "set_ip_prefsrc")
+
+    @property
     @pulumi.getter(name="setLocalPreference")
     def set_local_preference(self) -> Optional[int]:
         """
@@ -11782,6 +13282,30 @@ class RoutemapRule(dict):
         return pulumi.get(self, "set_tag")
 
     @property
+    @pulumi.getter(name="setVpnv4Nexthop")
+    def set_vpnv4_nexthop(self) -> Optional[str]:
+        """
+        IP address of VPNv4 next-hop.
+        """
+        return pulumi.get(self, "set_vpnv4_nexthop")
+
+    @property
+    @pulumi.getter(name="setVpnv6Nexthop")
+    def set_vpnv6_nexthop(self) -> Optional[str]:
+        """
+        IPv6 global address of VPNv6 next-hop.
+        """
+        return pulumi.get(self, "set_vpnv6_nexthop")
+
+    @property
+    @pulumi.getter(name="setVpnv6NexthopLocal")
+    def set_vpnv6_nexthop_local(self) -> Optional[str]:
+        """
+        IPv6 link-local address of VPNv6 next-hop.
+        """
+        return pulumi.get(self, "set_vpnv6_nexthop_local")
+
+    @property
     @pulumi.getter(name="setWeight")
     def set_weight(self) -> Optional[int]:
         """
@@ -11812,7 +13336,7 @@ class RoutemapRuleSetAspath(dict):
     def __init__(__self__, *,
                  as_: Optional[str] = None):
         """
-        :param str as_: AS number (0 - 42949672). NOTE: Use quotes for repeating numbers, e.g.: "1 1 2"
+        :param str as_: AS number. Use quotes for repeating numbers, For example, "1 1 2". On FortiOS versions 6.2.0-7.0.0: 0 - 42949672. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295.
         """
         if as_ is not None:
             pulumi.set(__self__, "as_", as_)
@@ -11821,7 +13345,7 @@ class RoutemapRuleSetAspath(dict):
     @pulumi.getter(name="as")
     def as_(self) -> Optional[str]:
         """
-        AS number (0 - 42949672). NOTE: Use quotes for repeating numbers, e.g.: "1 1 2"
+        AS number. Use quotes for repeating numbers, For example, "1 1 2". On FortiOS versions 6.2.0-7.0.0: 0 - 42949672. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295.
         """
         return pulumi.get(self, "as_")
 
@@ -11869,7 +13393,7 @@ class RoutemapRuleSetExtcommunitySoo(dict):
     def __init__(__self__, *,
                  community: Optional[str] = None):
         """
-        :param str community: AA:NN
+        :param str community: Community (format = AA:NN).
         """
         if community is not None:
             pulumi.set(__self__, "community", community)
@@ -11878,7 +13402,7 @@ class RoutemapRuleSetExtcommunitySoo(dict):
     @pulumi.getter
     def community(self) -> Optional[str]:
         """
-        AA:NN
+        Community (format = AA:NN).
         """
         return pulumi.get(self, "community")
 
@@ -12520,31 +14044,44 @@ class GetBgpNeighborResult(dict):
     def __init__(__self__, *,
                  activate: str,
                  activate6: str,
+                 activate_evpn: str,
                  activate_vpnv4: str,
+                 activate_vpnv6: str,
                  additional_path: str,
                  additional_path6: str,
                  additional_path_vpnv4: str,
+                 additional_path_vpnv6: str,
                  adv_additional_path: int,
                  adv_additional_path6: int,
                  adv_additional_path_vpnv4: int,
+                 adv_additional_path_vpnv6: int,
                  advertisement_interval: int,
                  allowas_in: int,
                  allowas_in6: int,
                  allowas_in_enable: str,
                  allowas_in_enable6: str,
+                 allowas_in_enable_evpn: str,
+                 allowas_in_enable_vpnv4: str,
+                 allowas_in_enable_vpnv6: str,
+                 allowas_in_evpn: int,
                  allowas_in_vpnv4: int,
+                 allowas_in_vpnv6: int,
                  as_override: str,
                  as_override6: str,
                  attribute_unchanged: str,
                  attribute_unchanged6: str,
                  attribute_unchanged_vpnv4: str,
+                 attribute_unchanged_vpnv6: str,
+                 auth_options: str,
                  bfd: str,
                  capability_default_originate: str,
                  capability_default_originate6: str,
                  capability_dynamic: str,
                  capability_graceful_restart: str,
                  capability_graceful_restart6: str,
+                 capability_graceful_restart_evpn: str,
                  capability_graceful_restart_vpnv4: str,
+                 capability_graceful_restart_vpnv6: str,
                  capability_orf: str,
                  capability_orf6: str,
                  capability_route_refresh: str,
@@ -12557,16 +14094,22 @@ class GetBgpNeighborResult(dict):
                  distribute_list_in: str,
                  distribute_list_in6: str,
                  distribute_list_in_vpnv4: str,
+                 distribute_list_in_vpnv6: str,
                  distribute_list_out: str,
                  distribute_list_out6: str,
                  distribute_list_out_vpnv4: str,
+                 distribute_list_out_vpnv6: str,
                  dont_capability_negotiate: str,
                  ebgp_enforce_multihop: str,
                  ebgp_multihop_ttl: int,
                  filter_list_in: str,
                  filter_list_in6: str,
+                 filter_list_in_vpnv4: str,
+                 filter_list_in_vpnv6: str,
                  filter_list_out: str,
                  filter_list_out6: str,
+                 filter_list_out_vpnv4: str,
+                 filter_list_out_vpnv6: str,
                  holdtime_timer: int,
                  interface: str,
                  ip: str,
@@ -12577,55 +14120,79 @@ class GetBgpNeighborResult(dict):
                  local_as_replace_as: str,
                  maximum_prefix: int,
                  maximum_prefix6: int,
+                 maximum_prefix_evpn: int,
                  maximum_prefix_threshold: int,
                  maximum_prefix_threshold6: int,
+                 maximum_prefix_threshold_evpn: int,
                  maximum_prefix_threshold_vpnv4: int,
+                 maximum_prefix_threshold_vpnv6: int,
                  maximum_prefix_vpnv4: int,
+                 maximum_prefix_vpnv6: int,
                  maximum_prefix_warning_only: str,
                  maximum_prefix_warning_only6: str,
+                 maximum_prefix_warning_only_evpn: str,
                  maximum_prefix_warning_only_vpnv4: str,
+                 maximum_prefix_warning_only_vpnv6: str,
                  next_hop_self: str,
                  next_hop_self6: str,
                  next_hop_self_rr: str,
                  next_hop_self_rr6: str,
                  next_hop_self_vpnv4: str,
+                 next_hop_self_vpnv6: str,
                  override_capability: str,
                  passive: str,
                  password: str,
                  prefix_list_in: str,
                  prefix_list_in6: str,
                  prefix_list_in_vpnv4: str,
+                 prefix_list_in_vpnv6: str,
                  prefix_list_out: str,
                  prefix_list_out6: str,
                  prefix_list_out_vpnv4: str,
+                 prefix_list_out_vpnv6: str,
                  remote_as: int,
                  remove_private_as: str,
                  remove_private_as6: str,
+                 remove_private_as_evpn: str,
                  remove_private_as_vpnv4: str,
+                 remove_private_as_vpnv6: str,
                  restart_time: int,
                  retain_stale_time: int,
                  route_map_in: str,
                  route_map_in6: str,
+                 route_map_in_evpn: str,
                  route_map_in_vpnv4: str,
+                 route_map_in_vpnv6: str,
                  route_map_out: str,
                  route_map_out6: str,
                  route_map_out6_preferable: str,
+                 route_map_out_evpn: str,
                  route_map_out_preferable: str,
                  route_map_out_vpnv4: str,
                  route_map_out_vpnv4_preferable: str,
+                 route_map_out_vpnv6: str,
+                 route_map_out_vpnv6_preferable: str,
                  route_reflector_client: str,
                  route_reflector_client6: str,
+                 route_reflector_client_evpn: str,
                  route_reflector_client_vpnv4: str,
+                 route_reflector_client_vpnv6: str,
                  route_server_client: str,
                  route_server_client6: str,
+                 route_server_client_evpn: str,
                  route_server_client_vpnv4: str,
+                 route_server_client_vpnv6: str,
                  send_community: str,
                  send_community6: str,
+                 send_community_evpn: str,
                  send_community_vpnv4: str,
+                 send_community_vpnv6: str,
                  shutdown: str,
                  soft_reconfiguration: str,
                  soft_reconfiguration6: str,
+                 soft_reconfiguration_evpn: str,
                  soft_reconfiguration_vpnv4: str,
+                 soft_reconfiguration_vpnv6: str,
                  stale_route: str,
                  strict_capability_match: str,
                  unsuppress_map: str,
@@ -12635,31 +14202,44 @@ class GetBgpNeighborResult(dict):
         """
         :param str activate: Enable/disable address family IPv4 for this neighbor.
         :param str activate6: Enable/disable address family IPv6 for this neighbor.
+        :param str activate_evpn: Enable/disable address family L2VPN EVPN for this neighbor.
         :param str activate_vpnv4: Enable/disable address family VPNv4 for this neighbor.
+        :param str activate_vpnv6: Enable/disable address family VPNv6 for this neighbor.
         :param str additional_path: Enable/disable IPv4 additional-path capability.
         :param str additional_path6: Enable/disable IPv6 additional-path capability.
         :param str additional_path_vpnv4: Enable/disable VPNv4 additional-path capability.
+        :param str additional_path_vpnv6: Enable/disable VPNv6 additional-path capability.
         :param int adv_additional_path: Number of IPv4 additional paths that can be advertised to this neighbor.
         :param int adv_additional_path6: Number of IPv6 additional paths that can be advertised to this neighbor.
         :param int adv_additional_path_vpnv4: Number of VPNv4 additional paths that can be advertised to this neighbor.
+        :param int adv_additional_path_vpnv6: Number of VPNv6 additional paths that can be advertised to this neighbor.
         :param int advertisement_interval: Minimum interval (sec) between sending updates.
         :param int allowas_in: IPv4 The maximum number of occurrence of my AS number allowed.
         :param int allowas_in6: IPv6 The maximum number of occurrence of my AS number allowed.
         :param str allowas_in_enable: Enable/disable IPv4 Enable to allow my AS in AS path.
         :param str allowas_in_enable6: Enable/disable IPv6 Enable to allow my AS in AS path.
+        :param str allowas_in_enable_evpn: Enable/disable to allow my AS in AS path for L2VPN EVPN route.
+        :param str allowas_in_enable_vpnv4: Enable/disable to allow my AS in AS path for VPNv4 route.
+        :param str allowas_in_enable_vpnv6: Enable/disable use of my AS in AS path for VPNv6 route.
+        :param int allowas_in_evpn: The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
         :param int allowas_in_vpnv4: The maximum number of occurrence of my AS number allowed for VPNv4 route.
+        :param int allowas_in_vpnv6: The maximum number of occurrence of my AS number allowed for VPNv6 route.
         :param str as_override: Enable/disable replace peer AS with own AS for IPv4.
         :param str as_override6: Enable/disable replace peer AS with own AS for IPv6.
         :param str attribute_unchanged: IPv4 List of attributes that should be unchanged.
         :param str attribute_unchanged6: IPv6 List of attributes that should be unchanged.
         :param str attribute_unchanged_vpnv4: List of attributes that should be unchanged for VPNv4 route.
+        :param str attribute_unchanged_vpnv6: List of attributes that should not be changed for VPNv6 route.
+        :param str auth_options: Key-chain name for TCP authentication options.
         :param str bfd: Enable/disable BFD for this neighbor.
         :param str capability_default_originate: Enable/disable advertise default IPv4 route to this neighbor.
         :param str capability_default_originate6: Enable/disable advertise default IPv6 route to this neighbor.
         :param str capability_dynamic: Enable/disable advertise dynamic capability to this neighbor.
         :param str capability_graceful_restart: Enable/disable advertise IPv4 graceful restart capability to this neighbor.
         :param str capability_graceful_restart6: Enable/disable advertise IPv6 graceful restart capability to this neighbor.
+        :param str capability_graceful_restart_evpn: Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor.
         :param str capability_graceful_restart_vpnv4: Enable/disable advertise VPNv4 graceful restart capability to this neighbor.
+        :param str capability_graceful_restart_vpnv6: Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor.
         :param str capability_orf: Accept/Send IPv4 ORF lists to/from this neighbor.
         :param str capability_orf6: Accept/Send IPv6 ORF lists to/from this neighbor.
         :param str capability_route_refresh: Enable/disable advertise route refresh capability to this neighbor.
@@ -12672,16 +14252,22 @@ class GetBgpNeighborResult(dict):
         :param str distribute_list_in: Filter for IPv4 updates from this neighbor.
         :param str distribute_list_in6: Filter for IPv6 updates from this neighbor.
         :param str distribute_list_in_vpnv4: Filter for VPNv4 updates from this neighbor.
+        :param str distribute_list_in_vpnv6: Filter for VPNv6 updates from this neighbor.
         :param str distribute_list_out: Filter for IPv4 updates to this neighbor.
         :param str distribute_list_out6: Filter for IPv6 updates to this neighbor.
         :param str distribute_list_out_vpnv4: Filter for VPNv4 updates to this neighbor.
+        :param str distribute_list_out_vpnv6: Filter for VPNv6 updates to this neighbor.
         :param str dont_capability_negotiate: Don't negotiate capabilities with this neighbor
         :param str ebgp_enforce_multihop: Enable/disable allow multi-hop EBGP neighbors.
         :param int ebgp_multihop_ttl: EBGP multihop TTL for this peer.
         :param str filter_list_in: BGP filter for IPv4 inbound routes.
         :param str filter_list_in6: BGP filter for IPv6 inbound routes.
+        :param str filter_list_in_vpnv4: BGP filter for VPNv4 inbound routes.
+        :param str filter_list_in_vpnv6: BGP filter for VPNv6 inbound routes.
         :param str filter_list_out: BGP filter for IPv4 outbound routes.
         :param str filter_list_out6: BGP filter for IPv6 outbound routes.
+        :param str filter_list_out_vpnv4: BGP filter for VPNv4 outbound routes.
+        :param str filter_list_out_vpnv6: BGP filter for VPNv6 outbound routes.
         :param int holdtime_timer: Interval (sec) before peer considered dead.
         :param str interface: Interface which is used to leak routes to target VRF.
         :param str ip: IP/IPv6 address of neighbor.
@@ -12692,55 +14278,79 @@ class GetBgpNeighborResult(dict):
         :param str local_as_replace_as: Replace real AS with local-as in outgoing updates.
         :param int maximum_prefix: Maximum number of IPv4 prefixes to accept from this peer.
         :param int maximum_prefix6: Maximum number of IPv6 prefixes to accept from this peer.
+        :param int maximum_prefix_evpn: Maximum number of L2VPN EVPN prefixes to accept from this peer.
         :param int maximum_prefix_threshold: Maximum IPv4 prefix threshold value (1 - 100 percent).
         :param int maximum_prefix_threshold6: Maximum IPv6 prefix threshold value (1 - 100 percent).
+        :param int maximum_prefix_threshold_evpn: Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
         :param int maximum_prefix_threshold_vpnv4: Maximum VPNv4 prefix threshold value (1 - 100 percent).
+        :param int maximum_prefix_threshold_vpnv6: Maximum VPNv6 prefix threshold value (1 - 100 percent).
         :param int maximum_prefix_vpnv4: Maximum number of VPNv4 prefixes to accept from this peer.
+        :param int maximum_prefix_vpnv6: Maximum number of VPNv6 prefixes to accept from this peer.
         :param str maximum_prefix_warning_only: Enable/disable IPv4 Only give warning message when limit is exceeded.
         :param str maximum_prefix_warning_only6: Enable/disable IPv6 Only give warning message when limit is exceeded.
+        :param str maximum_prefix_warning_only_evpn: Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes.
         :param str maximum_prefix_warning_only_vpnv4: Enable/disable only giving warning message when limit is exceeded for VPNv4 routes.
+        :param str maximum_prefix_warning_only_vpnv6: Enable/disable warning message when limit is exceeded for VPNv6 routes.
         :param str next_hop_self: Enable/disable IPv4 next-hop calculation for this neighbor.
         :param str next_hop_self6: Enable/disable IPv6 next-hop calculation for this neighbor.
         :param str next_hop_self_rr: Enable/disable setting nexthop's address to interface's IPv4 address for route-reflector routes.
         :param str next_hop_self_rr6: Enable/disable setting nexthop's address to interface's IPv6 address for route-reflector routes.
         :param str next_hop_self_vpnv4: Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor.
+        :param str next_hop_self_vpnv6: Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor.
         :param str override_capability: Enable/disable override result of capability negotiation.
         :param str passive: Enable/disable sending of open messages to this neighbor.
         :param str password: Password used in MD5 authentication.
         :param str prefix_list_in: IPv4 Inbound filter for updates from this neighbor.
         :param str prefix_list_in6: IPv6 Inbound filter for updates from this neighbor.
         :param str prefix_list_in_vpnv4: Inbound filter for VPNv4 updates from this neighbor.
+        :param str prefix_list_in_vpnv6: Inbound filter for VPNv6 updates from this neighbor.
         :param str prefix_list_out: IPv4 Outbound filter for updates to this neighbor.
         :param str prefix_list_out6: IPv6 Outbound filter for updates to this neighbor.
         :param str prefix_list_out_vpnv4: Outbound filter for VPNv4 updates to this neighbor.
+        :param str prefix_list_out_vpnv6: Outbound filter for VPNv6 updates to this neighbor.
         :param int remote_as: AS number of neighbor.
         :param str remove_private_as: Enable/disable remove private AS number from IPv4 outbound updates.
         :param str remove_private_as6: Enable/disable remove private AS number from IPv6 outbound updates.
+        :param str remove_private_as_evpn: Enable/disable removing private AS number from L2VPN EVPN outbound updates.
         :param str remove_private_as_vpnv4: Enable/disable remove private AS number from VPNv4 outbound updates.
+        :param str remove_private_as_vpnv6: Enable/disable to remove private AS number from VPNv6 outbound updates.
         :param int restart_time: Graceful restart delay time (sec, 0 = global default).
         :param int retain_stale_time: Time to retain stale routes.
         :param str route_map_in: IPv4 Inbound route map filter.
         :param str route_map_in6: IPv6 Inbound route map filter.
+        :param str route_map_in_evpn: L2VPN EVPN inbound route map filter.
         :param str route_map_in_vpnv4: VPNv4 inbound route map filter.
+        :param str route_map_in_vpnv6: VPNv6 inbound route map filter.
         :param str route_map_out: IPv4 Outbound route map filter.
         :param str route_map_out6: IPv6 Outbound route map filter.
         :param str route_map_out6_preferable: IPv6 outbound route map filter if the peer is preferred.
+        :param str route_map_out_evpn: L2VPN EVPN outbound route map filter.
         :param str route_map_out_preferable: IPv4 outbound route map filter if the peer is preferred.
         :param str route_map_out_vpnv4: VPNv4 outbound route map filter.
         :param str route_map_out_vpnv4_preferable: VPNv4 outbound route map filter if the peer is preferred.
+        :param str route_map_out_vpnv6: VPNv6 outbound route map filter.
+        :param str route_map_out_vpnv6_preferable: VPNv6 outbound route map filter if this neighbor is preferred.
         :param str route_reflector_client: Enable/disable IPv4 AS route reflector client.
         :param str route_reflector_client6: Enable/disable IPv6 AS route reflector client.
+        :param str route_reflector_client_evpn: Enable/disable L2VPN EVPN AS route reflector client for this neighbor.
         :param str route_reflector_client_vpnv4: Enable/disable VPNv4 AS route reflector client for this neighbor.
+        :param str route_reflector_client_vpnv6: Enable/disable VPNv6 AS route reflector client for this neighbor.
         :param str route_server_client: Enable/disable IPv4 AS route server client.
         :param str route_server_client6: Enable/disable IPv6 AS route server client.
+        :param str route_server_client_evpn: Enable/disable L2VPN EVPN AS route server client for this neighbor.
         :param str route_server_client_vpnv4: Enable/disable VPNv4 AS route server client for this neighbor.
+        :param str route_server_client_vpnv6: Enable/disable VPNv6 AS route server client for this neighbor.
         :param str send_community: IPv4 Send community attribute to neighbor.
         :param str send_community6: IPv6 Send community attribute to neighbor.
+        :param str send_community_evpn: Enable/disable sending community attribute to neighbor for L2VPN EVPN address family.
         :param str send_community_vpnv4: Send community attribute to neighbor for VPNv4 address family.
+        :param str send_community_vpnv6: Enable/disable sending community attribute to this neighbor for VPNv6 address family.
         :param str shutdown: Enable/disable shutdown this neighbor.
         :param str soft_reconfiguration: Enable/disable allow IPv4 inbound soft reconfiguration.
         :param str soft_reconfiguration6: Enable/disable allow IPv6 inbound soft reconfiguration.
+        :param str soft_reconfiguration_evpn: Enable/disable L2VPN EVPN inbound soft reconfiguration.
         :param str soft_reconfiguration_vpnv4: Enable/disable allow VPNv4 inbound soft reconfiguration.
+        :param str soft_reconfiguration_vpnv6: Enable/disable VPNv6 inbound soft reconfiguration.
         :param str stale_route: Enable/disable stale route after neighbor down.
         :param str strict_capability_match: Enable/disable strict capability matching.
         :param str unsuppress_map: IPv4 Route map to selectively unsuppress suppressed routes.
@@ -12750,31 +14360,44 @@ class GetBgpNeighborResult(dict):
         """
         pulumi.set(__self__, "activate", activate)
         pulumi.set(__self__, "activate6", activate6)
+        pulumi.set(__self__, "activate_evpn", activate_evpn)
         pulumi.set(__self__, "activate_vpnv4", activate_vpnv4)
+        pulumi.set(__self__, "activate_vpnv6", activate_vpnv6)
         pulumi.set(__self__, "additional_path", additional_path)
         pulumi.set(__self__, "additional_path6", additional_path6)
         pulumi.set(__self__, "additional_path_vpnv4", additional_path_vpnv4)
+        pulumi.set(__self__, "additional_path_vpnv6", additional_path_vpnv6)
         pulumi.set(__self__, "adv_additional_path", adv_additional_path)
         pulumi.set(__self__, "adv_additional_path6", adv_additional_path6)
         pulumi.set(__self__, "adv_additional_path_vpnv4", adv_additional_path_vpnv4)
+        pulumi.set(__self__, "adv_additional_path_vpnv6", adv_additional_path_vpnv6)
         pulumi.set(__self__, "advertisement_interval", advertisement_interval)
         pulumi.set(__self__, "allowas_in", allowas_in)
         pulumi.set(__self__, "allowas_in6", allowas_in6)
         pulumi.set(__self__, "allowas_in_enable", allowas_in_enable)
         pulumi.set(__self__, "allowas_in_enable6", allowas_in_enable6)
+        pulumi.set(__self__, "allowas_in_enable_evpn", allowas_in_enable_evpn)
+        pulumi.set(__self__, "allowas_in_enable_vpnv4", allowas_in_enable_vpnv4)
+        pulumi.set(__self__, "allowas_in_enable_vpnv6", allowas_in_enable_vpnv6)
+        pulumi.set(__self__, "allowas_in_evpn", allowas_in_evpn)
         pulumi.set(__self__, "allowas_in_vpnv4", allowas_in_vpnv4)
+        pulumi.set(__self__, "allowas_in_vpnv6", allowas_in_vpnv6)
         pulumi.set(__self__, "as_override", as_override)
         pulumi.set(__self__, "as_override6", as_override6)
         pulumi.set(__self__, "attribute_unchanged", attribute_unchanged)
         pulumi.set(__self__, "attribute_unchanged6", attribute_unchanged6)
         pulumi.set(__self__, "attribute_unchanged_vpnv4", attribute_unchanged_vpnv4)
+        pulumi.set(__self__, "attribute_unchanged_vpnv6", attribute_unchanged_vpnv6)
+        pulumi.set(__self__, "auth_options", auth_options)
         pulumi.set(__self__, "bfd", bfd)
         pulumi.set(__self__, "capability_default_originate", capability_default_originate)
         pulumi.set(__self__, "capability_default_originate6", capability_default_originate6)
         pulumi.set(__self__, "capability_dynamic", capability_dynamic)
         pulumi.set(__self__, "capability_graceful_restart", capability_graceful_restart)
         pulumi.set(__self__, "capability_graceful_restart6", capability_graceful_restart6)
+        pulumi.set(__self__, "capability_graceful_restart_evpn", capability_graceful_restart_evpn)
         pulumi.set(__self__, "capability_graceful_restart_vpnv4", capability_graceful_restart_vpnv4)
+        pulumi.set(__self__, "capability_graceful_restart_vpnv6", capability_graceful_restart_vpnv6)
         pulumi.set(__self__, "capability_orf", capability_orf)
         pulumi.set(__self__, "capability_orf6", capability_orf6)
         pulumi.set(__self__, "capability_route_refresh", capability_route_refresh)
@@ -12787,16 +14410,22 @@ class GetBgpNeighborResult(dict):
         pulumi.set(__self__, "distribute_list_in", distribute_list_in)
         pulumi.set(__self__, "distribute_list_in6", distribute_list_in6)
         pulumi.set(__self__, "distribute_list_in_vpnv4", distribute_list_in_vpnv4)
+        pulumi.set(__self__, "distribute_list_in_vpnv6", distribute_list_in_vpnv6)
         pulumi.set(__self__, "distribute_list_out", distribute_list_out)
         pulumi.set(__self__, "distribute_list_out6", distribute_list_out6)
         pulumi.set(__self__, "distribute_list_out_vpnv4", distribute_list_out_vpnv4)
+        pulumi.set(__self__, "distribute_list_out_vpnv6", distribute_list_out_vpnv6)
         pulumi.set(__self__, "dont_capability_negotiate", dont_capability_negotiate)
         pulumi.set(__self__, "ebgp_enforce_multihop", ebgp_enforce_multihop)
         pulumi.set(__self__, "ebgp_multihop_ttl", ebgp_multihop_ttl)
         pulumi.set(__self__, "filter_list_in", filter_list_in)
         pulumi.set(__self__, "filter_list_in6", filter_list_in6)
+        pulumi.set(__self__, "filter_list_in_vpnv4", filter_list_in_vpnv4)
+        pulumi.set(__self__, "filter_list_in_vpnv6", filter_list_in_vpnv6)
         pulumi.set(__self__, "filter_list_out", filter_list_out)
         pulumi.set(__self__, "filter_list_out6", filter_list_out6)
+        pulumi.set(__self__, "filter_list_out_vpnv4", filter_list_out_vpnv4)
+        pulumi.set(__self__, "filter_list_out_vpnv6", filter_list_out_vpnv6)
         pulumi.set(__self__, "holdtime_timer", holdtime_timer)
         pulumi.set(__self__, "interface", interface)
         pulumi.set(__self__, "ip", ip)
@@ -12807,55 +14436,79 @@ class GetBgpNeighborResult(dict):
         pulumi.set(__self__, "local_as_replace_as", local_as_replace_as)
         pulumi.set(__self__, "maximum_prefix", maximum_prefix)
         pulumi.set(__self__, "maximum_prefix6", maximum_prefix6)
+        pulumi.set(__self__, "maximum_prefix_evpn", maximum_prefix_evpn)
         pulumi.set(__self__, "maximum_prefix_threshold", maximum_prefix_threshold)
         pulumi.set(__self__, "maximum_prefix_threshold6", maximum_prefix_threshold6)
+        pulumi.set(__self__, "maximum_prefix_threshold_evpn", maximum_prefix_threshold_evpn)
         pulumi.set(__self__, "maximum_prefix_threshold_vpnv4", maximum_prefix_threshold_vpnv4)
+        pulumi.set(__self__, "maximum_prefix_threshold_vpnv6", maximum_prefix_threshold_vpnv6)
         pulumi.set(__self__, "maximum_prefix_vpnv4", maximum_prefix_vpnv4)
+        pulumi.set(__self__, "maximum_prefix_vpnv6", maximum_prefix_vpnv6)
         pulumi.set(__self__, "maximum_prefix_warning_only", maximum_prefix_warning_only)
         pulumi.set(__self__, "maximum_prefix_warning_only6", maximum_prefix_warning_only6)
+        pulumi.set(__self__, "maximum_prefix_warning_only_evpn", maximum_prefix_warning_only_evpn)
         pulumi.set(__self__, "maximum_prefix_warning_only_vpnv4", maximum_prefix_warning_only_vpnv4)
+        pulumi.set(__self__, "maximum_prefix_warning_only_vpnv6", maximum_prefix_warning_only_vpnv6)
         pulumi.set(__self__, "next_hop_self", next_hop_self)
         pulumi.set(__self__, "next_hop_self6", next_hop_self6)
         pulumi.set(__self__, "next_hop_self_rr", next_hop_self_rr)
         pulumi.set(__self__, "next_hop_self_rr6", next_hop_self_rr6)
         pulumi.set(__self__, "next_hop_self_vpnv4", next_hop_self_vpnv4)
+        pulumi.set(__self__, "next_hop_self_vpnv6", next_hop_self_vpnv6)
         pulumi.set(__self__, "override_capability", override_capability)
         pulumi.set(__self__, "passive", passive)
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "prefix_list_in", prefix_list_in)
         pulumi.set(__self__, "prefix_list_in6", prefix_list_in6)
         pulumi.set(__self__, "prefix_list_in_vpnv4", prefix_list_in_vpnv4)
+        pulumi.set(__self__, "prefix_list_in_vpnv6", prefix_list_in_vpnv6)
         pulumi.set(__self__, "prefix_list_out", prefix_list_out)
         pulumi.set(__self__, "prefix_list_out6", prefix_list_out6)
         pulumi.set(__self__, "prefix_list_out_vpnv4", prefix_list_out_vpnv4)
+        pulumi.set(__self__, "prefix_list_out_vpnv6", prefix_list_out_vpnv6)
         pulumi.set(__self__, "remote_as", remote_as)
         pulumi.set(__self__, "remove_private_as", remove_private_as)
         pulumi.set(__self__, "remove_private_as6", remove_private_as6)
+        pulumi.set(__self__, "remove_private_as_evpn", remove_private_as_evpn)
         pulumi.set(__self__, "remove_private_as_vpnv4", remove_private_as_vpnv4)
+        pulumi.set(__self__, "remove_private_as_vpnv6", remove_private_as_vpnv6)
         pulumi.set(__self__, "restart_time", restart_time)
         pulumi.set(__self__, "retain_stale_time", retain_stale_time)
         pulumi.set(__self__, "route_map_in", route_map_in)
         pulumi.set(__self__, "route_map_in6", route_map_in6)
+        pulumi.set(__self__, "route_map_in_evpn", route_map_in_evpn)
         pulumi.set(__self__, "route_map_in_vpnv4", route_map_in_vpnv4)
+        pulumi.set(__self__, "route_map_in_vpnv6", route_map_in_vpnv6)
         pulumi.set(__self__, "route_map_out", route_map_out)
         pulumi.set(__self__, "route_map_out6", route_map_out6)
         pulumi.set(__self__, "route_map_out6_preferable", route_map_out6_preferable)
+        pulumi.set(__self__, "route_map_out_evpn", route_map_out_evpn)
         pulumi.set(__self__, "route_map_out_preferable", route_map_out_preferable)
         pulumi.set(__self__, "route_map_out_vpnv4", route_map_out_vpnv4)
         pulumi.set(__self__, "route_map_out_vpnv4_preferable", route_map_out_vpnv4_preferable)
+        pulumi.set(__self__, "route_map_out_vpnv6", route_map_out_vpnv6)
+        pulumi.set(__self__, "route_map_out_vpnv6_preferable", route_map_out_vpnv6_preferable)
         pulumi.set(__self__, "route_reflector_client", route_reflector_client)
         pulumi.set(__self__, "route_reflector_client6", route_reflector_client6)
+        pulumi.set(__self__, "route_reflector_client_evpn", route_reflector_client_evpn)
         pulumi.set(__self__, "route_reflector_client_vpnv4", route_reflector_client_vpnv4)
+        pulumi.set(__self__, "route_reflector_client_vpnv6", route_reflector_client_vpnv6)
         pulumi.set(__self__, "route_server_client", route_server_client)
         pulumi.set(__self__, "route_server_client6", route_server_client6)
+        pulumi.set(__self__, "route_server_client_evpn", route_server_client_evpn)
         pulumi.set(__self__, "route_server_client_vpnv4", route_server_client_vpnv4)
+        pulumi.set(__self__, "route_server_client_vpnv6", route_server_client_vpnv6)
         pulumi.set(__self__, "send_community", send_community)
         pulumi.set(__self__, "send_community6", send_community6)
+        pulumi.set(__self__, "send_community_evpn", send_community_evpn)
         pulumi.set(__self__, "send_community_vpnv4", send_community_vpnv4)
+        pulumi.set(__self__, "send_community_vpnv6", send_community_vpnv6)
         pulumi.set(__self__, "shutdown", shutdown)
         pulumi.set(__self__, "soft_reconfiguration", soft_reconfiguration)
         pulumi.set(__self__, "soft_reconfiguration6", soft_reconfiguration6)
+        pulumi.set(__self__, "soft_reconfiguration_evpn", soft_reconfiguration_evpn)
         pulumi.set(__self__, "soft_reconfiguration_vpnv4", soft_reconfiguration_vpnv4)
+        pulumi.set(__self__, "soft_reconfiguration_vpnv6", soft_reconfiguration_vpnv6)
         pulumi.set(__self__, "stale_route", stale_route)
         pulumi.set(__self__, "strict_capability_match", strict_capability_match)
         pulumi.set(__self__, "unsuppress_map", unsuppress_map)
@@ -12880,12 +14533,28 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "activate6")
 
     @property
+    @pulumi.getter(name="activateEvpn")
+    def activate_evpn(self) -> str:
+        """
+        Enable/disable address family L2VPN EVPN for this neighbor.
+        """
+        return pulumi.get(self, "activate_evpn")
+
+    @property
     @pulumi.getter(name="activateVpnv4")
     def activate_vpnv4(self) -> str:
         """
         Enable/disable address family VPNv4 for this neighbor.
         """
         return pulumi.get(self, "activate_vpnv4")
+
+    @property
+    @pulumi.getter(name="activateVpnv6")
+    def activate_vpnv6(self) -> str:
+        """
+        Enable/disable address family VPNv6 for this neighbor.
+        """
+        return pulumi.get(self, "activate_vpnv6")
 
     @property
     @pulumi.getter(name="additionalPath")
@@ -12912,6 +14581,14 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "additional_path_vpnv4")
 
     @property
+    @pulumi.getter(name="additionalPathVpnv6")
+    def additional_path_vpnv6(self) -> str:
+        """
+        Enable/disable VPNv6 additional-path capability.
+        """
+        return pulumi.get(self, "additional_path_vpnv6")
+
+    @property
     @pulumi.getter(name="advAdditionalPath")
     def adv_additional_path(self) -> int:
         """
@@ -12934,6 +14611,14 @@ class GetBgpNeighborResult(dict):
         Number of VPNv4 additional paths that can be advertised to this neighbor.
         """
         return pulumi.get(self, "adv_additional_path_vpnv4")
+
+    @property
+    @pulumi.getter(name="advAdditionalPathVpnv6")
+    def adv_additional_path_vpnv6(self) -> int:
+        """
+        Number of VPNv6 additional paths that can be advertised to this neighbor.
+        """
+        return pulumi.get(self, "adv_additional_path_vpnv6")
 
     @property
     @pulumi.getter(name="advertisementInterval")
@@ -12976,12 +14661,52 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "allowas_in_enable6")
 
     @property
+    @pulumi.getter(name="allowasInEnableEvpn")
+    def allowas_in_enable_evpn(self) -> str:
+        """
+        Enable/disable to allow my AS in AS path for L2VPN EVPN route.
+        """
+        return pulumi.get(self, "allowas_in_enable_evpn")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv4")
+    def allowas_in_enable_vpnv4(self) -> str:
+        """
+        Enable/disable to allow my AS in AS path for VPNv4 route.
+        """
+        return pulumi.get(self, "allowas_in_enable_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv6")
+    def allowas_in_enable_vpnv6(self) -> str:
+        """
+        Enable/disable use of my AS in AS path for VPNv6 route.
+        """
+        return pulumi.get(self, "allowas_in_enable_vpnv6")
+
+    @property
+    @pulumi.getter(name="allowasInEvpn")
+    def allowas_in_evpn(self) -> int:
+        """
+        The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+        """
+        return pulumi.get(self, "allowas_in_evpn")
+
+    @property
     @pulumi.getter(name="allowasInVpnv4")
     def allowas_in_vpnv4(self) -> int:
         """
         The maximum number of occurrence of my AS number allowed for VPNv4 route.
         """
         return pulumi.get(self, "allowas_in_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInVpnv6")
+    def allowas_in_vpnv6(self) -> int:
+        """
+        The maximum number of occurrence of my AS number allowed for VPNv6 route.
+        """
+        return pulumi.get(self, "allowas_in_vpnv6")
 
     @property
     @pulumi.getter(name="asOverride")
@@ -13022,6 +14747,22 @@ class GetBgpNeighborResult(dict):
         List of attributes that should be unchanged for VPNv4 route.
         """
         return pulumi.get(self, "attribute_unchanged_vpnv4")
+
+    @property
+    @pulumi.getter(name="attributeUnchangedVpnv6")
+    def attribute_unchanged_vpnv6(self) -> str:
+        """
+        List of attributes that should not be changed for VPNv6 route.
+        """
+        return pulumi.get(self, "attribute_unchanged_vpnv6")
+
+    @property
+    @pulumi.getter(name="authOptions")
+    def auth_options(self) -> str:
+        """
+        Key-chain name for TCP authentication options.
+        """
+        return pulumi.get(self, "auth_options")
 
     @property
     @pulumi.getter
@@ -13072,12 +14813,28 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "capability_graceful_restart6")
 
     @property
+    @pulumi.getter(name="capabilityGracefulRestartEvpn")
+    def capability_graceful_restart_evpn(self) -> str:
+        """
+        Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor.
+        """
+        return pulumi.get(self, "capability_graceful_restart_evpn")
+
+    @property
     @pulumi.getter(name="capabilityGracefulRestartVpnv4")
     def capability_graceful_restart_vpnv4(self) -> str:
         """
         Enable/disable advertise VPNv4 graceful restart capability to this neighbor.
         """
         return pulumi.get(self, "capability_graceful_restart_vpnv4")
+
+    @property
+    @pulumi.getter(name="capabilityGracefulRestartVpnv6")
+    def capability_graceful_restart_vpnv6(self) -> str:
+        """
+        Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor.
+        """
+        return pulumi.get(self, "capability_graceful_restart_vpnv6")
 
     @property
     @pulumi.getter(name="capabilityOrf")
@@ -13176,6 +14933,14 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "distribute_list_in_vpnv4")
 
     @property
+    @pulumi.getter(name="distributeListInVpnv6")
+    def distribute_list_in_vpnv6(self) -> str:
+        """
+        Filter for VPNv6 updates from this neighbor.
+        """
+        return pulumi.get(self, "distribute_list_in_vpnv6")
+
+    @property
     @pulumi.getter(name="distributeListOut")
     def distribute_list_out(self) -> str:
         """
@@ -13198,6 +14963,14 @@ class GetBgpNeighborResult(dict):
         Filter for VPNv4 updates to this neighbor.
         """
         return pulumi.get(self, "distribute_list_out_vpnv4")
+
+    @property
+    @pulumi.getter(name="distributeListOutVpnv6")
+    def distribute_list_out_vpnv6(self) -> str:
+        """
+        Filter for VPNv6 updates to this neighbor.
+        """
+        return pulumi.get(self, "distribute_list_out_vpnv6")
 
     @property
     @pulumi.getter(name="dontCapabilityNegotiate")
@@ -13240,6 +15013,22 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "filter_list_in6")
 
     @property
+    @pulumi.getter(name="filterListInVpnv4")
+    def filter_list_in_vpnv4(self) -> str:
+        """
+        BGP filter for VPNv4 inbound routes.
+        """
+        return pulumi.get(self, "filter_list_in_vpnv4")
+
+    @property
+    @pulumi.getter(name="filterListInVpnv6")
+    def filter_list_in_vpnv6(self) -> str:
+        """
+        BGP filter for VPNv6 inbound routes.
+        """
+        return pulumi.get(self, "filter_list_in_vpnv6")
+
+    @property
     @pulumi.getter(name="filterListOut")
     def filter_list_out(self) -> str:
         """
@@ -13254,6 +15043,22 @@ class GetBgpNeighborResult(dict):
         BGP filter for IPv6 outbound routes.
         """
         return pulumi.get(self, "filter_list_out6")
+
+    @property
+    @pulumi.getter(name="filterListOutVpnv4")
+    def filter_list_out_vpnv4(self) -> str:
+        """
+        BGP filter for VPNv4 outbound routes.
+        """
+        return pulumi.get(self, "filter_list_out_vpnv4")
+
+    @property
+    @pulumi.getter(name="filterListOutVpnv6")
+    def filter_list_out_vpnv6(self) -> str:
+        """
+        BGP filter for VPNv6 outbound routes.
+        """
+        return pulumi.get(self, "filter_list_out_vpnv6")
 
     @property
     @pulumi.getter(name="holdtimeTimer")
@@ -13336,6 +15141,14 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "maximum_prefix6")
 
     @property
+    @pulumi.getter(name="maximumPrefixEvpn")
+    def maximum_prefix_evpn(self) -> int:
+        """
+        Maximum number of L2VPN EVPN prefixes to accept from this peer.
+        """
+        return pulumi.get(self, "maximum_prefix_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThreshold")
     def maximum_prefix_threshold(self) -> int:
         """
@@ -13352,6 +15165,14 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "maximum_prefix_threshold6")
 
     @property
+    @pulumi.getter(name="maximumPrefixThresholdEvpn")
+    def maximum_prefix_threshold_evpn(self) -> int:
+        """
+        Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+        """
+        return pulumi.get(self, "maximum_prefix_threshold_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThresholdVpnv4")
     def maximum_prefix_threshold_vpnv4(self) -> int:
         """
@@ -13360,12 +15181,28 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "maximum_prefix_threshold_vpnv4")
 
     @property
+    @pulumi.getter(name="maximumPrefixThresholdVpnv6")
+    def maximum_prefix_threshold_vpnv6(self) -> int:
+        """
+        Maximum VPNv6 prefix threshold value (1 - 100 percent).
+        """
+        return pulumi.get(self, "maximum_prefix_threshold_vpnv6")
+
+    @property
     @pulumi.getter(name="maximumPrefixVpnv4")
     def maximum_prefix_vpnv4(self) -> int:
         """
         Maximum number of VPNv4 prefixes to accept from this peer.
         """
         return pulumi.get(self, "maximum_prefix_vpnv4")
+
+    @property
+    @pulumi.getter(name="maximumPrefixVpnv6")
+    def maximum_prefix_vpnv6(self) -> int:
+        """
+        Maximum number of VPNv6 prefixes to accept from this peer.
+        """
+        return pulumi.get(self, "maximum_prefix_vpnv6")
 
     @property
     @pulumi.getter(name="maximumPrefixWarningOnly")
@@ -13384,12 +15221,28 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "maximum_prefix_warning_only6")
 
     @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyEvpn")
+    def maximum_prefix_warning_only_evpn(self) -> str:
+        """
+        Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes.
+        """
+        return pulumi.get(self, "maximum_prefix_warning_only_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixWarningOnlyVpnv4")
     def maximum_prefix_warning_only_vpnv4(self) -> str:
         """
         Enable/disable only giving warning message when limit is exceeded for VPNv4 routes.
         """
         return pulumi.get(self, "maximum_prefix_warning_only_vpnv4")
+
+    @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyVpnv6")
+    def maximum_prefix_warning_only_vpnv6(self) -> str:
+        """
+        Enable/disable warning message when limit is exceeded for VPNv6 routes.
+        """
+        return pulumi.get(self, "maximum_prefix_warning_only_vpnv6")
 
     @property
     @pulumi.getter(name="nextHopSelf")
@@ -13430,6 +15283,14 @@ class GetBgpNeighborResult(dict):
         Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor.
         """
         return pulumi.get(self, "next_hop_self_vpnv4")
+
+    @property
+    @pulumi.getter(name="nextHopSelfVpnv6")
+    def next_hop_self_vpnv6(self) -> str:
+        """
+        Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor.
+        """
+        return pulumi.get(self, "next_hop_self_vpnv6")
 
     @property
     @pulumi.getter(name="overrideCapability")
@@ -13480,6 +15341,14 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "prefix_list_in_vpnv4")
 
     @property
+    @pulumi.getter(name="prefixListInVpnv6")
+    def prefix_list_in_vpnv6(self) -> str:
+        """
+        Inbound filter for VPNv6 updates from this neighbor.
+        """
+        return pulumi.get(self, "prefix_list_in_vpnv6")
+
+    @property
     @pulumi.getter(name="prefixListOut")
     def prefix_list_out(self) -> str:
         """
@@ -13502,6 +15371,14 @@ class GetBgpNeighborResult(dict):
         Outbound filter for VPNv4 updates to this neighbor.
         """
         return pulumi.get(self, "prefix_list_out_vpnv4")
+
+    @property
+    @pulumi.getter(name="prefixListOutVpnv6")
+    def prefix_list_out_vpnv6(self) -> str:
+        """
+        Outbound filter for VPNv6 updates to this neighbor.
+        """
+        return pulumi.get(self, "prefix_list_out_vpnv6")
 
     @property
     @pulumi.getter(name="remoteAs")
@@ -13528,12 +15405,28 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "remove_private_as6")
 
     @property
+    @pulumi.getter(name="removePrivateAsEvpn")
+    def remove_private_as_evpn(self) -> str:
+        """
+        Enable/disable removing private AS number from L2VPN EVPN outbound updates.
+        """
+        return pulumi.get(self, "remove_private_as_evpn")
+
+    @property
     @pulumi.getter(name="removePrivateAsVpnv4")
     def remove_private_as_vpnv4(self) -> str:
         """
         Enable/disable remove private AS number from VPNv4 outbound updates.
         """
         return pulumi.get(self, "remove_private_as_vpnv4")
+
+    @property
+    @pulumi.getter(name="removePrivateAsVpnv6")
+    def remove_private_as_vpnv6(self) -> str:
+        """
+        Enable/disable to remove private AS number from VPNv6 outbound updates.
+        """
+        return pulumi.get(self, "remove_private_as_vpnv6")
 
     @property
     @pulumi.getter(name="restartTime")
@@ -13568,12 +15461,28 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "route_map_in6")
 
     @property
+    @pulumi.getter(name="routeMapInEvpn")
+    def route_map_in_evpn(self) -> str:
+        """
+        L2VPN EVPN inbound route map filter.
+        """
+        return pulumi.get(self, "route_map_in_evpn")
+
+    @property
     @pulumi.getter(name="routeMapInVpnv4")
     def route_map_in_vpnv4(self) -> str:
         """
         VPNv4 inbound route map filter.
         """
         return pulumi.get(self, "route_map_in_vpnv4")
+
+    @property
+    @pulumi.getter(name="routeMapInVpnv6")
+    def route_map_in_vpnv6(self) -> str:
+        """
+        VPNv6 inbound route map filter.
+        """
+        return pulumi.get(self, "route_map_in_vpnv6")
 
     @property
     @pulumi.getter(name="routeMapOut")
@@ -13600,6 +15509,14 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "route_map_out6_preferable")
 
     @property
+    @pulumi.getter(name="routeMapOutEvpn")
+    def route_map_out_evpn(self) -> str:
+        """
+        L2VPN EVPN outbound route map filter.
+        """
+        return pulumi.get(self, "route_map_out_evpn")
+
+    @property
     @pulumi.getter(name="routeMapOutPreferable")
     def route_map_out_preferable(self) -> str:
         """
@@ -13624,6 +15541,22 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "route_map_out_vpnv4_preferable")
 
     @property
+    @pulumi.getter(name="routeMapOutVpnv6")
+    def route_map_out_vpnv6(self) -> str:
+        """
+        VPNv6 outbound route map filter.
+        """
+        return pulumi.get(self, "route_map_out_vpnv6")
+
+    @property
+    @pulumi.getter(name="routeMapOutVpnv6Preferable")
+    def route_map_out_vpnv6_preferable(self) -> str:
+        """
+        VPNv6 outbound route map filter if this neighbor is preferred.
+        """
+        return pulumi.get(self, "route_map_out_vpnv6_preferable")
+
+    @property
     @pulumi.getter(name="routeReflectorClient")
     def route_reflector_client(self) -> str:
         """
@@ -13640,12 +15573,28 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "route_reflector_client6")
 
     @property
+    @pulumi.getter(name="routeReflectorClientEvpn")
+    def route_reflector_client_evpn(self) -> str:
+        """
+        Enable/disable L2VPN EVPN AS route reflector client for this neighbor.
+        """
+        return pulumi.get(self, "route_reflector_client_evpn")
+
+    @property
     @pulumi.getter(name="routeReflectorClientVpnv4")
     def route_reflector_client_vpnv4(self) -> str:
         """
         Enable/disable VPNv4 AS route reflector client for this neighbor.
         """
         return pulumi.get(self, "route_reflector_client_vpnv4")
+
+    @property
+    @pulumi.getter(name="routeReflectorClientVpnv6")
+    def route_reflector_client_vpnv6(self) -> str:
+        """
+        Enable/disable VPNv6 AS route reflector client for this neighbor.
+        """
+        return pulumi.get(self, "route_reflector_client_vpnv6")
 
     @property
     @pulumi.getter(name="routeServerClient")
@@ -13664,12 +15613,28 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "route_server_client6")
 
     @property
+    @pulumi.getter(name="routeServerClientEvpn")
+    def route_server_client_evpn(self) -> str:
+        """
+        Enable/disable L2VPN EVPN AS route server client for this neighbor.
+        """
+        return pulumi.get(self, "route_server_client_evpn")
+
+    @property
     @pulumi.getter(name="routeServerClientVpnv4")
     def route_server_client_vpnv4(self) -> str:
         """
         Enable/disable VPNv4 AS route server client for this neighbor.
         """
         return pulumi.get(self, "route_server_client_vpnv4")
+
+    @property
+    @pulumi.getter(name="routeServerClientVpnv6")
+    def route_server_client_vpnv6(self) -> str:
+        """
+        Enable/disable VPNv6 AS route server client for this neighbor.
+        """
+        return pulumi.get(self, "route_server_client_vpnv6")
 
     @property
     @pulumi.getter(name="sendCommunity")
@@ -13688,12 +15653,28 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "send_community6")
 
     @property
+    @pulumi.getter(name="sendCommunityEvpn")
+    def send_community_evpn(self) -> str:
+        """
+        Enable/disable sending community attribute to neighbor for L2VPN EVPN address family.
+        """
+        return pulumi.get(self, "send_community_evpn")
+
+    @property
     @pulumi.getter(name="sendCommunityVpnv4")
     def send_community_vpnv4(self) -> str:
         """
         Send community attribute to neighbor for VPNv4 address family.
         """
         return pulumi.get(self, "send_community_vpnv4")
+
+    @property
+    @pulumi.getter(name="sendCommunityVpnv6")
+    def send_community_vpnv6(self) -> str:
+        """
+        Enable/disable sending community attribute to this neighbor for VPNv6 address family.
+        """
+        return pulumi.get(self, "send_community_vpnv6")
 
     @property
     @pulumi.getter
@@ -13720,12 +15701,28 @@ class GetBgpNeighborResult(dict):
         return pulumi.get(self, "soft_reconfiguration6")
 
     @property
+    @pulumi.getter(name="softReconfigurationEvpn")
+    def soft_reconfiguration_evpn(self) -> str:
+        """
+        Enable/disable L2VPN EVPN inbound soft reconfiguration.
+        """
+        return pulumi.get(self, "soft_reconfiguration_evpn")
+
+    @property
     @pulumi.getter(name="softReconfigurationVpnv4")
     def soft_reconfiguration_vpnv4(self) -> str:
         """
         Enable/disable allow VPNv4 inbound soft reconfiguration.
         """
         return pulumi.get(self, "soft_reconfiguration_vpnv4")
+
+    @property
+    @pulumi.getter(name="softReconfigurationVpnv6")
+    def soft_reconfiguration_vpnv6(self) -> str:
+        """
+        Enable/disable VPNv6 inbound soft reconfiguration.
+        """
+        return pulumi.get(self, "soft_reconfiguration_vpnv6")
 
     @property
     @pulumi.getter(name="staleRoute")
@@ -13861,31 +15858,44 @@ class GetBgpNeighborGroupResult(dict):
     def __init__(__self__, *,
                  activate: str,
                  activate6: str,
+                 activate_evpn: str,
                  activate_vpnv4: str,
+                 activate_vpnv6: str,
                  additional_path: str,
                  additional_path6: str,
                  additional_path_vpnv4: str,
+                 additional_path_vpnv6: str,
                  adv_additional_path: int,
                  adv_additional_path6: int,
                  adv_additional_path_vpnv4: int,
+                 adv_additional_path_vpnv6: int,
                  advertisement_interval: int,
                  allowas_in: int,
                  allowas_in6: int,
                  allowas_in_enable: str,
                  allowas_in_enable6: str,
+                 allowas_in_enable_evpn: str,
+                 allowas_in_enable_vpnv4: str,
+                 allowas_in_enable_vpnv6: str,
+                 allowas_in_evpn: int,
                  allowas_in_vpnv4: int,
+                 allowas_in_vpnv6: int,
                  as_override: str,
                  as_override6: str,
                  attribute_unchanged: str,
                  attribute_unchanged6: str,
                  attribute_unchanged_vpnv4: str,
+                 attribute_unchanged_vpnv6: str,
+                 auth_options: str,
                  bfd: str,
                  capability_default_originate: str,
                  capability_default_originate6: str,
                  capability_dynamic: str,
                  capability_graceful_restart: str,
                  capability_graceful_restart6: str,
+                 capability_graceful_restart_evpn: str,
                  capability_graceful_restart_vpnv4: str,
+                 capability_graceful_restart_vpnv6: str,
                  capability_orf: str,
                  capability_orf6: str,
                  capability_route_refresh: str,
@@ -13896,16 +15906,22 @@ class GetBgpNeighborGroupResult(dict):
                  distribute_list_in: str,
                  distribute_list_in6: str,
                  distribute_list_in_vpnv4: str,
+                 distribute_list_in_vpnv6: str,
                  distribute_list_out: str,
                  distribute_list_out6: str,
                  distribute_list_out_vpnv4: str,
+                 distribute_list_out_vpnv6: str,
                  dont_capability_negotiate: str,
                  ebgp_enforce_multihop: str,
                  ebgp_multihop_ttl: int,
                  filter_list_in: str,
                  filter_list_in6: str,
+                 filter_list_in_vpnv4: str,
+                 filter_list_in_vpnv6: str,
                  filter_list_out: str,
                  filter_list_out6: str,
+                 filter_list_out_vpnv4: str,
+                 filter_list_out_vpnv6: str,
                  holdtime_timer: int,
                  interface: str,
                  keep_alive_timer: int,
@@ -13915,55 +15931,80 @@ class GetBgpNeighborGroupResult(dict):
                  local_as_replace_as: str,
                  maximum_prefix: int,
                  maximum_prefix6: int,
+                 maximum_prefix_evpn: int,
                  maximum_prefix_threshold: int,
                  maximum_prefix_threshold6: int,
+                 maximum_prefix_threshold_evpn: int,
                  maximum_prefix_threshold_vpnv4: int,
+                 maximum_prefix_threshold_vpnv6: int,
                  maximum_prefix_vpnv4: int,
+                 maximum_prefix_vpnv6: int,
                  maximum_prefix_warning_only: str,
                  maximum_prefix_warning_only6: str,
+                 maximum_prefix_warning_only_evpn: str,
                  maximum_prefix_warning_only_vpnv4: str,
+                 maximum_prefix_warning_only_vpnv6: str,
                  name: str,
                  next_hop_self: str,
                  next_hop_self6: str,
                  next_hop_self_rr: str,
                  next_hop_self_rr6: str,
                  next_hop_self_vpnv4: str,
+                 next_hop_self_vpnv6: str,
                  override_capability: str,
                  passive: str,
+                 password: str,
                  prefix_list_in: str,
                  prefix_list_in6: str,
                  prefix_list_in_vpnv4: str,
+                 prefix_list_in_vpnv6: str,
                  prefix_list_out: str,
                  prefix_list_out6: str,
                  prefix_list_out_vpnv4: str,
+                 prefix_list_out_vpnv6: str,
                  remote_as: int,
                  remove_private_as: str,
                  remove_private_as6: str,
+                 remove_private_as_evpn: str,
                  remove_private_as_vpnv4: str,
+                 remove_private_as_vpnv6: str,
                  restart_time: int,
                  retain_stale_time: int,
                  route_map_in: str,
                  route_map_in6: str,
+                 route_map_in_evpn: str,
                  route_map_in_vpnv4: str,
+                 route_map_in_vpnv6: str,
                  route_map_out: str,
                  route_map_out6: str,
                  route_map_out6_preferable: str,
+                 route_map_out_evpn: str,
                  route_map_out_preferable: str,
                  route_map_out_vpnv4: str,
                  route_map_out_vpnv4_preferable: str,
+                 route_map_out_vpnv6: str,
+                 route_map_out_vpnv6_preferable: str,
                  route_reflector_client: str,
                  route_reflector_client6: str,
+                 route_reflector_client_evpn: str,
                  route_reflector_client_vpnv4: str,
+                 route_reflector_client_vpnv6: str,
                  route_server_client: str,
                  route_server_client6: str,
+                 route_server_client_evpn: str,
                  route_server_client_vpnv4: str,
+                 route_server_client_vpnv6: str,
                  send_community: str,
                  send_community6: str,
+                 send_community_evpn: str,
                  send_community_vpnv4: str,
+                 send_community_vpnv6: str,
                  shutdown: str,
                  soft_reconfiguration: str,
                  soft_reconfiguration6: str,
+                 soft_reconfiguration_evpn: str,
                  soft_reconfiguration_vpnv4: str,
+                 soft_reconfiguration_vpnv6: str,
                  stale_route: str,
                  strict_capability_match: str,
                  unsuppress_map: str,
@@ -13973,31 +16014,44 @@ class GetBgpNeighborGroupResult(dict):
         """
         :param str activate: Enable/disable address family IPv4 for this neighbor.
         :param str activate6: Enable/disable address family IPv6 for this neighbor.
+        :param str activate_evpn: Enable/disable address family L2VPN EVPN for this neighbor.
         :param str activate_vpnv4: Enable/disable address family VPNv4 for this neighbor.
+        :param str activate_vpnv6: Enable/disable address family VPNv6 for this neighbor.
         :param str additional_path: Enable/disable IPv4 additional-path capability.
         :param str additional_path6: Enable/disable IPv6 additional-path capability.
         :param str additional_path_vpnv4: Enable/disable VPNv4 additional-path capability.
+        :param str additional_path_vpnv6: Enable/disable VPNv6 additional-path capability.
         :param int adv_additional_path: Number of IPv4 additional paths that can be advertised to this neighbor.
         :param int adv_additional_path6: Number of IPv6 additional paths that can be advertised to this neighbor.
         :param int adv_additional_path_vpnv4: Number of VPNv4 additional paths that can be advertised to this neighbor.
+        :param int adv_additional_path_vpnv6: Number of VPNv6 additional paths that can be advertised to this neighbor.
         :param int advertisement_interval: Minimum interval (sec) between sending updates.
         :param int allowas_in: IPv4 The maximum number of occurrence of my AS number allowed.
         :param int allowas_in6: IPv6 The maximum number of occurrence of my AS number allowed.
         :param str allowas_in_enable: Enable/disable IPv4 Enable to allow my AS in AS path.
         :param str allowas_in_enable6: Enable/disable IPv6 Enable to allow my AS in AS path.
+        :param str allowas_in_enable_evpn: Enable/disable to allow my AS in AS path for L2VPN EVPN route.
+        :param str allowas_in_enable_vpnv4: Enable/disable to allow my AS in AS path for VPNv4 route.
+        :param str allowas_in_enable_vpnv6: Enable/disable use of my AS in AS path for VPNv6 route.
+        :param int allowas_in_evpn: The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
         :param int allowas_in_vpnv4: The maximum number of occurrence of my AS number allowed for VPNv4 route.
+        :param int allowas_in_vpnv6: The maximum number of occurrence of my AS number allowed for VPNv6 route.
         :param str as_override: Enable/disable replace peer AS with own AS for IPv4.
         :param str as_override6: Enable/disable replace peer AS with own AS for IPv6.
         :param str attribute_unchanged: IPv4 List of attributes that should be unchanged.
         :param str attribute_unchanged6: IPv6 List of attributes that should be unchanged.
         :param str attribute_unchanged_vpnv4: List of attributes that should be unchanged for VPNv4 route.
+        :param str attribute_unchanged_vpnv6: List of attributes that should not be changed for VPNv6 route.
+        :param str auth_options: Key-chain name for TCP authentication options.
         :param str bfd: Enable/disable BFD for this neighbor.
         :param str capability_default_originate: Enable/disable advertise default IPv4 route to this neighbor.
         :param str capability_default_originate6: Enable/disable advertise default IPv6 route to this neighbor.
         :param str capability_dynamic: Enable/disable advertise dynamic capability to this neighbor.
         :param str capability_graceful_restart: Enable/disable advertise IPv4 graceful restart capability to this neighbor.
         :param str capability_graceful_restart6: Enable/disable advertise IPv6 graceful restart capability to this neighbor.
+        :param str capability_graceful_restart_evpn: Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor.
         :param str capability_graceful_restart_vpnv4: Enable/disable advertise VPNv4 graceful restart capability to this neighbor.
+        :param str capability_graceful_restart_vpnv6: Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor.
         :param str capability_orf: Accept/Send IPv4 ORF lists to/from this neighbor.
         :param str capability_orf6: Accept/Send IPv6 ORF lists to/from this neighbor.
         :param str capability_route_refresh: Enable/disable advertise route refresh capability to this neighbor.
@@ -14008,16 +16062,22 @@ class GetBgpNeighborGroupResult(dict):
         :param str distribute_list_in: Filter for IPv4 updates from this neighbor.
         :param str distribute_list_in6: Filter for IPv6 updates from this neighbor.
         :param str distribute_list_in_vpnv4: Filter for VPNv4 updates from this neighbor.
+        :param str distribute_list_in_vpnv6: Filter for VPNv6 updates from this neighbor.
         :param str distribute_list_out: Filter for IPv4 updates to this neighbor.
         :param str distribute_list_out6: Filter for IPv6 updates to this neighbor.
         :param str distribute_list_out_vpnv4: Filter for VPNv4 updates to this neighbor.
+        :param str distribute_list_out_vpnv6: Filter for VPNv6 updates to this neighbor.
         :param str dont_capability_negotiate: Don't negotiate capabilities with this neighbor
         :param str ebgp_enforce_multihop: Enable/disable allow multi-hop EBGP neighbors.
         :param int ebgp_multihop_ttl: EBGP multihop TTL for this peer.
         :param str filter_list_in: BGP filter for IPv4 inbound routes.
         :param str filter_list_in6: BGP filter for IPv6 inbound routes.
+        :param str filter_list_in_vpnv4: BGP filter for VPNv4 inbound routes.
+        :param str filter_list_in_vpnv6: BGP filter for VPNv6 inbound routes.
         :param str filter_list_out: BGP filter for IPv4 outbound routes.
         :param str filter_list_out6: BGP filter for IPv6 outbound routes.
+        :param str filter_list_out_vpnv4: BGP filter for VPNv4 outbound routes.
+        :param str filter_list_out_vpnv6: BGP filter for VPNv6 outbound routes.
         :param int holdtime_timer: Interval (sec) before peer considered dead.
         :param str interface: Interface which is used to leak routes to target VRF.
         :param int keep_alive_timer: Keep alive timer interval (sec).
@@ -14027,55 +16087,80 @@ class GetBgpNeighborGroupResult(dict):
         :param str local_as_replace_as: Replace real AS with local-as in outgoing updates.
         :param int maximum_prefix: Maximum number of IPv4 prefixes to accept from this peer.
         :param int maximum_prefix6: Maximum number of IPv6 prefixes to accept from this peer.
+        :param int maximum_prefix_evpn: Maximum number of L2VPN EVPN prefixes to accept from this peer.
         :param int maximum_prefix_threshold: Maximum IPv4 prefix threshold value (1 - 100 percent).
         :param int maximum_prefix_threshold6: Maximum IPv6 prefix threshold value (1 - 100 percent).
+        :param int maximum_prefix_threshold_evpn: Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
         :param int maximum_prefix_threshold_vpnv4: Maximum VPNv4 prefix threshold value (1 - 100 percent).
+        :param int maximum_prefix_threshold_vpnv6: Maximum VPNv6 prefix threshold value (1 - 100 percent).
         :param int maximum_prefix_vpnv4: Maximum number of VPNv4 prefixes to accept from this peer.
+        :param int maximum_prefix_vpnv6: Maximum number of VPNv6 prefixes to accept from this peer.
         :param str maximum_prefix_warning_only: Enable/disable IPv4 Only give warning message when limit is exceeded.
         :param str maximum_prefix_warning_only6: Enable/disable IPv6 Only give warning message when limit is exceeded.
+        :param str maximum_prefix_warning_only_evpn: Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes.
         :param str maximum_prefix_warning_only_vpnv4: Enable/disable only giving warning message when limit is exceeded for VPNv4 routes.
+        :param str maximum_prefix_warning_only_vpnv6: Enable/disable warning message when limit is exceeded for VPNv6 routes.
         :param str name: Distribute list entry name.
         :param str next_hop_self: Enable/disable IPv4 next-hop calculation for this neighbor.
         :param str next_hop_self6: Enable/disable IPv6 next-hop calculation for this neighbor.
         :param str next_hop_self_rr: Enable/disable setting nexthop's address to interface's IPv4 address for route-reflector routes.
         :param str next_hop_self_rr6: Enable/disable setting nexthop's address to interface's IPv6 address for route-reflector routes.
         :param str next_hop_self_vpnv4: Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor.
+        :param str next_hop_self_vpnv6: Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor.
         :param str override_capability: Enable/disable override result of capability negotiation.
         :param str passive: Enable/disable sending of open messages to this neighbor.
+        :param str password: Password used in MD5 authentication.
         :param str prefix_list_in: IPv4 Inbound filter for updates from this neighbor.
         :param str prefix_list_in6: IPv6 Inbound filter for updates from this neighbor.
         :param str prefix_list_in_vpnv4: Inbound filter for VPNv4 updates from this neighbor.
+        :param str prefix_list_in_vpnv6: Inbound filter for VPNv6 updates from this neighbor.
         :param str prefix_list_out: IPv4 Outbound filter for updates to this neighbor.
         :param str prefix_list_out6: IPv6 Outbound filter for updates to this neighbor.
         :param str prefix_list_out_vpnv4: Outbound filter for VPNv4 updates to this neighbor.
+        :param str prefix_list_out_vpnv6: Outbound filter for VPNv6 updates to this neighbor.
         :param int remote_as: AS number of neighbor.
         :param str remove_private_as: Enable/disable remove private AS number from IPv4 outbound updates.
         :param str remove_private_as6: Enable/disable remove private AS number from IPv6 outbound updates.
+        :param str remove_private_as_evpn: Enable/disable removing private AS number from L2VPN EVPN outbound updates.
         :param str remove_private_as_vpnv4: Enable/disable remove private AS number from VPNv4 outbound updates.
+        :param str remove_private_as_vpnv6: Enable/disable to remove private AS number from VPNv6 outbound updates.
         :param int restart_time: Graceful restart delay time (sec, 0 = global default).
         :param int retain_stale_time: Time to retain stale routes.
         :param str route_map_in: IPv4 Inbound route map filter.
         :param str route_map_in6: IPv6 Inbound route map filter.
+        :param str route_map_in_evpn: L2VPN EVPN inbound route map filter.
         :param str route_map_in_vpnv4: VPNv4 inbound route map filter.
+        :param str route_map_in_vpnv6: VPNv6 inbound route map filter.
         :param str route_map_out: IPv4 Outbound route map filter.
         :param str route_map_out6: IPv6 Outbound route map filter.
         :param str route_map_out6_preferable: IPv6 outbound route map filter if the peer is preferred.
+        :param str route_map_out_evpn: L2VPN EVPN outbound route map filter.
         :param str route_map_out_preferable: IPv4 outbound route map filter if the peer is preferred.
         :param str route_map_out_vpnv4: VPNv4 outbound route map filter.
         :param str route_map_out_vpnv4_preferable: VPNv4 outbound route map filter if the peer is preferred.
+        :param str route_map_out_vpnv6: VPNv6 outbound route map filter.
+        :param str route_map_out_vpnv6_preferable: VPNv6 outbound route map filter if this neighbor is preferred.
         :param str route_reflector_client: Enable/disable IPv4 AS route reflector client.
         :param str route_reflector_client6: Enable/disable IPv6 AS route reflector client.
+        :param str route_reflector_client_evpn: Enable/disable L2VPN EVPN AS route reflector client for this neighbor.
         :param str route_reflector_client_vpnv4: Enable/disable VPNv4 AS route reflector client for this neighbor.
+        :param str route_reflector_client_vpnv6: Enable/disable VPNv6 AS route reflector client for this neighbor.
         :param str route_server_client: Enable/disable IPv4 AS route server client.
         :param str route_server_client6: Enable/disable IPv6 AS route server client.
+        :param str route_server_client_evpn: Enable/disable L2VPN EVPN AS route server client for this neighbor.
         :param str route_server_client_vpnv4: Enable/disable VPNv4 AS route server client for this neighbor.
+        :param str route_server_client_vpnv6: Enable/disable VPNv6 AS route server client for this neighbor.
         :param str send_community: IPv4 Send community attribute to neighbor.
         :param str send_community6: IPv6 Send community attribute to neighbor.
+        :param str send_community_evpn: Enable/disable sending community attribute to neighbor for L2VPN EVPN address family.
         :param str send_community_vpnv4: Send community attribute to neighbor for VPNv4 address family.
+        :param str send_community_vpnv6: Enable/disable sending community attribute to this neighbor for VPNv6 address family.
         :param str shutdown: Enable/disable shutdown this neighbor.
         :param str soft_reconfiguration: Enable/disable allow IPv4 inbound soft reconfiguration.
         :param str soft_reconfiguration6: Enable/disable allow IPv6 inbound soft reconfiguration.
+        :param str soft_reconfiguration_evpn: Enable/disable L2VPN EVPN inbound soft reconfiguration.
         :param str soft_reconfiguration_vpnv4: Enable/disable allow VPNv4 inbound soft reconfiguration.
+        :param str soft_reconfiguration_vpnv6: Enable/disable VPNv6 inbound soft reconfiguration.
         :param str stale_route: Enable/disable stale route after neighbor down.
         :param str strict_capability_match: Enable/disable strict capability matching.
         :param str unsuppress_map: IPv4 Route map to selectively unsuppress suppressed routes.
@@ -14085,31 +16170,44 @@ class GetBgpNeighborGroupResult(dict):
         """
         pulumi.set(__self__, "activate", activate)
         pulumi.set(__self__, "activate6", activate6)
+        pulumi.set(__self__, "activate_evpn", activate_evpn)
         pulumi.set(__self__, "activate_vpnv4", activate_vpnv4)
+        pulumi.set(__self__, "activate_vpnv6", activate_vpnv6)
         pulumi.set(__self__, "additional_path", additional_path)
         pulumi.set(__self__, "additional_path6", additional_path6)
         pulumi.set(__self__, "additional_path_vpnv4", additional_path_vpnv4)
+        pulumi.set(__self__, "additional_path_vpnv6", additional_path_vpnv6)
         pulumi.set(__self__, "adv_additional_path", adv_additional_path)
         pulumi.set(__self__, "adv_additional_path6", adv_additional_path6)
         pulumi.set(__self__, "adv_additional_path_vpnv4", adv_additional_path_vpnv4)
+        pulumi.set(__self__, "adv_additional_path_vpnv6", adv_additional_path_vpnv6)
         pulumi.set(__self__, "advertisement_interval", advertisement_interval)
         pulumi.set(__self__, "allowas_in", allowas_in)
         pulumi.set(__self__, "allowas_in6", allowas_in6)
         pulumi.set(__self__, "allowas_in_enable", allowas_in_enable)
         pulumi.set(__self__, "allowas_in_enable6", allowas_in_enable6)
+        pulumi.set(__self__, "allowas_in_enable_evpn", allowas_in_enable_evpn)
+        pulumi.set(__self__, "allowas_in_enable_vpnv4", allowas_in_enable_vpnv4)
+        pulumi.set(__self__, "allowas_in_enable_vpnv6", allowas_in_enable_vpnv6)
+        pulumi.set(__self__, "allowas_in_evpn", allowas_in_evpn)
         pulumi.set(__self__, "allowas_in_vpnv4", allowas_in_vpnv4)
+        pulumi.set(__self__, "allowas_in_vpnv6", allowas_in_vpnv6)
         pulumi.set(__self__, "as_override", as_override)
         pulumi.set(__self__, "as_override6", as_override6)
         pulumi.set(__self__, "attribute_unchanged", attribute_unchanged)
         pulumi.set(__self__, "attribute_unchanged6", attribute_unchanged6)
         pulumi.set(__self__, "attribute_unchanged_vpnv4", attribute_unchanged_vpnv4)
+        pulumi.set(__self__, "attribute_unchanged_vpnv6", attribute_unchanged_vpnv6)
+        pulumi.set(__self__, "auth_options", auth_options)
         pulumi.set(__self__, "bfd", bfd)
         pulumi.set(__self__, "capability_default_originate", capability_default_originate)
         pulumi.set(__self__, "capability_default_originate6", capability_default_originate6)
         pulumi.set(__self__, "capability_dynamic", capability_dynamic)
         pulumi.set(__self__, "capability_graceful_restart", capability_graceful_restart)
         pulumi.set(__self__, "capability_graceful_restart6", capability_graceful_restart6)
+        pulumi.set(__self__, "capability_graceful_restart_evpn", capability_graceful_restart_evpn)
         pulumi.set(__self__, "capability_graceful_restart_vpnv4", capability_graceful_restart_vpnv4)
+        pulumi.set(__self__, "capability_graceful_restart_vpnv6", capability_graceful_restart_vpnv6)
         pulumi.set(__self__, "capability_orf", capability_orf)
         pulumi.set(__self__, "capability_orf6", capability_orf6)
         pulumi.set(__self__, "capability_route_refresh", capability_route_refresh)
@@ -14120,16 +16218,22 @@ class GetBgpNeighborGroupResult(dict):
         pulumi.set(__self__, "distribute_list_in", distribute_list_in)
         pulumi.set(__self__, "distribute_list_in6", distribute_list_in6)
         pulumi.set(__self__, "distribute_list_in_vpnv4", distribute_list_in_vpnv4)
+        pulumi.set(__self__, "distribute_list_in_vpnv6", distribute_list_in_vpnv6)
         pulumi.set(__self__, "distribute_list_out", distribute_list_out)
         pulumi.set(__self__, "distribute_list_out6", distribute_list_out6)
         pulumi.set(__self__, "distribute_list_out_vpnv4", distribute_list_out_vpnv4)
+        pulumi.set(__self__, "distribute_list_out_vpnv6", distribute_list_out_vpnv6)
         pulumi.set(__self__, "dont_capability_negotiate", dont_capability_negotiate)
         pulumi.set(__self__, "ebgp_enforce_multihop", ebgp_enforce_multihop)
         pulumi.set(__self__, "ebgp_multihop_ttl", ebgp_multihop_ttl)
         pulumi.set(__self__, "filter_list_in", filter_list_in)
         pulumi.set(__self__, "filter_list_in6", filter_list_in6)
+        pulumi.set(__self__, "filter_list_in_vpnv4", filter_list_in_vpnv4)
+        pulumi.set(__self__, "filter_list_in_vpnv6", filter_list_in_vpnv6)
         pulumi.set(__self__, "filter_list_out", filter_list_out)
         pulumi.set(__self__, "filter_list_out6", filter_list_out6)
+        pulumi.set(__self__, "filter_list_out_vpnv4", filter_list_out_vpnv4)
+        pulumi.set(__self__, "filter_list_out_vpnv6", filter_list_out_vpnv6)
         pulumi.set(__self__, "holdtime_timer", holdtime_timer)
         pulumi.set(__self__, "interface", interface)
         pulumi.set(__self__, "keep_alive_timer", keep_alive_timer)
@@ -14139,55 +16243,80 @@ class GetBgpNeighborGroupResult(dict):
         pulumi.set(__self__, "local_as_replace_as", local_as_replace_as)
         pulumi.set(__self__, "maximum_prefix", maximum_prefix)
         pulumi.set(__self__, "maximum_prefix6", maximum_prefix6)
+        pulumi.set(__self__, "maximum_prefix_evpn", maximum_prefix_evpn)
         pulumi.set(__self__, "maximum_prefix_threshold", maximum_prefix_threshold)
         pulumi.set(__self__, "maximum_prefix_threshold6", maximum_prefix_threshold6)
+        pulumi.set(__self__, "maximum_prefix_threshold_evpn", maximum_prefix_threshold_evpn)
         pulumi.set(__self__, "maximum_prefix_threshold_vpnv4", maximum_prefix_threshold_vpnv4)
+        pulumi.set(__self__, "maximum_prefix_threshold_vpnv6", maximum_prefix_threshold_vpnv6)
         pulumi.set(__self__, "maximum_prefix_vpnv4", maximum_prefix_vpnv4)
+        pulumi.set(__self__, "maximum_prefix_vpnv6", maximum_prefix_vpnv6)
         pulumi.set(__self__, "maximum_prefix_warning_only", maximum_prefix_warning_only)
         pulumi.set(__self__, "maximum_prefix_warning_only6", maximum_prefix_warning_only6)
+        pulumi.set(__self__, "maximum_prefix_warning_only_evpn", maximum_prefix_warning_only_evpn)
         pulumi.set(__self__, "maximum_prefix_warning_only_vpnv4", maximum_prefix_warning_only_vpnv4)
+        pulumi.set(__self__, "maximum_prefix_warning_only_vpnv6", maximum_prefix_warning_only_vpnv6)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "next_hop_self", next_hop_self)
         pulumi.set(__self__, "next_hop_self6", next_hop_self6)
         pulumi.set(__self__, "next_hop_self_rr", next_hop_self_rr)
         pulumi.set(__self__, "next_hop_self_rr6", next_hop_self_rr6)
         pulumi.set(__self__, "next_hop_self_vpnv4", next_hop_self_vpnv4)
+        pulumi.set(__self__, "next_hop_self_vpnv6", next_hop_self_vpnv6)
         pulumi.set(__self__, "override_capability", override_capability)
         pulumi.set(__self__, "passive", passive)
+        pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "prefix_list_in", prefix_list_in)
         pulumi.set(__self__, "prefix_list_in6", prefix_list_in6)
         pulumi.set(__self__, "prefix_list_in_vpnv4", prefix_list_in_vpnv4)
+        pulumi.set(__self__, "prefix_list_in_vpnv6", prefix_list_in_vpnv6)
         pulumi.set(__self__, "prefix_list_out", prefix_list_out)
         pulumi.set(__self__, "prefix_list_out6", prefix_list_out6)
         pulumi.set(__self__, "prefix_list_out_vpnv4", prefix_list_out_vpnv4)
+        pulumi.set(__self__, "prefix_list_out_vpnv6", prefix_list_out_vpnv6)
         pulumi.set(__self__, "remote_as", remote_as)
         pulumi.set(__self__, "remove_private_as", remove_private_as)
         pulumi.set(__self__, "remove_private_as6", remove_private_as6)
+        pulumi.set(__self__, "remove_private_as_evpn", remove_private_as_evpn)
         pulumi.set(__self__, "remove_private_as_vpnv4", remove_private_as_vpnv4)
+        pulumi.set(__self__, "remove_private_as_vpnv6", remove_private_as_vpnv6)
         pulumi.set(__self__, "restart_time", restart_time)
         pulumi.set(__self__, "retain_stale_time", retain_stale_time)
         pulumi.set(__self__, "route_map_in", route_map_in)
         pulumi.set(__self__, "route_map_in6", route_map_in6)
+        pulumi.set(__self__, "route_map_in_evpn", route_map_in_evpn)
         pulumi.set(__self__, "route_map_in_vpnv4", route_map_in_vpnv4)
+        pulumi.set(__self__, "route_map_in_vpnv6", route_map_in_vpnv6)
         pulumi.set(__self__, "route_map_out", route_map_out)
         pulumi.set(__self__, "route_map_out6", route_map_out6)
         pulumi.set(__self__, "route_map_out6_preferable", route_map_out6_preferable)
+        pulumi.set(__self__, "route_map_out_evpn", route_map_out_evpn)
         pulumi.set(__self__, "route_map_out_preferable", route_map_out_preferable)
         pulumi.set(__self__, "route_map_out_vpnv4", route_map_out_vpnv4)
         pulumi.set(__self__, "route_map_out_vpnv4_preferable", route_map_out_vpnv4_preferable)
+        pulumi.set(__self__, "route_map_out_vpnv6", route_map_out_vpnv6)
+        pulumi.set(__self__, "route_map_out_vpnv6_preferable", route_map_out_vpnv6_preferable)
         pulumi.set(__self__, "route_reflector_client", route_reflector_client)
         pulumi.set(__self__, "route_reflector_client6", route_reflector_client6)
+        pulumi.set(__self__, "route_reflector_client_evpn", route_reflector_client_evpn)
         pulumi.set(__self__, "route_reflector_client_vpnv4", route_reflector_client_vpnv4)
+        pulumi.set(__self__, "route_reflector_client_vpnv6", route_reflector_client_vpnv6)
         pulumi.set(__self__, "route_server_client", route_server_client)
         pulumi.set(__self__, "route_server_client6", route_server_client6)
+        pulumi.set(__self__, "route_server_client_evpn", route_server_client_evpn)
         pulumi.set(__self__, "route_server_client_vpnv4", route_server_client_vpnv4)
+        pulumi.set(__self__, "route_server_client_vpnv6", route_server_client_vpnv6)
         pulumi.set(__self__, "send_community", send_community)
         pulumi.set(__self__, "send_community6", send_community6)
+        pulumi.set(__self__, "send_community_evpn", send_community_evpn)
         pulumi.set(__self__, "send_community_vpnv4", send_community_vpnv4)
+        pulumi.set(__self__, "send_community_vpnv6", send_community_vpnv6)
         pulumi.set(__self__, "shutdown", shutdown)
         pulumi.set(__self__, "soft_reconfiguration", soft_reconfiguration)
         pulumi.set(__self__, "soft_reconfiguration6", soft_reconfiguration6)
+        pulumi.set(__self__, "soft_reconfiguration_evpn", soft_reconfiguration_evpn)
         pulumi.set(__self__, "soft_reconfiguration_vpnv4", soft_reconfiguration_vpnv4)
+        pulumi.set(__self__, "soft_reconfiguration_vpnv6", soft_reconfiguration_vpnv6)
         pulumi.set(__self__, "stale_route", stale_route)
         pulumi.set(__self__, "strict_capability_match", strict_capability_match)
         pulumi.set(__self__, "unsuppress_map", unsuppress_map)
@@ -14212,12 +16341,28 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "activate6")
 
     @property
+    @pulumi.getter(name="activateEvpn")
+    def activate_evpn(self) -> str:
+        """
+        Enable/disable address family L2VPN EVPN for this neighbor.
+        """
+        return pulumi.get(self, "activate_evpn")
+
+    @property
     @pulumi.getter(name="activateVpnv4")
     def activate_vpnv4(self) -> str:
         """
         Enable/disable address family VPNv4 for this neighbor.
         """
         return pulumi.get(self, "activate_vpnv4")
+
+    @property
+    @pulumi.getter(name="activateVpnv6")
+    def activate_vpnv6(self) -> str:
+        """
+        Enable/disable address family VPNv6 for this neighbor.
+        """
+        return pulumi.get(self, "activate_vpnv6")
 
     @property
     @pulumi.getter(name="additionalPath")
@@ -14244,6 +16389,14 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "additional_path_vpnv4")
 
     @property
+    @pulumi.getter(name="additionalPathVpnv6")
+    def additional_path_vpnv6(self) -> str:
+        """
+        Enable/disable VPNv6 additional-path capability.
+        """
+        return pulumi.get(self, "additional_path_vpnv6")
+
+    @property
     @pulumi.getter(name="advAdditionalPath")
     def adv_additional_path(self) -> int:
         """
@@ -14266,6 +16419,14 @@ class GetBgpNeighborGroupResult(dict):
         Number of VPNv4 additional paths that can be advertised to this neighbor.
         """
         return pulumi.get(self, "adv_additional_path_vpnv4")
+
+    @property
+    @pulumi.getter(name="advAdditionalPathVpnv6")
+    def adv_additional_path_vpnv6(self) -> int:
+        """
+        Number of VPNv6 additional paths that can be advertised to this neighbor.
+        """
+        return pulumi.get(self, "adv_additional_path_vpnv6")
 
     @property
     @pulumi.getter(name="advertisementInterval")
@@ -14308,12 +16469,52 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "allowas_in_enable6")
 
     @property
+    @pulumi.getter(name="allowasInEnableEvpn")
+    def allowas_in_enable_evpn(self) -> str:
+        """
+        Enable/disable to allow my AS in AS path for L2VPN EVPN route.
+        """
+        return pulumi.get(self, "allowas_in_enable_evpn")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv4")
+    def allowas_in_enable_vpnv4(self) -> str:
+        """
+        Enable/disable to allow my AS in AS path for VPNv4 route.
+        """
+        return pulumi.get(self, "allowas_in_enable_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv6")
+    def allowas_in_enable_vpnv6(self) -> str:
+        """
+        Enable/disable use of my AS in AS path for VPNv6 route.
+        """
+        return pulumi.get(self, "allowas_in_enable_vpnv6")
+
+    @property
+    @pulumi.getter(name="allowasInEvpn")
+    def allowas_in_evpn(self) -> int:
+        """
+        The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+        """
+        return pulumi.get(self, "allowas_in_evpn")
+
+    @property
     @pulumi.getter(name="allowasInVpnv4")
     def allowas_in_vpnv4(self) -> int:
         """
         The maximum number of occurrence of my AS number allowed for VPNv4 route.
         """
         return pulumi.get(self, "allowas_in_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInVpnv6")
+    def allowas_in_vpnv6(self) -> int:
+        """
+        The maximum number of occurrence of my AS number allowed for VPNv6 route.
+        """
+        return pulumi.get(self, "allowas_in_vpnv6")
 
     @property
     @pulumi.getter(name="asOverride")
@@ -14354,6 +16555,22 @@ class GetBgpNeighborGroupResult(dict):
         List of attributes that should be unchanged for VPNv4 route.
         """
         return pulumi.get(self, "attribute_unchanged_vpnv4")
+
+    @property
+    @pulumi.getter(name="attributeUnchangedVpnv6")
+    def attribute_unchanged_vpnv6(self) -> str:
+        """
+        List of attributes that should not be changed for VPNv6 route.
+        """
+        return pulumi.get(self, "attribute_unchanged_vpnv6")
+
+    @property
+    @pulumi.getter(name="authOptions")
+    def auth_options(self) -> str:
+        """
+        Key-chain name for TCP authentication options.
+        """
+        return pulumi.get(self, "auth_options")
 
     @property
     @pulumi.getter
@@ -14404,12 +16621,28 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "capability_graceful_restart6")
 
     @property
+    @pulumi.getter(name="capabilityGracefulRestartEvpn")
+    def capability_graceful_restart_evpn(self) -> str:
+        """
+        Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor.
+        """
+        return pulumi.get(self, "capability_graceful_restart_evpn")
+
+    @property
     @pulumi.getter(name="capabilityGracefulRestartVpnv4")
     def capability_graceful_restart_vpnv4(self) -> str:
         """
         Enable/disable advertise VPNv4 graceful restart capability to this neighbor.
         """
         return pulumi.get(self, "capability_graceful_restart_vpnv4")
+
+    @property
+    @pulumi.getter(name="capabilityGracefulRestartVpnv6")
+    def capability_graceful_restart_vpnv6(self) -> str:
+        """
+        Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor.
+        """
+        return pulumi.get(self, "capability_graceful_restart_vpnv6")
 
     @property
     @pulumi.getter(name="capabilityOrf")
@@ -14492,6 +16725,14 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "distribute_list_in_vpnv4")
 
     @property
+    @pulumi.getter(name="distributeListInVpnv6")
+    def distribute_list_in_vpnv6(self) -> str:
+        """
+        Filter for VPNv6 updates from this neighbor.
+        """
+        return pulumi.get(self, "distribute_list_in_vpnv6")
+
+    @property
     @pulumi.getter(name="distributeListOut")
     def distribute_list_out(self) -> str:
         """
@@ -14514,6 +16755,14 @@ class GetBgpNeighborGroupResult(dict):
         Filter for VPNv4 updates to this neighbor.
         """
         return pulumi.get(self, "distribute_list_out_vpnv4")
+
+    @property
+    @pulumi.getter(name="distributeListOutVpnv6")
+    def distribute_list_out_vpnv6(self) -> str:
+        """
+        Filter for VPNv6 updates to this neighbor.
+        """
+        return pulumi.get(self, "distribute_list_out_vpnv6")
 
     @property
     @pulumi.getter(name="dontCapabilityNegotiate")
@@ -14556,6 +16805,22 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "filter_list_in6")
 
     @property
+    @pulumi.getter(name="filterListInVpnv4")
+    def filter_list_in_vpnv4(self) -> str:
+        """
+        BGP filter for VPNv4 inbound routes.
+        """
+        return pulumi.get(self, "filter_list_in_vpnv4")
+
+    @property
+    @pulumi.getter(name="filterListInVpnv6")
+    def filter_list_in_vpnv6(self) -> str:
+        """
+        BGP filter for VPNv6 inbound routes.
+        """
+        return pulumi.get(self, "filter_list_in_vpnv6")
+
+    @property
     @pulumi.getter(name="filterListOut")
     def filter_list_out(self) -> str:
         """
@@ -14570,6 +16835,22 @@ class GetBgpNeighborGroupResult(dict):
         BGP filter for IPv6 outbound routes.
         """
         return pulumi.get(self, "filter_list_out6")
+
+    @property
+    @pulumi.getter(name="filterListOutVpnv4")
+    def filter_list_out_vpnv4(self) -> str:
+        """
+        BGP filter for VPNv4 outbound routes.
+        """
+        return pulumi.get(self, "filter_list_out_vpnv4")
+
+    @property
+    @pulumi.getter(name="filterListOutVpnv6")
+    def filter_list_out_vpnv6(self) -> str:
+        """
+        BGP filter for VPNv6 outbound routes.
+        """
+        return pulumi.get(self, "filter_list_out_vpnv6")
 
     @property
     @pulumi.getter(name="holdtimeTimer")
@@ -14644,6 +16925,14 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "maximum_prefix6")
 
     @property
+    @pulumi.getter(name="maximumPrefixEvpn")
+    def maximum_prefix_evpn(self) -> int:
+        """
+        Maximum number of L2VPN EVPN prefixes to accept from this peer.
+        """
+        return pulumi.get(self, "maximum_prefix_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThreshold")
     def maximum_prefix_threshold(self) -> int:
         """
@@ -14660,6 +16949,14 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "maximum_prefix_threshold6")
 
     @property
+    @pulumi.getter(name="maximumPrefixThresholdEvpn")
+    def maximum_prefix_threshold_evpn(self) -> int:
+        """
+        Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+        """
+        return pulumi.get(self, "maximum_prefix_threshold_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThresholdVpnv4")
     def maximum_prefix_threshold_vpnv4(self) -> int:
         """
@@ -14668,12 +16965,28 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "maximum_prefix_threshold_vpnv4")
 
     @property
+    @pulumi.getter(name="maximumPrefixThresholdVpnv6")
+    def maximum_prefix_threshold_vpnv6(self) -> int:
+        """
+        Maximum VPNv6 prefix threshold value (1 - 100 percent).
+        """
+        return pulumi.get(self, "maximum_prefix_threshold_vpnv6")
+
+    @property
     @pulumi.getter(name="maximumPrefixVpnv4")
     def maximum_prefix_vpnv4(self) -> int:
         """
         Maximum number of VPNv4 prefixes to accept from this peer.
         """
         return pulumi.get(self, "maximum_prefix_vpnv4")
+
+    @property
+    @pulumi.getter(name="maximumPrefixVpnv6")
+    def maximum_prefix_vpnv6(self) -> int:
+        """
+        Maximum number of VPNv6 prefixes to accept from this peer.
+        """
+        return pulumi.get(self, "maximum_prefix_vpnv6")
 
     @property
     @pulumi.getter(name="maximumPrefixWarningOnly")
@@ -14692,12 +17005,28 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "maximum_prefix_warning_only6")
 
     @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyEvpn")
+    def maximum_prefix_warning_only_evpn(self) -> str:
+        """
+        Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes.
+        """
+        return pulumi.get(self, "maximum_prefix_warning_only_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixWarningOnlyVpnv4")
     def maximum_prefix_warning_only_vpnv4(self) -> str:
         """
         Enable/disable only giving warning message when limit is exceeded for VPNv4 routes.
         """
         return pulumi.get(self, "maximum_prefix_warning_only_vpnv4")
+
+    @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyVpnv6")
+    def maximum_prefix_warning_only_vpnv6(self) -> str:
+        """
+        Enable/disable warning message when limit is exceeded for VPNv6 routes.
+        """
+        return pulumi.get(self, "maximum_prefix_warning_only_vpnv6")
 
     @property
     @pulumi.getter
@@ -14748,6 +17077,14 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "next_hop_self_vpnv4")
 
     @property
+    @pulumi.getter(name="nextHopSelfVpnv6")
+    def next_hop_self_vpnv6(self) -> str:
+        """
+        Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor.
+        """
+        return pulumi.get(self, "next_hop_self_vpnv6")
+
+    @property
     @pulumi.getter(name="overrideCapability")
     def override_capability(self) -> str:
         """
@@ -14762,6 +17099,14 @@ class GetBgpNeighborGroupResult(dict):
         Enable/disable sending of open messages to this neighbor.
         """
         return pulumi.get(self, "passive")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        """
+        Password used in MD5 authentication.
+        """
+        return pulumi.get(self, "password")
 
     @property
     @pulumi.getter(name="prefixListIn")
@@ -14788,6 +17133,14 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "prefix_list_in_vpnv4")
 
     @property
+    @pulumi.getter(name="prefixListInVpnv6")
+    def prefix_list_in_vpnv6(self) -> str:
+        """
+        Inbound filter for VPNv6 updates from this neighbor.
+        """
+        return pulumi.get(self, "prefix_list_in_vpnv6")
+
+    @property
     @pulumi.getter(name="prefixListOut")
     def prefix_list_out(self) -> str:
         """
@@ -14810,6 +17163,14 @@ class GetBgpNeighborGroupResult(dict):
         Outbound filter for VPNv4 updates to this neighbor.
         """
         return pulumi.get(self, "prefix_list_out_vpnv4")
+
+    @property
+    @pulumi.getter(name="prefixListOutVpnv6")
+    def prefix_list_out_vpnv6(self) -> str:
+        """
+        Outbound filter for VPNv6 updates to this neighbor.
+        """
+        return pulumi.get(self, "prefix_list_out_vpnv6")
 
     @property
     @pulumi.getter(name="remoteAs")
@@ -14836,12 +17197,28 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "remove_private_as6")
 
     @property
+    @pulumi.getter(name="removePrivateAsEvpn")
+    def remove_private_as_evpn(self) -> str:
+        """
+        Enable/disable removing private AS number from L2VPN EVPN outbound updates.
+        """
+        return pulumi.get(self, "remove_private_as_evpn")
+
+    @property
     @pulumi.getter(name="removePrivateAsVpnv4")
     def remove_private_as_vpnv4(self) -> str:
         """
         Enable/disable remove private AS number from VPNv4 outbound updates.
         """
         return pulumi.get(self, "remove_private_as_vpnv4")
+
+    @property
+    @pulumi.getter(name="removePrivateAsVpnv6")
+    def remove_private_as_vpnv6(self) -> str:
+        """
+        Enable/disable to remove private AS number from VPNv6 outbound updates.
+        """
+        return pulumi.get(self, "remove_private_as_vpnv6")
 
     @property
     @pulumi.getter(name="restartTime")
@@ -14876,12 +17253,28 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "route_map_in6")
 
     @property
+    @pulumi.getter(name="routeMapInEvpn")
+    def route_map_in_evpn(self) -> str:
+        """
+        L2VPN EVPN inbound route map filter.
+        """
+        return pulumi.get(self, "route_map_in_evpn")
+
+    @property
     @pulumi.getter(name="routeMapInVpnv4")
     def route_map_in_vpnv4(self) -> str:
         """
         VPNv4 inbound route map filter.
         """
         return pulumi.get(self, "route_map_in_vpnv4")
+
+    @property
+    @pulumi.getter(name="routeMapInVpnv6")
+    def route_map_in_vpnv6(self) -> str:
+        """
+        VPNv6 inbound route map filter.
+        """
+        return pulumi.get(self, "route_map_in_vpnv6")
 
     @property
     @pulumi.getter(name="routeMapOut")
@@ -14908,6 +17301,14 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "route_map_out6_preferable")
 
     @property
+    @pulumi.getter(name="routeMapOutEvpn")
+    def route_map_out_evpn(self) -> str:
+        """
+        L2VPN EVPN outbound route map filter.
+        """
+        return pulumi.get(self, "route_map_out_evpn")
+
+    @property
     @pulumi.getter(name="routeMapOutPreferable")
     def route_map_out_preferable(self) -> str:
         """
@@ -14932,6 +17333,22 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "route_map_out_vpnv4_preferable")
 
     @property
+    @pulumi.getter(name="routeMapOutVpnv6")
+    def route_map_out_vpnv6(self) -> str:
+        """
+        VPNv6 outbound route map filter.
+        """
+        return pulumi.get(self, "route_map_out_vpnv6")
+
+    @property
+    @pulumi.getter(name="routeMapOutVpnv6Preferable")
+    def route_map_out_vpnv6_preferable(self) -> str:
+        """
+        VPNv6 outbound route map filter if this neighbor is preferred.
+        """
+        return pulumi.get(self, "route_map_out_vpnv6_preferable")
+
+    @property
     @pulumi.getter(name="routeReflectorClient")
     def route_reflector_client(self) -> str:
         """
@@ -14948,12 +17365,28 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "route_reflector_client6")
 
     @property
+    @pulumi.getter(name="routeReflectorClientEvpn")
+    def route_reflector_client_evpn(self) -> str:
+        """
+        Enable/disable L2VPN EVPN AS route reflector client for this neighbor.
+        """
+        return pulumi.get(self, "route_reflector_client_evpn")
+
+    @property
     @pulumi.getter(name="routeReflectorClientVpnv4")
     def route_reflector_client_vpnv4(self) -> str:
         """
         Enable/disable VPNv4 AS route reflector client for this neighbor.
         """
         return pulumi.get(self, "route_reflector_client_vpnv4")
+
+    @property
+    @pulumi.getter(name="routeReflectorClientVpnv6")
+    def route_reflector_client_vpnv6(self) -> str:
+        """
+        Enable/disable VPNv6 AS route reflector client for this neighbor.
+        """
+        return pulumi.get(self, "route_reflector_client_vpnv6")
 
     @property
     @pulumi.getter(name="routeServerClient")
@@ -14972,12 +17405,28 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "route_server_client6")
 
     @property
+    @pulumi.getter(name="routeServerClientEvpn")
+    def route_server_client_evpn(self) -> str:
+        """
+        Enable/disable L2VPN EVPN AS route server client for this neighbor.
+        """
+        return pulumi.get(self, "route_server_client_evpn")
+
+    @property
     @pulumi.getter(name="routeServerClientVpnv4")
     def route_server_client_vpnv4(self) -> str:
         """
         Enable/disable VPNv4 AS route server client for this neighbor.
         """
         return pulumi.get(self, "route_server_client_vpnv4")
+
+    @property
+    @pulumi.getter(name="routeServerClientVpnv6")
+    def route_server_client_vpnv6(self) -> str:
+        """
+        Enable/disable VPNv6 AS route server client for this neighbor.
+        """
+        return pulumi.get(self, "route_server_client_vpnv6")
 
     @property
     @pulumi.getter(name="sendCommunity")
@@ -14996,12 +17445,28 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "send_community6")
 
     @property
+    @pulumi.getter(name="sendCommunityEvpn")
+    def send_community_evpn(self) -> str:
+        """
+        Enable/disable sending community attribute to neighbor for L2VPN EVPN address family.
+        """
+        return pulumi.get(self, "send_community_evpn")
+
+    @property
     @pulumi.getter(name="sendCommunityVpnv4")
     def send_community_vpnv4(self) -> str:
         """
         Send community attribute to neighbor for VPNv4 address family.
         """
         return pulumi.get(self, "send_community_vpnv4")
+
+    @property
+    @pulumi.getter(name="sendCommunityVpnv6")
+    def send_community_vpnv6(self) -> str:
+        """
+        Enable/disable sending community attribute to this neighbor for VPNv6 address family.
+        """
+        return pulumi.get(self, "send_community_vpnv6")
 
     @property
     @pulumi.getter
@@ -15028,12 +17493,28 @@ class GetBgpNeighborGroupResult(dict):
         return pulumi.get(self, "soft_reconfiguration6")
 
     @property
+    @pulumi.getter(name="softReconfigurationEvpn")
+    def soft_reconfiguration_evpn(self) -> str:
+        """
+        Enable/disable L2VPN EVPN inbound soft reconfiguration.
+        """
+        return pulumi.get(self, "soft_reconfiguration_evpn")
+
+    @property
     @pulumi.getter(name="softReconfigurationVpnv4")
     def soft_reconfiguration_vpnv4(self) -> str:
         """
         Enable/disable allow VPNv4 inbound soft reconfiguration.
         """
         return pulumi.get(self, "soft_reconfiguration_vpnv4")
+
+    @property
+    @pulumi.getter(name="softReconfigurationVpnv6")
+    def soft_reconfiguration_vpnv6(self) -> str:
+        """
+        Enable/disable VPNv6 inbound soft reconfiguration.
+        """
+        return pulumi.get(self, "soft_reconfiguration_vpnv6")
 
     @property
     @pulumi.getter(name="staleRoute")
@@ -15393,14 +17874,53 @@ class GetBgpRedistributeResult(dict):
 @pulumi.output_type
 class GetBgpVrf6Result(dict):
     def __init__(__self__, *,
+                 export_rts: Sequence['outputs.GetBgpVrf6ExportRtResult'],
+                 import_route_map: str,
+                 import_rts: Sequence['outputs.GetBgpVrf6ImportRtResult'],
                  leak_targets: Sequence['outputs.GetBgpVrf6LeakTargetResult'],
+                 rd: str,
+                 role: str,
                  vrf: str):
         """
+        :param Sequence['GetBgpVrf6ExportRtArgs'] export_rts: List of export route target. The structure of `export_rt` block is documented below.
+        :param str import_route_map: Import route map.
+        :param Sequence['GetBgpVrf6ImportRtArgs'] import_rts: List of import route target. The structure of `import_rt` block is documented below.
         :param Sequence['GetBgpVrf6LeakTargetArgs'] leak_targets: Target VRF table. The structure of `leak_target` block is documented below.
+        :param str rd: Route Distinguisher: AA:NN|A.B.C.D:NN.
+        :param str role: VRF role.
         :param str vrf: Target VRF ID <0 - 31>.
         """
+        pulumi.set(__self__, "export_rts", export_rts)
+        pulumi.set(__self__, "import_route_map", import_route_map)
+        pulumi.set(__self__, "import_rts", import_rts)
         pulumi.set(__self__, "leak_targets", leak_targets)
+        pulumi.set(__self__, "rd", rd)
+        pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "vrf", vrf)
+
+    @property
+    @pulumi.getter(name="exportRts")
+    def export_rts(self) -> Sequence['outputs.GetBgpVrf6ExportRtResult']:
+        """
+        List of export route target. The structure of `export_rt` block is documented below.
+        """
+        return pulumi.get(self, "export_rts")
+
+    @property
+    @pulumi.getter(name="importRouteMap")
+    def import_route_map(self) -> str:
+        """
+        Import route map.
+        """
+        return pulumi.get(self, "import_route_map")
+
+    @property
+    @pulumi.getter(name="importRts")
+    def import_rts(self) -> Sequence['outputs.GetBgpVrf6ImportRtResult']:
+        """
+        List of import route target. The structure of `import_rt` block is documented below.
+        """
+        return pulumi.get(self, "import_rts")
 
     @property
     @pulumi.getter(name="leakTargets")
@@ -15412,11 +17932,63 @@ class GetBgpVrf6Result(dict):
 
     @property
     @pulumi.getter
+    def rd(self) -> str:
+        """
+        Route Distinguisher: AA:NN|A.B.C.D:NN.
+        """
+        return pulumi.get(self, "rd")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        VRF role.
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter
     def vrf(self) -> str:
         """
         Target VRF ID <0 - 31>.
         """
         return pulumi.get(self, "vrf")
+
+
+@pulumi.output_type
+class GetBgpVrf6ExportRtResult(dict):
+    def __init__(__self__, *,
+                 route_target: str):
+        """
+        :param str route_target: Attribute: AA:NN|A.B.C.D:NN
+        """
+        pulumi.set(__self__, "route_target", route_target)
+
+    @property
+    @pulumi.getter(name="routeTarget")
+    def route_target(self) -> str:
+        """
+        Attribute: AA:NN|A.B.C.D:NN
+        """
+        return pulumi.get(self, "route_target")
+
+
+@pulumi.output_type
+class GetBgpVrf6ImportRtResult(dict):
+    def __init__(__self__, *,
+                 route_target: str):
+        """
+        :param str route_target: Attribute: AA:NN|A.B.C.D:NN
+        """
+        pulumi.set(__self__, "route_target", route_target)
+
+    @property
+    @pulumi.getter(name="routeTarget")
+    def route_target(self) -> str:
+        """
+        Attribute: AA:NN|A.B.C.D:NN
+        """
+        return pulumi.get(self, "route_target")
 
 
 @pulumi.output_type
@@ -15474,7 +18046,7 @@ class GetBgpVrfResult(dict):
         :param str import_route_map: Import route map.
         :param Sequence['GetBgpVrfImportRtArgs'] import_rts: List of import route target. The structure of `import_rt` block is documented below.
         :param Sequence['GetBgpVrfLeakTargetArgs'] leak_targets: Target VRF table. The structure of `leak_target` block is documented below.
-        :param str rd: Route Distinguisher: AA|AA:NN.
+        :param str rd: Route Distinguisher: AA:NN|A.B.C.D:NN.
         :param str role: VRF role.
         :param str vrf: Target VRF ID <0 - 31>.
         """
@@ -15522,7 +18094,7 @@ class GetBgpVrfResult(dict):
     @pulumi.getter
     def rd(self) -> str:
         """
-        Route Distinguisher: AA|AA:NN.
+        Route Distinguisher: AA:NN|A.B.C.D:NN.
         """
         return pulumi.get(self, "rd")
 
@@ -15548,7 +18120,7 @@ class GetBgpVrfExportRtResult(dict):
     def __init__(__self__, *,
                  route_target: str):
         """
-        :param str route_target: Attribute: AA|AA:NN.
+        :param str route_target: Attribute: AA:NN|A.B.C.D:NN
         """
         pulumi.set(__self__, "route_target", route_target)
 
@@ -15556,7 +18128,7 @@ class GetBgpVrfExportRtResult(dict):
     @pulumi.getter(name="routeTarget")
     def route_target(self) -> str:
         """
-        Attribute: AA|AA:NN.
+        Attribute: AA:NN|A.B.C.D:NN
         """
         return pulumi.get(self, "route_target")
 
@@ -15566,7 +18138,7 @@ class GetBgpVrfImportRtResult(dict):
     def __init__(__self__, *,
                  route_target: str):
         """
-        :param str route_target: Attribute: AA|AA:NN.
+        :param str route_target: Attribute: AA:NN|A.B.C.D:NN
         """
         pulumi.set(__self__, "route_target", route_target)
 
@@ -15574,7 +18146,7 @@ class GetBgpVrfImportRtResult(dict):
     @pulumi.getter(name="routeTarget")
     def route_target(self) -> str:
         """
-        Attribute: AA|AA:NN.
+        Attribute: AA:NN|A.B.C.D:NN
         """
         return pulumi.get(self, "route_target")
 
@@ -16910,6 +19482,7 @@ class GetMulticastPimSmGlobalResult(dict):
                  join_prune_holdtime: int,
                  message_interval: int,
                  null_register_retries: int,
+                 pim_use_sdwan: str,
                  register_rate_limit: int,
                  register_rp_reachability: str,
                  register_source: str,
@@ -16937,6 +19510,7 @@ class GetMulticastPimSmGlobalResult(dict):
         :param int join_prune_holdtime: Join/prune holdtime (1 - 65535, default = 210).
         :param int message_interval: Period of time between sending periodic PIM join/prune messages in seconds (1 - 65535, default = 60).
         :param int null_register_retries: Maximum retries of null register (1 - 20, default = 1).
+        :param str pim_use_sdwan: Enable/disable use of SDWAN when checking RPF neighbor and sending of REG packet.
         :param int register_rate_limit: Limit of packets/sec per source registered through this RP (0 - 65535, default = 0 which means unlimited).
         :param str register_rp_reachability: Enable/disable check RP is reachable before registering packets.
         :param str register_source: Override source address in register packets.
@@ -16964,6 +19538,7 @@ class GetMulticastPimSmGlobalResult(dict):
         pulumi.set(__self__, "join_prune_holdtime", join_prune_holdtime)
         pulumi.set(__self__, "message_interval", message_interval)
         pulumi.set(__self__, "null_register_retries", null_register_retries)
+        pulumi.set(__self__, "pim_use_sdwan", pim_use_sdwan)
         pulumi.set(__self__, "register_rate_limit", register_rate_limit)
         pulumi.set(__self__, "register_rp_reachability", register_rp_reachability)
         pulumi.set(__self__, "register_source", register_source)
@@ -17088,6 +19663,14 @@ class GetMulticastPimSmGlobalResult(dict):
         Maximum retries of null register (1 - 20, default = 1).
         """
         return pulumi.get(self, "null_register_retries")
+
+    @property
+    @pulumi.getter(name="pimUseSdwan")
+    def pim_use_sdwan(self) -> str:
+        """
+        Enable/disable use of SDWAN when checking RPF neighbor and sending of REG packet.
+        """
+        return pulumi.get(self, "pim_use_sdwan")
 
     @property
     @pulumi.getter(name="registerRateLimit")
@@ -20380,6 +22963,8 @@ class GetRoutemapRuleResult(dict):
                  match_as_path: str,
                  match_community: str,
                  match_community_exact: str,
+                 match_extcommunity: str,
+                 match_extcommunity_exact: str,
                  match_flags: int,
                  match_interface: str,
                  match_ip6_address: str,
@@ -20410,6 +22995,7 @@ class GetRoutemapRuleResult(dict):
                  set_ip6_nexthop: str,
                  set_ip6_nexthop_local: str,
                  set_ip_nexthop: str,
+                 set_ip_prefsrc: str,
                  set_local_preference: int,
                  set_metric: int,
                  set_metric_type: str,
@@ -20418,6 +23004,9 @@ class GetRoutemapRuleResult(dict):
                  set_priority: int,
                  set_route_tag: int,
                  set_tag: int,
+                 set_vpnv4_nexthop: str,
+                 set_vpnv6_nexthop: str,
+                 set_vpnv6_nexthop_local: str,
                  set_weight: int):
         """
         :param str action: Action.
@@ -20425,6 +23014,8 @@ class GetRoutemapRuleResult(dict):
         :param str match_as_path: Match BGP AS path list.
         :param str match_community: Match BGP community list.
         :param str match_community_exact: Enable/disable exact matching of communities.
+        :param str match_extcommunity: Match BGP extended community list.
+        :param str match_extcommunity_exact: Enable/disable exact matching of extended communities.
         :param int match_flags: BGP flag value to match (0 - 65535)
         :param str match_interface: Match interface configuration.
         :param str match_ip6_address: Match IPv6 address permitted by access-list6 or prefix-list6.
@@ -20455,6 +23046,7 @@ class GetRoutemapRuleResult(dict):
         :param str set_ip6_nexthop: IPv6 global address of next hop.
         :param str set_ip6_nexthop_local: IPv6 local address of next hop.
         :param str set_ip_nexthop: IP address of next hop.
+        :param str set_ip_prefsrc: IP address of preferred source.
         :param int set_local_preference: BGP local preference path attribute.
         :param int set_metric: Metric value.
         :param str set_metric_type: Metric type.
@@ -20463,6 +23055,9 @@ class GetRoutemapRuleResult(dict):
         :param int set_priority: Priority for routing table.
         :param int set_route_tag: Route tag for routing table.
         :param int set_tag: Tag value.
+        :param str set_vpnv4_nexthop: IP address of VPNv4 next-hop.
+        :param str set_vpnv6_nexthop: IPv6 global address of VPNv6 next-hop.
+        :param str set_vpnv6_nexthop_local: IPv6 link-local address of VPNv6 next-hop.
         :param int set_weight: BGP weight for routing table.
         """
         pulumi.set(__self__, "action", action)
@@ -20470,6 +23065,8 @@ class GetRoutemapRuleResult(dict):
         pulumi.set(__self__, "match_as_path", match_as_path)
         pulumi.set(__self__, "match_community", match_community)
         pulumi.set(__self__, "match_community_exact", match_community_exact)
+        pulumi.set(__self__, "match_extcommunity", match_extcommunity)
+        pulumi.set(__self__, "match_extcommunity_exact", match_extcommunity_exact)
         pulumi.set(__self__, "match_flags", match_flags)
         pulumi.set(__self__, "match_interface", match_interface)
         pulumi.set(__self__, "match_ip6_address", match_ip6_address)
@@ -20500,6 +23097,7 @@ class GetRoutemapRuleResult(dict):
         pulumi.set(__self__, "set_ip6_nexthop", set_ip6_nexthop)
         pulumi.set(__self__, "set_ip6_nexthop_local", set_ip6_nexthop_local)
         pulumi.set(__self__, "set_ip_nexthop", set_ip_nexthop)
+        pulumi.set(__self__, "set_ip_prefsrc", set_ip_prefsrc)
         pulumi.set(__self__, "set_local_preference", set_local_preference)
         pulumi.set(__self__, "set_metric", set_metric)
         pulumi.set(__self__, "set_metric_type", set_metric_type)
@@ -20508,6 +23106,9 @@ class GetRoutemapRuleResult(dict):
         pulumi.set(__self__, "set_priority", set_priority)
         pulumi.set(__self__, "set_route_tag", set_route_tag)
         pulumi.set(__self__, "set_tag", set_tag)
+        pulumi.set(__self__, "set_vpnv4_nexthop", set_vpnv4_nexthop)
+        pulumi.set(__self__, "set_vpnv6_nexthop", set_vpnv6_nexthop)
+        pulumi.set(__self__, "set_vpnv6_nexthop_local", set_vpnv6_nexthop_local)
         pulumi.set(__self__, "set_weight", set_weight)
 
     @property
@@ -20549,6 +23150,22 @@ class GetRoutemapRuleResult(dict):
         Enable/disable exact matching of communities.
         """
         return pulumi.get(self, "match_community_exact")
+
+    @property
+    @pulumi.getter(name="matchExtcommunity")
+    def match_extcommunity(self) -> str:
+        """
+        Match BGP extended community list.
+        """
+        return pulumi.get(self, "match_extcommunity")
+
+    @property
+    @pulumi.getter(name="matchExtcommunityExact")
+    def match_extcommunity_exact(self) -> str:
+        """
+        Enable/disable exact matching of extended communities.
+        """
+        return pulumi.get(self, "match_extcommunity_exact")
 
     @property
     @pulumi.getter(name="matchFlags")
@@ -20791,6 +23408,14 @@ class GetRoutemapRuleResult(dict):
         return pulumi.get(self, "set_ip_nexthop")
 
     @property
+    @pulumi.getter(name="setIpPrefsrc")
+    def set_ip_prefsrc(self) -> str:
+        """
+        IP address of preferred source.
+        """
+        return pulumi.get(self, "set_ip_prefsrc")
+
+    @property
     @pulumi.getter(name="setLocalPreference")
     def set_local_preference(self) -> int:
         """
@@ -20853,6 +23478,30 @@ class GetRoutemapRuleResult(dict):
         Tag value.
         """
         return pulumi.get(self, "set_tag")
+
+    @property
+    @pulumi.getter(name="setVpnv4Nexthop")
+    def set_vpnv4_nexthop(self) -> str:
+        """
+        IP address of VPNv4 next-hop.
+        """
+        return pulumi.get(self, "set_vpnv4_nexthop")
+
+    @property
+    @pulumi.getter(name="setVpnv6Nexthop")
+    def set_vpnv6_nexthop(self) -> str:
+        """
+        IPv6 global address of VPNv6 next-hop.
+        """
+        return pulumi.get(self, "set_vpnv6_nexthop")
+
+    @property
+    @pulumi.getter(name="setVpnv6NexthopLocal")
+    def set_vpnv6_nexthop_local(self) -> str:
+        """
+        IPv6 link-local address of VPNv6 next-hop.
+        """
+        return pulumi.get(self, "set_vpnv6_nexthop_local")
 
     @property
     @pulumi.getter(name="setWeight")

@@ -65,6 +65,42 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<string> AutoIsl { get; private set; } = null!;
 
         /// <summary>
+        /// Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+        /// </summary>
+        [Output("autoIslAuth")]
+        public Output<string> AutoIslAuth { get; private set; } = null!;
+
+        /// <summary>
+        /// Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+        /// </summary>
+        [Output("autoIslAuthEncrypt")]
+        public Output<string> AutoIslAuthEncrypt { get; private set; } = null!;
+
+        /// <summary>
+        /// Auto inter-switch LAG authentication identity.
+        /// </summary>
+        [Output("autoIslAuthIdentity")]
+        public Output<string> AutoIslAuthIdentity { get; private set; } = null!;
+
+        /// <summary>
+        /// Auto inter-switch LAG macsec profile for encryption.
+        /// </summary>
+        [Output("autoIslAuthMacsecProfile")]
+        public Output<string> AutoIslAuthMacsecProfile { get; private set; } = null!;
+
+        /// <summary>
+        /// Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+        /// </summary>
+        [Output("autoIslAuthReauth")]
+        public Output<int> AutoIslAuthReauth { get; private set; } = null!;
+
+        /// <summary>
+        /// Auto inter-switch LAG authentication user certificate.
+        /// </summary>
+        [Output("autoIslAuthUser")]
+        public Output<string> AutoIslAuthUser { get; private set; } = null!;
+
+        /// <summary>
         /// Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
         /// </summary>
         [Output("autoIslHelloTimer")]
@@ -99,6 +135,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Output("dynamicSortSubtable")]
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `med_location_service` block is documented below.
@@ -196,6 +238,42 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? AutoIsl { get; set; }
 
         /// <summary>
+        /// Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+        /// </summary>
+        [Input("autoIslAuth")]
+        public Input<string>? AutoIslAuth { get; set; }
+
+        /// <summary>
+        /// Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+        /// </summary>
+        [Input("autoIslAuthEncrypt")]
+        public Input<string>? AutoIslAuthEncrypt { get; set; }
+
+        /// <summary>
+        /// Auto inter-switch LAG authentication identity.
+        /// </summary>
+        [Input("autoIslAuthIdentity")]
+        public Input<string>? AutoIslAuthIdentity { get; set; }
+
+        /// <summary>
+        /// Auto inter-switch LAG macsec profile for encryption.
+        /// </summary>
+        [Input("autoIslAuthMacsecProfile")]
+        public Input<string>? AutoIslAuthMacsecProfile { get; set; }
+
+        /// <summary>
+        /// Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+        /// </summary>
+        [Input("autoIslAuthReauth")]
+        public Input<int>? AutoIslAuthReauth { get; set; }
+
+        /// <summary>
+        /// Auto inter-switch LAG authentication user certificate.
+        /// </summary>
+        [Input("autoIslAuthUser")]
+        public Input<string>? AutoIslAuthUser { get; set; }
+
+        /// <summary>
         /// Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
         /// </summary>
         [Input("autoIslHelloTimer")]
@@ -236,6 +314,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("medLocationServices")]
         private InputList<Inputs.LldpprofileMedLocationServiceArgs>? _medLocationServices;
@@ -306,6 +390,42 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? AutoIsl { get; set; }
 
         /// <summary>
+        /// Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+        /// </summary>
+        [Input("autoIslAuth")]
+        public Input<string>? AutoIslAuth { get; set; }
+
+        /// <summary>
+        /// Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+        /// </summary>
+        [Input("autoIslAuthEncrypt")]
+        public Input<string>? AutoIslAuthEncrypt { get; set; }
+
+        /// <summary>
+        /// Auto inter-switch LAG authentication identity.
+        /// </summary>
+        [Input("autoIslAuthIdentity")]
+        public Input<string>? AutoIslAuthIdentity { get; set; }
+
+        /// <summary>
+        /// Auto inter-switch LAG macsec profile for encryption.
+        /// </summary>
+        [Input("autoIslAuthMacsecProfile")]
+        public Input<string>? AutoIslAuthMacsecProfile { get; set; }
+
+        /// <summary>
+        /// Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+        /// </summary>
+        [Input("autoIslAuthReauth")]
+        public Input<int>? AutoIslAuthReauth { get; set; }
+
+        /// <summary>
+        /// Auto inter-switch LAG authentication user certificate.
+        /// </summary>
+        [Input("autoIslAuthUser")]
+        public Input<string>? AutoIslAuthUser { get; set; }
+
+        /// <summary>
         /// Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
         /// </summary>
         [Input("autoIslHelloTimer")]
@@ -346,6 +466,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("medLocationServices")]
         private InputList<Inputs.LldpprofileMedLocationServiceGetArgs>? _medLocationServices;

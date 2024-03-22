@@ -77,6 +77,18 @@ export class Trafficshaper extends pulumi.CustomResource {
      */
     public readonly bandwidthUnit!: pulumi.Output<string>;
     /**
+     * VLAN CoS mark.
+     */
+    public readonly cos!: pulumi.Output<string>;
+    /**
+     * Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+     */
+    public readonly cosMarking!: pulumi.Output<string>;
+    /**
+     * Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+     */
+    public readonly cosMarkingMethod!: pulumi.Output<string>;
+    /**
      * Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
      */
     public readonly diffserv!: pulumi.Output<string>;
@@ -97,17 +109,25 @@ export class Trafficshaper extends pulumi.CustomResource {
      */
     public readonly exceedClassId!: pulumi.Output<number>;
     /**
+     * VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+     */
+    public readonly exceedCos!: pulumi.Output<string>;
+    /**
      * DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
      */
     public readonly exceedDscp!: pulumi.Output<string>;
     /**
-     * Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+     * Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
      */
     public readonly guaranteedBandwidth!: pulumi.Output<number>;
     /**
-     * Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+     * Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
      */
     public readonly maximumBandwidth!: pulumi.Output<number>;
+    /**
+     * VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+     */
+    public readonly maximumCos!: pulumi.Output<string>;
     /**
      * DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
      */
@@ -147,14 +167,19 @@ export class Trafficshaper extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as TrafficshaperState | undefined;
             resourceInputs["bandwidthUnit"] = state ? state.bandwidthUnit : undefined;
+            resourceInputs["cos"] = state ? state.cos : undefined;
+            resourceInputs["cosMarking"] = state ? state.cosMarking : undefined;
+            resourceInputs["cosMarkingMethod"] = state ? state.cosMarkingMethod : undefined;
             resourceInputs["diffserv"] = state ? state.diffserv : undefined;
             resourceInputs["diffservcode"] = state ? state.diffservcode : undefined;
             resourceInputs["dscpMarkingMethod"] = state ? state.dscpMarkingMethod : undefined;
             resourceInputs["exceedBandwidth"] = state ? state.exceedBandwidth : undefined;
             resourceInputs["exceedClassId"] = state ? state.exceedClassId : undefined;
+            resourceInputs["exceedCos"] = state ? state.exceedCos : undefined;
             resourceInputs["exceedDscp"] = state ? state.exceedDscp : undefined;
             resourceInputs["guaranteedBandwidth"] = state ? state.guaranteedBandwidth : undefined;
             resourceInputs["maximumBandwidth"] = state ? state.maximumBandwidth : undefined;
+            resourceInputs["maximumCos"] = state ? state.maximumCos : undefined;
             resourceInputs["maximumDscp"] = state ? state.maximumDscp : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["overhead"] = state ? state.overhead : undefined;
@@ -164,14 +189,19 @@ export class Trafficshaper extends pulumi.CustomResource {
         } else {
             const args = argsOrState as TrafficshaperArgs | undefined;
             resourceInputs["bandwidthUnit"] = args ? args.bandwidthUnit : undefined;
+            resourceInputs["cos"] = args ? args.cos : undefined;
+            resourceInputs["cosMarking"] = args ? args.cosMarking : undefined;
+            resourceInputs["cosMarkingMethod"] = args ? args.cosMarkingMethod : undefined;
             resourceInputs["diffserv"] = args ? args.diffserv : undefined;
             resourceInputs["diffservcode"] = args ? args.diffservcode : undefined;
             resourceInputs["dscpMarkingMethod"] = args ? args.dscpMarkingMethod : undefined;
             resourceInputs["exceedBandwidth"] = args ? args.exceedBandwidth : undefined;
             resourceInputs["exceedClassId"] = args ? args.exceedClassId : undefined;
+            resourceInputs["exceedCos"] = args ? args.exceedCos : undefined;
             resourceInputs["exceedDscp"] = args ? args.exceedDscp : undefined;
             resourceInputs["guaranteedBandwidth"] = args ? args.guaranteedBandwidth : undefined;
             resourceInputs["maximumBandwidth"] = args ? args.maximumBandwidth : undefined;
+            resourceInputs["maximumCos"] = args ? args.maximumCos : undefined;
             resourceInputs["maximumDscp"] = args ? args.maximumDscp : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["overhead"] = args ? args.overhead : undefined;
@@ -193,6 +223,18 @@ export interface TrafficshaperState {
      */
     bandwidthUnit?: pulumi.Input<string>;
     /**
+     * VLAN CoS mark.
+     */
+    cos?: pulumi.Input<string>;
+    /**
+     * Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+     */
+    cosMarking?: pulumi.Input<string>;
+    /**
+     * Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+     */
+    cosMarkingMethod?: pulumi.Input<string>;
+    /**
      * Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
      */
     diffserv?: pulumi.Input<string>;
@@ -213,17 +255,25 @@ export interface TrafficshaperState {
      */
     exceedClassId?: pulumi.Input<number>;
     /**
+     * VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+     */
+    exceedCos?: pulumi.Input<string>;
+    /**
      * DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
      */
     exceedDscp?: pulumi.Input<string>;
     /**
-     * Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+     * Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
      */
     guaranteedBandwidth?: pulumi.Input<number>;
     /**
-     * Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+     * Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
      */
     maximumBandwidth?: pulumi.Input<number>;
+    /**
+     * VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+     */
+    maximumCos?: pulumi.Input<string>;
     /**
      * DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
      */
@@ -259,6 +309,18 @@ export interface TrafficshaperArgs {
      */
     bandwidthUnit?: pulumi.Input<string>;
     /**
+     * VLAN CoS mark.
+     */
+    cos?: pulumi.Input<string>;
+    /**
+     * Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+     */
+    cosMarking?: pulumi.Input<string>;
+    /**
+     * Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+     */
+    cosMarkingMethod?: pulumi.Input<string>;
+    /**
      * Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
      */
     diffserv?: pulumi.Input<string>;
@@ -279,17 +341,25 @@ export interface TrafficshaperArgs {
      */
     exceedClassId?: pulumi.Input<number>;
     /**
+     * VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+     */
+    exceedCos?: pulumi.Input<string>;
+    /**
      * DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
      */
     exceedDscp?: pulumi.Input<string>;
     /**
-     * Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+     * Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
      */
     guaranteedBandwidth?: pulumi.Input<number>;
     /**
-     * Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+     * Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
      */
     maximumBandwidth?: pulumi.Input<number>;
+    /**
+     * VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+     */
+    maximumCos?: pulumi.Input<string>;
     /**
      * DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
      */

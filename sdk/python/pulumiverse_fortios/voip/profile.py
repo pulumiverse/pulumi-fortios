@@ -18,6 +18,7 @@ class ProfileArgs:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  msrp: Optional[pulumi.Input['ProfileMsrpArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sccp: Optional[pulumi.Input['ProfileSccpArgs']] = None,
@@ -26,7 +27,8 @@ class ProfileArgs:
         """
         The set of arguments for constructing a Profile resource.
         :param pulumi.Input[str] comment: Comment.
-        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileMsrpArgs'] msrp: MSRP. The structure of `msrp` block is documented below.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input['ProfileSccpArgs'] sccp: SCCP. The structure of `sccp` block is documented below.
@@ -37,6 +39,8 @@ class ProfileArgs:
             pulumi.set(__self__, "comment", comment)
         if feature_set is not None:
             pulumi.set(__self__, "feature_set", feature_set)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if msrp is not None:
             pulumi.set(__self__, "msrp", msrp)
         if name is not None:
@@ -64,13 +68,25 @@ class ProfileArgs:
     @pulumi.getter(name="featureSet")
     def feature_set(self) -> Optional[pulumi.Input[str]]:
         """
-        Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        Flow or proxy inspection feature set.
         """
         return pulumi.get(self, "feature_set")
 
     @feature_set.setter
     def feature_set(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "feature_set", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -138,6 +154,7 @@ class _ProfileState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  msrp: Optional[pulumi.Input['ProfileMsrpArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sccp: Optional[pulumi.Input['ProfileSccpArgs']] = None,
@@ -146,7 +163,8 @@ class _ProfileState:
         """
         Input properties used for looking up and filtering Profile resources.
         :param pulumi.Input[str] comment: Comment.
-        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileMsrpArgs'] msrp: MSRP. The structure of `msrp` block is documented below.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input['ProfileSccpArgs'] sccp: SCCP. The structure of `sccp` block is documented below.
@@ -157,6 +175,8 @@ class _ProfileState:
             pulumi.set(__self__, "comment", comment)
         if feature_set is not None:
             pulumi.set(__self__, "feature_set", feature_set)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if msrp is not None:
             pulumi.set(__self__, "msrp", msrp)
         if name is not None:
@@ -184,13 +204,25 @@ class _ProfileState:
     @pulumi.getter(name="featureSet")
     def feature_set(self) -> Optional[pulumi.Input[str]]:
         """
-        Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        Flow or proxy inspection feature set.
         """
         return pulumi.get(self, "feature_set")
 
     @feature_set.setter
     def feature_set(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "feature_set", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -260,6 +292,7 @@ class Profile(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  msrp: Optional[pulumi.Input[pulumi.InputType['ProfileMsrpArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sccp: Optional[pulumi.Input[pulumi.InputType['ProfileSccpArgs']]] = None,
@@ -358,7 +391,8 @@ class Profile(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Comment.
-        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileMsrpArgs']] msrp: MSRP. The structure of `msrp` block is documented below.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[pulumi.InputType['ProfileSccpArgs']] sccp: SCCP. The structure of `sccp` block is documented below.
@@ -477,6 +511,7 @@ class Profile(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  msrp: Optional[pulumi.Input[pulumi.InputType['ProfileMsrpArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sccp: Optional[pulumi.Input[pulumi.InputType['ProfileSccpArgs']]] = None,
@@ -493,6 +528,7 @@ class Profile(pulumi.CustomResource):
 
             __props__.__dict__["comment"] = comment
             __props__.__dict__["feature_set"] = feature_set
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["msrp"] = msrp
             __props__.__dict__["name"] = name
             __props__.__dict__["sccp"] = sccp
@@ -510,6 +546,7 @@ class Profile(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             comment: Optional[pulumi.Input[str]] = None,
             feature_set: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             msrp: Optional[pulumi.Input[pulumi.InputType['ProfileMsrpArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             sccp: Optional[pulumi.Input[pulumi.InputType['ProfileSccpArgs']]] = None,
@@ -523,7 +560,8 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Comment.
-        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileMsrpArgs']] msrp: MSRP. The structure of `msrp` block is documented below.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[pulumi.InputType['ProfileSccpArgs']] sccp: SCCP. The structure of `sccp` block is documented below.
@@ -536,6 +574,7 @@ class Profile(pulumi.CustomResource):
 
         __props__.__dict__["comment"] = comment
         __props__.__dict__["feature_set"] = feature_set
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["msrp"] = msrp
         __props__.__dict__["name"] = name
         __props__.__dict__["sccp"] = sccp
@@ -555,9 +594,17 @@ class Profile(pulumi.CustomResource):
     @pulumi.getter(name="featureSet")
     def feature_set(self) -> pulumi.Output[str]:
         """
-        Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        Flow or proxy inspection feature set.
         """
         return pulumi.get(self, "feature_set")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

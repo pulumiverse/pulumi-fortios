@@ -86,7 +86,7 @@ type Sslserver struct {
 	Port pulumi.IntOutput `pulumi:"port"`
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm pulumi.StringOutput `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
 	SslCert pulumi.StringOutput `pulumi:"sslCert"`
 	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
 	SslClientRenegotiation pulumi.StringOutput `pulumi:"sslClientRenegotiation"`
@@ -157,7 +157,7 @@ type sslserverState struct {
 	Port *int `pulumi:"port"`
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
 	SslCert *string `pulumi:"sslCert"`
 	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
 	SslClientRenegotiation *string `pulumi:"sslClientRenegotiation"`
@@ -190,7 +190,7 @@ type SslserverState struct {
 	Port pulumi.IntPtrInput
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm pulumi.StringPtrInput
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
 	SslCert pulumi.StringPtrInput
 	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
 	SslClientRenegotiation pulumi.StringPtrInput
@@ -227,7 +227,7 @@ type sslserverArgs struct {
 	Port int `pulumi:"port"`
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
 	SslCert string `pulumi:"sslCert"`
 	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
 	SslClientRenegotiation *string `pulumi:"sslClientRenegotiation"`
@@ -261,7 +261,7 @@ type SslserverArgs struct {
 	Port pulumi.IntInput
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm pulumi.StringPtrInput
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
 	SslCert pulumi.StringInput
 	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
 	SslClientRenegotiation pulumi.StringPtrInput
@@ -398,7 +398,7 @@ func (o SslserverOutput) SslAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sslserver) pulumi.StringOutput { return v.SslAlgorithm }).(pulumi.StringOutput)
 }
 
-// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
 func (o SslserverOutput) SslCert() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sslserver) pulumi.StringOutput { return v.SslCert }).(pulumi.StringOutput)
 }

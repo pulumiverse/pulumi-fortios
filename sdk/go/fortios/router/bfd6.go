@@ -35,6 +35,8 @@ type Bfd6 struct {
 
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// BFD IPv6 multi-hop template table. The structure of `multihopTemplate` block is documented below.
 	MultihopTemplates Bfd6MultihopTemplateArrayOutput `pulumi:"multihopTemplates"`
 	// Configure neighbor of IPv6 BFD. The structure of `neighbor` block is documented below.
@@ -75,6 +77,8 @@ func GetBfd6(ctx *pulumi.Context,
 type bfd6State struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// BFD IPv6 multi-hop template table. The structure of `multihopTemplate` block is documented below.
 	MultihopTemplates []Bfd6MultihopTemplate `pulumi:"multihopTemplates"`
 	// Configure neighbor of IPv6 BFD. The structure of `neighbor` block is documented below.
@@ -86,6 +90,8 @@ type bfd6State struct {
 type Bfd6State struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// BFD IPv6 multi-hop template table. The structure of `multihopTemplate` block is documented below.
 	MultihopTemplates Bfd6MultihopTemplateArrayInput
 	// Configure neighbor of IPv6 BFD. The structure of `neighbor` block is documented below.
@@ -101,6 +107,8 @@ func (Bfd6State) ElementType() reflect.Type {
 type bfd6Args struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// BFD IPv6 multi-hop template table. The structure of `multihopTemplate` block is documented below.
 	MultihopTemplates []Bfd6MultihopTemplate `pulumi:"multihopTemplates"`
 	// Configure neighbor of IPv6 BFD. The structure of `neighbor` block is documented below.
@@ -113,6 +121,8 @@ type bfd6Args struct {
 type Bfd6Args struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// BFD IPv6 multi-hop template table. The structure of `multihopTemplate` block is documented below.
 	MultihopTemplates Bfd6MultihopTemplateArrayInput
 	// Configure neighbor of IPv6 BFD. The structure of `neighbor` block is documented below.
@@ -211,6 +221,11 @@ func (o Bfd6Output) ToBfd6OutputWithContext(ctx context.Context) Bfd6Output {
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o Bfd6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Bfd6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Bfd6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Bfd6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // BFD IPv6 multi-hop template table. The structure of `multihopTemplate` block is documented below.

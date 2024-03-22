@@ -72,6 +72,8 @@ type Settings struct {
 	PacketLogMemory pulumi.IntOutput `pulumi:"packetLogMemory"`
 	// Number of packets to log after the IPS signature is detected (0 - 255).
 	PacketLogPostAttack pulumi.IntOutput `pulumi:"packetLogPostAttack"`
+	// Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+	ProxyInlineIps pulumi.StringOutput `pulumi:"proxyInlineIps"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -114,6 +116,8 @@ type settingsState struct {
 	PacketLogMemory *int `pulumi:"packetLogMemory"`
 	// Number of packets to log after the IPS signature is detected (0 - 255).
 	PacketLogPostAttack *int `pulumi:"packetLogPostAttack"`
+	// Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+	ProxyInlineIps *string `pulumi:"proxyInlineIps"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -127,6 +131,8 @@ type SettingsState struct {
 	PacketLogMemory pulumi.IntPtrInput
 	// Number of packets to log after the IPS signature is detected (0 - 255).
 	PacketLogPostAttack pulumi.IntPtrInput
+	// Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+	ProxyInlineIps pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -144,6 +150,8 @@ type settingsArgs struct {
 	PacketLogMemory *int `pulumi:"packetLogMemory"`
 	// Number of packets to log after the IPS signature is detected (0 - 255).
 	PacketLogPostAttack *int `pulumi:"packetLogPostAttack"`
+	// Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+	ProxyInlineIps *string `pulumi:"proxyInlineIps"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -158,6 +166,8 @@ type SettingsArgs struct {
 	PacketLogMemory pulumi.IntPtrInput
 	// Number of packets to log after the IPS signature is detected (0 - 255).
 	PacketLogPostAttack pulumi.IntPtrInput
+	// Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+	ProxyInlineIps pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -267,6 +277,11 @@ func (o SettingsOutput) PacketLogMemory() pulumi.IntOutput {
 // Number of packets to log after the IPS signature is detected (0 - 255).
 func (o SettingsOutput) PacketLogPostAttack() pulumi.IntOutput {
 	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.PacketLogPostAttack }).(pulumi.IntOutput)
+}
+
+// Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+func (o SettingsOutput) ProxyInlineIps() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.ProxyInlineIps }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

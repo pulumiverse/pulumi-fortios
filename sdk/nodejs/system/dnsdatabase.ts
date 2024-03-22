@@ -114,6 +114,14 @@ export class Dnsdatabase extends pulumi.CustomResource {
      */
     public readonly forwarder!: pulumi.Output<string>;
     /**
+     * Forwarder IPv6 address.
+     */
+    public readonly forwarder6!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
      */
     public readonly ipMaster!: pulumi.Output<string>;
@@ -137,6 +145,10 @@ export class Dnsdatabase extends pulumi.CustomResource {
      * Source IP for forwarding to DNS server.
      */
     public readonly sourceIp!: pulumi.Output<string>;
+    /**
+     * IPv6 source IP address for forwarding to DNS server.
+     */
+    public readonly sourceIp6!: pulumi.Output<string>;
     /**
      * Enable/disable this DNS zone. Valid values: `enable`, `disable`.
      */
@@ -178,12 +190,15 @@ export class Dnsdatabase extends pulumi.CustomResource {
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["forwarder"] = state ? state.forwarder : undefined;
+            resourceInputs["forwarder6"] = state ? state.forwarder6 : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ipMaster"] = state ? state.ipMaster : undefined;
             resourceInputs["ipPrimary"] = state ? state.ipPrimary : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["primaryName"] = state ? state.primaryName : undefined;
             resourceInputs["rrMax"] = state ? state.rrMax : undefined;
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -213,12 +228,15 @@ export class Dnsdatabase extends pulumi.CustomResource {
             resourceInputs["domain"] = args ? args.domain : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["forwarder"] = args ? args.forwarder : undefined;
+            resourceInputs["forwarder6"] = args ? args.forwarder6 : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ipMaster"] = args ? args.ipMaster : undefined;
             resourceInputs["ipPrimary"] = args ? args.ipPrimary : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["primaryName"] = args ? args.primaryName : undefined;
             resourceInputs["rrMax"] = args ? args.rrMax : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -265,6 +283,14 @@ export interface DnsdatabaseState {
      */
     forwarder?: pulumi.Input<string>;
     /**
+     * Forwarder IPv6 address.
+     */
+    forwarder6?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
      */
     ipMaster?: pulumi.Input<string>;
@@ -288,6 +314,10 @@ export interface DnsdatabaseState {
      * Source IP for forwarding to DNS server.
      */
     sourceIp?: pulumi.Input<string>;
+    /**
+     * IPv6 source IP address for forwarding to DNS server.
+     */
+    sourceIp6?: pulumi.Input<string>;
     /**
      * Enable/disable this DNS zone. Valid values: `enable`, `disable`.
      */
@@ -345,6 +375,14 @@ export interface DnsdatabaseArgs {
      */
     forwarder?: pulumi.Input<string>;
     /**
+     * Forwarder IPv6 address.
+     */
+    forwarder6?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
      */
     ipMaster?: pulumi.Input<string>;
@@ -368,6 +406,10 @@ export interface DnsdatabaseArgs {
      * Source IP for forwarding to DNS server.
      */
     sourceIp?: pulumi.Input<string>;
+    /**
+     * IPv6 source IP address for forwarding to DNS server.
+     */
+    sourceIp6?: pulumi.Input<string>;
     /**
      * Enable/disable this DNS zone. Valid values: `enable`, `disable`.
      */

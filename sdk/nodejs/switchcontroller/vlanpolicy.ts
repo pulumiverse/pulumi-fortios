@@ -80,6 +80,10 @@ export class Vlanpolicy extends pulumi.CustomResource {
      */
     public readonly fortilink!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * VLAN policy name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -115,6 +119,7 @@ export class Vlanpolicy extends pulumi.CustomResource {
             resourceInputs["discardMode"] = state ? state.discardMode : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fortilink"] = state ? state.fortilink : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["untaggedVlans"] = state ? state.untaggedVlans : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -127,6 +132,7 @@ export class Vlanpolicy extends pulumi.CustomResource {
             resourceInputs["discardMode"] = args ? args.discardMode : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fortilink"] = args ? args.fortilink : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["untaggedVlans"] = args ? args.untaggedVlans : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -165,6 +171,10 @@ export interface VlanpolicyState {
      * FortiLink interface for which this VLAN policy belongs to.
      */
     fortilink?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * VLAN policy name.
      */
@@ -211,6 +221,10 @@ export interface VlanpolicyArgs {
      * FortiLink interface for which this VLAN policy belongs to.
      */
     fortilink?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * VLAN policy name.
      */

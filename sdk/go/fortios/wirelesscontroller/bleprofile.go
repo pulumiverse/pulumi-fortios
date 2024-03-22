@@ -57,6 +57,18 @@ type Bleprofile struct {
 	MinorId pulumi.IntOutput `pulumi:"minorId"`
 	// Bluetooth Low Energy profile name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Scan Interval (default = 50 msec).
+	ScanInterval pulumi.IntOutput `pulumi:"scanInterval"`
+	// Scan Period (default = 4000 msec).
+	ScanPeriod pulumi.IntOutput `pulumi:"scanPeriod"`
+	// Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+	ScanThreshold pulumi.StringOutput `pulumi:"scanThreshold"`
+	// Scan Time (default = 1000 msec).
+	ScanTime pulumi.IntOutput `pulumi:"scanTime"`
+	// Scan Type (default = active). Valid values: `active`, `passive`.
+	ScanType pulumi.StringOutput `pulumi:"scanType"`
+	// Scan Windows (default = 50 msec).
+	ScanWindow pulumi.IntOutput `pulumi:"scanWindow"`
 	// Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
 	Txpower pulumi.StringOutput `pulumi:"txpower"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -117,6 +129,18 @@ type bleprofileState struct {
 	MinorId *int `pulumi:"minorId"`
 	// Bluetooth Low Energy profile name.
 	Name *string `pulumi:"name"`
+	// Scan Interval (default = 50 msec).
+	ScanInterval *int `pulumi:"scanInterval"`
+	// Scan Period (default = 4000 msec).
+	ScanPeriod *int `pulumi:"scanPeriod"`
+	// Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+	ScanThreshold *string `pulumi:"scanThreshold"`
+	// Scan Time (default = 1000 msec).
+	ScanTime *int `pulumi:"scanTime"`
+	// Scan Type (default = active). Valid values: `active`, `passive`.
+	ScanType *string `pulumi:"scanType"`
+	// Scan Windows (default = 50 msec).
+	ScanWindow *int `pulumi:"scanWindow"`
 	// Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
 	Txpower *string `pulumi:"txpower"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -148,6 +172,18 @@ type BleprofileState struct {
 	MinorId pulumi.IntPtrInput
 	// Bluetooth Low Energy profile name.
 	Name pulumi.StringPtrInput
+	// Scan Interval (default = 50 msec).
+	ScanInterval pulumi.IntPtrInput
+	// Scan Period (default = 4000 msec).
+	ScanPeriod pulumi.IntPtrInput
+	// Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+	ScanThreshold pulumi.StringPtrInput
+	// Scan Time (default = 1000 msec).
+	ScanTime pulumi.IntPtrInput
+	// Scan Type (default = active). Valid values: `active`, `passive`.
+	ScanType pulumi.StringPtrInput
+	// Scan Windows (default = 50 msec).
+	ScanWindow pulumi.IntPtrInput
 	// Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
 	Txpower pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -183,6 +219,18 @@ type bleprofileArgs struct {
 	MinorId *int `pulumi:"minorId"`
 	// Bluetooth Low Energy profile name.
 	Name *string `pulumi:"name"`
+	// Scan Interval (default = 50 msec).
+	ScanInterval *int `pulumi:"scanInterval"`
+	// Scan Period (default = 4000 msec).
+	ScanPeriod *int `pulumi:"scanPeriod"`
+	// Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+	ScanThreshold *string `pulumi:"scanThreshold"`
+	// Scan Time (default = 1000 msec).
+	ScanTime *int `pulumi:"scanTime"`
+	// Scan Type (default = active). Valid values: `active`, `passive`.
+	ScanType *string `pulumi:"scanType"`
+	// Scan Windows (default = 50 msec).
+	ScanWindow *int `pulumi:"scanWindow"`
 	// Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
 	Txpower *string `pulumi:"txpower"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -215,6 +263,18 @@ type BleprofileArgs struct {
 	MinorId pulumi.IntPtrInput
 	// Bluetooth Low Energy profile name.
 	Name pulumi.StringPtrInput
+	// Scan Interval (default = 50 msec).
+	ScanInterval pulumi.IntPtrInput
+	// Scan Period (default = 4000 msec).
+	ScanPeriod pulumi.IntPtrInput
+	// Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+	ScanThreshold pulumi.StringPtrInput
+	// Scan Time (default = 1000 msec).
+	ScanTime pulumi.IntPtrInput
+	// Scan Type (default = active). Valid values: `active`, `passive`.
+	ScanType pulumi.StringPtrInput
+	// Scan Windows (default = 50 msec).
+	ScanWindow pulumi.IntPtrInput
 	// Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
 	Txpower pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -366,6 +426,36 @@ func (o BleprofileOutput) MinorId() pulumi.IntOutput {
 // Bluetooth Low Energy profile name.
 func (o BleprofileOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bleprofile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Scan Interval (default = 50 msec).
+func (o BleprofileOutput) ScanInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *Bleprofile) pulumi.IntOutput { return v.ScanInterval }).(pulumi.IntOutput)
+}
+
+// Scan Period (default = 4000 msec).
+func (o BleprofileOutput) ScanPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *Bleprofile) pulumi.IntOutput { return v.ScanPeriod }).(pulumi.IntOutput)
+}
+
+// Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+func (o BleprofileOutput) ScanThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bleprofile) pulumi.StringOutput { return v.ScanThreshold }).(pulumi.StringOutput)
+}
+
+// Scan Time (default = 1000 msec).
+func (o BleprofileOutput) ScanTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *Bleprofile) pulumi.IntOutput { return v.ScanTime }).(pulumi.IntOutput)
+}
+
+// Scan Type (default = active). Valid values: `active`, `passive`.
+func (o BleprofileOutput) ScanType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bleprofile) pulumi.StringOutput { return v.ScanType }).(pulumi.StringOutput)
+}
+
+// Scan Windows (default = 50 msec).
+func (o BleprofileOutput) ScanWindow() pulumi.IntOutput {
+	return o.ApplyT(func(v *Bleprofile) pulumi.IntOutput { return v.ScanWindow }).(pulumi.IntOutput)
 }
 
 // Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.

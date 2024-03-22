@@ -187,6 +187,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string ExecuteSecurityFabric;
         /// <summary>
+        /// Enable/disable use of your FortiCare email address as the email-to address.
+        /// </summary>
+        public readonly string ForticareEmail;
+        /// <summary>
         /// Google Cloud function name.
         /// </summary>
         public readonly string GcpFunction;
@@ -356,6 +360,8 @@ namespace Pulumiverse.Fortios.System
 
             string executeSecurityFabric,
 
+            string forticareEmail,
+
             string gcpFunction,
 
             string gcpFunctionDomain,
@@ -441,6 +447,7 @@ namespace Pulumiverse.Fortios.System
             EmailSubject = emailSubject;
             EmailTos = emailTos;
             ExecuteSecurityFabric = executeSecurityFabric;
+            ForticareEmail = forticareEmail;
             GcpFunction = gcpFunction;
             GcpFunctionDomain = gcpFunctionDomain;
             GcpFunctionRegion = gcpFunctionRegion;

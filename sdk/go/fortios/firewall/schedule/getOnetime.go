@@ -36,6 +36,8 @@ type LookupOnetimeResult struct {
 	Color int `pulumi:"color"`
 	// Schedule end date and time, format hh:mm yyyy/mm/dd.
 	End string `pulumi:"end"`
+	// Schedule end date and time, in epoch format.
+	EndUtc string `pulumi:"endUtc"`
 	// Write an event log message this many days before the schedule expires.
 	ExpirationDays int `pulumi:"expirationDays"`
 	// Security Fabric global object setting.
@@ -45,7 +47,9 @@ type LookupOnetimeResult struct {
 	// Onetime schedule name.
 	Name string `pulumi:"name"`
 	// Schedule start date and time, format hh:mm yyyy/mm/dd.
-	Start     string  `pulumi:"start"`
+	Start string `pulumi:"start"`
+	// Schedule start date and time, in epoch format.
+	StartUtc  string  `pulumi:"startUtc"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -99,6 +103,11 @@ func (o LookupOnetimeResultOutput) End() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOnetimeResult) string { return v.End }).(pulumi.StringOutput)
 }
 
+// Schedule end date and time, in epoch format.
+func (o LookupOnetimeResultOutput) EndUtc() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOnetimeResult) string { return v.EndUtc }).(pulumi.StringOutput)
+}
+
 // Write an event log message this many days before the schedule expires.
 func (o LookupOnetimeResultOutput) ExpirationDays() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupOnetimeResult) int { return v.ExpirationDays }).(pulumi.IntOutput)
@@ -122,6 +131,11 @@ func (o LookupOnetimeResultOutput) Name() pulumi.StringOutput {
 // Schedule start date and time, format hh:mm yyyy/mm/dd.
 func (o LookupOnetimeResultOutput) Start() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOnetimeResult) string { return v.Start }).(pulumi.StringOutput)
+}
+
+// Schedule start date and time, in epoch format.
+func (o LookupOnetimeResultOutput) StartUtc() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOnetimeResult) string { return v.StartUtc }).(pulumi.StringOutput)
 }
 
 func (o LookupOnetimeResultOutput) Vdomparam() pulumi.StringPtrOutput {

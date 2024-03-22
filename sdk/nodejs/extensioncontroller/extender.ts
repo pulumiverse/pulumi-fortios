@@ -7,7 +7,8 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Extender controller configuration. Applies to FortiOS Version `>= 7.2.1`.
+ * Extender controller configuration.
+ * The resource applies to FortiOS Version >= 7.2.1. For FortiOS version < 7.2.1, see `fortios.extendercontroller.Extender`
  *
  * ## Import
  *
@@ -60,7 +61,7 @@ export class Extender extends pulumi.CustomResource {
      */
     public readonly allowaccess!: pulumi.Output<string>;
     /**
-     * FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+     * FortiExtender Administration (enable or disable).
      */
     public readonly authorized!: pulumi.Output<string>;
     /**
@@ -95,6 +96,10 @@ export class Extender extends pulumi.CustomResource {
      * FortiExtender serial number.
      */
     public readonly fosid!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Set the managed extender's administrator password.
      */
@@ -159,6 +164,7 @@ export class Extender extends pulumi.CustomResource {
             resourceInputs["extensionType"] = state ? state.extensionType : undefined;
             resourceInputs["firmwareProvisionLatest"] = state ? state.firmwareProvisionLatest : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["loginPassword"] = state ? state.loginPassword : undefined;
             resourceInputs["loginPasswordChange"] = state ? state.loginPasswordChange : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -181,6 +187,7 @@ export class Extender extends pulumi.CustomResource {
             resourceInputs["extensionType"] = args ? args.extensionType : undefined;
             resourceInputs["firmwareProvisionLatest"] = args ? args.firmwareProvisionLatest : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["loginPassword"] = args ? args.loginPassword : undefined;
             resourceInputs["loginPasswordChange"] = args ? args.loginPasswordChange : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -206,7 +213,7 @@ export interface ExtenderState {
      */
     allowaccess?: pulumi.Input<string>;
     /**
-     * FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+     * FortiExtender Administration (enable or disable).
      */
     authorized?: pulumi.Input<string>;
     /**
@@ -241,6 +248,10 @@ export interface ExtenderState {
      * FortiExtender serial number.
      */
     fosid?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Set the managed extender's administrator password.
      */
@@ -292,7 +303,7 @@ export interface ExtenderArgs {
      */
     allowaccess?: pulumi.Input<string>;
     /**
-     * FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+     * FortiExtender Administration (enable or disable).
      */
     authorized?: pulumi.Input<string>;
     /**
@@ -327,6 +338,10 @@ export interface ExtenderArgs {
      * FortiExtender serial number.
      */
     fosid?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Set the managed extender's administrator password.
      */

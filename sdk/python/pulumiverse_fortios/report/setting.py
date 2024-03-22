@@ -25,7 +25,7 @@ class SettingArgs:
         :param pulumi.Input[str] fortiview: Enable/disable historical FortiView. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pdf_report: Enable/disable PDF report. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] report_source: Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
-        :param pulumi.Input[int] top_n: Number of items to populate (100 - 4000).
+        :param pulumi.Input[int] top_n: Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[int] web_browsing_threshold: Web browsing time calculation threshold (3 - 15 min).
         """
@@ -82,7 +82,7 @@ class SettingArgs:
     @pulumi.getter(name="topN")
     def top_n(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of items to populate (100 - 4000).
+        Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
         """
         return pulumi.get(self, "top_n")
 
@@ -129,7 +129,7 @@ class _SettingState:
         :param pulumi.Input[str] fortiview: Enable/disable historical FortiView. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pdf_report: Enable/disable PDF report. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] report_source: Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
-        :param pulumi.Input[int] top_n: Number of items to populate (100 - 4000).
+        :param pulumi.Input[int] top_n: Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[int] web_browsing_threshold: Web browsing time calculation threshold (3 - 15 min).
         """
@@ -186,7 +186,7 @@ class _SettingState:
     @pulumi.getter(name="topN")
     def top_n(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of items to populate (100 - 4000).
+        Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
         """
         return pulumi.get(self, "top_n")
 
@@ -273,7 +273,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] fortiview: Enable/disable historical FortiView. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pdf_report: Enable/disable PDF report. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] report_source: Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
-        :param pulumi.Input[int] top_n: Number of items to populate (100 - 4000).
+        :param pulumi.Input[int] top_n: Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[int] web_browsing_threshold: Web browsing time calculation threshold (3 - 15 min).
         """
@@ -382,7 +382,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] fortiview: Enable/disable historical FortiView. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pdf_report: Enable/disable PDF report. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] report_source: Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
-        :param pulumi.Input[int] top_n: Number of items to populate (100 - 4000).
+        :param pulumi.Input[int] top_n: Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[int] web_browsing_threshold: Web browsing time calculation threshold (3 - 15 min).
         """
@@ -426,7 +426,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="topN")
     def top_n(self) -> pulumi.Output[int]:
         """
-        Number of items to populate (100 - 4000).
+        Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
         """
         return pulumi.get(self, "top_n")
 

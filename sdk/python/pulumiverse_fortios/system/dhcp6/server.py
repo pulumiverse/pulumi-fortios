@@ -28,6 +28,7 @@ class ServerArgs:
                  dns_service: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['ServerIpRangeArgs']]]] = None,
                  lease_time: Optional[pulumi.Input[int]] = None,
@@ -54,6 +55,7 @@ class ServerArgs:
         :param pulumi.Input[str] dns_service: Options for assigning DNS servers to DHCPv6 clients. Valid values: `delegated`, `default`, `specify`.
         :param pulumi.Input[str] domain: Domain name suffix for the IP addresses that the DHCP server assigns to clients.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_mode: Method used to assign client IP. Valid values: `range`, `delegated`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerIpRangeArgs']]] ip_ranges: DHCP IP range configuration. The structure of `ip_range` block is documented below.
         :param pulumi.Input[int] lease_time: Lease time in seconds, 0 means unlimited.
@@ -88,6 +90,8 @@ class ServerArgs:
             pulumi.set(__self__, "domain", domain)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_mode is not None:
             pulumi.set(__self__, "ip_mode", ip_mode)
         if ip_ranges is not None:
@@ -258,6 +262,18 @@ class ServerArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="ipMode")
     def ip_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -415,6 +431,7 @@ class _ServerState:
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['ServerIpRangeArgs']]]] = None,
@@ -441,6 +458,7 @@ class _ServerState:
         :param pulumi.Input[str] domain: Domain name suffix for the IP addresses that the DHCP server assigns to clients.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: DHCP server can assign IP configurations to clients connected to this interface.
         :param pulumi.Input[str] ip_mode: Method used to assign client IP. Valid values: `range`, `delegated`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerIpRangeArgs']]] ip_ranges: DHCP IP range configuration. The structure of `ip_range` block is documented below.
@@ -476,6 +494,8 @@ class _ServerState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if ip_mode is not None:
@@ -624,6 +644,18 @@ class _ServerState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -809,6 +841,7 @@ class Server(pulumi.CustomResource):
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerIpRangeArgs']]]]] = None,
@@ -874,6 +907,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] domain: Domain name suffix for the IP addresses that the DHCP server assigns to clients.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: DHCP server can assign IP configurations to clients connected to this interface.
         :param pulumi.Input[str] ip_mode: Method used to assign client IP. Valid values: `range`, `delegated`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerIpRangeArgs']]]] ip_ranges: DHCP IP range configuration. The structure of `ip_range` block is documented below.
@@ -958,6 +992,7 @@ class Server(pulumi.CustomResource):
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerIpRangeArgs']]]]] = None,
@@ -993,6 +1028,7 @@ class Server(pulumi.CustomResource):
             if fosid is None and not opts.urn:
                 raise TypeError("Missing required property 'fosid'")
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
@@ -1031,6 +1067,7 @@ class Server(pulumi.CustomResource):
             domain: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ip_mode: Optional[pulumi.Input[str]] = None,
             ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerIpRangeArgs']]]]] = None,
@@ -1062,6 +1099,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] domain: Domain name suffix for the IP addresses that the DHCP server assigns to clients.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: DHCP server can assign IP configurations to clients connected to this interface.
         :param pulumi.Input[str] ip_mode: Method used to assign client IP. Valid values: `range`, `delegated`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerIpRangeArgs']]]] ip_ranges: DHCP IP range configuration. The structure of `ip_range` block is documented below.
@@ -1091,6 +1129,7 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["domain"] = domain
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["ip_mode"] = ip_mode
         __props__.__dict__["ip_ranges"] = ip_ranges
@@ -1186,6 +1225,14 @@ class Server(pulumi.CustomResource):
         ID.
         """
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

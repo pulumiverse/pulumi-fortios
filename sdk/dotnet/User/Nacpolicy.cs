@@ -71,6 +71,12 @@ namespace Pulumiverse.Fortios.User
         public Output<string> FirewallAddress { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// NAC policy matching host.
         /// </summary>
         [Output("host")]
@@ -105,6 +111,12 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Output("os")]
         public Output<string> Os { get; private set; } = null!;
+
+        /// <summary>
+        /// NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+        /// </summary>
+        [Output("severities")]
+        public Output<ImmutableArray<Outputs.NacpolicySeverity>> Severities { get; private set; } = null!;
 
         /// <summary>
         /// NAC policy matching source.
@@ -274,6 +286,12 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? FirewallAddress { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// NAC policy matching host.
         /// </summary>
         [Input("host")]
@@ -308,6 +326,18 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("os")]
         public Input<string>? Os { get; set; }
+
+        [Input("severities")]
+        private InputList<Inputs.NacpolicySeverityArgs>? _severities;
+
+        /// <summary>
+        /// NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+        /// </summary>
+        public InputList<Inputs.NacpolicySeverityArgs> Severities
+        {
+            get => _severities ?? (_severities = new InputList<Inputs.NacpolicySeverityArgs>());
+            set => _severities = value;
+        }
 
         /// <summary>
         /// NAC policy matching source.
@@ -450,6 +480,12 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? FirewallAddress { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// NAC policy matching host.
         /// </summary>
         [Input("host")]
@@ -484,6 +520,18 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("os")]
         public Input<string>? Os { get; set; }
+
+        [Input("severities")]
+        private InputList<Inputs.NacpolicySeverityGetArgs>? _severities;
+
+        /// <summary>
+        /// NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+        /// </summary>
+        public InputList<Inputs.NacpolicySeverityGetArgs> Severities
+        {
+            get => _severities ?? (_severities = new InputList<Inputs.NacpolicySeverityGetArgs>());
+            set => _severities = value;
+        }
 
         /// <summary>
         /// NAC policy matching source.

@@ -45,6 +45,8 @@ type Extenderprofile struct {
 	Extension pulumi.StringOutput `pulumi:"extension"`
 	// ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension ExtenderprofileLanExtensionOutput `pulumi:"lanExtension"`
 	// Set the managed extender's administrator password.
@@ -101,6 +103,8 @@ type extenderprofileState struct {
 	Extension *string `pulumi:"extension"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension *ExtenderprofileLanExtension `pulumi:"lanExtension"`
 	// Set the managed extender's administrator password.
@@ -128,6 +132,8 @@ type ExtenderprofileState struct {
 	Extension pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension ExtenderprofileLanExtensionPtrInput
 	// Set the managed extender's administrator password.
@@ -159,6 +165,8 @@ type extenderprofileArgs struct {
 	Extension *string `pulumi:"extension"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension *ExtenderprofileLanExtension `pulumi:"lanExtension"`
 	// Set the managed extender's administrator password.
@@ -187,6 +195,8 @@ type ExtenderprofileArgs struct {
 	Extension pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension ExtenderprofileLanExtensionPtrInput
 	// Set the managed extender's administrator password.
@@ -316,6 +326,11 @@ func (o ExtenderprofileOutput) Extension() pulumi.StringOutput {
 // ID.
 func (o ExtenderprofileOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Extenderprofile) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ExtenderprofileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Extenderprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.

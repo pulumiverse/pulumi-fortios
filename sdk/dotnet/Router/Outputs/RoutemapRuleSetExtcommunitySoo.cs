@@ -15,7 +15,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
     public sealed class RoutemapRuleSetExtcommunitySoo
     {
         /// <summary>
-        /// AA:NN
+        /// Community (format = AA:NN).
         /// </summary>
         public readonly string? Community;
 

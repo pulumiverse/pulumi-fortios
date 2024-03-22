@@ -98,6 +98,12 @@ type Address struct {
 	Fqdn pulumi.StringPtrOutput `pulumi:"fqdn"`
 	// FSSO group(s). The structure of `fssoGroup` block is documented below.
 	FssoGroups AddressFssoGroupArrayOutput `pulumi:"fssoGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// Dynamic address matching hardware model.
+	HwModel pulumi.StringPtrOutput `pulumi:"hwModel"`
+	// Dynamic address matching hardware vendor.
+	HwVendor pulumi.StringPtrOutput `pulumi:"hwVendor"`
 	// Name of interface whose IP address is to be used.
 	Interface pulumi.StringPtrOutput `pulumi:"interface"`
 	// IP address list. The structure of `list` block is documented below.
@@ -116,8 +122,12 @@ type Address struct {
 	ObjType pulumi.StringOutput `pulumi:"objType"`
 	// Organization domain name (Syntax: organization/domain).
 	Organization pulumi.StringPtrOutput `pulumi:"organization"`
+	// Dynamic address matching operating system.
+	Os pulumi.StringPtrOutput `pulumi:"os"`
 	// Policy group name.
 	PolicyGroup pulumi.StringPtrOutput `pulumi:"policyGroup"`
+	// route-tag address.
+	RouteTag pulumi.IntPtrOutput `pulumi:"routeTag"`
 	// SDN.
 	Sdn pulumi.StringPtrOutput `pulumi:"sdn"`
 	// Type of addresses to collect. Valid values: `private`, `public`, `all`.
@@ -134,6 +144,8 @@ type Address struct {
 	Subnet pulumi.StringOutput `pulumi:"subnet"`
 	// Subnet name.
 	SubnetName pulumi.StringPtrOutput `pulumi:"subnetName"`
+	// Dynamic address matching software version.
+	SwVersion pulumi.StringPtrOutput `pulumi:"swVersion"`
 	// Tag detection level of dynamic address object.
 	TagDetectionLevel pulumi.StringPtrOutput `pulumi:"tagDetectionLevel"`
 	// Tag type of dynamic address object.
@@ -216,6 +228,12 @@ type addressState struct {
 	Fqdn *string `pulumi:"fqdn"`
 	// FSSO group(s). The structure of `fssoGroup` block is documented below.
 	FssoGroups []AddressFssoGroup `pulumi:"fssoGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Dynamic address matching hardware model.
+	HwModel *string `pulumi:"hwModel"`
+	// Dynamic address matching hardware vendor.
+	HwVendor *string `pulumi:"hwVendor"`
 	// Name of interface whose IP address is to be used.
 	Interface *string `pulumi:"interface"`
 	// IP address list. The structure of `list` block is documented below.
@@ -234,8 +252,12 @@ type addressState struct {
 	ObjType *string `pulumi:"objType"`
 	// Organization domain name (Syntax: organization/domain).
 	Organization *string `pulumi:"organization"`
+	// Dynamic address matching operating system.
+	Os *string `pulumi:"os"`
 	// Policy group name.
 	PolicyGroup *string `pulumi:"policyGroup"`
+	// route-tag address.
+	RouteTag *int `pulumi:"routeTag"`
 	// SDN.
 	Sdn *string `pulumi:"sdn"`
 	// Type of addresses to collect. Valid values: `private`, `public`, `all`.
@@ -252,6 +274,8 @@ type addressState struct {
 	Subnet *string `pulumi:"subnet"`
 	// Subnet name.
 	SubnetName *string `pulumi:"subnetName"`
+	// Dynamic address matching software version.
+	SwVersion *string `pulumi:"swVersion"`
 	// Tag detection level of dynamic address object.
 	TagDetectionLevel *string `pulumi:"tagDetectionLevel"`
 	// Tag type of dynamic address object.
@@ -305,6 +329,12 @@ type AddressState struct {
 	Fqdn pulumi.StringPtrInput
 	// FSSO group(s). The structure of `fssoGroup` block is documented below.
 	FssoGroups AddressFssoGroupArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Dynamic address matching hardware model.
+	HwModel pulumi.StringPtrInput
+	// Dynamic address matching hardware vendor.
+	HwVendor pulumi.StringPtrInput
 	// Name of interface whose IP address is to be used.
 	Interface pulumi.StringPtrInput
 	// IP address list. The structure of `list` block is documented below.
@@ -323,8 +353,12 @@ type AddressState struct {
 	ObjType pulumi.StringPtrInput
 	// Organization domain name (Syntax: organization/domain).
 	Organization pulumi.StringPtrInput
+	// Dynamic address matching operating system.
+	Os pulumi.StringPtrInput
 	// Policy group name.
 	PolicyGroup pulumi.StringPtrInput
+	// route-tag address.
+	RouteTag pulumi.IntPtrInput
 	// SDN.
 	Sdn pulumi.StringPtrInput
 	// Type of addresses to collect. Valid values: `private`, `public`, `all`.
@@ -341,6 +375,8 @@ type AddressState struct {
 	Subnet pulumi.StringPtrInput
 	// Subnet name.
 	SubnetName pulumi.StringPtrInput
+	// Dynamic address matching software version.
+	SwVersion pulumi.StringPtrInput
 	// Tag detection level of dynamic address object.
 	TagDetectionLevel pulumi.StringPtrInput
 	// Tag type of dynamic address object.
@@ -398,6 +434,12 @@ type addressArgs struct {
 	Fqdn *string `pulumi:"fqdn"`
 	// FSSO group(s). The structure of `fssoGroup` block is documented below.
 	FssoGroups []AddressFssoGroup `pulumi:"fssoGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Dynamic address matching hardware model.
+	HwModel *string `pulumi:"hwModel"`
+	// Dynamic address matching hardware vendor.
+	HwVendor *string `pulumi:"hwVendor"`
 	// Name of interface whose IP address is to be used.
 	Interface *string `pulumi:"interface"`
 	// IP address list. The structure of `list` block is documented below.
@@ -416,8 +458,12 @@ type addressArgs struct {
 	ObjType *string `pulumi:"objType"`
 	// Organization domain name (Syntax: organization/domain).
 	Organization *string `pulumi:"organization"`
+	// Dynamic address matching operating system.
+	Os *string `pulumi:"os"`
 	// Policy group name.
 	PolicyGroup *string `pulumi:"policyGroup"`
+	// route-tag address.
+	RouteTag *int `pulumi:"routeTag"`
 	// SDN.
 	Sdn *string `pulumi:"sdn"`
 	// Type of addresses to collect. Valid values: `private`, `public`, `all`.
@@ -434,6 +480,8 @@ type addressArgs struct {
 	Subnet *string `pulumi:"subnet"`
 	// Subnet name.
 	SubnetName *string `pulumi:"subnetName"`
+	// Dynamic address matching software version.
+	SwVersion *string `pulumi:"swVersion"`
 	// Tag detection level of dynamic address object.
 	TagDetectionLevel *string `pulumi:"tagDetectionLevel"`
 	// Tag type of dynamic address object.
@@ -488,6 +536,12 @@ type AddressArgs struct {
 	Fqdn pulumi.StringPtrInput
 	// FSSO group(s). The structure of `fssoGroup` block is documented below.
 	FssoGroups AddressFssoGroupArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Dynamic address matching hardware model.
+	HwModel pulumi.StringPtrInput
+	// Dynamic address matching hardware vendor.
+	HwVendor pulumi.StringPtrInput
 	// Name of interface whose IP address is to be used.
 	Interface pulumi.StringPtrInput
 	// IP address list. The structure of `list` block is documented below.
@@ -506,8 +560,12 @@ type AddressArgs struct {
 	ObjType pulumi.StringPtrInput
 	// Organization domain name (Syntax: organization/domain).
 	Organization pulumi.StringPtrInput
+	// Dynamic address matching operating system.
+	Os pulumi.StringPtrInput
 	// Policy group name.
 	PolicyGroup pulumi.StringPtrInput
+	// route-tag address.
+	RouteTag pulumi.IntPtrInput
 	// SDN.
 	Sdn pulumi.StringPtrInput
 	// Type of addresses to collect. Valid values: `private`, `public`, `all`.
@@ -524,6 +582,8 @@ type AddressArgs struct {
 	Subnet pulumi.StringPtrInput
 	// Subnet name.
 	SubnetName pulumi.StringPtrInput
+	// Dynamic address matching software version.
+	SwVersion pulumi.StringPtrInput
 	// Tag detection level of dynamic address object.
 	TagDetectionLevel pulumi.StringPtrInput
 	// Tag type of dynamic address object.
@@ -708,6 +768,21 @@ func (o AddressOutput) FssoGroups() AddressFssoGroupArrayOutput {
 	return o.ApplyT(func(v *Address) AddressFssoGroupArrayOutput { return v.FssoGroups }).(AddressFssoGroupArrayOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o AddressOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Address) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// Dynamic address matching hardware model.
+func (o AddressOutput) HwModel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Address) pulumi.StringPtrOutput { return v.HwModel }).(pulumi.StringPtrOutput)
+}
+
+// Dynamic address matching hardware vendor.
+func (o AddressOutput) HwVendor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Address) pulumi.StringPtrOutput { return v.HwVendor }).(pulumi.StringPtrOutput)
+}
+
 // Name of interface whose IP address is to be used.
 func (o AddressOutput) Interface() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringPtrOutput { return v.Interface }).(pulumi.StringPtrOutput)
@@ -753,9 +828,19 @@ func (o AddressOutput) Organization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringPtrOutput { return v.Organization }).(pulumi.StringPtrOutput)
 }
 
+// Dynamic address matching operating system.
+func (o AddressOutput) Os() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Address) pulumi.StringPtrOutput { return v.Os }).(pulumi.StringPtrOutput)
+}
+
 // Policy group name.
 func (o AddressOutput) PolicyGroup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringPtrOutput { return v.PolicyGroup }).(pulumi.StringPtrOutput)
+}
+
+// route-tag address.
+func (o AddressOutput) RouteTag() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Address) pulumi.IntPtrOutput { return v.RouteTag }).(pulumi.IntPtrOutput)
 }
 
 // SDN.
@@ -796,6 +881,11 @@ func (o AddressOutput) Subnet() pulumi.StringOutput {
 // Subnet name.
 func (o AddressOutput) SubnetName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringPtrOutput { return v.SubnetName }).(pulumi.StringPtrOutput)
+}
+
+// Dynamic address matching software version.
+func (o AddressOutput) SwVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Address) pulumi.StringPtrOutput { return v.SwVersion }).(pulumi.StringPtrOutput)
 }
 
 // Tag detection level of dynamic address object.

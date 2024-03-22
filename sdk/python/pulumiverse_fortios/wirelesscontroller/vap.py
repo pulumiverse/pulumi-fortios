@@ -40,6 +40,7 @@ class VapArgs:
                  bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
+                 captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_server: Optional[pulumi.Input[str]] = None,
                  captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -68,6 +69,7 @@ class VapArgs:
                  ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtk_rekey: Optional[pulumi.Input[str]] = None,
                  gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
                  high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -111,6 +113,8 @@ class VapArgs:
                  mu_mimo: Optional[pulumi.Input[str]] = None,
                  multicast_enhance: Optional[pulumi.Input[str]] = None,
                  multicast_rate: Optional[pulumi.Input[str]] = None,
+                 n80211k: Optional[pulumi.Input[str]] = None,
+                 n80211v: Optional[pulumi.Input[str]] = None,
                  nac: Optional[pulumi.Input[str]] = None,
                  nac_profile: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -141,6 +145,7 @@ class VapArgs:
                  radio5g_threshold: Optional[pulumi.Input[str]] = None,
                  radio_sensitivity: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth: Optional[pulumi.Input[str]] = None,
+                 radius_mac_auth_block_interval: Optional[pulumi.Input[int]] = None,
                  radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input['VapRadiusMacAuthUsergroupArgs']]]] = None,
                  radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
@@ -156,8 +161,10 @@ class VapArgs:
                  rates11bg: Optional[pulumi.Input[str]] = None,
                  rates11n_ss12: Optional[pulumi.Input[str]] = None,
                  rates11n_ss34: Optional[pulumi.Input[str]] = None,
+                 roaming_acct_interim_update: Optional[pulumi.Input[str]] = None,
                  sae_groups: Optional[pulumi.Input[str]] = None,
                  sae_h2e_only: Optional[pulumi.Input[str]] = None,
+                 sae_hnp_only: Optional[pulumi.Input[str]] = None,
                  sae_password: Optional[pulumi.Input[str]] = None,
                  sae_pk: Optional[pulumi.Input[str]] = None,
                  sae_private_key: Optional[pulumi.Input[str]] = None,
@@ -205,7 +212,7 @@ class VapArgs:
         :param pulumi.Input[str] application_list: Application control list name.
         :param pulumi.Input[int] application_report_intv: Application report interval (30 - 864000 sec, default = 120).
         :param pulumi.Input[int] atf_weight: Airtime weight in percentage (default = 20).
-        :param pulumi.Input[str] auth: Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        :param pulumi.Input[str] auth: Authentication protocol.
         :param pulumi.Input[str] auth_cert: HTTPS server certificate.
         :param pulumi.Input[str] auth_portal_addr: Address of captive portal.
         :param pulumi.Input[str] beacon_advertising: Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
@@ -217,6 +224,7 @@ class VapArgs:
         :param pulumi.Input[int] bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
         :param pulumi.Input[str] captive_portal_ac_name: Local-bridging captive portal ac-name.
         :param pulumi.Input[int] captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
+        :param pulumi.Input[str] captive_portal_fw_accounting: Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] captive_portal_macauth_radius_secret: Secret key to access the macauth RADIUS server.
         :param pulumi.Input[str] captive_portal_macauth_radius_server: Captive portal external RADIUS server domain name or IP address.
         :param pulumi.Input[str] captive_portal_radius_secret: Secret key to access the RADIUS server.
@@ -245,6 +253,7 @@ class VapArgs:
         :param pulumi.Input[int] ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
         :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
         :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtk_rekey: Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (1800 - 864000 sec, default = 86400).
         :param pulumi.Input[str] high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
@@ -288,6 +297,8 @@ class VapArgs:
         :param pulumi.Input[str] mu_mimo: Enable/disable Multi-user MIMO (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_enhance: Enable/disable converting multicast to unicast to improve performance (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_rate: Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
+        :param pulumi.Input[str] n80211k: Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] n80211v: Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nac: Enable/disable network access control. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nac_profile: NAC profile name.
         :param pulumi.Input[str] name: Virtual AP name.
@@ -318,23 +329,26 @@ class VapArgs:
         :param pulumi.Input[str] radio5g_threshold: Minimum signal level/threshold in dBm required for the AP response to receive a packet in 5G band(-95 to -20, default = -76).
         :param pulumi.Input[str] radio_sensitivity: Enable/disable software radio sensitivity (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radius_mac_auth: Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] radius_mac_auth_block_interval: Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
         :param pulumi.Input[str] radius_mac_auth_server: RADIUS-based MAC authentication server.
         :param pulumi.Input[Sequence[pulumi.Input['VapRadiusMacAuthUsergroupArgs']]] radius_mac_auth_usergroups: Selective user groups that are permitted for RADIUS mac authentication. The structure of `radius_mac_auth_usergroups` block is documented below.
         :param pulumi.Input[str] radius_mac_mpsk_auth: Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] radius_mac_mpsk_timeout: RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
         :param pulumi.Input[str] radius_server: RADIUS server to be used to authenticate WiFi users.
-        :param pulumi.Input[str] rates11a: Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        :param pulumi.Input[str] rates11a: Allowed data rates for 802.11a.
         :param pulumi.Input[str] rates11ac_mcs_map: Comma separated list of max supported VHT MCS for spatial streams 1 through 8.
         :param pulumi.Input[str] rates11ac_ss12: Allowed data rates for 802.11ac with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ac_ss34: Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
         :param pulumi.Input[str] rates11ax_mcs_map: Comma separated list of max supported HE MCS for spatial streams 1 through 8.
         :param pulumi.Input[str] rates11ax_ss12: Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ax_ss34: Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
-        :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g.
         :param pulumi.Input[str] rates11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
         :param pulumi.Input[str] rates11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
+        :param pulumi.Input[str] roaming_acct_interim_update: Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sae_groups: SAE-Groups. Valid values: `19`, `20`, `21`.
         :param pulumi.Input[str] sae_h2e_only: Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sae_hnp_only: Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sae_password: WPA3 SAE password to be used to authenticate WiFi users.
         :param pulumi.Input[str] sae_pk: Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sae_private_key: Private key used for WPA3 SAE-PK authentication.
@@ -417,6 +431,8 @@ class VapArgs:
             pulumi.set(__self__, "captive_portal_ac_name", captive_portal_ac_name)
         if captive_portal_auth_timeout is not None:
             pulumi.set(__self__, "captive_portal_auth_timeout", captive_portal_auth_timeout)
+        if captive_portal_fw_accounting is not None:
+            pulumi.set(__self__, "captive_portal_fw_accounting", captive_portal_fw_accounting)
         if captive_portal_macauth_radius_secret is not None:
             pulumi.set(__self__, "captive_portal_macauth_radius_secret", captive_portal_macauth_radius_secret)
         if captive_portal_macauth_radius_server is not None:
@@ -473,6 +489,8 @@ class VapArgs:
             pulumi.set(__self__, "gas_comeback_delay", gas_comeback_delay)
         if gas_fragmentation_limit is not None:
             pulumi.set(__self__, "gas_fragmentation_limit", gas_fragmentation_limit)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gtk_rekey is not None:
             pulumi.set(__self__, "gtk_rekey", gtk_rekey)
         if gtk_rekey_intv is not None:
@@ -559,6 +577,10 @@ class VapArgs:
             pulumi.set(__self__, "multicast_enhance", multicast_enhance)
         if multicast_rate is not None:
             pulumi.set(__self__, "multicast_rate", multicast_rate)
+        if n80211k is not None:
+            pulumi.set(__self__, "n80211k", n80211k)
+        if n80211v is not None:
+            pulumi.set(__self__, "n80211v", n80211v)
         if nac is not None:
             pulumi.set(__self__, "nac", nac)
         if nac_profile is not None:
@@ -619,6 +641,8 @@ class VapArgs:
             pulumi.set(__self__, "radio_sensitivity", radio_sensitivity)
         if radius_mac_auth is not None:
             pulumi.set(__self__, "radius_mac_auth", radius_mac_auth)
+        if radius_mac_auth_block_interval is not None:
+            pulumi.set(__self__, "radius_mac_auth_block_interval", radius_mac_auth_block_interval)
         if radius_mac_auth_server is not None:
             pulumi.set(__self__, "radius_mac_auth_server", radius_mac_auth_server)
         if radius_mac_auth_usergroups is not None:
@@ -649,10 +673,14 @@ class VapArgs:
             pulumi.set(__self__, "rates11n_ss12", rates11n_ss12)
         if rates11n_ss34 is not None:
             pulumi.set(__self__, "rates11n_ss34", rates11n_ss34)
+        if roaming_acct_interim_update is not None:
+            pulumi.set(__self__, "roaming_acct_interim_update", roaming_acct_interim_update)
         if sae_groups is not None:
             pulumi.set(__self__, "sae_groups", sae_groups)
         if sae_h2e_only is not None:
             pulumi.set(__self__, "sae_h2e_only", sae_h2e_only)
+        if sae_hnp_only is not None:
+            pulumi.set(__self__, "sae_hnp_only", sae_hnp_only)
         if sae_password is not None:
             pulumi.set(__self__, "sae_password", sae_password)
         if sae_pk is not None:
@@ -868,7 +896,7 @@ class VapArgs:
     @pulumi.getter
     def auth(self) -> Optional[pulumi.Input[str]]:
         """
-        Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        Authentication protocol.
         """
         return pulumi.get(self, "auth")
 
@@ -1007,6 +1035,18 @@ class VapArgs:
     @captive_portal_auth_timeout.setter
     def captive_portal_auth_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "captive_portal_auth_timeout", value)
+
+    @property
+    @pulumi.getter(name="captivePortalFwAccounting")
+    def captive_portal_fw_accounting(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "captive_portal_fw_accounting")
+
+    @captive_portal_fw_accounting.setter
+    def captive_portal_fw_accounting(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "captive_portal_fw_accounting", value)
 
     @property
     @pulumi.getter(name="captivePortalMacauthRadiusSecret")
@@ -1343,6 +1383,18 @@ class VapArgs:
     @gas_fragmentation_limit.setter
     def gas_fragmentation_limit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "gas_fragmentation_limit", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="gtkRekey")
@@ -1862,6 +1914,30 @@ class VapArgs:
 
     @property
     @pulumi.getter
+    def n80211k(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "n80211k")
+
+    @n80211k.setter
+    def n80211k(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "n80211k", value)
+
+    @property
+    @pulumi.getter
+    def n80211v(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "n80211v")
+
+    @n80211v.setter
+    def n80211v(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "n80211v", value)
+
+    @property
+    @pulumi.getter
     def nac(self) -> Optional[pulumi.Input[str]]:
         """
         Enable/disable network access control. Valid values: `enable`, `disable`.
@@ -2221,6 +2297,18 @@ class VapArgs:
         pulumi.set(self, "radius_mac_auth", value)
 
     @property
+    @pulumi.getter(name="radiusMacAuthBlockInterval")
+    def radius_mac_auth_block_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+        """
+        return pulumi.get(self, "radius_mac_auth_block_interval")
+
+    @radius_mac_auth_block_interval.setter
+    def radius_mac_auth_block_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "radius_mac_auth_block_interval", value)
+
+    @property
     @pulumi.getter(name="radiusMacAuthServer")
     def radius_mac_auth_server(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2284,7 +2372,7 @@ class VapArgs:
     @pulumi.getter
     def rates11a(self) -> Optional[pulumi.Input[str]]:
         """
-        Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        Allowed data rates for 802.11a.
         """
         return pulumi.get(self, "rates11a")
 
@@ -2368,7 +2456,7 @@ class VapArgs:
     @pulumi.getter
     def rates11bg(self) -> Optional[pulumi.Input[str]]:
         """
-        Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        Allowed data rates for 802.11b/g.
         """
         return pulumi.get(self, "rates11bg")
 
@@ -2401,6 +2489,18 @@ class VapArgs:
         pulumi.set(self, "rates11n_ss34", value)
 
     @property
+    @pulumi.getter(name="roamingAcctInterimUpdate")
+    def roaming_acct_interim_update(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "roaming_acct_interim_update")
+
+    @roaming_acct_interim_update.setter
+    def roaming_acct_interim_update(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "roaming_acct_interim_update", value)
+
+    @property
     @pulumi.getter(name="saeGroups")
     def sae_groups(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2423,6 +2523,18 @@ class VapArgs:
     @sae_h2e_only.setter
     def sae_h2e_only(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sae_h2e_only", value)
+
+    @property
+    @pulumi.getter(name="saeHnpOnly")
+    def sae_hnp_only(self) -> Optional[pulumi.Input[str]]:
+        """
+        Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "sae_hnp_only")
+
+    @sae_hnp_only.setter
+    def sae_hnp_only(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sae_hnp_only", value)
 
     @property
     @pulumi.getter(name="saePassword")
@@ -2848,6 +2960,7 @@ class _VapState:
                  bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
+                 captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_server: Optional[pulumi.Input[str]] = None,
                  captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -2876,6 +2989,7 @@ class _VapState:
                  ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtk_rekey: Optional[pulumi.Input[str]] = None,
                  gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
                  high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -2919,6 +3033,8 @@ class _VapState:
                  mu_mimo: Optional[pulumi.Input[str]] = None,
                  multicast_enhance: Optional[pulumi.Input[str]] = None,
                  multicast_rate: Optional[pulumi.Input[str]] = None,
+                 n80211k: Optional[pulumi.Input[str]] = None,
+                 n80211v: Optional[pulumi.Input[str]] = None,
                  nac: Optional[pulumi.Input[str]] = None,
                  nac_profile: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -2949,6 +3065,7 @@ class _VapState:
                  radio5g_threshold: Optional[pulumi.Input[str]] = None,
                  radio_sensitivity: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth: Optional[pulumi.Input[str]] = None,
+                 radius_mac_auth_block_interval: Optional[pulumi.Input[int]] = None,
                  radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input['VapRadiusMacAuthUsergroupArgs']]]] = None,
                  radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
@@ -2964,8 +3081,10 @@ class _VapState:
                  rates11bg: Optional[pulumi.Input[str]] = None,
                  rates11n_ss12: Optional[pulumi.Input[str]] = None,
                  rates11n_ss34: Optional[pulumi.Input[str]] = None,
+                 roaming_acct_interim_update: Optional[pulumi.Input[str]] = None,
                  sae_groups: Optional[pulumi.Input[str]] = None,
                  sae_h2e_only: Optional[pulumi.Input[str]] = None,
+                 sae_hnp_only: Optional[pulumi.Input[str]] = None,
                  sae_password: Optional[pulumi.Input[str]] = None,
                  sae_pk: Optional[pulumi.Input[str]] = None,
                  sae_private_key: Optional[pulumi.Input[str]] = None,
@@ -3013,7 +3132,7 @@ class _VapState:
         :param pulumi.Input[str] application_list: Application control list name.
         :param pulumi.Input[int] application_report_intv: Application report interval (30 - 864000 sec, default = 120).
         :param pulumi.Input[int] atf_weight: Airtime weight in percentage (default = 20).
-        :param pulumi.Input[str] auth: Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        :param pulumi.Input[str] auth: Authentication protocol.
         :param pulumi.Input[str] auth_cert: HTTPS server certificate.
         :param pulumi.Input[str] auth_portal_addr: Address of captive portal.
         :param pulumi.Input[str] beacon_advertising: Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
@@ -3025,6 +3144,7 @@ class _VapState:
         :param pulumi.Input[int] bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
         :param pulumi.Input[str] captive_portal_ac_name: Local-bridging captive portal ac-name.
         :param pulumi.Input[int] captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
+        :param pulumi.Input[str] captive_portal_fw_accounting: Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] captive_portal_macauth_radius_secret: Secret key to access the macauth RADIUS server.
         :param pulumi.Input[str] captive_portal_macauth_radius_server: Captive portal external RADIUS server domain name or IP address.
         :param pulumi.Input[str] captive_portal_radius_secret: Secret key to access the RADIUS server.
@@ -3053,6 +3173,7 @@ class _VapState:
         :param pulumi.Input[int] ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
         :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
         :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtk_rekey: Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (1800 - 864000 sec, default = 86400).
         :param pulumi.Input[str] high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
@@ -3096,6 +3217,8 @@ class _VapState:
         :param pulumi.Input[str] mu_mimo: Enable/disable Multi-user MIMO (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_enhance: Enable/disable converting multicast to unicast to improve performance (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_rate: Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
+        :param pulumi.Input[str] n80211k: Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] n80211v: Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nac: Enable/disable network access control. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nac_profile: NAC profile name.
         :param pulumi.Input[str] name: Virtual AP name.
@@ -3126,23 +3249,26 @@ class _VapState:
         :param pulumi.Input[str] radio5g_threshold: Minimum signal level/threshold in dBm required for the AP response to receive a packet in 5G band(-95 to -20, default = -76).
         :param pulumi.Input[str] radio_sensitivity: Enable/disable software radio sensitivity (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radius_mac_auth: Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] radius_mac_auth_block_interval: Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
         :param pulumi.Input[str] radius_mac_auth_server: RADIUS-based MAC authentication server.
         :param pulumi.Input[Sequence[pulumi.Input['VapRadiusMacAuthUsergroupArgs']]] radius_mac_auth_usergroups: Selective user groups that are permitted for RADIUS mac authentication. The structure of `radius_mac_auth_usergroups` block is documented below.
         :param pulumi.Input[str] radius_mac_mpsk_auth: Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] radius_mac_mpsk_timeout: RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
         :param pulumi.Input[str] radius_server: RADIUS server to be used to authenticate WiFi users.
-        :param pulumi.Input[str] rates11a: Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        :param pulumi.Input[str] rates11a: Allowed data rates for 802.11a.
         :param pulumi.Input[str] rates11ac_mcs_map: Comma separated list of max supported VHT MCS for spatial streams 1 through 8.
         :param pulumi.Input[str] rates11ac_ss12: Allowed data rates for 802.11ac with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ac_ss34: Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
         :param pulumi.Input[str] rates11ax_mcs_map: Comma separated list of max supported HE MCS for spatial streams 1 through 8.
         :param pulumi.Input[str] rates11ax_ss12: Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ax_ss34: Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
-        :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g.
         :param pulumi.Input[str] rates11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
         :param pulumi.Input[str] rates11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
+        :param pulumi.Input[str] roaming_acct_interim_update: Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sae_groups: SAE-Groups. Valid values: `19`, `20`, `21`.
         :param pulumi.Input[str] sae_h2e_only: Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sae_hnp_only: Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sae_password: WPA3 SAE password to be used to authenticate WiFi users.
         :param pulumi.Input[str] sae_pk: Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sae_private_key: Private key used for WPA3 SAE-PK authentication.
@@ -3225,6 +3351,8 @@ class _VapState:
             pulumi.set(__self__, "captive_portal_ac_name", captive_portal_ac_name)
         if captive_portal_auth_timeout is not None:
             pulumi.set(__self__, "captive_portal_auth_timeout", captive_portal_auth_timeout)
+        if captive_portal_fw_accounting is not None:
+            pulumi.set(__self__, "captive_portal_fw_accounting", captive_portal_fw_accounting)
         if captive_portal_macauth_radius_secret is not None:
             pulumi.set(__self__, "captive_portal_macauth_radius_secret", captive_portal_macauth_radius_secret)
         if captive_portal_macauth_radius_server is not None:
@@ -3281,6 +3409,8 @@ class _VapState:
             pulumi.set(__self__, "gas_comeback_delay", gas_comeback_delay)
         if gas_fragmentation_limit is not None:
             pulumi.set(__self__, "gas_fragmentation_limit", gas_fragmentation_limit)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gtk_rekey is not None:
             pulumi.set(__self__, "gtk_rekey", gtk_rekey)
         if gtk_rekey_intv is not None:
@@ -3367,6 +3497,10 @@ class _VapState:
             pulumi.set(__self__, "multicast_enhance", multicast_enhance)
         if multicast_rate is not None:
             pulumi.set(__self__, "multicast_rate", multicast_rate)
+        if n80211k is not None:
+            pulumi.set(__self__, "n80211k", n80211k)
+        if n80211v is not None:
+            pulumi.set(__self__, "n80211v", n80211v)
         if nac is not None:
             pulumi.set(__self__, "nac", nac)
         if nac_profile is not None:
@@ -3427,6 +3561,8 @@ class _VapState:
             pulumi.set(__self__, "radio_sensitivity", radio_sensitivity)
         if radius_mac_auth is not None:
             pulumi.set(__self__, "radius_mac_auth", radius_mac_auth)
+        if radius_mac_auth_block_interval is not None:
+            pulumi.set(__self__, "radius_mac_auth_block_interval", radius_mac_auth_block_interval)
         if radius_mac_auth_server is not None:
             pulumi.set(__self__, "radius_mac_auth_server", radius_mac_auth_server)
         if radius_mac_auth_usergroups is not None:
@@ -3457,10 +3593,14 @@ class _VapState:
             pulumi.set(__self__, "rates11n_ss12", rates11n_ss12)
         if rates11n_ss34 is not None:
             pulumi.set(__self__, "rates11n_ss34", rates11n_ss34)
+        if roaming_acct_interim_update is not None:
+            pulumi.set(__self__, "roaming_acct_interim_update", roaming_acct_interim_update)
         if sae_groups is not None:
             pulumi.set(__self__, "sae_groups", sae_groups)
         if sae_h2e_only is not None:
             pulumi.set(__self__, "sae_h2e_only", sae_h2e_only)
+        if sae_hnp_only is not None:
+            pulumi.set(__self__, "sae_hnp_only", sae_hnp_only)
         if sae_password is not None:
             pulumi.set(__self__, "sae_password", sae_password)
         if sae_pk is not None:
@@ -3676,7 +3816,7 @@ class _VapState:
     @pulumi.getter
     def auth(self) -> Optional[pulumi.Input[str]]:
         """
-        Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        Authentication protocol.
         """
         return pulumi.get(self, "auth")
 
@@ -3815,6 +3955,18 @@ class _VapState:
     @captive_portal_auth_timeout.setter
     def captive_portal_auth_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "captive_portal_auth_timeout", value)
+
+    @property
+    @pulumi.getter(name="captivePortalFwAccounting")
+    def captive_portal_fw_accounting(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "captive_portal_fw_accounting")
+
+    @captive_portal_fw_accounting.setter
+    def captive_portal_fw_accounting(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "captive_portal_fw_accounting", value)
 
     @property
     @pulumi.getter(name="captivePortalMacauthRadiusSecret")
@@ -4151,6 +4303,18 @@ class _VapState:
     @gas_fragmentation_limit.setter
     def gas_fragmentation_limit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "gas_fragmentation_limit", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="gtkRekey")
@@ -4670,6 +4834,30 @@ class _VapState:
 
     @property
     @pulumi.getter
+    def n80211k(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "n80211k")
+
+    @n80211k.setter
+    def n80211k(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "n80211k", value)
+
+    @property
+    @pulumi.getter
+    def n80211v(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "n80211v")
+
+    @n80211v.setter
+    def n80211v(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "n80211v", value)
+
+    @property
+    @pulumi.getter
     def nac(self) -> Optional[pulumi.Input[str]]:
         """
         Enable/disable network access control. Valid values: `enable`, `disable`.
@@ -5029,6 +5217,18 @@ class _VapState:
         pulumi.set(self, "radius_mac_auth", value)
 
     @property
+    @pulumi.getter(name="radiusMacAuthBlockInterval")
+    def radius_mac_auth_block_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+        """
+        return pulumi.get(self, "radius_mac_auth_block_interval")
+
+    @radius_mac_auth_block_interval.setter
+    def radius_mac_auth_block_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "radius_mac_auth_block_interval", value)
+
+    @property
     @pulumi.getter(name="radiusMacAuthServer")
     def radius_mac_auth_server(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5092,7 +5292,7 @@ class _VapState:
     @pulumi.getter
     def rates11a(self) -> Optional[pulumi.Input[str]]:
         """
-        Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        Allowed data rates for 802.11a.
         """
         return pulumi.get(self, "rates11a")
 
@@ -5176,7 +5376,7 @@ class _VapState:
     @pulumi.getter
     def rates11bg(self) -> Optional[pulumi.Input[str]]:
         """
-        Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        Allowed data rates for 802.11b/g.
         """
         return pulumi.get(self, "rates11bg")
 
@@ -5209,6 +5409,18 @@ class _VapState:
         pulumi.set(self, "rates11n_ss34", value)
 
     @property
+    @pulumi.getter(name="roamingAcctInterimUpdate")
+    def roaming_acct_interim_update(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "roaming_acct_interim_update")
+
+    @roaming_acct_interim_update.setter
+    def roaming_acct_interim_update(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "roaming_acct_interim_update", value)
+
+    @property
     @pulumi.getter(name="saeGroups")
     def sae_groups(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5231,6 +5443,18 @@ class _VapState:
     @sae_h2e_only.setter
     def sae_h2e_only(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sae_h2e_only", value)
+
+    @property
+    @pulumi.getter(name="saeHnpOnly")
+    def sae_hnp_only(self) -> Optional[pulumi.Input[str]]:
+        """
+        Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "sae_hnp_only")
+
+    @sae_hnp_only.setter
+    def sae_hnp_only(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sae_hnp_only", value)
 
     @property
     @pulumi.getter(name="saePassword")
@@ -5658,6 +5882,7 @@ class Vap(pulumi.CustomResource):
                  bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
+                 captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_server: Optional[pulumi.Input[str]] = None,
                  captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -5686,6 +5911,7 @@ class Vap(pulumi.CustomResource):
                  ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtk_rekey: Optional[pulumi.Input[str]] = None,
                  gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
                  high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -5729,6 +5955,8 @@ class Vap(pulumi.CustomResource):
                  mu_mimo: Optional[pulumi.Input[str]] = None,
                  multicast_enhance: Optional[pulumi.Input[str]] = None,
                  multicast_rate: Optional[pulumi.Input[str]] = None,
+                 n80211k: Optional[pulumi.Input[str]] = None,
+                 n80211v: Optional[pulumi.Input[str]] = None,
                  nac: Optional[pulumi.Input[str]] = None,
                  nac_profile: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -5759,6 +5987,7 @@ class Vap(pulumi.CustomResource):
                  radio5g_threshold: Optional[pulumi.Input[str]] = None,
                  radio_sensitivity: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth: Optional[pulumi.Input[str]] = None,
+                 radius_mac_auth_block_interval: Optional[pulumi.Input[int]] = None,
                  radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VapRadiusMacAuthUsergroupArgs']]]]] = None,
                  radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
@@ -5774,8 +6003,10 @@ class Vap(pulumi.CustomResource):
                  rates11bg: Optional[pulumi.Input[str]] = None,
                  rates11n_ss12: Optional[pulumi.Input[str]] = None,
                  rates11n_ss34: Optional[pulumi.Input[str]] = None,
+                 roaming_acct_interim_update: Optional[pulumi.Input[str]] = None,
                  sae_groups: Optional[pulumi.Input[str]] = None,
                  sae_h2e_only: Optional[pulumi.Input[str]] = None,
+                 sae_hnp_only: Optional[pulumi.Input[str]] = None,
                  sae_password: Optional[pulumi.Input[str]] = None,
                  sae_pk: Optional[pulumi.Input[str]] = None,
                  sae_private_key: Optional[pulumi.Input[str]] = None,
@@ -5845,7 +6076,7 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] application_list: Application control list name.
         :param pulumi.Input[int] application_report_intv: Application report interval (30 - 864000 sec, default = 120).
         :param pulumi.Input[int] atf_weight: Airtime weight in percentage (default = 20).
-        :param pulumi.Input[str] auth: Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        :param pulumi.Input[str] auth: Authentication protocol.
         :param pulumi.Input[str] auth_cert: HTTPS server certificate.
         :param pulumi.Input[str] auth_portal_addr: Address of captive portal.
         :param pulumi.Input[str] beacon_advertising: Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
@@ -5857,6 +6088,7 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[int] bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
         :param pulumi.Input[str] captive_portal_ac_name: Local-bridging captive portal ac-name.
         :param pulumi.Input[int] captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
+        :param pulumi.Input[str] captive_portal_fw_accounting: Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] captive_portal_macauth_radius_secret: Secret key to access the macauth RADIUS server.
         :param pulumi.Input[str] captive_portal_macauth_radius_server: Captive portal external RADIUS server domain name or IP address.
         :param pulumi.Input[str] captive_portal_radius_secret: Secret key to access the RADIUS server.
@@ -5885,6 +6117,7 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[int] ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
         :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
         :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtk_rekey: Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (1800 - 864000 sec, default = 86400).
         :param pulumi.Input[str] high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
@@ -5928,6 +6161,8 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] mu_mimo: Enable/disable Multi-user MIMO (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_enhance: Enable/disable converting multicast to unicast to improve performance (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_rate: Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
+        :param pulumi.Input[str] n80211k: Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] n80211v: Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nac: Enable/disable network access control. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nac_profile: NAC profile name.
         :param pulumi.Input[str] name: Virtual AP name.
@@ -5958,23 +6193,26 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] radio5g_threshold: Minimum signal level/threshold in dBm required for the AP response to receive a packet in 5G band(-95 to -20, default = -76).
         :param pulumi.Input[str] radio_sensitivity: Enable/disable software radio sensitivity (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radius_mac_auth: Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] radius_mac_auth_block_interval: Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
         :param pulumi.Input[str] radius_mac_auth_server: RADIUS-based MAC authentication server.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VapRadiusMacAuthUsergroupArgs']]]] radius_mac_auth_usergroups: Selective user groups that are permitted for RADIUS mac authentication. The structure of `radius_mac_auth_usergroups` block is documented below.
         :param pulumi.Input[str] radius_mac_mpsk_auth: Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] radius_mac_mpsk_timeout: RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
         :param pulumi.Input[str] radius_server: RADIUS server to be used to authenticate WiFi users.
-        :param pulumi.Input[str] rates11a: Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        :param pulumi.Input[str] rates11a: Allowed data rates for 802.11a.
         :param pulumi.Input[str] rates11ac_mcs_map: Comma separated list of max supported VHT MCS for spatial streams 1 through 8.
         :param pulumi.Input[str] rates11ac_ss12: Allowed data rates for 802.11ac with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ac_ss34: Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
         :param pulumi.Input[str] rates11ax_mcs_map: Comma separated list of max supported HE MCS for spatial streams 1 through 8.
         :param pulumi.Input[str] rates11ax_ss12: Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ax_ss34: Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
-        :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g.
         :param pulumi.Input[str] rates11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
         :param pulumi.Input[str] rates11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
+        :param pulumi.Input[str] roaming_acct_interim_update: Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sae_groups: SAE-Groups. Valid values: `19`, `20`, `21`.
         :param pulumi.Input[str] sae_h2e_only: Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sae_hnp_only: Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sae_password: WPA3 SAE password to be used to authenticate WiFi users.
         :param pulumi.Input[str] sae_pk: Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sae_private_key: Private key used for WPA3 SAE-PK authentication.
@@ -6075,6 +6313,7 @@ class Vap(pulumi.CustomResource):
                  bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
+                 captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_server: Optional[pulumi.Input[str]] = None,
                  captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -6103,6 +6342,7 @@ class Vap(pulumi.CustomResource):
                  ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtk_rekey: Optional[pulumi.Input[str]] = None,
                  gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
                  high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -6146,6 +6386,8 @@ class Vap(pulumi.CustomResource):
                  mu_mimo: Optional[pulumi.Input[str]] = None,
                  multicast_enhance: Optional[pulumi.Input[str]] = None,
                  multicast_rate: Optional[pulumi.Input[str]] = None,
+                 n80211k: Optional[pulumi.Input[str]] = None,
+                 n80211v: Optional[pulumi.Input[str]] = None,
                  nac: Optional[pulumi.Input[str]] = None,
                  nac_profile: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -6176,6 +6418,7 @@ class Vap(pulumi.CustomResource):
                  radio5g_threshold: Optional[pulumi.Input[str]] = None,
                  radio_sensitivity: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth: Optional[pulumi.Input[str]] = None,
+                 radius_mac_auth_block_interval: Optional[pulumi.Input[int]] = None,
                  radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VapRadiusMacAuthUsergroupArgs']]]]] = None,
                  radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
@@ -6191,8 +6434,10 @@ class Vap(pulumi.CustomResource):
                  rates11bg: Optional[pulumi.Input[str]] = None,
                  rates11n_ss12: Optional[pulumi.Input[str]] = None,
                  rates11n_ss34: Optional[pulumi.Input[str]] = None,
+                 roaming_acct_interim_update: Optional[pulumi.Input[str]] = None,
                  sae_groups: Optional[pulumi.Input[str]] = None,
                  sae_h2e_only: Optional[pulumi.Input[str]] = None,
+                 sae_hnp_only: Optional[pulumi.Input[str]] = None,
                  sae_password: Optional[pulumi.Input[str]] = None,
                  sae_pk: Optional[pulumi.Input[str]] = None,
                  sae_private_key: Optional[pulumi.Input[str]] = None,
@@ -6259,6 +6504,7 @@ class Vap(pulumi.CustomResource):
             __props__.__dict__["bstm_rssi_disassoc_timer"] = bstm_rssi_disassoc_timer
             __props__.__dict__["captive_portal_ac_name"] = captive_portal_ac_name
             __props__.__dict__["captive_portal_auth_timeout"] = captive_portal_auth_timeout
+            __props__.__dict__["captive_portal_fw_accounting"] = captive_portal_fw_accounting
             __props__.__dict__["captive_portal_macauth_radius_secret"] = None if captive_portal_macauth_radius_secret is None else pulumi.Output.secret(captive_portal_macauth_radius_secret)
             __props__.__dict__["captive_portal_macauth_radius_server"] = captive_portal_macauth_radius_server
             __props__.__dict__["captive_portal_radius_secret"] = None if captive_portal_radius_secret is None else pulumi.Output.secret(captive_portal_radius_secret)
@@ -6287,6 +6533,7 @@ class Vap(pulumi.CustomResource):
             __props__.__dict__["ft_r0_key_lifetime"] = ft_r0_key_lifetime
             __props__.__dict__["gas_comeback_delay"] = gas_comeback_delay
             __props__.__dict__["gas_fragmentation_limit"] = gas_fragmentation_limit
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gtk_rekey"] = gtk_rekey
             __props__.__dict__["gtk_rekey_intv"] = gtk_rekey_intv
             __props__.__dict__["high_efficiency"] = high_efficiency
@@ -6330,6 +6577,8 @@ class Vap(pulumi.CustomResource):
             __props__.__dict__["mu_mimo"] = mu_mimo
             __props__.__dict__["multicast_enhance"] = multicast_enhance
             __props__.__dict__["multicast_rate"] = multicast_rate
+            __props__.__dict__["n80211k"] = n80211k
+            __props__.__dict__["n80211v"] = n80211v
             __props__.__dict__["nac"] = nac
             __props__.__dict__["nac_profile"] = nac_profile
             __props__.__dict__["name"] = name
@@ -6360,6 +6609,7 @@ class Vap(pulumi.CustomResource):
             __props__.__dict__["radio5g_threshold"] = radio5g_threshold
             __props__.__dict__["radio_sensitivity"] = radio_sensitivity
             __props__.__dict__["radius_mac_auth"] = radius_mac_auth
+            __props__.__dict__["radius_mac_auth_block_interval"] = radius_mac_auth_block_interval
             __props__.__dict__["radius_mac_auth_server"] = radius_mac_auth_server
             __props__.__dict__["radius_mac_auth_usergroups"] = radius_mac_auth_usergroups
             __props__.__dict__["radius_mac_mpsk_auth"] = radius_mac_mpsk_auth
@@ -6375,8 +6625,10 @@ class Vap(pulumi.CustomResource):
             __props__.__dict__["rates11bg"] = rates11bg
             __props__.__dict__["rates11n_ss12"] = rates11n_ss12
             __props__.__dict__["rates11n_ss34"] = rates11n_ss34
+            __props__.__dict__["roaming_acct_interim_update"] = roaming_acct_interim_update
             __props__.__dict__["sae_groups"] = sae_groups
             __props__.__dict__["sae_h2e_only"] = sae_h2e_only
+            __props__.__dict__["sae_hnp_only"] = sae_hnp_only
             __props__.__dict__["sae_password"] = None if sae_password is None else pulumi.Output.secret(sae_password)
             __props__.__dict__["sae_pk"] = sae_pk
             __props__.__dict__["sae_private_key"] = sae_private_key
@@ -6446,6 +6698,7 @@ class Vap(pulumi.CustomResource):
             bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
             captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
             captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
+            captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
             captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
             captive_portal_macauth_radius_server: Optional[pulumi.Input[str]] = None,
             captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -6474,6 +6727,7 @@ class Vap(pulumi.CustomResource):
             ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
             gas_comeback_delay: Optional[pulumi.Input[int]] = None,
             gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gtk_rekey: Optional[pulumi.Input[str]] = None,
             gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
             high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -6517,6 +6771,8 @@ class Vap(pulumi.CustomResource):
             mu_mimo: Optional[pulumi.Input[str]] = None,
             multicast_enhance: Optional[pulumi.Input[str]] = None,
             multicast_rate: Optional[pulumi.Input[str]] = None,
+            n80211k: Optional[pulumi.Input[str]] = None,
+            n80211v: Optional[pulumi.Input[str]] = None,
             nac: Optional[pulumi.Input[str]] = None,
             nac_profile: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -6547,6 +6803,7 @@ class Vap(pulumi.CustomResource):
             radio5g_threshold: Optional[pulumi.Input[str]] = None,
             radio_sensitivity: Optional[pulumi.Input[str]] = None,
             radius_mac_auth: Optional[pulumi.Input[str]] = None,
+            radius_mac_auth_block_interval: Optional[pulumi.Input[int]] = None,
             radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
             radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VapRadiusMacAuthUsergroupArgs']]]]] = None,
             radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
@@ -6562,8 +6819,10 @@ class Vap(pulumi.CustomResource):
             rates11bg: Optional[pulumi.Input[str]] = None,
             rates11n_ss12: Optional[pulumi.Input[str]] = None,
             rates11n_ss34: Optional[pulumi.Input[str]] = None,
+            roaming_acct_interim_update: Optional[pulumi.Input[str]] = None,
             sae_groups: Optional[pulumi.Input[str]] = None,
             sae_h2e_only: Optional[pulumi.Input[str]] = None,
+            sae_hnp_only: Optional[pulumi.Input[str]] = None,
             sae_password: Optional[pulumi.Input[str]] = None,
             sae_pk: Optional[pulumi.Input[str]] = None,
             sae_private_key: Optional[pulumi.Input[str]] = None,
@@ -6616,7 +6875,7 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] application_list: Application control list name.
         :param pulumi.Input[int] application_report_intv: Application report interval (30 - 864000 sec, default = 120).
         :param pulumi.Input[int] atf_weight: Airtime weight in percentage (default = 20).
-        :param pulumi.Input[str] auth: Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        :param pulumi.Input[str] auth: Authentication protocol.
         :param pulumi.Input[str] auth_cert: HTTPS server certificate.
         :param pulumi.Input[str] auth_portal_addr: Address of captive portal.
         :param pulumi.Input[str] beacon_advertising: Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
@@ -6628,6 +6887,7 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[int] bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
         :param pulumi.Input[str] captive_portal_ac_name: Local-bridging captive portal ac-name.
         :param pulumi.Input[int] captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
+        :param pulumi.Input[str] captive_portal_fw_accounting: Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] captive_portal_macauth_radius_secret: Secret key to access the macauth RADIUS server.
         :param pulumi.Input[str] captive_portal_macauth_radius_server: Captive portal external RADIUS server domain name or IP address.
         :param pulumi.Input[str] captive_portal_radius_secret: Secret key to access the RADIUS server.
@@ -6656,6 +6916,7 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[int] ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
         :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
         :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtk_rekey: Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (1800 - 864000 sec, default = 86400).
         :param pulumi.Input[str] high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
@@ -6699,6 +6960,8 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] mu_mimo: Enable/disable Multi-user MIMO (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_enhance: Enable/disable converting multicast to unicast to improve performance (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_rate: Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
+        :param pulumi.Input[str] n80211k: Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] n80211v: Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nac: Enable/disable network access control. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nac_profile: NAC profile name.
         :param pulumi.Input[str] name: Virtual AP name.
@@ -6729,23 +6992,26 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] radio5g_threshold: Minimum signal level/threshold in dBm required for the AP response to receive a packet in 5G band(-95 to -20, default = -76).
         :param pulumi.Input[str] radio_sensitivity: Enable/disable software radio sensitivity (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radius_mac_auth: Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] radius_mac_auth_block_interval: Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
         :param pulumi.Input[str] radius_mac_auth_server: RADIUS-based MAC authentication server.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VapRadiusMacAuthUsergroupArgs']]]] radius_mac_auth_usergroups: Selective user groups that are permitted for RADIUS mac authentication. The structure of `radius_mac_auth_usergroups` block is documented below.
         :param pulumi.Input[str] radius_mac_mpsk_auth: Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] radius_mac_mpsk_timeout: RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
         :param pulumi.Input[str] radius_server: RADIUS server to be used to authenticate WiFi users.
-        :param pulumi.Input[str] rates11a: Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        :param pulumi.Input[str] rates11a: Allowed data rates for 802.11a.
         :param pulumi.Input[str] rates11ac_mcs_map: Comma separated list of max supported VHT MCS for spatial streams 1 through 8.
         :param pulumi.Input[str] rates11ac_ss12: Allowed data rates for 802.11ac with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ac_ss34: Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
         :param pulumi.Input[str] rates11ax_mcs_map: Comma separated list of max supported HE MCS for spatial streams 1 through 8.
         :param pulumi.Input[str] rates11ax_ss12: Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ax_ss34: Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
-        :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g.
         :param pulumi.Input[str] rates11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
         :param pulumi.Input[str] rates11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
+        :param pulumi.Input[str] roaming_acct_interim_update: Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sae_groups: SAE-Groups. Valid values: `19`, `20`, `21`.
         :param pulumi.Input[str] sae_h2e_only: Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sae_hnp_only: Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sae_password: WPA3 SAE password to be used to authenticate WiFi users.
         :param pulumi.Input[str] sae_pk: Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sae_private_key: Private key used for WPA3 SAE-PK authentication.
@@ -6808,6 +7074,7 @@ class Vap(pulumi.CustomResource):
         __props__.__dict__["bstm_rssi_disassoc_timer"] = bstm_rssi_disassoc_timer
         __props__.__dict__["captive_portal_ac_name"] = captive_portal_ac_name
         __props__.__dict__["captive_portal_auth_timeout"] = captive_portal_auth_timeout
+        __props__.__dict__["captive_portal_fw_accounting"] = captive_portal_fw_accounting
         __props__.__dict__["captive_portal_macauth_radius_secret"] = captive_portal_macauth_radius_secret
         __props__.__dict__["captive_portal_macauth_radius_server"] = captive_portal_macauth_radius_server
         __props__.__dict__["captive_portal_radius_secret"] = captive_portal_radius_secret
@@ -6836,6 +7103,7 @@ class Vap(pulumi.CustomResource):
         __props__.__dict__["ft_r0_key_lifetime"] = ft_r0_key_lifetime
         __props__.__dict__["gas_comeback_delay"] = gas_comeback_delay
         __props__.__dict__["gas_fragmentation_limit"] = gas_fragmentation_limit
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gtk_rekey"] = gtk_rekey
         __props__.__dict__["gtk_rekey_intv"] = gtk_rekey_intv
         __props__.__dict__["high_efficiency"] = high_efficiency
@@ -6879,6 +7147,8 @@ class Vap(pulumi.CustomResource):
         __props__.__dict__["mu_mimo"] = mu_mimo
         __props__.__dict__["multicast_enhance"] = multicast_enhance
         __props__.__dict__["multicast_rate"] = multicast_rate
+        __props__.__dict__["n80211k"] = n80211k
+        __props__.__dict__["n80211v"] = n80211v
         __props__.__dict__["nac"] = nac
         __props__.__dict__["nac_profile"] = nac_profile
         __props__.__dict__["name"] = name
@@ -6909,6 +7179,7 @@ class Vap(pulumi.CustomResource):
         __props__.__dict__["radio5g_threshold"] = radio5g_threshold
         __props__.__dict__["radio_sensitivity"] = radio_sensitivity
         __props__.__dict__["radius_mac_auth"] = radius_mac_auth
+        __props__.__dict__["radius_mac_auth_block_interval"] = radius_mac_auth_block_interval
         __props__.__dict__["radius_mac_auth_server"] = radius_mac_auth_server
         __props__.__dict__["radius_mac_auth_usergroups"] = radius_mac_auth_usergroups
         __props__.__dict__["radius_mac_mpsk_auth"] = radius_mac_mpsk_auth
@@ -6924,8 +7195,10 @@ class Vap(pulumi.CustomResource):
         __props__.__dict__["rates11bg"] = rates11bg
         __props__.__dict__["rates11n_ss12"] = rates11n_ss12
         __props__.__dict__["rates11n_ss34"] = rates11n_ss34
+        __props__.__dict__["roaming_acct_interim_update"] = roaming_acct_interim_update
         __props__.__dict__["sae_groups"] = sae_groups
         __props__.__dict__["sae_h2e_only"] = sae_h2e_only
+        __props__.__dict__["sae_hnp_only"] = sae_hnp_only
         __props__.__dict__["sae_password"] = sae_password
         __props__.__dict__["sae_pk"] = sae_pk
         __props__.__dict__["sae_private_key"] = sae_private_key
@@ -7061,7 +7334,7 @@ class Vap(pulumi.CustomResource):
     @pulumi.getter
     def auth(self) -> pulumi.Output[str]:
         """
-        Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        Authentication protocol.
         """
         return pulumi.get(self, "auth")
 
@@ -7152,6 +7425,14 @@ class Vap(pulumi.CustomResource):
         Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
         """
         return pulumi.get(self, "captive_portal_auth_timeout")
+
+    @property
+    @pulumi.getter(name="captivePortalFwAccounting")
+    def captive_portal_fw_accounting(self) -> pulumi.Output[str]:
+        """
+        Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "captive_portal_fw_accounting")
 
     @property
     @pulumi.getter(name="captivePortalMacauthRadiusSecret")
@@ -7376,6 +7657,14 @@ class Vap(pulumi.CustomResource):
         GAS fragmentation limit (512 - 4096, default = 1024).
         """
         return pulumi.get(self, "gas_fragmentation_limit")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="gtkRekey")
@@ -7723,6 +8012,22 @@ class Vap(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def n80211k(self) -> pulumi.Output[str]:
+        """
+        Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "n80211k")
+
+    @property
+    @pulumi.getter
+    def n80211v(self) -> pulumi.Output[str]:
+        """
+        Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "n80211v")
+
+    @property
+    @pulumi.getter
     def nac(self) -> pulumi.Output[str]:
         """
         Enable/disable network access control. Valid values: `enable`, `disable`.
@@ -7962,6 +8267,14 @@ class Vap(pulumi.CustomResource):
         return pulumi.get(self, "radius_mac_auth")
 
     @property
+    @pulumi.getter(name="radiusMacAuthBlockInterval")
+    def radius_mac_auth_block_interval(self) -> pulumi.Output[int]:
+        """
+        Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+        """
+        return pulumi.get(self, "radius_mac_auth_block_interval")
+
+    @property
     @pulumi.getter(name="radiusMacAuthServer")
     def radius_mac_auth_server(self) -> pulumi.Output[str]:
         """
@@ -8005,7 +8318,7 @@ class Vap(pulumi.CustomResource):
     @pulumi.getter
     def rates11a(self) -> pulumi.Output[str]:
         """
-        Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        Allowed data rates for 802.11a.
         """
         return pulumi.get(self, "rates11a")
 
@@ -8061,7 +8374,7 @@ class Vap(pulumi.CustomResource):
     @pulumi.getter
     def rates11bg(self) -> pulumi.Output[str]:
         """
-        Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        Allowed data rates for 802.11b/g.
         """
         return pulumi.get(self, "rates11bg")
 
@@ -8082,6 +8395,14 @@ class Vap(pulumi.CustomResource):
         return pulumi.get(self, "rates11n_ss34")
 
     @property
+    @pulumi.getter(name="roamingAcctInterimUpdate")
+    def roaming_acct_interim_update(self) -> pulumi.Output[str]:
+        """
+        Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "roaming_acct_interim_update")
+
+    @property
     @pulumi.getter(name="saeGroups")
     def sae_groups(self) -> pulumi.Output[str]:
         """
@@ -8096,6 +8417,14 @@ class Vap(pulumi.CustomResource):
         Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "sae_h2e_only")
+
+    @property
+    @pulumi.getter(name="saeHnpOnly")
+    def sae_hnp_only(self) -> pulumi.Output[str]:
+        """
+        Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "sae_hnp_only")
 
     @property
     @pulumi.getter(name="saePassword")

@@ -71,6 +71,12 @@ namespace Pulumiverse.Fortios.User
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
         /// </summary>
         [Output("httpAuthType")]
@@ -107,7 +113,7 @@ namespace Pulumiverse.Fortios.User
         public Output<string> ServerName { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
         /// </summary>
         [Output("sslMinProtoVersion")]
         public Output<string> SslMinProtoVersion { get; private set; } = null!;
@@ -212,6 +218,12 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
         /// </summary>
         [Input("httpAuthType")]
@@ -264,7 +276,7 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? ServerName { get; set; }
 
         /// <summary>
-        /// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
         /// </summary>
         [Input("sslMinProtoVersion")]
         public Input<string>? SslMinProtoVersion { get; set; }
@@ -326,6 +338,12 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
         /// </summary>
         [Input("httpAuthType")]
@@ -378,7 +396,7 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? ServerName { get; set; }
 
         /// <summary>
-        /// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
         /// </summary>
         [Input("sslMinProtoVersion")]
         public Input<string>? SslMinProtoVersion { get; set; }

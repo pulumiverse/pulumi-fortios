@@ -93,6 +93,14 @@ export interface GetAddressResult {
      */
     readonly fssoGroups: outputs.firewall.GetAddressFssoGroup[];
     /**
+     * Dynamic address matching hardware model.
+     */
+    readonly hwModel: string;
+    /**
+     * Dynamic address matching hardware vendor.
+     */
+    readonly hwVendor: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
@@ -133,9 +141,17 @@ export interface GetAddressResult {
      */
     readonly organization: string;
     /**
+     * Dynamic address matching operating system.
+     */
+    readonly os: string;
+    /**
      * Policy group name.
      */
     readonly policyGroup: string;
+    /**
+     * route-tag address.
+     */
+    readonly routeTag: number;
     /**
      * SDN.
      */
@@ -168,6 +184,10 @@ export interface GetAddressResult {
      * Subnet name.
      */
     readonly subnetName: string;
+    /**
+     * Dynamic address matching software version.
+     */
+    readonly swVersion: string;
     /**
      * Tag detection level of dynamic address object.
      */

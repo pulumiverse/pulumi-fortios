@@ -128,6 +128,12 @@ type Vip6 struct {
 	Extport pulumi.StringOutput `pulumi:"extport"`
 	// Custom defined ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+	H2Support pulumi.StringOutput `pulumi:"h2Support"`
+	// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+	H3Support pulumi.StringOutput `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 	HttpCookieAge pulumi.IntOutput `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -172,6 +178,8 @@ type Vip6 struct {
 	Nat66 pulumi.StringOutput `pulumi:"nat66"`
 	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
 	NatSourceVip pulumi.StringOutput `pulumi:"natSourceVip"`
+	// Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+	NdpReply pulumi.StringOutput `pulumi:"ndpReply"`
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 	OutlookWebAccess pulumi.StringOutput `pulumi:"outlookWebAccess"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -180,6 +188,8 @@ type Vip6 struct {
 	Portforward pulumi.StringOutput `pulumi:"portforward"`
 	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic Vip6QuicOutput `pulumi:"quic"`
 	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers Vip6RealserverArrayOutput `pulumi:"realservers"`
 	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
@@ -248,6 +258,8 @@ type Vip6 struct {
 	SslServerMaxVersion pulumi.StringOutput `pulumi:"sslServerMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
 	SslServerMinVersion pulumi.StringOutput `pulumi:"sslServerMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslServerRenegotiation pulumi.StringOutput `pulumi:"sslServerRenegotiation"`
 	// Maximum number of FortiGate to Server SSL session states to keep.
 	SslServerSessionStateMax pulumi.IntOutput `pulumi:"sslServerSessionStateMax"`
 	// Number of minutes to keep FortiGate to Server SSL session state.
@@ -320,6 +332,12 @@ type vip6State struct {
 	Extport *string `pulumi:"extport"`
 	// Custom defined ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+	H2Support *string `pulumi:"h2Support"`
+	// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+	H3Support *string `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 	HttpCookieAge *int `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -364,6 +382,8 @@ type vip6State struct {
 	Nat66 *string `pulumi:"nat66"`
 	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
 	NatSourceVip *string `pulumi:"natSourceVip"`
+	// Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+	NdpReply *string `pulumi:"ndpReply"`
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 	OutlookWebAccess *string `pulumi:"outlookWebAccess"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -372,6 +392,8 @@ type vip6State struct {
 	Portforward *string `pulumi:"portforward"`
 	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
 	Protocol *string `pulumi:"protocol"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic *Vip6Quic `pulumi:"quic"`
 	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers []Vip6Realserver `pulumi:"realservers"`
 	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
@@ -440,6 +462,8 @@ type vip6State struct {
 	SslServerMaxVersion *string `pulumi:"sslServerMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
 	SslServerMinVersion *string `pulumi:"sslServerMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslServerRenegotiation *string `pulumi:"sslServerRenegotiation"`
 	// Maximum number of FortiGate to Server SSL session states to keep.
 	SslServerSessionStateMax *int `pulumi:"sslServerSessionStateMax"`
 	// Number of minutes to keep FortiGate to Server SSL session state.
@@ -477,6 +501,12 @@ type Vip6State struct {
 	Extport pulumi.StringPtrInput
 	// Custom defined ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+	H2Support pulumi.StringPtrInput
+	// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+	H3Support pulumi.StringPtrInput
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 	HttpCookieAge pulumi.IntPtrInput
 	// Domain that HTTP cookie persistence should apply to.
@@ -521,6 +551,8 @@ type Vip6State struct {
 	Nat66 pulumi.StringPtrInput
 	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
 	NatSourceVip pulumi.StringPtrInput
+	// Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+	NdpReply pulumi.StringPtrInput
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 	OutlookWebAccess pulumi.StringPtrInput
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -529,6 +561,8 @@ type Vip6State struct {
 	Portforward pulumi.StringPtrInput
 	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
 	Protocol pulumi.StringPtrInput
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic Vip6QuicPtrInput
 	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers Vip6RealserverArrayInput
 	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
@@ -597,6 +631,8 @@ type Vip6State struct {
 	SslServerMaxVersion pulumi.StringPtrInput
 	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
 	SslServerMinVersion pulumi.StringPtrInput
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslServerRenegotiation pulumi.StringPtrInput
 	// Maximum number of FortiGate to Server SSL session states to keep.
 	SslServerSessionStateMax pulumi.IntPtrInput
 	// Number of minutes to keep FortiGate to Server SSL session state.
@@ -638,6 +674,12 @@ type vip6Args struct {
 	Extport *string `pulumi:"extport"`
 	// Custom defined ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+	H2Support *string `pulumi:"h2Support"`
+	// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+	H3Support *string `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 	HttpCookieAge *int `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -682,6 +724,8 @@ type vip6Args struct {
 	Nat66 *string `pulumi:"nat66"`
 	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
 	NatSourceVip *string `pulumi:"natSourceVip"`
+	// Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+	NdpReply *string `pulumi:"ndpReply"`
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 	OutlookWebAccess *string `pulumi:"outlookWebAccess"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -690,6 +734,8 @@ type vip6Args struct {
 	Portforward *string `pulumi:"portforward"`
 	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
 	Protocol *string `pulumi:"protocol"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic *Vip6Quic `pulumi:"quic"`
 	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers []Vip6Realserver `pulumi:"realservers"`
 	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
@@ -758,6 +804,8 @@ type vip6Args struct {
 	SslServerMaxVersion *string `pulumi:"sslServerMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
 	SslServerMinVersion *string `pulumi:"sslServerMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslServerRenegotiation *string `pulumi:"sslServerRenegotiation"`
 	// Maximum number of FortiGate to Server SSL session states to keep.
 	SslServerSessionStateMax *int `pulumi:"sslServerSessionStateMax"`
 	// Number of minutes to keep FortiGate to Server SSL session state.
@@ -796,6 +844,12 @@ type Vip6Args struct {
 	Extport pulumi.StringPtrInput
 	// Custom defined ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+	H2Support pulumi.StringPtrInput
+	// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+	H3Support pulumi.StringPtrInput
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 	HttpCookieAge pulumi.IntPtrInput
 	// Domain that HTTP cookie persistence should apply to.
@@ -840,6 +894,8 @@ type Vip6Args struct {
 	Nat66 pulumi.StringPtrInput
 	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
 	NatSourceVip pulumi.StringPtrInput
+	// Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+	NdpReply pulumi.StringPtrInput
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 	OutlookWebAccess pulumi.StringPtrInput
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -848,6 +904,8 @@ type Vip6Args struct {
 	Portforward pulumi.StringPtrInput
 	// Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
 	Protocol pulumi.StringPtrInput
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic Vip6QuicPtrInput
 	// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers Vip6RealserverArrayInput
 	// Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
@@ -916,6 +974,8 @@ type Vip6Args struct {
 	SslServerMaxVersion pulumi.StringPtrInput
 	// Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
 	SslServerMinVersion pulumi.StringPtrInput
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslServerRenegotiation pulumi.StringPtrInput
 	// Maximum number of FortiGate to Server SSL session states to keep.
 	SslServerSessionStateMax pulumi.IntPtrInput
 	// Number of minutes to keep FortiGate to Server SSL session state.
@@ -1066,6 +1126,21 @@ func (o Vip6Output) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vip6) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Vip6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Vip6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+func (o Vip6Output) H2Support() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip6) pulumi.StringOutput { return v.H2Support }).(pulumi.StringOutput)
+}
+
+// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+func (o Vip6Output) H3Support() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip6) pulumi.StringOutput { return v.H3Support }).(pulumi.StringOutput)
+}
+
 // Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 func (o Vip6Output) HttpCookieAge() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vip6) pulumi.IntOutput { return v.HttpCookieAge }).(pulumi.IntOutput)
@@ -1176,6 +1251,11 @@ func (o Vip6Output) NatSourceVip() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vip6) pulumi.StringOutput { return v.NatSourceVip }).(pulumi.StringOutput)
 }
 
+// Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+func (o Vip6Output) NdpReply() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip6) pulumi.StringOutput { return v.NdpReply }).(pulumi.StringOutput)
+}
+
 // Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 func (o Vip6Output) OutlookWebAccess() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vip6) pulumi.StringOutput { return v.OutlookWebAccess }).(pulumi.StringOutput)
@@ -1194,6 +1274,11 @@ func (o Vip6Output) Portforward() pulumi.StringOutput {
 // Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
 func (o Vip6Output) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vip6) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// QUIC setting. The structure of `quic` block is documented below.
+func (o Vip6Output) Quic() Vip6QuicOutput {
+	return o.ApplyT(func(v *Vip6) Vip6QuicOutput { return v.Quic }).(Vip6QuicOutput)
 }
 
 // Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
@@ -1364,6 +1449,11 @@ func (o Vip6Output) SslServerMaxVersion() pulumi.StringOutput {
 // Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
 func (o Vip6Output) SslServerMinVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vip6) pulumi.StringOutput { return v.SslServerMinVersion }).(pulumi.StringOutput)
+}
+
+// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+func (o Vip6Output) SslServerRenegotiation() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip6) pulumi.StringOutput { return v.SslServerRenegotiation }).(pulumi.StringOutput)
 }
 
 // Maximum number of FortiGate to Server SSL session states to keep.

@@ -41,7 +41,7 @@ class EmailserverArgs:
         :param pulumi.Input[str] server: SMTP server IP address or hostname.
         :param pulumi.Input[str] source_ip: SMTP server IPv4 source IP.
         :param pulumi.Input[str] source_ip6: SMTP server IPv6 source IP.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] type: Use FortiGuard Message service or custom email server. Valid values: `custom`.
         :param pulumi.Input[str] username: SMTP server user name for authentication.
         :param pulumi.Input[str] validate_server: Enable/disable validation of server certificate. Valid values: `enable`, `disable`.
@@ -202,7 +202,7 @@ class EmailserverArgs:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -289,7 +289,7 @@ class _EmailserverState:
         :param pulumi.Input[str] server: SMTP server IP address or hostname.
         :param pulumi.Input[str] source_ip: SMTP server IPv4 source IP.
         :param pulumi.Input[str] source_ip6: SMTP server IPv6 source IP.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] type: Use FortiGuard Message service or custom email server. Valid values: `custom`.
         :param pulumi.Input[str] username: SMTP server user name for authentication.
         :param pulumi.Input[str] validate_server: Enable/disable validation of server certificate. Valid values: `enable`, `disable`.
@@ -450,7 +450,7 @@ class _EmailserverState:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -581,7 +581,7 @@ class Emailserver(pulumi.CustomResource):
         :param pulumi.Input[str] server: SMTP server IP address or hostname.
         :param pulumi.Input[str] source_ip: SMTP server IPv4 source IP.
         :param pulumi.Input[str] source_ip6: SMTP server IPv6 source IP.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] type: Use FortiGuard Message service or custom email server. Valid values: `custom`.
         :param pulumi.Input[str] username: SMTP server user name for authentication.
         :param pulumi.Input[str] validate_server: Enable/disable validation of server certificate. Valid values: `enable`, `disable`.
@@ -732,7 +732,7 @@ class Emailserver(pulumi.CustomResource):
         :param pulumi.Input[str] server: SMTP server IP address or hostname.
         :param pulumi.Input[str] source_ip: SMTP server IPv4 source IP.
         :param pulumi.Input[str] source_ip6: SMTP server IPv6 source IP.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] type: Use FortiGuard Message service or custom email server. Valid values: `custom`.
         :param pulumi.Input[str] username: SMTP server user name for authentication.
         :param pulumi.Input[str] validate_server: Enable/disable validation of server certificate. Valid values: `enable`, `disable`.
@@ -843,7 +843,7 @@ class Emailserver(pulumi.CustomResource):
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> pulumi.Output[str]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 

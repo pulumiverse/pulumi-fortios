@@ -103,7 +103,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> SslAlgorithm { get; private set; } = null!;
 
         /// <summary>
-        /// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+        /// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
         /// </summary>
         [Output("sslCert")]
         public Output<string> SslCert { get; private set; } = null!;
@@ -240,7 +240,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? SslAlgorithm { get; set; }
 
         /// <summary>
-        /// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+        /// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
         /// </summary>
         [Input("sslCert", required: true)]
         public Input<string> SslCert { get; set; } = null!;
@@ -338,7 +338,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? SslAlgorithm { get; set; }
 
         /// <summary>
-        /// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+        /// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
         /// </summary>
         [Input("sslCert")]
         public Input<string>? SslCert { get; set; }

@@ -117,6 +117,8 @@ type Local struct {
 	PpkIdentity pulumi.StringOutput `pulumi:"ppkIdentity"`
 	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
 	PpkSecret pulumi.StringPtrOutput `pulumi:"ppkSecret"`
+	// Quantum Key Distribution (QKD) profile.
+	QkdProfile pulumi.StringOutput `pulumi:"qkdProfile"`
 	// Name of RADIUS server with which the user must authenticate.
 	RadiusServer pulumi.StringOutput `pulumi:"radiusServer"`
 	// Two-factor recipient's SMS server.
@@ -222,6 +224,8 @@ type localState struct {
 	PpkIdentity *string `pulumi:"ppkIdentity"`
 	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
 	PpkSecret *string `pulumi:"ppkSecret"`
+	// Quantum Key Distribution (QKD) profile.
+	QkdProfile *string `pulumi:"qkdProfile"`
 	// Name of RADIUS server with which the user must authenticate.
 	RadiusServer *string `pulumi:"radiusServer"`
 	// Two-factor recipient's SMS server.
@@ -281,6 +285,8 @@ type LocalState struct {
 	PpkIdentity pulumi.StringPtrInput
 	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
 	PpkSecret pulumi.StringPtrInput
+	// Quantum Key Distribution (QKD) profile.
+	QkdProfile pulumi.StringPtrInput
 	// Name of RADIUS server with which the user must authenticate.
 	RadiusServer pulumi.StringPtrInput
 	// Two-factor recipient's SMS server.
@@ -344,6 +350,8 @@ type localArgs struct {
 	PpkIdentity *string `pulumi:"ppkIdentity"`
 	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
 	PpkSecret *string `pulumi:"ppkSecret"`
+	// Quantum Key Distribution (QKD) profile.
+	QkdProfile *string `pulumi:"qkdProfile"`
 	// Name of RADIUS server with which the user must authenticate.
 	RadiusServer *string `pulumi:"radiusServer"`
 	// Two-factor recipient's SMS server.
@@ -404,6 +412,8 @@ type LocalArgs struct {
 	PpkIdentity pulumi.StringPtrInput
 	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
 	PpkSecret pulumi.StringPtrInput
+	// Quantum Key Distribution (QKD) profile.
+	QkdProfile pulumi.StringPtrInput
 	// Name of RADIUS server with which the user must authenticate.
 	RadiusServer pulumi.StringPtrInput
 	// Two-factor recipient's SMS server.
@@ -586,6 +596,11 @@ func (o LocalOutput) PpkIdentity() pulumi.StringOutput {
 // IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
 func (o LocalOutput) PpkSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Local) pulumi.StringPtrOutput { return v.PpkSecret }).(pulumi.StringPtrOutput)
+}
+
+// Quantum Key Distribution (QKD) profile.
+func (o LocalOutput) QkdProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.QkdProfile }).(pulumi.StringOutput)
 }
 
 // Name of RADIUS server with which the user must authenticate.

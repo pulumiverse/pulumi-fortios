@@ -37,7 +37,7 @@ type Fctems struct {
 	AdminPassword pulumi.StringPtrOutput `pulumi:"adminPassword"`
 	// FortiClient EMS admin username.
 	AdminUsername pulumi.StringOutput `pulumi:"adminUsername"`
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+	// FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
 	CallTimeout pulumi.IntOutput `pulumi:"callTimeout"`
 	// List of EMS capabilities.
 	Capabilities pulumi.StringOutput `pulumi:"capabilities"`
@@ -47,7 +47,7 @@ type Fctems struct {
 	CloudServerType pulumi.StringOutput `pulumi:"cloudServerType"`
 	// Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
 	DirtyReason pulumi.StringOutput `pulumi:"dirtyReason"`
-	// EMS ID in order (1 - 5)
+	// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
 	EmsId pulumi.IntOutput `pulumi:"emsId"`
 	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
 	FortinetoneCloudAuthentication pulumi.StringOutput `pulumi:"fortinetoneCloudAuthentication"`
@@ -73,6 +73,8 @@ type Fctems struct {
 	PullTags pulumi.StringOutput `pulumi:"pullTags"`
 	// Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
 	PullVulnerabilities pulumi.StringOutput `pulumi:"pullVulnerabilities"`
+	// Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+	SendTagsToAllVdoms pulumi.StringOutput `pulumi:"sendTagsToAllVdoms"`
 	// FortiClient EMS Serial Number.
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
 	// FortiClient EMS FQDN or IPv4 address.
@@ -85,8 +87,12 @@ type Fctems struct {
 	StatusCheckInterval pulumi.IntOutput `pulumi:"statusCheckInterval"`
 	// EMS Tenant ID.
 	TenantId pulumi.StringOutput `pulumi:"tenantId"`
+	// Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+	TrustCaCn pulumi.StringOutput `pulumi:"trustCaCn"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Lowest CA cert on Fortigate in verified EMS cert chain.
+	VerifyingCa pulumi.StringOutput `pulumi:"verifyingCa"`
 	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
 	WebsocketOverride pulumi.StringOutput `pulumi:"websocketOverride"`
 }
@@ -132,7 +138,7 @@ type fctemsState struct {
 	AdminPassword *string `pulumi:"adminPassword"`
 	// FortiClient EMS admin username.
 	AdminUsername *string `pulumi:"adminUsername"`
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+	// FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
 	CallTimeout *int `pulumi:"callTimeout"`
 	// List of EMS capabilities.
 	Capabilities *string `pulumi:"capabilities"`
@@ -142,7 +148,7 @@ type fctemsState struct {
 	CloudServerType *string `pulumi:"cloudServerType"`
 	// Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
 	DirtyReason *string `pulumi:"dirtyReason"`
-	// EMS ID in order (1 - 5)
+	// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
 	EmsId *int `pulumi:"emsId"`
 	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
 	FortinetoneCloudAuthentication *string `pulumi:"fortinetoneCloudAuthentication"`
@@ -168,6 +174,8 @@ type fctemsState struct {
 	PullTags *string `pulumi:"pullTags"`
 	// Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
 	PullVulnerabilities *string `pulumi:"pullVulnerabilities"`
+	// Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+	SendTagsToAllVdoms *string `pulumi:"sendTagsToAllVdoms"`
 	// FortiClient EMS Serial Number.
 	SerialNumber *string `pulumi:"serialNumber"`
 	// FortiClient EMS FQDN or IPv4 address.
@@ -180,8 +188,12 @@ type fctemsState struct {
 	StatusCheckInterval *int `pulumi:"statusCheckInterval"`
 	// EMS Tenant ID.
 	TenantId *string `pulumi:"tenantId"`
+	// Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+	TrustCaCn *string `pulumi:"trustCaCn"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Lowest CA cert on Fortigate in verified EMS cert chain.
+	VerifyingCa *string `pulumi:"verifyingCa"`
 	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
 	WebsocketOverride *string `pulumi:"websocketOverride"`
 }
@@ -191,7 +203,7 @@ type FctemsState struct {
 	AdminPassword pulumi.StringPtrInput
 	// FortiClient EMS admin username.
 	AdminUsername pulumi.StringPtrInput
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+	// FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
 	CallTimeout pulumi.IntPtrInput
 	// List of EMS capabilities.
 	Capabilities pulumi.StringPtrInput
@@ -201,7 +213,7 @@ type FctemsState struct {
 	CloudServerType pulumi.StringPtrInput
 	// Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
 	DirtyReason pulumi.StringPtrInput
-	// EMS ID in order (1 - 5)
+	// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
 	EmsId pulumi.IntPtrInput
 	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
 	FortinetoneCloudAuthentication pulumi.StringPtrInput
@@ -227,6 +239,8 @@ type FctemsState struct {
 	PullTags pulumi.StringPtrInput
 	// Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
 	PullVulnerabilities pulumi.StringPtrInput
+	// Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+	SendTagsToAllVdoms pulumi.StringPtrInput
 	// FortiClient EMS Serial Number.
 	SerialNumber pulumi.StringPtrInput
 	// FortiClient EMS FQDN or IPv4 address.
@@ -239,8 +253,12 @@ type FctemsState struct {
 	StatusCheckInterval pulumi.IntPtrInput
 	// EMS Tenant ID.
 	TenantId pulumi.StringPtrInput
+	// Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+	TrustCaCn pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Lowest CA cert on Fortigate in verified EMS cert chain.
+	VerifyingCa pulumi.StringPtrInput
 	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
 	WebsocketOverride pulumi.StringPtrInput
 }
@@ -254,7 +272,7 @@ type fctemsArgs struct {
 	AdminPassword *string `pulumi:"adminPassword"`
 	// FortiClient EMS admin username.
 	AdminUsername *string `pulumi:"adminUsername"`
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+	// FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
 	CallTimeout *int `pulumi:"callTimeout"`
 	// List of EMS capabilities.
 	Capabilities *string `pulumi:"capabilities"`
@@ -264,7 +282,7 @@ type fctemsArgs struct {
 	CloudServerType *string `pulumi:"cloudServerType"`
 	// Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
 	DirtyReason *string `pulumi:"dirtyReason"`
-	// EMS ID in order (1 - 5)
+	// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
 	EmsId *int `pulumi:"emsId"`
 	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
 	FortinetoneCloudAuthentication *string `pulumi:"fortinetoneCloudAuthentication"`
@@ -290,6 +308,8 @@ type fctemsArgs struct {
 	PullTags *string `pulumi:"pullTags"`
 	// Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
 	PullVulnerabilities *string `pulumi:"pullVulnerabilities"`
+	// Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+	SendTagsToAllVdoms *string `pulumi:"sendTagsToAllVdoms"`
 	// FortiClient EMS Serial Number.
 	SerialNumber *string `pulumi:"serialNumber"`
 	// FortiClient EMS FQDN or IPv4 address.
@@ -302,8 +322,12 @@ type fctemsArgs struct {
 	StatusCheckInterval *int `pulumi:"statusCheckInterval"`
 	// EMS Tenant ID.
 	TenantId *string `pulumi:"tenantId"`
+	// Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+	TrustCaCn *string `pulumi:"trustCaCn"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Lowest CA cert on Fortigate in verified EMS cert chain.
+	VerifyingCa *string `pulumi:"verifyingCa"`
 	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
 	WebsocketOverride *string `pulumi:"websocketOverride"`
 }
@@ -314,7 +338,7 @@ type FctemsArgs struct {
 	AdminPassword pulumi.StringPtrInput
 	// FortiClient EMS admin username.
 	AdminUsername pulumi.StringPtrInput
-	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+	// FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
 	CallTimeout pulumi.IntPtrInput
 	// List of EMS capabilities.
 	Capabilities pulumi.StringPtrInput
@@ -324,7 +348,7 @@ type FctemsArgs struct {
 	CloudServerType pulumi.StringPtrInput
 	// Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
 	DirtyReason pulumi.StringPtrInput
-	// EMS ID in order (1 - 5)
+	// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
 	EmsId pulumi.IntPtrInput
 	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
 	FortinetoneCloudAuthentication pulumi.StringPtrInput
@@ -350,6 +374,8 @@ type FctemsArgs struct {
 	PullTags pulumi.StringPtrInput
 	// Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
 	PullVulnerabilities pulumi.StringPtrInput
+	// Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+	SendTagsToAllVdoms pulumi.StringPtrInput
 	// FortiClient EMS Serial Number.
 	SerialNumber pulumi.StringPtrInput
 	// FortiClient EMS FQDN or IPv4 address.
@@ -362,8 +388,12 @@ type FctemsArgs struct {
 	StatusCheckInterval pulumi.IntPtrInput
 	// EMS Tenant ID.
 	TenantId pulumi.StringPtrInput
+	// Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+	TrustCaCn pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Lowest CA cert on Fortigate in verified EMS cert chain.
+	VerifyingCa pulumi.StringPtrInput
 	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
 	WebsocketOverride pulumi.StringPtrInput
 }
@@ -465,7 +495,7 @@ func (o FctemsOutput) AdminUsername() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fctems) pulumi.StringOutput { return v.AdminUsername }).(pulumi.StringOutput)
 }
 
-// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+// FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
 func (o FctemsOutput) CallTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fctems) pulumi.IntOutput { return v.CallTimeout }).(pulumi.IntOutput)
 }
@@ -490,7 +520,7 @@ func (o FctemsOutput) DirtyReason() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fctems) pulumi.StringOutput { return v.DirtyReason }).(pulumi.StringOutput)
 }
 
-// EMS ID in order (1 - 5)
+// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
 func (o FctemsOutput) EmsId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fctems) pulumi.IntOutput { return v.EmsId }).(pulumi.IntOutput)
 }
@@ -555,6 +585,11 @@ func (o FctemsOutput) PullVulnerabilities() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fctems) pulumi.StringOutput { return v.PullVulnerabilities }).(pulumi.StringOutput)
 }
 
+// Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+func (o FctemsOutput) SendTagsToAllVdoms() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fctems) pulumi.StringOutput { return v.SendTagsToAllVdoms }).(pulumi.StringOutput)
+}
+
 // FortiClient EMS Serial Number.
 func (o FctemsOutput) SerialNumber() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fctems) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
@@ -585,9 +620,19 @@ func (o FctemsOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fctems) pulumi.StringOutput { return v.TenantId }).(pulumi.StringOutput)
 }
 
+// Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+func (o FctemsOutput) TrustCaCn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fctems) pulumi.StringOutput { return v.TrustCaCn }).(pulumi.StringOutput)
+}
+
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 func (o FctemsOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Fctems) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// Lowest CA cert on Fortigate in verified EMS cert chain.
+func (o FctemsOutput) VerifyingCa() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fctems) pulumi.StringOutput { return v.VerifyingCa }).(pulumi.StringOutput)
 }
 
 // Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.

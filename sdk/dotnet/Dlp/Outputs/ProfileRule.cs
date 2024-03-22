@@ -27,7 +27,7 @@ namespace Pulumiverse.Fortios.Dlp.Outputs
         /// </summary>
         public readonly string? Expiry;
         /// <summary>
-        /// Match files this size or larger (0 - 4294967295 kbytes).
+        /// Match files greater than or equal to this size (KB).
         /// </summary>
         public readonly int? FileSize;
         /// <summary>

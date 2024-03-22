@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ProxypolicySortArgs', 'ProxypolicySort']
 
@@ -18,6 +20,7 @@ class ProxypolicySortArgs:
                  sortdirection: pulumi.Input[str],
                  comment: Optional[pulumi.Input[str]] = None,
                  force_recreate: Optional[pulumi.Input[str]] = None,
+                 manual_orders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -29,6 +32,8 @@ class ProxypolicySortArgs:
             pulumi.set(__self__, "comment", comment)
         if force_recreate is not None:
             pulumi.set(__self__, "force_recreate", force_recreate)
+        if manual_orders is not None:
+            pulumi.set(__self__, "manual_orders", manual_orders)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
@@ -71,6 +76,15 @@ class ProxypolicySortArgs:
         pulumi.set(self, "force_recreate", value)
 
     @property
+    @pulumi.getter(name="manualOrders")
+    def manual_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "manual_orders")
+
+    @manual_orders.setter
+    def manual_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "manual_orders", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "status")
@@ -94,8 +108,10 @@ class _ProxypolicySortState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
                  force_recreate: Optional[pulumi.Input[str]] = None,
+                 manual_orders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  sortby: Optional[pulumi.Input[str]] = None,
                  sortdirection: Optional[pulumi.Input[str]] = None,
+                 state_policy_lists: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicySortStatePolicyListArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -105,10 +121,14 @@ class _ProxypolicySortState:
             pulumi.set(__self__, "comment", comment)
         if force_recreate is not None:
             pulumi.set(__self__, "force_recreate", force_recreate)
+        if manual_orders is not None:
+            pulumi.set(__self__, "manual_orders", manual_orders)
         if sortby is not None:
             pulumi.set(__self__, "sortby", sortby)
         if sortdirection is not None:
             pulumi.set(__self__, "sortdirection", sortdirection)
+        if state_policy_lists is not None:
+            pulumi.set(__self__, "state_policy_lists", state_policy_lists)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
@@ -133,6 +153,15 @@ class _ProxypolicySortState:
         pulumi.set(self, "force_recreate", value)
 
     @property
+    @pulumi.getter(name="manualOrders")
+    def manual_orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "manual_orders")
+
+    @manual_orders.setter
+    def manual_orders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "manual_orders", value)
+
+    @property
     @pulumi.getter
     def sortby(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "sortby")
@@ -149,6 +178,15 @@ class _ProxypolicySortState:
     @sortdirection.setter
     def sortdirection(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sortdirection", value)
+
+    @property
+    @pulumi.getter(name="statePolicyLists")
+    def state_policy_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicySortStatePolicyListArgs']]]]:
+        return pulumi.get(self, "state_policy_lists")
+
+    @state_policy_lists.setter
+    def state_policy_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicySortStatePolicyListArgs']]]]):
+        pulumi.set(self, "state_policy_lists", value)
 
     @property
     @pulumi.getter
@@ -176,6 +214,7 @@ class ProxypolicySort(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  force_recreate: Optional[pulumi.Input[str]] = None,
+                 manual_orders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  sortby: Optional[pulumi.Input[str]] = None,
                  sortdirection: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -211,6 +250,7 @@ class ProxypolicySort(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  force_recreate: Optional[pulumi.Input[str]] = None,
+                 manual_orders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  sortby: Optional[pulumi.Input[str]] = None,
                  sortdirection: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -226,6 +266,7 @@ class ProxypolicySort(pulumi.CustomResource):
 
             __props__.__dict__["comment"] = comment
             __props__.__dict__["force_recreate"] = force_recreate
+            __props__.__dict__["manual_orders"] = manual_orders
             if sortby is None and not opts.urn:
                 raise TypeError("Missing required property 'sortby'")
             __props__.__dict__["sortby"] = sortby
@@ -234,6 +275,7 @@ class ProxypolicySort(pulumi.CustomResource):
             __props__.__dict__["sortdirection"] = sortdirection
             __props__.__dict__["status"] = status
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["state_policy_lists"] = None
         super(ProxypolicySort, __self__).__init__(
             'fortios:firewall/proxypolicySort:ProxypolicySort',
             resource_name,
@@ -246,8 +288,10 @@ class ProxypolicySort(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             comment: Optional[pulumi.Input[str]] = None,
             force_recreate: Optional[pulumi.Input[str]] = None,
+            manual_orders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             sortby: Optional[pulumi.Input[str]] = None,
             sortdirection: Optional[pulumi.Input[str]] = None,
+            state_policy_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicySortStatePolicyListArgs']]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'ProxypolicySort':
         """
@@ -264,8 +308,10 @@ class ProxypolicySort(pulumi.CustomResource):
 
         __props__.__dict__["comment"] = comment
         __props__.__dict__["force_recreate"] = force_recreate
+        __props__.__dict__["manual_orders"] = manual_orders
         __props__.__dict__["sortby"] = sortby
         __props__.__dict__["sortdirection"] = sortdirection
+        __props__.__dict__["state_policy_lists"] = state_policy_lists
         __props__.__dict__["status"] = status
         __props__.__dict__["vdomparam"] = vdomparam
         return ProxypolicySort(resource_name, opts=opts, __props__=__props__)
@@ -277,8 +323,13 @@ class ProxypolicySort(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="forceRecreate")
-    def force_recreate(self) -> pulumi.Output[Optional[str]]:
+    def force_recreate(self) -> pulumi.Output[str]:
         return pulumi.get(self, "force_recreate")
+
+    @property
+    @pulumi.getter(name="manualOrders")
+    def manual_orders(self) -> pulumi.Output[Sequence[str]]:
+        return pulumi.get(self, "manual_orders")
 
     @property
     @pulumi.getter
@@ -291,8 +342,13 @@ class ProxypolicySort(pulumi.CustomResource):
         return pulumi.get(self, "sortdirection")
 
     @property
+    @pulumi.getter(name="statePolicyLists")
+    def state_policy_lists(self) -> pulumi.Output[Sequence['outputs.ProxypolicySortStatePolicyList']]:
+        return pulumi.get(self, "state_policy_lists")
+
+    @property
     @pulumi.getter
-    def status(self) -> pulumi.Output[Optional[str]]:
+    def status(self) -> pulumi.Output[str]:
         return pulumi.get(self, "status")
 
     @property

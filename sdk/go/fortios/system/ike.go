@@ -81,6 +81,8 @@ type Ike struct {
 	DhWorkerCount pulumi.IntOutput `pulumi:"dhWorkerCount"`
 	// Maximum number of IPsec tunnels to negotiate simultaneously.
 	EmbryonicLimit pulumi.IntOutput `pulumi:"embryonicLimit"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	//
 	// The `dhGroup1` block supports:
@@ -165,6 +167,8 @@ type ikeState struct {
 	DhWorkerCount *int `pulumi:"dhWorkerCount"`
 	// Maximum number of IPsec tunnels to negotiate simultaneously.
 	EmbryonicLimit *int `pulumi:"embryonicLimit"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	//
 	// The `dhGroup1` block supports:
@@ -220,6 +224,8 @@ type IkeState struct {
 	DhWorkerCount pulumi.IntPtrInput
 	// Maximum number of IPsec tunnels to negotiate simultaneously.
 	EmbryonicLimit pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	//
 	// The `dhGroup1` block supports:
@@ -279,6 +285,8 @@ type ikeArgs struct {
 	DhWorkerCount *int `pulumi:"dhWorkerCount"`
 	// Maximum number of IPsec tunnels to negotiate simultaneously.
 	EmbryonicLimit *int `pulumi:"embryonicLimit"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	//
 	// The `dhGroup1` block supports:
@@ -335,6 +343,8 @@ type IkeArgs struct {
 	DhWorkerCount pulumi.IntPtrInput
 	// Maximum number of IPsec tunnels to negotiate simultaneously.
 	EmbryonicLimit pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	//
 	// The `dhGroup1` block supports:
@@ -546,6 +556,11 @@ func (o IkeOutput) DhWorkerCount() pulumi.IntOutput {
 // Maximum number of IPsec tunnels to negotiate simultaneously.
 func (o IkeOutput) EmbryonicLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ike) pulumi.IntOutput { return v.EmbryonicLimit }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o IkeOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Ike) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

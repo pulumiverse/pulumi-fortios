@@ -41,6 +41,8 @@ type Arrpprofile struct {
 	DarrpOptimizeSchedules ArrpprofileDarrpOptimizeScheduleArrayOutput `pulumi:"darrpOptimizeSchedules"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel pulumi.StringOutput `pulumi:"includeDfsChannel"`
 	// Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
@@ -121,6 +123,8 @@ type arrpprofileState struct {
 	DarrpOptimizeSchedules []ArrpprofileDarrpOptimizeSchedule `pulumi:"darrpOptimizeSchedules"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel *string `pulumi:"includeDfsChannel"`
 	// Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
@@ -172,6 +176,8 @@ type ArrpprofileState struct {
 	DarrpOptimizeSchedules ArrpprofileDarrpOptimizeScheduleArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel pulumi.StringPtrInput
 	// Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
@@ -227,6 +233,8 @@ type arrpprofileArgs struct {
 	DarrpOptimizeSchedules []ArrpprofileDarrpOptimizeSchedule `pulumi:"darrpOptimizeSchedules"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel *string `pulumi:"includeDfsChannel"`
 	// Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
@@ -279,6 +287,8 @@ type ArrpprofileArgs struct {
 	DarrpOptimizeSchedules ArrpprofileDarrpOptimizeScheduleArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel pulumi.StringPtrInput
 	// Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
@@ -426,6 +436,11 @@ func (o ArrpprofileOutput) DarrpOptimizeSchedules() ArrpprofileDarrpOptimizeSche
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o ArrpprofileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Arrpprofile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ArrpprofileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Arrpprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).

@@ -95,6 +95,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get_bool('insecure') or _utilities.get_env_bool('FORTIOS_INSECURE')
 
     @property
+    def password(self) -> Optional[str]:
+        """
+        The password of the user.
+        """
+        return __config__.get('password')
+
+    @property
     def peerauth(self) -> Optional[str]:
         """
         Enable/disable peer authentication, can be 'enable' or 'disable'
@@ -104,6 +111,13 @@ class _ExportableConfig(types.ModuleType):
     @property
     def token(self) -> Optional[str]:
         return __config__.get('token') or _utilities.get_env('FORTIOS_ACCESS_TOKEN')
+
+    @property
+    def username(self) -> Optional[str]:
+        """
+        The username of the user.
+        """
+        return __config__.get('username')
 
     @property
     def vdom(self) -> Optional[str]:

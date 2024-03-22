@@ -22,13 +22,19 @@ class GetAddrgrp6Result:
     """
     A collection of values returned by getAddrgrp6.
     """
-    def __init__(__self__, color=None, comment=None, fabric_object=None, id=None, members=None, name=None, taggings=None, uuid=None, vdomparam=None, visibility=None):
+    def __init__(__self__, color=None, comment=None, exclude=None, exclude_members=None, fabric_object=None, id=None, members=None, name=None, taggings=None, uuid=None, vdomparam=None, visibility=None):
         if color and not isinstance(color, int):
             raise TypeError("Expected argument 'color' to be a int")
         pulumi.set(__self__, "color", color)
         if comment and not isinstance(comment, str):
             raise TypeError("Expected argument 'comment' to be a str")
         pulumi.set(__self__, "comment", comment)
+        if exclude and not isinstance(exclude, str):
+            raise TypeError("Expected argument 'exclude' to be a str")
+        pulumi.set(__self__, "exclude", exclude)
+        if exclude_members and not isinstance(exclude_members, list):
+            raise TypeError("Expected argument 'exclude_members' to be a list")
+        pulumi.set(__self__, "exclude_members", exclude_members)
         if fabric_object and not isinstance(fabric_object, str):
             raise TypeError("Expected argument 'fabric_object' to be a str")
         pulumi.set(__self__, "fabric_object", fabric_object)
@@ -69,6 +75,22 @@ class GetAddrgrp6Result:
         Comment.
         """
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter
+    def exclude(self) -> str:
+        """
+        Enable/disable address6 exclusion.
+        """
+        return pulumi.get(self, "exclude")
+
+    @property
+    @pulumi.getter(name="excludeMembers")
+    def exclude_members(self) -> Sequence['outputs.GetAddrgrp6ExcludeMemberResult']:
+        """
+        Address6 exclusion member. The structure of `exclude_member` block is documented below.
+        """
+        return pulumi.get(self, "exclude_members")
 
     @property
     @pulumi.getter(name="fabricObject")
@@ -140,6 +162,8 @@ class AwaitableGetAddrgrp6Result(GetAddrgrp6Result):
         return GetAddrgrp6Result(
             color=self.color,
             comment=self.comment,
+            exclude=self.exclude,
+            exclude_members=self.exclude_members,
             fabric_object=self.fabric_object,
             id=self.id,
             members=self.members,
@@ -169,6 +193,8 @@ def get_addrgrp6(name: Optional[str] = None,
     return AwaitableGetAddrgrp6Result(
         color=pulumi.get(__ret__, 'color'),
         comment=pulumi.get(__ret__, 'comment'),
+        exclude=pulumi.get(__ret__, 'exclude'),
+        exclude_members=pulumi.get(__ret__, 'exclude_members'),
         fabric_object=pulumi.get(__ret__, 'fabric_object'),
         id=pulumi.get(__ret__, 'id'),
         members=pulumi.get(__ret__, 'members'),

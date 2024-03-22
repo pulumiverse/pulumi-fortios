@@ -19,7 +19,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string? AcceptLifetime;
         /// <summary>
-        /// Cryptographic algorithm. Valid values: `md5`, `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, `hmac-sha512`.
+        /// Cryptographic algorithm.
         /// </summary>
         public readonly string? Algorithm;
         /// <summary>
@@ -27,7 +27,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly int? Id;
         /// <summary>
-        /// Password for the key (max. = 35 characters).
+        /// Password for the key. On FortiOS versions 6.2.0-7.0.0: max. = 35 characters. On FortiOS versions 7.0.1-7.0.3: maximum = 64 characters.
         /// </summary>
         public readonly string? KeyString;
         /// <summary>

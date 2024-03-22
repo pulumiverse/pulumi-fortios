@@ -83,6 +83,14 @@ export class Vxlan extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * EVPN instance.
+     */
+    public readonly evpnId!: pulumi.Output<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Outgoing interface for VXLAN encapsulated traffic.
      */
     public readonly interface!: pulumi.Output<string>;
@@ -90,6 +98,10 @@ export class Vxlan extends pulumi.CustomResource {
      * IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
      */
     public readonly ipVersion!: pulumi.Output<string>;
+    /**
+     * Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
+     */
+    public readonly learnFromTraffic!: pulumi.Output<string>;
     /**
      * VXLAN multicast TTL (1-255, default = 0).
      */
@@ -130,8 +142,11 @@ export class Vxlan extends pulumi.CustomResource {
             const state = argsOrState as VxlanState | undefined;
             resourceInputs["dstport"] = state ? state.dstport : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["evpnId"] = state ? state.evpnId : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
+            resourceInputs["learnFromTraffic"] = state ? state.learnFromTraffic : undefined;
             resourceInputs["multicastTtl"] = state ? state.multicastTtl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["remoteIp6s"] = state ? state.remoteIp6s : undefined;
@@ -151,8 +166,11 @@ export class Vxlan extends pulumi.CustomResource {
             }
             resourceInputs["dstport"] = args ? args.dstport : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["evpnId"] = args ? args.evpnId : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
+            resourceInputs["learnFromTraffic"] = args ? args.learnFromTraffic : undefined;
             resourceInputs["multicastTtl"] = args ? args.multicastTtl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["remoteIp6s"] = args ? args.remoteIp6s : undefined;
@@ -178,6 +196,14 @@ export interface VxlanState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * EVPN instance.
+     */
+    evpnId?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Outgoing interface for VXLAN encapsulated traffic.
      */
     interface?: pulumi.Input<string>;
@@ -185,6 +211,10 @@ export interface VxlanState {
      * IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
      */
     ipVersion?: pulumi.Input<string>;
+    /**
+     * Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
+     */
+    learnFromTraffic?: pulumi.Input<string>;
     /**
      * VXLAN multicast TTL (1-255, default = 0).
      */
@@ -224,6 +254,14 @@ export interface VxlanArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * EVPN instance.
+     */
+    evpnId?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Outgoing interface for VXLAN encapsulated traffic.
      */
     interface: pulumi.Input<string>;
@@ -231,6 +269,10 @@ export interface VxlanArgs {
      * IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
      */
     ipVersion: pulumi.Input<string>;
+    /**
+     * Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
+     */
+    learnFromTraffic?: pulumi.Input<string>;
     /**
      * VXLAN multicast TTL (1-255, default = 0).
      */

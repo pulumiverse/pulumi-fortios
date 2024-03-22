@@ -79,6 +79,10 @@ namespace Pulumiverse.Fortios.Firewall.Schedule
         /// </summary>
         public readonly string End;
         /// <summary>
+        /// Schedule end date and time, in epoch format.
+        /// </summary>
+        public readonly string EndUtc;
+        /// <summary>
         /// Write an event log message this many days before the schedule expires.
         /// </summary>
         public readonly int ExpirationDays;
@@ -98,6 +102,10 @@ namespace Pulumiverse.Fortios.Firewall.Schedule
         /// Schedule start date and time, format hh:mm yyyy/mm/dd.
         /// </summary>
         public readonly string Start;
+        /// <summary>
+        /// Schedule start date and time, in epoch format.
+        /// </summary>
+        public readonly string StartUtc;
         public readonly string? Vdomparam;
 
         [OutputConstructor]
@@ -105,6 +113,8 @@ namespace Pulumiverse.Fortios.Firewall.Schedule
             int color,
 
             string end,
+
+            string endUtc,
 
             int expirationDays,
 
@@ -116,15 +126,19 @@ namespace Pulumiverse.Fortios.Firewall.Schedule
 
             string start,
 
+            string startUtc,
+
             string? vdomparam)
         {
             Color = color;
             End = end;
+            EndUtc = endUtc;
             ExpirationDays = expirationDays;
             FabricObject = fabricObject;
             Id = id;
             Name = name;
             Start = start;
+            StartUtc = startUtc;
             Vdomparam = vdomparam;
         }
     }

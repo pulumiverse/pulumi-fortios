@@ -11,6 +11,7 @@ from .. import _utilities
 
 __all__ = [
     'DictionaryEntryArgs',
+    'ExactdatamatchColumnArgs',
     'FilepatternEntryArgs',
     'ProfileRuleArgs',
     'ProfileRuleSensitivityArgs',
@@ -141,6 +142,61 @@ class DictionaryEntryArgs:
 
 
 @pulumi.input_type
+class ExactdatamatchColumnArgs:
+    def __init__(__self__, *,
+                 index: Optional[pulumi.Input[int]] = None,
+                 optional: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] index: Column index.
+        :param pulumi.Input[str] optional: Enable/disable optional match. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] type: Data-type for this column.
+        """
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+        if optional is not None:
+            pulumi.set(__self__, "optional", optional)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def index(self) -> Optional[pulumi.Input[int]]:
+        """
+        Column index.
+        """
+        return pulumi.get(self, "index")
+
+    @index.setter
+    def index(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "index", value)
+
+    @property
+    @pulumi.getter
+    def optional(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable optional match. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "optional")
+
+    @optional.setter
+    def optional(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "optional", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Data-type for this column.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
 class FilepatternEntryArgs:
     def __init__(__self__, *,
                  file_type: Optional[pulumi.Input[str]] = None,
@@ -217,7 +273,7 @@ class ProfileRuleArgs:
         :param pulumi.Input[str] action: Action to take with content that this DLP profile matches. Valid values: `allow`, `log-only`, `block`, `quarantine-ip`.
         :param pulumi.Input[str] archive: Enable/disable DLP archiving. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] expiry: Quarantine duration in days, hours, minutes (format = dddhhmm).
-        :param pulumi.Input[int] file_size: Match files this size or larger (0 - 4294967295 kbytes).
+        :param pulumi.Input[int] file_size: Match files greater than or equal to this size (KB).
         :param pulumi.Input[int] file_type: Select the number of a DLP file pattern table to match.
         :param pulumi.Input[str] filter_by: Select the type of content to match. Valid values: `sensor`, `mip`, `fingerprint`, `encrypted`, `none`.
         :param pulumi.Input[int] id: ID.
@@ -301,7 +357,7 @@ class ProfileRuleArgs:
     @pulumi.getter(name="fileSize")
     def file_size(self) -> Optional[pulumi.Input[int]]:
         """
-        Match files this size or larger (0 - 4294967295 kbytes).
+        Match files greater than or equal to this size (KB).
         """
         return pulumi.get(self, "file_size")
 
@@ -582,7 +638,7 @@ class SensorFilterArgs:
         :param pulumi.Input[str] action: Action to take with content that this DLP sensor matches. Valid values: `allow`, `log-only`, `block`, `quarantine-ip`.
         :param pulumi.Input[str] archive: Enable/disable DLP archiving. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] company_identifier: Enter a company identifier watermark to match. Only watermarks that your company has placed on the files are matched.
-        :param pulumi.Input[str] expiry: Quarantine duration in days, hours, minutes format (dddhhmm).
+        :param pulumi.Input[str] expiry: Quarantine duration in days, hours, minutes (format = dddhhmm).
         :param pulumi.Input[int] file_size: Match files this size or larger (0 - 4294967295 kbytes).
         :param pulumi.Input[int] file_type: Select the number of a DLP file pattern table to match.
         :param pulumi.Input[str] filter_by: Select the type of content to match.
@@ -669,7 +725,7 @@ class SensorFilterArgs:
     @pulumi.getter
     def expiry(self) -> Optional[pulumi.Input[str]]:
         """
-        Quarantine duration in days, hours, minutes format (dddhhmm).
+        Quarantine duration in days, hours, minutes (format = dddhhmm).
         """
         return pulumi.get(self, "expiry")
 

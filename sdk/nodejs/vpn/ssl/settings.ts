@@ -137,6 +137,18 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly dnsSuffix!: pulumi.Output<string | undefined>;
     /**
+     * Number of missing heartbeats before the connection is considered dropped.
+     */
+    public readonly dtlsHeartbeatFailCount!: pulumi.Output<number>;
+    /**
+     * Idle timeout before DTLS heartbeat is sent.
+     */
+    public readonly dtlsHeartbeatIdleTimeout!: pulumi.Output<number>;
+    /**
+     * Interval between DTLS heartbeat.
+     */
+    public readonly dtlsHeartbeatInterval!: pulumi.Output<number>;
+    /**
      * SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
      */
     public readonly dtlsHelloTimeout!: pulumi.Output<number>;
@@ -172,6 +184,10 @@ export class Settings extends pulumi.CustomResource {
      * Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
      */
     public readonly forceTwoFactorAuth!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
      */
@@ -252,6 +268,10 @@ export class Settings extends pulumi.CustomResource {
      * SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
      */
     public readonly samlRedirectPort!: pulumi.Output<number>;
+    /**
+     * Server hostname for HTTPS. When set, will be used for SSL VPN web proxy host header for any redirection.
+     */
+    public readonly serverHostname!: pulumi.Output<string>;
     /**
      * Name of the server certificate to be used for SSL-VPNs.
      */
@@ -402,6 +422,9 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["dnsServer1"] = state ? state.dnsServer1 : undefined;
             resourceInputs["dnsServer2"] = state ? state.dnsServer2 : undefined;
             resourceInputs["dnsSuffix"] = state ? state.dnsSuffix : undefined;
+            resourceInputs["dtlsHeartbeatFailCount"] = state ? state.dtlsHeartbeatFailCount : undefined;
+            resourceInputs["dtlsHeartbeatIdleTimeout"] = state ? state.dtlsHeartbeatIdleTimeout : undefined;
+            resourceInputs["dtlsHeartbeatInterval"] = state ? state.dtlsHeartbeatInterval : undefined;
             resourceInputs["dtlsHelloTimeout"] = state ? state.dtlsHelloTimeout : undefined;
             resourceInputs["dtlsMaxProtoVer"] = state ? state.dtlsMaxProtoVer : undefined;
             resourceInputs["dtlsMinProtoVer"] = state ? state.dtlsMinProtoVer : undefined;
@@ -411,6 +434,7 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["encode2fSequence"] = state ? state.encode2fSequence : undefined;
             resourceInputs["encryptAndStorePassword"] = state ? state.encryptAndStorePassword : undefined;
             resourceInputs["forceTwoFactorAuth"] = state ? state.forceTwoFactorAuth : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["headerXForwardedFor"] = state ? state.headerXForwardedFor : undefined;
             resourceInputs["hstsIncludeSubdomains"] = state ? state.hstsIncludeSubdomains : undefined;
             resourceInputs["httpCompression"] = state ? state.httpCompression : undefined;
@@ -431,6 +455,7 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["reqclientcert"] = state ? state.reqclientcert : undefined;
             resourceInputs["routeSourceInterface"] = state ? state.routeSourceInterface : undefined;
             resourceInputs["samlRedirectPort"] = state ? state.samlRedirectPort : undefined;
+            resourceInputs["serverHostname"] = state ? state.serverHostname : undefined;
             resourceInputs["servercert"] = state ? state.servercert : undefined;
             resourceInputs["sourceAddress6Negate"] = state ? state.sourceAddress6Negate : undefined;
             resourceInputs["sourceAddress6s"] = state ? state.sourceAddress6s : undefined;
@@ -479,6 +504,9 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["dnsServer1"] = args ? args.dnsServer1 : undefined;
             resourceInputs["dnsServer2"] = args ? args.dnsServer2 : undefined;
             resourceInputs["dnsSuffix"] = args ? args.dnsSuffix : undefined;
+            resourceInputs["dtlsHeartbeatFailCount"] = args ? args.dtlsHeartbeatFailCount : undefined;
+            resourceInputs["dtlsHeartbeatIdleTimeout"] = args ? args.dtlsHeartbeatIdleTimeout : undefined;
+            resourceInputs["dtlsHeartbeatInterval"] = args ? args.dtlsHeartbeatInterval : undefined;
             resourceInputs["dtlsHelloTimeout"] = args ? args.dtlsHelloTimeout : undefined;
             resourceInputs["dtlsMaxProtoVer"] = args ? args.dtlsMaxProtoVer : undefined;
             resourceInputs["dtlsMinProtoVer"] = args ? args.dtlsMinProtoVer : undefined;
@@ -488,6 +516,7 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["encode2fSequence"] = args ? args.encode2fSequence : undefined;
             resourceInputs["encryptAndStorePassword"] = args ? args.encryptAndStorePassword : undefined;
             resourceInputs["forceTwoFactorAuth"] = args ? args.forceTwoFactorAuth : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["headerXForwardedFor"] = args ? args.headerXForwardedFor : undefined;
             resourceInputs["hstsIncludeSubdomains"] = args ? args.hstsIncludeSubdomains : undefined;
             resourceInputs["httpCompression"] = args ? args.httpCompression : undefined;
@@ -508,6 +537,7 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["reqclientcert"] = args ? args.reqclientcert : undefined;
             resourceInputs["routeSourceInterface"] = args ? args.routeSourceInterface : undefined;
             resourceInputs["samlRedirectPort"] = args ? args.samlRedirectPort : undefined;
+            resourceInputs["serverHostname"] = args ? args.serverHostname : undefined;
             resourceInputs["servercert"] = args ? args.servercert : undefined;
             resourceInputs["sourceAddress6Negate"] = args ? args.sourceAddress6Negate : undefined;
             resourceInputs["sourceAddress6s"] = args ? args.sourceAddress6s : undefined;
@@ -613,6 +643,18 @@ export interface SettingsState {
      */
     dnsSuffix?: pulumi.Input<string>;
     /**
+     * Number of missing heartbeats before the connection is considered dropped.
+     */
+    dtlsHeartbeatFailCount?: pulumi.Input<number>;
+    /**
+     * Idle timeout before DTLS heartbeat is sent.
+     */
+    dtlsHeartbeatIdleTimeout?: pulumi.Input<number>;
+    /**
+     * Interval between DTLS heartbeat.
+     */
+    dtlsHeartbeatInterval?: pulumi.Input<number>;
+    /**
      * SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
      */
     dtlsHelloTimeout?: pulumi.Input<number>;
@@ -648,6 +690,10 @@ export interface SettingsState {
      * Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
      */
     forceTwoFactorAuth?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
      */
@@ -728,6 +774,10 @@ export interface SettingsState {
      * SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
      */
     samlRedirectPort?: pulumi.Input<number>;
+    /**
+     * Server hostname for HTTPS. When set, will be used for SSL VPN web proxy host header for any redirection.
+     */
+    serverHostname?: pulumi.Input<string>;
     /**
      * Name of the server certificate to be used for SSL-VPNs.
      */
@@ -919,6 +969,18 @@ export interface SettingsArgs {
      */
     dnsSuffix?: pulumi.Input<string>;
     /**
+     * Number of missing heartbeats before the connection is considered dropped.
+     */
+    dtlsHeartbeatFailCount?: pulumi.Input<number>;
+    /**
+     * Idle timeout before DTLS heartbeat is sent.
+     */
+    dtlsHeartbeatIdleTimeout?: pulumi.Input<number>;
+    /**
+     * Interval between DTLS heartbeat.
+     */
+    dtlsHeartbeatInterval?: pulumi.Input<number>;
+    /**
      * SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
      */
     dtlsHelloTimeout?: pulumi.Input<number>;
@@ -954,6 +1016,10 @@ export interface SettingsArgs {
      * Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
      */
     forceTwoFactorAuth?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
      */
@@ -1034,6 +1100,10 @@ export interface SettingsArgs {
      * SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
      */
     samlRedirectPort?: pulumi.Input<number>;
+    /**
+     * Server hostname for HTTPS. When set, will be used for SSL VPN web proxy host header for any redirection.
+     */
+    serverHostname?: pulumi.Input<string>;
     /**
      * Name of the server certificate to be used for SSL-VPNs.
      */

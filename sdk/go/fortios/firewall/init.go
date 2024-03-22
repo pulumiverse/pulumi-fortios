@@ -97,6 +97,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Internetserviceowner{}
 	case "fortios:firewall/internetservicereputation:Internetservicereputation":
 		r = &Internetservicereputation{}
+	case "fortios:firewall/internetservicesubapp:Internetservicesubapp":
+		r = &Internetservicesubapp{}
 	case "fortios:firewall/ippool6:Ippool6":
 		r = &Ippool6{}
 	case "fortios:firewall/ippool:Ippool":
@@ -145,6 +147,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Policy6{}
 	case "fortios:firewall/policy:Policy":
 		r = &Policy{}
+	case "fortios:firewall/policyMove:PolicyMove":
+		r = &PolicyMove{}
+	case "fortios:firewall/policySort:PolicySort":
+		r = &PolicySort{}
 	case "fortios:firewall/profilegroup:Profilegroup":
 		r = &Profilegroup{}
 	case "fortios:firewall/profileprotocoloptions:Profileprotocoloptions":
@@ -163,10 +169,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Region{}
 	case "fortios:firewall/securityPolicyseq:SecurityPolicyseq":
 		r = &SecurityPolicyseq{}
-	case "fortios:firewall/securityPolicysort:SecurityPolicysort":
-		r = &SecurityPolicysort{}
 	case "fortios:firewall/securitypolicy:Securitypolicy":
 		r = &Securitypolicy{}
+	case "fortios:firewall/securitypolicyMove:SecuritypolicyMove":
+		r = &SecuritypolicyMove{}
+	case "fortios:firewall/securitypolicySort:SecuritypolicySort":
+		r = &SecuritypolicySort{}
 	case "fortios:firewall/shapingpolicy:Shapingpolicy":
 		r = &Shapingpolicy{}
 	case "fortios:firewall/shapingprofile:Shapingprofile":
@@ -404,6 +412,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"firewall/internetservicesubapp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"firewall/ippool",
 		&module{version},
 	)
@@ -524,6 +537,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"firewall/policyMove",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"firewall/policySort",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"firewall/profilegroup",
 		&module{version},
 	)
@@ -569,12 +592,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
-		"firewall/securityPolicysort",
+		"firewall/securitypolicy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
-		"firewall/securitypolicy",
+		"firewall/securitypolicyMove",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"firewall/securitypolicySort",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

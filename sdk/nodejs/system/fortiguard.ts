@@ -104,6 +104,10 @@ export class Fortiguard extends pulumi.CustomResource {
      */
     public readonly antispamCacheMpercent!: pulumi.Output<number>;
     /**
+     * Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+     */
+    public readonly antispamCacheMpermille!: pulumi.Output<number>;
+    /**
      * Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
      */
     public readonly antispamCacheTtl!: pulumi.Output<number>;
@@ -140,6 +144,10 @@ export class Fortiguard extends pulumi.CustomResource {
      */
     public readonly autoFirmwareUpgradeDay!: pulumi.Output<string>;
     /**
+     * Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+     */
+    public readonly autoFirmwareUpgradeDelay!: pulumi.Output<number>;
+    /**
      * End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
      */
     public readonly autoFirmwareUpgradeEndHour!: pulumi.Output<number>;
@@ -164,6 +172,10 @@ export class Fortiguard extends pulumi.CustomResource {
      */
     public readonly ddnsServerPort!: pulumi.Output<number>;
     /**
+     * Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+     */
+    public readonly fdsLicenseExpiringDays!: pulumi.Output<number>;
+    /**
      * Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
      */
     public readonly fortiguardAnycast!: pulumi.Output<string>;
@@ -171,6 +183,10 @@ export class Fortiguard extends pulumi.CustomResource {
      * Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
      */
     public readonly fortiguardAnycastSource!: pulumi.Output<string>;
+    /**
+     * Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+     */
+    public readonly guiPromptAutoUpgrade!: pulumi.Output<string>;
     /**
      * Specify outgoing interface to reach server.
      */
@@ -191,6 +207,10 @@ export class Fortiguard extends pulumi.CustomResource {
      * Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
      */
     public readonly outbreakPreventionCacheMpercent!: pulumi.Output<number>;
+    /**
+     * Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+     */
+    public readonly outbreakPreventionCacheMpermille!: pulumi.Output<number>;
     /**
      * Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
      */
@@ -276,6 +296,10 @@ export class Fortiguard extends pulumi.CustomResource {
      */
     public readonly updateBuildProxy!: pulumi.Output<string>;
     /**
+     * Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+     */
+    public readonly updateDldb!: pulumi.Output<string>;
+    /**
      * Enable/disable external resource update. Valid values: `enable`, `disable`.
      */
     public readonly updateExtdb!: pulumi.Output<string>;
@@ -347,6 +371,7 @@ export class Fortiguard extends pulumi.CustomResource {
             const state = argsOrState as FortiguardState | undefined;
             resourceInputs["antispamCache"] = state ? state.antispamCache : undefined;
             resourceInputs["antispamCacheMpercent"] = state ? state.antispamCacheMpercent : undefined;
+            resourceInputs["antispamCacheMpermille"] = state ? state.antispamCacheMpermille : undefined;
             resourceInputs["antispamCacheTtl"] = state ? state.antispamCacheTtl : undefined;
             resourceInputs["antispamExpiration"] = state ? state.antispamExpiration : undefined;
             resourceInputs["antispamForceOff"] = state ? state.antispamForceOff : undefined;
@@ -356,19 +381,23 @@ export class Fortiguard extends pulumi.CustomResource {
             resourceInputs["anycastSdnsServerPort"] = state ? state.anycastSdnsServerPort : undefined;
             resourceInputs["autoFirmwareUpgrade"] = state ? state.autoFirmwareUpgrade : undefined;
             resourceInputs["autoFirmwareUpgradeDay"] = state ? state.autoFirmwareUpgradeDay : undefined;
+            resourceInputs["autoFirmwareUpgradeDelay"] = state ? state.autoFirmwareUpgradeDelay : undefined;
             resourceInputs["autoFirmwareUpgradeEndHour"] = state ? state.autoFirmwareUpgradeEndHour : undefined;
             resourceInputs["autoFirmwareUpgradeStartHour"] = state ? state.autoFirmwareUpgradeStartHour : undefined;
             resourceInputs["autoJoinForticloud"] = state ? state.autoJoinForticloud : undefined;
             resourceInputs["ddnsServerIp"] = state ? state.ddnsServerIp : undefined;
             resourceInputs["ddnsServerIp6"] = state ? state.ddnsServerIp6 : undefined;
             resourceInputs["ddnsServerPort"] = state ? state.ddnsServerPort : undefined;
+            resourceInputs["fdsLicenseExpiringDays"] = state ? state.fdsLicenseExpiringDays : undefined;
             resourceInputs["fortiguardAnycast"] = state ? state.fortiguardAnycast : undefined;
             resourceInputs["fortiguardAnycastSource"] = state ? state.fortiguardAnycastSource : undefined;
+            resourceInputs["guiPromptAutoUpgrade"] = state ? state.guiPromptAutoUpgrade : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
             resourceInputs["loadBalanceServers"] = state ? state.loadBalanceServers : undefined;
             resourceInputs["outbreakPreventionCache"] = state ? state.outbreakPreventionCache : undefined;
             resourceInputs["outbreakPreventionCacheMpercent"] = state ? state.outbreakPreventionCacheMpercent : undefined;
+            resourceInputs["outbreakPreventionCacheMpermille"] = state ? state.outbreakPreventionCacheMpermille : undefined;
             resourceInputs["outbreakPreventionCacheTtl"] = state ? state.outbreakPreventionCacheTtl : undefined;
             resourceInputs["outbreakPreventionExpiration"] = state ? state.outbreakPreventionExpiration : undefined;
             resourceInputs["outbreakPreventionForceOff"] = state ? state.outbreakPreventionForceOff : undefined;
@@ -390,6 +419,7 @@ export class Fortiguard extends pulumi.CustomResource {
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
             resourceInputs["updateBuildProxy"] = state ? state.updateBuildProxy : undefined;
+            resourceInputs["updateDldb"] = state ? state.updateDldb : undefined;
             resourceInputs["updateExtdb"] = state ? state.updateExtdb : undefined;
             resourceInputs["updateFfdb"] = state ? state.updateFfdb : undefined;
             resourceInputs["updateServerLocation"] = state ? state.updateServerLocation : undefined;
@@ -417,6 +447,7 @@ export class Fortiguard extends pulumi.CustomResource {
             }
             resourceInputs["antispamCache"] = args ? args.antispamCache : undefined;
             resourceInputs["antispamCacheMpercent"] = args ? args.antispamCacheMpercent : undefined;
+            resourceInputs["antispamCacheMpermille"] = args ? args.antispamCacheMpermille : undefined;
             resourceInputs["antispamCacheTtl"] = args ? args.antispamCacheTtl : undefined;
             resourceInputs["antispamExpiration"] = args ? args.antispamExpiration : undefined;
             resourceInputs["antispamForceOff"] = args ? args.antispamForceOff : undefined;
@@ -426,19 +457,23 @@ export class Fortiguard extends pulumi.CustomResource {
             resourceInputs["anycastSdnsServerPort"] = args ? args.anycastSdnsServerPort : undefined;
             resourceInputs["autoFirmwareUpgrade"] = args ? args.autoFirmwareUpgrade : undefined;
             resourceInputs["autoFirmwareUpgradeDay"] = args ? args.autoFirmwareUpgradeDay : undefined;
+            resourceInputs["autoFirmwareUpgradeDelay"] = args ? args.autoFirmwareUpgradeDelay : undefined;
             resourceInputs["autoFirmwareUpgradeEndHour"] = args ? args.autoFirmwareUpgradeEndHour : undefined;
             resourceInputs["autoFirmwareUpgradeStartHour"] = args ? args.autoFirmwareUpgradeStartHour : undefined;
             resourceInputs["autoJoinForticloud"] = args ? args.autoJoinForticloud : undefined;
             resourceInputs["ddnsServerIp"] = args ? args.ddnsServerIp : undefined;
             resourceInputs["ddnsServerIp6"] = args ? args.ddnsServerIp6 : undefined;
             resourceInputs["ddnsServerPort"] = args ? args.ddnsServerPort : undefined;
+            resourceInputs["fdsLicenseExpiringDays"] = args ? args.fdsLicenseExpiringDays : undefined;
             resourceInputs["fortiguardAnycast"] = args ? args.fortiguardAnycast : undefined;
             resourceInputs["fortiguardAnycastSource"] = args ? args.fortiguardAnycastSource : undefined;
+            resourceInputs["guiPromptAutoUpgrade"] = args ? args.guiPromptAutoUpgrade : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
             resourceInputs["loadBalanceServers"] = args ? args.loadBalanceServers : undefined;
             resourceInputs["outbreakPreventionCache"] = args ? args.outbreakPreventionCache : undefined;
             resourceInputs["outbreakPreventionCacheMpercent"] = args ? args.outbreakPreventionCacheMpercent : undefined;
+            resourceInputs["outbreakPreventionCacheMpermille"] = args ? args.outbreakPreventionCacheMpermille : undefined;
             resourceInputs["outbreakPreventionCacheTtl"] = args ? args.outbreakPreventionCacheTtl : undefined;
             resourceInputs["outbreakPreventionExpiration"] = args ? args.outbreakPreventionExpiration : undefined;
             resourceInputs["outbreakPreventionForceOff"] = args ? args.outbreakPreventionForceOff : undefined;
@@ -460,6 +495,7 @@ export class Fortiguard extends pulumi.CustomResource {
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
             resourceInputs["updateBuildProxy"] = args ? args.updateBuildProxy : undefined;
+            resourceInputs["updateDldb"] = args ? args.updateDldb : undefined;
             resourceInputs["updateExtdb"] = args ? args.updateExtdb : undefined;
             resourceInputs["updateFfdb"] = args ? args.updateFfdb : undefined;
             resourceInputs["updateServerLocation"] = args ? args.updateServerLocation : undefined;
@@ -494,6 +530,10 @@ export interface FortiguardState {
      * Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
      */
     antispamCacheMpercent?: pulumi.Input<number>;
+    /**
+     * Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+     */
+    antispamCacheMpermille?: pulumi.Input<number>;
     /**
      * Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
      */
@@ -531,6 +571,10 @@ export interface FortiguardState {
      */
     autoFirmwareUpgradeDay?: pulumi.Input<string>;
     /**
+     * Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+     */
+    autoFirmwareUpgradeDelay?: pulumi.Input<number>;
+    /**
      * End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
      */
     autoFirmwareUpgradeEndHour?: pulumi.Input<number>;
@@ -555,6 +599,10 @@ export interface FortiguardState {
      */
     ddnsServerPort?: pulumi.Input<number>;
     /**
+     * Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+     */
+    fdsLicenseExpiringDays?: pulumi.Input<number>;
+    /**
      * Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
      */
     fortiguardAnycast?: pulumi.Input<string>;
@@ -562,6 +610,10 @@ export interface FortiguardState {
      * Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
      */
     fortiguardAnycastSource?: pulumi.Input<string>;
+    /**
+     * Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+     */
+    guiPromptAutoUpgrade?: pulumi.Input<string>;
     /**
      * Specify outgoing interface to reach server.
      */
@@ -582,6 +634,10 @@ export interface FortiguardState {
      * Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
      */
     outbreakPreventionCacheMpercent?: pulumi.Input<number>;
+    /**
+     * Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+     */
+    outbreakPreventionCacheMpermille?: pulumi.Input<number>;
     /**
      * Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
      */
@@ -667,6 +723,10 @@ export interface FortiguardState {
      */
     updateBuildProxy?: pulumi.Input<string>;
     /**
+     * Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+     */
+    updateDldb?: pulumi.Input<string>;
+    /**
      * Enable/disable external resource update. Valid values: `enable`, `disable`.
      */
     updateExtdb?: pulumi.Input<string>;
@@ -737,6 +797,10 @@ export interface FortiguardArgs {
      */
     antispamCacheMpercent?: pulumi.Input<number>;
     /**
+     * Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+     */
+    antispamCacheMpermille?: pulumi.Input<number>;
+    /**
      * Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
      */
     antispamCacheTtl?: pulumi.Input<number>;
@@ -773,6 +837,10 @@ export interface FortiguardArgs {
      */
     autoFirmwareUpgradeDay?: pulumi.Input<string>;
     /**
+     * Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+     */
+    autoFirmwareUpgradeDelay?: pulumi.Input<number>;
+    /**
      * End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
      */
     autoFirmwareUpgradeEndHour?: pulumi.Input<number>;
@@ -797,6 +865,10 @@ export interface FortiguardArgs {
      */
     ddnsServerPort?: pulumi.Input<number>;
     /**
+     * Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+     */
+    fdsLicenseExpiringDays?: pulumi.Input<number>;
+    /**
      * Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
      */
     fortiguardAnycast?: pulumi.Input<string>;
@@ -804,6 +876,10 @@ export interface FortiguardArgs {
      * Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
      */
     fortiguardAnycastSource?: pulumi.Input<string>;
+    /**
+     * Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+     */
+    guiPromptAutoUpgrade?: pulumi.Input<string>;
     /**
      * Specify outgoing interface to reach server.
      */
@@ -824,6 +900,10 @@ export interface FortiguardArgs {
      * Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
      */
     outbreakPreventionCacheMpercent?: pulumi.Input<number>;
+    /**
+     * Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+     */
+    outbreakPreventionCacheMpermille?: pulumi.Input<number>;
     /**
      * Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
      */
@@ -908,6 +988,10 @@ export interface FortiguardArgs {
      * Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
      */
     updateBuildProxy?: pulumi.Input<string>;
+    /**
+     * Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+     */
+    updateDldb?: pulumi.Input<string>;
     /**
      * Enable/disable external resource update. Valid values: `enable`, `disable`.
      */

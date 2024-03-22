@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { KmipserverArgs, KmipserverState } from "./kmipserver";
+export type Kmipserver = import("./kmipserver").Kmipserver;
+export const Kmipserver: typeof import("./kmipserver").Kmipserver = null as any;
+utilities.lazyLoad(exports, ["Kmipserver"], () => require("./kmipserver"));
+
 export { L2tpArgs, L2tpState } from "./l2tp";
 export type L2tp = import("./l2tp").L2tp;
 export const L2tp: typeof import("./l2tp").L2tp = null as any;
@@ -19,6 +24,11 @@ export { PptpArgs, PptpState } from "./pptp";
 export type Pptp = import("./pptp").Pptp;
 export const Pptp: typeof import("./pptp").Pptp = null as any;
 utilities.lazyLoad(exports, ["Pptp"], () => require("./pptp"));
+
+export { QkdArgs, QkdState } from "./qkd";
+export type Qkd = import("./qkd").Qkd;
+export const Qkd: typeof import("./qkd").Qkd = null as any;
+utilities.lazyLoad(exports, ["Qkd"], () => require("./qkd"));
 
 
 // Export sub-modules:
@@ -36,17 +46,23 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "fortios:vpn/kmipserver:Kmipserver":
+                return new Kmipserver(name, <any>undefined, { urn })
             case "fortios:vpn/l2tp:L2tp":
                 return new L2tp(name, <any>undefined, { urn })
             case "fortios:vpn/ocvpn:Ocvpn":
                 return new Ocvpn(name, <any>undefined, { urn })
             case "fortios:vpn/pptp:Pptp":
                 return new Pptp(name, <any>undefined, { urn })
+            case "fortios:vpn/qkd:Qkd":
+                return new Qkd(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
+pulumi.runtime.registerResourceModule("fortios", "vpn/kmipserver", _module)
 pulumi.runtime.registerResourceModule("fortios", "vpn/l2tp", _module)
 pulumi.runtime.registerResourceModule("fortios", "vpn/ocvpn", _module)
 pulumi.runtime.registerResourceModule("fortios", "vpn/pptp", _module)
+pulumi.runtime.registerResourceModule("fortios", "vpn/qkd", _module)

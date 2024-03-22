@@ -76,9 +76,17 @@ export class Profilegroup extends pulumi.CustomResource {
      */
     public readonly avProfile!: pulumi.Output<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    public readonly casbProfile!: pulumi.Output<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     public readonly cifsProfile!: pulumi.Output<string>;
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    public readonly diameterFilterProfile!: pulumi.Output<string>;
     /**
      * Name of an existing DLP profile.
      */
@@ -107,6 +115,10 @@ export class Profilegroup extends pulumi.CustomResource {
      * Name of an existing IPS sensor.
      */
     public readonly ipsSensor!: pulumi.Output<string>;
+    /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    public readonly ipsVoipFilter!: pulumi.Output<string>;
     /**
      * Profile group name.
      */
@@ -140,7 +152,11 @@ export class Profilegroup extends pulumi.CustomResource {
      */
     public readonly videofilterProfile!: pulumi.Output<string>;
     /**
-     * Name of an existing VoIP profile.
+     * Name of an existing virtual-patch profile.
+     */
+    public readonly virtualPatchProfile!: pulumi.Output<string>;
+    /**
+     * Name of an existing VoIP (voipd) profile.
      */
     public readonly voipProfile!: pulumi.Output<string>;
     /**
@@ -167,7 +183,9 @@ export class Profilegroup extends pulumi.CustomResource {
             const state = argsOrState as ProfilegroupState | undefined;
             resourceInputs["applicationList"] = state ? state.applicationList : undefined;
             resourceInputs["avProfile"] = state ? state.avProfile : undefined;
+            resourceInputs["casbProfile"] = state ? state.casbProfile : undefined;
             resourceInputs["cifsProfile"] = state ? state.cifsProfile : undefined;
+            resourceInputs["diameterFilterProfile"] = state ? state.diameterFilterProfile : undefined;
             resourceInputs["dlpProfile"] = state ? state.dlpProfile : undefined;
             resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
             resourceInputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
@@ -175,6 +193,7 @@ export class Profilegroup extends pulumi.CustomResource {
             resourceInputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
             resourceInputs["icapProfile"] = state ? state.icapProfile : undefined;
             resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = state ? state.ipsVoipFilter : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["profileProtocolOptions"] = state ? state.profileProtocolOptions : undefined;
             resourceInputs["sctpFilterProfile"] = state ? state.sctpFilterProfile : undefined;
@@ -183,6 +202,7 @@ export class Profilegroup extends pulumi.CustomResource {
             resourceInputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = state ? state.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = state ? state.virtualPatchProfile : undefined;
             resourceInputs["voipProfile"] = state ? state.voipProfile : undefined;
             resourceInputs["wafProfile"] = state ? state.wafProfile : undefined;
             resourceInputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
@@ -190,7 +210,9 @@ export class Profilegroup extends pulumi.CustomResource {
             const args = argsOrState as ProfilegroupArgs | undefined;
             resourceInputs["applicationList"] = args ? args.applicationList : undefined;
             resourceInputs["avProfile"] = args ? args.avProfile : undefined;
+            resourceInputs["casbProfile"] = args ? args.casbProfile : undefined;
             resourceInputs["cifsProfile"] = args ? args.cifsProfile : undefined;
+            resourceInputs["diameterFilterProfile"] = args ? args.diameterFilterProfile : undefined;
             resourceInputs["dlpProfile"] = args ? args.dlpProfile : undefined;
             resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
             resourceInputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
@@ -198,6 +220,7 @@ export class Profilegroup extends pulumi.CustomResource {
             resourceInputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
             resourceInputs["icapProfile"] = args ? args.icapProfile : undefined;
             resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = args ? args.ipsVoipFilter : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["profileProtocolOptions"] = args ? args.profileProtocolOptions : undefined;
             resourceInputs["sctpFilterProfile"] = args ? args.sctpFilterProfile : undefined;
@@ -206,6 +229,7 @@ export class Profilegroup extends pulumi.CustomResource {
             resourceInputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = args ? args.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = args ? args.virtualPatchProfile : undefined;
             resourceInputs["voipProfile"] = args ? args.voipProfile : undefined;
             resourceInputs["wafProfile"] = args ? args.wafProfile : undefined;
             resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
@@ -228,9 +252,17 @@ export interface ProfilegroupState {
      */
     avProfile?: pulumi.Input<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    casbProfile?: pulumi.Input<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     cifsProfile?: pulumi.Input<string>;
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    diameterFilterProfile?: pulumi.Input<string>;
     /**
      * Name of an existing DLP profile.
      */
@@ -259,6 +291,10 @@ export interface ProfilegroupState {
      * Name of an existing IPS sensor.
      */
     ipsSensor?: pulumi.Input<string>;
+    /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    ipsVoipFilter?: pulumi.Input<string>;
     /**
      * Profile group name.
      */
@@ -292,7 +328,11 @@ export interface ProfilegroupState {
      */
     videofilterProfile?: pulumi.Input<string>;
     /**
-     * Name of an existing VoIP profile.
+     * Name of an existing virtual-patch profile.
+     */
+    virtualPatchProfile?: pulumi.Input<string>;
+    /**
+     * Name of an existing VoIP (voipd) profile.
      */
     voipProfile?: pulumi.Input<string>;
     /**
@@ -318,9 +358,17 @@ export interface ProfilegroupArgs {
      */
     avProfile?: pulumi.Input<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    casbProfile?: pulumi.Input<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     cifsProfile?: pulumi.Input<string>;
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    diameterFilterProfile?: pulumi.Input<string>;
     /**
      * Name of an existing DLP profile.
      */
@@ -349,6 +397,10 @@ export interface ProfilegroupArgs {
      * Name of an existing IPS sensor.
      */
     ipsSensor?: pulumi.Input<string>;
+    /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    ipsVoipFilter?: pulumi.Input<string>;
     /**
      * Profile group name.
      */
@@ -382,7 +434,11 @@ export interface ProfilegroupArgs {
      */
     videofilterProfile?: pulumi.Input<string>;
     /**
-     * Name of an existing VoIP profile.
+     * Name of an existing virtual-patch profile.
+     */
+    virtualPatchProfile?: pulumi.Input<string>;
+    /**
+     * Name of an existing VoIP (voipd) profile.
      */
     voipProfile?: pulumi.Input<string>;
     /**

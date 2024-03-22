@@ -185,6 +185,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<Outputs.ProfileprotocoloptionsFtp> Ftp { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Configure HTTP protocol options. The structure of `http` block is documented below.
         /// </summary>
         [Output("http")]
@@ -346,6 +352,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<Inputs.ProfileprotocoloptionsFtpArgs>? Ftp { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Configure HTTP protocol options. The structure of `http` block is documented below.
         /// </summary>
         [Input("http")]
@@ -466,6 +478,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("ftp")]
         public Input<Inputs.ProfileprotocoloptionsFtpGetArgs>? Ftp { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Configure HTTP protocol options. The structure of `http` block is documented below.

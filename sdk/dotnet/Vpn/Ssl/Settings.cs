@@ -155,6 +155,24 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         public Output<string?> DnsSuffix { get; private set; } = null!;
 
         /// <summary>
+        /// Number of missing heartbeats before the connection is considered dropped.
+        /// </summary>
+        [Output("dtlsHeartbeatFailCount")]
+        public Output<int> DtlsHeartbeatFailCount { get; private set; } = null!;
+
+        /// <summary>
+        /// Idle timeout before DTLS heartbeat is sent.
+        /// </summary>
+        [Output("dtlsHeartbeatIdleTimeout")]
+        public Output<int> DtlsHeartbeatIdleTimeout { get; private set; } = null!;
+
+        /// <summary>
+        /// Interval between DTLS heartbeat.
+        /// </summary>
+        [Output("dtlsHeartbeatInterval")]
+        public Output<int> DtlsHeartbeatInterval { get; private set; } = null!;
+
+        /// <summary>
         /// SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
         /// </summary>
         [Output("dtlsHelloTimeout")]
@@ -207,6 +225,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         /// </summary>
         [Output("forceTwoFactorAuth")]
         public Output<string> ForceTwoFactorAuth { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
@@ -327,6 +351,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         /// </summary>
         [Output("samlRedirectPort")]
         public Output<int> SamlRedirectPort { get; private set; } = null!;
+
+        /// <summary>
+        /// Server hostname for HTTPS. When set, will be used for SSL VPN web proxy host header for any redirection.
+        /// </summary>
+        [Output("serverHostname")]
+        public Output<string> ServerHostname { get; private set; } = null!;
 
         /// <summary>
         /// Name of the server certificate to be used for SSL-VPNs.
@@ -658,6 +688,24 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         public Input<string>? DnsSuffix { get; set; }
 
         /// <summary>
+        /// Number of missing heartbeats before the connection is considered dropped.
+        /// </summary>
+        [Input("dtlsHeartbeatFailCount")]
+        public Input<int>? DtlsHeartbeatFailCount { get; set; }
+
+        /// <summary>
+        /// Idle timeout before DTLS heartbeat is sent.
+        /// </summary>
+        [Input("dtlsHeartbeatIdleTimeout")]
+        public Input<int>? DtlsHeartbeatIdleTimeout { get; set; }
+
+        /// <summary>
+        /// Interval between DTLS heartbeat.
+        /// </summary>
+        [Input("dtlsHeartbeatInterval")]
+        public Input<int>? DtlsHeartbeatInterval { get; set; }
+
+        /// <summary>
         /// SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
         /// </summary>
         [Input("dtlsHelloTimeout")]
@@ -710,6 +758,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         /// </summary>
         [Input("forceTwoFactorAuth")]
         public Input<string>? ForceTwoFactorAuth { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
@@ -830,6 +884,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         /// </summary>
         [Input("samlRedirectPort")]
         public Input<int>? SamlRedirectPort { get; set; }
+
+        /// <summary>
+        /// Server hostname for HTTPS. When set, will be used for SSL VPN web proxy host header for any redirection.
+        /// </summary>
+        [Input("serverHostname")]
+        public Input<string>? ServerHostname { get; set; }
 
         /// <summary>
         /// Name of the server certificate to be used for SSL-VPNs.
@@ -1152,6 +1212,24 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         public Input<string>? DnsSuffix { get; set; }
 
         /// <summary>
+        /// Number of missing heartbeats before the connection is considered dropped.
+        /// </summary>
+        [Input("dtlsHeartbeatFailCount")]
+        public Input<int>? DtlsHeartbeatFailCount { get; set; }
+
+        /// <summary>
+        /// Idle timeout before DTLS heartbeat is sent.
+        /// </summary>
+        [Input("dtlsHeartbeatIdleTimeout")]
+        public Input<int>? DtlsHeartbeatIdleTimeout { get; set; }
+
+        /// <summary>
+        /// Interval between DTLS heartbeat.
+        /// </summary>
+        [Input("dtlsHeartbeatInterval")]
+        public Input<int>? DtlsHeartbeatInterval { get; set; }
+
+        /// <summary>
         /// SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
         /// </summary>
         [Input("dtlsHelloTimeout")]
@@ -1204,6 +1282,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         /// </summary>
         [Input("forceTwoFactorAuth")]
         public Input<string>? ForceTwoFactorAuth { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
@@ -1324,6 +1408,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         /// </summary>
         [Input("samlRedirectPort")]
         public Input<int>? SamlRedirectPort { get; set; }
+
+        /// <summary>
+        /// Server hostname for HTTPS. When set, will be used for SSL VPN web proxy host header for any redirection.
+        /// </summary>
+        [Input("serverHostname")]
+        public Input<string>? ServerHostname { get; set; }
 
         /// <summary>
         /// Name of the server certificate to be used for SSL-VPNs.

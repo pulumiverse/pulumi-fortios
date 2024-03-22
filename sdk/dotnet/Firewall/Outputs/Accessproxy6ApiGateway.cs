@@ -19,6 +19,14 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.Accessproxy6ApiGatewayApplication> Applications;
         /// <summary>
+        /// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? H2Support;
+        /// <summary>
+        /// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? H3Support;
+        /// <summary>
         /// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
         /// </summary>
         public readonly int? HttpCookieAge;
@@ -59,6 +67,10 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? Persistence;
         /// <summary>
+        /// QUIC setting. The structure of `quic` block is documented below.
+        /// </summary>
+        public readonly Outputs.Accessproxy6ApiGatewayQuic? Quic;
+        /// <summary>
         /// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.Accessproxy6ApiGatewayRealserver> Realservers;
@@ -95,6 +107,10 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? SslMinVersion;
         /// <summary>
+        /// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? SslRenegotiation;
+        /// <summary>
         /// SSL-VPN web portal.
         /// </summary>
         public readonly string? SslVpnWebPortal;
@@ -114,6 +130,10 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         [OutputConstructor]
         private Accessproxy6ApiGateway(
             ImmutableArray<Outputs.Accessproxy6ApiGatewayApplication> applications,
+
+            string? h2Support,
+
+            string? h3Support,
 
             int? httpCookieAge,
 
@@ -135,6 +155,8 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
 
             string? persistence,
 
+            Outputs.Accessproxy6ApiGatewayQuic? quic,
+
             ImmutableArray<Outputs.Accessproxy6ApiGatewayRealserver> realservers,
 
             string? samlRedirect,
@@ -153,6 +175,8 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
 
             string? sslMinVersion,
 
+            string? sslRenegotiation,
+
             string? sslVpnWebPortal,
 
             string? urlMap,
@@ -162,6 +186,8 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
             string? virtualHost)
         {
             Applications = applications;
+            H2Support = h2Support;
+            H3Support = h3Support;
             HttpCookieAge = httpCookieAge;
             HttpCookieDomain = httpCookieDomain;
             HttpCookieDomainFromHost = httpCookieDomainFromHost;
@@ -172,6 +198,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
             Id = id;
             LdbMethod = ldbMethod;
             Persistence = persistence;
+            Quic = quic;
             Realservers = realservers;
             SamlRedirect = samlRedirect;
             SamlServer = samlServer;
@@ -181,6 +208,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
             SslDhBits = sslDhBits;
             SslMaxVersion = sslMaxVersion;
             SslMinVersion = sslMinVersion;
+            SslRenegotiation = sslRenegotiation;
             SslVpnWebPortal = sslVpnWebPortal;
             UrlMap = urlMap;
             UrlMapType = urlMapType;

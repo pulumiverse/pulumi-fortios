@@ -35,6 +35,18 @@ namespace Pulumiverse.Fortios.Switchcontroller
     public partial class System : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Echo interval for the caputp echo requests from swtp.
+        /// </summary>
+        [Output("caputpEchoInterval")]
+        public Output<int> CaputpEchoInterval { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum retransmission count for the caputp tunnel packets.
+        /// </summary>
+        [Output("caputpMaxRetransmit")]
+        public Output<int> CaputpMaxRetransmit { get; private set; } = null!;
+
+        /// <summary>
         /// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
         /// </summary>
         [Output("dataSyncInterval")]
@@ -89,7 +101,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<string> ParallelProcessOverride { get; private set; } = null!;
 
         /// <summary>
-        /// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        /// Compatible/strict tunnel mode.
         /// </summary>
         [Output("tunnelMode")]
         public Output<string> TunnelMode { get; private set; } = null!;
@@ -148,6 +160,18 @@ namespace Pulumiverse.Fortios.Switchcontroller
     public sealed class SystemArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Echo interval for the caputp echo requests from swtp.
+        /// </summary>
+        [Input("caputpEchoInterval")]
+        public Input<int>? CaputpEchoInterval { get; set; }
+
+        /// <summary>
+        /// Maximum retransmission count for the caputp tunnel packets.
+        /// </summary>
+        [Input("caputpMaxRetransmit")]
+        public Input<int>? CaputpMaxRetransmit { get; set; }
+
+        /// <summary>
         /// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
         /// </summary>
         [Input("dataSyncInterval")]
@@ -202,7 +226,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? ParallelProcessOverride { get; set; }
 
         /// <summary>
-        /// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        /// Compatible/strict tunnel mode.
         /// </summary>
         [Input("tunnelMode")]
         public Input<string>? TunnelMode { get; set; }
@@ -222,6 +246,18 @@ namespace Pulumiverse.Fortios.Switchcontroller
     public sealed class SystemState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Echo interval for the caputp echo requests from swtp.
+        /// </summary>
+        [Input("caputpEchoInterval")]
+        public Input<int>? CaputpEchoInterval { get; set; }
+
+        /// <summary>
+        /// Maximum retransmission count for the caputp tunnel packets.
+        /// </summary>
+        [Input("caputpMaxRetransmit")]
+        public Input<int>? CaputpMaxRetransmit { get; set; }
+
+        /// <summary>
         /// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
         /// </summary>
         [Input("dataSyncInterval")]
@@ -276,7 +312,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? ParallelProcessOverride { get; set; }
 
         /// <summary>
-        /// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        /// Compatible/strict tunnel mode.
         /// </summary>
         [Input("tunnelMode")]
         public Input<string>? TunnelMode { get; set; }

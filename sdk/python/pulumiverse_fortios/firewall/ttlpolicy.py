@@ -24,6 +24,7 @@ class TtlpolicyArgs:
                  ttl: pulumi.Input[str],
                  action: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -36,6 +37,7 @@ class TtlpolicyArgs:
         :param pulumi.Input[str] ttl: Value/range to match against the packet's Time to Live value (format: ttl[ - ttl_high], 1 - 255).
         :param pulumi.Input[str] action: Action to be performed on traffic matching this policy (default = deny). Valid values: `accept`, `deny`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] status: Enable/disable this TTL policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -49,6 +51,8 @@ class TtlpolicyArgs:
             pulumi.set(__self__, "action", action)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
@@ -151,6 +155,18 @@ class TtlpolicyArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -181,6 +197,7 @@ class _TtlpolicyState:
                  action: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['TtlpolicyServiceArgs']]]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['TtlpolicySrcaddrArgs']]]] = None,
@@ -193,6 +210,7 @@ class _TtlpolicyState:
         :param pulumi.Input[str] action: Action to be performed on traffic matching this policy (default = deny). Valid values: `accept`, `deny`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] schedule: Schedule object from available options.
         :param pulumi.Input[Sequence[pulumi.Input['TtlpolicyServiceArgs']]] services: Service object(s) from available options. Separate multiple names with a space. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['TtlpolicySrcaddrArgs']]] srcaddrs: Source address object(s) from available options. Separate multiple names with a space. The structure of `srcaddr` block is documented below.
@@ -207,6 +225,8 @@ class _TtlpolicyState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if schedule is not None:
             pulumi.set(__self__, "schedule", schedule)
         if services is not None:
@@ -257,6 +277,18 @@ class _TtlpolicyState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -351,6 +383,7 @@ class Ttlpolicy(pulumi.CustomResource):
                  action: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TtlpolicyServiceArgs']]]]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TtlpolicySrcaddrArgs']]]]] = None,
@@ -408,6 +441,7 @@ class Ttlpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] action: Action to be performed on traffic matching this policy (default = deny). Valid values: `accept`, `deny`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] schedule: Schedule object from available options.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TtlpolicyServiceArgs']]]] services: Service object(s) from available options. Separate multiple names with a space. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TtlpolicySrcaddrArgs']]]] srcaddrs: Source address object(s) from available options. Separate multiple names with a space. The structure of `srcaddr` block is documented below.
@@ -484,6 +518,7 @@ class Ttlpolicy(pulumi.CustomResource):
                  action: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TtlpolicyServiceArgs']]]]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TtlpolicySrcaddrArgs']]]]] = None,
@@ -505,6 +540,7 @@ class Ttlpolicy(pulumi.CustomResource):
             if fosid is None and not opts.urn:
                 raise TypeError("Missing required property 'fosid'")
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if schedule is None and not opts.urn:
                 raise TypeError("Missing required property 'schedule'")
             __props__.__dict__["schedule"] = schedule
@@ -535,6 +571,7 @@ class Ttlpolicy(pulumi.CustomResource):
             action: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             schedule: Optional[pulumi.Input[str]] = None,
             services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TtlpolicyServiceArgs']]]]] = None,
             srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TtlpolicySrcaddrArgs']]]]] = None,
@@ -552,6 +589,7 @@ class Ttlpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] action: Action to be performed on traffic matching this policy (default = deny). Valid values: `accept`, `deny`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] schedule: Schedule object from available options.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TtlpolicyServiceArgs']]]] services: Service object(s) from available options. Separate multiple names with a space. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TtlpolicySrcaddrArgs']]]] srcaddrs: Source address object(s) from available options. Separate multiple names with a space. The structure of `srcaddr` block is documented below.
@@ -567,6 +605,7 @@ class Ttlpolicy(pulumi.CustomResource):
         __props__.__dict__["action"] = action
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["schedule"] = schedule
         __props__.__dict__["services"] = services
         __props__.__dict__["srcaddrs"] = srcaddrs
@@ -599,6 +638,14 @@ class Ttlpolicy(pulumi.CustomResource):
         ID.
         """
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

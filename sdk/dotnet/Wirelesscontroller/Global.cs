@@ -69,6 +69,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
     public partial class Global : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Configure the number cw_acd daemons for multi-core CPU support (default = 0).
+        /// </summary>
+        [Output("acdProcessCount")]
+        public Output<int> AcdProcessCount { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Output("apLogServer")]
@@ -97,6 +103,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("dataEthernetIi")]
         public Output<string> DataEthernetIi { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("dfsLabTest")]
+        public Output<string> DfsLabTest { get; private set; } = null!;
 
         /// <summary>
         /// Multicast IP address for AP discovery (default = 244.0.1.140).
@@ -171,6 +183,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> RogueScanMacAdjacency { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("rollingWtpUpgrade")]
+        public Output<string> RollingWtpUpgrade { get; private set; } = null!;
+
+        /// <summary>
+        /// Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+        /// </summary>
+        [Output("rollingWtpUpgradeThreshold")]
+        public Output<string> RollingWtpUpgradeThreshold { get; private set; } = null!;
+
+        /// <summary>
         /// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         /// </summary>
         [Output("tunnelMode")]
@@ -181,6 +205,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("vdomparam")]
         public Output<string?> Vdomparam { get; private set; } = null!;
+
+        /// <summary>
+        /// Wpad daemon process count for multi-core CPU support.
+        /// </summary>
+        [Output("wpadProcessCount")]
+        public Output<int> WpadProcessCount { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
@@ -236,6 +266,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
     public sealed class GlobalArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Configure the number cw_acd daemons for multi-core CPU support (default = 0).
+        /// </summary>
+        [Input("acdProcessCount")]
+        public Input<int>? AcdProcessCount { get; set; }
+
+        /// <summary>
         /// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("apLogServer")]
@@ -264,6 +300,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("dataEthernetIi")]
         public Input<string>? DataEthernetIi { get; set; }
+
+        /// <summary>
+        /// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("dfsLabTest")]
+        public Input<string>? DfsLabTest { get; set; }
 
         /// <summary>
         /// Multicast IP address for AP discovery (default = 244.0.1.140).
@@ -338,6 +380,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? RogueScanMacAdjacency { get; set; }
 
         /// <summary>
+        /// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("rollingWtpUpgrade")]
+        public Input<string>? RollingWtpUpgrade { get; set; }
+
+        /// <summary>
+        /// Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+        /// </summary>
+        [Input("rollingWtpUpgradeThreshold")]
+        public Input<string>? RollingWtpUpgradeThreshold { get; set; }
+
+        /// <summary>
         /// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         /// </summary>
         [Input("tunnelMode")]
@@ -348,6 +402,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("vdomparam")]
         public Input<string>? Vdomparam { get; set; }
+
+        /// <summary>
+        /// Wpad daemon process count for multi-core CPU support.
+        /// </summary>
+        [Input("wpadProcessCount")]
+        public Input<int>? WpadProcessCount { get; set; }
 
         /// <summary>
         /// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
@@ -364,6 +424,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
     public sealed class GlobalState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Configure the number cw_acd daemons for multi-core CPU support (default = 0).
+        /// </summary>
+        [Input("acdProcessCount")]
+        public Input<int>? AcdProcessCount { get; set; }
+
+        /// <summary>
         /// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("apLogServer")]
@@ -392,6 +458,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("dataEthernetIi")]
         public Input<string>? DataEthernetIi { get; set; }
+
+        /// <summary>
+        /// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("dfsLabTest")]
+        public Input<string>? DfsLabTest { get; set; }
 
         /// <summary>
         /// Multicast IP address for AP discovery (default = 244.0.1.140).
@@ -466,6 +538,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? RogueScanMacAdjacency { get; set; }
 
         /// <summary>
+        /// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("rollingWtpUpgrade")]
+        public Input<string>? RollingWtpUpgrade { get; set; }
+
+        /// <summary>
+        /// Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+        /// </summary>
+        [Input("rollingWtpUpgradeThreshold")]
+        public Input<string>? RollingWtpUpgradeThreshold { get; set; }
+
+        /// <summary>
         /// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         /// </summary>
         [Input("tunnelMode")]
@@ -476,6 +560,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("vdomparam")]
         public Input<string>? Vdomparam { get; set; }
+
+        /// <summary>
+        /// Wpad daemon process count for multi-core CPU support.
+        /// </summary>
+        [Input("wpadProcessCount")]
+        public Input<int>? WpadProcessCount { get; set; }
 
         /// <summary>
         /// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.

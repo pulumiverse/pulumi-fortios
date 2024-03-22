@@ -42,6 +42,8 @@ type Name struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Application ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Meta data. The structure of `metadata` block is documented below.
 	Metadatas NameMetadataArrayOutput `pulumi:"metadatas"`
 	// Application name.
@@ -109,6 +111,8 @@ type nameState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Application ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Meta data. The structure of `metadata` block is documented below.
 	Metadatas []NameMetadata `pulumi:"metadatas"`
 	// Application name.
@@ -144,6 +148,8 @@ type NameState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Application ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Meta data. The structure of `metadata` block is documented below.
 	Metadatas NameMetadataArrayInput
 	// Application name.
@@ -183,6 +189,8 @@ type nameArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Application ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Meta data. The structure of `metadata` block is documented below.
 	Metadatas []NameMetadata `pulumi:"metadatas"`
 	// Application name.
@@ -219,6 +227,8 @@ type NameArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Application ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Meta data. The structure of `metadata` block is documented below.
 	Metadatas NameMetadataArrayInput
 	// Application name.
@@ -350,6 +360,11 @@ func (o NameOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Application ID.
 func (o NameOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Name) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o NameOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Name) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Meta data. The structure of `metadata` block is documented below.

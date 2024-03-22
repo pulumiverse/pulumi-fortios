@@ -151,7 +151,7 @@ namespace Pulumiverse.Fortios.Log.Disk
         public Output<int> MaximumLogAge { get; private set; } = null!;
 
         /// <summary>
-        /// Report quota (MB).
+        /// Report db quota (MB).
         /// </summary>
         [Output("reportQuota")]
         public Output<int> ReportQuota { get; private set; } = null!;
@@ -388,7 +388,7 @@ namespace Pulumiverse.Fortios.Log.Disk
         public Input<int>? MaximumLogAge { get; set; }
 
         /// <summary>
-        /// Report quota (MB).
+        /// Report db quota (MB).
         /// </summary>
         [Input("reportQuota")]
         public Input<int>? ReportQuota { get; set; }
@@ -592,7 +592,7 @@ namespace Pulumiverse.Fortios.Log.Disk
         public Input<int>? MaximumLogAge { get; set; }
 
         /// <summary>
-        /// Report quota (MB).
+        /// Report db quota (MB).
         /// </summary>
         [Input("reportQuota")]
         public Input<int>? ReportQuota { get; set; }

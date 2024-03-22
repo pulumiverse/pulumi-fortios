@@ -93,6 +93,10 @@ export class Community extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
      */
     public readonly hosts!: pulumi.Output<outputs.system.snmp.CommunityHost[] | undefined>;
@@ -177,6 +181,7 @@ export class Community extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["events"] = state ? state.events : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hosts"] = state ? state.hosts : undefined;
             resourceInputs["hosts6s"] = state ? state.hosts6s : undefined;
             resourceInputs["mibView"] = state ? state.mibView : undefined;
@@ -202,6 +207,7 @@ export class Community extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["events"] = args ? args.events : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hosts"] = args ? args.hosts : undefined;
             resourceInputs["hosts6s"] = args ? args.hosts6s : undefined;
             resourceInputs["mibView"] = args ? args.mibView : undefined;
@@ -241,6 +247,10 @@ export interface CommunityState {
      * Community ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
      */
@@ -327,6 +337,10 @@ export interface CommunityArgs {
      * Community ID.
      */
     fosid: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
      */

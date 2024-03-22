@@ -64,9 +64,21 @@ export class Federatedupgrade extends pulumi.CustomResource {
      */
     public readonly failureDevice!: pulumi.Output<string>;
     /**
-     * Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+     * Reason for upgrade failure.
      */
     public readonly failureReason!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+     */
+    public readonly haRebootController!: pulumi.Output<string>;
+    /**
+     * Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `knownHaMembers` block is documented below.
+     */
+    public readonly knownHaMembers!: pulumi.Output<outputs.system.FederatedupgradeKnownHaMember[] | undefined>;
     /**
      * The index of the next image to upgrade to.
      */
@@ -104,6 +116,9 @@ export class Federatedupgrade extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["failureDevice"] = state ? state.failureDevice : undefined;
             resourceInputs["failureReason"] = state ? state.failureReason : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["haRebootController"] = state ? state.haRebootController : undefined;
+            resourceInputs["knownHaMembers"] = state ? state.knownHaMembers : undefined;
             resourceInputs["nextPathIndex"] = state ? state.nextPathIndex : undefined;
             resourceInputs["nodeLists"] = state ? state.nodeLists : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -114,6 +129,9 @@ export class Federatedupgrade extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["failureDevice"] = args ? args.failureDevice : undefined;
             resourceInputs["failureReason"] = args ? args.failureReason : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["haRebootController"] = args ? args.haRebootController : undefined;
+            resourceInputs["knownHaMembers"] = args ? args.knownHaMembers : undefined;
             resourceInputs["nextPathIndex"] = args ? args.nextPathIndex : undefined;
             resourceInputs["nodeLists"] = args ? args.nodeLists : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
@@ -138,9 +156,21 @@ export interface FederatedupgradeState {
      */
     failureDevice?: pulumi.Input<string>;
     /**
-     * Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+     * Reason for upgrade failure.
      */
     failureReason?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+     */
+    haRebootController?: pulumi.Input<string>;
+    /**
+     * Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `knownHaMembers` block is documented below.
+     */
+    knownHaMembers?: pulumi.Input<pulumi.Input<inputs.system.FederatedupgradeKnownHaMember>[]>;
     /**
      * The index of the next image to upgrade to.
      */
@@ -176,9 +206,21 @@ export interface FederatedupgradeArgs {
      */
     failureDevice?: pulumi.Input<string>;
     /**
-     * Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+     * Reason for upgrade failure.
      */
     failureReason?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+     */
+    haRebootController?: pulumi.Input<string>;
+    /**
+     * Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `knownHaMembers` block is documented below.
+     */
+    knownHaMembers?: pulumi.Input<pulumi.Input<inputs.system.FederatedupgradeKnownHaMember>[]>;
     /**
      * The index of the next image to upgrade to.
      */

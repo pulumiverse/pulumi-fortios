@@ -107,6 +107,58 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly string? FortipresenceUnassoc;
         /// <summary>
+        /// Enable/disable PoleStar BLE NAO Track Real Time Location Service (RTLS) support (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? Polestar;
+        /// <summary>
+        /// Time that measurements should be accumulated in seconds (default = 2).
+        /// </summary>
+        public readonly int? PolestarAccumulationInterval;
+        /// <summary>
+        /// Tags and asset addrgrp list to be reported.
+        /// </summary>
+        public readonly string? PolestarAssetAddrgrpList;
+        /// <summary>
+        /// Tags and asset UUID list 1 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+        /// </summary>
+        public readonly string? PolestarAssetUuidList1;
+        /// <summary>
+        /// Tags and asset UUID list 2 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+        /// </summary>
+        public readonly string? PolestarAssetUuidList2;
+        /// <summary>
+        /// Tags and asset UUID list 3 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+        /// </summary>
+        public readonly string? PolestarAssetUuidList3;
+        /// <summary>
+        /// Tags and asset UUID list 4 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+        /// </summary>
+        public readonly string? PolestarAssetUuidList4;
+        /// <summary>
+        /// Select the protocol to report Measurements, Advertising Data, or Location Data to NAO Cloud. (default = WSS). Valid values: `WSS`.
+        /// </summary>
+        public readonly string? PolestarProtocol;
+        /// <summary>
+        /// Time between reporting accumulated measurements in seconds (default = 2).
+        /// </summary>
+        public readonly int? PolestarReportingInterval;
+        /// <summary>
+        /// FQDN of PoleStar Nao Track Server (default = ws.nao-cloud.com).
+        /// </summary>
+        public readonly string? PolestarServerFqdn;
+        /// <summary>
+        /// Path of PoleStar Nao Track Server (default = /v1/token/&lt;access_token&gt;/pst-v2).
+        /// </summary>
+        public readonly string? PolestarServerPath;
+        /// <summary>
+        /// Port of PoleStar Nao Track Server (default = 443).
+        /// </summary>
+        public readonly int? PolestarServerPort;
+        /// <summary>
+        /// Access Token of PoleStar Nao Track Server.
+        /// </summary>
+        public readonly string? PolestarServerToken;
+        /// <summary>
         /// Enable/disable client station locating services for all clients, whether associated or not (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         public readonly string? StationLocate;
@@ -159,6 +211,32 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
 
             string? fortipresenceUnassoc,
 
+            string? polestar,
+
+            int? polestarAccumulationInterval,
+
+            string? polestarAssetAddrgrpList,
+
+            string? polestarAssetUuidList1,
+
+            string? polestarAssetUuidList2,
+
+            string? polestarAssetUuidList3,
+
+            string? polestarAssetUuidList4,
+
+            string? polestarProtocol,
+
+            int? polestarReportingInterval,
+
+            string? polestarServerFqdn,
+
+            string? polestarServerPath,
+
+            int? polestarServerPort,
+
+            string? polestarServerToken,
+
             string? stationLocate)
         {
             Aeroscout = aeroscout;
@@ -184,6 +262,19 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
             FortipresenceServerAddrType = fortipresenceServerAddrType;
             FortipresenceServerFqdn = fortipresenceServerFqdn;
             FortipresenceUnassoc = fortipresenceUnassoc;
+            Polestar = polestar;
+            PolestarAccumulationInterval = polestarAccumulationInterval;
+            PolestarAssetAddrgrpList = polestarAssetAddrgrpList;
+            PolestarAssetUuidList1 = polestarAssetUuidList1;
+            PolestarAssetUuidList2 = polestarAssetUuidList2;
+            PolestarAssetUuidList3 = polestarAssetUuidList3;
+            PolestarAssetUuidList4 = polestarAssetUuidList4;
+            PolestarProtocol = polestarProtocol;
+            PolestarReportingInterval = polestarReportingInterval;
+            PolestarServerFqdn = polestarServerFqdn;
+            PolestarServerPath = polestarServerPath;
+            PolestarServerPort = polestarServerPort;
+            PolestarServerToken = polestarServerToken;
             StationLocate = stationLocate;
         }
     }

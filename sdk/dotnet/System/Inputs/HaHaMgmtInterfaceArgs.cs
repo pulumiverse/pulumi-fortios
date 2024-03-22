@@ -13,18 +13,33 @@ namespace Pulumiverse.Fortios.System.Inputs
 
     public sealed class HaHaMgmtInterfaceArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Default route destination for reserved HA management interface.
+        /// </summary>
         [Input("dst")]
         public Input<string>? Dst { get; set; }
 
+        /// <summary>
+        /// Default route gateway for reserved HA management interface.
+        /// </summary>
         [Input("gateway")]
         public Input<string>? Gateway { get; set; }
 
+        /// <summary>
+        /// Default IPv6 gateway for reserved HA management interface.
+        /// </summary>
         [Input("gateway6")]
         public Input<string>? Gateway6 { get; set; }
 
+        /// <summary>
+        /// Table ID.
+        /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }
 
+        /// <summary>
+        /// Interface to reserve for HA management.
+        /// </summary>
         [Input("interface")]
         public Input<string>? Interface { get; set; }
 

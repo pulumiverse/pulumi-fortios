@@ -26,6 +26,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<string>? DeviceType { get; set; }
 
         /// <summary>
+        /// Maximum number of minutes to allow for immediate upgrade preparation.
+        /// </summary>
+        [Input("maximumMinutes")]
+        public Input<int>? MaximumMinutes { get; set; }
+
+        /// <summary>
         /// Serial number of the node to include.
         /// </summary>
         [Input("serial")]

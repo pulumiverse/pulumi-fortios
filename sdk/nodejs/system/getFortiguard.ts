@@ -39,6 +39,10 @@ export interface GetFortiguardResult {
      */
     readonly antispamCacheMpercent: number;
     /**
+     * Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+     */
+    readonly antispamCacheMpermille: number;
+    /**
      * Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
      */
     readonly antispamCacheTtl: number;
@@ -75,6 +79,10 @@ export interface GetFortiguardResult {
      */
     readonly autoFirmwareUpgradeDay: string;
     /**
+     * Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+     */
+    readonly autoFirmwareUpgradeDelay: number;
+    /**
      * End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
      */
     readonly autoFirmwareUpgradeEndHour: number;
@@ -99,6 +107,10 @@ export interface GetFortiguardResult {
      */
     readonly ddnsServerPort: number;
     /**
+     * Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+     */
+    readonly fdsLicenseExpiringDays: number;
+    /**
      * Enable/disable use of FortiGuard's anycast network.
      */
     readonly fortiguardAnycast: string;
@@ -106,6 +118,10 @@ export interface GetFortiguardResult {
      * Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet.
      */
     readonly fortiguardAnycastSource: string;
+    /**
+     * Enable/disable prompting of automatic patch-level firmware upgrade recommendation.
+     */
+    readonly guiPromptAutoUpgrade: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -130,6 +146,10 @@ export interface GetFortiguardResult {
      * Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
      */
     readonly outbreakPreventionCacheMpercent: number;
+    /**
+     * Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+     */
+    readonly outbreakPreventionCacheMpermille: number;
     /**
      * Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
      */
@@ -214,6 +234,10 @@ export interface GetFortiguardResult {
      * Enable/disable proxy dictionary rebuild.
      */
     readonly updateBuildProxy: string;
+    /**
+     * Enable/disable DLP signature update.
+     */
+    readonly updateDldb: string;
     /**
      * Enable/disable external resource update.
      */

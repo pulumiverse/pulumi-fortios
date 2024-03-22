@@ -69,6 +69,12 @@ type Trafficshaper struct {
 
 	// Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
 	BandwidthUnit pulumi.StringOutput `pulumi:"bandwidthUnit"`
+	// VLAN CoS mark.
+	Cos pulumi.StringOutput `pulumi:"cos"`
+	// Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+	CosMarking pulumi.StringOutput `pulumi:"cosMarking"`
+	// Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+	CosMarkingMethod pulumi.StringOutput `pulumi:"cosMarkingMethod"`
 	// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
 	Diffserv pulumi.StringOutput `pulumi:"diffserv"`
 	// DiffServ setting to be applied to traffic accepted by this shaper.
@@ -79,12 +85,16 @@ type Trafficshaper struct {
 	ExceedBandwidth pulumi.IntOutput `pulumi:"exceedBandwidth"`
 	// Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
 	ExceedClassId pulumi.IntOutput `pulumi:"exceedClassId"`
+	// VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+	ExceedCos pulumi.StringOutput `pulumi:"exceedCos"`
 	// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
 	ExceedDscp pulumi.StringOutput `pulumi:"exceedDscp"`
-	// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+	// Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
 	GuaranteedBandwidth pulumi.IntOutput `pulumi:"guaranteedBandwidth"`
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
 	MaximumBandwidth pulumi.IntOutput `pulumi:"maximumBandwidth"`
+	// VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+	MaximumCos pulumi.StringOutput `pulumi:"maximumCos"`
 	// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
 	MaximumDscp pulumi.StringOutput `pulumi:"maximumDscp"`
 	// Traffic shaper name.
@@ -131,6 +141,12 @@ func GetTrafficshaper(ctx *pulumi.Context,
 type trafficshaperState struct {
 	// Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
 	BandwidthUnit *string `pulumi:"bandwidthUnit"`
+	// VLAN CoS mark.
+	Cos *string `pulumi:"cos"`
+	// Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+	CosMarking *string `pulumi:"cosMarking"`
+	// Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+	CosMarkingMethod *string `pulumi:"cosMarkingMethod"`
 	// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
 	Diffserv *string `pulumi:"diffserv"`
 	// DiffServ setting to be applied to traffic accepted by this shaper.
@@ -141,12 +157,16 @@ type trafficshaperState struct {
 	ExceedBandwidth *int `pulumi:"exceedBandwidth"`
 	// Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
 	ExceedClassId *int `pulumi:"exceedClassId"`
+	// VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+	ExceedCos *string `pulumi:"exceedCos"`
 	// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
 	ExceedDscp *string `pulumi:"exceedDscp"`
-	// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+	// Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
 	GuaranteedBandwidth *int `pulumi:"guaranteedBandwidth"`
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
 	MaximumBandwidth *int `pulumi:"maximumBandwidth"`
+	// VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+	MaximumCos *string `pulumi:"maximumCos"`
 	// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
 	MaximumDscp *string `pulumi:"maximumDscp"`
 	// Traffic shaper name.
@@ -164,6 +184,12 @@ type trafficshaperState struct {
 type TrafficshaperState struct {
 	// Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
 	BandwidthUnit pulumi.StringPtrInput
+	// VLAN CoS mark.
+	Cos pulumi.StringPtrInput
+	// Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+	CosMarking pulumi.StringPtrInput
+	// Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+	CosMarkingMethod pulumi.StringPtrInput
 	// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
 	Diffserv pulumi.StringPtrInput
 	// DiffServ setting to be applied to traffic accepted by this shaper.
@@ -174,12 +200,16 @@ type TrafficshaperState struct {
 	ExceedBandwidth pulumi.IntPtrInput
 	// Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
 	ExceedClassId pulumi.IntPtrInput
+	// VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+	ExceedCos pulumi.StringPtrInput
 	// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
 	ExceedDscp pulumi.StringPtrInput
-	// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+	// Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
 	GuaranteedBandwidth pulumi.IntPtrInput
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
 	MaximumBandwidth pulumi.IntPtrInput
+	// VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+	MaximumCos pulumi.StringPtrInput
 	// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
 	MaximumDscp pulumi.StringPtrInput
 	// Traffic shaper name.
@@ -201,6 +231,12 @@ func (TrafficshaperState) ElementType() reflect.Type {
 type trafficshaperArgs struct {
 	// Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
 	BandwidthUnit *string `pulumi:"bandwidthUnit"`
+	// VLAN CoS mark.
+	Cos *string `pulumi:"cos"`
+	// Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+	CosMarking *string `pulumi:"cosMarking"`
+	// Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+	CosMarkingMethod *string `pulumi:"cosMarkingMethod"`
 	// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
 	Diffserv *string `pulumi:"diffserv"`
 	// DiffServ setting to be applied to traffic accepted by this shaper.
@@ -211,12 +247,16 @@ type trafficshaperArgs struct {
 	ExceedBandwidth *int `pulumi:"exceedBandwidth"`
 	// Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
 	ExceedClassId *int `pulumi:"exceedClassId"`
+	// VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+	ExceedCos *string `pulumi:"exceedCos"`
 	// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
 	ExceedDscp *string `pulumi:"exceedDscp"`
-	// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+	// Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
 	GuaranteedBandwidth *int `pulumi:"guaranteedBandwidth"`
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
 	MaximumBandwidth *int `pulumi:"maximumBandwidth"`
+	// VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+	MaximumCos *string `pulumi:"maximumCos"`
 	// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
 	MaximumDscp *string `pulumi:"maximumDscp"`
 	// Traffic shaper name.
@@ -235,6 +275,12 @@ type trafficshaperArgs struct {
 type TrafficshaperArgs struct {
 	// Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
 	BandwidthUnit pulumi.StringPtrInput
+	// VLAN CoS mark.
+	Cos pulumi.StringPtrInput
+	// Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+	CosMarking pulumi.StringPtrInput
+	// Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+	CosMarkingMethod pulumi.StringPtrInput
 	// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
 	Diffserv pulumi.StringPtrInput
 	// DiffServ setting to be applied to traffic accepted by this shaper.
@@ -245,12 +291,16 @@ type TrafficshaperArgs struct {
 	ExceedBandwidth pulumi.IntPtrInput
 	// Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
 	ExceedClassId pulumi.IntPtrInput
+	// VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+	ExceedCos pulumi.StringPtrInput
 	// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
 	ExceedDscp pulumi.StringPtrInput
-	// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+	// Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
 	GuaranteedBandwidth pulumi.IntPtrInput
-	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
 	MaximumBandwidth pulumi.IntPtrInput
+	// VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+	MaximumCos pulumi.StringPtrInput
 	// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
 	MaximumDscp pulumi.StringPtrInput
 	// Traffic shaper name.
@@ -357,6 +407,21 @@ func (o TrafficshaperOutput) BandwidthUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v *Trafficshaper) pulumi.StringOutput { return v.BandwidthUnit }).(pulumi.StringOutput)
 }
 
+// VLAN CoS mark.
+func (o TrafficshaperOutput) Cos() pulumi.StringOutput {
+	return o.ApplyT(func(v *Trafficshaper) pulumi.StringOutput { return v.Cos }).(pulumi.StringOutput)
+}
+
+// Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+func (o TrafficshaperOutput) CosMarking() pulumi.StringOutput {
+	return o.ApplyT(func(v *Trafficshaper) pulumi.StringOutput { return v.CosMarking }).(pulumi.StringOutput)
+}
+
+// Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+func (o TrafficshaperOutput) CosMarkingMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *Trafficshaper) pulumi.StringOutput { return v.CosMarkingMethod }).(pulumi.StringOutput)
+}
+
 // Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
 func (o TrafficshaperOutput) Diffserv() pulumi.StringOutput {
 	return o.ApplyT(func(v *Trafficshaper) pulumi.StringOutput { return v.Diffserv }).(pulumi.StringOutput)
@@ -382,19 +447,29 @@ func (o TrafficshaperOutput) ExceedClassId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Trafficshaper) pulumi.IntOutput { return v.ExceedClassId }).(pulumi.IntOutput)
 }
 
+// VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+func (o TrafficshaperOutput) ExceedCos() pulumi.StringOutput {
+	return o.ApplyT(func(v *Trafficshaper) pulumi.StringOutput { return v.ExceedCos }).(pulumi.StringOutput)
+}
+
 // DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
 func (o TrafficshaperOutput) ExceedDscp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Trafficshaper) pulumi.StringOutput { return v.ExceedDscp }).(pulumi.StringOutput)
 }
 
-// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+// Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
 func (o TrafficshaperOutput) GuaranteedBandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *Trafficshaper) pulumi.IntOutput { return v.GuaranteedBandwidth }).(pulumi.IntOutput)
 }
 
-// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
 func (o TrafficshaperOutput) MaximumBandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *Trafficshaper) pulumi.IntOutput { return v.MaximumBandwidth }).(pulumi.IntOutput)
+}
+
+// VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+func (o TrafficshaperOutput) MaximumCos() pulumi.StringOutput {
+	return o.ApplyT(func(v *Trafficshaper) pulumi.StringOutput { return v.MaximumCos }).(pulumi.StringOutput)
 }
 
 // DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].

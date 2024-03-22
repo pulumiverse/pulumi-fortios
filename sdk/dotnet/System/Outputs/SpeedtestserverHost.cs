@@ -15,6 +15,10 @@ namespace Pulumiverse.Fortios.System.Outputs
     public sealed class SpeedtestserverHost
     {
         /// <summary>
+        /// Speed test host distance.
+        /// </summary>
+        public readonly int? Distance;
+        /// <summary>
         /// Server host ID.
         /// </summary>
         public readonly int? Id;
@@ -22,6 +26,14 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// Server host IPv4 address.
         /// </summary>
         public readonly string? Ip;
+        /// <summary>
+        /// Speed test host latitude.
+        /// </summary>
+        public readonly string? Latitude;
+        /// <summary>
+        /// Speed test host longitude.
+        /// </summary>
+        public readonly string? Longitude;
         /// <summary>
         /// Speed test host password.
         /// </summary>
@@ -37,9 +49,15 @@ namespace Pulumiverse.Fortios.System.Outputs
 
         [OutputConstructor]
         private SpeedtestserverHost(
+            int? distance,
+
             int? id,
 
             string? ip,
+
+            string? latitude,
+
+            string? longitude,
 
             string? password,
 
@@ -47,8 +65,11 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             string? user)
         {
+            Distance = distance;
             Id = id;
             Ip = ip;
+            Latitude = latitude;
+            Longitude = longitude;
             Password = password;
             Port = port;
             User = user;

@@ -47,7 +47,7 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Output<string> AdminUsername { get; private set; } = null!;
 
         /// <summary>
-        /// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        /// FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions &gt;= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         /// </summary>
         [Output("callTimeout")]
         public Output<int> CallTimeout { get; private set; } = null!;
@@ -77,7 +77,7 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Output<string> DirtyReason { get; private set; } = null!;
 
         /// <summary>
-        /// EMS ID in order (1 - 5)
+        /// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions &gt;= 7.2.4: 1 - 7.
         /// </summary>
         [Output("emsId")]
         public Output<int> EmsId { get; private set; } = null!;
@@ -155,6 +155,12 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Output<string> PullVulnerabilities { get; private set; } = null!;
 
         /// <summary>
+        /// Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("sendTagsToAllVdoms")]
+        public Output<string> SendTagsToAllVdoms { get; private set; } = null!;
+
+        /// <summary>
         /// FortiClient EMS Serial Number.
         /// </summary>
         [Output("serialNumber")]
@@ -191,10 +197,22 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Output<string> TenantId { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("trustCaCn")]
+        public Output<string> TrustCaCn { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
         public Output<string?> Vdomparam { get; private set; } = null!;
+
+        /// <summary>
+        /// Lowest CA cert on Fortigate in verified EMS cert chain.
+        /// </summary>
+        [Output("verifyingCa")]
+        public Output<string> VerifyingCa { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
@@ -276,7 +294,7 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Input<string>? AdminUsername { get; set; }
 
         /// <summary>
-        /// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        /// FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions &gt;= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         /// </summary>
         [Input("callTimeout")]
         public Input<int>? CallTimeout { get; set; }
@@ -306,7 +324,7 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Input<string>? DirtyReason { get; set; }
 
         /// <summary>
-        /// EMS ID in order (1 - 5)
+        /// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions &gt;= 7.2.4: 1 - 7.
         /// </summary>
         [Input("emsId")]
         public Input<int>? EmsId { get; set; }
@@ -384,6 +402,12 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Input<string>? PullVulnerabilities { get; set; }
 
         /// <summary>
+        /// Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("sendTagsToAllVdoms")]
+        public Input<string>? SendTagsToAllVdoms { get; set; }
+
+        /// <summary>
         /// FortiClient EMS Serial Number.
         /// </summary>
         [Input("serialNumber")]
@@ -420,10 +444,22 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Input<string>? TenantId { get; set; }
 
         /// <summary>
+        /// Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("trustCaCn")]
+        public Input<string>? TrustCaCn { get; set; }
+
+        /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Input("vdomparam")]
         public Input<string>? Vdomparam { get; set; }
+
+        /// <summary>
+        /// Lowest CA cert on Fortigate in verified EMS cert chain.
+        /// </summary>
+        [Input("verifyingCa")]
+        public Input<string>? VerifyingCa { get; set; }
 
         /// <summary>
         /// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
@@ -462,7 +498,7 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Input<string>? AdminUsername { get; set; }
 
         /// <summary>
-        /// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        /// FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions &gt;= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         /// </summary>
         [Input("callTimeout")]
         public Input<int>? CallTimeout { get; set; }
@@ -492,7 +528,7 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Input<string>? DirtyReason { get; set; }
 
         /// <summary>
-        /// EMS ID in order (1 - 5)
+        /// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions &gt;= 7.2.4: 1 - 7.
         /// </summary>
         [Input("emsId")]
         public Input<int>? EmsId { get; set; }
@@ -570,6 +606,12 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Input<string>? PullVulnerabilities { get; set; }
 
         /// <summary>
+        /// Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("sendTagsToAllVdoms")]
+        public Input<string>? SendTagsToAllVdoms { get; set; }
+
+        /// <summary>
         /// FortiClient EMS Serial Number.
         /// </summary>
         [Input("serialNumber")]
@@ -606,10 +648,22 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Input<string>? TenantId { get; set; }
 
         /// <summary>
+        /// Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("trustCaCn")]
+        public Input<string>? TrustCaCn { get; set; }
+
+        /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Input("vdomparam")]
         public Input<string>? Vdomparam { get; set; }
+
+        /// <summary>
+        /// Lowest CA cert on Fortigate in verified EMS cert chain.
+        /// </summary>
+        [Input("verifyingCa")]
+        public Input<string>? VerifyingCa { get; set; }
 
         /// <summary>
         /// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.

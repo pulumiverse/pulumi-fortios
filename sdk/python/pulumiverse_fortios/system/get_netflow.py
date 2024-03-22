@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'GetNetflowResult',
@@ -21,7 +22,7 @@ class GetNetflowResult:
     """
     A collection of values returned by getNetflow.
     """
-    def __init__(__self__, active_flow_timeout=None, collector_ip=None, collector_port=None, id=None, inactive_flow_timeout=None, interface=None, interface_select_method=None, source_ip=None, template_tx_counter=None, template_tx_timeout=None, vdomparam=None):
+    def __init__(__self__, active_flow_timeout=None, collector_ip=None, collector_port=None, collectors=None, id=None, inactive_flow_timeout=None, interface=None, interface_select_method=None, source_ip=None, template_tx_counter=None, template_tx_timeout=None, vdomparam=None):
         if active_flow_timeout and not isinstance(active_flow_timeout, int):
             raise TypeError("Expected argument 'active_flow_timeout' to be a int")
         pulumi.set(__self__, "active_flow_timeout", active_flow_timeout)
@@ -31,6 +32,9 @@ class GetNetflowResult:
         if collector_port and not isinstance(collector_port, int):
             raise TypeError("Expected argument 'collector_port' to be a int")
         pulumi.set(__self__, "collector_port", collector_port)
+        if collectors and not isinstance(collectors, list):
+            raise TypeError("Expected argument 'collectors' to be a list")
+        pulumi.set(__self__, "collectors", collectors)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -79,6 +83,14 @@ class GetNetflowResult:
         NetFlow collector port number.
         """
         return pulumi.get(self, "collector_port")
+
+    @property
+    @pulumi.getter
+    def collectors(self) -> Sequence['outputs.GetNetflowCollectorResult']:
+        """
+        Netflow collectors. The structure of `collectors` block is documented below.
+        """
+        return pulumi.get(self, "collectors")
 
     @property
     @pulumi.getter
@@ -151,6 +163,7 @@ class AwaitableGetNetflowResult(GetNetflowResult):
             active_flow_timeout=self.active_flow_timeout,
             collector_ip=self.collector_ip,
             collector_port=self.collector_port,
+            collectors=self.collectors,
             id=self.id,
             inactive_flow_timeout=self.inactive_flow_timeout,
             interface=self.interface,
@@ -178,6 +191,7 @@ def get_netflow(vdomparam: Optional[str] = None,
         active_flow_timeout=pulumi.get(__ret__, 'active_flow_timeout'),
         collector_ip=pulumi.get(__ret__, 'collector_ip'),
         collector_port=pulumi.get(__ret__, 'collector_port'),
+        collectors=pulumi.get(__ret__, 'collectors'),
         id=pulumi.get(__ret__, 'id'),
         inactive_flow_timeout=pulumi.get(__ret__, 'inactive_flow_timeout'),
         interface=pulumi.get(__ret__, 'interface'),

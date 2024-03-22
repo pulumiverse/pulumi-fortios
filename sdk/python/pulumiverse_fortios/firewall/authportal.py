@@ -17,22 +17,28 @@ __all__ = ['AuthportalArgs', 'Authportal']
 class AuthportalArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['AuthportalGroupArgs']]]] = None,
                  identity_based_route: Optional[pulumi.Input[str]] = None,
                  portal_addr: Optional[pulumi.Input[str]] = None,
                  portal_addr6: Optional[pulumi.Input[str]] = None,
+                 proxy_auth: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Authportal resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['AuthportalGroupArgs']]] groups: Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
         :param pulumi.Input[str] identity_based_route: Name of the identity-based route that applies to this portal.
         :param pulumi.Input[str] portal_addr: Address (or FQDN) of the authentication portal.
         :param pulumi.Input[str] portal_addr6: IPv6 address (or FQDN) of authentication portal.
+        :param pulumi.Input[str] proxy_auth: Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if identity_based_route is not None:
@@ -41,6 +47,8 @@ class AuthportalArgs:
             pulumi.set(__self__, "portal_addr", portal_addr)
         if portal_addr6 is not None:
             pulumi.set(__self__, "portal_addr6", portal_addr6)
+        if proxy_auth is not None:
+            pulumi.set(__self__, "proxy_auth", proxy_auth)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -55,6 +63,18 @@ class AuthportalArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -103,6 +123,18 @@ class AuthportalArgs:
     @portal_addr6.setter
     def portal_addr6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "portal_addr6", value)
+
+    @property
+    @pulumi.getter(name="proxyAuth")
+    def proxy_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy_auth")
+
+    @proxy_auth.setter
+    def proxy_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_auth", value)
 
     @property
     @pulumi.getter
@@ -121,22 +153,28 @@ class AuthportalArgs:
 class _AuthportalState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['AuthportalGroupArgs']]]] = None,
                  identity_based_route: Optional[pulumi.Input[str]] = None,
                  portal_addr: Optional[pulumi.Input[str]] = None,
                  portal_addr6: Optional[pulumi.Input[str]] = None,
+                 proxy_auth: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Authportal resources.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['AuthportalGroupArgs']]] groups: Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
         :param pulumi.Input[str] identity_based_route: Name of the identity-based route that applies to this portal.
         :param pulumi.Input[str] portal_addr: Address (or FQDN) of the authentication portal.
         :param pulumi.Input[str] portal_addr6: IPv6 address (or FQDN) of authentication portal.
+        :param pulumi.Input[str] proxy_auth: Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if identity_based_route is not None:
@@ -145,6 +183,8 @@ class _AuthportalState:
             pulumi.set(__self__, "portal_addr", portal_addr)
         if portal_addr6 is not None:
             pulumi.set(__self__, "portal_addr6", portal_addr6)
+        if proxy_auth is not None:
+            pulumi.set(__self__, "proxy_auth", proxy_auth)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -159,6 +199,18 @@ class _AuthportalState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -207,6 +259,18 @@ class _AuthportalState:
     @portal_addr6.setter
     def portal_addr6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "portal_addr6", value)
+
+    @property
+    @pulumi.getter(name="proxyAuth")
+    def proxy_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy_auth")
+
+    @proxy_auth.setter
+    def proxy_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_auth", value)
 
     @property
     @pulumi.getter
@@ -227,10 +291,12 @@ class Authportal(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthportalGroupArgs']]]]] = None,
                  identity_based_route: Optional[pulumi.Input[str]] = None,
                  portal_addr: Optional[pulumi.Input[str]] = None,
                  portal_addr6: Optional[pulumi.Input[str]] = None,
+                 proxy_auth: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -272,10 +338,12 @@ class Authportal(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthportalGroupArgs']]]] groups: Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
         :param pulumi.Input[str] identity_based_route: Name of the identity-based route that applies to this portal.
         :param pulumi.Input[str] portal_addr: Address (or FQDN) of the authentication portal.
         :param pulumi.Input[str] portal_addr6: IPv6 address (or FQDN) of authentication portal.
+        :param pulumi.Input[str] proxy_auth: Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -336,10 +404,12 @@ class Authportal(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthportalGroupArgs']]]]] = None,
                  identity_based_route: Optional[pulumi.Input[str]] = None,
                  portal_addr: Optional[pulumi.Input[str]] = None,
                  portal_addr6: Optional[pulumi.Input[str]] = None,
+                 proxy_auth: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -351,10 +421,12 @@ class Authportal(pulumi.CustomResource):
             __props__ = AuthportalArgs.__new__(AuthportalArgs)
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["groups"] = groups
             __props__.__dict__["identity_based_route"] = identity_based_route
             __props__.__dict__["portal_addr"] = portal_addr
             __props__.__dict__["portal_addr6"] = portal_addr6
+            __props__.__dict__["proxy_auth"] = proxy_auth
             __props__.__dict__["vdomparam"] = vdomparam
         super(Authportal, __self__).__init__(
             'fortios:firewall/authportal:Authportal',
@@ -367,10 +439,12 @@ class Authportal(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthportalGroupArgs']]]]] = None,
             identity_based_route: Optional[pulumi.Input[str]] = None,
             portal_addr: Optional[pulumi.Input[str]] = None,
             portal_addr6: Optional[pulumi.Input[str]] = None,
+            proxy_auth: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Authportal':
         """
         Get an existing Authportal resource's state with the given name, id, and optional extra
@@ -380,10 +454,12 @@ class Authportal(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthportalGroupArgs']]]] groups: Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
         :param pulumi.Input[str] identity_based_route: Name of the identity-based route that applies to this portal.
         :param pulumi.Input[str] portal_addr: Address (or FQDN) of the authentication portal.
         :param pulumi.Input[str] portal_addr6: IPv6 address (or FQDN) of authentication portal.
+        :param pulumi.Input[str] proxy_auth: Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -391,10 +467,12 @@ class Authportal(pulumi.CustomResource):
         __props__ = _AuthportalState.__new__(_AuthportalState)
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["groups"] = groups
         __props__.__dict__["identity_based_route"] = identity_based_route
         __props__.__dict__["portal_addr"] = portal_addr
         __props__.__dict__["portal_addr6"] = portal_addr6
+        __props__.__dict__["proxy_auth"] = proxy_auth
         __props__.__dict__["vdomparam"] = vdomparam
         return Authportal(resource_name, opts=opts, __props__=__props__)
 
@@ -405,6 +483,14 @@ class Authportal(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -437,6 +523,14 @@ class Authportal(pulumi.CustomResource):
         IPv6 address (or FQDN) of authentication portal.
         """
         return pulumi.get(self, "portal_addr6")
+
+    @property
+    @pulumi.getter(name="proxyAuth")
+    def proxy_auth(self) -> pulumi.Output[str]:
+        """
+        Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy_auth")
 
     @property
     @pulumi.getter

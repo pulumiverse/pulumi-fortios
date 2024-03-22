@@ -139,7 +139,7 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly maximumLogAge!: pulumi.Output<number>;
     /**
-     * Report quota (MB).
+     * Report db quota (MB).
      */
     public readonly reportQuota!: pulumi.Output<number>;
     /**
@@ -356,7 +356,7 @@ export interface SettingState {
      */
     maximumLogAge?: pulumi.Input<number>;
     /**
-     * Report quota (MB).
+     * Report db quota (MB).
      */
     reportQuota?: pulumi.Input<number>;
     /**
@@ -486,7 +486,7 @@ export interface SettingArgs {
      */
     maximumLogAge?: pulumi.Input<number>;
     /**
-     * Report quota (MB).
+     * Report db quota (MB).
      */
     reportQuota?: pulumi.Input<number>;
     /**

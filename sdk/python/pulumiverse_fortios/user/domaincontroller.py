@@ -23,10 +23,13 @@ class DomaincontrollerArgs:
                  adlds_ip6: Optional[pulumi.Input[str]] = None,
                  adlds_ip_address: Optional[pulumi.Input[str]] = None,
                  adlds_port: Optional[pulumi.Input[int]] = None,
+                 change_detection: Optional[pulumi.Input[str]] = None,
+                 change_detection_period: Optional[pulumi.Input[int]] = None,
                  dns_srv_lookup: Optional[pulumi.Input[str]] = None,
                  domain_name: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extra_servers: Optional[pulumi.Input[Sequence[pulumi.Input['DomaincontrollerExtraServerArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -49,10 +52,13 @@ class DomaincontrollerArgs:
         :param pulumi.Input[str] adlds_ip6: AD LDS IPv6 address.
         :param pulumi.Input[str] adlds_ip_address: AD LDS IPv4 address.
         :param pulumi.Input[int] adlds_port: Port number of AD LDS service (default = 389).
+        :param pulumi.Input[str] change_detection: Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] change_detection_period: Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
         :param pulumi.Input[str] dns_srv_lookup: Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] domain_name: Domain DNS name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input['DomaincontrollerExtraServerArgs']]] extra_servers: extra servers. The structure of `extra_server` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hostname: Hostname of the server to connect to.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -79,6 +85,10 @@ class DomaincontrollerArgs:
             pulumi.set(__self__, "adlds_ip_address", adlds_ip_address)
         if adlds_port is not None:
             pulumi.set(__self__, "adlds_port", adlds_port)
+        if change_detection is not None:
+            pulumi.set(__self__, "change_detection", change_detection)
+        if change_detection_period is not None:
+            pulumi.set(__self__, "change_detection_period", change_detection_period)
         if dns_srv_lookup is not None:
             pulumi.set(__self__, "dns_srv_lookup", dns_srv_lookup)
         if domain_name is not None:
@@ -87,6 +97,8 @@ class DomaincontrollerArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if extra_servers is not None:
             pulumi.set(__self__, "extra_servers", extra_servers)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
         if interface is not None:
@@ -199,6 +211,30 @@ class DomaincontrollerArgs:
         pulumi.set(self, "adlds_port", value)
 
     @property
+    @pulumi.getter(name="changeDetection")
+    def change_detection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "change_detection")
+
+    @change_detection.setter
+    def change_detection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "change_detection", value)
+
+    @property
+    @pulumi.getter(name="changeDetectionPeriod")
+    def change_detection_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+        """
+        return pulumi.get(self, "change_detection_period")
+
+    @change_detection_period.setter
+    def change_detection_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "change_detection_period", value)
+
+    @property
     @pulumi.getter(name="dnsSrvLookup")
     def dns_srv_lookup(self) -> Optional[pulumi.Input[str]]:
         """
@@ -245,6 +281,18 @@ class DomaincontrollerArgs:
     @extra_servers.setter
     def extra_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DomaincontrollerExtraServerArgs']]]]):
         pulumi.set(self, "extra_servers", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -411,10 +459,13 @@ class _DomaincontrollerState:
                  adlds_ip6: Optional[pulumi.Input[str]] = None,
                  adlds_ip_address: Optional[pulumi.Input[str]] = None,
                  adlds_port: Optional[pulumi.Input[int]] = None,
+                 change_detection: Optional[pulumi.Input[str]] = None,
+                 change_detection_period: Optional[pulumi.Input[int]] = None,
                  dns_srv_lookup: Optional[pulumi.Input[str]] = None,
                  domain_name: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extra_servers: Optional[pulumi.Input[Sequence[pulumi.Input['DomaincontrollerExtraServerArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -437,10 +488,13 @@ class _DomaincontrollerState:
         :param pulumi.Input[str] adlds_ip6: AD LDS IPv6 address.
         :param pulumi.Input[str] adlds_ip_address: AD LDS IPv4 address.
         :param pulumi.Input[int] adlds_port: Port number of AD LDS service (default = 389).
+        :param pulumi.Input[str] change_detection: Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] change_detection_period: Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
         :param pulumi.Input[str] dns_srv_lookup: Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] domain_name: Domain DNS name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input['DomaincontrollerExtraServerArgs']]] extra_servers: extra servers. The structure of `extra_server` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hostname: Hostname of the server to connect to.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -467,6 +521,10 @@ class _DomaincontrollerState:
             pulumi.set(__self__, "adlds_ip_address", adlds_ip_address)
         if adlds_port is not None:
             pulumi.set(__self__, "adlds_port", adlds_port)
+        if change_detection is not None:
+            pulumi.set(__self__, "change_detection", change_detection)
+        if change_detection_period is not None:
+            pulumi.set(__self__, "change_detection_period", change_detection_period)
         if dns_srv_lookup is not None:
             pulumi.set(__self__, "dns_srv_lookup", dns_srv_lookup)
         if domain_name is not None:
@@ -475,6 +533,8 @@ class _DomaincontrollerState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if extra_servers is not None:
             pulumi.set(__self__, "extra_servers", extra_servers)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
         if interface is not None:
@@ -567,6 +627,30 @@ class _DomaincontrollerState:
         pulumi.set(self, "adlds_port", value)
 
     @property
+    @pulumi.getter(name="changeDetection")
+    def change_detection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "change_detection")
+
+    @change_detection.setter
+    def change_detection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "change_detection", value)
+
+    @property
+    @pulumi.getter(name="changeDetectionPeriod")
+    def change_detection_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+        """
+        return pulumi.get(self, "change_detection_period")
+
+    @change_detection_period.setter
+    def change_detection_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "change_detection_period", value)
+
+    @property
     @pulumi.getter(name="dnsSrvLookup")
     def dns_srv_lookup(self) -> Optional[pulumi.Input[str]]:
         """
@@ -613,6 +697,18 @@ class _DomaincontrollerState:
     @extra_servers.setter
     def extra_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DomaincontrollerExtraServerArgs']]]]):
         pulumi.set(self, "extra_servers", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -805,10 +901,13 @@ class Domaincontroller(pulumi.CustomResource):
                  adlds_ip6: Optional[pulumi.Input[str]] = None,
                  adlds_ip_address: Optional[pulumi.Input[str]] = None,
                  adlds_port: Optional[pulumi.Input[int]] = None,
+                 change_detection: Optional[pulumi.Input[str]] = None,
+                 change_detection_period: Optional[pulumi.Input[int]] = None,
                  dns_srv_lookup: Optional[pulumi.Input[str]] = None,
                  domain_name: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extra_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomaincontrollerExtraServerArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -885,10 +984,13 @@ class Domaincontroller(pulumi.CustomResource):
         :param pulumi.Input[str] adlds_ip6: AD LDS IPv6 address.
         :param pulumi.Input[str] adlds_ip_address: AD LDS IPv4 address.
         :param pulumi.Input[int] adlds_port: Port number of AD LDS service (default = 389).
+        :param pulumi.Input[str] change_detection: Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] change_detection_period: Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
         :param pulumi.Input[str] dns_srv_lookup: Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] domain_name: Domain DNS name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomaincontrollerExtraServerArgs']]]] extra_servers: extra servers. The structure of `extra_server` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hostname: Hostname of the server to connect to.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -984,10 +1086,13 @@ class Domaincontroller(pulumi.CustomResource):
                  adlds_ip6: Optional[pulumi.Input[str]] = None,
                  adlds_ip_address: Optional[pulumi.Input[str]] = None,
                  adlds_port: Optional[pulumi.Input[int]] = None,
+                 change_detection: Optional[pulumi.Input[str]] = None,
+                 change_detection_period: Optional[pulumi.Input[int]] = None,
                  dns_srv_lookup: Optional[pulumi.Input[str]] = None,
                  domain_name: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extra_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomaincontrollerExtraServerArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -1017,10 +1122,13 @@ class Domaincontroller(pulumi.CustomResource):
             __props__.__dict__["adlds_ip6"] = adlds_ip6
             __props__.__dict__["adlds_ip_address"] = adlds_ip_address
             __props__.__dict__["adlds_port"] = adlds_port
+            __props__.__dict__["change_detection"] = change_detection
+            __props__.__dict__["change_detection_period"] = change_detection_period
             __props__.__dict__["dns_srv_lookup"] = dns_srv_lookup
             __props__.__dict__["domain_name"] = domain_name
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["extra_servers"] = extra_servers
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
@@ -1055,10 +1163,13 @@ class Domaincontroller(pulumi.CustomResource):
             adlds_ip6: Optional[pulumi.Input[str]] = None,
             adlds_ip_address: Optional[pulumi.Input[str]] = None,
             adlds_port: Optional[pulumi.Input[int]] = None,
+            change_detection: Optional[pulumi.Input[str]] = None,
+            change_detection_period: Optional[pulumi.Input[int]] = None,
             dns_srv_lookup: Optional[pulumi.Input[str]] = None,
             domain_name: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             extra_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomaincontrollerExtraServerArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -1086,10 +1197,13 @@ class Domaincontroller(pulumi.CustomResource):
         :param pulumi.Input[str] adlds_ip6: AD LDS IPv6 address.
         :param pulumi.Input[str] adlds_ip_address: AD LDS IPv4 address.
         :param pulumi.Input[int] adlds_port: Port number of AD LDS service (default = 389).
+        :param pulumi.Input[str] change_detection: Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] change_detection_period: Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
         :param pulumi.Input[str] dns_srv_lookup: Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] domain_name: Domain DNS name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DomaincontrollerExtraServerArgs']]]] extra_servers: extra servers. The structure of `extra_server` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hostname: Hostname of the server to connect to.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -1115,10 +1229,13 @@ class Domaincontroller(pulumi.CustomResource):
         __props__.__dict__["adlds_ip6"] = adlds_ip6
         __props__.__dict__["adlds_ip_address"] = adlds_ip_address
         __props__.__dict__["adlds_port"] = adlds_port
+        __props__.__dict__["change_detection"] = change_detection
+        __props__.__dict__["change_detection_period"] = change_detection_period
         __props__.__dict__["dns_srv_lookup"] = dns_srv_lookup
         __props__.__dict__["domain_name"] = domain_name
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["extra_servers"] = extra_servers
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
@@ -1177,6 +1294,22 @@ class Domaincontroller(pulumi.CustomResource):
         return pulumi.get(self, "adlds_port")
 
     @property
+    @pulumi.getter(name="changeDetection")
+    def change_detection(self) -> pulumi.Output[str]:
+        """
+        Enable/disable detection of a configuration change in the Active Directory server. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "change_detection")
+
+    @property
+    @pulumi.getter(name="changeDetectionPeriod")
+    def change_detection_period(self) -> pulumi.Output[int]:
+        """
+        Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
+        """
+        return pulumi.get(self, "change_detection_period")
+
+    @property
     @pulumi.getter(name="dnsSrvLookup")
     def dns_srv_lookup(self) -> pulumi.Output[str]:
         """
@@ -1207,6 +1340,14 @@ class Domaincontroller(pulumi.CustomResource):
         extra servers. The structure of `extra_server` block is documented below.
         """
         return pulumi.get(self, "extra_servers")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

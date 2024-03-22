@@ -28,7 +28,7 @@ class Ipv6ehfilterArgs:
         :param pulumi.Input[str] auth: Enable/disable blocking packets with the Authentication header (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dest_opt: Enable/disable blocking packets with Destination Options headers (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fragment: Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] hdopt_type: Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+        :param pulumi.Input[int] hdopt_type: Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
         :param pulumi.Input[str] hop_opt: Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] no_next: Enable/disable blocking packets with the No Next header (default = disable) Valid values: `enable`, `disable`.
         :param pulumi.Input[str] routing: Enable/disable blocking packets with Routing headers (default = enable). Valid values: `enable`, `disable`.
@@ -94,7 +94,7 @@ class Ipv6ehfilterArgs:
     @pulumi.getter(name="hdoptType")
     def hdopt_type(self) -> Optional[pulumi.Input[int]]:
         """
-        Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+        Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
         """
         return pulumi.get(self, "hdopt_type")
 
@@ -180,7 +180,7 @@ class _Ipv6ehfilterState:
         :param pulumi.Input[str] auth: Enable/disable blocking packets with the Authentication header (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dest_opt: Enable/disable blocking packets with Destination Options headers (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fragment: Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] hdopt_type: Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+        :param pulumi.Input[int] hdopt_type: Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
         :param pulumi.Input[str] hop_opt: Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] no_next: Enable/disable blocking packets with the No Next header (default = disable) Valid values: `enable`, `disable`.
         :param pulumi.Input[str] routing: Enable/disable blocking packets with Routing headers (default = enable). Valid values: `enable`, `disable`.
@@ -246,7 +246,7 @@ class _Ipv6ehfilterState:
     @pulumi.getter(name="hdoptType")
     def hdopt_type(self) -> Optional[pulumi.Input[int]]:
         """
-        Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+        Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
         """
         return pulumi.get(self, "hdopt_type")
 
@@ -373,7 +373,7 @@ class Ipv6ehfilter(pulumi.CustomResource):
         :param pulumi.Input[str] auth: Enable/disable blocking packets with the Authentication header (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dest_opt: Enable/disable blocking packets with Destination Options headers (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fragment: Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] hdopt_type: Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+        :param pulumi.Input[int] hdopt_type: Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
         :param pulumi.Input[str] hop_opt: Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] no_next: Enable/disable blocking packets with the No Next header (default = disable) Valid values: `enable`, `disable`.
         :param pulumi.Input[str] routing: Enable/disable blocking packets with Routing headers (default = enable). Valid values: `enable`, `disable`.
@@ -495,7 +495,7 @@ class Ipv6ehfilter(pulumi.CustomResource):
         :param pulumi.Input[str] auth: Enable/disable blocking packets with the Authentication header (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dest_opt: Enable/disable blocking packets with Destination Options headers (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fragment: Enable/disable blocking packets with the Fragment header (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] hdopt_type: Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+        :param pulumi.Input[int] hdopt_type: Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
         :param pulumi.Input[str] hop_opt: Enable/disable blocking packets with the Hop-by-Hop Options header (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] no_next: Enable/disable blocking packets with the No Next header (default = disable) Valid values: `enable`, `disable`.
         :param pulumi.Input[str] routing: Enable/disable blocking packets with Routing headers (default = enable). Valid values: `enable`, `disable`.
@@ -545,7 +545,7 @@ class Ipv6ehfilter(pulumi.CustomResource):
     @pulumi.getter(name="hdoptType")
     def hdopt_type(self) -> pulumi.Output[int]:
         """
-        Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+        Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
         """
         return pulumi.get(self, "hdopt_type")
 

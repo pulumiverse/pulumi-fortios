@@ -92,6 +92,7 @@ from .internetservicelist import *
 from .internetservicename import *
 from .internetserviceowner import *
 from .internetservicereputation import *
+from .internetservicesubapp import *
 from .ippool import *
 from .ippool6 import *
 from .iptranslation import *
@@ -116,6 +117,8 @@ from .policy import *
 from .policy46 import *
 from .policy6 import *
 from .policy64 import *
+from .policy_move import *
+from .policy_sort import *
 from .profilegroup import *
 from .profileprotocoloptions import *
 from .proxyaddress import *
@@ -125,8 +128,9 @@ from .proxypolicy_move import *
 from .proxypolicy_sort import *
 from .region import *
 from .security_policyseq import *
-from .security_policysort import *
 from .securitypolicy import *
+from .securitypolicy_move import *
+from .securitypolicy_sort import *
 from .shapingpolicy import *
 from .shapingprofile import *
 from .sniffer import *

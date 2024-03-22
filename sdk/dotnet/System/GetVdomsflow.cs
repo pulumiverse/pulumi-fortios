@@ -59,13 +59,17 @@ namespace Pulumiverse.Fortios.System
     public sealed class GetVdomsflowResult
     {
         /// <summary>
-        /// IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
+        /// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
         /// </summary>
         public readonly string CollectorIp;
         /// <summary>
         /// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
         /// </summary>
         public readonly int CollectorPort;
+        /// <summary>
+        /// sFlow collectors. The structure of `collectors` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetVdomsflowCollectorResult> Collectors;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -94,6 +98,8 @@ namespace Pulumiverse.Fortios.System
 
             int collectorPort,
 
+            ImmutableArray<Outputs.GetVdomsflowCollectorResult> collectors,
+
             string id,
 
             string @interface,
@@ -108,6 +114,7 @@ namespace Pulumiverse.Fortios.System
         {
             CollectorIp = collectorIp;
             CollectorPort = collectorPort;
+            Collectors = collectors;
             Id = id;
             Interface = @interface;
             InterfaceSelectMethod = interfaceSelectMethod;

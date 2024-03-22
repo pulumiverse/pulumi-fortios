@@ -15,7 +15,7 @@ namespace Pulumiverse.Fortios.System.Outputs
     public sealed class GetSdnconnectorExternalAccountListRegionListResult
     {
         /// <summary>
-        /// AWS region name.
+        /// OCI region.
         /// </summary>
         public readonly string Region;
 

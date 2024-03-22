@@ -142,6 +142,10 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable persistent cookie on IP based web portal authentication (default = disable). Valid values: `enable`, `disable`.
      */
     public readonly ipAuthCookie!: pulumi.Output<string>;
@@ -196,6 +200,7 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["cookieRefreshDiv"] = state ? state.cookieRefreshDiv : undefined;
             resourceInputs["devRanges"] = state ? state.devRanges : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ipAuthCookie"] = state ? state.ipAuthCookie : undefined;
             resourceInputs["persistentCookie"] = state ? state.persistentCookie : undefined;
             resourceInputs["ssoAuthScheme"] = state ? state.ssoAuthScheme : undefined;
@@ -221,6 +226,7 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["cookieRefreshDiv"] = args ? args.cookieRefreshDiv : undefined;
             resourceInputs["devRanges"] = args ? args.devRanges : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ipAuthCookie"] = args ? args.ipAuthCookie : undefined;
             resourceInputs["persistentCookie"] = args ? args.persistentCookie : undefined;
             resourceInputs["ssoAuthScheme"] = args ? args.ssoAuthScheme : undefined;
@@ -305,6 +311,10 @@ export interface SettingState {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable persistent cookie on IP based web portal authentication (default = disable). Valid values: `enable`, `disable`.
      */
@@ -403,6 +413,10 @@ export interface SettingArgs {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable persistent cookie on IP based web portal authentication (default = disable). Valid values: `enable`, `disable`.
      */

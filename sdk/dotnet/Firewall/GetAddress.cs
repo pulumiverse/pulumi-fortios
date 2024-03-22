@@ -127,6 +127,14 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAddressFssoGroupResult> FssoGroups;
         /// <summary>
+        /// Dynamic address matching hardware model.
+        /// </summary>
+        public readonly string HwModel;
+        /// <summary>
+        /// Dynamic address matching hardware vendor.
+        /// </summary>
+        public readonly string HwVendor;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -167,9 +175,17 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly string Organization;
         /// <summary>
+        /// Dynamic address matching operating system.
+        /// </summary>
+        public readonly string Os;
+        /// <summary>
         /// Policy group name.
         /// </summary>
         public readonly string PolicyGroup;
+        /// <summary>
+        /// route-tag address.
+        /// </summary>
+        public readonly int RouteTag;
         /// <summary>
         /// SDN.
         /// </summary>
@@ -202,6 +218,10 @@ namespace Pulumiverse.Fortios.Firewall
         /// Subnet name.
         /// </summary>
         public readonly string SubnetName;
+        /// <summary>
+        /// Dynamic address matching software version.
+        /// </summary>
+        public readonly string SwVersion;
         /// <summary>
         /// Tag detection level of dynamic address object.
         /// </summary>
@@ -270,6 +290,10 @@ namespace Pulumiverse.Fortios.Firewall
 
             ImmutableArray<Outputs.GetAddressFssoGroupResult> fssoGroups,
 
+            string hwModel,
+
+            string hwVendor,
+
             string id,
 
             string @interface,
@@ -290,7 +314,11 @@ namespace Pulumiverse.Fortios.Firewall
 
             string organization,
 
+            string os,
+
             string policyGroup,
+
+            int routeTag,
 
             string sdn,
 
@@ -307,6 +335,8 @@ namespace Pulumiverse.Fortios.Firewall
             string subnet,
 
             string subnetName,
+
+            string swVersion,
 
             string tagDetectionLevel,
 
@@ -342,6 +372,8 @@ namespace Pulumiverse.Fortios.Firewall
             Filter = filter;
             Fqdn = fqdn;
             FssoGroups = fssoGroups;
+            HwModel = hwModel;
+            HwVendor = hwVendor;
             Id = id;
             Interface = @interface;
             Lists = lists;
@@ -352,7 +384,9 @@ namespace Pulumiverse.Fortios.Firewall
             ObjTag = objTag;
             ObjType = objType;
             Organization = organization;
+            Os = os;
             PolicyGroup = policyGroup;
+            RouteTag = routeTag;
             Sdn = sdn;
             SdnAddrType = sdnAddrType;
             SdnTag = sdnTag;
@@ -361,6 +395,7 @@ namespace Pulumiverse.Fortios.Firewall
             SubType = subType;
             Subnet = subnet;
             SubnetName = subnetName;
+            SwVersion = swVersion;
             TagDetectionLevel = tagDetectionLevel;
             TagType = tagType;
             Taggings = taggings;

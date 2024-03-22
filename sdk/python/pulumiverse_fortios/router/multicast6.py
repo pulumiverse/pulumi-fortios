@@ -17,6 +17,7 @@ __all__ = ['Multicast6Args', 'Multicast6']
 class Multicast6Args:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['Multicast6InterfaceArgs']]]] = None,
                  multicast_pmtu: Optional[pulumi.Input[str]] = None,
                  multicast_routing: Optional[pulumi.Input[str]] = None,
@@ -25,6 +26,7 @@ class Multicast6Args:
         """
         The set of arguments for constructing a Multicast6 resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['Multicast6InterfaceArgs']]] interfaces: Protocol Independent Multicast (PIM) interfaces. The structure of `interface` block is documented below.
         :param pulumi.Input[str] multicast_pmtu: Enable/disable PMTU for IPv6 multicast. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_routing: Enable/disable IPv6 multicast routing. Valid values: `enable`, `disable`.
@@ -33,6 +35,8 @@ class Multicast6Args:
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interfaces is not None:
             pulumi.set(__self__, "interfaces", interfaces)
         if multicast_pmtu is not None:
@@ -55,6 +59,18 @@ class Multicast6Args:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -121,6 +137,7 @@ class Multicast6Args:
 class _Multicast6State:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['Multicast6InterfaceArgs']]]] = None,
                  multicast_pmtu: Optional[pulumi.Input[str]] = None,
                  multicast_routing: Optional[pulumi.Input[str]] = None,
@@ -129,6 +146,7 @@ class _Multicast6State:
         """
         Input properties used for looking up and filtering Multicast6 resources.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['Multicast6InterfaceArgs']]] interfaces: Protocol Independent Multicast (PIM) interfaces. The structure of `interface` block is documented below.
         :param pulumi.Input[str] multicast_pmtu: Enable/disable PMTU for IPv6 multicast. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_routing: Enable/disable IPv6 multicast routing. Valid values: `enable`, `disable`.
@@ -137,6 +155,8 @@ class _Multicast6State:
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interfaces is not None:
             pulumi.set(__self__, "interfaces", interfaces)
         if multicast_pmtu is not None:
@@ -159,6 +179,18 @@ class _Multicast6State:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -227,6 +259,7 @@ class Multicast6(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Multicast6InterfaceArgs']]]]] = None,
                  multicast_pmtu: Optional[pulumi.Input[str]] = None,
                  multicast_routing: Optional[pulumi.Input[str]] = None,
@@ -273,6 +306,7 @@ class Multicast6(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Multicast6InterfaceArgs']]]] interfaces: Protocol Independent Multicast (PIM) interfaces. The structure of `interface` block is documented below.
         :param pulumi.Input[str] multicast_pmtu: Enable/disable PMTU for IPv6 multicast. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_routing: Enable/disable IPv6 multicast routing. Valid values: `enable`, `disable`.
@@ -338,6 +372,7 @@ class Multicast6(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Multicast6InterfaceArgs']]]]] = None,
                  multicast_pmtu: Optional[pulumi.Input[str]] = None,
                  multicast_routing: Optional[pulumi.Input[str]] = None,
@@ -353,6 +388,7 @@ class Multicast6(pulumi.CustomResource):
             __props__ = Multicast6Args.__new__(Multicast6Args)
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interfaces"] = interfaces
             __props__.__dict__["multicast_pmtu"] = multicast_pmtu
             __props__.__dict__["multicast_routing"] = multicast_routing
@@ -369,6 +405,7 @@ class Multicast6(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Multicast6InterfaceArgs']]]]] = None,
             multicast_pmtu: Optional[pulumi.Input[str]] = None,
             multicast_routing: Optional[pulumi.Input[str]] = None,
@@ -382,6 +419,7 @@ class Multicast6(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Multicast6InterfaceArgs']]]] interfaces: Protocol Independent Multicast (PIM) interfaces. The structure of `interface` block is documented below.
         :param pulumi.Input[str] multicast_pmtu: Enable/disable PMTU for IPv6 multicast. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_routing: Enable/disable IPv6 multicast routing. Valid values: `enable`, `disable`.
@@ -393,6 +431,7 @@ class Multicast6(pulumi.CustomResource):
         __props__ = _Multicast6State.__new__(_Multicast6State)
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interfaces"] = interfaces
         __props__.__dict__["multicast_pmtu"] = multicast_pmtu
         __props__.__dict__["multicast_routing"] = multicast_routing
@@ -407,6 +446,14 @@ class Multicast6(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

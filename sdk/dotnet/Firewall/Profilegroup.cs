@@ -68,10 +68,22 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> AvProfile { get; private set; } = null!;
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Output("casbProfile")]
+        public Output<string> CasbProfile { get; private set; } = null!;
+
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         [Output("cifsProfile")]
         public Output<string> CifsProfile { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        [Output("diameterFilterProfile")]
+        public Output<string> DiameterFilterProfile { get; private set; } = null!;
 
         /// <summary>
         /// Name of an existing DLP profile.
@@ -114,6 +126,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("ipsSensor")]
         public Output<string> IpsSensor { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        [Output("ipsVoipFilter")]
+        public Output<string> IpsVoipFilter { get; private set; } = null!;
 
         /// <summary>
         /// Profile group name.
@@ -164,7 +182,13 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> VideofilterProfile { get; private set; } = null!;
 
         /// <summary>
-        /// Name of an existing VoIP profile.
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        [Output("virtualPatchProfile")]
+        public Output<string> VirtualPatchProfile { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of an existing VoIP (voipd) profile.
         /// </summary>
         [Output("voipProfile")]
         public Output<string> VoipProfile { get; private set; } = null!;
@@ -241,10 +265,22 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? AvProfile { get; set; }
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Input("casbProfile")]
+        public Input<string>? CasbProfile { get; set; }
+
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         [Input("cifsProfile")]
         public Input<string>? CifsProfile { get; set; }
+
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        [Input("diameterFilterProfile")]
+        public Input<string>? DiameterFilterProfile { get; set; }
 
         /// <summary>
         /// Name of an existing DLP profile.
@@ -287,6 +323,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("ipsSensor")]
         public Input<string>? IpsSensor { get; set; }
+
+        /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        [Input("ipsVoipFilter")]
+        public Input<string>? IpsVoipFilter { get; set; }
 
         /// <summary>
         /// Profile group name.
@@ -337,7 +379,13 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? VideofilterProfile { get; set; }
 
         /// <summary>
-        /// Name of an existing VoIP profile.
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        [Input("virtualPatchProfile")]
+        public Input<string>? VirtualPatchProfile { get; set; }
+
+        /// <summary>
+        /// Name of an existing VoIP (voipd) profile.
         /// </summary>
         [Input("voipProfile")]
         public Input<string>? VoipProfile { get; set; }
@@ -375,10 +423,22 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? AvProfile { get; set; }
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Input("casbProfile")]
+        public Input<string>? CasbProfile { get; set; }
+
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         [Input("cifsProfile")]
         public Input<string>? CifsProfile { get; set; }
+
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        [Input("diameterFilterProfile")]
+        public Input<string>? DiameterFilterProfile { get; set; }
 
         /// <summary>
         /// Name of an existing DLP profile.
@@ -421,6 +481,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("ipsSensor")]
         public Input<string>? IpsSensor { get; set; }
+
+        /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        [Input("ipsVoipFilter")]
+        public Input<string>? IpsVoipFilter { get; set; }
 
         /// <summary>
         /// Profile group name.
@@ -471,7 +537,13 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? VideofilterProfile { get; set; }
 
         /// <summary>
-        /// Name of an existing VoIP profile.
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        [Input("virtualPatchProfile")]
+        public Input<string>? VirtualPatchProfile { get; set; }
+
+        /// <summary>
+        /// Name of an existing VoIP (voipd) profile.
         /// </summary>
         [Input("voipProfile")]
         public Input<string>? VoipProfile { get; set; }

@@ -81,6 +81,12 @@ namespace Pulumiverse.Fortios.Log.Fortianalyzer.V2
         public Output<string> AccessConfig { get; private set; } = null!;
 
         /// <summary>
+        /// Alternate FortiAnalyzer.
+        /// </summary>
+        [Output("altServer")]
+        public Output<string> AltServer { get; private set; } = null!;
+
+        /// <summary>
         /// Certificate used to communicate with FortiAnalyzer.
         /// </summary>
         [Output("certificate")]
@@ -111,13 +117,25 @@ namespace Pulumiverse.Fortios.Log.Fortianalyzer.V2
         public Output<string> EncAlgorithm { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("fallbackToPrimary")]
+        public Output<string> FallbackToPrimary { get; private set; } = null!;
+
+        /// <summary>
         /// Hidden setting index of FortiAnalyzer.
         /// </summary>
         [Output("fazType")]
         public Output<int> FazType { get; private set; } = null!;
 
         /// <summary>
-        /// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
+        /// FortiAnalyzer IPsec tunnel HMAC algorithm.
         /// </summary>
         [Output("hmacAlgorithm")]
         public Output<string> HmacAlgorithm { get; private set; } = null!;
@@ -193,6 +211,12 @@ namespace Pulumiverse.Fortios.Log.Fortianalyzer.V2
         /// </summary>
         [Output("server")]
         public Output<string> Server { get; private set; } = null!;
+
+        /// <summary>
+        /// Mandatory CA on FortiGate in certificate chain of server.
+        /// </summary>
+        [Output("serverCertCa")]
+        public Output<string> ServerCertCa { get; private set; } = null!;
 
         /// <summary>
         /// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
@@ -302,6 +326,12 @@ namespace Pulumiverse.Fortios.Log.Fortianalyzer.V2
         public Input<string>? AccessConfig { get; set; }
 
         /// <summary>
+        /// Alternate FortiAnalyzer.
+        /// </summary>
+        [Input("altServer")]
+        public Input<string>? AltServer { get; set; }
+
+        /// <summary>
         /// Certificate used to communicate with FortiAnalyzer.
         /// </summary>
         [Input("certificate")]
@@ -332,13 +362,25 @@ namespace Pulumiverse.Fortios.Log.Fortianalyzer.V2
         public Input<string>? EncAlgorithm { get; set; }
 
         /// <summary>
+        /// Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("fallbackToPrimary")]
+        public Input<string>? FallbackToPrimary { get; set; }
+
+        /// <summary>
         /// Hidden setting index of FortiAnalyzer.
         /// </summary>
         [Input("fazType")]
         public Input<int>? FazType { get; set; }
 
         /// <summary>
-        /// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// FortiAnalyzer IPsec tunnel HMAC algorithm.
         /// </summary>
         [Input("hmacAlgorithm")]
         public Input<string>? HmacAlgorithm { get; set; }
@@ -422,6 +464,12 @@ namespace Pulumiverse.Fortios.Log.Fortianalyzer.V2
         public Input<string>? Server { get; set; }
 
         /// <summary>
+        /// Mandatory CA on FortiGate in certificate chain of server.
+        /// </summary>
+        [Input("serverCertCa")]
+        public Input<string>? ServerCertCa { get; set; }
+
+        /// <summary>
         /// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
         /// </summary>
         [Input("sourceIp")]
@@ -490,6 +538,12 @@ namespace Pulumiverse.Fortios.Log.Fortianalyzer.V2
         public Input<string>? AccessConfig { get; set; }
 
         /// <summary>
+        /// Alternate FortiAnalyzer.
+        /// </summary>
+        [Input("altServer")]
+        public Input<string>? AltServer { get; set; }
+
+        /// <summary>
         /// Certificate used to communicate with FortiAnalyzer.
         /// </summary>
         [Input("certificate")]
@@ -520,13 +574,25 @@ namespace Pulumiverse.Fortios.Log.Fortianalyzer.V2
         public Input<string>? EncAlgorithm { get; set; }
 
         /// <summary>
+        /// Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("fallbackToPrimary")]
+        public Input<string>? FallbackToPrimary { get; set; }
+
+        /// <summary>
         /// Hidden setting index of FortiAnalyzer.
         /// </summary>
         [Input("fazType")]
         public Input<int>? FazType { get; set; }
 
         /// <summary>
-        /// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// FortiAnalyzer IPsec tunnel HMAC algorithm.
         /// </summary>
         [Input("hmacAlgorithm")]
         public Input<string>? HmacAlgorithm { get; set; }
@@ -608,6 +674,12 @@ namespace Pulumiverse.Fortios.Log.Fortianalyzer.V2
         /// </summary>
         [Input("server")]
         public Input<string>? Server { get; set; }
+
+        /// <summary>
+        /// Mandatory CA on FortiGate in certificate chain of server.
+        /// </summary>
+        [Input("serverCertCa")]
+        public Input<string>? ServerCertCa { get; set; }
 
         /// <summary>
         /// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.

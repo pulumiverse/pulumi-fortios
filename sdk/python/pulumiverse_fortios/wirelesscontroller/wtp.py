@@ -20,12 +20,15 @@ class WtpArgs:
                  admin: Optional[pulumi.Input[str]] = None,
                  allowaccess: Optional[pulumi.Input[str]] = None,
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
+                 ble_major_id: Optional[pulumi.Input[int]] = None,
+                 ble_minor_id: Optional[pulumi.Input[int]] = None,
                  bonjour_profile: Optional[pulumi.Input[str]] = None,
                  coordinate_latitude: Optional[pulumi.Input[str]] = None,
                  coordinate_longitude: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -43,6 +46,7 @@ class WtpArgs:
                  override_login_passwd_change: Optional[pulumi.Input[str]] = None,
                  override_split_tunnel: Optional[pulumi.Input[str]] = None,
                  override_wan_port_mode: Optional[pulumi.Input[str]] = None,
+                 purdue_level: Optional[pulumi.Input[str]] = None,
                  radio1: Optional[pulumi.Input['WtpRadio1Args']] = None,
                  radio2: Optional[pulumi.Input['WtpRadio2Args']] = None,
                  radio3: Optional[pulumi.Input['WtpRadio3Args']] = None,
@@ -66,12 +70,15 @@ class WtpArgs:
         :param pulumi.Input[str] admin: Configure how the FortiGate operating as a wireless controller discovers and manages this WTP, AP or FortiAP. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] allowaccess: Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space.
         :param pulumi.Input[str] apcfg_profile: AP local configuration profile name.
+        :param pulumi.Input[int] ble_major_id: Override BLE Major ID.
+        :param pulumi.Input[int] ble_minor_id: Override BLE Minor ID.
         :param pulumi.Input[str] bonjour_profile: Bonjour profile name.
         :param pulumi.Input[str] coordinate_latitude: WTP latitude coordinate.
         :param pulumi.Input[str] coordinate_longitude: WTP longitude coordinate.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] image_download: Enable/disable WTP image download. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] index: Index (0 - 4294967295).
         :param pulumi.Input[str] ip_fragment_preventing: Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
@@ -89,6 +96,7 @@ class WtpArgs:
         :param pulumi.Input[str] override_login_passwd_change: Enable to override the WTP profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] override_split_tunnel: Enable/disable overriding the WTP profile split tunneling setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] override_wan_port_mode: Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] purdue_level: Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
         :param pulumi.Input['WtpRadio1Args'] radio1: Configuration options for radio 1. The structure of `radio_1` block is documented below.
         :param pulumi.Input['WtpRadio2Args'] radio2: Configuration options for radio 2. The structure of `radio_2` block is documented below.
         :param pulumi.Input['WtpRadio3Args'] radio3: Configuration options for radio 3. The structure of `radio_3` block is documented below.
@@ -114,6 +122,10 @@ class WtpArgs:
             pulumi.set(__self__, "allowaccess", allowaccess)
         if apcfg_profile is not None:
             pulumi.set(__self__, "apcfg_profile", apcfg_profile)
+        if ble_major_id is not None:
+            pulumi.set(__self__, "ble_major_id", ble_major_id)
+        if ble_minor_id is not None:
+            pulumi.set(__self__, "ble_minor_id", ble_minor_id)
         if bonjour_profile is not None:
             pulumi.set(__self__, "bonjour_profile", bonjour_profile)
         if coordinate_latitude is not None:
@@ -126,6 +138,8 @@ class WtpArgs:
             pulumi.set(__self__, "firmware_provision", firmware_provision)
         if firmware_provision_latest is not None:
             pulumi.set(__self__, "firmware_provision_latest", firmware_provision_latest)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if image_download is not None:
             pulumi.set(__self__, "image_download", image_download)
         if index is not None:
@@ -160,6 +174,8 @@ class WtpArgs:
             pulumi.set(__self__, "override_split_tunnel", override_split_tunnel)
         if override_wan_port_mode is not None:
             pulumi.set(__self__, "override_wan_port_mode", override_wan_port_mode)
+        if purdue_level is not None:
+            pulumi.set(__self__, "purdue_level", purdue_level)
         if radio1 is not None:
             pulumi.set(__self__, "radio1", radio1)
         if radio2 is not None:
@@ -244,6 +260,30 @@ class WtpArgs:
         pulumi.set(self, "apcfg_profile", value)
 
     @property
+    @pulumi.getter(name="bleMajorId")
+    def ble_major_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Override BLE Major ID.
+        """
+        return pulumi.get(self, "ble_major_id")
+
+    @ble_major_id.setter
+    def ble_major_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ble_major_id", value)
+
+    @property
+    @pulumi.getter(name="bleMinorId")
+    def ble_minor_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Override BLE Minor ID.
+        """
+        return pulumi.get(self, "ble_minor_id")
+
+    @ble_minor_id.setter
+    def ble_minor_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ble_minor_id", value)
+
+    @property
     @pulumi.getter(name="bonjourProfile")
     def bonjour_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -314,6 +354,18 @@ class WtpArgs:
     @firmware_provision_latest.setter
     def firmware_provision_latest(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision_latest", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="imageDownload")
@@ -518,6 +570,18 @@ class WtpArgs:
     @override_wan_port_mode.setter
     def override_wan_port_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "override_wan_port_mode", value)
+
+    @property
+    @pulumi.getter(name="purdueLevel")
+    def purdue_level(self) -> Optional[pulumi.Input[str]]:
+        """
+        Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        """
+        return pulumi.get(self, "purdue_level")
+
+    @purdue_level.setter
+    def purdue_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "purdue_level", value)
 
     @property
     @pulumi.getter
@@ -730,12 +794,15 @@ class _WtpState:
                  admin: Optional[pulumi.Input[str]] = None,
                  allowaccess: Optional[pulumi.Input[str]] = None,
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
+                 ble_major_id: Optional[pulumi.Input[int]] = None,
+                 ble_minor_id: Optional[pulumi.Input[int]] = None,
                  bonjour_profile: Optional[pulumi.Input[str]] = None,
                  coordinate_latitude: Optional[pulumi.Input[str]] = None,
                  coordinate_longitude: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -753,6 +820,7 @@ class _WtpState:
                  override_login_passwd_change: Optional[pulumi.Input[str]] = None,
                  override_split_tunnel: Optional[pulumi.Input[str]] = None,
                  override_wan_port_mode: Optional[pulumi.Input[str]] = None,
+                 purdue_level: Optional[pulumi.Input[str]] = None,
                  radio1: Optional[pulumi.Input['WtpRadio1Args']] = None,
                  radio2: Optional[pulumi.Input['WtpRadio2Args']] = None,
                  radio3: Optional[pulumi.Input['WtpRadio3Args']] = None,
@@ -776,12 +844,15 @@ class _WtpState:
         :param pulumi.Input[str] admin: Configure how the FortiGate operating as a wireless controller discovers and manages this WTP, AP or FortiAP. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] allowaccess: Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space.
         :param pulumi.Input[str] apcfg_profile: AP local configuration profile name.
+        :param pulumi.Input[int] ble_major_id: Override BLE Major ID.
+        :param pulumi.Input[int] ble_minor_id: Override BLE Minor ID.
         :param pulumi.Input[str] bonjour_profile: Bonjour profile name.
         :param pulumi.Input[str] coordinate_latitude: WTP latitude coordinate.
         :param pulumi.Input[str] coordinate_longitude: WTP longitude coordinate.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] image_download: Enable/disable WTP image download. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] index: Index (0 - 4294967295).
         :param pulumi.Input[str] ip_fragment_preventing: Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
@@ -799,6 +870,7 @@ class _WtpState:
         :param pulumi.Input[str] override_login_passwd_change: Enable to override the WTP profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] override_split_tunnel: Enable/disable overriding the WTP profile split tunneling setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] override_wan_port_mode: Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] purdue_level: Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
         :param pulumi.Input['WtpRadio1Args'] radio1: Configuration options for radio 1. The structure of `radio_1` block is documented below.
         :param pulumi.Input['WtpRadio2Args'] radio2: Configuration options for radio 2. The structure of `radio_2` block is documented below.
         :param pulumi.Input['WtpRadio3Args'] radio3: Configuration options for radio 3. The structure of `radio_3` block is documented below.
@@ -824,6 +896,10 @@ class _WtpState:
             pulumi.set(__self__, "allowaccess", allowaccess)
         if apcfg_profile is not None:
             pulumi.set(__self__, "apcfg_profile", apcfg_profile)
+        if ble_major_id is not None:
+            pulumi.set(__self__, "ble_major_id", ble_major_id)
+        if ble_minor_id is not None:
+            pulumi.set(__self__, "ble_minor_id", ble_minor_id)
         if bonjour_profile is not None:
             pulumi.set(__self__, "bonjour_profile", bonjour_profile)
         if coordinate_latitude is not None:
@@ -836,6 +912,8 @@ class _WtpState:
             pulumi.set(__self__, "firmware_provision", firmware_provision)
         if firmware_provision_latest is not None:
             pulumi.set(__self__, "firmware_provision_latest", firmware_provision_latest)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if image_download is not None:
             pulumi.set(__self__, "image_download", image_download)
         if index is not None:
@@ -870,6 +948,8 @@ class _WtpState:
             pulumi.set(__self__, "override_split_tunnel", override_split_tunnel)
         if override_wan_port_mode is not None:
             pulumi.set(__self__, "override_wan_port_mode", override_wan_port_mode)
+        if purdue_level is not None:
+            pulumi.set(__self__, "purdue_level", purdue_level)
         if radio1 is not None:
             pulumi.set(__self__, "radio1", radio1)
         if radio2 is not None:
@@ -944,6 +1024,30 @@ class _WtpState:
         pulumi.set(self, "apcfg_profile", value)
 
     @property
+    @pulumi.getter(name="bleMajorId")
+    def ble_major_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Override BLE Major ID.
+        """
+        return pulumi.get(self, "ble_major_id")
+
+    @ble_major_id.setter
+    def ble_major_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ble_major_id", value)
+
+    @property
+    @pulumi.getter(name="bleMinorId")
+    def ble_minor_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Override BLE Minor ID.
+        """
+        return pulumi.get(self, "ble_minor_id")
+
+    @ble_minor_id.setter
+    def ble_minor_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ble_minor_id", value)
+
+    @property
     @pulumi.getter(name="bonjourProfile")
     def bonjour_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1014,6 +1118,18 @@ class _WtpState:
     @firmware_provision_latest.setter
     def firmware_provision_latest(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision_latest", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="imageDownload")
@@ -1218,6 +1334,18 @@ class _WtpState:
     @override_wan_port_mode.setter
     def override_wan_port_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "override_wan_port_mode", value)
+
+    @property
+    @pulumi.getter(name="purdueLevel")
+    def purdue_level(self) -> Optional[pulumi.Input[str]]:
+        """
+        Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        """
+        return pulumi.get(self, "purdue_level")
+
+    @purdue_level.setter
+    def purdue_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "purdue_level", value)
 
     @property
     @pulumi.getter
@@ -1444,12 +1572,15 @@ class Wtp(pulumi.CustomResource):
                  admin: Optional[pulumi.Input[str]] = None,
                  allowaccess: Optional[pulumi.Input[str]] = None,
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
+                 ble_major_id: Optional[pulumi.Input[int]] = None,
+                 ble_minor_id: Optional[pulumi.Input[int]] = None,
                  bonjour_profile: Optional[pulumi.Input[str]] = None,
                  coordinate_latitude: Optional[pulumi.Input[str]] = None,
                  coordinate_longitude: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -1467,6 +1598,7 @@ class Wtp(pulumi.CustomResource):
                  override_login_passwd_change: Optional[pulumi.Input[str]] = None,
                  override_split_tunnel: Optional[pulumi.Input[str]] = None,
                  override_wan_port_mode: Optional[pulumi.Input[str]] = None,
+                 purdue_level: Optional[pulumi.Input[str]] = None,
                  radio1: Optional[pulumi.Input[pulumi.InputType['WtpRadio1Args']]] = None,
                  radio2: Optional[pulumi.Input[pulumi.InputType['WtpRadio2Args']]] = None,
                  radio3: Optional[pulumi.Input[pulumi.InputType['WtpRadio3Args']]] = None,
@@ -1512,12 +1644,15 @@ class Wtp(pulumi.CustomResource):
         :param pulumi.Input[str] admin: Configure how the FortiGate operating as a wireless controller discovers and manages this WTP, AP or FortiAP. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] allowaccess: Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space.
         :param pulumi.Input[str] apcfg_profile: AP local configuration profile name.
+        :param pulumi.Input[int] ble_major_id: Override BLE Major ID.
+        :param pulumi.Input[int] ble_minor_id: Override BLE Minor ID.
         :param pulumi.Input[str] bonjour_profile: Bonjour profile name.
         :param pulumi.Input[str] coordinate_latitude: WTP latitude coordinate.
         :param pulumi.Input[str] coordinate_longitude: WTP longitude coordinate.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] image_download: Enable/disable WTP image download. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] index: Index (0 - 4294967295).
         :param pulumi.Input[str] ip_fragment_preventing: Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
@@ -1535,6 +1670,7 @@ class Wtp(pulumi.CustomResource):
         :param pulumi.Input[str] override_login_passwd_change: Enable to override the WTP profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] override_split_tunnel: Enable/disable overriding the WTP profile split tunneling setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] override_wan_port_mode: Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] purdue_level: Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
         :param pulumi.Input[pulumi.InputType['WtpRadio1Args']] radio1: Configuration options for radio 1. The structure of `radio_1` block is documented below.
         :param pulumi.Input[pulumi.InputType['WtpRadio2Args']] radio2: Configuration options for radio 2. The structure of `radio_2` block is documented below.
         :param pulumi.Input[pulumi.InputType['WtpRadio3Args']] radio3: Configuration options for radio 3. The structure of `radio_3` block is documented below.
@@ -1599,12 +1735,15 @@ class Wtp(pulumi.CustomResource):
                  admin: Optional[pulumi.Input[str]] = None,
                  allowaccess: Optional[pulumi.Input[str]] = None,
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
+                 ble_major_id: Optional[pulumi.Input[int]] = None,
+                 ble_minor_id: Optional[pulumi.Input[int]] = None,
                  bonjour_profile: Optional[pulumi.Input[str]] = None,
                  coordinate_latitude: Optional[pulumi.Input[str]] = None,
                  coordinate_longitude: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -1622,6 +1761,7 @@ class Wtp(pulumi.CustomResource):
                  override_login_passwd_change: Optional[pulumi.Input[str]] = None,
                  override_split_tunnel: Optional[pulumi.Input[str]] = None,
                  override_wan_port_mode: Optional[pulumi.Input[str]] = None,
+                 purdue_level: Optional[pulumi.Input[str]] = None,
                  radio1: Optional[pulumi.Input[pulumi.InputType['WtpRadio1Args']]] = None,
                  radio2: Optional[pulumi.Input[pulumi.InputType['WtpRadio2Args']]] = None,
                  radio3: Optional[pulumi.Input[pulumi.InputType['WtpRadio3Args']]] = None,
@@ -1652,12 +1792,15 @@ class Wtp(pulumi.CustomResource):
             __props__.__dict__["admin"] = admin
             __props__.__dict__["allowaccess"] = allowaccess
             __props__.__dict__["apcfg_profile"] = apcfg_profile
+            __props__.__dict__["ble_major_id"] = ble_major_id
+            __props__.__dict__["ble_minor_id"] = ble_minor_id
             __props__.__dict__["bonjour_profile"] = bonjour_profile
             __props__.__dict__["coordinate_latitude"] = coordinate_latitude
             __props__.__dict__["coordinate_longitude"] = coordinate_longitude
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["firmware_provision"] = firmware_provision
             __props__.__dict__["firmware_provision_latest"] = firmware_provision_latest
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["image_download"] = image_download
             __props__.__dict__["index"] = index
             __props__.__dict__["ip_fragment_preventing"] = ip_fragment_preventing
@@ -1675,6 +1818,7 @@ class Wtp(pulumi.CustomResource):
             __props__.__dict__["override_login_passwd_change"] = override_login_passwd_change
             __props__.__dict__["override_split_tunnel"] = override_split_tunnel
             __props__.__dict__["override_wan_port_mode"] = override_wan_port_mode
+            __props__.__dict__["purdue_level"] = purdue_level
             __props__.__dict__["radio1"] = radio1
             __props__.__dict__["radio2"] = radio2
             __props__.__dict__["radio3"] = radio3
@@ -1710,12 +1854,15 @@ class Wtp(pulumi.CustomResource):
             admin: Optional[pulumi.Input[str]] = None,
             allowaccess: Optional[pulumi.Input[str]] = None,
             apcfg_profile: Optional[pulumi.Input[str]] = None,
+            ble_major_id: Optional[pulumi.Input[int]] = None,
+            ble_minor_id: Optional[pulumi.Input[int]] = None,
             bonjour_profile: Optional[pulumi.Input[str]] = None,
             coordinate_latitude: Optional[pulumi.Input[str]] = None,
             coordinate_longitude: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             firmware_provision: Optional[pulumi.Input[str]] = None,
             firmware_provision_latest: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             image_download: Optional[pulumi.Input[str]] = None,
             index: Optional[pulumi.Input[int]] = None,
             ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -1733,6 +1880,7 @@ class Wtp(pulumi.CustomResource):
             override_login_passwd_change: Optional[pulumi.Input[str]] = None,
             override_split_tunnel: Optional[pulumi.Input[str]] = None,
             override_wan_port_mode: Optional[pulumi.Input[str]] = None,
+            purdue_level: Optional[pulumi.Input[str]] = None,
             radio1: Optional[pulumi.Input[pulumi.InputType['WtpRadio1Args']]] = None,
             radio2: Optional[pulumi.Input[pulumi.InputType['WtpRadio2Args']]] = None,
             radio3: Optional[pulumi.Input[pulumi.InputType['WtpRadio3Args']]] = None,
@@ -1761,12 +1909,15 @@ class Wtp(pulumi.CustomResource):
         :param pulumi.Input[str] admin: Configure how the FortiGate operating as a wireless controller discovers and manages this WTP, AP or FortiAP. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] allowaccess: Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space.
         :param pulumi.Input[str] apcfg_profile: AP local configuration profile name.
+        :param pulumi.Input[int] ble_major_id: Override BLE Major ID.
+        :param pulumi.Input[int] ble_minor_id: Override BLE Minor ID.
         :param pulumi.Input[str] bonjour_profile: Bonjour profile name.
         :param pulumi.Input[str] coordinate_latitude: WTP latitude coordinate.
         :param pulumi.Input[str] coordinate_longitude: WTP longitude coordinate.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] image_download: Enable/disable WTP image download. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] index: Index (0 - 4294967295).
         :param pulumi.Input[str] ip_fragment_preventing: Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
@@ -1784,6 +1935,7 @@ class Wtp(pulumi.CustomResource):
         :param pulumi.Input[str] override_login_passwd_change: Enable to override the WTP profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] override_split_tunnel: Enable/disable overriding the WTP profile split tunneling setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] override_wan_port_mode: Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] purdue_level: Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
         :param pulumi.Input[pulumi.InputType['WtpRadio1Args']] radio1: Configuration options for radio 1. The structure of `radio_1` block is documented below.
         :param pulumi.Input[pulumi.InputType['WtpRadio2Args']] radio2: Configuration options for radio 2. The structure of `radio_2` block is documented below.
         :param pulumi.Input[pulumi.InputType['WtpRadio3Args']] radio3: Configuration options for radio 3. The structure of `radio_3` block is documented below.
@@ -1810,12 +1962,15 @@ class Wtp(pulumi.CustomResource):
         __props__.__dict__["admin"] = admin
         __props__.__dict__["allowaccess"] = allowaccess
         __props__.__dict__["apcfg_profile"] = apcfg_profile
+        __props__.__dict__["ble_major_id"] = ble_major_id
+        __props__.__dict__["ble_minor_id"] = ble_minor_id
         __props__.__dict__["bonjour_profile"] = bonjour_profile
         __props__.__dict__["coordinate_latitude"] = coordinate_latitude
         __props__.__dict__["coordinate_longitude"] = coordinate_longitude
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["firmware_provision"] = firmware_provision
         __props__.__dict__["firmware_provision_latest"] = firmware_provision_latest
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["image_download"] = image_download
         __props__.__dict__["index"] = index
         __props__.__dict__["ip_fragment_preventing"] = ip_fragment_preventing
@@ -1833,6 +1988,7 @@ class Wtp(pulumi.CustomResource):
         __props__.__dict__["override_login_passwd_change"] = override_login_passwd_change
         __props__.__dict__["override_split_tunnel"] = override_split_tunnel
         __props__.__dict__["override_wan_port_mode"] = override_wan_port_mode
+        __props__.__dict__["purdue_level"] = purdue_level
         __props__.__dict__["radio1"] = radio1
         __props__.__dict__["radio2"] = radio2
         __props__.__dict__["radio3"] = radio3
@@ -1876,6 +2032,22 @@ class Wtp(pulumi.CustomResource):
         AP local configuration profile name.
         """
         return pulumi.get(self, "apcfg_profile")
+
+    @property
+    @pulumi.getter(name="bleMajorId")
+    def ble_major_id(self) -> pulumi.Output[int]:
+        """
+        Override BLE Major ID.
+        """
+        return pulumi.get(self, "ble_major_id")
+
+    @property
+    @pulumi.getter(name="bleMinorId")
+    def ble_minor_id(self) -> pulumi.Output[int]:
+        """
+        Override BLE Minor ID.
+        """
+        return pulumi.get(self, "ble_minor_id")
 
     @property
     @pulumi.getter(name="bonjourProfile")
@@ -1924,6 +2096,14 @@ class Wtp(pulumi.CustomResource):
         Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         """
         return pulumi.get(self, "firmware_provision_latest")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="imageDownload")
@@ -2060,6 +2240,14 @@ class Wtp(pulumi.CustomResource):
         Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "override_wan_port_mode")
+
+    @property
+    @pulumi.getter(name="purdueLevel")
+    def purdue_level(self) -> pulumi.Output[str]:
+        """
+        Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        """
+        return pulumi.get(self, "purdue_level")
 
     @property
     @pulumi.getter

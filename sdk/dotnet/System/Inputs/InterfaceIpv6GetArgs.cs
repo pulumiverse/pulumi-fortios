@@ -74,6 +74,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<int>? Dhcp6PrefixHintVlt { get; set; }
 
         /// <summary>
+        /// DHCP6 relay interface ID.
+        /// </summary>
+        [Input("dhcp6RelayInterfaceId")]
+        public Input<string>? Dhcp6RelayInterfaceId { get; set; }
+
+        /// <summary>
         /// DHCPv6 relay IP address.
         /// </summary>
         [Input("dhcp6RelayIp")]
@@ -84,6 +90,18 @@ namespace Pulumiverse.Fortios.System.Inputs
         /// </summary>
         [Input("dhcp6RelayService")]
         public Input<string>? Dhcp6RelayService { get; set; }
+
+        /// <summary>
+        /// Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("dhcp6RelaySourceInterface")]
+        public Input<string>? Dhcp6RelaySourceInterface { get; set; }
+
+        /// <summary>
+        /// IPv6 address used by the DHCP6 relay as its source IP.
+        /// </summary>
+        [Input("dhcp6RelaySourceIp")]
+        public Input<string>? Dhcp6RelaySourceIp { get; set; }
 
         /// <summary>
         /// DHCPv6 relay type. Valid values: `regular`.

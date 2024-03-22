@@ -171,6 +171,10 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         public readonly string LinkMonitorExempt;
         /// <summary>
+        /// Preferred source IP for this route.
+        /// </summary>
+        public readonly string PreferredSource;
+        /// <summary>
         /// Administrative priority (0 - 4294967295).
         /// </summary>
         public readonly int Priority;
@@ -194,6 +198,10 @@ namespace Pulumiverse.Fortios.Router
         /// Enable/disable this static route.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Route tag.
+        /// </summary>
+        public readonly int Tag;
         public readonly string? Vdomparam;
         /// <summary>
         /// Enable/disable egress through the virtual-wan-link.
@@ -236,6 +244,8 @@ namespace Pulumiverse.Fortios.Router
 
             string linkMonitorExempt,
 
+            string preferredSource,
+
             int priority,
 
             string sdwan,
@@ -247,6 +257,8 @@ namespace Pulumiverse.Fortios.Router
             string src,
 
             string status,
+
+            int tag,
 
             string? vdomparam,
 
@@ -269,12 +281,14 @@ namespace Pulumiverse.Fortios.Router
             InternetService = internetService;
             InternetServiceCustom = internetServiceCustom;
             LinkMonitorExempt = linkMonitorExempt;
+            PreferredSource = preferredSource;
             Priority = priority;
             Sdwan = sdwan;
             SdwanZones = sdwanZones;
             SeqNum = seqNum;
             Src = src;
             Status = status;
+            Tag = tag;
             Vdomparam = vdomparam;
             VirtualWanLink = virtualWanLink;
             Vrf = vrf;

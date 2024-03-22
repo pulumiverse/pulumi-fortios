@@ -114,9 +114,17 @@ export class Dns extends pulumi.CustomResource {
      */
     public readonly fqdnCacheTtl!: pulumi.Output<number>;
     /**
+     * FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+     */
+    public readonly fqdnMaxRefresh!: pulumi.Output<number>;
+    /**
      * FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
      */
     public readonly fqdnMinRefresh!: pulumi.Output<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Specify outgoing interface to reach server.
      */
@@ -200,7 +208,9 @@ export class Dns extends pulumi.CustomResource {
             resourceInputs["domains"] = state ? state.domains : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fqdnCacheTtl"] = state ? state.fqdnCacheTtl : undefined;
+            resourceInputs["fqdnMaxRefresh"] = state ? state.fqdnMaxRefresh : undefined;
             resourceInputs["fqdnMinRefresh"] = state ? state.fqdnMinRefresh : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
             resourceInputs["ip6Primary"] = state ? state.ip6Primary : undefined;
@@ -230,7 +240,9 @@ export class Dns extends pulumi.CustomResource {
             resourceInputs["domains"] = args ? args.domains : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fqdnCacheTtl"] = args ? args.fqdnCacheTtl : undefined;
+            resourceInputs["fqdnMaxRefresh"] = args ? args.fqdnMaxRefresh : undefined;
             resourceInputs["fqdnMinRefresh"] = args ? args.fqdnMinRefresh : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
             resourceInputs["ip6Primary"] = args ? args.ip6Primary : undefined;
@@ -293,9 +305,17 @@ export interface DnsState {
      */
     fqdnCacheTtl?: pulumi.Input<number>;
     /**
+     * FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+     */
+    fqdnMaxRefresh?: pulumi.Input<number>;
+    /**
      * FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
      */
     fqdnMinRefresh?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Specify outgoing interface to reach server.
      */
@@ -399,9 +419,17 @@ export interface DnsArgs {
      */
     fqdnCacheTtl?: pulumi.Input<number>;
     /**
+     * FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+     */
+    fqdnMaxRefresh?: pulumi.Input<number>;
+    /**
      * FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
      */
     fqdnMinRefresh?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Specify outgoing interface to reach server.
      */

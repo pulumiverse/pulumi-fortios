@@ -80,7 +80,11 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly encAlgorithm!: pulumi.Output<string>;
     /**
-     * FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * FortiAnalyzer IPsec tunnel HMAC algorithm.
      */
     public readonly hmacAlgorithm!: pulumi.Output<string>;
     /**
@@ -171,6 +175,7 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["connTimeout"] = state ? state.connTimeout : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hmacAlgorithm"] = state ? state.hmacAlgorithm : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
@@ -197,6 +202,7 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["connTimeout"] = args ? args.connTimeout : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hmacAlgorithm"] = args ? args.hmacAlgorithm : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
@@ -250,7 +256,11 @@ export interface SettingState {
      */
     encAlgorithm?: pulumi.Input<string>;
     /**
-     * FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * FortiAnalyzer IPsec tunnel HMAC algorithm.
      */
     hmacAlgorithm?: pulumi.Input<string>;
     /**
@@ -352,7 +362,11 @@ export interface SettingArgs {
      */
     encAlgorithm?: pulumi.Input<string>;
     /**
-     * FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * FortiAnalyzer IPsec tunnel HMAC algorithm.
      */
     hmacAlgorithm?: pulumi.Input<string>;
     /**

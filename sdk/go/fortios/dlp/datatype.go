@@ -39,6 +39,12 @@ type Datatype struct {
 	LookAhead pulumi.IntOutput `pulumi:"lookAhead"`
 	// Number of characters required to save for verification (1 - 255, default = 1).
 	LookBack pulumi.IntOutput `pulumi:"lookBack"`
+	// Number of characters behind for match-around (1 - 4096, default = 1).
+	MatchAhead pulumi.IntOutput `pulumi:"matchAhead"`
+	// Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+	MatchAround pulumi.StringOutput `pulumi:"matchAround"`
+	// Number of characters in front for match-around (1 - 4096, default = 1).
+	MatchBack pulumi.IntOutput `pulumi:"matchBack"`
 	// Name of table containing the data type.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Regular expression pattern string without look around.
@@ -49,6 +55,8 @@ type Datatype struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Regular expression pattern string used to verify the data type.
 	Verify pulumi.StringOutput `pulumi:"verify"`
+	// Extra regular expression pattern string used to verify the data type.
+	Verify2 pulumi.StringOutput `pulumi:"verify2"`
 	// Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
 	VerifyTransformedPattern pulumi.StringOutput `pulumi:"verifyTransformedPattern"`
 }
@@ -89,6 +97,12 @@ type datatypeState struct {
 	LookAhead *int `pulumi:"lookAhead"`
 	// Number of characters required to save for verification (1 - 255, default = 1).
 	LookBack *int `pulumi:"lookBack"`
+	// Number of characters behind for match-around (1 - 4096, default = 1).
+	MatchAhead *int `pulumi:"matchAhead"`
+	// Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+	MatchAround *string `pulumi:"matchAround"`
+	// Number of characters in front for match-around (1 - 4096, default = 1).
+	MatchBack *int `pulumi:"matchBack"`
 	// Name of table containing the data type.
 	Name *string `pulumi:"name"`
 	// Regular expression pattern string without look around.
@@ -99,6 +113,8 @@ type datatypeState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Regular expression pattern string used to verify the data type.
 	Verify *string `pulumi:"verify"`
+	// Extra regular expression pattern string used to verify the data type.
+	Verify2 *string `pulumi:"verify2"`
 	// Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
 	VerifyTransformedPattern *string `pulumi:"verifyTransformedPattern"`
 }
@@ -110,6 +126,12 @@ type DatatypeState struct {
 	LookAhead pulumi.IntPtrInput
 	// Number of characters required to save for verification (1 - 255, default = 1).
 	LookBack pulumi.IntPtrInput
+	// Number of characters behind for match-around (1 - 4096, default = 1).
+	MatchAhead pulumi.IntPtrInput
+	// Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+	MatchAround pulumi.StringPtrInput
+	// Number of characters in front for match-around (1 - 4096, default = 1).
+	MatchBack pulumi.IntPtrInput
 	// Name of table containing the data type.
 	Name pulumi.StringPtrInput
 	// Regular expression pattern string without look around.
@@ -120,6 +142,8 @@ type DatatypeState struct {
 	Vdomparam pulumi.StringPtrInput
 	// Regular expression pattern string used to verify the data type.
 	Verify pulumi.StringPtrInput
+	// Extra regular expression pattern string used to verify the data type.
+	Verify2 pulumi.StringPtrInput
 	// Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
 	VerifyTransformedPattern pulumi.StringPtrInput
 }
@@ -135,6 +159,12 @@ type datatypeArgs struct {
 	LookAhead *int `pulumi:"lookAhead"`
 	// Number of characters required to save for verification (1 - 255, default = 1).
 	LookBack *int `pulumi:"lookBack"`
+	// Number of characters behind for match-around (1 - 4096, default = 1).
+	MatchAhead *int `pulumi:"matchAhead"`
+	// Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+	MatchAround *string `pulumi:"matchAround"`
+	// Number of characters in front for match-around (1 - 4096, default = 1).
+	MatchBack *int `pulumi:"matchBack"`
 	// Name of table containing the data type.
 	Name *string `pulumi:"name"`
 	// Regular expression pattern string without look around.
@@ -145,6 +175,8 @@ type datatypeArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Regular expression pattern string used to verify the data type.
 	Verify *string `pulumi:"verify"`
+	// Extra regular expression pattern string used to verify the data type.
+	Verify2 *string `pulumi:"verify2"`
 	// Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
 	VerifyTransformedPattern *string `pulumi:"verifyTransformedPattern"`
 }
@@ -157,6 +189,12 @@ type DatatypeArgs struct {
 	LookAhead pulumi.IntPtrInput
 	// Number of characters required to save for verification (1 - 255, default = 1).
 	LookBack pulumi.IntPtrInput
+	// Number of characters behind for match-around (1 - 4096, default = 1).
+	MatchAhead pulumi.IntPtrInput
+	// Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+	MatchAround pulumi.StringPtrInput
+	// Number of characters in front for match-around (1 - 4096, default = 1).
+	MatchBack pulumi.IntPtrInput
 	// Name of table containing the data type.
 	Name pulumi.StringPtrInput
 	// Regular expression pattern string without look around.
@@ -167,6 +205,8 @@ type DatatypeArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// Regular expression pattern string used to verify the data type.
 	Verify pulumi.StringPtrInput
+	// Extra regular expression pattern string used to verify the data type.
+	Verify2 pulumi.StringPtrInput
 	// Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
 	VerifyTransformedPattern pulumi.StringPtrInput
 }
@@ -273,6 +313,21 @@ func (o DatatypeOutput) LookBack() pulumi.IntOutput {
 	return o.ApplyT(func(v *Datatype) pulumi.IntOutput { return v.LookBack }).(pulumi.IntOutput)
 }
 
+// Number of characters behind for match-around (1 - 4096, default = 1).
+func (o DatatypeOutput) MatchAhead() pulumi.IntOutput {
+	return o.ApplyT(func(v *Datatype) pulumi.IntOutput { return v.MatchAhead }).(pulumi.IntOutput)
+}
+
+// Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+func (o DatatypeOutput) MatchAround() pulumi.StringOutput {
+	return o.ApplyT(func(v *Datatype) pulumi.StringOutput { return v.MatchAround }).(pulumi.StringOutput)
+}
+
+// Number of characters in front for match-around (1 - 4096, default = 1).
+func (o DatatypeOutput) MatchBack() pulumi.IntOutput {
+	return o.ApplyT(func(v *Datatype) pulumi.IntOutput { return v.MatchBack }).(pulumi.IntOutput)
+}
+
 // Name of table containing the data type.
 func (o DatatypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Datatype) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
@@ -296,6 +351,11 @@ func (o DatatypeOutput) Vdomparam() pulumi.StringPtrOutput {
 // Regular expression pattern string used to verify the data type.
 func (o DatatypeOutput) Verify() pulumi.StringOutput {
 	return o.ApplyT(func(v *Datatype) pulumi.StringOutput { return v.Verify }).(pulumi.StringOutput)
+}
+
+// Extra regular expression pattern string used to verify the data type.
+func (o DatatypeOutput) Verify2() pulumi.StringOutput {
+	return o.ApplyT(func(v *Datatype) pulumi.StringOutput { return v.Verify2 }).(pulumi.StringOutput)
 }
 
 // Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.

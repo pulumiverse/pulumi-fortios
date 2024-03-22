@@ -17,22 +17,30 @@ class DatatypeArgs:
                  comment: Optional[pulumi.Input[str]] = None,
                  look_ahead: Optional[pulumi.Input[int]] = None,
                  look_back: Optional[pulumi.Input[int]] = None,
+                 match_ahead: Optional[pulumi.Input[int]] = None,
+                 match_around: Optional[pulumi.Input[str]] = None,
+                 match_back: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pattern: Optional[pulumi.Input[str]] = None,
                  transform: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  verify: Optional[pulumi.Input[str]] = None,
+                 verify2: Optional[pulumi.Input[str]] = None,
                  verify_transformed_pattern: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Datatype resource.
         :param pulumi.Input[str] comment: Optional comments.
         :param pulumi.Input[int] look_ahead: Number of characters to obtain in advance for verification (1 - 255, default = 1).
         :param pulumi.Input[int] look_back: Number of characters required to save for verification (1 - 255, default = 1).
+        :param pulumi.Input[int] match_ahead: Number of characters behind for match-around (1 - 4096, default = 1).
+        :param pulumi.Input[str] match_around: Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+        :param pulumi.Input[int] match_back: Number of characters in front for match-around (1 - 4096, default = 1).
         :param pulumi.Input[str] name: Name of table containing the data type.
         :param pulumi.Input[str] pattern: Regular expression pattern string without look around.
         :param pulumi.Input[str] transform: Template to transform user input to a pattern using capture group from 'pattern'.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] verify: Regular expression pattern string used to verify the data type.
+        :param pulumi.Input[str] verify2: Extra regular expression pattern string used to verify the data type.
         :param pulumi.Input[str] verify_transformed_pattern: Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
         """
         if comment is not None:
@@ -41,6 +49,12 @@ class DatatypeArgs:
             pulumi.set(__self__, "look_ahead", look_ahead)
         if look_back is not None:
             pulumi.set(__self__, "look_back", look_back)
+        if match_ahead is not None:
+            pulumi.set(__self__, "match_ahead", match_ahead)
+        if match_around is not None:
+            pulumi.set(__self__, "match_around", match_around)
+        if match_back is not None:
+            pulumi.set(__self__, "match_back", match_back)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if pattern is not None:
@@ -51,6 +65,8 @@ class DatatypeArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if verify is not None:
             pulumi.set(__self__, "verify", verify)
+        if verify2 is not None:
+            pulumi.set(__self__, "verify2", verify2)
         if verify_transformed_pattern is not None:
             pulumi.set(__self__, "verify_transformed_pattern", verify_transformed_pattern)
 
@@ -89,6 +105,42 @@ class DatatypeArgs:
     @look_back.setter
     def look_back(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "look_back", value)
+
+    @property
+    @pulumi.getter(name="matchAhead")
+    def match_ahead(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of characters behind for match-around (1 - 4096, default = 1).
+        """
+        return pulumi.get(self, "match_ahead")
+
+    @match_ahead.setter
+    def match_ahead(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "match_ahead", value)
+
+    @property
+    @pulumi.getter(name="matchAround")
+    def match_around(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+        """
+        return pulumi.get(self, "match_around")
+
+    @match_around.setter
+    def match_around(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_around", value)
+
+    @property
+    @pulumi.getter(name="matchBack")
+    def match_back(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of characters in front for match-around (1 - 4096, default = 1).
+        """
+        return pulumi.get(self, "match_back")
+
+    @match_back.setter
+    def match_back(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "match_back", value)
 
     @property
     @pulumi.getter
@@ -149,6 +201,18 @@ class DatatypeArgs:
     @verify.setter
     def verify(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "verify", value)
+
+    @property
+    @pulumi.getter
+    def verify2(self) -> Optional[pulumi.Input[str]]:
+        """
+        Extra regular expression pattern string used to verify the data type.
+        """
+        return pulumi.get(self, "verify2")
+
+    @verify2.setter
+    def verify2(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "verify2", value)
 
     @property
     @pulumi.getter(name="verifyTransformedPattern")
@@ -169,22 +233,30 @@ class _DatatypeState:
                  comment: Optional[pulumi.Input[str]] = None,
                  look_ahead: Optional[pulumi.Input[int]] = None,
                  look_back: Optional[pulumi.Input[int]] = None,
+                 match_ahead: Optional[pulumi.Input[int]] = None,
+                 match_around: Optional[pulumi.Input[str]] = None,
+                 match_back: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pattern: Optional[pulumi.Input[str]] = None,
                  transform: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  verify: Optional[pulumi.Input[str]] = None,
+                 verify2: Optional[pulumi.Input[str]] = None,
                  verify_transformed_pattern: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Datatype resources.
         :param pulumi.Input[str] comment: Optional comments.
         :param pulumi.Input[int] look_ahead: Number of characters to obtain in advance for verification (1 - 255, default = 1).
         :param pulumi.Input[int] look_back: Number of characters required to save for verification (1 - 255, default = 1).
+        :param pulumi.Input[int] match_ahead: Number of characters behind for match-around (1 - 4096, default = 1).
+        :param pulumi.Input[str] match_around: Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+        :param pulumi.Input[int] match_back: Number of characters in front for match-around (1 - 4096, default = 1).
         :param pulumi.Input[str] name: Name of table containing the data type.
         :param pulumi.Input[str] pattern: Regular expression pattern string without look around.
         :param pulumi.Input[str] transform: Template to transform user input to a pattern using capture group from 'pattern'.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] verify: Regular expression pattern string used to verify the data type.
+        :param pulumi.Input[str] verify2: Extra regular expression pattern string used to verify the data type.
         :param pulumi.Input[str] verify_transformed_pattern: Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
         """
         if comment is not None:
@@ -193,6 +265,12 @@ class _DatatypeState:
             pulumi.set(__self__, "look_ahead", look_ahead)
         if look_back is not None:
             pulumi.set(__self__, "look_back", look_back)
+        if match_ahead is not None:
+            pulumi.set(__self__, "match_ahead", match_ahead)
+        if match_around is not None:
+            pulumi.set(__self__, "match_around", match_around)
+        if match_back is not None:
+            pulumi.set(__self__, "match_back", match_back)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if pattern is not None:
@@ -203,6 +281,8 @@ class _DatatypeState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if verify is not None:
             pulumi.set(__self__, "verify", verify)
+        if verify2 is not None:
+            pulumi.set(__self__, "verify2", verify2)
         if verify_transformed_pattern is not None:
             pulumi.set(__self__, "verify_transformed_pattern", verify_transformed_pattern)
 
@@ -241,6 +321,42 @@ class _DatatypeState:
     @look_back.setter
     def look_back(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "look_back", value)
+
+    @property
+    @pulumi.getter(name="matchAhead")
+    def match_ahead(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of characters behind for match-around (1 - 4096, default = 1).
+        """
+        return pulumi.get(self, "match_ahead")
+
+    @match_ahead.setter
+    def match_ahead(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "match_ahead", value)
+
+    @property
+    @pulumi.getter(name="matchAround")
+    def match_around(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+        """
+        return pulumi.get(self, "match_around")
+
+    @match_around.setter
+    def match_around(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_around", value)
+
+    @property
+    @pulumi.getter(name="matchBack")
+    def match_back(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of characters in front for match-around (1 - 4096, default = 1).
+        """
+        return pulumi.get(self, "match_back")
+
+    @match_back.setter
+    def match_back(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "match_back", value)
 
     @property
     @pulumi.getter
@@ -301,6 +417,18 @@ class _DatatypeState:
     @verify.setter
     def verify(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "verify", value)
+
+    @property
+    @pulumi.getter
+    def verify2(self) -> Optional[pulumi.Input[str]]:
+        """
+        Extra regular expression pattern string used to verify the data type.
+        """
+        return pulumi.get(self, "verify2")
+
+    @verify2.setter
+    def verify2(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "verify2", value)
 
     @property
     @pulumi.getter(name="verifyTransformedPattern")
@@ -323,11 +451,15 @@ class Datatype(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  look_ahead: Optional[pulumi.Input[int]] = None,
                  look_back: Optional[pulumi.Input[int]] = None,
+                 match_ahead: Optional[pulumi.Input[int]] = None,
+                 match_around: Optional[pulumi.Input[str]] = None,
+                 match_back: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pattern: Optional[pulumi.Input[str]] = None,
                  transform: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  verify: Optional[pulumi.Input[str]] = None,
+                 verify2: Optional[pulumi.Input[str]] = None,
                  verify_transformed_pattern: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -356,11 +488,15 @@ class Datatype(pulumi.CustomResource):
         :param pulumi.Input[str] comment: Optional comments.
         :param pulumi.Input[int] look_ahead: Number of characters to obtain in advance for verification (1 - 255, default = 1).
         :param pulumi.Input[int] look_back: Number of characters required to save for verification (1 - 255, default = 1).
+        :param pulumi.Input[int] match_ahead: Number of characters behind for match-around (1 - 4096, default = 1).
+        :param pulumi.Input[str] match_around: Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+        :param pulumi.Input[int] match_back: Number of characters in front for match-around (1 - 4096, default = 1).
         :param pulumi.Input[str] name: Name of table containing the data type.
         :param pulumi.Input[str] pattern: Regular expression pattern string without look around.
         :param pulumi.Input[str] transform: Template to transform user input to a pattern using capture group from 'pattern'.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] verify: Regular expression pattern string used to verify the data type.
+        :param pulumi.Input[str] verify2: Extra regular expression pattern string used to verify the data type.
         :param pulumi.Input[str] verify_transformed_pattern: Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
         """
         ...
@@ -408,11 +544,15 @@ class Datatype(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  look_ahead: Optional[pulumi.Input[int]] = None,
                  look_back: Optional[pulumi.Input[int]] = None,
+                 match_ahead: Optional[pulumi.Input[int]] = None,
+                 match_around: Optional[pulumi.Input[str]] = None,
+                 match_back: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pattern: Optional[pulumi.Input[str]] = None,
                  transform: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  verify: Optional[pulumi.Input[str]] = None,
+                 verify2: Optional[pulumi.Input[str]] = None,
                  verify_transformed_pattern: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -426,11 +566,15 @@ class Datatype(pulumi.CustomResource):
             __props__.__dict__["comment"] = comment
             __props__.__dict__["look_ahead"] = look_ahead
             __props__.__dict__["look_back"] = look_back
+            __props__.__dict__["match_ahead"] = match_ahead
+            __props__.__dict__["match_around"] = match_around
+            __props__.__dict__["match_back"] = match_back
             __props__.__dict__["name"] = name
             __props__.__dict__["pattern"] = pattern
             __props__.__dict__["transform"] = transform
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["verify"] = verify
+            __props__.__dict__["verify2"] = verify2
             __props__.__dict__["verify_transformed_pattern"] = verify_transformed_pattern
         super(Datatype, __self__).__init__(
             'fortios:dlp/datatype:Datatype',
@@ -445,11 +589,15 @@ class Datatype(pulumi.CustomResource):
             comment: Optional[pulumi.Input[str]] = None,
             look_ahead: Optional[pulumi.Input[int]] = None,
             look_back: Optional[pulumi.Input[int]] = None,
+            match_ahead: Optional[pulumi.Input[int]] = None,
+            match_around: Optional[pulumi.Input[str]] = None,
+            match_back: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             pattern: Optional[pulumi.Input[str]] = None,
             transform: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             verify: Optional[pulumi.Input[str]] = None,
+            verify2: Optional[pulumi.Input[str]] = None,
             verify_transformed_pattern: Optional[pulumi.Input[str]] = None) -> 'Datatype':
         """
         Get an existing Datatype resource's state with the given name, id, and optional extra
@@ -461,11 +609,15 @@ class Datatype(pulumi.CustomResource):
         :param pulumi.Input[str] comment: Optional comments.
         :param pulumi.Input[int] look_ahead: Number of characters to obtain in advance for verification (1 - 255, default = 1).
         :param pulumi.Input[int] look_back: Number of characters required to save for verification (1 - 255, default = 1).
+        :param pulumi.Input[int] match_ahead: Number of characters behind for match-around (1 - 4096, default = 1).
+        :param pulumi.Input[str] match_around: Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+        :param pulumi.Input[int] match_back: Number of characters in front for match-around (1 - 4096, default = 1).
         :param pulumi.Input[str] name: Name of table containing the data type.
         :param pulumi.Input[str] pattern: Regular expression pattern string without look around.
         :param pulumi.Input[str] transform: Template to transform user input to a pattern using capture group from 'pattern'.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] verify: Regular expression pattern string used to verify the data type.
+        :param pulumi.Input[str] verify2: Extra regular expression pattern string used to verify the data type.
         :param pulumi.Input[str] verify_transformed_pattern: Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -475,11 +627,15 @@ class Datatype(pulumi.CustomResource):
         __props__.__dict__["comment"] = comment
         __props__.__dict__["look_ahead"] = look_ahead
         __props__.__dict__["look_back"] = look_back
+        __props__.__dict__["match_ahead"] = match_ahead
+        __props__.__dict__["match_around"] = match_around
+        __props__.__dict__["match_back"] = match_back
         __props__.__dict__["name"] = name
         __props__.__dict__["pattern"] = pattern
         __props__.__dict__["transform"] = transform
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["verify"] = verify
+        __props__.__dict__["verify2"] = verify2
         __props__.__dict__["verify_transformed_pattern"] = verify_transformed_pattern
         return Datatype(resource_name, opts=opts, __props__=__props__)
 
@@ -506,6 +662,30 @@ class Datatype(pulumi.CustomResource):
         Number of characters required to save for verification (1 - 255, default = 1).
         """
         return pulumi.get(self, "look_back")
+
+    @property
+    @pulumi.getter(name="matchAhead")
+    def match_ahead(self) -> pulumi.Output[int]:
+        """
+        Number of characters behind for match-around (1 - 4096, default = 1).
+        """
+        return pulumi.get(self, "match_ahead")
+
+    @property
+    @pulumi.getter(name="matchAround")
+    def match_around(self) -> pulumi.Output[str]:
+        """
+        Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+        """
+        return pulumi.get(self, "match_around")
+
+    @property
+    @pulumi.getter(name="matchBack")
+    def match_back(self) -> pulumi.Output[int]:
+        """
+        Number of characters in front for match-around (1 - 4096, default = 1).
+        """
+        return pulumi.get(self, "match_back")
 
     @property
     @pulumi.getter
@@ -546,6 +726,14 @@ class Datatype(pulumi.CustomResource):
         Regular expression pattern string used to verify the data type.
         """
         return pulumi.get(self, "verify")
+
+    @property
+    @pulumi.getter
+    def verify2(self) -> pulumi.Output[str]:
+        """
+        Extra regular expression pattern string used to verify the data type.
+        """
+        return pulumi.get(self, "verify2")
 
     @property
     @pulumi.getter(name="verifyTransformedPattern")

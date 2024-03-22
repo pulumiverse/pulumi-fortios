@@ -37,6 +37,8 @@ type Servicechain struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Chain ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Chain name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Configure service index. The structure of `serviceIndex` block is documented below.
@@ -79,6 +81,8 @@ type servicechainState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Chain ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Chain name.
 	Name *string `pulumi:"name"`
 	// Configure service index. The structure of `serviceIndex` block is documented below.
@@ -92,6 +96,8 @@ type ServicechainState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Chain ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Chain name.
 	Name pulumi.StringPtrInput
 	// Configure service index. The structure of `serviceIndex` block is documented below.
@@ -109,6 +115,8 @@ type servicechainArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Chain ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Chain name.
 	Name *string `pulumi:"name"`
 	// Configure service index. The structure of `serviceIndex` block is documented below.
@@ -123,6 +131,8 @@ type ServicechainArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Chain ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Chain name.
 	Name pulumi.StringPtrInput
 	// Configure service index. The structure of `serviceIndex` block is documented below.
@@ -226,6 +236,11 @@ func (o ServicechainOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Chain ID.
 func (o ServicechainOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Servicechain) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ServicechainOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Servicechain) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Chain name.

@@ -68,6 +68,14 @@ export class Wtp extends pulumi.CustomResource {
      */
     public readonly apcfgProfile!: pulumi.Output<string>;
     /**
+     * Override BLE Major ID.
+     */
+    public readonly bleMajorId!: pulumi.Output<number>;
+    /**
+     * Override BLE Minor ID.
+     */
+    public readonly bleMinorId!: pulumi.Output<number>;
+    /**
      * Bonjour profile name.
      */
     public readonly bonjourProfile!: pulumi.Output<string>;
@@ -91,6 +99,10 @@ export class Wtp extends pulumi.CustomResource {
      * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
      */
     public readonly firmwareProvisionLatest!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable WTP image download. Valid values: `enable`, `disable`.
      */
@@ -159,6 +171,10 @@ export class Wtp extends pulumi.CustomResource {
      * Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
      */
     public readonly overrideWanPortMode!: pulumi.Output<string>;
+    /**
+     * Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+     */
+    public readonly purdueLevel!: pulumi.Output<string>;
     /**
      * Configuration options for radio 1. The structure of `radio1` block is documented below.
      */
@@ -248,12 +264,15 @@ export class Wtp extends pulumi.CustomResource {
             resourceInputs["admin"] = state ? state.admin : undefined;
             resourceInputs["allowaccess"] = state ? state.allowaccess : undefined;
             resourceInputs["apcfgProfile"] = state ? state.apcfgProfile : undefined;
+            resourceInputs["bleMajorId"] = state ? state.bleMajorId : undefined;
+            resourceInputs["bleMinorId"] = state ? state.bleMinorId : undefined;
             resourceInputs["bonjourProfile"] = state ? state.bonjourProfile : undefined;
             resourceInputs["coordinateLatitude"] = state ? state.coordinateLatitude : undefined;
             resourceInputs["coordinateLongitude"] = state ? state.coordinateLongitude : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["firmwareProvision"] = state ? state.firmwareProvision : undefined;
             resourceInputs["firmwareProvisionLatest"] = state ? state.firmwareProvisionLatest : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["imageDownload"] = state ? state.imageDownload : undefined;
             resourceInputs["index"] = state ? state.index : undefined;
             resourceInputs["ipFragmentPreventing"] = state ? state.ipFragmentPreventing : undefined;
@@ -271,6 +290,7 @@ export class Wtp extends pulumi.CustomResource {
             resourceInputs["overrideLoginPasswdChange"] = state ? state.overrideLoginPasswdChange : undefined;
             resourceInputs["overrideSplitTunnel"] = state ? state.overrideSplitTunnel : undefined;
             resourceInputs["overrideWanPortMode"] = state ? state.overrideWanPortMode : undefined;
+            resourceInputs["purdueLevel"] = state ? state.purdueLevel : undefined;
             resourceInputs["radio1"] = state ? state.radio1 : undefined;
             resourceInputs["radio2"] = state ? state.radio2 : undefined;
             resourceInputs["radio3"] = state ? state.radio3 : undefined;
@@ -297,12 +317,15 @@ export class Wtp extends pulumi.CustomResource {
             resourceInputs["admin"] = args ? args.admin : undefined;
             resourceInputs["allowaccess"] = args ? args.allowaccess : undefined;
             resourceInputs["apcfgProfile"] = args ? args.apcfgProfile : undefined;
+            resourceInputs["bleMajorId"] = args ? args.bleMajorId : undefined;
+            resourceInputs["bleMinorId"] = args ? args.bleMinorId : undefined;
             resourceInputs["bonjourProfile"] = args ? args.bonjourProfile : undefined;
             resourceInputs["coordinateLatitude"] = args ? args.coordinateLatitude : undefined;
             resourceInputs["coordinateLongitude"] = args ? args.coordinateLongitude : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["firmwareProvision"] = args ? args.firmwareProvision : undefined;
             resourceInputs["firmwareProvisionLatest"] = args ? args.firmwareProvisionLatest : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["imageDownload"] = args ? args.imageDownload : undefined;
             resourceInputs["index"] = args ? args.index : undefined;
             resourceInputs["ipFragmentPreventing"] = args ? args.ipFragmentPreventing : undefined;
@@ -320,6 +343,7 @@ export class Wtp extends pulumi.CustomResource {
             resourceInputs["overrideLoginPasswdChange"] = args ? args.overrideLoginPasswdChange : undefined;
             resourceInputs["overrideSplitTunnel"] = args ? args.overrideSplitTunnel : undefined;
             resourceInputs["overrideWanPortMode"] = args ? args.overrideWanPortMode : undefined;
+            resourceInputs["purdueLevel"] = args ? args.purdueLevel : undefined;
             resourceInputs["radio1"] = args ? args.radio1 : undefined;
             resourceInputs["radio2"] = args ? args.radio2 : undefined;
             resourceInputs["radio3"] = args ? args.radio3 : undefined;
@@ -363,6 +387,14 @@ export interface WtpState {
      */
     apcfgProfile?: pulumi.Input<string>;
     /**
+     * Override BLE Major ID.
+     */
+    bleMajorId?: pulumi.Input<number>;
+    /**
+     * Override BLE Minor ID.
+     */
+    bleMinorId?: pulumi.Input<number>;
+    /**
      * Bonjour profile name.
      */
     bonjourProfile?: pulumi.Input<string>;
@@ -386,6 +418,10 @@ export interface WtpState {
      * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
      */
     firmwareProvisionLatest?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable WTP image download. Valid values: `enable`, `disable`.
      */
@@ -454,6 +490,10 @@ export interface WtpState {
      * Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
      */
     overrideWanPortMode?: pulumi.Input<string>;
+    /**
+     * Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+     */
+    purdueLevel?: pulumi.Input<string>;
     /**
      * Configuration options for radio 1. The structure of `radio1` block is documented below.
      */
@@ -545,6 +585,14 @@ export interface WtpArgs {
      */
     apcfgProfile?: pulumi.Input<string>;
     /**
+     * Override BLE Major ID.
+     */
+    bleMajorId?: pulumi.Input<number>;
+    /**
+     * Override BLE Minor ID.
+     */
+    bleMinorId?: pulumi.Input<number>;
+    /**
      * Bonjour profile name.
      */
     bonjourProfile?: pulumi.Input<string>;
@@ -568,6 +616,10 @@ export interface WtpArgs {
      * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
      */
     firmwareProvisionLatest?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable WTP image download. Valid values: `enable`, `disable`.
      */
@@ -636,6 +688,10 @@ export interface WtpArgs {
      * Enable/disable overriding the wan-port-mode in the WTP profile. Valid values: `enable`, `disable`.
      */
     overrideWanPortMode?: pulumi.Input<string>;
+    /**
+     * Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+     */
+    purdueLevel?: pulumi.Input<string>;
     /**
      * Configuration options for radio 1. The structure of `radio1` block is documented below.
      */

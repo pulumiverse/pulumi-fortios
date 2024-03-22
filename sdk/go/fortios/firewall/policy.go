@@ -139,7 +139,7 @@ import (
 type Policy struct {
 	pulumi.CustomResourceState
 
-	// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+	// Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
 	Action pulumi.StringOutput `pulumi:"action"`
 	// Enable/disable anti-replay check. Valid values: `enable`, `disable`.
 	AntiReplay pulumi.StringOutput `pulumi:"antiReplay"`
@@ -167,6 +167,8 @@ type Policy struct {
 	CaptivePortalExempt pulumi.StringOutput `pulumi:"captivePortalExempt"`
 	// Enable/disable capture packets. Valid values: `enable`, `disable`.
 	CapturePacket pulumi.StringOutput `pulumi:"capturePacket"`
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringPtrOutput `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringPtrOutput `pulumi:"cifsProfile"`
 	// Comment.
@@ -179,6 +181,8 @@ type Policy struct {
 	DelayTcpNpuSession pulumi.StringOutput `pulumi:"delayTcpNpuSession"`
 	// Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
 	Devices PolicyDeviceArrayOutput `pulumi:"devices"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile pulumi.StringPtrOutput `pulumi:"diameterFilterProfile"`
 	// Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
 	DiffservCopy pulumi.StringOutput `pulumi:"diffservCopy"`
 	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
@@ -235,6 +239,8 @@ type Policy struct {
 	GeoipAnycast pulumi.StringOutput `pulumi:"geoipAnycast"`
 	// Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
 	GeoipMatch pulumi.StringOutput `pulumi:"geoipMatch"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel pulumi.StringPtrOutput `pulumi:"globalLabel"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
@@ -305,6 +311,8 @@ type Policy struct {
 	Ippool pulumi.StringOutput `pulumi:"ippool"`
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringPtrOutput `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter pulumi.StringPtrOutput `pulumi:"ipsVoipFilter"`
 	// Label for the policy that appears when the GUI is in Section View mode.
 	Label pulumi.StringPtrOutput `pulumi:"label"`
 	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
@@ -347,6 +355,12 @@ type Policy struct {
 	Outbound pulumi.StringOutput `pulumi:"outbound"`
 	// Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
 	PassiveWanHealthMeasurement pulumi.StringOutput `pulumi:"passiveWanHealthMeasurement"`
+	// Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+	PcpInbound pulumi.StringOutput `pulumi:"pcpInbound"`
+	// Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+	PcpOutbound pulumi.StringOutput `pulumi:"pcpOutbound"`
+	// PCP pool names. The structure of `pcpPoolname` block is documented below.
+	PcpPoolnames PolicyPcpPoolnameArrayOutput `pulumi:"pcpPoolnames"`
 	// Per-IP traffic shaper.
 	PerIpShaper pulumi.StringPtrOutput `pulumi:"perIpShaper"`
 	// Accept UDP packets from any host. Valid values: `enable`, `disable`.
@@ -357,6 +371,8 @@ type Policy struct {
 	PolicyExpiry pulumi.StringOutput `pulumi:"policyExpiry"`
 	// Policy expiry date (YYYY-MM-DD HH:MM:SS).
 	PolicyExpiryDate pulumi.StringOutput `pulumi:"policyExpiryDate"`
+	// Policy expiry date and time, in epoch format.
+	PolicyExpiryDateUtc pulumi.StringPtrOutput `pulumi:"policyExpiryDateUtc"`
 	// Policy ID.
 	Policyid pulumi.IntOutput `pulumi:"policyid"`
 	// IPv6 pool names. The structure of `poolname6` block is documented below.
@@ -465,13 +481,15 @@ type Policy struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringPtrOutput `pulumi:"videofilterProfile"`
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile pulumi.StringPtrOutput `pulumi:"virtualPatchProfile"`
 	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosFwd pulumi.IntOutput `pulumi:"vlanCosFwd"`
 	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosRev pulumi.IntOutput `pulumi:"vlanCosRev"`
 	// Set VLAN filters.
 	VlanFilter pulumi.StringPtrOutput `pulumi:"vlanFilter"`
-	// Name of an existing VoIP profile.
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile pulumi.StringPtrOutput `pulumi:"voipProfile"`
 	// Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
 	Vpntunnel pulumi.StringPtrOutput `pulumi:"vpntunnel"`
@@ -501,12 +519,20 @@ type Policy struct {
 	WebproxyProfile pulumi.StringPtrOutput `pulumi:"webproxyProfile"`
 	// Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
 	Wsso pulumi.StringPtrOutput `pulumi:"wsso"`
+	// Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+	ZtnaDeviceOwnership pulumi.StringOutput `pulumi:"ztnaDeviceOwnership"`
+	// Source ztna-ems-tag-secondary names. The structure of `ztnaEmsTagSecondary` block is documented below.
+	ZtnaEmsTagSecondaries PolicyZtnaEmsTagSecondaryArrayOutput `pulumi:"ztnaEmsTagSecondaries"`
 	// Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
 	ZtnaEmsTags PolicyZtnaEmsTagArrayOutput `pulumi:"ztnaEmsTags"`
 	// Source ztna-geo-tag names. The structure of `ztnaGeoTag` block is documented below.
 	ZtnaGeoTags PolicyZtnaGeoTagArrayOutput `pulumi:"ztnaGeoTags"`
+	// Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+	ZtnaPolicyRedirect pulumi.StringOutput `pulumi:"ztnaPolicyRedirect"`
 	// Enable/disable zero trust access. Valid values: `enable`, `disable`.
 	ZtnaStatus pulumi.StringOutput `pulumi:"ztnaStatus"`
+	// ZTNA tag matching logic. Valid values: `or`, `and`.
+	ZtnaTagsMatchLogic pulumi.StringOutput `pulumi:"ztnaTagsMatchLogic"`
 }
 
 // NewPolicy registers a new resource with the given unique name, arguments, and options.
@@ -545,7 +571,7 @@ func GetPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Policy resources.
 type policyState struct {
-	// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+	// Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
 	Action *string `pulumi:"action"`
 	// Enable/disable anti-replay check. Valid values: `enable`, `disable`.
 	AntiReplay *string `pulumi:"antiReplay"`
@@ -573,6 +599,8 @@ type policyState struct {
 	CaptivePortalExempt *string `pulumi:"captivePortalExempt"`
 	// Enable/disable capture packets. Valid values: `enable`, `disable`.
 	CapturePacket *string `pulumi:"capturePacket"`
+	// Name of an existing CASB profile.
+	CasbProfile *string `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile *string `pulumi:"cifsProfile"`
 	// Comment.
@@ -585,6 +613,8 @@ type policyState struct {
 	DelayTcpNpuSession *string `pulumi:"delayTcpNpuSession"`
 	// Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
 	Devices []PolicyDevice `pulumi:"devices"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile *string `pulumi:"diameterFilterProfile"`
 	// Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
 	DiffservCopy *string `pulumi:"diffservCopy"`
 	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
@@ -641,6 +671,8 @@ type policyState struct {
 	GeoipAnycast *string `pulumi:"geoipAnycast"`
 	// Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
 	GeoipMatch *string `pulumi:"geoipMatch"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel *string `pulumi:"globalLabel"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
@@ -711,6 +743,8 @@ type policyState struct {
 	Ippool *string `pulumi:"ippool"`
 	// Name of an existing IPS sensor.
 	IpsSensor *string `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter *string `pulumi:"ipsVoipFilter"`
 	// Label for the policy that appears when the GUI is in Section View mode.
 	Label *string `pulumi:"label"`
 	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
@@ -753,6 +787,12 @@ type policyState struct {
 	Outbound *string `pulumi:"outbound"`
 	// Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
 	PassiveWanHealthMeasurement *string `pulumi:"passiveWanHealthMeasurement"`
+	// Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+	PcpInbound *string `pulumi:"pcpInbound"`
+	// Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+	PcpOutbound *string `pulumi:"pcpOutbound"`
+	// PCP pool names. The structure of `pcpPoolname` block is documented below.
+	PcpPoolnames []PolicyPcpPoolname `pulumi:"pcpPoolnames"`
 	// Per-IP traffic shaper.
 	PerIpShaper *string `pulumi:"perIpShaper"`
 	// Accept UDP packets from any host. Valid values: `enable`, `disable`.
@@ -763,6 +803,8 @@ type policyState struct {
 	PolicyExpiry *string `pulumi:"policyExpiry"`
 	// Policy expiry date (YYYY-MM-DD HH:MM:SS).
 	PolicyExpiryDate *string `pulumi:"policyExpiryDate"`
+	// Policy expiry date and time, in epoch format.
+	PolicyExpiryDateUtc *string `pulumi:"policyExpiryDateUtc"`
 	// Policy ID.
 	Policyid *int `pulumi:"policyid"`
 	// IPv6 pool names. The structure of `poolname6` block is documented below.
@@ -871,13 +913,15 @@ type policyState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile *string `pulumi:"videofilterProfile"`
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile *string `pulumi:"virtualPatchProfile"`
 	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosFwd *int `pulumi:"vlanCosFwd"`
 	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosRev *int `pulumi:"vlanCosRev"`
 	// Set VLAN filters.
 	VlanFilter *string `pulumi:"vlanFilter"`
-	// Name of an existing VoIP profile.
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile *string `pulumi:"voipProfile"`
 	// Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
 	Vpntunnel *string `pulumi:"vpntunnel"`
@@ -907,16 +951,24 @@ type policyState struct {
 	WebproxyProfile *string `pulumi:"webproxyProfile"`
 	// Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
 	Wsso *string `pulumi:"wsso"`
+	// Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+	ZtnaDeviceOwnership *string `pulumi:"ztnaDeviceOwnership"`
+	// Source ztna-ems-tag-secondary names. The structure of `ztnaEmsTagSecondary` block is documented below.
+	ZtnaEmsTagSecondaries []PolicyZtnaEmsTagSecondary `pulumi:"ztnaEmsTagSecondaries"`
 	// Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
 	ZtnaEmsTags []PolicyZtnaEmsTag `pulumi:"ztnaEmsTags"`
 	// Source ztna-geo-tag names. The structure of `ztnaGeoTag` block is documented below.
 	ZtnaGeoTags []PolicyZtnaGeoTag `pulumi:"ztnaGeoTags"`
+	// Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+	ZtnaPolicyRedirect *string `pulumi:"ztnaPolicyRedirect"`
 	// Enable/disable zero trust access. Valid values: `enable`, `disable`.
 	ZtnaStatus *string `pulumi:"ztnaStatus"`
+	// ZTNA tag matching logic. Valid values: `or`, `and`.
+	ZtnaTagsMatchLogic *string `pulumi:"ztnaTagsMatchLogic"`
 }
 
 type PolicyState struct {
-	// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+	// Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
 	Action pulumi.StringPtrInput
 	// Enable/disable anti-replay check. Valid values: `enable`, `disable`.
 	AntiReplay pulumi.StringPtrInput
@@ -944,6 +996,8 @@ type PolicyState struct {
 	CaptivePortalExempt pulumi.StringPtrInput
 	// Enable/disable capture packets. Valid values: `enable`, `disable`.
 	CapturePacket pulumi.StringPtrInput
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringPtrInput
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringPtrInput
 	// Comment.
@@ -956,6 +1010,8 @@ type PolicyState struct {
 	DelayTcpNpuSession pulumi.StringPtrInput
 	// Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
 	Devices PolicyDeviceArrayInput
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile pulumi.StringPtrInput
 	// Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
 	DiffservCopy pulumi.StringPtrInput
 	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
@@ -1012,6 +1068,8 @@ type PolicyState struct {
 	GeoipAnycast pulumi.StringPtrInput
 	// Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
 	GeoipMatch pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel pulumi.StringPtrInput
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
@@ -1082,6 +1140,8 @@ type PolicyState struct {
 	Ippool pulumi.StringPtrInput
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringPtrInput
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter pulumi.StringPtrInput
 	// Label for the policy that appears when the GUI is in Section View mode.
 	Label pulumi.StringPtrInput
 	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
@@ -1124,6 +1184,12 @@ type PolicyState struct {
 	Outbound pulumi.StringPtrInput
 	// Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
 	PassiveWanHealthMeasurement pulumi.StringPtrInput
+	// Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+	PcpInbound pulumi.StringPtrInput
+	// Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+	PcpOutbound pulumi.StringPtrInput
+	// PCP pool names. The structure of `pcpPoolname` block is documented below.
+	PcpPoolnames PolicyPcpPoolnameArrayInput
 	// Per-IP traffic shaper.
 	PerIpShaper pulumi.StringPtrInput
 	// Accept UDP packets from any host. Valid values: `enable`, `disable`.
@@ -1134,6 +1200,8 @@ type PolicyState struct {
 	PolicyExpiry pulumi.StringPtrInput
 	// Policy expiry date (YYYY-MM-DD HH:MM:SS).
 	PolicyExpiryDate pulumi.StringPtrInput
+	// Policy expiry date and time, in epoch format.
+	PolicyExpiryDateUtc pulumi.StringPtrInput
 	// Policy ID.
 	Policyid pulumi.IntPtrInput
 	// IPv6 pool names. The structure of `poolname6` block is documented below.
@@ -1242,13 +1310,15 @@ type PolicyState struct {
 	Vdomparam pulumi.StringPtrInput
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringPtrInput
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile pulumi.StringPtrInput
 	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosFwd pulumi.IntPtrInput
 	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosRev pulumi.IntPtrInput
 	// Set VLAN filters.
 	VlanFilter pulumi.StringPtrInput
-	// Name of an existing VoIP profile.
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile pulumi.StringPtrInput
 	// Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
 	Vpntunnel pulumi.StringPtrInput
@@ -1278,12 +1348,20 @@ type PolicyState struct {
 	WebproxyProfile pulumi.StringPtrInput
 	// Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
 	Wsso pulumi.StringPtrInput
+	// Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+	ZtnaDeviceOwnership pulumi.StringPtrInput
+	// Source ztna-ems-tag-secondary names. The structure of `ztnaEmsTagSecondary` block is documented below.
+	ZtnaEmsTagSecondaries PolicyZtnaEmsTagSecondaryArrayInput
 	// Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
 	ZtnaEmsTags PolicyZtnaEmsTagArrayInput
 	// Source ztna-geo-tag names. The structure of `ztnaGeoTag` block is documented below.
 	ZtnaGeoTags PolicyZtnaGeoTagArrayInput
+	// Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+	ZtnaPolicyRedirect pulumi.StringPtrInput
 	// Enable/disable zero trust access. Valid values: `enable`, `disable`.
 	ZtnaStatus pulumi.StringPtrInput
+	// ZTNA tag matching logic. Valid values: `or`, `and`.
+	ZtnaTagsMatchLogic pulumi.StringPtrInput
 }
 
 func (PolicyState) ElementType() reflect.Type {
@@ -1291,7 +1369,7 @@ func (PolicyState) ElementType() reflect.Type {
 }
 
 type policyArgs struct {
-	// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+	// Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
 	Action *string `pulumi:"action"`
 	// Enable/disable anti-replay check. Valid values: `enable`, `disable`.
 	AntiReplay *string `pulumi:"antiReplay"`
@@ -1319,6 +1397,8 @@ type policyArgs struct {
 	CaptivePortalExempt *string `pulumi:"captivePortalExempt"`
 	// Enable/disable capture packets. Valid values: `enable`, `disable`.
 	CapturePacket *string `pulumi:"capturePacket"`
+	// Name of an existing CASB profile.
+	CasbProfile *string `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile *string `pulumi:"cifsProfile"`
 	// Comment.
@@ -1331,6 +1411,8 @@ type policyArgs struct {
 	DelayTcpNpuSession *string `pulumi:"delayTcpNpuSession"`
 	// Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
 	Devices []PolicyDevice `pulumi:"devices"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile *string `pulumi:"diameterFilterProfile"`
 	// Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
 	DiffservCopy *string `pulumi:"diffservCopy"`
 	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
@@ -1387,6 +1469,8 @@ type policyArgs struct {
 	GeoipAnycast *string `pulumi:"geoipAnycast"`
 	// Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
 	GeoipMatch *string `pulumi:"geoipMatch"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel *string `pulumi:"globalLabel"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
@@ -1457,6 +1541,8 @@ type policyArgs struct {
 	Ippool *string `pulumi:"ippool"`
 	// Name of an existing IPS sensor.
 	IpsSensor *string `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter *string `pulumi:"ipsVoipFilter"`
 	// Label for the policy that appears when the GUI is in Section View mode.
 	Label *string `pulumi:"label"`
 	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
@@ -1499,6 +1585,12 @@ type policyArgs struct {
 	Outbound *string `pulumi:"outbound"`
 	// Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
 	PassiveWanHealthMeasurement *string `pulumi:"passiveWanHealthMeasurement"`
+	// Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+	PcpInbound *string `pulumi:"pcpInbound"`
+	// Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+	PcpOutbound *string `pulumi:"pcpOutbound"`
+	// PCP pool names. The structure of `pcpPoolname` block is documented below.
+	PcpPoolnames []PolicyPcpPoolname `pulumi:"pcpPoolnames"`
 	// Per-IP traffic shaper.
 	PerIpShaper *string `pulumi:"perIpShaper"`
 	// Accept UDP packets from any host. Valid values: `enable`, `disable`.
@@ -1509,6 +1601,8 @@ type policyArgs struct {
 	PolicyExpiry *string `pulumi:"policyExpiry"`
 	// Policy expiry date (YYYY-MM-DD HH:MM:SS).
 	PolicyExpiryDate *string `pulumi:"policyExpiryDate"`
+	// Policy expiry date and time, in epoch format.
+	PolicyExpiryDateUtc *string `pulumi:"policyExpiryDateUtc"`
 	// Policy ID.
 	Policyid *int `pulumi:"policyid"`
 	// IPv6 pool names. The structure of `poolname6` block is documented below.
@@ -1617,13 +1711,15 @@ type policyArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile *string `pulumi:"videofilterProfile"`
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile *string `pulumi:"virtualPatchProfile"`
 	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosFwd *int `pulumi:"vlanCosFwd"`
 	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosRev *int `pulumi:"vlanCosRev"`
 	// Set VLAN filters.
 	VlanFilter *string `pulumi:"vlanFilter"`
-	// Name of an existing VoIP profile.
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile *string `pulumi:"voipProfile"`
 	// Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
 	Vpntunnel *string `pulumi:"vpntunnel"`
@@ -1653,17 +1749,25 @@ type policyArgs struct {
 	WebproxyProfile *string `pulumi:"webproxyProfile"`
 	// Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
 	Wsso *string `pulumi:"wsso"`
+	// Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+	ZtnaDeviceOwnership *string `pulumi:"ztnaDeviceOwnership"`
+	// Source ztna-ems-tag-secondary names. The structure of `ztnaEmsTagSecondary` block is documented below.
+	ZtnaEmsTagSecondaries []PolicyZtnaEmsTagSecondary `pulumi:"ztnaEmsTagSecondaries"`
 	// Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
 	ZtnaEmsTags []PolicyZtnaEmsTag `pulumi:"ztnaEmsTags"`
 	// Source ztna-geo-tag names. The structure of `ztnaGeoTag` block is documented below.
 	ZtnaGeoTags []PolicyZtnaGeoTag `pulumi:"ztnaGeoTags"`
+	// Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+	ZtnaPolicyRedirect *string `pulumi:"ztnaPolicyRedirect"`
 	// Enable/disable zero trust access. Valid values: `enable`, `disable`.
 	ZtnaStatus *string `pulumi:"ztnaStatus"`
+	// ZTNA tag matching logic. Valid values: `or`, `and`.
+	ZtnaTagsMatchLogic *string `pulumi:"ztnaTagsMatchLogic"`
 }
 
 // The set of arguments for constructing a Policy resource.
 type PolicyArgs struct {
-	// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+	// Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
 	Action pulumi.StringPtrInput
 	// Enable/disable anti-replay check. Valid values: `enable`, `disable`.
 	AntiReplay pulumi.StringPtrInput
@@ -1691,6 +1795,8 @@ type PolicyArgs struct {
 	CaptivePortalExempt pulumi.StringPtrInput
 	// Enable/disable capture packets. Valid values: `enable`, `disable`.
 	CapturePacket pulumi.StringPtrInput
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringPtrInput
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringPtrInput
 	// Comment.
@@ -1703,6 +1809,8 @@ type PolicyArgs struct {
 	DelayTcpNpuSession pulumi.StringPtrInput
 	// Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
 	Devices PolicyDeviceArrayInput
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile pulumi.StringPtrInput
 	// Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
 	DiffservCopy pulumi.StringPtrInput
 	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
@@ -1759,6 +1867,8 @@ type PolicyArgs struct {
 	GeoipAnycast pulumi.StringPtrInput
 	// Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
 	GeoipMatch pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel pulumi.StringPtrInput
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
@@ -1829,6 +1939,8 @@ type PolicyArgs struct {
 	Ippool pulumi.StringPtrInput
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringPtrInput
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter pulumi.StringPtrInput
 	// Label for the policy that appears when the GUI is in Section View mode.
 	Label pulumi.StringPtrInput
 	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
@@ -1871,6 +1983,12 @@ type PolicyArgs struct {
 	Outbound pulumi.StringPtrInput
 	// Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
 	PassiveWanHealthMeasurement pulumi.StringPtrInput
+	// Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+	PcpInbound pulumi.StringPtrInput
+	// Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+	PcpOutbound pulumi.StringPtrInput
+	// PCP pool names. The structure of `pcpPoolname` block is documented below.
+	PcpPoolnames PolicyPcpPoolnameArrayInput
 	// Per-IP traffic shaper.
 	PerIpShaper pulumi.StringPtrInput
 	// Accept UDP packets from any host. Valid values: `enable`, `disable`.
@@ -1881,6 +1999,8 @@ type PolicyArgs struct {
 	PolicyExpiry pulumi.StringPtrInput
 	// Policy expiry date (YYYY-MM-DD HH:MM:SS).
 	PolicyExpiryDate pulumi.StringPtrInput
+	// Policy expiry date and time, in epoch format.
+	PolicyExpiryDateUtc pulumi.StringPtrInput
 	// Policy ID.
 	Policyid pulumi.IntPtrInput
 	// IPv6 pool names. The structure of `poolname6` block is documented below.
@@ -1989,13 +2109,15 @@ type PolicyArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringPtrInput
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile pulumi.StringPtrInput
 	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosFwd pulumi.IntPtrInput
 	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosRev pulumi.IntPtrInput
 	// Set VLAN filters.
 	VlanFilter pulumi.StringPtrInput
-	// Name of an existing VoIP profile.
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile pulumi.StringPtrInput
 	// Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
 	Vpntunnel pulumi.StringPtrInput
@@ -2025,12 +2147,20 @@ type PolicyArgs struct {
 	WebproxyProfile pulumi.StringPtrInput
 	// Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
 	Wsso pulumi.StringPtrInput
+	// Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+	ZtnaDeviceOwnership pulumi.StringPtrInput
+	// Source ztna-ems-tag-secondary names. The structure of `ztnaEmsTagSecondary` block is documented below.
+	ZtnaEmsTagSecondaries PolicyZtnaEmsTagSecondaryArrayInput
 	// Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
 	ZtnaEmsTags PolicyZtnaEmsTagArrayInput
 	// Source ztna-geo-tag names. The structure of `ztnaGeoTag` block is documented below.
 	ZtnaGeoTags PolicyZtnaGeoTagArrayInput
+	// Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+	ZtnaPolicyRedirect pulumi.StringPtrInput
 	// Enable/disable zero trust access. Valid values: `enable`, `disable`.
 	ZtnaStatus pulumi.StringPtrInput
+	// ZTNA tag matching logic. Valid values: `or`, `and`.
+	ZtnaTagsMatchLogic pulumi.StringPtrInput
 }
 
 func (PolicyArgs) ElementType() reflect.Type {
@@ -2120,7 +2250,7 @@ func (o PolicyOutput) ToPolicyOutputWithContext(ctx context.Context) PolicyOutpu
 	return o
 }
 
-// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+// Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
 func (o PolicyOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
 }
@@ -2190,6 +2320,11 @@ func (o PolicyOutput) CapturePacket() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.CapturePacket }).(pulumi.StringOutput)
 }
 
+// Name of an existing CASB profile.
+func (o PolicyOutput) CasbProfile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.CasbProfile }).(pulumi.StringPtrOutput)
+}
+
 // Name of an existing CIFS profile.
 func (o PolicyOutput) CifsProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.CifsProfile }).(pulumi.StringPtrOutput)
@@ -2218,6 +2353,11 @@ func (o PolicyOutput) DelayTcpNpuSession() pulumi.StringOutput {
 // Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
 func (o PolicyOutput) Devices() PolicyDeviceArrayOutput {
 	return o.ApplyT(func(v *Policy) PolicyDeviceArrayOutput { return v.Devices }).(PolicyDeviceArrayOutput)
+}
+
+// Name of an existing Diameter filter profile.
+func (o PolicyOutput) DiameterFilterProfile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.DiameterFilterProfile }).(pulumi.StringPtrOutput)
 }
 
 // Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
@@ -2358,6 +2498,11 @@ func (o PolicyOutput) GeoipAnycast() pulumi.StringOutput {
 // Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
 func (o PolicyOutput) GeoipMatch() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.GeoipMatch }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o PolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Label for the policy that appears when the GUI is in Global View mode.
@@ -2539,6 +2684,11 @@ func (o PolicyOutput) IpsSensor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.IpsSensor }).(pulumi.StringPtrOutput)
 }
 
+// Name of an existing VoIP (ips) profile.
+func (o PolicyOutput) IpsVoipFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.IpsVoipFilter }).(pulumi.StringPtrOutput)
+}
+
 // Label for the policy that appears when the GUI is in Section View mode.
 func (o PolicyOutput) Label() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.Label }).(pulumi.StringPtrOutput)
@@ -2644,6 +2794,21 @@ func (o PolicyOutput) PassiveWanHealthMeasurement() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.PassiveWanHealthMeasurement }).(pulumi.StringOutput)
 }
 
+// Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+func (o PolicyOutput) PcpInbound() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.PcpInbound }).(pulumi.StringOutput)
+}
+
+// Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+func (o PolicyOutput) PcpOutbound() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.PcpOutbound }).(pulumi.StringOutput)
+}
+
+// PCP pool names. The structure of `pcpPoolname` block is documented below.
+func (o PolicyOutput) PcpPoolnames() PolicyPcpPoolnameArrayOutput {
+	return o.ApplyT(func(v *Policy) PolicyPcpPoolnameArrayOutput { return v.PcpPoolnames }).(PolicyPcpPoolnameArrayOutput)
+}
+
 // Per-IP traffic shaper.
 func (o PolicyOutput) PerIpShaper() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.PerIpShaper }).(pulumi.StringPtrOutput)
@@ -2667,6 +2832,11 @@ func (o PolicyOutput) PolicyExpiry() pulumi.StringOutput {
 // Policy expiry date (YYYY-MM-DD HH:MM:SS).
 func (o PolicyOutput) PolicyExpiryDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.PolicyExpiryDate }).(pulumi.StringOutput)
+}
+
+// Policy expiry date and time, in epoch format.
+func (o PolicyOutput) PolicyExpiryDateUtc() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.PolicyExpiryDateUtc }).(pulumi.StringPtrOutput)
 }
 
 // Policy ID.
@@ -2939,6 +3109,11 @@ func (o PolicyOutput) VideofilterProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.VideofilterProfile }).(pulumi.StringPtrOutput)
 }
 
+// Name of an existing virtual-patch profile.
+func (o PolicyOutput) VirtualPatchProfile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.VirtualPatchProfile }).(pulumi.StringPtrOutput)
+}
+
 // VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 func (o PolicyOutput) VlanCosFwd() pulumi.IntOutput {
 	return o.ApplyT(func(v *Policy) pulumi.IntOutput { return v.VlanCosFwd }).(pulumi.IntOutput)
@@ -2954,7 +3129,7 @@ func (o PolicyOutput) VlanFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.VlanFilter }).(pulumi.StringPtrOutput)
 }
 
-// Name of an existing VoIP profile.
+// Name of an existing VoIP (voipd) profile.
 func (o PolicyOutput) VoipProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.VoipProfile }).(pulumi.StringPtrOutput)
 }
@@ -3029,6 +3204,16 @@ func (o PolicyOutput) Wsso() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.Wsso }).(pulumi.StringPtrOutput)
 }
 
+// Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+func (o PolicyOutput) ZtnaDeviceOwnership() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.ZtnaDeviceOwnership }).(pulumi.StringOutput)
+}
+
+// Source ztna-ems-tag-secondary names. The structure of `ztnaEmsTagSecondary` block is documented below.
+func (o PolicyOutput) ZtnaEmsTagSecondaries() PolicyZtnaEmsTagSecondaryArrayOutput {
+	return o.ApplyT(func(v *Policy) PolicyZtnaEmsTagSecondaryArrayOutput { return v.ZtnaEmsTagSecondaries }).(PolicyZtnaEmsTagSecondaryArrayOutput)
+}
+
 // Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
 func (o PolicyOutput) ZtnaEmsTags() PolicyZtnaEmsTagArrayOutput {
 	return o.ApplyT(func(v *Policy) PolicyZtnaEmsTagArrayOutput { return v.ZtnaEmsTags }).(PolicyZtnaEmsTagArrayOutput)
@@ -3039,9 +3224,19 @@ func (o PolicyOutput) ZtnaGeoTags() PolicyZtnaGeoTagArrayOutput {
 	return o.ApplyT(func(v *Policy) PolicyZtnaGeoTagArrayOutput { return v.ZtnaGeoTags }).(PolicyZtnaGeoTagArrayOutput)
 }
 
+// Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+func (o PolicyOutput) ZtnaPolicyRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.ZtnaPolicyRedirect }).(pulumi.StringOutput)
+}
+
 // Enable/disable zero trust access. Valid values: `enable`, `disable`.
 func (o PolicyOutput) ZtnaStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.ZtnaStatus }).(pulumi.StringOutput)
+}
+
+// ZTNA tag matching logic. Valid values: `or`, `and`.
+func (o PolicyOutput) ZtnaTagsMatchLogic() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.ZtnaTagsMatchLogic }).(pulumi.StringOutput)
 }
 
 type PolicyArrayOutput struct{ *pulumi.OutputState }

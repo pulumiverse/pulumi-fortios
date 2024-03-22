@@ -27,6 +27,7 @@ class ChartArgs:
                  drill_down_charts: Optional[pulumi.Input[Sequence[pulumi.Input['ChartDrillDownChartArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  favorite: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graph_type: Optional[pulumi.Input[str]] = None,
                  legend: Optional[pulumi.Input[str]] = None,
                  legend_font_size: Optional[pulumi.Input[int]] = None,
@@ -54,6 +55,7 @@ class ChartArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ChartDrillDownChartArgs']]] drill_down_charts: Drill down charts. The structure of `drill_down_charts` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] favorite: Favorite. Valid values: `no`, `yes`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] graph_type: Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
         :param pulumi.Input[str] legend: Enable/Disable Legend area. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] legend_font_size: Font size of legend area.
@@ -89,6 +91,8 @@ class ChartArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if favorite is not None:
             pulumi.set(__self__, "favorite", favorite)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if graph_type is not None:
             pulumi.set(__self__, "graph_type", graph_type)
         if legend is not None:
@@ -249,6 +253,18 @@ class ChartArgs:
     @favorite.setter
     def favorite(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "favorite", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="graphType")
@@ -433,6 +449,7 @@ class _ChartState:
                  drill_down_charts: Optional[pulumi.Input[Sequence[pulumi.Input['ChartDrillDownChartArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  favorite: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graph_type: Optional[pulumi.Input[str]] = None,
                  legend: Optional[pulumi.Input[str]] = None,
                  legend_font_size: Optional[pulumi.Input[int]] = None,
@@ -460,6 +477,7 @@ class _ChartState:
         :param pulumi.Input[Sequence[pulumi.Input['ChartDrillDownChartArgs']]] drill_down_charts: Drill down charts. The structure of `drill_down_charts` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] favorite: Favorite. Valid values: `no`, `yes`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] graph_type: Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
         :param pulumi.Input[str] legend: Enable/Disable Legend area. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] legend_font_size: Font size of legend area.
@@ -497,6 +515,8 @@ class _ChartState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if favorite is not None:
             pulumi.set(__self__, "favorite", favorite)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if graph_type is not None:
             pulumi.set(__self__, "graph_type", graph_type)
         if legend is not None:
@@ -657,6 +677,18 @@ class _ChartState:
     @favorite.setter
     def favorite(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "favorite", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="graphType")
@@ -843,6 +875,7 @@ class Chart(pulumi.CustomResource):
                  drill_down_charts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ChartDrillDownChartArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  favorite: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graph_type: Optional[pulumi.Input[str]] = None,
                  legend: Optional[pulumi.Input[str]] = None,
                  legend_font_size: Optional[pulumi.Input[int]] = None,
@@ -916,6 +949,7 @@ class Chart(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ChartDrillDownChartArgs']]]] drill_down_charts: Drill down charts. The structure of `drill_down_charts` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] favorite: Favorite. Valid values: `no`, `yes`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] graph_type: Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
         :param pulumi.Input[str] legend: Enable/Disable Legend area. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] legend_font_size: Font size of legend area.
@@ -1008,6 +1042,7 @@ class Chart(pulumi.CustomResource):
                  drill_down_charts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ChartDrillDownChartArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  favorite: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graph_type: Optional[pulumi.Input[str]] = None,
                  legend: Optional[pulumi.Input[str]] = None,
                  legend_font_size: Optional[pulumi.Input[int]] = None,
@@ -1046,6 +1081,7 @@ class Chart(pulumi.CustomResource):
             __props__.__dict__["drill_down_charts"] = drill_down_charts
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["favorite"] = favorite
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["graph_type"] = graph_type
             __props__.__dict__["legend"] = legend
             __props__.__dict__["legend_font_size"] = legend_font_size
@@ -1081,6 +1117,7 @@ class Chart(pulumi.CustomResource):
             drill_down_charts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ChartDrillDownChartArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             favorite: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             graph_type: Optional[pulumi.Input[str]] = None,
             legend: Optional[pulumi.Input[str]] = None,
             legend_font_size: Optional[pulumi.Input[int]] = None,
@@ -1113,6 +1150,7 @@ class Chart(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ChartDrillDownChartArgs']]]] drill_down_charts: Drill down charts. The structure of `drill_down_charts` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] favorite: Favorite. Valid values: `no`, `yes`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] graph_type: Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
         :param pulumi.Input[str] legend: Enable/Disable Legend area. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] legend_font_size: Font size of legend area.
@@ -1143,6 +1181,7 @@ class Chart(pulumi.CustomResource):
         __props__.__dict__["drill_down_charts"] = drill_down_charts
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["favorite"] = favorite
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["graph_type"] = graph_type
         __props__.__dict__["legend"] = legend
         __props__.__dict__["legend_font_size"] = legend_font_size
@@ -1246,6 +1285,14 @@ class Chart(pulumi.CustomResource):
         Favorite. Valid values: `no`, `yes`.
         """
         return pulumi.get(self, "favorite")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="graphType")

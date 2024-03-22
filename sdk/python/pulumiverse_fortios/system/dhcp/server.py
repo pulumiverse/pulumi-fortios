@@ -42,6 +42,7 @@ class ServerArgs:
                  filename: Optional[pulumi.Input[str]] = None,
                  forticlient_on_net_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['ServerIpRangeArgs']]]] = None,
                  ipsec_lease_hold: Optional[pulumi.Input[int]] = None,
@@ -53,8 +54,10 @@ class ServerArgs:
                  ntp_server3: Optional[pulumi.Input[str]] = None,
                  ntp_service: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input['ServerOptionArgs']]]] = None,
+                 relay_agent: Optional[pulumi.Input[str]] = None,
                  reserved_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['ServerReservedAddressArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
+                 shared_subnet: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tftp_servers: Optional[pulumi.Input[Sequence[pulumi.Input['ServerTftpServerArgs']]]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
@@ -96,6 +99,7 @@ class ServerArgs:
         :param pulumi.Input[str] filename: Name of the boot file on the TFTP server.
         :param pulumi.Input[str] forticlient_on_net_status: Enable/disable FortiClient-On-Net service for this DHCP server. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_mode: Method used to assign client IP. Valid values: `range`, `usrgrp`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerIpRangeArgs']]] ip_ranges: DHCP IP range configuration. The structure of `ip_range` block is documented below.
         :param pulumi.Input[int] ipsec_lease_hold: DHCP over IPsec leases expire this many seconds after tunnel down (0 to disable forced-expiry).
@@ -107,11 +111,13 @@ class ServerArgs:
         :param pulumi.Input[str] ntp_server3: NTP server 3.
         :param pulumi.Input[str] ntp_service: Options for assigning Network Time Protocol (NTP) servers to DHCP clients. Valid values: `local`, `default`, `specify`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerOptionArgs']]] options: DHCP options. The structure of `options` block is documented below.
+        :param pulumi.Input[str] relay_agent: Relay agent IP.
         :param pulumi.Input[Sequence[pulumi.Input['ServerReservedAddressArgs']]] reserved_addresses: Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reserved_address` block is documented below.
         :param pulumi.Input[str] server_type: DHCP server can be a normal DHCP server or an IPsec DHCP server. Valid values: `regular`, `ipsec`.
+        :param pulumi.Input[str] shared_subnet: Enable/disable shared subnet. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerTftpServerArgs']]] tftp_servers: One or more hostnames or IP addresses of the TFTP servers in quotes separated by spaces. The structure of `tftp_server` block is documented below.
-        :param pulumi.Input[str] timezone: Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+        :param pulumi.Input[str] timezone: Select the time zone to be assigned to DHCP clients.
         :param pulumi.Input[str] timezone_option: Options for the DHCP server to set the client's time zone. Valid values: `disable`, `default`, `specify`.
         :param pulumi.Input[str] vci_match: Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerVciStringArgs']]] vci_strings: One or more VCI strings in quotes separated by spaces. The structure of `vci_string` block is documented below.
@@ -173,6 +179,8 @@ class ServerArgs:
             pulumi.set(__self__, "forticlient_on_net_status", forticlient_on_net_status)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_mode is not None:
             pulumi.set(__self__, "ip_mode", ip_mode)
         if ip_ranges is not None:
@@ -195,10 +203,14 @@ class ServerArgs:
             pulumi.set(__self__, "ntp_service", ntp_service)
         if options is not None:
             pulumi.set(__self__, "options", options)
+        if relay_agent is not None:
+            pulumi.set(__self__, "relay_agent", relay_agent)
         if reserved_addresses is not None:
             pulumi.set(__self__, "reserved_addresses", reserved_addresses)
         if server_type is not None:
             pulumi.set(__self__, "server_type", server_type)
+        if shared_subnet is not None:
+            pulumi.set(__self__, "shared_subnet", shared_subnet)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tftp_servers is not None:
@@ -539,6 +551,18 @@ class ServerArgs:
         pulumi.set(self, "fosid", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="ipMode")
     def ip_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -671,6 +695,18 @@ class ServerArgs:
         pulumi.set(self, "options", value)
 
     @property
+    @pulumi.getter(name="relayAgent")
+    def relay_agent(self) -> Optional[pulumi.Input[str]]:
+        """
+        Relay agent IP.
+        """
+        return pulumi.get(self, "relay_agent")
+
+    @relay_agent.setter
+    def relay_agent(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "relay_agent", value)
+
+    @property
     @pulumi.getter(name="reservedAddresses")
     def reserved_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerReservedAddressArgs']]]]:
         """
@@ -693,6 +729,18 @@ class ServerArgs:
     @server_type.setter
     def server_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_type", value)
+
+    @property
+    @pulumi.getter(name="sharedSubnet")
+    def shared_subnet(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable shared subnet. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "shared_subnet")
+
+    @shared_subnet.setter
+    def shared_subnet(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "shared_subnet", value)
 
     @property
     @pulumi.getter
@@ -722,7 +770,7 @@ class ServerArgs:
     @pulumi.getter
     def timezone(self) -> Optional[pulumi.Input[str]]:
         """
-        Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+        Select the time zone to be assigned to DHCP clients.
         """
         return pulumi.get(self, "timezone")
 
@@ -878,6 +926,7 @@ class _ServerState:
                  filename: Optional[pulumi.Input[str]] = None,
                  forticlient_on_net_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['ServerIpRangeArgs']]]] = None,
@@ -891,8 +940,10 @@ class _ServerState:
                  ntp_server3: Optional[pulumi.Input[str]] = None,
                  ntp_service: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input['ServerOptionArgs']]]] = None,
+                 relay_agent: Optional[pulumi.Input[str]] = None,
                  reserved_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['ServerReservedAddressArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
+                 shared_subnet: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tftp_servers: Optional[pulumi.Input[Sequence[pulumi.Input['ServerTftpServerArgs']]]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
@@ -932,6 +983,7 @@ class _ServerState:
         :param pulumi.Input[str] filename: Name of the boot file on the TFTP server.
         :param pulumi.Input[str] forticlient_on_net_status: Enable/disable FortiClient-On-Net service for this DHCP server. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: DHCP server can assign IP configurations to clients connected to this interface.
         :param pulumi.Input[str] ip_mode: Method used to assign client IP. Valid values: `range`, `usrgrp`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerIpRangeArgs']]] ip_ranges: DHCP IP range configuration. The structure of `ip_range` block is documented below.
@@ -945,11 +997,13 @@ class _ServerState:
         :param pulumi.Input[str] ntp_server3: NTP server 3.
         :param pulumi.Input[str] ntp_service: Options for assigning Network Time Protocol (NTP) servers to DHCP clients. Valid values: `local`, `default`, `specify`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerOptionArgs']]] options: DHCP options. The structure of `options` block is documented below.
+        :param pulumi.Input[str] relay_agent: Relay agent IP.
         :param pulumi.Input[Sequence[pulumi.Input['ServerReservedAddressArgs']]] reserved_addresses: Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reserved_address` block is documented below.
         :param pulumi.Input[str] server_type: DHCP server can be a normal DHCP server or an IPsec DHCP server. Valid values: `regular`, `ipsec`.
+        :param pulumi.Input[str] shared_subnet: Enable/disable shared subnet. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerTftpServerArgs']]] tftp_servers: One or more hostnames or IP addresses of the TFTP servers in quotes separated by spaces. The structure of `tftp_server` block is documented below.
-        :param pulumi.Input[str] timezone: Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+        :param pulumi.Input[str] timezone: Select the time zone to be assigned to DHCP clients.
         :param pulumi.Input[str] timezone_option: Options for the DHCP server to set the client's time zone. Valid values: `disable`, `default`, `specify`.
         :param pulumi.Input[str] vci_match: Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerVciStringArgs']]] vci_strings: One or more VCI strings in quotes separated by spaces. The structure of `vci_string` block is documented below.
@@ -1009,6 +1063,8 @@ class _ServerState:
             pulumi.set(__self__, "forticlient_on_net_status", forticlient_on_net_status)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if ip_mode is not None:
@@ -1035,10 +1091,14 @@ class _ServerState:
             pulumi.set(__self__, "ntp_service", ntp_service)
         if options is not None:
             pulumi.set(__self__, "options", options)
+        if relay_agent is not None:
+            pulumi.set(__self__, "relay_agent", relay_agent)
         if reserved_addresses is not None:
             pulumi.set(__self__, "reserved_addresses", reserved_addresses)
         if server_type is not None:
             pulumi.set(__self__, "server_type", server_type)
+        if shared_subnet is not None:
+            pulumi.set(__self__, "shared_subnet", shared_subnet)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tftp_servers is not None:
@@ -1355,6 +1415,18 @@ class _ServerState:
         pulumi.set(self, "fosid", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1511,6 +1583,18 @@ class _ServerState:
         pulumi.set(self, "options", value)
 
     @property
+    @pulumi.getter(name="relayAgent")
+    def relay_agent(self) -> Optional[pulumi.Input[str]]:
+        """
+        Relay agent IP.
+        """
+        return pulumi.get(self, "relay_agent")
+
+    @relay_agent.setter
+    def relay_agent(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "relay_agent", value)
+
+    @property
     @pulumi.getter(name="reservedAddresses")
     def reserved_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerReservedAddressArgs']]]]:
         """
@@ -1533,6 +1617,18 @@ class _ServerState:
     @server_type.setter
     def server_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_type", value)
+
+    @property
+    @pulumi.getter(name="sharedSubnet")
+    def shared_subnet(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable shared subnet. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "shared_subnet")
+
+    @shared_subnet.setter
+    def shared_subnet(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "shared_subnet", value)
 
     @property
     @pulumi.getter
@@ -1562,7 +1658,7 @@ class _ServerState:
     @pulumi.getter
     def timezone(self) -> Optional[pulumi.Input[str]]:
         """
-        Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+        Select the time zone to be assigned to DHCP clients.
         """
         return pulumi.get(self, "timezone")
 
@@ -1720,6 +1816,7 @@ class Server(pulumi.CustomResource):
                  filename: Optional[pulumi.Input[str]] = None,
                  forticlient_on_net_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerIpRangeArgs']]]]] = None,
@@ -1733,8 +1830,10 @@ class Server(pulumi.CustomResource):
                  ntp_server3: Optional[pulumi.Input[str]] = None,
                  ntp_service: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerOptionArgs']]]]] = None,
+                 relay_agent: Optional[pulumi.Input[str]] = None,
                  reserved_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerReservedAddressArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
+                 shared_subnet: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tftp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerTftpServerArgs']]]]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
@@ -1819,6 +1918,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] filename: Name of the boot file on the TFTP server.
         :param pulumi.Input[str] forticlient_on_net_status: Enable/disable FortiClient-On-Net service for this DHCP server. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: DHCP server can assign IP configurations to clients connected to this interface.
         :param pulumi.Input[str] ip_mode: Method used to assign client IP. Valid values: `range`, `usrgrp`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerIpRangeArgs']]]] ip_ranges: DHCP IP range configuration. The structure of `ip_range` block is documented below.
@@ -1832,11 +1932,13 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] ntp_server3: NTP server 3.
         :param pulumi.Input[str] ntp_service: Options for assigning Network Time Protocol (NTP) servers to DHCP clients. Valid values: `local`, `default`, `specify`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerOptionArgs']]]] options: DHCP options. The structure of `options` block is documented below.
+        :param pulumi.Input[str] relay_agent: Relay agent IP.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerReservedAddressArgs']]]] reserved_addresses: Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reserved_address` block is documented below.
         :param pulumi.Input[str] server_type: DHCP server can be a normal DHCP server or an IPsec DHCP server. Valid values: `regular`, `ipsec`.
+        :param pulumi.Input[str] shared_subnet: Enable/disable shared subnet. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerTftpServerArgs']]]] tftp_servers: One or more hostnames or IP addresses of the TFTP servers in quotes separated by spaces. The structure of `tftp_server` block is documented below.
-        :param pulumi.Input[str] timezone: Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+        :param pulumi.Input[str] timezone: Select the time zone to be assigned to DHCP clients.
         :param pulumi.Input[str] timezone_option: Options for the DHCP server to set the client's time zone. Valid values: `disable`, `default`, `specify`.
         :param pulumi.Input[str] vci_match: Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerVciStringArgs']]]] vci_strings: One or more VCI strings in quotes separated by spaces. The structure of `vci_string` block is documented below.
@@ -1937,6 +2039,7 @@ class Server(pulumi.CustomResource):
                  filename: Optional[pulumi.Input[str]] = None,
                  forticlient_on_net_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerIpRangeArgs']]]]] = None,
@@ -1950,8 +2053,10 @@ class Server(pulumi.CustomResource):
                  ntp_server3: Optional[pulumi.Input[str]] = None,
                  ntp_service: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerOptionArgs']]]]] = None,
+                 relay_agent: Optional[pulumi.Input[str]] = None,
                  reserved_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerReservedAddressArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
+                 shared_subnet: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tftp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerTftpServerArgs']]]]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
@@ -1998,6 +2103,7 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["filename"] = filename
             __props__.__dict__["forticlient_on_net_status"] = forticlient_on_net_status
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
@@ -2015,8 +2121,10 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["ntp_server3"] = ntp_server3
             __props__.__dict__["ntp_service"] = ntp_service
             __props__.__dict__["options"] = options
+            __props__.__dict__["relay_agent"] = relay_agent
             __props__.__dict__["reserved_addresses"] = reserved_addresses
             __props__.__dict__["server_type"] = server_type
+            __props__.__dict__["shared_subnet"] = shared_subnet
             __props__.__dict__["status"] = status
             __props__.__dict__["tftp_servers"] = tftp_servers
             __props__.__dict__["timezone"] = timezone
@@ -2066,6 +2174,7 @@ class Server(pulumi.CustomResource):
             filename: Optional[pulumi.Input[str]] = None,
             forticlient_on_net_status: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ip_mode: Optional[pulumi.Input[str]] = None,
             ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerIpRangeArgs']]]]] = None,
@@ -2079,8 +2188,10 @@ class Server(pulumi.CustomResource):
             ntp_server3: Optional[pulumi.Input[str]] = None,
             ntp_service: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerOptionArgs']]]]] = None,
+            relay_agent: Optional[pulumi.Input[str]] = None,
             reserved_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerReservedAddressArgs']]]]] = None,
             server_type: Optional[pulumi.Input[str]] = None,
+            shared_subnet: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tftp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerTftpServerArgs']]]]] = None,
             timezone: Optional[pulumi.Input[str]] = None,
@@ -2125,6 +2236,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] filename: Name of the boot file on the TFTP server.
         :param pulumi.Input[str] forticlient_on_net_status: Enable/disable FortiClient-On-Net service for this DHCP server. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: DHCP server can assign IP configurations to clients connected to this interface.
         :param pulumi.Input[str] ip_mode: Method used to assign client IP. Valid values: `range`, `usrgrp`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerIpRangeArgs']]]] ip_ranges: DHCP IP range configuration. The structure of `ip_range` block is documented below.
@@ -2138,11 +2250,13 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] ntp_server3: NTP server 3.
         :param pulumi.Input[str] ntp_service: Options for assigning Network Time Protocol (NTP) servers to DHCP clients. Valid values: `local`, `default`, `specify`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerOptionArgs']]]] options: DHCP options. The structure of `options` block is documented below.
+        :param pulumi.Input[str] relay_agent: Relay agent IP.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerReservedAddressArgs']]]] reserved_addresses: Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reserved_address` block is documented below.
         :param pulumi.Input[str] server_type: DHCP server can be a normal DHCP server or an IPsec DHCP server. Valid values: `regular`, `ipsec`.
+        :param pulumi.Input[str] shared_subnet: Enable/disable shared subnet. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerTftpServerArgs']]]] tftp_servers: One or more hostnames or IP addresses of the TFTP servers in quotes separated by spaces. The structure of `tftp_server` block is documented below.
-        :param pulumi.Input[str] timezone: Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+        :param pulumi.Input[str] timezone: Select the time zone to be assigned to DHCP clients.
         :param pulumi.Input[str] timezone_option: Options for the DHCP server to set the client's time zone. Valid values: `disable`, `default`, `specify`.
         :param pulumi.Input[str] vci_match: Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerVciStringArgs']]]] vci_strings: One or more VCI strings in quotes separated by spaces. The structure of `vci_string` block is documented below.
@@ -2182,6 +2296,7 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["filename"] = filename
         __props__.__dict__["forticlient_on_net_status"] = forticlient_on_net_status
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["ip_mode"] = ip_mode
         __props__.__dict__["ip_ranges"] = ip_ranges
@@ -2195,8 +2310,10 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["ntp_server3"] = ntp_server3
         __props__.__dict__["ntp_service"] = ntp_service
         __props__.__dict__["options"] = options
+        __props__.__dict__["relay_agent"] = relay_agent
         __props__.__dict__["reserved_addresses"] = reserved_addresses
         __props__.__dict__["server_type"] = server_type
+        __props__.__dict__["shared_subnet"] = shared_subnet
         __props__.__dict__["status"] = status
         __props__.__dict__["tftp_servers"] = tftp_servers
         __props__.__dict__["timezone"] = timezone
@@ -2405,6 +2522,14 @@ class Server(pulumi.CustomResource):
         return pulumi.get(self, "fosid")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def interface(self) -> pulumi.Output[str]:
         """
@@ -2509,6 +2634,14 @@ class Server(pulumi.CustomResource):
         return pulumi.get(self, "options")
 
     @property
+    @pulumi.getter(name="relayAgent")
+    def relay_agent(self) -> pulumi.Output[str]:
+        """
+        Relay agent IP.
+        """
+        return pulumi.get(self, "relay_agent")
+
+    @property
     @pulumi.getter(name="reservedAddresses")
     def reserved_addresses(self) -> pulumi.Output[Optional[Sequence['outputs.ServerReservedAddress']]]:
         """
@@ -2523,6 +2656,14 @@ class Server(pulumi.CustomResource):
         DHCP server can be a normal DHCP server or an IPsec DHCP server. Valid values: `regular`, `ipsec`.
         """
         return pulumi.get(self, "server_type")
+
+    @property
+    @pulumi.getter(name="sharedSubnet")
+    def shared_subnet(self) -> pulumi.Output[str]:
+        """
+        Enable/disable shared subnet. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "shared_subnet")
 
     @property
     @pulumi.getter
@@ -2544,7 +2685,7 @@ class Server(pulumi.CustomResource):
     @pulumi.getter
     def timezone(self) -> pulumi.Output[str]:
         """
-        Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+        Select the time zone to be assigned to DHCP clients.
         """
         return pulumi.get(self, "timezone")
 

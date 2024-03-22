@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
-// Configure endpoint control settings. Applies to FortiOS Version `<= 6.2.6`.
+// Configure endpoint control settings. Applies to FortiOS Version `6.2.0,6.2.4,6.2.6,7.4.0,7.4.1,7.4.2`.
 //
 // ## Example Usage
 //
@@ -102,6 +102,8 @@ type Settings struct {
 	ForticlientUserAvatar pulumi.StringOutput `pulumi:"forticlientUserAvatar"`
 	// Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
 	ForticlientWarningInterval pulumi.IntOutput `pulumi:"forticlientWarningInterval"`
+	// Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+	Override pulumi.StringOutput `pulumi:"override"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -173,6 +175,8 @@ type settingsState struct {
 	ForticlientUserAvatar *string `pulumi:"forticlientUserAvatar"`
 	// Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
 	ForticlientWarningInterval *int `pulumi:"forticlientWarningInterval"`
+	// Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+	Override *string `pulumi:"override"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -208,6 +212,8 @@ type SettingsState struct {
 	ForticlientUserAvatar pulumi.StringPtrInput
 	// Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
 	ForticlientWarningInterval pulumi.IntPtrInput
+	// Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+	Override pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -247,6 +253,8 @@ type settingsArgs struct {
 	ForticlientUserAvatar *string `pulumi:"forticlientUserAvatar"`
 	// Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
 	ForticlientWarningInterval *int `pulumi:"forticlientWarningInterval"`
+	// Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+	Override *string `pulumi:"override"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -283,6 +291,8 @@ type SettingsArgs struct {
 	ForticlientUserAvatar pulumi.StringPtrInput
 	// Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
 	ForticlientWarningInterval pulumi.IntPtrInput
+	// Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+	Override pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -447,6 +457,11 @@ func (o SettingsOutput) ForticlientUserAvatar() pulumi.StringOutput {
 // Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
 func (o SettingsOutput) ForticlientWarningInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.ForticlientWarningInterval }).(pulumi.IntOutput)
+}
+
+// Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+func (o SettingsOutput) Override() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.Override }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

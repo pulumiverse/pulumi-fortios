@@ -98,6 +98,8 @@ type Saml struct {
 	LimitRelaystate pulumi.StringOutput `pulumi:"limitRelaystate"`
 	// SAML server entry name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+	Reauth pulumi.StringOutput `pulumi:"reauth"`
 	// SP single logout URL.
 	SingleLogoutUrl pulumi.StringOutput `pulumi:"singleLogoutUrl"`
 	// SP single sign-on URL.
@@ -183,6 +185,8 @@ type samlState struct {
 	LimitRelaystate *string `pulumi:"limitRelaystate"`
 	// SAML server entry name.
 	Name *string `pulumi:"name"`
+	// Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+	Reauth *string `pulumi:"reauth"`
 	// SP single logout URL.
 	SingleLogoutUrl *string `pulumi:"singleLogoutUrl"`
 	// SP single sign-on URL.
@@ -224,6 +228,8 @@ type SamlState struct {
 	LimitRelaystate pulumi.StringPtrInput
 	// SAML server entry name.
 	Name pulumi.StringPtrInput
+	// Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+	Reauth pulumi.StringPtrInput
 	// SP single logout URL.
 	SingleLogoutUrl pulumi.StringPtrInput
 	// SP single sign-on URL.
@@ -269,6 +275,8 @@ type samlArgs struct {
 	LimitRelaystate *string `pulumi:"limitRelaystate"`
 	// SAML server entry name.
 	Name *string `pulumi:"name"`
+	// Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+	Reauth *string `pulumi:"reauth"`
 	// SP single logout URL.
 	SingleLogoutUrl *string `pulumi:"singleLogoutUrl"`
 	// SP single sign-on URL.
@@ -311,6 +319,8 @@ type SamlArgs struct {
 	LimitRelaystate pulumi.StringPtrInput
 	// SAML server entry name.
 	Name pulumi.StringPtrInput
+	// Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+	Reauth pulumi.StringPtrInput
 	// SP single logout URL.
 	SingleLogoutUrl pulumi.StringPtrInput
 	// SP single sign-on URL.
@@ -478,6 +488,11 @@ func (o SamlOutput) LimitRelaystate() pulumi.StringOutput {
 // SAML server entry name.
 func (o SamlOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Saml) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+func (o SamlOutput) Reauth() pulumi.StringOutput {
+	return o.ApplyT(func(v *Saml) pulumi.StringOutput { return v.Reauth }).(pulumi.StringOutput)
 }
 
 // SP single logout URL.

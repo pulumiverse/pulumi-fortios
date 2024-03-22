@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
@@ -45,9 +46,12 @@ type Trafficclass struct {
 func NewTrafficclass(ctx *pulumi.Context,
 	name string, args *TrafficclassArgs, opts ...pulumi.ResourceOption) (*Trafficclass, error) {
 	if args == nil {
-		args = &TrafficclassArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.ClassId == nil {
+		return nil, errors.New("invalid value for required argument 'ClassId'")
+	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Trafficclass
 	err := ctx.RegisterResource("fortios:firewall/trafficclass:Trafficclass", name, args, &resource, opts...)
@@ -94,7 +98,7 @@ func (TrafficclassState) ElementType() reflect.Type {
 
 type trafficclassArgs struct {
 	// Class ID to be named.
-	ClassId *int `pulumi:"classId"`
+	ClassId int `pulumi:"classId"`
 	// Define the name for this class-id.
 	ClassName *string `pulumi:"className"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -104,7 +108,7 @@ type trafficclassArgs struct {
 // The set of arguments for constructing a Trafficclass resource.
 type TrafficclassArgs struct {
 	// Class ID to be named.
-	ClassId pulumi.IntPtrInput
+	ClassId pulumi.IntInput
 	// Define the name for this class-id.
 	ClassName pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

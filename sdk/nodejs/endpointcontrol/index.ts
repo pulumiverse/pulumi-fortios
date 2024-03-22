@@ -15,6 +15,11 @@ export type Fctems = import("./fctems").Fctems;
 export const Fctems: typeof import("./fctems").Fctems = null as any;
 utilities.lazyLoad(exports, ["Fctems"], () => require("./fctems"));
 
+export { FctemsoverrideArgs, FctemsoverrideState } from "./fctemsoverride";
+export type Fctemsoverride = import("./fctemsoverride").Fctemsoverride;
+export const Fctemsoverride: typeof import("./fctemsoverride").Fctemsoverride = null as any;
+utilities.lazyLoad(exports, ["Fctemsoverride"], () => require("./fctemsoverride"));
+
 export { ForticlientemsArgs, ForticlientemsState } from "./forticlientems";
 export type Forticlientems = import("./forticlientems").Forticlientems;
 export const Forticlientems: typeof import("./forticlientems").Forticlientems = null as any;
@@ -49,6 +54,8 @@ const _module = {
                 return new Client(name, <any>undefined, { urn })
             case "fortios:endpointcontrol/fctems:Fctems":
                 return new Fctems(name, <any>undefined, { urn })
+            case "fortios:endpointcontrol/fctemsoverride:Fctemsoverride":
+                return new Fctemsoverride(name, <any>undefined, { urn })
             case "fortios:endpointcontrol/forticlientems:Forticlientems":
                 return new Forticlientems(name, <any>undefined, { urn })
             case "fortios:endpointcontrol/forticlientregistrationsync:Forticlientregistrationsync":
@@ -66,6 +73,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("fortios", "endpointcontrol/client", _module)
 pulumi.runtime.registerResourceModule("fortios", "endpointcontrol/fctems", _module)
+pulumi.runtime.registerResourceModule("fortios", "endpointcontrol/fctemsoverride", _module)
 pulumi.runtime.registerResourceModule("fortios", "endpointcontrol/forticlientems", _module)
 pulumi.runtime.registerResourceModule("fortios", "endpointcontrol/forticlientregistrationsync", _module)
 pulumi.runtime.registerResourceModule("fortios", "endpointcontrol/profile", _module)

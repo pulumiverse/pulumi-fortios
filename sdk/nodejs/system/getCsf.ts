@@ -73,6 +73,18 @@ export interface GetCsfResult {
      */
     readonly fabricWorkers: number;
     /**
+     * Enable/disable Security Fabric daemon file management.
+     */
+    readonly fileMgmt: string;
+    /**
+     * Maximum amount of memory that can be used by the daemon files (in bytes).
+     */
+    readonly fileQuota: number;
+    /**
+     * Warn when the set percentage of quota has been used.
+     */
+    readonly fileQuotaWarning: number;
+    /**
      * Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
      */
     readonly fixedKey: string;
@@ -116,6 +128,10 @@ export interface GetCsfResult {
      * Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
      */
     readonly trustedLists: outputs.system.GetCsfTrustedList[];
+    /**
+     * Unique ID of the current CSF node
+     */
+    readonly uid: string;
     /**
      * IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
      */

@@ -30,6 +30,7 @@ class Phase1interfaceArgs:
                  authpasswd: Optional[pulumi.Input[str]] = None,
                  authusr: Optional[pulumi.Input[str]] = None,
                  authusrgrp: Optional[pulumi.Input[str]] = None,
+                 auto_discovery_crossover: Optional[pulumi.Input[str]] = None,
                  auto_discovery_forwarder: Optional[pulumi.Input[str]] = None,
                  auto_discovery_offer_interval: Optional[pulumi.Input[int]] = None,
                  auto_discovery_psk: Optional[pulumi.Input[str]] = None,
@@ -37,9 +38,11 @@ class Phase1interfaceArgs:
                  auto_discovery_sender: Optional[pulumi.Input[str]] = None,
                  auto_discovery_shortcuts: Optional[pulumi.Input[str]] = None,
                  auto_negotiate: Optional[pulumi.Input[str]] = None,
+                 azure_ad_autoconnect: Optional[pulumi.Input[str]] = None,
                  backup_gateways: Optional[pulumi.Input[Sequence[pulumi.Input['Phase1interfaceBackupGatewayArgs']]]] = None,
                  banner: Optional[pulumi.Input[str]] = None,
                  cert_id_validation: Optional[pulumi.Input[str]] = None,
+                 cert_trust_store: Optional[pulumi.Input[str]] = None,
                  certificates: Optional[pulumi.Input[Sequence[pulumi.Input['Phase1interfaceCertificateArgs']]]] = None,
                  childless_ike: Optional[pulumi.Input[str]] = None,
                  client_auto_negotiate: Optional[pulumi.Input[str]] = None,
@@ -47,6 +50,8 @@ class Phase1interfaceArgs:
                  comments: Optional[pulumi.Input[str]] = None,
                  default_gw: Optional[pulumi.Input[str]] = None,
                  default_gw_priority: Optional[pulumi.Input[int]] = None,
+                 dev_id: Optional[pulumi.Input[str]] = None,
+                 dev_id_notification: Optional[pulumi.Input[str]] = None,
                  dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  dhgrp: Optional[pulumi.Input[str]] = None,
@@ -59,8 +64,10 @@ class Phase1interfaceArgs:
                  dpd_retryinterval: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  eap: Optional[pulumi.Input[str]] = None,
+                 eap_cert_auth: Optional[pulumi.Input[str]] = None,
                  eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
                  eap_identity: Optional[pulumi.Input[str]] = None,
+                 ems_sn_check: Optional[pulumi.Input[str]] = None,
                  encap_local_gw4: Optional[pulumi.Input[str]] = None,
                  encap_local_gw6: Optional[pulumi.Input[str]] = None,
                  encap_remote_gw4: Optional[pulumi.Input[str]] = None,
@@ -69,11 +76,14 @@ class Phase1interfaceArgs:
                  encapsulation_address: Optional[pulumi.Input[str]] = None,
                  enforce_unique_id: Optional[pulumi.Input[str]] = None,
                  esn: Optional[pulumi.Input[str]] = None,
+                 exchange_fgt_device_id: Optional[pulumi.Input[str]] = None,
                  exchange_interface_ip: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr4: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr6: Optional[pulumi.Input[str]] = None,
+                 fallback_tcp_threshold: Optional[pulumi.Input[int]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
+                 fec_codec_string: Optional[pulumi.Input[str]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
                  fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -83,8 +93,10 @@ class Phase1interfaceArgs:
                  fec_send_timeout: Optional[pulumi.Input[int]] = None,
                  fgsp_sync: Optional[pulumi.Input[str]] = None,
                  forticlient_enforcement: Optional[pulumi.Input[str]] = None,
+                 fortinet_esp: Optional[pulumi.Input[str]] = None,
                  fragmentation: Optional[pulumi.Input[str]] = None,
                  fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_authentication: Optional[pulumi.Input[str]] = None,
                  group_authentication_secret: Optional[pulumi.Input[str]] = None,
                  ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -93,6 +105,7 @@ class Phase1interfaceArgs:
                  ike_version: Optional[pulumi.Input[str]] = None,
                  inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
+                 internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input['Phase1interfaceInternalDomainListArgs']]]] = None,
                  ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ip_fragmentation: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
@@ -120,6 +133,7 @@ class Phase1interfaceArgs:
                  ipv6_start_ip: Optional[pulumi.Input[str]] = None,
                  keepalive: Optional[pulumi.Input[int]] = None,
                  keylife: Optional[pulumi.Input[int]] = None,
+                 kms: Optional[pulumi.Input[str]] = None,
                  link_cost: Optional[pulumi.Input[int]] = None,
                  local_gw: Optional[pulumi.Input[str]] = None,
                  local_gw6: Optional[pulumi.Input[str]] = None,
@@ -135,6 +149,7 @@ class Phase1interfaceArgs:
                  monitor_hold_down_time: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_type: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_weekday: Optional[pulumi.Input[str]] = None,
+                 monitor_min: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nattraversal: Optional[pulumi.Input[str]] = None,
                  negotiate_timeout: Optional[pulumi.Input[int]] = None,
@@ -154,6 +169,8 @@ class Phase1interfaceArgs:
                  priority: Optional[pulumi.Input[int]] = None,
                  psksecret: Optional[pulumi.Input[str]] = None,
                  psksecret_remote: Optional[pulumi.Input[str]] = None,
+                 qkd: Optional[pulumi.Input[str]] = None,
+                 qkd_profile: Optional[pulumi.Input[str]] = None,
                  reauth: Optional[pulumi.Input[str]] = None,
                  rekey: Optional[pulumi.Input[str]] = None,
                  remote_gw: Optional[pulumi.Input[str]] = None,
@@ -166,6 +183,7 @@ class Phase1interfaceArgs:
                  signature_hash_alg: Optional[pulumi.Input[str]] = None,
                  split_include_service: Optional[pulumi.Input[str]] = None,
                  suite_b: Optional[pulumi.Input[str]] = None,
+                 transport: Optional[pulumi.Input[str]] = None,
                  tunnel_search: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  unity_support: Optional[pulumi.Input[str]] = None,
@@ -190,6 +208,7 @@ class Phase1interfaceArgs:
         :param pulumi.Input[str] authpasswd: XAuth password (max 35 characters).
         :param pulumi.Input[str] authusr: XAuth user name.
         :param pulumi.Input[str] authusrgrp: Authentication user group.
+        :param pulumi.Input[str] auto_discovery_crossover: Allow/block set-up of short-cut tunnels between different network IDs. Valid values: `allow`, `block`.
         :param pulumi.Input[str] auto_discovery_forwarder: Enable/disable forwarding auto-discovery short-cut messages. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] auto_discovery_offer_interval: Interval between shortcut offer messages in seconds (1 - 300, default = 5).
         :param pulumi.Input[str] auto_discovery_psk: Enable/disable use of pre-shared secrets for authentication of auto-discovery tunnels. Valid values: `enable`, `disable`.
@@ -197,9 +216,11 @@ class Phase1interfaceArgs:
         :param pulumi.Input[str] auto_discovery_sender: Enable/disable sending auto-discovery short-cut messages. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auto_discovery_shortcuts: Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
         :param pulumi.Input[str] auto_negotiate: Enable/disable automatic initiation of IKE SA negotiation. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] azure_ad_autoconnect: Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Phase1interfaceBackupGatewayArgs']]] backup_gateways: Instruct unity clients about the backup gateway address(es). The structure of `backup_gateway` block is documented below.
         :param pulumi.Input[str] banner: Message that unity client should display after connecting.
         :param pulumi.Input[str] cert_id_validation: Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cert_trust_store: CA certificate trust store. Valid values: `local`, `ems`.
         :param pulumi.Input[Sequence[pulumi.Input['Phase1interfaceCertificateArgs']]] certificates: The names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
         :param pulumi.Input[str] childless_ike: Enable/disable childless IKEv2 initiation (RFC 6023). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] client_auto_negotiate: Enable/disable allowing the VPN client to bring up the tunnel when there is no traffic. Valid values: `disable`, `enable`.
@@ -207,6 +228,8 @@ class Phase1interfaceArgs:
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] default_gw: IPv4 address of default route gateway to use for traffic exiting the interface.
         :param pulumi.Input[int] default_gw_priority: Priority for default gateway route. A higher priority number signifies a less preferred route.
+        :param pulumi.Input[str] dev_id: Device ID carried by the device ID notification.
+        :param pulumi.Input[str] dev_id_notification: Enable/disable device ID notification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp6_ra_linkaddr: Relay agent IPv6 link address to use in DHCP6 requests.
         :param pulumi.Input[str] dhcp_ra_giaddr: Relay agent gateway IP address to use in the giaddr field of DHCP requests.
         :param pulumi.Input[str] dhgrp: DH group. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`, `32`.
@@ -219,8 +242,10 @@ class Phase1interfaceArgs:
         :param pulumi.Input[str] dpd_retryinterval: DPD retry interval.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] eap: Enable/disable IKEv2 EAP authentication. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] eap_cert_auth: Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eap_exclude_peergrp: Peer group excluded from EAP authentication.
         :param pulumi.Input[str] eap_identity: IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
+        :param pulumi.Input[str] ems_sn_check: Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] encap_local_gw4: Local IPv4 address of GRE/VXLAN tunnel.
         :param pulumi.Input[str] encap_local_gw6: Local IPv6 address of GRE/VXLAN tunnel.
         :param pulumi.Input[str] encap_remote_gw4: Remote IPv4 address of GRE/VXLAN tunnel.
@@ -229,11 +254,14 @@ class Phase1interfaceArgs:
         :param pulumi.Input[str] encapsulation_address: Source for GRE/VXLAN tunnel address. Valid values: `ike`, `ipv4`, `ipv6`.
         :param pulumi.Input[str] enforce_unique_id: Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
         :param pulumi.Input[str] esn: Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+        :param pulumi.Input[str] exchange_fgt_device_id: Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] exchange_interface_ip: Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] exchange_ip_addr4: IPv4 address to exchange with peers.
         :param pulumi.Input[str] exchange_ip_addr6: IPv6 address to exchange with peers
+        :param pulumi.Input[int] fallback_tcp_threshold: Timeout in seconds before falling back IKE/IPsec traffic to tcp.
         :param pulumi.Input[int] fec_base: Number of base Forward Error Correction packets (1 - 100).
         :param pulumi.Input[int] fec_codec: ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+        :param pulumi.Input[str] fec_codec_string: Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
         :param pulumi.Input[str] fec_egress: Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fec_health_check: SD-WAN health check.
         :param pulumi.Input[str] fec_ingress: Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
@@ -243,8 +271,10 @@ class Phase1interfaceArgs:
         :param pulumi.Input[int] fec_send_timeout: Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
         :param pulumi.Input[str] fgsp_sync: Enable/disable IPsec syncing of tunnels for FGSP IPsec. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_enforcement: Enable/disable FortiClient enforcement. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fortinet_esp: Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fragmentation: Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fragmentation_mtu: IKE fragmentation MTU (500 - 16000).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_authentication: Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] group_authentication_secret: Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
         :param pulumi.Input[str] ha_sync_esp_seqno: Enable/disable sequence number jump ahead for IPsec HA. Valid values: `enable`, `disable`.
@@ -253,6 +283,7 @@ class Phase1interfaceArgs:
         :param pulumi.Input[str] ike_version: IKE protocol version. Valid values: `1`, `2`.
         :param pulumi.Input[str] inbound_dscp_copy: Enable/disable copy the dscp in the ESP header to the inner IP Header. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] include_local_lan: Enable/disable allow local LAN access on unity clients. Valid values: `disable`, `enable`.
+        :param pulumi.Input[Sequence[pulumi.Input['Phase1interfaceInternalDomainListArgs']]] internal_domain_lists: One or more internal domain names in quotes separated by spaces. The structure of `internal_domain_list` block is documented below.
         :param pulumi.Input[int] ip_delay_interval: IP address reuse delay interval in seconds (0 - 28800).
         :param pulumi.Input[str] ip_fragmentation: Determine whether IP packets are fragmented before or after IPsec encapsulation. Valid values: `pre-encapsulation`, `post-encapsulation`.
         :param pulumi.Input[str] ip_version: IP version to use for VPN interface. Valid values: `4`, `6`.
@@ -280,6 +311,7 @@ class Phase1interfaceArgs:
         :param pulumi.Input[str] ipv6_start_ip: Start of IPv6 range.
         :param pulumi.Input[int] keepalive: NAT-T keep alive interval.
         :param pulumi.Input[int] keylife: Time to wait in seconds before phase 1 encryption key expires.
+        :param pulumi.Input[str] kms: Key Management Services server.
         :param pulumi.Input[int] link_cost: VPN tunnel underlay link cost.
         :param pulumi.Input[str] local_gw: IPv4 address of the local gateway's external interface.
         :param pulumi.Input[str] local_gw6: IPv6 address of the local gateway's external interface.
@@ -295,6 +327,7 @@ class Phase1interfaceArgs:
         :param pulumi.Input[str] monitor_hold_down_time: Time of day at which to fail back to primary after it re-establishes.
         :param pulumi.Input[str] monitor_hold_down_type: Recovery time method when primary interface re-establishes. Valid values: `immediate`, `delay`, `time`.
         :param pulumi.Input[str] monitor_hold_down_weekday: Day of the week to recover once primary re-establishes. Valid values: `everyday`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        :param pulumi.Input[int] monitor_min: Minimum number of links to become degraded before activating this interface.  Zero (0) means all links must be down before activating this interface.
         :param pulumi.Input[str] name: IPsec remote gateway name.
         :param pulumi.Input[str] nattraversal: Enable/disable NAT traversal. Valid values: `enable`, `disable`, `forced`.
         :param pulumi.Input[int] negotiate_timeout: IKE SA negotiation timeout in seconds (1 - 300).
@@ -314,6 +347,8 @@ class Phase1interfaceArgs:
         :param pulumi.Input[int] priority: Priority for routes added by IKE (0 - 4294967295).
         :param pulumi.Input[str] psksecret: Pre-shared secret for PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
         :param pulumi.Input[str] psksecret_remote: Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
+        :param pulumi.Input[str] qkd: Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+        :param pulumi.Input[str] qkd_profile: Quantum Key Distribution (QKD) server profile.
         :param pulumi.Input[str] reauth: Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] rekey: Enable/disable phase1 rekey. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remote_gw: IPv4 address of the remote gateway's external interface.
@@ -326,6 +361,7 @@ class Phase1interfaceArgs:
         :param pulumi.Input[str] signature_hash_alg: Digital Signature Authentication hash algorithms. Valid values: `sha1`, `sha2-256`, `sha2-384`, `sha2-512`.
         :param pulumi.Input[str] split_include_service: Split-include services.
         :param pulumi.Input[str] suite_b: Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
+        :param pulumi.Input[str] transport: Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
         :param pulumi.Input[str] tunnel_search: Tunnel search method for when the interface is shared. Valid values: `selectors`, `nexthop`.
         :param pulumi.Input[str] type: Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
         :param pulumi.Input[str] unity_support: Enable/disable support for Cisco UNITY Configuration Method extensions. Valid values: `disable`, `enable`.
@@ -361,6 +397,8 @@ class Phase1interfaceArgs:
             pulumi.set(__self__, "authusr", authusr)
         if authusrgrp is not None:
             pulumi.set(__self__, "authusrgrp", authusrgrp)
+        if auto_discovery_crossover is not None:
+            pulumi.set(__self__, "auto_discovery_crossover", auto_discovery_crossover)
         if auto_discovery_forwarder is not None:
             pulumi.set(__self__, "auto_discovery_forwarder", auto_discovery_forwarder)
         if auto_discovery_offer_interval is not None:
@@ -375,12 +413,16 @@ class Phase1interfaceArgs:
             pulumi.set(__self__, "auto_discovery_shortcuts", auto_discovery_shortcuts)
         if auto_negotiate is not None:
             pulumi.set(__self__, "auto_negotiate", auto_negotiate)
+        if azure_ad_autoconnect is not None:
+            pulumi.set(__self__, "azure_ad_autoconnect", azure_ad_autoconnect)
         if backup_gateways is not None:
             pulumi.set(__self__, "backup_gateways", backup_gateways)
         if banner is not None:
             pulumi.set(__self__, "banner", banner)
         if cert_id_validation is not None:
             pulumi.set(__self__, "cert_id_validation", cert_id_validation)
+        if cert_trust_store is not None:
+            pulumi.set(__self__, "cert_trust_store", cert_trust_store)
         if certificates is not None:
             pulumi.set(__self__, "certificates", certificates)
         if childless_ike is not None:
@@ -395,6 +437,10 @@ class Phase1interfaceArgs:
             pulumi.set(__self__, "default_gw", default_gw)
         if default_gw_priority is not None:
             pulumi.set(__self__, "default_gw_priority", default_gw_priority)
+        if dev_id is not None:
+            pulumi.set(__self__, "dev_id", dev_id)
+        if dev_id_notification is not None:
+            pulumi.set(__self__, "dev_id_notification", dev_id_notification)
         if dhcp6_ra_linkaddr is not None:
             pulumi.set(__self__, "dhcp6_ra_linkaddr", dhcp6_ra_linkaddr)
         if dhcp_ra_giaddr is not None:
@@ -419,10 +465,14 @@ class Phase1interfaceArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if eap is not None:
             pulumi.set(__self__, "eap", eap)
+        if eap_cert_auth is not None:
+            pulumi.set(__self__, "eap_cert_auth", eap_cert_auth)
         if eap_exclude_peergrp is not None:
             pulumi.set(__self__, "eap_exclude_peergrp", eap_exclude_peergrp)
         if eap_identity is not None:
             pulumi.set(__self__, "eap_identity", eap_identity)
+        if ems_sn_check is not None:
+            pulumi.set(__self__, "ems_sn_check", ems_sn_check)
         if encap_local_gw4 is not None:
             pulumi.set(__self__, "encap_local_gw4", encap_local_gw4)
         if encap_local_gw6 is not None:
@@ -439,16 +489,22 @@ class Phase1interfaceArgs:
             pulumi.set(__self__, "enforce_unique_id", enforce_unique_id)
         if esn is not None:
             pulumi.set(__self__, "esn", esn)
+        if exchange_fgt_device_id is not None:
+            pulumi.set(__self__, "exchange_fgt_device_id", exchange_fgt_device_id)
         if exchange_interface_ip is not None:
             pulumi.set(__self__, "exchange_interface_ip", exchange_interface_ip)
         if exchange_ip_addr4 is not None:
             pulumi.set(__self__, "exchange_ip_addr4", exchange_ip_addr4)
         if exchange_ip_addr6 is not None:
             pulumi.set(__self__, "exchange_ip_addr6", exchange_ip_addr6)
+        if fallback_tcp_threshold is not None:
+            pulumi.set(__self__, "fallback_tcp_threshold", fallback_tcp_threshold)
         if fec_base is not None:
             pulumi.set(__self__, "fec_base", fec_base)
         if fec_codec is not None:
             pulumi.set(__self__, "fec_codec", fec_codec)
+        if fec_codec_string is not None:
+            pulumi.set(__self__, "fec_codec_string", fec_codec_string)
         if fec_egress is not None:
             pulumi.set(__self__, "fec_egress", fec_egress)
         if fec_health_check is not None:
@@ -467,10 +523,14 @@ class Phase1interfaceArgs:
             pulumi.set(__self__, "fgsp_sync", fgsp_sync)
         if forticlient_enforcement is not None:
             pulumi.set(__self__, "forticlient_enforcement", forticlient_enforcement)
+        if fortinet_esp is not None:
+            pulumi.set(__self__, "fortinet_esp", fortinet_esp)
         if fragmentation is not None:
             pulumi.set(__self__, "fragmentation", fragmentation)
         if fragmentation_mtu is not None:
             pulumi.set(__self__, "fragmentation_mtu", fragmentation_mtu)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_authentication is not None:
             pulumi.set(__self__, "group_authentication", group_authentication)
         if group_authentication_secret is not None:
@@ -487,6 +547,8 @@ class Phase1interfaceArgs:
             pulumi.set(__self__, "inbound_dscp_copy", inbound_dscp_copy)
         if include_local_lan is not None:
             pulumi.set(__self__, "include_local_lan", include_local_lan)
+        if internal_domain_lists is not None:
+            pulumi.set(__self__, "internal_domain_lists", internal_domain_lists)
         if ip_delay_interval is not None:
             pulumi.set(__self__, "ip_delay_interval", ip_delay_interval)
         if ip_fragmentation is not None:
@@ -541,6 +603,8 @@ class Phase1interfaceArgs:
             pulumi.set(__self__, "keepalive", keepalive)
         if keylife is not None:
             pulumi.set(__self__, "keylife", keylife)
+        if kms is not None:
+            pulumi.set(__self__, "kms", kms)
         if link_cost is not None:
             pulumi.set(__self__, "link_cost", link_cost)
         if local_gw is not None:
@@ -571,6 +635,8 @@ class Phase1interfaceArgs:
             pulumi.set(__self__, "monitor_hold_down_type", monitor_hold_down_type)
         if monitor_hold_down_weekday is not None:
             pulumi.set(__self__, "monitor_hold_down_weekday", monitor_hold_down_weekday)
+        if monitor_min is not None:
+            pulumi.set(__self__, "monitor_min", monitor_min)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if nattraversal is not None:
@@ -609,6 +675,10 @@ class Phase1interfaceArgs:
             pulumi.set(__self__, "psksecret", psksecret)
         if psksecret_remote is not None:
             pulumi.set(__self__, "psksecret_remote", psksecret_remote)
+        if qkd is not None:
+            pulumi.set(__self__, "qkd", qkd)
+        if qkd_profile is not None:
+            pulumi.set(__self__, "qkd_profile", qkd_profile)
         if reauth is not None:
             pulumi.set(__self__, "reauth", reauth)
         if rekey is not None:
@@ -633,6 +703,8 @@ class Phase1interfaceArgs:
             pulumi.set(__self__, "split_include_service", split_include_service)
         if suite_b is not None:
             pulumi.set(__self__, "suite_b", suite_b)
+        if transport is not None:
+            pulumi.set(__self__, "transport", transport)
         if tunnel_search is not None:
             pulumi.set(__self__, "tunnel_search", tunnel_search)
         if type is not None:
@@ -819,6 +891,18 @@ class Phase1interfaceArgs:
         pulumi.set(self, "authusrgrp", value)
 
     @property
+    @pulumi.getter(name="autoDiscoveryCrossover")
+    def auto_discovery_crossover(self) -> Optional[pulumi.Input[str]]:
+        """
+        Allow/block set-up of short-cut tunnels between different network IDs. Valid values: `allow`, `block`.
+        """
+        return pulumi.get(self, "auto_discovery_crossover")
+
+    @auto_discovery_crossover.setter
+    def auto_discovery_crossover(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_discovery_crossover", value)
+
+    @property
     @pulumi.getter(name="autoDiscoveryForwarder")
     def auto_discovery_forwarder(self) -> Optional[pulumi.Input[str]]:
         """
@@ -903,6 +987,18 @@ class Phase1interfaceArgs:
         pulumi.set(self, "auto_negotiate", value)
 
     @property
+    @pulumi.getter(name="azureAdAutoconnect")
+    def azure_ad_autoconnect(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "azure_ad_autoconnect")
+
+    @azure_ad_autoconnect.setter
+    def azure_ad_autoconnect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "azure_ad_autoconnect", value)
+
+    @property
     @pulumi.getter(name="backupGateways")
     def backup_gateways(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Phase1interfaceBackupGatewayArgs']]]]:
         """
@@ -937,6 +1033,18 @@ class Phase1interfaceArgs:
     @cert_id_validation.setter
     def cert_id_validation(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cert_id_validation", value)
+
+    @property
+    @pulumi.getter(name="certTrustStore")
+    def cert_trust_store(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA certificate trust store. Valid values: `local`, `ems`.
+        """
+        return pulumi.get(self, "cert_trust_store")
+
+    @cert_trust_store.setter
+    def cert_trust_store(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_trust_store", value)
 
     @property
     @pulumi.getter
@@ -1021,6 +1129,30 @@ class Phase1interfaceArgs:
     @default_gw_priority.setter
     def default_gw_priority(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "default_gw_priority", value)
+
+    @property
+    @pulumi.getter(name="devId")
+    def dev_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Device ID carried by the device ID notification.
+        """
+        return pulumi.get(self, "dev_id")
+
+    @dev_id.setter
+    def dev_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dev_id", value)
+
+    @property
+    @pulumi.getter(name="devIdNotification")
+    def dev_id_notification(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable device ID notification. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dev_id_notification")
+
+    @dev_id_notification.setter
+    def dev_id_notification(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dev_id_notification", value)
 
     @property
     @pulumi.getter(name="dhcp6RaLinkaddr")
@@ -1167,6 +1299,18 @@ class Phase1interfaceArgs:
         pulumi.set(self, "eap", value)
 
     @property
+    @pulumi.getter(name="eapCertAuth")
+    def eap_cert_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "eap_cert_auth")
+
+    @eap_cert_auth.setter
+    def eap_cert_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "eap_cert_auth", value)
+
+    @property
     @pulumi.getter(name="eapExcludePeergrp")
     def eap_exclude_peergrp(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1189,6 +1333,18 @@ class Phase1interfaceArgs:
     @eap_identity.setter
     def eap_identity(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "eap_identity", value)
+
+    @property
+    @pulumi.getter(name="emsSnCheck")
+    def ems_sn_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ems_sn_check")
+
+    @ems_sn_check.setter
+    def ems_sn_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ems_sn_check", value)
 
     @property
     @pulumi.getter(name="encapLocalGw4")
@@ -1287,6 +1443,18 @@ class Phase1interfaceArgs:
         pulumi.set(self, "esn", value)
 
     @property
+    @pulumi.getter(name="exchangeFgtDeviceId")
+    def exchange_fgt_device_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "exchange_fgt_device_id")
+
+    @exchange_fgt_device_id.setter
+    def exchange_fgt_device_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exchange_fgt_device_id", value)
+
+    @property
     @pulumi.getter(name="exchangeInterfaceIp")
     def exchange_interface_ip(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1323,6 +1491,18 @@ class Phase1interfaceArgs:
         pulumi.set(self, "exchange_ip_addr6", value)
 
     @property
+    @pulumi.getter(name="fallbackTcpThreshold")
+    def fallback_tcp_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+        """
+        return pulumi.get(self, "fallback_tcp_threshold")
+
+    @fallback_tcp_threshold.setter
+    def fallback_tcp_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fallback_tcp_threshold", value)
+
+    @property
     @pulumi.getter(name="fecBase")
     def fec_base(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1345,6 +1525,18 @@ class Phase1interfaceArgs:
     @fec_codec.setter
     def fec_codec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fec_codec", value)
+
+    @property
+    @pulumi.getter(name="fecCodecString")
+    def fec_codec_string(self) -> Optional[pulumi.Input[str]]:
+        """
+        Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+        """
+        return pulumi.get(self, "fec_codec_string")
+
+    @fec_codec_string.setter
+    def fec_codec_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fec_codec_string", value)
 
     @property
     @pulumi.getter(name="fecEgress")
@@ -1455,6 +1647,18 @@ class Phase1interfaceArgs:
         pulumi.set(self, "forticlient_enforcement", value)
 
     @property
+    @pulumi.getter(name="fortinetEsp")
+    def fortinet_esp(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fortinet_esp")
+
+    @fortinet_esp.setter
+    def fortinet_esp(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortinet_esp", value)
+
+    @property
     @pulumi.getter
     def fragmentation(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1477,6 +1681,18 @@ class Phase1interfaceArgs:
     @fragmentation_mtu.setter
     def fragmentation_mtu(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fragmentation_mtu", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupAuthentication")
@@ -1573,6 +1789,18 @@ class Phase1interfaceArgs:
     @include_local_lan.setter
     def include_local_lan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "include_local_lan", value)
+
+    @property
+    @pulumi.getter(name="internalDomainLists")
+    def internal_domain_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Phase1interfaceInternalDomainListArgs']]]]:
+        """
+        One or more internal domain names in quotes separated by spaces. The structure of `internal_domain_list` block is documented below.
+        """
+        return pulumi.get(self, "internal_domain_lists")
+
+    @internal_domain_lists.setter
+    def internal_domain_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Phase1interfaceInternalDomainListArgs']]]]):
+        pulumi.set(self, "internal_domain_lists", value)
 
     @property
     @pulumi.getter(name="ipDelayInterval")
@@ -1899,6 +2127,18 @@ class Phase1interfaceArgs:
         pulumi.set(self, "keylife", value)
 
     @property
+    @pulumi.getter
+    def kms(self) -> Optional[pulumi.Input[str]]:
+        """
+        Key Management Services server.
+        """
+        return pulumi.get(self, "kms")
+
+    @kms.setter
+    def kms(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "kms", value)
+
+    @property
     @pulumi.getter(name="linkCost")
     def link_cost(self) -> Optional[pulumi.Input[int]]:
         """
@@ -2077,6 +2317,18 @@ class Phase1interfaceArgs:
     @monitor_hold_down_weekday.setter
     def monitor_hold_down_weekday(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "monitor_hold_down_weekday", value)
+
+    @property
+    @pulumi.getter(name="monitorMin")
+    def monitor_min(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimum number of links to become degraded before activating this interface.  Zero (0) means all links must be down before activating this interface.
+        """
+        return pulumi.get(self, "monitor_min")
+
+    @monitor_min.setter
+    def monitor_min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "monitor_min", value)
 
     @property
     @pulumi.getter
@@ -2308,6 +2560,30 @@ class Phase1interfaceArgs:
 
     @property
     @pulumi.getter
+    def qkd(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+        """
+        return pulumi.get(self, "qkd")
+
+    @qkd.setter
+    def qkd(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "qkd", value)
+
+    @property
+    @pulumi.getter(name="qkdProfile")
+    def qkd_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Quantum Key Distribution (QKD) server profile.
+        """
+        return pulumi.get(self, "qkd_profile")
+
+    @qkd_profile.setter
+    def qkd_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "qkd_profile", value)
+
+    @property
+    @pulumi.getter
     def reauth(self) -> Optional[pulumi.Input[str]]:
         """
         Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
@@ -2451,6 +2727,18 @@ class Phase1interfaceArgs:
         pulumi.set(self, "suite_b", value)
 
     @property
+    @pulumi.getter
+    def transport(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+        """
+        return pulumi.get(self, "transport")
+
+    @transport.setter
+    def transport(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "transport", value)
+
+    @property
     @pulumi.getter(name="tunnelSearch")
     def tunnel_search(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2562,6 +2850,7 @@ class _Phase1interfaceState:
                  authpasswd: Optional[pulumi.Input[str]] = None,
                  authusr: Optional[pulumi.Input[str]] = None,
                  authusrgrp: Optional[pulumi.Input[str]] = None,
+                 auto_discovery_crossover: Optional[pulumi.Input[str]] = None,
                  auto_discovery_forwarder: Optional[pulumi.Input[str]] = None,
                  auto_discovery_offer_interval: Optional[pulumi.Input[int]] = None,
                  auto_discovery_psk: Optional[pulumi.Input[str]] = None,
@@ -2569,9 +2858,11 @@ class _Phase1interfaceState:
                  auto_discovery_sender: Optional[pulumi.Input[str]] = None,
                  auto_discovery_shortcuts: Optional[pulumi.Input[str]] = None,
                  auto_negotiate: Optional[pulumi.Input[str]] = None,
+                 azure_ad_autoconnect: Optional[pulumi.Input[str]] = None,
                  backup_gateways: Optional[pulumi.Input[Sequence[pulumi.Input['Phase1interfaceBackupGatewayArgs']]]] = None,
                  banner: Optional[pulumi.Input[str]] = None,
                  cert_id_validation: Optional[pulumi.Input[str]] = None,
+                 cert_trust_store: Optional[pulumi.Input[str]] = None,
                  certificates: Optional[pulumi.Input[Sequence[pulumi.Input['Phase1interfaceCertificateArgs']]]] = None,
                  childless_ike: Optional[pulumi.Input[str]] = None,
                  client_auto_negotiate: Optional[pulumi.Input[str]] = None,
@@ -2579,6 +2870,8 @@ class _Phase1interfaceState:
                  comments: Optional[pulumi.Input[str]] = None,
                  default_gw: Optional[pulumi.Input[str]] = None,
                  default_gw_priority: Optional[pulumi.Input[int]] = None,
+                 dev_id: Optional[pulumi.Input[str]] = None,
+                 dev_id_notification: Optional[pulumi.Input[str]] = None,
                  dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  dhgrp: Optional[pulumi.Input[str]] = None,
@@ -2591,8 +2884,10 @@ class _Phase1interfaceState:
                  dpd_retryinterval: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  eap: Optional[pulumi.Input[str]] = None,
+                 eap_cert_auth: Optional[pulumi.Input[str]] = None,
                  eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
                  eap_identity: Optional[pulumi.Input[str]] = None,
+                 ems_sn_check: Optional[pulumi.Input[str]] = None,
                  encap_local_gw4: Optional[pulumi.Input[str]] = None,
                  encap_local_gw6: Optional[pulumi.Input[str]] = None,
                  encap_remote_gw4: Optional[pulumi.Input[str]] = None,
@@ -2601,11 +2896,14 @@ class _Phase1interfaceState:
                  encapsulation_address: Optional[pulumi.Input[str]] = None,
                  enforce_unique_id: Optional[pulumi.Input[str]] = None,
                  esn: Optional[pulumi.Input[str]] = None,
+                 exchange_fgt_device_id: Optional[pulumi.Input[str]] = None,
                  exchange_interface_ip: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr4: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr6: Optional[pulumi.Input[str]] = None,
+                 fallback_tcp_threshold: Optional[pulumi.Input[int]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
+                 fec_codec_string: Optional[pulumi.Input[str]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
                  fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -2615,8 +2913,10 @@ class _Phase1interfaceState:
                  fec_send_timeout: Optional[pulumi.Input[int]] = None,
                  fgsp_sync: Optional[pulumi.Input[str]] = None,
                  forticlient_enforcement: Optional[pulumi.Input[str]] = None,
+                 fortinet_esp: Optional[pulumi.Input[str]] = None,
                  fragmentation: Optional[pulumi.Input[str]] = None,
                  fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_authentication: Optional[pulumi.Input[str]] = None,
                  group_authentication_secret: Optional[pulumi.Input[str]] = None,
                  ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -2626,6 +2926,7 @@ class _Phase1interfaceState:
                  inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input['Phase1interfaceInternalDomainListArgs']]]] = None,
                  ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ip_fragmentation: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
@@ -2653,6 +2954,7 @@ class _Phase1interfaceState:
                  ipv6_start_ip: Optional[pulumi.Input[str]] = None,
                  keepalive: Optional[pulumi.Input[int]] = None,
                  keylife: Optional[pulumi.Input[int]] = None,
+                 kms: Optional[pulumi.Input[str]] = None,
                  link_cost: Optional[pulumi.Input[int]] = None,
                  local_gw: Optional[pulumi.Input[str]] = None,
                  local_gw6: Optional[pulumi.Input[str]] = None,
@@ -2668,6 +2970,7 @@ class _Phase1interfaceState:
                  monitor_hold_down_time: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_type: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_weekday: Optional[pulumi.Input[str]] = None,
+                 monitor_min: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nattraversal: Optional[pulumi.Input[str]] = None,
                  negotiate_timeout: Optional[pulumi.Input[int]] = None,
@@ -2688,6 +2991,8 @@ class _Phase1interfaceState:
                  proposal: Optional[pulumi.Input[str]] = None,
                  psksecret: Optional[pulumi.Input[str]] = None,
                  psksecret_remote: Optional[pulumi.Input[str]] = None,
+                 qkd: Optional[pulumi.Input[str]] = None,
+                 qkd_profile: Optional[pulumi.Input[str]] = None,
                  reauth: Optional[pulumi.Input[str]] = None,
                  rekey: Optional[pulumi.Input[str]] = None,
                  remote_gw: Optional[pulumi.Input[str]] = None,
@@ -2700,6 +3005,7 @@ class _Phase1interfaceState:
                  signature_hash_alg: Optional[pulumi.Input[str]] = None,
                  split_include_service: Optional[pulumi.Input[str]] = None,
                  suite_b: Optional[pulumi.Input[str]] = None,
+                 transport: Optional[pulumi.Input[str]] = None,
                  tunnel_search: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  unity_support: Optional[pulumi.Input[str]] = None,
@@ -2722,6 +3028,7 @@ class _Phase1interfaceState:
         :param pulumi.Input[str] authpasswd: XAuth password (max 35 characters).
         :param pulumi.Input[str] authusr: XAuth user name.
         :param pulumi.Input[str] authusrgrp: Authentication user group.
+        :param pulumi.Input[str] auto_discovery_crossover: Allow/block set-up of short-cut tunnels between different network IDs. Valid values: `allow`, `block`.
         :param pulumi.Input[str] auto_discovery_forwarder: Enable/disable forwarding auto-discovery short-cut messages. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] auto_discovery_offer_interval: Interval between shortcut offer messages in seconds (1 - 300, default = 5).
         :param pulumi.Input[str] auto_discovery_psk: Enable/disable use of pre-shared secrets for authentication of auto-discovery tunnels. Valid values: `enable`, `disable`.
@@ -2729,9 +3036,11 @@ class _Phase1interfaceState:
         :param pulumi.Input[str] auto_discovery_sender: Enable/disable sending auto-discovery short-cut messages. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auto_discovery_shortcuts: Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
         :param pulumi.Input[str] auto_negotiate: Enable/disable automatic initiation of IKE SA negotiation. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] azure_ad_autoconnect: Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Phase1interfaceBackupGatewayArgs']]] backup_gateways: Instruct unity clients about the backup gateway address(es). The structure of `backup_gateway` block is documented below.
         :param pulumi.Input[str] banner: Message that unity client should display after connecting.
         :param pulumi.Input[str] cert_id_validation: Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cert_trust_store: CA certificate trust store. Valid values: `local`, `ems`.
         :param pulumi.Input[Sequence[pulumi.Input['Phase1interfaceCertificateArgs']]] certificates: The names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
         :param pulumi.Input[str] childless_ike: Enable/disable childless IKEv2 initiation (RFC 6023). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] client_auto_negotiate: Enable/disable allowing the VPN client to bring up the tunnel when there is no traffic. Valid values: `disable`, `enable`.
@@ -2739,6 +3048,8 @@ class _Phase1interfaceState:
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] default_gw: IPv4 address of default route gateway to use for traffic exiting the interface.
         :param pulumi.Input[int] default_gw_priority: Priority for default gateway route. A higher priority number signifies a less preferred route.
+        :param pulumi.Input[str] dev_id: Device ID carried by the device ID notification.
+        :param pulumi.Input[str] dev_id_notification: Enable/disable device ID notification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp6_ra_linkaddr: Relay agent IPv6 link address to use in DHCP6 requests.
         :param pulumi.Input[str] dhcp_ra_giaddr: Relay agent gateway IP address to use in the giaddr field of DHCP requests.
         :param pulumi.Input[str] dhgrp: DH group. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`, `32`.
@@ -2751,8 +3062,10 @@ class _Phase1interfaceState:
         :param pulumi.Input[str] dpd_retryinterval: DPD retry interval.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] eap: Enable/disable IKEv2 EAP authentication. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] eap_cert_auth: Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eap_exclude_peergrp: Peer group excluded from EAP authentication.
         :param pulumi.Input[str] eap_identity: IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
+        :param pulumi.Input[str] ems_sn_check: Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] encap_local_gw4: Local IPv4 address of GRE/VXLAN tunnel.
         :param pulumi.Input[str] encap_local_gw6: Local IPv6 address of GRE/VXLAN tunnel.
         :param pulumi.Input[str] encap_remote_gw4: Remote IPv4 address of GRE/VXLAN tunnel.
@@ -2761,11 +3074,14 @@ class _Phase1interfaceState:
         :param pulumi.Input[str] encapsulation_address: Source for GRE/VXLAN tunnel address. Valid values: `ike`, `ipv4`, `ipv6`.
         :param pulumi.Input[str] enforce_unique_id: Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
         :param pulumi.Input[str] esn: Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+        :param pulumi.Input[str] exchange_fgt_device_id: Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] exchange_interface_ip: Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] exchange_ip_addr4: IPv4 address to exchange with peers.
         :param pulumi.Input[str] exchange_ip_addr6: IPv6 address to exchange with peers
+        :param pulumi.Input[int] fallback_tcp_threshold: Timeout in seconds before falling back IKE/IPsec traffic to tcp.
         :param pulumi.Input[int] fec_base: Number of base Forward Error Correction packets (1 - 100).
         :param pulumi.Input[int] fec_codec: ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+        :param pulumi.Input[str] fec_codec_string: Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
         :param pulumi.Input[str] fec_egress: Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fec_health_check: SD-WAN health check.
         :param pulumi.Input[str] fec_ingress: Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
@@ -2775,8 +3091,10 @@ class _Phase1interfaceState:
         :param pulumi.Input[int] fec_send_timeout: Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
         :param pulumi.Input[str] fgsp_sync: Enable/disable IPsec syncing of tunnels for FGSP IPsec. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_enforcement: Enable/disable FortiClient enforcement. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fortinet_esp: Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fragmentation: Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fragmentation_mtu: IKE fragmentation MTU (500 - 16000).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_authentication: Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] group_authentication_secret: Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
         :param pulumi.Input[str] ha_sync_esp_seqno: Enable/disable sequence number jump ahead for IPsec HA. Valid values: `enable`, `disable`.
@@ -2786,6 +3104,7 @@ class _Phase1interfaceState:
         :param pulumi.Input[str] inbound_dscp_copy: Enable/disable copy the dscp in the ESP header to the inner IP Header. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] include_local_lan: Enable/disable allow local LAN access on unity clients. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] interface: Local physical, aggregate, or VLAN outgoing interface.
+        :param pulumi.Input[Sequence[pulumi.Input['Phase1interfaceInternalDomainListArgs']]] internal_domain_lists: One or more internal domain names in quotes separated by spaces. The structure of `internal_domain_list` block is documented below.
         :param pulumi.Input[int] ip_delay_interval: IP address reuse delay interval in seconds (0 - 28800).
         :param pulumi.Input[str] ip_fragmentation: Determine whether IP packets are fragmented before or after IPsec encapsulation. Valid values: `pre-encapsulation`, `post-encapsulation`.
         :param pulumi.Input[str] ip_version: IP version to use for VPN interface. Valid values: `4`, `6`.
@@ -2813,6 +3132,7 @@ class _Phase1interfaceState:
         :param pulumi.Input[str] ipv6_start_ip: Start of IPv6 range.
         :param pulumi.Input[int] keepalive: NAT-T keep alive interval.
         :param pulumi.Input[int] keylife: Time to wait in seconds before phase 1 encryption key expires.
+        :param pulumi.Input[str] kms: Key Management Services server.
         :param pulumi.Input[int] link_cost: VPN tunnel underlay link cost.
         :param pulumi.Input[str] local_gw: IPv4 address of the local gateway's external interface.
         :param pulumi.Input[str] local_gw6: IPv6 address of the local gateway's external interface.
@@ -2828,6 +3148,7 @@ class _Phase1interfaceState:
         :param pulumi.Input[str] monitor_hold_down_time: Time of day at which to fail back to primary after it re-establishes.
         :param pulumi.Input[str] monitor_hold_down_type: Recovery time method when primary interface re-establishes. Valid values: `immediate`, `delay`, `time`.
         :param pulumi.Input[str] monitor_hold_down_weekday: Day of the week to recover once primary re-establishes. Valid values: `everyday`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        :param pulumi.Input[int] monitor_min: Minimum number of links to become degraded before activating this interface.  Zero (0) means all links must be down before activating this interface.
         :param pulumi.Input[str] name: IPsec remote gateway name.
         :param pulumi.Input[str] nattraversal: Enable/disable NAT traversal. Valid values: `enable`, `disable`, `forced`.
         :param pulumi.Input[int] negotiate_timeout: IKE SA negotiation timeout in seconds (1 - 300).
@@ -2848,6 +3169,8 @@ class _Phase1interfaceState:
         :param pulumi.Input[str] proposal: Phase1 proposal. Valid values: `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm-prfsha1`, `aes128gcm-prfsha256`, `aes128gcm-prfsha384`, `aes128gcm-prfsha512`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm-prfsha1`, `aes256gcm-prfsha256`, `aes256gcm-prfsha384`, `aes256gcm-prfsha512`, `chacha20poly1305-prfsha1`, `chacha20poly1305-prfsha256`, `chacha20poly1305-prfsha384`, `chacha20poly1305-prfsha512`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
         :param pulumi.Input[str] psksecret: Pre-shared secret for PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
         :param pulumi.Input[str] psksecret_remote: Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
+        :param pulumi.Input[str] qkd: Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+        :param pulumi.Input[str] qkd_profile: Quantum Key Distribution (QKD) server profile.
         :param pulumi.Input[str] reauth: Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] rekey: Enable/disable phase1 rekey. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remote_gw: IPv4 address of the remote gateway's external interface.
@@ -2860,6 +3183,7 @@ class _Phase1interfaceState:
         :param pulumi.Input[str] signature_hash_alg: Digital Signature Authentication hash algorithms. Valid values: `sha1`, `sha2-256`, `sha2-384`, `sha2-512`.
         :param pulumi.Input[str] split_include_service: Split-include services.
         :param pulumi.Input[str] suite_b: Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
+        :param pulumi.Input[str] transport: Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
         :param pulumi.Input[str] tunnel_search: Tunnel search method for when the interface is shared. Valid values: `selectors`, `nexthop`.
         :param pulumi.Input[str] type: Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
         :param pulumi.Input[str] unity_support: Enable/disable support for Cisco UNITY Configuration Method extensions. Valid values: `disable`, `enable`.
@@ -2893,6 +3217,8 @@ class _Phase1interfaceState:
             pulumi.set(__self__, "authusr", authusr)
         if authusrgrp is not None:
             pulumi.set(__self__, "authusrgrp", authusrgrp)
+        if auto_discovery_crossover is not None:
+            pulumi.set(__self__, "auto_discovery_crossover", auto_discovery_crossover)
         if auto_discovery_forwarder is not None:
             pulumi.set(__self__, "auto_discovery_forwarder", auto_discovery_forwarder)
         if auto_discovery_offer_interval is not None:
@@ -2907,12 +3233,16 @@ class _Phase1interfaceState:
             pulumi.set(__self__, "auto_discovery_shortcuts", auto_discovery_shortcuts)
         if auto_negotiate is not None:
             pulumi.set(__self__, "auto_negotiate", auto_negotiate)
+        if azure_ad_autoconnect is not None:
+            pulumi.set(__self__, "azure_ad_autoconnect", azure_ad_autoconnect)
         if backup_gateways is not None:
             pulumi.set(__self__, "backup_gateways", backup_gateways)
         if banner is not None:
             pulumi.set(__self__, "banner", banner)
         if cert_id_validation is not None:
             pulumi.set(__self__, "cert_id_validation", cert_id_validation)
+        if cert_trust_store is not None:
+            pulumi.set(__self__, "cert_trust_store", cert_trust_store)
         if certificates is not None:
             pulumi.set(__self__, "certificates", certificates)
         if childless_ike is not None:
@@ -2927,6 +3257,10 @@ class _Phase1interfaceState:
             pulumi.set(__self__, "default_gw", default_gw)
         if default_gw_priority is not None:
             pulumi.set(__self__, "default_gw_priority", default_gw_priority)
+        if dev_id is not None:
+            pulumi.set(__self__, "dev_id", dev_id)
+        if dev_id_notification is not None:
+            pulumi.set(__self__, "dev_id_notification", dev_id_notification)
         if dhcp6_ra_linkaddr is not None:
             pulumi.set(__self__, "dhcp6_ra_linkaddr", dhcp6_ra_linkaddr)
         if dhcp_ra_giaddr is not None:
@@ -2951,10 +3285,14 @@ class _Phase1interfaceState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if eap is not None:
             pulumi.set(__self__, "eap", eap)
+        if eap_cert_auth is not None:
+            pulumi.set(__self__, "eap_cert_auth", eap_cert_auth)
         if eap_exclude_peergrp is not None:
             pulumi.set(__self__, "eap_exclude_peergrp", eap_exclude_peergrp)
         if eap_identity is not None:
             pulumi.set(__self__, "eap_identity", eap_identity)
+        if ems_sn_check is not None:
+            pulumi.set(__self__, "ems_sn_check", ems_sn_check)
         if encap_local_gw4 is not None:
             pulumi.set(__self__, "encap_local_gw4", encap_local_gw4)
         if encap_local_gw6 is not None:
@@ -2971,16 +3309,22 @@ class _Phase1interfaceState:
             pulumi.set(__self__, "enforce_unique_id", enforce_unique_id)
         if esn is not None:
             pulumi.set(__self__, "esn", esn)
+        if exchange_fgt_device_id is not None:
+            pulumi.set(__self__, "exchange_fgt_device_id", exchange_fgt_device_id)
         if exchange_interface_ip is not None:
             pulumi.set(__self__, "exchange_interface_ip", exchange_interface_ip)
         if exchange_ip_addr4 is not None:
             pulumi.set(__self__, "exchange_ip_addr4", exchange_ip_addr4)
         if exchange_ip_addr6 is not None:
             pulumi.set(__self__, "exchange_ip_addr6", exchange_ip_addr6)
+        if fallback_tcp_threshold is not None:
+            pulumi.set(__self__, "fallback_tcp_threshold", fallback_tcp_threshold)
         if fec_base is not None:
             pulumi.set(__self__, "fec_base", fec_base)
         if fec_codec is not None:
             pulumi.set(__self__, "fec_codec", fec_codec)
+        if fec_codec_string is not None:
+            pulumi.set(__self__, "fec_codec_string", fec_codec_string)
         if fec_egress is not None:
             pulumi.set(__self__, "fec_egress", fec_egress)
         if fec_health_check is not None:
@@ -2999,10 +3343,14 @@ class _Phase1interfaceState:
             pulumi.set(__self__, "fgsp_sync", fgsp_sync)
         if forticlient_enforcement is not None:
             pulumi.set(__self__, "forticlient_enforcement", forticlient_enforcement)
+        if fortinet_esp is not None:
+            pulumi.set(__self__, "fortinet_esp", fortinet_esp)
         if fragmentation is not None:
             pulumi.set(__self__, "fragmentation", fragmentation)
         if fragmentation_mtu is not None:
             pulumi.set(__self__, "fragmentation_mtu", fragmentation_mtu)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_authentication is not None:
             pulumi.set(__self__, "group_authentication", group_authentication)
         if group_authentication_secret is not None:
@@ -3021,6 +3369,8 @@ class _Phase1interfaceState:
             pulumi.set(__self__, "include_local_lan", include_local_lan)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if internal_domain_lists is not None:
+            pulumi.set(__self__, "internal_domain_lists", internal_domain_lists)
         if ip_delay_interval is not None:
             pulumi.set(__self__, "ip_delay_interval", ip_delay_interval)
         if ip_fragmentation is not None:
@@ -3075,6 +3425,8 @@ class _Phase1interfaceState:
             pulumi.set(__self__, "keepalive", keepalive)
         if keylife is not None:
             pulumi.set(__self__, "keylife", keylife)
+        if kms is not None:
+            pulumi.set(__self__, "kms", kms)
         if link_cost is not None:
             pulumi.set(__self__, "link_cost", link_cost)
         if local_gw is not None:
@@ -3105,6 +3457,8 @@ class _Phase1interfaceState:
             pulumi.set(__self__, "monitor_hold_down_type", monitor_hold_down_type)
         if monitor_hold_down_weekday is not None:
             pulumi.set(__self__, "monitor_hold_down_weekday", monitor_hold_down_weekday)
+        if monitor_min is not None:
+            pulumi.set(__self__, "monitor_min", monitor_min)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if nattraversal is not None:
@@ -3145,6 +3499,10 @@ class _Phase1interfaceState:
             pulumi.set(__self__, "psksecret", psksecret)
         if psksecret_remote is not None:
             pulumi.set(__self__, "psksecret_remote", psksecret_remote)
+        if qkd is not None:
+            pulumi.set(__self__, "qkd", qkd)
+        if qkd_profile is not None:
+            pulumi.set(__self__, "qkd_profile", qkd_profile)
         if reauth is not None:
             pulumi.set(__self__, "reauth", reauth)
         if rekey is not None:
@@ -3169,6 +3527,8 @@ class _Phase1interfaceState:
             pulumi.set(__self__, "split_include_service", split_include_service)
         if suite_b is not None:
             pulumi.set(__self__, "suite_b", suite_b)
+        if transport is not None:
+            pulumi.set(__self__, "transport", transport)
         if tunnel_search is not None:
             pulumi.set(__self__, "tunnel_search", tunnel_search)
         if type is not None:
@@ -3331,6 +3691,18 @@ class _Phase1interfaceState:
         pulumi.set(self, "authusrgrp", value)
 
     @property
+    @pulumi.getter(name="autoDiscoveryCrossover")
+    def auto_discovery_crossover(self) -> Optional[pulumi.Input[str]]:
+        """
+        Allow/block set-up of short-cut tunnels between different network IDs. Valid values: `allow`, `block`.
+        """
+        return pulumi.get(self, "auto_discovery_crossover")
+
+    @auto_discovery_crossover.setter
+    def auto_discovery_crossover(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_discovery_crossover", value)
+
+    @property
     @pulumi.getter(name="autoDiscoveryForwarder")
     def auto_discovery_forwarder(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3415,6 +3787,18 @@ class _Phase1interfaceState:
         pulumi.set(self, "auto_negotiate", value)
 
     @property
+    @pulumi.getter(name="azureAdAutoconnect")
+    def azure_ad_autoconnect(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "azure_ad_autoconnect")
+
+    @azure_ad_autoconnect.setter
+    def azure_ad_autoconnect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "azure_ad_autoconnect", value)
+
+    @property
     @pulumi.getter(name="backupGateways")
     def backup_gateways(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Phase1interfaceBackupGatewayArgs']]]]:
         """
@@ -3449,6 +3833,18 @@ class _Phase1interfaceState:
     @cert_id_validation.setter
     def cert_id_validation(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cert_id_validation", value)
+
+    @property
+    @pulumi.getter(name="certTrustStore")
+    def cert_trust_store(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA certificate trust store. Valid values: `local`, `ems`.
+        """
+        return pulumi.get(self, "cert_trust_store")
+
+    @cert_trust_store.setter
+    def cert_trust_store(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_trust_store", value)
 
     @property
     @pulumi.getter
@@ -3533,6 +3929,30 @@ class _Phase1interfaceState:
     @default_gw_priority.setter
     def default_gw_priority(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "default_gw_priority", value)
+
+    @property
+    @pulumi.getter(name="devId")
+    def dev_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Device ID carried by the device ID notification.
+        """
+        return pulumi.get(self, "dev_id")
+
+    @dev_id.setter
+    def dev_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dev_id", value)
+
+    @property
+    @pulumi.getter(name="devIdNotification")
+    def dev_id_notification(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable device ID notification. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dev_id_notification")
+
+    @dev_id_notification.setter
+    def dev_id_notification(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dev_id_notification", value)
 
     @property
     @pulumi.getter(name="dhcp6RaLinkaddr")
@@ -3679,6 +4099,18 @@ class _Phase1interfaceState:
         pulumi.set(self, "eap", value)
 
     @property
+    @pulumi.getter(name="eapCertAuth")
+    def eap_cert_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "eap_cert_auth")
+
+    @eap_cert_auth.setter
+    def eap_cert_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "eap_cert_auth", value)
+
+    @property
     @pulumi.getter(name="eapExcludePeergrp")
     def eap_exclude_peergrp(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3701,6 +4133,18 @@ class _Phase1interfaceState:
     @eap_identity.setter
     def eap_identity(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "eap_identity", value)
+
+    @property
+    @pulumi.getter(name="emsSnCheck")
+    def ems_sn_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ems_sn_check")
+
+    @ems_sn_check.setter
+    def ems_sn_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ems_sn_check", value)
 
     @property
     @pulumi.getter(name="encapLocalGw4")
@@ -3799,6 +4243,18 @@ class _Phase1interfaceState:
         pulumi.set(self, "esn", value)
 
     @property
+    @pulumi.getter(name="exchangeFgtDeviceId")
+    def exchange_fgt_device_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "exchange_fgt_device_id")
+
+    @exchange_fgt_device_id.setter
+    def exchange_fgt_device_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exchange_fgt_device_id", value)
+
+    @property
     @pulumi.getter(name="exchangeInterfaceIp")
     def exchange_interface_ip(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3835,6 +4291,18 @@ class _Phase1interfaceState:
         pulumi.set(self, "exchange_ip_addr6", value)
 
     @property
+    @pulumi.getter(name="fallbackTcpThreshold")
+    def fallback_tcp_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+        """
+        return pulumi.get(self, "fallback_tcp_threshold")
+
+    @fallback_tcp_threshold.setter
+    def fallback_tcp_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fallback_tcp_threshold", value)
+
+    @property
     @pulumi.getter(name="fecBase")
     def fec_base(self) -> Optional[pulumi.Input[int]]:
         """
@@ -3857,6 +4325,18 @@ class _Phase1interfaceState:
     @fec_codec.setter
     def fec_codec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fec_codec", value)
+
+    @property
+    @pulumi.getter(name="fecCodecString")
+    def fec_codec_string(self) -> Optional[pulumi.Input[str]]:
+        """
+        Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+        """
+        return pulumi.get(self, "fec_codec_string")
+
+    @fec_codec_string.setter
+    def fec_codec_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fec_codec_string", value)
 
     @property
     @pulumi.getter(name="fecEgress")
@@ -3967,6 +4447,18 @@ class _Phase1interfaceState:
         pulumi.set(self, "forticlient_enforcement", value)
 
     @property
+    @pulumi.getter(name="fortinetEsp")
+    def fortinet_esp(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fortinet_esp")
+
+    @fortinet_esp.setter
+    def fortinet_esp(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortinet_esp", value)
+
+    @property
     @pulumi.getter
     def fragmentation(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3989,6 +4481,18 @@ class _Phase1interfaceState:
     @fragmentation_mtu.setter
     def fragmentation_mtu(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fragmentation_mtu", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupAuthentication")
@@ -4097,6 +4601,18 @@ class _Phase1interfaceState:
     @interface.setter
     def interface(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="internalDomainLists")
+    def internal_domain_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Phase1interfaceInternalDomainListArgs']]]]:
+        """
+        One or more internal domain names in quotes separated by spaces. The structure of `internal_domain_list` block is documented below.
+        """
+        return pulumi.get(self, "internal_domain_lists")
+
+    @internal_domain_lists.setter
+    def internal_domain_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Phase1interfaceInternalDomainListArgs']]]]):
+        pulumi.set(self, "internal_domain_lists", value)
 
     @property
     @pulumi.getter(name="ipDelayInterval")
@@ -4423,6 +4939,18 @@ class _Phase1interfaceState:
         pulumi.set(self, "keylife", value)
 
     @property
+    @pulumi.getter
+    def kms(self) -> Optional[pulumi.Input[str]]:
+        """
+        Key Management Services server.
+        """
+        return pulumi.get(self, "kms")
+
+    @kms.setter
+    def kms(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "kms", value)
+
+    @property
     @pulumi.getter(name="linkCost")
     def link_cost(self) -> Optional[pulumi.Input[int]]:
         """
@@ -4601,6 +5129,18 @@ class _Phase1interfaceState:
     @monitor_hold_down_weekday.setter
     def monitor_hold_down_weekday(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "monitor_hold_down_weekday", value)
+
+    @property
+    @pulumi.getter(name="monitorMin")
+    def monitor_min(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimum number of links to become degraded before activating this interface.  Zero (0) means all links must be down before activating this interface.
+        """
+        return pulumi.get(self, "monitor_min")
+
+    @monitor_min.setter
+    def monitor_min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "monitor_min", value)
 
     @property
     @pulumi.getter
@@ -4844,6 +5384,30 @@ class _Phase1interfaceState:
 
     @property
     @pulumi.getter
+    def qkd(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+        """
+        return pulumi.get(self, "qkd")
+
+    @qkd.setter
+    def qkd(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "qkd", value)
+
+    @property
+    @pulumi.getter(name="qkdProfile")
+    def qkd_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Quantum Key Distribution (QKD) server profile.
+        """
+        return pulumi.get(self, "qkd_profile")
+
+    @qkd_profile.setter
+    def qkd_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "qkd_profile", value)
+
+    @property
+    @pulumi.getter
     def reauth(self) -> Optional[pulumi.Input[str]]:
         """
         Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
@@ -4987,6 +5551,18 @@ class _Phase1interfaceState:
         pulumi.set(self, "suite_b", value)
 
     @property
+    @pulumi.getter
+    def transport(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+        """
+        return pulumi.get(self, "transport")
+
+    @transport.setter
+    def transport(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "transport", value)
+
+    @property
     @pulumi.getter(name="tunnelSearch")
     def tunnel_search(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5100,6 +5676,7 @@ class Phase1interface(pulumi.CustomResource):
                  authpasswd: Optional[pulumi.Input[str]] = None,
                  authusr: Optional[pulumi.Input[str]] = None,
                  authusrgrp: Optional[pulumi.Input[str]] = None,
+                 auto_discovery_crossover: Optional[pulumi.Input[str]] = None,
                  auto_discovery_forwarder: Optional[pulumi.Input[str]] = None,
                  auto_discovery_offer_interval: Optional[pulumi.Input[int]] = None,
                  auto_discovery_psk: Optional[pulumi.Input[str]] = None,
@@ -5107,9 +5684,11 @@ class Phase1interface(pulumi.CustomResource):
                  auto_discovery_sender: Optional[pulumi.Input[str]] = None,
                  auto_discovery_shortcuts: Optional[pulumi.Input[str]] = None,
                  auto_negotiate: Optional[pulumi.Input[str]] = None,
+                 azure_ad_autoconnect: Optional[pulumi.Input[str]] = None,
                  backup_gateways: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceBackupGatewayArgs']]]]] = None,
                  banner: Optional[pulumi.Input[str]] = None,
                  cert_id_validation: Optional[pulumi.Input[str]] = None,
+                 cert_trust_store: Optional[pulumi.Input[str]] = None,
                  certificates: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceCertificateArgs']]]]] = None,
                  childless_ike: Optional[pulumi.Input[str]] = None,
                  client_auto_negotiate: Optional[pulumi.Input[str]] = None,
@@ -5117,6 +5696,8 @@ class Phase1interface(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  default_gw: Optional[pulumi.Input[str]] = None,
                  default_gw_priority: Optional[pulumi.Input[int]] = None,
+                 dev_id: Optional[pulumi.Input[str]] = None,
+                 dev_id_notification: Optional[pulumi.Input[str]] = None,
                  dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  dhgrp: Optional[pulumi.Input[str]] = None,
@@ -5129,8 +5710,10 @@ class Phase1interface(pulumi.CustomResource):
                  dpd_retryinterval: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  eap: Optional[pulumi.Input[str]] = None,
+                 eap_cert_auth: Optional[pulumi.Input[str]] = None,
                  eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
                  eap_identity: Optional[pulumi.Input[str]] = None,
+                 ems_sn_check: Optional[pulumi.Input[str]] = None,
                  encap_local_gw4: Optional[pulumi.Input[str]] = None,
                  encap_local_gw6: Optional[pulumi.Input[str]] = None,
                  encap_remote_gw4: Optional[pulumi.Input[str]] = None,
@@ -5139,11 +5722,14 @@ class Phase1interface(pulumi.CustomResource):
                  encapsulation_address: Optional[pulumi.Input[str]] = None,
                  enforce_unique_id: Optional[pulumi.Input[str]] = None,
                  esn: Optional[pulumi.Input[str]] = None,
+                 exchange_fgt_device_id: Optional[pulumi.Input[str]] = None,
                  exchange_interface_ip: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr4: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr6: Optional[pulumi.Input[str]] = None,
+                 fallback_tcp_threshold: Optional[pulumi.Input[int]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
+                 fec_codec_string: Optional[pulumi.Input[str]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
                  fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -5153,8 +5739,10 @@ class Phase1interface(pulumi.CustomResource):
                  fec_send_timeout: Optional[pulumi.Input[int]] = None,
                  fgsp_sync: Optional[pulumi.Input[str]] = None,
                  forticlient_enforcement: Optional[pulumi.Input[str]] = None,
+                 fortinet_esp: Optional[pulumi.Input[str]] = None,
                  fragmentation: Optional[pulumi.Input[str]] = None,
                  fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_authentication: Optional[pulumi.Input[str]] = None,
                  group_authentication_secret: Optional[pulumi.Input[str]] = None,
                  ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -5164,6 +5752,7 @@ class Phase1interface(pulumi.CustomResource):
                  inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceInternalDomainListArgs']]]]] = None,
                  ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ip_fragmentation: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
@@ -5191,6 +5780,7 @@ class Phase1interface(pulumi.CustomResource):
                  ipv6_start_ip: Optional[pulumi.Input[str]] = None,
                  keepalive: Optional[pulumi.Input[int]] = None,
                  keylife: Optional[pulumi.Input[int]] = None,
+                 kms: Optional[pulumi.Input[str]] = None,
                  link_cost: Optional[pulumi.Input[int]] = None,
                  local_gw: Optional[pulumi.Input[str]] = None,
                  local_gw6: Optional[pulumi.Input[str]] = None,
@@ -5206,6 +5796,7 @@ class Phase1interface(pulumi.CustomResource):
                  monitor_hold_down_time: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_type: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_weekday: Optional[pulumi.Input[str]] = None,
+                 monitor_min: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nattraversal: Optional[pulumi.Input[str]] = None,
                  negotiate_timeout: Optional[pulumi.Input[int]] = None,
@@ -5226,6 +5817,8 @@ class Phase1interface(pulumi.CustomResource):
                  proposal: Optional[pulumi.Input[str]] = None,
                  psksecret: Optional[pulumi.Input[str]] = None,
                  psksecret_remote: Optional[pulumi.Input[str]] = None,
+                 qkd: Optional[pulumi.Input[str]] = None,
+                 qkd_profile: Optional[pulumi.Input[str]] = None,
                  reauth: Optional[pulumi.Input[str]] = None,
                  rekey: Optional[pulumi.Input[str]] = None,
                  remote_gw: Optional[pulumi.Input[str]] = None,
@@ -5238,6 +5831,7 @@ class Phase1interface(pulumi.CustomResource):
                  signature_hash_alg: Optional[pulumi.Input[str]] = None,
                  split_include_service: Optional[pulumi.Input[str]] = None,
                  suite_b: Optional[pulumi.Input[str]] = None,
+                 transport: Optional[pulumi.Input[str]] = None,
                  tunnel_search: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  unity_support: Optional[pulumi.Input[str]] = None,
@@ -5389,6 +5983,7 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] authpasswd: XAuth password (max 35 characters).
         :param pulumi.Input[str] authusr: XAuth user name.
         :param pulumi.Input[str] authusrgrp: Authentication user group.
+        :param pulumi.Input[str] auto_discovery_crossover: Allow/block set-up of short-cut tunnels between different network IDs. Valid values: `allow`, `block`.
         :param pulumi.Input[str] auto_discovery_forwarder: Enable/disable forwarding auto-discovery short-cut messages. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] auto_discovery_offer_interval: Interval between shortcut offer messages in seconds (1 - 300, default = 5).
         :param pulumi.Input[str] auto_discovery_psk: Enable/disable use of pre-shared secrets for authentication of auto-discovery tunnels. Valid values: `enable`, `disable`.
@@ -5396,9 +5991,11 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] auto_discovery_sender: Enable/disable sending auto-discovery short-cut messages. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auto_discovery_shortcuts: Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
         :param pulumi.Input[str] auto_negotiate: Enable/disable automatic initiation of IKE SA negotiation. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] azure_ad_autoconnect: Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceBackupGatewayArgs']]]] backup_gateways: Instruct unity clients about the backup gateway address(es). The structure of `backup_gateway` block is documented below.
         :param pulumi.Input[str] banner: Message that unity client should display after connecting.
         :param pulumi.Input[str] cert_id_validation: Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cert_trust_store: CA certificate trust store. Valid values: `local`, `ems`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceCertificateArgs']]]] certificates: The names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
         :param pulumi.Input[str] childless_ike: Enable/disable childless IKEv2 initiation (RFC 6023). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] client_auto_negotiate: Enable/disable allowing the VPN client to bring up the tunnel when there is no traffic. Valid values: `disable`, `enable`.
@@ -5406,6 +6003,8 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] default_gw: IPv4 address of default route gateway to use for traffic exiting the interface.
         :param pulumi.Input[int] default_gw_priority: Priority for default gateway route. A higher priority number signifies a less preferred route.
+        :param pulumi.Input[str] dev_id: Device ID carried by the device ID notification.
+        :param pulumi.Input[str] dev_id_notification: Enable/disable device ID notification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp6_ra_linkaddr: Relay agent IPv6 link address to use in DHCP6 requests.
         :param pulumi.Input[str] dhcp_ra_giaddr: Relay agent gateway IP address to use in the giaddr field of DHCP requests.
         :param pulumi.Input[str] dhgrp: DH group. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`, `32`.
@@ -5418,8 +6017,10 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] dpd_retryinterval: DPD retry interval.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] eap: Enable/disable IKEv2 EAP authentication. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] eap_cert_auth: Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eap_exclude_peergrp: Peer group excluded from EAP authentication.
         :param pulumi.Input[str] eap_identity: IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
+        :param pulumi.Input[str] ems_sn_check: Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] encap_local_gw4: Local IPv4 address of GRE/VXLAN tunnel.
         :param pulumi.Input[str] encap_local_gw6: Local IPv6 address of GRE/VXLAN tunnel.
         :param pulumi.Input[str] encap_remote_gw4: Remote IPv4 address of GRE/VXLAN tunnel.
@@ -5428,11 +6029,14 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] encapsulation_address: Source for GRE/VXLAN tunnel address. Valid values: `ike`, `ipv4`, `ipv6`.
         :param pulumi.Input[str] enforce_unique_id: Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
         :param pulumi.Input[str] esn: Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+        :param pulumi.Input[str] exchange_fgt_device_id: Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] exchange_interface_ip: Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] exchange_ip_addr4: IPv4 address to exchange with peers.
         :param pulumi.Input[str] exchange_ip_addr6: IPv6 address to exchange with peers
+        :param pulumi.Input[int] fallback_tcp_threshold: Timeout in seconds before falling back IKE/IPsec traffic to tcp.
         :param pulumi.Input[int] fec_base: Number of base Forward Error Correction packets (1 - 100).
         :param pulumi.Input[int] fec_codec: ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+        :param pulumi.Input[str] fec_codec_string: Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
         :param pulumi.Input[str] fec_egress: Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fec_health_check: SD-WAN health check.
         :param pulumi.Input[str] fec_ingress: Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
@@ -5442,8 +6046,10 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[int] fec_send_timeout: Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
         :param pulumi.Input[str] fgsp_sync: Enable/disable IPsec syncing of tunnels for FGSP IPsec. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_enforcement: Enable/disable FortiClient enforcement. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fortinet_esp: Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fragmentation: Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fragmentation_mtu: IKE fragmentation MTU (500 - 16000).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_authentication: Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] group_authentication_secret: Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
         :param pulumi.Input[str] ha_sync_esp_seqno: Enable/disable sequence number jump ahead for IPsec HA. Valid values: `enable`, `disable`.
@@ -5453,6 +6059,7 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] inbound_dscp_copy: Enable/disable copy the dscp in the ESP header to the inner IP Header. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] include_local_lan: Enable/disable allow local LAN access on unity clients. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] interface: Local physical, aggregate, or VLAN outgoing interface.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceInternalDomainListArgs']]]] internal_domain_lists: One or more internal domain names in quotes separated by spaces. The structure of `internal_domain_list` block is documented below.
         :param pulumi.Input[int] ip_delay_interval: IP address reuse delay interval in seconds (0 - 28800).
         :param pulumi.Input[str] ip_fragmentation: Determine whether IP packets are fragmented before or after IPsec encapsulation. Valid values: `pre-encapsulation`, `post-encapsulation`.
         :param pulumi.Input[str] ip_version: IP version to use for VPN interface. Valid values: `4`, `6`.
@@ -5480,6 +6087,7 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] ipv6_start_ip: Start of IPv6 range.
         :param pulumi.Input[int] keepalive: NAT-T keep alive interval.
         :param pulumi.Input[int] keylife: Time to wait in seconds before phase 1 encryption key expires.
+        :param pulumi.Input[str] kms: Key Management Services server.
         :param pulumi.Input[int] link_cost: VPN tunnel underlay link cost.
         :param pulumi.Input[str] local_gw: IPv4 address of the local gateway's external interface.
         :param pulumi.Input[str] local_gw6: IPv6 address of the local gateway's external interface.
@@ -5495,6 +6103,7 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] monitor_hold_down_time: Time of day at which to fail back to primary after it re-establishes.
         :param pulumi.Input[str] monitor_hold_down_type: Recovery time method when primary interface re-establishes. Valid values: `immediate`, `delay`, `time`.
         :param pulumi.Input[str] monitor_hold_down_weekday: Day of the week to recover once primary re-establishes. Valid values: `everyday`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        :param pulumi.Input[int] monitor_min: Minimum number of links to become degraded before activating this interface.  Zero (0) means all links must be down before activating this interface.
         :param pulumi.Input[str] name: IPsec remote gateway name.
         :param pulumi.Input[str] nattraversal: Enable/disable NAT traversal. Valid values: `enable`, `disable`, `forced`.
         :param pulumi.Input[int] negotiate_timeout: IKE SA negotiation timeout in seconds (1 - 300).
@@ -5515,6 +6124,8 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] proposal: Phase1 proposal. Valid values: `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm-prfsha1`, `aes128gcm-prfsha256`, `aes128gcm-prfsha384`, `aes128gcm-prfsha512`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm-prfsha1`, `aes256gcm-prfsha256`, `aes256gcm-prfsha384`, `aes256gcm-prfsha512`, `chacha20poly1305-prfsha1`, `chacha20poly1305-prfsha256`, `chacha20poly1305-prfsha384`, `chacha20poly1305-prfsha512`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
         :param pulumi.Input[str] psksecret: Pre-shared secret for PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
         :param pulumi.Input[str] psksecret_remote: Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
+        :param pulumi.Input[str] qkd: Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+        :param pulumi.Input[str] qkd_profile: Quantum Key Distribution (QKD) server profile.
         :param pulumi.Input[str] reauth: Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] rekey: Enable/disable phase1 rekey. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remote_gw: IPv4 address of the remote gateway's external interface.
@@ -5527,6 +6138,7 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] signature_hash_alg: Digital Signature Authentication hash algorithms. Valid values: `sha1`, `sha2-256`, `sha2-384`, `sha2-512`.
         :param pulumi.Input[str] split_include_service: Split-include services.
         :param pulumi.Input[str] suite_b: Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
+        :param pulumi.Input[str] transport: Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
         :param pulumi.Input[str] tunnel_search: Tunnel search method for when the interface is shared. Valid values: `selectors`, `nexthop`.
         :param pulumi.Input[str] type: Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
         :param pulumi.Input[str] unity_support: Enable/disable support for Cisco UNITY Configuration Method extensions. Valid values: `disable`, `enable`.
@@ -5697,6 +6309,7 @@ class Phase1interface(pulumi.CustomResource):
                  authpasswd: Optional[pulumi.Input[str]] = None,
                  authusr: Optional[pulumi.Input[str]] = None,
                  authusrgrp: Optional[pulumi.Input[str]] = None,
+                 auto_discovery_crossover: Optional[pulumi.Input[str]] = None,
                  auto_discovery_forwarder: Optional[pulumi.Input[str]] = None,
                  auto_discovery_offer_interval: Optional[pulumi.Input[int]] = None,
                  auto_discovery_psk: Optional[pulumi.Input[str]] = None,
@@ -5704,9 +6317,11 @@ class Phase1interface(pulumi.CustomResource):
                  auto_discovery_sender: Optional[pulumi.Input[str]] = None,
                  auto_discovery_shortcuts: Optional[pulumi.Input[str]] = None,
                  auto_negotiate: Optional[pulumi.Input[str]] = None,
+                 azure_ad_autoconnect: Optional[pulumi.Input[str]] = None,
                  backup_gateways: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceBackupGatewayArgs']]]]] = None,
                  banner: Optional[pulumi.Input[str]] = None,
                  cert_id_validation: Optional[pulumi.Input[str]] = None,
+                 cert_trust_store: Optional[pulumi.Input[str]] = None,
                  certificates: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceCertificateArgs']]]]] = None,
                  childless_ike: Optional[pulumi.Input[str]] = None,
                  client_auto_negotiate: Optional[pulumi.Input[str]] = None,
@@ -5714,6 +6329,8 @@ class Phase1interface(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  default_gw: Optional[pulumi.Input[str]] = None,
                  default_gw_priority: Optional[pulumi.Input[int]] = None,
+                 dev_id: Optional[pulumi.Input[str]] = None,
+                 dev_id_notification: Optional[pulumi.Input[str]] = None,
                  dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  dhgrp: Optional[pulumi.Input[str]] = None,
@@ -5726,8 +6343,10 @@ class Phase1interface(pulumi.CustomResource):
                  dpd_retryinterval: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  eap: Optional[pulumi.Input[str]] = None,
+                 eap_cert_auth: Optional[pulumi.Input[str]] = None,
                  eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
                  eap_identity: Optional[pulumi.Input[str]] = None,
+                 ems_sn_check: Optional[pulumi.Input[str]] = None,
                  encap_local_gw4: Optional[pulumi.Input[str]] = None,
                  encap_local_gw6: Optional[pulumi.Input[str]] = None,
                  encap_remote_gw4: Optional[pulumi.Input[str]] = None,
@@ -5736,11 +6355,14 @@ class Phase1interface(pulumi.CustomResource):
                  encapsulation_address: Optional[pulumi.Input[str]] = None,
                  enforce_unique_id: Optional[pulumi.Input[str]] = None,
                  esn: Optional[pulumi.Input[str]] = None,
+                 exchange_fgt_device_id: Optional[pulumi.Input[str]] = None,
                  exchange_interface_ip: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr4: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr6: Optional[pulumi.Input[str]] = None,
+                 fallback_tcp_threshold: Optional[pulumi.Input[int]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
+                 fec_codec_string: Optional[pulumi.Input[str]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
                  fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -5750,8 +6372,10 @@ class Phase1interface(pulumi.CustomResource):
                  fec_send_timeout: Optional[pulumi.Input[int]] = None,
                  fgsp_sync: Optional[pulumi.Input[str]] = None,
                  forticlient_enforcement: Optional[pulumi.Input[str]] = None,
+                 fortinet_esp: Optional[pulumi.Input[str]] = None,
                  fragmentation: Optional[pulumi.Input[str]] = None,
                  fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_authentication: Optional[pulumi.Input[str]] = None,
                  group_authentication_secret: Optional[pulumi.Input[str]] = None,
                  ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -5761,6 +6385,7 @@ class Phase1interface(pulumi.CustomResource):
                  inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceInternalDomainListArgs']]]]] = None,
                  ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ip_fragmentation: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
@@ -5788,6 +6413,7 @@ class Phase1interface(pulumi.CustomResource):
                  ipv6_start_ip: Optional[pulumi.Input[str]] = None,
                  keepalive: Optional[pulumi.Input[int]] = None,
                  keylife: Optional[pulumi.Input[int]] = None,
+                 kms: Optional[pulumi.Input[str]] = None,
                  link_cost: Optional[pulumi.Input[int]] = None,
                  local_gw: Optional[pulumi.Input[str]] = None,
                  local_gw6: Optional[pulumi.Input[str]] = None,
@@ -5803,6 +6429,7 @@ class Phase1interface(pulumi.CustomResource):
                  monitor_hold_down_time: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_type: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_weekday: Optional[pulumi.Input[str]] = None,
+                 monitor_min: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nattraversal: Optional[pulumi.Input[str]] = None,
                  negotiate_timeout: Optional[pulumi.Input[int]] = None,
@@ -5823,6 +6450,8 @@ class Phase1interface(pulumi.CustomResource):
                  proposal: Optional[pulumi.Input[str]] = None,
                  psksecret: Optional[pulumi.Input[str]] = None,
                  psksecret_remote: Optional[pulumi.Input[str]] = None,
+                 qkd: Optional[pulumi.Input[str]] = None,
+                 qkd_profile: Optional[pulumi.Input[str]] = None,
                  reauth: Optional[pulumi.Input[str]] = None,
                  rekey: Optional[pulumi.Input[str]] = None,
                  remote_gw: Optional[pulumi.Input[str]] = None,
@@ -5835,6 +6464,7 @@ class Phase1interface(pulumi.CustomResource):
                  signature_hash_alg: Optional[pulumi.Input[str]] = None,
                  split_include_service: Optional[pulumi.Input[str]] = None,
                  suite_b: Optional[pulumi.Input[str]] = None,
+                 transport: Optional[pulumi.Input[str]] = None,
                  tunnel_search: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  unity_support: Optional[pulumi.Input[str]] = None,
@@ -5864,6 +6494,7 @@ class Phase1interface(pulumi.CustomResource):
             __props__.__dict__["authpasswd"] = None if authpasswd is None else pulumi.Output.secret(authpasswd)
             __props__.__dict__["authusr"] = authusr
             __props__.__dict__["authusrgrp"] = authusrgrp
+            __props__.__dict__["auto_discovery_crossover"] = auto_discovery_crossover
             __props__.__dict__["auto_discovery_forwarder"] = auto_discovery_forwarder
             __props__.__dict__["auto_discovery_offer_interval"] = auto_discovery_offer_interval
             __props__.__dict__["auto_discovery_psk"] = auto_discovery_psk
@@ -5871,9 +6502,11 @@ class Phase1interface(pulumi.CustomResource):
             __props__.__dict__["auto_discovery_sender"] = auto_discovery_sender
             __props__.__dict__["auto_discovery_shortcuts"] = auto_discovery_shortcuts
             __props__.__dict__["auto_negotiate"] = auto_negotiate
+            __props__.__dict__["azure_ad_autoconnect"] = azure_ad_autoconnect
             __props__.__dict__["backup_gateways"] = backup_gateways
             __props__.__dict__["banner"] = banner
             __props__.__dict__["cert_id_validation"] = cert_id_validation
+            __props__.__dict__["cert_trust_store"] = cert_trust_store
             __props__.__dict__["certificates"] = certificates
             __props__.__dict__["childless_ike"] = childless_ike
             __props__.__dict__["client_auto_negotiate"] = client_auto_negotiate
@@ -5881,6 +6514,8 @@ class Phase1interface(pulumi.CustomResource):
             __props__.__dict__["comments"] = comments
             __props__.__dict__["default_gw"] = default_gw
             __props__.__dict__["default_gw_priority"] = default_gw_priority
+            __props__.__dict__["dev_id"] = dev_id
+            __props__.__dict__["dev_id_notification"] = dev_id_notification
             __props__.__dict__["dhcp6_ra_linkaddr"] = dhcp6_ra_linkaddr
             __props__.__dict__["dhcp_ra_giaddr"] = dhcp_ra_giaddr
             __props__.__dict__["dhgrp"] = dhgrp
@@ -5893,8 +6528,10 @@ class Phase1interface(pulumi.CustomResource):
             __props__.__dict__["dpd_retryinterval"] = dpd_retryinterval
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["eap"] = eap
+            __props__.__dict__["eap_cert_auth"] = eap_cert_auth
             __props__.__dict__["eap_exclude_peergrp"] = eap_exclude_peergrp
             __props__.__dict__["eap_identity"] = eap_identity
+            __props__.__dict__["ems_sn_check"] = ems_sn_check
             __props__.__dict__["encap_local_gw4"] = encap_local_gw4
             __props__.__dict__["encap_local_gw6"] = encap_local_gw6
             __props__.__dict__["encap_remote_gw4"] = encap_remote_gw4
@@ -5903,11 +6540,14 @@ class Phase1interface(pulumi.CustomResource):
             __props__.__dict__["encapsulation_address"] = encapsulation_address
             __props__.__dict__["enforce_unique_id"] = enforce_unique_id
             __props__.__dict__["esn"] = esn
+            __props__.__dict__["exchange_fgt_device_id"] = exchange_fgt_device_id
             __props__.__dict__["exchange_interface_ip"] = exchange_interface_ip
             __props__.__dict__["exchange_ip_addr4"] = exchange_ip_addr4
             __props__.__dict__["exchange_ip_addr6"] = exchange_ip_addr6
+            __props__.__dict__["fallback_tcp_threshold"] = fallback_tcp_threshold
             __props__.__dict__["fec_base"] = fec_base
             __props__.__dict__["fec_codec"] = fec_codec
+            __props__.__dict__["fec_codec_string"] = fec_codec_string
             __props__.__dict__["fec_egress"] = fec_egress
             __props__.__dict__["fec_health_check"] = fec_health_check
             __props__.__dict__["fec_ingress"] = fec_ingress
@@ -5917,8 +6557,10 @@ class Phase1interface(pulumi.CustomResource):
             __props__.__dict__["fec_send_timeout"] = fec_send_timeout
             __props__.__dict__["fgsp_sync"] = fgsp_sync
             __props__.__dict__["forticlient_enforcement"] = forticlient_enforcement
+            __props__.__dict__["fortinet_esp"] = fortinet_esp
             __props__.__dict__["fragmentation"] = fragmentation
             __props__.__dict__["fragmentation_mtu"] = fragmentation_mtu
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_authentication"] = group_authentication
             __props__.__dict__["group_authentication_secret"] = None if group_authentication_secret is None else pulumi.Output.secret(group_authentication_secret)
             __props__.__dict__["ha_sync_esp_seqno"] = ha_sync_esp_seqno
@@ -5930,6 +6572,7 @@ class Phase1interface(pulumi.CustomResource):
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
+            __props__.__dict__["internal_domain_lists"] = internal_domain_lists
             __props__.__dict__["ip_delay_interval"] = ip_delay_interval
             __props__.__dict__["ip_fragmentation"] = ip_fragmentation
             __props__.__dict__["ip_version"] = ip_version
@@ -5957,6 +6600,7 @@ class Phase1interface(pulumi.CustomResource):
             __props__.__dict__["ipv6_start_ip"] = ipv6_start_ip
             __props__.__dict__["keepalive"] = keepalive
             __props__.__dict__["keylife"] = keylife
+            __props__.__dict__["kms"] = kms
             __props__.__dict__["link_cost"] = link_cost
             __props__.__dict__["local_gw"] = local_gw
             __props__.__dict__["local_gw6"] = local_gw6
@@ -5972,6 +6616,7 @@ class Phase1interface(pulumi.CustomResource):
             __props__.__dict__["monitor_hold_down_time"] = monitor_hold_down_time
             __props__.__dict__["monitor_hold_down_type"] = monitor_hold_down_type
             __props__.__dict__["monitor_hold_down_weekday"] = monitor_hold_down_weekday
+            __props__.__dict__["monitor_min"] = monitor_min
             __props__.__dict__["name"] = name
             __props__.__dict__["nattraversal"] = nattraversal
             __props__.__dict__["negotiate_timeout"] = negotiate_timeout
@@ -5994,6 +6639,8 @@ class Phase1interface(pulumi.CustomResource):
             __props__.__dict__["proposal"] = proposal
             __props__.__dict__["psksecret"] = None if psksecret is None else pulumi.Output.secret(psksecret)
             __props__.__dict__["psksecret_remote"] = None if psksecret_remote is None else pulumi.Output.secret(psksecret_remote)
+            __props__.__dict__["qkd"] = qkd
+            __props__.__dict__["qkd_profile"] = qkd_profile
             __props__.__dict__["reauth"] = reauth
             __props__.__dict__["rekey"] = rekey
             __props__.__dict__["remote_gw"] = remote_gw
@@ -6006,6 +6653,7 @@ class Phase1interface(pulumi.CustomResource):
             __props__.__dict__["signature_hash_alg"] = signature_hash_alg
             __props__.__dict__["split_include_service"] = split_include_service
             __props__.__dict__["suite_b"] = suite_b
+            __props__.__dict__["transport"] = transport
             __props__.__dict__["tunnel_search"] = tunnel_search
             __props__.__dict__["type"] = type
             __props__.__dict__["unity_support"] = unity_support
@@ -6038,6 +6686,7 @@ class Phase1interface(pulumi.CustomResource):
             authpasswd: Optional[pulumi.Input[str]] = None,
             authusr: Optional[pulumi.Input[str]] = None,
             authusrgrp: Optional[pulumi.Input[str]] = None,
+            auto_discovery_crossover: Optional[pulumi.Input[str]] = None,
             auto_discovery_forwarder: Optional[pulumi.Input[str]] = None,
             auto_discovery_offer_interval: Optional[pulumi.Input[int]] = None,
             auto_discovery_psk: Optional[pulumi.Input[str]] = None,
@@ -6045,9 +6694,11 @@ class Phase1interface(pulumi.CustomResource):
             auto_discovery_sender: Optional[pulumi.Input[str]] = None,
             auto_discovery_shortcuts: Optional[pulumi.Input[str]] = None,
             auto_negotiate: Optional[pulumi.Input[str]] = None,
+            azure_ad_autoconnect: Optional[pulumi.Input[str]] = None,
             backup_gateways: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceBackupGatewayArgs']]]]] = None,
             banner: Optional[pulumi.Input[str]] = None,
             cert_id_validation: Optional[pulumi.Input[str]] = None,
+            cert_trust_store: Optional[pulumi.Input[str]] = None,
             certificates: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceCertificateArgs']]]]] = None,
             childless_ike: Optional[pulumi.Input[str]] = None,
             client_auto_negotiate: Optional[pulumi.Input[str]] = None,
@@ -6055,6 +6706,8 @@ class Phase1interface(pulumi.CustomResource):
             comments: Optional[pulumi.Input[str]] = None,
             default_gw: Optional[pulumi.Input[str]] = None,
             default_gw_priority: Optional[pulumi.Input[int]] = None,
+            dev_id: Optional[pulumi.Input[str]] = None,
+            dev_id_notification: Optional[pulumi.Input[str]] = None,
             dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
             dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
             dhgrp: Optional[pulumi.Input[str]] = None,
@@ -6067,8 +6720,10 @@ class Phase1interface(pulumi.CustomResource):
             dpd_retryinterval: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             eap: Optional[pulumi.Input[str]] = None,
+            eap_cert_auth: Optional[pulumi.Input[str]] = None,
             eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
             eap_identity: Optional[pulumi.Input[str]] = None,
+            ems_sn_check: Optional[pulumi.Input[str]] = None,
             encap_local_gw4: Optional[pulumi.Input[str]] = None,
             encap_local_gw6: Optional[pulumi.Input[str]] = None,
             encap_remote_gw4: Optional[pulumi.Input[str]] = None,
@@ -6077,11 +6732,14 @@ class Phase1interface(pulumi.CustomResource):
             encapsulation_address: Optional[pulumi.Input[str]] = None,
             enforce_unique_id: Optional[pulumi.Input[str]] = None,
             esn: Optional[pulumi.Input[str]] = None,
+            exchange_fgt_device_id: Optional[pulumi.Input[str]] = None,
             exchange_interface_ip: Optional[pulumi.Input[str]] = None,
             exchange_ip_addr4: Optional[pulumi.Input[str]] = None,
             exchange_ip_addr6: Optional[pulumi.Input[str]] = None,
+            fallback_tcp_threshold: Optional[pulumi.Input[int]] = None,
             fec_base: Optional[pulumi.Input[int]] = None,
             fec_codec: Optional[pulumi.Input[int]] = None,
+            fec_codec_string: Optional[pulumi.Input[str]] = None,
             fec_egress: Optional[pulumi.Input[str]] = None,
             fec_health_check: Optional[pulumi.Input[str]] = None,
             fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -6091,8 +6749,10 @@ class Phase1interface(pulumi.CustomResource):
             fec_send_timeout: Optional[pulumi.Input[int]] = None,
             fgsp_sync: Optional[pulumi.Input[str]] = None,
             forticlient_enforcement: Optional[pulumi.Input[str]] = None,
+            fortinet_esp: Optional[pulumi.Input[str]] = None,
             fragmentation: Optional[pulumi.Input[str]] = None,
             fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_authentication: Optional[pulumi.Input[str]] = None,
             group_authentication_secret: Optional[pulumi.Input[str]] = None,
             ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -6102,6 +6762,7 @@ class Phase1interface(pulumi.CustomResource):
             inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
             include_local_lan: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
+            internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceInternalDomainListArgs']]]]] = None,
             ip_delay_interval: Optional[pulumi.Input[int]] = None,
             ip_fragmentation: Optional[pulumi.Input[str]] = None,
             ip_version: Optional[pulumi.Input[str]] = None,
@@ -6129,6 +6790,7 @@ class Phase1interface(pulumi.CustomResource):
             ipv6_start_ip: Optional[pulumi.Input[str]] = None,
             keepalive: Optional[pulumi.Input[int]] = None,
             keylife: Optional[pulumi.Input[int]] = None,
+            kms: Optional[pulumi.Input[str]] = None,
             link_cost: Optional[pulumi.Input[int]] = None,
             local_gw: Optional[pulumi.Input[str]] = None,
             local_gw6: Optional[pulumi.Input[str]] = None,
@@ -6144,6 +6806,7 @@ class Phase1interface(pulumi.CustomResource):
             monitor_hold_down_time: Optional[pulumi.Input[str]] = None,
             monitor_hold_down_type: Optional[pulumi.Input[str]] = None,
             monitor_hold_down_weekday: Optional[pulumi.Input[str]] = None,
+            monitor_min: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             nattraversal: Optional[pulumi.Input[str]] = None,
             negotiate_timeout: Optional[pulumi.Input[int]] = None,
@@ -6164,6 +6827,8 @@ class Phase1interface(pulumi.CustomResource):
             proposal: Optional[pulumi.Input[str]] = None,
             psksecret: Optional[pulumi.Input[str]] = None,
             psksecret_remote: Optional[pulumi.Input[str]] = None,
+            qkd: Optional[pulumi.Input[str]] = None,
+            qkd_profile: Optional[pulumi.Input[str]] = None,
             reauth: Optional[pulumi.Input[str]] = None,
             rekey: Optional[pulumi.Input[str]] = None,
             remote_gw: Optional[pulumi.Input[str]] = None,
@@ -6176,6 +6841,7 @@ class Phase1interface(pulumi.CustomResource):
             signature_hash_alg: Optional[pulumi.Input[str]] = None,
             split_include_service: Optional[pulumi.Input[str]] = None,
             suite_b: Optional[pulumi.Input[str]] = None,
+            transport: Optional[pulumi.Input[str]] = None,
             tunnel_search: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             unity_support: Optional[pulumi.Input[str]] = None,
@@ -6203,6 +6869,7 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] authpasswd: XAuth password (max 35 characters).
         :param pulumi.Input[str] authusr: XAuth user name.
         :param pulumi.Input[str] authusrgrp: Authentication user group.
+        :param pulumi.Input[str] auto_discovery_crossover: Allow/block set-up of short-cut tunnels between different network IDs. Valid values: `allow`, `block`.
         :param pulumi.Input[str] auto_discovery_forwarder: Enable/disable forwarding auto-discovery short-cut messages. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] auto_discovery_offer_interval: Interval between shortcut offer messages in seconds (1 - 300, default = 5).
         :param pulumi.Input[str] auto_discovery_psk: Enable/disable use of pre-shared secrets for authentication of auto-discovery tunnels. Valid values: `enable`, `disable`.
@@ -6210,9 +6877,11 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] auto_discovery_sender: Enable/disable sending auto-discovery short-cut messages. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auto_discovery_shortcuts: Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
         :param pulumi.Input[str] auto_negotiate: Enable/disable automatic initiation of IKE SA negotiation. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] azure_ad_autoconnect: Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceBackupGatewayArgs']]]] backup_gateways: Instruct unity clients about the backup gateway address(es). The structure of `backup_gateway` block is documented below.
         :param pulumi.Input[str] banner: Message that unity client should display after connecting.
         :param pulumi.Input[str] cert_id_validation: Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cert_trust_store: CA certificate trust store. Valid values: `local`, `ems`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceCertificateArgs']]]] certificates: The names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
         :param pulumi.Input[str] childless_ike: Enable/disable childless IKEv2 initiation (RFC 6023). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] client_auto_negotiate: Enable/disable allowing the VPN client to bring up the tunnel when there is no traffic. Valid values: `disable`, `enable`.
@@ -6220,6 +6889,8 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] default_gw: IPv4 address of default route gateway to use for traffic exiting the interface.
         :param pulumi.Input[int] default_gw_priority: Priority for default gateway route. A higher priority number signifies a less preferred route.
+        :param pulumi.Input[str] dev_id: Device ID carried by the device ID notification.
+        :param pulumi.Input[str] dev_id_notification: Enable/disable device ID notification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp6_ra_linkaddr: Relay agent IPv6 link address to use in DHCP6 requests.
         :param pulumi.Input[str] dhcp_ra_giaddr: Relay agent gateway IP address to use in the giaddr field of DHCP requests.
         :param pulumi.Input[str] dhgrp: DH group. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`, `32`.
@@ -6232,8 +6903,10 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] dpd_retryinterval: DPD retry interval.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] eap: Enable/disable IKEv2 EAP authentication. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] eap_cert_auth: Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eap_exclude_peergrp: Peer group excluded from EAP authentication.
         :param pulumi.Input[str] eap_identity: IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
+        :param pulumi.Input[str] ems_sn_check: Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] encap_local_gw4: Local IPv4 address of GRE/VXLAN tunnel.
         :param pulumi.Input[str] encap_local_gw6: Local IPv6 address of GRE/VXLAN tunnel.
         :param pulumi.Input[str] encap_remote_gw4: Remote IPv4 address of GRE/VXLAN tunnel.
@@ -6242,11 +6915,14 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] encapsulation_address: Source for GRE/VXLAN tunnel address. Valid values: `ike`, `ipv4`, `ipv6`.
         :param pulumi.Input[str] enforce_unique_id: Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
         :param pulumi.Input[str] esn: Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+        :param pulumi.Input[str] exchange_fgt_device_id: Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] exchange_interface_ip: Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] exchange_ip_addr4: IPv4 address to exchange with peers.
         :param pulumi.Input[str] exchange_ip_addr6: IPv6 address to exchange with peers
+        :param pulumi.Input[int] fallback_tcp_threshold: Timeout in seconds before falling back IKE/IPsec traffic to tcp.
         :param pulumi.Input[int] fec_base: Number of base Forward Error Correction packets (1 - 100).
         :param pulumi.Input[int] fec_codec: ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+        :param pulumi.Input[str] fec_codec_string: Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
         :param pulumi.Input[str] fec_egress: Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fec_health_check: SD-WAN health check.
         :param pulumi.Input[str] fec_ingress: Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
@@ -6256,8 +6932,10 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[int] fec_send_timeout: Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
         :param pulumi.Input[str] fgsp_sync: Enable/disable IPsec syncing of tunnels for FGSP IPsec. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_enforcement: Enable/disable FortiClient enforcement. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fortinet_esp: Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fragmentation: Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fragmentation_mtu: IKE fragmentation MTU (500 - 16000).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_authentication: Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] group_authentication_secret: Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
         :param pulumi.Input[str] ha_sync_esp_seqno: Enable/disable sequence number jump ahead for IPsec HA. Valid values: `enable`, `disable`.
@@ -6267,6 +6945,7 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] inbound_dscp_copy: Enable/disable copy the dscp in the ESP header to the inner IP Header. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] include_local_lan: Enable/disable allow local LAN access on unity clients. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] interface: Local physical, aggregate, or VLAN outgoing interface.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Phase1interfaceInternalDomainListArgs']]]] internal_domain_lists: One or more internal domain names in quotes separated by spaces. The structure of `internal_domain_list` block is documented below.
         :param pulumi.Input[int] ip_delay_interval: IP address reuse delay interval in seconds (0 - 28800).
         :param pulumi.Input[str] ip_fragmentation: Determine whether IP packets are fragmented before or after IPsec encapsulation. Valid values: `pre-encapsulation`, `post-encapsulation`.
         :param pulumi.Input[str] ip_version: IP version to use for VPN interface. Valid values: `4`, `6`.
@@ -6294,6 +6973,7 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] ipv6_start_ip: Start of IPv6 range.
         :param pulumi.Input[int] keepalive: NAT-T keep alive interval.
         :param pulumi.Input[int] keylife: Time to wait in seconds before phase 1 encryption key expires.
+        :param pulumi.Input[str] kms: Key Management Services server.
         :param pulumi.Input[int] link_cost: VPN tunnel underlay link cost.
         :param pulumi.Input[str] local_gw: IPv4 address of the local gateway's external interface.
         :param pulumi.Input[str] local_gw6: IPv6 address of the local gateway's external interface.
@@ -6309,6 +6989,7 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] monitor_hold_down_time: Time of day at which to fail back to primary after it re-establishes.
         :param pulumi.Input[str] monitor_hold_down_type: Recovery time method when primary interface re-establishes. Valid values: `immediate`, `delay`, `time`.
         :param pulumi.Input[str] monitor_hold_down_weekday: Day of the week to recover once primary re-establishes. Valid values: `everyday`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        :param pulumi.Input[int] monitor_min: Minimum number of links to become degraded before activating this interface.  Zero (0) means all links must be down before activating this interface.
         :param pulumi.Input[str] name: IPsec remote gateway name.
         :param pulumi.Input[str] nattraversal: Enable/disable NAT traversal. Valid values: `enable`, `disable`, `forced`.
         :param pulumi.Input[int] negotiate_timeout: IKE SA negotiation timeout in seconds (1 - 300).
@@ -6329,6 +7010,8 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] proposal: Phase1 proposal. Valid values: `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm-prfsha1`, `aes128gcm-prfsha256`, `aes128gcm-prfsha384`, `aes128gcm-prfsha512`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm-prfsha1`, `aes256gcm-prfsha256`, `aes256gcm-prfsha384`, `aes256gcm-prfsha512`, `chacha20poly1305-prfsha1`, `chacha20poly1305-prfsha256`, `chacha20poly1305-prfsha384`, `chacha20poly1305-prfsha512`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
         :param pulumi.Input[str] psksecret: Pre-shared secret for PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
         :param pulumi.Input[str] psksecret_remote: Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
+        :param pulumi.Input[str] qkd: Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+        :param pulumi.Input[str] qkd_profile: Quantum Key Distribution (QKD) server profile.
         :param pulumi.Input[str] reauth: Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] rekey: Enable/disable phase1 rekey. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remote_gw: IPv4 address of the remote gateway's external interface.
@@ -6341,6 +7024,7 @@ class Phase1interface(pulumi.CustomResource):
         :param pulumi.Input[str] signature_hash_alg: Digital Signature Authentication hash algorithms. Valid values: `sha1`, `sha2-256`, `sha2-384`, `sha2-512`.
         :param pulumi.Input[str] split_include_service: Split-include services.
         :param pulumi.Input[str] suite_b: Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
+        :param pulumi.Input[str] transport: Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
         :param pulumi.Input[str] tunnel_search: Tunnel search method for when the interface is shared. Valid values: `selectors`, `nexthop`.
         :param pulumi.Input[str] type: Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
         :param pulumi.Input[str] unity_support: Enable/disable support for Cisco UNITY Configuration Method extensions. Valid values: `disable`, `enable`.
@@ -6366,6 +7050,7 @@ class Phase1interface(pulumi.CustomResource):
         __props__.__dict__["authpasswd"] = authpasswd
         __props__.__dict__["authusr"] = authusr
         __props__.__dict__["authusrgrp"] = authusrgrp
+        __props__.__dict__["auto_discovery_crossover"] = auto_discovery_crossover
         __props__.__dict__["auto_discovery_forwarder"] = auto_discovery_forwarder
         __props__.__dict__["auto_discovery_offer_interval"] = auto_discovery_offer_interval
         __props__.__dict__["auto_discovery_psk"] = auto_discovery_psk
@@ -6373,9 +7058,11 @@ class Phase1interface(pulumi.CustomResource):
         __props__.__dict__["auto_discovery_sender"] = auto_discovery_sender
         __props__.__dict__["auto_discovery_shortcuts"] = auto_discovery_shortcuts
         __props__.__dict__["auto_negotiate"] = auto_negotiate
+        __props__.__dict__["azure_ad_autoconnect"] = azure_ad_autoconnect
         __props__.__dict__["backup_gateways"] = backup_gateways
         __props__.__dict__["banner"] = banner
         __props__.__dict__["cert_id_validation"] = cert_id_validation
+        __props__.__dict__["cert_trust_store"] = cert_trust_store
         __props__.__dict__["certificates"] = certificates
         __props__.__dict__["childless_ike"] = childless_ike
         __props__.__dict__["client_auto_negotiate"] = client_auto_negotiate
@@ -6383,6 +7070,8 @@ class Phase1interface(pulumi.CustomResource):
         __props__.__dict__["comments"] = comments
         __props__.__dict__["default_gw"] = default_gw
         __props__.__dict__["default_gw_priority"] = default_gw_priority
+        __props__.__dict__["dev_id"] = dev_id
+        __props__.__dict__["dev_id_notification"] = dev_id_notification
         __props__.__dict__["dhcp6_ra_linkaddr"] = dhcp6_ra_linkaddr
         __props__.__dict__["dhcp_ra_giaddr"] = dhcp_ra_giaddr
         __props__.__dict__["dhgrp"] = dhgrp
@@ -6395,8 +7084,10 @@ class Phase1interface(pulumi.CustomResource):
         __props__.__dict__["dpd_retryinterval"] = dpd_retryinterval
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["eap"] = eap
+        __props__.__dict__["eap_cert_auth"] = eap_cert_auth
         __props__.__dict__["eap_exclude_peergrp"] = eap_exclude_peergrp
         __props__.__dict__["eap_identity"] = eap_identity
+        __props__.__dict__["ems_sn_check"] = ems_sn_check
         __props__.__dict__["encap_local_gw4"] = encap_local_gw4
         __props__.__dict__["encap_local_gw6"] = encap_local_gw6
         __props__.__dict__["encap_remote_gw4"] = encap_remote_gw4
@@ -6405,11 +7096,14 @@ class Phase1interface(pulumi.CustomResource):
         __props__.__dict__["encapsulation_address"] = encapsulation_address
         __props__.__dict__["enforce_unique_id"] = enforce_unique_id
         __props__.__dict__["esn"] = esn
+        __props__.__dict__["exchange_fgt_device_id"] = exchange_fgt_device_id
         __props__.__dict__["exchange_interface_ip"] = exchange_interface_ip
         __props__.__dict__["exchange_ip_addr4"] = exchange_ip_addr4
         __props__.__dict__["exchange_ip_addr6"] = exchange_ip_addr6
+        __props__.__dict__["fallback_tcp_threshold"] = fallback_tcp_threshold
         __props__.__dict__["fec_base"] = fec_base
         __props__.__dict__["fec_codec"] = fec_codec
+        __props__.__dict__["fec_codec_string"] = fec_codec_string
         __props__.__dict__["fec_egress"] = fec_egress
         __props__.__dict__["fec_health_check"] = fec_health_check
         __props__.__dict__["fec_ingress"] = fec_ingress
@@ -6419,8 +7113,10 @@ class Phase1interface(pulumi.CustomResource):
         __props__.__dict__["fec_send_timeout"] = fec_send_timeout
         __props__.__dict__["fgsp_sync"] = fgsp_sync
         __props__.__dict__["forticlient_enforcement"] = forticlient_enforcement
+        __props__.__dict__["fortinet_esp"] = fortinet_esp
         __props__.__dict__["fragmentation"] = fragmentation
         __props__.__dict__["fragmentation_mtu"] = fragmentation_mtu
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_authentication"] = group_authentication
         __props__.__dict__["group_authentication_secret"] = group_authentication_secret
         __props__.__dict__["ha_sync_esp_seqno"] = ha_sync_esp_seqno
@@ -6430,6 +7126,7 @@ class Phase1interface(pulumi.CustomResource):
         __props__.__dict__["inbound_dscp_copy"] = inbound_dscp_copy
         __props__.__dict__["include_local_lan"] = include_local_lan
         __props__.__dict__["interface"] = interface
+        __props__.__dict__["internal_domain_lists"] = internal_domain_lists
         __props__.__dict__["ip_delay_interval"] = ip_delay_interval
         __props__.__dict__["ip_fragmentation"] = ip_fragmentation
         __props__.__dict__["ip_version"] = ip_version
@@ -6457,6 +7154,7 @@ class Phase1interface(pulumi.CustomResource):
         __props__.__dict__["ipv6_start_ip"] = ipv6_start_ip
         __props__.__dict__["keepalive"] = keepalive
         __props__.__dict__["keylife"] = keylife
+        __props__.__dict__["kms"] = kms
         __props__.__dict__["link_cost"] = link_cost
         __props__.__dict__["local_gw"] = local_gw
         __props__.__dict__["local_gw6"] = local_gw6
@@ -6472,6 +7170,7 @@ class Phase1interface(pulumi.CustomResource):
         __props__.__dict__["monitor_hold_down_time"] = monitor_hold_down_time
         __props__.__dict__["monitor_hold_down_type"] = monitor_hold_down_type
         __props__.__dict__["monitor_hold_down_weekday"] = monitor_hold_down_weekday
+        __props__.__dict__["monitor_min"] = monitor_min
         __props__.__dict__["name"] = name
         __props__.__dict__["nattraversal"] = nattraversal
         __props__.__dict__["negotiate_timeout"] = negotiate_timeout
@@ -6492,6 +7191,8 @@ class Phase1interface(pulumi.CustomResource):
         __props__.__dict__["proposal"] = proposal
         __props__.__dict__["psksecret"] = psksecret
         __props__.__dict__["psksecret_remote"] = psksecret_remote
+        __props__.__dict__["qkd"] = qkd
+        __props__.__dict__["qkd_profile"] = qkd_profile
         __props__.__dict__["reauth"] = reauth
         __props__.__dict__["rekey"] = rekey
         __props__.__dict__["remote_gw"] = remote_gw
@@ -6504,6 +7205,7 @@ class Phase1interface(pulumi.CustomResource):
         __props__.__dict__["signature_hash_alg"] = signature_hash_alg
         __props__.__dict__["split_include_service"] = split_include_service
         __props__.__dict__["suite_b"] = suite_b
+        __props__.__dict__["transport"] = transport
         __props__.__dict__["tunnel_search"] = tunnel_search
         __props__.__dict__["type"] = type
         __props__.__dict__["unity_support"] = unity_support
@@ -6611,6 +7313,14 @@ class Phase1interface(pulumi.CustomResource):
         return pulumi.get(self, "authusrgrp")
 
     @property
+    @pulumi.getter(name="autoDiscoveryCrossover")
+    def auto_discovery_crossover(self) -> pulumi.Output[str]:
+        """
+        Allow/block set-up of short-cut tunnels between different network IDs. Valid values: `allow`, `block`.
+        """
+        return pulumi.get(self, "auto_discovery_crossover")
+
+    @property
     @pulumi.getter(name="autoDiscoveryForwarder")
     def auto_discovery_forwarder(self) -> pulumi.Output[str]:
         """
@@ -6667,6 +7377,14 @@ class Phase1interface(pulumi.CustomResource):
         return pulumi.get(self, "auto_negotiate")
 
     @property
+    @pulumi.getter(name="azureAdAutoconnect")
+    def azure_ad_autoconnect(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "azure_ad_autoconnect")
+
+    @property
     @pulumi.getter(name="backupGateways")
     def backup_gateways(self) -> pulumi.Output[Optional[Sequence['outputs.Phase1interfaceBackupGateway']]]:
         """
@@ -6689,6 +7407,14 @@ class Phase1interface(pulumi.CustomResource):
         Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "cert_id_validation")
+
+    @property
+    @pulumi.getter(name="certTrustStore")
+    def cert_trust_store(self) -> pulumi.Output[str]:
+        """
+        CA certificate trust store. Valid values: `local`, `ems`.
+        """
+        return pulumi.get(self, "cert_trust_store")
 
     @property
     @pulumi.getter
@@ -6745,6 +7471,22 @@ class Phase1interface(pulumi.CustomResource):
         Priority for default gateway route. A higher priority number signifies a less preferred route.
         """
         return pulumi.get(self, "default_gw_priority")
+
+    @property
+    @pulumi.getter(name="devId")
+    def dev_id(self) -> pulumi.Output[str]:
+        """
+        Device ID carried by the device ID notification.
+        """
+        return pulumi.get(self, "dev_id")
+
+    @property
+    @pulumi.getter(name="devIdNotification")
+    def dev_id_notification(self) -> pulumi.Output[str]:
+        """
+        Enable/disable device ID notification. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dev_id_notification")
 
     @property
     @pulumi.getter(name="dhcp6RaLinkaddr")
@@ -6843,6 +7585,14 @@ class Phase1interface(pulumi.CustomResource):
         return pulumi.get(self, "eap")
 
     @property
+    @pulumi.getter(name="eapCertAuth")
+    def eap_cert_auth(self) -> pulumi.Output[str]:
+        """
+        Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "eap_cert_auth")
+
+    @property
     @pulumi.getter(name="eapExcludePeergrp")
     def eap_exclude_peergrp(self) -> pulumi.Output[str]:
         """
@@ -6857,6 +7607,14 @@ class Phase1interface(pulumi.CustomResource):
         IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
         """
         return pulumi.get(self, "eap_identity")
+
+    @property
+    @pulumi.getter(name="emsSnCheck")
+    def ems_sn_check(self) -> pulumi.Output[str]:
+        """
+        Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ems_sn_check")
 
     @property
     @pulumi.getter(name="encapLocalGw4")
@@ -6923,6 +7681,14 @@ class Phase1interface(pulumi.CustomResource):
         return pulumi.get(self, "esn")
 
     @property
+    @pulumi.getter(name="exchangeFgtDeviceId")
+    def exchange_fgt_device_id(self) -> pulumi.Output[str]:
+        """
+        Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "exchange_fgt_device_id")
+
+    @property
     @pulumi.getter(name="exchangeInterfaceIp")
     def exchange_interface_ip(self) -> pulumi.Output[str]:
         """
@@ -6947,6 +7713,14 @@ class Phase1interface(pulumi.CustomResource):
         return pulumi.get(self, "exchange_ip_addr6")
 
     @property
+    @pulumi.getter(name="fallbackTcpThreshold")
+    def fallback_tcp_threshold(self) -> pulumi.Output[int]:
+        """
+        Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+        """
+        return pulumi.get(self, "fallback_tcp_threshold")
+
+    @property
     @pulumi.getter(name="fecBase")
     def fec_base(self) -> pulumi.Output[int]:
         """
@@ -6961,6 +7735,14 @@ class Phase1interface(pulumi.CustomResource):
         ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
         """
         return pulumi.get(self, "fec_codec")
+
+    @property
+    @pulumi.getter(name="fecCodecString")
+    def fec_codec_string(self) -> pulumi.Output[str]:
+        """
+        Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+        """
+        return pulumi.get(self, "fec_codec_string")
 
     @property
     @pulumi.getter(name="fecEgress")
@@ -7035,6 +7817,14 @@ class Phase1interface(pulumi.CustomResource):
         return pulumi.get(self, "forticlient_enforcement")
 
     @property
+    @pulumi.getter(name="fortinetEsp")
+    def fortinet_esp(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fortinet_esp")
+
+    @property
     @pulumi.getter
     def fragmentation(self) -> pulumi.Output[str]:
         """
@@ -7049,6 +7839,14 @@ class Phase1interface(pulumi.CustomResource):
         IKE fragmentation MTU (500 - 16000).
         """
         return pulumi.get(self, "fragmentation_mtu")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupAuthentication")
@@ -7121,6 +7919,14 @@ class Phase1interface(pulumi.CustomResource):
         Local physical, aggregate, or VLAN outgoing interface.
         """
         return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="internalDomainLists")
+    def internal_domain_lists(self) -> pulumi.Output[Optional[Sequence['outputs.Phase1interfaceInternalDomainList']]]:
+        """
+        One or more internal domain names in quotes separated by spaces. The structure of `internal_domain_list` block is documented below.
+        """
+        return pulumi.get(self, "internal_domain_lists")
 
     @property
     @pulumi.getter(name="ipDelayInterval")
@@ -7339,6 +8145,14 @@ class Phase1interface(pulumi.CustomResource):
         return pulumi.get(self, "keylife")
 
     @property
+    @pulumi.getter
+    def kms(self) -> pulumi.Output[str]:
+        """
+        Key Management Services server.
+        """
+        return pulumi.get(self, "kms")
+
+    @property
     @pulumi.getter(name="linkCost")
     def link_cost(self) -> pulumi.Output[int]:
         """
@@ -7457,6 +8271,14 @@ class Phase1interface(pulumi.CustomResource):
         Day of the week to recover once primary re-establishes. Valid values: `everyday`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         """
         return pulumi.get(self, "monitor_hold_down_weekday")
+
+    @property
+    @pulumi.getter(name="monitorMin")
+    def monitor_min(self) -> pulumi.Output[int]:
+        """
+        Minimum number of links to become degraded before activating this interface.  Zero (0) means all links must be down before activating this interface.
+        """
+        return pulumi.get(self, "monitor_min")
 
     @property
     @pulumi.getter
@@ -7620,6 +8442,22 @@ class Phase1interface(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def qkd(self) -> pulumi.Output[str]:
+        """
+        Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+        """
+        return pulumi.get(self, "qkd")
+
+    @property
+    @pulumi.getter(name="qkdProfile")
+    def qkd_profile(self) -> pulumi.Output[str]:
+        """
+        Quantum Key Distribution (QKD) server profile.
+        """
+        return pulumi.get(self, "qkd_profile")
+
+    @property
+    @pulumi.getter
     def reauth(self) -> pulumi.Output[str]:
         """
         Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
@@ -7713,6 +8551,14 @@ class Phase1interface(pulumi.CustomResource):
         Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
         """
         return pulumi.get(self, "suite_b")
+
+    @property
+    @pulumi.getter
+    def transport(self) -> pulumi.Output[str]:
+        """
+        Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+        """
+        return pulumi.get(self, "transport")
 
     @property
     @pulumi.getter(name="tunnelSearch")

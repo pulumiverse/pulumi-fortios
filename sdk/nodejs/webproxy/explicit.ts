@@ -68,6 +68,14 @@ export class Explicit extends pulumi.CustomResource {
      */
     public readonly ftpOverHttp!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+     */
+    public readonly httpConnectionMode!: pulumi.Output<string>;
+    /**
      * Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
      */
     public readonly httpIncomingPort!: pulumi.Output<string>;
@@ -144,6 +152,14 @@ export class Explicit extends pulumi.CustomResource {
      */
     public readonly secDefaultAction!: pulumi.Output<string>;
     /**
+     * Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+     */
+    public readonly secureWebProxy!: pulumi.Output<string>;
+    /**
+     * Name of certificates for secure web proxy. The structure of `secureWebProxyCert` block is documented below.
+     */
+    public readonly secureWebProxyCerts!: pulumi.Output<outputs.webproxy.ExplicitSecureWebProxyCert[] | undefined>;
+    /**
      * Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
      */
     public readonly socks!: pulumi.Output<string>;
@@ -155,6 +171,10 @@ export class Explicit extends pulumi.CustomResource {
      * Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
      */
     public readonly sslAlgorithm!: pulumi.Output<string>;
+    /**
+     * Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+     */
+    public readonly sslDhBits!: pulumi.Output<string>;
     /**
      * Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
      */
@@ -192,6 +212,8 @@ export class Explicit extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["ftpIncomingPort"] = state ? state.ftpIncomingPort : undefined;
             resourceInputs["ftpOverHttp"] = state ? state.ftpOverHttp : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["httpConnectionMode"] = state ? state.httpConnectionMode : undefined;
             resourceInputs["httpIncomingPort"] = state ? state.httpIncomingPort : undefined;
             resourceInputs["httpsIncomingPort"] = state ? state.httpsIncomingPort : undefined;
             resourceInputs["httpsReplacementMessage"] = state ? state.httpsReplacementMessage : undefined;
@@ -211,9 +233,12 @@ export class Explicit extends pulumi.CustomResource {
             resourceInputs["prefDnsResult"] = state ? state.prefDnsResult : undefined;
             resourceInputs["realm"] = state ? state.realm : undefined;
             resourceInputs["secDefaultAction"] = state ? state.secDefaultAction : undefined;
+            resourceInputs["secureWebProxy"] = state ? state.secureWebProxy : undefined;
+            resourceInputs["secureWebProxyCerts"] = state ? state.secureWebProxyCerts : undefined;
             resourceInputs["socks"] = state ? state.socks : undefined;
             resourceInputs["socksIncomingPort"] = state ? state.socksIncomingPort : undefined;
             resourceInputs["sslAlgorithm"] = state ? state.sslAlgorithm : undefined;
+            resourceInputs["sslDhBits"] = state ? state.sslDhBits : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["strictGuest"] = state ? state.strictGuest : undefined;
             resourceInputs["traceAuthNoRsp"] = state ? state.traceAuthNoRsp : undefined;
@@ -224,6 +249,8 @@ export class Explicit extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["ftpIncomingPort"] = args ? args.ftpIncomingPort : undefined;
             resourceInputs["ftpOverHttp"] = args ? args.ftpOverHttp : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["httpConnectionMode"] = args ? args.httpConnectionMode : undefined;
             resourceInputs["httpIncomingPort"] = args ? args.httpIncomingPort : undefined;
             resourceInputs["httpsIncomingPort"] = args ? args.httpsIncomingPort : undefined;
             resourceInputs["httpsReplacementMessage"] = args ? args.httpsReplacementMessage : undefined;
@@ -243,9 +270,12 @@ export class Explicit extends pulumi.CustomResource {
             resourceInputs["prefDnsResult"] = args ? args.prefDnsResult : undefined;
             resourceInputs["realm"] = args ? args.realm : undefined;
             resourceInputs["secDefaultAction"] = args ? args.secDefaultAction : undefined;
+            resourceInputs["secureWebProxy"] = args ? args.secureWebProxy : undefined;
+            resourceInputs["secureWebProxyCerts"] = args ? args.secureWebProxyCerts : undefined;
             resourceInputs["socks"] = args ? args.socks : undefined;
             resourceInputs["socksIncomingPort"] = args ? args.socksIncomingPort : undefined;
             resourceInputs["sslAlgorithm"] = args ? args.sslAlgorithm : undefined;
+            resourceInputs["sslDhBits"] = args ? args.sslDhBits : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["strictGuest"] = args ? args.strictGuest : undefined;
             resourceInputs["traceAuthNoRsp"] = args ? args.traceAuthNoRsp : undefined;
@@ -273,6 +303,14 @@ export interface ExplicitState {
      * Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
      */
     ftpOverHttp?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+     */
+    httpConnectionMode?: pulumi.Input<string>;
     /**
      * Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
      */
@@ -350,6 +388,14 @@ export interface ExplicitState {
      */
     secDefaultAction?: pulumi.Input<string>;
     /**
+     * Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+     */
+    secureWebProxy?: pulumi.Input<string>;
+    /**
+     * Name of certificates for secure web proxy. The structure of `secureWebProxyCert` block is documented below.
+     */
+    secureWebProxyCerts?: pulumi.Input<pulumi.Input<inputs.webproxy.ExplicitSecureWebProxyCert>[]>;
+    /**
      * Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
      */
     socks?: pulumi.Input<string>;
@@ -361,6 +407,10 @@ export interface ExplicitState {
      * Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
      */
     sslAlgorithm?: pulumi.Input<string>;
+    /**
+     * Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+     */
+    sslDhBits?: pulumi.Input<string>;
     /**
      * Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
      */
@@ -400,6 +450,14 @@ export interface ExplicitArgs {
      */
     ftpOverHttp?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
+     */
+    httpConnectionMode?: pulumi.Input<string>;
+    /**
      * Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
      */
     httpIncomingPort?: pulumi.Input<string>;
@@ -476,6 +534,14 @@ export interface ExplicitArgs {
      */
     secDefaultAction?: pulumi.Input<string>;
     /**
+     * Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
+     */
+    secureWebProxy?: pulumi.Input<string>;
+    /**
+     * Name of certificates for secure web proxy. The structure of `secureWebProxyCert` block is documented below.
+     */
+    secureWebProxyCerts?: pulumi.Input<pulumi.Input<inputs.webproxy.ExplicitSecureWebProxyCert>[]>;
+    /**
      * Enable/disable the SOCKS proxy. Valid values: `enable`, `disable`.
      */
     socks?: pulumi.Input<string>;
@@ -487,6 +553,10 @@ export interface ExplicitArgs {
      * Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. Valid values: `high`, `medium`, `low`.
      */
     sslAlgorithm?: pulumi.Input<string>;
+    /**
+     * Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
+     */
+    sslDhBits?: pulumi.Input<string>;
     /**
      * Enable/disable the explicit Web proxy for HTTP and HTTPS session. Valid values: `enable`, `disable`.
      */

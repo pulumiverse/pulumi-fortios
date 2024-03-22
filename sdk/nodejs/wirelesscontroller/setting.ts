@@ -104,6 +104,10 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly firmwareProvisionOnAuthorization!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Configure offending SSID. The structure of `offendingSsid` block is documented below.
      */
     public readonly offendingSsids!: pulumi.Output<outputs.wirelesscontroller.SettingOffendingSsid[] | undefined>;
@@ -111,6 +115,10 @@ export class Setting extends pulumi.CustomResource {
      * Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
      */
     public readonly phishingSsidDetect!: pulumi.Output<string>;
+    /**
+     * Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly rollingWtpUpgrade!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -145,8 +153,10 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["fakeSsidAction"] = state ? state.fakeSsidAction : undefined;
             resourceInputs["fapcCompatibility"] = state ? state.fapcCompatibility : undefined;
             resourceInputs["firmwareProvisionOnAuthorization"] = state ? state.firmwareProvisionOnAuthorization : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["offendingSsids"] = state ? state.offendingSsids : undefined;
             resourceInputs["phishingSsidDetect"] = state ? state.phishingSsidDetect : undefined;
+            resourceInputs["rollingWtpUpgrade"] = state ? state.rollingWtpUpgrade : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["wfaCompatibility"] = state ? state.wfaCompatibility : undefined;
         } else {
@@ -163,8 +173,10 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["fakeSsidAction"] = args ? args.fakeSsidAction : undefined;
             resourceInputs["fapcCompatibility"] = args ? args.fapcCompatibility : undefined;
             resourceInputs["firmwareProvisionOnAuthorization"] = args ? args.firmwareProvisionOnAuthorization : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["offendingSsids"] = args ? args.offendingSsids : undefined;
             resourceInputs["phishingSsidDetect"] = args ? args.phishingSsidDetect : undefined;
+            resourceInputs["rollingWtpUpgrade"] = args ? args.rollingWtpUpgrade : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["wfaCompatibility"] = args ? args.wfaCompatibility : undefined;
         }
@@ -226,6 +238,10 @@ export interface SettingState {
      */
     firmwareProvisionOnAuthorization?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Configure offending SSID. The structure of `offendingSsid` block is documented below.
      */
     offendingSsids?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.SettingOffendingSsid>[]>;
@@ -233,6 +249,10 @@ export interface SettingState {
      * Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
      */
     phishingSsidDetect?: pulumi.Input<string>;
+    /**
+     * Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+     */
+    rollingWtpUpgrade?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -296,6 +316,10 @@ export interface SettingArgs {
      */
     firmwareProvisionOnAuthorization?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Configure offending SSID. The structure of `offendingSsid` block is documented below.
      */
     offendingSsids?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.SettingOffendingSsid>[]>;
@@ -303,6 +327,10 @@ export interface SettingArgs {
      * Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
      */
     phishingSsidDetect?: pulumi.Input<string>;
+    /**
+     * Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+     */
+    rollingWtpUpgrade?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

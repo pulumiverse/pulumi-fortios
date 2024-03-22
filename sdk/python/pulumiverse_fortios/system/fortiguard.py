@@ -19,6 +19,7 @@ class FortiguardArgs:
                  webfilter_timeout: pulumi.Input[int],
                  antispam_cache: Optional[pulumi.Input[str]] = None,
                  antispam_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 antispam_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  antispam_cache_ttl: Optional[pulumi.Input[int]] = None,
                  antispam_expiration: Optional[pulumi.Input[int]] = None,
                  antispam_force_off: Optional[pulumi.Input[str]] = None,
@@ -27,19 +28,23 @@ class FortiguardArgs:
                  anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade: Optional[pulumi.Input[str]] = None,
                  auto_firmware_upgrade_day: Optional[pulumi.Input[str]] = None,
+                 auto_firmware_upgrade_delay: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_end_hour: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_start_hour: Optional[pulumi.Input[int]] = None,
                  auto_join_forticloud: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip6: Optional[pulumi.Input[str]] = None,
                  ddns_server_port: Optional[pulumi.Input[int]] = None,
+                 fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
+                 gui_prompt_auto_upgrade: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  load_balance_servers: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache: Optional[pulumi.Input[str]] = None,
                  outbreak_prevention_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 outbreak_prevention_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache_ttl: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_expiration: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
@@ -60,6 +65,7 @@ class FortiguardArgs:
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  update_build_proxy: Optional[pulumi.Input[str]] = None,
+                 update_dldb: Optional[pulumi.Input[str]] = None,
                  update_extdb: Optional[pulumi.Input[str]] = None,
                  update_ffdb: Optional[pulumi.Input[str]] = None,
                  update_server_location: Optional[pulumi.Input[str]] = None,
@@ -80,6 +86,7 @@ class FortiguardArgs:
         :param pulumi.Input[int] webfilter_timeout: Web filter query time out (1 - 30 sec, default = 7).
         :param pulumi.Input[str] antispam_cache: Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] antispam_cache_mpermille: Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
         :param pulumi.Input[int] antispam_cache_ttl: Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         :param pulumi.Input[int] antispam_expiration: Expiration date of the FortiGuard antispam contract.
         :param pulumi.Input[str] antispam_force_off: Enable/disable turning off the FortiGuard antispam service. Valid values: `enable`, `disable`.
@@ -88,19 +95,23 @@ class FortiguardArgs:
         :param pulumi.Input[int] anycast_sdns_server_port: Port to connect to on the FortiGuard anycast DNS rating server.
         :param pulumi.Input[str] auto_firmware_upgrade: Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auto_firmware_upgrade_day: Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        :param pulumi.Input[int] auto_firmware_upgrade_delay: Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
         :param pulumi.Input[int] auto_firmware_upgrade_end_hour: End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
         :param pulumi.Input[int] auto_firmware_upgrade_start_hour: Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
         :param pulumi.Input[str] auto_join_forticloud: Automatically connect to and login to FortiCloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ddns_server_ip: IP address of the FortiDDNS server.
         :param pulumi.Input[str] ddns_server_ip6: IPv6 address of the FortiDDNS server.
         :param pulumi.Input[int] ddns_server_port: Port used to communicate with FortiDDNS servers.
+        :param pulumi.Input[int] fds_license_expiring_days: Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
         :param pulumi.Input[str] fortiguard_anycast: Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiguard_anycast_source: Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
+        :param pulumi.Input[str] gui_prompt_auto_upgrade: Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] load_balance_servers: Number of servers to alternate between as first FortiGuard option.
         :param pulumi.Input[str] outbreak_prevention_cache: Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] outbreak_prevention_cache_mpercent: Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        :param pulumi.Input[int] outbreak_prevention_cache_mpermille: Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
         :param pulumi.Input[int] outbreak_prevention_cache_ttl: Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
         :param pulumi.Input[int] outbreak_prevention_expiration: Expiration date of FortiGuard Virus Outbreak Prevention contract.
         :param pulumi.Input[str] outbreak_prevention_force_off: Turn off FortiGuard Virus Outbreak Prevention service. Valid values: `enable`, `disable`.
@@ -121,6 +132,7 @@ class FortiguardArgs:
         :param pulumi.Input[str] source_ip: Source IPv4 address used to communicate with FortiGuard.
         :param pulumi.Input[str] source_ip6: Source IPv6 address used to communicate with FortiGuard.
         :param pulumi.Input[str] update_build_proxy: Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_dldb: Enable/disable DLP signature update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_extdb: Enable/disable external resource update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_ffdb: Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_server_location: Signature update server location.
@@ -142,6 +154,8 @@ class FortiguardArgs:
             pulumi.set(__self__, "antispam_cache", antispam_cache)
         if antispam_cache_mpercent is not None:
             pulumi.set(__self__, "antispam_cache_mpercent", antispam_cache_mpercent)
+        if antispam_cache_mpermille is not None:
+            pulumi.set(__self__, "antispam_cache_mpermille", antispam_cache_mpermille)
         if antispam_cache_ttl is not None:
             pulumi.set(__self__, "antispam_cache_ttl", antispam_cache_ttl)
         if antispam_expiration is not None:
@@ -158,6 +172,8 @@ class FortiguardArgs:
             pulumi.set(__self__, "auto_firmware_upgrade", auto_firmware_upgrade)
         if auto_firmware_upgrade_day is not None:
             pulumi.set(__self__, "auto_firmware_upgrade_day", auto_firmware_upgrade_day)
+        if auto_firmware_upgrade_delay is not None:
+            pulumi.set(__self__, "auto_firmware_upgrade_delay", auto_firmware_upgrade_delay)
         if auto_firmware_upgrade_end_hour is not None:
             pulumi.set(__self__, "auto_firmware_upgrade_end_hour", auto_firmware_upgrade_end_hour)
         if auto_firmware_upgrade_start_hour is not None:
@@ -170,10 +186,14 @@ class FortiguardArgs:
             pulumi.set(__self__, "ddns_server_ip6", ddns_server_ip6)
         if ddns_server_port is not None:
             pulumi.set(__self__, "ddns_server_port", ddns_server_port)
+        if fds_license_expiring_days is not None:
+            pulumi.set(__self__, "fds_license_expiring_days", fds_license_expiring_days)
         if fortiguard_anycast is not None:
             pulumi.set(__self__, "fortiguard_anycast", fortiguard_anycast)
         if fortiguard_anycast_source is not None:
             pulumi.set(__self__, "fortiguard_anycast_source", fortiguard_anycast_source)
+        if gui_prompt_auto_upgrade is not None:
+            pulumi.set(__self__, "gui_prompt_auto_upgrade", gui_prompt_auto_upgrade)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -184,6 +204,8 @@ class FortiguardArgs:
             pulumi.set(__self__, "outbreak_prevention_cache", outbreak_prevention_cache)
         if outbreak_prevention_cache_mpercent is not None:
             pulumi.set(__self__, "outbreak_prevention_cache_mpercent", outbreak_prevention_cache_mpercent)
+        if outbreak_prevention_cache_mpermille is not None:
+            pulumi.set(__self__, "outbreak_prevention_cache_mpermille", outbreak_prevention_cache_mpermille)
         if outbreak_prevention_cache_ttl is not None:
             pulumi.set(__self__, "outbreak_prevention_cache_ttl", outbreak_prevention_cache_ttl)
         if outbreak_prevention_expiration is not None:
@@ -224,6 +246,8 @@ class FortiguardArgs:
             pulumi.set(__self__, "source_ip6", source_ip6)
         if update_build_proxy is not None:
             pulumi.set(__self__, "update_build_proxy", update_build_proxy)
+        if update_dldb is not None:
+            pulumi.set(__self__, "update_dldb", update_dldb)
         if update_extdb is not None:
             pulumi.set(__self__, "update_extdb", update_extdb)
         if update_ffdb is not None:
@@ -310,6 +334,18 @@ class FortiguardArgs:
     @antispam_cache_mpercent.setter
     def antispam_cache_mpercent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "antispam_cache_mpercent", value)
+
+    @property
+    @pulumi.getter(name="antispamCacheMpermille")
+    def antispam_cache_mpermille(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+        """
+        return pulumi.get(self, "antispam_cache_mpermille")
+
+    @antispam_cache_mpermille.setter
+    def antispam_cache_mpermille(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "antispam_cache_mpermille", value)
 
     @property
     @pulumi.getter(name="antispamCacheTtl")
@@ -408,6 +444,18 @@ class FortiguardArgs:
         pulumi.set(self, "auto_firmware_upgrade_day", value)
 
     @property
+    @pulumi.getter(name="autoFirmwareUpgradeDelay")
+    def auto_firmware_upgrade_delay(self) -> Optional[pulumi.Input[int]]:
+        """
+        Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+        """
+        return pulumi.get(self, "auto_firmware_upgrade_delay")
+
+    @auto_firmware_upgrade_delay.setter
+    def auto_firmware_upgrade_delay(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_firmware_upgrade_delay", value)
+
+    @property
     @pulumi.getter(name="autoFirmwareUpgradeEndHour")
     def auto_firmware_upgrade_end_hour(self) -> Optional[pulumi.Input[int]]:
         """
@@ -480,6 +528,18 @@ class FortiguardArgs:
         pulumi.set(self, "ddns_server_port", value)
 
     @property
+    @pulumi.getter(name="fdsLicenseExpiringDays")
+    def fds_license_expiring_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+        """
+        return pulumi.get(self, "fds_license_expiring_days")
+
+    @fds_license_expiring_days.setter
+    def fds_license_expiring_days(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fds_license_expiring_days", value)
+
+    @property
     @pulumi.getter(name="fortiguardAnycast")
     def fortiguard_anycast(self) -> Optional[pulumi.Input[str]]:
         """
@@ -502,6 +562,18 @@ class FortiguardArgs:
     @fortiguard_anycast_source.setter
     def fortiguard_anycast_source(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortiguard_anycast_source", value)
+
+    @property
+    @pulumi.getter(name="guiPromptAutoUpgrade")
+    def gui_prompt_auto_upgrade(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_prompt_auto_upgrade")
+
+    @gui_prompt_auto_upgrade.setter
+    def gui_prompt_auto_upgrade(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_prompt_auto_upgrade", value)
 
     @property
     @pulumi.getter
@@ -562,6 +634,18 @@ class FortiguardArgs:
     @outbreak_prevention_cache_mpercent.setter
     def outbreak_prevention_cache_mpercent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "outbreak_prevention_cache_mpercent", value)
+
+    @property
+    @pulumi.getter(name="outbreakPreventionCacheMpermille")
+    def outbreak_prevention_cache_mpermille(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+        """
+        return pulumi.get(self, "outbreak_prevention_cache_mpermille")
+
+    @outbreak_prevention_cache_mpermille.setter
+    def outbreak_prevention_cache_mpermille(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "outbreak_prevention_cache_mpermille", value)
 
     @property
     @pulumi.getter(name="outbreakPreventionCacheTtl")
@@ -804,6 +888,18 @@ class FortiguardArgs:
         pulumi.set(self, "update_build_proxy", value)
 
     @property
+    @pulumi.getter(name="updateDldb")
+    def update_dldb(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_dldb")
+
+    @update_dldb.setter
+    def update_dldb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_dldb", value)
+
+    @property
     @pulumi.getter(name="updateExtdb")
     def update_extdb(self) -> Optional[pulumi.Input[str]]:
         """
@@ -965,6 +1061,7 @@ class _FortiguardState:
     def __init__(__self__, *,
                  antispam_cache: Optional[pulumi.Input[str]] = None,
                  antispam_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 antispam_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  antispam_cache_ttl: Optional[pulumi.Input[int]] = None,
                  antispam_expiration: Optional[pulumi.Input[int]] = None,
                  antispam_force_off: Optional[pulumi.Input[str]] = None,
@@ -974,19 +1071,23 @@ class _FortiguardState:
                  anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade: Optional[pulumi.Input[str]] = None,
                  auto_firmware_upgrade_day: Optional[pulumi.Input[str]] = None,
+                 auto_firmware_upgrade_delay: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_end_hour: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_start_hour: Optional[pulumi.Input[int]] = None,
                  auto_join_forticloud: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip6: Optional[pulumi.Input[str]] = None,
                  ddns_server_port: Optional[pulumi.Input[int]] = None,
+                 fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
+                 gui_prompt_auto_upgrade: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  load_balance_servers: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache: Optional[pulumi.Input[str]] = None,
                  outbreak_prevention_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 outbreak_prevention_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache_ttl: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_expiration: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
@@ -1008,6 +1109,7 @@ class _FortiguardState:
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  update_build_proxy: Optional[pulumi.Input[str]] = None,
+                 update_dldb: Optional[pulumi.Input[str]] = None,
                  update_extdb: Optional[pulumi.Input[str]] = None,
                  update_ffdb: Optional[pulumi.Input[str]] = None,
                  update_server_location: Optional[pulumi.Input[str]] = None,
@@ -1026,6 +1128,7 @@ class _FortiguardState:
         Input properties used for looking up and filtering Fortiguard resources.
         :param pulumi.Input[str] antispam_cache: Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] antispam_cache_mpermille: Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
         :param pulumi.Input[int] antispam_cache_ttl: Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         :param pulumi.Input[int] antispam_expiration: Expiration date of the FortiGuard antispam contract.
         :param pulumi.Input[str] antispam_force_off: Enable/disable turning off the FortiGuard antispam service. Valid values: `enable`, `disable`.
@@ -1035,19 +1138,23 @@ class _FortiguardState:
         :param pulumi.Input[int] anycast_sdns_server_port: Port to connect to on the FortiGuard anycast DNS rating server.
         :param pulumi.Input[str] auto_firmware_upgrade: Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auto_firmware_upgrade_day: Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        :param pulumi.Input[int] auto_firmware_upgrade_delay: Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
         :param pulumi.Input[int] auto_firmware_upgrade_end_hour: End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
         :param pulumi.Input[int] auto_firmware_upgrade_start_hour: Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
         :param pulumi.Input[str] auto_join_forticloud: Automatically connect to and login to FortiCloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ddns_server_ip: IP address of the FortiDDNS server.
         :param pulumi.Input[str] ddns_server_ip6: IPv6 address of the FortiDDNS server.
         :param pulumi.Input[int] ddns_server_port: Port used to communicate with FortiDDNS servers.
+        :param pulumi.Input[int] fds_license_expiring_days: Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
         :param pulumi.Input[str] fortiguard_anycast: Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiguard_anycast_source: Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
+        :param pulumi.Input[str] gui_prompt_auto_upgrade: Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] load_balance_servers: Number of servers to alternate between as first FortiGuard option.
         :param pulumi.Input[str] outbreak_prevention_cache: Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] outbreak_prevention_cache_mpercent: Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        :param pulumi.Input[int] outbreak_prevention_cache_mpermille: Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
         :param pulumi.Input[int] outbreak_prevention_cache_ttl: Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
         :param pulumi.Input[int] outbreak_prevention_expiration: Expiration date of FortiGuard Virus Outbreak Prevention contract.
         :param pulumi.Input[str] outbreak_prevention_force_off: Turn off FortiGuard Virus Outbreak Prevention service. Valid values: `enable`, `disable`.
@@ -1069,6 +1176,7 @@ class _FortiguardState:
         :param pulumi.Input[str] source_ip: Source IPv4 address used to communicate with FortiGuard.
         :param pulumi.Input[str] source_ip6: Source IPv6 address used to communicate with FortiGuard.
         :param pulumi.Input[str] update_build_proxy: Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_dldb: Enable/disable DLP signature update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_extdb: Enable/disable external resource update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_ffdb: Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_server_location: Signature update server location.
@@ -1088,6 +1196,8 @@ class _FortiguardState:
             pulumi.set(__self__, "antispam_cache", antispam_cache)
         if antispam_cache_mpercent is not None:
             pulumi.set(__self__, "antispam_cache_mpercent", antispam_cache_mpercent)
+        if antispam_cache_mpermille is not None:
+            pulumi.set(__self__, "antispam_cache_mpermille", antispam_cache_mpermille)
         if antispam_cache_ttl is not None:
             pulumi.set(__self__, "antispam_cache_ttl", antispam_cache_ttl)
         if antispam_expiration is not None:
@@ -1106,6 +1216,8 @@ class _FortiguardState:
             pulumi.set(__self__, "auto_firmware_upgrade", auto_firmware_upgrade)
         if auto_firmware_upgrade_day is not None:
             pulumi.set(__self__, "auto_firmware_upgrade_day", auto_firmware_upgrade_day)
+        if auto_firmware_upgrade_delay is not None:
+            pulumi.set(__self__, "auto_firmware_upgrade_delay", auto_firmware_upgrade_delay)
         if auto_firmware_upgrade_end_hour is not None:
             pulumi.set(__self__, "auto_firmware_upgrade_end_hour", auto_firmware_upgrade_end_hour)
         if auto_firmware_upgrade_start_hour is not None:
@@ -1118,10 +1230,14 @@ class _FortiguardState:
             pulumi.set(__self__, "ddns_server_ip6", ddns_server_ip6)
         if ddns_server_port is not None:
             pulumi.set(__self__, "ddns_server_port", ddns_server_port)
+        if fds_license_expiring_days is not None:
+            pulumi.set(__self__, "fds_license_expiring_days", fds_license_expiring_days)
         if fortiguard_anycast is not None:
             pulumi.set(__self__, "fortiguard_anycast", fortiguard_anycast)
         if fortiguard_anycast_source is not None:
             pulumi.set(__self__, "fortiguard_anycast_source", fortiguard_anycast_source)
+        if gui_prompt_auto_upgrade is not None:
+            pulumi.set(__self__, "gui_prompt_auto_upgrade", gui_prompt_auto_upgrade)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -1132,6 +1248,8 @@ class _FortiguardState:
             pulumi.set(__self__, "outbreak_prevention_cache", outbreak_prevention_cache)
         if outbreak_prevention_cache_mpercent is not None:
             pulumi.set(__self__, "outbreak_prevention_cache_mpercent", outbreak_prevention_cache_mpercent)
+        if outbreak_prevention_cache_mpermille is not None:
+            pulumi.set(__self__, "outbreak_prevention_cache_mpermille", outbreak_prevention_cache_mpermille)
         if outbreak_prevention_cache_ttl is not None:
             pulumi.set(__self__, "outbreak_prevention_cache_ttl", outbreak_prevention_cache_ttl)
         if outbreak_prevention_expiration is not None:
@@ -1174,6 +1292,8 @@ class _FortiguardState:
             pulumi.set(__self__, "source_ip6", source_ip6)
         if update_build_proxy is not None:
             pulumi.set(__self__, "update_build_proxy", update_build_proxy)
+        if update_dldb is not None:
+            pulumi.set(__self__, "update_dldb", update_dldb)
         if update_extdb is not None:
             pulumi.set(__self__, "update_extdb", update_extdb)
         if update_ffdb is not None:
@@ -1226,6 +1346,18 @@ class _FortiguardState:
     @antispam_cache_mpercent.setter
     def antispam_cache_mpercent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "antispam_cache_mpercent", value)
+
+    @property
+    @pulumi.getter(name="antispamCacheMpermille")
+    def antispam_cache_mpermille(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+        """
+        return pulumi.get(self, "antispam_cache_mpermille")
+
+    @antispam_cache_mpermille.setter
+    def antispam_cache_mpermille(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "antispam_cache_mpermille", value)
 
     @property
     @pulumi.getter(name="antispamCacheTtl")
@@ -1336,6 +1468,18 @@ class _FortiguardState:
         pulumi.set(self, "auto_firmware_upgrade_day", value)
 
     @property
+    @pulumi.getter(name="autoFirmwareUpgradeDelay")
+    def auto_firmware_upgrade_delay(self) -> Optional[pulumi.Input[int]]:
+        """
+        Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+        """
+        return pulumi.get(self, "auto_firmware_upgrade_delay")
+
+    @auto_firmware_upgrade_delay.setter
+    def auto_firmware_upgrade_delay(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_firmware_upgrade_delay", value)
+
+    @property
     @pulumi.getter(name="autoFirmwareUpgradeEndHour")
     def auto_firmware_upgrade_end_hour(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1408,6 +1552,18 @@ class _FortiguardState:
         pulumi.set(self, "ddns_server_port", value)
 
     @property
+    @pulumi.getter(name="fdsLicenseExpiringDays")
+    def fds_license_expiring_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+        """
+        return pulumi.get(self, "fds_license_expiring_days")
+
+    @fds_license_expiring_days.setter
+    def fds_license_expiring_days(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fds_license_expiring_days", value)
+
+    @property
     @pulumi.getter(name="fortiguardAnycast")
     def fortiguard_anycast(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1430,6 +1586,18 @@ class _FortiguardState:
     @fortiguard_anycast_source.setter
     def fortiguard_anycast_source(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortiguard_anycast_source", value)
+
+    @property
+    @pulumi.getter(name="guiPromptAutoUpgrade")
+    def gui_prompt_auto_upgrade(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_prompt_auto_upgrade")
+
+    @gui_prompt_auto_upgrade.setter
+    def gui_prompt_auto_upgrade(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_prompt_auto_upgrade", value)
 
     @property
     @pulumi.getter
@@ -1490,6 +1658,18 @@ class _FortiguardState:
     @outbreak_prevention_cache_mpercent.setter
     def outbreak_prevention_cache_mpercent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "outbreak_prevention_cache_mpercent", value)
+
+    @property
+    @pulumi.getter(name="outbreakPreventionCacheMpermille")
+    def outbreak_prevention_cache_mpermille(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+        """
+        return pulumi.get(self, "outbreak_prevention_cache_mpermille")
+
+    @outbreak_prevention_cache_mpermille.setter
+    def outbreak_prevention_cache_mpermille(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "outbreak_prevention_cache_mpermille", value)
 
     @property
     @pulumi.getter(name="outbreakPreventionCacheTtl")
@@ -1744,6 +1924,18 @@ class _FortiguardState:
         pulumi.set(self, "update_build_proxy", value)
 
     @property
+    @pulumi.getter(name="updateDldb")
+    def update_dldb(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_dldb")
+
+    @update_dldb.setter
+    def update_dldb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_dldb", value)
+
+    @property
     @pulumi.getter(name="updateExtdb")
     def update_extdb(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1919,6 +2111,7 @@ class Fortiguard(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  antispam_cache: Optional[pulumi.Input[str]] = None,
                  antispam_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 antispam_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  antispam_cache_ttl: Optional[pulumi.Input[int]] = None,
                  antispam_expiration: Optional[pulumi.Input[int]] = None,
                  antispam_force_off: Optional[pulumi.Input[str]] = None,
@@ -1928,19 +2121,23 @@ class Fortiguard(pulumi.CustomResource):
                  anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade: Optional[pulumi.Input[str]] = None,
                  auto_firmware_upgrade_day: Optional[pulumi.Input[str]] = None,
+                 auto_firmware_upgrade_delay: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_end_hour: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_start_hour: Optional[pulumi.Input[int]] = None,
                  auto_join_forticloud: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip6: Optional[pulumi.Input[str]] = None,
                  ddns_server_port: Optional[pulumi.Input[int]] = None,
+                 fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
+                 gui_prompt_auto_upgrade: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  load_balance_servers: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache: Optional[pulumi.Input[str]] = None,
                  outbreak_prevention_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 outbreak_prevention_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache_ttl: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_expiration: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
@@ -1962,6 +2159,7 @@ class Fortiguard(pulumi.CustomResource):
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  update_build_proxy: Optional[pulumi.Input[str]] = None,
+                 update_dldb: Optional[pulumi.Input[str]] = None,
                  update_extdb: Optional[pulumi.Input[str]] = None,
                  update_ffdb: Optional[pulumi.Input[str]] = None,
                  update_server_location: Optional[pulumi.Input[str]] = None,
@@ -2043,6 +2241,7 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] antispam_cache: Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] antispam_cache_mpermille: Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
         :param pulumi.Input[int] antispam_cache_ttl: Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         :param pulumi.Input[int] antispam_expiration: Expiration date of the FortiGuard antispam contract.
         :param pulumi.Input[str] antispam_force_off: Enable/disable turning off the FortiGuard antispam service. Valid values: `enable`, `disable`.
@@ -2052,19 +2251,23 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.Input[int] anycast_sdns_server_port: Port to connect to on the FortiGuard anycast DNS rating server.
         :param pulumi.Input[str] auto_firmware_upgrade: Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auto_firmware_upgrade_day: Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        :param pulumi.Input[int] auto_firmware_upgrade_delay: Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
         :param pulumi.Input[int] auto_firmware_upgrade_end_hour: End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
         :param pulumi.Input[int] auto_firmware_upgrade_start_hour: Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
         :param pulumi.Input[str] auto_join_forticloud: Automatically connect to and login to FortiCloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ddns_server_ip: IP address of the FortiDDNS server.
         :param pulumi.Input[str] ddns_server_ip6: IPv6 address of the FortiDDNS server.
         :param pulumi.Input[int] ddns_server_port: Port used to communicate with FortiDDNS servers.
+        :param pulumi.Input[int] fds_license_expiring_days: Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
         :param pulumi.Input[str] fortiguard_anycast: Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiguard_anycast_source: Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
+        :param pulumi.Input[str] gui_prompt_auto_upgrade: Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] load_balance_servers: Number of servers to alternate between as first FortiGuard option.
         :param pulumi.Input[str] outbreak_prevention_cache: Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] outbreak_prevention_cache_mpercent: Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        :param pulumi.Input[int] outbreak_prevention_cache_mpermille: Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
         :param pulumi.Input[int] outbreak_prevention_cache_ttl: Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
         :param pulumi.Input[int] outbreak_prevention_expiration: Expiration date of FortiGuard Virus Outbreak Prevention contract.
         :param pulumi.Input[str] outbreak_prevention_force_off: Turn off FortiGuard Virus Outbreak Prevention service. Valid values: `enable`, `disable`.
@@ -2086,6 +2289,7 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.Input[str] source_ip: Source IPv4 address used to communicate with FortiGuard.
         :param pulumi.Input[str] source_ip6: Source IPv6 address used to communicate with FortiGuard.
         :param pulumi.Input[str] update_build_proxy: Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_dldb: Enable/disable DLP signature update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_extdb: Enable/disable external resource update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_ffdb: Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_server_location: Signature update server location.
@@ -2186,6 +2390,7 @@ class Fortiguard(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  antispam_cache: Optional[pulumi.Input[str]] = None,
                  antispam_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 antispam_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  antispam_cache_ttl: Optional[pulumi.Input[int]] = None,
                  antispam_expiration: Optional[pulumi.Input[int]] = None,
                  antispam_force_off: Optional[pulumi.Input[str]] = None,
@@ -2195,19 +2400,23 @@ class Fortiguard(pulumi.CustomResource):
                  anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade: Optional[pulumi.Input[str]] = None,
                  auto_firmware_upgrade_day: Optional[pulumi.Input[str]] = None,
+                 auto_firmware_upgrade_delay: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_end_hour: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_start_hour: Optional[pulumi.Input[int]] = None,
                  auto_join_forticloud: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip6: Optional[pulumi.Input[str]] = None,
                  ddns_server_port: Optional[pulumi.Input[int]] = None,
+                 fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
+                 gui_prompt_auto_upgrade: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  load_balance_servers: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache: Optional[pulumi.Input[str]] = None,
                  outbreak_prevention_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 outbreak_prevention_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache_ttl: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_expiration: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
@@ -2229,6 +2438,7 @@ class Fortiguard(pulumi.CustomResource):
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  update_build_proxy: Optional[pulumi.Input[str]] = None,
+                 update_dldb: Optional[pulumi.Input[str]] = None,
                  update_extdb: Optional[pulumi.Input[str]] = None,
                  update_ffdb: Optional[pulumi.Input[str]] = None,
                  update_server_location: Optional[pulumi.Input[str]] = None,
@@ -2254,6 +2464,7 @@ class Fortiguard(pulumi.CustomResource):
 
             __props__.__dict__["antispam_cache"] = antispam_cache
             __props__.__dict__["antispam_cache_mpercent"] = antispam_cache_mpercent
+            __props__.__dict__["antispam_cache_mpermille"] = antispam_cache_mpermille
             __props__.__dict__["antispam_cache_ttl"] = antispam_cache_ttl
             __props__.__dict__["antispam_expiration"] = antispam_expiration
             __props__.__dict__["antispam_force_off"] = antispam_force_off
@@ -2265,19 +2476,23 @@ class Fortiguard(pulumi.CustomResource):
             __props__.__dict__["anycast_sdns_server_port"] = anycast_sdns_server_port
             __props__.__dict__["auto_firmware_upgrade"] = auto_firmware_upgrade
             __props__.__dict__["auto_firmware_upgrade_day"] = auto_firmware_upgrade_day
+            __props__.__dict__["auto_firmware_upgrade_delay"] = auto_firmware_upgrade_delay
             __props__.__dict__["auto_firmware_upgrade_end_hour"] = auto_firmware_upgrade_end_hour
             __props__.__dict__["auto_firmware_upgrade_start_hour"] = auto_firmware_upgrade_start_hour
             __props__.__dict__["auto_join_forticloud"] = auto_join_forticloud
             __props__.__dict__["ddns_server_ip"] = ddns_server_ip
             __props__.__dict__["ddns_server_ip6"] = ddns_server_ip6
             __props__.__dict__["ddns_server_port"] = ddns_server_port
+            __props__.__dict__["fds_license_expiring_days"] = fds_license_expiring_days
             __props__.__dict__["fortiguard_anycast"] = fortiguard_anycast
             __props__.__dict__["fortiguard_anycast_source"] = fortiguard_anycast_source
+            __props__.__dict__["gui_prompt_auto_upgrade"] = gui_prompt_auto_upgrade
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
             __props__.__dict__["load_balance_servers"] = load_balance_servers
             __props__.__dict__["outbreak_prevention_cache"] = outbreak_prevention_cache
             __props__.__dict__["outbreak_prevention_cache_mpercent"] = outbreak_prevention_cache_mpercent
+            __props__.__dict__["outbreak_prevention_cache_mpermille"] = outbreak_prevention_cache_mpermille
             __props__.__dict__["outbreak_prevention_cache_ttl"] = outbreak_prevention_cache_ttl
             __props__.__dict__["outbreak_prevention_expiration"] = outbreak_prevention_expiration
             __props__.__dict__["outbreak_prevention_force_off"] = outbreak_prevention_force_off
@@ -2301,6 +2516,7 @@ class Fortiguard(pulumi.CustomResource):
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["source_ip6"] = source_ip6
             __props__.__dict__["update_build_proxy"] = update_build_proxy
+            __props__.__dict__["update_dldb"] = update_dldb
             __props__.__dict__["update_extdb"] = update_extdb
             __props__.__dict__["update_ffdb"] = update_ffdb
             __props__.__dict__["update_server_location"] = update_server_location
@@ -2331,6 +2547,7 @@ class Fortiguard(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             antispam_cache: Optional[pulumi.Input[str]] = None,
             antispam_cache_mpercent: Optional[pulumi.Input[int]] = None,
+            antispam_cache_mpermille: Optional[pulumi.Input[int]] = None,
             antispam_cache_ttl: Optional[pulumi.Input[int]] = None,
             antispam_expiration: Optional[pulumi.Input[int]] = None,
             antispam_force_off: Optional[pulumi.Input[str]] = None,
@@ -2340,19 +2557,23 @@ class Fortiguard(pulumi.CustomResource):
             anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
             auto_firmware_upgrade: Optional[pulumi.Input[str]] = None,
             auto_firmware_upgrade_day: Optional[pulumi.Input[str]] = None,
+            auto_firmware_upgrade_delay: Optional[pulumi.Input[int]] = None,
             auto_firmware_upgrade_end_hour: Optional[pulumi.Input[int]] = None,
             auto_firmware_upgrade_start_hour: Optional[pulumi.Input[int]] = None,
             auto_join_forticloud: Optional[pulumi.Input[str]] = None,
             ddns_server_ip: Optional[pulumi.Input[str]] = None,
             ddns_server_ip6: Optional[pulumi.Input[str]] = None,
             ddns_server_port: Optional[pulumi.Input[int]] = None,
+            fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
             fortiguard_anycast: Optional[pulumi.Input[str]] = None,
             fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
+            gui_prompt_auto_upgrade: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
             load_balance_servers: Optional[pulumi.Input[int]] = None,
             outbreak_prevention_cache: Optional[pulumi.Input[str]] = None,
             outbreak_prevention_cache_mpercent: Optional[pulumi.Input[int]] = None,
+            outbreak_prevention_cache_mpermille: Optional[pulumi.Input[int]] = None,
             outbreak_prevention_cache_ttl: Optional[pulumi.Input[int]] = None,
             outbreak_prevention_expiration: Optional[pulumi.Input[int]] = None,
             outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
@@ -2374,6 +2595,7 @@ class Fortiguard(pulumi.CustomResource):
             source_ip: Optional[pulumi.Input[str]] = None,
             source_ip6: Optional[pulumi.Input[str]] = None,
             update_build_proxy: Optional[pulumi.Input[str]] = None,
+            update_dldb: Optional[pulumi.Input[str]] = None,
             update_extdb: Optional[pulumi.Input[str]] = None,
             update_ffdb: Optional[pulumi.Input[str]] = None,
             update_server_location: Optional[pulumi.Input[str]] = None,
@@ -2397,6 +2619,7 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] antispam_cache: Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] antispam_cache_mpermille: Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
         :param pulumi.Input[int] antispam_cache_ttl: Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         :param pulumi.Input[int] antispam_expiration: Expiration date of the FortiGuard antispam contract.
         :param pulumi.Input[str] antispam_force_off: Enable/disable turning off the FortiGuard antispam service. Valid values: `enable`, `disable`.
@@ -2406,19 +2629,23 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.Input[int] anycast_sdns_server_port: Port to connect to on the FortiGuard anycast DNS rating server.
         :param pulumi.Input[str] auto_firmware_upgrade: Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auto_firmware_upgrade_day: Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        :param pulumi.Input[int] auto_firmware_upgrade_delay: Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
         :param pulumi.Input[int] auto_firmware_upgrade_end_hour: End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
         :param pulumi.Input[int] auto_firmware_upgrade_start_hour: Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
         :param pulumi.Input[str] auto_join_forticloud: Automatically connect to and login to FortiCloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ddns_server_ip: IP address of the FortiDDNS server.
         :param pulumi.Input[str] ddns_server_ip6: IPv6 address of the FortiDDNS server.
         :param pulumi.Input[int] ddns_server_port: Port used to communicate with FortiDDNS servers.
+        :param pulumi.Input[int] fds_license_expiring_days: Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
         :param pulumi.Input[str] fortiguard_anycast: Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiguard_anycast_source: Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
+        :param pulumi.Input[str] gui_prompt_auto_upgrade: Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] load_balance_servers: Number of servers to alternate between as first FortiGuard option.
         :param pulumi.Input[str] outbreak_prevention_cache: Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] outbreak_prevention_cache_mpercent: Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        :param pulumi.Input[int] outbreak_prevention_cache_mpermille: Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
         :param pulumi.Input[int] outbreak_prevention_cache_ttl: Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
         :param pulumi.Input[int] outbreak_prevention_expiration: Expiration date of FortiGuard Virus Outbreak Prevention contract.
         :param pulumi.Input[str] outbreak_prevention_force_off: Turn off FortiGuard Virus Outbreak Prevention service. Valid values: `enable`, `disable`.
@@ -2440,6 +2667,7 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.Input[str] source_ip: Source IPv4 address used to communicate with FortiGuard.
         :param pulumi.Input[str] source_ip6: Source IPv6 address used to communicate with FortiGuard.
         :param pulumi.Input[str] update_build_proxy: Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_dldb: Enable/disable DLP signature update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_extdb: Enable/disable external resource update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_ffdb: Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_server_location: Signature update server location.
@@ -2461,6 +2689,7 @@ class Fortiguard(pulumi.CustomResource):
 
         __props__.__dict__["antispam_cache"] = antispam_cache
         __props__.__dict__["antispam_cache_mpercent"] = antispam_cache_mpercent
+        __props__.__dict__["antispam_cache_mpermille"] = antispam_cache_mpermille
         __props__.__dict__["antispam_cache_ttl"] = antispam_cache_ttl
         __props__.__dict__["antispam_expiration"] = antispam_expiration
         __props__.__dict__["antispam_force_off"] = antispam_force_off
@@ -2470,19 +2699,23 @@ class Fortiguard(pulumi.CustomResource):
         __props__.__dict__["anycast_sdns_server_port"] = anycast_sdns_server_port
         __props__.__dict__["auto_firmware_upgrade"] = auto_firmware_upgrade
         __props__.__dict__["auto_firmware_upgrade_day"] = auto_firmware_upgrade_day
+        __props__.__dict__["auto_firmware_upgrade_delay"] = auto_firmware_upgrade_delay
         __props__.__dict__["auto_firmware_upgrade_end_hour"] = auto_firmware_upgrade_end_hour
         __props__.__dict__["auto_firmware_upgrade_start_hour"] = auto_firmware_upgrade_start_hour
         __props__.__dict__["auto_join_forticloud"] = auto_join_forticloud
         __props__.__dict__["ddns_server_ip"] = ddns_server_ip
         __props__.__dict__["ddns_server_ip6"] = ddns_server_ip6
         __props__.__dict__["ddns_server_port"] = ddns_server_port
+        __props__.__dict__["fds_license_expiring_days"] = fds_license_expiring_days
         __props__.__dict__["fortiguard_anycast"] = fortiguard_anycast
         __props__.__dict__["fortiguard_anycast_source"] = fortiguard_anycast_source
+        __props__.__dict__["gui_prompt_auto_upgrade"] = gui_prompt_auto_upgrade
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
         __props__.__dict__["load_balance_servers"] = load_balance_servers
         __props__.__dict__["outbreak_prevention_cache"] = outbreak_prevention_cache
         __props__.__dict__["outbreak_prevention_cache_mpercent"] = outbreak_prevention_cache_mpercent
+        __props__.__dict__["outbreak_prevention_cache_mpermille"] = outbreak_prevention_cache_mpermille
         __props__.__dict__["outbreak_prevention_cache_ttl"] = outbreak_prevention_cache_ttl
         __props__.__dict__["outbreak_prevention_expiration"] = outbreak_prevention_expiration
         __props__.__dict__["outbreak_prevention_force_off"] = outbreak_prevention_force_off
@@ -2504,6 +2737,7 @@ class Fortiguard(pulumi.CustomResource):
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["source_ip6"] = source_ip6
         __props__.__dict__["update_build_proxy"] = update_build_proxy
+        __props__.__dict__["update_dldb"] = update_dldb
         __props__.__dict__["update_extdb"] = update_extdb
         __props__.__dict__["update_ffdb"] = update_ffdb
         __props__.__dict__["update_server_location"] = update_server_location
@@ -2535,6 +2769,14 @@ class Fortiguard(pulumi.CustomResource):
         Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
         """
         return pulumi.get(self, "antispam_cache_mpercent")
+
+    @property
+    @pulumi.getter(name="antispamCacheMpermille")
+    def antispam_cache_mpermille(self) -> pulumi.Output[int]:
+        """
+        Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+        """
+        return pulumi.get(self, "antispam_cache_mpermille")
 
     @property
     @pulumi.getter(name="antispamCacheTtl")
@@ -2609,6 +2851,14 @@ class Fortiguard(pulumi.CustomResource):
         return pulumi.get(self, "auto_firmware_upgrade_day")
 
     @property
+    @pulumi.getter(name="autoFirmwareUpgradeDelay")
+    def auto_firmware_upgrade_delay(self) -> pulumi.Output[int]:
+        """
+        Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+        """
+        return pulumi.get(self, "auto_firmware_upgrade_delay")
+
+    @property
     @pulumi.getter(name="autoFirmwareUpgradeEndHour")
     def auto_firmware_upgrade_end_hour(self) -> pulumi.Output[int]:
         """
@@ -2657,6 +2907,14 @@ class Fortiguard(pulumi.CustomResource):
         return pulumi.get(self, "ddns_server_port")
 
     @property
+    @pulumi.getter(name="fdsLicenseExpiringDays")
+    def fds_license_expiring_days(self) -> pulumi.Output[int]:
+        """
+        Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+        """
+        return pulumi.get(self, "fds_license_expiring_days")
+
+    @property
     @pulumi.getter(name="fortiguardAnycast")
     def fortiguard_anycast(self) -> pulumi.Output[str]:
         """
@@ -2671,6 +2929,14 @@ class Fortiguard(pulumi.CustomResource):
         Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
         """
         return pulumi.get(self, "fortiguard_anycast_source")
+
+    @property
+    @pulumi.getter(name="guiPromptAutoUpgrade")
+    def gui_prompt_auto_upgrade(self) -> pulumi.Output[str]:
+        """
+        Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_prompt_auto_upgrade")
 
     @property
     @pulumi.getter
@@ -2711,6 +2977,14 @@ class Fortiguard(pulumi.CustomResource):
         Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
         """
         return pulumi.get(self, "outbreak_prevention_cache_mpercent")
+
+    @property
+    @pulumi.getter(name="outbreakPreventionCacheMpermille")
+    def outbreak_prevention_cache_mpermille(self) -> pulumi.Output[int]:
+        """
+        Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+        """
+        return pulumi.get(self, "outbreak_prevention_cache_mpermille")
 
     @property
     @pulumi.getter(name="outbreakPreventionCacheTtl")
@@ -2879,6 +3153,14 @@ class Fortiguard(pulumi.CustomResource):
         Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "update_build_proxy")
+
+    @property
+    @pulumi.getter(name="updateDldb")
+    def update_dldb(self) -> pulumi.Output[str]:
+        """
+        Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_dldb")
 
     @property
     @pulumi.getter(name="updateExtdb")

@@ -67,12 +67,18 @@ import (
 type Netflow struct {
 	pulumi.CustomResourceState
 
-	// Timeout to report active flows (1 - 60 min, default = 30).
+	// Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 3600 sec, default = 1800.
 	ActiveFlowTimeout pulumi.IntOutput `pulumi:"activeFlowTimeout"`
 	// Collector IP.
 	CollectorIp pulumi.StringOutput `pulumi:"collectorIp"`
 	// NetFlow collector port number.
 	CollectorPort pulumi.IntOutput `pulumi:"collectorPort"`
+	// Netflow collectors. The structure of `collectors` block is documented below.
+	Collectors NetflowCollectorArrayOutput `pulumi:"collectors"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
 	InactiveFlowTimeout pulumi.IntOutput `pulumi:"inactiveFlowTimeout"`
 	// Specify outgoing interface to reach server.
@@ -83,7 +89,7 @@ type Netflow struct {
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Counter of flowset records before resending a template flowset record.
 	TemplateTxCounter pulumi.IntOutput `pulumi:"templateTxCounter"`
-	// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+	// Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 86400 sec, default = 1800.
 	TemplateTxTimeout pulumi.IntOutput `pulumi:"templateTxTimeout"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
@@ -119,12 +125,18 @@ func GetNetflow(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Netflow resources.
 type netflowState struct {
-	// Timeout to report active flows (1 - 60 min, default = 30).
+	// Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 3600 sec, default = 1800.
 	ActiveFlowTimeout *int `pulumi:"activeFlowTimeout"`
 	// Collector IP.
 	CollectorIp *string `pulumi:"collectorIp"`
 	// NetFlow collector port number.
 	CollectorPort *int `pulumi:"collectorPort"`
+	// Netflow collectors. The structure of `collectors` block is documented below.
+	Collectors []NetflowCollector `pulumi:"collectors"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
 	InactiveFlowTimeout *int `pulumi:"inactiveFlowTimeout"`
 	// Specify outgoing interface to reach server.
@@ -135,19 +147,25 @@ type netflowState struct {
 	SourceIp *string `pulumi:"sourceIp"`
 	// Counter of flowset records before resending a template flowset record.
 	TemplateTxCounter *int `pulumi:"templateTxCounter"`
-	// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+	// Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 86400 sec, default = 1800.
 	TemplateTxTimeout *int `pulumi:"templateTxTimeout"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type NetflowState struct {
-	// Timeout to report active flows (1 - 60 min, default = 30).
+	// Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 3600 sec, default = 1800.
 	ActiveFlowTimeout pulumi.IntPtrInput
 	// Collector IP.
 	CollectorIp pulumi.StringPtrInput
 	// NetFlow collector port number.
 	CollectorPort pulumi.IntPtrInput
+	// Netflow collectors. The structure of `collectors` block is documented below.
+	Collectors NetflowCollectorArrayInput
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
 	InactiveFlowTimeout pulumi.IntPtrInput
 	// Specify outgoing interface to reach server.
@@ -158,7 +176,7 @@ type NetflowState struct {
 	SourceIp pulumi.StringPtrInput
 	// Counter of flowset records before resending a template flowset record.
 	TemplateTxCounter pulumi.IntPtrInput
-	// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+	// Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 86400 sec, default = 1800.
 	TemplateTxTimeout pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -169,12 +187,18 @@ func (NetflowState) ElementType() reflect.Type {
 }
 
 type netflowArgs struct {
-	// Timeout to report active flows (1 - 60 min, default = 30).
+	// Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 3600 sec, default = 1800.
 	ActiveFlowTimeout *int `pulumi:"activeFlowTimeout"`
 	// Collector IP.
 	CollectorIp *string `pulumi:"collectorIp"`
 	// NetFlow collector port number.
 	CollectorPort *int `pulumi:"collectorPort"`
+	// Netflow collectors. The structure of `collectors` block is documented below.
+	Collectors []NetflowCollector `pulumi:"collectors"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
 	InactiveFlowTimeout *int `pulumi:"inactiveFlowTimeout"`
 	// Specify outgoing interface to reach server.
@@ -185,7 +209,7 @@ type netflowArgs struct {
 	SourceIp *string `pulumi:"sourceIp"`
 	// Counter of flowset records before resending a template flowset record.
 	TemplateTxCounter *int `pulumi:"templateTxCounter"`
-	// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+	// Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 86400 sec, default = 1800.
 	TemplateTxTimeout *int `pulumi:"templateTxTimeout"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -193,12 +217,18 @@ type netflowArgs struct {
 
 // The set of arguments for constructing a Netflow resource.
 type NetflowArgs struct {
-	// Timeout to report active flows (1 - 60 min, default = 30).
+	// Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 3600 sec, default = 1800.
 	ActiveFlowTimeout pulumi.IntPtrInput
 	// Collector IP.
 	CollectorIp pulumi.StringPtrInput
 	// NetFlow collector port number.
 	CollectorPort pulumi.IntPtrInput
+	// Netflow collectors. The structure of `collectors` block is documented below.
+	Collectors NetflowCollectorArrayInput
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
 	InactiveFlowTimeout pulumi.IntPtrInput
 	// Specify outgoing interface to reach server.
@@ -209,7 +239,7 @@ type NetflowArgs struct {
 	SourceIp pulumi.StringPtrInput
 	// Counter of flowset records before resending a template flowset record.
 	TemplateTxCounter pulumi.IntPtrInput
-	// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+	// Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 86400 sec, default = 1800.
 	TemplateTxTimeout pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -302,7 +332,7 @@ func (o NetflowOutput) ToNetflowOutputWithContext(ctx context.Context) NetflowOu
 	return o
 }
 
-// Timeout to report active flows (1 - 60 min, default = 30).
+// Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 3600 sec, default = 1800.
 func (o NetflowOutput) ActiveFlowTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Netflow) pulumi.IntOutput { return v.ActiveFlowTimeout }).(pulumi.IntOutput)
 }
@@ -315,6 +345,21 @@ func (o NetflowOutput) CollectorIp() pulumi.StringOutput {
 // NetFlow collector port number.
 func (o NetflowOutput) CollectorPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Netflow) pulumi.IntOutput { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+// Netflow collectors. The structure of `collectors` block is documented below.
+func (o NetflowOutput) Collectors() NetflowCollectorArrayOutput {
+	return o.ApplyT(func(v *Netflow) NetflowCollectorArrayOutput { return v.Collectors }).(NetflowCollectorArrayOutput)
+}
+
+// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+func (o NetflowOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Netflow) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o NetflowOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Netflow) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
@@ -342,7 +387,7 @@ func (o NetflowOutput) TemplateTxCounter() pulumi.IntOutput {
 	return o.ApplyT(func(v *Netflow) pulumi.IntOutput { return v.TemplateTxCounter }).(pulumi.IntOutput)
 }
 
-// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+// Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 86400 sec, default = 1800.
 func (o NetflowOutput) TemplateTxTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Netflow) pulumi.IntOutput { return v.TemplateTxTimeout }).(pulumi.IntOutput)
 }

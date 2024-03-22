@@ -63,6 +63,8 @@ type Networkpolicy struct {
 
 	// Comment.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Guest. The structure of `guest` block is documented below.
 	Guest NetworkpolicyGuestOutput `pulumi:"guest"`
 	// Guest Voice Signaling. The structure of `guestVoiceSignaling` block is documented below.
@@ -117,6 +119,8 @@ func GetNetworkpolicy(ctx *pulumi.Context,
 type networkpolicyState struct {
 	// Comment.
 	Comment *string `pulumi:"comment"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Guest. The structure of `guest` block is documented below.
 	Guest *NetworkpolicyGuest `pulumi:"guest"`
 	// Guest Voice Signaling. The structure of `guestVoiceSignaling` block is documented below.
@@ -142,6 +146,8 @@ type networkpolicyState struct {
 type NetworkpolicyState struct {
 	// Comment.
 	Comment pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Guest. The structure of `guest` block is documented below.
 	Guest NetworkpolicyGuestPtrInput
 	// Guest Voice Signaling. The structure of `guestVoiceSignaling` block is documented below.
@@ -171,6 +177,8 @@ func (NetworkpolicyState) ElementType() reflect.Type {
 type networkpolicyArgs struct {
 	// Comment.
 	Comment *string `pulumi:"comment"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Guest. The structure of `guest` block is documented below.
 	Guest *NetworkpolicyGuest `pulumi:"guest"`
 	// Guest Voice Signaling. The structure of `guestVoiceSignaling` block is documented below.
@@ -197,6 +205,8 @@ type networkpolicyArgs struct {
 type NetworkpolicyArgs struct {
 	// Comment.
 	Comment pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Guest. The structure of `guest` block is documented below.
 	Guest NetworkpolicyGuestPtrInput
 	// Guest Voice Signaling. The structure of `guestVoiceSignaling` block is documented below.
@@ -309,6 +319,11 @@ func (o NetworkpolicyOutput) ToNetworkpolicyOutputWithContext(ctx context.Contex
 // Comment.
 func (o NetworkpolicyOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Networkpolicy) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o NetworkpolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Networkpolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Guest. The structure of `guest` block is documented below.

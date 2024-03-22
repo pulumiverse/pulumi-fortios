@@ -129,6 +129,26 @@ export class Accprofile extends pulumi.CustomResource {
      */
     public readonly authgrp!: pulumi.Output<string>;
     /**
+     * Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+     */
+    public readonly cliConfig!: pulumi.Output<string>;
+    /**
+     * Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+     */
+    public readonly cliDiagnose!: pulumi.Output<string>;
+    /**
+     * Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+     */
+    public readonly cliExec!: pulumi.Output<string>;
+    /**
+     * Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+     */
+    public readonly cliGet!: pulumi.Output<string>;
+    /**
+     * Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+     */
+    public readonly cliShow!: pulumi.Output<string>;
+    /**
      * Comment.
      */
     public readonly comments!: pulumi.Output<string | undefined>;
@@ -144,6 +164,10 @@ export class Accprofile extends pulumi.CustomResource {
      * Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
      */
     public readonly fwgrpPermission!: pulumi.Output<outputs.system.AccprofileFwgrpPermission>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
      */
@@ -233,10 +257,16 @@ export class Accprofile extends pulumi.CustomResource {
             resourceInputs["admintimeout"] = state ? state.admintimeout : undefined;
             resourceInputs["admintimeoutOverride"] = state ? state.admintimeoutOverride : undefined;
             resourceInputs["authgrp"] = state ? state.authgrp : undefined;
+            resourceInputs["cliConfig"] = state ? state.cliConfig : undefined;
+            resourceInputs["cliDiagnose"] = state ? state.cliDiagnose : undefined;
+            resourceInputs["cliExec"] = state ? state.cliExec : undefined;
+            resourceInputs["cliGet"] = state ? state.cliGet : undefined;
+            resourceInputs["cliShow"] = state ? state.cliShow : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["ftviewgrp"] = state ? state.ftviewgrp : undefined;
             resourceInputs["fwgrp"] = state ? state.fwgrp : undefined;
             resourceInputs["fwgrpPermission"] = state ? state.fwgrpPermission : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["loggrp"] = state ? state.loggrp : undefined;
             resourceInputs["loggrpPermission"] = state ? state.loggrpPermission : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -260,10 +290,16 @@ export class Accprofile extends pulumi.CustomResource {
             resourceInputs["admintimeout"] = args ? args.admintimeout : undefined;
             resourceInputs["admintimeoutOverride"] = args ? args.admintimeoutOverride : undefined;
             resourceInputs["authgrp"] = args ? args.authgrp : undefined;
+            resourceInputs["cliConfig"] = args ? args.cliConfig : undefined;
+            resourceInputs["cliDiagnose"] = args ? args.cliDiagnose : undefined;
+            resourceInputs["cliExec"] = args ? args.cliExec : undefined;
+            resourceInputs["cliGet"] = args ? args.cliGet : undefined;
+            resourceInputs["cliShow"] = args ? args.cliShow : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["ftviewgrp"] = args ? args.ftviewgrp : undefined;
             resourceInputs["fwgrp"] = args ? args.fwgrp : undefined;
             resourceInputs["fwgrpPermission"] = args ? args.fwgrpPermission : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["loggrp"] = args ? args.loggrp : undefined;
             resourceInputs["loggrpPermission"] = args ? args.loggrpPermission : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -305,6 +341,26 @@ export interface AccprofileState {
      */
     authgrp?: pulumi.Input<string>;
     /**
+     * Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+     */
+    cliConfig?: pulumi.Input<string>;
+    /**
+     * Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+     */
+    cliDiagnose?: pulumi.Input<string>;
+    /**
+     * Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+     */
+    cliExec?: pulumi.Input<string>;
+    /**
+     * Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+     */
+    cliGet?: pulumi.Input<string>;
+    /**
+     * Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+     */
+    cliShow?: pulumi.Input<string>;
+    /**
      * Comment.
      */
     comments?: pulumi.Input<string>;
@@ -320,6 +376,10 @@ export interface AccprofileState {
      * Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
      */
     fwgrpPermission?: pulumi.Input<inputs.system.AccprofileFwgrpPermission>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
      */
@@ -411,6 +471,26 @@ export interface AccprofileArgs {
      */
     authgrp?: pulumi.Input<string>;
     /**
+     * Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+     */
+    cliConfig?: pulumi.Input<string>;
+    /**
+     * Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+     */
+    cliDiagnose?: pulumi.Input<string>;
+    /**
+     * Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+     */
+    cliExec?: pulumi.Input<string>;
+    /**
+     * Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+     */
+    cliGet?: pulumi.Input<string>;
+    /**
+     * Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+     */
+    cliShow?: pulumi.Input<string>;
+    /**
      * Comment.
      */
     comments?: pulumi.Input<string>;
@@ -426,6 +506,10 @@ export interface AccprofileArgs {
      * Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
      */
     fwgrpPermission?: pulumi.Input<inputs.system.AccprofileFwgrpPermission>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
      */

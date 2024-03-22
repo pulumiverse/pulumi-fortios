@@ -18,8 +18,14 @@ type ServerExcludeRange struct {
 	EndIp *string `pulumi:"endIp"`
 	// ID.
 	Id *int `pulumi:"id"`
+	// Lease time in seconds, 0 means default lease time.
+	LeaseTime *int `pulumi:"leaseTime"`
 	// Start of IP range.
 	StartIp *string `pulumi:"startIp"`
+	// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+	UciMatch *string `pulumi:"uciMatch"`
+	// One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+	UciStrings []ServerExcludeRangeUciString `pulumi:"uciStrings"`
 	// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 	VciMatch *string `pulumi:"vciMatch"`
 	// One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
@@ -42,8 +48,14 @@ type ServerExcludeRangeArgs struct {
 	EndIp pulumi.StringPtrInput `pulumi:"endIp"`
 	// ID.
 	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Lease time in seconds, 0 means default lease time.
+	LeaseTime pulumi.IntPtrInput `pulumi:"leaseTime"`
 	// Start of IP range.
 	StartIp pulumi.StringPtrInput `pulumi:"startIp"`
+	// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+	UciMatch pulumi.StringPtrInput `pulumi:"uciMatch"`
+	// One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+	UciStrings ServerExcludeRangeUciStringArrayInput `pulumi:"uciStrings"`
 	// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 	VciMatch pulumi.StringPtrInput `pulumi:"vciMatch"`
 	// One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
@@ -111,9 +123,24 @@ func (o ServerExcludeRangeOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServerExcludeRange) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
+// Lease time in seconds, 0 means default lease time.
+func (o ServerExcludeRangeOutput) LeaseTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServerExcludeRange) *int { return v.LeaseTime }).(pulumi.IntPtrOutput)
+}
+
 // Start of IP range.
 func (o ServerExcludeRangeOutput) StartIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerExcludeRange) *string { return v.StartIp }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+func (o ServerExcludeRangeOutput) UciMatch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerExcludeRange) *string { return v.UciMatch }).(pulumi.StringPtrOutput)
+}
+
+// One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+func (o ServerExcludeRangeOutput) UciStrings() ServerExcludeRangeUciStringArrayOutput {
+	return o.ApplyT(func(v ServerExcludeRange) []ServerExcludeRangeUciString { return v.UciStrings }).(ServerExcludeRangeUciStringArrayOutput)
 }
 
 // Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
@@ -144,6 +171,103 @@ func (o ServerExcludeRangeArrayOutput) Index(i pulumi.IntInput) ServerExcludeRan
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerExcludeRange {
 		return vs[0].([]ServerExcludeRange)[vs[1].(int)]
 	}).(ServerExcludeRangeOutput)
+}
+
+type ServerExcludeRangeUciString struct {
+	// UCI strings.
+	UciString *string `pulumi:"uciString"`
+}
+
+// ServerExcludeRangeUciStringInput is an input type that accepts ServerExcludeRangeUciStringArgs and ServerExcludeRangeUciStringOutput values.
+// You can construct a concrete instance of `ServerExcludeRangeUciStringInput` via:
+//
+//	ServerExcludeRangeUciStringArgs{...}
+type ServerExcludeRangeUciStringInput interface {
+	pulumi.Input
+
+	ToServerExcludeRangeUciStringOutput() ServerExcludeRangeUciStringOutput
+	ToServerExcludeRangeUciStringOutputWithContext(context.Context) ServerExcludeRangeUciStringOutput
+}
+
+type ServerExcludeRangeUciStringArgs struct {
+	// UCI strings.
+	UciString pulumi.StringPtrInput `pulumi:"uciString"`
+}
+
+func (ServerExcludeRangeUciStringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerExcludeRangeUciString)(nil)).Elem()
+}
+
+func (i ServerExcludeRangeUciStringArgs) ToServerExcludeRangeUciStringOutput() ServerExcludeRangeUciStringOutput {
+	return i.ToServerExcludeRangeUciStringOutputWithContext(context.Background())
+}
+
+func (i ServerExcludeRangeUciStringArgs) ToServerExcludeRangeUciStringOutputWithContext(ctx context.Context) ServerExcludeRangeUciStringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerExcludeRangeUciStringOutput)
+}
+
+// ServerExcludeRangeUciStringArrayInput is an input type that accepts ServerExcludeRangeUciStringArray and ServerExcludeRangeUciStringArrayOutput values.
+// You can construct a concrete instance of `ServerExcludeRangeUciStringArrayInput` via:
+//
+//	ServerExcludeRangeUciStringArray{ ServerExcludeRangeUciStringArgs{...} }
+type ServerExcludeRangeUciStringArrayInput interface {
+	pulumi.Input
+
+	ToServerExcludeRangeUciStringArrayOutput() ServerExcludeRangeUciStringArrayOutput
+	ToServerExcludeRangeUciStringArrayOutputWithContext(context.Context) ServerExcludeRangeUciStringArrayOutput
+}
+
+type ServerExcludeRangeUciStringArray []ServerExcludeRangeUciStringInput
+
+func (ServerExcludeRangeUciStringArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerExcludeRangeUciString)(nil)).Elem()
+}
+
+func (i ServerExcludeRangeUciStringArray) ToServerExcludeRangeUciStringArrayOutput() ServerExcludeRangeUciStringArrayOutput {
+	return i.ToServerExcludeRangeUciStringArrayOutputWithContext(context.Background())
+}
+
+func (i ServerExcludeRangeUciStringArray) ToServerExcludeRangeUciStringArrayOutputWithContext(ctx context.Context) ServerExcludeRangeUciStringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerExcludeRangeUciStringArrayOutput)
+}
+
+type ServerExcludeRangeUciStringOutput struct{ *pulumi.OutputState }
+
+func (ServerExcludeRangeUciStringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerExcludeRangeUciString)(nil)).Elem()
+}
+
+func (o ServerExcludeRangeUciStringOutput) ToServerExcludeRangeUciStringOutput() ServerExcludeRangeUciStringOutput {
+	return o
+}
+
+func (o ServerExcludeRangeUciStringOutput) ToServerExcludeRangeUciStringOutputWithContext(ctx context.Context) ServerExcludeRangeUciStringOutput {
+	return o
+}
+
+// UCI strings.
+func (o ServerExcludeRangeUciStringOutput) UciString() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerExcludeRangeUciString) *string { return v.UciString }).(pulumi.StringPtrOutput)
+}
+
+type ServerExcludeRangeUciStringArrayOutput struct{ *pulumi.OutputState }
+
+func (ServerExcludeRangeUciStringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerExcludeRangeUciString)(nil)).Elem()
+}
+
+func (o ServerExcludeRangeUciStringArrayOutput) ToServerExcludeRangeUciStringArrayOutput() ServerExcludeRangeUciStringArrayOutput {
+	return o
+}
+
+func (o ServerExcludeRangeUciStringArrayOutput) ToServerExcludeRangeUciStringArrayOutputWithContext(ctx context.Context) ServerExcludeRangeUciStringArrayOutput {
+	return o
+}
+
+func (o ServerExcludeRangeUciStringArrayOutput) Index(i pulumi.IntInput) ServerExcludeRangeUciStringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerExcludeRangeUciString {
+		return vs[0].([]ServerExcludeRangeUciString)[vs[1].(int)]
+	}).(ServerExcludeRangeUciStringOutput)
 }
 
 type ServerExcludeRangeVciString struct {
@@ -248,8 +372,14 @@ type ServerIpRange struct {
 	EndIp *string `pulumi:"endIp"`
 	// ID.
 	Id *int `pulumi:"id"`
+	// Lease time in seconds, 0 means default lease time.
+	LeaseTime *int `pulumi:"leaseTime"`
 	// Start of IP range.
 	StartIp *string `pulumi:"startIp"`
+	// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+	UciMatch *string `pulumi:"uciMatch"`
+	// One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+	UciStrings []ServerIpRangeUciString `pulumi:"uciStrings"`
 	// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 	VciMatch *string `pulumi:"vciMatch"`
 	// One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
@@ -272,8 +402,14 @@ type ServerIpRangeArgs struct {
 	EndIp pulumi.StringPtrInput `pulumi:"endIp"`
 	// ID.
 	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Lease time in seconds, 0 means default lease time.
+	LeaseTime pulumi.IntPtrInput `pulumi:"leaseTime"`
 	// Start of IP range.
 	StartIp pulumi.StringPtrInput `pulumi:"startIp"`
+	// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+	UciMatch pulumi.StringPtrInput `pulumi:"uciMatch"`
+	// One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+	UciStrings ServerIpRangeUciStringArrayInput `pulumi:"uciStrings"`
 	// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 	VciMatch pulumi.StringPtrInput `pulumi:"vciMatch"`
 	// One or more VCI strings in quotes separated by spaces. The structure of `vciString` block is documented below.
@@ -341,9 +477,24 @@ func (o ServerIpRangeOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServerIpRange) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
+// Lease time in seconds, 0 means default lease time.
+func (o ServerIpRangeOutput) LeaseTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServerIpRange) *int { return v.LeaseTime }).(pulumi.IntPtrOutput)
+}
+
 // Start of IP range.
 func (o ServerIpRangeOutput) StartIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerIpRange) *string { return v.StartIp }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+func (o ServerIpRangeOutput) UciMatch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerIpRange) *string { return v.UciMatch }).(pulumi.StringPtrOutput)
+}
+
+// One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+func (o ServerIpRangeOutput) UciStrings() ServerIpRangeUciStringArrayOutput {
+	return o.ApplyT(func(v ServerIpRange) []ServerIpRangeUciString { return v.UciStrings }).(ServerIpRangeUciStringArrayOutput)
 }
 
 // Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
@@ -374,6 +525,103 @@ func (o ServerIpRangeArrayOutput) Index(i pulumi.IntInput) ServerIpRangeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerIpRange {
 		return vs[0].([]ServerIpRange)[vs[1].(int)]
 	}).(ServerIpRangeOutput)
+}
+
+type ServerIpRangeUciString struct {
+	// UCI strings.
+	UciString *string `pulumi:"uciString"`
+}
+
+// ServerIpRangeUciStringInput is an input type that accepts ServerIpRangeUciStringArgs and ServerIpRangeUciStringOutput values.
+// You can construct a concrete instance of `ServerIpRangeUciStringInput` via:
+//
+//	ServerIpRangeUciStringArgs{...}
+type ServerIpRangeUciStringInput interface {
+	pulumi.Input
+
+	ToServerIpRangeUciStringOutput() ServerIpRangeUciStringOutput
+	ToServerIpRangeUciStringOutputWithContext(context.Context) ServerIpRangeUciStringOutput
+}
+
+type ServerIpRangeUciStringArgs struct {
+	// UCI strings.
+	UciString pulumi.StringPtrInput `pulumi:"uciString"`
+}
+
+func (ServerIpRangeUciStringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerIpRangeUciString)(nil)).Elem()
+}
+
+func (i ServerIpRangeUciStringArgs) ToServerIpRangeUciStringOutput() ServerIpRangeUciStringOutput {
+	return i.ToServerIpRangeUciStringOutputWithContext(context.Background())
+}
+
+func (i ServerIpRangeUciStringArgs) ToServerIpRangeUciStringOutputWithContext(ctx context.Context) ServerIpRangeUciStringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerIpRangeUciStringOutput)
+}
+
+// ServerIpRangeUciStringArrayInput is an input type that accepts ServerIpRangeUciStringArray and ServerIpRangeUciStringArrayOutput values.
+// You can construct a concrete instance of `ServerIpRangeUciStringArrayInput` via:
+//
+//	ServerIpRangeUciStringArray{ ServerIpRangeUciStringArgs{...} }
+type ServerIpRangeUciStringArrayInput interface {
+	pulumi.Input
+
+	ToServerIpRangeUciStringArrayOutput() ServerIpRangeUciStringArrayOutput
+	ToServerIpRangeUciStringArrayOutputWithContext(context.Context) ServerIpRangeUciStringArrayOutput
+}
+
+type ServerIpRangeUciStringArray []ServerIpRangeUciStringInput
+
+func (ServerIpRangeUciStringArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerIpRangeUciString)(nil)).Elem()
+}
+
+func (i ServerIpRangeUciStringArray) ToServerIpRangeUciStringArrayOutput() ServerIpRangeUciStringArrayOutput {
+	return i.ToServerIpRangeUciStringArrayOutputWithContext(context.Background())
+}
+
+func (i ServerIpRangeUciStringArray) ToServerIpRangeUciStringArrayOutputWithContext(ctx context.Context) ServerIpRangeUciStringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerIpRangeUciStringArrayOutput)
+}
+
+type ServerIpRangeUciStringOutput struct{ *pulumi.OutputState }
+
+func (ServerIpRangeUciStringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerIpRangeUciString)(nil)).Elem()
+}
+
+func (o ServerIpRangeUciStringOutput) ToServerIpRangeUciStringOutput() ServerIpRangeUciStringOutput {
+	return o
+}
+
+func (o ServerIpRangeUciStringOutput) ToServerIpRangeUciStringOutputWithContext(ctx context.Context) ServerIpRangeUciStringOutput {
+	return o
+}
+
+// UCI strings.
+func (o ServerIpRangeUciStringOutput) UciString() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerIpRangeUciString) *string { return v.UciString }).(pulumi.StringPtrOutput)
+}
+
+type ServerIpRangeUciStringArrayOutput struct{ *pulumi.OutputState }
+
+func (ServerIpRangeUciStringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerIpRangeUciString)(nil)).Elem()
+}
+
+func (o ServerIpRangeUciStringArrayOutput) ToServerIpRangeUciStringArrayOutput() ServerIpRangeUciStringArrayOutput {
+	return o
+}
+
+func (o ServerIpRangeUciStringArrayOutput) ToServerIpRangeUciStringArrayOutputWithContext(ctx context.Context) ServerIpRangeUciStringArrayOutput {
+	return o
+}
+
+func (o ServerIpRangeUciStringArrayOutput) Index(i pulumi.IntInput) ServerIpRangeUciStringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerIpRangeUciString {
+		return vs[0].([]ServerIpRangeUciString)[vs[1].(int)]
+	}).(ServerIpRangeUciStringOutput)
 }
 
 type ServerIpRangeVciString struct {
@@ -482,6 +730,10 @@ type ServerOption struct {
 	Ip *string `pulumi:"ip"`
 	// DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
 	Type *string `pulumi:"type"`
+	// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this option. Valid values: `disable`, `enable`.
+	UciMatch *string `pulumi:"uciMatch"`
+	// One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+	UciStrings []ServerOptionUciString `pulumi:"uciStrings"`
 	// DHCP option value.
 	Value *string `pulumi:"value"`
 	// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: `disable`, `enable`.
@@ -510,6 +762,10 @@ type ServerOptionArgs struct {
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
+	// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this option. Valid values: `disable`, `enable`.
+	UciMatch pulumi.StringPtrInput `pulumi:"uciMatch"`
+	// One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+	UciStrings ServerOptionUciStringArrayInput `pulumi:"uciStrings"`
 	// DHCP option value.
 	Value pulumi.StringPtrInput `pulumi:"value"`
 	// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: `disable`, `enable`.
@@ -589,6 +845,16 @@ func (o ServerOptionOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerOption) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
+// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this option. Valid values: `disable`, `enable`.
+func (o ServerOptionOutput) UciMatch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerOption) *string { return v.UciMatch }).(pulumi.StringPtrOutput)
+}
+
+// One or more UCI strings in quotes separated by spaces. The structure of `uciString` block is documented below.
+func (o ServerOptionOutput) UciStrings() ServerOptionUciStringArrayOutput {
+	return o.ApplyT(func(v ServerOption) []ServerOptionUciString { return v.UciStrings }).(ServerOptionUciStringArrayOutput)
+}
+
 // DHCP option value.
 func (o ServerOptionOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerOption) *string { return v.Value }).(pulumi.StringPtrOutput)
@@ -622,6 +888,103 @@ func (o ServerOptionArrayOutput) Index(i pulumi.IntInput) ServerOptionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerOption {
 		return vs[0].([]ServerOption)[vs[1].(int)]
 	}).(ServerOptionOutput)
+}
+
+type ServerOptionUciString struct {
+	// UCI strings.
+	UciString *string `pulumi:"uciString"`
+}
+
+// ServerOptionUciStringInput is an input type that accepts ServerOptionUciStringArgs and ServerOptionUciStringOutput values.
+// You can construct a concrete instance of `ServerOptionUciStringInput` via:
+//
+//	ServerOptionUciStringArgs{...}
+type ServerOptionUciStringInput interface {
+	pulumi.Input
+
+	ToServerOptionUciStringOutput() ServerOptionUciStringOutput
+	ToServerOptionUciStringOutputWithContext(context.Context) ServerOptionUciStringOutput
+}
+
+type ServerOptionUciStringArgs struct {
+	// UCI strings.
+	UciString pulumi.StringPtrInput `pulumi:"uciString"`
+}
+
+func (ServerOptionUciStringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerOptionUciString)(nil)).Elem()
+}
+
+func (i ServerOptionUciStringArgs) ToServerOptionUciStringOutput() ServerOptionUciStringOutput {
+	return i.ToServerOptionUciStringOutputWithContext(context.Background())
+}
+
+func (i ServerOptionUciStringArgs) ToServerOptionUciStringOutputWithContext(ctx context.Context) ServerOptionUciStringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerOptionUciStringOutput)
+}
+
+// ServerOptionUciStringArrayInput is an input type that accepts ServerOptionUciStringArray and ServerOptionUciStringArrayOutput values.
+// You can construct a concrete instance of `ServerOptionUciStringArrayInput` via:
+//
+//	ServerOptionUciStringArray{ ServerOptionUciStringArgs{...} }
+type ServerOptionUciStringArrayInput interface {
+	pulumi.Input
+
+	ToServerOptionUciStringArrayOutput() ServerOptionUciStringArrayOutput
+	ToServerOptionUciStringArrayOutputWithContext(context.Context) ServerOptionUciStringArrayOutput
+}
+
+type ServerOptionUciStringArray []ServerOptionUciStringInput
+
+func (ServerOptionUciStringArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerOptionUciString)(nil)).Elem()
+}
+
+func (i ServerOptionUciStringArray) ToServerOptionUciStringArrayOutput() ServerOptionUciStringArrayOutput {
+	return i.ToServerOptionUciStringArrayOutputWithContext(context.Background())
+}
+
+func (i ServerOptionUciStringArray) ToServerOptionUciStringArrayOutputWithContext(ctx context.Context) ServerOptionUciStringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerOptionUciStringArrayOutput)
+}
+
+type ServerOptionUciStringOutput struct{ *pulumi.OutputState }
+
+func (ServerOptionUciStringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerOptionUciString)(nil)).Elem()
+}
+
+func (o ServerOptionUciStringOutput) ToServerOptionUciStringOutput() ServerOptionUciStringOutput {
+	return o
+}
+
+func (o ServerOptionUciStringOutput) ToServerOptionUciStringOutputWithContext(ctx context.Context) ServerOptionUciStringOutput {
+	return o
+}
+
+// UCI strings.
+func (o ServerOptionUciStringOutput) UciString() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerOptionUciString) *string { return v.UciString }).(pulumi.StringPtrOutput)
+}
+
+type ServerOptionUciStringArrayOutput struct{ *pulumi.OutputState }
+
+func (ServerOptionUciStringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerOptionUciString)(nil)).Elem()
+}
+
+func (o ServerOptionUciStringArrayOutput) ToServerOptionUciStringArrayOutput() ServerOptionUciStringArrayOutput {
+	return o
+}
+
+func (o ServerOptionUciStringArrayOutput) ToServerOptionUciStringArrayOutputWithContext(ctx context.Context) ServerOptionUciStringArrayOutput {
+	return o
+}
+
+func (o ServerOptionUciStringArrayOutput) Index(i pulumi.IntInput) ServerOptionUciStringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerOptionUciString {
+		return vs[0].([]ServerOptionUciString)[vs[1].(int)]
+	}).(ServerOptionUciStringOutput)
 }
 
 type ServerOptionVciString struct {
@@ -1098,8 +1461,14 @@ type GetServerExcludeRange struct {
 	EndIp string `pulumi:"endIp"`
 	// ID.
 	Id int `pulumi:"id"`
+	// Lease time in seconds, 0 means default lease time.
+	LeaseTime int `pulumi:"leaseTime"`
 	// Start of IP range.
 	StartIp string `pulumi:"startIp"`
+	// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+	UciMatch string `pulumi:"uciMatch"`
+	// UCI strings.
+	UciStrings []GetServerExcludeRangeUciString `pulumi:"uciStrings"`
 	// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
 	VciMatch string `pulumi:"vciMatch"`
 	// VCI strings.
@@ -1122,8 +1491,14 @@ type GetServerExcludeRangeArgs struct {
 	EndIp pulumi.StringInput `pulumi:"endIp"`
 	// ID.
 	Id pulumi.IntInput `pulumi:"id"`
+	// Lease time in seconds, 0 means default lease time.
+	LeaseTime pulumi.IntInput `pulumi:"leaseTime"`
 	// Start of IP range.
 	StartIp pulumi.StringInput `pulumi:"startIp"`
+	// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+	UciMatch pulumi.StringInput `pulumi:"uciMatch"`
+	// UCI strings.
+	UciStrings GetServerExcludeRangeUciStringArrayInput `pulumi:"uciStrings"`
 	// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
 	VciMatch pulumi.StringInput `pulumi:"vciMatch"`
 	// VCI strings.
@@ -1191,9 +1566,24 @@ func (o GetServerExcludeRangeOutput) Id() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerExcludeRange) int { return v.Id }).(pulumi.IntOutput)
 }
 
+// Lease time in seconds, 0 means default lease time.
+func (o GetServerExcludeRangeOutput) LeaseTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerExcludeRange) int { return v.LeaseTime }).(pulumi.IntOutput)
+}
+
 // Start of IP range.
 func (o GetServerExcludeRangeOutput) StartIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerExcludeRange) string { return v.StartIp }).(pulumi.StringOutput)
+}
+
+// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+func (o GetServerExcludeRangeOutput) UciMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerExcludeRange) string { return v.UciMatch }).(pulumi.StringOutput)
+}
+
+// UCI strings.
+func (o GetServerExcludeRangeOutput) UciStrings() GetServerExcludeRangeUciStringArrayOutput {
+	return o.ApplyT(func(v GetServerExcludeRange) []GetServerExcludeRangeUciString { return v.UciStrings }).(GetServerExcludeRangeUciStringArrayOutput)
 }
 
 // Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
@@ -1224,6 +1614,103 @@ func (o GetServerExcludeRangeArrayOutput) Index(i pulumi.IntInput) GetServerExcl
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerExcludeRange {
 		return vs[0].([]GetServerExcludeRange)[vs[1].(int)]
 	}).(GetServerExcludeRangeOutput)
+}
+
+type GetServerExcludeRangeUciString struct {
+	// UCI strings.
+	UciString string `pulumi:"uciString"`
+}
+
+// GetServerExcludeRangeUciStringInput is an input type that accepts GetServerExcludeRangeUciStringArgs and GetServerExcludeRangeUciStringOutput values.
+// You can construct a concrete instance of `GetServerExcludeRangeUciStringInput` via:
+//
+//	GetServerExcludeRangeUciStringArgs{...}
+type GetServerExcludeRangeUciStringInput interface {
+	pulumi.Input
+
+	ToGetServerExcludeRangeUciStringOutput() GetServerExcludeRangeUciStringOutput
+	ToGetServerExcludeRangeUciStringOutputWithContext(context.Context) GetServerExcludeRangeUciStringOutput
+}
+
+type GetServerExcludeRangeUciStringArgs struct {
+	// UCI strings.
+	UciString pulumi.StringInput `pulumi:"uciString"`
+}
+
+func (GetServerExcludeRangeUciStringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerExcludeRangeUciString)(nil)).Elem()
+}
+
+func (i GetServerExcludeRangeUciStringArgs) ToGetServerExcludeRangeUciStringOutput() GetServerExcludeRangeUciStringOutput {
+	return i.ToGetServerExcludeRangeUciStringOutputWithContext(context.Background())
+}
+
+func (i GetServerExcludeRangeUciStringArgs) ToGetServerExcludeRangeUciStringOutputWithContext(ctx context.Context) GetServerExcludeRangeUciStringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerExcludeRangeUciStringOutput)
+}
+
+// GetServerExcludeRangeUciStringArrayInput is an input type that accepts GetServerExcludeRangeUciStringArray and GetServerExcludeRangeUciStringArrayOutput values.
+// You can construct a concrete instance of `GetServerExcludeRangeUciStringArrayInput` via:
+//
+//	GetServerExcludeRangeUciStringArray{ GetServerExcludeRangeUciStringArgs{...} }
+type GetServerExcludeRangeUciStringArrayInput interface {
+	pulumi.Input
+
+	ToGetServerExcludeRangeUciStringArrayOutput() GetServerExcludeRangeUciStringArrayOutput
+	ToGetServerExcludeRangeUciStringArrayOutputWithContext(context.Context) GetServerExcludeRangeUciStringArrayOutput
+}
+
+type GetServerExcludeRangeUciStringArray []GetServerExcludeRangeUciStringInput
+
+func (GetServerExcludeRangeUciStringArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerExcludeRangeUciString)(nil)).Elem()
+}
+
+func (i GetServerExcludeRangeUciStringArray) ToGetServerExcludeRangeUciStringArrayOutput() GetServerExcludeRangeUciStringArrayOutput {
+	return i.ToGetServerExcludeRangeUciStringArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerExcludeRangeUciStringArray) ToGetServerExcludeRangeUciStringArrayOutputWithContext(ctx context.Context) GetServerExcludeRangeUciStringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerExcludeRangeUciStringArrayOutput)
+}
+
+type GetServerExcludeRangeUciStringOutput struct{ *pulumi.OutputState }
+
+func (GetServerExcludeRangeUciStringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerExcludeRangeUciString)(nil)).Elem()
+}
+
+func (o GetServerExcludeRangeUciStringOutput) ToGetServerExcludeRangeUciStringOutput() GetServerExcludeRangeUciStringOutput {
+	return o
+}
+
+func (o GetServerExcludeRangeUciStringOutput) ToGetServerExcludeRangeUciStringOutputWithContext(ctx context.Context) GetServerExcludeRangeUciStringOutput {
+	return o
+}
+
+// UCI strings.
+func (o GetServerExcludeRangeUciStringOutput) UciString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerExcludeRangeUciString) string { return v.UciString }).(pulumi.StringOutput)
+}
+
+type GetServerExcludeRangeUciStringArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerExcludeRangeUciStringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerExcludeRangeUciString)(nil)).Elem()
+}
+
+func (o GetServerExcludeRangeUciStringArrayOutput) ToGetServerExcludeRangeUciStringArrayOutput() GetServerExcludeRangeUciStringArrayOutput {
+	return o
+}
+
+func (o GetServerExcludeRangeUciStringArrayOutput) ToGetServerExcludeRangeUciStringArrayOutputWithContext(ctx context.Context) GetServerExcludeRangeUciStringArrayOutput {
+	return o
+}
+
+func (o GetServerExcludeRangeUciStringArrayOutput) Index(i pulumi.IntInput) GetServerExcludeRangeUciStringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerExcludeRangeUciString {
+		return vs[0].([]GetServerExcludeRangeUciString)[vs[1].(int)]
+	}).(GetServerExcludeRangeUciStringOutput)
 }
 
 type GetServerExcludeRangeVciString struct {
@@ -1328,8 +1815,14 @@ type GetServerIpRange struct {
 	EndIp string `pulumi:"endIp"`
 	// ID.
 	Id int `pulumi:"id"`
+	// Lease time in seconds, 0 means default lease time.
+	LeaseTime int `pulumi:"leaseTime"`
 	// Start of IP range.
 	StartIp string `pulumi:"startIp"`
+	// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+	UciMatch string `pulumi:"uciMatch"`
+	// UCI strings.
+	UciStrings []GetServerIpRangeUciString `pulumi:"uciStrings"`
 	// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
 	VciMatch string `pulumi:"vciMatch"`
 	// VCI strings.
@@ -1352,8 +1845,14 @@ type GetServerIpRangeArgs struct {
 	EndIp pulumi.StringInput `pulumi:"endIp"`
 	// ID.
 	Id pulumi.IntInput `pulumi:"id"`
+	// Lease time in seconds, 0 means default lease time.
+	LeaseTime pulumi.IntInput `pulumi:"leaseTime"`
 	// Start of IP range.
 	StartIp pulumi.StringInput `pulumi:"startIp"`
+	// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+	UciMatch pulumi.StringInput `pulumi:"uciMatch"`
+	// UCI strings.
+	UciStrings GetServerIpRangeUciStringArrayInput `pulumi:"uciStrings"`
 	// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
 	VciMatch pulumi.StringInput `pulumi:"vciMatch"`
 	// VCI strings.
@@ -1421,9 +1920,24 @@ func (o GetServerIpRangeOutput) Id() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerIpRange) int { return v.Id }).(pulumi.IntOutput)
 }
 
+// Lease time in seconds, 0 means default lease time.
+func (o GetServerIpRangeOutput) LeaseTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerIpRange) int { return v.LeaseTime }).(pulumi.IntOutput)
+}
+
 // Start of IP range.
 func (o GetServerIpRangeOutput) StartIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerIpRange) string { return v.StartIp }).(pulumi.StringOutput)
+}
+
+// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+func (o GetServerIpRangeOutput) UciMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerIpRange) string { return v.UciMatch }).(pulumi.StringOutput)
+}
+
+// UCI strings.
+func (o GetServerIpRangeOutput) UciStrings() GetServerIpRangeUciStringArrayOutput {
+	return o.ApplyT(func(v GetServerIpRange) []GetServerIpRangeUciString { return v.UciStrings }).(GetServerIpRangeUciStringArrayOutput)
 }
 
 // Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
@@ -1454,6 +1968,103 @@ func (o GetServerIpRangeArrayOutput) Index(i pulumi.IntInput) GetServerIpRangeOu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerIpRange {
 		return vs[0].([]GetServerIpRange)[vs[1].(int)]
 	}).(GetServerIpRangeOutput)
+}
+
+type GetServerIpRangeUciString struct {
+	// UCI strings.
+	UciString string `pulumi:"uciString"`
+}
+
+// GetServerIpRangeUciStringInput is an input type that accepts GetServerIpRangeUciStringArgs and GetServerIpRangeUciStringOutput values.
+// You can construct a concrete instance of `GetServerIpRangeUciStringInput` via:
+//
+//	GetServerIpRangeUciStringArgs{...}
+type GetServerIpRangeUciStringInput interface {
+	pulumi.Input
+
+	ToGetServerIpRangeUciStringOutput() GetServerIpRangeUciStringOutput
+	ToGetServerIpRangeUciStringOutputWithContext(context.Context) GetServerIpRangeUciStringOutput
+}
+
+type GetServerIpRangeUciStringArgs struct {
+	// UCI strings.
+	UciString pulumi.StringInput `pulumi:"uciString"`
+}
+
+func (GetServerIpRangeUciStringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerIpRangeUciString)(nil)).Elem()
+}
+
+func (i GetServerIpRangeUciStringArgs) ToGetServerIpRangeUciStringOutput() GetServerIpRangeUciStringOutput {
+	return i.ToGetServerIpRangeUciStringOutputWithContext(context.Background())
+}
+
+func (i GetServerIpRangeUciStringArgs) ToGetServerIpRangeUciStringOutputWithContext(ctx context.Context) GetServerIpRangeUciStringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerIpRangeUciStringOutput)
+}
+
+// GetServerIpRangeUciStringArrayInput is an input type that accepts GetServerIpRangeUciStringArray and GetServerIpRangeUciStringArrayOutput values.
+// You can construct a concrete instance of `GetServerIpRangeUciStringArrayInput` via:
+//
+//	GetServerIpRangeUciStringArray{ GetServerIpRangeUciStringArgs{...} }
+type GetServerIpRangeUciStringArrayInput interface {
+	pulumi.Input
+
+	ToGetServerIpRangeUciStringArrayOutput() GetServerIpRangeUciStringArrayOutput
+	ToGetServerIpRangeUciStringArrayOutputWithContext(context.Context) GetServerIpRangeUciStringArrayOutput
+}
+
+type GetServerIpRangeUciStringArray []GetServerIpRangeUciStringInput
+
+func (GetServerIpRangeUciStringArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerIpRangeUciString)(nil)).Elem()
+}
+
+func (i GetServerIpRangeUciStringArray) ToGetServerIpRangeUciStringArrayOutput() GetServerIpRangeUciStringArrayOutput {
+	return i.ToGetServerIpRangeUciStringArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerIpRangeUciStringArray) ToGetServerIpRangeUciStringArrayOutputWithContext(ctx context.Context) GetServerIpRangeUciStringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerIpRangeUciStringArrayOutput)
+}
+
+type GetServerIpRangeUciStringOutput struct{ *pulumi.OutputState }
+
+func (GetServerIpRangeUciStringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerIpRangeUciString)(nil)).Elem()
+}
+
+func (o GetServerIpRangeUciStringOutput) ToGetServerIpRangeUciStringOutput() GetServerIpRangeUciStringOutput {
+	return o
+}
+
+func (o GetServerIpRangeUciStringOutput) ToGetServerIpRangeUciStringOutputWithContext(ctx context.Context) GetServerIpRangeUciStringOutput {
+	return o
+}
+
+// UCI strings.
+func (o GetServerIpRangeUciStringOutput) UciString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerIpRangeUciString) string { return v.UciString }).(pulumi.StringOutput)
+}
+
+type GetServerIpRangeUciStringArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerIpRangeUciStringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerIpRangeUciString)(nil)).Elem()
+}
+
+func (o GetServerIpRangeUciStringArrayOutput) ToGetServerIpRangeUciStringArrayOutput() GetServerIpRangeUciStringArrayOutput {
+	return o
+}
+
+func (o GetServerIpRangeUciStringArrayOutput) ToGetServerIpRangeUciStringArrayOutputWithContext(ctx context.Context) GetServerIpRangeUciStringArrayOutput {
+	return o
+}
+
+func (o GetServerIpRangeUciStringArrayOutput) Index(i pulumi.IntInput) GetServerIpRangeUciStringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerIpRangeUciString {
+		return vs[0].([]GetServerIpRangeUciString)[vs[1].(int)]
+	}).(GetServerIpRangeUciStringOutput)
 }
 
 type GetServerIpRangeVciString struct {
@@ -1562,6 +2173,10 @@ type GetServerOption struct {
 	Ip string `pulumi:"ip"`
 	// DHCP reserved-address type.
 	Type string `pulumi:"type"`
+	// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+	UciMatch string `pulumi:"uciMatch"`
+	// UCI strings.
+	UciStrings []GetServerOptionUciString `pulumi:"uciStrings"`
 	// DHCP option value.
 	Value string `pulumi:"value"`
 	// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
@@ -1590,6 +2205,10 @@ type GetServerOptionArgs struct {
 	Ip pulumi.StringInput `pulumi:"ip"`
 	// DHCP reserved-address type.
 	Type pulumi.StringInput `pulumi:"type"`
+	// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+	UciMatch pulumi.StringInput `pulumi:"uciMatch"`
+	// UCI strings.
+	UciStrings GetServerOptionUciStringArrayInput `pulumi:"uciStrings"`
 	// DHCP option value.
 	Value pulumi.StringInput `pulumi:"value"`
 	// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
@@ -1669,6 +2288,16 @@ func (o GetServerOptionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerOption) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+func (o GetServerOptionOutput) UciMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerOption) string { return v.UciMatch }).(pulumi.StringOutput)
+}
+
+// UCI strings.
+func (o GetServerOptionOutput) UciStrings() GetServerOptionUciStringArrayOutput {
+	return o.ApplyT(func(v GetServerOption) []GetServerOptionUciString { return v.UciStrings }).(GetServerOptionUciStringArrayOutput)
+}
+
 // DHCP option value.
 func (o GetServerOptionOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerOption) string { return v.Value }).(pulumi.StringOutput)
@@ -1702,6 +2331,103 @@ func (o GetServerOptionArrayOutput) Index(i pulumi.IntInput) GetServerOptionOutp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerOption {
 		return vs[0].([]GetServerOption)[vs[1].(int)]
 	}).(GetServerOptionOutput)
+}
+
+type GetServerOptionUciString struct {
+	// UCI strings.
+	UciString string `pulumi:"uciString"`
+}
+
+// GetServerOptionUciStringInput is an input type that accepts GetServerOptionUciStringArgs and GetServerOptionUciStringOutput values.
+// You can construct a concrete instance of `GetServerOptionUciStringInput` via:
+//
+//	GetServerOptionUciStringArgs{...}
+type GetServerOptionUciStringInput interface {
+	pulumi.Input
+
+	ToGetServerOptionUciStringOutput() GetServerOptionUciStringOutput
+	ToGetServerOptionUciStringOutputWithContext(context.Context) GetServerOptionUciStringOutput
+}
+
+type GetServerOptionUciStringArgs struct {
+	// UCI strings.
+	UciString pulumi.StringInput `pulumi:"uciString"`
+}
+
+func (GetServerOptionUciStringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerOptionUciString)(nil)).Elem()
+}
+
+func (i GetServerOptionUciStringArgs) ToGetServerOptionUciStringOutput() GetServerOptionUciStringOutput {
+	return i.ToGetServerOptionUciStringOutputWithContext(context.Background())
+}
+
+func (i GetServerOptionUciStringArgs) ToGetServerOptionUciStringOutputWithContext(ctx context.Context) GetServerOptionUciStringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerOptionUciStringOutput)
+}
+
+// GetServerOptionUciStringArrayInput is an input type that accepts GetServerOptionUciStringArray and GetServerOptionUciStringArrayOutput values.
+// You can construct a concrete instance of `GetServerOptionUciStringArrayInput` via:
+//
+//	GetServerOptionUciStringArray{ GetServerOptionUciStringArgs{...} }
+type GetServerOptionUciStringArrayInput interface {
+	pulumi.Input
+
+	ToGetServerOptionUciStringArrayOutput() GetServerOptionUciStringArrayOutput
+	ToGetServerOptionUciStringArrayOutputWithContext(context.Context) GetServerOptionUciStringArrayOutput
+}
+
+type GetServerOptionUciStringArray []GetServerOptionUciStringInput
+
+func (GetServerOptionUciStringArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerOptionUciString)(nil)).Elem()
+}
+
+func (i GetServerOptionUciStringArray) ToGetServerOptionUciStringArrayOutput() GetServerOptionUciStringArrayOutput {
+	return i.ToGetServerOptionUciStringArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerOptionUciStringArray) ToGetServerOptionUciStringArrayOutputWithContext(ctx context.Context) GetServerOptionUciStringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerOptionUciStringArrayOutput)
+}
+
+type GetServerOptionUciStringOutput struct{ *pulumi.OutputState }
+
+func (GetServerOptionUciStringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerOptionUciString)(nil)).Elem()
+}
+
+func (o GetServerOptionUciStringOutput) ToGetServerOptionUciStringOutput() GetServerOptionUciStringOutput {
+	return o
+}
+
+func (o GetServerOptionUciStringOutput) ToGetServerOptionUciStringOutputWithContext(ctx context.Context) GetServerOptionUciStringOutput {
+	return o
+}
+
+// UCI strings.
+func (o GetServerOptionUciStringOutput) UciString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerOptionUciString) string { return v.UciString }).(pulumi.StringOutput)
+}
+
+type GetServerOptionUciStringArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerOptionUciStringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerOptionUciString)(nil)).Elem()
+}
+
+func (o GetServerOptionUciStringArrayOutput) ToGetServerOptionUciStringArrayOutput() GetServerOptionUciStringArrayOutput {
+	return o
+}
+
+func (o GetServerOptionUciStringArrayOutput) ToGetServerOptionUciStringArrayOutputWithContext(ctx context.Context) GetServerOptionUciStringArrayOutput {
+	return o
+}
+
+func (o GetServerOptionUciStringArrayOutput) Index(i pulumi.IntInput) GetServerOptionUciStringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerOptionUciString {
+		return vs[0].([]GetServerOptionUciString)[vs[1].(int)]
+	}).(GetServerOptionUciStringOutput)
 }
 
 type GetServerOptionVciString struct {
@@ -2176,14 +2902,20 @@ func (o GetServerVciStringArrayOutput) Index(i pulumi.IntInput) GetServerVciStri
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerExcludeRangeInput)(nil)).Elem(), ServerExcludeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerExcludeRangeArrayInput)(nil)).Elem(), ServerExcludeRangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerExcludeRangeUciStringInput)(nil)).Elem(), ServerExcludeRangeUciStringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerExcludeRangeUciStringArrayInput)(nil)).Elem(), ServerExcludeRangeUciStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerExcludeRangeVciStringInput)(nil)).Elem(), ServerExcludeRangeVciStringArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerExcludeRangeVciStringArrayInput)(nil)).Elem(), ServerExcludeRangeVciStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerIpRangeInput)(nil)).Elem(), ServerIpRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerIpRangeArrayInput)(nil)).Elem(), ServerIpRangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerIpRangeUciStringInput)(nil)).Elem(), ServerIpRangeUciStringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerIpRangeUciStringArrayInput)(nil)).Elem(), ServerIpRangeUciStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerIpRangeVciStringInput)(nil)).Elem(), ServerIpRangeVciStringArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerIpRangeVciStringArrayInput)(nil)).Elem(), ServerIpRangeVciStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerOptionInput)(nil)).Elem(), ServerOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerOptionArrayInput)(nil)).Elem(), ServerOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerOptionUciStringInput)(nil)).Elem(), ServerOptionUciStringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerOptionUciStringArrayInput)(nil)).Elem(), ServerOptionUciStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerOptionVciStringInput)(nil)).Elem(), ServerOptionVciStringArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerOptionVciStringArrayInput)(nil)).Elem(), ServerOptionVciStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerReservedAddressInput)(nil)).Elem(), ServerReservedAddressArgs{})
@@ -2194,14 +2926,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerVciStringArrayInput)(nil)).Elem(), ServerVciStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerExcludeRangeInput)(nil)).Elem(), GetServerExcludeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerExcludeRangeArrayInput)(nil)).Elem(), GetServerExcludeRangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerExcludeRangeUciStringInput)(nil)).Elem(), GetServerExcludeRangeUciStringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerExcludeRangeUciStringArrayInput)(nil)).Elem(), GetServerExcludeRangeUciStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerExcludeRangeVciStringInput)(nil)).Elem(), GetServerExcludeRangeVciStringArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerExcludeRangeVciStringArrayInput)(nil)).Elem(), GetServerExcludeRangeVciStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerIpRangeInput)(nil)).Elem(), GetServerIpRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerIpRangeArrayInput)(nil)).Elem(), GetServerIpRangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerIpRangeUciStringInput)(nil)).Elem(), GetServerIpRangeUciStringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerIpRangeUciStringArrayInput)(nil)).Elem(), GetServerIpRangeUciStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerIpRangeVciStringInput)(nil)).Elem(), GetServerIpRangeVciStringArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerIpRangeVciStringArrayInput)(nil)).Elem(), GetServerIpRangeVciStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerOptionInput)(nil)).Elem(), GetServerOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerOptionArrayInput)(nil)).Elem(), GetServerOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerOptionUciStringInput)(nil)).Elem(), GetServerOptionUciStringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerOptionUciStringArrayInput)(nil)).Elem(), GetServerOptionUciStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerOptionVciStringInput)(nil)).Elem(), GetServerOptionVciStringArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerOptionVciStringArrayInput)(nil)).Elem(), GetServerOptionVciStringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerReservedAddressInput)(nil)).Elem(), GetServerReservedAddressArgs{})
@@ -2212,14 +2950,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerVciStringArrayInput)(nil)).Elem(), GetServerVciStringArray{})
 	pulumi.RegisterOutputType(ServerExcludeRangeOutput{})
 	pulumi.RegisterOutputType(ServerExcludeRangeArrayOutput{})
+	pulumi.RegisterOutputType(ServerExcludeRangeUciStringOutput{})
+	pulumi.RegisterOutputType(ServerExcludeRangeUciStringArrayOutput{})
 	pulumi.RegisterOutputType(ServerExcludeRangeVciStringOutput{})
 	pulumi.RegisterOutputType(ServerExcludeRangeVciStringArrayOutput{})
 	pulumi.RegisterOutputType(ServerIpRangeOutput{})
 	pulumi.RegisterOutputType(ServerIpRangeArrayOutput{})
+	pulumi.RegisterOutputType(ServerIpRangeUciStringOutput{})
+	pulumi.RegisterOutputType(ServerIpRangeUciStringArrayOutput{})
 	pulumi.RegisterOutputType(ServerIpRangeVciStringOutput{})
 	pulumi.RegisterOutputType(ServerIpRangeVciStringArrayOutput{})
 	pulumi.RegisterOutputType(ServerOptionOutput{})
 	pulumi.RegisterOutputType(ServerOptionArrayOutput{})
+	pulumi.RegisterOutputType(ServerOptionUciStringOutput{})
+	pulumi.RegisterOutputType(ServerOptionUciStringArrayOutput{})
 	pulumi.RegisterOutputType(ServerOptionVciStringOutput{})
 	pulumi.RegisterOutputType(ServerOptionVciStringArrayOutput{})
 	pulumi.RegisterOutputType(ServerReservedAddressOutput{})
@@ -2230,14 +2974,20 @@ func init() {
 	pulumi.RegisterOutputType(ServerVciStringArrayOutput{})
 	pulumi.RegisterOutputType(GetServerExcludeRangeOutput{})
 	pulumi.RegisterOutputType(GetServerExcludeRangeArrayOutput{})
+	pulumi.RegisterOutputType(GetServerExcludeRangeUciStringOutput{})
+	pulumi.RegisterOutputType(GetServerExcludeRangeUciStringArrayOutput{})
 	pulumi.RegisterOutputType(GetServerExcludeRangeVciStringOutput{})
 	pulumi.RegisterOutputType(GetServerExcludeRangeVciStringArrayOutput{})
 	pulumi.RegisterOutputType(GetServerIpRangeOutput{})
 	pulumi.RegisterOutputType(GetServerIpRangeArrayOutput{})
+	pulumi.RegisterOutputType(GetServerIpRangeUciStringOutput{})
+	pulumi.RegisterOutputType(GetServerIpRangeUciStringArrayOutput{})
 	pulumi.RegisterOutputType(GetServerIpRangeVciStringOutput{})
 	pulumi.RegisterOutputType(GetServerIpRangeVciStringArrayOutput{})
 	pulumi.RegisterOutputType(GetServerOptionOutput{})
 	pulumi.RegisterOutputType(GetServerOptionArrayOutput{})
+	pulumi.RegisterOutputType(GetServerOptionUciStringOutput{})
+	pulumi.RegisterOutputType(GetServerOptionUciStringArrayOutput{})
 	pulumi.RegisterOutputType(GetServerOptionVciStringOutput{})
 	pulumi.RegisterOutputType(GetServerOptionVciStringArrayOutput{})
 	pulumi.RegisterOutputType(GetServerReservedAddressOutput{})

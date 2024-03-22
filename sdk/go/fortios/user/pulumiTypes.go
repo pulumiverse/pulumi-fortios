@@ -1366,6 +1366,103 @@ func (o GroupMemberArrayOutput) Index(i pulumi.IntInput) GroupMemberOutput {
 	}).(GroupMemberOutput)
 }
 
+type NacpolicySeverity struct {
+	// Enter multiple severity levels, where 0 = Info, 1 = Low, ..., 4 = Critical
+	SeverityNum *int `pulumi:"severityNum"`
+}
+
+// NacpolicySeverityInput is an input type that accepts NacpolicySeverityArgs and NacpolicySeverityOutput values.
+// You can construct a concrete instance of `NacpolicySeverityInput` via:
+//
+//	NacpolicySeverityArgs{...}
+type NacpolicySeverityInput interface {
+	pulumi.Input
+
+	ToNacpolicySeverityOutput() NacpolicySeverityOutput
+	ToNacpolicySeverityOutputWithContext(context.Context) NacpolicySeverityOutput
+}
+
+type NacpolicySeverityArgs struct {
+	// Enter multiple severity levels, where 0 = Info, 1 = Low, ..., 4 = Critical
+	SeverityNum pulumi.IntPtrInput `pulumi:"severityNum"`
+}
+
+func (NacpolicySeverityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NacpolicySeverity)(nil)).Elem()
+}
+
+func (i NacpolicySeverityArgs) ToNacpolicySeverityOutput() NacpolicySeverityOutput {
+	return i.ToNacpolicySeverityOutputWithContext(context.Background())
+}
+
+func (i NacpolicySeverityArgs) ToNacpolicySeverityOutputWithContext(ctx context.Context) NacpolicySeverityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NacpolicySeverityOutput)
+}
+
+// NacpolicySeverityArrayInput is an input type that accepts NacpolicySeverityArray and NacpolicySeverityArrayOutput values.
+// You can construct a concrete instance of `NacpolicySeverityArrayInput` via:
+//
+//	NacpolicySeverityArray{ NacpolicySeverityArgs{...} }
+type NacpolicySeverityArrayInput interface {
+	pulumi.Input
+
+	ToNacpolicySeverityArrayOutput() NacpolicySeverityArrayOutput
+	ToNacpolicySeverityArrayOutputWithContext(context.Context) NacpolicySeverityArrayOutput
+}
+
+type NacpolicySeverityArray []NacpolicySeverityInput
+
+func (NacpolicySeverityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NacpolicySeverity)(nil)).Elem()
+}
+
+func (i NacpolicySeverityArray) ToNacpolicySeverityArrayOutput() NacpolicySeverityArrayOutput {
+	return i.ToNacpolicySeverityArrayOutputWithContext(context.Background())
+}
+
+func (i NacpolicySeverityArray) ToNacpolicySeverityArrayOutputWithContext(ctx context.Context) NacpolicySeverityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NacpolicySeverityArrayOutput)
+}
+
+type NacpolicySeverityOutput struct{ *pulumi.OutputState }
+
+func (NacpolicySeverityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NacpolicySeverity)(nil)).Elem()
+}
+
+func (o NacpolicySeverityOutput) ToNacpolicySeverityOutput() NacpolicySeverityOutput {
+	return o
+}
+
+func (o NacpolicySeverityOutput) ToNacpolicySeverityOutputWithContext(ctx context.Context) NacpolicySeverityOutput {
+	return o
+}
+
+// Enter multiple severity levels, where 0 = Info, 1 = Low, ..., 4 = Critical
+func (o NacpolicySeverityOutput) SeverityNum() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NacpolicySeverity) *int { return v.SeverityNum }).(pulumi.IntPtrOutput)
+}
+
+type NacpolicySeverityArrayOutput struct{ *pulumi.OutputState }
+
+func (NacpolicySeverityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NacpolicySeverity)(nil)).Elem()
+}
+
+func (o NacpolicySeverityArrayOutput) ToNacpolicySeverityArrayOutput() NacpolicySeverityArrayOutput {
+	return o
+}
+
+func (o NacpolicySeverityArrayOutput) ToNacpolicySeverityArrayOutputWithContext(ctx context.Context) NacpolicySeverityArrayOutput {
+	return o
+}
+
+func (o NacpolicySeverityArrayOutput) Index(i pulumi.IntInput) NacpolicySeverityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NacpolicySeverity {
+		return vs[0].([]NacpolicySeverity)[vs[1].(int)]
+	}).(NacpolicySeverityOutput)
+}
+
 type NacpolicySwitchGroup struct {
 	// Managed FortiSwitch group name from available options.
 	Name *string `pulumi:"name"`
@@ -2823,6 +2920,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupMatchArrayInput)(nil)).Elem(), GroupMatchArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupMemberInput)(nil)).Elem(), GroupMemberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupMemberArrayInput)(nil)).Elem(), GroupMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NacpolicySeverityInput)(nil)).Elem(), NacpolicySeverityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NacpolicySeverityArrayInput)(nil)).Elem(), NacpolicySeverityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NacpolicySwitchGroupInput)(nil)).Elem(), NacpolicySwitchGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NacpolicySwitchGroupArrayInput)(nil)).Elem(), NacpolicySwitchGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NacpolicySwitchScopeInput)(nil)).Elem(), NacpolicySwitchScopeArgs{})
@@ -2873,6 +2972,8 @@ func init() {
 	pulumi.RegisterOutputType(GroupMatchArrayOutput{})
 	pulumi.RegisterOutputType(GroupMemberOutput{})
 	pulumi.RegisterOutputType(GroupMemberArrayOutput{})
+	pulumi.RegisterOutputType(NacpolicySeverityOutput{})
+	pulumi.RegisterOutputType(NacpolicySeverityArrayOutput{})
 	pulumi.RegisterOutputType(NacpolicySwitchGroupOutput{})
 	pulumi.RegisterOutputType(NacpolicySwitchGroupArrayOutput{})
 	pulumi.RegisterOutputType(NacpolicySwitchScopeOutput{})

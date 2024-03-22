@@ -20,6 +20,7 @@ class Address6templateArgs:
                  subnet_segment_count: pulumi.Input[int],
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  subnet_segments: Optional[pulumi.Input[Sequence[pulumi.Input['Address6templateSubnetSegmentArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -29,6 +30,7 @@ class Address6templateArgs:
         :param pulumi.Input[int] subnet_segment_count: Number of IPv6 subnet segments.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: IPv6 address template name.
         :param pulumi.Input[Sequence[pulumi.Input['Address6templateSubnetSegmentArgs']]] subnet_segments: IPv6 subnet segments. The structure of `subnet_segment` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -39,6 +41,8 @@ class Address6templateArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fabric_object is not None:
             pulumi.set(__self__, "fabric_object", fabric_object)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if subnet_segments is not None:
@@ -95,6 +99,18 @@ class Address6templateArgs:
         pulumi.set(self, "fabric_object", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -136,6 +152,7 @@ class _Address6templateState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  subnet_segment_count: Optional[pulumi.Input[int]] = None,
@@ -145,6 +162,7 @@ class _Address6templateState:
         Input properties used for looking up and filtering Address6template resources.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip6: IPv6 address prefix.
         :param pulumi.Input[str] name: IPv6 address template name.
         :param pulumi.Input[int] subnet_segment_count: Number of IPv6 subnet segments.
@@ -155,6 +173,8 @@ class _Address6templateState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fabric_object is not None:
             pulumi.set(__self__, "fabric_object", fabric_object)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip6 is not None:
             pulumi.set(__self__, "ip6", ip6)
         if name is not None:
@@ -189,6 +209,18 @@ class _Address6templateState:
     @fabric_object.setter
     def fabric_object(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fabric_object", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -258,6 +290,7 @@ class Address6template(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  subnet_segment_count: Optional[pulumi.Input[int]] = None,
@@ -316,6 +349,7 @@ class Address6template(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip6: IPv6 address prefix.
         :param pulumi.Input[str] name: IPv6 address template name.
         :param pulumi.Input[int] subnet_segment_count: Number of IPv6 subnet segments.
@@ -393,6 +427,7 @@ class Address6template(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  subnet_segment_count: Optional[pulumi.Input[int]] = None,
@@ -409,6 +444,7 @@ class Address6template(pulumi.CustomResource):
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fabric_object"] = fabric_object
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if ip6 is None and not opts.urn:
                 raise TypeError("Missing required property 'ip6'")
             __props__.__dict__["ip6"] = ip6
@@ -430,6 +466,7 @@ class Address6template(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fabric_object: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ip6: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             subnet_segment_count: Optional[pulumi.Input[int]] = None,
@@ -444,6 +481,7 @@ class Address6template(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip6: IPv6 address prefix.
         :param pulumi.Input[str] name: IPv6 address template name.
         :param pulumi.Input[int] subnet_segment_count: Number of IPv6 subnet segments.
@@ -456,6 +494,7 @@ class Address6template(pulumi.CustomResource):
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fabric_object"] = fabric_object
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ip6"] = ip6
         __props__.__dict__["name"] = name
         __props__.__dict__["subnet_segment_count"] = subnet_segment_count
@@ -478,6 +517,14 @@ class Address6template(pulumi.CustomResource):
         Security Fabric global object setting. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "fabric_object")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

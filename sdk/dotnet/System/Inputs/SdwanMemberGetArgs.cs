@@ -50,6 +50,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<string>? Interface { get; set; }
 
         /// <summary>
+        /// Preferred source of route for this member.
+        /// </summary>
+        [Input("preferredSource")]
+        public Input<string>? PreferredSource { get; set; }
+
+        /// <summary>
         /// Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
         /// </summary>
         [Input("priority")]
@@ -90,6 +96,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Measured transport group (0 - 255).
+        /// </summary>
+        [Input("transportGroup")]
+        public Input<int>? TransportGroup { get; set; }
 
         /// <summary>
         /// Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).

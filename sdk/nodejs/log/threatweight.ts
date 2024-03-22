@@ -206,6 +206,10 @@ export class Threatweight extends pulumi.CustomResource {
      */
     public readonly geolocations!: pulumi.Output<outputs.log.ThreatweightGeolocation[] | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * IPS threat weight settings. The structure of `ips` block is documented below.
      */
     public readonly ips!: pulumi.Output<outputs.log.ThreatweightIps>;
@@ -253,6 +257,7 @@ export class Threatweight extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["failedConnection"] = state ? state.failedConnection : undefined;
             resourceInputs["geolocations"] = state ? state.geolocations : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ips"] = state ? state.ips : undefined;
             resourceInputs["level"] = state ? state.level : undefined;
             resourceInputs["malware"] = state ? state.malware : undefined;
@@ -268,6 +273,7 @@ export class Threatweight extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["failedConnection"] = args ? args.failedConnection : undefined;
             resourceInputs["geolocations"] = args ? args.geolocations : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ips"] = args ? args.ips : undefined;
             resourceInputs["level"] = args ? args.level : undefined;
             resourceInputs["malware"] = args ? args.malware : undefined;
@@ -309,6 +315,10 @@ export interface ThreatweightState {
      * Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
      */
     geolocations?: pulumi.Input<pulumi.Input<inputs.log.ThreatweightGeolocation>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * IPS threat weight settings. The structure of `ips` block is documented below.
      */
@@ -367,6 +377,10 @@ export interface ThreatweightArgs {
      * Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
      */
     geolocations?: pulumi.Input<pulumi.Input<inputs.log.ThreatweightGeolocation>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * IPS threat weight settings. The structure of `ips` block is documented below.
      */

@@ -27,8 +27,10 @@ class ProviderArgs:
                  hostname: Optional[pulumi.Input[str]] = None,
                  http_proxy: Optional[pulumi.Input[str]] = None,
                  insecure: Optional[pulumi.Input[bool]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  peerauth: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  vdom: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
@@ -41,7 +43,9 @@ class ProviderArgs:
         :param pulumi.Input[str] fmg_hostname: Hostname/IP address of the FortiManager to connect to
         :param pulumi.Input[str] hostname: The hostname/IP address of the FortiOS to be connected
         :param pulumi.Input[str] http_proxy: HTTP proxy address
+        :param pulumi.Input[str] password: The password of the user.
         :param pulumi.Input[str] peerauth: Enable/disable peer authentication, can be 'enable' or 'disable'
+        :param pulumi.Input[str] username: The username of the user.
         """
         if cabundlecontent is None:
             cabundlecontent = _utilities.get_env('FORTIOS_CA_CABUNDLECONTENT')
@@ -95,6 +99,8 @@ class ProviderArgs:
             insecure = _utilities.get_env_bool('FORTIOS_INSECURE')
         if insecure is not None:
             pulumi.set(__self__, "insecure", insecure)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if peerauth is None:
             peerauth = _utilities.get_env('FORTIOS_CA_PEERAUTH')
         if peerauth is not None:
@@ -103,6 +109,8 @@ class ProviderArgs:
             token = _utilities.get_env('FORTIOS_ACCESS_TOKEN')
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
         if vdom is None:
             vdom = _utilities.get_env('FORTIOS_VDOM')
         if vdom is not None:
@@ -254,6 +262,18 @@ class ProviderArgs:
 
     @property
     @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password of the user.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
     def peerauth(self) -> Optional[pulumi.Input[str]]:
         """
         Enable/disable peer authentication, can be 'enable' or 'disable'
@@ -272,6 +292,18 @@ class ProviderArgs:
     @token.setter
     def token(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "token", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username of the user.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
     @property
     @pulumi.getter
@@ -301,8 +333,10 @@ class Provider(pulumi.ProviderResource):
                  hostname: Optional[pulumi.Input[str]] = None,
                  http_proxy: Optional[pulumi.Input[str]] = None,
                  insecure: Optional[pulumi.Input[bool]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  peerauth: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  vdom: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -322,7 +356,9 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[str] fmg_hostname: Hostname/IP address of the FortiManager to connect to
         :param pulumi.Input[str] hostname: The hostname/IP address of the FortiOS to be connected
         :param pulumi.Input[str] http_proxy: HTTP proxy address
+        :param pulumi.Input[str] password: The password of the user.
         :param pulumi.Input[str] peerauth: Enable/disable peer authentication, can be 'enable' or 'disable'
+        :param pulumi.Input[str] username: The username of the user.
         """
         ...
     @overload
@@ -364,8 +400,10 @@ class Provider(pulumi.ProviderResource):
                  hostname: Optional[pulumi.Input[str]] = None,
                  http_proxy: Optional[pulumi.Input[str]] = None,
                  insecure: Optional[pulumi.Input[bool]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  peerauth: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  vdom: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -415,12 +453,14 @@ class Provider(pulumi.ProviderResource):
             if insecure is None:
                 insecure = _utilities.get_env_bool('FORTIOS_INSECURE')
             __props__.__dict__["insecure"] = pulumi.Output.from_input(insecure).apply(pulumi.runtime.to_json) if insecure is not None else None
+            __props__.__dict__["password"] = password
             if peerauth is None:
                 peerauth = _utilities.get_env('FORTIOS_CA_PEERAUTH')
             __props__.__dict__["peerauth"] = peerauth
             if token is None:
                 token = _utilities.get_env('FORTIOS_ACCESS_TOKEN')
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
+            __props__.__dict__["username"] = username
             if vdom is None:
                 vdom = _utilities.get_env('FORTIOS_VDOM')
             __props__.__dict__["vdom"] = vdom
@@ -516,6 +556,14 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter
+    def password(self) -> pulumi.Output[Optional[str]]:
+        """
+        The password of the user.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
     def peerauth(self) -> pulumi.Output[Optional[str]]:
         """
         Enable/disable peer authentication, can be 'enable' or 'disable'
@@ -526,6 +574,14 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def token(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Output[Optional[str]]:
+        """
+        The username of the user.
+        """
+        return pulumi.get(self, "username")
 
     @property
     @pulumi.getter

@@ -88,6 +88,8 @@ type Scheme struct {
 	FssoAgentForNtlm pulumi.StringOutput `pulumi:"fssoAgentForNtlm"`
 	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
 	FssoGuest pulumi.StringOutput `pulumi:"fssoGuest"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Kerberos keytab setting.
 	KerberosKeytab pulumi.StringOutput `pulumi:"kerberosKeytab"`
 	// Authentication methods (default = basic).
@@ -153,6 +155,8 @@ type schemeState struct {
 	FssoAgentForNtlm *string `pulumi:"fssoAgentForNtlm"`
 	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
 	FssoGuest *string `pulumi:"fssoGuest"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Kerberos keytab setting.
 	KerberosKeytab *string `pulumi:"kerberosKeytab"`
 	// Authentication methods (default = basic).
@@ -186,6 +190,8 @@ type SchemeState struct {
 	FssoAgentForNtlm pulumi.StringPtrInput
 	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
 	FssoGuest pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Kerberos keytab setting.
 	KerberosKeytab pulumi.StringPtrInput
 	// Authentication methods (default = basic).
@@ -223,6 +229,8 @@ type schemeArgs struct {
 	FssoAgentForNtlm *string `pulumi:"fssoAgentForNtlm"`
 	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
 	FssoGuest *string `pulumi:"fssoGuest"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Kerberos keytab setting.
 	KerberosKeytab *string `pulumi:"kerberosKeytab"`
 	// Authentication methods (default = basic).
@@ -257,6 +265,8 @@ type SchemeArgs struct {
 	FssoAgentForNtlm pulumi.StringPtrInput
 	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
 	FssoGuest pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Kerberos keytab setting.
 	KerberosKeytab pulumi.StringPtrInput
 	// Authentication methods (default = basic).
@@ -386,6 +396,11 @@ func (o SchemeOutput) FssoAgentForNtlm() pulumi.StringOutput {
 // Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
 func (o SchemeOutput) FssoGuest() pulumi.StringOutput {
 	return o.ApplyT(func(v *Scheme) pulumi.StringOutput { return v.FssoGuest }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SchemeOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Scheme) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Kerberos keytab setting.

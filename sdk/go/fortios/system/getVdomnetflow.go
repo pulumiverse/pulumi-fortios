@@ -30,10 +30,12 @@ type LookupVdomnetflowArgs struct {
 
 // A collection of values returned by getVdomnetflow.
 type LookupVdomnetflowResult struct {
-	// NetFlow collector IP address.
+	// Collector IP.
 	CollectorIp string `pulumi:"collectorIp"`
 	// NetFlow collector port number.
 	CollectorPort int `pulumi:"collectorPort"`
+	// Netflow collectors. The structure of `collectors` block is documented below.
+	Collectors []GetVdomnetflowCollector `pulumi:"collectors"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Specify outgoing interface to reach server.
@@ -85,7 +87,7 @@ func (o LookupVdomnetflowResultOutput) ToLookupVdomnetflowResultOutputWithContex
 	return o
 }
 
-// NetFlow collector IP address.
+// Collector IP.
 func (o LookupVdomnetflowResultOutput) CollectorIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVdomnetflowResult) string { return v.CollectorIp }).(pulumi.StringOutput)
 }
@@ -93,6 +95,11 @@ func (o LookupVdomnetflowResultOutput) CollectorIp() pulumi.StringOutput {
 // NetFlow collector port number.
 func (o LookupVdomnetflowResultOutput) CollectorPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupVdomnetflowResult) int { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+// Netflow collectors. The structure of `collectors` block is documented below.
+func (o LookupVdomnetflowResultOutput) Collectors() GetVdomnetflowCollectorArrayOutput {
+	return o.ApplyT(func(v LookupVdomnetflowResult) []GetVdomnetflowCollector { return v.Collectors }).(GetVdomnetflowCollectorArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -64,6 +64,10 @@ export class Servicechain extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Chain name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -91,6 +95,7 @@ export class Servicechain extends pulumi.CustomResource {
             const state = argsOrState as ServicechainState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["serviceIndices"] = state ? state.serviceIndices : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -98,6 +103,7 @@ export class Servicechain extends pulumi.CustomResource {
             const args = argsOrState as ServicechainArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["serviceIndices"] = args ? args.serviceIndices : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -119,6 +125,10 @@ export interface ServicechainState {
      * Chain ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Chain name.
      */
@@ -145,6 +155,10 @@ export interface ServicechainArgs {
      * Chain ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Chain name.
      */

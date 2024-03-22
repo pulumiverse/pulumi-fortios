@@ -161,6 +161,12 @@ namespace Pulumiverse.Fortios.User
         public Output<string?> PpkSecret { get; private set; } = null!;
 
         /// <summary>
+        /// Quantum Key Distribution (QKD) profile.
+        /// </summary>
+        [Output("qkdProfile")]
+        public Output<string> QkdProfile { get; private set; } = null!;
+
+        /// <summary>
         /// Name of RADIUS server with which the user must authenticate.
         /// </summary>
         [Output("radiusServer")]
@@ -401,6 +407,12 @@ namespace Pulumiverse.Fortios.User
         }
 
         /// <summary>
+        /// Quantum Key Distribution (QKD) profile.
+        /// </summary>
+        [Input("qkdProfile")]
+        public Input<string>? QkdProfile { get; set; }
+
+        /// <summary>
         /// Name of RADIUS server with which the user must authenticate.
         /// </summary>
         [Input("radiusServer")]
@@ -595,6 +607,12 @@ namespace Pulumiverse.Fortios.User
                 _ppkSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Quantum Key Distribution (QKD) profile.
+        /// </summary>
+        [Input("qkdProfile")]
+        public Input<string>? QkdProfile { get; set; }
 
         /// <summary>
         /// Name of RADIUS server with which the user must authenticate.

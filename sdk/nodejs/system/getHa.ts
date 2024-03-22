@@ -53,6 +53,10 @@ export interface GetHaResult {
      */
     readonly encryption: string;
     /**
+     * HA EVPN FDB TTL on primary box (5 - 3600 sec).
+     */
+    readonly evpnTtl: number;
+    /**
      * Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
      */
     readonly failoverHoldTime: number;
@@ -132,6 +136,10 @@ export interface GetHaResult {
      * Enable/disable synchronization of sessions among HA clusters.
      */
     readonly interClusterSessionSync: string;
+    /**
+     * IPsec phase2 proposal.
+     */
+    readonly ipsecPhase2Proposal: string;
     /**
      * key
      */
@@ -336,6 +344,10 @@ export interface GetHaResult {
      * Enable to upgrade a cluster without blocking network traffic.
      */
     readonly uninterruptibleUpgrade: string;
+    /**
+     * The mode to upgrade a cluster.
+     */
+    readonly upgradeMode: string;
     /**
      * Enable/disable virtual cluster 2 for virtual clustering.
      */

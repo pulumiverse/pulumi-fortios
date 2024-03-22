@@ -135,6 +135,10 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly int UncompressedOversizeLimit;
         /// <summary>
+        /// Configure the action the FortiGate unit will take on unknown content-encoding.
+        /// </summary>
+        public readonly string UnknownContentEncoding;
+        /// <summary>
         /// How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1.
         /// </summary>
         public readonly string UnknownHttpVersion;
@@ -205,6 +209,8 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
 
             int uncompressedOversizeLimit,
 
+            string unknownContentEncoding,
+
             string unknownHttpVersion,
 
             string verifyDnsForPolicyMatching)
@@ -239,6 +245,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
             TunnelNonHttp = tunnelNonHttp;
             UncompressedNestLimit = uncompressedNestLimit;
             UncompressedOversizeLimit = uncompressedOversizeLimit;
+            UnknownContentEncoding = unknownContentEncoding;
             UnknownHttpVersion = unknownHttpVersion;
             VerifyDnsForPolicyMatching = verifyDnsForPolicyMatching;
         }

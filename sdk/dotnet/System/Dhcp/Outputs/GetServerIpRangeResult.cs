@@ -23,9 +23,21 @@ namespace Pulumiverse.Fortios.System.Dhcp.Outputs
         /// </summary>
         public readonly int Id;
         /// <summary>
+        /// Lease time in seconds, 0 means default lease time.
+        /// </summary>
+        public readonly int LeaseTime;
+        /// <summary>
         /// Start of IP range.
         /// </summary>
         public readonly string StartIp;
+        /// <summary>
+        /// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+        /// </summary>
+        public readonly string UciMatch;
+        /// <summary>
+        /// UCI strings.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetServerIpRangeUciStringResult> UciStrings;
         /// <summary>
         /// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
         /// </summary>
@@ -41,7 +53,13 @@ namespace Pulumiverse.Fortios.System.Dhcp.Outputs
 
             int id,
 
+            int leaseTime,
+
             string startIp,
+
+            string uciMatch,
+
+            ImmutableArray<Outputs.GetServerIpRangeUciStringResult> uciStrings,
 
             string vciMatch,
 
@@ -49,7 +67,10 @@ namespace Pulumiverse.Fortios.System.Dhcp.Outputs
         {
             EndIp = endIp;
             Id = id;
+            LeaseTime = leaseTime;
             StartIp = startIp;
+            UciMatch = uciMatch;
+            UciStrings = uciStrings;
             VciMatch = vciMatch;
             VciStrings = vciStrings;
         }

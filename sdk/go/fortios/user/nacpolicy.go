@@ -45,6 +45,8 @@ type Nacpolicy struct {
 	Family pulumi.StringOutput `pulumi:"family"`
 	// Dynamic firewall address to associate MAC which match this policy.
 	FirewallAddress pulumi.StringOutput `pulumi:"firewallAddress"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// NAC policy matching host.
 	Host pulumi.StringOutput `pulumi:"host"`
 	// NAC policy matching hardware vendor.
@@ -57,6 +59,8 @@ type Nacpolicy struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// NAC policy matching operating system.
 	Os pulumi.StringOutput `pulumi:"os"`
+	// NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+	Severities NacpolicySeverityArrayOutput `pulumi:"severities"`
 	// NAC policy matching source.
 	Src pulumi.StringOutput `pulumi:"src"`
 	// SSID policy to be applied on the matched NAC policy.
@@ -129,6 +133,8 @@ type nacpolicyState struct {
 	Family *string `pulumi:"family"`
 	// Dynamic firewall address to associate MAC which match this policy.
 	FirewallAddress *string `pulumi:"firewallAddress"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// NAC policy matching host.
 	Host *string `pulumi:"host"`
 	// NAC policy matching hardware vendor.
@@ -141,6 +147,8 @@ type nacpolicyState struct {
 	Name *string `pulumi:"name"`
 	// NAC policy matching operating system.
 	Os *string `pulumi:"os"`
+	// NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+	Severities []NacpolicySeverity `pulumi:"severities"`
 	// NAC policy matching source.
 	Src *string `pulumi:"src"`
 	// SSID policy to be applied on the matched NAC policy.
@@ -184,6 +192,8 @@ type NacpolicyState struct {
 	Family pulumi.StringPtrInput
 	// Dynamic firewall address to associate MAC which match this policy.
 	FirewallAddress pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// NAC policy matching host.
 	Host pulumi.StringPtrInput
 	// NAC policy matching hardware vendor.
@@ -196,6 +206,8 @@ type NacpolicyState struct {
 	Name pulumi.StringPtrInput
 	// NAC policy matching operating system.
 	Os pulumi.StringPtrInput
+	// NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+	Severities NacpolicySeverityArrayInput
 	// NAC policy matching source.
 	Src pulumi.StringPtrInput
 	// SSID policy to be applied on the matched NAC policy.
@@ -243,6 +255,8 @@ type nacpolicyArgs struct {
 	Family *string `pulumi:"family"`
 	// Dynamic firewall address to associate MAC which match this policy.
 	FirewallAddress *string `pulumi:"firewallAddress"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// NAC policy matching host.
 	Host *string `pulumi:"host"`
 	// NAC policy matching hardware vendor.
@@ -255,6 +269,8 @@ type nacpolicyArgs struct {
 	Name *string `pulumi:"name"`
 	// NAC policy matching operating system.
 	Os *string `pulumi:"os"`
+	// NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+	Severities []NacpolicySeverity `pulumi:"severities"`
 	// NAC policy matching source.
 	Src *string `pulumi:"src"`
 	// SSID policy to be applied on the matched NAC policy.
@@ -299,6 +315,8 @@ type NacpolicyArgs struct {
 	Family pulumi.StringPtrInput
 	// Dynamic firewall address to associate MAC which match this policy.
 	FirewallAddress pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// NAC policy matching host.
 	Host pulumi.StringPtrInput
 	// NAC policy matching hardware vendor.
@@ -311,6 +329,8 @@ type NacpolicyArgs struct {
 	Name pulumi.StringPtrInput
 	// NAC policy matching operating system.
 	Os pulumi.StringPtrInput
+	// NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+	Severities NacpolicySeverityArrayInput
 	// NAC policy matching source.
 	Src pulumi.StringPtrInput
 	// SSID policy to be applied on the matched NAC policy.
@@ -458,6 +478,11 @@ func (o NacpolicyOutput) FirewallAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Nacpolicy) pulumi.StringOutput { return v.FirewallAddress }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o NacpolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Nacpolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // NAC policy matching host.
 func (o NacpolicyOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v *Nacpolicy) pulumi.StringOutput { return v.Host }).(pulumi.StringOutput)
@@ -486,6 +511,11 @@ func (o NacpolicyOutput) Name() pulumi.StringOutput {
 // NAC policy matching operating system.
 func (o NacpolicyOutput) Os() pulumi.StringOutput {
 	return o.ApplyT(func(v *Nacpolicy) pulumi.StringOutput { return v.Os }).(pulumi.StringOutput)
+}
+
+// NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
+func (o NacpolicyOutput) Severities() NacpolicySeverityArrayOutput {
+	return o.ApplyT(func(v *Nacpolicy) NacpolicySeverityArrayOutput { return v.Severities }).(NacpolicySeverityArrayOutput)
 }
 
 // NAC policy matching source.

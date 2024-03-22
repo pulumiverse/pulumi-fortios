@@ -122,6 +122,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Fortitoken { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable guest authentication. Valid values: `disable`, `enable`.
         /// </summary>
         [Output("guestAuth")]
@@ -254,7 +260,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Admin user password.
+        /// Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
@@ -550,6 +556,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Fortitoken { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable guest authentication. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("guestAuth")]
@@ -741,7 +753,7 @@ namespace Pulumiverse.Fortios.System
         private Input<string>? _password;
 
         /// <summary>
-        /// Admin user password.
+        /// Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
         /// </summary>
         public Input<string>? Password
         {
@@ -1032,6 +1044,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Fortitoken { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable guest authentication. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("guestAuth")]
@@ -1223,7 +1241,7 @@ namespace Pulumiverse.Fortios.System
         private Input<string>? _password;
 
         /// <summary>
-        /// Admin user password.
+        /// Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
         /// </summary>
         public Input<string>? Password
         {

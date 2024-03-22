@@ -61,6 +61,10 @@ export interface GetPolicy6Result {
      */
     readonly endPort: number;
     /**
+     * End source port number (1 - 65535).
+     */
+    readonly endSourcePort: number;
+    /**
      * IPv6 address of the gateway.
      */
     readonly gateway: string;
@@ -112,6 +116,10 @@ export interface GetPolicy6Result {
      * Start destination port number (1 - 65535).
      */
     readonly startPort: number;
+    /**
+     * Start source port number (1 - 65535).
+     */
+    readonly startSourcePort: number;
     /**
      * Enable/disable this policy route.
      */

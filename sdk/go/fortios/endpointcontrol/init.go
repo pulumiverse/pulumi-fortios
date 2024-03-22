@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Client{}
 	case "fortios:endpointcontrol/fctems:Fctems":
 		r = &Fctems{}
+	case "fortios:endpointcontrol/fctemsoverride:Fctemsoverride":
+		r = &Fctemsoverride{}
 	case "fortios:endpointcontrol/forticlientems:Forticlientems":
 		r = &Forticlientems{}
 	case "fortios:endpointcontrol/forticlientregistrationsync:Forticlientregistrationsync":
@@ -56,6 +58,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"endpointcontrol/fctems",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"endpointcontrol/fctemsoverride",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

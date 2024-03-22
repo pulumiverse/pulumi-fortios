@@ -102,6 +102,10 @@ export class Localinpolicy6 extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Incoming interface name from available options.
      */
     public readonly intf!: pulumi.Output<string>;
@@ -141,6 +145,10 @@ export class Localinpolicy6 extends pulumi.CustomResource {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable the virtual patching feature. Valid values: `enable`, `disable`.
+     */
+    public readonly virtualPatch!: pulumi.Output<string>;
 
     /**
      * Create a Localinpolicy6 resource with the given unique name, arguments, and options.
@@ -160,6 +168,7 @@ export class Localinpolicy6 extends pulumi.CustomResource {
             resourceInputs["dstaddrNegate"] = state ? state.dstaddrNegate : undefined;
             resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["intf"] = state ? state.intf : undefined;
             resourceInputs["policyid"] = state ? state.policyid : undefined;
             resourceInputs["schedule"] = state ? state.schedule : undefined;
@@ -170,6 +179,7 @@ export class Localinpolicy6 extends pulumi.CustomResource {
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["virtualPatch"] = state ? state.virtualPatch : undefined;
         } else {
             const args = argsOrState as Localinpolicy6Args | undefined;
             if ((!args || args.dstaddrs === undefined) && !opts.urn) {
@@ -192,6 +202,7 @@ export class Localinpolicy6 extends pulumi.CustomResource {
             resourceInputs["dstaddrNegate"] = args ? args.dstaddrNegate : undefined;
             resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["intf"] = args ? args.intf : undefined;
             resourceInputs["policyid"] = args ? args.policyid : undefined;
             resourceInputs["schedule"] = args ? args.schedule : undefined;
@@ -202,6 +213,7 @@ export class Localinpolicy6 extends pulumi.CustomResource {
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["virtualPatch"] = args ? args.virtualPatch : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Localinpolicy6.__pulumiType, name, resourceInputs, opts);
@@ -232,6 +244,10 @@ export interface Localinpolicy6State {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Incoming interface name from available options.
      */
@@ -272,6 +288,10 @@ export interface Localinpolicy6State {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Enable/disable the virtual patching feature. Valid values: `enable`, `disable`.
+     */
+    virtualPatch?: pulumi.Input<string>;
 }
 
 /**
@@ -298,6 +318,10 @@ export interface Localinpolicy6Args {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Incoming interface name from available options.
      */
@@ -338,4 +362,8 @@ export interface Localinpolicy6Args {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Enable/disable the virtual patching feature. Valid values: `enable`, `disable`.
+     */
+    virtualPatch?: pulumi.Input<string>;
 }

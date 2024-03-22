@@ -19,7 +19,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.BgpVrfLeakTarget> Targets;
         /// <summary>
-        /// Origin VRF ID &lt;0 - 31&gt;.
+        /// Origin VRF ID (0 - 31).
         /// </summary>
         public readonly string? Vrf;
 

@@ -31,6 +31,18 @@ namespace Pulumiverse.Fortios.System.Inputs
         [Input("serial")]
         public Input<string>? Serial { get; set; }
 
+        [Input("vdoms")]
+        private InputList<Inputs.CsfFabricConnectorVdomGetArgs>? _vdoms;
+
+        /// <summary>
+        /// Virtual domains that the connector has access to. If none are set, the connector will only have access to the VDOM that it joins the Security Fabric through. The structure of `vdom` block is documented below.
+        /// </summary>
+        public InputList<Inputs.CsfFabricConnectorVdomGetArgs> Vdoms
+        {
+            get => _vdoms ?? (_vdoms = new InputList<Inputs.CsfFabricConnectorVdomGetArgs>());
+            set => _vdoms = value;
+        }
+
         public CsfFabricConnectorGetArgs()
         {
         }

@@ -23,6 +23,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly int AdvInterval;
         /// <summary>
+        /// Enable/disable ignoring of default route when checking destination.
+        /// </summary>
+        public readonly string IgnoreDefaultRoute;
+        /// <summary>
         /// Enable/disable preempt mode.
         /// </summary>
         public readonly string Preempt;
@@ -61,6 +65,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             int advInterval,
 
+            string ignoreDefaultRoute,
+
             string preempt,
 
             int priority,
@@ -79,6 +85,7 @@ namespace Pulumiverse.Fortios.System.Outputs
         {
             AcceptMode = acceptMode;
             AdvInterval = advInterval;
+            IgnoreDefaultRoute = ignoreDefaultRoute;
             Preempt = preempt;
             Priority = priority;
             StartTime = startTime;

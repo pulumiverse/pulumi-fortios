@@ -19,6 +19,7 @@ class GeoipoverrideArgs:
                  country_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip6_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['GeoipoverrideIp6RangeArgs']]]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['GeoipoverrideIpRangeArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -28,6 +29,7 @@ class GeoipoverrideArgs:
         :param pulumi.Input[str] country_id: Two character Country ID code.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['GeoipoverrideIp6RangeArgs']]] ip6_ranges: Table of IPv6 ranges assigned to country. The structure of `ip6_range` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['GeoipoverrideIpRangeArgs']]] ip_ranges: Table of IP ranges assigned to country. The structure of `ip_range` block is documented below.
         :param pulumi.Input[str] name: Location name.
@@ -39,6 +41,8 @@ class GeoipoverrideArgs:
             pulumi.set(__self__, "description", description)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip6_ranges is not None:
             pulumi.set(__self__, "ip6_ranges", ip6_ranges)
         if ip_ranges is not None:
@@ -83,6 +87,18 @@ class GeoipoverrideArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ip6Ranges")
@@ -139,6 +155,7 @@ class _GeoipoverrideState:
                  country_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip6_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['GeoipoverrideIp6RangeArgs']]]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['GeoipoverrideIpRangeArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -148,6 +165,7 @@ class _GeoipoverrideState:
         :param pulumi.Input[str] country_id: Two character Country ID code.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['GeoipoverrideIp6RangeArgs']]] ip6_ranges: Table of IPv6 ranges assigned to country. The structure of `ip6_range` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['GeoipoverrideIpRangeArgs']]] ip_ranges: Table of IP ranges assigned to country. The structure of `ip_range` block is documented below.
         :param pulumi.Input[str] name: Location name.
@@ -159,6 +177,8 @@ class _GeoipoverrideState:
             pulumi.set(__self__, "description", description)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip6_ranges is not None:
             pulumi.set(__self__, "ip6_ranges", ip6_ranges)
         if ip_ranges is not None:
@@ -203,6 +223,18 @@ class _GeoipoverrideState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ip6Ranges")
@@ -261,6 +293,7 @@ class Geoipoverride(pulumi.CustomResource):
                  country_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip6_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GeoipoverrideIp6RangeArgs']]]]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GeoipoverrideIpRangeArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -303,6 +336,7 @@ class Geoipoverride(pulumi.CustomResource):
         :param pulumi.Input[str] country_id: Two character Country ID code.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GeoipoverrideIp6RangeArgs']]]] ip6_ranges: Table of IPv6 ranges assigned to country. The structure of `ip6_range` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GeoipoverrideIpRangeArgs']]]] ip_ranges: Table of IP ranges assigned to country. The structure of `ip_range` block is documented below.
         :param pulumi.Input[str] name: Location name.
@@ -364,6 +398,7 @@ class Geoipoverride(pulumi.CustomResource):
                  country_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip6_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GeoipoverrideIp6RangeArgs']]]]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GeoipoverrideIpRangeArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -380,6 +415,7 @@ class Geoipoverride(pulumi.CustomResource):
             __props__.__dict__["country_id"] = country_id
             __props__.__dict__["description"] = description
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ip6_ranges"] = ip6_ranges
             __props__.__dict__["ip_ranges"] = ip_ranges
             __props__.__dict__["name"] = name
@@ -397,6 +433,7 @@ class Geoipoverride(pulumi.CustomResource):
             country_id: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ip6_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GeoipoverrideIp6RangeArgs']]]]] = None,
             ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GeoipoverrideIpRangeArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -411,6 +448,7 @@ class Geoipoverride(pulumi.CustomResource):
         :param pulumi.Input[str] country_id: Two character Country ID code.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GeoipoverrideIp6RangeArgs']]]] ip6_ranges: Table of IPv6 ranges assigned to country. The structure of `ip6_range` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GeoipoverrideIpRangeArgs']]]] ip_ranges: Table of IP ranges assigned to country. The structure of `ip_range` block is documented below.
         :param pulumi.Input[str] name: Location name.
@@ -423,6 +461,7 @@ class Geoipoverride(pulumi.CustomResource):
         __props__.__dict__["country_id"] = country_id
         __props__.__dict__["description"] = description
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ip6_ranges"] = ip6_ranges
         __props__.__dict__["ip_ranges"] = ip_ranges
         __props__.__dict__["name"] = name
@@ -452,6 +491,14 @@ class Geoipoverride(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ip6Ranges")

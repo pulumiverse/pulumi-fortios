@@ -105,6 +105,10 @@ export interface GetAddress6Result {
      */
     readonly objId: string;
     /**
+     * route-tag address.
+     */
+    readonly routeTag: number;
+    /**
      * SDN.
      */
     readonly sdn: string;

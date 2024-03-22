@@ -88,7 +88,7 @@ type LookupServerResult struct {
 	IpRanges []GetServerIpRange `pulumi:"ipRanges"`
 	// DHCP over IPsec leases expire this many seconds after tunnel down (0 to disable forced-expiry).
 	IpsecLeaseHold int `pulumi:"ipsecLeaseHold"`
-	// Lease time in seconds, 0 means unlimited.
+	// Lease time in seconds, 0 means default lease time.
 	LeaseTime int `pulumi:"leaseTime"`
 	// MAC access control default action (allow or block assigning IP settings).
 	MacAclDefaultAction string `pulumi:"macAclDefaultAction"`
@@ -106,10 +106,14 @@ type LookupServerResult struct {
 	NtpService string `pulumi:"ntpService"`
 	// DHCP options. The structure of `options` block is documented below.
 	Options []GetServerOption `pulumi:"options"`
+	// Relay agent IP.
+	RelayAgent string `pulumi:"relayAgent"`
 	// Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reservedAddress` block is documented below.
 	ReservedAddresses []GetServerReservedAddress `pulumi:"reservedAddresses"`
 	// DHCP server can be a normal DHCP server or an IPsec DHCP server.
 	ServerType string `pulumi:"serverType"`
+	// Enable/disable shared subnet.
+	SharedSubnet string `pulumi:"sharedSubnet"`
 	// Enable/disable this DHCP configuration.
 	Status string `pulumi:"status"`
 	// TFTP server.
@@ -317,7 +321,7 @@ func (o LookupServerResultOutput) IpsecLeaseHold() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupServerResult) int { return v.IpsecLeaseHold }).(pulumi.IntOutput)
 }
 
-// Lease time in seconds, 0 means unlimited.
+// Lease time in seconds, 0 means default lease time.
 func (o LookupServerResultOutput) LeaseTime() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupServerResult) int { return v.LeaseTime }).(pulumi.IntOutput)
 }
@@ -362,6 +366,11 @@ func (o LookupServerResultOutput) Options() GetServerOptionArrayOutput {
 	return o.ApplyT(func(v LookupServerResult) []GetServerOption { return v.Options }).(GetServerOptionArrayOutput)
 }
 
+// Relay agent IP.
+func (o LookupServerResultOutput) RelayAgent() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.RelayAgent }).(pulumi.StringOutput)
+}
+
 // Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reservedAddress` block is documented below.
 func (o LookupServerResultOutput) ReservedAddresses() GetServerReservedAddressArrayOutput {
 	return o.ApplyT(func(v LookupServerResult) []GetServerReservedAddress { return v.ReservedAddresses }).(GetServerReservedAddressArrayOutput)
@@ -370,6 +379,11 @@ func (o LookupServerResultOutput) ReservedAddresses() GetServerReservedAddressAr
 // DHCP server can be a normal DHCP server or an IPsec DHCP server.
 func (o LookupServerResultOutput) ServerType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerResult) string { return v.ServerType }).(pulumi.StringOutput)
+}
+
+// Enable/disable shared subnet.
+func (o LookupServerResultOutput) SharedSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.SharedSubnet }).(pulumi.StringOutput)
 }
 
 // Enable/disable this DHCP configuration.

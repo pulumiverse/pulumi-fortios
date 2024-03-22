@@ -87,6 +87,8 @@ type Server struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// DHCP server can assign IP configurations to clients connected to this interface.
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// Method used to assign client IP. Valid values: `range`, `delegated`.
@@ -176,6 +178,8 @@ type serverState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// DHCP server can assign IP configurations to clients connected to this interface.
 	Interface *string `pulumi:"interface"`
 	// Method used to assign client IP. Valid values: `range`, `delegated`.
@@ -227,6 +231,8 @@ type ServerState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// DHCP server can assign IP configurations to clients connected to this interface.
 	Interface pulumi.StringPtrInput
 	// Method used to assign client IP. Valid values: `range`, `delegated`.
@@ -282,6 +288,8 @@ type serverArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// ID.
 	Fosid int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// DHCP server can assign IP configurations to clients connected to this interface.
 	Interface string `pulumi:"interface"`
 	// Method used to assign client IP. Valid values: `range`, `delegated`.
@@ -334,6 +342,8 @@ type ServerArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// DHCP server can assign IP configurations to clients connected to this interface.
 	Interface pulumi.StringInput
 	// Method used to assign client IP. Valid values: `range`, `delegated`.
@@ -499,6 +509,11 @@ func (o ServerOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // ID.
 func (o ServerOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Server) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ServerOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // DHCP server can assign IP configurations to clients connected to this interface.

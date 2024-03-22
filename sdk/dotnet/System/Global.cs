@@ -70,6 +70,12 @@ namespace Pulumiverse.Fortios.System
         public Output<int> AdminConsoleTimeout { get; private set; } = null!;
 
         /// <summary>
+        /// Override access profile.
+        /// </summary>
+        [Output("adminForticloudSsoDefaultProfile")]
+        public Output<string> AdminForticloudSsoDefaultProfile { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("adminForticloudSsoLogin")]
@@ -316,6 +322,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> BatchCmdb { get; private set; } = null!;
 
         /// <summary>
+        /// Affinity setting for BFD daemon (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        /// </summary>
+        [Output("bfdAffinity")]
+        public Output<string> BfdAffinity { get; private set; } = null!;
+
+        /// <summary>
         /// Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
         /// </summary>
         [Output("blockSessionTimer")]
@@ -448,6 +460,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Dst { get; private set; } = null!;
 
         /// <summary>
+        /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
+        /// </summary>
+        [Output("dynamicSortSubtable")]
+        public Output<string?> DynamicSortSubtable { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable early TCP NPU session. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("earlyTcpNpuSession")]
@@ -514,6 +532,18 @@ namespace Pulumiverse.Fortios.System
         public Output<string> FgdAlertSubscription { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable config upload to FortiConverter. Valid values: `once`, `disable`.
+        /// </summary>
+        [Output("forticonverterConfigUpload")]
+        public Output<string> ForticonverterConfigUpload { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable FortiConverter integration service. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("forticonverterIntegration")]
+        public Output<string> ForticonverterIntegration { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable FortiExtender. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("fortiextender")]
@@ -544,6 +574,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> FortiextenderVlanMode { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable integration with the FortiGSLB cloud service. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("fortigslbIntegration")]
+        public Output<string> FortigslbIntegration { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("fortiipamIntegration")]
@@ -562,16 +598,52 @@ namespace Pulumiverse.Fortios.System
         public Output<string> FortitokenCloud { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable FTM push service of FortiToken Cloud. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("fortitokenCloudPushStatus")]
+        public Output<string> FortitokenCloudPushStatus { get; private set; } = null!;
+
+        /// <summary>
+        /// Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
+        /// </summary>
+        [Output("fortitokenCloudSyncInterval")]
+        public Output<int> FortitokenCloudSyncInterval { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
         /// </summary>
         [Output("guiAllowDefaultHostname")]
         public Output<string> GuiAllowDefaultHostname { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("guiAllowIncompatibleFabricFgt")]
+        public Output<string> GuiAllowIncompatibleFabricFgt { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable Allow app-detection based SD-WAN. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("guiAppDetectionSdwan")]
         public Output<string> GuiAppDetectionSdwan { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable the automatic patch upgrade setup prompt on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("guiAutoUpgradeSetupWarning")]
+        public Output<string> GuiAutoUpgradeSetupWarning { get; private set; } = null!;
+
+        /// <summary>
+        /// Domain of CDN server.
+        /// </summary>
+        [Output("guiCdnDomainOverride")]
+        public Output<string> GuiCdnDomainOverride { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
@@ -736,16 +808,34 @@ namespace Pulumiverse.Fortios.System
         public Output<int> IkeEmbryonicLimit { get; private set; } = null!;
 
         /// <summary>
-        /// Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
+        /// Enable/disable allowing use of interface-subnet setting in firewall addresses (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("interfaceSubnetUsage")]
+        public Output<string> InterfaceSubnetUsage { get; private set; } = null!;
+
+        /// <summary>
+        /// Configure which Internet Service database size to download from FortiGuard and use.
         /// </summary>
         [Output("internetServiceDatabase")]
         public Output<string> InternetServiceDatabase { get; private set; } = null!;
+
+        /// <summary>
+        /// Configure which on-demand Internet Service IDs are to be downloaded. The structure of `internet_service_download_list` block is documented below.
+        /// </summary>
+        [Output("internetServiceDownloadLists")]
+        public Output<ImmutableArray<Outputs.GlobalInternetServiceDownloadList>> InternetServiceDownloadLists { get; private set; } = null!;
 
         /// <summary>
         /// Dead gateway detection interval.
         /// </summary>
         [Output("interval")]
         public Output<int> Interval { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum memory (MB) used to reassemble IPv4/IPv6 fragments.
+        /// </summary>
+        [Output("ipFragmentMemThresholds")]
+        public Output<int> IpFragmentMemThresholds { get; private set; } = null!;
 
         /// <summary>
         /// IP source port range used for traffic originating from the FortiGate unit.
@@ -848,6 +938,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("lldpTransmission")]
         public Output<string> LldpTransmission { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable logging the event of a single CPU core reaching CPU usage threshold. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("logSingleCpuHigh")]
+        public Output<string> LogSingleCpuHigh { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
@@ -1048,6 +1144,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> ProxyHardwareAcceleration { get; private set; } = null!;
 
         /// <summary>
+        /// Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was authenticated. Valid values: `session`, `traffic`, `re-authentication`.
+        /// </summary>
+        [Output("proxyKeepAliveMode")]
+        public Output<string> ProxyKeepAliveMode { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
         /// </summary>
         [Output("proxyKxpHardwareAcceleration")]
@@ -1060,6 +1162,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> ProxyReAuthenticationMode { get; private set; } = null!;
 
         /// <summary>
+        /// The time limit that users must re-authenticate if proxy-keep-alive-mode is set to re-authenticate (1  - 86400 sec, default=30s.
+        /// </summary>
+        [Output("proxyReAuthenticationTime")]
+        public Output<int> ProxyReAuthenticationTime { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("proxyResourceMode")]
@@ -1070,6 +1178,48 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("proxyWorkerCount")]
         public Output<int> ProxyWorkerCount { get; private set; } = null!;
+
+        /// <summary>
+        /// Purdue Level of this FortiGate. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        /// </summary>
+        [Output("purdueLevel")]
+        public Output<string> PurdueLevel { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum number of unacknowledged packets before sending ACK (2 - 5, default = 3).
+        /// </summary>
+        [Output("quicAckThresold")]
+        public Output<int> QuicAckThresold { get; private set; } = null!;
+
+        /// <summary>
+        /// QUIC congestion control algorithm (default = cubic). Valid values: `cubic`, `bbr`, `bbr2`, `reno`.
+        /// </summary>
+        [Output("quicCongestionControlAlgo")]
+        public Output<string> QuicCongestionControlAlgo { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum transmit datagram size (1200 - 1500, default = 1500).
+        /// </summary>
+        [Output("quicMaxDatagramSize")]
+        public Output<int> QuicMaxDatagramSize { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable path MTU discovery (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("quicPmtud")]
+        public Output<string> QuicPmtud { get; private set; } = null!;
+
+        /// <summary>
+        /// Time-to-live (TTL) for TLS handshake in seconds (1 - 60, default = 5).
+        /// </summary>
+        [Output("quicTlsHandshakeTimeout")]
+        public Output<int> QuicTlsHandshakeTimeout { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable UDP payload size shaping per connection ID (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("quicUdpPayloadSizeShapingPerCid")]
+        public Output<string> QuicUdpPayloadSizeShapingPerCid { get; private set; } = null!;
 
         /// <summary>
         /// RADIUS service port number.
@@ -1144,6 +1294,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> SendPmtuIcmp { get; private set; } = null!;
 
         /// <summary>
+        /// Maximum number of sflowd child processes allowed to run.
+        /// </summary>
+        [Output("sflowdMaxChildrenNum")]
+        public Output<int> SflowdMaxChildrenNum { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("snatRouteChange")]
@@ -1160,6 +1316,18 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("speedtestServer")]
         public Output<string> SpeedtestServer { get; private set; } = null!;
+
+        /// <summary>
+        /// Speedtest server controller port number.
+        /// </summary>
+        [Output("speedtestdCtrlPort")]
+        public Output<int> SpeedtestdCtrlPort { get; private set; } = null!;
+
+        /// <summary>
+        /// Speedtest server port number.
+        /// </summary>
+        [Output("speedtestdServerPort")]
+        public Output<int> SpeedtestdServerPort { get; private set; } = null!;
 
         /// <summary>
         /// Split port(s) to multiple 10Gbps ports.
@@ -1216,7 +1384,31 @@ namespace Pulumiverse.Fortios.System
         public Output<string> SshHmacMd5 { get; private set; } = null!;
 
         /// <summary>
-        /// Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
+        /// Config SSH host key.
+        /// </summary>
+        [Output("sshHostkey")]
+        public Output<string> SshHostkey { get; private set; } = null!;
+
+        /// <summary>
+        /// Select one or more SSH hostkey algorithms.
+        /// </summary>
+        [Output("sshHostkeyAlgo")]
+        public Output<string> SshHostkeyAlgo { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable SSH host key override in SSH daemon. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("sshHostkeyOverride")]
+        public Output<string> SshHostkeyOverride { get; private set; } = null!;
+
+        /// <summary>
+        /// Password for ssh-hostkey.
+        /// </summary>
+        [Output("sshHostkeyPassword")]
+        public Output<string?> SshHostkeyPassword { get; private set; } = null!;
+
+        /// <summary>
+        /// Select one or more SSH kex algorithms.
         /// </summary>
         [Output("sshKexAlgo")]
         public Output<string> SshKexAlgo { get; private set; } = null!;
@@ -1282,6 +1474,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> SslvpnPluginVersionCheck { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable SSL-VPN web mode. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("sslvpnWebMode")]
+        public Output<string> SslvpnWebMode { get; private set; } = null!;
+
+        /// <summary>
         /// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("strictDirtySessionCheck")]
@@ -1310,6 +1508,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("sysPerfLogInterval")]
         public Output<int> SysPerfLogInterval { get; private set; } = null!;
+
+        /// <summary>
+        /// Affinity setting for syslog (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        /// </summary>
+        [Output("syslogAffinity")]
+        public Output<string> SyslogAffinity { get; private set; } = null!;
 
         /// <summary>
         /// Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
@@ -1348,7 +1552,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Tftp { get; private set; } = null!;
 
         /// <summary>
-        /// Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+        /// Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them.
         /// </summary>
         [Output("timezone")]
         public Output<string> Timezone { get; private set; } = null!;
@@ -1486,6 +1690,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> VirtualSwitchVlan { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable verification of EMS serial number in SSL-VPN and IPsec VPN connection. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("vpnEmsSnCheck")]
+        public Output<string> VpnEmsSnCheck { get; private set; } = null!;
+
+        /// <summary>
         /// Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         /// </summary>
         [Output("wadAffinity")]
@@ -1508,6 +1718,24 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("wadMemoryChangeGranularity")]
         public Output<int> WadMemoryChangeGranularity { get; private set; } = null!;
+
+        /// <summary>
+        /// WAD workers daily restart end time (hh:mm).
+        /// </summary>
+        [Output("wadRestartEndTime")]
+        public Output<string> WadRestartEndTime { get; private set; } = null!;
+
+        /// <summary>
+        /// WAD worker restart mode (default = none). Valid values: `none`, `time`, `memory`.
+        /// </summary>
+        [Output("wadRestartMode")]
+        public Output<string> WadRestartMode { get; private set; } = null!;
+
+        /// <summary>
+        /// WAD workers daily restart time (hh:mm).
+        /// </summary>
+        [Output("wadRestartStartTime")]
+        public Output<string> WadRestartStartTime { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.
@@ -1611,6 +1839,12 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? AdminConsoleTimeout { get; set; }
 
         /// <summary>
+        /// Override access profile.
+        /// </summary>
+        [Input("adminForticloudSsoDefaultProfile")]
+        public Input<string>? AdminForticloudSsoDefaultProfile { get; set; }
+
+        /// <summary>
         /// Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("adminForticloudSsoLogin")]
@@ -1857,6 +2091,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? BatchCmdb { get; set; }
 
         /// <summary>
+        /// Affinity setting for BFD daemon (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        /// </summary>
+        [Input("bfdAffinity")]
+        public Input<string>? BfdAffinity { get; set; }
+
+        /// <summary>
         /// Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
         /// </summary>
         [Input("blockSessionTimer")]
@@ -1989,6 +2229,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Dst { get; set; }
 
         /// <summary>
+        /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
+        /// </summary>
+        [Input("dynamicSortSubtable")]
+        public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
         /// Enable/disable early TCP NPU session. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("earlyTcpNpuSession")]
@@ -2055,6 +2301,18 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? FgdAlertSubscription { get; set; }
 
         /// <summary>
+        /// Enable/disable config upload to FortiConverter. Valid values: `once`, `disable`.
+        /// </summary>
+        [Input("forticonverterConfigUpload")]
+        public Input<string>? ForticonverterConfigUpload { get; set; }
+
+        /// <summary>
+        /// Enable/disable FortiConverter integration service. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("forticonverterIntegration")]
+        public Input<string>? ForticonverterIntegration { get; set; }
+
+        /// <summary>
         /// Enable/disable FortiExtender. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("fortiextender")]
@@ -2085,6 +2343,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? FortiextenderVlanMode { get; set; }
 
         /// <summary>
+        /// Enable/disable integration with the FortiGSLB cloud service. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("fortigslbIntegration")]
+        public Input<string>? FortigslbIntegration { get; set; }
+
+        /// <summary>
         /// Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("fortiipamIntegration")]
@@ -2103,16 +2367,52 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? FortitokenCloud { get; set; }
 
         /// <summary>
+        /// Enable/disable FTM push service of FortiToken Cloud. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("fortitokenCloudPushStatus")]
+        public Input<string>? FortitokenCloudPushStatus { get; set; }
+
+        /// <summary>
+        /// Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
+        /// </summary>
+        [Input("fortitokenCloudSyncInterval")]
+        public Input<int>? FortitokenCloudSyncInterval { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
         /// </summary>
         [Input("guiAllowDefaultHostname")]
         public Input<string>? GuiAllowDefaultHostname { get; set; }
 
         /// <summary>
+        /// Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiAllowIncompatibleFabricFgt")]
+        public Input<string>? GuiAllowIncompatibleFabricFgt { get; set; }
+
+        /// <summary>
         /// Enable/disable Allow app-detection based SD-WAN. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("guiAppDetectionSdwan")]
         public Input<string>? GuiAppDetectionSdwan { get; set; }
+
+        /// <summary>
+        /// Enable/disable the automatic patch upgrade setup prompt on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiAutoUpgradeSetupWarning")]
+        public Input<string>? GuiAutoUpgradeSetupWarning { get; set; }
+
+        /// <summary>
+        /// Domain of CDN server.
+        /// </summary>
+        [Input("guiCdnDomainOverride")]
+        public Input<string>? GuiCdnDomainOverride { get; set; }
 
         /// <summary>
         /// Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
@@ -2277,16 +2577,40 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? IkeEmbryonicLimit { get; set; }
 
         /// <summary>
-        /// Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
+        /// Enable/disable allowing use of interface-subnet setting in firewall addresses (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("interfaceSubnetUsage")]
+        public Input<string>? InterfaceSubnetUsage { get; set; }
+
+        /// <summary>
+        /// Configure which Internet Service database size to download from FortiGuard and use.
         /// </summary>
         [Input("internetServiceDatabase")]
         public Input<string>? InternetServiceDatabase { get; set; }
+
+        [Input("internetServiceDownloadLists")]
+        private InputList<Inputs.GlobalInternetServiceDownloadListArgs>? _internetServiceDownloadLists;
+
+        /// <summary>
+        /// Configure which on-demand Internet Service IDs are to be downloaded. The structure of `internet_service_download_list` block is documented below.
+        /// </summary>
+        public InputList<Inputs.GlobalInternetServiceDownloadListArgs> InternetServiceDownloadLists
+        {
+            get => _internetServiceDownloadLists ?? (_internetServiceDownloadLists = new InputList<Inputs.GlobalInternetServiceDownloadListArgs>());
+            set => _internetServiceDownloadLists = value;
+        }
 
         /// <summary>
         /// Dead gateway detection interval.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
+
+        /// <summary>
+        /// Maximum memory (MB) used to reassemble IPv4/IPv6 fragments.
+        /// </summary>
+        [Input("ipFragmentMemThresholds")]
+        public Input<int>? IpFragmentMemThresholds { get; set; }
 
         /// <summary>
         /// IP source port range used for traffic originating from the FortiGate unit.
@@ -2389,6 +2713,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("lldpTransmission")]
         public Input<string>? LldpTransmission { get; set; }
+
+        /// <summary>
+        /// Enable/disable logging the event of a single CPU core reaching CPU usage threshold. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("logSingleCpuHigh")]
+        public Input<string>? LogSingleCpuHigh { get; set; }
 
         /// <summary>
         /// Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
@@ -2589,6 +2919,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ProxyHardwareAcceleration { get; set; }
 
         /// <summary>
+        /// Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was authenticated. Valid values: `session`, `traffic`, `re-authentication`.
+        /// </summary>
+        [Input("proxyKeepAliveMode")]
+        public Input<string>? ProxyKeepAliveMode { get; set; }
+
+        /// <summary>
         /// Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("proxyKxpHardwareAcceleration")]
@@ -2601,6 +2937,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ProxyReAuthenticationMode { get; set; }
 
         /// <summary>
+        /// The time limit that users must re-authenticate if proxy-keep-alive-mode is set to re-authenticate (1  - 86400 sec, default=30s.
+        /// </summary>
+        [Input("proxyReAuthenticationTime")]
+        public Input<int>? ProxyReAuthenticationTime { get; set; }
+
+        /// <summary>
         /// Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("proxyResourceMode")]
@@ -2611,6 +2953,48 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("proxyWorkerCount")]
         public Input<int>? ProxyWorkerCount { get; set; }
+
+        /// <summary>
+        /// Purdue Level of this FortiGate. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        /// </summary>
+        [Input("purdueLevel")]
+        public Input<string>? PurdueLevel { get; set; }
+
+        /// <summary>
+        /// Maximum number of unacknowledged packets before sending ACK (2 - 5, default = 3).
+        /// </summary>
+        [Input("quicAckThresold")]
+        public Input<int>? QuicAckThresold { get; set; }
+
+        /// <summary>
+        /// QUIC congestion control algorithm (default = cubic). Valid values: `cubic`, `bbr`, `bbr2`, `reno`.
+        /// </summary>
+        [Input("quicCongestionControlAlgo")]
+        public Input<string>? QuicCongestionControlAlgo { get; set; }
+
+        /// <summary>
+        /// Maximum transmit datagram size (1200 - 1500, default = 1500).
+        /// </summary>
+        [Input("quicMaxDatagramSize")]
+        public Input<int>? QuicMaxDatagramSize { get; set; }
+
+        /// <summary>
+        /// Enable/disable path MTU discovery (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("quicPmtud")]
+        public Input<string>? QuicPmtud { get; set; }
+
+        /// <summary>
+        /// Time-to-live (TTL) for TLS handshake in seconds (1 - 60, default = 5).
+        /// </summary>
+        [Input("quicTlsHandshakeTimeout")]
+        public Input<int>? QuicTlsHandshakeTimeout { get; set; }
+
+        /// <summary>
+        /// Enable/disable UDP payload size shaping per connection ID (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("quicUdpPayloadSizeShapingPerCid")]
+        public Input<string>? QuicUdpPayloadSizeShapingPerCid { get; set; }
 
         /// <summary>
         /// RADIUS service port number.
@@ -2685,6 +3069,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? SendPmtuIcmp { get; set; }
 
         /// <summary>
+        /// Maximum number of sflowd child processes allowed to run.
+        /// </summary>
+        [Input("sflowdMaxChildrenNum")]
+        public Input<int>? SflowdMaxChildrenNum { get; set; }
+
+        /// <summary>
         /// Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("snatRouteChange")]
@@ -2701,6 +3091,18 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("speedtestServer")]
         public Input<string>? SpeedtestServer { get; set; }
+
+        /// <summary>
+        /// Speedtest server controller port number.
+        /// </summary>
+        [Input("speedtestdCtrlPort")]
+        public Input<int>? SpeedtestdCtrlPort { get; set; }
+
+        /// <summary>
+        /// Speedtest server port number.
+        /// </summary>
+        [Input("speedtestdServerPort")]
+        public Input<int>? SpeedtestdServerPort { get; set; }
 
         /// <summary>
         /// Split port(s) to multiple 10Gbps ports.
@@ -2757,7 +3159,31 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? SshHmacMd5 { get; set; }
 
         /// <summary>
-        /// Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
+        /// Config SSH host key.
+        /// </summary>
+        [Input("sshHostkey")]
+        public Input<string>? SshHostkey { get; set; }
+
+        /// <summary>
+        /// Select one or more SSH hostkey algorithms.
+        /// </summary>
+        [Input("sshHostkeyAlgo")]
+        public Input<string>? SshHostkeyAlgo { get; set; }
+
+        /// <summary>
+        /// Enable/disable SSH host key override in SSH daemon. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("sshHostkeyOverride")]
+        public Input<string>? SshHostkeyOverride { get; set; }
+
+        /// <summary>
+        /// Password for ssh-hostkey.
+        /// </summary>
+        [Input("sshHostkeyPassword")]
+        public Input<string>? SshHostkeyPassword { get; set; }
+
+        /// <summary>
+        /// Select one or more SSH kex algorithms.
         /// </summary>
         [Input("sshKexAlgo")]
         public Input<string>? SshKexAlgo { get; set; }
@@ -2823,6 +3249,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? SslvpnPluginVersionCheck { get; set; }
 
         /// <summary>
+        /// Enable/disable SSL-VPN web mode. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("sslvpnWebMode")]
+        public Input<string>? SslvpnWebMode { get; set; }
+
+        /// <summary>
         /// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("strictDirtySessionCheck")]
@@ -2851,6 +3283,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("sysPerfLogInterval")]
         public Input<int>? SysPerfLogInterval { get; set; }
+
+        /// <summary>
+        /// Affinity setting for syslog (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        /// </summary>
+        [Input("syslogAffinity")]
+        public Input<string>? SyslogAffinity { get; set; }
 
         /// <summary>
         /// Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
@@ -2889,7 +3327,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Tftp { get; set; }
 
         /// <summary>
-        /// Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+        /// Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them.
         /// </summary>
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }
@@ -3027,6 +3465,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? VirtualSwitchVlan { get; set; }
 
         /// <summary>
+        /// Enable/disable verification of EMS serial number in SSL-VPN and IPsec VPN connection. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("vpnEmsSnCheck")]
+        public Input<string>? VpnEmsSnCheck { get; set; }
+
+        /// <summary>
         /// Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         /// </summary>
         [Input("wadAffinity")]
@@ -3049,6 +3493,24 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("wadMemoryChangeGranularity")]
         public Input<int>? WadMemoryChangeGranularity { get; set; }
+
+        /// <summary>
+        /// WAD workers daily restart end time (hh:mm).
+        /// </summary>
+        [Input("wadRestartEndTime")]
+        public Input<string>? WadRestartEndTime { get; set; }
+
+        /// <summary>
+        /// WAD worker restart mode (default = none). Valid values: `none`, `time`, `memory`.
+        /// </summary>
+        [Input("wadRestartMode")]
+        public Input<string>? WadRestartMode { get; set; }
+
+        /// <summary>
+        /// WAD workers daily restart time (hh:mm).
+        /// </summary>
+        [Input("wadRestartStartTime")]
+        public Input<string>? WadRestartStartTime { get; set; }
 
         /// <summary>
         /// Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.
@@ -3113,6 +3575,12 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? AdminConsoleTimeout { get; set; }
 
         /// <summary>
+        /// Override access profile.
+        /// </summary>
+        [Input("adminForticloudSsoDefaultProfile")]
+        public Input<string>? AdminForticloudSsoDefaultProfile { get; set; }
+
+        /// <summary>
         /// Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("adminForticloudSsoLogin")]
@@ -3359,6 +3827,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? BatchCmdb { get; set; }
 
         /// <summary>
+        /// Affinity setting for BFD daemon (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        /// </summary>
+        [Input("bfdAffinity")]
+        public Input<string>? BfdAffinity { get; set; }
+
+        /// <summary>
         /// Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
         /// </summary>
         [Input("blockSessionTimer")]
@@ -3491,6 +3965,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Dst { get; set; }
 
         /// <summary>
+        /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
+        /// </summary>
+        [Input("dynamicSortSubtable")]
+        public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
         /// Enable/disable early TCP NPU session. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("earlyTcpNpuSession")]
@@ -3557,6 +4037,18 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? FgdAlertSubscription { get; set; }
 
         /// <summary>
+        /// Enable/disable config upload to FortiConverter. Valid values: `once`, `disable`.
+        /// </summary>
+        [Input("forticonverterConfigUpload")]
+        public Input<string>? ForticonverterConfigUpload { get; set; }
+
+        /// <summary>
+        /// Enable/disable FortiConverter integration service. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("forticonverterIntegration")]
+        public Input<string>? ForticonverterIntegration { get; set; }
+
+        /// <summary>
         /// Enable/disable FortiExtender. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("fortiextender")]
@@ -3587,6 +4079,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? FortiextenderVlanMode { get; set; }
 
         /// <summary>
+        /// Enable/disable integration with the FortiGSLB cloud service. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("fortigslbIntegration")]
+        public Input<string>? FortigslbIntegration { get; set; }
+
+        /// <summary>
         /// Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("fortiipamIntegration")]
@@ -3605,16 +4103,52 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? FortitokenCloud { get; set; }
 
         /// <summary>
+        /// Enable/disable FTM push service of FortiToken Cloud. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("fortitokenCloudPushStatus")]
+        public Input<string>? FortitokenCloudPushStatus { get; set; }
+
+        /// <summary>
+        /// Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
+        /// </summary>
+        [Input("fortitokenCloudSyncInterval")]
+        public Input<int>? FortitokenCloudSyncInterval { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
         /// </summary>
         [Input("guiAllowDefaultHostname")]
         public Input<string>? GuiAllowDefaultHostname { get; set; }
 
         /// <summary>
+        /// Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiAllowIncompatibleFabricFgt")]
+        public Input<string>? GuiAllowIncompatibleFabricFgt { get; set; }
+
+        /// <summary>
         /// Enable/disable Allow app-detection based SD-WAN. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("guiAppDetectionSdwan")]
         public Input<string>? GuiAppDetectionSdwan { get; set; }
+
+        /// <summary>
+        /// Enable/disable the automatic patch upgrade setup prompt on the GUI. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiAutoUpgradeSetupWarning")]
+        public Input<string>? GuiAutoUpgradeSetupWarning { get; set; }
+
+        /// <summary>
+        /// Domain of CDN server.
+        /// </summary>
+        [Input("guiCdnDomainOverride")]
+        public Input<string>? GuiCdnDomainOverride { get; set; }
 
         /// <summary>
         /// Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
@@ -3779,16 +4313,40 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? IkeEmbryonicLimit { get; set; }
 
         /// <summary>
-        /// Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
+        /// Enable/disable allowing use of interface-subnet setting in firewall addresses (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("interfaceSubnetUsage")]
+        public Input<string>? InterfaceSubnetUsage { get; set; }
+
+        /// <summary>
+        /// Configure which Internet Service database size to download from FortiGuard and use.
         /// </summary>
         [Input("internetServiceDatabase")]
         public Input<string>? InternetServiceDatabase { get; set; }
+
+        [Input("internetServiceDownloadLists")]
+        private InputList<Inputs.GlobalInternetServiceDownloadListGetArgs>? _internetServiceDownloadLists;
+
+        /// <summary>
+        /// Configure which on-demand Internet Service IDs are to be downloaded. The structure of `internet_service_download_list` block is documented below.
+        /// </summary>
+        public InputList<Inputs.GlobalInternetServiceDownloadListGetArgs> InternetServiceDownloadLists
+        {
+            get => _internetServiceDownloadLists ?? (_internetServiceDownloadLists = new InputList<Inputs.GlobalInternetServiceDownloadListGetArgs>());
+            set => _internetServiceDownloadLists = value;
+        }
 
         /// <summary>
         /// Dead gateway detection interval.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
+
+        /// <summary>
+        /// Maximum memory (MB) used to reassemble IPv4/IPv6 fragments.
+        /// </summary>
+        [Input("ipFragmentMemThresholds")]
+        public Input<int>? IpFragmentMemThresholds { get; set; }
 
         /// <summary>
         /// IP source port range used for traffic originating from the FortiGate unit.
@@ -3891,6 +4449,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("lldpTransmission")]
         public Input<string>? LldpTransmission { get; set; }
+
+        /// <summary>
+        /// Enable/disable logging the event of a single CPU core reaching CPU usage threshold. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("logSingleCpuHigh")]
+        public Input<string>? LogSingleCpuHigh { get; set; }
 
         /// <summary>
         /// Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
@@ -4091,6 +4655,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ProxyHardwareAcceleration { get; set; }
 
         /// <summary>
+        /// Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was authenticated. Valid values: `session`, `traffic`, `re-authentication`.
+        /// </summary>
+        [Input("proxyKeepAliveMode")]
+        public Input<string>? ProxyKeepAliveMode { get; set; }
+
+        /// <summary>
         /// Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("proxyKxpHardwareAcceleration")]
@@ -4103,6 +4673,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ProxyReAuthenticationMode { get; set; }
 
         /// <summary>
+        /// The time limit that users must re-authenticate if proxy-keep-alive-mode is set to re-authenticate (1  - 86400 sec, default=30s.
+        /// </summary>
+        [Input("proxyReAuthenticationTime")]
+        public Input<int>? ProxyReAuthenticationTime { get; set; }
+
+        /// <summary>
         /// Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("proxyResourceMode")]
@@ -4113,6 +4689,48 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("proxyWorkerCount")]
         public Input<int>? ProxyWorkerCount { get; set; }
+
+        /// <summary>
+        /// Purdue Level of this FortiGate. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        /// </summary>
+        [Input("purdueLevel")]
+        public Input<string>? PurdueLevel { get; set; }
+
+        /// <summary>
+        /// Maximum number of unacknowledged packets before sending ACK (2 - 5, default = 3).
+        /// </summary>
+        [Input("quicAckThresold")]
+        public Input<int>? QuicAckThresold { get; set; }
+
+        /// <summary>
+        /// QUIC congestion control algorithm (default = cubic). Valid values: `cubic`, `bbr`, `bbr2`, `reno`.
+        /// </summary>
+        [Input("quicCongestionControlAlgo")]
+        public Input<string>? QuicCongestionControlAlgo { get; set; }
+
+        /// <summary>
+        /// Maximum transmit datagram size (1200 - 1500, default = 1500).
+        /// </summary>
+        [Input("quicMaxDatagramSize")]
+        public Input<int>? QuicMaxDatagramSize { get; set; }
+
+        /// <summary>
+        /// Enable/disable path MTU discovery (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("quicPmtud")]
+        public Input<string>? QuicPmtud { get; set; }
+
+        /// <summary>
+        /// Time-to-live (TTL) for TLS handshake in seconds (1 - 60, default = 5).
+        /// </summary>
+        [Input("quicTlsHandshakeTimeout")]
+        public Input<int>? QuicTlsHandshakeTimeout { get; set; }
+
+        /// <summary>
+        /// Enable/disable UDP payload size shaping per connection ID (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("quicUdpPayloadSizeShapingPerCid")]
+        public Input<string>? QuicUdpPayloadSizeShapingPerCid { get; set; }
 
         /// <summary>
         /// RADIUS service port number.
@@ -4187,6 +4805,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? SendPmtuIcmp { get; set; }
 
         /// <summary>
+        /// Maximum number of sflowd child processes allowed to run.
+        /// </summary>
+        [Input("sflowdMaxChildrenNum")]
+        public Input<int>? SflowdMaxChildrenNum { get; set; }
+
+        /// <summary>
         /// Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("snatRouteChange")]
@@ -4203,6 +4827,18 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("speedtestServer")]
         public Input<string>? SpeedtestServer { get; set; }
+
+        /// <summary>
+        /// Speedtest server controller port number.
+        /// </summary>
+        [Input("speedtestdCtrlPort")]
+        public Input<int>? SpeedtestdCtrlPort { get; set; }
+
+        /// <summary>
+        /// Speedtest server port number.
+        /// </summary>
+        [Input("speedtestdServerPort")]
+        public Input<int>? SpeedtestdServerPort { get; set; }
 
         /// <summary>
         /// Split port(s) to multiple 10Gbps ports.
@@ -4259,7 +4895,31 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? SshHmacMd5 { get; set; }
 
         /// <summary>
-        /// Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
+        /// Config SSH host key.
+        /// </summary>
+        [Input("sshHostkey")]
+        public Input<string>? SshHostkey { get; set; }
+
+        /// <summary>
+        /// Select one or more SSH hostkey algorithms.
+        /// </summary>
+        [Input("sshHostkeyAlgo")]
+        public Input<string>? SshHostkeyAlgo { get; set; }
+
+        /// <summary>
+        /// Enable/disable SSH host key override in SSH daemon. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("sshHostkeyOverride")]
+        public Input<string>? SshHostkeyOverride { get; set; }
+
+        /// <summary>
+        /// Password for ssh-hostkey.
+        /// </summary>
+        [Input("sshHostkeyPassword")]
+        public Input<string>? SshHostkeyPassword { get; set; }
+
+        /// <summary>
+        /// Select one or more SSH kex algorithms.
         /// </summary>
         [Input("sshKexAlgo")]
         public Input<string>? SshKexAlgo { get; set; }
@@ -4325,6 +4985,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? SslvpnPluginVersionCheck { get; set; }
 
         /// <summary>
+        /// Enable/disable SSL-VPN web mode. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("sslvpnWebMode")]
+        public Input<string>? SslvpnWebMode { get; set; }
+
+        /// <summary>
         /// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("strictDirtySessionCheck")]
@@ -4353,6 +5019,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("sysPerfLogInterval")]
         public Input<int>? SysPerfLogInterval { get; set; }
+
+        /// <summary>
+        /// Affinity setting for syslog (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        /// </summary>
+        [Input("syslogAffinity")]
+        public Input<string>? SyslogAffinity { get; set; }
 
         /// <summary>
         /// Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
@@ -4391,7 +5063,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Tftp { get; set; }
 
         /// <summary>
-        /// Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+        /// Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them.
         /// </summary>
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }
@@ -4529,6 +5201,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? VirtualSwitchVlan { get; set; }
 
         /// <summary>
+        /// Enable/disable verification of EMS serial number in SSL-VPN and IPsec VPN connection. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("vpnEmsSnCheck")]
+        public Input<string>? VpnEmsSnCheck { get; set; }
+
+        /// <summary>
         /// Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         /// </summary>
         [Input("wadAffinity")]
@@ -4551,6 +5229,24 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("wadMemoryChangeGranularity")]
         public Input<int>? WadMemoryChangeGranularity { get; set; }
+
+        /// <summary>
+        /// WAD workers daily restart end time (hh:mm).
+        /// </summary>
+        [Input("wadRestartEndTime")]
+        public Input<string>? WadRestartEndTime { get; set; }
+
+        /// <summary>
+        /// WAD worker restart mode (default = none). Valid values: `none`, `time`, `memory`.
+        /// </summary>
+        [Input("wadRestartMode")]
+        public Input<string>? WadRestartMode { get; set; }
+
+        /// <summary>
+        /// WAD workers daily restart time (hh:mm).
+        /// </summary>
+        [Input("wadRestartStartTime")]
+        public Input<string>? WadRestartStartTime { get; set; }
 
         /// <summary>
         /// Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.

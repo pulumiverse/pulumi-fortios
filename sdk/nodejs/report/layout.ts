@@ -87,7 +87,7 @@ export class Layout extends pulumi.CustomResource {
      */
     public readonly cutoffOption!: pulumi.Output<string>;
     /**
-     * Custom cutoff time to generate report [hh:mm].
+     * Custom cutoff time to generate report (format = hh:mm).
      */
     public readonly cutoffTime!: pulumi.Output<string>;
     /**
@@ -114,6 +114,10 @@ export class Layout extends pulumi.CustomResource {
      * Report format. Valid values: `pdf`.
      */
     public readonly format!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Maximum number of PDF reports to keep at one time (oldest report is overwritten).
      */
@@ -143,7 +147,7 @@ export class Layout extends pulumi.CustomResource {
      */
     public readonly subtitle!: pulumi.Output<string>;
     /**
-     * Schedule time to generate report [hh:mm].
+     * Schedule time to generate report (format = hh:mm).
      */
     public readonly time!: pulumi.Output<string>;
     /**
@@ -177,6 +181,7 @@ export class Layout extends pulumi.CustomResource {
             resourceInputs["emailRecipients"] = state ? state.emailRecipients : undefined;
             resourceInputs["emailSend"] = state ? state.emailSend : undefined;
             resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["maxPdfReport"] = state ? state.maxPdfReport : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
@@ -201,6 +206,7 @@ export class Layout extends pulumi.CustomResource {
             resourceInputs["emailRecipients"] = args ? args.emailRecipients : undefined;
             resourceInputs["emailSend"] = args ? args.emailSend : undefined;
             resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["maxPdfReport"] = args ? args.maxPdfReport : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
@@ -230,7 +236,7 @@ export interface LayoutState {
      */
     cutoffOption?: pulumi.Input<string>;
     /**
-     * Custom cutoff time to generate report [hh:mm].
+     * Custom cutoff time to generate report (format = hh:mm).
      */
     cutoffTime?: pulumi.Input<string>;
     /**
@@ -257,6 +263,10 @@ export interface LayoutState {
      * Report format. Valid values: `pdf`.
      */
     format?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Maximum number of PDF reports to keep at one time (oldest report is overwritten).
      */
@@ -286,7 +296,7 @@ export interface LayoutState {
      */
     subtitle?: pulumi.Input<string>;
     /**
-     * Schedule time to generate report [hh:mm].
+     * Schedule time to generate report (format = hh:mm).
      */
     time?: pulumi.Input<string>;
     /**
@@ -312,7 +322,7 @@ export interface LayoutArgs {
      */
     cutoffOption?: pulumi.Input<string>;
     /**
-     * Custom cutoff time to generate report [hh:mm].
+     * Custom cutoff time to generate report (format = hh:mm).
      */
     cutoffTime?: pulumi.Input<string>;
     /**
@@ -339,6 +349,10 @@ export interface LayoutArgs {
      * Report format. Valid values: `pdf`.
      */
     format?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Maximum number of PDF reports to keep at one time (oldest report is overwritten).
      */
@@ -368,7 +382,7 @@ export interface LayoutArgs {
      */
     subtitle?: pulumi.Input<string>;
     /**
-     * Schedule time to generate report [hh:mm].
+     * Schedule time to generate report (format = hh:mm).
      */
     time?: pulumi.Input<string>;
     /**

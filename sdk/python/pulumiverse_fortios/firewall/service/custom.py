@@ -26,6 +26,7 @@ class CustomArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  helper: Optional[pulumi.Input[str]] = None,
                  icmpcode: Optional[pulumi.Input[int]] = None,
                  icmptype: Optional[pulumi.Input[int]] = None,
@@ -43,6 +44,7 @@ class CustomArgs:
                  tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
                  udp_idle_timer: Optional[pulumi.Input[int]] = None,
                  udp_portrange: Optional[pulumi.Input[str]] = None,
+                 uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  visibility: Optional[pulumi.Input[str]] = None):
         """
@@ -57,6 +59,7 @@ class CustomArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] helper: Helper name.
         :param pulumi.Input[int] icmpcode: ICMP code.
         :param pulumi.Input[int] icmptype: ICMP type.
@@ -72,8 +75,9 @@ class CustomArgs:
         :param pulumi.Input[str] tcp_portrange: Multiple TCP port ranges.
         :param pulumi.Input[int] tcp_rst_timer: Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
         :param pulumi.Input[int] tcp_timewait_timer: Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
-        :param pulumi.Input[int] udp_idle_timer: UDP half close timeout (0 - 86400 sec, 0 = default).
+        :param pulumi.Input[int] udp_idle_timer: Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
         :param pulumi.Input[str] udp_portrange: Multiple UDP port ranges.
+        :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] visibility: Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
         """
@@ -97,6 +101,8 @@ class CustomArgs:
             pulumi.set(__self__, "fabric_object", fabric_object)
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if helper is not None:
             pulumi.set(__self__, "helper", helper)
         if icmpcode is not None:
@@ -131,6 +137,8 @@ class CustomArgs:
             pulumi.set(__self__, "udp_idle_timer", udp_idle_timer)
         if udp_portrange is not None:
             pulumi.set(__self__, "udp_portrange", udp_portrange)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if visibility is not None:
@@ -255,6 +263,18 @@ class CustomArgs:
     @fqdn.setter
     def fqdn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fqdn", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -440,7 +460,7 @@ class CustomArgs:
     @pulumi.getter(name="udpIdleTimer")
     def udp_idle_timer(self) -> Optional[pulumi.Input[int]]:
         """
-        UDP half close timeout (0 - 86400 sec, 0 = default).
+        Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
         """
         return pulumi.get(self, "udp_idle_timer")
 
@@ -459,6 +479,18 @@ class CustomArgs:
     @udp_portrange.setter
     def udp_portrange(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "udp_portrange", value)
+
+    @property
+    @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uuid", value)
 
     @property
     @pulumi.getter
@@ -498,6 +530,7 @@ class _CustomState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  helper: Optional[pulumi.Input[str]] = None,
                  icmpcode: Optional[pulumi.Input[int]] = None,
                  icmptype: Optional[pulumi.Input[int]] = None,
@@ -515,6 +548,7 @@ class _CustomState:
                  tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
                  udp_idle_timer: Optional[pulumi.Input[int]] = None,
                  udp_portrange: Optional[pulumi.Input[str]] = None,
+                 uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  visibility: Optional[pulumi.Input[str]] = None):
         """
@@ -529,6 +563,7 @@ class _CustomState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] helper: Helper name.
         :param pulumi.Input[int] icmpcode: ICMP code.
         :param pulumi.Input[int] icmptype: ICMP type.
@@ -544,8 +579,9 @@ class _CustomState:
         :param pulumi.Input[str] tcp_portrange: Multiple TCP port ranges.
         :param pulumi.Input[int] tcp_rst_timer: Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
         :param pulumi.Input[int] tcp_timewait_timer: Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
-        :param pulumi.Input[int] udp_idle_timer: UDP half close timeout (0 - 86400 sec, 0 = default).
+        :param pulumi.Input[int] udp_idle_timer: Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
         :param pulumi.Input[str] udp_portrange: Multiple UDP port ranges.
+        :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] visibility: Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
         """
@@ -569,6 +605,8 @@ class _CustomState:
             pulumi.set(__self__, "fabric_object", fabric_object)
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if helper is not None:
             pulumi.set(__self__, "helper", helper)
         if icmpcode is not None:
@@ -603,6 +641,8 @@ class _CustomState:
             pulumi.set(__self__, "udp_idle_timer", udp_idle_timer)
         if udp_portrange is not None:
             pulumi.set(__self__, "udp_portrange", udp_portrange)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if visibility is not None:
@@ -727,6 +767,18 @@ class _CustomState:
     @fqdn.setter
     def fqdn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fqdn", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -912,7 +964,7 @@ class _CustomState:
     @pulumi.getter(name="udpIdleTimer")
     def udp_idle_timer(self) -> Optional[pulumi.Input[int]]:
         """
-        UDP half close timeout (0 - 86400 sec, 0 = default).
+        Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
         """
         return pulumi.get(self, "udp_idle_timer")
 
@@ -931,6 +983,18 @@ class _CustomState:
     @udp_portrange.setter
     def udp_portrange(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "udp_portrange", value)
+
+    @property
+    @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uuid", value)
 
     @property
     @pulumi.getter
@@ -972,6 +1036,7 @@ class Custom(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  helper: Optional[pulumi.Input[str]] = None,
                  icmpcode: Optional[pulumi.Input[int]] = None,
                  icmptype: Optional[pulumi.Input[int]] = None,
@@ -989,6 +1054,7 @@ class Custom(pulumi.CustomResource):
                  tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
                  udp_idle_timer: Optional[pulumi.Input[int]] = None,
                  udp_portrange: Optional[pulumi.Input[str]] = None,
+                 uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  visibility: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1051,6 +1117,7 @@ class Custom(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] helper: Helper name.
         :param pulumi.Input[int] icmpcode: ICMP code.
         :param pulumi.Input[int] icmptype: ICMP type.
@@ -1066,8 +1133,9 @@ class Custom(pulumi.CustomResource):
         :param pulumi.Input[str] tcp_portrange: Multiple TCP port ranges.
         :param pulumi.Input[int] tcp_rst_timer: Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
         :param pulumi.Input[int] tcp_timewait_timer: Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
-        :param pulumi.Input[int] udp_idle_timer: UDP half close timeout (0 - 86400 sec, 0 = default).
+        :param pulumi.Input[int] udp_idle_timer: Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
         :param pulumi.Input[str] udp_portrange: Multiple UDP port ranges.
+        :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] visibility: Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
         """
@@ -1149,6 +1217,7 @@ class Custom(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  helper: Optional[pulumi.Input[str]] = None,
                  icmpcode: Optional[pulumi.Input[int]] = None,
                  icmptype: Optional[pulumi.Input[int]] = None,
@@ -1166,6 +1235,7 @@ class Custom(pulumi.CustomResource):
                  tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
                  udp_idle_timer: Optional[pulumi.Input[int]] = None,
                  udp_portrange: Optional[pulumi.Input[str]] = None,
+                 uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  visibility: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1187,6 +1257,7 @@ class Custom(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fabric_object"] = fabric_object
             __props__.__dict__["fqdn"] = fqdn
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["helper"] = helper
             __props__.__dict__["icmpcode"] = icmpcode
             __props__.__dict__["icmptype"] = icmptype
@@ -1204,6 +1275,7 @@ class Custom(pulumi.CustomResource):
             __props__.__dict__["tcp_timewait_timer"] = tcp_timewait_timer
             __props__.__dict__["udp_idle_timer"] = udp_idle_timer
             __props__.__dict__["udp_portrange"] = udp_portrange
+            __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["visibility"] = visibility
         super(Custom, __self__).__init__(
@@ -1226,6 +1298,7 @@ class Custom(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fabric_object: Optional[pulumi.Input[str]] = None,
             fqdn: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             helper: Optional[pulumi.Input[str]] = None,
             icmpcode: Optional[pulumi.Input[int]] = None,
             icmptype: Optional[pulumi.Input[int]] = None,
@@ -1243,6 +1316,7 @@ class Custom(pulumi.CustomResource):
             tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
             udp_idle_timer: Optional[pulumi.Input[int]] = None,
             udp_portrange: Optional[pulumi.Input[str]] = None,
+            uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             visibility: Optional[pulumi.Input[str]] = None) -> 'Custom':
         """
@@ -1262,6 +1336,7 @@ class Custom(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] helper: Helper name.
         :param pulumi.Input[int] icmpcode: ICMP code.
         :param pulumi.Input[int] icmptype: ICMP type.
@@ -1277,8 +1352,9 @@ class Custom(pulumi.CustomResource):
         :param pulumi.Input[str] tcp_portrange: Multiple TCP port ranges.
         :param pulumi.Input[int] tcp_rst_timer: Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
         :param pulumi.Input[int] tcp_timewait_timer: Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
-        :param pulumi.Input[int] udp_idle_timer: UDP half close timeout (0 - 86400 sec, 0 = default).
+        :param pulumi.Input[int] udp_idle_timer: Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
         :param pulumi.Input[str] udp_portrange: Multiple UDP port ranges.
+        :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] visibility: Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
         """
@@ -1296,6 +1372,7 @@ class Custom(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fabric_object"] = fabric_object
         __props__.__dict__["fqdn"] = fqdn
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["helper"] = helper
         __props__.__dict__["icmpcode"] = icmpcode
         __props__.__dict__["icmptype"] = icmptype
@@ -1313,6 +1390,7 @@ class Custom(pulumi.CustomResource):
         __props__.__dict__["tcp_timewait_timer"] = tcp_timewait_timer
         __props__.__dict__["udp_idle_timer"] = udp_idle_timer
         __props__.__dict__["udp_portrange"] = udp_portrange
+        __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["visibility"] = visibility
         return Custom(resource_name, opts=opts, __props__=__props__)
@@ -1396,6 +1474,14 @@ class Custom(pulumi.CustomResource):
         Fully qualified domain name.
         """
         return pulumi.get(self, "fqdn")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -1521,7 +1607,7 @@ class Custom(pulumi.CustomResource):
     @pulumi.getter(name="udpIdleTimer")
     def udp_idle_timer(self) -> pulumi.Output[int]:
         """
-        UDP half close timeout (0 - 86400 sec, 0 = default).
+        Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
         """
         return pulumi.get(self, "udp_idle_timer")
 
@@ -1532,6 +1618,14 @@ class Custom(pulumi.CustomResource):
         Multiple UDP port ranges.
         """
         return pulumi.get(self, "udp_portrange")
+
+    @property
+    @pulumi.getter
+    def uuid(self) -> pulumi.Output[str]:
+        """
+        Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        """
+        return pulumi.get(self, "uuid")
 
     @property
     @pulumi.getter

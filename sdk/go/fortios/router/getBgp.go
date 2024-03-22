@@ -67,8 +67,12 @@ type LookupBgpResult struct {
 	AdditionalPathSelect6 int `pulumi:"additionalPathSelect6"`
 	// Number of additional paths to be selected for each VPNv4 NLRI.
 	AdditionalPathSelectVpnv4 int `pulumi:"additionalPathSelectVpnv4"`
+	// Number of additional paths to be selected for each VPNv6 NLRI.
+	AdditionalPathSelectVpnv6 int `pulumi:"additionalPathSelectVpnv6"`
 	// Enable/disable VPNv4 additional-path capability.
 	AdditionalPathVpnv4 string `pulumi:"additionalPathVpnv4"`
+	// Enable/disable VPNv6 additional-path capability.
+	AdditionalPathVpnv6 string `pulumi:"additionalPathVpnv6"`
 	// Administrative distance modifications. The structure of `adminDistance` block is documented below.
 	AdminDistances []GetBgpAdminDistance `pulumi:"adminDistances"`
 	// BGP IPv6 aggregate address table. The structure of `aggregateAddress6` block is documented below.
@@ -79,6 +83,8 @@ type LookupBgpResult struct {
 	AlwaysCompareMed string `pulumi:"alwaysCompareMed"`
 	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
 	As int `pulumi:"as"`
+	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+	AsString string `pulumi:"asString"`
 	// Enable/disable ignore AS path.
 	BestpathAsPathIgnore string `pulumi:"bestpathAsPathIgnore"`
 	// Enable/disable compare federation AS path length.
@@ -97,6 +103,8 @@ type LookupBgpResult struct {
 	ConfederationIdentifier int `pulumi:"confederationIdentifier"`
 	// Confederation peers. The structure of `confederationPeers` block is documented below.
 	ConfederationPeers []GetBgpConfederationPeer `pulumi:"confederationPeers"`
+	// Enable/disable cross address family conditional advertisement.
+	CrossFamilyConditionalAdv string `pulumi:"crossFamilyConditionalAdv"`
 	// Enable/disable route-flap dampening.
 	Dampening string `pulumi:"dampening"`
 	// Maximum minutes a route can be suppressed.
@@ -255,9 +263,19 @@ func (o LookupBgpResultOutput) AdditionalPathSelectVpnv4() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupBgpResult) int { return v.AdditionalPathSelectVpnv4 }).(pulumi.IntOutput)
 }
 
+// Number of additional paths to be selected for each VPNv6 NLRI.
+func (o LookupBgpResultOutput) AdditionalPathSelectVpnv6() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupBgpResult) int { return v.AdditionalPathSelectVpnv6 }).(pulumi.IntOutput)
+}
+
 // Enable/disable VPNv4 additional-path capability.
 func (o LookupBgpResultOutput) AdditionalPathVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBgpResult) string { return v.AdditionalPathVpnv4 }).(pulumi.StringOutput)
+}
+
+// Enable/disable VPNv6 additional-path capability.
+func (o LookupBgpResultOutput) AdditionalPathVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBgpResult) string { return v.AdditionalPathVpnv6 }).(pulumi.StringOutput)
 }
 
 // Administrative distance modifications. The structure of `adminDistance` block is documented below.
@@ -283,6 +301,11 @@ func (o LookupBgpResultOutput) AlwaysCompareMed() pulumi.StringOutput {
 // Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
 func (o LookupBgpResultOutput) As() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupBgpResult) int { return v.As }).(pulumi.IntOutput)
+}
+
+// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+func (o LookupBgpResultOutput) AsString() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBgpResult) string { return v.AsString }).(pulumi.StringOutput)
 }
 
 // Enable/disable ignore AS path.
@@ -328,6 +351,11 @@ func (o LookupBgpResultOutput) ConfederationIdentifier() pulumi.IntOutput {
 // Confederation peers. The structure of `confederationPeers` block is documented below.
 func (o LookupBgpResultOutput) ConfederationPeers() GetBgpConfederationPeerArrayOutput {
 	return o.ApplyT(func(v LookupBgpResult) []GetBgpConfederationPeer { return v.ConfederationPeers }).(GetBgpConfederationPeerArrayOutput)
+}
+
+// Enable/disable cross address family conditional advertisement.
+func (o LookupBgpResultOutput) CrossFamilyConditionalAdv() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBgpResult) string { return v.CrossFamilyConditionalAdv }).(pulumi.StringOutput)
 }
 
 // Enable/disable route-flap dampening.

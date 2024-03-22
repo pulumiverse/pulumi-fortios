@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package fortios
+//go:generate go run github.com/tmeckel/pulumi-tf-provider-cookiecutter/generator
+package provider
 
 import (
 	"fmt"
@@ -90,6 +91,11 @@ var module_overrides = map[string]string{
 	"vpnsslweb":                      "vpn/ssl/web",
 }
 
+var name_overrides = map[string]string{
+	// "SecuritypolicySort": "SecurityPolicySort",
+	// "SecuritypolicyMove": "SecurityPolicyMove",
+}
+
 func convertName(tfname string) (module string, name string) {
 	tfNameItems := strings.Split(tfname, "_")
 	contract.Assertf(len(tfNameItems) >= 2, "Invalid snake case name %s", tfname)
@@ -107,6 +113,9 @@ func convertName(tfname string) (module string, name string) {
 	contract.Assertf(!unicode.IsDigit(rune(module[0])), "Pulumi namespace must not start with a digit: %s", name)
 	contract.Assertf(!unicode.IsDigit(rune(name[0])), "Pulumi name must not start with a digit: %s", name)
 	name = strcase.ToPascal(name)
+	if v, ok := name_overrides[name]; ok {
+		name = v
+	}
 	return
 }
 
@@ -671,9 +680,6 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_firewall_security_policyseq": {
 				Tok: makeResource(mainMod, "fortios_firewall_security_policyseq"),
-			},
-			"fortios_firewall_security_policysort": {
-				Tok: makeResource(mainMod, "fortios_firewall_security_policysort"),
 			},
 			"fortios_firewall_securitypolicy": {
 				Tok: makeResource(mainMod, "fortios_firewall_securitypolicy"),
@@ -2333,11 +2339,107 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_wirelesscontrollerhotspot20_qosmap": {
 				Tok: makeResource(mainMod, "fortios_wirelesscontrollerhotspot20_qosmap"),
 			},
-		},
+			"fortios_antivirus_exemptlist": {
+				Tok: makeResource(mainMod, "fortios_antivirus_exemptlist"),
+			},
+			"fortios_casb_profile": {
+				Tok: makeResource(mainMod, "fortios_casb_profile"),
+			},
+			"fortios_casb_saasapplication": {
+				Tok: makeResource(mainMod, "fortios_casb_saasapplication"),
+			},
+			"fortios_casb_useractivity": {
+				Tok: makeResource(mainMod, "fortios_casb_useractivity"),
+			},
+			"fortios_diameterfilter_profile": {
+				Tok: makeResource(mainMod, "fortios_diameterfilter_profile"),
+			},
+			"fortios_dlp_exactdatamatch": {
+				Tok: makeResource(mainMod, "fortios_dlp_exactdatamatch"),
+			},
+			"fortios_endpointcontrol_fctemsoverride": {
+				Tok: makeResource(mainMod, "fortios_endpointcontrol_fctemsoverride"),
+			},
+			"fortios_firewall_internetservicesubapp": {
+				Tok: makeResource(mainMod, "fortios_firewall_internetservicesubapp"),
+			},
+			"fortios_firewall_policy_move": {
+				Tok: makeResource(mainMod, "fortios_firewall_policy_move"),
+			},
+			"fortios_firewall_policy_sort": {
+				Tok: makeResource(mainMod, "fortios_firewall_policy_sort"),
+			},
+			"fortios_firewall_securitypolicy_move": {
+				Tok: makeResource(mainMod, "fortios_firewall_securitypolicy_move"),
+			},
+			"fortios_firewall_securitypolicy_sort": {
+				Tok: makeResource(mainMod, "fortios_firewall_securitypolicy_sort"),
+			},
+			"fortios_router_extcommunitylist": {
+				Tok: makeResource(mainMod, "fortios_router_extcommunitylist"),
+			},
+			"fortios_rule_fmwp": {
+				Tok: makeResource(mainMod, "fortios_rule_fmwp"),
+			},
+			"fortios_rule_otdt": {
+				Tok: makeResource(mainMod, "fortios_rule_otdt"),
+			},
+			"fortios_rule_otvp": {
+				Tok: makeResource(mainMod, "fortios_rule_otvp"),
+			},
+			"fortios_switchcontrolleracl_group": {
+				Tok: makeResource(mainMod, "fortios_switchcontrolleracl_group"),
+			},
+			"fortios_switchcontrolleracl_ingress": {
+				Tok: makeResource(mainMod, "fortios_switchcontrolleracl_ingress"),
+			},
+			"fortios_switchcontrollerptp_interfacepolicy": {
+				Tok: makeResource(mainMod, "fortios_switchcontrollerptp_interfacepolicy"),
+			},
+			"fortios_switchcontrollerptp_profile": {
+				Tok: makeResource(mainMod, "fortios_switchcontrollerptp_profile"),
+			},
+			"fortios_system_deviceupgrade": {
+				Tok: makeResource(mainMod, "fortios_system_deviceupgrade"),
+			},
+			"fortios_system_evpn": {
+				Tok: makeResource(mainMod, "fortios_system_evpn"),
+			},
+			"fortios_system_fabricvpn": {
+				Tok: makeResource(mainMod, "fortios_system_fabricvpn"),
+			},
+			"fortios_system_pcpserver": {
+				Tok: makeResource(mainMod, "fortios_system_pcpserver"),
+			},
+			"fortios_system_sdnproxy": {
+				Tok: makeResource(mainMod, "fortios_system_sdnproxy"),
+			},
+			"fortios_system_speedtestsetting": {
+				Tok: makeResource(mainMod, "fortios_system_speedtestsetting"),
+			},
+			"fortios_system_ssofortigatecloudadmin": {
+				Tok: makeResource(mainMod, "fortios_system_ssofortigatecloudadmin"),
+			},
+			"fortios_user_externalidentityprovider": {
+				Tok: makeResource(mainMod, "fortios_user_externalidentityprovider"),
+			},
+			"fortios_videofilter_keyword": {
+				Tok: makeResource(mainMod, "fortios_videofilter_keyword"),
+			},
+			"fortios_virtualpatch_profile": {
+				Tok: makeResource(mainMod, "fortios_virtualpatch_profile"),
+			},
+			"fortios_vpn_kmipserver": {
+				Tok: makeResource(mainMod, "fortios_vpn_kmipserver"),
+			},
+			"fortios_vpn_qkd": {
+				Tok: makeResource(mainMod, "fortios_vpn_qkd"),
+			},
+			"fortios_webproxy_fastfallback": {
+				Tok: makeResource(mainMod, "fortios_webproxy_fastfallback")}},
+
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function. An example
-			// is below.
-			// "aws_ami": {Tok: makeDataSource(mainMod, "aws_ami")},
+
 			"fortios_firewall_DoSpolicy": {
 				Tok: makeDataSource(mainMod, "fortios_firewall_DoSpolicy"),
 			},
@@ -3036,12 +3138,16 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_user_samllist": {
 				Tok: makeDataSource(mainMod, "fortios_user_samllist"),
 			},
+			"fortios_vpnssl_settings": {
+				Tok: makeDataSource(mainMod, "fortios_vpnssl_settings"),
+			},
 		},
 		IgnoreMappings: []string{
-			"fortios_vpn_ipsec_phase1interface", // deprecated
-			"fortios_vpn_ipsec_phase2interface", // deprecated
-			"fortios_log_fortianalyzer_setting", // deprecated
-			"fortios_firewall_security_policy",  // deprecated
+			"fortios_vpn_ipsec_phase1interface",    // deprecated
+			"fortios_vpn_ipsec_phase2interface",    // deprecated
+			"fortios_log_fortianalyzer_setting",    // deprecated
+			"fortios_firewall_security_policy",     // deprecated
+			"fortios_firewall_security_policysort", // deprecated
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@pulumiverse/fortios",

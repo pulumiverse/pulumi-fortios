@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -77,6 +79,10 @@ export class Global extends pulumi.CustomResource {
      * Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
      */
     public readonly adminConsoleTimeout!: pulumi.Output<number>;
+    /**
+     * Override access profile.
+     */
+    public readonly adminForticloudSsoDefaultProfile!: pulumi.Output<string>;
     /**
      * Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
      */
@@ -242,6 +248,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly batchCmdb!: pulumi.Output<string>;
     /**
+     * Affinity setting for BFD daemon (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    public readonly bfdAffinity!: pulumi.Output<string>;
+    /**
      * Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
      */
     public readonly blockSessionTimer!: pulumi.Output<number>;
@@ -330,6 +340,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly dst!: pulumi.Output<string>;
     /**
+     * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+     */
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable early TCP NPU session. Valid values: `enable`, `disable`.
      */
     public readonly earlyTcpNpuSession!: pulumi.Output<string>;
@@ -374,6 +388,14 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly fgdAlertSubscription!: pulumi.Output<string>;
     /**
+     * Enable/disable config upload to FortiConverter. Valid values: `once`, `disable`.
+     */
+    public readonly forticonverterConfigUpload!: pulumi.Output<string>;
+    /**
+     * Enable/disable FortiConverter integration service. Valid values: `enable`, `disable`.
+     */
+    public readonly forticonverterIntegration!: pulumi.Output<string>;
+    /**
      * Enable/disable FortiExtender. Valid values: `enable`, `disable`.
      */
     public readonly fortiextender!: pulumi.Output<string>;
@@ -394,6 +416,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly fortiextenderVlanMode!: pulumi.Output<string>;
     /**
+     * Enable/disable integration with the FortiGSLB cloud service. Valid values: `disable`, `enable`.
+     */
+    public readonly fortigslbIntegration!: pulumi.Output<string>;
+    /**
      * Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
      */
     public readonly fortiipamIntegration!: pulumi.Output<string>;
@@ -406,13 +432,37 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly fortitokenCloud!: pulumi.Output<string>;
     /**
+     * Enable/disable FTM push service of FortiToken Cloud. Valid values: `enable`, `disable`.
+     */
+    public readonly fortitokenCloudPushStatus!: pulumi.Output<string>;
+    /**
+     * Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
+     */
+    public readonly fortitokenCloudSyncInterval!: pulumi.Output<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
      */
     public readonly guiAllowDefaultHostname!: pulumi.Output<string>;
     /**
+     * Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error. Valid values: `enable`, `disable`.
+     */
+    public readonly guiAllowIncompatibleFabricFgt!: pulumi.Output<string>;
+    /**
      * Enable/disable Allow app-detection based SD-WAN. Valid values: `enable`, `disable`.
      */
     public readonly guiAppDetectionSdwan!: pulumi.Output<string>;
+    /**
+     * Enable/disable the automatic patch upgrade setup prompt on the GUI. Valid values: `enable`, `disable`.
+     */
+    public readonly guiAutoUpgradeSetupWarning!: pulumi.Output<string>;
+    /**
+     * Domain of CDN server.
+     */
+    public readonly guiCdnDomainOverride!: pulumi.Output<string>;
     /**
      * Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
      */
@@ -522,13 +572,25 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly ikeEmbryonicLimit!: pulumi.Output<number>;
     /**
-     * Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
+     * Enable/disable allowing use of interface-subnet setting in firewall addresses (default = enable). Valid values: `disable`, `enable`.
+     */
+    public readonly interfaceSubnetUsage!: pulumi.Output<string>;
+    /**
+     * Configure which Internet Service database size to download from FortiGuard and use.
      */
     public readonly internetServiceDatabase!: pulumi.Output<string>;
+    /**
+     * Configure which on-demand Internet Service IDs are to be downloaded. The structure of `internetServiceDownloadList` block is documented below.
+     */
+    public readonly internetServiceDownloadLists!: pulumi.Output<outputs.system.GlobalInternetServiceDownloadList[] | undefined>;
     /**
      * Dead gateway detection interval.
      */
     public readonly interval!: pulumi.Output<number>;
+    /**
+     * Maximum memory (MB) used to reassemble IPv4/IPv6 fragments.
+     */
+    public readonly ipFragmentMemThresholds!: pulumi.Output<number>;
     /**
      * IP source port range used for traffic originating from the FortiGate unit.
      */
@@ -597,6 +659,10 @@ export class Global extends pulumi.CustomResource {
      * Enable/disable Link Layer Discovery Protocol (LLDP) transmission. Valid values: `enable`, `disable`.
      */
     public readonly lldpTransmission!: pulumi.Output<string>;
+    /**
+     * Enable/disable logging the event of a single CPU core reaching CPU usage threshold. Valid values: `enable`, `disable`.
+     */
+    public readonly logSingleCpuHigh!: pulumi.Output<string>;
     /**
      * Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
      */
@@ -730,6 +796,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly proxyHardwareAcceleration!: pulumi.Output<string>;
     /**
+     * Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was authenticated. Valid values: `session`, `traffic`, `re-authentication`.
+     */
+    public readonly proxyKeepAliveMode!: pulumi.Output<string>;
+    /**
      * Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
      */
     public readonly proxyKxpHardwareAcceleration!: pulumi.Output<string>;
@@ -738,6 +808,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly proxyReAuthenticationMode!: pulumi.Output<string>;
     /**
+     * The time limit that users must re-authenticate if proxy-keep-alive-mode is set to re-authenticate (1  - 86400 sec, default=30s.
+     */
+    public readonly proxyReAuthenticationTime!: pulumi.Output<number>;
+    /**
      * Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
      */
     public readonly proxyResourceMode!: pulumi.Output<string>;
@@ -745,6 +819,34 @@ export class Global extends pulumi.CustomResource {
      * Proxy worker count.
      */
     public readonly proxyWorkerCount!: pulumi.Output<number>;
+    /**
+     * Purdue Level of this FortiGate. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+     */
+    public readonly purdueLevel!: pulumi.Output<string>;
+    /**
+     * Maximum number of unacknowledged packets before sending ACK (2 - 5, default = 3).
+     */
+    public readonly quicAckThresold!: pulumi.Output<number>;
+    /**
+     * QUIC congestion control algorithm (default = cubic). Valid values: `cubic`, `bbr`, `bbr2`, `reno`.
+     */
+    public readonly quicCongestionControlAlgo!: pulumi.Output<string>;
+    /**
+     * Maximum transmit datagram size (1200 - 1500, default = 1500).
+     */
+    public readonly quicMaxDatagramSize!: pulumi.Output<number>;
+    /**
+     * Enable/disable path MTU discovery (default = enable). Valid values: `enable`, `disable`.
+     */
+    public readonly quicPmtud!: pulumi.Output<string>;
+    /**
+     * Time-to-live (TTL) for TLS handshake in seconds (1 - 60, default = 5).
+     */
+    public readonly quicTlsHandshakeTimeout!: pulumi.Output<number>;
+    /**
+     * Enable/disable UDP payload size shaping per connection ID (default = enable). Valid values: `enable`, `disable`.
+     */
+    public readonly quicUdpPayloadSizeShapingPerCid!: pulumi.Output<string>;
     /**
      * RADIUS service port number.
      */
@@ -794,6 +896,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly sendPmtuIcmp!: pulumi.Output<string>;
     /**
+     * Maximum number of sflowd child processes allowed to run.
+     */
+    public readonly sflowdMaxChildrenNum!: pulumi.Output<number>;
+    /**
      * Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
      */
     public readonly snatRouteChange!: pulumi.Output<string>;
@@ -805,6 +911,14 @@ export class Global extends pulumi.CustomResource {
      * Enable/disable speed test server. Valid values: `enable`, `disable`.
      */
     public readonly speedtestServer!: pulumi.Output<string>;
+    /**
+     * Speedtest server controller port number.
+     */
+    public readonly speedtestdCtrlPort!: pulumi.Output<number>;
+    /**
+     * Speedtest server port number.
+     */
+    public readonly speedtestdServerPort!: pulumi.Output<number>;
     /**
      * Split port(s) to multiple 10Gbps ports.
      */
@@ -842,7 +956,23 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly sshHmacMd5!: pulumi.Output<string>;
     /**
-     * Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
+     * Config SSH host key.
+     */
+    public readonly sshHostkey!: pulumi.Output<string>;
+    /**
+     * Select one or more SSH hostkey algorithms.
+     */
+    public readonly sshHostkeyAlgo!: pulumi.Output<string>;
+    /**
+     * Enable/disable SSH host key override in SSH daemon. Valid values: `disable`, `enable`.
+     */
+    public readonly sshHostkeyOverride!: pulumi.Output<string>;
+    /**
+     * Password for ssh-hostkey.
+     */
+    public readonly sshHostkeyPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Select one or more SSH kex algorithms.
      */
     public readonly sshKexAlgo!: pulumi.Output<string>;
     /**
@@ -886,6 +1016,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly sslvpnPluginVersionCheck!: pulumi.Output<string>;
     /**
+     * Enable/disable SSL-VPN web mode. Valid values: `enable`, `disable`.
+     */
+    public readonly sslvpnWebMode!: pulumi.Output<string>;
+    /**
      * Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
      */
     public readonly strictDirtySessionCheck!: pulumi.Output<string>;
@@ -905,6 +1039,10 @@ export class Global extends pulumi.CustomResource {
      * Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
      */
     public readonly sysPerfLogInterval!: pulumi.Output<number>;
+    /**
+     * Affinity setting for syslog (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    public readonly syslogAffinity!: pulumi.Output<string>;
     /**
      * Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
      */
@@ -930,7 +1068,7 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly tftp!: pulumi.Output<string>;
     /**
-     * Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+     * Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them.
      */
     public readonly timezone!: pulumi.Output<string>;
     /**
@@ -1022,6 +1160,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly virtualSwitchVlan!: pulumi.Output<string>;
     /**
+     * Enable/disable verification of EMS serial number in SSL-VPN and IPsec VPN connection. Valid values: `enable`, `disable`.
+     */
+    public readonly vpnEmsSnCheck!: pulumi.Output<string>;
+    /**
      * Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
      */
     public readonly wadAffinity!: pulumi.Output<string>;
@@ -1037,6 +1179,18 @@ export class Global extends pulumi.CustomResource {
      * Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
      */
     public readonly wadMemoryChangeGranularity!: pulumi.Output<number>;
+    /**
+     * WAD workers daily restart end time (hh:mm).
+     */
+    public readonly wadRestartEndTime!: pulumi.Output<string>;
+    /**
+     * WAD worker restart mode (default = none). Valid values: `none`, `time`, `memory`.
+     */
+    public readonly wadRestartMode!: pulumi.Output<string>;
+    /**
+     * WAD workers daily restart time (hh:mm).
+     */
+    public readonly wadRestartStartTime!: pulumi.Output<string>;
     /**
      * Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.
      */
@@ -1081,6 +1235,7 @@ export class Global extends pulumi.CustomResource {
             const state = argsOrState as GlobalState | undefined;
             resourceInputs["adminConcurrent"] = state ? state.adminConcurrent : undefined;
             resourceInputs["adminConsoleTimeout"] = state ? state.adminConsoleTimeout : undefined;
+            resourceInputs["adminForticloudSsoDefaultProfile"] = state ? state.adminForticloudSsoDefaultProfile : undefined;
             resourceInputs["adminForticloudSsoLogin"] = state ? state.adminForticloudSsoLogin : undefined;
             resourceInputs["adminHost"] = state ? state.adminHost : undefined;
             resourceInputs["adminHstsMaxAge"] = state ? state.adminHstsMaxAge : undefined;
@@ -1122,6 +1277,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["avFailopen"] = state ? state.avFailopen : undefined;
             resourceInputs["avFailopenSession"] = state ? state.avFailopenSession : undefined;
             resourceInputs["batchCmdb"] = state ? state.batchCmdb : undefined;
+            resourceInputs["bfdAffinity"] = state ? state.bfdAffinity : undefined;
             resourceInputs["blockSessionTimer"] = state ? state.blockSessionTimer : undefined;
             resourceInputs["brFdbMaxEntry"] = state ? state.brFdbMaxEntry : undefined;
             resourceInputs["certChainMax"] = state ? state.certChainMax : undefined;
@@ -1144,6 +1300,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["dhParams"] = state ? state.dhParams : undefined;
             resourceInputs["dnsproxyWorkerCount"] = state ? state.dnsproxyWorkerCount : undefined;
             resourceInputs["dst"] = state ? state.dst : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["earlyTcpNpuSession"] = state ? state.earlyTcpNpuSession : undefined;
             resourceInputs["editVdomPrompt"] = state ? state.editVdomPrompt : undefined;
             resourceInputs["endpointControlFdsAccess"] = state ? state.endpointControlFdsAccess : undefined;
@@ -1155,16 +1312,25 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["fdsStatisticsPeriod"] = state ? state.fdsStatisticsPeriod : undefined;
             resourceInputs["fecPort"] = state ? state.fecPort : undefined;
             resourceInputs["fgdAlertSubscription"] = state ? state.fgdAlertSubscription : undefined;
+            resourceInputs["forticonverterConfigUpload"] = state ? state.forticonverterConfigUpload : undefined;
+            resourceInputs["forticonverterIntegration"] = state ? state.forticonverterIntegration : undefined;
             resourceInputs["fortiextender"] = state ? state.fortiextender : undefined;
             resourceInputs["fortiextenderDataPort"] = state ? state.fortiextenderDataPort : undefined;
             resourceInputs["fortiextenderDiscoveryLockdown"] = state ? state.fortiextenderDiscoveryLockdown : undefined;
             resourceInputs["fortiextenderProvisionOnAuthorization"] = state ? state.fortiextenderProvisionOnAuthorization : undefined;
             resourceInputs["fortiextenderVlanMode"] = state ? state.fortiextenderVlanMode : undefined;
+            resourceInputs["fortigslbIntegration"] = state ? state.fortigslbIntegration : undefined;
             resourceInputs["fortiipamIntegration"] = state ? state.fortiipamIntegration : undefined;
             resourceInputs["fortiservicePort"] = state ? state.fortiservicePort : undefined;
             resourceInputs["fortitokenCloud"] = state ? state.fortitokenCloud : undefined;
+            resourceInputs["fortitokenCloudPushStatus"] = state ? state.fortitokenCloudPushStatus : undefined;
+            resourceInputs["fortitokenCloudSyncInterval"] = state ? state.fortitokenCloudSyncInterval : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["guiAllowDefaultHostname"] = state ? state.guiAllowDefaultHostname : undefined;
+            resourceInputs["guiAllowIncompatibleFabricFgt"] = state ? state.guiAllowIncompatibleFabricFgt : undefined;
             resourceInputs["guiAppDetectionSdwan"] = state ? state.guiAppDetectionSdwan : undefined;
+            resourceInputs["guiAutoUpgradeSetupWarning"] = state ? state.guiAutoUpgradeSetupWarning : undefined;
+            resourceInputs["guiCdnDomainOverride"] = state ? state.guiCdnDomainOverride : undefined;
             resourceInputs["guiCdnUsage"] = state ? state.guiCdnUsage : undefined;
             resourceInputs["guiCertificates"] = state ? state.guiCertificates : undefined;
             resourceInputs["guiCustomLanguage"] = state ? state.guiCustomLanguage : undefined;
@@ -1192,8 +1358,11 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["hostname"] = state ? state.hostname : undefined;
             resourceInputs["igmpStateLimit"] = state ? state.igmpStateLimit : undefined;
             resourceInputs["ikeEmbryonicLimit"] = state ? state.ikeEmbryonicLimit : undefined;
+            resourceInputs["interfaceSubnetUsage"] = state ? state.interfaceSubnetUsage : undefined;
             resourceInputs["internetServiceDatabase"] = state ? state.internetServiceDatabase : undefined;
+            resourceInputs["internetServiceDownloadLists"] = state ? state.internetServiceDownloadLists : undefined;
             resourceInputs["interval"] = state ? state.interval : undefined;
+            resourceInputs["ipFragmentMemThresholds"] = state ? state.ipFragmentMemThresholds : undefined;
             resourceInputs["ipSrcPortRange"] = state ? state.ipSrcPortRange : undefined;
             resourceInputs["ipsAffinity"] = state ? state.ipsAffinity : undefined;
             resourceInputs["ipsecAsicOffload"] = state ? state.ipsecAsicOffload : undefined;
@@ -1211,6 +1380,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["ldapconntimeout"] = state ? state.ldapconntimeout : undefined;
             resourceInputs["lldpReception"] = state ? state.lldpReception : undefined;
             resourceInputs["lldpTransmission"] = state ? state.lldpTransmission : undefined;
+            resourceInputs["logSingleCpuHigh"] = state ? state.logSingleCpuHigh : undefined;
             resourceInputs["logSslConnection"] = state ? state.logSslConnection : undefined;
             resourceInputs["logUuidAddress"] = state ? state.logUuidAddress : undefined;
             resourceInputs["logUuidPolicy"] = state ? state.logUuidPolicy : undefined;
@@ -1244,10 +1414,19 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["proxyCertUseMgmtVdom"] = state ? state.proxyCertUseMgmtVdom : undefined;
             resourceInputs["proxyCipherHardwareAcceleration"] = state ? state.proxyCipherHardwareAcceleration : undefined;
             resourceInputs["proxyHardwareAcceleration"] = state ? state.proxyHardwareAcceleration : undefined;
+            resourceInputs["proxyKeepAliveMode"] = state ? state.proxyKeepAliveMode : undefined;
             resourceInputs["proxyKxpHardwareAcceleration"] = state ? state.proxyKxpHardwareAcceleration : undefined;
             resourceInputs["proxyReAuthenticationMode"] = state ? state.proxyReAuthenticationMode : undefined;
+            resourceInputs["proxyReAuthenticationTime"] = state ? state.proxyReAuthenticationTime : undefined;
             resourceInputs["proxyResourceMode"] = state ? state.proxyResourceMode : undefined;
             resourceInputs["proxyWorkerCount"] = state ? state.proxyWorkerCount : undefined;
+            resourceInputs["purdueLevel"] = state ? state.purdueLevel : undefined;
+            resourceInputs["quicAckThresold"] = state ? state.quicAckThresold : undefined;
+            resourceInputs["quicCongestionControlAlgo"] = state ? state.quicCongestionControlAlgo : undefined;
+            resourceInputs["quicMaxDatagramSize"] = state ? state.quicMaxDatagramSize : undefined;
+            resourceInputs["quicPmtud"] = state ? state.quicPmtud : undefined;
+            resourceInputs["quicTlsHandshakeTimeout"] = state ? state.quicTlsHandshakeTimeout : undefined;
+            resourceInputs["quicUdpPayloadSizeShapingPerCid"] = state ? state.quicUdpPayloadSizeShapingPerCid : undefined;
             resourceInputs["radiusPort"] = state ? state.radiusPort : undefined;
             resourceInputs["rebootUponConfigRestore"] = state ? state.rebootUponConfigRestore : undefined;
             resourceInputs["refresh"] = state ? state.refresh : undefined;
@@ -1260,9 +1439,12 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["securityRatingResultSubmission"] = state ? state.securityRatingResultSubmission : undefined;
             resourceInputs["securityRatingRunOnSchedule"] = state ? state.securityRatingRunOnSchedule : undefined;
             resourceInputs["sendPmtuIcmp"] = state ? state.sendPmtuIcmp : undefined;
+            resourceInputs["sflowdMaxChildrenNum"] = state ? state.sflowdMaxChildrenNum : undefined;
             resourceInputs["snatRouteChange"] = state ? state.snatRouteChange : undefined;
             resourceInputs["specialFile23Support"] = state ? state.specialFile23Support : undefined;
             resourceInputs["speedtestServer"] = state ? state.speedtestServer : undefined;
+            resourceInputs["speedtestdCtrlPort"] = state ? state.speedtestdCtrlPort : undefined;
+            resourceInputs["speedtestdServerPort"] = state ? state.speedtestdServerPort : undefined;
             resourceInputs["splitPort"] = state ? state.splitPort : undefined;
             resourceInputs["ssdTrimDate"] = state ? state.ssdTrimDate : undefined;
             resourceInputs["ssdTrimFreq"] = state ? state.ssdTrimFreq : undefined;
@@ -1272,6 +1454,10 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["sshCbcCipher"] = state ? state.sshCbcCipher : undefined;
             resourceInputs["sshEncAlgo"] = state ? state.sshEncAlgo : undefined;
             resourceInputs["sshHmacMd5"] = state ? state.sshHmacMd5 : undefined;
+            resourceInputs["sshHostkey"] = state ? state.sshHostkey : undefined;
+            resourceInputs["sshHostkeyAlgo"] = state ? state.sshHostkeyAlgo : undefined;
+            resourceInputs["sshHostkeyOverride"] = state ? state.sshHostkeyOverride : undefined;
+            resourceInputs["sshHostkeyPassword"] = state ? state.sshHostkeyPassword : undefined;
             resourceInputs["sshKexAlgo"] = state ? state.sshKexAlgo : undefined;
             resourceInputs["sshKexSha1"] = state ? state.sshKexSha1 : undefined;
             resourceInputs["sshMacAlgo"] = state ? state.sshMacAlgo : undefined;
@@ -1283,11 +1469,13 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["sslvpnKxpHardwareAcceleration"] = state ? state.sslvpnKxpHardwareAcceleration : undefined;
             resourceInputs["sslvpnMaxWorkerCount"] = state ? state.sslvpnMaxWorkerCount : undefined;
             resourceInputs["sslvpnPluginVersionCheck"] = state ? state.sslvpnPluginVersionCheck : undefined;
+            resourceInputs["sslvpnWebMode"] = state ? state.sslvpnWebMode : undefined;
             resourceInputs["strictDirtySessionCheck"] = state ? state.strictDirtySessionCheck : undefined;
             resourceInputs["strongCrypto"] = state ? state.strongCrypto : undefined;
             resourceInputs["switchController"] = state ? state.switchController : undefined;
             resourceInputs["switchControllerReservedNetwork"] = state ? state.switchControllerReservedNetwork : undefined;
             resourceInputs["sysPerfLogInterval"] = state ? state.sysPerfLogInterval : undefined;
+            resourceInputs["syslogAffinity"] = state ? state.syslogAffinity : undefined;
             resourceInputs["tcpHalfcloseTimer"] = state ? state.tcpHalfcloseTimer : undefined;
             resourceInputs["tcpHalfopenTimer"] = state ? state.tcpHalfopenTimer : undefined;
             resourceInputs["tcpOption"] = state ? state.tcpOption : undefined;
@@ -1317,10 +1505,14 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["virtualServerCount"] = state ? state.virtualServerCount : undefined;
             resourceInputs["virtualServerHardwareAcceleration"] = state ? state.virtualServerHardwareAcceleration : undefined;
             resourceInputs["virtualSwitchVlan"] = state ? state.virtualSwitchVlan : undefined;
+            resourceInputs["vpnEmsSnCheck"] = state ? state.vpnEmsSnCheck : undefined;
             resourceInputs["wadAffinity"] = state ? state.wadAffinity : undefined;
             resourceInputs["wadCsvcCsCount"] = state ? state.wadCsvcCsCount : undefined;
             resourceInputs["wadCsvcDbCount"] = state ? state.wadCsvcDbCount : undefined;
             resourceInputs["wadMemoryChangeGranularity"] = state ? state.wadMemoryChangeGranularity : undefined;
+            resourceInputs["wadRestartEndTime"] = state ? state.wadRestartEndTime : undefined;
+            resourceInputs["wadRestartMode"] = state ? state.wadRestartMode : undefined;
+            resourceInputs["wadRestartStartTime"] = state ? state.wadRestartStartTime : undefined;
             resourceInputs["wadSourceAffinity"] = state ? state.wadSourceAffinity : undefined;
             resourceInputs["wadWorkerCount"] = state ? state.wadWorkerCount : undefined;
             resourceInputs["wifiCaCertificate"] = state ? state.wifiCaCertificate : undefined;
@@ -1332,6 +1524,7 @@ export class Global extends pulumi.CustomResource {
             const args = argsOrState as GlobalArgs | undefined;
             resourceInputs["adminConcurrent"] = args ? args.adminConcurrent : undefined;
             resourceInputs["adminConsoleTimeout"] = args ? args.adminConsoleTimeout : undefined;
+            resourceInputs["adminForticloudSsoDefaultProfile"] = args ? args.adminForticloudSsoDefaultProfile : undefined;
             resourceInputs["adminForticloudSsoLogin"] = args ? args.adminForticloudSsoLogin : undefined;
             resourceInputs["adminHost"] = args ? args.adminHost : undefined;
             resourceInputs["adminHstsMaxAge"] = args ? args.adminHstsMaxAge : undefined;
@@ -1373,6 +1566,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["avFailopen"] = args ? args.avFailopen : undefined;
             resourceInputs["avFailopenSession"] = args ? args.avFailopenSession : undefined;
             resourceInputs["batchCmdb"] = args ? args.batchCmdb : undefined;
+            resourceInputs["bfdAffinity"] = args ? args.bfdAffinity : undefined;
             resourceInputs["blockSessionTimer"] = args ? args.blockSessionTimer : undefined;
             resourceInputs["brFdbMaxEntry"] = args ? args.brFdbMaxEntry : undefined;
             resourceInputs["certChainMax"] = args ? args.certChainMax : undefined;
@@ -1395,6 +1589,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["dhParams"] = args ? args.dhParams : undefined;
             resourceInputs["dnsproxyWorkerCount"] = args ? args.dnsproxyWorkerCount : undefined;
             resourceInputs["dst"] = args ? args.dst : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["earlyTcpNpuSession"] = args ? args.earlyTcpNpuSession : undefined;
             resourceInputs["editVdomPrompt"] = args ? args.editVdomPrompt : undefined;
             resourceInputs["endpointControlFdsAccess"] = args ? args.endpointControlFdsAccess : undefined;
@@ -1406,16 +1601,25 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["fdsStatisticsPeriod"] = args ? args.fdsStatisticsPeriod : undefined;
             resourceInputs["fecPort"] = args ? args.fecPort : undefined;
             resourceInputs["fgdAlertSubscription"] = args ? args.fgdAlertSubscription : undefined;
+            resourceInputs["forticonverterConfigUpload"] = args ? args.forticonverterConfigUpload : undefined;
+            resourceInputs["forticonverterIntegration"] = args ? args.forticonverterIntegration : undefined;
             resourceInputs["fortiextender"] = args ? args.fortiextender : undefined;
             resourceInputs["fortiextenderDataPort"] = args ? args.fortiextenderDataPort : undefined;
             resourceInputs["fortiextenderDiscoveryLockdown"] = args ? args.fortiextenderDiscoveryLockdown : undefined;
             resourceInputs["fortiextenderProvisionOnAuthorization"] = args ? args.fortiextenderProvisionOnAuthorization : undefined;
             resourceInputs["fortiextenderVlanMode"] = args ? args.fortiextenderVlanMode : undefined;
+            resourceInputs["fortigslbIntegration"] = args ? args.fortigslbIntegration : undefined;
             resourceInputs["fortiipamIntegration"] = args ? args.fortiipamIntegration : undefined;
             resourceInputs["fortiservicePort"] = args ? args.fortiservicePort : undefined;
             resourceInputs["fortitokenCloud"] = args ? args.fortitokenCloud : undefined;
+            resourceInputs["fortitokenCloudPushStatus"] = args ? args.fortitokenCloudPushStatus : undefined;
+            resourceInputs["fortitokenCloudSyncInterval"] = args ? args.fortitokenCloudSyncInterval : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["guiAllowDefaultHostname"] = args ? args.guiAllowDefaultHostname : undefined;
+            resourceInputs["guiAllowIncompatibleFabricFgt"] = args ? args.guiAllowIncompatibleFabricFgt : undefined;
             resourceInputs["guiAppDetectionSdwan"] = args ? args.guiAppDetectionSdwan : undefined;
+            resourceInputs["guiAutoUpgradeSetupWarning"] = args ? args.guiAutoUpgradeSetupWarning : undefined;
+            resourceInputs["guiCdnDomainOverride"] = args ? args.guiCdnDomainOverride : undefined;
             resourceInputs["guiCdnUsage"] = args ? args.guiCdnUsage : undefined;
             resourceInputs["guiCertificates"] = args ? args.guiCertificates : undefined;
             resourceInputs["guiCustomLanguage"] = args ? args.guiCustomLanguage : undefined;
@@ -1443,8 +1647,11 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["hostname"] = args ? args.hostname : undefined;
             resourceInputs["igmpStateLimit"] = args ? args.igmpStateLimit : undefined;
             resourceInputs["ikeEmbryonicLimit"] = args ? args.ikeEmbryonicLimit : undefined;
+            resourceInputs["interfaceSubnetUsage"] = args ? args.interfaceSubnetUsage : undefined;
             resourceInputs["internetServiceDatabase"] = args ? args.internetServiceDatabase : undefined;
+            resourceInputs["internetServiceDownloadLists"] = args ? args.internetServiceDownloadLists : undefined;
             resourceInputs["interval"] = args ? args.interval : undefined;
+            resourceInputs["ipFragmentMemThresholds"] = args ? args.ipFragmentMemThresholds : undefined;
             resourceInputs["ipSrcPortRange"] = args ? args.ipSrcPortRange : undefined;
             resourceInputs["ipsAffinity"] = args ? args.ipsAffinity : undefined;
             resourceInputs["ipsecAsicOffload"] = args ? args.ipsecAsicOffload : undefined;
@@ -1462,6 +1669,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["ldapconntimeout"] = args ? args.ldapconntimeout : undefined;
             resourceInputs["lldpReception"] = args ? args.lldpReception : undefined;
             resourceInputs["lldpTransmission"] = args ? args.lldpTransmission : undefined;
+            resourceInputs["logSingleCpuHigh"] = args ? args.logSingleCpuHigh : undefined;
             resourceInputs["logSslConnection"] = args ? args.logSslConnection : undefined;
             resourceInputs["logUuidAddress"] = args ? args.logUuidAddress : undefined;
             resourceInputs["logUuidPolicy"] = args ? args.logUuidPolicy : undefined;
@@ -1495,10 +1703,19 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["proxyCertUseMgmtVdom"] = args ? args.proxyCertUseMgmtVdom : undefined;
             resourceInputs["proxyCipherHardwareAcceleration"] = args ? args.proxyCipherHardwareAcceleration : undefined;
             resourceInputs["proxyHardwareAcceleration"] = args ? args.proxyHardwareAcceleration : undefined;
+            resourceInputs["proxyKeepAliveMode"] = args ? args.proxyKeepAliveMode : undefined;
             resourceInputs["proxyKxpHardwareAcceleration"] = args ? args.proxyKxpHardwareAcceleration : undefined;
             resourceInputs["proxyReAuthenticationMode"] = args ? args.proxyReAuthenticationMode : undefined;
+            resourceInputs["proxyReAuthenticationTime"] = args ? args.proxyReAuthenticationTime : undefined;
             resourceInputs["proxyResourceMode"] = args ? args.proxyResourceMode : undefined;
             resourceInputs["proxyWorkerCount"] = args ? args.proxyWorkerCount : undefined;
+            resourceInputs["purdueLevel"] = args ? args.purdueLevel : undefined;
+            resourceInputs["quicAckThresold"] = args ? args.quicAckThresold : undefined;
+            resourceInputs["quicCongestionControlAlgo"] = args ? args.quicCongestionControlAlgo : undefined;
+            resourceInputs["quicMaxDatagramSize"] = args ? args.quicMaxDatagramSize : undefined;
+            resourceInputs["quicPmtud"] = args ? args.quicPmtud : undefined;
+            resourceInputs["quicTlsHandshakeTimeout"] = args ? args.quicTlsHandshakeTimeout : undefined;
+            resourceInputs["quicUdpPayloadSizeShapingPerCid"] = args ? args.quicUdpPayloadSizeShapingPerCid : undefined;
             resourceInputs["radiusPort"] = args ? args.radiusPort : undefined;
             resourceInputs["rebootUponConfigRestore"] = args ? args.rebootUponConfigRestore : undefined;
             resourceInputs["refresh"] = args ? args.refresh : undefined;
@@ -1511,9 +1728,12 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["securityRatingResultSubmission"] = args ? args.securityRatingResultSubmission : undefined;
             resourceInputs["securityRatingRunOnSchedule"] = args ? args.securityRatingRunOnSchedule : undefined;
             resourceInputs["sendPmtuIcmp"] = args ? args.sendPmtuIcmp : undefined;
+            resourceInputs["sflowdMaxChildrenNum"] = args ? args.sflowdMaxChildrenNum : undefined;
             resourceInputs["snatRouteChange"] = args ? args.snatRouteChange : undefined;
             resourceInputs["specialFile23Support"] = args ? args.specialFile23Support : undefined;
             resourceInputs["speedtestServer"] = args ? args.speedtestServer : undefined;
+            resourceInputs["speedtestdCtrlPort"] = args ? args.speedtestdCtrlPort : undefined;
+            resourceInputs["speedtestdServerPort"] = args ? args.speedtestdServerPort : undefined;
             resourceInputs["splitPort"] = args ? args.splitPort : undefined;
             resourceInputs["ssdTrimDate"] = args ? args.ssdTrimDate : undefined;
             resourceInputs["ssdTrimFreq"] = args ? args.ssdTrimFreq : undefined;
@@ -1523,6 +1743,10 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["sshCbcCipher"] = args ? args.sshCbcCipher : undefined;
             resourceInputs["sshEncAlgo"] = args ? args.sshEncAlgo : undefined;
             resourceInputs["sshHmacMd5"] = args ? args.sshHmacMd5 : undefined;
+            resourceInputs["sshHostkey"] = args ? args.sshHostkey : undefined;
+            resourceInputs["sshHostkeyAlgo"] = args ? args.sshHostkeyAlgo : undefined;
+            resourceInputs["sshHostkeyOverride"] = args ? args.sshHostkeyOverride : undefined;
+            resourceInputs["sshHostkeyPassword"] = args ? args.sshHostkeyPassword : undefined;
             resourceInputs["sshKexAlgo"] = args ? args.sshKexAlgo : undefined;
             resourceInputs["sshKexSha1"] = args ? args.sshKexSha1 : undefined;
             resourceInputs["sshMacAlgo"] = args ? args.sshMacAlgo : undefined;
@@ -1534,11 +1758,13 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["sslvpnKxpHardwareAcceleration"] = args ? args.sslvpnKxpHardwareAcceleration : undefined;
             resourceInputs["sslvpnMaxWorkerCount"] = args ? args.sslvpnMaxWorkerCount : undefined;
             resourceInputs["sslvpnPluginVersionCheck"] = args ? args.sslvpnPluginVersionCheck : undefined;
+            resourceInputs["sslvpnWebMode"] = args ? args.sslvpnWebMode : undefined;
             resourceInputs["strictDirtySessionCheck"] = args ? args.strictDirtySessionCheck : undefined;
             resourceInputs["strongCrypto"] = args ? args.strongCrypto : undefined;
             resourceInputs["switchController"] = args ? args.switchController : undefined;
             resourceInputs["switchControllerReservedNetwork"] = args ? args.switchControllerReservedNetwork : undefined;
             resourceInputs["sysPerfLogInterval"] = args ? args.sysPerfLogInterval : undefined;
+            resourceInputs["syslogAffinity"] = args ? args.syslogAffinity : undefined;
             resourceInputs["tcpHalfcloseTimer"] = args ? args.tcpHalfcloseTimer : undefined;
             resourceInputs["tcpHalfopenTimer"] = args ? args.tcpHalfopenTimer : undefined;
             resourceInputs["tcpOption"] = args ? args.tcpOption : undefined;
@@ -1568,10 +1794,14 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["virtualServerCount"] = args ? args.virtualServerCount : undefined;
             resourceInputs["virtualServerHardwareAcceleration"] = args ? args.virtualServerHardwareAcceleration : undefined;
             resourceInputs["virtualSwitchVlan"] = args ? args.virtualSwitchVlan : undefined;
+            resourceInputs["vpnEmsSnCheck"] = args ? args.vpnEmsSnCheck : undefined;
             resourceInputs["wadAffinity"] = args ? args.wadAffinity : undefined;
             resourceInputs["wadCsvcCsCount"] = args ? args.wadCsvcCsCount : undefined;
             resourceInputs["wadCsvcDbCount"] = args ? args.wadCsvcDbCount : undefined;
             resourceInputs["wadMemoryChangeGranularity"] = args ? args.wadMemoryChangeGranularity : undefined;
+            resourceInputs["wadRestartEndTime"] = args ? args.wadRestartEndTime : undefined;
+            resourceInputs["wadRestartMode"] = args ? args.wadRestartMode : undefined;
+            resourceInputs["wadRestartStartTime"] = args ? args.wadRestartStartTime : undefined;
             resourceInputs["wadSourceAffinity"] = args ? args.wadSourceAffinity : undefined;
             resourceInputs["wadWorkerCount"] = args ? args.wadWorkerCount : undefined;
             resourceInputs["wifiCaCertificate"] = args ? args.wifiCaCertificate : undefined;
@@ -1597,6 +1827,10 @@ export interface GlobalState {
      * Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
      */
     adminConsoleTimeout?: pulumi.Input<number>;
+    /**
+     * Override access profile.
+     */
+    adminForticloudSsoDefaultProfile?: pulumi.Input<string>;
     /**
      * Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
      */
@@ -1762,6 +1996,10 @@ export interface GlobalState {
      */
     batchCmdb?: pulumi.Input<string>;
     /**
+     * Affinity setting for BFD daemon (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    bfdAffinity?: pulumi.Input<string>;
+    /**
      * Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
      */
     blockSessionTimer?: pulumi.Input<number>;
@@ -1850,6 +2088,10 @@ export interface GlobalState {
      */
     dst?: pulumi.Input<string>;
     /**
+     * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
      * Enable/disable early TCP NPU session. Valid values: `enable`, `disable`.
      */
     earlyTcpNpuSession?: pulumi.Input<string>;
@@ -1894,6 +2136,14 @@ export interface GlobalState {
      */
     fgdAlertSubscription?: pulumi.Input<string>;
     /**
+     * Enable/disable config upload to FortiConverter. Valid values: `once`, `disable`.
+     */
+    forticonverterConfigUpload?: pulumi.Input<string>;
+    /**
+     * Enable/disable FortiConverter integration service. Valid values: `enable`, `disable`.
+     */
+    forticonverterIntegration?: pulumi.Input<string>;
+    /**
      * Enable/disable FortiExtender. Valid values: `enable`, `disable`.
      */
     fortiextender?: pulumi.Input<string>;
@@ -1914,6 +2164,10 @@ export interface GlobalState {
      */
     fortiextenderVlanMode?: pulumi.Input<string>;
     /**
+     * Enable/disable integration with the FortiGSLB cloud service. Valid values: `disable`, `enable`.
+     */
+    fortigslbIntegration?: pulumi.Input<string>;
+    /**
      * Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
      */
     fortiipamIntegration?: pulumi.Input<string>;
@@ -1926,13 +2180,37 @@ export interface GlobalState {
      */
     fortitokenCloud?: pulumi.Input<string>;
     /**
+     * Enable/disable FTM push service of FortiToken Cloud. Valid values: `enable`, `disable`.
+     */
+    fortitokenCloudPushStatus?: pulumi.Input<string>;
+    /**
+     * Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
+     */
+    fortitokenCloudSyncInterval?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
      */
     guiAllowDefaultHostname?: pulumi.Input<string>;
     /**
+     * Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error. Valid values: `enable`, `disable`.
+     */
+    guiAllowIncompatibleFabricFgt?: pulumi.Input<string>;
+    /**
      * Enable/disable Allow app-detection based SD-WAN. Valid values: `enable`, `disable`.
      */
     guiAppDetectionSdwan?: pulumi.Input<string>;
+    /**
+     * Enable/disable the automatic patch upgrade setup prompt on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiAutoUpgradeSetupWarning?: pulumi.Input<string>;
+    /**
+     * Domain of CDN server.
+     */
+    guiCdnDomainOverride?: pulumi.Input<string>;
     /**
      * Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
      */
@@ -2042,13 +2320,25 @@ export interface GlobalState {
      */
     ikeEmbryonicLimit?: pulumi.Input<number>;
     /**
-     * Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
+     * Enable/disable allowing use of interface-subnet setting in firewall addresses (default = enable). Valid values: `disable`, `enable`.
+     */
+    interfaceSubnetUsage?: pulumi.Input<string>;
+    /**
+     * Configure which Internet Service database size to download from FortiGuard and use.
      */
     internetServiceDatabase?: pulumi.Input<string>;
+    /**
+     * Configure which on-demand Internet Service IDs are to be downloaded. The structure of `internetServiceDownloadList` block is documented below.
+     */
+    internetServiceDownloadLists?: pulumi.Input<pulumi.Input<inputs.system.GlobalInternetServiceDownloadList>[]>;
     /**
      * Dead gateway detection interval.
      */
     interval?: pulumi.Input<number>;
+    /**
+     * Maximum memory (MB) used to reassemble IPv4/IPv6 fragments.
+     */
+    ipFragmentMemThresholds?: pulumi.Input<number>;
     /**
      * IP source port range used for traffic originating from the FortiGate unit.
      */
@@ -2117,6 +2407,10 @@ export interface GlobalState {
      * Enable/disable Link Layer Discovery Protocol (LLDP) transmission. Valid values: `enable`, `disable`.
      */
     lldpTransmission?: pulumi.Input<string>;
+    /**
+     * Enable/disable logging the event of a single CPU core reaching CPU usage threshold. Valid values: `enable`, `disable`.
+     */
+    logSingleCpuHigh?: pulumi.Input<string>;
     /**
      * Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
      */
@@ -2250,6 +2544,10 @@ export interface GlobalState {
      */
     proxyHardwareAcceleration?: pulumi.Input<string>;
     /**
+     * Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was authenticated. Valid values: `session`, `traffic`, `re-authentication`.
+     */
+    proxyKeepAliveMode?: pulumi.Input<string>;
+    /**
      * Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
      */
     proxyKxpHardwareAcceleration?: pulumi.Input<string>;
@@ -2258,6 +2556,10 @@ export interface GlobalState {
      */
     proxyReAuthenticationMode?: pulumi.Input<string>;
     /**
+     * The time limit that users must re-authenticate if proxy-keep-alive-mode is set to re-authenticate (1  - 86400 sec, default=30s.
+     */
+    proxyReAuthenticationTime?: pulumi.Input<number>;
+    /**
      * Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
      */
     proxyResourceMode?: pulumi.Input<string>;
@@ -2265,6 +2567,34 @@ export interface GlobalState {
      * Proxy worker count.
      */
     proxyWorkerCount?: pulumi.Input<number>;
+    /**
+     * Purdue Level of this FortiGate. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+     */
+    purdueLevel?: pulumi.Input<string>;
+    /**
+     * Maximum number of unacknowledged packets before sending ACK (2 - 5, default = 3).
+     */
+    quicAckThresold?: pulumi.Input<number>;
+    /**
+     * QUIC congestion control algorithm (default = cubic). Valid values: `cubic`, `bbr`, `bbr2`, `reno`.
+     */
+    quicCongestionControlAlgo?: pulumi.Input<string>;
+    /**
+     * Maximum transmit datagram size (1200 - 1500, default = 1500).
+     */
+    quicMaxDatagramSize?: pulumi.Input<number>;
+    /**
+     * Enable/disable path MTU discovery (default = enable). Valid values: `enable`, `disable`.
+     */
+    quicPmtud?: pulumi.Input<string>;
+    /**
+     * Time-to-live (TTL) for TLS handshake in seconds (1 - 60, default = 5).
+     */
+    quicTlsHandshakeTimeout?: pulumi.Input<number>;
+    /**
+     * Enable/disable UDP payload size shaping per connection ID (default = enable). Valid values: `enable`, `disable`.
+     */
+    quicUdpPayloadSizeShapingPerCid?: pulumi.Input<string>;
     /**
      * RADIUS service port number.
      */
@@ -2314,6 +2644,10 @@ export interface GlobalState {
      */
     sendPmtuIcmp?: pulumi.Input<string>;
     /**
+     * Maximum number of sflowd child processes allowed to run.
+     */
+    sflowdMaxChildrenNum?: pulumi.Input<number>;
+    /**
      * Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
      */
     snatRouteChange?: pulumi.Input<string>;
@@ -2325,6 +2659,14 @@ export interface GlobalState {
      * Enable/disable speed test server. Valid values: `enable`, `disable`.
      */
     speedtestServer?: pulumi.Input<string>;
+    /**
+     * Speedtest server controller port number.
+     */
+    speedtestdCtrlPort?: pulumi.Input<number>;
+    /**
+     * Speedtest server port number.
+     */
+    speedtestdServerPort?: pulumi.Input<number>;
     /**
      * Split port(s) to multiple 10Gbps ports.
      */
@@ -2362,7 +2704,23 @@ export interface GlobalState {
      */
     sshHmacMd5?: pulumi.Input<string>;
     /**
-     * Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
+     * Config SSH host key.
+     */
+    sshHostkey?: pulumi.Input<string>;
+    /**
+     * Select one or more SSH hostkey algorithms.
+     */
+    sshHostkeyAlgo?: pulumi.Input<string>;
+    /**
+     * Enable/disable SSH host key override in SSH daemon. Valid values: `disable`, `enable`.
+     */
+    sshHostkeyOverride?: pulumi.Input<string>;
+    /**
+     * Password for ssh-hostkey.
+     */
+    sshHostkeyPassword?: pulumi.Input<string>;
+    /**
+     * Select one or more SSH kex algorithms.
      */
     sshKexAlgo?: pulumi.Input<string>;
     /**
@@ -2406,6 +2764,10 @@ export interface GlobalState {
      */
     sslvpnPluginVersionCheck?: pulumi.Input<string>;
     /**
+     * Enable/disable SSL-VPN web mode. Valid values: `enable`, `disable`.
+     */
+    sslvpnWebMode?: pulumi.Input<string>;
+    /**
      * Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
      */
     strictDirtySessionCheck?: pulumi.Input<string>;
@@ -2425,6 +2787,10 @@ export interface GlobalState {
      * Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
      */
     sysPerfLogInterval?: pulumi.Input<number>;
+    /**
+     * Affinity setting for syslog (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    syslogAffinity?: pulumi.Input<string>;
     /**
      * Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
      */
@@ -2450,7 +2816,7 @@ export interface GlobalState {
      */
     tftp?: pulumi.Input<string>;
     /**
-     * Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+     * Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them.
      */
     timezone?: pulumi.Input<string>;
     /**
@@ -2542,6 +2908,10 @@ export interface GlobalState {
      */
     virtualSwitchVlan?: pulumi.Input<string>;
     /**
+     * Enable/disable verification of EMS serial number in SSL-VPN and IPsec VPN connection. Valid values: `enable`, `disable`.
+     */
+    vpnEmsSnCheck?: pulumi.Input<string>;
+    /**
      * Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
      */
     wadAffinity?: pulumi.Input<string>;
@@ -2557,6 +2927,18 @@ export interface GlobalState {
      * Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
      */
     wadMemoryChangeGranularity?: pulumi.Input<number>;
+    /**
+     * WAD workers daily restart end time (hh:mm).
+     */
+    wadRestartEndTime?: pulumi.Input<string>;
+    /**
+     * WAD worker restart mode (default = none). Valid values: `none`, `time`, `memory`.
+     */
+    wadRestartMode?: pulumi.Input<string>;
+    /**
+     * WAD workers daily restart time (hh:mm).
+     */
+    wadRestartStartTime?: pulumi.Input<string>;
     /**
      * Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.
      */
@@ -2600,6 +2982,10 @@ export interface GlobalArgs {
      */
     adminConsoleTimeout?: pulumi.Input<number>;
     /**
+     * Override access profile.
+     */
+    adminForticloudSsoDefaultProfile?: pulumi.Input<string>;
+    /**
      * Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
      */
     adminForticloudSsoLogin?: pulumi.Input<string>;
@@ -2764,6 +3150,10 @@ export interface GlobalArgs {
      */
     batchCmdb?: pulumi.Input<string>;
     /**
+     * Affinity setting for BFD daemon (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    bfdAffinity?: pulumi.Input<string>;
+    /**
      * Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
      */
     blockSessionTimer?: pulumi.Input<number>;
@@ -2852,6 +3242,10 @@ export interface GlobalArgs {
      */
     dst?: pulumi.Input<string>;
     /**
+     * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
      * Enable/disable early TCP NPU session. Valid values: `enable`, `disable`.
      */
     earlyTcpNpuSession?: pulumi.Input<string>;
@@ -2896,6 +3290,14 @@ export interface GlobalArgs {
      */
     fgdAlertSubscription?: pulumi.Input<string>;
     /**
+     * Enable/disable config upload to FortiConverter. Valid values: `once`, `disable`.
+     */
+    forticonverterConfigUpload?: pulumi.Input<string>;
+    /**
+     * Enable/disable FortiConverter integration service. Valid values: `enable`, `disable`.
+     */
+    forticonverterIntegration?: pulumi.Input<string>;
+    /**
      * Enable/disable FortiExtender. Valid values: `enable`, `disable`.
      */
     fortiextender?: pulumi.Input<string>;
@@ -2916,6 +3318,10 @@ export interface GlobalArgs {
      */
     fortiextenderVlanMode?: pulumi.Input<string>;
     /**
+     * Enable/disable integration with the FortiGSLB cloud service. Valid values: `disable`, `enable`.
+     */
+    fortigslbIntegration?: pulumi.Input<string>;
+    /**
      * Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
      */
     fortiipamIntegration?: pulumi.Input<string>;
@@ -2928,13 +3334,37 @@ export interface GlobalArgs {
      */
     fortitokenCloud?: pulumi.Input<string>;
     /**
+     * Enable/disable FTM push service of FortiToken Cloud. Valid values: `enable`, `disable`.
+     */
+    fortitokenCloudPushStatus?: pulumi.Input<string>;
+    /**
+     * Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
+     */
+    fortitokenCloudSyncInterval?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
      */
     guiAllowDefaultHostname?: pulumi.Input<string>;
     /**
+     * Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error. Valid values: `enable`, `disable`.
+     */
+    guiAllowIncompatibleFabricFgt?: pulumi.Input<string>;
+    /**
      * Enable/disable Allow app-detection based SD-WAN. Valid values: `enable`, `disable`.
      */
     guiAppDetectionSdwan?: pulumi.Input<string>;
+    /**
+     * Enable/disable the automatic patch upgrade setup prompt on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiAutoUpgradeSetupWarning?: pulumi.Input<string>;
+    /**
+     * Domain of CDN server.
+     */
+    guiCdnDomainOverride?: pulumi.Input<string>;
     /**
      * Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
      */
@@ -3044,13 +3474,25 @@ export interface GlobalArgs {
      */
     ikeEmbryonicLimit?: pulumi.Input<number>;
     /**
-     * Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
+     * Enable/disable allowing use of interface-subnet setting in firewall addresses (default = enable). Valid values: `disable`, `enable`.
+     */
+    interfaceSubnetUsage?: pulumi.Input<string>;
+    /**
+     * Configure which Internet Service database size to download from FortiGuard and use.
      */
     internetServiceDatabase?: pulumi.Input<string>;
+    /**
+     * Configure which on-demand Internet Service IDs are to be downloaded. The structure of `internetServiceDownloadList` block is documented below.
+     */
+    internetServiceDownloadLists?: pulumi.Input<pulumi.Input<inputs.system.GlobalInternetServiceDownloadList>[]>;
     /**
      * Dead gateway detection interval.
      */
     interval?: pulumi.Input<number>;
+    /**
+     * Maximum memory (MB) used to reassemble IPv4/IPv6 fragments.
+     */
+    ipFragmentMemThresholds?: pulumi.Input<number>;
     /**
      * IP source port range used for traffic originating from the FortiGate unit.
      */
@@ -3119,6 +3561,10 @@ export interface GlobalArgs {
      * Enable/disable Link Layer Discovery Protocol (LLDP) transmission. Valid values: `enable`, `disable`.
      */
     lldpTransmission?: pulumi.Input<string>;
+    /**
+     * Enable/disable logging the event of a single CPU core reaching CPU usage threshold. Valid values: `enable`, `disable`.
+     */
+    logSingleCpuHigh?: pulumi.Input<string>;
     /**
      * Enable/disable logging of SSL connection events. Valid values: `enable`, `disable`.
      */
@@ -3252,6 +3698,10 @@ export interface GlobalArgs {
      */
     proxyHardwareAcceleration?: pulumi.Input<string>;
     /**
+     * Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was authenticated. Valid values: `session`, `traffic`, `re-authentication`.
+     */
+    proxyKeepAliveMode?: pulumi.Input<string>;
+    /**
      * Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
      */
     proxyKxpHardwareAcceleration?: pulumi.Input<string>;
@@ -3260,6 +3710,10 @@ export interface GlobalArgs {
      */
     proxyReAuthenticationMode?: pulumi.Input<string>;
     /**
+     * The time limit that users must re-authenticate if proxy-keep-alive-mode is set to re-authenticate (1  - 86400 sec, default=30s.
+     */
+    proxyReAuthenticationTime?: pulumi.Input<number>;
+    /**
      * Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
      */
     proxyResourceMode?: pulumi.Input<string>;
@@ -3267,6 +3721,34 @@ export interface GlobalArgs {
      * Proxy worker count.
      */
     proxyWorkerCount?: pulumi.Input<number>;
+    /**
+     * Purdue Level of this FortiGate. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+     */
+    purdueLevel?: pulumi.Input<string>;
+    /**
+     * Maximum number of unacknowledged packets before sending ACK (2 - 5, default = 3).
+     */
+    quicAckThresold?: pulumi.Input<number>;
+    /**
+     * QUIC congestion control algorithm (default = cubic). Valid values: `cubic`, `bbr`, `bbr2`, `reno`.
+     */
+    quicCongestionControlAlgo?: pulumi.Input<string>;
+    /**
+     * Maximum transmit datagram size (1200 - 1500, default = 1500).
+     */
+    quicMaxDatagramSize?: pulumi.Input<number>;
+    /**
+     * Enable/disable path MTU discovery (default = enable). Valid values: `enable`, `disable`.
+     */
+    quicPmtud?: pulumi.Input<string>;
+    /**
+     * Time-to-live (TTL) for TLS handshake in seconds (1 - 60, default = 5).
+     */
+    quicTlsHandshakeTimeout?: pulumi.Input<number>;
+    /**
+     * Enable/disable UDP payload size shaping per connection ID (default = enable). Valid values: `enable`, `disable`.
+     */
+    quicUdpPayloadSizeShapingPerCid?: pulumi.Input<string>;
     /**
      * RADIUS service port number.
      */
@@ -3316,6 +3798,10 @@ export interface GlobalArgs {
      */
     sendPmtuIcmp?: pulumi.Input<string>;
     /**
+     * Maximum number of sflowd child processes allowed to run.
+     */
+    sflowdMaxChildrenNum?: pulumi.Input<number>;
+    /**
      * Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
      */
     snatRouteChange?: pulumi.Input<string>;
@@ -3327,6 +3813,14 @@ export interface GlobalArgs {
      * Enable/disable speed test server. Valid values: `enable`, `disable`.
      */
     speedtestServer?: pulumi.Input<string>;
+    /**
+     * Speedtest server controller port number.
+     */
+    speedtestdCtrlPort?: pulumi.Input<number>;
+    /**
+     * Speedtest server port number.
+     */
+    speedtestdServerPort?: pulumi.Input<number>;
     /**
      * Split port(s) to multiple 10Gbps ports.
      */
@@ -3364,7 +3858,23 @@ export interface GlobalArgs {
      */
     sshHmacMd5?: pulumi.Input<string>;
     /**
-     * Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
+     * Config SSH host key.
+     */
+    sshHostkey?: pulumi.Input<string>;
+    /**
+     * Select one or more SSH hostkey algorithms.
+     */
+    sshHostkeyAlgo?: pulumi.Input<string>;
+    /**
+     * Enable/disable SSH host key override in SSH daemon. Valid values: `disable`, `enable`.
+     */
+    sshHostkeyOverride?: pulumi.Input<string>;
+    /**
+     * Password for ssh-hostkey.
+     */
+    sshHostkeyPassword?: pulumi.Input<string>;
+    /**
+     * Select one or more SSH kex algorithms.
      */
     sshKexAlgo?: pulumi.Input<string>;
     /**
@@ -3408,6 +3918,10 @@ export interface GlobalArgs {
      */
     sslvpnPluginVersionCheck?: pulumi.Input<string>;
     /**
+     * Enable/disable SSL-VPN web mode. Valid values: `enable`, `disable`.
+     */
+    sslvpnWebMode?: pulumi.Input<string>;
+    /**
      * Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
      */
     strictDirtySessionCheck?: pulumi.Input<string>;
@@ -3427,6 +3941,10 @@ export interface GlobalArgs {
      * Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
      */
     sysPerfLogInterval?: pulumi.Input<number>;
+    /**
+     * Affinity setting for syslog (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    syslogAffinity?: pulumi.Input<string>;
     /**
      * Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
      */
@@ -3452,7 +3970,7 @@ export interface GlobalArgs {
      */
     tftp?: pulumi.Input<string>;
     /**
-     * Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+     * Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them.
      */
     timezone?: pulumi.Input<string>;
     /**
@@ -3544,6 +4062,10 @@ export interface GlobalArgs {
      */
     virtualSwitchVlan?: pulumi.Input<string>;
     /**
+     * Enable/disable verification of EMS serial number in SSL-VPN and IPsec VPN connection. Valid values: `enable`, `disable`.
+     */
+    vpnEmsSnCheck?: pulumi.Input<string>;
+    /**
      * Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
      */
     wadAffinity?: pulumi.Input<string>;
@@ -3559,6 +4081,18 @@ export interface GlobalArgs {
      * Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
      */
     wadMemoryChangeGranularity?: pulumi.Input<number>;
+    /**
+     * WAD workers daily restart end time (hh:mm).
+     */
+    wadRestartEndTime?: pulumi.Input<string>;
+    /**
+     * WAD worker restart mode (default = none). Valid values: `none`, `time`, `memory`.
+     */
+    wadRestartMode?: pulumi.Input<string>;
+    /**
+     * WAD workers daily restart time (hh:mm).
+     */
+    wadRestartStartTime?: pulumi.Input<string>;
     /**
      * Enable/disable dispatching traffic to WAD workers based on source affinity. Valid values: `disable`, `enable`.
      */

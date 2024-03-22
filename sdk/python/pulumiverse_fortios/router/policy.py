@@ -25,6 +25,7 @@ class PolicyArgs:
                  end_port: Optional[pulumi.Input[int]] = None,
                  end_source_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device_negate: Optional[pulumi.Input[str]] = None,
                  input_devices: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyInputDeviceArgs']]]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyInternetServiceCustomArgs']]]] = None,
@@ -52,6 +53,7 @@ class PolicyArgs:
         :param pulumi.Input[int] end_port: End destination port number (0 - 65535).
         :param pulumi.Input[int] end_source_port: End source port number (0 - 65535).
         :param pulumi.Input[str] gateway: IP address of the gateway.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] input_device_negate: Enable/disable negation of input device match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyInputDeviceArgs']]] input_devices: Incoming interface name. The structure of `input_device` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyInternetServiceCustomArgs']]] internet_service_customs: Custom Destination Internet Service name. The structure of `internet_service_custom` block is documented below.
@@ -87,6 +89,8 @@ class PolicyArgs:
             pulumi.set(__self__, "end_source_port", end_source_port)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if input_device_negate is not None:
             pulumi.set(__self__, "input_device_negate", input_device_negate)
         if input_devices is not None:
@@ -227,6 +231,18 @@ class PolicyArgs:
     @gateway.setter
     def gateway(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gateway", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="inputDeviceNegate")
@@ -433,6 +449,7 @@ class _PolicyState:
                  end_port: Optional[pulumi.Input[int]] = None,
                  end_source_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device_negate: Optional[pulumi.Input[str]] = None,
                  input_devices: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyInputDeviceArgs']]]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyInternetServiceCustomArgs']]]] = None,
@@ -460,6 +477,7 @@ class _PolicyState:
         :param pulumi.Input[int] end_port: End destination port number (0 - 65535).
         :param pulumi.Input[int] end_source_port: End source port number (0 - 65535).
         :param pulumi.Input[str] gateway: IP address of the gateway.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] input_device_negate: Enable/disable negation of input device match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyInputDeviceArgs']]] input_devices: Incoming interface name. The structure of `input_device` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyInternetServiceCustomArgs']]] internet_service_customs: Custom Destination Internet Service name. The structure of `internet_service_custom` block is documented below.
@@ -495,6 +513,8 @@ class _PolicyState:
             pulumi.set(__self__, "end_source_port", end_source_port)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if input_device_negate is not None:
             pulumi.set(__self__, "input_device_negate", input_device_negate)
         if input_devices is not None:
@@ -635,6 +655,18 @@ class _PolicyState:
     @gateway.setter
     def gateway(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gateway", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="inputDeviceNegate")
@@ -843,6 +875,7 @@ class Policy(pulumi.CustomResource):
                  end_port: Optional[pulumi.Input[int]] = None,
                  end_source_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device_negate: Optional[pulumi.Input[str]] = None,
                  input_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyInputDeviceArgs']]]]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyInternetServiceCustomArgs']]]]] = None,
@@ -920,6 +953,7 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[int] end_port: End destination port number (0 - 65535).
         :param pulumi.Input[int] end_source_port: End source port number (0 - 65535).
         :param pulumi.Input[str] gateway: IP address of the gateway.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] input_device_negate: Enable/disable negation of input device match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyInputDeviceArgs']]]] input_devices: Incoming interface name. The structure of `input_device` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyInternetServiceCustomArgs']]]] internet_service_customs: Custom Destination Internet Service name. The structure of `internet_service_custom` block is documented below.
@@ -1016,6 +1050,7 @@ class Policy(pulumi.CustomResource):
                  end_port: Optional[pulumi.Input[int]] = None,
                  end_source_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device_negate: Optional[pulumi.Input[str]] = None,
                  input_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyInputDeviceArgs']]]]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyInternetServiceCustomArgs']]]]] = None,
@@ -1050,6 +1085,7 @@ class Policy(pulumi.CustomResource):
             __props__.__dict__["end_port"] = end_port
             __props__.__dict__["end_source_port"] = end_source_port
             __props__.__dict__["gateway"] = gateway
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["input_device_negate"] = input_device_negate
             __props__.__dict__["input_devices"] = input_devices
             __props__.__dict__["internet_service_customs"] = internet_service_customs
@@ -1085,6 +1121,7 @@ class Policy(pulumi.CustomResource):
             end_port: Optional[pulumi.Input[int]] = None,
             end_source_port: Optional[pulumi.Input[int]] = None,
             gateway: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             input_device_negate: Optional[pulumi.Input[str]] = None,
             input_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyInputDeviceArgs']]]]] = None,
             internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyInternetServiceCustomArgs']]]]] = None,
@@ -1117,6 +1154,7 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[int] end_port: End destination port number (0 - 65535).
         :param pulumi.Input[int] end_source_port: End source port number (0 - 65535).
         :param pulumi.Input[str] gateway: IP address of the gateway.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] input_device_negate: Enable/disable negation of input device match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyInputDeviceArgs']]]] input_devices: Incoming interface name. The structure of `input_device` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyInternetServiceCustomArgs']]]] internet_service_customs: Custom Destination Internet Service name. The structure of `internet_service_custom` block is documented below.
@@ -1147,6 +1185,7 @@ class Policy(pulumi.CustomResource):
         __props__.__dict__["end_port"] = end_port
         __props__.__dict__["end_source_port"] = end_source_port
         __props__.__dict__["gateway"] = gateway
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["input_device_negate"] = input_device_negate
         __props__.__dict__["input_devices"] = input_devices
         __props__.__dict__["internet_service_customs"] = internet_service_customs
@@ -1236,6 +1275,14 @@ class Policy(pulumi.CustomResource):
         IP address of the gateway.
         """
         return pulumi.get(self, "gateway")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="inputDeviceNegate")

@@ -59,6 +59,10 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? Status;
         /// <summary>
+        /// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? TranslateHost;
+        /// <summary>
         /// Type of address. Valid values: `ip`, `address`.
         /// </summary>
         public readonly string? Type;
@@ -91,6 +95,8 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
 
             string? status,
 
+            string? translateHost,
+
             string? type,
 
             int? weight)
@@ -106,6 +112,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
             Monitor = monitor;
             Port = port;
             Status = status;
+            TranslateHost = translateHost;
             Type = type;
             Weight = weight;
         }

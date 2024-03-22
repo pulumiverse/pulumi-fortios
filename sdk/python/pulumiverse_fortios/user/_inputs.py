@@ -22,6 +22,7 @@ __all__ = [
     'GroupGuestArgs',
     'GroupMatchArgs',
     'GroupMemberArgs',
+    'NacpolicySeverityArgs',
     'NacpolicySwitchGroupArgs',
     'NacpolicySwitchScopeArgs',
     'PeergrpMemberArgs',
@@ -647,6 +648,29 @@ class GroupMemberArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class NacpolicySeverityArgs:
+    def __init__(__self__, *,
+                 severity_num: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] severity_num: Enter multiple severity levels, where 0 = Info, 1 = Low, ..., 4 = Critical
+        """
+        if severity_num is not None:
+            pulumi.set(__self__, "severity_num", severity_num)
+
+    @property
+    @pulumi.getter(name="severityNum")
+    def severity_num(self) -> Optional[pulumi.Input[int]]:
+        """
+        Enter multiple severity levels, where 0 = Info, 1 = Low, ..., 4 = Critical
+        """
+        return pulumi.get(self, "severity_num")
+
+    @severity_num.setter
+    def severity_num(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "severity_num", value)
 
 
 @pulumi.input_type

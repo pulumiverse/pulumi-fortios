@@ -135,6 +135,10 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web.Outputs
         /// </summary>
         public readonly string? Url;
         /// <summary>
+        /// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+        /// </summary>
+        public readonly string? VncKeyboardLayout;
+        /// <summary>
         /// Screen width (range from 640 - 65535, default = 1024).
         /// </summary>
         public readonly int? Width;
@@ -201,6 +205,8 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web.Outputs
 
             string? url,
 
+            string? vncKeyboardLayout,
+
             int? width)
         {
             AdditionalParams = additionalParams;
@@ -233,6 +239,7 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web.Outputs
             SsoPassword = ssoPassword;
             SsoUsername = ssoUsername;
             Url = url;
+            VncKeyboardLayout = vncKeyboardLayout;
             Width = width;
         }
     }

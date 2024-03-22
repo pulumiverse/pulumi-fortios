@@ -114,6 +114,10 @@ export class Replacemsggroup extends pulumi.CustomResource {
      */
     public readonly ftps!: pulumi.Output<outputs.system.ReplacemsggroupFtp[] | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Group type.
      */
     public readonly groupType!: pulumi.Output<string>;
@@ -190,6 +194,7 @@ export class Replacemsggroup extends pulumi.CustomResource {
             resourceInputs["ecs"] = state ? state.ecs : undefined;
             resourceInputs["fortiguardWfs"] = state ? state.fortiguardWfs : undefined;
             resourceInputs["ftps"] = state ? state.ftps : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupType"] = state ? state.groupType : undefined;
             resourceInputs["https"] = state ? state.https : undefined;
             resourceInputs["icaps"] = state ? state.icaps : undefined;
@@ -219,6 +224,7 @@ export class Replacemsggroup extends pulumi.CustomResource {
             resourceInputs["ecs"] = args ? args.ecs : undefined;
             resourceInputs["fortiguardWfs"] = args ? args.fortiguardWfs : undefined;
             resourceInputs["ftps"] = args ? args.ftps : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupType"] = args ? args.groupType : undefined;
             resourceInputs["https"] = args ? args.https : undefined;
             resourceInputs["icaps"] = args ? args.icaps : undefined;
@@ -286,6 +292,10 @@ export interface ReplacemsggroupState {
      * Replacement message table entries. The structure of `ftp` block is documented below.
      */
     ftps?: pulumi.Input<pulumi.Input<inputs.system.ReplacemsggroupFtp>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Group type.
      */
@@ -388,6 +398,10 @@ export interface ReplacemsggroupArgs {
      * Replacement message table entries. The structure of `ftp` block is documented below.
      */
     ftps?: pulumi.Input<pulumi.Input<inputs.system.ReplacemsggroupFtp>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Group type.
      */

@@ -177,6 +177,8 @@ type Policy6 struct {
 	Fixedport pulumi.StringOutput `pulumi:"fixedport"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups Policy6FssoGroupArrayOutput `pulumi:"fssoGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel pulumi.StringOutput `pulumi:"globalLabel"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
@@ -408,6 +410,8 @@ type policy6State struct {
 	Fixedport *string `pulumi:"fixedport"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups []Policy6FssoGroup `pulumi:"fssoGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel *string `pulumi:"globalLabel"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
@@ -595,6 +599,8 @@ type Policy6State struct {
 	Fixedport pulumi.StringPtrInput
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups Policy6FssoGroupArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel pulumi.StringPtrInput
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
@@ -786,6 +792,8 @@ type policy6Args struct {
 	Fixedport *string `pulumi:"fixedport"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups []Policy6FssoGroup `pulumi:"fssoGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel *string `pulumi:"globalLabel"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
@@ -974,6 +982,8 @@ type Policy6Args struct {
 	Fixedport pulumi.StringPtrInput
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups Policy6FssoGroupArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel pulumi.StringPtrInput
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
@@ -1329,6 +1339,11 @@ func (o Policy6Output) Fixedport() pulumi.StringOutput {
 // Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 func (o Policy6Output) FssoGroups() Policy6FssoGroupArrayOutput {
 	return o.ApplyT(func(v *Policy6) Policy6FssoGroupArrayOutput { return v.FssoGroups }).(Policy6FssoGroupArrayOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Policy6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Policy6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Label for the policy that appears when the GUI is in Global View mode.

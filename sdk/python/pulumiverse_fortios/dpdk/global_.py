@@ -18,12 +18,14 @@ class GlobalArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  elasticbuffer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hugepage_percentage: Optional[pulumi.Input[int]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalInterfaceArgs']]]] = None,
                  ipsec_offload: Optional[pulumi.Input[str]] = None,
                  mbufpool_percentage: Optional[pulumi.Input[int]] = None,
                  multiqueue: Optional[pulumi.Input[str]] = None,
                  per_session_accounting: Optional[pulumi.Input[str]] = None,
+                 protects: Optional[pulumi.Input[str]] = None,
                  sleep_on_idle: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -31,12 +33,14 @@ class GlobalArgs:
         The set of arguments for constructing a Global resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] elasticbuffer: Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] hugepage_percentage: Percentage of main memory allocated to hugepages, which are available for DPDK operation.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalInterfaceArgs']]] interfaces: Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
         :param pulumi.Input[str] ipsec_offload: Enable/disable DPDK IPsec phase 2 offloading. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] mbufpool_percentage: Percentage of main memory allocated to DPDK packet buffer.
         :param pulumi.Input[str] multiqueue: Enable/disable multi-queue RX/TX support for all DPDK ports. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] per_session_accounting: Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
+        :param pulumi.Input[str] protects: Special arguments for device
         :param pulumi.Input[str] sleep_on_idle: Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -45,6 +49,8 @@ class GlobalArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if elasticbuffer is not None:
             pulumi.set(__self__, "elasticbuffer", elasticbuffer)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hugepage_percentage is not None:
             pulumi.set(__self__, "hugepage_percentage", hugepage_percentage)
         if interfaces is not None:
@@ -57,6 +63,8 @@ class GlobalArgs:
             pulumi.set(__self__, "multiqueue", multiqueue)
         if per_session_accounting is not None:
             pulumi.set(__self__, "per_session_accounting", per_session_accounting)
+        if protects is not None:
+            pulumi.set(__self__, "protects", protects)
         if sleep_on_idle is not None:
             pulumi.set(__self__, "sleep_on_idle", sleep_on_idle)
         if status is not None:
@@ -87,6 +95,18 @@ class GlobalArgs:
     @elasticbuffer.setter
     def elasticbuffer(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "elasticbuffer", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="hugepagePercentage")
@@ -159,6 +179,18 @@ class GlobalArgs:
     @per_session_accounting.setter
     def per_session_accounting(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "per_session_accounting", value)
+
+    @property
+    @pulumi.getter
+    def protects(self) -> Optional[pulumi.Input[str]]:
+        """
+        Special arguments for device
+        """
+        return pulumi.get(self, "protects")
+
+    @protects.setter
+    def protects(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protects", value)
 
     @property
     @pulumi.getter(name="sleepOnIdle")
@@ -202,12 +234,14 @@ class _GlobalState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  elasticbuffer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hugepage_percentage: Optional[pulumi.Input[int]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalInterfaceArgs']]]] = None,
                  ipsec_offload: Optional[pulumi.Input[str]] = None,
                  mbufpool_percentage: Optional[pulumi.Input[int]] = None,
                  multiqueue: Optional[pulumi.Input[str]] = None,
                  per_session_accounting: Optional[pulumi.Input[str]] = None,
+                 protects: Optional[pulumi.Input[str]] = None,
                  sleep_on_idle: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -215,12 +249,14 @@ class _GlobalState:
         Input properties used for looking up and filtering Global resources.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] elasticbuffer: Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] hugepage_percentage: Percentage of main memory allocated to hugepages, which are available for DPDK operation.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalInterfaceArgs']]] interfaces: Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
         :param pulumi.Input[str] ipsec_offload: Enable/disable DPDK IPsec phase 2 offloading. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] mbufpool_percentage: Percentage of main memory allocated to DPDK packet buffer.
         :param pulumi.Input[str] multiqueue: Enable/disable multi-queue RX/TX support for all DPDK ports. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] per_session_accounting: Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
+        :param pulumi.Input[str] protects: Special arguments for device
         :param pulumi.Input[str] sleep_on_idle: Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -229,6 +265,8 @@ class _GlobalState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if elasticbuffer is not None:
             pulumi.set(__self__, "elasticbuffer", elasticbuffer)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hugepage_percentage is not None:
             pulumi.set(__self__, "hugepage_percentage", hugepage_percentage)
         if interfaces is not None:
@@ -241,6 +279,8 @@ class _GlobalState:
             pulumi.set(__self__, "multiqueue", multiqueue)
         if per_session_accounting is not None:
             pulumi.set(__self__, "per_session_accounting", per_session_accounting)
+        if protects is not None:
+            pulumi.set(__self__, "protects", protects)
         if sleep_on_idle is not None:
             pulumi.set(__self__, "sleep_on_idle", sleep_on_idle)
         if status is not None:
@@ -271,6 +311,18 @@ class _GlobalState:
     @elasticbuffer.setter
     def elasticbuffer(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "elasticbuffer", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="hugepagePercentage")
@@ -343,6 +395,18 @@ class _GlobalState:
     @per_session_accounting.setter
     def per_session_accounting(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "per_session_accounting", value)
+
+    @property
+    @pulumi.getter
+    def protects(self) -> Optional[pulumi.Input[str]]:
+        """
+        Special arguments for device
+        """
+        return pulumi.get(self, "protects")
+
+    @protects.setter
+    def protects(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protects", value)
 
     @property
     @pulumi.getter(name="sleepOnIdle")
@@ -388,12 +452,14 @@ class Global(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  elasticbuffer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hugepage_percentage: Optional[pulumi.Input[int]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalInterfaceArgs']]]]] = None,
                  ipsec_offload: Optional[pulumi.Input[str]] = None,
                  mbufpool_percentage: Optional[pulumi.Input[int]] = None,
                  multiqueue: Optional[pulumi.Input[str]] = None,
                  per_session_accounting: Optional[pulumi.Input[str]] = None,
+                 protects: Optional[pulumi.Input[str]] = None,
                  sleep_on_idle: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -423,12 +489,14 @@ class Global(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] elasticbuffer: Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] hugepage_percentage: Percentage of main memory allocated to hugepages, which are available for DPDK operation.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalInterfaceArgs']]]] interfaces: Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
         :param pulumi.Input[str] ipsec_offload: Enable/disable DPDK IPsec phase 2 offloading. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] mbufpool_percentage: Percentage of main memory allocated to DPDK packet buffer.
         :param pulumi.Input[str] multiqueue: Enable/disable multi-queue RX/TX support for all DPDK ports. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] per_session_accounting: Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
+        :param pulumi.Input[str] protects: Special arguments for device
         :param pulumi.Input[str] sleep_on_idle: Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -477,12 +545,14 @@ class Global(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  elasticbuffer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hugepage_percentage: Optional[pulumi.Input[int]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalInterfaceArgs']]]]] = None,
                  ipsec_offload: Optional[pulumi.Input[str]] = None,
                  mbufpool_percentage: Optional[pulumi.Input[int]] = None,
                  multiqueue: Optional[pulumi.Input[str]] = None,
                  per_session_accounting: Optional[pulumi.Input[str]] = None,
+                 protects: Optional[pulumi.Input[str]] = None,
                  sleep_on_idle: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -497,12 +567,14 @@ class Global(pulumi.CustomResource):
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["elasticbuffer"] = elasticbuffer
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hugepage_percentage"] = hugepage_percentage
             __props__.__dict__["interfaces"] = interfaces
             __props__.__dict__["ipsec_offload"] = ipsec_offload
             __props__.__dict__["mbufpool_percentage"] = mbufpool_percentage
             __props__.__dict__["multiqueue"] = multiqueue
             __props__.__dict__["per_session_accounting"] = per_session_accounting
+            __props__.__dict__["protects"] = protects
             __props__.__dict__["sleep_on_idle"] = sleep_on_idle
             __props__.__dict__["status"] = status
             __props__.__dict__["vdomparam"] = vdomparam
@@ -518,12 +590,14 @@ class Global(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             elasticbuffer: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hugepage_percentage: Optional[pulumi.Input[int]] = None,
             interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalInterfaceArgs']]]]] = None,
             ipsec_offload: Optional[pulumi.Input[str]] = None,
             mbufpool_percentage: Optional[pulumi.Input[int]] = None,
             multiqueue: Optional[pulumi.Input[str]] = None,
             per_session_accounting: Optional[pulumi.Input[str]] = None,
+            protects: Optional[pulumi.Input[str]] = None,
             sleep_on_idle: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Global':
@@ -536,12 +610,14 @@ class Global(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] elasticbuffer: Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] hugepage_percentage: Percentage of main memory allocated to hugepages, which are available for DPDK operation.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalInterfaceArgs']]]] interfaces: Physical interfaces that enable DPDK. The structure of `interface` block is documented below.
         :param pulumi.Input[str] ipsec_offload: Enable/disable DPDK IPsec phase 2 offloading. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] mbufpool_percentage: Percentage of main memory allocated to DPDK packet buffer.
         :param pulumi.Input[str] multiqueue: Enable/disable multi-queue RX/TX support for all DPDK ports. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] per_session_accounting: Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
+        :param pulumi.Input[str] protects: Special arguments for device
         :param pulumi.Input[str] sleep_on_idle: Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -552,12 +628,14 @@ class Global(pulumi.CustomResource):
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["elasticbuffer"] = elasticbuffer
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hugepage_percentage"] = hugepage_percentage
         __props__.__dict__["interfaces"] = interfaces
         __props__.__dict__["ipsec_offload"] = ipsec_offload
         __props__.__dict__["mbufpool_percentage"] = mbufpool_percentage
         __props__.__dict__["multiqueue"] = multiqueue
         __props__.__dict__["per_session_accounting"] = per_session_accounting
+        __props__.__dict__["protects"] = protects
         __props__.__dict__["sleep_on_idle"] = sleep_on_idle
         __props__.__dict__["status"] = status
         __props__.__dict__["vdomparam"] = vdomparam
@@ -578,6 +656,14 @@ class Global(pulumi.CustomResource):
         Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "elasticbuffer")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="hugepagePercentage")
@@ -626,6 +712,14 @@ class Global(pulumi.CustomResource):
         Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
         """
         return pulumi.get(self, "per_session_accounting")
+
+    @property
+    @pulumi.getter
+    def protects(self) -> pulumi.Output[str]:
+        """
+        Special arguments for device
+        """
+        return pulumi.get(self, "protects")
 
     @property
     @pulumi.getter(name="sleepOnIdle")

@@ -56,6 +56,10 @@ export class Sdwan extends pulumi.CustomResource {
     }
 
     /**
+     * Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+     */
+    public readonly appPerfLogPeriod!: pulumi.Output<number>;
+    /**
      * Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
      */
     public readonly duplicationMaxNum!: pulumi.Output<number>;
@@ -75,6 +79,10 @@ export class Sdwan extends pulumi.CustomResource {
      * Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
      */
     public readonly failDetect!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
      */
@@ -137,11 +145,13 @@ export class Sdwan extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SdwanState | undefined;
+            resourceInputs["appPerfLogPeriod"] = state ? state.appPerfLogPeriod : undefined;
             resourceInputs["duplicationMaxNum"] = state ? state.duplicationMaxNum : undefined;
             resourceInputs["duplications"] = state ? state.duplications : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["failAlertInterfaces"] = state ? state.failAlertInterfaces : undefined;
             resourceInputs["failDetect"] = state ? state.failDetect : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["healthChecks"] = state ? state.healthChecks : undefined;
             resourceInputs["loadBalanceMode"] = state ? state.loadBalanceMode : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
@@ -156,11 +166,13 @@ export class Sdwan extends pulumi.CustomResource {
             resourceInputs["zones"] = state ? state.zones : undefined;
         } else {
             const args = argsOrState as SdwanArgs | undefined;
+            resourceInputs["appPerfLogPeriod"] = args ? args.appPerfLogPeriod : undefined;
             resourceInputs["duplicationMaxNum"] = args ? args.duplicationMaxNum : undefined;
             resourceInputs["duplications"] = args ? args.duplications : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["failAlertInterfaces"] = args ? args.failAlertInterfaces : undefined;
             resourceInputs["failDetect"] = args ? args.failDetect : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["healthChecks"] = args ? args.healthChecks : undefined;
             resourceInputs["loadBalanceMode"] = args ? args.loadBalanceMode : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
@@ -184,6 +196,10 @@ export class Sdwan extends pulumi.CustomResource {
  */
 export interface SdwanState {
     /**
+     * Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+     */
+    appPerfLogPeriod?: pulumi.Input<number>;
+    /**
      * Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
      */
     duplicationMaxNum?: pulumi.Input<number>;
@@ -203,6 +219,10 @@ export interface SdwanState {
      * Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
      */
     failDetect?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
      */
@@ -258,6 +278,10 @@ export interface SdwanState {
  */
 export interface SdwanArgs {
     /**
+     * Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+     */
+    appPerfLogPeriod?: pulumi.Input<number>;
+    /**
      * Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
      */
     duplicationMaxNum?: pulumi.Input<number>;
@@ -277,6 +301,10 @@ export interface SdwanArgs {
      * Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
      */
     failDetect?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
      */

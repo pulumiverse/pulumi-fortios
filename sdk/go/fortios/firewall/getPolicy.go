@@ -60,6 +60,8 @@ type LookupPolicyResult struct {
 	CaptivePortalExempt string `pulumi:"captivePortalExempt"`
 	// Enable/disable capture packets.
 	CapturePacket string `pulumi:"capturePacket"`
+	// Name of an existing CASB profile.
+	CasbProfile string `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile string `pulumi:"cifsProfile"`
 	// Comment.
@@ -72,6 +74,8 @@ type LookupPolicyResult struct {
 	DelayTcpNpuSession string `pulumi:"delayTcpNpuSession"`
 	// Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
 	Devices []GetPolicyDevice `pulumi:"devices"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile string `pulumi:"diameterFilterProfile"`
 	// Enable to copy packet's DiffServ values from session's original direction to its reply direction.
 	DiffservCopy string `pulumi:"diffservCopy"`
 	// Enable to change packet's DiffServ values to the specified diffservcode-forward value.
@@ -198,6 +202,8 @@ type LookupPolicyResult struct {
 	Ippool string `pulumi:"ippool"`
 	// Name of an existing IPS sensor.
 	IpsSensor string `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter string `pulumi:"ipsVoipFilter"`
 	// Label for the policy that appears when the GUI is in Section View mode.
 	Label string `pulumi:"label"`
 	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated.
@@ -240,6 +246,12 @@ type LookupPolicyResult struct {
 	Outbound string `pulumi:"outbound"`
 	// Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled.
 	PassiveWanHealthMeasurement string `pulumi:"passiveWanHealthMeasurement"`
+	// Enable/disable PCP inbound DNAT.
+	PcpInbound string `pulumi:"pcpInbound"`
+	// Enable/disable PCP outbound SNAT.
+	PcpOutbound string `pulumi:"pcpOutbound"`
+	// PCP pool names. The structure of `pcpPoolname` block is documented below.
+	PcpPoolnames []GetPolicyPcpPoolname `pulumi:"pcpPoolnames"`
 	// Per-IP traffic shaper.
 	PerIpShaper string `pulumi:"perIpShaper"`
 	// Accept UDP packets from any host.
@@ -250,6 +262,8 @@ type LookupPolicyResult struct {
 	PolicyExpiry string `pulumi:"policyExpiry"`
 	// Policy expiry date (YYYY-MM-DD HH:MM:SS).
 	PolicyExpiryDate string `pulumi:"policyExpiryDate"`
+	// Policy expiry date and time, in epoch format.
+	PolicyExpiryDateUtc string `pulumi:"policyExpiryDateUtc"`
 	// Policy ID.
 	Policyid int `pulumi:"policyid"`
 	// IPv6 pool names. The structure of `poolname6` block is documented below.
@@ -357,6 +371,8 @@ type LookupPolicyResult struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile string `pulumi:"videofilterProfile"`
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile string `pulumi:"virtualPatchProfile"`
 	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosFwd int `pulumi:"vlanCosFwd"`
 	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
@@ -393,12 +409,20 @@ type LookupPolicyResult struct {
 	WebproxyProfile string `pulumi:"webproxyProfile"`
 	// Enable/disable WiFi Single Sign On (WSSO).
 	Wsso string `pulumi:"wsso"`
+	// Enable/disable zero trust device ownership.
+	ZtnaDeviceOwnership string `pulumi:"ztnaDeviceOwnership"`
+	// Source ztna-ems-tag-secondary names. The structure of `ztnaEmsTagSecondary` block is documented below.
+	ZtnaEmsTagSecondaries []GetPolicyZtnaEmsTagSecondary `pulumi:"ztnaEmsTagSecondaries"`
 	// Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
 	ZtnaEmsTags []GetPolicyZtnaEmsTag `pulumi:"ztnaEmsTags"`
 	// Source ztna-geo-tag names. The structure of `ztnaGeoTag` block is documented below.
 	ZtnaGeoTags []GetPolicyZtnaGeoTag `pulumi:"ztnaGeoTags"`
+	// Redirect ZTNA traffic to matching Access-Proxy proxy-policy.
+	ZtnaPolicyRedirect string `pulumi:"ztnaPolicyRedirect"`
 	// Enable/disable zero trust access.
 	ZtnaStatus string `pulumi:"ztnaStatus"`
+	// ZTNA tag matching logic.
+	ZtnaTagsMatchLogic string `pulumi:"ztnaTagsMatchLogic"`
 }
 
 func LookupPolicyOutput(ctx *pulumi.Context, args LookupPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupPolicyResultOutput {
@@ -511,6 +535,11 @@ func (o LookupPolicyResultOutput) CapturePacket() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.CapturePacket }).(pulumi.StringOutput)
 }
 
+// Name of an existing CASB profile.
+func (o LookupPolicyResultOutput) CasbProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPolicyResult) string { return v.CasbProfile }).(pulumi.StringOutput)
+}
+
 // Name of an existing CIFS profile.
 func (o LookupPolicyResultOutput) CifsProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.CifsProfile }).(pulumi.StringOutput)
@@ -539,6 +568,11 @@ func (o LookupPolicyResultOutput) DelayTcpNpuSession() pulumi.StringOutput {
 // Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
 func (o LookupPolicyResultOutput) Devices() GetPolicyDeviceArrayOutput {
 	return o.ApplyT(func(v LookupPolicyResult) []GetPolicyDevice { return v.Devices }).(GetPolicyDeviceArrayOutput)
+}
+
+// Name of an existing Diameter filter profile.
+func (o LookupPolicyResultOutput) DiameterFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPolicyResult) string { return v.DiameterFilterProfile }).(pulumi.StringOutput)
 }
 
 // Enable to copy packet's DiffServ values from session's original direction to its reply direction.
@@ -862,6 +896,11 @@ func (o LookupPolicyResultOutput) IpsSensor() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.IpsSensor }).(pulumi.StringOutput)
 }
 
+// Name of an existing VoIP (ips) profile.
+func (o LookupPolicyResultOutput) IpsVoipFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPolicyResult) string { return v.IpsVoipFilter }).(pulumi.StringOutput)
+}
+
 // Label for the policy that appears when the GUI is in Section View mode.
 func (o LookupPolicyResultOutput) Label() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.Label }).(pulumi.StringOutput)
@@ -967,6 +1006,21 @@ func (o LookupPolicyResultOutput) PassiveWanHealthMeasurement() pulumi.StringOut
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.PassiveWanHealthMeasurement }).(pulumi.StringOutput)
 }
 
+// Enable/disable PCP inbound DNAT.
+func (o LookupPolicyResultOutput) PcpInbound() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPolicyResult) string { return v.PcpInbound }).(pulumi.StringOutput)
+}
+
+// Enable/disable PCP outbound SNAT.
+func (o LookupPolicyResultOutput) PcpOutbound() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPolicyResult) string { return v.PcpOutbound }).(pulumi.StringOutput)
+}
+
+// PCP pool names. The structure of `pcpPoolname` block is documented below.
+func (o LookupPolicyResultOutput) PcpPoolnames() GetPolicyPcpPoolnameArrayOutput {
+	return o.ApplyT(func(v LookupPolicyResult) []GetPolicyPcpPoolname { return v.PcpPoolnames }).(GetPolicyPcpPoolnameArrayOutput)
+}
+
 // Per-IP traffic shaper.
 func (o LookupPolicyResultOutput) PerIpShaper() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.PerIpShaper }).(pulumi.StringOutput)
@@ -990,6 +1044,11 @@ func (o LookupPolicyResultOutput) PolicyExpiry() pulumi.StringOutput {
 // Policy expiry date (YYYY-MM-DD HH:MM:SS).
 func (o LookupPolicyResultOutput) PolicyExpiryDate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.PolicyExpiryDate }).(pulumi.StringOutput)
+}
+
+// Policy expiry date and time, in epoch format.
+func (o LookupPolicyResultOutput) PolicyExpiryDateUtc() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPolicyResult) string { return v.PolicyExpiryDateUtc }).(pulumi.StringOutput)
 }
 
 // Policy ID.
@@ -1261,6 +1320,11 @@ func (o LookupPolicyResultOutput) VideofilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.VideofilterProfile }).(pulumi.StringOutput)
 }
 
+// Name of an existing virtual-patch profile.
+func (o LookupPolicyResultOutput) VirtualPatchProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPolicyResult) string { return v.VirtualPatchProfile }).(pulumi.StringOutput)
+}
+
 // VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 func (o LookupPolicyResultOutput) VlanCosFwd() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupPolicyResult) int { return v.VlanCosFwd }).(pulumi.IntOutput)
@@ -1351,6 +1415,16 @@ func (o LookupPolicyResultOutput) Wsso() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.Wsso }).(pulumi.StringOutput)
 }
 
+// Enable/disable zero trust device ownership.
+func (o LookupPolicyResultOutput) ZtnaDeviceOwnership() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPolicyResult) string { return v.ZtnaDeviceOwnership }).(pulumi.StringOutput)
+}
+
+// Source ztna-ems-tag-secondary names. The structure of `ztnaEmsTagSecondary` block is documented below.
+func (o LookupPolicyResultOutput) ZtnaEmsTagSecondaries() GetPolicyZtnaEmsTagSecondaryArrayOutput {
+	return o.ApplyT(func(v LookupPolicyResult) []GetPolicyZtnaEmsTagSecondary { return v.ZtnaEmsTagSecondaries }).(GetPolicyZtnaEmsTagSecondaryArrayOutput)
+}
+
 // Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
 func (o LookupPolicyResultOutput) ZtnaEmsTags() GetPolicyZtnaEmsTagArrayOutput {
 	return o.ApplyT(func(v LookupPolicyResult) []GetPolicyZtnaEmsTag { return v.ZtnaEmsTags }).(GetPolicyZtnaEmsTagArrayOutput)
@@ -1361,9 +1435,19 @@ func (o LookupPolicyResultOutput) ZtnaGeoTags() GetPolicyZtnaGeoTagArrayOutput {
 	return o.ApplyT(func(v LookupPolicyResult) []GetPolicyZtnaGeoTag { return v.ZtnaGeoTags }).(GetPolicyZtnaGeoTagArrayOutput)
 }
 
+// Redirect ZTNA traffic to matching Access-Proxy proxy-policy.
+func (o LookupPolicyResultOutput) ZtnaPolicyRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPolicyResult) string { return v.ZtnaPolicyRedirect }).(pulumi.StringOutput)
+}
+
 // Enable/disable zero trust access.
 func (o LookupPolicyResultOutput) ZtnaStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPolicyResult) string { return v.ZtnaStatus }).(pulumi.StringOutput)
+}
+
+// ZTNA tag matching logic.
+func (o LookupPolicyResultOutput) ZtnaTagsMatchLogic() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPolicyResult) string { return v.ZtnaTagsMatchLogic }).(pulumi.StringOutput)
 }
 
 func init() {

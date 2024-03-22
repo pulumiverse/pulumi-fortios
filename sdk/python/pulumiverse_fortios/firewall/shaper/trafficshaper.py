@@ -15,14 +15,19 @@ __all__ = ['TrafficshaperArgs', 'Trafficshaper']
 class TrafficshaperArgs:
     def __init__(__self__, *,
                  bandwidth_unit: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_marking: Optional[pulumi.Input[str]] = None,
+                 cos_marking_method: Optional[pulumi.Input[str]] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
                  diffservcode: Optional[pulumi.Input[str]] = None,
                  dscp_marking_method: Optional[pulumi.Input[str]] = None,
                  exceed_bandwidth: Optional[pulumi.Input[int]] = None,
                  exceed_class_id: Optional[pulumi.Input[int]] = None,
+                 exceed_cos: Optional[pulumi.Input[str]] = None,
                  exceed_dscp: Optional[pulumi.Input[str]] = None,
                  guaranteed_bandwidth: Optional[pulumi.Input[int]] = None,
                  maximum_bandwidth: Optional[pulumi.Input[int]] = None,
+                 maximum_cos: Optional[pulumi.Input[str]] = None,
                  maximum_dscp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  overhead: Optional[pulumi.Input[int]] = None,
@@ -32,14 +37,19 @@ class TrafficshaperArgs:
         """
         The set of arguments for constructing a Trafficshaper resource.
         :param pulumi.Input[str] bandwidth_unit: Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
+        :param pulumi.Input[str] cos: VLAN CoS mark.
+        :param pulumi.Input[str] cos_marking: Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cos_marking_method: Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
         :param pulumi.Input[str] diffserv: Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffservcode: DiffServ setting to be applied to traffic accepted by this shaper.
         :param pulumi.Input[str] dscp_marking_method: Select DSCP marking method. Valid values: `multi-stage`, `static`.
         :param pulumi.Input[int] exceed_bandwidth: Exceed bandwidth used for DSCP multi-stage marking. Units depend on the bandwidth-unit setting.
         :param pulumi.Input[int] exceed_class_id: Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
+        :param pulumi.Input[str] exceed_cos: VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
         :param pulumi.Input[str] exceed_dscp: DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
-        :param pulumi.Input[int] guaranteed_bandwidth: Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
-        :param pulumi.Input[int] maximum_bandwidth: Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+        :param pulumi.Input[int] guaranteed_bandwidth: Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        :param pulumi.Input[int] maximum_bandwidth: Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        :param pulumi.Input[str] maximum_cos: VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
         :param pulumi.Input[str] maximum_dscp: DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
         :param pulumi.Input[str] name: Traffic shaper name.
         :param pulumi.Input[int] overhead: Per-packet size overhead used in rate computations.
@@ -49,6 +59,12 @@ class TrafficshaperArgs:
         """
         if bandwidth_unit is not None:
             pulumi.set(__self__, "bandwidth_unit", bandwidth_unit)
+        if cos is not None:
+            pulumi.set(__self__, "cos", cos)
+        if cos_marking is not None:
+            pulumi.set(__self__, "cos_marking", cos_marking)
+        if cos_marking_method is not None:
+            pulumi.set(__self__, "cos_marking_method", cos_marking_method)
         if diffserv is not None:
             pulumi.set(__self__, "diffserv", diffserv)
         if diffservcode is not None:
@@ -59,12 +75,16 @@ class TrafficshaperArgs:
             pulumi.set(__self__, "exceed_bandwidth", exceed_bandwidth)
         if exceed_class_id is not None:
             pulumi.set(__self__, "exceed_class_id", exceed_class_id)
+        if exceed_cos is not None:
+            pulumi.set(__self__, "exceed_cos", exceed_cos)
         if exceed_dscp is not None:
             pulumi.set(__self__, "exceed_dscp", exceed_dscp)
         if guaranteed_bandwidth is not None:
             pulumi.set(__self__, "guaranteed_bandwidth", guaranteed_bandwidth)
         if maximum_bandwidth is not None:
             pulumi.set(__self__, "maximum_bandwidth", maximum_bandwidth)
+        if maximum_cos is not None:
+            pulumi.set(__self__, "maximum_cos", maximum_cos)
         if maximum_dscp is not None:
             pulumi.set(__self__, "maximum_dscp", maximum_dscp)
         if name is not None:
@@ -89,6 +109,42 @@ class TrafficshaperArgs:
     @bandwidth_unit.setter
     def bandwidth_unit(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bandwidth_unit", value)
+
+    @property
+    @pulumi.getter
+    def cos(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN CoS mark.
+        """
+        return pulumi.get(self, "cos")
+
+    @cos.setter
+    def cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos", value)
+
+    @property
+    @pulumi.getter(name="cosMarking")
+    def cos_marking(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cos_marking")
+
+    @cos_marking.setter
+    def cos_marking(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos_marking", value)
+
+    @property
+    @pulumi.getter(name="cosMarkingMethod")
+    def cos_marking_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+        """
+        return pulumi.get(self, "cos_marking_method")
+
+    @cos_marking_method.setter
+    def cos_marking_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos_marking_method", value)
 
     @property
     @pulumi.getter
@@ -151,6 +207,18 @@ class TrafficshaperArgs:
         pulumi.set(self, "exceed_class_id", value)
 
     @property
+    @pulumi.getter(name="exceedCos")
+    def exceed_cos(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+        """
+        return pulumi.get(self, "exceed_cos")
+
+    @exceed_cos.setter
+    def exceed_cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exceed_cos", value)
+
+    @property
     @pulumi.getter(name="exceedDscp")
     def exceed_dscp(self) -> Optional[pulumi.Input[str]]:
         """
@@ -166,7 +234,7 @@ class TrafficshaperArgs:
     @pulumi.getter(name="guaranteedBandwidth")
     def guaranteed_bandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+        Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
         """
         return pulumi.get(self, "guaranteed_bandwidth")
 
@@ -178,13 +246,25 @@ class TrafficshaperArgs:
     @pulumi.getter(name="maximumBandwidth")
     def maximum_bandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+        Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
         """
         return pulumi.get(self, "maximum_bandwidth")
 
     @maximum_bandwidth.setter
     def maximum_bandwidth(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "maximum_bandwidth", value)
+
+    @property
+    @pulumi.getter(name="maximumCos")
+    def maximum_cos(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+        """
+        return pulumi.get(self, "maximum_cos")
+
+    @maximum_cos.setter
+    def maximum_cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "maximum_cos", value)
 
     @property
     @pulumi.getter(name="maximumDscp")
@@ -263,14 +343,19 @@ class TrafficshaperArgs:
 class _TrafficshaperState:
     def __init__(__self__, *,
                  bandwidth_unit: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_marking: Optional[pulumi.Input[str]] = None,
+                 cos_marking_method: Optional[pulumi.Input[str]] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
                  diffservcode: Optional[pulumi.Input[str]] = None,
                  dscp_marking_method: Optional[pulumi.Input[str]] = None,
                  exceed_bandwidth: Optional[pulumi.Input[int]] = None,
                  exceed_class_id: Optional[pulumi.Input[int]] = None,
+                 exceed_cos: Optional[pulumi.Input[str]] = None,
                  exceed_dscp: Optional[pulumi.Input[str]] = None,
                  guaranteed_bandwidth: Optional[pulumi.Input[int]] = None,
                  maximum_bandwidth: Optional[pulumi.Input[int]] = None,
+                 maximum_cos: Optional[pulumi.Input[str]] = None,
                  maximum_dscp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  overhead: Optional[pulumi.Input[int]] = None,
@@ -280,14 +365,19 @@ class _TrafficshaperState:
         """
         Input properties used for looking up and filtering Trafficshaper resources.
         :param pulumi.Input[str] bandwidth_unit: Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
+        :param pulumi.Input[str] cos: VLAN CoS mark.
+        :param pulumi.Input[str] cos_marking: Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cos_marking_method: Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
         :param pulumi.Input[str] diffserv: Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffservcode: DiffServ setting to be applied to traffic accepted by this shaper.
         :param pulumi.Input[str] dscp_marking_method: Select DSCP marking method. Valid values: `multi-stage`, `static`.
         :param pulumi.Input[int] exceed_bandwidth: Exceed bandwidth used for DSCP multi-stage marking. Units depend on the bandwidth-unit setting.
         :param pulumi.Input[int] exceed_class_id: Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
+        :param pulumi.Input[str] exceed_cos: VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
         :param pulumi.Input[str] exceed_dscp: DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
-        :param pulumi.Input[int] guaranteed_bandwidth: Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
-        :param pulumi.Input[int] maximum_bandwidth: Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+        :param pulumi.Input[int] guaranteed_bandwidth: Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        :param pulumi.Input[int] maximum_bandwidth: Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        :param pulumi.Input[str] maximum_cos: VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
         :param pulumi.Input[str] maximum_dscp: DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
         :param pulumi.Input[str] name: Traffic shaper name.
         :param pulumi.Input[int] overhead: Per-packet size overhead used in rate computations.
@@ -297,6 +387,12 @@ class _TrafficshaperState:
         """
         if bandwidth_unit is not None:
             pulumi.set(__self__, "bandwidth_unit", bandwidth_unit)
+        if cos is not None:
+            pulumi.set(__self__, "cos", cos)
+        if cos_marking is not None:
+            pulumi.set(__self__, "cos_marking", cos_marking)
+        if cos_marking_method is not None:
+            pulumi.set(__self__, "cos_marking_method", cos_marking_method)
         if diffserv is not None:
             pulumi.set(__self__, "diffserv", diffserv)
         if diffservcode is not None:
@@ -307,12 +403,16 @@ class _TrafficshaperState:
             pulumi.set(__self__, "exceed_bandwidth", exceed_bandwidth)
         if exceed_class_id is not None:
             pulumi.set(__self__, "exceed_class_id", exceed_class_id)
+        if exceed_cos is not None:
+            pulumi.set(__self__, "exceed_cos", exceed_cos)
         if exceed_dscp is not None:
             pulumi.set(__self__, "exceed_dscp", exceed_dscp)
         if guaranteed_bandwidth is not None:
             pulumi.set(__self__, "guaranteed_bandwidth", guaranteed_bandwidth)
         if maximum_bandwidth is not None:
             pulumi.set(__self__, "maximum_bandwidth", maximum_bandwidth)
+        if maximum_cos is not None:
+            pulumi.set(__self__, "maximum_cos", maximum_cos)
         if maximum_dscp is not None:
             pulumi.set(__self__, "maximum_dscp", maximum_dscp)
         if name is not None:
@@ -337,6 +437,42 @@ class _TrafficshaperState:
     @bandwidth_unit.setter
     def bandwidth_unit(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bandwidth_unit", value)
+
+    @property
+    @pulumi.getter
+    def cos(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN CoS mark.
+        """
+        return pulumi.get(self, "cos")
+
+    @cos.setter
+    def cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos", value)
+
+    @property
+    @pulumi.getter(name="cosMarking")
+    def cos_marking(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cos_marking")
+
+    @cos_marking.setter
+    def cos_marking(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos_marking", value)
+
+    @property
+    @pulumi.getter(name="cosMarkingMethod")
+    def cos_marking_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+        """
+        return pulumi.get(self, "cos_marking_method")
+
+    @cos_marking_method.setter
+    def cos_marking_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos_marking_method", value)
 
     @property
     @pulumi.getter
@@ -399,6 +535,18 @@ class _TrafficshaperState:
         pulumi.set(self, "exceed_class_id", value)
 
     @property
+    @pulumi.getter(name="exceedCos")
+    def exceed_cos(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+        """
+        return pulumi.get(self, "exceed_cos")
+
+    @exceed_cos.setter
+    def exceed_cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exceed_cos", value)
+
+    @property
     @pulumi.getter(name="exceedDscp")
     def exceed_dscp(self) -> Optional[pulumi.Input[str]]:
         """
@@ -414,7 +562,7 @@ class _TrafficshaperState:
     @pulumi.getter(name="guaranteedBandwidth")
     def guaranteed_bandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+        Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
         """
         return pulumi.get(self, "guaranteed_bandwidth")
 
@@ -426,13 +574,25 @@ class _TrafficshaperState:
     @pulumi.getter(name="maximumBandwidth")
     def maximum_bandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+        Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
         """
         return pulumi.get(self, "maximum_bandwidth")
 
     @maximum_bandwidth.setter
     def maximum_bandwidth(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "maximum_bandwidth", value)
+
+    @property
+    @pulumi.getter(name="maximumCos")
+    def maximum_cos(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+        """
+        return pulumi.get(self, "maximum_cos")
+
+    @maximum_cos.setter
+    def maximum_cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "maximum_cos", value)
 
     @property
     @pulumi.getter(name="maximumDscp")
@@ -513,14 +673,19 @@ class Trafficshaper(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bandwidth_unit: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_marking: Optional[pulumi.Input[str]] = None,
+                 cos_marking_method: Optional[pulumi.Input[str]] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
                  diffservcode: Optional[pulumi.Input[str]] = None,
                  dscp_marking_method: Optional[pulumi.Input[str]] = None,
                  exceed_bandwidth: Optional[pulumi.Input[int]] = None,
                  exceed_class_id: Optional[pulumi.Input[int]] = None,
+                 exceed_cos: Optional[pulumi.Input[str]] = None,
                  exceed_dscp: Optional[pulumi.Input[str]] = None,
                  guaranteed_bandwidth: Optional[pulumi.Input[int]] = None,
                  maximum_bandwidth: Optional[pulumi.Input[int]] = None,
+                 maximum_cos: Optional[pulumi.Input[str]] = None,
                  maximum_dscp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  overhead: Optional[pulumi.Input[int]] = None,
@@ -570,14 +735,19 @@ class Trafficshaper(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bandwidth_unit: Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
+        :param pulumi.Input[str] cos: VLAN CoS mark.
+        :param pulumi.Input[str] cos_marking: Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cos_marking_method: Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
         :param pulumi.Input[str] diffserv: Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffservcode: DiffServ setting to be applied to traffic accepted by this shaper.
         :param pulumi.Input[str] dscp_marking_method: Select DSCP marking method. Valid values: `multi-stage`, `static`.
         :param pulumi.Input[int] exceed_bandwidth: Exceed bandwidth used for DSCP multi-stage marking. Units depend on the bandwidth-unit setting.
         :param pulumi.Input[int] exceed_class_id: Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
+        :param pulumi.Input[str] exceed_cos: VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
         :param pulumi.Input[str] exceed_dscp: DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
-        :param pulumi.Input[int] guaranteed_bandwidth: Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
-        :param pulumi.Input[int] maximum_bandwidth: Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+        :param pulumi.Input[int] guaranteed_bandwidth: Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        :param pulumi.Input[int] maximum_bandwidth: Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        :param pulumi.Input[str] maximum_cos: VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
         :param pulumi.Input[str] maximum_dscp: DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
         :param pulumi.Input[str] name: Traffic shaper name.
         :param pulumi.Input[int] overhead: Per-packet size overhead used in rate computations.
@@ -646,14 +816,19 @@ class Trafficshaper(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bandwidth_unit: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_marking: Optional[pulumi.Input[str]] = None,
+                 cos_marking_method: Optional[pulumi.Input[str]] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
                  diffservcode: Optional[pulumi.Input[str]] = None,
                  dscp_marking_method: Optional[pulumi.Input[str]] = None,
                  exceed_bandwidth: Optional[pulumi.Input[int]] = None,
                  exceed_class_id: Optional[pulumi.Input[int]] = None,
+                 exceed_cos: Optional[pulumi.Input[str]] = None,
                  exceed_dscp: Optional[pulumi.Input[str]] = None,
                  guaranteed_bandwidth: Optional[pulumi.Input[int]] = None,
                  maximum_bandwidth: Optional[pulumi.Input[int]] = None,
+                 maximum_cos: Optional[pulumi.Input[str]] = None,
                  maximum_dscp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  overhead: Optional[pulumi.Input[int]] = None,
@@ -670,14 +845,19 @@ class Trafficshaper(pulumi.CustomResource):
             __props__ = TrafficshaperArgs.__new__(TrafficshaperArgs)
 
             __props__.__dict__["bandwidth_unit"] = bandwidth_unit
+            __props__.__dict__["cos"] = cos
+            __props__.__dict__["cos_marking"] = cos_marking
+            __props__.__dict__["cos_marking_method"] = cos_marking_method
             __props__.__dict__["diffserv"] = diffserv
             __props__.__dict__["diffservcode"] = diffservcode
             __props__.__dict__["dscp_marking_method"] = dscp_marking_method
             __props__.__dict__["exceed_bandwidth"] = exceed_bandwidth
             __props__.__dict__["exceed_class_id"] = exceed_class_id
+            __props__.__dict__["exceed_cos"] = exceed_cos
             __props__.__dict__["exceed_dscp"] = exceed_dscp
             __props__.__dict__["guaranteed_bandwidth"] = guaranteed_bandwidth
             __props__.__dict__["maximum_bandwidth"] = maximum_bandwidth
+            __props__.__dict__["maximum_cos"] = maximum_cos
             __props__.__dict__["maximum_dscp"] = maximum_dscp
             __props__.__dict__["name"] = name
             __props__.__dict__["overhead"] = overhead
@@ -695,14 +875,19 @@ class Trafficshaper(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             bandwidth_unit: Optional[pulumi.Input[str]] = None,
+            cos: Optional[pulumi.Input[str]] = None,
+            cos_marking: Optional[pulumi.Input[str]] = None,
+            cos_marking_method: Optional[pulumi.Input[str]] = None,
             diffserv: Optional[pulumi.Input[str]] = None,
             diffservcode: Optional[pulumi.Input[str]] = None,
             dscp_marking_method: Optional[pulumi.Input[str]] = None,
             exceed_bandwidth: Optional[pulumi.Input[int]] = None,
             exceed_class_id: Optional[pulumi.Input[int]] = None,
+            exceed_cos: Optional[pulumi.Input[str]] = None,
             exceed_dscp: Optional[pulumi.Input[str]] = None,
             guaranteed_bandwidth: Optional[pulumi.Input[int]] = None,
             maximum_bandwidth: Optional[pulumi.Input[int]] = None,
+            maximum_cos: Optional[pulumi.Input[str]] = None,
             maximum_dscp: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             overhead: Optional[pulumi.Input[int]] = None,
@@ -717,14 +902,19 @@ class Trafficshaper(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bandwidth_unit: Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
+        :param pulumi.Input[str] cos: VLAN CoS mark.
+        :param pulumi.Input[str] cos_marking: Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cos_marking_method: Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
         :param pulumi.Input[str] diffserv: Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffservcode: DiffServ setting to be applied to traffic accepted by this shaper.
         :param pulumi.Input[str] dscp_marking_method: Select DSCP marking method. Valid values: `multi-stage`, `static`.
         :param pulumi.Input[int] exceed_bandwidth: Exceed bandwidth used for DSCP multi-stage marking. Units depend on the bandwidth-unit setting.
         :param pulumi.Input[int] exceed_class_id: Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
+        :param pulumi.Input[str] exceed_cos: VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
         :param pulumi.Input[str] exceed_dscp: DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
-        :param pulumi.Input[int] guaranteed_bandwidth: Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
-        :param pulumi.Input[int] maximum_bandwidth: Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+        :param pulumi.Input[int] guaranteed_bandwidth: Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        :param pulumi.Input[int] maximum_bandwidth: Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        :param pulumi.Input[str] maximum_cos: VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
         :param pulumi.Input[str] maximum_dscp: DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
         :param pulumi.Input[str] name: Traffic shaper name.
         :param pulumi.Input[int] overhead: Per-packet size overhead used in rate computations.
@@ -737,14 +927,19 @@ class Trafficshaper(pulumi.CustomResource):
         __props__ = _TrafficshaperState.__new__(_TrafficshaperState)
 
         __props__.__dict__["bandwidth_unit"] = bandwidth_unit
+        __props__.__dict__["cos"] = cos
+        __props__.__dict__["cos_marking"] = cos_marking
+        __props__.__dict__["cos_marking_method"] = cos_marking_method
         __props__.__dict__["diffserv"] = diffserv
         __props__.__dict__["diffservcode"] = diffservcode
         __props__.__dict__["dscp_marking_method"] = dscp_marking_method
         __props__.__dict__["exceed_bandwidth"] = exceed_bandwidth
         __props__.__dict__["exceed_class_id"] = exceed_class_id
+        __props__.__dict__["exceed_cos"] = exceed_cos
         __props__.__dict__["exceed_dscp"] = exceed_dscp
         __props__.__dict__["guaranteed_bandwidth"] = guaranteed_bandwidth
         __props__.__dict__["maximum_bandwidth"] = maximum_bandwidth
+        __props__.__dict__["maximum_cos"] = maximum_cos
         __props__.__dict__["maximum_dscp"] = maximum_dscp
         __props__.__dict__["name"] = name
         __props__.__dict__["overhead"] = overhead
@@ -760,6 +955,30 @@ class Trafficshaper(pulumi.CustomResource):
         Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
         """
         return pulumi.get(self, "bandwidth_unit")
+
+    @property
+    @pulumi.getter
+    def cos(self) -> pulumi.Output[str]:
+        """
+        VLAN CoS mark.
+        """
+        return pulumi.get(self, "cos")
+
+    @property
+    @pulumi.getter(name="cosMarking")
+    def cos_marking(self) -> pulumi.Output[str]:
+        """
+        Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cos_marking")
+
+    @property
+    @pulumi.getter(name="cosMarkingMethod")
+    def cos_marking_method(self) -> pulumi.Output[str]:
+        """
+        Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+        """
+        return pulumi.get(self, "cos_marking_method")
 
     @property
     @pulumi.getter
@@ -802,6 +1021,14 @@ class Trafficshaper(pulumi.CustomResource):
         return pulumi.get(self, "exceed_class_id")
 
     @property
+    @pulumi.getter(name="exceedCos")
+    def exceed_cos(self) -> pulumi.Output[str]:
+        """
+        VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+        """
+        return pulumi.get(self, "exceed_cos")
+
+    @property
     @pulumi.getter(name="exceedDscp")
     def exceed_dscp(self) -> pulumi.Output[str]:
         """
@@ -813,7 +1040,7 @@ class Trafficshaper(pulumi.CustomResource):
     @pulumi.getter(name="guaranteedBandwidth")
     def guaranteed_bandwidth(self) -> pulumi.Output[int]:
         """
-        Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+        Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
         """
         return pulumi.get(self, "guaranteed_bandwidth")
 
@@ -821,9 +1048,17 @@ class Trafficshaper(pulumi.CustomResource):
     @pulumi.getter(name="maximumBandwidth")
     def maximum_bandwidth(self) -> pulumi.Output[int]:
         """
-        Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+        Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
         """
         return pulumi.get(self, "maximum_bandwidth")
+
+    @property
+    @pulumi.getter(name="maximumCos")
+    def maximum_cos(self) -> pulumi.Output[str]:
+        """
+        VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+        """
+        return pulumi.get(self, "maximum_cos")
 
     @property
     @pulumi.getter(name="maximumDscp")

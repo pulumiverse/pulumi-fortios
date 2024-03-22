@@ -90,10 +90,18 @@ type Csf struct {
 	FabricObjectUnification pulumi.StringOutput `pulumi:"fabricObjectUnification"`
 	// Number of worker processes for Security Fabric daemon.
 	FabricWorkers pulumi.IntOutput `pulumi:"fabricWorkers"`
+	// Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+	FileMgmt pulumi.StringOutput `pulumi:"fileMgmt"`
+	// Maximum amount of memory that can be used by the daemon files (in bytes).
+	FileQuota pulumi.IntOutput `pulumi:"fileQuota"`
+	// Warn when the set percentage of quota has been used.
+	FileQuotaWarning pulumi.IntOutput `pulumi:"fileQuotaWarning"`
 	// Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
 	FixedKey pulumi.StringPtrOutput `pulumi:"fixedKey"`
 	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
 	ForticloudAccountEnforcement pulumi.StringOutput `pulumi:"forticloudAccountEnforcement"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
 	GroupName pulumi.StringOutput `pulumi:"groupName"`
 	// Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
@@ -110,6 +118,8 @@ type Csf struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
 	TrustedLists CsfTrustedListArrayOutput `pulumi:"trustedLists"`
+	// Unique ID of the current CSF node
+	Uid pulumi.StringOutput `pulumi:"uid"`
 	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
 	Upstream pulumi.StringOutput `pulumi:"upstream"`
 	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
@@ -186,10 +196,18 @@ type csfState struct {
 	FabricObjectUnification *string `pulumi:"fabricObjectUnification"`
 	// Number of worker processes for Security Fabric daemon.
 	FabricWorkers *int `pulumi:"fabricWorkers"`
+	// Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+	FileMgmt *string `pulumi:"fileMgmt"`
+	// Maximum amount of memory that can be used by the daemon files (in bytes).
+	FileQuota *int `pulumi:"fileQuota"`
+	// Warn when the set percentage of quota has been used.
+	FileQuotaWarning *int `pulumi:"fileQuotaWarning"`
 	// Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
 	FixedKey *string `pulumi:"fixedKey"`
 	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
 	ForticloudAccountEnforcement *string `pulumi:"forticloudAccountEnforcement"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
 	GroupName *string `pulumi:"groupName"`
 	// Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
@@ -206,6 +224,8 @@ type csfState struct {
 	Status *string `pulumi:"status"`
 	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
 	TrustedLists []CsfTrustedList `pulumi:"trustedLists"`
+	// Unique ID of the current CSF node
+	Uid *string `pulumi:"uid"`
 	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
 	Upstream *string `pulumi:"upstream"`
 	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
@@ -239,10 +259,18 @@ type CsfState struct {
 	FabricObjectUnification pulumi.StringPtrInput
 	// Number of worker processes for Security Fabric daemon.
 	FabricWorkers pulumi.IntPtrInput
+	// Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+	FileMgmt pulumi.StringPtrInput
+	// Maximum amount of memory that can be used by the daemon files (in bytes).
+	FileQuota pulumi.IntPtrInput
+	// Warn when the set percentage of quota has been used.
+	FileQuotaWarning pulumi.IntPtrInput
 	// Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
 	FixedKey pulumi.StringPtrInput
 	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
 	ForticloudAccountEnforcement pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
 	GroupName pulumi.StringPtrInput
 	// Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
@@ -259,6 +287,8 @@ type CsfState struct {
 	Status pulumi.StringPtrInput
 	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
 	TrustedLists CsfTrustedListArrayInput
+	// Unique ID of the current CSF node
+	Uid pulumi.StringPtrInput
 	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
 	Upstream pulumi.StringPtrInput
 	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
@@ -296,10 +326,18 @@ type csfArgs struct {
 	FabricObjectUnification *string `pulumi:"fabricObjectUnification"`
 	// Number of worker processes for Security Fabric daemon.
 	FabricWorkers *int `pulumi:"fabricWorkers"`
+	// Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+	FileMgmt *string `pulumi:"fileMgmt"`
+	// Maximum amount of memory that can be used by the daemon files (in bytes).
+	FileQuota *int `pulumi:"fileQuota"`
+	// Warn when the set percentage of quota has been used.
+	FileQuotaWarning *int `pulumi:"fileQuotaWarning"`
 	// Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
 	FixedKey *string `pulumi:"fixedKey"`
 	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
 	ForticloudAccountEnforcement *string `pulumi:"forticloudAccountEnforcement"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
 	GroupName *string `pulumi:"groupName"`
 	// Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
@@ -316,6 +354,8 @@ type csfArgs struct {
 	Status string `pulumi:"status"`
 	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
 	TrustedLists []CsfTrustedList `pulumi:"trustedLists"`
+	// Unique ID of the current CSF node
+	Uid *string `pulumi:"uid"`
 	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
 	Upstream *string `pulumi:"upstream"`
 	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
@@ -350,10 +390,18 @@ type CsfArgs struct {
 	FabricObjectUnification pulumi.StringPtrInput
 	// Number of worker processes for Security Fabric daemon.
 	FabricWorkers pulumi.IntPtrInput
+	// Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+	FileMgmt pulumi.StringPtrInput
+	// Maximum amount of memory that can be used by the daemon files (in bytes).
+	FileQuota pulumi.IntPtrInput
+	// Warn when the set percentage of quota has been used.
+	FileQuotaWarning pulumi.IntPtrInput
 	// Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
 	FixedKey pulumi.StringPtrInput
 	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
 	ForticloudAccountEnforcement pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
 	GroupName pulumi.StringPtrInput
 	// Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
@@ -370,6 +418,8 @@ type CsfArgs struct {
 	Status pulumi.StringInput
 	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
 	TrustedLists CsfTrustedListArrayInput
+	// Unique ID of the current CSF node
+	Uid pulumi.StringPtrInput
 	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
 	Upstream pulumi.StringPtrInput
 	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
@@ -522,6 +572,21 @@ func (o CsfOutput) FabricWorkers() pulumi.IntOutput {
 	return o.ApplyT(func(v *Csf) pulumi.IntOutput { return v.FabricWorkers }).(pulumi.IntOutput)
 }
 
+// Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+func (o CsfOutput) FileMgmt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Csf) pulumi.StringOutput { return v.FileMgmt }).(pulumi.StringOutput)
+}
+
+// Maximum amount of memory that can be used by the daemon files (in bytes).
+func (o CsfOutput) FileQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v *Csf) pulumi.IntOutput { return v.FileQuota }).(pulumi.IntOutput)
+}
+
+// Warn when the set percentage of quota has been used.
+func (o CsfOutput) FileQuotaWarning() pulumi.IntOutput {
+	return o.ApplyT(func(v *Csf) pulumi.IntOutput { return v.FileQuotaWarning }).(pulumi.IntOutput)
+}
+
 // Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
 func (o CsfOutput) FixedKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Csf) pulumi.StringPtrOutput { return v.FixedKey }).(pulumi.StringPtrOutput)
@@ -530,6 +595,11 @@ func (o CsfOutput) FixedKey() pulumi.StringPtrOutput {
 // Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
 func (o CsfOutput) ForticloudAccountEnforcement() pulumi.StringOutput {
 	return o.ApplyT(func(v *Csf) pulumi.StringOutput { return v.ForticloudAccountEnforcement }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o CsfOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Csf) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
@@ -570,6 +640,11 @@ func (o CsfOutput) Status() pulumi.StringOutput {
 // Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
 func (o CsfOutput) TrustedLists() CsfTrustedListArrayOutput {
 	return o.ApplyT(func(v *Csf) CsfTrustedListArrayOutput { return v.TrustedLists }).(CsfTrustedListArrayOutput)
+}
+
+// Unique ID of the current CSF node
+func (o CsfOutput) Uid() pulumi.StringOutput {
+	return o.ApplyT(func(v *Csf) pulumi.StringOutput { return v.Uid }).(pulumi.StringOutput)
 }
 
 // IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.

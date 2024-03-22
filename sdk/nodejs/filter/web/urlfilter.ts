@@ -87,6 +87,14 @@ export class Urlfilter extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
+     */
+    public readonly ip4MappedIp6!: pulumi.Output<string>;
+    /**
      * Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
      */
     public readonly ipAddrBlock!: pulumi.Output<string>;
@@ -120,6 +128,8 @@ export class Urlfilter extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = state ? state.entries : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["ip4MappedIp6"] = state ? state.ip4MappedIp6 : undefined;
             resourceInputs["ipAddrBlock"] = state ? state.ipAddrBlock : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["oneArmIpsUrlfilter"] = state ? state.oneArmIpsUrlfilter : undefined;
@@ -133,6 +143,8 @@ export class Urlfilter extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = args ? args.entries : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["ip4MappedIp6"] = args ? args.ip4MappedIp6 : undefined;
             resourceInputs["ipAddrBlock"] = args ? args.ipAddrBlock : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["oneArmIpsUrlfilter"] = args ? args.oneArmIpsUrlfilter : undefined;
@@ -163,6 +175,14 @@ export interface UrlfilterState {
      * ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
+     */
+    ip4MappedIp6?: pulumi.Input<string>;
     /**
      * Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
      */
@@ -201,6 +221,14 @@ export interface UrlfilterArgs {
      * ID.
      */
     fosid: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
+     */
+    ip4MappedIp6?: pulumi.Input<string>;
     /**
      * Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
      */

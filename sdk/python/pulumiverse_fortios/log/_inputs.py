@@ -324,6 +324,7 @@ class ThreatweightMalwareArgs:
                  fsa_high_risk: Optional[pulumi.Input[str]] = None,
                  fsa_malicious: Optional[pulumi.Input[str]] = None,
                  fsa_medium_risk: Optional[pulumi.Input[str]] = None,
+                 inline_block: Optional[pulumi.Input[str]] = None,
                  malware_list: Optional[pulumi.Input[str]] = None,
                  mimefragmented: Optional[pulumi.Input[str]] = None,
                  oversized: Optional[pulumi.Input[str]] = None,
@@ -344,6 +345,7 @@ class ThreatweightMalwareArgs:
         :param pulumi.Input[str] fsa_high_risk: Threat weight score for FortiSandbox high risk malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param pulumi.Input[str] fsa_malicious: Threat weight score for FortiSandbox malicious malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param pulumi.Input[str] fsa_medium_risk: Threat weight score for FortiSandbox medium risk malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+        :param pulumi.Input[str] inline_block: Threat weight score for malware detected by inline block. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param pulumi.Input[str] malware_list: Threat weight score for virus (malware list) detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param pulumi.Input[str] mimefragmented: Threat weight score for mimefragmented detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param pulumi.Input[str] oversized: Threat weight score for oversized file detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
@@ -375,6 +377,8 @@ class ThreatweightMalwareArgs:
             pulumi.set(__self__, "fsa_malicious", fsa_malicious)
         if fsa_medium_risk is not None:
             pulumi.set(__self__, "fsa_medium_risk", fsa_medium_risk)
+        if inline_block is not None:
+            pulumi.set(__self__, "inline_block", inline_block)
         if malware_list is not None:
             pulumi.set(__self__, "malware_list", malware_list)
         if mimefragmented is not None:
@@ -523,6 +527,18 @@ class ThreatweightMalwareArgs:
     @fsa_medium_risk.setter
     def fsa_medium_risk(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fsa_medium_risk", value)
+
+    @property
+    @pulumi.getter(name="inlineBlock")
+    def inline_block(self) -> Optional[pulumi.Input[str]]:
+        """
+        Threat weight score for malware detected by inline block. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+        """
+        return pulumi.get(self, "inline_block")
+
+    @inline_block.setter
+    def inline_block(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "inline_block", value)
 
     @property
     @pulumi.getter(name="malwareList")

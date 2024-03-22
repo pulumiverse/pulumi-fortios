@@ -59,13 +59,17 @@ namespace Pulumiverse.Fortios.System
     public sealed class GetVdomnetflowResult
     {
         /// <summary>
-        /// NetFlow collector IP address.
+        /// Collector IP.
         /// </summary>
         public readonly string CollectorIp;
         /// <summary>
         /// NetFlow collector port number.
         /// </summary>
         public readonly int CollectorPort;
+        /// <summary>
+        /// Netflow collectors. The structure of `collectors` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetVdomnetflowCollectorResult> Collectors;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -94,6 +98,8 @@ namespace Pulumiverse.Fortios.System
 
             int collectorPort,
 
+            ImmutableArray<Outputs.GetVdomnetflowCollectorResult> collectors,
+
             string id,
 
             string @interface,
@@ -108,6 +114,7 @@ namespace Pulumiverse.Fortios.System
         {
             CollectorIp = collectorIp;
             CollectorPort = collectorPort;
+            Collectors = collectors;
             Id = id;
             Interface = @interface;
             InterfaceSelectMethod = interfaceSelectMethod;

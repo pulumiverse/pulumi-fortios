@@ -53,6 +53,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> ApcfgProfile { get; private set; } = null!;
 
         /// <summary>
+        /// Override BLE Major ID.
+        /// </summary>
+        [Output("bleMajorId")]
+        public Output<int> BleMajorId { get; private set; } = null!;
+
+        /// <summary>
+        /// Override BLE Minor ID.
+        /// </summary>
+        [Output("bleMinorId")]
+        public Output<int> BleMinorId { get; private set; } = null!;
+
+        /// <summary>
         /// Bonjour profile name.
         /// </summary>
         [Output("bonjourProfile")]
@@ -87,6 +99,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("firmwareProvisionLatest")]
         public Output<string> FirmwareProvisionLatest { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable WTP image download. Valid values: `enable`, `disable`.
@@ -189,6 +207,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("overrideWanPortMode")]
         public Output<string> OverrideWanPortMode { get; private set; } = null!;
+
+        /// <summary>
+        /// Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        /// </summary>
+        [Output("purdueLevel")]
+        public Output<string> PurdueLevel { get; private set; } = null!;
 
         /// <summary>
         /// Configuration options for radio 1. The structure of `radio_1` block is documented below.
@@ -368,6 +392,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? ApcfgProfile { get; set; }
 
         /// <summary>
+        /// Override BLE Major ID.
+        /// </summary>
+        [Input("bleMajorId")]
+        public Input<int>? BleMajorId { get; set; }
+
+        /// <summary>
+        /// Override BLE Minor ID.
+        /// </summary>
+        [Input("bleMinorId")]
+        public Input<int>? BleMinorId { get; set; }
+
+        /// <summary>
         /// Bonjour profile name.
         /// </summary>
         [Input("bonjourProfile")]
@@ -402,6 +438,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("firmwareProvisionLatest")]
         public Input<string>? FirmwareProvisionLatest { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable WTP image download. Valid values: `enable`, `disable`.
@@ -514,6 +556,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("overrideWanPortMode")]
         public Input<string>? OverrideWanPortMode { get; set; }
+
+        /// <summary>
+        /// Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        /// </summary>
+        [Input("purdueLevel")]
+        public Input<string>? PurdueLevel { get; set; }
 
         /// <summary>
         /// Configuration options for radio 1. The structure of `radio_1` block is documented below.
@@ -656,6 +704,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? ApcfgProfile { get; set; }
 
         /// <summary>
+        /// Override BLE Major ID.
+        /// </summary>
+        [Input("bleMajorId")]
+        public Input<int>? BleMajorId { get; set; }
+
+        /// <summary>
+        /// Override BLE Minor ID.
+        /// </summary>
+        [Input("bleMinorId")]
+        public Input<int>? BleMinorId { get; set; }
+
+        /// <summary>
         /// Bonjour profile name.
         /// </summary>
         [Input("bonjourProfile")]
@@ -690,6 +750,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("firmwareProvisionLatest")]
         public Input<string>? FirmwareProvisionLatest { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable WTP image download. Valid values: `enable`, `disable`.
@@ -802,6 +868,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("overrideWanPortMode")]
         public Input<string>? OverrideWanPortMode { get; set; }
+
+        /// <summary>
+        /// Purdue Level of this WTP. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        /// </summary>
+        [Input("purdueLevel")]
+        public Input<string>? PurdueLevel { get; set; }
 
         /// <summary>
         /// Configuration options for radio 1. The structure of `radio_1` block is documented below.

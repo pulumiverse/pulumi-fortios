@@ -63,6 +63,8 @@ type Hsprofile struct {
 	GasComebackDelay pulumi.IntOutput `pulumi:"gasComebackDelay"`
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit pulumi.IntOutput `pulumi:"gasFragmentationLimit"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Homogeneous extended service set identifier (HESSID).
 	Hessid pulumi.StringOutput `pulumi:"hessid"`
 	// IP address type name.
@@ -175,6 +177,8 @@ type hsprofileState struct {
 	GasComebackDelay *int `pulumi:"gasComebackDelay"`
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit *int `pulumi:"gasFragmentationLimit"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Homogeneous extended service set identifier (HESSID).
 	Hessid *string `pulumi:"hessid"`
 	// IP address type name.
@@ -258,6 +262,8 @@ type HsprofileState struct {
 	GasComebackDelay pulumi.IntPtrInput
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Homogeneous extended service set identifier (HESSID).
 	Hessid pulumi.StringPtrInput
 	// IP address type name.
@@ -345,6 +351,8 @@ type hsprofileArgs struct {
 	GasComebackDelay *int `pulumi:"gasComebackDelay"`
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit *int `pulumi:"gasFragmentationLimit"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Homogeneous extended service set identifier (HESSID).
 	Hessid *string `pulumi:"hessid"`
 	// IP address type name.
@@ -429,6 +437,8 @@ type HsprofileArgs struct {
 	GasComebackDelay pulumi.IntPtrInput
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Homogeneous extended service set identifier (HESSID).
 	Hessid pulumi.StringPtrInput
 	// IP address type name.
@@ -641,6 +651,11 @@ func (o HsprofileOutput) GasComebackDelay() pulumi.IntOutput {
 // GAS fragmentation limit (512 - 4096, default = 1024).
 func (o HsprofileOutput) GasFragmentationLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Hsprofile) pulumi.IntOutput { return v.GasFragmentationLimit }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o HsprofileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Hsprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Homogeneous extended service set identifier (HESSID).

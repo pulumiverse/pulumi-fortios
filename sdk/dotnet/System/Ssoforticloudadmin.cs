@@ -35,10 +35,22 @@ namespace Pulumiverse.Fortios.System
     public partial class Ssoforticloudadmin : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// FortiCloud SSO admin user access profile.
+        /// </summary>
+        [Output("accprofile")]
+        public Output<string> Accprofile { get; private set; } = null!;
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Output("dynamicSortSubtable")]
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// FortiCloud SSO admin name.
@@ -106,10 +118,22 @@ namespace Pulumiverse.Fortios.System
     public sealed class SsoforticloudadminArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// FortiCloud SSO admin user access profile.
+        /// </summary>
+        [Input("accprofile")]
+        public Input<string>? Accprofile { get; set; }
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// FortiCloud SSO admin name.
@@ -144,10 +168,22 @@ namespace Pulumiverse.Fortios.System
     public sealed class SsoforticloudadminState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// FortiCloud SSO admin user access profile.
+        /// </summary>
+        [Input("accprofile")]
+        public Input<string>? Accprofile { get; set; }
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// FortiCloud SSO admin name.

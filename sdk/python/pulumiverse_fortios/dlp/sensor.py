@@ -26,6 +26,7 @@ class SensorArgs:
                  filters: Optional[pulumi.Input[Sequence[pulumi.Input['SensorFilterArgs']]]] = None,
                  flow_based: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -45,6 +46,7 @@ class SensorArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SensorFilterArgs']]] filters: Set up DLP filters for this sensor. The structure of `filter` block is documented below.
         :param pulumi.Input[str] flow_based: Enable/disable flow-based DLP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] full_archive_proto: Protocols to always content archive.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] match_type: Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
         :param pulumi.Input[str] nac_quar_log: Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Name of the DLP sensor.
@@ -73,6 +75,8 @@ class SensorArgs:
             pulumi.set(__self__, "flow_based", flow_based)
         if full_archive_proto is not None:
             pulumi.set(__self__, "full_archive_proto", full_archive_proto)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if match_type is not None:
             pulumi.set(__self__, "match_type", match_type)
         if nac_quar_log is not None:
@@ -207,6 +211,18 @@ class SensorArgs:
     @full_archive_proto.setter
     def full_archive_proto(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "full_archive_proto", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="matchType")
@@ -306,6 +322,7 @@ class _SensorState:
                  filters: Optional[pulumi.Input[Sequence[pulumi.Input['SensorFilterArgs']]]] = None,
                  flow_based: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -325,6 +342,7 @@ class _SensorState:
         :param pulumi.Input[Sequence[pulumi.Input['SensorFilterArgs']]] filters: Set up DLP filters for this sensor. The structure of `filter` block is documented below.
         :param pulumi.Input[str] flow_based: Enable/disable flow-based DLP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] full_archive_proto: Protocols to always content archive.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] match_type: Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
         :param pulumi.Input[str] nac_quar_log: Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Name of the DLP sensor.
@@ -353,6 +371,8 @@ class _SensorState:
             pulumi.set(__self__, "flow_based", flow_based)
         if full_archive_proto is not None:
             pulumi.set(__self__, "full_archive_proto", full_archive_proto)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if match_type is not None:
             pulumi.set(__self__, "match_type", match_type)
         if nac_quar_log is not None:
@@ -487,6 +507,18 @@ class _SensorState:
     @full_archive_proto.setter
     def full_archive_proto(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "full_archive_proto", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="matchType")
@@ -588,6 +620,7 @@ class Sensor(pulumi.CustomResource):
                  filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SensorFilterArgs']]]]] = None,
                  flow_based: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -645,6 +678,7 @@ class Sensor(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SensorFilterArgs']]]] filters: Set up DLP filters for this sensor. The structure of `filter` block is documented below.
         :param pulumi.Input[str] flow_based: Enable/disable flow-based DLP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] full_archive_proto: Protocols to always content archive.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] match_type: Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
         :param pulumi.Input[str] nac_quar_log: Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Name of the DLP sensor.
@@ -721,6 +755,7 @@ class Sensor(pulumi.CustomResource):
                  filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SensorFilterArgs']]]]] = None,
                  flow_based: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -747,6 +782,7 @@ class Sensor(pulumi.CustomResource):
             __props__.__dict__["filters"] = filters
             __props__.__dict__["flow_based"] = flow_based
             __props__.__dict__["full_archive_proto"] = full_archive_proto
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["match_type"] = match_type
             __props__.__dict__["nac_quar_log"] = nac_quar_log
             __props__.__dict__["name"] = name
@@ -774,6 +810,7 @@ class Sensor(pulumi.CustomResource):
             filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SensorFilterArgs']]]]] = None,
             flow_based: Optional[pulumi.Input[str]] = None,
             full_archive_proto: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             match_type: Optional[pulumi.Input[str]] = None,
             nac_quar_log: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -798,6 +835,7 @@ class Sensor(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SensorFilterArgs']]]] filters: Set up DLP filters for this sensor. The structure of `filter` block is documented below.
         :param pulumi.Input[str] flow_based: Enable/disable flow-based DLP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] full_archive_proto: Protocols to always content archive.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] match_type: Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
         :param pulumi.Input[str] nac_quar_log: Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Name of the DLP sensor.
@@ -820,6 +858,7 @@ class Sensor(pulumi.CustomResource):
         __props__.__dict__["filters"] = filters
         __props__.__dict__["flow_based"] = flow_based
         __props__.__dict__["full_archive_proto"] = full_archive_proto
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["match_type"] = match_type
         __props__.__dict__["nac_quar_log"] = nac_quar_log
         __props__.__dict__["name"] = name
@@ -908,6 +947,14 @@ class Sensor(pulumi.CustomResource):
         Protocols to always content archive.
         """
         return pulumi.get(self, "full_archive_proto")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="matchType")

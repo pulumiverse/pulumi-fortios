@@ -51,6 +51,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly int Dhcp6PrefixHintVlt;
         /// <summary>
+        /// DHCP6 relay interface ID.
+        /// </summary>
+        public readonly string Dhcp6RelayInterfaceId;
+        /// <summary>
         /// DHCPv6 relay IP address.
         /// </summary>
         public readonly string Dhcp6RelayIp;
@@ -58,6 +62,14 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// Enable/disable DHCPv6 relay.
         /// </summary>
         public readonly string Dhcp6RelayService;
+        /// <summary>
+        /// Enable/disable use of address on this interface as the source address of the relay message.
+        /// </summary>
+        public readonly string Dhcp6RelaySourceInterface;
+        /// <summary>
+        /// IPv6 address used by the DHCP6 relay as its source IP.
+        /// </summary>
+        public readonly string Dhcp6RelaySourceIp;
         /// <summary>
         /// DHCPv6 relay type.
         /// </summary>
@@ -219,9 +231,15 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             int dhcp6PrefixHintVlt,
 
+            string dhcp6RelayInterfaceId,
+
             string dhcp6RelayIp,
 
             string dhcp6RelayService,
+
+            string dhcp6RelaySourceInterface,
+
+            string dhcp6RelaySourceIp,
 
             string dhcp6RelayType,
 
@@ -302,8 +320,11 @@ namespace Pulumiverse.Fortios.System.Outputs
             Dhcp6PrefixHint = dhcp6PrefixHint;
             Dhcp6PrefixHintPlt = dhcp6PrefixHintPlt;
             Dhcp6PrefixHintVlt = dhcp6PrefixHintVlt;
+            Dhcp6RelayInterfaceId = dhcp6RelayInterfaceId;
             Dhcp6RelayIp = dhcp6RelayIp;
             Dhcp6RelayService = dhcp6RelayService;
+            Dhcp6RelaySourceInterface = dhcp6RelaySourceInterface;
+            Dhcp6RelaySourceIp = dhcp6RelaySourceIp;
             Dhcp6RelayType = dhcp6RelayType;
             Icmp6SendRedirect = icmp6SendRedirect;
             InterfaceIdentifier = interfaceIdentifier;

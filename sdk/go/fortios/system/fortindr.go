@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
-// Configure FortiNDR. Applies to FortiOS Version `>= 7.2.0`.
+// Configure FortiNDR. Applies to FortiOS Version `>= 7.0.8`.
 //
 // ## Import
 //

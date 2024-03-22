@@ -154,12 +154,16 @@ type Phase1 struct {
 	Authusrgrp pulumi.StringOutput `pulumi:"authusrgrp"`
 	// Enable/disable automatic initiation of IKE SA negotiation. Valid values: `enable`, `disable`.
 	AutoNegotiate pulumi.StringOutput `pulumi:"autoNegotiate"`
+	// Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+	AzureAdAutoconnect pulumi.StringOutput `pulumi:"azureAdAutoconnect"`
 	// Instruct unity clients about the backup gateway address(es). The structure of `backupGateway` block is documented below.
 	BackupGateways Phase1BackupGatewayArrayOutput `pulumi:"backupGateways"`
 	// Message that unity client should display after connecting.
 	Banner pulumi.StringPtrOutput `pulumi:"banner"`
 	// Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
 	CertIdValidation pulumi.StringOutput `pulumi:"certIdValidation"`
+	// CA certificate trust store. Valid values: `local`, `ems`.
+	CertTrustStore pulumi.StringOutput `pulumi:"certTrustStore"`
 	// Names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
 	Certificates Phase1CertificateArrayOutput `pulumi:"certificates"`
 	// Enable/disable childless IKEv2 initiation (RFC 6023). Valid values: `enable`, `disable`.
@@ -170,6 +174,10 @@ type Phase1 struct {
 	ClientKeepAlive pulumi.StringOutput `pulumi:"clientKeepAlive"`
 	// Comment.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
+	// Device ID carried by the device ID notification.
+	DevId pulumi.StringOutput `pulumi:"devId"`
+	// Enable/disable device ID notification. Valid values: `disable`, `enable`.
+	DevIdNotification pulumi.StringOutput `pulumi:"devIdNotification"`
 	// Relay agent IPv6 link address to use in DHCP6 requests.
 	Dhcp6RaLinkaddr pulumi.StringOutput `pulumi:"dhcp6RaLinkaddr"`
 	// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
@@ -194,18 +202,28 @@ type Phase1 struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable IKEv2 EAP authentication. Valid values: `enable`, `disable`.
 	Eap pulumi.StringOutput `pulumi:"eap"`
+	// Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+	EapCertAuth pulumi.StringOutput `pulumi:"eapCertAuth"`
 	// Peer group excluded from EAP authentication.
 	EapExcludePeergrp pulumi.StringOutput `pulumi:"eapExcludePeergrp"`
 	// IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
 	EapIdentity pulumi.StringOutput `pulumi:"eapIdentity"`
+	// Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+	EmsSnCheck pulumi.StringOutput `pulumi:"emsSnCheck"`
 	// Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
 	EnforceUniqueId pulumi.StringOutput `pulumi:"enforceUniqueId"`
 	// Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
 	Esn pulumi.StringOutput `pulumi:"esn"`
+	// Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+	ExchangeFgtDeviceId pulumi.StringOutput `pulumi:"exchangeFgtDeviceId"`
+	// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+	FallbackTcpThreshold pulumi.IntOutput `pulumi:"fallbackTcpThreshold"`
 	// Number of base Forward Error Correction packets (1 - 100).
 	FecBase pulumi.IntOutput `pulumi:"fecBase"`
 	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
 	FecCodec pulumi.IntOutput `pulumi:"fecCodec"`
+	// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+	FecCodecString pulumi.StringOutput `pulumi:"fecCodecString"`
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress pulumi.StringOutput `pulumi:"fecEgress"`
 	// SD-WAN health check.
@@ -224,10 +242,14 @@ type Phase1 struct {
 	FgspSync pulumi.StringOutput `pulumi:"fgspSync"`
 	// Enable/disable FortiClient enforcement. Valid values: `enable`, `disable`.
 	ForticlientEnforcement pulumi.StringOutput `pulumi:"forticlientEnforcement"`
+	// Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+	FortinetEsp pulumi.StringOutput `pulumi:"fortinetEsp"`
 	// Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
 	Fragmentation pulumi.StringOutput `pulumi:"fragmentation"`
 	// IKE fragmentation MTU (500 - 16000).
 	FragmentationMtu pulumi.IntOutput `pulumi:"fragmentationMtu"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
 	GroupAuthentication pulumi.StringOutput `pulumi:"groupAuthentication"`
 	// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
@@ -246,6 +268,8 @@ type Phase1 struct {
 	IncludeLocalLan pulumi.StringOutput `pulumi:"includeLocalLan"`
 	// Local physical, aggregate, or VLAN outgoing interface.
 	Interface pulumi.StringOutput `pulumi:"interface"`
+	// One or more internal domain names in quotes separated by spaces. The structure of `internalDomainList` block is documented below.
+	InternalDomainLists Phase1InternalDomainListArrayOutput `pulumi:"internalDomainLists"`
 	// IP address reuse delay interval in seconds (0 - 28800).
 	IpDelayInterval pulumi.IntOutput `pulumi:"ipDelayInterval"`
 	// IPv4 DNS server 1.
@@ -296,6 +320,10 @@ type Phase1 struct {
 	Keepalive pulumi.IntOutput `pulumi:"keepalive"`
 	// Time to wait in seconds before phase 1 encryption key expires.
 	Keylife pulumi.IntOutput `pulumi:"keylife"`
+	// Key Management Services server.
+	Kms pulumi.StringOutput `pulumi:"kms"`
+	// VPN tunnel underlay link cost.
+	LinkCost pulumi.IntOutput `pulumi:"linkCost"`
 	// Local VPN gateway.
 	LocalGw pulumi.StringOutput `pulumi:"localGw"`
 	// Local ID.
@@ -346,6 +374,10 @@ type Phase1 struct {
 	Psksecret pulumi.StringOutput `pulumi:"psksecret"`
 	// Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
 	PsksecretRemote pulumi.StringPtrOutput `pulumi:"psksecretRemote"`
+	// Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+	Qkd pulumi.StringOutput `pulumi:"qkd"`
+	// Quantum Key Distribution (QKD) server profile.
+	QkdProfile pulumi.StringOutput `pulumi:"qkdProfile"`
 	// Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
 	Reauth pulumi.StringOutput `pulumi:"reauth"`
 	// Enable/disable phase1 rekey. Valid values: `enable`, `disable`.
@@ -368,6 +400,8 @@ type Phase1 struct {
 	SplitIncludeService pulumi.StringOutput `pulumi:"splitIncludeService"`
 	// Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
 	SuiteB pulumi.StringOutput `pulumi:"suiteB"`
+	// Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+	Transport pulumi.StringOutput `pulumi:"transport"`
 	// Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Enable/disable support for Cisco UNITY Configuration Method extensions. Valid values: `disable`, `enable`.
@@ -466,12 +500,16 @@ type phase1State struct {
 	Authusrgrp *string `pulumi:"authusrgrp"`
 	// Enable/disable automatic initiation of IKE SA negotiation. Valid values: `enable`, `disable`.
 	AutoNegotiate *string `pulumi:"autoNegotiate"`
+	// Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+	AzureAdAutoconnect *string `pulumi:"azureAdAutoconnect"`
 	// Instruct unity clients about the backup gateway address(es). The structure of `backupGateway` block is documented below.
 	BackupGateways []Phase1BackupGateway `pulumi:"backupGateways"`
 	// Message that unity client should display after connecting.
 	Banner *string `pulumi:"banner"`
 	// Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
 	CertIdValidation *string `pulumi:"certIdValidation"`
+	// CA certificate trust store. Valid values: `local`, `ems`.
+	CertTrustStore *string `pulumi:"certTrustStore"`
 	// Names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
 	Certificates []Phase1Certificate `pulumi:"certificates"`
 	// Enable/disable childless IKEv2 initiation (RFC 6023). Valid values: `enable`, `disable`.
@@ -482,6 +520,10 @@ type phase1State struct {
 	ClientKeepAlive *string `pulumi:"clientKeepAlive"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
+	// Device ID carried by the device ID notification.
+	DevId *string `pulumi:"devId"`
+	// Enable/disable device ID notification. Valid values: `disable`, `enable`.
+	DevIdNotification *string `pulumi:"devIdNotification"`
 	// Relay agent IPv6 link address to use in DHCP6 requests.
 	Dhcp6RaLinkaddr *string `pulumi:"dhcp6RaLinkaddr"`
 	// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
@@ -506,18 +548,28 @@ type phase1State struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable IKEv2 EAP authentication. Valid values: `enable`, `disable`.
 	Eap *string `pulumi:"eap"`
+	// Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+	EapCertAuth *string `pulumi:"eapCertAuth"`
 	// Peer group excluded from EAP authentication.
 	EapExcludePeergrp *string `pulumi:"eapExcludePeergrp"`
 	// IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
 	EapIdentity *string `pulumi:"eapIdentity"`
+	// Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+	EmsSnCheck *string `pulumi:"emsSnCheck"`
 	// Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
 	EnforceUniqueId *string `pulumi:"enforceUniqueId"`
 	// Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
 	Esn *string `pulumi:"esn"`
+	// Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+	ExchangeFgtDeviceId *string `pulumi:"exchangeFgtDeviceId"`
+	// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+	FallbackTcpThreshold *int `pulumi:"fallbackTcpThreshold"`
 	// Number of base Forward Error Correction packets (1 - 100).
 	FecBase *int `pulumi:"fecBase"`
 	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
 	FecCodec *int `pulumi:"fecCodec"`
+	// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+	FecCodecString *string `pulumi:"fecCodecString"`
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress *string `pulumi:"fecEgress"`
 	// SD-WAN health check.
@@ -536,10 +588,14 @@ type phase1State struct {
 	FgspSync *string `pulumi:"fgspSync"`
 	// Enable/disable FortiClient enforcement. Valid values: `enable`, `disable`.
 	ForticlientEnforcement *string `pulumi:"forticlientEnforcement"`
+	// Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+	FortinetEsp *string `pulumi:"fortinetEsp"`
 	// Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
 	Fragmentation *string `pulumi:"fragmentation"`
 	// IKE fragmentation MTU (500 - 16000).
 	FragmentationMtu *int `pulumi:"fragmentationMtu"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
 	GroupAuthentication *string `pulumi:"groupAuthentication"`
 	// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
@@ -558,6 +614,8 @@ type phase1State struct {
 	IncludeLocalLan *string `pulumi:"includeLocalLan"`
 	// Local physical, aggregate, or VLAN outgoing interface.
 	Interface *string `pulumi:"interface"`
+	// One or more internal domain names in quotes separated by spaces. The structure of `internalDomainList` block is documented below.
+	InternalDomainLists []Phase1InternalDomainList `pulumi:"internalDomainLists"`
 	// IP address reuse delay interval in seconds (0 - 28800).
 	IpDelayInterval *int `pulumi:"ipDelayInterval"`
 	// IPv4 DNS server 1.
@@ -608,6 +666,10 @@ type phase1State struct {
 	Keepalive *int `pulumi:"keepalive"`
 	// Time to wait in seconds before phase 1 encryption key expires.
 	Keylife *int `pulumi:"keylife"`
+	// Key Management Services server.
+	Kms *string `pulumi:"kms"`
+	// VPN tunnel underlay link cost.
+	LinkCost *int `pulumi:"linkCost"`
 	// Local VPN gateway.
 	LocalGw *string `pulumi:"localGw"`
 	// Local ID.
@@ -658,6 +720,10 @@ type phase1State struct {
 	Psksecret *string `pulumi:"psksecret"`
 	// Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
 	PsksecretRemote *string `pulumi:"psksecretRemote"`
+	// Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+	Qkd *string `pulumi:"qkd"`
+	// Quantum Key Distribution (QKD) server profile.
+	QkdProfile *string `pulumi:"qkdProfile"`
 	// Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
 	Reauth *string `pulumi:"reauth"`
 	// Enable/disable phase1 rekey. Valid values: `enable`, `disable`.
@@ -680,6 +746,8 @@ type phase1State struct {
 	SplitIncludeService *string `pulumi:"splitIncludeService"`
 	// Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
 	SuiteB *string `pulumi:"suiteB"`
+	// Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+	Transport *string `pulumi:"transport"`
 	// Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
 	Type *string `pulumi:"type"`
 	// Enable/disable support for Cisco UNITY Configuration Method extensions. Valid values: `disable`, `enable`.
@@ -717,12 +785,16 @@ type Phase1State struct {
 	Authusrgrp pulumi.StringPtrInput
 	// Enable/disable automatic initiation of IKE SA negotiation. Valid values: `enable`, `disable`.
 	AutoNegotiate pulumi.StringPtrInput
+	// Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+	AzureAdAutoconnect pulumi.StringPtrInput
 	// Instruct unity clients about the backup gateway address(es). The structure of `backupGateway` block is documented below.
 	BackupGateways Phase1BackupGatewayArrayInput
 	// Message that unity client should display after connecting.
 	Banner pulumi.StringPtrInput
 	// Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
 	CertIdValidation pulumi.StringPtrInput
+	// CA certificate trust store. Valid values: `local`, `ems`.
+	CertTrustStore pulumi.StringPtrInput
 	// Names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
 	Certificates Phase1CertificateArrayInput
 	// Enable/disable childless IKEv2 initiation (RFC 6023). Valid values: `enable`, `disable`.
@@ -733,6 +805,10 @@ type Phase1State struct {
 	ClientKeepAlive pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
+	// Device ID carried by the device ID notification.
+	DevId pulumi.StringPtrInput
+	// Enable/disable device ID notification. Valid values: `disable`, `enable`.
+	DevIdNotification pulumi.StringPtrInput
 	// Relay agent IPv6 link address to use in DHCP6 requests.
 	Dhcp6RaLinkaddr pulumi.StringPtrInput
 	// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
@@ -757,18 +833,28 @@ type Phase1State struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable IKEv2 EAP authentication. Valid values: `enable`, `disable`.
 	Eap pulumi.StringPtrInput
+	// Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+	EapCertAuth pulumi.StringPtrInput
 	// Peer group excluded from EAP authentication.
 	EapExcludePeergrp pulumi.StringPtrInput
 	// IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
 	EapIdentity pulumi.StringPtrInput
+	// Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+	EmsSnCheck pulumi.StringPtrInput
 	// Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
 	EnforceUniqueId pulumi.StringPtrInput
 	// Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
 	Esn pulumi.StringPtrInput
+	// Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+	ExchangeFgtDeviceId pulumi.StringPtrInput
+	// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+	FallbackTcpThreshold pulumi.IntPtrInput
 	// Number of base Forward Error Correction packets (1 - 100).
 	FecBase pulumi.IntPtrInput
 	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
 	FecCodec pulumi.IntPtrInput
+	// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+	FecCodecString pulumi.StringPtrInput
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress pulumi.StringPtrInput
 	// SD-WAN health check.
@@ -787,10 +873,14 @@ type Phase1State struct {
 	FgspSync pulumi.StringPtrInput
 	// Enable/disable FortiClient enforcement. Valid values: `enable`, `disable`.
 	ForticlientEnforcement pulumi.StringPtrInput
+	// Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+	FortinetEsp pulumi.StringPtrInput
 	// Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
 	Fragmentation pulumi.StringPtrInput
 	// IKE fragmentation MTU (500 - 16000).
 	FragmentationMtu pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
 	GroupAuthentication pulumi.StringPtrInput
 	// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
@@ -809,6 +899,8 @@ type Phase1State struct {
 	IncludeLocalLan pulumi.StringPtrInput
 	// Local physical, aggregate, or VLAN outgoing interface.
 	Interface pulumi.StringPtrInput
+	// One or more internal domain names in quotes separated by spaces. The structure of `internalDomainList` block is documented below.
+	InternalDomainLists Phase1InternalDomainListArrayInput
 	// IP address reuse delay interval in seconds (0 - 28800).
 	IpDelayInterval pulumi.IntPtrInput
 	// IPv4 DNS server 1.
@@ -859,6 +951,10 @@ type Phase1State struct {
 	Keepalive pulumi.IntPtrInput
 	// Time to wait in seconds before phase 1 encryption key expires.
 	Keylife pulumi.IntPtrInput
+	// Key Management Services server.
+	Kms pulumi.StringPtrInput
+	// VPN tunnel underlay link cost.
+	LinkCost pulumi.IntPtrInput
 	// Local VPN gateway.
 	LocalGw pulumi.StringPtrInput
 	// Local ID.
@@ -909,6 +1005,10 @@ type Phase1State struct {
 	Psksecret pulumi.StringPtrInput
 	// Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
 	PsksecretRemote pulumi.StringPtrInput
+	// Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+	Qkd pulumi.StringPtrInput
+	// Quantum Key Distribution (QKD) server profile.
+	QkdProfile pulumi.StringPtrInput
 	// Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
 	Reauth pulumi.StringPtrInput
 	// Enable/disable phase1 rekey. Valid values: `enable`, `disable`.
@@ -931,6 +1031,8 @@ type Phase1State struct {
 	SplitIncludeService pulumi.StringPtrInput
 	// Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
 	SuiteB pulumi.StringPtrInput
+	// Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+	Transport pulumi.StringPtrInput
 	// Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
 	Type pulumi.StringPtrInput
 	// Enable/disable support for Cisco UNITY Configuration Method extensions. Valid values: `disable`, `enable`.
@@ -972,12 +1074,16 @@ type phase1Args struct {
 	Authusrgrp *string `pulumi:"authusrgrp"`
 	// Enable/disable automatic initiation of IKE SA negotiation. Valid values: `enable`, `disable`.
 	AutoNegotiate *string `pulumi:"autoNegotiate"`
+	// Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+	AzureAdAutoconnect *string `pulumi:"azureAdAutoconnect"`
 	// Instruct unity clients about the backup gateway address(es). The structure of `backupGateway` block is documented below.
 	BackupGateways []Phase1BackupGateway `pulumi:"backupGateways"`
 	// Message that unity client should display after connecting.
 	Banner *string `pulumi:"banner"`
 	// Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
 	CertIdValidation *string `pulumi:"certIdValidation"`
+	// CA certificate trust store. Valid values: `local`, `ems`.
+	CertTrustStore *string `pulumi:"certTrustStore"`
 	// Names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
 	Certificates []Phase1Certificate `pulumi:"certificates"`
 	// Enable/disable childless IKEv2 initiation (RFC 6023). Valid values: `enable`, `disable`.
@@ -988,6 +1094,10 @@ type phase1Args struct {
 	ClientKeepAlive *string `pulumi:"clientKeepAlive"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
+	// Device ID carried by the device ID notification.
+	DevId *string `pulumi:"devId"`
+	// Enable/disable device ID notification. Valid values: `disable`, `enable`.
+	DevIdNotification *string `pulumi:"devIdNotification"`
 	// Relay agent IPv6 link address to use in DHCP6 requests.
 	Dhcp6RaLinkaddr *string `pulumi:"dhcp6RaLinkaddr"`
 	// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
@@ -1012,18 +1122,28 @@ type phase1Args struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable IKEv2 EAP authentication. Valid values: `enable`, `disable`.
 	Eap *string `pulumi:"eap"`
+	// Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+	EapCertAuth *string `pulumi:"eapCertAuth"`
 	// Peer group excluded from EAP authentication.
 	EapExcludePeergrp *string `pulumi:"eapExcludePeergrp"`
 	// IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
 	EapIdentity *string `pulumi:"eapIdentity"`
+	// Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+	EmsSnCheck *string `pulumi:"emsSnCheck"`
 	// Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
 	EnforceUniqueId *string `pulumi:"enforceUniqueId"`
 	// Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
 	Esn *string `pulumi:"esn"`
+	// Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+	ExchangeFgtDeviceId *string `pulumi:"exchangeFgtDeviceId"`
+	// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+	FallbackTcpThreshold *int `pulumi:"fallbackTcpThreshold"`
 	// Number of base Forward Error Correction packets (1 - 100).
 	FecBase *int `pulumi:"fecBase"`
 	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
 	FecCodec *int `pulumi:"fecCodec"`
+	// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+	FecCodecString *string `pulumi:"fecCodecString"`
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress *string `pulumi:"fecEgress"`
 	// SD-WAN health check.
@@ -1042,10 +1162,14 @@ type phase1Args struct {
 	FgspSync *string `pulumi:"fgspSync"`
 	// Enable/disable FortiClient enforcement. Valid values: `enable`, `disable`.
 	ForticlientEnforcement *string `pulumi:"forticlientEnforcement"`
+	// Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+	FortinetEsp *string `pulumi:"fortinetEsp"`
 	// Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
 	Fragmentation *string `pulumi:"fragmentation"`
 	// IKE fragmentation MTU (500 - 16000).
 	FragmentationMtu *int `pulumi:"fragmentationMtu"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
 	GroupAuthentication *string `pulumi:"groupAuthentication"`
 	// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
@@ -1064,6 +1188,8 @@ type phase1Args struct {
 	IncludeLocalLan *string `pulumi:"includeLocalLan"`
 	// Local physical, aggregate, or VLAN outgoing interface.
 	Interface string `pulumi:"interface"`
+	// One or more internal domain names in quotes separated by spaces. The structure of `internalDomainList` block is documented below.
+	InternalDomainLists []Phase1InternalDomainList `pulumi:"internalDomainLists"`
 	// IP address reuse delay interval in seconds (0 - 28800).
 	IpDelayInterval *int `pulumi:"ipDelayInterval"`
 	// IPv4 DNS server 1.
@@ -1114,6 +1240,10 @@ type phase1Args struct {
 	Keepalive *int `pulumi:"keepalive"`
 	// Time to wait in seconds before phase 1 encryption key expires.
 	Keylife *int `pulumi:"keylife"`
+	// Key Management Services server.
+	Kms *string `pulumi:"kms"`
+	// VPN tunnel underlay link cost.
+	LinkCost *int `pulumi:"linkCost"`
 	// Local VPN gateway.
 	LocalGw *string `pulumi:"localGw"`
 	// Local ID.
@@ -1164,6 +1294,10 @@ type phase1Args struct {
 	Psksecret string `pulumi:"psksecret"`
 	// Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
 	PsksecretRemote *string `pulumi:"psksecretRemote"`
+	// Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+	Qkd *string `pulumi:"qkd"`
+	// Quantum Key Distribution (QKD) server profile.
+	QkdProfile *string `pulumi:"qkdProfile"`
 	// Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
 	Reauth *string `pulumi:"reauth"`
 	// Enable/disable phase1 rekey. Valid values: `enable`, `disable`.
@@ -1186,6 +1320,8 @@ type phase1Args struct {
 	SplitIncludeService *string `pulumi:"splitIncludeService"`
 	// Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
 	SuiteB *string `pulumi:"suiteB"`
+	// Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+	Transport *string `pulumi:"transport"`
 	// Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
 	Type *string `pulumi:"type"`
 	// Enable/disable support for Cisco UNITY Configuration Method extensions. Valid values: `disable`, `enable`.
@@ -1224,12 +1360,16 @@ type Phase1Args struct {
 	Authusrgrp pulumi.StringPtrInput
 	// Enable/disable automatic initiation of IKE SA negotiation. Valid values: `enable`, `disable`.
 	AutoNegotiate pulumi.StringPtrInput
+	// Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+	AzureAdAutoconnect pulumi.StringPtrInput
 	// Instruct unity clients about the backup gateway address(es). The structure of `backupGateway` block is documented below.
 	BackupGateways Phase1BackupGatewayArrayInput
 	// Message that unity client should display after connecting.
 	Banner pulumi.StringPtrInput
 	// Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
 	CertIdValidation pulumi.StringPtrInput
+	// CA certificate trust store. Valid values: `local`, `ems`.
+	CertTrustStore pulumi.StringPtrInput
 	// Names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
 	Certificates Phase1CertificateArrayInput
 	// Enable/disable childless IKEv2 initiation (RFC 6023). Valid values: `enable`, `disable`.
@@ -1240,6 +1380,10 @@ type Phase1Args struct {
 	ClientKeepAlive pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
+	// Device ID carried by the device ID notification.
+	DevId pulumi.StringPtrInput
+	// Enable/disable device ID notification. Valid values: `disable`, `enable`.
+	DevIdNotification pulumi.StringPtrInput
 	// Relay agent IPv6 link address to use in DHCP6 requests.
 	Dhcp6RaLinkaddr pulumi.StringPtrInput
 	// Relay agent gateway IP address to use in the giaddr field of DHCP requests.
@@ -1264,18 +1408,28 @@ type Phase1Args struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable IKEv2 EAP authentication. Valid values: `enable`, `disable`.
 	Eap pulumi.StringPtrInput
+	// Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+	EapCertAuth pulumi.StringPtrInput
 	// Peer group excluded from EAP authentication.
 	EapExcludePeergrp pulumi.StringPtrInput
 	// IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
 	EapIdentity pulumi.StringPtrInput
+	// Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+	EmsSnCheck pulumi.StringPtrInput
 	// Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
 	EnforceUniqueId pulumi.StringPtrInput
 	// Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
 	Esn pulumi.StringPtrInput
+	// Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+	ExchangeFgtDeviceId pulumi.StringPtrInput
+	// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+	FallbackTcpThreshold pulumi.IntPtrInput
 	// Number of base Forward Error Correction packets (1 - 100).
 	FecBase pulumi.IntPtrInput
 	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
 	FecCodec pulumi.IntPtrInput
+	// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+	FecCodecString pulumi.StringPtrInput
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress pulumi.StringPtrInput
 	// SD-WAN health check.
@@ -1294,10 +1448,14 @@ type Phase1Args struct {
 	FgspSync pulumi.StringPtrInput
 	// Enable/disable FortiClient enforcement. Valid values: `enable`, `disable`.
 	ForticlientEnforcement pulumi.StringPtrInput
+	// Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+	FortinetEsp pulumi.StringPtrInput
 	// Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
 	Fragmentation pulumi.StringPtrInput
 	// IKE fragmentation MTU (500 - 16000).
 	FragmentationMtu pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
 	GroupAuthentication pulumi.StringPtrInput
 	// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
@@ -1316,6 +1474,8 @@ type Phase1Args struct {
 	IncludeLocalLan pulumi.StringPtrInput
 	// Local physical, aggregate, or VLAN outgoing interface.
 	Interface pulumi.StringInput
+	// One or more internal domain names in quotes separated by spaces. The structure of `internalDomainList` block is documented below.
+	InternalDomainLists Phase1InternalDomainListArrayInput
 	// IP address reuse delay interval in seconds (0 - 28800).
 	IpDelayInterval pulumi.IntPtrInput
 	// IPv4 DNS server 1.
@@ -1366,6 +1526,10 @@ type Phase1Args struct {
 	Keepalive pulumi.IntPtrInput
 	// Time to wait in seconds before phase 1 encryption key expires.
 	Keylife pulumi.IntPtrInput
+	// Key Management Services server.
+	Kms pulumi.StringPtrInput
+	// VPN tunnel underlay link cost.
+	LinkCost pulumi.IntPtrInput
 	// Local VPN gateway.
 	LocalGw pulumi.StringPtrInput
 	// Local ID.
@@ -1416,6 +1580,10 @@ type Phase1Args struct {
 	Psksecret pulumi.StringInput
 	// Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x).
 	PsksecretRemote pulumi.StringPtrInput
+	// Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+	Qkd pulumi.StringPtrInput
+	// Quantum Key Distribution (QKD) server profile.
+	QkdProfile pulumi.StringPtrInput
 	// Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
 	Reauth pulumi.StringPtrInput
 	// Enable/disable phase1 rekey. Valid values: `enable`, `disable`.
@@ -1438,6 +1606,8 @@ type Phase1Args struct {
 	SplitIncludeService pulumi.StringPtrInput
 	// Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
 	SuiteB pulumi.StringPtrInput
+	// Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+	Transport pulumi.StringPtrInput
 	// Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
 	Type pulumi.StringPtrInput
 	// Enable/disable support for Cisco UNITY Configuration Method extensions. Valid values: `disable`, `enable`.
@@ -1594,6 +1764,11 @@ func (o Phase1Output) AutoNegotiate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.AutoNegotiate }).(pulumi.StringOutput)
 }
 
+// Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+func (o Phase1Output) AzureAdAutoconnect() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.AzureAdAutoconnect }).(pulumi.StringOutput)
+}
+
 // Instruct unity clients about the backup gateway address(es). The structure of `backupGateway` block is documented below.
 func (o Phase1Output) BackupGateways() Phase1BackupGatewayArrayOutput {
 	return o.ApplyT(func(v *Phase1) Phase1BackupGatewayArrayOutput { return v.BackupGateways }).(Phase1BackupGatewayArrayOutput)
@@ -1607,6 +1782,11 @@ func (o Phase1Output) Banner() pulumi.StringPtrOutput {
 // Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
 func (o Phase1Output) CertIdValidation() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.CertIdValidation }).(pulumi.StringOutput)
+}
+
+// CA certificate trust store. Valid values: `local`, `ems`.
+func (o Phase1Output) CertTrustStore() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.CertTrustStore }).(pulumi.StringOutput)
 }
 
 // Names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
@@ -1632,6 +1812,16 @@ func (o Phase1Output) ClientKeepAlive() pulumi.StringOutput {
 // Comment.
 func (o Phase1Output) Comments() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+// Device ID carried by the device ID notification.
+func (o Phase1Output) DevId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.DevId }).(pulumi.StringOutput)
+}
+
+// Enable/disable device ID notification. Valid values: `disable`, `enable`.
+func (o Phase1Output) DevIdNotification() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.DevIdNotification }).(pulumi.StringOutput)
 }
 
 // Relay agent IPv6 link address to use in DHCP6 requests.
@@ -1694,6 +1884,11 @@ func (o Phase1Output) Eap() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.Eap }).(pulumi.StringOutput)
 }
 
+// Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+func (o Phase1Output) EapCertAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.EapCertAuth }).(pulumi.StringOutput)
+}
+
 // Peer group excluded from EAP authentication.
 func (o Phase1Output) EapExcludePeergrp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.EapExcludePeergrp }).(pulumi.StringOutput)
@@ -1702,6 +1897,11 @@ func (o Phase1Output) EapExcludePeergrp() pulumi.StringOutput {
 // IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
 func (o Phase1Output) EapIdentity() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.EapIdentity }).(pulumi.StringOutput)
+}
+
+// Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+func (o Phase1Output) EmsSnCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.EmsSnCheck }).(pulumi.StringOutput)
 }
 
 // Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
@@ -1714,6 +1914,16 @@ func (o Phase1Output) Esn() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.Esn }).(pulumi.StringOutput)
 }
 
+// Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+func (o Phase1Output) ExchangeFgtDeviceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.ExchangeFgtDeviceId }).(pulumi.StringOutput)
+}
+
+// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+func (o Phase1Output) FallbackTcpThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.IntOutput { return v.FallbackTcpThreshold }).(pulumi.IntOutput)
+}
+
 // Number of base Forward Error Correction packets (1 - 100).
 func (o Phase1Output) FecBase() pulumi.IntOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.IntOutput { return v.FecBase }).(pulumi.IntOutput)
@@ -1722,6 +1932,11 @@ func (o Phase1Output) FecBase() pulumi.IntOutput {
 // ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
 func (o Phase1Output) FecCodec() pulumi.IntOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.IntOutput { return v.FecCodec }).(pulumi.IntOutput)
+}
+
+// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+func (o Phase1Output) FecCodecString() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.FecCodecString }).(pulumi.StringOutput)
 }
 
 // Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
@@ -1769,6 +1984,11 @@ func (o Phase1Output) ForticlientEnforcement() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.ForticlientEnforcement }).(pulumi.StringOutput)
 }
 
+// Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+func (o Phase1Output) FortinetEsp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.FortinetEsp }).(pulumi.StringOutput)
+}
+
 // Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
 func (o Phase1Output) Fragmentation() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.Fragmentation }).(pulumi.StringOutput)
@@ -1777,6 +1997,11 @@ func (o Phase1Output) Fragmentation() pulumi.StringOutput {
 // IKE fragmentation MTU (500 - 16000).
 func (o Phase1Output) FragmentationMtu() pulumi.IntOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.IntOutput { return v.FragmentationMtu }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Phase1Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
@@ -1822,6 +2047,11 @@ func (o Phase1Output) IncludeLocalLan() pulumi.StringOutput {
 // Local physical, aggregate, or VLAN outgoing interface.
 func (o Phase1Output) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+// One or more internal domain names in quotes separated by spaces. The structure of `internalDomainList` block is documented below.
+func (o Phase1Output) InternalDomainLists() Phase1InternalDomainListArrayOutput {
+	return o.ApplyT(func(v *Phase1) Phase1InternalDomainListArrayOutput { return v.InternalDomainLists }).(Phase1InternalDomainListArrayOutput)
 }
 
 // IP address reuse delay interval in seconds (0 - 28800).
@@ -1949,6 +2179,16 @@ func (o Phase1Output) Keylife() pulumi.IntOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.IntOutput { return v.Keylife }).(pulumi.IntOutput)
 }
 
+// Key Management Services server.
+func (o Phase1Output) Kms() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.Kms }).(pulumi.StringOutput)
+}
+
+// VPN tunnel underlay link cost.
+func (o Phase1Output) LinkCost() pulumi.IntOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.IntOutput { return v.LinkCost }).(pulumi.IntOutput)
+}
+
 // Local VPN gateway.
 func (o Phase1Output) LocalGw() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.LocalGw }).(pulumi.StringOutput)
@@ -2074,6 +2314,16 @@ func (o Phase1Output) PsksecretRemote() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringPtrOutput { return v.PsksecretRemote }).(pulumi.StringPtrOutput)
 }
 
+// Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+func (o Phase1Output) Qkd() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.Qkd }).(pulumi.StringOutput)
+}
+
+// Quantum Key Distribution (QKD) server profile.
+func (o Phase1Output) QkdProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.QkdProfile }).(pulumi.StringOutput)
+}
+
 // Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
 func (o Phase1Output) Reauth() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.Reauth }).(pulumi.StringOutput)
@@ -2127,6 +2377,11 @@ func (o Phase1Output) SplitIncludeService() pulumi.StringOutput {
 // Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
 func (o Phase1Output) SuiteB() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.SuiteB }).(pulumi.StringOutput)
+}
+
+// Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+func (o Phase1Output) Transport() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1) pulumi.StringOutput { return v.Transport }).(pulumi.StringOutput)
 }
 
 // Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.

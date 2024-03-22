@@ -75,6 +75,10 @@ export class Quarantine extends pulumi.CustomResource {
      */
     public readonly firewallGroups!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable quarantine. Valid values: `enable`, `disable`.
      */
     public readonly quarantine!: pulumi.Output<string>;
@@ -106,6 +110,7 @@ export class Quarantine extends pulumi.CustomResource {
             const state = argsOrState as QuarantineState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["firewallGroups"] = state ? state.firewallGroups : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["quarantine"] = state ? state.quarantine : undefined;
             resourceInputs["targets"] = state ? state.targets : undefined;
             resourceInputs["trafficPolicy"] = state ? state.trafficPolicy : undefined;
@@ -114,6 +119,7 @@ export class Quarantine extends pulumi.CustomResource {
             const args = argsOrState as QuarantineArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["firewallGroups"] = args ? args.firewallGroups : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["quarantine"] = args ? args.quarantine : undefined;
             resourceInputs["targets"] = args ? args.targets : undefined;
             resourceInputs["trafficPolicy"] = args ? args.trafficPolicy : undefined;
@@ -136,6 +142,10 @@ export interface QuarantineState {
      * Firewall address group which includes all quarantine MAC address.
      */
     firewallGroups?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable quarantine. Valid values: `enable`, `disable`.
      */
@@ -166,6 +176,10 @@ export interface QuarantineArgs {
      * Firewall address group which includes all quarantine MAC address.
      */
     firewallGroups?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable quarantine. Valid values: `enable`, `disable`.
      */

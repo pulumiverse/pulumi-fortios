@@ -22,7 +22,7 @@ class GetCentralmanagementResult:
     """
     A collection of values returned by getCentralmanagement.
     """
-    def __init__(__self__, allow_monitor=None, allow_push_configuration=None, allow_push_firmware=None, allow_remote_firmware_upgrade=None, ca_cert=None, enc_algorithm=None, fmg=None, fmg_source_ip=None, fmg_source_ip6=None, fmg_update_port=None, id=None, include_default_servers=None, interface=None, interface_select_method=None, local_cert=None, mode=None, schedule_config_restore=None, schedule_script_restore=None, serial_number=None, server_lists=None, type=None, vdom=None, vdomparam=None):
+    def __init__(__self__, allow_monitor=None, allow_push_configuration=None, allow_push_firmware=None, allow_remote_firmware_upgrade=None, ca_cert=None, enc_algorithm=None, fmg=None, fmg_source_ip=None, fmg_source_ip6=None, fmg_update_port=None, fortigate_cloud_sso_default_profile=None, id=None, include_default_servers=None, interface=None, interface_select_method=None, local_cert=None, mode=None, schedule_config_restore=None, schedule_script_restore=None, serial_number=None, server_lists=None, type=None, vdom=None, vdomparam=None):
         if allow_monitor and not isinstance(allow_monitor, str):
             raise TypeError("Expected argument 'allow_monitor' to be a str")
         pulumi.set(__self__, "allow_monitor", allow_monitor)
@@ -53,6 +53,9 @@ class GetCentralmanagementResult:
         if fmg_update_port and not isinstance(fmg_update_port, str):
             raise TypeError("Expected argument 'fmg_update_port' to be a str")
         pulumi.set(__self__, "fmg_update_port", fmg_update_port)
+        if fortigate_cloud_sso_default_profile and not isinstance(fortigate_cloud_sso_default_profile, str):
+            raise TypeError("Expected argument 'fortigate_cloud_sso_default_profile' to be a str")
+        pulumi.set(__self__, "fortigate_cloud_sso_default_profile", fortigate_cloud_sso_default_profile)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -174,6 +177,14 @@ class GetCentralmanagementResult:
         return pulumi.get(self, "fmg_update_port")
 
     @property
+    @pulumi.getter(name="fortigateCloudSsoDefaultProfile")
+    def fortigate_cloud_sso_default_profile(self) -> str:
+        """
+        Override access profile.
+        """
+        return pulumi.get(self, "fortigate_cloud_sso_default_profile")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
@@ -291,6 +302,7 @@ class AwaitableGetCentralmanagementResult(GetCentralmanagementResult):
             fmg_source_ip=self.fmg_source_ip,
             fmg_source_ip6=self.fmg_source_ip6,
             fmg_update_port=self.fmg_update_port,
+            fortigate_cloud_sso_default_profile=self.fortigate_cloud_sso_default_profile,
             id=self.id,
             include_default_servers=self.include_default_servers,
             interface=self.interface,
@@ -330,6 +342,7 @@ def get_centralmanagement(vdomparam: Optional[str] = None,
         fmg_source_ip=pulumi.get(__ret__, 'fmg_source_ip'),
         fmg_source_ip6=pulumi.get(__ret__, 'fmg_source_ip6'),
         fmg_update_port=pulumi.get(__ret__, 'fmg_update_port'),
+        fortigate_cloud_sso_default_profile=pulumi.get(__ret__, 'fortigate_cloud_sso_default_profile'),
         id=pulumi.get(__ret__, 'id'),
         include_default_servers=pulumi.get(__ret__, 'include_default_servers'),
         interface=pulumi.get(__ret__, 'interface'),

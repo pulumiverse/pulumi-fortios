@@ -16,9 +16,11 @@ __all__ = ['StandaloneclusterArgs', 'Standalonecluster']
 @pulumi.input_type
 class StandaloneclusterArgs:
     def __init__(__self__, *,
+                 asymmetric_traffic_control: Optional[pulumi.Input[str]] = None,
                  cluster_peers: Optional[pulumi.Input[Sequence[pulumi.Input['StandaloneclusterClusterPeerArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_member_id: Optional[pulumi.Input[int]] = None,
                  layer2_connection: Optional[pulumi.Input[str]] = None,
                  psksecret: Optional[pulumi.Input[str]] = None,
@@ -27,9 +29,11 @@ class StandaloneclusterArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Standalonecluster resource.
+        :param pulumi.Input[str] asymmetric_traffic_control: Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
         :param pulumi.Input[Sequence[pulumi.Input['StandaloneclusterClusterPeerArgs']]] cluster_peers: Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `cluster_peer` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] encryption: Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] group_member_id: Cluster member ID (0 - 3).
         :param pulumi.Input[str] layer2_connection: Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
         :param pulumi.Input[str] psksecret: Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
@@ -37,12 +41,16 @@ class StandaloneclusterArgs:
         :param pulumi.Input[int] standalone_group_id: Cluster group ID (0 - 255). Must be the same for all members.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if asymmetric_traffic_control is not None:
+            pulumi.set(__self__, "asymmetric_traffic_control", asymmetric_traffic_control)
         if cluster_peers is not None:
             pulumi.set(__self__, "cluster_peers", cluster_peers)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if encryption is not None:
             pulumi.set(__self__, "encryption", encryption)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_member_id is not None:
             pulumi.set(__self__, "group_member_id", group_member_id)
         if layer2_connection is not None:
@@ -55,6 +63,18 @@ class StandaloneclusterArgs:
             pulumi.set(__self__, "standalone_group_id", standalone_group_id)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="asymmetricTrafficControl")
+    def asymmetric_traffic_control(self) -> Optional[pulumi.Input[str]]:
+        """
+        Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+        """
+        return pulumi.get(self, "asymmetric_traffic_control")
+
+    @asymmetric_traffic_control.setter
+    def asymmetric_traffic_control(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "asymmetric_traffic_control", value)
 
     @property
     @pulumi.getter(name="clusterPeers")
@@ -91,6 +111,18 @@ class StandaloneclusterArgs:
     @encryption.setter
     def encryption(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "encryption", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupMemberId")
@@ -168,9 +200,11 @@ class StandaloneclusterArgs:
 @pulumi.input_type
 class _StandaloneclusterState:
     def __init__(__self__, *,
+                 asymmetric_traffic_control: Optional[pulumi.Input[str]] = None,
                  cluster_peers: Optional[pulumi.Input[Sequence[pulumi.Input['StandaloneclusterClusterPeerArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_member_id: Optional[pulumi.Input[int]] = None,
                  layer2_connection: Optional[pulumi.Input[str]] = None,
                  psksecret: Optional[pulumi.Input[str]] = None,
@@ -179,9 +213,11 @@ class _StandaloneclusterState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Standalonecluster resources.
+        :param pulumi.Input[str] asymmetric_traffic_control: Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
         :param pulumi.Input[Sequence[pulumi.Input['StandaloneclusterClusterPeerArgs']]] cluster_peers: Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `cluster_peer` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] encryption: Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] group_member_id: Cluster member ID (0 - 3).
         :param pulumi.Input[str] layer2_connection: Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
         :param pulumi.Input[str] psksecret: Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
@@ -189,12 +225,16 @@ class _StandaloneclusterState:
         :param pulumi.Input[int] standalone_group_id: Cluster group ID (0 - 255). Must be the same for all members.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if asymmetric_traffic_control is not None:
+            pulumi.set(__self__, "asymmetric_traffic_control", asymmetric_traffic_control)
         if cluster_peers is not None:
             pulumi.set(__self__, "cluster_peers", cluster_peers)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if encryption is not None:
             pulumi.set(__self__, "encryption", encryption)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_member_id is not None:
             pulumi.set(__self__, "group_member_id", group_member_id)
         if layer2_connection is not None:
@@ -207,6 +247,18 @@ class _StandaloneclusterState:
             pulumi.set(__self__, "standalone_group_id", standalone_group_id)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="asymmetricTrafficControl")
+    def asymmetric_traffic_control(self) -> Optional[pulumi.Input[str]]:
+        """
+        Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+        """
+        return pulumi.get(self, "asymmetric_traffic_control")
+
+    @asymmetric_traffic_control.setter
+    def asymmetric_traffic_control(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "asymmetric_traffic_control", value)
 
     @property
     @pulumi.getter(name="clusterPeers")
@@ -243,6 +295,18 @@ class _StandaloneclusterState:
     @encryption.setter
     def encryption(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "encryption", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupMemberId")
@@ -322,9 +386,11 @@ class Standalonecluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 asymmetric_traffic_control: Optional[pulumi.Input[str]] = None,
                  cluster_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StandaloneclusterClusterPeerArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_member_id: Optional[pulumi.Input[int]] = None,
                  layer2_connection: Optional[pulumi.Input[str]] = None,
                  psksecret: Optional[pulumi.Input[str]] = None,
@@ -355,9 +421,11 @@ class Standalonecluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] asymmetric_traffic_control: Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StandaloneclusterClusterPeerArgs']]]] cluster_peers: Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `cluster_peer` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] encryption: Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] group_member_id: Cluster member ID (0 - 3).
         :param pulumi.Input[str] layer2_connection: Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
         :param pulumi.Input[str] psksecret: Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
@@ -407,9 +475,11 @@ class Standalonecluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 asymmetric_traffic_control: Optional[pulumi.Input[str]] = None,
                  cluster_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StandaloneclusterClusterPeerArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_member_id: Optional[pulumi.Input[int]] = None,
                  layer2_connection: Optional[pulumi.Input[str]] = None,
                  psksecret: Optional[pulumi.Input[str]] = None,
@@ -425,9 +495,11 @@ class Standalonecluster(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = StandaloneclusterArgs.__new__(StandaloneclusterArgs)
 
+            __props__.__dict__["asymmetric_traffic_control"] = asymmetric_traffic_control
             __props__.__dict__["cluster_peers"] = cluster_peers
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["encryption"] = encryption
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_member_id"] = group_member_id
             __props__.__dict__["layer2_connection"] = layer2_connection
             __props__.__dict__["psksecret"] = None if psksecret is None else pulumi.Output.secret(psksecret)
@@ -446,9 +518,11 @@ class Standalonecluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            asymmetric_traffic_control: Optional[pulumi.Input[str]] = None,
             cluster_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StandaloneclusterClusterPeerArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             encryption: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_member_id: Optional[pulumi.Input[int]] = None,
             layer2_connection: Optional[pulumi.Input[str]] = None,
             psksecret: Optional[pulumi.Input[str]] = None,
@@ -462,9 +536,11 @@ class Standalonecluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] asymmetric_traffic_control: Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StandaloneclusterClusterPeerArgs']]]] cluster_peers: Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `cluster_peer` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] encryption: Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] group_member_id: Cluster member ID (0 - 3).
         :param pulumi.Input[str] layer2_connection: Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
         :param pulumi.Input[str] psksecret: Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
@@ -476,9 +552,11 @@ class Standalonecluster(pulumi.CustomResource):
 
         __props__ = _StandaloneclusterState.__new__(_StandaloneclusterState)
 
+        __props__.__dict__["asymmetric_traffic_control"] = asymmetric_traffic_control
         __props__.__dict__["cluster_peers"] = cluster_peers
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["encryption"] = encryption
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_member_id"] = group_member_id
         __props__.__dict__["layer2_connection"] = layer2_connection
         __props__.__dict__["psksecret"] = psksecret
@@ -486,6 +564,14 @@ class Standalonecluster(pulumi.CustomResource):
         __props__.__dict__["standalone_group_id"] = standalone_group_id
         __props__.__dict__["vdomparam"] = vdomparam
         return Standalonecluster(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="asymmetricTrafficControl")
+    def asymmetric_traffic_control(self) -> pulumi.Output[str]:
+        """
+        Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+        """
+        return pulumi.get(self, "asymmetric_traffic_control")
 
     @property
     @pulumi.getter(name="clusterPeers")
@@ -510,6 +596,14 @@ class Standalonecluster(pulumi.CustomResource):
         Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "encryption")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupMemberId")

@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Debugurl{}
 	case "fortios:webproxy/explicit:Explicit":
 		r = &Explicit{}
+	case "fortios:webproxy/fastfallback:Fastfallback":
+		r = &Fastfallback{}
 	case "fortios:webproxy/forwardserver:Forwardserver":
 		r = &Forwardserver{}
 	case "fortios:webproxy/forwardservergroup:Forwardservergroup":
@@ -58,6 +60,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"webproxy/explicit",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"webproxy/fastfallback",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

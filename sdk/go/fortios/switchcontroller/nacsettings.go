@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
-// Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,7.0.0`.
+// Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0`.
 //
 // ## Import
 //

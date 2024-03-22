@@ -140,6 +140,12 @@ namespace Pulumiverse.Fortios.Voip.Inputs
         public Input<string>? ByeRateTrack { get; set; }
 
         /// <summary>
+        /// Validate PCRE regular expression for Call-Id header value.
+        /// </summary>
+        [Input("callIdRegex")]
+        public Input<string>? CallIdRegex { get; set; }
+
+        /// <summary>
         /// Continue tracking calls with no RTP for this many minutes.
         /// </summary>
         [Input("callKeepalive")]
@@ -162,6 +168,12 @@ namespace Pulumiverse.Fortios.Voip.Inputs
         /// </summary>
         [Input("contactFixup")]
         public Input<string>? ContactFixup { get; set; }
+
+        /// <summary>
+        /// Validate PCRE regular expression for Content-Type header value.
+        /// </summary>
+        [Input("contentTypeRegex")]
+        public Input<string>? ContentTypeRegex { get; set; }
 
         /// <summary>
         /// Enable/disable restrict RTP source IP to be the same as SIP source IP when HNT is enabled. Valid values: `disable`, `enable`.

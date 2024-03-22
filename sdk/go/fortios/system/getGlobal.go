@@ -61,6 +61,8 @@ type LookupGlobalResult struct {
 	AdminConcurrent string `pulumi:"adminConcurrent"`
 	// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
 	AdminConsoleTimeout int `pulumi:"adminConsoleTimeout"`
+	// Override access profile.
+	AdminForticloudSsoDefaultProfile string `pulumi:"adminForticloudSsoDefaultProfile"`
 	// Enable/disable FortiCloud admin login via SSO.
 	AdminForticloudSsoLogin string `pulumi:"adminForticloudSsoLogin"`
 	// Administrative host for HTTP and HTTPS. When set, will be used in lieu of the client's Host header for any redirection.
@@ -143,6 +145,8 @@ type LookupGlobalResult struct {
 	AvFailopenSession string `pulumi:"avFailopenSession"`
 	// Enable/disable batch mode, allowing you to enter a series of CLI commands that will execute as a group once they are loaded.
 	BatchCmdb string `pulumi:"batchCmdb"`
+	// Affinity setting for BFD daemon (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+	BfdAffinity string `pulumi:"bfdAffinity"`
 	// Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
 	BlockSessionTimer int `pulumi:"blockSessionTimer"`
 	// Maximum number of bridge forwarding database (FDB) entries.
@@ -209,6 +213,10 @@ type LookupGlobalResult struct {
 	FecPort int `pulumi:"fecPort"`
 	// Type of alert to retrieve from FortiGuard.
 	FgdAlertSubscription string `pulumi:"fgdAlertSubscription"`
+	// Enable/disable config upload to FortiConverter.
+	ForticonverterConfigUpload string `pulumi:"forticonverterConfigUpload"`
+	// Enable/disable FortiConverter integration service.
+	ForticonverterIntegration string `pulumi:"forticonverterIntegration"`
 	// Enable/disable FortiExtender.
 	Fortiextender string `pulumi:"fortiextender"`
 	// FortiExtender data port (1024 - 49150, default = 25246).
@@ -219,16 +227,28 @@ type LookupGlobalResult struct {
 	FortiextenderProvisionOnAuthorization string `pulumi:"fortiextenderProvisionOnAuthorization"`
 	// Enable/disable FortiExtender VLAN mode.
 	FortiextenderVlanMode string `pulumi:"fortiextenderVlanMode"`
+	// Enable/disable integration with the FortiGSLB cloud service.
+	FortigslbIntegration string `pulumi:"fortigslbIntegration"`
 	// Enable/disable integration with the FortiIPAM cloud service.
 	FortiipamIntegration string `pulumi:"fortiipamIntegration"`
 	// FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
 	FortiservicePort int `pulumi:"fortiservicePort"`
 	// Enable/disable FortiToken Cloud service.
 	FortitokenCloud string `pulumi:"fortitokenCloud"`
+	// Enable/disable FTM push service of FortiToken Cloud.
+	FortitokenCloudPushStatus string `pulumi:"fortitokenCloudPushStatus"`
+	// Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
+	FortitokenCloudSyncInterval int `pulumi:"fortitokenCloudSyncInterval"`
 	// Enable/disable the GUI warning about using a default hostname
 	GuiAllowDefaultHostname string `pulumi:"guiAllowDefaultHostname"`
+	// Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error.
+	GuiAllowIncompatibleFabricFgt string `pulumi:"guiAllowIncompatibleFabricFgt"`
 	// Enable/disable Allow app-detection based SD-WAN.
 	GuiAppDetectionSdwan string `pulumi:"guiAppDetectionSdwan"`
+	// Enable/disable the automatic patch upgrade setup prompt on the GUI.
+	GuiAutoUpgradeSetupWarning string `pulumi:"guiAutoUpgradeSetupWarning"`
+	// Domain of CDN server.
+	GuiCdnDomainOverride string `pulumi:"guiCdnDomainOverride"`
 	// Enable/disable Load GUI static files from a CDN.
 	GuiCdnUsage string `pulumi:"guiCdnUsage"`
 	// Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI.
@@ -285,10 +305,16 @@ type LookupGlobalResult struct {
 	IgmpStateLimit int `pulumi:"igmpStateLimit"`
 	// Maximum number of IPsec tunnels to negotiate simultaneously.
 	IkeEmbryonicLimit int `pulumi:"ikeEmbryonicLimit"`
+	// Enable/disable allowing use of interface-subnet setting in firewall addresses (default = enable).
+	InterfaceSubnetUsage string `pulumi:"interfaceSubnetUsage"`
 	// Configure which Internet Service database size to download from FortiGuard and use.
 	InternetServiceDatabase string `pulumi:"internetServiceDatabase"`
+	// Configure which on-demand Internet Service IDs are to be downloaded. The structure of `internetServiceDownloadList` block is documented below.
+	InternetServiceDownloadLists []GetGlobalInternetServiceDownloadList `pulumi:"internetServiceDownloadLists"`
 	// Dead gateway detection interval.
 	Interval int `pulumi:"interval"`
+	// Maximum memory (MB) used to reassemble IPv4/IPv6 fragments.
+	IpFragmentMemThresholds int `pulumi:"ipFragmentMemThresholds"`
 	// IP source port range used for traffic originating from the FortiGate unit.
 	IpSrcPortRange string `pulumi:"ipSrcPortRange"`
 	// Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx; allowed CPUs must be less than total number of IPS engine daemons).
@@ -323,6 +349,8 @@ type LookupGlobalResult struct {
 	LldpReception string `pulumi:"lldpReception"`
 	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission.
 	LldpTransmission string `pulumi:"lldpTransmission"`
+	// Enable/disable logging the event of a single CPU core reaching CPU usage threshold.
+	LogSingleCpuHigh string `pulumi:"logSingleCpuHigh"`
 	// Enable/disable logging of SSL connection events.
 	LogSslConnection string `pulumi:"logSslConnection"`
 	// Enable/disable insertion of address UUIDs to traffic logs.
@@ -389,14 +417,32 @@ type LookupGlobalResult struct {
 	ProxyCipherHardwareAcceleration string `pulumi:"proxyCipherHardwareAcceleration"`
 	// Enable/disable email proxy hardware acceleration.
 	ProxyHardwareAcceleration string `pulumi:"proxyHardwareAcceleration"`
+	// Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was authenticated.
+	ProxyKeepAliveMode string `pulumi:"proxyKeepAliveMode"`
 	// Enable/disable using the content processor to accelerate KXP traffic.
 	ProxyKxpHardwareAcceleration string `pulumi:"proxyKxpHardwareAcceleration"`
 	// Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created.
 	ProxyReAuthenticationMode string `pulumi:"proxyReAuthenticationMode"`
+	// The time limit that users must re-authenticate if proxy-keep-alive-mode is set to re-authenticate (1  - 86400 sec, default=30s.
+	ProxyReAuthenticationTime int `pulumi:"proxyReAuthenticationTime"`
 	// Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources.
 	ProxyResourceMode string `pulumi:"proxyResourceMode"`
 	// Proxy worker count.
 	ProxyWorkerCount int `pulumi:"proxyWorkerCount"`
+	// Purdue Level of this FortiGate.
+	PurdueLevel string `pulumi:"purdueLevel"`
+	// Maximum number of unacknowledged packets before sending ACK (2 - 5, default = 3).
+	QuicAckThresold int `pulumi:"quicAckThresold"`
+	// QUIC congestion control algorithm (default = cubic).
+	QuicCongestionControlAlgo string `pulumi:"quicCongestionControlAlgo"`
+	// Maximum transmit datagram size (1200 - 1500, default = 1500).
+	QuicMaxDatagramSize int `pulumi:"quicMaxDatagramSize"`
+	// Enable/disable path MTU discovery (default = enable).
+	QuicPmtud string `pulumi:"quicPmtud"`
+	// Time-to-live (TTL) for TLS handshake in seconds (1 - 60, default = 5).
+	QuicTlsHandshakeTimeout int `pulumi:"quicTlsHandshakeTimeout"`
+	// Enable/disable UDP payload size shaping per connection ID (default = enable).
+	QuicUdpPayloadSizeShapingPerCid string `pulumi:"quicUdpPayloadSizeShapingPerCid"`
 	// RADIUS service port number.
 	RadiusPort int `pulumi:"radiusPort"`
 	// Enable/disable reboot of system upon restoring configuration.
@@ -421,12 +467,18 @@ type LookupGlobalResult struct {
 	SecurityRatingRunOnSchedule string `pulumi:"securityRatingRunOnSchedule"`
 	// Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets.
 	SendPmtuIcmp string `pulumi:"sendPmtuIcmp"`
+	// Maximum number of sflowd child processes allowed to run.
+	SflowdMaxChildrenNum int `pulumi:"sflowdMaxChildrenNum"`
 	// Enable/disable the ability to change the static NAT route.
 	SnatRouteChange string `pulumi:"snatRouteChange"`
 	// Enable/disable IPS detection of HIBUN format files when using Data Leak Protection.
 	SpecialFile23Support string `pulumi:"specialFile23Support"`
 	// Enable/disable speed test server.
 	SpeedtestServer string `pulumi:"speedtestServer"`
+	// Speedtest server controller port number.
+	SpeedtestdCtrlPort int `pulumi:"speedtestdCtrlPort"`
+	// Speedtest server port number.
+	SpeedtestdServerPort int `pulumi:"speedtestdServerPort"`
 	// Split port(s) to multiple 10Gbps ports.
 	SplitPort string `pulumi:"splitPort"`
 	// Date within a month to run ssd trim.
@@ -445,6 +497,14 @@ type LookupGlobalResult struct {
 	SshEncAlgo string `pulumi:"sshEncAlgo"`
 	// Enable/disable HMAC-MD5 for SSH access.
 	SshHmacMd5 string `pulumi:"sshHmacMd5"`
+	// Config SSH host key.
+	SshHostkey string `pulumi:"sshHostkey"`
+	// Select one or more SSH hostkey algorithms.
+	SshHostkeyAlgo string `pulumi:"sshHostkeyAlgo"`
+	// Enable/disable SSH host key override in SSH daemon.
+	SshHostkeyOverride string `pulumi:"sshHostkeyOverride"`
+	// Password for ssh-hostkey.
+	SshHostkeyPassword string `pulumi:"sshHostkeyPassword"`
 	// Select one or more SSH kex algorithms.
 	SshKexAlgo string `pulumi:"sshKexAlgo"`
 	// Enable/disable SHA1 key exchange for SSH access.
@@ -467,6 +527,8 @@ type LookupGlobalResult struct {
 	SslvpnMaxWorkerCount int `pulumi:"sslvpnMaxWorkerCount"`
 	// Enable/disable checking browser's plugin version by SSL VPN.
 	SslvpnPluginVersionCheck string `pulumi:"sslvpnPluginVersionCheck"`
+	// Enable/disable SSL-VPN web mode.
+	SslvpnWebMode string `pulumi:"sslvpnWebMode"`
 	// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session.
 	StrictDirtySessionCheck string `pulumi:"strictDirtySessionCheck"`
 	// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions.
@@ -477,6 +539,8 @@ type LookupGlobalResult struct {
 	SwitchControllerReservedNetwork string `pulumi:"switchControllerReservedNetwork"`
 	// Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
 	SysPerfLogInterval int `pulumi:"sysPerfLogInterval"`
+	// Affinity setting for syslog (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+	SyslogAffinity string `pulumi:"syslogAffinity"`
 	// Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
 	TcpHalfcloseTimer int `pulumi:"tcpHalfcloseTimer"`
 	// Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
@@ -534,6 +598,8 @@ type LookupGlobalResult struct {
 	VirtualServerHardwareAcceleration string `pulumi:"virtualServerHardwareAcceleration"`
 	// Enable/disable virtual switch VLAN.
 	VirtualSwitchVlan string `pulumi:"virtualSwitchVlan"`
+	// Enable/disable verification of EMS serial number in SSL-VPN and IPsec VPN connection.
+	VpnEmsSnCheck string `pulumi:"vpnEmsSnCheck"`
 	// Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
 	WadAffinity string `pulumi:"wadAffinity"`
 	// Number of concurrent WAD-cache-service object-cache processes.
@@ -542,6 +608,12 @@ type LookupGlobalResult struct {
 	WadCsvcDbCount int `pulumi:"wadCsvcDbCount"`
 	// Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
 	WadMemoryChangeGranularity int `pulumi:"wadMemoryChangeGranularity"`
+	// WAD workers daily restart end time (hh:mm).
+	WadRestartEndTime string `pulumi:"wadRestartEndTime"`
+	// WAD worker restart mode (default = none).
+	WadRestartMode string `pulumi:"wadRestartMode"`
+	// WAD workers daily restart time (hh:mm).
+	WadRestartStartTime string `pulumi:"wadRestartStartTime"`
 	// Enable/disable dispatching traffic to WAD workers based on source affinity.
 	WadSourceAffinity string `pulumi:"wadSourceAffinity"`
 	// Number of explicit proxy WAN optimization daemon (WAD) processes. By default WAN optimization, explicit proxy, and web caching is handled by all of the CPU cores in a FortiGate unit.
@@ -604,6 +676,11 @@ func (o LookupGlobalResultOutput) AdminConcurrent() pulumi.StringOutput {
 // Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
 func (o LookupGlobalResultOutput) AdminConsoleTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.AdminConsoleTimeout }).(pulumi.IntOutput)
+}
+
+// Override access profile.
+func (o LookupGlobalResultOutput) AdminForticloudSsoDefaultProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.AdminForticloudSsoDefaultProfile }).(pulumi.StringOutput)
 }
 
 // Enable/disable FortiCloud admin login via SSO.
@@ -811,6 +888,11 @@ func (o LookupGlobalResultOutput) BatchCmdb() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.BatchCmdb }).(pulumi.StringOutput)
 }
 
+// Affinity setting for BFD daemon (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+func (o LookupGlobalResultOutput) BfdAffinity() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.BfdAffinity }).(pulumi.StringOutput)
+}
+
 // Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
 func (o LookupGlobalResultOutput) BlockSessionTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.BlockSessionTimer }).(pulumi.IntOutput)
@@ -976,6 +1058,16 @@ func (o LookupGlobalResultOutput) FgdAlertSubscription() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.FgdAlertSubscription }).(pulumi.StringOutput)
 }
 
+// Enable/disable config upload to FortiConverter.
+func (o LookupGlobalResultOutput) ForticonverterConfigUpload() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.ForticonverterConfigUpload }).(pulumi.StringOutput)
+}
+
+// Enable/disable FortiConverter integration service.
+func (o LookupGlobalResultOutput) ForticonverterIntegration() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.ForticonverterIntegration }).(pulumi.StringOutput)
+}
+
 // Enable/disable FortiExtender.
 func (o LookupGlobalResultOutput) Fortiextender() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.Fortiextender }).(pulumi.StringOutput)
@@ -1001,6 +1093,11 @@ func (o LookupGlobalResultOutput) FortiextenderVlanMode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.FortiextenderVlanMode }).(pulumi.StringOutput)
 }
 
+// Enable/disable integration with the FortiGSLB cloud service.
+func (o LookupGlobalResultOutput) FortigslbIntegration() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.FortigslbIntegration }).(pulumi.StringOutput)
+}
+
 // Enable/disable integration with the FortiIPAM cloud service.
 func (o LookupGlobalResultOutput) FortiipamIntegration() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.FortiipamIntegration }).(pulumi.StringOutput)
@@ -1016,14 +1113,39 @@ func (o LookupGlobalResultOutput) FortitokenCloud() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.FortitokenCloud }).(pulumi.StringOutput)
 }
 
+// Enable/disable FTM push service of FortiToken Cloud.
+func (o LookupGlobalResultOutput) FortitokenCloudPushStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.FortitokenCloudPushStatus }).(pulumi.StringOutput)
+}
+
+// Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
+func (o LookupGlobalResultOutput) FortitokenCloudSyncInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupGlobalResult) int { return v.FortitokenCloudSyncInterval }).(pulumi.IntOutput)
+}
+
 // Enable/disable the GUI warning about using a default hostname
 func (o LookupGlobalResultOutput) GuiAllowDefaultHostname() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.GuiAllowDefaultHostname }).(pulumi.StringOutput)
 }
 
+// Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error.
+func (o LookupGlobalResultOutput) GuiAllowIncompatibleFabricFgt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.GuiAllowIncompatibleFabricFgt }).(pulumi.StringOutput)
+}
+
 // Enable/disable Allow app-detection based SD-WAN.
 func (o LookupGlobalResultOutput) GuiAppDetectionSdwan() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.GuiAppDetectionSdwan }).(pulumi.StringOutput)
+}
+
+// Enable/disable the automatic patch upgrade setup prompt on the GUI.
+func (o LookupGlobalResultOutput) GuiAutoUpgradeSetupWarning() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.GuiAutoUpgradeSetupWarning }).(pulumi.StringOutput)
+}
+
+// Domain of CDN server.
+func (o LookupGlobalResultOutput) GuiCdnDomainOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.GuiCdnDomainOverride }).(pulumi.StringOutput)
 }
 
 // Enable/disable Load GUI static files from a CDN.
@@ -1166,14 +1288,31 @@ func (o LookupGlobalResultOutput) IkeEmbryonicLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.IkeEmbryonicLimit }).(pulumi.IntOutput)
 }
 
+// Enable/disable allowing use of interface-subnet setting in firewall addresses (default = enable).
+func (o LookupGlobalResultOutput) InterfaceSubnetUsage() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.InterfaceSubnetUsage }).(pulumi.StringOutput)
+}
+
 // Configure which Internet Service database size to download from FortiGuard and use.
 func (o LookupGlobalResultOutput) InternetServiceDatabase() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.InternetServiceDatabase }).(pulumi.StringOutput)
 }
 
+// Configure which on-demand Internet Service IDs are to be downloaded. The structure of `internetServiceDownloadList` block is documented below.
+func (o LookupGlobalResultOutput) InternetServiceDownloadLists() GetGlobalInternetServiceDownloadListArrayOutput {
+	return o.ApplyT(func(v LookupGlobalResult) []GetGlobalInternetServiceDownloadList {
+		return v.InternetServiceDownloadLists
+	}).(GetGlobalInternetServiceDownloadListArrayOutput)
+}
+
 // Dead gateway detection interval.
 func (o LookupGlobalResultOutput) Interval() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.Interval }).(pulumi.IntOutput)
+}
+
+// Maximum memory (MB) used to reassemble IPv4/IPv6 fragments.
+func (o LookupGlobalResultOutput) IpFragmentMemThresholds() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupGlobalResult) int { return v.IpFragmentMemThresholds }).(pulumi.IntOutput)
 }
 
 // IP source port range used for traffic originating from the FortiGate unit.
@@ -1259,6 +1398,11 @@ func (o LookupGlobalResultOutput) LldpReception() pulumi.StringOutput {
 // Enable/disable Link Layer Discovery Protocol (LLDP) transmission.
 func (o LookupGlobalResultOutput) LldpTransmission() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.LldpTransmission }).(pulumi.StringOutput)
+}
+
+// Enable/disable logging the event of a single CPU core reaching CPU usage threshold.
+func (o LookupGlobalResultOutput) LogSingleCpuHigh() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.LogSingleCpuHigh }).(pulumi.StringOutput)
 }
 
 // Enable/disable logging of SSL connection events.
@@ -1426,6 +1570,11 @@ func (o LookupGlobalResultOutput) ProxyHardwareAcceleration() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.ProxyHardwareAcceleration }).(pulumi.StringOutput)
 }
 
+// Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was authenticated.
+func (o LookupGlobalResultOutput) ProxyKeepAliveMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.ProxyKeepAliveMode }).(pulumi.StringOutput)
+}
+
 // Enable/disable using the content processor to accelerate KXP traffic.
 func (o LookupGlobalResultOutput) ProxyKxpHardwareAcceleration() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.ProxyKxpHardwareAcceleration }).(pulumi.StringOutput)
@@ -1436,6 +1585,11 @@ func (o LookupGlobalResultOutput) ProxyReAuthenticationMode() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.ProxyReAuthenticationMode }).(pulumi.StringOutput)
 }
 
+// The time limit that users must re-authenticate if proxy-keep-alive-mode is set to re-authenticate (1  - 86400 sec, default=30s.
+func (o LookupGlobalResultOutput) ProxyReAuthenticationTime() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupGlobalResult) int { return v.ProxyReAuthenticationTime }).(pulumi.IntOutput)
+}
+
 // Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources.
 func (o LookupGlobalResultOutput) ProxyResourceMode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.ProxyResourceMode }).(pulumi.StringOutput)
@@ -1444,6 +1598,41 @@ func (o LookupGlobalResultOutput) ProxyResourceMode() pulumi.StringOutput {
 // Proxy worker count.
 func (o LookupGlobalResultOutput) ProxyWorkerCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.ProxyWorkerCount }).(pulumi.IntOutput)
+}
+
+// Purdue Level of this FortiGate.
+func (o LookupGlobalResultOutput) PurdueLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.PurdueLevel }).(pulumi.StringOutput)
+}
+
+// Maximum number of unacknowledged packets before sending ACK (2 - 5, default = 3).
+func (o LookupGlobalResultOutput) QuicAckThresold() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupGlobalResult) int { return v.QuicAckThresold }).(pulumi.IntOutput)
+}
+
+// QUIC congestion control algorithm (default = cubic).
+func (o LookupGlobalResultOutput) QuicCongestionControlAlgo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.QuicCongestionControlAlgo }).(pulumi.StringOutput)
+}
+
+// Maximum transmit datagram size (1200 - 1500, default = 1500).
+func (o LookupGlobalResultOutput) QuicMaxDatagramSize() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupGlobalResult) int { return v.QuicMaxDatagramSize }).(pulumi.IntOutput)
+}
+
+// Enable/disable path MTU discovery (default = enable).
+func (o LookupGlobalResultOutput) QuicPmtud() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.QuicPmtud }).(pulumi.StringOutput)
+}
+
+// Time-to-live (TTL) for TLS handshake in seconds (1 - 60, default = 5).
+func (o LookupGlobalResultOutput) QuicTlsHandshakeTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupGlobalResult) int { return v.QuicTlsHandshakeTimeout }).(pulumi.IntOutput)
+}
+
+// Enable/disable UDP payload size shaping per connection ID (default = enable).
+func (o LookupGlobalResultOutput) QuicUdpPayloadSizeShapingPerCid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.QuicUdpPayloadSizeShapingPerCid }).(pulumi.StringOutput)
 }
 
 // RADIUS service port number.
@@ -1506,6 +1695,11 @@ func (o LookupGlobalResultOutput) SendPmtuIcmp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.SendPmtuIcmp }).(pulumi.StringOutput)
 }
 
+// Maximum number of sflowd child processes allowed to run.
+func (o LookupGlobalResultOutput) SflowdMaxChildrenNum() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupGlobalResult) int { return v.SflowdMaxChildrenNum }).(pulumi.IntOutput)
+}
+
 // Enable/disable the ability to change the static NAT route.
 func (o LookupGlobalResultOutput) SnatRouteChange() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.SnatRouteChange }).(pulumi.StringOutput)
@@ -1519,6 +1713,16 @@ func (o LookupGlobalResultOutput) SpecialFile23Support() pulumi.StringOutput {
 // Enable/disable speed test server.
 func (o LookupGlobalResultOutput) SpeedtestServer() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.SpeedtestServer }).(pulumi.StringOutput)
+}
+
+// Speedtest server controller port number.
+func (o LookupGlobalResultOutput) SpeedtestdCtrlPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupGlobalResult) int { return v.SpeedtestdCtrlPort }).(pulumi.IntOutput)
+}
+
+// Speedtest server port number.
+func (o LookupGlobalResultOutput) SpeedtestdServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupGlobalResult) int { return v.SpeedtestdServerPort }).(pulumi.IntOutput)
 }
 
 // Split port(s) to multiple 10Gbps ports.
@@ -1564,6 +1768,26 @@ func (o LookupGlobalResultOutput) SshEncAlgo() pulumi.StringOutput {
 // Enable/disable HMAC-MD5 for SSH access.
 func (o LookupGlobalResultOutput) SshHmacMd5() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.SshHmacMd5 }).(pulumi.StringOutput)
+}
+
+// Config SSH host key.
+func (o LookupGlobalResultOutput) SshHostkey() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.SshHostkey }).(pulumi.StringOutput)
+}
+
+// Select one or more SSH hostkey algorithms.
+func (o LookupGlobalResultOutput) SshHostkeyAlgo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.SshHostkeyAlgo }).(pulumi.StringOutput)
+}
+
+// Enable/disable SSH host key override in SSH daemon.
+func (o LookupGlobalResultOutput) SshHostkeyOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.SshHostkeyOverride }).(pulumi.StringOutput)
+}
+
+// Password for ssh-hostkey.
+func (o LookupGlobalResultOutput) SshHostkeyPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.SshHostkeyPassword }).(pulumi.StringOutput)
 }
 
 // Select one or more SSH kex algorithms.
@@ -1621,6 +1845,11 @@ func (o LookupGlobalResultOutput) SslvpnPluginVersionCheck() pulumi.StringOutput
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.SslvpnPluginVersionCheck }).(pulumi.StringOutput)
 }
 
+// Enable/disable SSL-VPN web mode.
+func (o LookupGlobalResultOutput) SslvpnWebMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.SslvpnWebMode }).(pulumi.StringOutput)
+}
+
 // Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session.
 func (o LookupGlobalResultOutput) StrictDirtySessionCheck() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.StrictDirtySessionCheck }).(pulumi.StringOutput)
@@ -1644,6 +1873,11 @@ func (o LookupGlobalResultOutput) SwitchControllerReservedNetwork() pulumi.Strin
 // Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
 func (o LookupGlobalResultOutput) SysPerfLogInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.SysPerfLogInterval }).(pulumi.IntOutput)
+}
+
+// Affinity setting for syslog (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+func (o LookupGlobalResultOutput) SyslogAffinity() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.SyslogAffinity }).(pulumi.StringOutput)
 }
 
 // Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
@@ -1790,6 +2024,11 @@ func (o LookupGlobalResultOutput) VirtualSwitchVlan() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.VirtualSwitchVlan }).(pulumi.StringOutput)
 }
 
+// Enable/disable verification of EMS serial number in SSL-VPN and IPsec VPN connection.
+func (o LookupGlobalResultOutput) VpnEmsSnCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.VpnEmsSnCheck }).(pulumi.StringOutput)
+}
+
 // Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
 func (o LookupGlobalResultOutput) WadAffinity() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.WadAffinity }).(pulumi.StringOutput)
@@ -1808,6 +2047,21 @@ func (o LookupGlobalResultOutput) WadCsvcDbCount() pulumi.IntOutput {
 // Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
 func (o LookupGlobalResultOutput) WadMemoryChangeGranularity() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.WadMemoryChangeGranularity }).(pulumi.IntOutput)
+}
+
+// WAD workers daily restart end time (hh:mm).
+func (o LookupGlobalResultOutput) WadRestartEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.WadRestartEndTime }).(pulumi.StringOutput)
+}
+
+// WAD worker restart mode (default = none).
+func (o LookupGlobalResultOutput) WadRestartMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.WadRestartMode }).(pulumi.StringOutput)
+}
+
+// WAD workers daily restart time (hh:mm).
+func (o LookupGlobalResultOutput) WadRestartStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.WadRestartStartTime }).(pulumi.StringOutput)
 }
 
 // Enable/disable dispatching traffic to WAD workers based on source affinity.

@@ -109,6 +109,8 @@ type LookupInterfaceResult struct {
 	Color int `pulumi:"color"`
 	// Configure interface for single purpose.
 	DedicatedTo string `pulumi:"dedicatedTo"`
+	// default purdue level of device detected on this interface.
+	DefaultPurdueLevel string `pulumi:"defaultPurdueLevel"`
 	// Enable to get the gateway IP from the DHCP or PPPoE server.
 	Defaultgw string `pulumi:"defaultgw"`
 	// Description.
@@ -131,12 +133,16 @@ type LookupInterfaceResult struct {
 	DeviceUserIdentification string `pulumi:"deviceUserIdentification"`
 	// Device Index.
 	Devindex int `pulumi:"devindex"`
+	// Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable).
+	DhcpBroadcastFlag string `pulumi:"dhcpBroadcastFlag"`
 	// Enable/disable addition of classless static routes retrieved from DHCP server.
 	DhcpClasslessRouteAddition string `pulumi:"dhcpClasslessRouteAddition"`
 	// DHCP client identifier.
 	DhcpClientIdentifier string `pulumi:"dhcpClientIdentifier"`
 	// Enable/disable DHCP relay agent option.
 	DhcpRelayAgentOption string `pulumi:"dhcpRelayAgentOption"`
+	// DHCP relay circuit ID.
+	DhcpRelayCircuitId string `pulumi:"dhcpRelayCircuitId"`
 	// Specify outgoing interface to reach server.
 	DhcpRelayInterface string `pulumi:"dhcpRelayInterface"`
 	// Specify how to select outgoing interface to reach server.
@@ -149,10 +155,14 @@ type LookupInterfaceResult struct {
 	DhcpRelayRequestAllServer string `pulumi:"dhcpRelayRequestAllServer"`
 	// Enable/disable allowing this interface to act as a DHCP relay.
 	DhcpRelayService string `pulumi:"dhcpRelayService"`
+	// IP address used by the DHCP relay as its source IP.
+	DhcpRelaySourceIp string `pulumi:"dhcpRelaySourceIp"`
 	// DHCP relay type (regular or IPsec).
 	DhcpRelayType string `pulumi:"dhcpRelayType"`
 	// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 	DhcpRenewTime int `pulumi:"dhcpRenewTime"`
+	// Enable/disable DHCP smart relay.
+	DhcpSmartRelay string `pulumi:"dhcpSmartRelay"`
 	// Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
 	DhcpSnoopingServerLists []GetInterfaceDhcpSnoopingServerList `pulumi:"dhcpSnoopingServerLists"`
 	// Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
@@ -449,6 +459,12 @@ type LookupInterfaceResult struct {
 	SwitchControllerNac string `pulumi:"switchControllerNac"`
 	// NetFlow collection and processing.
 	SwitchControllerNetflowCollect string `pulumi:"switchControllerNetflowCollect"`
+	// Enable/disable managed FortiSwitch routing offload.
+	SwitchControllerOffload string `pulumi:"switchControllerOffload"`
+	// Enable/disable managed FortiSwitch routing offload gateway.
+	SwitchControllerOffloadGw string `pulumi:"switchControllerOffloadGw"`
+	// IP for routing offload on FortiSwitch.
+	SwitchControllerOffloadIp string `pulumi:"switchControllerOffloadIp"`
 	// Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface.
 	SwitchControllerRspanMode string `pulumi:"switchControllerRspanMode"`
 	// Source IP address used in FortiLink over L3 connections.
@@ -666,6 +682,11 @@ func (o LookupInterfaceResultOutput) DedicatedTo() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInterfaceResult) string { return v.DedicatedTo }).(pulumi.StringOutput)
 }
 
+// default purdue level of device detected on this interface.
+func (o LookupInterfaceResultOutput) DefaultPurdueLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInterfaceResult) string { return v.DefaultPurdueLevel }).(pulumi.StringOutput)
+}
+
 // Enable to get the gateway IP from the DHCP or PPPoE server.
 func (o LookupInterfaceResultOutput) Defaultgw() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInterfaceResult) string { return v.Defaultgw }).(pulumi.StringOutput)
@@ -721,6 +742,11 @@ func (o LookupInterfaceResultOutput) Devindex() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupInterfaceResult) int { return v.Devindex }).(pulumi.IntOutput)
 }
 
+// Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable).
+func (o LookupInterfaceResultOutput) DhcpBroadcastFlag() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInterfaceResult) string { return v.DhcpBroadcastFlag }).(pulumi.StringOutput)
+}
+
 // Enable/disable addition of classless static routes retrieved from DHCP server.
 func (o LookupInterfaceResultOutput) DhcpClasslessRouteAddition() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInterfaceResult) string { return v.DhcpClasslessRouteAddition }).(pulumi.StringOutput)
@@ -734,6 +760,11 @@ func (o LookupInterfaceResultOutput) DhcpClientIdentifier() pulumi.StringOutput 
 // Enable/disable DHCP relay agent option.
 func (o LookupInterfaceResultOutput) DhcpRelayAgentOption() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInterfaceResult) string { return v.DhcpRelayAgentOption }).(pulumi.StringOutput)
+}
+
+// DHCP relay circuit ID.
+func (o LookupInterfaceResultOutput) DhcpRelayCircuitId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInterfaceResult) string { return v.DhcpRelayCircuitId }).(pulumi.StringOutput)
 }
 
 // Specify outgoing interface to reach server.
@@ -766,6 +797,11 @@ func (o LookupInterfaceResultOutput) DhcpRelayService() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInterfaceResult) string { return v.DhcpRelayService }).(pulumi.StringOutput)
 }
 
+// IP address used by the DHCP relay as its source IP.
+func (o LookupInterfaceResultOutput) DhcpRelaySourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInterfaceResult) string { return v.DhcpRelaySourceIp }).(pulumi.StringOutput)
+}
+
 // DHCP relay type (regular or IPsec).
 func (o LookupInterfaceResultOutput) DhcpRelayType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInterfaceResult) string { return v.DhcpRelayType }).(pulumi.StringOutput)
@@ -774,6 +810,11 @@ func (o LookupInterfaceResultOutput) DhcpRelayType() pulumi.StringOutput {
 // DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 func (o LookupInterfaceResultOutput) DhcpRenewTime() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupInterfaceResult) int { return v.DhcpRenewTime }).(pulumi.IntOutput)
+}
+
+// Enable/disable DHCP smart relay.
+func (o LookupInterfaceResultOutput) DhcpSmartRelay() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInterfaceResult) string { return v.DhcpSmartRelay }).(pulumi.StringOutput)
 }
 
 // Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
@@ -1514,6 +1555,21 @@ func (o LookupInterfaceResultOutput) SwitchControllerNac() pulumi.StringOutput {
 // NetFlow collection and processing.
 func (o LookupInterfaceResultOutput) SwitchControllerNetflowCollect() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInterfaceResult) string { return v.SwitchControllerNetflowCollect }).(pulumi.StringOutput)
+}
+
+// Enable/disable managed FortiSwitch routing offload.
+func (o LookupInterfaceResultOutput) SwitchControllerOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInterfaceResult) string { return v.SwitchControllerOffload }).(pulumi.StringOutput)
+}
+
+// Enable/disable managed FortiSwitch routing offload gateway.
+func (o LookupInterfaceResultOutput) SwitchControllerOffloadGw() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInterfaceResult) string { return v.SwitchControllerOffloadGw }).(pulumi.StringOutput)
+}
+
+// IP for routing offload on FortiSwitch.
+func (o LookupInterfaceResultOutput) SwitchControllerOffloadIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInterfaceResult) string { return v.SwitchControllerOffloadIp }).(pulumi.StringOutput)
 }
 
 // Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface.

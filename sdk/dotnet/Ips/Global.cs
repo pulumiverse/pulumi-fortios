@@ -72,6 +72,12 @@ namespace Pulumiverse.Fortios.Ips
         public Output<string> AnomalyMode { get; private set; } = null!;
 
         /// <summary>
+        /// Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+        /// </summary>
+        [Output("avMemLimit")]
+        public Output<int> AvMemLimit { get; private set; } = null!;
+
+        /// <summary>
         /// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
         /// </summary>
         [Output("cpAccelMode")]
@@ -84,7 +90,7 @@ namespace Pulumiverse.Fortios.Ips
         public Output<string> Database { get; private set; } = null!;
 
         /// <summary>
-        /// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+        /// Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
         /// </summary>
         [Output("deepAppInspDbLimit")]
         public Output<int> DeepAppInspDbLimit { get; private set; } = null!;
@@ -102,7 +108,7 @@ namespace Pulumiverse.Fortios.Ips
         public Output<int> EngineCount { get; private set; } = null!;
 
         /// <summary>
-        /// Excluded signatures. Valid values: `none`, `industrial`.
+        /// Excluded signatures.
         /// </summary>
         [Output("excludeSignatures")]
         public Output<string> ExcludeSignatures { get; private set; } = null!;
@@ -112,6 +118,12 @@ namespace Pulumiverse.Fortios.Ips
         /// </summary>
         [Output("failOpen")]
         public Output<string> FailOpen { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
@@ -156,7 +168,7 @@ namespace Pulumiverse.Fortios.Ips
         public Output<string?> SkypeClientPublicIpaddr { get; private set; } = null!;
 
         /// <summary>
-        /// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+        /// IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
         /// </summary>
         [Output("socketSize")]
         public Output<int> SocketSize { get; private set; } = null!;
@@ -239,6 +251,12 @@ namespace Pulumiverse.Fortios.Ips
         public Input<string>? AnomalyMode { get; set; }
 
         /// <summary>
+        /// Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+        /// </summary>
+        [Input("avMemLimit")]
+        public Input<int>? AvMemLimit { get; set; }
+
+        /// <summary>
         /// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
         /// </summary>
         [Input("cpAccelMode")]
@@ -251,7 +269,7 @@ namespace Pulumiverse.Fortios.Ips
         public Input<string>? Database { get; set; }
 
         /// <summary>
-        /// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+        /// Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
         /// </summary>
         [Input("deepAppInspDbLimit")]
         public Input<int>? DeepAppInspDbLimit { get; set; }
@@ -269,7 +287,7 @@ namespace Pulumiverse.Fortios.Ips
         public Input<int>? EngineCount { get; set; }
 
         /// <summary>
-        /// Excluded signatures. Valid values: `none`, `industrial`.
+        /// Excluded signatures.
         /// </summary>
         [Input("excludeSignatures")]
         public Input<string>? ExcludeSignatures { get; set; }
@@ -279,6 +297,12 @@ namespace Pulumiverse.Fortios.Ips
         /// </summary>
         [Input("failOpen")]
         public Input<string>? FailOpen { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
@@ -323,7 +347,7 @@ namespace Pulumiverse.Fortios.Ips
         public Input<string>? SkypeClientPublicIpaddr { get; set; }
 
         /// <summary>
-        /// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+        /// IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
         /// </summary>
         [Input("socketSize")]
         public Input<int>? SocketSize { get; set; }
@@ -367,6 +391,12 @@ namespace Pulumiverse.Fortios.Ips
         public Input<string>? AnomalyMode { get; set; }
 
         /// <summary>
+        /// Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+        /// </summary>
+        [Input("avMemLimit")]
+        public Input<int>? AvMemLimit { get; set; }
+
+        /// <summary>
         /// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
         /// </summary>
         [Input("cpAccelMode")]
@@ -379,7 +409,7 @@ namespace Pulumiverse.Fortios.Ips
         public Input<string>? Database { get; set; }
 
         /// <summary>
-        /// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+        /// Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
         /// </summary>
         [Input("deepAppInspDbLimit")]
         public Input<int>? DeepAppInspDbLimit { get; set; }
@@ -397,7 +427,7 @@ namespace Pulumiverse.Fortios.Ips
         public Input<int>? EngineCount { get; set; }
 
         /// <summary>
-        /// Excluded signatures. Valid values: `none`, `industrial`.
+        /// Excluded signatures.
         /// </summary>
         [Input("excludeSignatures")]
         public Input<string>? ExcludeSignatures { get; set; }
@@ -407,6 +437,12 @@ namespace Pulumiverse.Fortios.Ips
         /// </summary>
         [Input("failOpen")]
         public Input<string>? FailOpen { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
@@ -451,7 +487,7 @@ namespace Pulumiverse.Fortios.Ips
         public Input<string>? SkypeClientPublicIpaddr { get; set; }
 
         /// <summary>
-        /// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+        /// IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
         /// </summary>
         [Input("socketSize")]
         public Input<int>? SocketSize { get; set; }

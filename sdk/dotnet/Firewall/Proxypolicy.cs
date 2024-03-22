@@ -146,6 +146,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> BlockNotification { get; private set; } = null!;
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Output("casbProfile")]
+        public Output<string> CasbProfile { get; private set; } = null!;
+
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         [Output("cifsProfile")]
@@ -164,10 +170,22 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> DecryptedTrafficMirror { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("detectHttpsInHttpRequest")]
+        public Output<string> DetectHttpsInHttpRequest { get; private set; } = null!;
+
+        /// <summary>
         /// When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("deviceOwnership")]
         public Output<string> DeviceOwnership { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        [Output("diameterFilterProfile")]
+        public Output<string> DiameterFilterProfile { get; private set; } = null!;
 
         /// <summary>
         /// Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
@@ -230,6 +248,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> FileFilterProfile { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Global web-based manager visible label.
         /// </summary>
         [Output("globalLabel")]
@@ -258,6 +282,42 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("internetService")]
         public Output<string> InternetService { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("internetService6")]
+        public Output<string> InternetService6 { get; private set; } = null!;
+
+        /// <summary>
+        /// Custom Internet Service IPv6 group name. The structure of `internet_service6_custom_group` block is documented below.
+        /// </summary>
+        [Output("internetService6CustomGroups")]
+        public Output<ImmutableArray<Outputs.ProxypolicyInternetService6CustomGroup>> InternetService6CustomGroups { get; private set; } = null!;
+
+        /// <summary>
+        /// Custom Internet Service IPv6 name. The structure of `internet_service6_custom` block is documented below.
+        /// </summary>
+        [Output("internetService6Customs")]
+        public Output<ImmutableArray<Outputs.ProxypolicyInternetService6Custom>> InternetService6Customs { get; private set; } = null!;
+
+        /// <summary>
+        /// Internet Service IPv6 group name. The structure of `internet_service6_group` block is documented below.
+        /// </summary>
+        [Output("internetService6Groups")]
+        public Output<ImmutableArray<Outputs.ProxypolicyInternetService6Group>> InternetService6Groups { get; private set; } = null!;
+
+        /// <summary>
+        /// Internet Service IPv6 name. The structure of `internet_service6_name` block is documented below.
+        /// </summary>
+        [Output("internetService6Names")]
+        public Output<ImmutableArray<Outputs.ProxypolicyInternetService6Name>> InternetService6Names { get; private set; } = null!;
+
+        /// <summary>
+        /// When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("internetService6Negate")]
+        public Output<string> InternetService6Negate { get; private set; } = null!;
 
         /// <summary>
         /// Custom Internet Service group name. The structure of `internet_service_custom_group` block is documented below.
@@ -300,6 +360,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("ipsSensor")]
         public Output<string> IpsSensor { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        [Output("ipsVoipFilter")]
+        public Output<string> IpsVoipFilter { get; private set; } = null!;
 
         /// <summary>
         /// VDOM-specific GUI visible label.
@@ -500,6 +566,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> VideofilterProfile { get; private set; } = null!;
 
         /// <summary>
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        [Output("virtualPatchProfile")]
+        public Output<string> VirtualPatchProfile { get; private set; } = null!;
+
+        /// <summary>
         /// Name of an existing VoIP profile.
         /// </summary>
         [Output("voipProfile")]
@@ -649,6 +721,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? BlockNotification { get; set; }
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Input("casbProfile")]
+        public Input<string>? CasbProfile { get; set; }
+
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         [Input("cifsProfile")]
@@ -667,10 +745,22 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? DecryptedTrafficMirror { get; set; }
 
         /// <summary>
+        /// Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("detectHttpsInHttpRequest")]
+        public Input<string>? DetectHttpsInHttpRequest { get; set; }
+
+        /// <summary>
         /// When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("deviceOwnership")]
         public Input<string>? DeviceOwnership { get; set; }
+
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        [Input("diameterFilterProfile")]
+        public Input<string>? DiameterFilterProfile { get; set; }
 
         /// <summary>
         /// Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
@@ -751,6 +841,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? FileFilterProfile { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Global web-based manager visible label.
         /// </summary>
         [Input("globalLabel")]
@@ -785,6 +881,66 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("internetService")]
         public Input<string>? InternetService { get; set; }
+
+        /// <summary>
+        /// Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("internetService6")]
+        public Input<string>? InternetService6 { get; set; }
+
+        [Input("internetService6CustomGroups")]
+        private InputList<Inputs.ProxypolicyInternetService6CustomGroupArgs>? _internetService6CustomGroups;
+
+        /// <summary>
+        /// Custom Internet Service IPv6 group name. The structure of `internet_service6_custom_group` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ProxypolicyInternetService6CustomGroupArgs> InternetService6CustomGroups
+        {
+            get => _internetService6CustomGroups ?? (_internetService6CustomGroups = new InputList<Inputs.ProxypolicyInternetService6CustomGroupArgs>());
+            set => _internetService6CustomGroups = value;
+        }
+
+        [Input("internetService6Customs")]
+        private InputList<Inputs.ProxypolicyInternetService6CustomArgs>? _internetService6Customs;
+
+        /// <summary>
+        /// Custom Internet Service IPv6 name. The structure of `internet_service6_custom` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ProxypolicyInternetService6CustomArgs> InternetService6Customs
+        {
+            get => _internetService6Customs ?? (_internetService6Customs = new InputList<Inputs.ProxypolicyInternetService6CustomArgs>());
+            set => _internetService6Customs = value;
+        }
+
+        [Input("internetService6Groups")]
+        private InputList<Inputs.ProxypolicyInternetService6GroupArgs>? _internetService6Groups;
+
+        /// <summary>
+        /// Internet Service IPv6 group name. The structure of `internet_service6_group` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ProxypolicyInternetService6GroupArgs> InternetService6Groups
+        {
+            get => _internetService6Groups ?? (_internetService6Groups = new InputList<Inputs.ProxypolicyInternetService6GroupArgs>());
+            set => _internetService6Groups = value;
+        }
+
+        [Input("internetService6Names")]
+        private InputList<Inputs.ProxypolicyInternetService6NameArgs>? _internetService6Names;
+
+        /// <summary>
+        /// Internet Service IPv6 name. The structure of `internet_service6_name` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ProxypolicyInternetService6NameArgs> InternetService6Names
+        {
+            get => _internetService6Names ?? (_internetService6Names = new InputList<Inputs.ProxypolicyInternetService6NameArgs>());
+            set => _internetService6Names = value;
+        }
+
+        /// <summary>
+        /// When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("internetService6Negate")]
+        public Input<string>? InternetService6Negate { get; set; }
 
         [Input("internetServiceCustomGroups")]
         private InputList<Inputs.ProxypolicyInternetServiceCustomGroupArgs>? _internetServiceCustomGroups;
@@ -857,6 +1013,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("ipsSensor")]
         public Input<string>? IpsSensor { get; set; }
+
+        /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        [Input("ipsVoipFilter")]
+        public Input<string>? IpsVoipFilter { get; set; }
 
         /// <summary>
         /// VDOM-specific GUI visible label.
@@ -1093,6 +1255,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? VideofilterProfile { get; set; }
 
         /// <summary>
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        [Input("virtualPatchProfile")]
+        public Input<string>? VirtualPatchProfile { get; set; }
+
+        /// <summary>
         /// Name of an existing VoIP profile.
         /// </summary>
         [Input("voipProfile")]
@@ -1209,6 +1377,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? BlockNotification { get; set; }
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Input("casbProfile")]
+        public Input<string>? CasbProfile { get; set; }
+
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         [Input("cifsProfile")]
@@ -1227,10 +1401,22 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? DecryptedTrafficMirror { get; set; }
 
         /// <summary>
+        /// Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("detectHttpsInHttpRequest")]
+        public Input<string>? DetectHttpsInHttpRequest { get; set; }
+
+        /// <summary>
         /// When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("deviceOwnership")]
         public Input<string>? DeviceOwnership { get; set; }
+
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        [Input("diameterFilterProfile")]
+        public Input<string>? DiameterFilterProfile { get; set; }
 
         /// <summary>
         /// Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
@@ -1311,6 +1497,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? FileFilterProfile { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Global web-based manager visible label.
         /// </summary>
         [Input("globalLabel")]
@@ -1345,6 +1537,66 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("internetService")]
         public Input<string>? InternetService { get; set; }
+
+        /// <summary>
+        /// Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("internetService6")]
+        public Input<string>? InternetService6 { get; set; }
+
+        [Input("internetService6CustomGroups")]
+        private InputList<Inputs.ProxypolicyInternetService6CustomGroupGetArgs>? _internetService6CustomGroups;
+
+        /// <summary>
+        /// Custom Internet Service IPv6 group name. The structure of `internet_service6_custom_group` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ProxypolicyInternetService6CustomGroupGetArgs> InternetService6CustomGroups
+        {
+            get => _internetService6CustomGroups ?? (_internetService6CustomGroups = new InputList<Inputs.ProxypolicyInternetService6CustomGroupGetArgs>());
+            set => _internetService6CustomGroups = value;
+        }
+
+        [Input("internetService6Customs")]
+        private InputList<Inputs.ProxypolicyInternetService6CustomGetArgs>? _internetService6Customs;
+
+        /// <summary>
+        /// Custom Internet Service IPv6 name. The structure of `internet_service6_custom` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ProxypolicyInternetService6CustomGetArgs> InternetService6Customs
+        {
+            get => _internetService6Customs ?? (_internetService6Customs = new InputList<Inputs.ProxypolicyInternetService6CustomGetArgs>());
+            set => _internetService6Customs = value;
+        }
+
+        [Input("internetService6Groups")]
+        private InputList<Inputs.ProxypolicyInternetService6GroupGetArgs>? _internetService6Groups;
+
+        /// <summary>
+        /// Internet Service IPv6 group name. The structure of `internet_service6_group` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ProxypolicyInternetService6GroupGetArgs> InternetService6Groups
+        {
+            get => _internetService6Groups ?? (_internetService6Groups = new InputList<Inputs.ProxypolicyInternetService6GroupGetArgs>());
+            set => _internetService6Groups = value;
+        }
+
+        [Input("internetService6Names")]
+        private InputList<Inputs.ProxypolicyInternetService6NameGetArgs>? _internetService6Names;
+
+        /// <summary>
+        /// Internet Service IPv6 name. The structure of `internet_service6_name` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ProxypolicyInternetService6NameGetArgs> InternetService6Names
+        {
+            get => _internetService6Names ?? (_internetService6Names = new InputList<Inputs.ProxypolicyInternetService6NameGetArgs>());
+            set => _internetService6Names = value;
+        }
+
+        /// <summary>
+        /// When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("internetService6Negate")]
+        public Input<string>? InternetService6Negate { get; set; }
 
         [Input("internetServiceCustomGroups")]
         private InputList<Inputs.ProxypolicyInternetServiceCustomGroupGetArgs>? _internetServiceCustomGroups;
@@ -1417,6 +1669,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("ipsSensor")]
         public Input<string>? IpsSensor { get; set; }
+
+        /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        [Input("ipsVoipFilter")]
+        public Input<string>? IpsVoipFilter { get; set; }
 
         /// <summary>
         /// VDOM-specific GUI visible label.
@@ -1651,6 +1909,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("videofilterProfile")]
         public Input<string>? VideofilterProfile { get; set; }
+
+        /// <summary>
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        [Input("virtualPatchProfile")]
+        public Input<string>? VirtualPatchProfile { get; set; }
 
         /// <summary>
         /// Name of an existing VoIP profile.

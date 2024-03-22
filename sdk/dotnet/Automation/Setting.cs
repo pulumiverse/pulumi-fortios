@@ -35,6 +35,12 @@ namespace Pulumiverse.Fortios.Automation
     public partial class Setting : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("fabricSync")]
+        public Output<string> FabricSync { get; private set; } = null!;
+
+        /// <summary>
         /// Maximum number of automation stitches that are allowed to run concurrently.
         /// </summary>
         [Output("maxConcurrentStitches")]
@@ -94,6 +100,12 @@ namespace Pulumiverse.Fortios.Automation
     public sealed class SettingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("fabricSync")]
+        public Input<string>? FabricSync { get; set; }
+
+        /// <summary>
         /// Maximum number of automation stitches that are allowed to run concurrently.
         /// </summary>
         [Input("maxConcurrentStitches")]
@@ -113,6 +125,12 @@ namespace Pulumiverse.Fortios.Automation
 
     public sealed class SettingState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("fabricSync")]
+        public Input<string>? FabricSync { get; set; }
+
         /// <summary>
         /// Maximum number of automation stitches that are allowed to run concurrently.
         /// </summary>

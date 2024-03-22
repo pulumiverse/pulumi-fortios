@@ -22,7 +22,7 @@ class GetProxyaddressResult:
     """
     A collection of values returned by getProxyaddress.
     """
-    def __init__(__self__, applications=None, case_sensitivity=None, categories=None, color=None, comment=None, header=None, header_groups=None, header_name=None, host=None, host_regex=None, id=None, method=None, name=None, path=None, query=None, referrer=None, taggings=None, type=None, ua=None, uuid=None, vdomparam=None, visibility=None):
+    def __init__(__self__, applications=None, case_sensitivity=None, categories=None, color=None, comment=None, header=None, header_groups=None, header_name=None, host=None, host_regex=None, id=None, method=None, name=None, path=None, query=None, referrer=None, taggings=None, type=None, ua=None, ua_max_ver=None, ua_min_ver=None, uuid=None, vdomparam=None, visibility=None):
         if applications and not isinstance(applications, list):
             raise TypeError("Expected argument 'applications' to be a list")
         pulumi.set(__self__, "applications", applications)
@@ -80,6 +80,12 @@ class GetProxyaddressResult:
         if ua and not isinstance(ua, str):
             raise TypeError("Expected argument 'ua' to be a str")
         pulumi.set(__self__, "ua", ua)
+        if ua_max_ver and not isinstance(ua_max_ver, str):
+            raise TypeError("Expected argument 'ua_max_ver' to be a str")
+        pulumi.set(__self__, "ua_max_ver", ua_max_ver)
+        if ua_min_ver and not isinstance(ua_min_ver, str):
+            raise TypeError("Expected argument 'ua_min_ver' to be a str")
+        pulumi.set(__self__, "ua_min_ver", ua_min_ver)
         if uuid and not isinstance(uuid, str):
             raise TypeError("Expected argument 'uuid' to be a str")
         pulumi.set(__self__, "uuid", uuid)
@@ -243,6 +249,22 @@ class GetProxyaddressResult:
         return pulumi.get(self, "ua")
 
     @property
+    @pulumi.getter(name="uaMaxVer")
+    def ua_max_ver(self) -> str:
+        """
+        Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+        """
+        return pulumi.get(self, "ua_max_ver")
+
+    @property
+    @pulumi.getter(name="uaMinVer")
+    def ua_min_ver(self) -> str:
+        """
+        Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+        """
+        return pulumi.get(self, "ua_min_ver")
+
+    @property
     @pulumi.getter
     def uuid(self) -> str:
         """
@@ -289,6 +311,8 @@ class AwaitableGetProxyaddressResult(GetProxyaddressResult):
             taggings=self.taggings,
             type=self.type,
             ua=self.ua,
+            ua_max_ver=self.ua_max_ver,
+            ua_min_ver=self.ua_min_ver,
             uuid=self.uuid,
             vdomparam=self.vdomparam,
             visibility=self.visibility)
@@ -330,6 +354,8 @@ def get_proxyaddress(name: Optional[str] = None,
         taggings=pulumi.get(__ret__, 'taggings'),
         type=pulumi.get(__ret__, 'type'),
         ua=pulumi.get(__ret__, 'ua'),
+        ua_max_ver=pulumi.get(__ret__, 'ua_max_ver'),
+        ua_min_ver=pulumi.get(__ret__, 'ua_min_ver'),
         uuid=pulumi.get(__ret__, 'uuid'),
         vdomparam=pulumi.get(__ret__, 'vdomparam'),
         visibility=pulumi.get(__ret__, 'visibility'))

@@ -123,6 +123,10 @@ export class Custom extends pulumi.CustomResource {
      */
     public readonly fqdn!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Helper name.
      */
     public readonly helper!: pulumi.Output<string>;
@@ -183,13 +187,17 @@ export class Custom extends pulumi.CustomResource {
      */
     public readonly tcpTimewaitTimer!: pulumi.Output<number>;
     /**
-     * UDP half close timeout (0 - 86400 sec, 0 = default).
+     * Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
      */
     public readonly udpIdleTimer!: pulumi.Output<number>;
     /**
      * Multiple UDP port ranges.
      */
     public readonly udpPortrange!: pulumi.Output<string>;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    public readonly uuid!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -222,6 +230,7 @@ export class Custom extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["helper"] = state ? state.helper : undefined;
             resourceInputs["icmpcode"] = state ? state.icmpcode : undefined;
             resourceInputs["icmptype"] = state ? state.icmptype : undefined;
@@ -239,6 +248,7 @@ export class Custom extends pulumi.CustomResource {
             resourceInputs["tcpTimewaitTimer"] = state ? state.tcpTimewaitTimer : undefined;
             resourceInputs["udpIdleTimer"] = state ? state.udpIdleTimer : undefined;
             resourceInputs["udpPortrange"] = state ? state.udpPortrange : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["visibility"] = state ? state.visibility : undefined;
         } else {
@@ -253,6 +263,7 @@ export class Custom extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
             resourceInputs["fqdn"] = args ? args.fqdn : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["helper"] = args ? args.helper : undefined;
             resourceInputs["icmpcode"] = args ? args.icmpcode : undefined;
             resourceInputs["icmptype"] = args ? args.icmptype : undefined;
@@ -270,6 +281,7 @@ export class Custom extends pulumi.CustomResource {
             resourceInputs["tcpTimewaitTimer"] = args ? args.tcpTimewaitTimer : undefined;
             resourceInputs["udpIdleTimer"] = args ? args.udpIdleTimer : undefined;
             resourceInputs["udpPortrange"] = args ? args.udpPortrange : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["visibility"] = args ? args.visibility : undefined;
         }
@@ -322,6 +334,10 @@ export interface CustomState {
      * Fully qualified domain name.
      */
     fqdn?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Helper name.
      */
@@ -383,13 +399,17 @@ export interface CustomState {
      */
     tcpTimewaitTimer?: pulumi.Input<number>;
     /**
-     * UDP half close timeout (0 - 86400 sec, 0 = default).
+     * Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
      */
     udpIdleTimer?: pulumi.Input<number>;
     /**
      * Multiple UDP port ranges.
      */
     udpPortrange?: pulumi.Input<string>;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    uuid?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -445,6 +465,10 @@ export interface CustomArgs {
      */
     fqdn?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Helper name.
      */
     helper?: pulumi.Input<string>;
@@ -505,13 +529,17 @@ export interface CustomArgs {
      */
     tcpTimewaitTimer?: pulumi.Input<number>;
     /**
-     * UDP half close timeout (0 - 86400 sec, 0 = default).
+     * Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
      */
     udpIdleTimer?: pulumi.Input<number>;
     /**
      * Multiple UDP port ranges.
      */
     udpPortrange?: pulumi.Input<string>;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    uuid?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

@@ -35,6 +35,12 @@ namespace Pulumiverse.Fortios.System
     public partial class Speedtestschedule : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Port of the controller to get access token.
+        /// </summary>
+        [Output("ctrlPort")]
+        public Output<int> CtrlPort { get; private set; } = null!;
+
+        /// <summary>
         /// DSCP used for speed test.
         /// </summary>
         [Output("diffserv")]
@@ -53,10 +59,22 @@ namespace Pulumiverse.Fortios.System
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Interface name.
         /// </summary>
         [Output("interface")]
         public Output<string> Interface { get; private set; } = null!;
+
+        /// <summary>
+        /// Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+        /// </summary>
+        [Output("mode")]
+        public Output<string> Mode { get; private set; } = null!;
 
         /// <summary>
         /// Schedules for the interface. The structure of `schedules` block is documented below.
@@ -69,6 +87,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("serverName")]
         public Output<string> ServerName { get; private set; } = null!;
+
+        /// <summary>
+        /// Port of the server to run speed test.
+        /// </summary>
+        [Output("serverPort")]
+        public Output<int> ServerPort { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
@@ -111,6 +135,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("updateOutbandwidthMinimum")]
         public Output<int> UpdateOutbandwidthMinimum { get; private set; } = null!;
+
+        /// <summary>
+        /// Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+        /// </summary>
+        [Output("updateShaper")]
+        public Output<string> UpdateShaper { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -166,6 +196,12 @@ namespace Pulumiverse.Fortios.System
     public sealed class SpeedtestscheduleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Port of the controller to get access token.
+        /// </summary>
+        [Input("ctrlPort")]
+        public Input<int>? CtrlPort { get; set; }
+
+        /// <summary>
         /// DSCP used for speed test.
         /// </summary>
         [Input("diffserv")]
@@ -184,10 +220,22 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Interface name.
         /// </summary>
         [Input("interface")]
         public Input<string>? Interface { get; set; }
+
+        /// <summary>
+        /// Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+        /// </summary>
+        [Input("mode")]
+        public Input<string>? Mode { get; set; }
 
         [Input("schedules")]
         private InputList<Inputs.SpeedtestscheduleScheduleArgs>? _schedules;
@@ -208,6 +256,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ServerName { get; set; }
 
         /// <summary>
+        /// Port of the server to run speed test.
+        /// </summary>
+        [Input("serverPort")]
+        public Input<int>? ServerPort { get; set; }
+
+        /// <summary>
         /// Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("status")]
@@ -250,6 +304,12 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? UpdateOutbandwidthMinimum { get; set; }
 
         /// <summary>
+        /// Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+        /// </summary>
+        [Input("updateShaper")]
+        public Input<string>? UpdateShaper { get; set; }
+
+        /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Input("vdomparam")]
@@ -263,6 +323,12 @@ namespace Pulumiverse.Fortios.System
 
     public sealed class SpeedtestscheduleState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Port of the controller to get access token.
+        /// </summary>
+        [Input("ctrlPort")]
+        public Input<int>? CtrlPort { get; set; }
+
         /// <summary>
         /// DSCP used for speed test.
         /// </summary>
@@ -282,10 +348,22 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Interface name.
         /// </summary>
         [Input("interface")]
         public Input<string>? Interface { get; set; }
+
+        /// <summary>
+        /// Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+        /// </summary>
+        [Input("mode")]
+        public Input<string>? Mode { get; set; }
 
         [Input("schedules")]
         private InputList<Inputs.SpeedtestscheduleScheduleGetArgs>? _schedules;
@@ -306,6 +384,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ServerName { get; set; }
 
         /// <summary>
+        /// Port of the server to run speed test.
+        /// </summary>
+        [Input("serverPort")]
+        public Input<int>? ServerPort { get; set; }
+
+        /// <summary>
         /// Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("status")]
@@ -346,6 +430,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("updateOutbandwidthMinimum")]
         public Input<int>? UpdateOutbandwidthMinimum { get; set; }
+
+        /// <summary>
+        /// Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+        /// </summary>
+        [Input("updateShaper")]
+        public Input<string>? UpdateShaper { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

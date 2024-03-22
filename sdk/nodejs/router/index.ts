@@ -45,6 +45,11 @@ export type Communitylist = import("./communitylist").Communitylist;
 export const Communitylist: typeof import("./communitylist").Communitylist = null as any;
 utilities.lazyLoad(exports, ["Communitylist"], () => require("./communitylist"));
 
+export { ExtcommunitylistArgs, ExtcommunitylistState } from "./extcommunitylist";
+export type Extcommunitylist = import("./extcommunitylist").Extcommunitylist;
+export const Extcommunitylist: typeof import("./extcommunitylist").Extcommunitylist = null as any;
+utilities.lazyLoad(exports, ["Extcommunitylist"], () => require("./extcommunitylist"));
+
 export { GetAccesslistArgs, GetAccesslistResult, GetAccesslistOutputArgs } from "./getAccesslist";
 export const getAccesslist: typeof import("./getAccesslist").getAccesslist = null as any;
 export const getAccesslistOutput: typeof import("./getAccesslist").getAccesslistOutput = null as any;
@@ -357,6 +362,8 @@ const _module = {
                 return new Bgp(name, <any>undefined, { urn })
             case "fortios:router/communitylist:Communitylist":
                 return new Communitylist(name, <any>undefined, { urn })
+            case "fortios:router/extcommunitylist:Extcommunitylist":
+                return new Extcommunitylist(name, <any>undefined, { urn })
             case "fortios:router/isis:Isis":
                 return new Isis(name, <any>undefined, { urn })
             case "fortios:router/keychain:Keychain":
@@ -404,6 +411,7 @@ pulumi.runtime.registerResourceModule("fortios", "router/bfd", _module)
 pulumi.runtime.registerResourceModule("fortios", "router/bfd6", _module)
 pulumi.runtime.registerResourceModule("fortios", "router/bgp", _module)
 pulumi.runtime.registerResourceModule("fortios", "router/communitylist", _module)
+pulumi.runtime.registerResourceModule("fortios", "router/extcommunitylist", _module)
 pulumi.runtime.registerResourceModule("fortios", "router/isis", _module)
 pulumi.runtime.registerResourceModule("fortios", "router/keychain", _module)
 pulumi.runtime.registerResourceModule("fortios", "router/multicast", _module)

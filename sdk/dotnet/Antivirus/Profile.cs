@@ -83,13 +83,13 @@ namespace Pulumiverse.Fortios.Antivirus
         public Output<string> AnalyticsDb { get; private set; } = null!;
 
         /// <summary>
-        /// Do not submit files matching this DLP file-pattern to FortiSandbox.
+        /// Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
         /// </summary>
         [Output("analyticsIgnoreFiletype")]
         public Output<int> AnalyticsIgnoreFiletype { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+        /// Maximum size of files that can be uploaded to FortiSandbox.
         /// </summary>
         [Output("analyticsMaxUpload")]
         public Output<int> AnalyticsMaxUpload { get; private set; } = null!;
@@ -227,6 +227,12 @@ namespace Pulumiverse.Fortios.Antivirus
         public Output<Outputs.ProfileFtp> Ftp { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Configure HTTP AntiVirus options. The structure of `http` block is documented below.
         /// </summary>
         [Output("http")]
@@ -299,7 +305,7 @@ namespace Pulumiverse.Fortios.Antivirus
         public Output<string> ReplacemsgGroup { get; private set; } = null!;
 
         /// <summary>
-        /// Choose between full scan mode and quick scan mode.
+        /// Configure scan mode (default or legacy).
         /// </summary>
         [Output("scanMode")]
         public Output<string> ScanMode { get; private set; } = null!;
@@ -394,13 +400,13 @@ namespace Pulumiverse.Fortios.Antivirus
         public Input<string>? AnalyticsDb { get; set; }
 
         /// <summary>
-        /// Do not submit files matching this DLP file-pattern to FortiSandbox.
+        /// Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
         /// </summary>
         [Input("analyticsIgnoreFiletype")]
         public Input<int>? AnalyticsIgnoreFiletype { get; set; }
 
         /// <summary>
-        /// Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+        /// Maximum size of files that can be uploaded to FortiSandbox.
         /// </summary>
         [Input("analyticsMaxUpload")]
         public Input<int>? AnalyticsMaxUpload { get; set; }
@@ -544,6 +550,12 @@ namespace Pulumiverse.Fortios.Antivirus
         public Input<Inputs.ProfileFtpArgs>? Ftp { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Configure HTTP AntiVirus options. The structure of `http` block is documented below.
         /// </summary>
         [Input("http")]
@@ -616,7 +628,7 @@ namespace Pulumiverse.Fortios.Antivirus
         public Input<string>? ReplacemsgGroup { get; set; }
 
         /// <summary>
-        /// Choose between full scan mode and quick scan mode.
+        /// Configure scan mode (default or legacy).
         /// </summary>
         [Input("scanMode")]
         public Input<string>? ScanMode { get; set; }
@@ -672,13 +684,13 @@ namespace Pulumiverse.Fortios.Antivirus
         public Input<string>? AnalyticsDb { get; set; }
 
         /// <summary>
-        /// Do not submit files matching this DLP file-pattern to FortiSandbox.
+        /// Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
         /// </summary>
         [Input("analyticsIgnoreFiletype")]
         public Input<int>? AnalyticsIgnoreFiletype { get; set; }
 
         /// <summary>
-        /// Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+        /// Maximum size of files that can be uploaded to FortiSandbox.
         /// </summary>
         [Input("analyticsMaxUpload")]
         public Input<int>? AnalyticsMaxUpload { get; set; }
@@ -822,6 +834,12 @@ namespace Pulumiverse.Fortios.Antivirus
         public Input<Inputs.ProfileFtpGetArgs>? Ftp { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Configure HTTP AntiVirus options. The structure of `http` block is documented below.
         /// </summary>
         [Input("http")]
@@ -894,7 +912,7 @@ namespace Pulumiverse.Fortios.Antivirus
         public Input<string>? ReplacemsgGroup { get; set; }
 
         /// <summary>
-        /// Choose between full scan mode and quick scan mode.
+        /// Configure scan mode (default or legacy).
         /// </summary>
         [Input("scanMode")]
         public Input<string>? ScanMode { get; set; }

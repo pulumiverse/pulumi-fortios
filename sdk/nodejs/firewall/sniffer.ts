@@ -104,6 +104,14 @@ export class Sniffer extends pulumi.CustomResource {
      */
     public readonly avProfileStatus!: pulumi.Output<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    public readonly casbProfile!: pulumi.Output<string>;
+    /**
+     * Enable/disable CASB profile. Valid values: `enable`, `disable`.
+     */
+    public readonly casbProfileStatus!: pulumi.Output<string>;
+    /**
      * Name of an existing DLP profile.
      */
     public readonly dlpProfile!: pulumi.Output<string>;
@@ -148,6 +156,10 @@ export class Sniffer extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
      */
     public readonly host!: pulumi.Output<string>;
@@ -184,7 +196,7 @@ export class Sniffer extends pulumi.CustomResource {
      */
     public readonly logtraffic!: pulumi.Output<string>;
     /**
-     * Maximum packet count (1 - 1000000, default = 10000).
+     * Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
      */
     public readonly maxPacketCount!: pulumi.Output<number>;
     /**
@@ -215,6 +227,10 @@ export class Sniffer extends pulumi.CustomResource {
      * Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
      */
     public readonly status!: pulumi.Output<string>;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    public readonly uuid!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -250,6 +266,8 @@ export class Sniffer extends pulumi.CustomResource {
             resourceInputs["applicationListStatus"] = state ? state.applicationListStatus : undefined;
             resourceInputs["avProfile"] = state ? state.avProfile : undefined;
             resourceInputs["avProfileStatus"] = state ? state.avProfileStatus : undefined;
+            resourceInputs["casbProfile"] = state ? state.casbProfile : undefined;
+            resourceInputs["casbProfileStatus"] = state ? state.casbProfileStatus : undefined;
             resourceInputs["dlpProfile"] = state ? state.dlpProfile : undefined;
             resourceInputs["dlpProfileStatus"] = state ? state.dlpProfileStatus : undefined;
             resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
@@ -261,6 +279,7 @@ export class Sniffer extends pulumi.CustomResource {
             resourceInputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
             resourceInputs["fileFilterProfileStatus"] = state ? state.fileFilterProfileStatus : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["ipThreatfeedStatus"] = state ? state.ipThreatfeedStatus : undefined;
@@ -278,6 +297,7 @@ export class Sniffer extends pulumi.CustomResource {
             resourceInputs["spamfilterProfile"] = state ? state.spamfilterProfile : undefined;
             resourceInputs["spamfilterProfileStatus"] = state ? state.spamfilterProfileStatus : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["vlan"] = state ? state.vlan : undefined;
             resourceInputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
@@ -292,6 +312,8 @@ export class Sniffer extends pulumi.CustomResource {
             resourceInputs["applicationListStatus"] = args ? args.applicationListStatus : undefined;
             resourceInputs["avProfile"] = args ? args.avProfile : undefined;
             resourceInputs["avProfileStatus"] = args ? args.avProfileStatus : undefined;
+            resourceInputs["casbProfile"] = args ? args.casbProfile : undefined;
+            resourceInputs["casbProfileStatus"] = args ? args.casbProfileStatus : undefined;
             resourceInputs["dlpProfile"] = args ? args.dlpProfile : undefined;
             resourceInputs["dlpProfileStatus"] = args ? args.dlpProfileStatus : undefined;
             resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
@@ -303,6 +325,7 @@ export class Sniffer extends pulumi.CustomResource {
             resourceInputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
             resourceInputs["fileFilterProfileStatus"] = args ? args.fileFilterProfileStatus : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["ipThreatfeedStatus"] = args ? args.ipThreatfeedStatus : undefined;
@@ -320,6 +343,7 @@ export class Sniffer extends pulumi.CustomResource {
             resourceInputs["spamfilterProfile"] = args ? args.spamfilterProfile : undefined;
             resourceInputs["spamfilterProfileStatus"] = args ? args.spamfilterProfileStatus : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["vlan"] = args ? args.vlan : undefined;
             resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
@@ -354,6 +378,14 @@ export interface SnifferState {
      * Enable/disable antivirus profile. Valid values: `enable`, `disable`.
      */
     avProfileStatus?: pulumi.Input<string>;
+    /**
+     * Name of an existing CASB profile.
+     */
+    casbProfile?: pulumi.Input<string>;
+    /**
+     * Enable/disable CASB profile. Valid values: `enable`, `disable`.
+     */
+    casbProfileStatus?: pulumi.Input<string>;
     /**
      * Name of an existing DLP profile.
      */
@@ -399,6 +431,10 @@ export interface SnifferState {
      */
     fosid?: pulumi.Input<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
      */
     host?: pulumi.Input<string>;
@@ -435,7 +471,7 @@ export interface SnifferState {
      */
     logtraffic?: pulumi.Input<string>;
     /**
-     * Maximum packet count (1 - 1000000, default = 10000).
+     * Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
      */
     maxPacketCount?: pulumi.Input<number>;
     /**
@@ -466,6 +502,10 @@ export interface SnifferState {
      * Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    uuid?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -509,6 +549,14 @@ export interface SnifferArgs {
      */
     avProfileStatus?: pulumi.Input<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    casbProfile?: pulumi.Input<string>;
+    /**
+     * Enable/disable CASB profile. Valid values: `enable`, `disable`.
+     */
+    casbProfileStatus?: pulumi.Input<string>;
+    /**
      * Name of an existing DLP profile.
      */
     dlpProfile?: pulumi.Input<string>;
@@ -553,6 +601,10 @@ export interface SnifferArgs {
      */
     fosid?: pulumi.Input<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
      */
     host?: pulumi.Input<string>;
@@ -589,7 +641,7 @@ export interface SnifferArgs {
      */
     logtraffic?: pulumi.Input<string>;
     /**
-     * Maximum packet count (1 - 1000000, default = 10000).
+     * Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
      */
     maxPacketCount?: pulumi.Input<number>;
     /**
@@ -620,6 +672,10 @@ export interface SnifferArgs {
      * Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    uuid?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

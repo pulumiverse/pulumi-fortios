@@ -13,9 +13,7 @@ namespace Pulumiverse.Fortios.System
     /// <summary>
     /// Configure HA.
     /// 
-    /// By design considerations, the feature is using the fortios.system.Autoscript resource as documented below.
-    /// 
-    /// ## Example1
+    /// ## Example Usage
     /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
@@ -26,277 +24,590 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var trname = new Fortios.System.Autoscript("trname", new()
+    ///     var trname = new Fortios.System.Ha("trname", new()
     ///     {
-    ///         Interval = 1,
-    ///         OutputSize = 10,
-    ///         Repeat = 1,
-    ///         Script = @"config system ha
-    ///     set session-pickup enable
-    ///     set session-pickup-connectionless enable
-    ///     set session-pickup-expectation enable
-    ///     set session-pickup-nat enable
-    ///     set override disable
-    /// end
-    /// 
-    /// 
-    /// ",
-    ///         Start = "auto",
+    ///         CpuThreshold = "5 0 0",
+    ///         Encryption = "disable",
+    ///         FtpProxyThreshold = "5 0 0",
+    ///         GratuitousArps = "enable",
+    ///         GroupId = 0,
+    ///         HaDirect = "disable",
+    ///         HaEthType = "8890",
+    ///         HaMgmtStatus = "disable",
+    ///         HaUptimeDiffMargin = 300,
+    ///         HbInterval = 2,
+    ///         HbLostThreshold = 20,
+    ///         HcEthType = "8891",
+    ///         HelloHolddown = 20,
+    ///         HttpProxyThreshold = "5 0 0",
+    ///         ImapProxyThreshold = "5 0 0",
+    ///         InterClusterSessionSync = "disable",
+    ///         L2epEthType = "8893",
+    ///         LinkFailedSignal = "disable",
+    ///         LoadBalanceAll = "disable",
+    ///         MemoryCompatibleMode = "disable",
+    ///         MemoryThreshold = "5 0 0",
+    ///         Mode = "standalone",
+    ///         MulticastTtl = 600,
+    ///         NntpProxyThreshold = "5 0 0",
+    ///         Override = "disable",
+    ///         OverrideWaitTime = 0,
+    ///         SecondaryVcluster = new Fortios.System.Inputs.HaSecondaryVclusterArgs
+    ///         {
+    ///             Override = "enable",
+    ///             OverrideWaitTime = 0,
+    ///             PingserverFailoverThreshold = 0,
+    ///             PingserverSlaveForceReset = "enable",
+    ///             Priority = 128,
+    ///             VclusterId = 1,
+    ///         },
+    ///         Weight = "40 ",
     ///     });
     /// 
     /// });
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// System Ha can be imported using any of these accepted formats:
+    /// 
+    /// ```sh
+    /// $ pulumi import fortios:system/ha:Ha labelname SystemHa
+    /// ```
+    /// 
+    /// If you do not want to import arguments of block:
+    /// 
+    /// $ export "FORTIOS_IMPORT_TABLE"="false"
+    /// 
+    /// ```sh
+    /// $ pulumi import fortios:system/ha:Ha labelname SystemHa
+    /// ```
+    /// 
+    /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
     [FortiosResourceType("fortios:system/ha:Ha")]
     public partial class Ha : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+        /// </summary>
         [Output("arps")]
         public Output<int> Arps { get; private set; } = null!;
 
+        /// <summary>
+        /// Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+        /// </summary>
         [Output("arpsInterval")]
         public Output<int> ArpsInterval { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("authentication")]
         public Output<string> Authentication { get; private set; } = null!;
 
+        /// <summary>
+        /// Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+        /// </summary>
         [Output("cpuThreshold")]
         public Output<string> CpuThreshold { get; private set; } = null!;
 
+        /// <summary>
+        /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
+        /// </summary>
         [Output("dynamicSortSubtable")]
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("encryption")]
         public Output<string> Encryption { get; private set; } = null!;
 
+        /// <summary>
+        /// HA EVPN FDB TTL on primary box (5 - 3600 sec).
+        /// </summary>
+        [Output("evpnTtl")]
+        public Output<int> EvpnTtl { get; private set; } = null!;
+
+        /// <summary>
+        /// Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+        /// </summary>
         [Output("failoverHoldTime")]
         public Output<int> FailoverHoldTime { get; private set; } = null!;
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+        /// </summary>
         [Output("ftpProxyThreshold")]
         public Output<string> FtpProxyThreshold { get; private set; } = null!;
 
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("gratuitousArps")]
         public Output<string> GratuitousArps { get; private set; } = null!;
 
+        /// <summary>
+        /// Cluster group ID  (0 - 255). Must be the same for all members.
+        /// </summary>
         [Output("groupId")]
         public Output<int> GroupId { get; private set; } = null!;
 
+        /// <summary>
+        /// Cluster group name. Must be the same for all members.
+        /// </summary>
         [Output("groupName")]
         public Output<string> GroupName { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("haDirect")]
         public Output<string> HaDirect { get; private set; } = null!;
 
+        /// <summary>
+        /// HA heartbeat packet Ethertype (4-digit hex).
+        /// </summary>
         [Output("haEthType")]
         public Output<string> HaEthType { get; private set; } = null!;
 
+        /// <summary>
+        /// Reserve interfaces to manage individual cluster units. The structure of `ha_mgmt_interfaces` block is documented below.
+        /// </summary>
         [Output("haMgmtInterfaces")]
         public Output<ImmutableArray<Outputs.HaHaMgmtInterface>> HaMgmtInterfaces { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("haMgmtStatus")]
         public Output<string> HaMgmtStatus { get; private set; } = null!;
 
+        /// <summary>
+        /// Normally you would only reduce this value for failover testing.
+        /// </summary>
         [Output("haUptimeDiffMargin")]
         public Output<int> HaUptimeDiffMargin { get; private set; } = null!;
 
+        /// <summary>
+        /// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+        /// </summary>
         [Output("hbInterval")]
         public Output<int> HbInterval { get; private set; } = null!;
 
+        /// <summary>
+        /// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+        /// </summary>
         [Output("hbIntervalInMilliseconds")]
         public Output<string> HbIntervalInMilliseconds { get; private set; } = null!;
 
+        /// <summary>
+        /// Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+        /// </summary>
         [Output("hbLostThreshold")]
         public Output<int> HbLostThreshold { get; private set; } = null!;
 
+        /// <summary>
+        /// Heartbeat interfaces. Must be the same for all members.
+        /// </summary>
         [Output("hbdev")]
         public Output<string> Hbdev { get; private set; } = null!;
 
+        /// <summary>
+        /// Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+        /// </summary>
         [Output("hcEthType")]
         public Output<string> HcEthType { get; private set; } = null!;
 
+        /// <summary>
+        /// Time to wait before changing from hello to work state (5 - 300 sec).
+        /// </summary>
         [Output("helloHolddown")]
         public Output<int> HelloHolddown { get; private set; } = null!;
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+        /// </summary>
         [Output("httpProxyThreshold")]
         public Output<string> HttpProxyThreshold { get; private set; } = null!;
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+        /// </summary>
         [Output("imapProxyThreshold")]
         public Output<string> ImapProxyThreshold { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("interClusterSessionSync")]
         public Output<string> InterClusterSessionSync { get; private set; } = null!;
 
+        /// <summary>
+        /// IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+        /// </summary>
+        [Output("ipsecPhase2Proposal")]
+        public Output<string> IpsecPhase2Proposal { get; private set; } = null!;
+
+        /// <summary>
+        /// key
+        /// </summary>
         [Output("key")]
         public Output<string?> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// Telnet session HA heartbeat packet Ethertype (4-digit hex).
+        /// </summary>
         [Output("l2epEthType")]
         public Output<string> L2epEthType { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("linkFailedSignal")]
         public Output<string> LinkFailedSignal { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("loadBalanceAll")]
         public Output<string> LoadBalanceAll { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("logicalSn")]
         public Output<string> LogicalSn { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable memory based failover. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("memoryBasedFailover")]
         public Output<string> MemoryBasedFailover { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("memoryCompatibleMode")]
         public Output<string> MemoryCompatibleMode { get; private set; } = null!;
 
+        /// <summary>
+        /// Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+        /// </summary>
         [Output("memoryFailoverFlipTimeout")]
         public Output<int> MemoryFailoverFlipTimeout { get; private set; } = null!;
 
+        /// <summary>
+        /// Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+        /// </summary>
         [Output("memoryFailoverMonitorPeriod")]
         public Output<int> MemoryFailoverMonitorPeriod { get; private set; } = null!;
 
+        /// <summary>
+        /// Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+        /// </summary>
         [Output("memoryFailoverSampleRate")]
         public Output<int> MemoryFailoverSampleRate { get; private set; } = null!;
 
+        /// <summary>
+        /// Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+        /// </summary>
         [Output("memoryFailoverThreshold")]
         public Output<int> MemoryFailoverThreshold { get; private set; } = null!;
 
+        /// <summary>
+        /// Dynamic weighted load balancing memory usage weight and high and low thresholds.
+        /// </summary>
         [Output("memoryThreshold")]
         public Output<string> MemoryThreshold { get; private set; } = null!;
 
+        /// <summary>
+        /// HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+        /// </summary>
         [Output("mode")]
         public Output<string> Mode { get; private set; } = null!;
 
+        /// <summary>
+        /// Interfaces to check for port monitoring (or link failure).
+        /// </summary>
         [Output("monitor")]
         public Output<string> Monitor { get; private set; } = null!;
 
+        /// <summary>
+        /// HA multicast TTL on master (5 - 3600 sec).
+        /// </summary>
         [Output("multicastTtl")]
         public Output<int> MulticastTtl { get; private set; } = null!;
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+        /// </summary>
         [Output("nntpProxyThreshold")]
         public Output<string> NntpProxyThreshold { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("override")]
         public Output<string> Override { get; private set; } = null!;
 
+        /// <summary>
+        /// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        /// </summary>
         [Output("overrideWaitTime")]
         public Output<int> OverrideWaitTime { get; private set; } = null!;
 
+        /// <summary>
+        /// Cluster password. Must be the same for all members.
+        /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
 
+        /// <summary>
+        /// Remote IP monitoring failover threshold (0 - 50).
+        /// </summary>
         [Output("pingserverFailoverThreshold")]
         public Output<int> PingserverFailoverThreshold { get; private set; } = null!;
 
+        /// <summary>
+        /// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        /// </summary>
         [Output("pingserverFlipTimeout")]
         public Output<int> PingserverFlipTimeout { get; private set; } = null!;
 
+        /// <summary>
+        /// Interfaces to check for remote IP monitoring.
+        /// </summary>
         [Output("pingserverMonitorInterface")]
         public Output<string> PingserverMonitorInterface { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("pingserverSecondaryForceReset")]
         public Output<string> PingserverSecondaryForceReset { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("pingserverSlaveForceReset")]
         public Output<string> PingserverSlaveForceReset { get; private set; } = null!;
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+        /// </summary>
         [Output("pop3ProxyThreshold")]
         public Output<string> Pop3ProxyThreshold { get; private set; } = null!;
 
+        /// <summary>
+        /// Increase the priority to select the primary unit (0 - 255).
+        /// </summary>
         [Output("priority")]
         public Output<int> Priority { get; private set; } = null!;
 
+        /// <summary>
+        /// Time to wait between routing table updates to the cluster (0 - 3600 sec).
+        /// </summary>
         [Output("routeHold")]
         public Output<int> RouteHold { get; private set; } = null!;
 
+        /// <summary>
+        /// TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+        /// </summary>
         [Output("routeTtl")]
         public Output<int> RouteTtl { get; private set; } = null!;
 
+        /// <summary>
+        /// Time to wait before sending new routes to the cluster (0 - 3600 sec).
+        /// </summary>
         [Output("routeWait")]
         public Output<int> RouteWait { get; private set; } = null!;
 
+        /// <summary>
+        /// Type of A-A load balancing. Use none if you have external load balancers.
+        /// </summary>
         [Output("schedule")]
         public Output<string> Schedule { get; private set; } = null!;
 
+        /// <summary>
+        /// Configure virtual cluster 2. The structure of `secondary_vcluster` block is documented below.
+        /// </summary>
         [Output("secondaryVcluster")]
         public Output<Outputs.HaSecondaryVcluster> SecondaryVcluster { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("sessionPickup")]
         public Output<string> SessionPickup { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("sessionPickupConnectionless")]
         public Output<string> SessionPickupConnectionless { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("sessionPickupDelay")]
         public Output<string> SessionPickupDelay { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("sessionPickupExpectation")]
         public Output<string> SessionPickupExpectation { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("sessionPickupNat")]
         public Output<string> SessionPickupNat { get; private set; } = null!;
 
+        /// <summary>
+        /// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+        /// </summary>
         [Output("sessionSyncDev")]
         public Output<string> SessionSyncDev { get; private set; } = null!;
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+        /// </summary>
         [Output("smtpProxyThreshold")]
         public Output<string> SmtpProxyThreshold { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("ssdFailover")]
         public Output<string> SsdFailover { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("standaloneConfigSync")]
         public Output<string> StandaloneConfigSync { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("standaloneMgmtVdom")]
         public Output<string> StandaloneMgmtVdom { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("syncConfig")]
         public Output<string> SyncConfig { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("syncPacketBalance")]
         public Output<string> SyncPacketBalance { get; private set; } = null!;
 
+        /// <summary>
+        /// Default route gateway for unicast interface.
+        /// </summary>
         [Output("unicastGateway")]
         public Output<string> UnicastGateway { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("unicastHb")]
         public Output<string> UnicastHb { get; private set; } = null!;
 
+        /// <summary>
+        /// Unicast heartbeat netmask.
+        /// </summary>
         [Output("unicastHbNetmask")]
         public Output<string> UnicastHbNetmask { get; private set; } = null!;
 
+        /// <summary>
+        /// Unicast heartbeat peer IP.
+        /// </summary>
         [Output("unicastHbPeerip")]
         public Output<string> UnicastHbPeerip { get; private set; } = null!;
 
+        /// <summary>
+        /// Number of unicast peers. The structure of `unicast_peers` block is documented below.
+        /// </summary>
         [Output("unicastPeers")]
         public Output<ImmutableArray<Outputs.HaUnicastPeer>> UnicastPeers { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable unicast connection. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("unicastStatus")]
         public Output<string> UnicastStatus { get; private set; } = null!;
 
+        /// <summary>
+        /// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        /// </summary>
         [Output("uninterruptiblePrimaryWait")]
         public Output<int> UninterruptiblePrimaryWait { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("uninterruptibleUpgrade")]
         public Output<string> UninterruptibleUpgrade { get; private set; } = null!;
 
+        /// <summary>
+        /// The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+        /// </summary>
+        [Output("upgradeMode")]
+        public Output<string> UpgradeMode { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("vcluster2")]
         public Output<string> Vcluster2 { get; private set; } = null!;
 
+        /// <summary>
+        /// Cluster ID.
+        /// </summary>
         [Output("vclusterId")]
         public Output<int> VclusterId { get; private set; } = null!;
 
+        /// <summary>
+        /// Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+        /// </summary>
         [Output("vclusterStatus")]
         public Output<string> VclusterStatus { get; private set; } = null!;
 
+        /// <summary>
+        /// Virtual cluster table. The structure of `vcluster` block is documented below.
+        /// </summary>
         [Output("vclusters")]
         public Output<ImmutableArray<Outputs.HaVcluster>> Vclusters { get; private set; } = null!;
 
+        /// <summary>
+        /// VDOMs in virtual cluster 1.
+        /// </summary>
         [Output("vdom")]
         public Output<string> Vdom { get; private set; } = null!;
 
+        /// <summary>
+        /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        /// </summary>
         [Output("vdomparam")]
         public Output<string?> Vdomparam { get; private set; } = null!;
 
+        /// <summary>
+        /// Weight-round-robin weight for each cluster unit. Syntax &lt;priority&gt; &lt;weight&gt;.
+        /// </summary>
         [Output("weight")]
         public Output<string> Weight { get; private set; } = null!;
 
@@ -352,88 +663,186 @@ namespace Pulumiverse.Fortios.System
 
     public sealed class HaArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+        /// </summary>
         [Input("arps")]
         public Input<int>? Arps { get; set; }
 
+        /// <summary>
+        /// Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+        /// </summary>
         [Input("arpsInterval")]
         public Input<int>? ArpsInterval { get; set; }
 
+        /// <summary>
+        /// Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("authentication")]
         public Input<string>? Authentication { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+        /// </summary>
         [Input("cpuThreshold")]
         public Input<string>? CpuThreshold { get; set; }
 
+        /// <summary>
+        /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
+        /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
 
+        /// <summary>
+        /// Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("encryption")]
         public Input<string>? Encryption { get; set; }
 
+        /// <summary>
+        /// HA EVPN FDB TTL on primary box (5 - 3600 sec).
+        /// </summary>
+        [Input("evpnTtl")]
+        public Input<int>? EvpnTtl { get; set; }
+
+        /// <summary>
+        /// Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+        /// </summary>
         [Input("failoverHoldTime")]
         public Input<int>? FailoverHoldTime { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+        /// </summary>
         [Input("ftpProxyThreshold")]
         public Input<string>? FtpProxyThreshold { get; set; }
 
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("gratuitousArps")]
         public Input<string>? GratuitousArps { get; set; }
 
+        /// <summary>
+        /// Cluster group ID  (0 - 255). Must be the same for all members.
+        /// </summary>
         [Input("groupId")]
         public Input<int>? GroupId { get; set; }
 
+        /// <summary>
+        /// Cluster group name. Must be the same for all members.
+        /// </summary>
         [Input("groupName")]
         public Input<string>? GroupName { get; set; }
 
+        /// <summary>
+        /// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("haDirect")]
         public Input<string>? HaDirect { get; set; }
 
+        /// <summary>
+        /// HA heartbeat packet Ethertype (4-digit hex).
+        /// </summary>
         [Input("haEthType")]
         public Input<string>? HaEthType { get; set; }
 
         [Input("haMgmtInterfaces")]
         private InputList<Inputs.HaHaMgmtInterfaceArgs>? _haMgmtInterfaces;
+
+        /// <summary>
+        /// Reserve interfaces to manage individual cluster units. The structure of `ha_mgmt_interfaces` block is documented below.
+        /// </summary>
         public InputList<Inputs.HaHaMgmtInterfaceArgs> HaMgmtInterfaces
         {
             get => _haMgmtInterfaces ?? (_haMgmtInterfaces = new InputList<Inputs.HaHaMgmtInterfaceArgs>());
             set => _haMgmtInterfaces = value;
         }
 
+        /// <summary>
+        /// Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("haMgmtStatus")]
         public Input<string>? HaMgmtStatus { get; set; }
 
+        /// <summary>
+        /// Normally you would only reduce this value for failover testing.
+        /// </summary>
         [Input("haUptimeDiffMargin")]
         public Input<int>? HaUptimeDiffMargin { get; set; }
 
+        /// <summary>
+        /// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+        /// </summary>
         [Input("hbInterval")]
         public Input<int>? HbInterval { get; set; }
 
+        /// <summary>
+        /// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+        /// </summary>
         [Input("hbIntervalInMilliseconds")]
         public Input<string>? HbIntervalInMilliseconds { get; set; }
 
+        /// <summary>
+        /// Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+        /// </summary>
         [Input("hbLostThreshold")]
         public Input<int>? HbLostThreshold { get; set; }
 
+        /// <summary>
+        /// Heartbeat interfaces. Must be the same for all members.
+        /// </summary>
         [Input("hbdev")]
         public Input<string>? Hbdev { get; set; }
 
+        /// <summary>
+        /// Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+        /// </summary>
         [Input("hcEthType")]
         public Input<string>? HcEthType { get; set; }
 
+        /// <summary>
+        /// Time to wait before changing from hello to work state (5 - 300 sec).
+        /// </summary>
         [Input("helloHolddown")]
         public Input<int>? HelloHolddown { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+        /// </summary>
         [Input("httpProxyThreshold")]
         public Input<string>? HttpProxyThreshold { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+        /// </summary>
         [Input("imapProxyThreshold")]
         public Input<string>? ImapProxyThreshold { get; set; }
 
+        /// <summary>
+        /// Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("interClusterSessionSync")]
         public Input<string>? InterClusterSessionSync { get; set; }
 
+        /// <summary>
+        /// IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+        /// </summary>
+        [Input("ipsecPhase2Proposal")]
+        public Input<string>? IpsecPhase2Proposal { get; set; }
+
         [Input("key")]
         private Input<string>? _key;
+
+        /// <summary>
+        /// key
+        /// </summary>
         public Input<string>? Key
         {
             get => _key;
@@ -444,59 +853,114 @@ namespace Pulumiverse.Fortios.System
             }
         }
 
+        /// <summary>
+        /// Telnet session HA heartbeat packet Ethertype (4-digit hex).
+        /// </summary>
         [Input("l2epEthType")]
         public Input<string>? L2epEthType { get; set; }
 
+        /// <summary>
+        /// Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("linkFailedSignal")]
         public Input<string>? LinkFailedSignal { get; set; }
 
+        /// <summary>
+        /// Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("loadBalanceAll")]
         public Input<string>? LoadBalanceAll { get; set; }
 
+        /// <summary>
+        /// Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("logicalSn")]
         public Input<string>? LogicalSn { get; set; }
 
+        /// <summary>
+        /// Enable/disable memory based failover. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("memoryBasedFailover")]
         public Input<string>? MemoryBasedFailover { get; set; }
 
+        /// <summary>
+        /// Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("memoryCompatibleMode")]
         public Input<string>? MemoryCompatibleMode { get; set; }
 
+        /// <summary>
+        /// Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+        /// </summary>
         [Input("memoryFailoverFlipTimeout")]
         public Input<int>? MemoryFailoverFlipTimeout { get; set; }
 
+        /// <summary>
+        /// Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+        /// </summary>
         [Input("memoryFailoverMonitorPeriod")]
         public Input<int>? MemoryFailoverMonitorPeriod { get; set; }
 
+        /// <summary>
+        /// Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+        /// </summary>
         [Input("memoryFailoverSampleRate")]
         public Input<int>? MemoryFailoverSampleRate { get; set; }
 
+        /// <summary>
+        /// Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+        /// </summary>
         [Input("memoryFailoverThreshold")]
         public Input<int>? MemoryFailoverThreshold { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing memory usage weight and high and low thresholds.
+        /// </summary>
         [Input("memoryThreshold")]
         public Input<string>? MemoryThreshold { get; set; }
 
+        /// <summary>
+        /// HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
+        /// <summary>
+        /// Interfaces to check for port monitoring (or link failure).
+        /// </summary>
         [Input("monitor")]
         public Input<string>? Monitor { get; set; }
 
+        /// <summary>
+        /// HA multicast TTL on master (5 - 3600 sec).
+        /// </summary>
         [Input("multicastTtl")]
         public Input<int>? MulticastTtl { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+        /// </summary>
         [Input("nntpProxyThreshold")]
         public Input<string>? NntpProxyThreshold { get; set; }
 
+        /// <summary>
+        /// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("override")]
         public Input<string>? Override { get; set; }
 
+        /// <summary>
+        /// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        /// </summary>
         [Input("overrideWaitTime")]
         public Input<int>? OverrideWaitTime { get; set; }
 
         [Input("password")]
         private Input<string>? _password;
+
+        /// <summary>
+        /// Cluster password. Must be the same for all members.
+        /// </summary>
         public Input<string>? Password
         {
             get => _password;
@@ -507,130 +971,255 @@ namespace Pulumiverse.Fortios.System
             }
         }
 
+        /// <summary>
+        /// Remote IP monitoring failover threshold (0 - 50).
+        /// </summary>
         [Input("pingserverFailoverThreshold")]
         public Input<int>? PingserverFailoverThreshold { get; set; }
 
+        /// <summary>
+        /// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        /// </summary>
         [Input("pingserverFlipTimeout")]
         public Input<int>? PingserverFlipTimeout { get; set; }
 
+        /// <summary>
+        /// Interfaces to check for remote IP monitoring.
+        /// </summary>
         [Input("pingserverMonitorInterface")]
         public Input<string>? PingserverMonitorInterface { get; set; }
 
+        /// <summary>
+        /// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("pingserverSecondaryForceReset")]
         public Input<string>? PingserverSecondaryForceReset { get; set; }
 
+        /// <summary>
+        /// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("pingserverSlaveForceReset")]
         public Input<string>? PingserverSlaveForceReset { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+        /// </summary>
         [Input("pop3ProxyThreshold")]
         public Input<string>? Pop3ProxyThreshold { get; set; }
 
+        /// <summary>
+        /// Increase the priority to select the primary unit (0 - 255).
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
+        /// <summary>
+        /// Time to wait between routing table updates to the cluster (0 - 3600 sec).
+        /// </summary>
         [Input("routeHold")]
         public Input<int>? RouteHold { get; set; }
 
+        /// <summary>
+        /// TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+        /// </summary>
         [Input("routeTtl")]
         public Input<int>? RouteTtl { get; set; }
 
+        /// <summary>
+        /// Time to wait before sending new routes to the cluster (0 - 3600 sec).
+        /// </summary>
         [Input("routeWait")]
         public Input<int>? RouteWait { get; set; }
 
+        /// <summary>
+        /// Type of A-A load balancing. Use none if you have external load balancers.
+        /// </summary>
         [Input("schedule")]
         public Input<string>? Schedule { get; set; }
 
+        /// <summary>
+        /// Configure virtual cluster 2. The structure of `secondary_vcluster` block is documented below.
+        /// </summary>
         [Input("secondaryVcluster")]
         public Input<Inputs.HaSecondaryVclusterArgs>? SecondaryVcluster { get; set; }
 
+        /// <summary>
+        /// Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("sessionPickup")]
         public Input<string>? SessionPickup { get; set; }
 
+        /// <summary>
+        /// Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("sessionPickupConnectionless")]
         public Input<string>? SessionPickupConnectionless { get; set; }
 
+        /// <summary>
+        /// Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("sessionPickupDelay")]
         public Input<string>? SessionPickupDelay { get; set; }
 
+        /// <summary>
+        /// Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("sessionPickupExpectation")]
         public Input<string>? SessionPickupExpectation { get; set; }
 
+        /// <summary>
+        /// Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("sessionPickupNat")]
         public Input<string>? SessionPickupNat { get; set; }
 
+        /// <summary>
+        /// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+        /// </summary>
         [Input("sessionSyncDev")]
         public Input<string>? SessionSyncDev { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+        /// </summary>
         [Input("smtpProxyThreshold")]
         public Input<string>? SmtpProxyThreshold { get; set; }
 
+        /// <summary>
+        /// Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("ssdFailover")]
         public Input<string>? SsdFailover { get; set; }
 
+        /// <summary>
+        /// Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("standaloneConfigSync")]
         public Input<string>? StandaloneConfigSync { get; set; }
 
+        /// <summary>
+        /// Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("standaloneMgmtVdom")]
         public Input<string>? StandaloneMgmtVdom { get; set; }
 
+        /// <summary>
+        /// Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("syncConfig")]
         public Input<string>? SyncConfig { get; set; }
 
+        /// <summary>
+        /// Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("syncPacketBalance")]
         public Input<string>? SyncPacketBalance { get; set; }
 
+        /// <summary>
+        /// Default route gateway for unicast interface.
+        /// </summary>
         [Input("unicastGateway")]
         public Input<string>? UnicastGateway { get; set; }
 
+        /// <summary>
+        /// Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("unicastHb")]
         public Input<string>? UnicastHb { get; set; }
 
+        /// <summary>
+        /// Unicast heartbeat netmask.
+        /// </summary>
         [Input("unicastHbNetmask")]
         public Input<string>? UnicastHbNetmask { get; set; }
 
+        /// <summary>
+        /// Unicast heartbeat peer IP.
+        /// </summary>
         [Input("unicastHbPeerip")]
         public Input<string>? UnicastHbPeerip { get; set; }
 
         [Input("unicastPeers")]
         private InputList<Inputs.HaUnicastPeerArgs>? _unicastPeers;
+
+        /// <summary>
+        /// Number of unicast peers. The structure of `unicast_peers` block is documented below.
+        /// </summary>
         public InputList<Inputs.HaUnicastPeerArgs> UnicastPeers
         {
             get => _unicastPeers ?? (_unicastPeers = new InputList<Inputs.HaUnicastPeerArgs>());
             set => _unicastPeers = value;
         }
 
+        /// <summary>
+        /// Enable/disable unicast connection. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("unicastStatus")]
         public Input<string>? UnicastStatus { get; set; }
 
+        /// <summary>
+        /// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        /// </summary>
         [Input("uninterruptiblePrimaryWait")]
         public Input<int>? UninterruptiblePrimaryWait { get; set; }
 
+        /// <summary>
+        /// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("uninterruptibleUpgrade")]
         public Input<string>? UninterruptibleUpgrade { get; set; }
 
+        /// <summary>
+        /// The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+        /// </summary>
+        [Input("upgradeMode")]
+        public Input<string>? UpgradeMode { get; set; }
+
+        /// <summary>
+        /// Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("vcluster2")]
         public Input<string>? Vcluster2 { get; set; }
 
+        /// <summary>
+        /// Cluster ID.
+        /// </summary>
         [Input("vclusterId")]
         public Input<int>? VclusterId { get; set; }
 
+        /// <summary>
+        /// Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("vclusterStatus")]
         public Input<string>? VclusterStatus { get; set; }
 
         [Input("vclusters")]
         private InputList<Inputs.HaVclusterArgs>? _vclusters;
+
+        /// <summary>
+        /// Virtual cluster table. The structure of `vcluster` block is documented below.
+        /// </summary>
         public InputList<Inputs.HaVclusterArgs> Vclusters
         {
             get => _vclusters ?? (_vclusters = new InputList<Inputs.HaVclusterArgs>());
             set => _vclusters = value;
         }
 
+        /// <summary>
+        /// VDOMs in virtual cluster 1.
+        /// </summary>
         [Input("vdom")]
         public Input<string>? Vdom { get; set; }
 
+        /// <summary>
+        /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        /// </summary>
         [Input("vdomparam")]
         public Input<string>? Vdomparam { get; set; }
 
+        /// <summary>
+        /// Weight-round-robin weight for each cluster unit. Syntax &lt;priority&gt; &lt;weight&gt;.
+        /// </summary>
         [Input("weight")]
         public Input<string>? Weight { get; set; }
 
@@ -642,88 +1231,186 @@ namespace Pulumiverse.Fortios.System
 
     public sealed class HaState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+        /// </summary>
         [Input("arps")]
         public Input<int>? Arps { get; set; }
 
+        /// <summary>
+        /// Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+        /// </summary>
         [Input("arpsInterval")]
         public Input<int>? ArpsInterval { get; set; }
 
+        /// <summary>
+        /// Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("authentication")]
         public Input<string>? Authentication { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+        /// </summary>
         [Input("cpuThreshold")]
         public Input<string>? CpuThreshold { get; set; }
 
+        /// <summary>
+        /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
+        /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
 
+        /// <summary>
+        /// Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("encryption")]
         public Input<string>? Encryption { get; set; }
 
+        /// <summary>
+        /// HA EVPN FDB TTL on primary box (5 - 3600 sec).
+        /// </summary>
+        [Input("evpnTtl")]
+        public Input<int>? EvpnTtl { get; set; }
+
+        /// <summary>
+        /// Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+        /// </summary>
         [Input("failoverHoldTime")]
         public Input<int>? FailoverHoldTime { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+        /// </summary>
         [Input("ftpProxyThreshold")]
         public Input<string>? FtpProxyThreshold { get; set; }
 
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("gratuitousArps")]
         public Input<string>? GratuitousArps { get; set; }
 
+        /// <summary>
+        /// Cluster group ID  (0 - 255). Must be the same for all members.
+        /// </summary>
         [Input("groupId")]
         public Input<int>? GroupId { get; set; }
 
+        /// <summary>
+        /// Cluster group name. Must be the same for all members.
+        /// </summary>
         [Input("groupName")]
         public Input<string>? GroupName { get; set; }
 
+        /// <summary>
+        /// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("haDirect")]
         public Input<string>? HaDirect { get; set; }
 
+        /// <summary>
+        /// HA heartbeat packet Ethertype (4-digit hex).
+        /// </summary>
         [Input("haEthType")]
         public Input<string>? HaEthType { get; set; }
 
         [Input("haMgmtInterfaces")]
         private InputList<Inputs.HaHaMgmtInterfaceGetArgs>? _haMgmtInterfaces;
+
+        /// <summary>
+        /// Reserve interfaces to manage individual cluster units. The structure of `ha_mgmt_interfaces` block is documented below.
+        /// </summary>
         public InputList<Inputs.HaHaMgmtInterfaceGetArgs> HaMgmtInterfaces
         {
             get => _haMgmtInterfaces ?? (_haMgmtInterfaces = new InputList<Inputs.HaHaMgmtInterfaceGetArgs>());
             set => _haMgmtInterfaces = value;
         }
 
+        /// <summary>
+        /// Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("haMgmtStatus")]
         public Input<string>? HaMgmtStatus { get; set; }
 
+        /// <summary>
+        /// Normally you would only reduce this value for failover testing.
+        /// </summary>
         [Input("haUptimeDiffMargin")]
         public Input<int>? HaUptimeDiffMargin { get; set; }
 
+        /// <summary>
+        /// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+        /// </summary>
         [Input("hbInterval")]
         public Input<int>? HbInterval { get; set; }
 
+        /// <summary>
+        /// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+        /// </summary>
         [Input("hbIntervalInMilliseconds")]
         public Input<string>? HbIntervalInMilliseconds { get; set; }
 
+        /// <summary>
+        /// Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+        /// </summary>
         [Input("hbLostThreshold")]
         public Input<int>? HbLostThreshold { get; set; }
 
+        /// <summary>
+        /// Heartbeat interfaces. Must be the same for all members.
+        /// </summary>
         [Input("hbdev")]
         public Input<string>? Hbdev { get; set; }
 
+        /// <summary>
+        /// Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+        /// </summary>
         [Input("hcEthType")]
         public Input<string>? HcEthType { get; set; }
 
+        /// <summary>
+        /// Time to wait before changing from hello to work state (5 - 300 sec).
+        /// </summary>
         [Input("helloHolddown")]
         public Input<int>? HelloHolddown { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+        /// </summary>
         [Input("httpProxyThreshold")]
         public Input<string>? HttpProxyThreshold { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+        /// </summary>
         [Input("imapProxyThreshold")]
         public Input<string>? ImapProxyThreshold { get; set; }
 
+        /// <summary>
+        /// Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("interClusterSessionSync")]
         public Input<string>? InterClusterSessionSync { get; set; }
 
+        /// <summary>
+        /// IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+        /// </summary>
+        [Input("ipsecPhase2Proposal")]
+        public Input<string>? IpsecPhase2Proposal { get; set; }
+
         [Input("key")]
         private Input<string>? _key;
+
+        /// <summary>
+        /// key
+        /// </summary>
         public Input<string>? Key
         {
             get => _key;
@@ -734,59 +1421,114 @@ namespace Pulumiverse.Fortios.System
             }
         }
 
+        /// <summary>
+        /// Telnet session HA heartbeat packet Ethertype (4-digit hex).
+        /// </summary>
         [Input("l2epEthType")]
         public Input<string>? L2epEthType { get; set; }
 
+        /// <summary>
+        /// Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("linkFailedSignal")]
         public Input<string>? LinkFailedSignal { get; set; }
 
+        /// <summary>
+        /// Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("loadBalanceAll")]
         public Input<string>? LoadBalanceAll { get; set; }
 
+        /// <summary>
+        /// Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("logicalSn")]
         public Input<string>? LogicalSn { get; set; }
 
+        /// <summary>
+        /// Enable/disable memory based failover. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("memoryBasedFailover")]
         public Input<string>? MemoryBasedFailover { get; set; }
 
+        /// <summary>
+        /// Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("memoryCompatibleMode")]
         public Input<string>? MemoryCompatibleMode { get; set; }
 
+        /// <summary>
+        /// Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+        /// </summary>
         [Input("memoryFailoverFlipTimeout")]
         public Input<int>? MemoryFailoverFlipTimeout { get; set; }
 
+        /// <summary>
+        /// Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+        /// </summary>
         [Input("memoryFailoverMonitorPeriod")]
         public Input<int>? MemoryFailoverMonitorPeriod { get; set; }
 
+        /// <summary>
+        /// Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+        /// </summary>
         [Input("memoryFailoverSampleRate")]
         public Input<int>? MemoryFailoverSampleRate { get; set; }
 
+        /// <summary>
+        /// Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+        /// </summary>
         [Input("memoryFailoverThreshold")]
         public Input<int>? MemoryFailoverThreshold { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing memory usage weight and high and low thresholds.
+        /// </summary>
         [Input("memoryThreshold")]
         public Input<string>? MemoryThreshold { get; set; }
 
+        /// <summary>
+        /// HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
+        /// <summary>
+        /// Interfaces to check for port monitoring (or link failure).
+        /// </summary>
         [Input("monitor")]
         public Input<string>? Monitor { get; set; }
 
+        /// <summary>
+        /// HA multicast TTL on master (5 - 3600 sec).
+        /// </summary>
         [Input("multicastTtl")]
         public Input<int>? MulticastTtl { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+        /// </summary>
         [Input("nntpProxyThreshold")]
         public Input<string>? NntpProxyThreshold { get; set; }
 
+        /// <summary>
+        /// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("override")]
         public Input<string>? Override { get; set; }
 
+        /// <summary>
+        /// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        /// </summary>
         [Input("overrideWaitTime")]
         public Input<int>? OverrideWaitTime { get; set; }
 
         [Input("password")]
         private Input<string>? _password;
+
+        /// <summary>
+        /// Cluster password. Must be the same for all members.
+        /// </summary>
         public Input<string>? Password
         {
             get => _password;
@@ -797,130 +1539,255 @@ namespace Pulumiverse.Fortios.System
             }
         }
 
+        /// <summary>
+        /// Remote IP monitoring failover threshold (0 - 50).
+        /// </summary>
         [Input("pingserverFailoverThreshold")]
         public Input<int>? PingserverFailoverThreshold { get; set; }
 
+        /// <summary>
+        /// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        /// </summary>
         [Input("pingserverFlipTimeout")]
         public Input<int>? PingserverFlipTimeout { get; set; }
 
+        /// <summary>
+        /// Interfaces to check for remote IP monitoring.
+        /// </summary>
         [Input("pingserverMonitorInterface")]
         public Input<string>? PingserverMonitorInterface { get; set; }
 
+        /// <summary>
+        /// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("pingserverSecondaryForceReset")]
         public Input<string>? PingserverSecondaryForceReset { get; set; }
 
+        /// <summary>
+        /// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("pingserverSlaveForceReset")]
         public Input<string>? PingserverSlaveForceReset { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+        /// </summary>
         [Input("pop3ProxyThreshold")]
         public Input<string>? Pop3ProxyThreshold { get; set; }
 
+        /// <summary>
+        /// Increase the priority to select the primary unit (0 - 255).
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
+        /// <summary>
+        /// Time to wait between routing table updates to the cluster (0 - 3600 sec).
+        /// </summary>
         [Input("routeHold")]
         public Input<int>? RouteHold { get; set; }
 
+        /// <summary>
+        /// TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+        /// </summary>
         [Input("routeTtl")]
         public Input<int>? RouteTtl { get; set; }
 
+        /// <summary>
+        /// Time to wait before sending new routes to the cluster (0 - 3600 sec).
+        /// </summary>
         [Input("routeWait")]
         public Input<int>? RouteWait { get; set; }
 
+        /// <summary>
+        /// Type of A-A load balancing. Use none if you have external load balancers.
+        /// </summary>
         [Input("schedule")]
         public Input<string>? Schedule { get; set; }
 
+        /// <summary>
+        /// Configure virtual cluster 2. The structure of `secondary_vcluster` block is documented below.
+        /// </summary>
         [Input("secondaryVcluster")]
         public Input<Inputs.HaSecondaryVclusterGetArgs>? SecondaryVcluster { get; set; }
 
+        /// <summary>
+        /// Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("sessionPickup")]
         public Input<string>? SessionPickup { get; set; }
 
+        /// <summary>
+        /// Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("sessionPickupConnectionless")]
         public Input<string>? SessionPickupConnectionless { get; set; }
 
+        /// <summary>
+        /// Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("sessionPickupDelay")]
         public Input<string>? SessionPickupDelay { get; set; }
 
+        /// <summary>
+        /// Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("sessionPickupExpectation")]
         public Input<string>? SessionPickupExpectation { get; set; }
 
+        /// <summary>
+        /// Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("sessionPickupNat")]
         public Input<string>? SessionPickupNat { get; set; }
 
+        /// <summary>
+        /// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+        /// </summary>
         [Input("sessionSyncDev")]
         public Input<string>? SessionSyncDev { get; set; }
 
+        /// <summary>
+        /// Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+        /// </summary>
         [Input("smtpProxyThreshold")]
         public Input<string>? SmtpProxyThreshold { get; set; }
 
+        /// <summary>
+        /// Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("ssdFailover")]
         public Input<string>? SsdFailover { get; set; }
 
+        /// <summary>
+        /// Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("standaloneConfigSync")]
         public Input<string>? StandaloneConfigSync { get; set; }
 
+        /// <summary>
+        /// Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("standaloneMgmtVdom")]
         public Input<string>? StandaloneMgmtVdom { get; set; }
 
+        /// <summary>
+        /// Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("syncConfig")]
         public Input<string>? SyncConfig { get; set; }
 
+        /// <summary>
+        /// Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("syncPacketBalance")]
         public Input<string>? SyncPacketBalance { get; set; }
 
+        /// <summary>
+        /// Default route gateway for unicast interface.
+        /// </summary>
         [Input("unicastGateway")]
         public Input<string>? UnicastGateway { get; set; }
 
+        /// <summary>
+        /// Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("unicastHb")]
         public Input<string>? UnicastHb { get; set; }
 
+        /// <summary>
+        /// Unicast heartbeat netmask.
+        /// </summary>
         [Input("unicastHbNetmask")]
         public Input<string>? UnicastHbNetmask { get; set; }
 
+        /// <summary>
+        /// Unicast heartbeat peer IP.
+        /// </summary>
         [Input("unicastHbPeerip")]
         public Input<string>? UnicastHbPeerip { get; set; }
 
         [Input("unicastPeers")]
         private InputList<Inputs.HaUnicastPeerGetArgs>? _unicastPeers;
+
+        /// <summary>
+        /// Number of unicast peers. The structure of `unicast_peers` block is documented below.
+        /// </summary>
         public InputList<Inputs.HaUnicastPeerGetArgs> UnicastPeers
         {
             get => _unicastPeers ?? (_unicastPeers = new InputList<Inputs.HaUnicastPeerGetArgs>());
             set => _unicastPeers = value;
         }
 
+        /// <summary>
+        /// Enable/disable unicast connection. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("unicastStatus")]
         public Input<string>? UnicastStatus { get; set; }
 
+        /// <summary>
+        /// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        /// </summary>
         [Input("uninterruptiblePrimaryWait")]
         public Input<int>? UninterruptiblePrimaryWait { get; set; }
 
+        /// <summary>
+        /// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("uninterruptibleUpgrade")]
         public Input<string>? UninterruptibleUpgrade { get; set; }
 
+        /// <summary>
+        /// The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+        /// </summary>
+        [Input("upgradeMode")]
+        public Input<string>? UpgradeMode { get; set; }
+
+        /// <summary>
+        /// Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("vcluster2")]
         public Input<string>? Vcluster2 { get; set; }
 
+        /// <summary>
+        /// Cluster ID.
+        /// </summary>
         [Input("vclusterId")]
         public Input<int>? VclusterId { get; set; }
 
+        /// <summary>
+        /// Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+        /// </summary>
         [Input("vclusterStatus")]
         public Input<string>? VclusterStatus { get; set; }
 
         [Input("vclusters")]
         private InputList<Inputs.HaVclusterGetArgs>? _vclusters;
+
+        /// <summary>
+        /// Virtual cluster table. The structure of `vcluster` block is documented below.
+        /// </summary>
         public InputList<Inputs.HaVclusterGetArgs> Vclusters
         {
             get => _vclusters ?? (_vclusters = new InputList<Inputs.HaVclusterGetArgs>());
             set => _vclusters = value;
         }
 
+        /// <summary>
+        /// VDOMs in virtual cluster 1.
+        /// </summary>
         [Input("vdom")]
         public Input<string>? Vdom { get; set; }
 
+        /// <summary>
+        /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        /// </summary>
         [Input("vdomparam")]
         public Input<string>? Vdomparam { get; set; }
 
+        /// <summary>
+        /// Weight-round-robin weight for each cluster unit. Syntax &lt;priority&gt; &lt;weight&gt;.
+        /// </summary>
         [Input("weight")]
         public Input<string>? Weight { get; set; }
 

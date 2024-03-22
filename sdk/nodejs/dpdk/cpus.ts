@@ -77,6 +77,10 @@ export class Cpus extends pulumi.CustomResource {
      * CPUs enabled to run DPDK VNP engines.
      */
     public readonly vnpCpus!: pulumi.Output<string>;
+    /**
+     * CPUs enabled to run DPDK VNP slow path.
+     */
+    public readonly vnpspCpus!: pulumi.Output<string>;
 
     /**
      * Create a Cpus resource with the given unique name, arguments, and options.
@@ -97,6 +101,7 @@ export class Cpus extends pulumi.CustomResource {
             resourceInputs["txCpus"] = state ? state.txCpus : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["vnpCpus"] = state ? state.vnpCpus : undefined;
+            resourceInputs["vnpspCpus"] = state ? state.vnpspCpus : undefined;
         } else {
             const args = argsOrState as CpusArgs | undefined;
             resourceInputs["ipsCpus"] = args ? args.ipsCpus : undefined;
@@ -105,6 +110,7 @@ export class Cpus extends pulumi.CustomResource {
             resourceInputs["txCpus"] = args ? args.txCpus : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["vnpCpus"] = args ? args.vnpCpus : undefined;
+            resourceInputs["vnpspCpus"] = args ? args.vnpspCpus : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Cpus.__pulumiType, name, resourceInputs, opts);
@@ -139,6 +145,10 @@ export interface CpusState {
      * CPUs enabled to run DPDK VNP engines.
      */
     vnpCpus?: pulumi.Input<string>;
+    /**
+     * CPUs enabled to run DPDK VNP slow path.
+     */
+    vnpspCpus?: pulumi.Input<string>;
 }
 
 /**
@@ -169,4 +179,8 @@ export interface CpusArgs {
      * CPUs enabled to run DPDK VNP engines.
      */
     vnpCpus?: pulumi.Input<string>;
+    /**
+     * CPUs enabled to run DPDK VNP slow path.
+     */
+    vnpspCpus?: pulumi.Input<string>;
 }

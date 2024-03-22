@@ -80,6 +80,10 @@ export class Flowtracking extends pulumi.CustomResource {
      */
     public readonly format!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
      */
     public readonly level!: pulumi.Output<string>;
@@ -155,6 +159,7 @@ export class Flowtracking extends pulumi.CustomResource {
             resourceInputs["collectors"] = state ? state.collectors : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["level"] = state ? state.level : undefined;
             resourceInputs["maxExportPktSize"] = state ? state.maxExportPktSize : undefined;
             resourceInputs["sampleMode"] = state ? state.sampleMode : undefined;
@@ -177,6 +182,7 @@ export class Flowtracking extends pulumi.CustomResource {
             resourceInputs["collectors"] = args ? args.collectors : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["level"] = args ? args.level : undefined;
             resourceInputs["maxExportPktSize"] = args ? args.maxExportPktSize : undefined;
             resourceInputs["sampleMode"] = args ? args.sampleMode : undefined;
@@ -225,6 +231,10 @@ export interface FlowtrackingState {
      * Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
      */
     format?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
      */
@@ -311,6 +321,10 @@ export interface FlowtrackingArgs {
      * Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
      */
     format?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
      */

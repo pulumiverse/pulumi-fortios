@@ -11,13 +11,82 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'KmipserverServerList',
     'OcvpnForticlientAccess',
     'OcvpnForticlientAccessAuthGroup',
     'OcvpnForticlientAccessAuthGroupOverlay',
     'OcvpnOverlay',
     'OcvpnOverlaySubnet',
     'OcvpnWanInterface',
+    'QkdCertificate',
 ]
+
+@pulumi.output_type
+class KmipserverServerList(dict):
+    def __init__(__self__, *,
+                 cert: Optional[str] = None,
+                 id: Optional[int] = None,
+                 port: Optional[int] = None,
+                 server: Optional[str] = None,
+                 status: Optional[str] = None):
+        """
+        :param str cert: Client certificate to use for connectivity to the KMIP server.
+        :param int id: ID
+        :param int port: KMIP server port.
+        :param str server: KMIP server FQDN or IP address.
+        :param str status: Enable/disable KMIP server. Valid values: `enable`, `disable`.
+        """
+        if cert is not None:
+            pulumi.set(__self__, "cert", cert)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if server is not None:
+            pulumi.set(__self__, "server", server)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def cert(self) -> Optional[str]:
+        """
+        Client certificate to use for connectivity to the KMIP server.
+        """
+        return pulumi.get(self, "cert")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        KMIP server port.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def server(self) -> Optional[str]:
+        """
+        KMIP server FQDN or IP address.
+        """
+        return pulumi.get(self, "server")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        Enable/disable KMIP server. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "status")
+
 
 @pulumi.output_type
 class OcvpnForticlientAccess(dict):
@@ -373,6 +442,25 @@ class OcvpnWanInterface(dict):
     def name(self) -> Optional[str]:
         """
         Interface name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class QkdCertificate(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Certificate name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Certificate name.
         """
         return pulumi.get(self, "name")
 

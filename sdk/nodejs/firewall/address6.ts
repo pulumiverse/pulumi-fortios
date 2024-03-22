@@ -117,6 +117,10 @@ export class Address6 extends pulumi.CustomResource {
      */
     public readonly fqdn!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Host Address.
      */
     public readonly host!: pulumi.Output<string>;
@@ -144,6 +148,10 @@ export class Address6 extends pulumi.CustomResource {
      * Object ID for NSX.
      */
     public readonly objId!: pulumi.Output<string | undefined>;
+    /**
+     * route-tag address.
+     */
+    public readonly routeTag!: pulumi.Output<number>;
     /**
      * SDN.
      */
@@ -216,6 +224,7 @@ export class Address6 extends pulumi.CustomResource {
             resourceInputs["epgName"] = state ? state.epgName : undefined;
             resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["hostType"] = state ? state.hostType : undefined;
             resourceInputs["ip6"] = state ? state.ip6 : undefined;
@@ -223,6 +232,7 @@ export class Address6 extends pulumi.CustomResource {
             resourceInputs["macaddrs"] = state ? state.macaddrs : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["objId"] = state ? state.objId : undefined;
+            resourceInputs["routeTag"] = state ? state.routeTag : undefined;
             resourceInputs["sdn"] = state ? state.sdn : undefined;
             resourceInputs["sdnTag"] = state ? state.sdnTag : undefined;
             resourceInputs["startIp"] = state ? state.startIp : undefined;
@@ -247,6 +257,7 @@ export class Address6 extends pulumi.CustomResource {
             resourceInputs["epgName"] = args ? args.epgName : undefined;
             resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
             resourceInputs["fqdn"] = args ? args.fqdn : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["hostType"] = args ? args.hostType : undefined;
             resourceInputs["ip6"] = args ? args.ip6 : undefined;
@@ -254,6 +265,7 @@ export class Address6 extends pulumi.CustomResource {
             resourceInputs["macaddrs"] = args ? args.macaddrs : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["objId"] = args ? args.objId : undefined;
+            resourceInputs["routeTag"] = args ? args.routeTag : undefined;
             resourceInputs["sdn"] = args ? args.sdn : undefined;
             resourceInputs["sdnTag"] = args ? args.sdnTag : undefined;
             resourceInputs["startIp"] = args ? args.startIp : undefined;
@@ -317,6 +329,10 @@ export interface Address6State {
      */
     fqdn?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Host Address.
      */
     host?: pulumi.Input<string>;
@@ -344,6 +360,10 @@ export interface Address6State {
      * Object ID for NSX.
      */
     objId?: pulumi.Input<string>;
+    /**
+     * route-tag address.
+     */
+    routeTag?: pulumi.Input<number>;
     /**
      * SDN.
      */
@@ -439,6 +459,10 @@ export interface Address6Args {
      */
     fqdn?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Host Address.
      */
     host?: pulumi.Input<string>;
@@ -466,6 +490,10 @@ export interface Address6Args {
      * Object ID for NSX.
      */
     objId?: pulumi.Input<string>;
+    /**
+     * route-tag address.
+     */
+    routeTag?: pulumi.Input<number>;
     /**
      * SDN.
      */

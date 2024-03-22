@@ -65,6 +65,10 @@ export interface GetDnsResult {
      */
     readonly fqdnCacheTtl: number;
     /**
+     * FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+     */
+    readonly fqdnMaxRefresh: number;
+    /**
      * FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
      */
     readonly fqdnMinRefresh: number;

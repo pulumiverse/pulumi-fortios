@@ -95,6 +95,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// HTTP header name as a regular expression.
         /// </summary>
         [Output("header")]
@@ -167,10 +173,22 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
+        /// Names of browsers to be used as user agent.
         /// </summary>
         [Output("ua")]
         public Output<string> Ua { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+        /// </summary>
+        [Output("uaMaxVer")]
+        public Output<string> UaMaxVer { get; private set; } = null!;
+
+        /// <summary>
+        /// Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+        /// </summary>
+        [Output("uaMinVer")]
+        public Output<string> UaMinVer { get; private set; } = null!;
 
         /// <summary>
         /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -286,6 +304,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// HTTP header name as a regular expression.
         /// </summary>
         [Input("header")]
@@ -370,10 +394,22 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
+        /// Names of browsers to be used as user agent.
         /// </summary>
         [Input("ua")]
         public Input<string>? Ua { get; set; }
+
+        /// <summary>
+        /// Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+        /// </summary>
+        [Input("uaMaxVer")]
+        public Input<string>? UaMaxVer { get; set; }
+
+        /// <summary>
+        /// Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+        /// </summary>
+        [Input("uaMinVer")]
+        public Input<string>? UaMinVer { get; set; }
 
         /// <summary>
         /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -448,6 +484,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// HTTP header name as a regular expression.
@@ -534,10 +576,22 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
+        /// Names of browsers to be used as user agent.
         /// </summary>
         [Input("ua")]
         public Input<string>? Ua { get; set; }
+
+        /// <summary>
+        /// Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+        /// </summary>
+        [Input("uaMaxVer")]
+        public Input<string>? UaMaxVer { get; set; }
+
+        /// <summary>
+        /// Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+        /// </summary>
+        [Input("uaMinVer")]
+        public Input<string>? UaMinVer { get; set; }
 
         /// <summary>
         /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).

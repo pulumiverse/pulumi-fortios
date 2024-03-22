@@ -43,6 +43,8 @@ type Wtpprofile struct {
 	ApcfgProfile pulumi.StringOutput `pulumi:"apcfgProfile"`
 	// Bluetooth Low Energy profile name.
 	BleProfile pulumi.StringOutput `pulumi:"bleProfile"`
+	// Bonjour profile name.
+	BonjourProfile pulumi.StringOutput `pulumi:"bonjourProfile"`
 	// Comment.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
 	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
@@ -53,7 +55,7 @@ type Wtpprofile struct {
 	DenyMacLists WtpprofileDenyMacListArrayOutput `pulumi:"denyMacLists"`
 	// Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
 	DtlsInKernel pulumi.StringOutput `pulumi:"dtlsInKernel"`
-	// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+	// WTP data channel DTLS policy (default = clear-text).
 	DtlsPolicy pulumi.StringOutput `pulumi:"dtlsPolicy"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
@@ -65,6 +67,8 @@ type Wtpprofile struct {
 	ExtInfoEnable pulumi.StringOutput `pulumi:"extInfoEnable"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 	FrequencyHandoff pulumi.StringOutput `pulumi:"frequencyHandoff"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
 	HandoffRoaming pulumi.StringOutput `pulumi:"handoffRoaming"`
 	// Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
@@ -117,10 +121,14 @@ type Wtpprofile struct {
 	TunMtuDownlink pulumi.IntOutput `pulumi:"tunMtuDownlink"`
 	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuUplink pulumi.IntOutput `pulumi:"tunMtuUplink"`
+	// Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+	Unii45ghzBand pulumi.StringOutput `pulumi:"unii45ghzBand"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
 	WanPortAuth pulumi.StringOutput `pulumi:"wanPortAuth"`
+	// Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+	WanPortAuthMacsec pulumi.StringOutput `pulumi:"wanPortAuthMacsec"`
 	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
 	WanPortAuthMethods pulumi.StringOutput `pulumi:"wanPortAuthMethods"`
 	// Set WAN port 802.1x supplicant password.
@@ -178,6 +186,8 @@ type wtpprofileState struct {
 	ApcfgProfile *string `pulumi:"apcfgProfile"`
 	// Bluetooth Low Energy profile name.
 	BleProfile *string `pulumi:"bleProfile"`
+	// Bonjour profile name.
+	BonjourProfile *string `pulumi:"bonjourProfile"`
 	// Comment.
 	Comment *string `pulumi:"comment"`
 	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
@@ -188,7 +198,7 @@ type wtpprofileState struct {
 	DenyMacLists []WtpprofileDenyMacList `pulumi:"denyMacLists"`
 	// Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
 	DtlsInKernel *string `pulumi:"dtlsInKernel"`
-	// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+	// WTP data channel DTLS policy (default = clear-text).
 	DtlsPolicy *string `pulumi:"dtlsPolicy"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
@@ -200,6 +210,8 @@ type wtpprofileState struct {
 	ExtInfoEnable *string `pulumi:"extInfoEnable"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 	FrequencyHandoff *string `pulumi:"frequencyHandoff"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
 	HandoffRoaming *string `pulumi:"handoffRoaming"`
 	// Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
@@ -252,10 +264,14 @@ type wtpprofileState struct {
 	TunMtuDownlink *int `pulumi:"tunMtuDownlink"`
 	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuUplink *int `pulumi:"tunMtuUplink"`
+	// Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+	Unii45ghzBand *string `pulumi:"unii45ghzBand"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
 	WanPortAuth *string `pulumi:"wanPortAuth"`
+	// Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+	WanPortAuthMacsec *string `pulumi:"wanPortAuthMacsec"`
 	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
 	WanPortAuthMethods *string `pulumi:"wanPortAuthMethods"`
 	// Set WAN port 802.1x supplicant password.
@@ -277,6 +293,8 @@ type WtpprofileState struct {
 	ApcfgProfile pulumi.StringPtrInput
 	// Bluetooth Low Energy profile name.
 	BleProfile pulumi.StringPtrInput
+	// Bonjour profile name.
+	BonjourProfile pulumi.StringPtrInput
 	// Comment.
 	Comment pulumi.StringPtrInput
 	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
@@ -287,7 +305,7 @@ type WtpprofileState struct {
 	DenyMacLists WtpprofileDenyMacListArrayInput
 	// Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
 	DtlsInKernel pulumi.StringPtrInput
-	// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+	// WTP data channel DTLS policy (default = clear-text).
 	DtlsPolicy pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
@@ -299,6 +317,8 @@ type WtpprofileState struct {
 	ExtInfoEnable pulumi.StringPtrInput
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 	FrequencyHandoff pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
 	HandoffRoaming pulumi.StringPtrInput
 	// Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
@@ -351,10 +371,14 @@ type WtpprofileState struct {
 	TunMtuDownlink pulumi.IntPtrInput
 	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuUplink pulumi.IntPtrInput
+	// Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+	Unii45ghzBand pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
 	WanPortAuth pulumi.StringPtrInput
+	// Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+	WanPortAuthMacsec pulumi.StringPtrInput
 	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
 	WanPortAuthMethods pulumi.StringPtrInput
 	// Set WAN port 802.1x supplicant password.
@@ -380,6 +404,8 @@ type wtpprofileArgs struct {
 	ApcfgProfile *string `pulumi:"apcfgProfile"`
 	// Bluetooth Low Energy profile name.
 	BleProfile *string `pulumi:"bleProfile"`
+	// Bonjour profile name.
+	BonjourProfile *string `pulumi:"bonjourProfile"`
 	// Comment.
 	Comment *string `pulumi:"comment"`
 	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
@@ -390,7 +416,7 @@ type wtpprofileArgs struct {
 	DenyMacLists []WtpprofileDenyMacList `pulumi:"denyMacLists"`
 	// Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
 	DtlsInKernel *string `pulumi:"dtlsInKernel"`
-	// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+	// WTP data channel DTLS policy (default = clear-text).
 	DtlsPolicy *string `pulumi:"dtlsPolicy"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
@@ -402,6 +428,8 @@ type wtpprofileArgs struct {
 	ExtInfoEnable *string `pulumi:"extInfoEnable"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 	FrequencyHandoff *string `pulumi:"frequencyHandoff"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
 	HandoffRoaming *string `pulumi:"handoffRoaming"`
 	// Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
@@ -454,10 +482,14 @@ type wtpprofileArgs struct {
 	TunMtuDownlink *int `pulumi:"tunMtuDownlink"`
 	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuUplink *int `pulumi:"tunMtuUplink"`
+	// Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+	Unii45ghzBand *string `pulumi:"unii45ghzBand"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
 	WanPortAuth *string `pulumi:"wanPortAuth"`
+	// Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+	WanPortAuthMacsec *string `pulumi:"wanPortAuthMacsec"`
 	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
 	WanPortAuthMethods *string `pulumi:"wanPortAuthMethods"`
 	// Set WAN port 802.1x supplicant password.
@@ -480,6 +512,8 @@ type WtpprofileArgs struct {
 	ApcfgProfile pulumi.StringPtrInput
 	// Bluetooth Low Energy profile name.
 	BleProfile pulumi.StringPtrInput
+	// Bonjour profile name.
+	BonjourProfile pulumi.StringPtrInput
 	// Comment.
 	Comment pulumi.StringPtrInput
 	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
@@ -490,7 +524,7 @@ type WtpprofileArgs struct {
 	DenyMacLists WtpprofileDenyMacListArrayInput
 	// Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
 	DtlsInKernel pulumi.StringPtrInput
-	// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+	// WTP data channel DTLS policy (default = clear-text).
 	DtlsPolicy pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
@@ -502,6 +536,8 @@ type WtpprofileArgs struct {
 	ExtInfoEnable pulumi.StringPtrInput
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 	FrequencyHandoff pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
 	HandoffRoaming pulumi.StringPtrInput
 	// Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
@@ -554,10 +590,14 @@ type WtpprofileArgs struct {
 	TunMtuDownlink pulumi.IntPtrInput
 	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuUplink pulumi.IntPtrInput
+	// Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+	Unii45ghzBand pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
 	WanPortAuth pulumi.StringPtrInput
+	// Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+	WanPortAuthMacsec pulumi.StringPtrInput
 	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
 	WanPortAuthMethods pulumi.StringPtrInput
 	// Set WAN port 802.1x supplicant password.
@@ -680,6 +720,11 @@ func (o WtpprofileOutput) BleProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Wtpprofile) pulumi.StringOutput { return v.BleProfile }).(pulumi.StringOutput)
 }
 
+// Bonjour profile name.
+func (o WtpprofileOutput) BonjourProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Wtpprofile) pulumi.StringOutput { return v.BonjourProfile }).(pulumi.StringOutput)
+}
+
 // Comment.
 func (o WtpprofileOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Wtpprofile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
@@ -705,7 +750,7 @@ func (o WtpprofileOutput) DtlsInKernel() pulumi.StringOutput {
 	return o.ApplyT(func(v *Wtpprofile) pulumi.StringOutput { return v.DtlsInKernel }).(pulumi.StringOutput)
 }
 
-// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+// WTP data channel DTLS policy (default = clear-text).
 func (o WtpprofileOutput) DtlsPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *Wtpprofile) pulumi.StringOutput { return v.DtlsPolicy }).(pulumi.StringOutput)
 }
@@ -733,6 +778,11 @@ func (o WtpprofileOutput) ExtInfoEnable() pulumi.StringOutput {
 // Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileOutput) FrequencyHandoff() pulumi.StringOutput {
 	return o.ApplyT(func(v *Wtpprofile) pulumi.StringOutput { return v.FrequencyHandoff }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o WtpprofileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Wtpprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
@@ -865,6 +915,11 @@ func (o WtpprofileOutput) TunMtuUplink() pulumi.IntOutput {
 	return o.ApplyT(func(v *Wtpprofile) pulumi.IntOutput { return v.TunMtuUplink }).(pulumi.IntOutput)
 }
 
+// Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+func (o WtpprofileOutput) Unii45ghzBand() pulumi.StringOutput {
+	return o.ApplyT(func(v *Wtpprofile) pulumi.StringOutput { return v.Unii45ghzBand }).(pulumi.StringOutput)
+}
+
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 func (o WtpprofileOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Wtpprofile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
@@ -873,6 +928,11 @@ func (o WtpprofileOutput) Vdomparam() pulumi.StringPtrOutput {
 // Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
 func (o WtpprofileOutput) WanPortAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v *Wtpprofile) pulumi.StringOutput { return v.WanPortAuth }).(pulumi.StringOutput)
+}
+
+// Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+func (o WtpprofileOutput) WanPortAuthMacsec() pulumi.StringOutput {
+	return o.ApplyT(func(v *Wtpprofile) pulumi.StringOutput { return v.WanPortAuthMacsec }).(pulumi.StringOutput)
 }
 
 // WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.

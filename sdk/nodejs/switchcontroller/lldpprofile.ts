@@ -77,6 +77,30 @@ export class Lldpprofile extends pulumi.CustomResource {
      */
     public readonly autoIsl!: pulumi.Output<string>;
     /**
+     * Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+     */
+    public readonly autoIslAuth!: pulumi.Output<string>;
+    /**
+     * Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+     */
+    public readonly autoIslAuthEncrypt!: pulumi.Output<string>;
+    /**
+     * Auto inter-switch LAG authentication identity.
+     */
+    public readonly autoIslAuthIdentity!: pulumi.Output<string>;
+    /**
+     * Auto inter-switch LAG macsec profile for encryption.
+     */
+    public readonly autoIslAuthMacsecProfile!: pulumi.Output<string>;
+    /**
+     * Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+     */
+    public readonly autoIslAuthReauth!: pulumi.Output<number>;
+    /**
+     * Auto inter-switch LAG authentication user certificate.
+     */
+    public readonly autoIslAuthUser!: pulumi.Output<string>;
+    /**
      * Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
      */
     public readonly autoIslHelloTimer!: pulumi.Output<number>;
@@ -100,6 +124,10 @@ export class Lldpprofile extends pulumi.CustomResource {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
      */
@@ -143,12 +171,19 @@ export class Lldpprofile extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as LldpprofileState | undefined;
             resourceInputs["autoIsl"] = state ? state.autoIsl : undefined;
+            resourceInputs["autoIslAuth"] = state ? state.autoIslAuth : undefined;
+            resourceInputs["autoIslAuthEncrypt"] = state ? state.autoIslAuthEncrypt : undefined;
+            resourceInputs["autoIslAuthIdentity"] = state ? state.autoIslAuthIdentity : undefined;
+            resourceInputs["autoIslAuthMacsecProfile"] = state ? state.autoIslAuthMacsecProfile : undefined;
+            resourceInputs["autoIslAuthReauth"] = state ? state.autoIslAuthReauth : undefined;
+            resourceInputs["autoIslAuthUser"] = state ? state.autoIslAuthUser : undefined;
             resourceInputs["autoIslHelloTimer"] = state ? state.autoIslHelloTimer : undefined;
             resourceInputs["autoIslPortGroup"] = state ? state.autoIslPortGroup : undefined;
             resourceInputs["autoIslReceiveTimeout"] = state ? state.autoIslReceiveTimeout : undefined;
             resourceInputs["autoMclagIcl"] = state ? state.autoMclagIcl : undefined;
             resourceInputs["customTlvs"] = state ? state.customTlvs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["medLocationServices"] = state ? state.medLocationServices : undefined;
             resourceInputs["medNetworkPolicies"] = state ? state.medNetworkPolicies : undefined;
             resourceInputs["medTlvs"] = state ? state.medTlvs : undefined;
@@ -159,12 +194,19 @@ export class Lldpprofile extends pulumi.CustomResource {
         } else {
             const args = argsOrState as LldpprofileArgs | undefined;
             resourceInputs["autoIsl"] = args ? args.autoIsl : undefined;
+            resourceInputs["autoIslAuth"] = args ? args.autoIslAuth : undefined;
+            resourceInputs["autoIslAuthEncrypt"] = args ? args.autoIslAuthEncrypt : undefined;
+            resourceInputs["autoIslAuthIdentity"] = args ? args.autoIslAuthIdentity : undefined;
+            resourceInputs["autoIslAuthMacsecProfile"] = args ? args.autoIslAuthMacsecProfile : undefined;
+            resourceInputs["autoIslAuthReauth"] = args ? args.autoIslAuthReauth : undefined;
+            resourceInputs["autoIslAuthUser"] = args ? args.autoIslAuthUser : undefined;
             resourceInputs["autoIslHelloTimer"] = args ? args.autoIslHelloTimer : undefined;
             resourceInputs["autoIslPortGroup"] = args ? args.autoIslPortGroup : undefined;
             resourceInputs["autoIslReceiveTimeout"] = args ? args.autoIslReceiveTimeout : undefined;
             resourceInputs["autoMclagIcl"] = args ? args.autoMclagIcl : undefined;
             resourceInputs["customTlvs"] = args ? args.customTlvs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["medLocationServices"] = args ? args.medLocationServices : undefined;
             resourceInputs["medNetworkPolicies"] = args ? args.medNetworkPolicies : undefined;
             resourceInputs["medTlvs"] = args ? args.medTlvs : undefined;
@@ -186,6 +228,30 @@ export interface LldpprofileState {
      * Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
      */
     autoIsl?: pulumi.Input<string>;
+    /**
+     * Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+     */
+    autoIslAuth?: pulumi.Input<string>;
+    /**
+     * Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+     */
+    autoIslAuthEncrypt?: pulumi.Input<string>;
+    /**
+     * Auto inter-switch LAG authentication identity.
+     */
+    autoIslAuthIdentity?: pulumi.Input<string>;
+    /**
+     * Auto inter-switch LAG macsec profile for encryption.
+     */
+    autoIslAuthMacsecProfile?: pulumi.Input<string>;
+    /**
+     * Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+     */
+    autoIslAuthReauth?: pulumi.Input<number>;
+    /**
+     * Auto inter-switch LAG authentication user certificate.
+     */
+    autoIslAuthUser?: pulumi.Input<string>;
     /**
      * Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
      */
@@ -210,6 +276,10 @@ export interface LldpprofileState {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
      */
@@ -249,6 +319,30 @@ export interface LldpprofileArgs {
      */
     autoIsl?: pulumi.Input<string>;
     /**
+     * Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+     */
+    autoIslAuth?: pulumi.Input<string>;
+    /**
+     * Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+     */
+    autoIslAuthEncrypt?: pulumi.Input<string>;
+    /**
+     * Auto inter-switch LAG authentication identity.
+     */
+    autoIslAuthIdentity?: pulumi.Input<string>;
+    /**
+     * Auto inter-switch LAG macsec profile for encryption.
+     */
+    autoIslAuthMacsecProfile?: pulumi.Input<string>;
+    /**
+     * Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+     */
+    autoIslAuthReauth?: pulumi.Input<number>;
+    /**
+     * Auto inter-switch LAG authentication user certificate.
+     */
+    autoIslAuthUser?: pulumi.Input<string>;
+    /**
      * Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
      */
     autoIslHelloTimer?: pulumi.Input<number>;
@@ -272,6 +366,10 @@ export interface LldpprofileArgs {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `medLocationService` block is documented below.
      */

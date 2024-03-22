@@ -4,7 +4,7 @@ PROJECT          := github.com/pulumiverse/pulumi-fortios
 NODE_MODULE_NAME := @pulumiverse/fortios
 TF_NAME          := fortios
 PROVIDER_PATH    := provider
-PROVIDER_VERSION := 1.16.0
+PROVIDER_VERSION := 1.19.0
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
 
 JAVA_GEN         := pulumi-java-gen
@@ -47,7 +47,9 @@ only_build:: build
 
 upstream/.git:
 	@echo "Initializing upstream" ; \
-	git -c advice.detachedHead=false clone --depth 1 --branch 'v$(PROVIDER_VERSION)' 'https://github.com/fortinetdev/terraform-provider-fortios' upstream
+	git clone https://github.com/fortinetdev/terraform-provider-fortios.git upstream && \
+	cd upstream && \
+	git checkout -b 'v$(PROVIDER_VERSION)'
 
 tfgen:: install_plugins upstream/.git
 	(cd provider && go build -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
@@ -105,7 +107,7 @@ $(WORKING_DIR)/bin/$(JAVA_GEN)::
 lint_provider:: provider # lint the provider code
 	cd provider && golangci-lint run -c ../.golangci.yml
 
-tidy:: # call go mod tidy in relevant directories
+tidy:: upstream/.git # call go mod tidy in relevant directories
 	find ./provider -name go.mod -execdir go mod tidy \;
 
 cleanup:: # cleans up the temporary directory

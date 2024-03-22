@@ -64,9 +64,29 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly dailymotion!: pulumi.Output<string>;
     /**
+     * Video filter default action. Valid values: `allow`, `monitor`, `block`.
+     */
+    public readonly defaultAction!: pulumi.Output<string>;
+    /**
+     * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+     */
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * YouTube filter entries. The structure of `filters` block is documented below.
+     */
+    public readonly filters!: pulumi.Output<outputs.filter.video.ProfileFilter[] | undefined>;
+    /**
      * Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
      */
     public readonly fortiguardCategory!: pulumi.Output<outputs.filter.video.ProfileFortiguardCategory>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable logging. Valid values: `enable`, `disable`.
+     */
+    public readonly log!: pulumi.Output<string>;
     /**
      * Name.
      */
@@ -107,7 +127,12 @@ export class Profile extends pulumi.CustomResource {
             const state = argsOrState as ProfileState | undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dailymotion"] = state ? state.dailymotion : undefined;
+            resourceInputs["defaultAction"] = state ? state.defaultAction : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["filters"] = state ? state.filters : undefined;
             resourceInputs["fortiguardCategory"] = state ? state.fortiguardCategory : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["log"] = state ? state.log : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -118,7 +143,12 @@ export class Profile extends pulumi.CustomResource {
             const args = argsOrState as ProfileArgs | undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dailymotion"] = args ? args.dailymotion : undefined;
+            resourceInputs["defaultAction"] = args ? args.defaultAction : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["filters"] = args ? args.filters : undefined;
             resourceInputs["fortiguardCategory"] = args ? args.fortiguardCategory : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["log"] = args ? args.log : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -144,9 +174,29 @@ export interface ProfileState {
      */
     dailymotion?: pulumi.Input<string>;
     /**
+     * Video filter default action. Valid values: `allow`, `monitor`, `block`.
+     */
+    defaultAction?: pulumi.Input<string>;
+    /**
+     * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * YouTube filter entries. The structure of `filters` block is documented below.
+     */
+    filters?: pulumi.Input<pulumi.Input<inputs.filter.video.ProfileFilter>[]>;
+    /**
      * Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
      */
     fortiguardCategory?: pulumi.Input<inputs.filter.video.ProfileFortiguardCategory>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Enable/disable logging. Valid values: `enable`, `disable`.
+     */
+    log?: pulumi.Input<string>;
     /**
      * Name.
      */
@@ -186,9 +236,29 @@ export interface ProfileArgs {
      */
     dailymotion?: pulumi.Input<string>;
     /**
+     * Video filter default action. Valid values: `allow`, `monitor`, `block`.
+     */
+    defaultAction?: pulumi.Input<string>;
+    /**
+     * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * YouTube filter entries. The structure of `filters` block is documented below.
+     */
+    filters?: pulumi.Input<pulumi.Input<inputs.filter.video.ProfileFilter>[]>;
+    /**
      * Configure FortiGuard categories. The structure of `fortiguardCategory` block is documented below.
      */
     fortiguardCategory?: pulumi.Input<inputs.filter.video.ProfileFortiguardCategory>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Enable/disable logging. Valid values: `enable`, `disable`.
+     */
+    log?: pulumi.Input<string>;
     /**
      * Name.
      */

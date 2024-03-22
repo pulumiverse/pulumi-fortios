@@ -72,7 +72,7 @@ class ProfileCifs(dict):
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         :param str external_blocklist: Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
         :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-        :param str fortindr: Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        :param str fortindr: Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         :param str fortisandbox: Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service.
@@ -153,7 +153,7 @@ class ProfileCifs(dict):
     @pulumi.getter
     def fortindr(self) -> Optional[str]:
         """
-        Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         """
         return pulumi.get(self, "fortindr")
 
@@ -543,7 +543,7 @@ class ProfileFtp(dict):
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         :param str external_blocklist: Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
         :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-        :param str fortindr: Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        :param str fortindr: Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         :param str fortisandbox: Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable FTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service.
@@ -624,7 +624,7 @@ class ProfileFtp(dict):
     @pulumi.getter
     def fortindr(self) -> Optional[str]:
         """
-        Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         """
         return pulumi.get(self, "fortindr")
 
@@ -714,7 +714,7 @@ class ProfileHttp(dict):
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         :param str external_blocklist: Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
         :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-        :param str fortindr: Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        :param str fortindr: Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         :param str fortisandbox: Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service.
@@ -808,7 +808,7 @@ class ProfileHttp(dict):
     @pulumi.getter
     def fortindr(self) -> Optional[str]:
         """
-        Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         """
         return pulumi.get(self, "fortindr")
 
@@ -905,7 +905,7 @@ class ProfileImap(dict):
         :param str executables: Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
         :param str external_blocklist: Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
         :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-        :param str fortindr: Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        :param str fortindr: Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         :param str fortisandbox: Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable POP3 AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service.
@@ -1006,7 +1006,7 @@ class ProfileImap(dict):
     @pulumi.getter
     def fortindr(self) -> Optional[str]:
         """
-        Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         """
         return pulumi.get(self, "fortindr")
 
@@ -1308,7 +1308,7 @@ class ProfileNntp(dict):
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         :param str external_blocklist: Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
         :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-        :param str fortindr: Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        :param str fortindr: Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         :param str fortisandbox: Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable NNTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service.
@@ -1389,7 +1389,7 @@ class ProfileNntp(dict):
     @pulumi.getter
     def fortindr(self) -> Optional[str]:
         """
-        Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         """
         return pulumi.get(self, "fortindr")
 
@@ -1528,7 +1528,7 @@ class ProfilePop3(dict):
         :param str executables: Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
         :param str external_blocklist: One or more external malware block lists. The structure of `external_blocklist` block is documented below.
         :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-        :param str fortindr: Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        :param str fortindr: Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         :param str fortisandbox: Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Configure Virus Outbreak Prevention settings. The structure of `outbreak_prevention` block is documented below.
@@ -1629,7 +1629,7 @@ class ProfilePop3(dict):
     @pulumi.getter
     def fortindr(self) -> Optional[str]:
         """
-        Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         """
         return pulumi.get(self, "fortindr")
 
@@ -1806,7 +1806,7 @@ class ProfileSmtp(dict):
         :param str executables: Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
         :param str external_blocklist: Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
         :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-        :param str fortindr: Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        :param str fortindr: Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         :param str fortisandbox: Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable SMTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service.
@@ -1907,7 +1907,7 @@ class ProfileSmtp(dict):
     @pulumi.getter
     def fortindr(self) -> Optional[str]:
         """
-        Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         """
         return pulumi.get(self, "fortindr")
 
@@ -1990,7 +1990,7 @@ class ProfileSsh(dict):
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         :param str external_blocklist: Enable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `block`, `monitor`.
         :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-        :param str fortindr: Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        :param str fortindr: Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         :param str fortisandbox: Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable SFTP and SCP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service.
@@ -2071,7 +2071,7 @@ class ProfileSsh(dict):
     @pulumi.getter
     def fortindr(self) -> Optional[str]:
         """
-        Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         """
         return pulumi.get(self, "fortindr")
 

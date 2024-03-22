@@ -59,6 +59,12 @@ namespace Pulumiverse.Fortios.Application
         public Output<int> Fosid { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Meta data. The structure of `metadata` block is documented below.
         /// </summary>
         [Output("metadatas")]
@@ -201,6 +207,12 @@ namespace Pulumiverse.Fortios.Application
         [Input("fosid")]
         public Input<int>? Fosid { get; set; }
 
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
         [Input("metadatas")]
         private InputList<Inputs.NameMetadataArgs>? _metadatas;
 
@@ -316,6 +328,12 @@ namespace Pulumiverse.Fortios.Application
         /// </summary>
         [Input("fosid")]
         public Input<int>? Fosid { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("metadatas")]
         private InputList<Inputs.NameMetadataGetArgs>? _metadatas;

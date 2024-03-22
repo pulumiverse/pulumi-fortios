@@ -21,7 +21,7 @@ class GetExternalresourceResult:
     """
     A collection of values returned by getExternalresource.
     """
-    def __init__(__self__, category=None, comments=None, id=None, interface=None, interface_select_method=None, name=None, password=None, refresh_rate=None, resource=None, source_ip=None, status=None, type=None, update_method=None, user_agent=None, username=None, uuid=None, vdomparam=None):
+    def __init__(__self__, category=None, comments=None, id=None, interface=None, interface_select_method=None, name=None, password=None, refresh_rate=None, resource=None, server_identity_check=None, source_ip=None, status=None, type=None, update_method=None, user_agent=None, username=None, uuid=None, vdomparam=None):
         if category and not isinstance(category, int):
             raise TypeError("Expected argument 'category' to be a int")
         pulumi.set(__self__, "category", category)
@@ -49,6 +49,9 @@ class GetExternalresourceResult:
         if resource and not isinstance(resource, str):
             raise TypeError("Expected argument 'resource' to be a str")
         pulumi.set(__self__, "resource", resource)
+        if server_identity_check and not isinstance(server_identity_check, str):
+            raise TypeError("Expected argument 'server_identity_check' to be a str")
+        pulumi.set(__self__, "server_identity_check", server_identity_check)
         if source_ip and not isinstance(source_ip, str):
             raise TypeError("Expected argument 'source_ip' to be a str")
         pulumi.set(__self__, "source_ip", source_ip)
@@ -147,6 +150,14 @@ class GetExternalresourceResult:
         return pulumi.get(self, "resource")
 
     @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> str:
+        """
+        Certificate verification option.
+        """
+        return pulumi.get(self, "server_identity_check")
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> str:
         """
@@ -223,6 +234,7 @@ class AwaitableGetExternalresourceResult(GetExternalresourceResult):
             password=self.password,
             refresh_rate=self.refresh_rate,
             resource=self.resource,
+            server_identity_check=self.server_identity_check,
             source_ip=self.source_ip,
             status=self.status,
             type=self.type,
@@ -259,6 +271,7 @@ def get_externalresource(name: Optional[str] = None,
         password=pulumi.get(__ret__, 'password'),
         refresh_rate=pulumi.get(__ret__, 'refresh_rate'),
         resource=pulumi.get(__ret__, 'resource'),
+        server_identity_check=pulumi.get(__ret__, 'server_identity_check'),
         source_ip=pulumi.get(__ret__, 'source_ip'),
         status=pulumi.get(__ret__, 'status'),
         type=pulumi.get(__ret__, 'type'),

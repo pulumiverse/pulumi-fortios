@@ -191,6 +191,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<string> AutoNegotiate { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("azureAdAutoconnect")]
+        public Output<string> AzureAdAutoconnect { get; private set; } = null!;
+
+        /// <summary>
         /// Instruct unity clients about the backup gateway address(es). The structure of `backup_gateway` block is documented below.
         /// </summary>
         [Output("backupGateways")]
@@ -207,6 +213,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Output("certIdValidation")]
         public Output<string> CertIdValidation { get; private set; } = null!;
+
+        /// <summary>
+        /// CA certificate trust store. Valid values: `local`, `ems`.
+        /// </summary>
+        [Output("certTrustStore")]
+        public Output<string> CertTrustStore { get; private set; } = null!;
 
         /// <summary>
         /// Names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
@@ -237,6 +249,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Output("comments")]
         public Output<string?> Comments { get; private set; } = null!;
+
+        /// <summary>
+        /// Device ID carried by the device ID notification.
+        /// </summary>
+        [Output("devId")]
+        public Output<string> DevId { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable device ID notification. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("devIdNotification")]
+        public Output<string> DevIdNotification { get; private set; } = null!;
 
         /// <summary>
         /// Relay agent IPv6 link address to use in DHCP6 requests.
@@ -311,6 +335,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<string> Eap { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("eapCertAuth")]
+        public Output<string> EapCertAuth { get; private set; } = null!;
+
+        /// <summary>
         /// Peer group excluded from EAP authentication.
         /// </summary>
         [Output("eapExcludePeergrp")]
@@ -321,6 +351,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Output("eapIdentity")]
         public Output<string> EapIdentity { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("emsSnCheck")]
+        public Output<string> EmsSnCheck { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
@@ -335,6 +371,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<string> Esn { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("exchangeFgtDeviceId")]
+        public Output<string> ExchangeFgtDeviceId { get; private set; } = null!;
+
+        /// <summary>
+        /// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+        /// </summary>
+        [Output("fallbackTcpThreshold")]
+        public Output<int> FallbackTcpThreshold { get; private set; } = null!;
+
+        /// <summary>
         /// Number of base Forward Error Correction packets (1 - 100).
         /// </summary>
         [Output("fecBase")]
@@ -345,6 +393,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Output("fecCodec")]
         public Output<int> FecCodec { get; private set; } = null!;
+
+        /// <summary>
+        /// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+        /// </summary>
+        [Output("fecCodecString")]
+        public Output<string> FecCodecString { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
@@ -401,6 +455,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<string> ForticlientEnforcement { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("fortinetEsp")]
+        public Output<string> FortinetEsp { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("fragmentation")]
@@ -411,6 +471,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Output("fragmentationMtu")]
         public Output<int> FragmentationMtu { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
@@ -465,6 +531,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Output("interface")]
         public Output<string> Interface { get; private set; } = null!;
+
+        /// <summary>
+        /// One or more internal domain names in quotes separated by spaces. The structure of `internal_domain_list` block is documented below.
+        /// </summary>
+        [Output("internalDomainLists")]
+        public Output<ImmutableArray<Outputs.Phase1InternalDomainList>> InternalDomainLists { get; private set; } = null!;
 
         /// <summary>
         /// IP address reuse delay interval in seconds (0 - 28800).
@@ -617,6 +689,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<int> Keylife { get; private set; } = null!;
 
         /// <summary>
+        /// Key Management Services server.
+        /// </summary>
+        [Output("kms")]
+        public Output<string> Kms { get; private set; } = null!;
+
+        /// <summary>
+        /// VPN tunnel underlay link cost.
+        /// </summary>
+        [Output("linkCost")]
+        public Output<int> LinkCost { get; private set; } = null!;
+
+        /// <summary>
         /// Local VPN gateway.
         /// </summary>
         [Output("localGw")]
@@ -767,6 +851,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<string?> PsksecretRemote { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+        /// </summary>
+        [Output("qkd")]
+        public Output<string> Qkd { get; private set; } = null!;
+
+        /// <summary>
+        /// Quantum Key Distribution (QKD) server profile.
+        /// </summary>
+        [Output("qkdProfile")]
+        public Output<string> QkdProfile { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
         /// </summary>
         [Output("reauth")]
@@ -831,6 +927,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Output("suiteB")]
         public Output<string> SuiteB { get; private set; } = null!;
+
+        /// <summary>
+        /// Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+        /// </summary>
+        [Output("transport")]
+        public Output<string> Transport { get; private set; } = null!;
 
         /// <summary>
         /// Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
@@ -999,6 +1101,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         [Input("autoNegotiate")]
         public Input<string>? AutoNegotiate { get; set; }
 
+        /// <summary>
+        /// Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("azureAdAutoconnect")]
+        public Input<string>? AzureAdAutoconnect { get; set; }
+
         [Input("backupGateways")]
         private InputList<Inputs.Phase1BackupGatewayArgs>? _backupGateways;
 
@@ -1022,6 +1130,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("certIdValidation")]
         public Input<string>? CertIdValidation { get; set; }
+
+        /// <summary>
+        /// CA certificate trust store. Valid values: `local`, `ems`.
+        /// </summary>
+        [Input("certTrustStore")]
+        public Input<string>? CertTrustStore { get; set; }
 
         [Input("certificates")]
         private InputList<Inputs.Phase1CertificateArgs>? _certificates;
@@ -1058,6 +1172,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("comments")]
         public Input<string>? Comments { get; set; }
+
+        /// <summary>
+        /// Device ID carried by the device ID notification.
+        /// </summary>
+        [Input("devId")]
+        public Input<string>? DevId { get; set; }
+
+        /// <summary>
+        /// Enable/disable device ID notification. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("devIdNotification")]
+        public Input<string>? DevIdNotification { get; set; }
 
         /// <summary>
         /// Relay agent IPv6 link address to use in DHCP6 requests.
@@ -1132,6 +1258,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? Eap { get; set; }
 
         /// <summary>
+        /// Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("eapCertAuth")]
+        public Input<string>? EapCertAuth { get; set; }
+
+        /// <summary>
         /// Peer group excluded from EAP authentication.
         /// </summary>
         [Input("eapExcludePeergrp")]
@@ -1142,6 +1274,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("eapIdentity")]
         public Input<string>? EapIdentity { get; set; }
+
+        /// <summary>
+        /// Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("emsSnCheck")]
+        public Input<string>? EmsSnCheck { get; set; }
 
         /// <summary>
         /// Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
@@ -1156,6 +1294,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? Esn { get; set; }
 
         /// <summary>
+        /// Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("exchangeFgtDeviceId")]
+        public Input<string>? ExchangeFgtDeviceId { get; set; }
+
+        /// <summary>
+        /// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+        /// </summary>
+        [Input("fallbackTcpThreshold")]
+        public Input<int>? FallbackTcpThreshold { get; set; }
+
+        /// <summary>
         /// Number of base Forward Error Correction packets (1 - 100).
         /// </summary>
         [Input("fecBase")]
@@ -1166,6 +1316,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("fecCodec")]
         public Input<int>? FecCodec { get; set; }
+
+        /// <summary>
+        /// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+        /// </summary>
+        [Input("fecCodecString")]
+        public Input<string>? FecCodecString { get; set; }
 
         /// <summary>
         /// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
@@ -1222,6 +1378,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? ForticlientEnforcement { get; set; }
 
         /// <summary>
+        /// Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("fortinetEsp")]
+        public Input<string>? FortinetEsp { get; set; }
+
+        /// <summary>
         /// Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("fragmentation")]
@@ -1232,6 +1394,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("fragmentationMtu")]
         public Input<int>? FragmentationMtu { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
@@ -1296,6 +1464,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("interface", required: true)]
         public Input<string> Interface { get; set; } = null!;
+
+        [Input("internalDomainLists")]
+        private InputList<Inputs.Phase1InternalDomainListArgs>? _internalDomainLists;
+
+        /// <summary>
+        /// One or more internal domain names in quotes separated by spaces. The structure of `internal_domain_list` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Phase1InternalDomainListArgs> InternalDomainLists
+        {
+            get => _internalDomainLists ?? (_internalDomainLists = new InputList<Inputs.Phase1InternalDomainListArgs>());
+            set => _internalDomainLists = value;
+        }
 
         /// <summary>
         /// IP address reuse delay interval in seconds (0 - 28800).
@@ -1458,6 +1638,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("keylife")]
         public Input<int>? Keylife { get; set; }
+
+        /// <summary>
+        /// Key Management Services server.
+        /// </summary>
+        [Input("kms")]
+        public Input<string>? Kms { get; set; }
+
+        /// <summary>
+        /// VPN tunnel underlay link cost.
+        /// </summary>
+        [Input("linkCost")]
+        public Input<int>? LinkCost { get; set; }
 
         /// <summary>
         /// Local VPN gateway.
@@ -1640,6 +1832,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         }
 
         /// <summary>
+        /// Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+        /// </summary>
+        [Input("qkd")]
+        public Input<string>? Qkd { get; set; }
+
+        /// <summary>
+        /// Quantum Key Distribution (QKD) server profile.
+        /// </summary>
+        [Input("qkdProfile")]
+        public Input<string>? QkdProfile { get; set; }
+
+        /// <summary>
         /// Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("reauth")]
@@ -1704,6 +1908,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("suiteB")]
         public Input<string>? SuiteB { get; set; }
+
+        /// <summary>
+        /// Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+        /// </summary>
+        [Input("transport")]
+        public Input<string>? Transport { get; set; }
 
         /// <summary>
         /// Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.
@@ -1825,6 +2035,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         [Input("autoNegotiate")]
         public Input<string>? AutoNegotiate { get; set; }
 
+        /// <summary>
+        /// Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("azureAdAutoconnect")]
+        public Input<string>? AzureAdAutoconnect { get; set; }
+
         [Input("backupGateways")]
         private InputList<Inputs.Phase1BackupGatewayGetArgs>? _backupGateways;
 
@@ -1848,6 +2064,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("certIdValidation")]
         public Input<string>? CertIdValidation { get; set; }
+
+        /// <summary>
+        /// CA certificate trust store. Valid values: `local`, `ems`.
+        /// </summary>
+        [Input("certTrustStore")]
+        public Input<string>? CertTrustStore { get; set; }
 
         [Input("certificates")]
         private InputList<Inputs.Phase1CertificateGetArgs>? _certificates;
@@ -1884,6 +2106,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("comments")]
         public Input<string>? Comments { get; set; }
+
+        /// <summary>
+        /// Device ID carried by the device ID notification.
+        /// </summary>
+        [Input("devId")]
+        public Input<string>? DevId { get; set; }
+
+        /// <summary>
+        /// Enable/disable device ID notification. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("devIdNotification")]
+        public Input<string>? DevIdNotification { get; set; }
 
         /// <summary>
         /// Relay agent IPv6 link address to use in DHCP6 requests.
@@ -1958,6 +2192,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? Eap { get; set; }
 
         /// <summary>
+        /// Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("eapCertAuth")]
+        public Input<string>? EapCertAuth { get; set; }
+
+        /// <summary>
         /// Peer group excluded from EAP authentication.
         /// </summary>
         [Input("eapExcludePeergrp")]
@@ -1968,6 +2208,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("eapIdentity")]
         public Input<string>? EapIdentity { get; set; }
+
+        /// <summary>
+        /// Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("emsSnCheck")]
+        public Input<string>? EmsSnCheck { get; set; }
 
         /// <summary>
         /// Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
@@ -1982,6 +2228,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? Esn { get; set; }
 
         /// <summary>
+        /// Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("exchangeFgtDeviceId")]
+        public Input<string>? ExchangeFgtDeviceId { get; set; }
+
+        /// <summary>
+        /// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+        /// </summary>
+        [Input("fallbackTcpThreshold")]
+        public Input<int>? FallbackTcpThreshold { get; set; }
+
+        /// <summary>
         /// Number of base Forward Error Correction packets (1 - 100).
         /// </summary>
         [Input("fecBase")]
@@ -1992,6 +2250,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("fecCodec")]
         public Input<int>? FecCodec { get; set; }
+
+        /// <summary>
+        /// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+        /// </summary>
+        [Input("fecCodecString")]
+        public Input<string>? FecCodecString { get; set; }
 
         /// <summary>
         /// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
@@ -2048,6 +2312,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? ForticlientEnforcement { get; set; }
 
         /// <summary>
+        /// Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("fortinetEsp")]
+        public Input<string>? FortinetEsp { get; set; }
+
+        /// <summary>
         /// Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("fragmentation")]
@@ -2058,6 +2328,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("fragmentationMtu")]
         public Input<int>? FragmentationMtu { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
@@ -2122,6 +2398,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("interface")]
         public Input<string>? Interface { get; set; }
+
+        [Input("internalDomainLists")]
+        private InputList<Inputs.Phase1InternalDomainListGetArgs>? _internalDomainLists;
+
+        /// <summary>
+        /// One or more internal domain names in quotes separated by spaces. The structure of `internal_domain_list` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Phase1InternalDomainListGetArgs> InternalDomainLists
+        {
+            get => _internalDomainLists ?? (_internalDomainLists = new InputList<Inputs.Phase1InternalDomainListGetArgs>());
+            set => _internalDomainLists = value;
+        }
 
         /// <summary>
         /// IP address reuse delay interval in seconds (0 - 28800).
@@ -2284,6 +2572,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("keylife")]
         public Input<int>? Keylife { get; set; }
+
+        /// <summary>
+        /// Key Management Services server.
+        /// </summary>
+        [Input("kms")]
+        public Input<string>? Kms { get; set; }
+
+        /// <summary>
+        /// VPN tunnel underlay link cost.
+        /// </summary>
+        [Input("linkCost")]
+        public Input<int>? LinkCost { get; set; }
 
         /// <summary>
         /// Local VPN gateway.
@@ -2466,6 +2766,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         }
 
         /// <summary>
+        /// Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+        /// </summary>
+        [Input("qkd")]
+        public Input<string>? Qkd { get; set; }
+
+        /// <summary>
+        /// Quantum Key Distribution (QKD) server profile.
+        /// </summary>
+        [Input("qkdProfile")]
+        public Input<string>? QkdProfile { get; set; }
+
+        /// <summary>
         /// Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("reauth")]
@@ -2530,6 +2842,12 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("suiteB")]
         public Input<string>? SuiteB { get; set; }
+
+        /// <summary>
+        /// Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+        /// </summary>
+        [Input("transport")]
+        public Input<string>? Transport { get; set; }
 
         /// <summary>
         /// Remote gateway type. Valid values: `static`, `dynamic`, `ddns`.

@@ -214,6 +214,12 @@ namespace Pulumiverse.Fortios.System.Dhcp
         public Output<int> Fosid { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// DHCP server can assign IP configurations to clients connected to this interface.
         /// </summary>
         [Output("interface")]
@@ -292,6 +298,12 @@ namespace Pulumiverse.Fortios.System.Dhcp
         public Output<ImmutableArray<Outputs.ServerOption>> Options { get; private set; } = null!;
 
         /// <summary>
+        /// Relay agent IP.
+        /// </summary>
+        [Output("relayAgent")]
+        public Output<string> RelayAgent { get; private set; } = null!;
+
+        /// <summary>
         /// Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reserved_address` block is documented below.
         /// </summary>
         [Output("reservedAddresses")]
@@ -302,6 +314,12 @@ namespace Pulumiverse.Fortios.System.Dhcp
         /// </summary>
         [Output("serverType")]
         public Output<string> ServerType { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable shared subnet. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("sharedSubnet")]
+        public Output<string> SharedSubnet { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
@@ -316,7 +334,7 @@ namespace Pulumiverse.Fortios.System.Dhcp
         public Output<ImmutableArray<Outputs.ServerTftpServer>> TftpServers { get; private set; } = null!;
 
         /// <summary>
-        /// Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+        /// Select the time zone to be assigned to DHCP clients.
         /// </summary>
         [Output("timezone")]
         public Output<string> Timezone { get; private set; } = null!;
@@ -593,6 +611,12 @@ namespace Pulumiverse.Fortios.System.Dhcp
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// DHCP server can assign IP configurations to clients connected to this interface.
         /// </summary>
         [Input("interface", required: true)]
@@ -682,6 +706,12 @@ namespace Pulumiverse.Fortios.System.Dhcp
             set => _options = value;
         }
 
+        /// <summary>
+        /// Relay agent IP.
+        /// </summary>
+        [Input("relayAgent")]
+        public Input<string>? RelayAgent { get; set; }
+
         [Input("reservedAddresses")]
         private InputList<Inputs.ServerReservedAddressArgs>? _reservedAddresses;
 
@@ -699,6 +729,12 @@ namespace Pulumiverse.Fortios.System.Dhcp
         /// </summary>
         [Input("serverType")]
         public Input<string>? ServerType { get; set; }
+
+        /// <summary>
+        /// Enable/disable shared subnet. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("sharedSubnet")]
+        public Input<string>? SharedSubnet { get; set; }
 
         /// <summary>
         /// Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
@@ -719,7 +755,7 @@ namespace Pulumiverse.Fortios.System.Dhcp
         }
 
         /// <summary>
-        /// Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+        /// Select the time zone to be assigned to DHCP clients.
         /// </summary>
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }
@@ -959,6 +995,12 @@ namespace Pulumiverse.Fortios.System.Dhcp
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// DHCP server can assign IP configurations to clients connected to this interface.
         /// </summary>
         [Input("interface")]
@@ -1048,6 +1090,12 @@ namespace Pulumiverse.Fortios.System.Dhcp
             set => _options = value;
         }
 
+        /// <summary>
+        /// Relay agent IP.
+        /// </summary>
+        [Input("relayAgent")]
+        public Input<string>? RelayAgent { get; set; }
+
         [Input("reservedAddresses")]
         private InputList<Inputs.ServerReservedAddressGetArgs>? _reservedAddresses;
 
@@ -1065,6 +1113,12 @@ namespace Pulumiverse.Fortios.System.Dhcp
         /// </summary>
         [Input("serverType")]
         public Input<string>? ServerType { get; set; }
+
+        /// <summary>
+        /// Enable/disable shared subnet. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("sharedSubnet")]
+        public Input<string>? SharedSubnet { get; set; }
 
         /// <summary>
         /// Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
@@ -1085,7 +1139,7 @@ namespace Pulumiverse.Fortios.System.Dhcp
         }
 
         /// <summary>
-        /// Select the time zone to be assigned to DHCP clients. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
+        /// Select the time zone to be assigned to DHCP clients.
         /// </summary>
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }

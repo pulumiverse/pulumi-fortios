@@ -80,6 +80,10 @@ export class Vdomexception extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Name of the configuration object that can be configured independently for all VDOMs.
      */
     public readonly object!: pulumi.Output<string>;
@@ -115,6 +119,7 @@ export class Vdomexception extends pulumi.CustomResource {
             const state = argsOrState as VdomexceptionState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["object"] = state ? state.object : undefined;
             resourceInputs["oid"] = state ? state.oid : undefined;
             resourceInputs["scope"] = state ? state.scope : undefined;
@@ -127,6 +132,7 @@ export class Vdomexception extends pulumi.CustomResource {
             }
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["object"] = args ? args.object : undefined;
             resourceInputs["oid"] = args ? args.oid : undefined;
             resourceInputs["scope"] = args ? args.scope : undefined;
@@ -150,6 +156,10 @@ export interface VdomexceptionState {
      * Index <1-4096>.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Name of the configuration object that can be configured independently for all VDOMs.
      */
@@ -184,6 +194,10 @@ export interface VdomexceptionArgs {
      * Index <1-4096>.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Name of the configuration object that can be configured independently for all VDOMs.
      */

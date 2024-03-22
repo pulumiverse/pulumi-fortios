@@ -179,10 +179,46 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<int> Fosid { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
         /// </summary>
         [Output("gratuitousArpInterval")]
         public Output<int> GratuitousArpInterval { get; private set; } = null!;
+
+        /// <summary>
+        /// Domain to use when integrating with FortiGSLB.
+        /// </summary>
+        [Output("gslbDomainName")]
+        public Output<string> GslbDomainName { get; private set; } = null!;
+
+        /// <summary>
+        /// Hostname to use within the configured FortiGSLB domain.
+        /// </summary>
+        [Output("gslbHostname")]
+        public Output<string> GslbHostname { get; private set; } = null!;
+
+        /// <summary>
+        /// Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslb_public_ips` block is documented below.
+        /// </summary>
+        [Output("gslbPublicIps")]
+        public Output<ImmutableArray<Outputs.VipGslbPublicIp>> GslbPublicIps { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("h2Support")]
+        public Output<string> H2Support { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("h3Support")]
+        public Output<string> H3Support { get; private set; } = null!;
 
         /// <summary>
         /// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
@@ -239,10 +275,34 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> HttpMultiplex { get; private set; } = null!;
 
         /// <summary>
+        /// Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+        /// </summary>
+        [Output("httpMultiplexMaxConcurrentRequest")]
+        public Output<int> HttpMultiplexMaxConcurrentRequest { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+        /// </summary>
+        [Output("httpMultiplexMaxRequest")]
+        public Output<int> HttpMultiplexMaxRequest { get; private set; } = null!;
+
+        /// <summary>
+        /// Time-to-live for idle connections to servers.
+        /// </summary>
+        [Output("httpMultiplexTtl")]
+        public Output<int> HttpMultiplexTtl { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
         /// </summary>
         [Output("httpRedirect")]
         public Output<string> HttpRedirect { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+        /// </summary>
+        [Output("httpSupportedMaxVersion")]
+        public Output<string> HttpSupportedMaxVersion { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
@@ -323,6 +383,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> NatSourceVip { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("oneClickGslbServer")]
+        public Output<string> OneClickGslbServer { get; private set; } = null!;
+
+        /// <summary>
         /// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         /// </summary>
         [Output("outlookWebAccess")]
@@ -351,6 +417,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
+
+        /// <summary>
+        /// QUIC setting. The structure of `quic` block is documented below.
+        /// </summary>
+        [Output("quic")]
+        public Output<Outputs.VipQuic> Quic { get; private set; } = null!;
 
         /// <summary>
         /// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
@@ -569,6 +641,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> SslServerMinVersion { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("sslServerRenegotiation")]
+        public Output<string> SslServerRenegotiation { get; private set; } = null!;
+
+        /// <summary>
         /// Maximum number of FortiGate to Server SSL session states to keep.
         /// </summary>
         [Output("sslServerSessionStateMax")]
@@ -742,10 +820,52 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
         /// </summary>
         [Input("gratuitousArpInterval")]
         public Input<int>? GratuitousArpInterval { get; set; }
+
+        /// <summary>
+        /// Domain to use when integrating with FortiGSLB.
+        /// </summary>
+        [Input("gslbDomainName")]
+        public Input<string>? GslbDomainName { get; set; }
+
+        /// <summary>
+        /// Hostname to use within the configured FortiGSLB domain.
+        /// </summary>
+        [Input("gslbHostname")]
+        public Input<string>? GslbHostname { get; set; }
+
+        [Input("gslbPublicIps")]
+        private InputList<Inputs.VipGslbPublicIpArgs>? _gslbPublicIps;
+
+        /// <summary>
+        /// Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslb_public_ips` block is documented below.
+        /// </summary>
+        public InputList<Inputs.VipGslbPublicIpArgs> GslbPublicIps
+        {
+            get => _gslbPublicIps ?? (_gslbPublicIps = new InputList<Inputs.VipGslbPublicIpArgs>());
+            set => _gslbPublicIps = value;
+        }
+
+        /// <summary>
+        /// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("h2Support")]
+        public Input<string>? H2Support { get; set; }
+
+        /// <summary>
+        /// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("h3Support")]
+        public Input<string>? H3Support { get; set; }
 
         /// <summary>
         /// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
@@ -802,10 +922,34 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? HttpMultiplex { get; set; }
 
         /// <summary>
+        /// Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+        /// </summary>
+        [Input("httpMultiplexMaxConcurrentRequest")]
+        public Input<int>? HttpMultiplexMaxConcurrentRequest { get; set; }
+
+        /// <summary>
+        /// Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+        /// </summary>
+        [Input("httpMultiplexMaxRequest")]
+        public Input<int>? HttpMultiplexMaxRequest { get; set; }
+
+        /// <summary>
+        /// Time-to-live for idle connections to servers.
+        /// </summary>
+        [Input("httpMultiplexTtl")]
+        public Input<int>? HttpMultiplexTtl { get; set; }
+
+        /// <summary>
         /// Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
         /// </summary>
         [Input("httpRedirect")]
         public Input<string>? HttpRedirect { get; set; }
+
+        /// <summary>
+        /// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+        /// </summary>
+        [Input("httpSupportedMaxVersion")]
+        public Input<string>? HttpSupportedMaxVersion { get; set; }
 
         /// <summary>
         /// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
@@ -898,6 +1042,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? NatSourceVip { get; set; }
 
         /// <summary>
+        /// Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("oneClickGslbServer")]
+        public Input<string>? OneClickGslbServer { get; set; }
+
+        /// <summary>
         /// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("outlookWebAccess")]
@@ -926,6 +1076,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
+
+        /// <summary>
+        /// QUIC setting. The structure of `quic` block is documented below.
+        /// </summary>
+        [Input("quic")]
+        public Input<Inputs.VipQuicArgs>? Quic { get; set; }
 
         [Input("realservers")]
         private InputList<Inputs.VipRealserverArgs>? _realservers;
@@ -1180,6 +1336,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? SslServerMinVersion { get; set; }
 
         /// <summary>
+        /// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("sslServerRenegotiation")]
+        public Input<string>? SslServerRenegotiation { get; set; }
+
+        /// <summary>
         /// Maximum number of FortiGate to Server SSL session states to keep.
         /// </summary>
         [Input("sslServerSessionStateMax")]
@@ -1314,10 +1476,52 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
         /// </summary>
         [Input("gratuitousArpInterval")]
         public Input<int>? GratuitousArpInterval { get; set; }
+
+        /// <summary>
+        /// Domain to use when integrating with FortiGSLB.
+        /// </summary>
+        [Input("gslbDomainName")]
+        public Input<string>? GslbDomainName { get; set; }
+
+        /// <summary>
+        /// Hostname to use within the configured FortiGSLB domain.
+        /// </summary>
+        [Input("gslbHostname")]
+        public Input<string>? GslbHostname { get; set; }
+
+        [Input("gslbPublicIps")]
+        private InputList<Inputs.VipGslbPublicIpGetArgs>? _gslbPublicIps;
+
+        /// <summary>
+        /// Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslb_public_ips` block is documented below.
+        /// </summary>
+        public InputList<Inputs.VipGslbPublicIpGetArgs> GslbPublicIps
+        {
+            get => _gslbPublicIps ?? (_gslbPublicIps = new InputList<Inputs.VipGslbPublicIpGetArgs>());
+            set => _gslbPublicIps = value;
+        }
+
+        /// <summary>
+        /// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("h2Support")]
+        public Input<string>? H2Support { get; set; }
+
+        /// <summary>
+        /// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("h3Support")]
+        public Input<string>? H3Support { get; set; }
 
         /// <summary>
         /// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
@@ -1374,10 +1578,34 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? HttpMultiplex { get; set; }
 
         /// <summary>
+        /// Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+        /// </summary>
+        [Input("httpMultiplexMaxConcurrentRequest")]
+        public Input<int>? HttpMultiplexMaxConcurrentRequest { get; set; }
+
+        /// <summary>
+        /// Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+        /// </summary>
+        [Input("httpMultiplexMaxRequest")]
+        public Input<int>? HttpMultiplexMaxRequest { get; set; }
+
+        /// <summary>
+        /// Time-to-live for idle connections to servers.
+        /// </summary>
+        [Input("httpMultiplexTtl")]
+        public Input<int>? HttpMultiplexTtl { get; set; }
+
+        /// <summary>
         /// Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
         /// </summary>
         [Input("httpRedirect")]
         public Input<string>? HttpRedirect { get; set; }
+
+        /// <summary>
+        /// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+        /// </summary>
+        [Input("httpSupportedMaxVersion")]
+        public Input<string>? HttpSupportedMaxVersion { get; set; }
 
         /// <summary>
         /// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
@@ -1470,6 +1698,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? NatSourceVip { get; set; }
 
         /// <summary>
+        /// Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("oneClickGslbServer")]
+        public Input<string>? OneClickGslbServer { get; set; }
+
+        /// <summary>
         /// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("outlookWebAccess")]
@@ -1498,6 +1732,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
+
+        /// <summary>
+        /// QUIC setting. The structure of `quic` block is documented below.
+        /// </summary>
+        [Input("quic")]
+        public Input<Inputs.VipQuicGetArgs>? Quic { get; set; }
 
         [Input("realservers")]
         private InputList<Inputs.VipRealserverGetArgs>? _realservers;
@@ -1750,6 +1990,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("sslServerMinVersion")]
         public Input<string>? SslServerMinVersion { get; set; }
+
+        /// <summary>
+        /// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("sslServerRenegotiation")]
+        public Input<string>? SslServerRenegotiation { get; set; }
 
         /// <summary>
         /// Maximum number of FortiGate to Server SSL session states to keep.

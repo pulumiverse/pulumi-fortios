@@ -21,7 +21,7 @@ class GetSamlResult:
     """
     A collection of values returned by getSaml.
     """
-    def __init__(__self__, adfs_claim=None, auth_url=None, cert=None, clock_tolerance=None, digest_method=None, entity_id=None, group_claim_type=None, group_name=None, id=None, idp_cert=None, idp_entity_id=None, idp_single_logout_url=None, idp_single_sign_on_url=None, limit_relaystate=None, name=None, single_logout_url=None, single_sign_on_url=None, user_claim_type=None, user_name=None, vdomparam=None):
+    def __init__(__self__, adfs_claim=None, auth_url=None, cert=None, clock_tolerance=None, digest_method=None, entity_id=None, group_claim_type=None, group_name=None, id=None, idp_cert=None, idp_entity_id=None, idp_single_logout_url=None, idp_single_sign_on_url=None, limit_relaystate=None, name=None, reauth=None, single_logout_url=None, single_sign_on_url=None, user_claim_type=None, user_name=None, vdomparam=None):
         if adfs_claim and not isinstance(adfs_claim, str):
             raise TypeError("Expected argument 'adfs_claim' to be a str")
         pulumi.set(__self__, "adfs_claim", adfs_claim)
@@ -67,6 +67,9 @@ class GetSamlResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if reauth and not isinstance(reauth, str):
+            raise TypeError("Expected argument 'reauth' to be a str")
+        pulumi.set(__self__, "reauth", reauth)
         if single_logout_url and not isinstance(single_logout_url, str):
             raise TypeError("Expected argument 'single_logout_url' to be a str")
         pulumi.set(__self__, "single_logout_url", single_logout_url)
@@ -204,6 +207,14 @@ class GetSamlResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter
+    def reauth(self) -> str:
+        """
+        Enable/disable signalling of IDP to force user re-authentication (default = disable).
+        """
+        return pulumi.get(self, "reauth")
+
+    @property
     @pulumi.getter(name="singleLogoutUrl")
     def single_logout_url(self) -> str:
         """
@@ -262,6 +273,7 @@ class AwaitableGetSamlResult(GetSamlResult):
             idp_single_sign_on_url=self.idp_single_sign_on_url,
             limit_relaystate=self.limit_relaystate,
             name=self.name,
+            reauth=self.reauth,
             single_logout_url=self.single_logout_url,
             single_sign_on_url=self.single_sign_on_url,
             user_claim_type=self.user_claim_type,
@@ -301,6 +313,7 @@ def get_saml(name: Optional[str] = None,
         idp_single_sign_on_url=pulumi.get(__ret__, 'idp_single_sign_on_url'),
         limit_relaystate=pulumi.get(__ret__, 'limit_relaystate'),
         name=pulumi.get(__ret__, 'name'),
+        reauth=pulumi.get(__ret__, 'reauth'),
         single_logout_url=pulumi.get(__ret__, 'single_logout_url'),
         single_sign_on_url=pulumi.get(__ret__, 'single_sign_on_url'),
         user_claim_type=pulumi.get(__ret__, 'user_claim_type'),

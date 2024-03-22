@@ -37,8 +37,14 @@ type Federatedupgrade struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Serial number of the node to include.
 	FailureDevice pulumi.StringOutput `pulumi:"failureDevice"`
-	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+	// Reason for upgrade failure.
 	FailureReason pulumi.StringOutput `pulumi:"failureReason"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+	HaRebootController pulumi.StringOutput `pulumi:"haRebootController"`
+	// Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `knownHaMembers` block is documented below.
+	KnownHaMembers FederatedupgradeKnownHaMemberArrayOutput `pulumi:"knownHaMembers"`
 	// The index of the next image to upgrade to.
 	NextPathIndex pulumi.IntOutput `pulumi:"nextPathIndex"`
 	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
@@ -85,8 +91,14 @@ type federatedupgradeState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Serial number of the node to include.
 	FailureDevice *string `pulumi:"failureDevice"`
-	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+	// Reason for upgrade failure.
 	FailureReason *string `pulumi:"failureReason"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+	HaRebootController *string `pulumi:"haRebootController"`
+	// Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `knownHaMembers` block is documented below.
+	KnownHaMembers []FederatedupgradeKnownHaMember `pulumi:"knownHaMembers"`
 	// The index of the next image to upgrade to.
 	NextPathIndex *int `pulumi:"nextPathIndex"`
 	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
@@ -104,8 +116,14 @@ type FederatedupgradeState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Serial number of the node to include.
 	FailureDevice pulumi.StringPtrInput
-	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+	// Reason for upgrade failure.
 	FailureReason pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+	HaRebootController pulumi.StringPtrInput
+	// Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `knownHaMembers` block is documented below.
+	KnownHaMembers FederatedupgradeKnownHaMemberArrayInput
 	// The index of the next image to upgrade to.
 	NextPathIndex pulumi.IntPtrInput
 	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
@@ -127,8 +145,14 @@ type federatedupgradeArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Serial number of the node to include.
 	FailureDevice *string `pulumi:"failureDevice"`
-	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+	// Reason for upgrade failure.
 	FailureReason *string `pulumi:"failureReason"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+	HaRebootController *string `pulumi:"haRebootController"`
+	// Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `knownHaMembers` block is documented below.
+	KnownHaMembers []FederatedupgradeKnownHaMember `pulumi:"knownHaMembers"`
 	// The index of the next image to upgrade to.
 	NextPathIndex *int `pulumi:"nextPathIndex"`
 	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
@@ -147,8 +171,14 @@ type FederatedupgradeArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Serial number of the node to include.
 	FailureDevice pulumi.StringPtrInput
-	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+	// Reason for upgrade failure.
 	FailureReason pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+	HaRebootController pulumi.StringPtrInput
+	// Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `knownHaMembers` block is documented below.
+	KnownHaMembers FederatedupgradeKnownHaMemberArrayInput
 	// The index of the next image to upgrade to.
 	NextPathIndex pulumi.IntPtrInput
 	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
@@ -258,9 +288,24 @@ func (o FederatedupgradeOutput) FailureDevice() pulumi.StringOutput {
 	return o.ApplyT(func(v *Federatedupgrade) pulumi.StringOutput { return v.FailureDevice }).(pulumi.StringOutput)
 }
 
-// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+// Reason for upgrade failure.
 func (o FederatedupgradeOutput) FailureReason() pulumi.StringOutput {
 	return o.ApplyT(func(v *Federatedupgrade) pulumi.StringOutput { return v.FailureReason }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o FederatedupgradeOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Federatedupgrade) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+func (o FederatedupgradeOutput) HaRebootController() pulumi.StringOutput {
+	return o.ApplyT(func(v *Federatedupgrade) pulumi.StringOutput { return v.HaRebootController }).(pulumi.StringOutput)
+}
+
+// Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `knownHaMembers` block is documented below.
+func (o FederatedupgradeOutput) KnownHaMembers() FederatedupgradeKnownHaMemberArrayOutput {
+	return o.ApplyT(func(v *Federatedupgrade) FederatedupgradeKnownHaMemberArrayOutput { return v.KnownHaMembers }).(FederatedupgradeKnownHaMemberArrayOutput)
 }
 
 // The index of the next image to upgrade to.

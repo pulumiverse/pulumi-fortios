@@ -230,6 +230,10 @@ export class Policy6 extends pulumi.CustomResource {
      */
     public readonly fssoGroups!: pulumi.Output<outputs.firewall.Policy6FssoGroup[] | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Label for the policy that appears when the GUI is in Global View mode.
      */
     public readonly globalLabel!: pulumi.Output<string>;
@@ -527,6 +531,7 @@ export class Policy6 extends pulumi.CustomResource {
             resourceInputs["firewallSessionDirty"] = state ? state.firewallSessionDirty : undefined;
             resourceInputs["fixedport"] = state ? state.fixedport : undefined;
             resourceInputs["fssoGroups"] = state ? state.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["globalLabel"] = state ? state.globalLabel : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["httpPolicyRedirect"] = state ? state.httpPolicyRedirect : undefined;
@@ -636,6 +641,7 @@ export class Policy6 extends pulumi.CustomResource {
             resourceInputs["firewallSessionDirty"] = args ? args.firewallSessionDirty : undefined;
             resourceInputs["fixedport"] = args ? args.fixedport : undefined;
             resourceInputs["fssoGroups"] = args ? args.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["globalLabel"] = args ? args.globalLabel : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["httpPolicyRedirect"] = args ? args.httpPolicyRedirect : undefined;
@@ -822,6 +828,10 @@ export interface Policy6State {
      * Names of FSSO groups. The structure of `fssoGroups` block is documented below.
      */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.firewall.Policy6FssoGroup>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Label for the policy that appears when the GUI is in Global View mode.
      */
@@ -1196,6 +1206,10 @@ export interface Policy6Args {
      * Names of FSSO groups. The structure of `fssoGroups` block is documented below.
      */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.firewall.Policy6FssoGroup>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Label for the policy that appears when the GUI is in Global View mode.
      */

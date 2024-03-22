@@ -41,6 +41,8 @@ type Profile struct {
 	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
 	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
 	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable file-filter logging. Valid values: `disable`, `enable`.
 	Log pulumi.StringOutput `pulumi:"log"`
 	// Profile name.
@@ -49,7 +51,7 @@ type Profile struct {
 	ReplacemsgGroup pulumi.StringOutput `pulumi:"replacemsgGroup"`
 	// File filter rules. The structure of `rules` block is documented below.
 	Rules ProfileRuleArrayOutput `pulumi:"rules"`
-	// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+	// Enable/disable archive contents scan. Valid values: `disable`, `enable`.
 	ScanArchiveContents pulumi.StringOutput `pulumi:"scanArchiveContents"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
@@ -93,6 +95,8 @@ type profileState struct {
 	ExtendedLog *string `pulumi:"extendedLog"`
 	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
 	FeatureSet *string `pulumi:"featureSet"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable file-filter logging. Valid values: `disable`, `enable`.
 	Log *string `pulumi:"log"`
 	// Profile name.
@@ -101,7 +105,7 @@ type profileState struct {
 	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
 	// File filter rules. The structure of `rules` block is documented below.
 	Rules []ProfileRule `pulumi:"rules"`
-	// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+	// Enable/disable archive contents scan. Valid values: `disable`, `enable`.
 	ScanArchiveContents *string `pulumi:"scanArchiveContents"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -116,6 +120,8 @@ type ProfileState struct {
 	ExtendedLog pulumi.StringPtrInput
 	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
 	FeatureSet pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable file-filter logging. Valid values: `disable`, `enable`.
 	Log pulumi.StringPtrInput
 	// Profile name.
@@ -124,7 +130,7 @@ type ProfileState struct {
 	ReplacemsgGroup pulumi.StringPtrInput
 	// File filter rules. The structure of `rules` block is documented below.
 	Rules ProfileRuleArrayInput
-	// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+	// Enable/disable archive contents scan. Valid values: `disable`, `enable`.
 	ScanArchiveContents pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -143,6 +149,8 @@ type profileArgs struct {
 	ExtendedLog *string `pulumi:"extendedLog"`
 	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
 	FeatureSet *string `pulumi:"featureSet"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable file-filter logging. Valid values: `disable`, `enable`.
 	Log *string `pulumi:"log"`
 	// Profile name.
@@ -151,7 +159,7 @@ type profileArgs struct {
 	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
 	// File filter rules. The structure of `rules` block is documented below.
 	Rules []ProfileRule `pulumi:"rules"`
-	// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+	// Enable/disable archive contents scan. Valid values: `disable`, `enable`.
 	ScanArchiveContents *string `pulumi:"scanArchiveContents"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -167,6 +175,8 @@ type ProfileArgs struct {
 	ExtendedLog pulumi.StringPtrInput
 	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
 	FeatureSet pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable file-filter logging. Valid values: `disable`, `enable`.
 	Log pulumi.StringPtrInput
 	// Profile name.
@@ -175,7 +185,7 @@ type ProfileArgs struct {
 	ReplacemsgGroup pulumi.StringPtrInput
 	// File filter rules. The structure of `rules` block is documented below.
 	Rules ProfileRuleArrayInput
-	// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+	// Enable/disable archive contents scan. Valid values: `disable`, `enable`.
 	ScanArchiveContents pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -288,6 +298,11 @@ func (o ProfileOutput) FeatureSet() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.FeatureSet }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable file-filter logging. Valid values: `disable`, `enable`.
 func (o ProfileOutput) Log() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.Log }).(pulumi.StringOutput)
@@ -308,7 +323,7 @@ func (o ProfileOutput) Rules() ProfileRuleArrayOutput {
 	return o.ApplyT(func(v *Profile) ProfileRuleArrayOutput { return v.Rules }).(ProfileRuleArrayOutput)
 }
 
-// Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+// Enable/disable archive contents scan. Valid values: `disable`, `enable`.
 func (o ProfileOutput) ScanArchiveContents() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.ScanArchiveContents }).(pulumi.StringOutput)
 }

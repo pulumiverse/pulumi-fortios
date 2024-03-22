@@ -22,6 +22,7 @@ class DoSpolicyArgs:
                  anomalies: Optional[pulumi.Input[Sequence[pulumi.Input['DoSpolicyAnomalyArgs']]]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['DoSpolicyServiceArgs']]]] = None,
@@ -35,6 +36,7 @@ class DoSpolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input['DoSpolicyAnomalyArgs']]] anomalies: Anomaly name. The structure of `anomaly` block is documented below.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Policy name.
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[Sequence[pulumi.Input['DoSpolicyServiceArgs']]] services: Service object from available options. The structure of `service` block is documented below.
@@ -50,6 +52,8 @@ class DoSpolicyArgs:
             pulumi.set(__self__, "comments", comments)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if policyid is not None:
@@ -134,6 +138,18 @@ class DoSpolicyArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -201,6 +217,7 @@ class _DoSpolicyState:
                  comments: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['DoSpolicyDstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
@@ -214,6 +231,7 @@ class _DoSpolicyState:
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[Sequence[pulumi.Input['DoSpolicyDstaddrArgs']]] dstaddrs: Destination address name from available addresses. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Incoming interface name from available interfaces.
         :param pulumi.Input[str] name: Policy name.
         :param pulumi.Input[int] policyid: Policy ID.
@@ -230,6 +248,8 @@ class _DoSpolicyState:
             pulumi.set(__self__, "dstaddrs", dstaddrs)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if name is not None:
@@ -292,6 +312,18 @@ class _DoSpolicyState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -387,6 +419,7 @@ class DoSpolicy(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DoSpolicyDstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
@@ -422,6 +455,7 @@ class DoSpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DoSpolicyDstaddrArgs']]]] dstaddrs: Destination address name from available addresses. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Incoming interface name from available interfaces.
         :param pulumi.Input[str] name: Policy name.
         :param pulumi.Input[int] policyid: Policy ID.
@@ -476,6 +510,7 @@ class DoSpolicy(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DoSpolicyDstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
@@ -498,6 +533,7 @@ class DoSpolicy(pulumi.CustomResource):
                 raise TypeError("Missing required property 'dstaddrs'")
             __props__.__dict__["dstaddrs"] = dstaddrs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
@@ -523,6 +559,7 @@ class DoSpolicy(pulumi.CustomResource):
             comments: Optional[pulumi.Input[str]] = None,
             dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DoSpolicyDstaddrArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             policyid: Optional[pulumi.Input[int]] = None,
@@ -541,6 +578,7 @@ class DoSpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DoSpolicyDstaddrArgs']]]] dstaddrs: Destination address name from available addresses. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Incoming interface name from available interfaces.
         :param pulumi.Input[str] name: Policy name.
         :param pulumi.Input[int] policyid: Policy ID.
@@ -557,6 +595,7 @@ class DoSpolicy(pulumi.CustomResource):
         __props__.__dict__["comments"] = comments
         __props__.__dict__["dstaddrs"] = dstaddrs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["name"] = name
         __props__.__dict__["policyid"] = policyid
@@ -597,6 +636,14 @@ class DoSpolicy(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

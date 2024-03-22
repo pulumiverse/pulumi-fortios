@@ -106,6 +106,10 @@ export class Group extends pulumi.CustomResource {
      */
     public readonly fabricObject!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Service objects contained within the group. The structure of `member` block is documented below.
      */
     public readonly members!: pulumi.Output<outputs.firewall.service.GroupMember[] | undefined>;
@@ -117,6 +121,10 @@ export class Group extends pulumi.CustomResource {
      * Enable/disable web proxy service group. Valid values: `enable`, `disable`.
      */
     public readonly proxy!: pulumi.Output<string>;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    public readonly uuid!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -139,9 +147,11 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["proxy"] = state ? state.proxy : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as GroupArgs | undefined;
@@ -149,9 +159,11 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["proxy"] = args ? args.proxy : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -180,6 +192,10 @@ export interface GroupState {
      */
     fabricObject?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Service objects contained within the group. The structure of `member` block is documented below.
      */
     members?: pulumi.Input<pulumi.Input<inputs.firewall.service.GroupMember>[]>;
@@ -191,6 +207,10 @@ export interface GroupState {
      * Enable/disable web proxy service group. Valid values: `enable`, `disable`.
      */
     proxy?: pulumi.Input<string>;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    uuid?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -218,6 +238,10 @@ export interface GroupArgs {
      */
     fabricObject?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Service objects contained within the group. The structure of `member` block is documented below.
      */
     members?: pulumi.Input<pulumi.Input<inputs.firewall.service.GroupMember>[]>;
@@ -229,6 +253,10 @@ export interface GroupArgs {
      * Enable/disable web proxy service group. Valid values: `enable`, `disable`.
      */
     proxy?: pulumi.Input<string>;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    uuid?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

@@ -23,6 +23,7 @@ class ProfileArgs:
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input['ProfileFileFilterArgs']] = None,
                  ftgd_wf: Optional[pulumi.Input['ProfileFtgdWfArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_replacemsg: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
                  log_all_url: Optional[pulumi.Input[str]] = None,
@@ -47,6 +48,7 @@ class ProfileArgs:
                  web_filter_referer_log: Optional[pulumi.Input[str]] = None,
                  web_filter_unknown_log: Optional[pulumi.Input[str]] = None,
                  web_filter_vbs_log: Optional[pulumi.Input[str]] = None,
+                 web_flow_log_encoding: Optional[pulumi.Input[str]] = None,
                  web_ftgd_err_log: Optional[pulumi.Input[str]] = None,
                  web_ftgd_quota_usage: Optional[pulumi.Input[str]] = None,
                  web_invalid_domain_log: Optional[pulumi.Input[str]] = None,
@@ -65,6 +67,7 @@ class ProfileArgs:
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input['ProfileFileFilterArgs'] file_filter: File filter. The structure of `file_filter` block is documented below.
         :param pulumi.Input['ProfileFtgdWfArgs'] ftgd_wf: FortiGuard Web Filter settings. The structure of `ftgd_wf` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] https_replacemsg: Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] inspection_mode: Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
         :param pulumi.Input[str] log_all_url: Enable/disable logging all URLs visited. Valid values: `enable`, `disable`.
@@ -89,6 +92,7 @@ class ProfileArgs:
         :param pulumi.Input[str] web_filter_referer_log: Enable/disable logging referrers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_filter_unknown_log: Enable/disable logging unknown scripts. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_filter_vbs_log: Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] web_flow_log_encoding: Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
         :param pulumi.Input[str] web_ftgd_err_log: Enable/disable logging rating errors. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_ftgd_quota_usage: Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_invalid_domain_log: Enable/disable logging invalid domain names. Valid values: `enable`, `disable`.
@@ -113,6 +117,8 @@ class ProfileArgs:
             pulumi.set(__self__, "file_filter", file_filter)
         if ftgd_wf is not None:
             pulumi.set(__self__, "ftgd_wf", ftgd_wf)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https_replacemsg is not None:
             pulumi.set(__self__, "https_replacemsg", https_replacemsg)
         if inspection_mode is not None:
@@ -161,6 +167,8 @@ class ProfileArgs:
             pulumi.set(__self__, "web_filter_unknown_log", web_filter_unknown_log)
         if web_filter_vbs_log is not None:
             pulumi.set(__self__, "web_filter_vbs_log", web_filter_vbs_log)
+        if web_flow_log_encoding is not None:
+            pulumi.set(__self__, "web_flow_log_encoding", web_flow_log_encoding)
         if web_ftgd_err_log is not None:
             pulumi.set(__self__, "web_ftgd_err_log", web_ftgd_err_log)
         if web_ftgd_quota_usage is not None:
@@ -263,6 +271,18 @@ class ProfileArgs:
     @ftgd_wf.setter
     def ftgd_wf(self, value: Optional[pulumi.Input['ProfileFtgdWfArgs']]):
         pulumi.set(self, "ftgd_wf", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="httpsReplacemsg")
@@ -551,6 +571,18 @@ class ProfileArgs:
     @web_filter_vbs_log.setter
     def web_filter_vbs_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "web_filter_vbs_log", value)
+
+    @property
+    @pulumi.getter(name="webFlowLogEncoding")
+    def web_flow_log_encoding(self) -> Optional[pulumi.Input[str]]:
+        """
+        Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+        """
+        return pulumi.get(self, "web_flow_log_encoding")
+
+    @web_flow_log_encoding.setter
+    def web_flow_log_encoding(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "web_flow_log_encoding", value)
 
     @property
     @pulumi.getter(name="webFtgdErrLog")
@@ -671,6 +703,7 @@ class _ProfileState:
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input['ProfileFileFilterArgs']] = None,
                  ftgd_wf: Optional[pulumi.Input['ProfileFtgdWfArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_replacemsg: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
                  log_all_url: Optional[pulumi.Input[str]] = None,
@@ -695,6 +728,7 @@ class _ProfileState:
                  web_filter_referer_log: Optional[pulumi.Input[str]] = None,
                  web_filter_unknown_log: Optional[pulumi.Input[str]] = None,
                  web_filter_vbs_log: Optional[pulumi.Input[str]] = None,
+                 web_flow_log_encoding: Optional[pulumi.Input[str]] = None,
                  web_ftgd_err_log: Optional[pulumi.Input[str]] = None,
                  web_ftgd_quota_usage: Optional[pulumi.Input[str]] = None,
                  web_invalid_domain_log: Optional[pulumi.Input[str]] = None,
@@ -713,6 +747,7 @@ class _ProfileState:
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input['ProfileFileFilterArgs'] file_filter: File filter. The structure of `file_filter` block is documented below.
         :param pulumi.Input['ProfileFtgdWfArgs'] ftgd_wf: FortiGuard Web Filter settings. The structure of `ftgd_wf` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] https_replacemsg: Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] inspection_mode: Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
         :param pulumi.Input[str] log_all_url: Enable/disable logging all URLs visited. Valid values: `enable`, `disable`.
@@ -737,6 +772,7 @@ class _ProfileState:
         :param pulumi.Input[str] web_filter_referer_log: Enable/disable logging referrers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_filter_unknown_log: Enable/disable logging unknown scripts. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_filter_vbs_log: Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] web_flow_log_encoding: Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
         :param pulumi.Input[str] web_ftgd_err_log: Enable/disable logging rating errors. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_ftgd_quota_usage: Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_invalid_domain_log: Enable/disable logging invalid domain names. Valid values: `enable`, `disable`.
@@ -761,6 +797,8 @@ class _ProfileState:
             pulumi.set(__self__, "file_filter", file_filter)
         if ftgd_wf is not None:
             pulumi.set(__self__, "ftgd_wf", ftgd_wf)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https_replacemsg is not None:
             pulumi.set(__self__, "https_replacemsg", https_replacemsg)
         if inspection_mode is not None:
@@ -809,6 +847,8 @@ class _ProfileState:
             pulumi.set(__self__, "web_filter_unknown_log", web_filter_unknown_log)
         if web_filter_vbs_log is not None:
             pulumi.set(__self__, "web_filter_vbs_log", web_filter_vbs_log)
+        if web_flow_log_encoding is not None:
+            pulumi.set(__self__, "web_flow_log_encoding", web_flow_log_encoding)
         if web_ftgd_err_log is not None:
             pulumi.set(__self__, "web_ftgd_err_log", web_ftgd_err_log)
         if web_ftgd_quota_usage is not None:
@@ -911,6 +951,18 @@ class _ProfileState:
     @ftgd_wf.setter
     def ftgd_wf(self, value: Optional[pulumi.Input['ProfileFtgdWfArgs']]):
         pulumi.set(self, "ftgd_wf", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="httpsReplacemsg")
@@ -1199,6 +1251,18 @@ class _ProfileState:
     @web_filter_vbs_log.setter
     def web_filter_vbs_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "web_filter_vbs_log", value)
+
+    @property
+    @pulumi.getter(name="webFlowLogEncoding")
+    def web_flow_log_encoding(self) -> Optional[pulumi.Input[str]]:
+        """
+        Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+        """
+        return pulumi.get(self, "web_flow_log_encoding")
+
+    @web_flow_log_encoding.setter
+    def web_flow_log_encoding(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "web_flow_log_encoding", value)
 
     @property
     @pulumi.getter(name="webFtgdErrLog")
@@ -1321,6 +1385,7 @@ class Profile(pulumi.CustomResource):
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input[pulumi.InputType['ProfileFileFilterArgs']]] = None,
                  ftgd_wf: Optional[pulumi.Input[pulumi.InputType['ProfileFtgdWfArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_replacemsg: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
                  log_all_url: Optional[pulumi.Input[str]] = None,
@@ -1345,6 +1410,7 @@ class Profile(pulumi.CustomResource):
                  web_filter_referer_log: Optional[pulumi.Input[str]] = None,
                  web_filter_unknown_log: Optional[pulumi.Input[str]] = None,
                  web_filter_vbs_log: Optional[pulumi.Input[str]] = None,
+                 web_flow_log_encoding: Optional[pulumi.Input[str]] = None,
                  web_ftgd_err_log: Optional[pulumi.Input[str]] = None,
                  web_ftgd_quota_usage: Optional[pulumi.Input[str]] = None,
                  web_invalid_domain_log: Optional[pulumi.Input[str]] = None,
@@ -1465,6 +1531,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input[pulumi.InputType['ProfileFileFilterArgs']] file_filter: File filter. The structure of `file_filter` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileFtgdWfArgs']] ftgd_wf: FortiGuard Web Filter settings. The structure of `ftgd_wf` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] https_replacemsg: Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] inspection_mode: Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
         :param pulumi.Input[str] log_all_url: Enable/disable logging all URLs visited. Valid values: `enable`, `disable`.
@@ -1489,6 +1556,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] web_filter_referer_log: Enable/disable logging referrers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_filter_unknown_log: Enable/disable logging unknown scripts. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_filter_vbs_log: Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] web_flow_log_encoding: Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
         :param pulumi.Input[str] web_ftgd_err_log: Enable/disable logging rating errors. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_ftgd_quota_usage: Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_invalid_domain_log: Enable/disable logging invalid domain names. Valid values: `enable`, `disable`.
@@ -1628,6 +1696,7 @@ class Profile(pulumi.CustomResource):
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input[pulumi.InputType['ProfileFileFilterArgs']]] = None,
                  ftgd_wf: Optional[pulumi.Input[pulumi.InputType['ProfileFtgdWfArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_replacemsg: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
                  log_all_url: Optional[pulumi.Input[str]] = None,
@@ -1652,6 +1721,7 @@ class Profile(pulumi.CustomResource):
                  web_filter_referer_log: Optional[pulumi.Input[str]] = None,
                  web_filter_unknown_log: Optional[pulumi.Input[str]] = None,
                  web_filter_vbs_log: Optional[pulumi.Input[str]] = None,
+                 web_flow_log_encoding: Optional[pulumi.Input[str]] = None,
                  web_ftgd_err_log: Optional[pulumi.Input[str]] = None,
                  web_ftgd_quota_usage: Optional[pulumi.Input[str]] = None,
                  web_invalid_domain_log: Optional[pulumi.Input[str]] = None,
@@ -1677,6 +1747,7 @@ class Profile(pulumi.CustomResource):
             __props__.__dict__["feature_set"] = feature_set
             __props__.__dict__["file_filter"] = file_filter
             __props__.__dict__["ftgd_wf"] = ftgd_wf
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["https_replacemsg"] = https_replacemsg
             __props__.__dict__["inspection_mode"] = inspection_mode
             __props__.__dict__["log_all_url"] = log_all_url
@@ -1701,6 +1772,7 @@ class Profile(pulumi.CustomResource):
             __props__.__dict__["web_filter_referer_log"] = web_filter_referer_log
             __props__.__dict__["web_filter_unknown_log"] = web_filter_unknown_log
             __props__.__dict__["web_filter_vbs_log"] = web_filter_vbs_log
+            __props__.__dict__["web_flow_log_encoding"] = web_flow_log_encoding
             __props__.__dict__["web_ftgd_err_log"] = web_ftgd_err_log
             __props__.__dict__["web_ftgd_quota_usage"] = web_ftgd_quota_usage
             __props__.__dict__["web_invalid_domain_log"] = web_invalid_domain_log
@@ -1727,6 +1799,7 @@ class Profile(pulumi.CustomResource):
             feature_set: Optional[pulumi.Input[str]] = None,
             file_filter: Optional[pulumi.Input[pulumi.InputType['ProfileFileFilterArgs']]] = None,
             ftgd_wf: Optional[pulumi.Input[pulumi.InputType['ProfileFtgdWfArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             https_replacemsg: Optional[pulumi.Input[str]] = None,
             inspection_mode: Optional[pulumi.Input[str]] = None,
             log_all_url: Optional[pulumi.Input[str]] = None,
@@ -1751,6 +1824,7 @@ class Profile(pulumi.CustomResource):
             web_filter_referer_log: Optional[pulumi.Input[str]] = None,
             web_filter_unknown_log: Optional[pulumi.Input[str]] = None,
             web_filter_vbs_log: Optional[pulumi.Input[str]] = None,
+            web_flow_log_encoding: Optional[pulumi.Input[str]] = None,
             web_ftgd_err_log: Optional[pulumi.Input[str]] = None,
             web_ftgd_quota_usage: Optional[pulumi.Input[str]] = None,
             web_invalid_domain_log: Optional[pulumi.Input[str]] = None,
@@ -1774,6 +1848,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input[pulumi.InputType['ProfileFileFilterArgs']] file_filter: File filter. The structure of `file_filter` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileFtgdWfArgs']] ftgd_wf: FortiGuard Web Filter settings. The structure of `ftgd_wf` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] https_replacemsg: Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] inspection_mode: Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
         :param pulumi.Input[str] log_all_url: Enable/disable logging all URLs visited. Valid values: `enable`, `disable`.
@@ -1798,6 +1873,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] web_filter_referer_log: Enable/disable logging referrers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_filter_unknown_log: Enable/disable logging unknown scripts. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_filter_vbs_log: Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] web_flow_log_encoding: Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
         :param pulumi.Input[str] web_ftgd_err_log: Enable/disable logging rating errors. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_ftgd_quota_usage: Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] web_invalid_domain_log: Enable/disable logging invalid domain names. Valid values: `enable`, `disable`.
@@ -1819,6 +1895,7 @@ class Profile(pulumi.CustomResource):
         __props__.__dict__["feature_set"] = feature_set
         __props__.__dict__["file_filter"] = file_filter
         __props__.__dict__["ftgd_wf"] = ftgd_wf
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["https_replacemsg"] = https_replacemsg
         __props__.__dict__["inspection_mode"] = inspection_mode
         __props__.__dict__["log_all_url"] = log_all_url
@@ -1843,6 +1920,7 @@ class Profile(pulumi.CustomResource):
         __props__.__dict__["web_filter_referer_log"] = web_filter_referer_log
         __props__.__dict__["web_filter_unknown_log"] = web_filter_unknown_log
         __props__.__dict__["web_filter_vbs_log"] = web_filter_vbs_log
+        __props__.__dict__["web_flow_log_encoding"] = web_flow_log_encoding
         __props__.__dict__["web_ftgd_err_log"] = web_ftgd_err_log
         __props__.__dict__["web_ftgd_quota_usage"] = web_ftgd_quota_usage
         __props__.__dict__["web_invalid_domain_log"] = web_invalid_domain_log
@@ -1909,6 +1987,14 @@ class Profile(pulumi.CustomResource):
         FortiGuard Web Filter settings. The structure of `ftgd_wf` block is documented below.
         """
         return pulumi.get(self, "ftgd_wf")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="httpsReplacemsg")
@@ -2101,6 +2187,14 @@ class Profile(pulumi.CustomResource):
         Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "web_filter_vbs_log")
+
+    @property
+    @pulumi.getter(name="webFlowLogEncoding")
+    def web_flow_log_encoding(self) -> pulumi.Output[str]:
+        """
+        Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+        """
+        return pulumi.get(self, "web_flow_log_encoding")
 
     @property
     @pulumi.getter(name="webFtgdErrLog")

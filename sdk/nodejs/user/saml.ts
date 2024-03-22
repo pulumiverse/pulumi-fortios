@@ -131,6 +131,10 @@ export class Saml extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly reauth!: pulumi.Output<string>;
+    /**
      * SP single logout URL.
      */
     public readonly singleLogoutUrl!: pulumi.Output<string>;
@@ -178,6 +182,7 @@ export class Saml extends pulumi.CustomResource {
             resourceInputs["idpSingleSignOnUrl"] = state ? state.idpSingleSignOnUrl : undefined;
             resourceInputs["limitRelaystate"] = state ? state.limitRelaystate : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["reauth"] = state ? state.reauth : undefined;
             resourceInputs["singleLogoutUrl"] = state ? state.singleLogoutUrl : undefined;
             resourceInputs["singleSignOnUrl"] = state ? state.singleSignOnUrl : undefined;
             resourceInputs["userClaimType"] = state ? state.userClaimType : undefined;
@@ -214,6 +219,7 @@ export class Saml extends pulumi.CustomResource {
             resourceInputs["idpSingleSignOnUrl"] = args ? args.idpSingleSignOnUrl : undefined;
             resourceInputs["limitRelaystate"] = args ? args.limitRelaystate : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["reauth"] = args ? args.reauth : undefined;
             resourceInputs["singleLogoutUrl"] = args ? args.singleLogoutUrl : undefined;
             resourceInputs["singleSignOnUrl"] = args ? args.singleSignOnUrl : undefined;
             resourceInputs["userClaimType"] = args ? args.userClaimType : undefined;
@@ -285,6 +291,10 @@ export interface SamlState {
      * SAML server entry name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+     */
+    reauth?: pulumi.Input<string>;
     /**
      * SP single logout URL.
      */
@@ -367,6 +377,10 @@ export interface SamlArgs {
      * SAML server entry name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+     */
+    reauth?: pulumi.Input<string>;
     /**
      * SP single logout URL.
      */

@@ -68,6 +68,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
         /// </summary>
         [Output("groups")]
@@ -90,6 +96,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("portalAddr6")]
         public Output<string> PortalAddr6 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("proxyAuth")]
+        public Output<string> ProxyAuth { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -150,6 +162,12 @@ namespace Pulumiverse.Fortios.Firewall
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
 
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
         [Input("groups")]
         private InputList<Inputs.AuthportalGroupArgs>? _groups;
 
@@ -181,6 +199,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? PortalAddr6 { get; set; }
 
         /// <summary>
+        /// Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("proxyAuth")]
+        public Input<string>? ProxyAuth { get; set; }
+
+        /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Input("vdomparam")]
@@ -199,6 +223,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("groups")]
         private InputList<Inputs.AuthportalGroupGetArgs>? _groups;
@@ -229,6 +259,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("portalAddr6")]
         public Input<string>? PortalAddr6 { get; set; }
+
+        /// <summary>
+        /// Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("proxyAuth")]
+        public Input<string>? ProxyAuth { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

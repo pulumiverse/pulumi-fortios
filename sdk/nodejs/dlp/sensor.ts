@@ -113,6 +113,10 @@ export class Sensor extends pulumi.CustomResource {
      */
     public readonly fullArchiveProto!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
      */
     public readonly matchType!: pulumi.Output<string>;
@@ -164,6 +168,7 @@ export class Sensor extends pulumi.CustomResource {
             resourceInputs["filters"] = state ? state.filters : undefined;
             resourceInputs["flowBased"] = state ? state.flowBased : undefined;
             resourceInputs["fullArchiveProto"] = state ? state.fullArchiveProto : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["matchType"] = state ? state.matchType : undefined;
             resourceInputs["nacQuarLog"] = state ? state.nacQuarLog : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -183,6 +188,7 @@ export class Sensor extends pulumi.CustomResource {
             resourceInputs["filters"] = args ? args.filters : undefined;
             resourceInputs["flowBased"] = args ? args.flowBased : undefined;
             resourceInputs["fullArchiveProto"] = args ? args.fullArchiveProto : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["matchType"] = args ? args.matchType : undefined;
             resourceInputs["nacQuarLog"] = args ? args.nacQuarLog : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -240,6 +246,10 @@ export interface SensorState {
      * Protocols to always content archive.
      */
     fullArchiveProto?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
      */
@@ -314,6 +324,10 @@ export interface SensorArgs {
      * Protocols to always content archive.
      */
     fullArchiveProto?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
      */

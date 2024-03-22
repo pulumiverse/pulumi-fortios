@@ -144,6 +144,10 @@ export interface GetCustomResult {
      * Multiple UDP port ranges.
      */
     readonly udpPortrange: string;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    readonly uuid: string;
     readonly vdomparam?: string;
     /**
      * Enable/disable the visibility of the service on the GUI.

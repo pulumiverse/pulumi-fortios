@@ -82,6 +82,8 @@ type Global struct {
 	ForwardProxyAuth pulumi.StringOutput `pulumi:"forwardProxyAuth"`
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout pulumi.IntOutput `pulumi:"forwardServerAffinityTimeout"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
 	LdapUserCache pulumi.StringOutput `pulumi:"ldapUserCache"`
 	// Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
@@ -92,12 +94,20 @@ type Global struct {
 	LearnClientIpSrcaddr6s GlobalLearnClientIpSrcaddr6ArrayOutput `pulumi:"learnClientIpSrcaddr6s"`
 	// Source address name (srcaddr or srcaddr6 must be set). The structure of `learnClientIpSrcaddr` block is documented below.
 	LearnClientIpSrcaddrs GlobalLearnClientIpSrcaddrArrayOutput `pulumi:"learnClientIpSrcaddrs"`
+	// Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+	LogAppId pulumi.StringOutput `pulumi:"logAppId"`
+	// Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+	LogForwardServer pulumi.StringOutput `pulumi:"logForwardServer"`
+	// Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+	LogPolicyPending pulumi.StringOutput `pulumi:"logPolicyPending"`
 	// Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
 	MaxMessageLength pulumi.IntOutput `pulumi:"maxMessageLength"`
 	// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
 	MaxRequestLength pulumi.IntOutput `pulumi:"maxRequestLength"`
 	// Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
 	MaxWafBodyCacheLength pulumi.IntOutput `pulumi:"maxWafBodyCacheLength"`
+	// Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+	PolicyCategoryDeepInspect pulumi.StringOutput `pulumi:"policyCategoryDeepInspect"`
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn pulumi.StringOutput `pulumi:"proxyFqdn"`
 	// IPv4 source addresses to exempt proxy affinity.
@@ -161,6 +171,8 @@ type globalState struct {
 	ForwardProxyAuth *string `pulumi:"forwardProxyAuth"`
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout *int `pulumi:"forwardServerAffinityTimeout"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
 	LdapUserCache *string `pulumi:"ldapUserCache"`
 	// Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
@@ -171,12 +183,20 @@ type globalState struct {
 	LearnClientIpSrcaddr6s []GlobalLearnClientIpSrcaddr6 `pulumi:"learnClientIpSrcaddr6s"`
 	// Source address name (srcaddr or srcaddr6 must be set). The structure of `learnClientIpSrcaddr` block is documented below.
 	LearnClientIpSrcaddrs []GlobalLearnClientIpSrcaddr `pulumi:"learnClientIpSrcaddrs"`
+	// Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+	LogAppId *string `pulumi:"logAppId"`
+	// Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+	LogForwardServer *string `pulumi:"logForwardServer"`
+	// Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+	LogPolicyPending *string `pulumi:"logPolicyPending"`
 	// Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
 	MaxMessageLength *int `pulumi:"maxMessageLength"`
 	// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
 	MaxRequestLength *int `pulumi:"maxRequestLength"`
 	// Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
 	MaxWafBodyCacheLength *int `pulumi:"maxWafBodyCacheLength"`
+	// Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+	PolicyCategoryDeepInspect *string `pulumi:"policyCategoryDeepInspect"`
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn *string `pulumi:"proxyFqdn"`
 	// IPv4 source addresses to exempt proxy affinity.
@@ -208,6 +228,8 @@ type GlobalState struct {
 	ForwardProxyAuth pulumi.StringPtrInput
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
 	LdapUserCache pulumi.StringPtrInput
 	// Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
@@ -218,12 +240,20 @@ type GlobalState struct {
 	LearnClientIpSrcaddr6s GlobalLearnClientIpSrcaddr6ArrayInput
 	// Source address name (srcaddr or srcaddr6 must be set). The structure of `learnClientIpSrcaddr` block is documented below.
 	LearnClientIpSrcaddrs GlobalLearnClientIpSrcaddrArrayInput
+	// Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+	LogAppId pulumi.StringPtrInput
+	// Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+	LogForwardServer pulumi.StringPtrInput
+	// Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+	LogPolicyPending pulumi.StringPtrInput
 	// Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
 	MaxMessageLength pulumi.IntPtrInput
 	// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
 	MaxRequestLength pulumi.IntPtrInput
 	// Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
 	MaxWafBodyCacheLength pulumi.IntPtrInput
+	// Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+	PolicyCategoryDeepInspect pulumi.StringPtrInput
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn pulumi.StringPtrInput
 	// IPv4 source addresses to exempt proxy affinity.
@@ -259,6 +289,8 @@ type globalArgs struct {
 	ForwardProxyAuth *string `pulumi:"forwardProxyAuth"`
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout *int `pulumi:"forwardServerAffinityTimeout"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
 	LdapUserCache *string `pulumi:"ldapUserCache"`
 	// Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
@@ -269,12 +301,20 @@ type globalArgs struct {
 	LearnClientIpSrcaddr6s []GlobalLearnClientIpSrcaddr6 `pulumi:"learnClientIpSrcaddr6s"`
 	// Source address name (srcaddr or srcaddr6 must be set). The structure of `learnClientIpSrcaddr` block is documented below.
 	LearnClientIpSrcaddrs []GlobalLearnClientIpSrcaddr `pulumi:"learnClientIpSrcaddrs"`
+	// Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+	LogAppId *string `pulumi:"logAppId"`
+	// Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+	LogForwardServer *string `pulumi:"logForwardServer"`
+	// Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+	LogPolicyPending *string `pulumi:"logPolicyPending"`
 	// Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
 	MaxMessageLength *int `pulumi:"maxMessageLength"`
 	// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
 	MaxRequestLength *int `pulumi:"maxRequestLength"`
 	// Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
 	MaxWafBodyCacheLength *int `pulumi:"maxWafBodyCacheLength"`
+	// Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+	PolicyCategoryDeepInspect *string `pulumi:"policyCategoryDeepInspect"`
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn string `pulumi:"proxyFqdn"`
 	// IPv4 source addresses to exempt proxy affinity.
@@ -307,6 +347,8 @@ type GlobalArgs struct {
 	ForwardProxyAuth pulumi.StringPtrInput
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
 	LdapUserCache pulumi.StringPtrInput
 	// Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
@@ -317,12 +359,20 @@ type GlobalArgs struct {
 	LearnClientIpSrcaddr6s GlobalLearnClientIpSrcaddr6ArrayInput
 	// Source address name (srcaddr or srcaddr6 must be set). The structure of `learnClientIpSrcaddr` block is documented below.
 	LearnClientIpSrcaddrs GlobalLearnClientIpSrcaddrArrayInput
+	// Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+	LogAppId pulumi.StringPtrInput
+	// Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+	LogForwardServer pulumi.StringPtrInput
+	// Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+	LogPolicyPending pulumi.StringPtrInput
 	// Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
 	MaxMessageLength pulumi.IntPtrInput
 	// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
 	MaxRequestLength pulumi.IntPtrInput
 	// Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
 	MaxWafBodyCacheLength pulumi.IntPtrInput
+	// Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+	PolicyCategoryDeepInspect pulumi.StringPtrInput
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn pulumi.StringInput
 	// IPv4 source addresses to exempt proxy affinity.
@@ -452,6 +502,11 @@ func (o GlobalOutput) ForwardServerAffinityTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.ForwardServerAffinityTimeout }).(pulumi.IntOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o GlobalOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
 func (o GlobalOutput) LdapUserCache() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.LdapUserCache }).(pulumi.StringOutput)
@@ -477,6 +532,21 @@ func (o GlobalOutput) LearnClientIpSrcaddrs() GlobalLearnClientIpSrcaddrArrayOut
 	return o.ApplyT(func(v *Global) GlobalLearnClientIpSrcaddrArrayOutput { return v.LearnClientIpSrcaddrs }).(GlobalLearnClientIpSrcaddrArrayOutput)
 }
 
+// Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+func (o GlobalOutput) LogAppId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.LogAppId }).(pulumi.StringOutput)
+}
+
+// Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+func (o GlobalOutput) LogForwardServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.LogForwardServer }).(pulumi.StringOutput)
+}
+
+// Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+func (o GlobalOutput) LogPolicyPending() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.LogPolicyPending }).(pulumi.StringOutput)
+}
+
 // Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
 func (o GlobalOutput) MaxMessageLength() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MaxMessageLength }).(pulumi.IntOutput)
@@ -490,6 +560,11 @@ func (o GlobalOutput) MaxRequestLength() pulumi.IntOutput {
 // Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
 func (o GlobalOutput) MaxWafBodyCacheLength() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MaxWafBodyCacheLength }).(pulumi.IntOutput)
+}
+
+// Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+func (o GlobalOutput) PolicyCategoryDeepInspect() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.PolicyCategoryDeepInspect }).(pulumi.StringOutput)
 }
 
 // Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.

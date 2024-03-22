@@ -23,7 +23,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? Options;
         /// <summary>
-        /// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        /// Maximum in-memory file size that can be scanned (MB).
         /// </summary>
         public readonly int? OversizeLimit;
         /// <summary>
@@ -47,15 +47,15 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? Status;
         /// <summary>
-        /// Maximum dynamic TCP window size (default = 8MB).
+        /// Maximum dynamic TCP window size.
         /// </summary>
         public readonly int? TcpWindowMaximum;
         /// <summary>
-        /// Minimum dynamic TCP window size (default = 128KB).
+        /// Minimum dynamic TCP window size.
         /// </summary>
         public readonly int? TcpWindowMinimum;
         /// <summary>
-        /// Set TCP static window size (default = 256KB).
+        /// Set TCP static window size.
         /// </summary>
         public readonly int? TcpWindowSize;
         /// <summary>
@@ -67,7 +67,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly int? UncompressedNestLimit;
         /// <summary>
-        /// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        /// Maximum in-memory uncompressed file size that can be scanned (MB).
         /// </summary>
         public readonly int? UncompressedOversizeLimit;
 

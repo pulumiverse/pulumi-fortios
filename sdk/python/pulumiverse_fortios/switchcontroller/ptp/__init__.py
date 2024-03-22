@@ -5,5 +5,7 @@
 from ... import _utilities
 import typing
 # Export this package's modules as members:
+from .interfacepolicy import *
 from .policy import *
+from .profile import *
 from .settings import *

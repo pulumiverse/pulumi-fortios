@@ -25,7 +25,7 @@ class FortigateArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Fortigate resource.
-        :param pulumi.Input[str] authorized: Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] authorized: Enable/disable FortiGate administration.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[int] device_id: device-id
         :param pulumi.Input[str] fosid: FortiGate serial number.
@@ -58,7 +58,7 @@ class FortigateArgs:
     @pulumi.getter
     def authorized(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+        Enable/disable FortiGate administration.
         """
         return pulumi.get(self, "authorized")
 
@@ -177,7 +177,7 @@ class _FortigateState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Fortigate resources.
-        :param pulumi.Input[str] authorized: Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] authorized: Enable/disable FortiGate administration.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[int] device_id: device-id
         :param pulumi.Input[str] fosid: FortiGate serial number.
@@ -210,7 +210,7 @@ class _FortigateState:
     @pulumi.getter
     def authorized(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+        Enable/disable FortiGate administration.
         """
         return pulumi.get(self, "authorized")
 
@@ -353,7 +353,7 @@ class Fortigate(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] authorized: Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] authorized: Enable/disable FortiGate administration.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[int] device_id: device-id
         :param pulumi.Input[str] fosid: FortiGate serial number.
@@ -458,7 +458,7 @@ class Fortigate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] authorized: Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] authorized: Enable/disable FortiGate administration.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[int] device_id: device-id
         :param pulumi.Input[str] fosid: FortiGate serial number.
@@ -487,7 +487,7 @@ class Fortigate(pulumi.CustomResource):
     @pulumi.getter
     def authorized(self) -> pulumi.Output[str]:
         """
-        Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+        Enable/disable FortiGate administration.
         """
         return pulumi.get(self, "authorized")
 

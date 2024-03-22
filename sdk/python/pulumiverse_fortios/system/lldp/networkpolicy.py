@@ -17,6 +17,7 @@ __all__ = ['NetworkpolicyArgs', 'Networkpolicy']
 class NetworkpolicyArgs:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest: Optional[pulumi.Input['NetworkpolicyGuestArgs']] = None,
                  guest_voice_signaling: Optional[pulumi.Input['NetworkpolicyGuestVoiceSignalingArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -30,6 +31,7 @@ class NetworkpolicyArgs:
         """
         The set of arguments for constructing a Networkpolicy resource.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['NetworkpolicyGuestArgs'] guest: Guest. The structure of `guest` block is documented below.
         :param pulumi.Input['NetworkpolicyGuestVoiceSignalingArgs'] guest_voice_signaling: Guest Voice Signaling. The structure of `guest_voice_signaling` block is documented below.
         :param pulumi.Input[str] name: LLDP network policy name.
@@ -43,6 +45,8 @@ class NetworkpolicyArgs:
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if guest is not None:
             pulumi.set(__self__, "guest", guest)
         if guest_voice_signaling is not None:
@@ -75,6 +79,18 @@ class NetworkpolicyArgs:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -201,6 +217,7 @@ class NetworkpolicyArgs:
 class _NetworkpolicyState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest: Optional[pulumi.Input['NetworkpolicyGuestArgs']] = None,
                  guest_voice_signaling: Optional[pulumi.Input['NetworkpolicyGuestVoiceSignalingArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -214,6 +231,7 @@ class _NetworkpolicyState:
         """
         Input properties used for looking up and filtering Networkpolicy resources.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['NetworkpolicyGuestArgs'] guest: Guest. The structure of `guest` block is documented below.
         :param pulumi.Input['NetworkpolicyGuestVoiceSignalingArgs'] guest_voice_signaling: Guest Voice Signaling. The structure of `guest_voice_signaling` block is documented below.
         :param pulumi.Input[str] name: LLDP network policy name.
@@ -227,6 +245,8 @@ class _NetworkpolicyState:
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if guest is not None:
             pulumi.set(__self__, "guest", guest)
         if guest_voice_signaling is not None:
@@ -259,6 +279,18 @@ class _NetworkpolicyState:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -387,6 +419,7 @@ class Networkpolicy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest: Optional[pulumi.Input[pulumi.InputType['NetworkpolicyGuestArgs']]] = None,
                  guest_voice_signaling: Optional[pulumi.Input[pulumi.InputType['NetworkpolicyGuestVoiceSignalingArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -433,6 +466,7 @@ class Networkpolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['NetworkpolicyGuestArgs']] guest: Guest. The structure of `guest` block is documented below.
         :param pulumi.Input[pulumi.InputType['NetworkpolicyGuestVoiceSignalingArgs']] guest_voice_signaling: Guest Voice Signaling. The structure of `guest_voice_signaling` block is documented below.
         :param pulumi.Input[str] name: LLDP network policy name.
@@ -498,6 +532,7 @@ class Networkpolicy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest: Optional[pulumi.Input[pulumi.InputType['NetworkpolicyGuestArgs']]] = None,
                  guest_voice_signaling: Optional[pulumi.Input[pulumi.InputType['NetworkpolicyGuestVoiceSignalingArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -518,6 +553,7 @@ class Networkpolicy(pulumi.CustomResource):
             __props__ = NetworkpolicyArgs.__new__(NetworkpolicyArgs)
 
             __props__.__dict__["comment"] = comment
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["guest"] = guest
             __props__.__dict__["guest_voice_signaling"] = guest_voice_signaling
             __props__.__dict__["name"] = name
@@ -539,6 +575,7 @@ class Networkpolicy(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             comment: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             guest: Optional[pulumi.Input[pulumi.InputType['NetworkpolicyGuestArgs']]] = None,
             guest_voice_signaling: Optional[pulumi.Input[pulumi.InputType['NetworkpolicyGuestVoiceSignalingArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -557,6 +594,7 @@ class Networkpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['NetworkpolicyGuestArgs']] guest: Guest. The structure of `guest` block is documented below.
         :param pulumi.Input[pulumi.InputType['NetworkpolicyGuestVoiceSignalingArgs']] guest_voice_signaling: Guest Voice Signaling. The structure of `guest_voice_signaling` block is documented below.
         :param pulumi.Input[str] name: LLDP network policy name.
@@ -573,6 +611,7 @@ class Networkpolicy(pulumi.CustomResource):
         __props__ = _NetworkpolicyState.__new__(_NetworkpolicyState)
 
         __props__.__dict__["comment"] = comment
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["guest"] = guest
         __props__.__dict__["guest_voice_signaling"] = guest_voice_signaling
         __props__.__dict__["name"] = name
@@ -592,6 +631,14 @@ class Networkpolicy(pulumi.CustomResource):
         Comment.
         """
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

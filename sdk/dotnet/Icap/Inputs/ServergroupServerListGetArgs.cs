@@ -20,7 +20,7 @@ namespace Pulumiverse.Fortios.Icap.Inputs
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Optionally assign a weight of the ICAP server for weighted load balancing (1 - 100, default = 10)
+        /// Optionally assign a weight of the forwarding server for weighted load balancing (1 - 100, default = 10).
         /// </summary>
         [Input("weight")]
         public Input<int>? Weight { get; set; }

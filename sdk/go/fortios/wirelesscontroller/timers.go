@@ -33,6 +33,12 @@ import (
 type Timers struct {
 	pulumi.CustomResourceState
 
+	// Time in minutes to wait before AP reboots when there is no controller detected (5 - 65535, default = 0, 0 for no reboot).
+	ApRebootWaitInterval1 pulumi.IntOutput `pulumi:"apRebootWaitInterval1"`
+	// Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
+	ApRebootWaitInterval2 pulumi.IntOutput `pulumi:"apRebootWaitInterval2"`
+	// Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
+	ApRebootWaitTime pulumi.StringOutput `pulumi:"apRebootWaitTime"`
 	// Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
 	AuthTimeout pulumi.IntOutput `pulumi:"authTimeout"`
 	// Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
@@ -57,8 +63,12 @@ type Timers struct {
 	EchoInterval pulumi.IntOutput `pulumi:"echoInterval"`
 	// Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
 	FakeApLog pulumi.IntOutput `pulumi:"fakeApLog"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
 	IpsecIntfCleanup pulumi.IntOutput `pulumi:"ipsecIntfCleanup"`
+	// Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
+	NatSessionKeepAlive pulumi.IntOutput `pulumi:"natSessionKeepAlive"`
 	// Time between running radio reports (1 - 255 sec, default = 15).
 	RadioStatsInterval pulumi.IntOutput `pulumi:"radioStatsInterval"`
 	// Time period in minutes to keep rogue AP after it is gone (default = 0).
@@ -107,6 +117,12 @@ func GetTimers(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Timers resources.
 type timersState struct {
+	// Time in minutes to wait before AP reboots when there is no controller detected (5 - 65535, default = 0, 0 for no reboot).
+	ApRebootWaitInterval1 *int `pulumi:"apRebootWaitInterval1"`
+	// Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
+	ApRebootWaitInterval2 *int `pulumi:"apRebootWaitInterval2"`
+	// Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
+	ApRebootWaitTime *string `pulumi:"apRebootWaitTime"`
 	// Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
 	AuthTimeout *int `pulumi:"authTimeout"`
 	// Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
@@ -131,8 +147,12 @@ type timersState struct {
 	EchoInterval *int `pulumi:"echoInterval"`
 	// Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
 	FakeApLog *int `pulumi:"fakeApLog"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
 	IpsecIntfCleanup *int `pulumi:"ipsecIntfCleanup"`
+	// Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
+	NatSessionKeepAlive *int `pulumi:"natSessionKeepAlive"`
 	// Time between running radio reports (1 - 255 sec, default = 15).
 	RadioStatsInterval *int `pulumi:"radioStatsInterval"`
 	// Time period in minutes to keep rogue AP after it is gone (default = 0).
@@ -152,6 +172,12 @@ type timersState struct {
 }
 
 type TimersState struct {
+	// Time in minutes to wait before AP reboots when there is no controller detected (5 - 65535, default = 0, 0 for no reboot).
+	ApRebootWaitInterval1 pulumi.IntPtrInput
+	// Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
+	ApRebootWaitInterval2 pulumi.IntPtrInput
+	// Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
+	ApRebootWaitTime pulumi.StringPtrInput
 	// Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
 	AuthTimeout pulumi.IntPtrInput
 	// Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
@@ -176,8 +202,12 @@ type TimersState struct {
 	EchoInterval pulumi.IntPtrInput
 	// Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
 	FakeApLog pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
 	IpsecIntfCleanup pulumi.IntPtrInput
+	// Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
+	NatSessionKeepAlive pulumi.IntPtrInput
 	// Time between running radio reports (1 - 255 sec, default = 15).
 	RadioStatsInterval pulumi.IntPtrInput
 	// Time period in minutes to keep rogue AP after it is gone (default = 0).
@@ -201,6 +231,12 @@ func (TimersState) ElementType() reflect.Type {
 }
 
 type timersArgs struct {
+	// Time in minutes to wait before AP reboots when there is no controller detected (5 - 65535, default = 0, 0 for no reboot).
+	ApRebootWaitInterval1 *int `pulumi:"apRebootWaitInterval1"`
+	// Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
+	ApRebootWaitInterval2 *int `pulumi:"apRebootWaitInterval2"`
+	// Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
+	ApRebootWaitTime *string `pulumi:"apRebootWaitTime"`
 	// Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
 	AuthTimeout *int `pulumi:"authTimeout"`
 	// Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
@@ -225,8 +261,12 @@ type timersArgs struct {
 	EchoInterval *int `pulumi:"echoInterval"`
 	// Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
 	FakeApLog *int `pulumi:"fakeApLog"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
 	IpsecIntfCleanup *int `pulumi:"ipsecIntfCleanup"`
+	// Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
+	NatSessionKeepAlive *int `pulumi:"natSessionKeepAlive"`
 	// Time between running radio reports (1 - 255 sec, default = 15).
 	RadioStatsInterval *int `pulumi:"radioStatsInterval"`
 	// Time period in minutes to keep rogue AP after it is gone (default = 0).
@@ -247,6 +287,12 @@ type timersArgs struct {
 
 // The set of arguments for constructing a Timers resource.
 type TimersArgs struct {
+	// Time in minutes to wait before AP reboots when there is no controller detected (5 - 65535, default = 0, 0 for no reboot).
+	ApRebootWaitInterval1 pulumi.IntPtrInput
+	// Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
+	ApRebootWaitInterval2 pulumi.IntPtrInput
+	// Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
+	ApRebootWaitTime pulumi.StringPtrInput
 	// Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
 	AuthTimeout pulumi.IntPtrInput
 	// Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
@@ -271,8 +317,12 @@ type TimersArgs struct {
 	EchoInterval pulumi.IntPtrInput
 	// Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
 	FakeApLog pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
 	IpsecIntfCleanup pulumi.IntPtrInput
+	// Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
+	NatSessionKeepAlive pulumi.IntPtrInput
 	// Time between running radio reports (1 - 255 sec, default = 15).
 	RadioStatsInterval pulumi.IntPtrInput
 	// Time period in minutes to keep rogue AP after it is gone (default = 0).
@@ -378,6 +428,21 @@ func (o TimersOutput) ToTimersOutputWithContext(ctx context.Context) TimersOutpu
 	return o
 }
 
+// Time in minutes to wait before AP reboots when there is no controller detected (5 - 65535, default = 0, 0 for no reboot).
+func (o TimersOutput) ApRebootWaitInterval1() pulumi.IntOutput {
+	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.ApRebootWaitInterval1 }).(pulumi.IntOutput)
+}
+
+// Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
+func (o TimersOutput) ApRebootWaitInterval2() pulumi.IntOutput {
+	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.ApRebootWaitInterval2 }).(pulumi.IntOutput)
+}
+
+// Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
+func (o TimersOutput) ApRebootWaitTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *Timers) pulumi.StringOutput { return v.ApRebootWaitTime }).(pulumi.StringOutput)
+}
+
 // Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
 func (o TimersOutput) AuthTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.AuthTimeout }).(pulumi.IntOutput)
@@ -438,9 +503,19 @@ func (o TimersOutput) FakeApLog() pulumi.IntOutput {
 	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.FakeApLog }).(pulumi.IntOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o TimersOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Timers) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
 func (o TimersOutput) IpsecIntfCleanup() pulumi.IntOutput {
 	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.IpsecIntfCleanup }).(pulumi.IntOutput)
+}
+
+// Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
+func (o TimersOutput) NatSessionKeepAlive() pulumi.IntOutput {
+	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.NatSessionKeepAlive }).(pulumi.IntOutput)
 }
 
 // Time between running radio reports (1 - 255 sec, default = 15).

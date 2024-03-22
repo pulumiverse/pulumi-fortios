@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -50,6 +52,10 @@ export interface GetGlobalResult {
      * Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
      */
     readonly adminConsoleTimeout: number;
+    /**
+     * Override access profile.
+     */
+    readonly adminForticloudSsoDefaultProfile: string;
     /**
      * Enable/disable FortiCloud admin login via SSO.
      */
@@ -215,6 +221,10 @@ export interface GetGlobalResult {
      */
     readonly batchCmdb: string;
     /**
+     * Affinity setting for BFD daemon (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    readonly bfdAffinity: string;
+    /**
      * Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
      */
     readonly blockSessionTimer: number;
@@ -347,6 +357,14 @@ export interface GetGlobalResult {
      */
     readonly fgdAlertSubscription: string;
     /**
+     * Enable/disable config upload to FortiConverter.
+     */
+    readonly forticonverterConfigUpload: string;
+    /**
+     * Enable/disable FortiConverter integration service.
+     */
+    readonly forticonverterIntegration: string;
+    /**
      * Enable/disable FortiExtender.
      */
     readonly fortiextender: string;
@@ -367,6 +385,10 @@ export interface GetGlobalResult {
      */
     readonly fortiextenderVlanMode: string;
     /**
+     * Enable/disable integration with the FortiGSLB cloud service.
+     */
+    readonly fortigslbIntegration: string;
+    /**
      * Enable/disable integration with the FortiIPAM cloud service.
      */
     readonly fortiipamIntegration: string;
@@ -379,13 +401,33 @@ export interface GetGlobalResult {
      */
     readonly fortitokenCloud: string;
     /**
+     * Enable/disable FTM push service of FortiToken Cloud.
+     */
+    readonly fortitokenCloudPushStatus: string;
+    /**
+     * Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
+     */
+    readonly fortitokenCloudSyncInterval: number;
+    /**
      * Enable/disable the GUI warning about using a default hostname
      */
     readonly guiAllowDefaultHostname: string;
     /**
+     * Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error.
+     */
+    readonly guiAllowIncompatibleFabricFgt: string;
+    /**
      * Enable/disable Allow app-detection based SD-WAN.
      */
     readonly guiAppDetectionSdwan: string;
+    /**
+     * Enable/disable the automatic patch upgrade setup prompt on the GUI.
+     */
+    readonly guiAutoUpgradeSetupWarning: string;
+    /**
+     * Domain of CDN server.
+     */
+    readonly guiCdnDomainOverride: string;
     /**
      * Enable/disable Load GUI static files from a CDN.
      */
@@ -499,13 +541,25 @@ export interface GetGlobalResult {
      */
     readonly ikeEmbryonicLimit: number;
     /**
+     * Enable/disable allowing use of interface-subnet setting in firewall addresses (default = enable).
+     */
+    readonly interfaceSubnetUsage: string;
+    /**
      * Configure which Internet Service database size to download from FortiGuard and use.
      */
     readonly internetServiceDatabase: string;
     /**
+     * Configure which on-demand Internet Service IDs are to be downloaded. The structure of `internetServiceDownloadList` block is documented below.
+     */
+    readonly internetServiceDownloadLists: outputs.system.GetGlobalInternetServiceDownloadList[];
+    /**
      * Dead gateway detection interval.
      */
     readonly interval: number;
+    /**
+     * Maximum memory (MB) used to reassemble IPv4/IPv6 fragments.
+     */
+    readonly ipFragmentMemThresholds: number;
     /**
      * IP source port range used for traffic originating from the FortiGate unit.
      */
@@ -574,6 +628,10 @@ export interface GetGlobalResult {
      * Enable/disable Link Layer Discovery Protocol (LLDP) transmission.
      */
     readonly lldpTransmission: string;
+    /**
+     * Enable/disable logging the event of a single CPU core reaching CPU usage threshold.
+     */
+    readonly logSingleCpuHigh: string;
     /**
      * Enable/disable logging of SSL connection events.
      */
@@ -707,6 +765,10 @@ export interface GetGlobalResult {
      */
     readonly proxyHardwareAcceleration: string;
     /**
+     * Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was authenticated.
+     */
+    readonly proxyKeepAliveMode: string;
+    /**
      * Enable/disable using the content processor to accelerate KXP traffic.
      */
     readonly proxyKxpHardwareAcceleration: string;
@@ -715,6 +777,10 @@ export interface GetGlobalResult {
      */
     readonly proxyReAuthenticationMode: string;
     /**
+     * The time limit that users must re-authenticate if proxy-keep-alive-mode is set to re-authenticate (1  - 86400 sec, default=30s.
+     */
+    readonly proxyReAuthenticationTime: number;
+    /**
      * Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources.
      */
     readonly proxyResourceMode: string;
@@ -722,6 +788,34 @@ export interface GetGlobalResult {
      * Proxy worker count.
      */
     readonly proxyWorkerCount: number;
+    /**
+     * Purdue Level of this FortiGate.
+     */
+    readonly purdueLevel: string;
+    /**
+     * Maximum number of unacknowledged packets before sending ACK (2 - 5, default = 3).
+     */
+    readonly quicAckThresold: number;
+    /**
+     * QUIC congestion control algorithm (default = cubic).
+     */
+    readonly quicCongestionControlAlgo: string;
+    /**
+     * Maximum transmit datagram size (1200 - 1500, default = 1500).
+     */
+    readonly quicMaxDatagramSize: number;
+    /**
+     * Enable/disable path MTU discovery (default = enable).
+     */
+    readonly quicPmtud: string;
+    /**
+     * Time-to-live (TTL) for TLS handshake in seconds (1 - 60, default = 5).
+     */
+    readonly quicTlsHandshakeTimeout: number;
+    /**
+     * Enable/disable UDP payload size shaping per connection ID (default = enable).
+     */
+    readonly quicUdpPayloadSizeShapingPerCid: string;
     /**
      * RADIUS service port number.
      */
@@ -771,6 +865,10 @@ export interface GetGlobalResult {
      */
     readonly sendPmtuIcmp: string;
     /**
+     * Maximum number of sflowd child processes allowed to run.
+     */
+    readonly sflowdMaxChildrenNum: number;
+    /**
      * Enable/disable the ability to change the static NAT route.
      */
     readonly snatRouteChange: string;
@@ -782,6 +880,14 @@ export interface GetGlobalResult {
      * Enable/disable speed test server.
      */
     readonly speedtestServer: string;
+    /**
+     * Speedtest server controller port number.
+     */
+    readonly speedtestdCtrlPort: number;
+    /**
+     * Speedtest server port number.
+     */
+    readonly speedtestdServerPort: number;
     /**
      * Split port(s) to multiple 10Gbps ports.
      */
@@ -818,6 +924,22 @@ export interface GetGlobalResult {
      * Enable/disable HMAC-MD5 for SSH access.
      */
     readonly sshHmacMd5: string;
+    /**
+     * Config SSH host key.
+     */
+    readonly sshHostkey: string;
+    /**
+     * Select one or more SSH hostkey algorithms.
+     */
+    readonly sshHostkeyAlgo: string;
+    /**
+     * Enable/disable SSH host key override in SSH daemon.
+     */
+    readonly sshHostkeyOverride: string;
+    /**
+     * Password for ssh-hostkey.
+     */
+    readonly sshHostkeyPassword: string;
     /**
      * Select one or more SSH kex algorithms.
      */
@@ -863,6 +985,10 @@ export interface GetGlobalResult {
      */
     readonly sslvpnPluginVersionCheck: string;
     /**
+     * Enable/disable SSL-VPN web mode.
+     */
+    readonly sslvpnWebMode: string;
+    /**
      * Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session.
      */
     readonly strictDirtySessionCheck: string;
@@ -882,6 +1008,10 @@ export interface GetGlobalResult {
      * Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
      */
     readonly sysPerfLogInterval: number;
+    /**
+     * Affinity setting for syslog (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    readonly syslogAffinity: string;
     /**
      * Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
      */
@@ -996,6 +1126,10 @@ export interface GetGlobalResult {
      */
     readonly virtualSwitchVlan: string;
     /**
+     * Enable/disable verification of EMS serial number in SSL-VPN and IPsec VPN connection.
+     */
+    readonly vpnEmsSnCheck: string;
+    /**
      * Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
      */
     readonly wadAffinity: string;
@@ -1011,6 +1145,18 @@ export interface GetGlobalResult {
      * Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
      */
     readonly wadMemoryChangeGranularity: number;
+    /**
+     * WAD workers daily restart end time (hh:mm).
+     */
+    readonly wadRestartEndTime: string;
+    /**
+     * WAD worker restart mode (default = none).
+     */
+    readonly wadRestartMode: string;
+    /**
+     * WAD workers daily restart time (hh:mm).
+     */
+    readonly wadRestartStartTime: string;
     /**
      * Enable/disable dispatching traffic to WAD workers based on source affinity.
      */

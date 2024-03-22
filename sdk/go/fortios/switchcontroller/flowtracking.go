@@ -45,6 +45,8 @@ type Flowtracking struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
 	Format pulumi.StringOutput `pulumi:"format"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
 	Level pulumi.StringOutput `pulumi:"level"`
 	// Configure flow max export packet size (512-9216, default=512 bytes).
@@ -117,6 +119,8 @@ type flowtrackingState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
 	Format *string `pulumi:"format"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
 	Level *string `pulumi:"level"`
 	// Configure flow max export packet size (512-9216, default=512 bytes).
@@ -160,6 +164,8 @@ type FlowtrackingState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
 	Format pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
 	Level pulumi.StringPtrInput
 	// Configure flow max export packet size (512-9216, default=512 bytes).
@@ -207,6 +213,8 @@ type flowtrackingArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
 	Format *string `pulumi:"format"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
 	Level *string `pulumi:"level"`
 	// Configure flow max export packet size (512-9216, default=512 bytes).
@@ -251,6 +259,8 @@ type FlowtrackingArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
 	Format pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
 	Level pulumi.StringPtrInput
 	// Configure flow max export packet size (512-9216, default=512 bytes).
@@ -396,6 +406,11 @@ func (o FlowtrackingOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
 func (o FlowtrackingOutput) Format() pulumi.StringOutput {
 	return o.ApplyT(func(v *Flowtracking) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o FlowtrackingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Flowtracking) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.

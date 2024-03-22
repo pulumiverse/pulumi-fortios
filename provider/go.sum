@@ -1752,8 +1752,6 @@ github.com/form3tech-oss/jwt-go v3.2.2+incompatible/go.mod h1:pbq4aXjuKjdthFRnoD
 github.com/form3tech-oss/jwt-go v3.2.3+incompatible/go.mod h1:pbq4aXjuKjdthFRnoDwaVPLA+WlJuPGy+QneDUgJi2k=
 github.com/fortinetdev/forti-sdk-go v1.9.2 h1:gT4kglXIjjb+1fadbMCDAJ+mSaKzibG5uTRxd9xzxSw=
 github.com/fortinetdev/forti-sdk-go v1.9.2/go.mod h1:7ZX6yVsDHI9cnWK4m4zVboM38MQpiPTTe0mcGAHXqQM=
-github.com/fortinetdev/terraform-provider-fortios v1.16.0 h1:g/Q9GxPL+5jS9Gs9eqk4l9hmMxPeERx38GPlFf1IQlE=
-github.com/fortinetdev/terraform-provider-fortios v1.16.0/go.mod h1:yfFCiNLhYXRrMXHCFkxTQIcgDuDZLWI3AuJwt6NBjvM=
 github.com/fortytw2/leaktest v1.3.0/go.mod h1:jDsjWgpAGjm2CA7WthBh/CdZYEPF31XHquHwclZch5g=
 github.com/franela/goblin v0.0.0-20200105215937-c9ffbefa60db/go.mod h1:7dvUGVsVBjqR7JHJk0brhHOZYGmfBYOrK0ZhYMEtBr4=
 github.com/franela/goreq v0.0.0-20171204163338-bcd34c9993f8/go.mod h1:ZhphrRTfi2rbfLwlschooIH4+wKKDR4Pdxhh+TRoA20=

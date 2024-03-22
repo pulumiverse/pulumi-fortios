@@ -39,7 +39,7 @@ class SettingArgs:
         :param pulumi.Input[int] max_log_rate: FortiCloud maximum log rate in MBps (0 = unlimited).
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
         :param pulumi.Input[str] source_ip: Source IP address used to connect FortiCloud.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] upload_day: Day of week to roll logs.
         :param pulumi.Input[str] upload_interval: Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
@@ -178,7 +178,7 @@ class SettingArgs:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -287,7 +287,7 @@ class _SettingState:
         :param pulumi.Input[int] max_log_rate: FortiCloud maximum log rate in MBps (0 = unlimited).
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
         :param pulumi.Input[str] source_ip: Source IP address used to connect FortiCloud.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] upload_day: Day of week to roll logs.
         :param pulumi.Input[str] upload_interval: Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
@@ -426,7 +426,7 @@ class _SettingState:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -577,7 +577,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[int] max_log_rate: FortiCloud maximum log rate in MBps (0 = unlimited).
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
         :param pulumi.Input[str] source_ip: Source IP address used to connect FortiCloud.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] upload_day: Day of week to roll logs.
         :param pulumi.Input[str] upload_interval: Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
@@ -724,7 +724,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[int] max_log_rate: FortiCloud maximum log rate in MBps (0 = unlimited).
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
         :param pulumi.Input[str] source_ip: Source IP address used to connect FortiCloud.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable logging to FortiCloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] upload_day: Day of week to roll logs.
         :param pulumi.Input[str] upload_interval: Frequency of uploading log files to FortiCloud. Valid values: `daily`, `weekly`, `monthly`.
@@ -821,7 +821,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> pulumi.Output[str]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 

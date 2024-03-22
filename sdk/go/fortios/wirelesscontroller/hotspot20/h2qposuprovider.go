@@ -37,6 +37,8 @@ type H2qposuprovider struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// OSU provider friendly name. The structure of `friendlyName` block is documented below.
 	FriendlyNames H2qposuproviderFriendlyNameArrayOutput `pulumi:"friendlyNames"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// OSU provider icon.
 	Icon pulumi.StringOutput `pulumi:"icon"`
 	// OSU provider ID.
@@ -87,6 +89,8 @@ type h2qposuproviderState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// OSU provider friendly name. The structure of `friendlyName` block is documented below.
 	FriendlyNames []H2qposuproviderFriendlyName `pulumi:"friendlyNames"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// OSU provider icon.
 	Icon *string `pulumi:"icon"`
 	// OSU provider ID.
@@ -108,6 +112,8 @@ type H2qposuproviderState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// OSU provider friendly name. The structure of `friendlyName` block is documented below.
 	FriendlyNames H2qposuproviderFriendlyNameArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// OSU provider icon.
 	Icon pulumi.StringPtrInput
 	// OSU provider ID.
@@ -133,6 +139,8 @@ type h2qposuproviderArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// OSU provider friendly name. The structure of `friendlyName` block is documented below.
 	FriendlyNames []H2qposuproviderFriendlyName `pulumi:"friendlyNames"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// OSU provider icon.
 	Icon *string `pulumi:"icon"`
 	// OSU provider ID.
@@ -155,6 +163,8 @@ type H2qposuproviderArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// OSU provider friendly name. The structure of `friendlyName` block is documented below.
 	FriendlyNames H2qposuproviderFriendlyNameArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// OSU provider icon.
 	Icon pulumi.StringPtrInput
 	// OSU provider ID.
@@ -266,6 +276,11 @@ func (o H2qposuproviderOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // OSU provider friendly name. The structure of `friendlyName` block is documented below.
 func (o H2qposuproviderOutput) FriendlyNames() H2qposuproviderFriendlyNameArrayOutput {
 	return o.ApplyT(func(v *H2qposuprovider) H2qposuproviderFriendlyNameArrayOutput { return v.FriendlyNames }).(H2qposuproviderFriendlyNameArrayOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o H2qposuproviderOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *H2qposuprovider) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // OSU provider icon.

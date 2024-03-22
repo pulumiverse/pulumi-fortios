@@ -10,6 +10,11 @@ export type Client = import("./client").Client;
 export const Client: typeof import("./client").Client = null as any;
 utilities.lazyLoad(exports, ["Client"], () => require("./client"));
 
+export { GetSettingsArgs, GetSettingsResult, GetSettingsOutputArgs } from "./getSettings";
+export const getSettings: typeof import("./getSettings").getSettings = null as any;
+export const getSettingsOutput: typeof import("./getSettings").getSettingsOutput = null as any;
+utilities.lazyLoad(exports, ["getSettings","getSettingsOutput"], () => require("./getSettings"));
+
 export { SettingsArgs, SettingsState } from "./settings";
 export type Settings = import("./settings").Settings;
 export const Settings: typeof import("./settings").Settings = null as any;

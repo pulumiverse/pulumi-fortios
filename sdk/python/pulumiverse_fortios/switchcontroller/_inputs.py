@@ -25,6 +25,7 @@ __all__ = [
     'LocationCoordinatesArgs',
     'LocationElinNumberArgs',
     'ManagedswitchCustomCommandArgs',
+    'ManagedswitchDhcpSnoopingStaticClientArgs',
     'ManagedswitchIgmpSnoopingArgs',
     'ManagedswitchIgmpSnoopingVlanArgs',
     'ManagedswitchIpSourceGuardArgs',
@@ -34,12 +35,16 @@ __all__ = [
     'ManagedswitchMirrorSrcIngressArgs',
     'ManagedswitchN8021xSettingsArgs',
     'ManagedswitchPortArgs',
+    'ManagedswitchPortAclGroupArgs',
     'ManagedswitchPortAllowedVlanArgs',
+    'ManagedswitchPortDhcpSnoopOption82OverrideArgs',
     'ManagedswitchPortExportTagArgs',
+    'ManagedswitchPortFortiswitchAclArgs',
     'ManagedswitchPortInterfaceTagArgs',
     'ManagedswitchPortMemberArgs',
     'ManagedswitchPortUntaggedVlanArgs',
     'ManagedswitchRemoteLogArgs',
+    'ManagedswitchRouteOffloadRouterArgs',
     'ManagedswitchSnmpCommunityArgs',
     'ManagedswitchSnmpCommunityHostArgs',
     'ManagedswitchSnmpSysinfoArgs',
@@ -51,6 +56,7 @@ __all__ = [
     'ManagedswitchStpSettingsArgs',
     'ManagedswitchSwitchLogArgs',
     'ManagedswitchSwitchStpSettingsArgs',
+    'ManagedswitchVlanArgs',
     'QuarantineTargetArgs',
     'QuarantineTargetTagArgs',
     'SnmpcommunityHostArgs',
@@ -1629,6 +1635,93 @@ class ManagedswitchCustomCommandArgs:
 
 
 @pulumi.input_type
+class ManagedswitchDhcpSnoopingStaticClientArgs:
+    def __init__(__self__, *,
+                 ip: Optional[pulumi.Input[str]] = None,
+                 mac: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[str]] = None,
+                 vlan: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ip: Client static IP address.
+        :param pulumi.Input[str] mac: Client MAC address.
+        :param pulumi.Input[str] name: Client name.
+        :param pulumi.Input[str] port: Interface name.
+        :param pulumi.Input[str] vlan: VLAN name.
+        """
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+        if mac is not None:
+            pulumi.set(__self__, "mac", mac)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if vlan is not None:
+            pulumi.set(__self__, "vlan", vlan)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client static IP address.
+        """
+        return pulumi.get(self, "ip")
+
+    @ip.setter
+    def ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip", value)
+
+    @property
+    @pulumi.getter
+    def mac(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client MAC address.
+        """
+        return pulumi.get(self, "mac")
+
+    @mac.setter
+    def mac(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[str]]:
+        """
+        Interface name.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN name.
+        """
+        return pulumi.get(self, "vlan")
+
+    @vlan.setter
+    def vlan(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan", value)
+
+
+@pulumi.input_type
 class ManagedswitchIgmpSnoopingArgs:
     def __init__(__self__, *,
                  aging_time: Optional[pulumi.Input[int]] = None,
@@ -2055,6 +2148,11 @@ class ManagedswitchN8021xSettingsArgs:
                  link_down_auth: Optional[pulumi.Input[str]] = None,
                  local_override: Optional[pulumi.Input[str]] = None,
                  mab_reauth: Optional[pulumi.Input[str]] = None,
+                 mac_called_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_calling_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_case: Optional[pulumi.Input[str]] = None,
+                 mac_password_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  max_reauth_attempt: Optional[pulumi.Input[int]] = None,
                  reauth_period: Optional[pulumi.Input[int]] = None,
                  tx_period: Optional[pulumi.Input[int]] = None):
@@ -2062,6 +2160,11 @@ class ManagedswitchN8021xSettingsArgs:
         :param pulumi.Input[str] link_down_auth: Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
         :param pulumi.Input[str] local_override: Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mab_reauth: Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] mac_called_station_delimiter: MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_case: MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
         :param pulumi.Input[int] max_reauth_attempt: Maximum number of authentication attempts (0 - 15, default = 3).
         :param pulumi.Input[int] reauth_period: Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
         :param pulumi.Input[int] tx_period: 802.1X Tx period (seconds, default=30).
@@ -2072,6 +2175,16 @@ class ManagedswitchN8021xSettingsArgs:
             pulumi.set(__self__, "local_override", local_override)
         if mab_reauth is not None:
             pulumi.set(__self__, "mab_reauth", mab_reauth)
+        if mac_called_station_delimiter is not None:
+            pulumi.set(__self__, "mac_called_station_delimiter", mac_called_station_delimiter)
+        if mac_calling_station_delimiter is not None:
+            pulumi.set(__self__, "mac_calling_station_delimiter", mac_calling_station_delimiter)
+        if mac_case is not None:
+            pulumi.set(__self__, "mac_case", mac_case)
+        if mac_password_delimiter is not None:
+            pulumi.set(__self__, "mac_password_delimiter", mac_password_delimiter)
+        if mac_username_delimiter is not None:
+            pulumi.set(__self__, "mac_username_delimiter", mac_username_delimiter)
         if max_reauth_attempt is not None:
             pulumi.set(__self__, "max_reauth_attempt", max_reauth_attempt)
         if reauth_period is not None:
@@ -2116,6 +2229,66 @@ class ManagedswitchN8021xSettingsArgs:
         pulumi.set(self, "mab_reauth", value)
 
     @property
+    @pulumi.getter(name="macCalledStationDelimiter")
+    def mac_called_station_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_called_station_delimiter")
+
+    @mac_called_station_delimiter.setter
+    def mac_called_station_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_called_station_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macCallingStationDelimiter")
+    def mac_calling_station_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_calling_station_delimiter")
+
+    @mac_calling_station_delimiter.setter
+    def mac_calling_station_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_calling_station_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macCase")
+    def mac_case(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        """
+        return pulumi.get(self, "mac_case")
+
+    @mac_case.setter
+    def mac_case(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_case", value)
+
+    @property
+    @pulumi.getter(name="macPasswordDelimiter")
+    def mac_password_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_password_delimiter")
+
+    @mac_password_delimiter.setter
+    def mac_password_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_password_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macUsernameDelimiter")
+    def mac_username_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        """
+        return pulumi.get(self, "mac_username_delimiter")
+
+    @mac_username_delimiter.setter
+    def mac_username_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_username_delimiter", value)
+
+    @property
     @pulumi.getter(name="maxReauthAttempt")
     def max_reauth_attempt(self) -> Optional[pulumi.Input[int]]:
         """
@@ -2156,16 +2329,20 @@ class ManagedswitchN8021xSettingsArgs:
 class ManagedswitchPortArgs:
     def __init__(__self__, *,
                  access_mode: Optional[pulumi.Input[str]] = None,
+                 acl_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortAclGroupArgs']]]] = None,
                  aggregator_mode: Optional[pulumi.Input[str]] = None,
                  allowed_vlans: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortAllowedVlanArgs']]]] = None,
                  allowed_vlans_all: Optional[pulumi.Input[str]] = None,
                  arp_inspection_trust: Optional[pulumi.Input[str]] = None,
+                 authenticated_port: Optional[pulumi.Input[int]] = None,
                  bundle: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_option82_overrides: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortDhcpSnoopOption82OverrideArgs']]]] = None,
                  dhcp_snoop_option82_trust: Optional[pulumi.Input[str]] = None,
                  dhcp_snooping: Optional[pulumi.Input[str]] = None,
                  discard_mode: Optional[pulumi.Input[str]] = None,
                  edge_port: Optional[pulumi.Input[str]] = None,
+                 encrypted_port: Optional[pulumi.Input[int]] = None,
                  export_tags: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortExportTagArgs']]]] = None,
                  export_to: Optional[pulumi.Input[str]] = None,
                  export_to_pool: Optional[pulumi.Input[str]] = None,
@@ -2182,6 +2359,7 @@ class ManagedswitchPortArgs:
                  flapguard: Optional[pulumi.Input[str]] = None,
                  flow_control: Optional[pulumi.Input[str]] = None,
                  fortilink_port: Optional[pulumi.Input[int]] = None,
+                 fortiswitch_acls: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortFortiswitchAclArgs']]]] = None,
                  igmp_snooping: Optional[pulumi.Input[str]] = None,
                  igmp_snooping_flood_reports: Optional[pulumi.Input[str]] = None,
                  igmps_flood_reports: Optional[pulumi.Input[str]] = None,
@@ -2190,9 +2368,11 @@ class ManagedswitchPortArgs:
                  ip_source_guard: Optional[pulumi.Input[str]] = None,
                  isl_local_trunk_name: Optional[pulumi.Input[str]] = None,
                  isl_peer_device_name: Optional[pulumi.Input[str]] = None,
+                 isl_peer_device_sn: Optional[pulumi.Input[str]] = None,
                  isl_peer_port_name: Optional[pulumi.Input[str]] = None,
                  lacp_speed: Optional[pulumi.Input[str]] = None,
                  learning_limit: Optional[pulumi.Input[int]] = None,
+                 link_status: Optional[pulumi.Input[str]] = None,
                  lldp_profile: Optional[pulumi.Input[str]] = None,
                  lldp_status: Optional[pulumi.Input[str]] = None,
                  loop_guard: Optional[pulumi.Input[str]] = None,
@@ -2216,6 +2396,10 @@ class ManagedswitchPortArgs:
                  pause_meter_resume: Optional[pulumi.Input[str]] = None,
                  poe_capable: Optional[pulumi.Input[int]] = None,
                  poe_max_power: Optional[pulumi.Input[str]] = None,
+                 poe_mode_bt_cabable: Optional[pulumi.Input[int]] = None,
+                 poe_port_mode: Optional[pulumi.Input[str]] = None,
+                 poe_port_power: Optional[pulumi.Input[str]] = None,
+                 poe_port_priority: Optional[pulumi.Input[str]] = None,
                  poe_pre_standard_detection: Optional[pulumi.Input[str]] = None,
                  poe_standard: Optional[pulumi.Input[str]] = None,
                  poe_status: Optional[pulumi.Input[str]] = None,
@@ -2227,7 +2411,9 @@ class ManagedswitchPortArgs:
                  port_security_policy: Optional[pulumi.Input[str]] = None,
                  port_selection_criteria: Optional[pulumi.Input[str]] = None,
                  ptp_policy: Optional[pulumi.Input[str]] = None,
+                 ptp_status: Optional[pulumi.Input[str]] = None,
                  qos_policy: Optional[pulumi.Input[str]] = None,
+                 restricted_auth_port: Optional[pulumi.Input[int]] = None,
                  rpvst_port: Optional[pulumi.Input[str]] = None,
                  sample_direction: Optional[pulumi.Input[str]] = None,
                  sflow_counter_interval: Optional[pulumi.Input[int]] = None,
@@ -2250,22 +2436,26 @@ class ManagedswitchPortArgs:
                  vlan: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] access_mode: Access mode of the port.
+        :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortAclGroupArgs']]] acl_groups: ACL groups on this port. The structure of `acl_group` block is documented below.
         :param pulumi.Input[str] aggregator_mode: LACP member select mode. Valid values: `bandwidth`, `count`.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortAllowedVlanArgs']]] allowed_vlans: Configure switch port tagged vlans The structure of `allowed_vlans` block is documented below.
         :param pulumi.Input[str] allowed_vlans_all: Enable/disable all defined vlans on this port. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] arp_inspection_trust: Trusted or untrusted dynamic ARP inspection. Valid values: `untrusted`, `trusted`.
+        :param pulumi.Input[int] authenticated_port: Peer to Peer Authenticated port.
         :param pulumi.Input[str] bundle: Enable/disable Link Aggregation Group (LAG) bundling for non-FortiLink interfaces. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] description: Description for port.
+        :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortDhcpSnoopOption82OverrideArgs']]] dhcp_snoop_option82_overrides: Configure DHCP snooping option 82 override. The structure of `dhcp_snoop_option82_override` block is documented below.
         :param pulumi.Input[str] dhcp_snoop_option82_trust: Enable/disable allowance of DHCP with option-82 on untrusted interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dhcp_snooping: Trusted or untrusted DHCP-snooping interface. Valid values: `untrusted`, `trusted`.
         :param pulumi.Input[str] discard_mode: Configure discard mode for port. Valid values: `none`, `all-untagged`, `all-tagged`.
         :param pulumi.Input[str] edge_port: Enable/disable this interface as an edge port, bridging connections between workstations and/or computers. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] encrypted_port: Peer to Peer Encrypted port.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortExportTagArgs']]] export_tags: Switch controller export tag name. The structure of `export_tags` block is documented below.
         :param pulumi.Input[str] export_to: Export managed-switch port to a tenant VDOM.
         :param pulumi.Input[str] export_to_pool: Switch controller export port to pool-list.
         :param pulumi.Input[int] export_to_pool_flag: Switch controller export port to pool-list.
         :param pulumi.Input[int] fec_capable: FEC capable.
-        :param pulumi.Input[str] fec_state: State of forward error correction. Valid values: `disabled`, `cl74`, `cl91`.
+        :param pulumi.Input[str] fec_state: State of forward error correction.
         :param pulumi.Input[str] fgt_peer_device_name: FGT peer device name.
         :param pulumi.Input[str] fgt_peer_port_name: FGT peer port name.
         :param pulumi.Input[int] fiber_port: Fiber-port.
@@ -2276,6 +2466,7 @@ class ManagedswitchPortArgs:
         :param pulumi.Input[str] flapguard: Enable/disable flap guard. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] flow_control: Flow control direction. Valid values: `disable`, `tx`, `rx`, `both`.
         :param pulumi.Input[int] fortilink_port: FortiLink uplink port.
+        :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortFortiswitchAclArgs']]] fortiswitch_acls: ACLs on this port. The structure of `fortiswitch_acls` block is documented below.
         :param pulumi.Input[str] igmp_snooping: Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] igmp_snooping_flood_reports: Enable/disable flooding of IGMP reports to this interface when igmp-snooping enabled. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] igmps_flood_reports: Enable/disable flooding of IGMP reports to this interface when igmp-snooping enabled. Valid values: `enable`, `disable`.
@@ -2284,9 +2475,11 @@ class ManagedswitchPortArgs:
         :param pulumi.Input[str] ip_source_guard: Enable/disable IP source guard. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] isl_local_trunk_name: ISL local trunk name.
         :param pulumi.Input[str] isl_peer_device_name: ISL peer device name.
+        :param pulumi.Input[str] isl_peer_device_sn: ISL peer device serial number.
         :param pulumi.Input[str] isl_peer_port_name: ISL peer port name.
         :param pulumi.Input[str] lacp_speed: end Link Aggregation Control Protocol (LACP) messages every 30 seconds (slow) or every second (fast). Valid values: `slow`, `fast`.
         :param pulumi.Input[int] learning_limit: Limit the number of dynamic MAC addresses on this Port (1 - 128, 0 = no limit, default).
+        :param pulumi.Input[str] link_status: Port link status. Valid values: `up`, `down`.
         :param pulumi.Input[str] lldp_profile: LLDP port TLV profile.
         :param pulumi.Input[str] lldp_status: LLDP transmit and receive status. Valid values: `disable`, `rx-only`, `tx-only`, `tx-rx`.
         :param pulumi.Input[str] loop_guard: Enable/disable loop-guard on this interface, an STP optimization used to prevent network loops. Valid values: `enabled`, `disabled`.
@@ -2310,6 +2503,10 @@ class ManagedswitchPortArgs:
         :param pulumi.Input[str] pause_meter_resume: Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
         :param pulumi.Input[int] poe_capable: PoE capable.
         :param pulumi.Input[str] poe_max_power: PoE maximum power.
+        :param pulumi.Input[int] poe_mode_bt_cabable: PoE mode IEEE 802.3BT capable.
+        :param pulumi.Input[str] poe_port_mode: Configure PoE port mode. Valid values: `ieee802-3af`, `ieee802-3at`, `ieee802-3bt`.
+        :param pulumi.Input[str] poe_port_power: Configure PoE port power. Valid values: `normal`, `perpetual`, `perpetual-fast`.
+        :param pulumi.Input[str] poe_port_priority: Configure PoE port priority. Valid values: `critical-priority`, `high-priority`, `low-priority`, `medium-priority`.
         :param pulumi.Input[str] poe_pre_standard_detection: Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] poe_standard: PoE standard supported.
         :param pulumi.Input[str] poe_status: Enable/disable PoE status. Valid values: `enable`, `disable`.
@@ -2321,7 +2518,9 @@ class ManagedswitchPortArgs:
         :param pulumi.Input[str] port_security_policy: Switch controller authentication policy to apply to this managed switch from available options.
         :param pulumi.Input[str] port_selection_criteria: Algorithm for aggregate port selection. Valid values: `src-mac`, `dst-mac`, `src-dst-mac`, `src-ip`, `dst-ip`, `src-dst-ip`.
         :param pulumi.Input[str] ptp_policy: PTP policy configuration.
+        :param pulumi.Input[str] ptp_status: Enable/disable PTP policy on this FortiSwitch port. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] qos_policy: Switch controller QoS policy from available options.
+        :param pulumi.Input[int] restricted_auth_port: Peer to Peer Restricted Authenticated port.
         :param pulumi.Input[str] rpvst_port: Enable/disable inter-operability with rapid PVST on this interface. Valid values: `disabled`, `enabled`.
         :param pulumi.Input[str] sample_direction: sFlow sample direction. Valid values: `tx`, `rx`, `both`.
         :param pulumi.Input[int] sflow_counter_interval: sFlow sampler counter polling interval (1 - 255 sec).
@@ -2345,6 +2544,8 @@ class ManagedswitchPortArgs:
         """
         if access_mode is not None:
             pulumi.set(__self__, "access_mode", access_mode)
+        if acl_groups is not None:
+            pulumi.set(__self__, "acl_groups", acl_groups)
         if aggregator_mode is not None:
             pulumi.set(__self__, "aggregator_mode", aggregator_mode)
         if allowed_vlans is not None:
@@ -2353,10 +2554,14 @@ class ManagedswitchPortArgs:
             pulumi.set(__self__, "allowed_vlans_all", allowed_vlans_all)
         if arp_inspection_trust is not None:
             pulumi.set(__self__, "arp_inspection_trust", arp_inspection_trust)
+        if authenticated_port is not None:
+            pulumi.set(__self__, "authenticated_port", authenticated_port)
         if bundle is not None:
             pulumi.set(__self__, "bundle", bundle)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if dhcp_snoop_option82_overrides is not None:
+            pulumi.set(__self__, "dhcp_snoop_option82_overrides", dhcp_snoop_option82_overrides)
         if dhcp_snoop_option82_trust is not None:
             pulumi.set(__self__, "dhcp_snoop_option82_trust", dhcp_snoop_option82_trust)
         if dhcp_snooping is not None:
@@ -2365,6 +2570,8 @@ class ManagedswitchPortArgs:
             pulumi.set(__self__, "discard_mode", discard_mode)
         if edge_port is not None:
             pulumi.set(__self__, "edge_port", edge_port)
+        if encrypted_port is not None:
+            pulumi.set(__self__, "encrypted_port", encrypted_port)
         if export_tags is not None:
             pulumi.set(__self__, "export_tags", export_tags)
         if export_to is not None:
@@ -2397,6 +2604,8 @@ class ManagedswitchPortArgs:
             pulumi.set(__self__, "flow_control", flow_control)
         if fortilink_port is not None:
             pulumi.set(__self__, "fortilink_port", fortilink_port)
+        if fortiswitch_acls is not None:
+            pulumi.set(__self__, "fortiswitch_acls", fortiswitch_acls)
         if igmp_snooping is not None:
             pulumi.set(__self__, "igmp_snooping", igmp_snooping)
         if igmp_snooping_flood_reports is not None:
@@ -2413,12 +2622,16 @@ class ManagedswitchPortArgs:
             pulumi.set(__self__, "isl_local_trunk_name", isl_local_trunk_name)
         if isl_peer_device_name is not None:
             pulumi.set(__self__, "isl_peer_device_name", isl_peer_device_name)
+        if isl_peer_device_sn is not None:
+            pulumi.set(__self__, "isl_peer_device_sn", isl_peer_device_sn)
         if isl_peer_port_name is not None:
             pulumi.set(__self__, "isl_peer_port_name", isl_peer_port_name)
         if lacp_speed is not None:
             pulumi.set(__self__, "lacp_speed", lacp_speed)
         if learning_limit is not None:
             pulumi.set(__self__, "learning_limit", learning_limit)
+        if link_status is not None:
+            pulumi.set(__self__, "link_status", link_status)
         if lldp_profile is not None:
             pulumi.set(__self__, "lldp_profile", lldp_profile)
         if lldp_status is not None:
@@ -2465,6 +2678,14 @@ class ManagedswitchPortArgs:
             pulumi.set(__self__, "poe_capable", poe_capable)
         if poe_max_power is not None:
             pulumi.set(__self__, "poe_max_power", poe_max_power)
+        if poe_mode_bt_cabable is not None:
+            pulumi.set(__self__, "poe_mode_bt_cabable", poe_mode_bt_cabable)
+        if poe_port_mode is not None:
+            pulumi.set(__self__, "poe_port_mode", poe_port_mode)
+        if poe_port_power is not None:
+            pulumi.set(__self__, "poe_port_power", poe_port_power)
+        if poe_port_priority is not None:
+            pulumi.set(__self__, "poe_port_priority", poe_port_priority)
         if poe_pre_standard_detection is not None:
             pulumi.set(__self__, "poe_pre_standard_detection", poe_pre_standard_detection)
         if poe_standard is not None:
@@ -2487,8 +2708,12 @@ class ManagedswitchPortArgs:
             pulumi.set(__self__, "port_selection_criteria", port_selection_criteria)
         if ptp_policy is not None:
             pulumi.set(__self__, "ptp_policy", ptp_policy)
+        if ptp_status is not None:
+            pulumi.set(__self__, "ptp_status", ptp_status)
         if qos_policy is not None:
             pulumi.set(__self__, "qos_policy", qos_policy)
+        if restricted_auth_port is not None:
+            pulumi.set(__self__, "restricted_auth_port", restricted_auth_port)
         if rpvst_port is not None:
             pulumi.set(__self__, "rpvst_port", rpvst_port)
         if sample_direction is not None:
@@ -2543,6 +2768,18 @@ class ManagedswitchPortArgs:
         pulumi.set(self, "access_mode", value)
 
     @property
+    @pulumi.getter(name="aclGroups")
+    def acl_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortAclGroupArgs']]]]:
+        """
+        ACL groups on this port. The structure of `acl_group` block is documented below.
+        """
+        return pulumi.get(self, "acl_groups")
+
+    @acl_groups.setter
+    def acl_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortAclGroupArgs']]]]):
+        pulumi.set(self, "acl_groups", value)
+
+    @property
     @pulumi.getter(name="aggregatorMode")
     def aggregator_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2591,6 +2828,18 @@ class ManagedswitchPortArgs:
         pulumi.set(self, "arp_inspection_trust", value)
 
     @property
+    @pulumi.getter(name="authenticatedPort")
+    def authenticated_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Peer to Peer Authenticated port.
+        """
+        return pulumi.get(self, "authenticated_port")
+
+    @authenticated_port.setter
+    def authenticated_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "authenticated_port", value)
+
+    @property
     @pulumi.getter
     def bundle(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2613,6 +2862,18 @@ class ManagedswitchPortArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopOption82Overrides")
+    def dhcp_snoop_option82_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortDhcpSnoopOption82OverrideArgs']]]]:
+        """
+        Configure DHCP snooping option 82 override. The structure of `dhcp_snoop_option82_override` block is documented below.
+        """
+        return pulumi.get(self, "dhcp_snoop_option82_overrides")
+
+    @dhcp_snoop_option82_overrides.setter
+    def dhcp_snoop_option82_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortDhcpSnoopOption82OverrideArgs']]]]):
+        pulumi.set(self, "dhcp_snoop_option82_overrides", value)
 
     @property
     @pulumi.getter(name="dhcpSnoopOption82Trust")
@@ -2661,6 +2922,18 @@ class ManagedswitchPortArgs:
     @edge_port.setter
     def edge_port(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "edge_port", value)
+
+    @property
+    @pulumi.getter(name="encryptedPort")
+    def encrypted_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Peer to Peer Encrypted port.
+        """
+        return pulumi.get(self, "encrypted_port")
+
+    @encrypted_port.setter
+    def encrypted_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "encrypted_port", value)
 
     @property
     @pulumi.getter(name="exportTags")
@@ -2726,7 +2999,7 @@ class ManagedswitchPortArgs:
     @pulumi.getter(name="fecState")
     def fec_state(self) -> Optional[pulumi.Input[str]]:
         """
-        State of forward error correction. Valid values: `disabled`, `cl74`, `cl91`.
+        State of forward error correction.
         """
         return pulumi.get(self, "fec_state")
 
@@ -2855,6 +3128,18 @@ class ManagedswitchPortArgs:
         pulumi.set(self, "fortilink_port", value)
 
     @property
+    @pulumi.getter(name="fortiswitchAcls")
+    def fortiswitch_acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortFortiswitchAclArgs']]]]:
+        """
+        ACLs on this port. The structure of `fortiswitch_acls` block is documented below.
+        """
+        return pulumi.get(self, "fortiswitch_acls")
+
+    @fortiswitch_acls.setter
+    def fortiswitch_acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortFortiswitchAclArgs']]]]):
+        pulumi.set(self, "fortiswitch_acls", value)
+
+    @property
     @pulumi.getter(name="igmpSnooping")
     def igmp_snooping(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2951,6 +3236,18 @@ class ManagedswitchPortArgs:
         pulumi.set(self, "isl_peer_device_name", value)
 
     @property
+    @pulumi.getter(name="islPeerDeviceSn")
+    def isl_peer_device_sn(self) -> Optional[pulumi.Input[str]]:
+        """
+        ISL peer device serial number.
+        """
+        return pulumi.get(self, "isl_peer_device_sn")
+
+    @isl_peer_device_sn.setter
+    def isl_peer_device_sn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "isl_peer_device_sn", value)
+
+    @property
     @pulumi.getter(name="islPeerPortName")
     def isl_peer_port_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2985,6 +3282,18 @@ class ManagedswitchPortArgs:
     @learning_limit.setter
     def learning_limit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "learning_limit", value)
+
+    @property
+    @pulumi.getter(name="linkStatus")
+    def link_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Port link status. Valid values: `up`, `down`.
+        """
+        return pulumi.get(self, "link_status")
+
+    @link_status.setter
+    def link_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "link_status", value)
 
     @property
     @pulumi.getter(name="lldpProfile")
@@ -3263,6 +3572,54 @@ class ManagedswitchPortArgs:
         pulumi.set(self, "poe_max_power", value)
 
     @property
+    @pulumi.getter(name="poeModeBtCabable")
+    def poe_mode_bt_cabable(self) -> Optional[pulumi.Input[int]]:
+        """
+        PoE mode IEEE 802.3BT capable.
+        """
+        return pulumi.get(self, "poe_mode_bt_cabable")
+
+    @poe_mode_bt_cabable.setter
+    def poe_mode_bt_cabable(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "poe_mode_bt_cabable", value)
+
+    @property
+    @pulumi.getter(name="poePortMode")
+    def poe_port_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure PoE port mode. Valid values: `ieee802-3af`, `ieee802-3at`, `ieee802-3bt`.
+        """
+        return pulumi.get(self, "poe_port_mode")
+
+    @poe_port_mode.setter
+    def poe_port_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "poe_port_mode", value)
+
+    @property
+    @pulumi.getter(name="poePortPower")
+    def poe_port_power(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure PoE port power. Valid values: `normal`, `perpetual`, `perpetual-fast`.
+        """
+        return pulumi.get(self, "poe_port_power")
+
+    @poe_port_power.setter
+    def poe_port_power(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "poe_port_power", value)
+
+    @property
+    @pulumi.getter(name="poePortPriority")
+    def poe_port_priority(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure PoE port priority. Valid values: `critical-priority`, `high-priority`, `low-priority`, `medium-priority`.
+        """
+        return pulumi.get(self, "poe_port_priority")
+
+    @poe_port_priority.setter
+    def poe_port_priority(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "poe_port_priority", value)
+
+    @property
     @pulumi.getter(name="poePreStandardDetection")
     def poe_pre_standard_detection(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3395,6 +3752,18 @@ class ManagedswitchPortArgs:
         pulumi.set(self, "ptp_policy", value)
 
     @property
+    @pulumi.getter(name="ptpStatus")
+    def ptp_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable PTP policy on this FortiSwitch port. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ptp_status")
+
+    @ptp_status.setter
+    def ptp_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ptp_status", value)
+
+    @property
     @pulumi.getter(name="qosPolicy")
     def qos_policy(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3405,6 +3774,18 @@ class ManagedswitchPortArgs:
     @qos_policy.setter
     def qos_policy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "qos_policy", value)
+
+    @property
+    @pulumi.getter(name="restrictedAuthPort")
+    def restricted_auth_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Peer to Peer Restricted Authenticated port.
+        """
+        return pulumi.get(self, "restricted_auth_port")
+
+    @restricted_auth_port.setter
+    def restricted_auth_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "restricted_auth_port", value)
 
     @property
     @pulumi.getter(name="rpvstPort")
@@ -3648,6 +4029,29 @@ class ManagedswitchPortArgs:
 
 
 @pulumi.input_type
+class ManagedswitchPortAclGroupArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: ACL group name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        ACL group name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
 class ManagedswitchPortAllowedVlanArgs:
     def __init__(__self__, *,
                  vlan_name: Optional[pulumi.Input[str]] = None):
@@ -3656,6 +4060,61 @@ class ManagedswitchPortAllowedVlanArgs:
         """
         if vlan_name is not None:
             pulumi.set(__self__, "vlan_name", vlan_name)
+
+    @property
+    @pulumi.getter(name="vlanName")
+    def vlan_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN name.
+        """
+        return pulumi.get(self, "vlan_name")
+
+    @vlan_name.setter
+    def vlan_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_name", value)
+
+
+@pulumi.input_type
+class ManagedswitchPortDhcpSnoopOption82OverrideArgs:
+    def __init__(__self__, *,
+                 circuit_id: Optional[pulumi.Input[str]] = None,
+                 remote_id: Optional[pulumi.Input[str]] = None,
+                 vlan_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] circuit_id: Circuit ID string.
+        :param pulumi.Input[str] remote_id: Remote ID string.
+        :param pulumi.Input[str] vlan_name: VLAN name.
+        """
+        if circuit_id is not None:
+            pulumi.set(__self__, "circuit_id", circuit_id)
+        if remote_id is not None:
+            pulumi.set(__self__, "remote_id", remote_id)
+        if vlan_name is not None:
+            pulumi.set(__self__, "vlan_name", vlan_name)
+
+    @property
+    @pulumi.getter(name="circuitId")
+    def circuit_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Circuit ID string.
+        """
+        return pulumi.get(self, "circuit_id")
+
+    @circuit_id.setter
+    def circuit_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "circuit_id", value)
+
+    @property
+    @pulumi.getter(name="remoteId")
+    def remote_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Remote ID string.
+        """
+        return pulumi.get(self, "remote_id")
+
+    @remote_id.setter
+    def remote_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "remote_id", value)
 
     @property
     @pulumi.getter(name="vlanName")
@@ -3691,6 +4150,33 @@ class ManagedswitchPortExportTagArgs:
     @tag_name.setter
     def tag_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "tag_name", value)
+
+
+@pulumi.input_type
+class ManagedswitchPortFortiswitchAclArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] id: ACL ID.
+               
+               The `dhcp_snoop_option82_override` block supports:
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[int]]:
+        """
+        ACL ID.
+
+        The `dhcp_snoop_option82_override` block supports:
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "id", value)
 
 
 @pulumi.input_type
@@ -3879,6 +4365,45 @@ class ManagedswitchRemoteLogArgs:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+
+@pulumi.input_type
+class ManagedswitchRouteOffloadRouterArgs:
+    def __init__(__self__, *,
+                 router_ip: Optional[pulumi.Input[str]] = None,
+                 vlan_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] router_ip: Router IP address.
+        :param pulumi.Input[str] vlan_name: VLAN name.
+        """
+        if router_ip is not None:
+            pulumi.set(__self__, "router_ip", router_ip)
+        if vlan_name is not None:
+            pulumi.set(__self__, "vlan_name", vlan_name)
+
+    @property
+    @pulumi.getter(name="routerIp")
+    def router_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Router IP address.
+        """
+        return pulumi.get(self, "router_ip")
+
+    @router_ip.setter
+    def router_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "router_ip", value)
+
+    @property
+    @pulumi.getter(name="vlanName")
+    def vlan_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN name.
+        """
+        return pulumi.get(self, "vlan_name")
+
+    @vlan_name.setter
+    def vlan_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_name", value)
 
 
 @pulumi.input_type
@@ -4900,6 +5425,45 @@ class ManagedswitchSwitchStpSettingsArgs:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+
+@pulumi.input_type
+class ManagedswitchVlanArgs:
+    def __init__(__self__, *,
+                 assignment_priority: Optional[pulumi.Input[int]] = None,
+                 vlan_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] assignment_priority: 802.1x Radius (Tunnel-Private-Group-Id) VLANID assign-by-name priority. A smaller value has a higher priority.
+        :param pulumi.Input[str] vlan_name: VLAN name.
+        """
+        if assignment_priority is not None:
+            pulumi.set(__self__, "assignment_priority", assignment_priority)
+        if vlan_name is not None:
+            pulumi.set(__self__, "vlan_name", vlan_name)
+
+    @property
+    @pulumi.getter(name="assignmentPriority")
+    def assignment_priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        802.1x Radius (Tunnel-Private-Group-Id) VLANID assign-by-name priority. A smaller value has a higher priority.
+        """
+        return pulumi.get(self, "assignment_priority")
+
+    @assignment_priority.setter
+    def assignment_priority(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "assignment_priority", value)
+
+    @property
+    @pulumi.getter(name="vlanName")
+    def vlan_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN name.
+        """
+        return pulumi.get(self, "vlan_name")
+
+    @vlan_name.setter
+    def vlan_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_name", value)
 
 
 @pulumi.input_type

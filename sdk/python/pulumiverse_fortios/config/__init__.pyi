@@ -62,12 +62,22 @@ HTTP proxy address
 
 insecure: Optional[bool]
 
+password: Optional[str]
+"""
+The password of the user.
+"""
+
 peerauth: Optional[str]
 """
 Enable/disable peer authentication, can be 'enable' or 'disable'
 """
 
 token: Optional[str]
+
+username: Optional[str]
+"""
+The username of the user.
+"""
 
 vdom: Optional[str]
 

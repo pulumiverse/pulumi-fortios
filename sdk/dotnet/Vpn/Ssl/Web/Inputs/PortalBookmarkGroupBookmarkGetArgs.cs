@@ -220,6 +220,12 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web.Inputs
         public Input<string>? Url { get; set; }
 
         /// <summary>
+        /// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+        /// </summary>
+        [Input("vncKeyboardLayout")]
+        public Input<string>? VncKeyboardLayout { get; set; }
+
+        /// <summary>
         /// Screen width (range from 640 - 65535, default = 1024).
         /// </summary>
         [Input("width")]

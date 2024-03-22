@@ -16,7 +16,9 @@ __all__ = ['FortilinksettingsArgs', 'Fortilinksettings']
 @pulumi.input_type
 class FortilinksettingsArgs:
     def __init__(__self__, *,
+                 access_vlan_mode: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_timer: Optional[pulumi.Input[int]] = None,
                  link_down_flush: Optional[pulumi.Input[str]] = None,
                  nac_ports: Optional[pulumi.Input['FortilinksettingsNacPortsArgs']] = None,
@@ -24,15 +26,21 @@ class FortilinksettingsArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Fortilinksettings resource.
+        :param pulumi.Input[str] access_vlan_mode: Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
         :param pulumi.Input[str] fortilink: FortiLink interface to which this fortilink-setting belongs.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] inactive_timer: Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
         :param pulumi.Input[str] link_down_flush: Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
         :param pulumi.Input['FortilinksettingsNacPortsArgs'] nac_ports: NAC specific configuration. The structure of `nac_ports` block is documented below.
         :param pulumi.Input[str] name: FortiLink settings name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if access_vlan_mode is not None:
+            pulumi.set(__self__, "access_vlan_mode", access_vlan_mode)
         if fortilink is not None:
             pulumi.set(__self__, "fortilink", fortilink)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if inactive_timer is not None:
             pulumi.set(__self__, "inactive_timer", inactive_timer)
         if link_down_flush is not None:
@@ -45,6 +53,18 @@ class FortilinksettingsArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
     @property
+    @pulumi.getter(name="accessVlanMode")
+    def access_vlan_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+        """
+        return pulumi.get(self, "access_vlan_mode")
+
+    @access_vlan_mode.setter
+    def access_vlan_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_vlan_mode", value)
+
+    @property
     @pulumi.getter
     def fortilink(self) -> Optional[pulumi.Input[str]]:
         """
@@ -55,6 +75,18 @@ class FortilinksettingsArgs:
     @fortilink.setter
     def fortilink(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortilink", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="inactiveTimer")
@@ -120,7 +152,9 @@ class FortilinksettingsArgs:
 @pulumi.input_type
 class _FortilinksettingsState:
     def __init__(__self__, *,
+                 access_vlan_mode: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_timer: Optional[pulumi.Input[int]] = None,
                  link_down_flush: Optional[pulumi.Input[str]] = None,
                  nac_ports: Optional[pulumi.Input['FortilinksettingsNacPortsArgs']] = None,
@@ -128,15 +162,21 @@ class _FortilinksettingsState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Fortilinksettings resources.
+        :param pulumi.Input[str] access_vlan_mode: Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
         :param pulumi.Input[str] fortilink: FortiLink interface to which this fortilink-setting belongs.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] inactive_timer: Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
         :param pulumi.Input[str] link_down_flush: Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
         :param pulumi.Input['FortilinksettingsNacPortsArgs'] nac_ports: NAC specific configuration. The structure of `nac_ports` block is documented below.
         :param pulumi.Input[str] name: FortiLink settings name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if access_vlan_mode is not None:
+            pulumi.set(__self__, "access_vlan_mode", access_vlan_mode)
         if fortilink is not None:
             pulumi.set(__self__, "fortilink", fortilink)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if inactive_timer is not None:
             pulumi.set(__self__, "inactive_timer", inactive_timer)
         if link_down_flush is not None:
@@ -149,6 +189,18 @@ class _FortilinksettingsState:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
     @property
+    @pulumi.getter(name="accessVlanMode")
+    def access_vlan_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+        """
+        return pulumi.get(self, "access_vlan_mode")
+
+    @access_vlan_mode.setter
+    def access_vlan_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_vlan_mode", value)
+
+    @property
     @pulumi.getter
     def fortilink(self) -> Optional[pulumi.Input[str]]:
         """
@@ -159,6 +211,18 @@ class _FortilinksettingsState:
     @fortilink.setter
     def fortilink(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortilink", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="inactiveTimer")
@@ -226,7 +290,9 @@ class Fortilinksettings(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_vlan_mode: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_timer: Optional[pulumi.Input[int]] = None,
                  link_down_flush: Optional[pulumi.Input[str]] = None,
                  nac_ports: Optional[pulumi.Input[pulumi.InputType['FortilinksettingsNacPortsArgs']]] = None,
@@ -256,7 +322,9 @@ class Fortilinksettings(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] access_vlan_mode: Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
         :param pulumi.Input[str] fortilink: FortiLink interface to which this fortilink-setting belongs.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] inactive_timer: Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
         :param pulumi.Input[str] link_down_flush: Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
         :param pulumi.Input[pulumi.InputType['FortilinksettingsNacPortsArgs']] nac_ports: NAC specific configuration. The structure of `nac_ports` block is documented below.
@@ -305,7 +373,9 @@ class Fortilinksettings(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_vlan_mode: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_timer: Optional[pulumi.Input[int]] = None,
                  link_down_flush: Optional[pulumi.Input[str]] = None,
                  nac_ports: Optional[pulumi.Input[pulumi.InputType['FortilinksettingsNacPortsArgs']]] = None,
@@ -320,7 +390,9 @@ class Fortilinksettings(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FortilinksettingsArgs.__new__(FortilinksettingsArgs)
 
+            __props__.__dict__["access_vlan_mode"] = access_vlan_mode
             __props__.__dict__["fortilink"] = fortilink
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["inactive_timer"] = inactive_timer
             __props__.__dict__["link_down_flush"] = link_down_flush
             __props__.__dict__["nac_ports"] = nac_ports
@@ -336,7 +408,9 @@ class Fortilinksettings(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            access_vlan_mode: Optional[pulumi.Input[str]] = None,
             fortilink: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             inactive_timer: Optional[pulumi.Input[int]] = None,
             link_down_flush: Optional[pulumi.Input[str]] = None,
             nac_ports: Optional[pulumi.Input[pulumi.InputType['FortilinksettingsNacPortsArgs']]] = None,
@@ -349,7 +423,9 @@ class Fortilinksettings(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] access_vlan_mode: Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
         :param pulumi.Input[str] fortilink: FortiLink interface to which this fortilink-setting belongs.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] inactive_timer: Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
         :param pulumi.Input[str] link_down_flush: Clear NAC and dynamic devices on switch ports on link down event. Valid values: `disable`, `enable`.
         :param pulumi.Input[pulumi.InputType['FortilinksettingsNacPortsArgs']] nac_ports: NAC specific configuration. The structure of `nac_ports` block is documented below.
@@ -360,7 +436,9 @@ class Fortilinksettings(pulumi.CustomResource):
 
         __props__ = _FortilinksettingsState.__new__(_FortilinksettingsState)
 
+        __props__.__dict__["access_vlan_mode"] = access_vlan_mode
         __props__.__dict__["fortilink"] = fortilink
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["inactive_timer"] = inactive_timer
         __props__.__dict__["link_down_flush"] = link_down_flush
         __props__.__dict__["nac_ports"] = nac_ports
@@ -369,12 +447,28 @@ class Fortilinksettings(pulumi.CustomResource):
         return Fortilinksettings(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="accessVlanMode")
+    def access_vlan_mode(self) -> pulumi.Output[str]:
+        """
+        Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+        """
+        return pulumi.get(self, "access_vlan_mode")
+
+    @property
     @pulumi.getter
     def fortilink(self) -> pulumi.Output[str]:
         """
         FortiLink interface to which this fortilink-setting belongs.
         """
         return pulumi.get(self, "fortilink")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="inactiveTimer")

@@ -19,10 +19,16 @@ class AccprofileArgs:
                  admintimeout: Optional[pulumi.Input[int]] = None,
                  admintimeout_override: Optional[pulumi.Input[str]] = None,
                  authgrp: Optional[pulumi.Input[str]] = None,
+                 cli_config: Optional[pulumi.Input[str]] = None,
+                 cli_diagnose: Optional[pulumi.Input[str]] = None,
+                 cli_exec: Optional[pulumi.Input[str]] = None,
+                 cli_get: Optional[pulumi.Input[str]] = None,
+                 cli_show: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  ftviewgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp_permission: Optional[pulumi.Input['AccprofileFwgrpPermissionArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  loggrp: Optional[pulumi.Input[str]] = None,
                  loggrp_permission: Optional[pulumi.Input['AccprofileLoggrpPermissionArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -46,10 +52,16 @@ class AccprofileArgs:
         :param pulumi.Input[int] admintimeout: Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout).
         :param pulumi.Input[str] admintimeout_override: Enable/disable overriding the global administrator idle timeout. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] authgrp: Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
+        :param pulumi.Input[str] cli_config: Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_diagnose: Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_exec: Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_get: Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_show: Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] ftviewgrp: FortiView. Valid values: `none`, `read`, `read-write`.
         :param pulumi.Input[str] fwgrp: Administrator access to the Firewall configuration. Valid values: `none`, `read`, `read-write`, `custom`.
         :param pulumi.Input['AccprofileFwgrpPermissionArgs'] fwgrp_permission: Custom firewall permission. The structure of `fwgrp_permission` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] loggrp: Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
         :param pulumi.Input['AccprofileLoggrpPermissionArgs'] loggrp_permission: Custom Log & Report permission. The structure of `loggrp_permission` block is documented below.
         :param pulumi.Input[str] name: Profile name.
@@ -75,6 +87,16 @@ class AccprofileArgs:
             pulumi.set(__self__, "admintimeout_override", admintimeout_override)
         if authgrp is not None:
             pulumi.set(__self__, "authgrp", authgrp)
+        if cli_config is not None:
+            pulumi.set(__self__, "cli_config", cli_config)
+        if cli_diagnose is not None:
+            pulumi.set(__self__, "cli_diagnose", cli_diagnose)
+        if cli_exec is not None:
+            pulumi.set(__self__, "cli_exec", cli_exec)
+        if cli_get is not None:
+            pulumi.set(__self__, "cli_get", cli_get)
+        if cli_show is not None:
+            pulumi.set(__self__, "cli_show", cli_show)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if ftviewgrp is not None:
@@ -83,6 +105,8 @@ class AccprofileArgs:
             pulumi.set(__self__, "fwgrp", fwgrp)
         if fwgrp_permission is not None:
             pulumi.set(__self__, "fwgrp_permission", fwgrp_permission)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if loggrp is not None:
             pulumi.set(__self__, "loggrp", loggrp)
         if loggrp_permission is not None:
@@ -157,6 +181,66 @@ class AccprofileArgs:
         pulumi.set(self, "authgrp", value)
 
     @property
+    @pulumi.getter(name="cliConfig")
+    def cli_config(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_config")
+
+    @cli_config.setter
+    def cli_config(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cli_config", value)
+
+    @property
+    @pulumi.getter(name="cliDiagnose")
+    def cli_diagnose(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_diagnose")
+
+    @cli_diagnose.setter
+    def cli_diagnose(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cli_diagnose", value)
+
+    @property
+    @pulumi.getter(name="cliExec")
+    def cli_exec(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_exec")
+
+    @cli_exec.setter
+    def cli_exec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cli_exec", value)
+
+    @property
+    @pulumi.getter(name="cliGet")
+    def cli_get(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_get")
+
+    @cli_get.setter
+    def cli_get(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cli_get", value)
+
+    @property
+    @pulumi.getter(name="cliShow")
+    def cli_show(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_show")
+
+    @cli_show.setter
+    def cli_show(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cli_show", value)
+
+    @property
     @pulumi.getter
     def comments(self) -> Optional[pulumi.Input[str]]:
         """
@@ -203,6 +287,18 @@ class AccprofileArgs:
     @fwgrp_permission.setter
     def fwgrp_permission(self, value: Optional[pulumi.Input['AccprofileFwgrpPermissionArgs']]):
         pulumi.set(self, "fwgrp_permission", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -427,10 +523,16 @@ class _AccprofileState:
                  admintimeout: Optional[pulumi.Input[int]] = None,
                  admintimeout_override: Optional[pulumi.Input[str]] = None,
                  authgrp: Optional[pulumi.Input[str]] = None,
+                 cli_config: Optional[pulumi.Input[str]] = None,
+                 cli_diagnose: Optional[pulumi.Input[str]] = None,
+                 cli_exec: Optional[pulumi.Input[str]] = None,
+                 cli_get: Optional[pulumi.Input[str]] = None,
+                 cli_show: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  ftviewgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp_permission: Optional[pulumi.Input['AccprofileFwgrpPermissionArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  loggrp: Optional[pulumi.Input[str]] = None,
                  loggrp_permission: Optional[pulumi.Input['AccprofileLoggrpPermissionArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -454,10 +556,16 @@ class _AccprofileState:
         :param pulumi.Input[int] admintimeout: Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout).
         :param pulumi.Input[str] admintimeout_override: Enable/disable overriding the global administrator idle timeout. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] authgrp: Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
+        :param pulumi.Input[str] cli_config: Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_diagnose: Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_exec: Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_get: Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_show: Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] ftviewgrp: FortiView. Valid values: `none`, `read`, `read-write`.
         :param pulumi.Input[str] fwgrp: Administrator access to the Firewall configuration. Valid values: `none`, `read`, `read-write`, `custom`.
         :param pulumi.Input['AccprofileFwgrpPermissionArgs'] fwgrp_permission: Custom firewall permission. The structure of `fwgrp_permission` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] loggrp: Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
         :param pulumi.Input['AccprofileLoggrpPermissionArgs'] loggrp_permission: Custom Log & Report permission. The structure of `loggrp_permission` block is documented below.
         :param pulumi.Input[str] name: Profile name.
@@ -483,6 +591,16 @@ class _AccprofileState:
             pulumi.set(__self__, "admintimeout_override", admintimeout_override)
         if authgrp is not None:
             pulumi.set(__self__, "authgrp", authgrp)
+        if cli_config is not None:
+            pulumi.set(__self__, "cli_config", cli_config)
+        if cli_diagnose is not None:
+            pulumi.set(__self__, "cli_diagnose", cli_diagnose)
+        if cli_exec is not None:
+            pulumi.set(__self__, "cli_exec", cli_exec)
+        if cli_get is not None:
+            pulumi.set(__self__, "cli_get", cli_get)
+        if cli_show is not None:
+            pulumi.set(__self__, "cli_show", cli_show)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if ftviewgrp is not None:
@@ -491,6 +609,8 @@ class _AccprofileState:
             pulumi.set(__self__, "fwgrp", fwgrp)
         if fwgrp_permission is not None:
             pulumi.set(__self__, "fwgrp_permission", fwgrp_permission)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if loggrp is not None:
             pulumi.set(__self__, "loggrp", loggrp)
         if loggrp_permission is not None:
@@ -565,6 +685,66 @@ class _AccprofileState:
         pulumi.set(self, "authgrp", value)
 
     @property
+    @pulumi.getter(name="cliConfig")
+    def cli_config(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_config")
+
+    @cli_config.setter
+    def cli_config(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cli_config", value)
+
+    @property
+    @pulumi.getter(name="cliDiagnose")
+    def cli_diagnose(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_diagnose")
+
+    @cli_diagnose.setter
+    def cli_diagnose(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cli_diagnose", value)
+
+    @property
+    @pulumi.getter(name="cliExec")
+    def cli_exec(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_exec")
+
+    @cli_exec.setter
+    def cli_exec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cli_exec", value)
+
+    @property
+    @pulumi.getter(name="cliGet")
+    def cli_get(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_get")
+
+    @cli_get.setter
+    def cli_get(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cli_get", value)
+
+    @property
+    @pulumi.getter(name="cliShow")
+    def cli_show(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_show")
+
+    @cli_show.setter
+    def cli_show(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cli_show", value)
+
+    @property
     @pulumi.getter
     def comments(self) -> Optional[pulumi.Input[str]]:
         """
@@ -611,6 +791,18 @@ class _AccprofileState:
     @fwgrp_permission.setter
     def fwgrp_permission(self, value: Optional[pulumi.Input['AccprofileFwgrpPermissionArgs']]):
         pulumi.set(self, "fwgrp_permission", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -837,10 +1029,16 @@ class Accprofile(pulumi.CustomResource):
                  admintimeout: Optional[pulumi.Input[int]] = None,
                  admintimeout_override: Optional[pulumi.Input[str]] = None,
                  authgrp: Optional[pulumi.Input[str]] = None,
+                 cli_config: Optional[pulumi.Input[str]] = None,
+                 cli_diagnose: Optional[pulumi.Input[str]] = None,
+                 cli_exec: Optional[pulumi.Input[str]] = None,
+                 cli_get: Optional[pulumi.Input[str]] = None,
+                 cli_show: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  ftviewgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp_permission: Optional[pulumi.Input[pulumi.InputType['AccprofileFwgrpPermissionArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  loggrp: Optional[pulumi.Input[str]] = None,
                  loggrp_permission: Optional[pulumi.Input[pulumi.InputType['AccprofileLoggrpPermissionArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -946,10 +1144,16 @@ class Accprofile(pulumi.CustomResource):
         :param pulumi.Input[int] admintimeout: Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout).
         :param pulumi.Input[str] admintimeout_override: Enable/disable overriding the global administrator idle timeout. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] authgrp: Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
+        :param pulumi.Input[str] cli_config: Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_diagnose: Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_exec: Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_get: Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_show: Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] ftviewgrp: FortiView. Valid values: `none`, `read`, `read-write`.
         :param pulumi.Input[str] fwgrp: Administrator access to the Firewall configuration. Valid values: `none`, `read`, `read-write`, `custom`.
         :param pulumi.Input[pulumi.InputType['AccprofileFwgrpPermissionArgs']] fwgrp_permission: Custom firewall permission. The structure of `fwgrp_permission` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] loggrp: Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
         :param pulumi.Input[pulumi.InputType['AccprofileLoggrpPermissionArgs']] loggrp_permission: Custom Log & Report permission. The structure of `loggrp_permission` block is documented below.
         :param pulumi.Input[str] name: Profile name.
@@ -1074,10 +1278,16 @@ class Accprofile(pulumi.CustomResource):
                  admintimeout: Optional[pulumi.Input[int]] = None,
                  admintimeout_override: Optional[pulumi.Input[str]] = None,
                  authgrp: Optional[pulumi.Input[str]] = None,
+                 cli_config: Optional[pulumi.Input[str]] = None,
+                 cli_diagnose: Optional[pulumi.Input[str]] = None,
+                 cli_exec: Optional[pulumi.Input[str]] = None,
+                 cli_get: Optional[pulumi.Input[str]] = None,
+                 cli_show: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  ftviewgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp_permission: Optional[pulumi.Input[pulumi.InputType['AccprofileFwgrpPermissionArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  loggrp: Optional[pulumi.Input[str]] = None,
                  loggrp_permission: Optional[pulumi.Input[pulumi.InputType['AccprofileLoggrpPermissionArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -1108,10 +1318,16 @@ class Accprofile(pulumi.CustomResource):
             __props__.__dict__["admintimeout"] = admintimeout
             __props__.__dict__["admintimeout_override"] = admintimeout_override
             __props__.__dict__["authgrp"] = authgrp
+            __props__.__dict__["cli_config"] = cli_config
+            __props__.__dict__["cli_diagnose"] = cli_diagnose
+            __props__.__dict__["cli_exec"] = cli_exec
+            __props__.__dict__["cli_get"] = cli_get
+            __props__.__dict__["cli_show"] = cli_show
             __props__.__dict__["comments"] = comments
             __props__.__dict__["ftviewgrp"] = ftviewgrp
             __props__.__dict__["fwgrp"] = fwgrp
             __props__.__dict__["fwgrp_permission"] = fwgrp_permission
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["loggrp"] = loggrp
             __props__.__dict__["loggrp_permission"] = loggrp_permission
             __props__.__dict__["name"] = name
@@ -1143,10 +1359,16 @@ class Accprofile(pulumi.CustomResource):
             admintimeout: Optional[pulumi.Input[int]] = None,
             admintimeout_override: Optional[pulumi.Input[str]] = None,
             authgrp: Optional[pulumi.Input[str]] = None,
+            cli_config: Optional[pulumi.Input[str]] = None,
+            cli_diagnose: Optional[pulumi.Input[str]] = None,
+            cli_exec: Optional[pulumi.Input[str]] = None,
+            cli_get: Optional[pulumi.Input[str]] = None,
+            cli_show: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             ftviewgrp: Optional[pulumi.Input[str]] = None,
             fwgrp: Optional[pulumi.Input[str]] = None,
             fwgrp_permission: Optional[pulumi.Input[pulumi.InputType['AccprofileFwgrpPermissionArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             loggrp: Optional[pulumi.Input[str]] = None,
             loggrp_permission: Optional[pulumi.Input[pulumi.InputType['AccprofileLoggrpPermissionArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -1175,10 +1397,16 @@ class Accprofile(pulumi.CustomResource):
         :param pulumi.Input[int] admintimeout: Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout).
         :param pulumi.Input[str] admintimeout_override: Enable/disable overriding the global administrator idle timeout. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] authgrp: Administrator access to Users and Devices. Valid values: `none`, `read`, `read-write`.
+        :param pulumi.Input[str] cli_config: Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_diagnose: Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_exec: Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_get: Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cli_show: Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] ftviewgrp: FortiView. Valid values: `none`, `read`, `read-write`.
         :param pulumi.Input[str] fwgrp: Administrator access to the Firewall configuration. Valid values: `none`, `read`, `read-write`, `custom`.
         :param pulumi.Input[pulumi.InputType['AccprofileFwgrpPermissionArgs']] fwgrp_permission: Custom firewall permission. The structure of `fwgrp_permission` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] loggrp: Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
         :param pulumi.Input[pulumi.InputType['AccprofileLoggrpPermissionArgs']] loggrp_permission: Custom Log & Report permission. The structure of `loggrp_permission` block is documented below.
         :param pulumi.Input[str] name: Profile name.
@@ -1205,10 +1433,16 @@ class Accprofile(pulumi.CustomResource):
         __props__.__dict__["admintimeout"] = admintimeout
         __props__.__dict__["admintimeout_override"] = admintimeout_override
         __props__.__dict__["authgrp"] = authgrp
+        __props__.__dict__["cli_config"] = cli_config
+        __props__.__dict__["cli_diagnose"] = cli_diagnose
+        __props__.__dict__["cli_exec"] = cli_exec
+        __props__.__dict__["cli_get"] = cli_get
+        __props__.__dict__["cli_show"] = cli_show
         __props__.__dict__["comments"] = comments
         __props__.__dict__["ftviewgrp"] = ftviewgrp
         __props__.__dict__["fwgrp"] = fwgrp
         __props__.__dict__["fwgrp_permission"] = fwgrp_permission
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["loggrp"] = loggrp
         __props__.__dict__["loggrp_permission"] = loggrp_permission
         __props__.__dict__["name"] = name
@@ -1254,6 +1488,46 @@ class Accprofile(pulumi.CustomResource):
         return pulumi.get(self, "authgrp")
 
     @property
+    @pulumi.getter(name="cliConfig")
+    def cli_config(self) -> pulumi.Output[str]:
+        """
+        Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_config")
+
+    @property
+    @pulumi.getter(name="cliDiagnose")
+    def cli_diagnose(self) -> pulumi.Output[str]:
+        """
+        Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_diagnose")
+
+    @property
+    @pulumi.getter(name="cliExec")
+    def cli_exec(self) -> pulumi.Output[str]:
+        """
+        Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_exec")
+
+    @property
+    @pulumi.getter(name="cliGet")
+    def cli_get(self) -> pulumi.Output[str]:
+        """
+        Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_get")
+
+    @property
+    @pulumi.getter(name="cliShow")
+    def cli_show(self) -> pulumi.Output[str]:
+        """
+        Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cli_show")
+
+    @property
     @pulumi.getter
     def comments(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1284,6 +1558,14 @@ class Accprofile(pulumi.CustomResource):
         Custom firewall permission. The structure of `fwgrp_permission` block is documented below.
         """
         return pulumi.get(self, "fwgrp_permission")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

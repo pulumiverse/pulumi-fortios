@@ -29,6 +29,7 @@ class LocalArgs:
                  passwd_time: Optional[pulumi.Input[str]] = None,
                  ppk_identity: Optional[pulumi.Input[str]] = None,
                  ppk_secret: Optional[pulumi.Input[str]] = None,
+                 qkd_profile: Optional[pulumi.Input[str]] = None,
                  radius_server: Optional[pulumi.Input[str]] = None,
                  sms_custom_server: Optional[pulumi.Input[str]] = None,
                  sms_phone: Optional[pulumi.Input[str]] = None,
@@ -59,6 +60,7 @@ class LocalArgs:
         :param pulumi.Input[str] passwd_time: Time of the last password update.
         :param pulumi.Input[str] ppk_identity: IKEv2 Postquantum Preshared Key Identity.
         :param pulumi.Input[str] ppk_secret: IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
+        :param pulumi.Input[str] qkd_profile: Quantum Key Distribution (QKD) profile.
         :param pulumi.Input[str] radius_server: Name of RADIUS server with which the user must authenticate.
         :param pulumi.Input[str] sms_custom_server: Two-factor recipient's SMS server.
         :param pulumi.Input[str] sms_phone: Two-factor recipient's mobile phone number.
@@ -101,6 +103,8 @@ class LocalArgs:
             pulumi.set(__self__, "ppk_identity", ppk_identity)
         if ppk_secret is not None:
             pulumi.set(__self__, "ppk_secret", ppk_secret)
+        if qkd_profile is not None:
+            pulumi.set(__self__, "qkd_profile", qkd_profile)
         if radius_server is not None:
             pulumi.set(__self__, "radius_server", radius_server)
         if sms_custom_server is not None:
@@ -309,6 +313,18 @@ class LocalArgs:
         pulumi.set(self, "ppk_secret", value)
 
     @property
+    @pulumi.getter(name="qkdProfile")
+    def qkd_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Quantum Key Distribution (QKD) profile.
+        """
+        return pulumi.get(self, "qkd_profile")
+
+    @qkd_profile.setter
+    def qkd_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "qkd_profile", value)
+
+    @property
     @pulumi.getter(name="radiusServer")
     def radius_server(self) -> Optional[pulumi.Input[str]]:
         """
@@ -481,6 +497,7 @@ class _LocalState:
                  passwd_time: Optional[pulumi.Input[str]] = None,
                  ppk_identity: Optional[pulumi.Input[str]] = None,
                  ppk_secret: Optional[pulumi.Input[str]] = None,
+                 qkd_profile: Optional[pulumi.Input[str]] = None,
                  radius_server: Optional[pulumi.Input[str]] = None,
                  sms_custom_server: Optional[pulumi.Input[str]] = None,
                  sms_phone: Optional[pulumi.Input[str]] = None,
@@ -511,6 +528,7 @@ class _LocalState:
         :param pulumi.Input[str] passwd_time: Time of the last password update.
         :param pulumi.Input[str] ppk_identity: IKEv2 Postquantum Preshared Key Identity.
         :param pulumi.Input[str] ppk_secret: IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
+        :param pulumi.Input[str] qkd_profile: Quantum Key Distribution (QKD) profile.
         :param pulumi.Input[str] radius_server: Name of RADIUS server with which the user must authenticate.
         :param pulumi.Input[str] sms_custom_server: Two-factor recipient's SMS server.
         :param pulumi.Input[str] sms_phone: Two-factor recipient's mobile phone number.
@@ -553,6 +571,8 @@ class _LocalState:
             pulumi.set(__self__, "ppk_identity", ppk_identity)
         if ppk_secret is not None:
             pulumi.set(__self__, "ppk_secret", ppk_secret)
+        if qkd_profile is not None:
+            pulumi.set(__self__, "qkd_profile", qkd_profile)
         if radius_server is not None:
             pulumi.set(__self__, "radius_server", radius_server)
         if sms_custom_server is not None:
@@ -739,6 +759,18 @@ class _LocalState:
     @ppk_secret.setter
     def ppk_secret(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ppk_secret", value)
+
+    @property
+    @pulumi.getter(name="qkdProfile")
+    def qkd_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Quantum Key Distribution (QKD) profile.
+        """
+        return pulumi.get(self, "qkd_profile")
+
+    @qkd_profile.setter
+    def qkd_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "qkd_profile", value)
 
     @property
     @pulumi.getter(name="radiusServer")
@@ -939,6 +971,7 @@ class Local(pulumi.CustomResource):
                  passwd_time: Optional[pulumi.Input[str]] = None,
                  ppk_identity: Optional[pulumi.Input[str]] = None,
                  ppk_secret: Optional[pulumi.Input[str]] = None,
+                 qkd_profile: Optional[pulumi.Input[str]] = None,
                  radius_server: Optional[pulumi.Input[str]] = None,
                  sms_custom_server: Optional[pulumi.Input[str]] = None,
                  sms_phone: Optional[pulumi.Input[str]] = None,
@@ -1028,6 +1061,7 @@ class Local(pulumi.CustomResource):
         :param pulumi.Input[str] passwd_time: Time of the last password update.
         :param pulumi.Input[str] ppk_identity: IKEv2 Postquantum Preshared Key Identity.
         :param pulumi.Input[str] ppk_secret: IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
+        :param pulumi.Input[str] qkd_profile: Quantum Key Distribution (QKD) profile.
         :param pulumi.Input[str] radius_server: Name of RADIUS server with which the user must authenticate.
         :param pulumi.Input[str] sms_custom_server: Two-factor recipient's SMS server.
         :param pulumi.Input[str] sms_phone: Two-factor recipient's mobile phone number.
@@ -1136,6 +1170,7 @@ class Local(pulumi.CustomResource):
                  passwd_time: Optional[pulumi.Input[str]] = None,
                  ppk_identity: Optional[pulumi.Input[str]] = None,
                  ppk_secret: Optional[pulumi.Input[str]] = None,
+                 qkd_profile: Optional[pulumi.Input[str]] = None,
                  radius_server: Optional[pulumi.Input[str]] = None,
                  sms_custom_server: Optional[pulumi.Input[str]] = None,
                  sms_phone: Optional[pulumi.Input[str]] = None,
@@ -1173,6 +1208,7 @@ class Local(pulumi.CustomResource):
             __props__.__dict__["passwd_time"] = passwd_time
             __props__.__dict__["ppk_identity"] = ppk_identity
             __props__.__dict__["ppk_secret"] = None if ppk_secret is None else pulumi.Output.secret(ppk_secret)
+            __props__.__dict__["qkd_profile"] = qkd_profile
             __props__.__dict__["radius_server"] = radius_server
             __props__.__dict__["sms_custom_server"] = sms_custom_server
             __props__.__dict__["sms_phone"] = sms_phone
@@ -1217,6 +1253,7 @@ class Local(pulumi.CustomResource):
             passwd_time: Optional[pulumi.Input[str]] = None,
             ppk_identity: Optional[pulumi.Input[str]] = None,
             ppk_secret: Optional[pulumi.Input[str]] = None,
+            qkd_profile: Optional[pulumi.Input[str]] = None,
             radius_server: Optional[pulumi.Input[str]] = None,
             sms_custom_server: Optional[pulumi.Input[str]] = None,
             sms_phone: Optional[pulumi.Input[str]] = None,
@@ -1252,6 +1289,7 @@ class Local(pulumi.CustomResource):
         :param pulumi.Input[str] passwd_time: Time of the last password update.
         :param pulumi.Input[str] ppk_identity: IKEv2 Postquantum Preshared Key Identity.
         :param pulumi.Input[str] ppk_secret: IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
+        :param pulumi.Input[str] qkd_profile: Quantum Key Distribution (QKD) profile.
         :param pulumi.Input[str] radius_server: Name of RADIUS server with which the user must authenticate.
         :param pulumi.Input[str] sms_custom_server: Two-factor recipient's SMS server.
         :param pulumi.Input[str] sms_phone: Two-factor recipient's mobile phone number.
@@ -1285,6 +1323,7 @@ class Local(pulumi.CustomResource):
         __props__.__dict__["passwd_time"] = passwd_time
         __props__.__dict__["ppk_identity"] = ppk_identity
         __props__.__dict__["ppk_secret"] = ppk_secret
+        __props__.__dict__["qkd_profile"] = qkd_profile
         __props__.__dict__["radius_server"] = radius_server
         __props__.__dict__["sms_custom_server"] = sms_custom_server
         __props__.__dict__["sms_phone"] = sms_phone
@@ -1405,6 +1444,14 @@ class Local(pulumi.CustomResource):
         IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
         """
         return pulumi.get(self, "ppk_secret")
+
+    @property
+    @pulumi.getter(name="qkdProfile")
+    def qkd_profile(self) -> pulumi.Output[str]:
+        """
+        Quantum Key Distribution (QKD) profile.
+        """
+        return pulumi.get(self, "qkd_profile")
 
     @property
     @pulumi.getter(name="radiusServer")

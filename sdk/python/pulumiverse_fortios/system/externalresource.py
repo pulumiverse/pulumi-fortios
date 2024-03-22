@@ -22,6 +22,7 @@ class ExternalresourceArgs:
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -40,9 +41,10 @@ class ExternalresourceArgs:
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] name: External resource name.
         :param pulumi.Input[str] password: HTTP basic authentication password.
+        :param pulumi.Input[str] server_identity_check: Certificate verification option. Valid values: `none`, `basic`, `full`.
         :param pulumi.Input[str] source_ip: Source IPv4 address used to communicate with server.
         :param pulumi.Input[str] status: Enable/disable user resource. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] type: User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+        :param pulumi.Input[str] type: User resource type.
         :param pulumi.Input[str] update_method: External resource update method. Valid values: `feed`, `push`.
         :param pulumi.Input[str] user_agent: Override HTTP User-Agent header used when retrieving this external resource.
         :param pulumi.Input[str] username: HTTP basic authentication user name.
@@ -63,6 +65,8 @@ class ExternalresourceArgs:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if server_identity_check is not None:
+            pulumi.set(__self__, "server_identity_check", server_identity_check)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if status is not None:
@@ -177,6 +181,18 @@ class ExternalresourceArgs:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        Certificate verification option. Valid values: `none`, `basic`, `full`.
+        """
+        return pulumi.get(self, "server_identity_check")
+
+    @server_identity_check.setter
+    def server_identity_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_identity_check", value)
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> Optional[pulumi.Input[str]]:
         """
@@ -204,7 +220,7 @@ class ExternalresourceArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+        User resource type.
         """
         return pulumi.get(self, "type")
 
@@ -284,6 +300,7 @@ class _ExternalresourceState:
                  password: Optional[pulumi.Input[str]] = None,
                  refresh_rate: Optional[pulumi.Input[int]] = None,
                  resource: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -302,9 +319,10 @@ class _ExternalresourceState:
         :param pulumi.Input[str] password: HTTP basic authentication password.
         :param pulumi.Input[int] refresh_rate: Time interval to refresh external resource (1 - 43200 min, default = 5 min).
         :param pulumi.Input[str] resource: URI of external resource.
+        :param pulumi.Input[str] server_identity_check: Certificate verification option. Valid values: `none`, `basic`, `full`.
         :param pulumi.Input[str] source_ip: Source IPv4 address used to communicate with server.
         :param pulumi.Input[str] status: Enable/disable user resource. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] type: User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+        :param pulumi.Input[str] type: User resource type.
         :param pulumi.Input[str] update_method: External resource update method. Valid values: `feed`, `push`.
         :param pulumi.Input[str] user_agent: Override HTTP User-Agent header used when retrieving this external resource.
         :param pulumi.Input[str] username: HTTP basic authentication user name.
@@ -327,6 +345,8 @@ class _ExternalresourceState:
             pulumi.set(__self__, "refresh_rate", refresh_rate)
         if resource is not None:
             pulumi.set(__self__, "resource", resource)
+        if server_identity_check is not None:
+            pulumi.set(__self__, "server_identity_check", server_identity_check)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if status is not None:
@@ -441,6 +461,18 @@ class _ExternalresourceState:
         pulumi.set(self, "resource", value)
 
     @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        Certificate verification option. Valid values: `none`, `basic`, `full`.
+        """
+        return pulumi.get(self, "server_identity_check")
+
+    @server_identity_check.setter
+    def server_identity_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_identity_check", value)
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> Optional[pulumi.Input[str]]:
         """
@@ -468,7 +500,7 @@ class _ExternalresourceState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+        User resource type.
         """
         return pulumi.get(self, "type")
 
@@ -550,6 +582,7 @@ class Externalresource(pulumi.CustomResource):
                  password: Optional[pulumi.Input[str]] = None,
                  refresh_rate: Optional[pulumi.Input[int]] = None,
                  resource: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -606,9 +639,10 @@ class Externalresource(pulumi.CustomResource):
         :param pulumi.Input[str] password: HTTP basic authentication password.
         :param pulumi.Input[int] refresh_rate: Time interval to refresh external resource (1 - 43200 min, default = 5 min).
         :param pulumi.Input[str] resource: URI of external resource.
+        :param pulumi.Input[str] server_identity_check: Certificate verification option. Valid values: `none`, `basic`, `full`.
         :param pulumi.Input[str] source_ip: Source IPv4 address used to communicate with server.
         :param pulumi.Input[str] status: Enable/disable user resource. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] type: User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+        :param pulumi.Input[str] type: User resource type.
         :param pulumi.Input[str] update_method: External resource update method. Valid values: `feed`, `push`.
         :param pulumi.Input[str] user_agent: Override HTTP User-Agent header used when retrieving this external resource.
         :param pulumi.Input[str] username: HTTP basic authentication user name.
@@ -681,6 +715,7 @@ class Externalresource(pulumi.CustomResource):
                  password: Optional[pulumi.Input[str]] = None,
                  refresh_rate: Optional[pulumi.Input[int]] = None,
                  resource: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -710,6 +745,7 @@ class Externalresource(pulumi.CustomResource):
             if resource is None and not opts.urn:
                 raise TypeError("Missing required property 'resource'")
             __props__.__dict__["resource"] = resource
+            __props__.__dict__["server_identity_check"] = server_identity_check
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["status"] = status
             __props__.__dict__["type"] = type
@@ -738,6 +774,7 @@ class Externalresource(pulumi.CustomResource):
             password: Optional[pulumi.Input[str]] = None,
             refresh_rate: Optional[pulumi.Input[int]] = None,
             resource: Optional[pulumi.Input[str]] = None,
+            server_identity_check: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
@@ -761,9 +798,10 @@ class Externalresource(pulumi.CustomResource):
         :param pulumi.Input[str] password: HTTP basic authentication password.
         :param pulumi.Input[int] refresh_rate: Time interval to refresh external resource (1 - 43200 min, default = 5 min).
         :param pulumi.Input[str] resource: URI of external resource.
+        :param pulumi.Input[str] server_identity_check: Certificate verification option. Valid values: `none`, `basic`, `full`.
         :param pulumi.Input[str] source_ip: Source IPv4 address used to communicate with server.
         :param pulumi.Input[str] status: Enable/disable user resource. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] type: User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+        :param pulumi.Input[str] type: User resource type.
         :param pulumi.Input[str] update_method: External resource update method. Valid values: `feed`, `push`.
         :param pulumi.Input[str] user_agent: Override HTTP User-Agent header used when retrieving this external resource.
         :param pulumi.Input[str] username: HTTP basic authentication user name.
@@ -782,6 +820,7 @@ class Externalresource(pulumi.CustomResource):
         __props__.__dict__["password"] = password
         __props__.__dict__["refresh_rate"] = refresh_rate
         __props__.__dict__["resource"] = resource
+        __props__.__dict__["server_identity_check"] = server_identity_check
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["status"] = status
         __props__.__dict__["type"] = type
@@ -857,6 +896,14 @@ class Externalresource(pulumi.CustomResource):
         return pulumi.get(self, "resource")
 
     @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> pulumi.Output[str]:
+        """
+        Certificate verification option. Valid values: `none`, `basic`, `full`.
+        """
+        return pulumi.get(self, "server_identity_check")
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> pulumi.Output[str]:
         """
@@ -876,7 +923,7 @@ class Externalresource(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+        User resource type.
         """
         return pulumi.get(self, "type")
 

@@ -167,6 +167,12 @@ namespace Pulumiverse.Fortios.Log
         public Output<string> WanOpt { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("webproxy")]
+        public Output<string> Webproxy { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("wirelessActivity")]
@@ -322,6 +328,12 @@ namespace Pulumiverse.Fortios.Log
         public Input<string>? WanOpt { get; set; }
 
         /// <summary>
+        /// Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("webproxy")]
+        public Input<string>? Webproxy { get; set; }
+
+        /// <summary>
         /// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("wirelessActivity")]
@@ -436,6 +448,12 @@ namespace Pulumiverse.Fortios.Log
         /// </summary>
         [Input("wanOpt")]
         public Input<string>? WanOpt { get; set; }
+
+        /// <summary>
+        /// Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("webproxy")]
+        public Input<string>? Webproxy { get; set; }
 
         /// <summary>
         /// Enable/disable wireless event logging. Valid values: `enable`, `disable`.

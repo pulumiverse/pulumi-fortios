@@ -147,6 +147,14 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly string Ua;
         /// <summary>
+        /// Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+        /// </summary>
+        public readonly string UaMaxVer;
+        /// <summary>
+        /// Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+        /// </summary>
+        public readonly string UaMinVer;
+        /// <summary>
         /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         /// </summary>
         public readonly string Uuid;
@@ -196,6 +204,10 @@ namespace Pulumiverse.Fortios.Firewall
 
             string ua,
 
+            string uaMaxVer,
+
+            string uaMinVer,
+
             string uuid,
 
             string? vdomparam,
@@ -221,6 +233,8 @@ namespace Pulumiverse.Fortios.Firewall
             Taggings = taggings;
             Type = type;
             Ua = ua;
+            UaMaxVer = uaMaxVer;
+            UaMinVer = uaMinVer;
             Uuid = uuid;
             Vdomparam = vdomparam;
             Visibility = visibility;

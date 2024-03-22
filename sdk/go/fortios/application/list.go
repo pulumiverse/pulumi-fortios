@@ -89,9 +89,11 @@ type List struct {
 	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
 	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
 	ForceInclusionSslDiSigs pulumi.StringOutput `pulumi:"forceInclusionSslDiSigs"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// List name.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+	// Basic application protocol signatures allowed by default.
 	Options pulumi.StringOutput `pulumi:"options"`
 	// Action for other applications. Valid values: `pass`, `block`.
 	OtherApplicationAction pulumi.StringOutput `pulumi:"otherApplicationAction"`
@@ -161,9 +163,11 @@ type listState struct {
 	ExtendedLog *string `pulumi:"extendedLog"`
 	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
 	ForceInclusionSslDiSigs *string `pulumi:"forceInclusionSslDiSigs"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// List name.
 	Name *string `pulumi:"name"`
-	// Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+	// Basic application protocol signatures allowed by default.
 	Options *string `pulumi:"options"`
 	// Action for other applications. Valid values: `pass`, `block`.
 	OtherApplicationAction *string `pulumi:"otherApplicationAction"`
@@ -204,9 +208,11 @@ type ListState struct {
 	ExtendedLog pulumi.StringPtrInput
 	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
 	ForceInclusionSslDiSigs pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// List name.
 	Name pulumi.StringPtrInput
-	// Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+	// Basic application protocol signatures allowed by default.
 	Options pulumi.StringPtrInput
 	// Action for other applications. Valid values: `pass`, `block`.
 	OtherApplicationAction pulumi.StringPtrInput
@@ -251,9 +257,11 @@ type listArgs struct {
 	ExtendedLog *string `pulumi:"extendedLog"`
 	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
 	ForceInclusionSslDiSigs *string `pulumi:"forceInclusionSslDiSigs"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// List name.
 	Name *string `pulumi:"name"`
-	// Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+	// Basic application protocol signatures allowed by default.
 	Options *string `pulumi:"options"`
 	// Action for other applications. Valid values: `pass`, `block`.
 	OtherApplicationAction *string `pulumi:"otherApplicationAction"`
@@ -295,9 +303,11 @@ type ListArgs struct {
 	ExtendedLog pulumi.StringPtrInput
 	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
 	ForceInclusionSslDiSigs pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// List name.
 	Name pulumi.StringPtrInput
-	// Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+	// Basic application protocol signatures allowed by default.
 	Options pulumi.StringPtrInput
 	// Action for other applications. Valid values: `pass`, `block`.
 	OtherApplicationAction pulumi.StringPtrInput
@@ -454,12 +464,17 @@ func (o ListOutput) ForceInclusionSslDiSigs() pulumi.StringOutput {
 	return o.ApplyT(func(v *List) pulumi.StringOutput { return v.ForceInclusionSslDiSigs }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ListOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *List) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // List name.
 func (o ListOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *List) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+// Basic application protocol signatures allowed by default.
 func (o ListOutput) Options() pulumi.StringOutput {
 	return o.ApplyT(func(v *List) pulumi.StringOutput { return v.Options }).(pulumi.StringOutput)
 }

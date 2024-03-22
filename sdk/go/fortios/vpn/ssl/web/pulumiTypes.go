@@ -425,6 +425,8 @@ type PortalBookmarkGroupBookmark struct {
 	SsoUsername *string `pulumi:"ssoUsername"`
 	// URL parameter.
 	Url *string `pulumi:"url"`
+	// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+	VncKeyboardLayout *string `pulumi:"vncKeyboardLayout"`
 	// Screen width (range from 640 - 65535, default = 1024).
 	Width *int `pulumi:"width"`
 }
@@ -501,6 +503,8 @@ type PortalBookmarkGroupBookmarkArgs struct {
 	SsoUsername pulumi.StringPtrInput `pulumi:"ssoUsername"`
 	// URL parameter.
 	Url pulumi.StringPtrInput `pulumi:"url"`
+	// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+	VncKeyboardLayout pulumi.StringPtrInput `pulumi:"vncKeyboardLayout"`
 	// Screen width (range from 640 - 65535, default = 1024).
 	Width pulumi.IntPtrInput `pulumi:"width"`
 }
@@ -704,6 +708,11 @@ func (o PortalBookmarkGroupBookmarkOutput) SsoUsername() pulumi.StringPtrOutput 
 // URL parameter.
 func (o PortalBookmarkGroupBookmarkOutput) Url() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PortalBookmarkGroupBookmark) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+func (o PortalBookmarkGroupBookmarkOutput) VncKeyboardLayout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PortalBookmarkGroupBookmark) *string { return v.VncKeyboardLayout }).(pulumi.StringPtrOutput)
 }
 
 // Screen width (range from 640 - 65535, default = 1024).
@@ -1223,6 +1232,363 @@ func (o PortalIpv6SplitTunnelingRoutingAddressArrayOutput) Index(i pulumi.IntInp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PortalIpv6SplitTunnelingRoutingAddress {
 		return vs[0].([]PortalIpv6SplitTunnelingRoutingAddress)[vs[1].(int)]
 	}).(PortalIpv6SplitTunnelingRoutingAddressOutput)
+}
+
+type PortalLandingPage struct {
+	// Form data. The structure of `formData` block is documented below.
+	FormDatas []PortalLandingPageFormData `pulumi:"formDatas"`
+	// Landing page log out URL.
+	LogoutUrl *string `pulumi:"logoutUrl"`
+	// Single sign-on. Valid values: `disable`, `static`, `auto`.
+	Sso *string `pulumi:"sso"`
+	// Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+	SsoCredential *string `pulumi:"ssoCredential"`
+	// SSO password.
+	SsoPassword *string `pulumi:"ssoPassword"`
+	// SSO user name.
+	SsoUsername *string `pulumi:"ssoUsername"`
+	// Landing page URL.
+	Url *string `pulumi:"url"`
+}
+
+// PortalLandingPageInput is an input type that accepts PortalLandingPageArgs and PortalLandingPageOutput values.
+// You can construct a concrete instance of `PortalLandingPageInput` via:
+//
+//	PortalLandingPageArgs{...}
+type PortalLandingPageInput interface {
+	pulumi.Input
+
+	ToPortalLandingPageOutput() PortalLandingPageOutput
+	ToPortalLandingPageOutputWithContext(context.Context) PortalLandingPageOutput
+}
+
+type PortalLandingPageArgs struct {
+	// Form data. The structure of `formData` block is documented below.
+	FormDatas PortalLandingPageFormDataArrayInput `pulumi:"formDatas"`
+	// Landing page log out URL.
+	LogoutUrl pulumi.StringPtrInput `pulumi:"logoutUrl"`
+	// Single sign-on. Valid values: `disable`, `static`, `auto`.
+	Sso pulumi.StringPtrInput `pulumi:"sso"`
+	// Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+	SsoCredential pulumi.StringPtrInput `pulumi:"ssoCredential"`
+	// SSO password.
+	SsoPassword pulumi.StringPtrInput `pulumi:"ssoPassword"`
+	// SSO user name.
+	SsoUsername pulumi.StringPtrInput `pulumi:"ssoUsername"`
+	// Landing page URL.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+func (PortalLandingPageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PortalLandingPage)(nil)).Elem()
+}
+
+func (i PortalLandingPageArgs) ToPortalLandingPageOutput() PortalLandingPageOutput {
+	return i.ToPortalLandingPageOutputWithContext(context.Background())
+}
+
+func (i PortalLandingPageArgs) ToPortalLandingPageOutputWithContext(ctx context.Context) PortalLandingPageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PortalLandingPageOutput)
+}
+
+func (i PortalLandingPageArgs) ToPortalLandingPagePtrOutput() PortalLandingPagePtrOutput {
+	return i.ToPortalLandingPagePtrOutputWithContext(context.Background())
+}
+
+func (i PortalLandingPageArgs) ToPortalLandingPagePtrOutputWithContext(ctx context.Context) PortalLandingPagePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PortalLandingPageOutput).ToPortalLandingPagePtrOutputWithContext(ctx)
+}
+
+// PortalLandingPagePtrInput is an input type that accepts PortalLandingPageArgs, PortalLandingPagePtr and PortalLandingPagePtrOutput values.
+// You can construct a concrete instance of `PortalLandingPagePtrInput` via:
+//
+//	        PortalLandingPageArgs{...}
+//
+//	or:
+//
+//	        nil
+type PortalLandingPagePtrInput interface {
+	pulumi.Input
+
+	ToPortalLandingPagePtrOutput() PortalLandingPagePtrOutput
+	ToPortalLandingPagePtrOutputWithContext(context.Context) PortalLandingPagePtrOutput
+}
+
+type portalLandingPagePtrType PortalLandingPageArgs
+
+func PortalLandingPagePtr(v *PortalLandingPageArgs) PortalLandingPagePtrInput {
+	return (*portalLandingPagePtrType)(v)
+}
+
+func (*portalLandingPagePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PortalLandingPage)(nil)).Elem()
+}
+
+func (i *portalLandingPagePtrType) ToPortalLandingPagePtrOutput() PortalLandingPagePtrOutput {
+	return i.ToPortalLandingPagePtrOutputWithContext(context.Background())
+}
+
+func (i *portalLandingPagePtrType) ToPortalLandingPagePtrOutputWithContext(ctx context.Context) PortalLandingPagePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PortalLandingPagePtrOutput)
+}
+
+type PortalLandingPageOutput struct{ *pulumi.OutputState }
+
+func (PortalLandingPageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PortalLandingPage)(nil)).Elem()
+}
+
+func (o PortalLandingPageOutput) ToPortalLandingPageOutput() PortalLandingPageOutput {
+	return o
+}
+
+func (o PortalLandingPageOutput) ToPortalLandingPageOutputWithContext(ctx context.Context) PortalLandingPageOutput {
+	return o
+}
+
+func (o PortalLandingPageOutput) ToPortalLandingPagePtrOutput() PortalLandingPagePtrOutput {
+	return o.ToPortalLandingPagePtrOutputWithContext(context.Background())
+}
+
+func (o PortalLandingPageOutput) ToPortalLandingPagePtrOutputWithContext(ctx context.Context) PortalLandingPagePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PortalLandingPage) *PortalLandingPage {
+		return &v
+	}).(PortalLandingPagePtrOutput)
+}
+
+// Form data. The structure of `formData` block is documented below.
+func (o PortalLandingPageOutput) FormDatas() PortalLandingPageFormDataArrayOutput {
+	return o.ApplyT(func(v PortalLandingPage) []PortalLandingPageFormData { return v.FormDatas }).(PortalLandingPageFormDataArrayOutput)
+}
+
+// Landing page log out URL.
+func (o PortalLandingPageOutput) LogoutUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PortalLandingPage) *string { return v.LogoutUrl }).(pulumi.StringPtrOutput)
+}
+
+// Single sign-on. Valid values: `disable`, `static`, `auto`.
+func (o PortalLandingPageOutput) Sso() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PortalLandingPage) *string { return v.Sso }).(pulumi.StringPtrOutput)
+}
+
+// Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+func (o PortalLandingPageOutput) SsoCredential() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PortalLandingPage) *string { return v.SsoCredential }).(pulumi.StringPtrOutput)
+}
+
+// SSO password.
+func (o PortalLandingPageOutput) SsoPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PortalLandingPage) *string { return v.SsoPassword }).(pulumi.StringPtrOutput)
+}
+
+// SSO user name.
+func (o PortalLandingPageOutput) SsoUsername() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PortalLandingPage) *string { return v.SsoUsername }).(pulumi.StringPtrOutput)
+}
+
+// Landing page URL.
+func (o PortalLandingPageOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PortalLandingPage) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type PortalLandingPagePtrOutput struct{ *pulumi.OutputState }
+
+func (PortalLandingPagePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PortalLandingPage)(nil)).Elem()
+}
+
+func (o PortalLandingPagePtrOutput) ToPortalLandingPagePtrOutput() PortalLandingPagePtrOutput {
+	return o
+}
+
+func (o PortalLandingPagePtrOutput) ToPortalLandingPagePtrOutputWithContext(ctx context.Context) PortalLandingPagePtrOutput {
+	return o
+}
+
+func (o PortalLandingPagePtrOutput) Elem() PortalLandingPageOutput {
+	return o.ApplyT(func(v *PortalLandingPage) PortalLandingPage {
+		if v != nil {
+			return *v
+		}
+		var ret PortalLandingPage
+		return ret
+	}).(PortalLandingPageOutput)
+}
+
+// Form data. The structure of `formData` block is documented below.
+func (o PortalLandingPagePtrOutput) FormDatas() PortalLandingPageFormDataArrayOutput {
+	return o.ApplyT(func(v *PortalLandingPage) []PortalLandingPageFormData {
+		if v == nil {
+			return nil
+		}
+		return v.FormDatas
+	}).(PortalLandingPageFormDataArrayOutput)
+}
+
+// Landing page log out URL.
+func (o PortalLandingPagePtrOutput) LogoutUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PortalLandingPage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogoutUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// Single sign-on. Valid values: `disable`, `static`, `auto`.
+func (o PortalLandingPagePtrOutput) Sso() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PortalLandingPage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Sso
+	}).(pulumi.StringPtrOutput)
+}
+
+// Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+func (o PortalLandingPagePtrOutput) SsoCredential() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PortalLandingPage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SsoCredential
+	}).(pulumi.StringPtrOutput)
+}
+
+// SSO password.
+func (o PortalLandingPagePtrOutput) SsoPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PortalLandingPage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SsoPassword
+	}).(pulumi.StringPtrOutput)
+}
+
+// SSO user name.
+func (o PortalLandingPagePtrOutput) SsoUsername() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PortalLandingPage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SsoUsername
+	}).(pulumi.StringPtrOutput)
+}
+
+// Landing page URL.
+func (o PortalLandingPagePtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PortalLandingPage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+type PortalLandingPageFormData struct {
+	// Name.
+	Name *string `pulumi:"name"`
+	// Value.
+	Value *string `pulumi:"value"`
+}
+
+// PortalLandingPageFormDataInput is an input type that accepts PortalLandingPageFormDataArgs and PortalLandingPageFormDataOutput values.
+// You can construct a concrete instance of `PortalLandingPageFormDataInput` via:
+//
+//	PortalLandingPageFormDataArgs{...}
+type PortalLandingPageFormDataInput interface {
+	pulumi.Input
+
+	ToPortalLandingPageFormDataOutput() PortalLandingPageFormDataOutput
+	ToPortalLandingPageFormDataOutputWithContext(context.Context) PortalLandingPageFormDataOutput
+}
+
+type PortalLandingPageFormDataArgs struct {
+	// Name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Value.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (PortalLandingPageFormDataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PortalLandingPageFormData)(nil)).Elem()
+}
+
+func (i PortalLandingPageFormDataArgs) ToPortalLandingPageFormDataOutput() PortalLandingPageFormDataOutput {
+	return i.ToPortalLandingPageFormDataOutputWithContext(context.Background())
+}
+
+func (i PortalLandingPageFormDataArgs) ToPortalLandingPageFormDataOutputWithContext(ctx context.Context) PortalLandingPageFormDataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PortalLandingPageFormDataOutput)
+}
+
+// PortalLandingPageFormDataArrayInput is an input type that accepts PortalLandingPageFormDataArray and PortalLandingPageFormDataArrayOutput values.
+// You can construct a concrete instance of `PortalLandingPageFormDataArrayInput` via:
+//
+//	PortalLandingPageFormDataArray{ PortalLandingPageFormDataArgs{...} }
+type PortalLandingPageFormDataArrayInput interface {
+	pulumi.Input
+
+	ToPortalLandingPageFormDataArrayOutput() PortalLandingPageFormDataArrayOutput
+	ToPortalLandingPageFormDataArrayOutputWithContext(context.Context) PortalLandingPageFormDataArrayOutput
+}
+
+type PortalLandingPageFormDataArray []PortalLandingPageFormDataInput
+
+func (PortalLandingPageFormDataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PortalLandingPageFormData)(nil)).Elem()
+}
+
+func (i PortalLandingPageFormDataArray) ToPortalLandingPageFormDataArrayOutput() PortalLandingPageFormDataArrayOutput {
+	return i.ToPortalLandingPageFormDataArrayOutputWithContext(context.Background())
+}
+
+func (i PortalLandingPageFormDataArray) ToPortalLandingPageFormDataArrayOutputWithContext(ctx context.Context) PortalLandingPageFormDataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PortalLandingPageFormDataArrayOutput)
+}
+
+type PortalLandingPageFormDataOutput struct{ *pulumi.OutputState }
+
+func (PortalLandingPageFormDataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PortalLandingPageFormData)(nil)).Elem()
+}
+
+func (o PortalLandingPageFormDataOutput) ToPortalLandingPageFormDataOutput() PortalLandingPageFormDataOutput {
+	return o
+}
+
+func (o PortalLandingPageFormDataOutput) ToPortalLandingPageFormDataOutputWithContext(ctx context.Context) PortalLandingPageFormDataOutput {
+	return o
+}
+
+// Name.
+func (o PortalLandingPageFormDataOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PortalLandingPageFormData) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Value.
+func (o PortalLandingPageFormDataOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PortalLandingPageFormData) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type PortalLandingPageFormDataArrayOutput struct{ *pulumi.OutputState }
+
+func (PortalLandingPageFormDataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PortalLandingPageFormData)(nil)).Elem()
+}
+
+func (o PortalLandingPageFormDataArrayOutput) ToPortalLandingPageFormDataArrayOutput() PortalLandingPageFormDataArrayOutput {
+	return o
+}
+
+func (o PortalLandingPageFormDataArrayOutput) ToPortalLandingPageFormDataArrayOutputWithContext(ctx context.Context) PortalLandingPageFormDataArrayOutput {
+	return o
+}
+
+func (o PortalLandingPageFormDataArrayOutput) Index(i pulumi.IntInput) PortalLandingPageFormDataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PortalLandingPageFormData {
+		return vs[0].([]PortalLandingPageFormData)[vs[1].(int)]
+	}).(PortalLandingPageFormDataOutput)
 }
 
 type PortalMacAddrCheckRule struct {
@@ -1861,6 +2227,8 @@ type UserbookmarkBookmark struct {
 	SsoUsername *string `pulumi:"ssoUsername"`
 	// URL parameter.
 	Url *string `pulumi:"url"`
+	// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+	VncKeyboardLayout *string `pulumi:"vncKeyboardLayout"`
 	// Screen width (range from 640 - 65535, default = 1024).
 	Width *int `pulumi:"width"`
 }
@@ -1937,6 +2305,8 @@ type UserbookmarkBookmarkArgs struct {
 	SsoUsername pulumi.StringPtrInput `pulumi:"ssoUsername"`
 	// URL parameter.
 	Url pulumi.StringPtrInput `pulumi:"url"`
+	// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+	VncKeyboardLayout pulumi.StringPtrInput `pulumi:"vncKeyboardLayout"`
 	// Screen width (range from 640 - 65535, default = 1024).
 	Width pulumi.IntPtrInput `pulumi:"width"`
 }
@@ -2142,6 +2512,11 @@ func (o UserbookmarkBookmarkOutput) Url() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UserbookmarkBookmark) *string { return v.Url }).(pulumi.StringPtrOutput)
 }
 
+// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+func (o UserbookmarkBookmarkOutput) VncKeyboardLayout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserbookmarkBookmark) *string { return v.VncKeyboardLayout }).(pulumi.StringPtrOutput)
+}
+
 // Screen width (range from 640 - 65535, default = 1024).
 func (o UserbookmarkBookmarkOutput) Width() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UserbookmarkBookmark) *int { return v.Width }).(pulumi.IntPtrOutput)
@@ -2334,6 +2709,8 @@ type UsergroupbookmarkBookmark struct {
 	SsoUsername *string `pulumi:"ssoUsername"`
 	// URL parameter.
 	Url *string `pulumi:"url"`
+	// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+	VncKeyboardLayout *string `pulumi:"vncKeyboardLayout"`
 	// Screen width (range from 640 - 65535, default = 1024).
 	Width *int `pulumi:"width"`
 }
@@ -2410,6 +2787,8 @@ type UsergroupbookmarkBookmarkArgs struct {
 	SsoUsername pulumi.StringPtrInput `pulumi:"ssoUsername"`
 	// URL parameter.
 	Url pulumi.StringPtrInput `pulumi:"url"`
+	// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+	VncKeyboardLayout pulumi.StringPtrInput `pulumi:"vncKeyboardLayout"`
 	// Screen width (range from 640 - 65535, default = 1024).
 	Width pulumi.IntPtrInput `pulumi:"width"`
 }
@@ -2615,6 +2994,11 @@ func (o UsergroupbookmarkBookmarkOutput) Url() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UsergroupbookmarkBookmark) *string { return v.Url }).(pulumi.StringPtrOutput)
 }
 
+// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+func (o UsergroupbookmarkBookmarkOutput) VncKeyboardLayout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UsergroupbookmarkBookmark) *string { return v.VncKeyboardLayout }).(pulumi.StringPtrOutput)
+}
+
 // Screen width (range from 640 - 65535, default = 1024).
 func (o UsergroupbookmarkBookmarkOutput) Width() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UsergroupbookmarkBookmark) *int { return v.Width }).(pulumi.IntPtrOutput)
@@ -2765,6 +3149,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PortalIpv6PoolArrayInput)(nil)).Elem(), PortalIpv6PoolArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PortalIpv6SplitTunnelingRoutingAddressInput)(nil)).Elem(), PortalIpv6SplitTunnelingRoutingAddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PortalIpv6SplitTunnelingRoutingAddressArrayInput)(nil)).Elem(), PortalIpv6SplitTunnelingRoutingAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PortalLandingPageInput)(nil)).Elem(), PortalLandingPageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PortalLandingPagePtrInput)(nil)).Elem(), PortalLandingPageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PortalLandingPageFormDataInput)(nil)).Elem(), PortalLandingPageFormDataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PortalLandingPageFormDataArrayInput)(nil)).Elem(), PortalLandingPageFormDataArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PortalMacAddrCheckRuleInput)(nil)).Elem(), PortalMacAddrCheckRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PortalMacAddrCheckRuleArrayInput)(nil)).Elem(), PortalMacAddrCheckRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PortalMacAddrCheckRuleMacAddrListInput)(nil)).Elem(), PortalMacAddrCheckRuleMacAddrListArgs{})
@@ -2801,6 +3189,10 @@ func init() {
 	pulumi.RegisterOutputType(PortalIpv6PoolArrayOutput{})
 	pulumi.RegisterOutputType(PortalIpv6SplitTunnelingRoutingAddressOutput{})
 	pulumi.RegisterOutputType(PortalIpv6SplitTunnelingRoutingAddressArrayOutput{})
+	pulumi.RegisterOutputType(PortalLandingPageOutput{})
+	pulumi.RegisterOutputType(PortalLandingPagePtrOutput{})
+	pulumi.RegisterOutputType(PortalLandingPageFormDataOutput{})
+	pulumi.RegisterOutputType(PortalLandingPageFormDataArrayOutput{})
 	pulumi.RegisterOutputType(PortalMacAddrCheckRuleOutput{})
 	pulumi.RegisterOutputType(PortalMacAddrCheckRuleArrayOutput{})
 	pulumi.RegisterOutputType(PortalMacAddrCheckRuleMacAddrListOutput{})

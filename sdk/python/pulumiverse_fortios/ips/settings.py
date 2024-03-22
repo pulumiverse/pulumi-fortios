@@ -18,6 +18,7 @@ class SettingsArgs:
                  packet_log_history: Optional[pulumi.Input[int]] = None,
                  packet_log_memory: Optional[pulumi.Input[int]] = None,
                  packet_log_post_attack: Optional[pulumi.Input[int]] = None,
+                 proxy_inline_ips: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Settings resource.
@@ -25,6 +26,7 @@ class SettingsArgs:
         :param pulumi.Input[int] packet_log_history: Number of packets to capture before and including the one in which the IPS signature is detected (1 - 255).
         :param pulumi.Input[int] packet_log_memory: Maximum memory can be used by packet log (64 - 8192 kB).
         :param pulumi.Input[int] packet_log_post_attack: Number of packets to log after the IPS signature is detected (0 - 255).
+        :param pulumi.Input[str] proxy_inline_ips: Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if ips_packet_quota is not None:
@@ -35,6 +37,8 @@ class SettingsArgs:
             pulumi.set(__self__, "packet_log_memory", packet_log_memory)
         if packet_log_post_attack is not None:
             pulumi.set(__self__, "packet_log_post_attack", packet_log_post_attack)
+        if proxy_inline_ips is not None:
+            pulumi.set(__self__, "proxy_inline_ips", proxy_inline_ips)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -85,6 +89,18 @@ class SettingsArgs:
     @packet_log_post_attack.setter
     def packet_log_post_attack(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "packet_log_post_attack", value)
+
+    @property
+    @pulumi.getter(name="proxyInlineIps")
+    def proxy_inline_ips(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "proxy_inline_ips")
+
+    @proxy_inline_ips.setter
+    def proxy_inline_ips(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_inline_ips", value)
 
     @property
     @pulumi.getter
@@ -106,6 +122,7 @@ class _SettingsState:
                  packet_log_history: Optional[pulumi.Input[int]] = None,
                  packet_log_memory: Optional[pulumi.Input[int]] = None,
                  packet_log_post_attack: Optional[pulumi.Input[int]] = None,
+                 proxy_inline_ips: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Settings resources.
@@ -113,6 +130,7 @@ class _SettingsState:
         :param pulumi.Input[int] packet_log_history: Number of packets to capture before and including the one in which the IPS signature is detected (1 - 255).
         :param pulumi.Input[int] packet_log_memory: Maximum memory can be used by packet log (64 - 8192 kB).
         :param pulumi.Input[int] packet_log_post_attack: Number of packets to log after the IPS signature is detected (0 - 255).
+        :param pulumi.Input[str] proxy_inline_ips: Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if ips_packet_quota is not None:
@@ -123,6 +141,8 @@ class _SettingsState:
             pulumi.set(__self__, "packet_log_memory", packet_log_memory)
         if packet_log_post_attack is not None:
             pulumi.set(__self__, "packet_log_post_attack", packet_log_post_attack)
+        if proxy_inline_ips is not None:
+            pulumi.set(__self__, "proxy_inline_ips", proxy_inline_ips)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -173,6 +193,18 @@ class _SettingsState:
     @packet_log_post_attack.setter
     def packet_log_post_attack(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "packet_log_post_attack", value)
+
+    @property
+    @pulumi.getter(name="proxyInlineIps")
+    def proxy_inline_ips(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "proxy_inline_ips")
+
+    @proxy_inline_ips.setter
+    def proxy_inline_ips(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_inline_ips", value)
 
     @property
     @pulumi.getter
@@ -196,6 +228,7 @@ class Settings(pulumi.CustomResource):
                  packet_log_history: Optional[pulumi.Input[int]] = None,
                  packet_log_memory: Optional[pulumi.Input[int]] = None,
                  packet_log_post_attack: Optional[pulumi.Input[int]] = None,
+                 proxy_inline_ips: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -240,6 +273,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[int] packet_log_history: Number of packets to capture before and including the one in which the IPS signature is detected (1 - 255).
         :param pulumi.Input[int] packet_log_memory: Maximum memory can be used by packet log (64 - 8192 kB).
         :param pulumi.Input[int] packet_log_post_attack: Number of packets to log after the IPS signature is detected (0 - 255).
+        :param pulumi.Input[str] proxy_inline_ips: Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -303,6 +337,7 @@ class Settings(pulumi.CustomResource):
                  packet_log_history: Optional[pulumi.Input[int]] = None,
                  packet_log_memory: Optional[pulumi.Input[int]] = None,
                  packet_log_post_attack: Optional[pulumi.Input[int]] = None,
+                 proxy_inline_ips: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -317,6 +352,7 @@ class Settings(pulumi.CustomResource):
             __props__.__dict__["packet_log_history"] = packet_log_history
             __props__.__dict__["packet_log_memory"] = packet_log_memory
             __props__.__dict__["packet_log_post_attack"] = packet_log_post_attack
+            __props__.__dict__["proxy_inline_ips"] = proxy_inline_ips
             __props__.__dict__["vdomparam"] = vdomparam
         super(Settings, __self__).__init__(
             'fortios:ips/settings:Settings',
@@ -332,6 +368,7 @@ class Settings(pulumi.CustomResource):
             packet_log_history: Optional[pulumi.Input[int]] = None,
             packet_log_memory: Optional[pulumi.Input[int]] = None,
             packet_log_post_attack: Optional[pulumi.Input[int]] = None,
+            proxy_inline_ips: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Settings':
         """
         Get an existing Settings resource's state with the given name, id, and optional extra
@@ -344,6 +381,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[int] packet_log_history: Number of packets to capture before and including the one in which the IPS signature is detected (1 - 255).
         :param pulumi.Input[int] packet_log_memory: Maximum memory can be used by packet log (64 - 8192 kB).
         :param pulumi.Input[int] packet_log_post_attack: Number of packets to log after the IPS signature is detected (0 - 255).
+        :param pulumi.Input[str] proxy_inline_ips: Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -354,6 +392,7 @@ class Settings(pulumi.CustomResource):
         __props__.__dict__["packet_log_history"] = packet_log_history
         __props__.__dict__["packet_log_memory"] = packet_log_memory
         __props__.__dict__["packet_log_post_attack"] = packet_log_post_attack
+        __props__.__dict__["proxy_inline_ips"] = proxy_inline_ips
         __props__.__dict__["vdomparam"] = vdomparam
         return Settings(resource_name, opts=opts, __props__=__props__)
 
@@ -388,6 +427,14 @@ class Settings(pulumi.CustomResource):
         Number of packets to log after the IPS signature is detected (0 - 255).
         """
         return pulumi.get(self, "packet_log_post_attack")
+
+    @property
+    @pulumi.getter(name="proxyInlineIps")
+    def proxy_inline_ips(self) -> pulumi.Output[str]:
+        """
+        Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "proxy_inline_ips")
 
     @property
     @pulumi.getter

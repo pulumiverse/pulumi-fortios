@@ -95,6 +95,10 @@ type Dnsdatabase struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// DNS zone forwarder IP address list.
 	Forwarder pulumi.StringOutput `pulumi:"forwarder"`
+	// Forwarder IPv6 address.
+	Forwarder6 pulumi.StringOutput `pulumi:"forwarder6"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
 	IpMaster pulumi.StringOutput `pulumi:"ipMaster"`
 	// IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
@@ -107,6 +111,8 @@ type Dnsdatabase struct {
 	RrMax pulumi.IntOutput `pulumi:"rrMax"`
 	// Source IP for forwarding to DNS server.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
+	// IPv6 source IP address for forwarding to DNS server.
+	SourceIp6 pulumi.StringOutput `pulumi:"sourceIp6"`
 	// Enable/disable this DNS zone. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
@@ -180,6 +186,10 @@ type dnsdatabaseState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// DNS zone forwarder IP address list.
 	Forwarder *string `pulumi:"forwarder"`
+	// Forwarder IPv6 address.
+	Forwarder6 *string `pulumi:"forwarder6"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
 	IpMaster *string `pulumi:"ipMaster"`
 	// IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
@@ -192,6 +202,8 @@ type dnsdatabaseState struct {
 	RrMax *int `pulumi:"rrMax"`
 	// Source IP for forwarding to DNS server.
 	SourceIp *string `pulumi:"sourceIp"`
+	// IPv6 source IP address for forwarding to DNS server.
+	SourceIp6 *string `pulumi:"sourceIp6"`
 	// Enable/disable this DNS zone. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
@@ -221,6 +233,10 @@ type DnsdatabaseState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// DNS zone forwarder IP address list.
 	Forwarder pulumi.StringPtrInput
+	// Forwarder IPv6 address.
+	Forwarder6 pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
 	IpMaster pulumi.StringPtrInput
 	// IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
@@ -233,6 +249,8 @@ type DnsdatabaseState struct {
 	RrMax pulumi.IntPtrInput
 	// Source IP for forwarding to DNS server.
 	SourceIp pulumi.StringPtrInput
+	// IPv6 source IP address for forwarding to DNS server.
+	SourceIp6 pulumi.StringPtrInput
 	// Enable/disable this DNS zone. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
@@ -266,6 +284,10 @@ type dnsdatabaseArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// DNS zone forwarder IP address list.
 	Forwarder *string `pulumi:"forwarder"`
+	// Forwarder IPv6 address.
+	Forwarder6 *string `pulumi:"forwarder6"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
 	IpMaster *string `pulumi:"ipMaster"`
 	// IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
@@ -278,6 +300,8 @@ type dnsdatabaseArgs struct {
 	RrMax *int `pulumi:"rrMax"`
 	// Source IP for forwarding to DNS server.
 	SourceIp *string `pulumi:"sourceIp"`
+	// IPv6 source IP address for forwarding to DNS server.
+	SourceIp6 *string `pulumi:"sourceIp6"`
 	// Enable/disable this DNS zone. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
@@ -308,6 +332,10 @@ type DnsdatabaseArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// DNS zone forwarder IP address list.
 	Forwarder pulumi.StringPtrInput
+	// Forwarder IPv6 address.
+	Forwarder6 pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
 	IpMaster pulumi.StringPtrInput
 	// IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
@@ -320,6 +348,8 @@ type DnsdatabaseArgs struct {
 	RrMax pulumi.IntPtrInput
 	// Source IP for forwarding to DNS server.
 	SourceIp pulumi.StringPtrInput
+	// IPv6 source IP address for forwarding to DNS server.
+	SourceIp6 pulumi.StringPtrInput
 	// Enable/disable this DNS zone. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
@@ -456,6 +486,16 @@ func (o DnsdatabaseOutput) Forwarder() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dnsdatabase) pulumi.StringOutput { return v.Forwarder }).(pulumi.StringOutput)
 }
 
+// Forwarder IPv6 address.
+func (o DnsdatabaseOutput) Forwarder6() pulumi.StringOutput {
+	return o.ApplyT(func(v *Dnsdatabase) pulumi.StringOutput { return v.Forwarder6 }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o DnsdatabaseOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Dnsdatabase) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
 func (o DnsdatabaseOutput) IpMaster() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dnsdatabase) pulumi.StringOutput { return v.IpMaster }).(pulumi.StringOutput)
@@ -484,6 +524,11 @@ func (o DnsdatabaseOutput) RrMax() pulumi.IntOutput {
 // Source IP for forwarding to DNS server.
 func (o DnsdatabaseOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dnsdatabase) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+// IPv6 source IP address for forwarding to DNS server.
+func (o DnsdatabaseOutput) SourceIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *Dnsdatabase) pulumi.StringOutput { return v.SourceIp6 }).(pulumi.StringOutput)
 }
 
 // Enable/disable this DNS zone. Valid values: `enable`, `disable`.

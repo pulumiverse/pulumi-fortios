@@ -219,6 +219,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> DedicatedTo { get; private set; } = null!;
 
         /// <summary>
+        /// default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        /// </summary>
+        [Output("defaultPurdueLevel")]
+        public Output<string> DefaultPurdueLevel { get; private set; } = null!;
+
+        /// <summary>
         /// Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("defaultgw")]
@@ -285,6 +291,12 @@ namespace Pulumiverse.Fortios.System
         public Output<int> Devindex { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("dhcpBroadcastFlag")]
+        public Output<string> DhcpBroadcastFlag { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("dhcpClasslessRouteAddition")]
@@ -301,6 +313,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("dhcpRelayAgentOption")]
         public Output<string> DhcpRelayAgentOption { get; private set; } = null!;
+
+        /// <summary>
+        /// DHCP relay circuit ID.
+        /// </summary>
+        [Output("dhcpRelayCircuitId")]
+        public Output<string> DhcpRelayCircuitId { get; private set; } = null!;
 
         /// <summary>
         /// Specify outgoing interface to reach server.
@@ -339,6 +357,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> DhcpRelayService { get; private set; } = null!;
 
         /// <summary>
+        /// IP address used by the DHCP relay as its source IP.
+        /// </summary>
+        [Output("dhcpRelaySourceIp")]
+        public Output<string> DhcpRelaySourceIp { get; private set; } = null!;
+
+        /// <summary>
         /// DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
         /// </summary>
         [Output("dhcpRelayType")]
@@ -349,6 +373,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("dhcpRenewTime")]
         public Output<int> DhcpRenewTime { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("dhcpSmartRelay")]
+        public Output<string> DhcpSmartRelay { get; private set; } = null!;
 
         /// <summary>
         /// Configure DHCP server access list. The structure of `dhcp_snooping_server_list` block is documented below.
@@ -561,6 +591,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> ForwardErrorCorrection { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("gwdetect")]
@@ -639,7 +675,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Ip { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+        /// Enable/disable automatic IP address assignment of this interface by FortiIPAM.
         /// </summary>
         [Output("ipManagedByFortiipam")]
         public Output<string> IpManagedByFortiipam { get; private set; } = null!;
@@ -1239,6 +1275,24 @@ namespace Pulumiverse.Fortios.System
         public Output<string> SwitchControllerNetflowCollect { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("switchControllerOffload")]
+        public Output<string> SwitchControllerOffload { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("switchControllerOffloadGw")]
+        public Output<string> SwitchControllerOffloadGw { get; private set; } = null!;
+
+        /// <summary>
+        /// IP for routing offload on FortiSwitch.
+        /// </summary>
+        [Output("switchControllerOffloadIp")]
+        public Output<string> SwitchControllerOffloadIp { get; private set; } = null!;
+
+        /// <summary>
         /// Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
         /// </summary>
         [Output("switchControllerRspanMode")]
@@ -1616,6 +1670,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DedicatedTo { get; set; }
 
         /// <summary>
+        /// default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        /// </summary>
+        [Input("defaultPurdueLevel")]
+        public Input<string>? DefaultPurdueLevel { get; set; }
+
+        /// <summary>
         /// Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("defaultgw")]
@@ -1682,6 +1742,12 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? Devindex { get; set; }
 
         /// <summary>
+        /// Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("dhcpBroadcastFlag")]
+        public Input<string>? DhcpBroadcastFlag { get; set; }
+
+        /// <summary>
         /// Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("dhcpClasslessRouteAddition")]
@@ -1698,6 +1764,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("dhcpRelayAgentOption")]
         public Input<string>? DhcpRelayAgentOption { get; set; }
+
+        /// <summary>
+        /// DHCP relay circuit ID.
+        /// </summary>
+        [Input("dhcpRelayCircuitId")]
+        public Input<string>? DhcpRelayCircuitId { get; set; }
 
         /// <summary>
         /// Specify outgoing interface to reach server.
@@ -1736,6 +1808,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DhcpRelayService { get; set; }
 
         /// <summary>
+        /// IP address used by the DHCP relay as its source IP.
+        /// </summary>
+        [Input("dhcpRelaySourceIp")]
+        public Input<string>? DhcpRelaySourceIp { get; set; }
+
+        /// <summary>
         /// DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
         /// </summary>
         [Input("dhcpRelayType")]
@@ -1746,6 +1824,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("dhcpRenewTime")]
         public Input<int>? DhcpRenewTime { get; set; }
+
+        /// <summary>
+        /// Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("dhcpSmartRelay")]
+        public Input<string>? DhcpSmartRelay { get; set; }
 
         [Input("dhcpSnoopingServerLists")]
         private InputList<Inputs.InterfaceDhcpSnoopingServerListArgs>? _dhcpSnoopingServerLists;
@@ -1980,6 +2064,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ForwardErrorCorrection { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("gwdetect")]
@@ -2058,7 +2148,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Ip { get; set; }
 
         /// <summary>
-        /// Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+        /// Enable/disable automatic IP address assignment of this interface by FortiIPAM.
         /// </summary>
         [Input("ipManagedByFortiipam")]
         public Input<string>? IpManagedByFortiipam { get; set; }
@@ -2702,6 +2792,24 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? SwitchControllerNetflowCollect { get; set; }
 
         /// <summary>
+        /// Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("switchControllerOffload")]
+        public Input<string>? SwitchControllerOffload { get; set; }
+
+        /// <summary>
+        /// Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("switchControllerOffloadGw")]
+        public Input<string>? SwitchControllerOffloadGw { get; set; }
+
+        /// <summary>
+        /// IP for routing offload on FortiSwitch.
+        /// </summary>
+        [Input("switchControllerOffloadIp")]
+        public Input<string>? SwitchControllerOffloadIp { get; set; }
+
+        /// <summary>
         /// Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("switchControllerRspanMode")]
@@ -3046,6 +3154,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DedicatedTo { get; set; }
 
         /// <summary>
+        /// default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        /// </summary>
+        [Input("defaultPurdueLevel")]
+        public Input<string>? DefaultPurdueLevel { get; set; }
+
+        /// <summary>
         /// Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("defaultgw")]
@@ -3112,6 +3226,12 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? Devindex { get; set; }
 
         /// <summary>
+        /// Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("dhcpBroadcastFlag")]
+        public Input<string>? DhcpBroadcastFlag { get; set; }
+
+        /// <summary>
         /// Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("dhcpClasslessRouteAddition")]
@@ -3128,6 +3248,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("dhcpRelayAgentOption")]
         public Input<string>? DhcpRelayAgentOption { get; set; }
+
+        /// <summary>
+        /// DHCP relay circuit ID.
+        /// </summary>
+        [Input("dhcpRelayCircuitId")]
+        public Input<string>? DhcpRelayCircuitId { get; set; }
 
         /// <summary>
         /// Specify outgoing interface to reach server.
@@ -3166,6 +3292,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DhcpRelayService { get; set; }
 
         /// <summary>
+        /// IP address used by the DHCP relay as its source IP.
+        /// </summary>
+        [Input("dhcpRelaySourceIp")]
+        public Input<string>? DhcpRelaySourceIp { get; set; }
+
+        /// <summary>
         /// DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
         /// </summary>
         [Input("dhcpRelayType")]
@@ -3176,6 +3308,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("dhcpRenewTime")]
         public Input<int>? DhcpRenewTime { get; set; }
+
+        /// <summary>
+        /// Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("dhcpSmartRelay")]
+        public Input<string>? DhcpSmartRelay { get; set; }
 
         [Input("dhcpSnoopingServerLists")]
         private InputList<Inputs.InterfaceDhcpSnoopingServerListGetArgs>? _dhcpSnoopingServerLists;
@@ -3410,6 +3548,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ForwardErrorCorrection { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("gwdetect")]
@@ -3488,7 +3632,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Ip { get; set; }
 
         /// <summary>
-        /// Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+        /// Enable/disable automatic IP address assignment of this interface by FortiIPAM.
         /// </summary>
         [Input("ipManagedByFortiipam")]
         public Input<string>? IpManagedByFortiipam { get; set; }
@@ -4130,6 +4274,24 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("switchControllerNetflowCollect")]
         public Input<string>? SwitchControllerNetflowCollect { get; set; }
+
+        /// <summary>
+        /// Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("switchControllerOffload")]
+        public Input<string>? SwitchControllerOffload { get; set; }
+
+        /// <summary>
+        /// Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("switchControllerOffloadGw")]
+        public Input<string>? SwitchControllerOffloadGw { get; set; }
+
+        /// <summary>
+        /// IP for routing offload on FortiSwitch.
+        /// </summary>
+        [Input("switchControllerOffloadIp")]
+        public Input<string>? SwitchControllerOffloadIp { get; set; }
 
         /// <summary>
         /// Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.

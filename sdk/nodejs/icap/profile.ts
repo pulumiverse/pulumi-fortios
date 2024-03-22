@@ -84,6 +84,10 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly chunkEncap!: pulumi.Output<string>;
     /**
+     * Comment.
+     */
+    public readonly comment!: pulumi.Output<string | undefined>;
+    /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
@@ -107,6 +111,10 @@ export class Profile extends pulumi.CustomResource {
      * ICAP server to use for a file transfer.
      */
     public readonly fileTransferServer!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
      */
@@ -218,12 +226,14 @@ export class Profile extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ProfileState | undefined;
             resourceInputs["chunkEncap"] = state ? state.chunkEncap : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["extensionFeature"] = state ? state.extensionFeature : undefined;
             resourceInputs["fileTransfer"] = state ? state.fileTransfer : undefined;
             resourceInputs["fileTransferFailure"] = state ? state.fileTransferFailure : undefined;
             resourceInputs["fileTransferPath"] = state ? state.fileTransferPath : undefined;
             resourceInputs["fileTransferServer"] = state ? state.fileTransferServer : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["icapBlockLog"] = state ? state.icapBlockLog : undefined;
             resourceInputs["icapHeaders"] = state ? state.icapHeaders : undefined;
             resourceInputs["methods"] = state ? state.methods : undefined;
@@ -251,12 +261,14 @@ export class Profile extends pulumi.CustomResource {
         } else {
             const args = argsOrState as ProfileArgs | undefined;
             resourceInputs["chunkEncap"] = args ? args.chunkEncap : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["extensionFeature"] = args ? args.extensionFeature : undefined;
             resourceInputs["fileTransfer"] = args ? args.fileTransfer : undefined;
             resourceInputs["fileTransferFailure"] = args ? args.fileTransferFailure : undefined;
             resourceInputs["fileTransferPath"] = args ? args.fileTransferPath : undefined;
             resourceInputs["fileTransferServer"] = args ? args.fileTransferServer : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["icapBlockLog"] = args ? args.icapBlockLog : undefined;
             resourceInputs["icapHeaders"] = args ? args.icapHeaders : undefined;
             resourceInputs["methods"] = args ? args.methods : undefined;
@@ -296,6 +308,10 @@ export interface ProfileState {
      */
     chunkEncap?: pulumi.Input<string>;
     /**
+     * Comment.
+     */
+    comment?: pulumi.Input<string>;
+    /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -319,6 +335,10 @@ export interface ProfileState {
      * ICAP server to use for a file transfer.
      */
     fileTransferServer?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
      */
@@ -426,6 +446,10 @@ export interface ProfileArgs {
      */
     chunkEncap?: pulumi.Input<string>;
     /**
+     * Comment.
+     */
+    comment?: pulumi.Input<string>;
+    /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -449,6 +473,10 @@ export interface ProfileArgs {
      * ICAP server to use for a file transfer.
      */
     fileTransferServer?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
      */

@@ -98,6 +98,10 @@ export class Saml extends pulumi.CustomResource {
      */
     public readonly entityId!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * IDP certificate name.
      */
     public readonly idpCert!: pulumi.Output<string>;
@@ -173,6 +177,7 @@ export class Saml extends pulumi.CustomResource {
             resourceInputs["defaultProfile"] = state ? state.defaultProfile : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["entityId"] = state ? state.entityId : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["idpCert"] = state ? state.idpCert : undefined;
             resourceInputs["idpEntityId"] = state ? state.idpEntityId : undefined;
             resourceInputs["idpSingleLogoutUrl"] = state ? state.idpSingleLogoutUrl : undefined;
@@ -195,6 +200,7 @@ export class Saml extends pulumi.CustomResource {
             resourceInputs["defaultProfile"] = args ? args.defaultProfile : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["entityId"] = args ? args.entityId : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["idpCert"] = args ? args.idpCert : undefined;
             resourceInputs["idpEntityId"] = args ? args.idpEntityId : undefined;
             resourceInputs["idpSingleLogoutUrl"] = args ? args.idpSingleLogoutUrl : undefined;
@@ -243,6 +249,10 @@ export interface SamlState {
      * SP entity ID.
      */
     entityId?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * IDP certificate name.
      */
@@ -329,6 +339,10 @@ export interface SamlArgs {
      * SP entity ID.
      */
     entityId?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * IDP certificate name.
      */

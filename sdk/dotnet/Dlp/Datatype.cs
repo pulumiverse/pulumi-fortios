@@ -53,6 +53,24 @@ namespace Pulumiverse.Fortios.Dlp
         public Output<int> LookBack { get; private set; } = null!;
 
         /// <summary>
+        /// Number of characters behind for match-around (1 - 4096, default = 1).
+        /// </summary>
+        [Output("matchAhead")]
+        public Output<int> MatchAhead { get; private set; } = null!;
+
+        /// <summary>
+        /// Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+        /// </summary>
+        [Output("matchAround")]
+        public Output<string> MatchAround { get; private set; } = null!;
+
+        /// <summary>
+        /// Number of characters in front for match-around (1 - 4096, default = 1).
+        /// </summary>
+        [Output("matchBack")]
+        public Output<int> MatchBack { get; private set; } = null!;
+
+        /// <summary>
         /// Name of table containing the data type.
         /// </summary>
         [Output("name")]
@@ -81,6 +99,12 @@ namespace Pulumiverse.Fortios.Dlp
         /// </summary>
         [Output("verify")]
         public Output<string> Verify { get; private set; } = null!;
+
+        /// <summary>
+        /// Extra regular expression pattern string used to verify the data type.
+        /// </summary>
+        [Output("verify2")]
+        public Output<string> Verify2 { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
@@ -154,6 +178,24 @@ namespace Pulumiverse.Fortios.Dlp
         public Input<int>? LookBack { get; set; }
 
         /// <summary>
+        /// Number of characters behind for match-around (1 - 4096, default = 1).
+        /// </summary>
+        [Input("matchAhead")]
+        public Input<int>? MatchAhead { get; set; }
+
+        /// <summary>
+        /// Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+        /// </summary>
+        [Input("matchAround")]
+        public Input<string>? MatchAround { get; set; }
+
+        /// <summary>
+        /// Number of characters in front for match-around (1 - 4096, default = 1).
+        /// </summary>
+        [Input("matchBack")]
+        public Input<int>? MatchBack { get; set; }
+
+        /// <summary>
         /// Name of table containing the data type.
         /// </summary>
         [Input("name")]
@@ -182,6 +224,12 @@ namespace Pulumiverse.Fortios.Dlp
         /// </summary>
         [Input("verify")]
         public Input<string>? Verify { get; set; }
+
+        /// <summary>
+        /// Extra regular expression pattern string used to verify the data type.
+        /// </summary>
+        [Input("verify2")]
+        public Input<string>? Verify2 { get; set; }
 
         /// <summary>
         /// Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
@@ -216,6 +264,24 @@ namespace Pulumiverse.Fortios.Dlp
         public Input<int>? LookBack { get; set; }
 
         /// <summary>
+        /// Number of characters behind for match-around (1 - 4096, default = 1).
+        /// </summary>
+        [Input("matchAhead")]
+        public Input<int>? MatchAhead { get; set; }
+
+        /// <summary>
+        /// Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+        /// </summary>
+        [Input("matchAround")]
+        public Input<string>? MatchAround { get; set; }
+
+        /// <summary>
+        /// Number of characters in front for match-around (1 - 4096, default = 1).
+        /// </summary>
+        [Input("matchBack")]
+        public Input<int>? MatchBack { get; set; }
+
+        /// <summary>
         /// Name of table containing the data type.
         /// </summary>
         [Input("name")]
@@ -244,6 +310,12 @@ namespace Pulumiverse.Fortios.Dlp
         /// </summary>
         [Input("verify")]
         public Input<string>? Verify { get; set; }
+
+        /// <summary>
+        /// Extra regular expression pattern string used to verify the data type.
+        /// </summary>
+        [Input("verify2")]
+        public Input<string>? Verify2 { get; set; }
 
         /// <summary>
         /// Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.

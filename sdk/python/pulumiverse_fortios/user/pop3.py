@@ -26,7 +26,7 @@ class Pop3Args:
         :param pulumi.Input[str] name: POP3 server entry name.
         :param pulumi.Input[int] port: POP3 service port number.
         :param pulumi.Input[str] secure: SSL connection. Valid values: `none`, `starttls`, `pop3s`.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         pulumi.set(__self__, "server", server)
@@ -93,7 +93,7 @@ class Pop3Args:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -129,7 +129,7 @@ class _Pop3State:
         :param pulumi.Input[int] port: POP3 service port number.
         :param pulumi.Input[str] secure: SSL connection. Valid values: `none`, `starttls`, `pop3s`.
         :param pulumi.Input[str] server: {<name_str|ip_str>} server domain name or IP.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if name is not None:
@@ -197,7 +197,7 @@ class _Pop3State:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -272,7 +272,7 @@ class Pop3(pulumi.CustomResource):
         :param pulumi.Input[int] port: POP3 service port number.
         :param pulumi.Input[str] secure: SSL connection. Valid values: `none`, `starttls`, `pop3s`.
         :param pulumi.Input[str] server: {<name_str|ip_str>} server domain name or IP.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -382,7 +382,7 @@ class Pop3(pulumi.CustomResource):
         :param pulumi.Input[int] port: POP3 service port number.
         :param pulumi.Input[str] secure: SSL connection. Valid values: `none`, `starttls`, `pop3s`.
         :param pulumi.Input[str] server: {<name_str|ip_str>} server domain name or IP.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -433,7 +433,7 @@ class Pop3(pulumi.CustomResource):
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> pulumi.Output[str]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 

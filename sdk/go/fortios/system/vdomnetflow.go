@@ -68,6 +68,12 @@ type Vdomnetflow struct {
 	CollectorIp pulumi.StringOutput `pulumi:"collectorIp"`
 	// NetFlow collector port number.
 	CollectorPort pulumi.IntOutput `pulumi:"collectorPort"`
+	// Netflow collectors. The structure of `collectors` block is documented below.
+	Collectors VdomnetflowCollectorArrayOutput `pulumi:"collectors"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -114,6 +120,12 @@ type vdomnetflowState struct {
 	CollectorIp *string `pulumi:"collectorIp"`
 	// NetFlow collector port number.
 	CollectorPort *int `pulumi:"collectorPort"`
+	// Netflow collectors. The structure of `collectors` block is documented below.
+	Collectors []VdomnetflowCollector `pulumi:"collectors"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -131,6 +143,12 @@ type VdomnetflowState struct {
 	CollectorIp pulumi.StringPtrInput
 	// NetFlow collector port number.
 	CollectorPort pulumi.IntPtrInput
+	// Netflow collectors. The structure of `collectors` block is documented below.
+	Collectors VdomnetflowCollectorArrayInput
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -152,6 +170,12 @@ type vdomnetflowArgs struct {
 	CollectorIp *string `pulumi:"collectorIp"`
 	// NetFlow collector port number.
 	CollectorPort *int `pulumi:"collectorPort"`
+	// Netflow collectors. The structure of `collectors` block is documented below.
+	Collectors []VdomnetflowCollector `pulumi:"collectors"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -170,6 +194,12 @@ type VdomnetflowArgs struct {
 	CollectorIp pulumi.StringPtrInput
 	// NetFlow collector port number.
 	CollectorPort pulumi.IntPtrInput
+	// Netflow collectors. The structure of `collectors` block is documented below.
+	Collectors VdomnetflowCollectorArrayInput
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -277,6 +307,21 @@ func (o VdomnetflowOutput) CollectorIp() pulumi.StringOutput {
 // NetFlow collector port number.
 func (o VdomnetflowOutput) CollectorPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vdomnetflow) pulumi.IntOutput { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+// Netflow collectors. The structure of `collectors` block is documented below.
+func (o VdomnetflowOutput) Collectors() VdomnetflowCollectorArrayOutput {
+	return o.ApplyT(func(v *Vdomnetflow) VdomnetflowCollectorArrayOutput { return v.Collectors }).(VdomnetflowCollectorArrayOutput)
+}
+
+// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+func (o VdomnetflowOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Vdomnetflow) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o VdomnetflowOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Vdomnetflow) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Specify outgoing interface to reach server.

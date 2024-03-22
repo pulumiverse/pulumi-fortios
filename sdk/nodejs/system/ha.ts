@@ -9,33 +9,70 @@ import * as utilities from "../utilities";
 /**
  * Configure HA.
  *
- * By design considerations, the feature is using the fortios.system.Autoscript resource as documented below.
- *
- * ## Example1
+ * ## Example Usage
  *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
  *
- * const trname = new fortios.system.Autoscript("trname", {
- *     interval: 1,
- *     outputSize: 10,
- *     repeat: 1,
- *     script: `config system ha
- *     set session-pickup enable
- *     set session-pickup-connectionless enable
- *     set session-pickup-expectation enable
- *     set session-pickup-nat enable
- *     set override disable
- * end
- *
- *
- * `,
- *     start: "auto",
+ * const trname = new fortios.system.Ha("trname", {
+ *     cpuThreshold: "5 0 0",
+ *     encryption: "disable",
+ *     ftpProxyThreshold: "5 0 0",
+ *     gratuitousArps: "enable",
+ *     groupId: 0,
+ *     haDirect: "disable",
+ *     haEthType: "8890",
+ *     haMgmtStatus: "disable",
+ *     haUptimeDiffMargin: 300,
+ *     hbInterval: 2,
+ *     hbLostThreshold: 20,
+ *     hcEthType: "8891",
+ *     helloHolddown: 20,
+ *     httpProxyThreshold: "5 0 0",
+ *     imapProxyThreshold: "5 0 0",
+ *     interClusterSessionSync: "disable",
+ *     l2epEthType: "8893",
+ *     linkFailedSignal: "disable",
+ *     loadBalanceAll: "disable",
+ *     memoryCompatibleMode: "disable",
+ *     memoryThreshold: "5 0 0",
+ *     mode: "standalone",
+ *     multicastTtl: 600,
+ *     nntpProxyThreshold: "5 0 0",
+ *     override: "disable",
+ *     overrideWaitTime: 0,
+ *     secondaryVcluster: {
+ *         override: "enable",
+ *         overrideWaitTime: 0,
+ *         pingserverFailoverThreshold: 0,
+ *         pingserverSlaveForceReset: "enable",
+ *         priority: 128,
+ *         vclusterId: 1,
+ *     },
+ *     weight: "40 ",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
+ *
+ * ## Import
+ *
+ * System Ha can be imported using any of these accepted formats:
+ *
+ * ```sh
+ * $ pulumi import fortios:system/ha:Ha labelname SystemHa
+ * ```
+ *
+ * If you do not want to import arguments of block:
+ *
+ * $ export "FORTIOS_IMPORT_TABLE"="false"
+ *
+ * ```sh
+ * $ pulumi import fortios:system/ha:Ha labelname SystemHa
+ * ```
+ *
+ * $ unset "FORTIOS_IMPORT_TABLE"
  */
 export class Ha extends pulumi.CustomResource {
     /**
@@ -65,88 +102,353 @@ export class Ha extends pulumi.CustomResource {
         return obj['__pulumiType'] === Ha.__pulumiType;
     }
 
+    /**
+     * Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+     */
     public readonly arps!: pulumi.Output<number>;
+    /**
+     * Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+     */
     public readonly arpsInterval!: pulumi.Output<number>;
+    /**
+     * Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+     */
     public readonly authentication!: pulumi.Output<string>;
+    /**
+     * Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+     */
     public readonly cpuThreshold!: pulumi.Output<string>;
+    /**
+     * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+     */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+     */
     public readonly encryption!: pulumi.Output<string>;
+    /**
+     * HA EVPN FDB TTL on primary box (5 - 3600 sec).
+     */
+    public readonly evpnTtl!: pulumi.Output<number>;
+    /**
+     * Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+     */
     public readonly failoverHoldTime!: pulumi.Output<number>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+     */
     public readonly ftpProxyThreshold!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+     */
     public readonly gratuitousArps!: pulumi.Output<string>;
+    /**
+     * Cluster group ID  (0 - 255). Must be the same for all members.
+     */
     public readonly groupId!: pulumi.Output<number>;
+    /**
+     * Cluster group name. Must be the same for all members.
+     */
     public readonly groupName!: pulumi.Output<string>;
+    /**
+     * Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+     */
     public readonly haDirect!: pulumi.Output<string>;
+    /**
+     * HA heartbeat packet Ethertype (4-digit hex).
+     */
     public readonly haEthType!: pulumi.Output<string>;
+    /**
+     * Reserve interfaces to manage individual cluster units. The structure of `haMgmtInterfaces` block is documented below.
+     */
     public readonly haMgmtInterfaces!: pulumi.Output<outputs.system.HaHaMgmtInterface[] | undefined>;
+    /**
+     * Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+     */
     public readonly haMgmtStatus!: pulumi.Output<string>;
+    /**
+     * Normally you would only reduce this value for failover testing.
+     */
     public readonly haUptimeDiffMargin!: pulumi.Output<number>;
+    /**
+     * Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+     */
     public readonly hbInterval!: pulumi.Output<number>;
+    /**
+     * Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+     */
     public readonly hbIntervalInMilliseconds!: pulumi.Output<string>;
+    /**
+     * Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+     */
     public readonly hbLostThreshold!: pulumi.Output<number>;
+    /**
+     * Heartbeat interfaces. Must be the same for all members.
+     */
     public readonly hbdev!: pulumi.Output<string>;
+    /**
+     * Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+     */
     public readonly hcEthType!: pulumi.Output<string>;
+    /**
+     * Time to wait before changing from hello to work state (5 - 300 sec).
+     */
     public readonly helloHolddown!: pulumi.Output<number>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+     */
     public readonly httpProxyThreshold!: pulumi.Output<string>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+     */
     public readonly imapProxyThreshold!: pulumi.Output<string>;
+    /**
+     * Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+     */
     public readonly interClusterSessionSync!: pulumi.Output<string>;
+    /**
+     * IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+     */
+    public readonly ipsecPhase2Proposal!: pulumi.Output<string>;
+    /**
+     * key
+     */
     public readonly key!: pulumi.Output<string | undefined>;
+    /**
+     * Telnet session HA heartbeat packet Ethertype (4-digit hex).
+     */
     public readonly l2epEthType!: pulumi.Output<string>;
+    /**
+     * Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+     */
     public readonly linkFailedSignal!: pulumi.Output<string>;
+    /**
+     * Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+     */
     public readonly loadBalanceAll!: pulumi.Output<string>;
+    /**
+     * Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+     */
     public readonly logicalSn!: pulumi.Output<string>;
+    /**
+     * Enable/disable memory based failover. Valid values: `enable`, `disable`.
+     */
     public readonly memoryBasedFailover!: pulumi.Output<string>;
+    /**
+     * Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+     */
     public readonly memoryCompatibleMode!: pulumi.Output<string>;
+    /**
+     * Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+     */
     public readonly memoryFailoverFlipTimeout!: pulumi.Output<number>;
+    /**
+     * Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+     */
     public readonly memoryFailoverMonitorPeriod!: pulumi.Output<number>;
+    /**
+     * Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+     */
     public readonly memoryFailoverSampleRate!: pulumi.Output<number>;
+    /**
+     * Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+     */
     public readonly memoryFailoverThreshold!: pulumi.Output<number>;
+    /**
+     * Dynamic weighted load balancing memory usage weight and high and low thresholds.
+     */
     public readonly memoryThreshold!: pulumi.Output<string>;
+    /**
+     * HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+     */
     public readonly mode!: pulumi.Output<string>;
+    /**
+     * Interfaces to check for port monitoring (or link failure).
+     */
     public readonly monitor!: pulumi.Output<string>;
+    /**
+     * HA multicast TTL on master (5 - 3600 sec).
+     */
     public readonly multicastTtl!: pulumi.Output<number>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+     */
     public readonly nntpProxyThreshold!: pulumi.Output<string>;
+    /**
+     * Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+     */
     public readonly override!: pulumi.Output<string>;
+    /**
+     * Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+     */
     public readonly overrideWaitTime!: pulumi.Output<number>;
+    /**
+     * Cluster password. Must be the same for all members.
+     */
     public readonly password!: pulumi.Output<string | undefined>;
+    /**
+     * Remote IP monitoring failover threshold (0 - 50).
+     */
     public readonly pingserverFailoverThreshold!: pulumi.Output<number>;
+    /**
+     * Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+     */
     public readonly pingserverFlipTimeout!: pulumi.Output<number>;
+    /**
+     * Interfaces to check for remote IP monitoring.
+     */
     public readonly pingserverMonitorInterface!: pulumi.Output<string>;
+    /**
+     * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+     */
     public readonly pingserverSecondaryForceReset!: pulumi.Output<string>;
+    /**
+     * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+     */
     public readonly pingserverSlaveForceReset!: pulumi.Output<string>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+     */
     public readonly pop3ProxyThreshold!: pulumi.Output<string>;
+    /**
+     * Increase the priority to select the primary unit (0 - 255).
+     */
     public readonly priority!: pulumi.Output<number>;
+    /**
+     * Time to wait between routing table updates to the cluster (0 - 3600 sec).
+     */
     public readonly routeHold!: pulumi.Output<number>;
+    /**
+     * TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+     */
     public readonly routeTtl!: pulumi.Output<number>;
+    /**
+     * Time to wait before sending new routes to the cluster (0 - 3600 sec).
+     */
     public readonly routeWait!: pulumi.Output<number>;
+    /**
+     * Type of A-A load balancing. Use none if you have external load balancers.
+     */
     public readonly schedule!: pulumi.Output<string>;
+    /**
+     * Configure virtual cluster 2. The structure of `secondaryVcluster` block is documented below.
+     */
     public readonly secondaryVcluster!: pulumi.Output<outputs.system.HaSecondaryVcluster>;
+    /**
+     * Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+     */
     public readonly sessionPickup!: pulumi.Output<string>;
+    /**
+     * Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+     */
     public readonly sessionPickupConnectionless!: pulumi.Output<string>;
+    /**
+     * Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+     */
     public readonly sessionPickupDelay!: pulumi.Output<string>;
+    /**
+     * Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+     */
     public readonly sessionPickupExpectation!: pulumi.Output<string>;
+    /**
+     * Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+     */
     public readonly sessionPickupNat!: pulumi.Output<string>;
+    /**
+     * Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+     */
     public readonly sessionSyncDev!: pulumi.Output<string>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+     */
     public readonly smtpProxyThreshold!: pulumi.Output<string>;
+    /**
+     * Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+     */
     public readonly ssdFailover!: pulumi.Output<string>;
+    /**
+     * Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+     */
     public readonly standaloneConfigSync!: pulumi.Output<string>;
+    /**
+     * Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+     */
     public readonly standaloneMgmtVdom!: pulumi.Output<string>;
+    /**
+     * Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+     */
     public readonly syncConfig!: pulumi.Output<string>;
+    /**
+     * Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+     */
     public readonly syncPacketBalance!: pulumi.Output<string>;
+    /**
+     * Default route gateway for unicast interface.
+     */
     public readonly unicastGateway!: pulumi.Output<string>;
+    /**
+     * Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+     */
     public readonly unicastHb!: pulumi.Output<string>;
+    /**
+     * Unicast heartbeat netmask.
+     */
     public readonly unicastHbNetmask!: pulumi.Output<string>;
+    /**
+     * Unicast heartbeat peer IP.
+     */
     public readonly unicastHbPeerip!: pulumi.Output<string>;
+    /**
+     * Number of unicast peers. The structure of `unicastPeers` block is documented below.
+     */
     public readonly unicastPeers!: pulumi.Output<outputs.system.HaUnicastPeer[] | undefined>;
+    /**
+     * Enable/disable unicast connection. Valid values: `enable`, `disable`.
+     */
     public readonly unicastStatus!: pulumi.Output<string>;
+    /**
+     * Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+     */
     public readonly uninterruptiblePrimaryWait!: pulumi.Output<number>;
+    /**
+     * Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+     */
     public readonly uninterruptibleUpgrade!: pulumi.Output<string>;
+    /**
+     * The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+     */
+    public readonly upgradeMode!: pulumi.Output<string>;
+    /**
+     * Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+     */
     public readonly vcluster2!: pulumi.Output<string>;
+    /**
+     * Cluster ID.
+     */
     public readonly vclusterId!: pulumi.Output<number>;
+    /**
+     * Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+     */
     public readonly vclusterStatus!: pulumi.Output<string>;
+    /**
+     * Virtual cluster table. The structure of `vcluster` block is documented below.
+     */
     public readonly vclusters!: pulumi.Output<outputs.system.HaVcluster[] | undefined>;
+    /**
+     * VDOMs in virtual cluster 1.
+     */
     public readonly vdom!: pulumi.Output<string>;
+    /**
+     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    /**
+     * Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
+     */
     public readonly weight!: pulumi.Output<string>;
 
     /**
@@ -168,8 +470,10 @@ export class Ha extends pulumi.CustomResource {
             resourceInputs["cpuThreshold"] = state ? state.cpuThreshold : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["encryption"] = state ? state.encryption : undefined;
+            resourceInputs["evpnTtl"] = state ? state.evpnTtl : undefined;
             resourceInputs["failoverHoldTime"] = state ? state.failoverHoldTime : undefined;
             resourceInputs["ftpProxyThreshold"] = state ? state.ftpProxyThreshold : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gratuitousArps"] = state ? state.gratuitousArps : undefined;
             resourceInputs["groupId"] = state ? state.groupId : undefined;
             resourceInputs["groupName"] = state ? state.groupName : undefined;
@@ -187,6 +491,7 @@ export class Ha extends pulumi.CustomResource {
             resourceInputs["httpProxyThreshold"] = state ? state.httpProxyThreshold : undefined;
             resourceInputs["imapProxyThreshold"] = state ? state.imapProxyThreshold : undefined;
             resourceInputs["interClusterSessionSync"] = state ? state.interClusterSessionSync : undefined;
+            resourceInputs["ipsecPhase2Proposal"] = state ? state.ipsecPhase2Proposal : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["l2epEthType"] = state ? state.l2epEthType : undefined;
             resourceInputs["linkFailedSignal"] = state ? state.linkFailedSignal : undefined;
@@ -238,6 +543,7 @@ export class Ha extends pulumi.CustomResource {
             resourceInputs["unicastStatus"] = state ? state.unicastStatus : undefined;
             resourceInputs["uninterruptiblePrimaryWait"] = state ? state.uninterruptiblePrimaryWait : undefined;
             resourceInputs["uninterruptibleUpgrade"] = state ? state.uninterruptibleUpgrade : undefined;
+            resourceInputs["upgradeMode"] = state ? state.upgradeMode : undefined;
             resourceInputs["vcluster2"] = state ? state.vcluster2 : undefined;
             resourceInputs["vclusterId"] = state ? state.vclusterId : undefined;
             resourceInputs["vclusterStatus"] = state ? state.vclusterStatus : undefined;
@@ -253,8 +559,10 @@ export class Ha extends pulumi.CustomResource {
             resourceInputs["cpuThreshold"] = args ? args.cpuThreshold : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["encryption"] = args ? args.encryption : undefined;
+            resourceInputs["evpnTtl"] = args ? args.evpnTtl : undefined;
             resourceInputs["failoverHoldTime"] = args ? args.failoverHoldTime : undefined;
             resourceInputs["ftpProxyThreshold"] = args ? args.ftpProxyThreshold : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gratuitousArps"] = args ? args.gratuitousArps : undefined;
             resourceInputs["groupId"] = args ? args.groupId : undefined;
             resourceInputs["groupName"] = args ? args.groupName : undefined;
@@ -272,6 +580,7 @@ export class Ha extends pulumi.CustomResource {
             resourceInputs["httpProxyThreshold"] = args ? args.httpProxyThreshold : undefined;
             resourceInputs["imapProxyThreshold"] = args ? args.imapProxyThreshold : undefined;
             resourceInputs["interClusterSessionSync"] = args ? args.interClusterSessionSync : undefined;
+            resourceInputs["ipsecPhase2Proposal"] = args ? args.ipsecPhase2Proposal : undefined;
             resourceInputs["key"] = args?.key ? pulumi.secret(args.key) : undefined;
             resourceInputs["l2epEthType"] = args ? args.l2epEthType : undefined;
             resourceInputs["linkFailedSignal"] = args ? args.linkFailedSignal : undefined;
@@ -323,6 +632,7 @@ export class Ha extends pulumi.CustomResource {
             resourceInputs["unicastStatus"] = args ? args.unicastStatus : undefined;
             resourceInputs["uninterruptiblePrimaryWait"] = args ? args.uninterruptiblePrimaryWait : undefined;
             resourceInputs["uninterruptibleUpgrade"] = args ? args.uninterruptibleUpgrade : undefined;
+            resourceInputs["upgradeMode"] = args ? args.upgradeMode : undefined;
             resourceInputs["vcluster2"] = args ? args.vcluster2 : undefined;
             resourceInputs["vclusterId"] = args ? args.vclusterId : undefined;
             resourceInputs["vclusterStatus"] = args ? args.vclusterStatus : undefined;
@@ -342,88 +652,353 @@ export class Ha extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Ha resources.
  */
 export interface HaState {
+    /**
+     * Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+     */
     arps?: pulumi.Input<number>;
+    /**
+     * Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+     */
     arpsInterval?: pulumi.Input<number>;
+    /**
+     * Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+     */
     authentication?: pulumi.Input<string>;
+    /**
+     * Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+     */
     cpuThreshold?: pulumi.Input<string>;
+    /**
+     * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+     */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+     */
     encryption?: pulumi.Input<string>;
+    /**
+     * HA EVPN FDB TTL on primary box (5 - 3600 sec).
+     */
+    evpnTtl?: pulumi.Input<number>;
+    /**
+     * Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+     */
     failoverHoldTime?: pulumi.Input<number>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+     */
     ftpProxyThreshold?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+     */
     gratuitousArps?: pulumi.Input<string>;
+    /**
+     * Cluster group ID  (0 - 255). Must be the same for all members.
+     */
     groupId?: pulumi.Input<number>;
+    /**
+     * Cluster group name. Must be the same for all members.
+     */
     groupName?: pulumi.Input<string>;
+    /**
+     * Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+     */
     haDirect?: pulumi.Input<string>;
+    /**
+     * HA heartbeat packet Ethertype (4-digit hex).
+     */
     haEthType?: pulumi.Input<string>;
+    /**
+     * Reserve interfaces to manage individual cluster units. The structure of `haMgmtInterfaces` block is documented below.
+     */
     haMgmtInterfaces?: pulumi.Input<pulumi.Input<inputs.system.HaHaMgmtInterface>[]>;
+    /**
+     * Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+     */
     haMgmtStatus?: pulumi.Input<string>;
+    /**
+     * Normally you would only reduce this value for failover testing.
+     */
     haUptimeDiffMargin?: pulumi.Input<number>;
+    /**
+     * Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+     */
     hbInterval?: pulumi.Input<number>;
+    /**
+     * Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+     */
     hbIntervalInMilliseconds?: pulumi.Input<string>;
+    /**
+     * Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+     */
     hbLostThreshold?: pulumi.Input<number>;
+    /**
+     * Heartbeat interfaces. Must be the same for all members.
+     */
     hbdev?: pulumi.Input<string>;
+    /**
+     * Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+     */
     hcEthType?: pulumi.Input<string>;
+    /**
+     * Time to wait before changing from hello to work state (5 - 300 sec).
+     */
     helloHolddown?: pulumi.Input<number>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+     */
     httpProxyThreshold?: pulumi.Input<string>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+     */
     imapProxyThreshold?: pulumi.Input<string>;
+    /**
+     * Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+     */
     interClusterSessionSync?: pulumi.Input<string>;
+    /**
+     * IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+     */
+    ipsecPhase2Proposal?: pulumi.Input<string>;
+    /**
+     * key
+     */
     key?: pulumi.Input<string>;
+    /**
+     * Telnet session HA heartbeat packet Ethertype (4-digit hex).
+     */
     l2epEthType?: pulumi.Input<string>;
+    /**
+     * Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+     */
     linkFailedSignal?: pulumi.Input<string>;
+    /**
+     * Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+     */
     loadBalanceAll?: pulumi.Input<string>;
+    /**
+     * Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+     */
     logicalSn?: pulumi.Input<string>;
+    /**
+     * Enable/disable memory based failover. Valid values: `enable`, `disable`.
+     */
     memoryBasedFailover?: pulumi.Input<string>;
+    /**
+     * Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+     */
     memoryCompatibleMode?: pulumi.Input<string>;
+    /**
+     * Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+     */
     memoryFailoverFlipTimeout?: pulumi.Input<number>;
+    /**
+     * Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+     */
     memoryFailoverMonitorPeriod?: pulumi.Input<number>;
+    /**
+     * Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+     */
     memoryFailoverSampleRate?: pulumi.Input<number>;
+    /**
+     * Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+     */
     memoryFailoverThreshold?: pulumi.Input<number>;
+    /**
+     * Dynamic weighted load balancing memory usage weight and high and low thresholds.
+     */
     memoryThreshold?: pulumi.Input<string>;
+    /**
+     * HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * Interfaces to check for port monitoring (or link failure).
+     */
     monitor?: pulumi.Input<string>;
+    /**
+     * HA multicast TTL on master (5 - 3600 sec).
+     */
     multicastTtl?: pulumi.Input<number>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+     */
     nntpProxyThreshold?: pulumi.Input<string>;
+    /**
+     * Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+     */
     override?: pulumi.Input<string>;
+    /**
+     * Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+     */
     overrideWaitTime?: pulumi.Input<number>;
+    /**
+     * Cluster password. Must be the same for all members.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * Remote IP monitoring failover threshold (0 - 50).
+     */
     pingserverFailoverThreshold?: pulumi.Input<number>;
+    /**
+     * Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+     */
     pingserverFlipTimeout?: pulumi.Input<number>;
+    /**
+     * Interfaces to check for remote IP monitoring.
+     */
     pingserverMonitorInterface?: pulumi.Input<string>;
+    /**
+     * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+     */
     pingserverSecondaryForceReset?: pulumi.Input<string>;
+    /**
+     * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+     */
     pingserverSlaveForceReset?: pulumi.Input<string>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+     */
     pop3ProxyThreshold?: pulumi.Input<string>;
+    /**
+     * Increase the priority to select the primary unit (0 - 255).
+     */
     priority?: pulumi.Input<number>;
+    /**
+     * Time to wait between routing table updates to the cluster (0 - 3600 sec).
+     */
     routeHold?: pulumi.Input<number>;
+    /**
+     * TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+     */
     routeTtl?: pulumi.Input<number>;
+    /**
+     * Time to wait before sending new routes to the cluster (0 - 3600 sec).
+     */
     routeWait?: pulumi.Input<number>;
+    /**
+     * Type of A-A load balancing. Use none if you have external load balancers.
+     */
     schedule?: pulumi.Input<string>;
+    /**
+     * Configure virtual cluster 2. The structure of `secondaryVcluster` block is documented below.
+     */
     secondaryVcluster?: pulumi.Input<inputs.system.HaSecondaryVcluster>;
+    /**
+     * Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+     */
     sessionPickup?: pulumi.Input<string>;
+    /**
+     * Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+     */
     sessionPickupConnectionless?: pulumi.Input<string>;
+    /**
+     * Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+     */
     sessionPickupDelay?: pulumi.Input<string>;
+    /**
+     * Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+     */
     sessionPickupExpectation?: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+     */
     sessionPickupNat?: pulumi.Input<string>;
+    /**
+     * Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+     */
     sessionSyncDev?: pulumi.Input<string>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+     */
     smtpProxyThreshold?: pulumi.Input<string>;
+    /**
+     * Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+     */
     ssdFailover?: pulumi.Input<string>;
+    /**
+     * Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+     */
     standaloneConfigSync?: pulumi.Input<string>;
+    /**
+     * Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+     */
     standaloneMgmtVdom?: pulumi.Input<string>;
+    /**
+     * Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+     */
     syncConfig?: pulumi.Input<string>;
+    /**
+     * Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+     */
     syncPacketBalance?: pulumi.Input<string>;
+    /**
+     * Default route gateway for unicast interface.
+     */
     unicastGateway?: pulumi.Input<string>;
+    /**
+     * Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+     */
     unicastHb?: pulumi.Input<string>;
+    /**
+     * Unicast heartbeat netmask.
+     */
     unicastHbNetmask?: pulumi.Input<string>;
+    /**
+     * Unicast heartbeat peer IP.
+     */
     unicastHbPeerip?: pulumi.Input<string>;
+    /**
+     * Number of unicast peers. The structure of `unicastPeers` block is documented below.
+     */
     unicastPeers?: pulumi.Input<pulumi.Input<inputs.system.HaUnicastPeer>[]>;
+    /**
+     * Enable/disable unicast connection. Valid values: `enable`, `disable`.
+     */
     unicastStatus?: pulumi.Input<string>;
+    /**
+     * Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+     */
     uninterruptiblePrimaryWait?: pulumi.Input<number>;
+    /**
+     * Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+     */
     uninterruptibleUpgrade?: pulumi.Input<string>;
+    /**
+     * The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+     */
+    upgradeMode?: pulumi.Input<string>;
+    /**
+     * Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+     */
     vcluster2?: pulumi.Input<string>;
+    /**
+     * Cluster ID.
+     */
     vclusterId?: pulumi.Input<number>;
+    /**
+     * Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+     */
     vclusterStatus?: pulumi.Input<string>;
+    /**
+     * Virtual cluster table. The structure of `vcluster` block is documented below.
+     */
     vclusters?: pulumi.Input<pulumi.Input<inputs.system.HaVcluster>[]>;
+    /**
+     * VDOMs in virtual cluster 1.
+     */
     vdom?: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
+     */
     weight?: pulumi.Input<string>;
 }
 
@@ -431,87 +1006,352 @@ export interface HaState {
  * The set of arguments for constructing a Ha resource.
  */
 export interface HaArgs {
+    /**
+     * Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+     */
     arps?: pulumi.Input<number>;
+    /**
+     * Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+     */
     arpsInterval?: pulumi.Input<number>;
+    /**
+     * Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+     */
     authentication?: pulumi.Input<string>;
+    /**
+     * Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+     */
     cpuThreshold?: pulumi.Input<string>;
+    /**
+     * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+     */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+     */
     encryption?: pulumi.Input<string>;
+    /**
+     * HA EVPN FDB TTL on primary box (5 - 3600 sec).
+     */
+    evpnTtl?: pulumi.Input<number>;
+    /**
+     * Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+     */
     failoverHoldTime?: pulumi.Input<number>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+     */
     ftpProxyThreshold?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+     */
     gratuitousArps?: pulumi.Input<string>;
+    /**
+     * Cluster group ID  (0 - 255). Must be the same for all members.
+     */
     groupId?: pulumi.Input<number>;
+    /**
+     * Cluster group name. Must be the same for all members.
+     */
     groupName?: pulumi.Input<string>;
+    /**
+     * Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+     */
     haDirect?: pulumi.Input<string>;
+    /**
+     * HA heartbeat packet Ethertype (4-digit hex).
+     */
     haEthType?: pulumi.Input<string>;
+    /**
+     * Reserve interfaces to manage individual cluster units. The structure of `haMgmtInterfaces` block is documented below.
+     */
     haMgmtInterfaces?: pulumi.Input<pulumi.Input<inputs.system.HaHaMgmtInterface>[]>;
+    /**
+     * Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+     */
     haMgmtStatus?: pulumi.Input<string>;
+    /**
+     * Normally you would only reduce this value for failover testing.
+     */
     haUptimeDiffMargin?: pulumi.Input<number>;
+    /**
+     * Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+     */
     hbInterval?: pulumi.Input<number>;
+    /**
+     * Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+     */
     hbIntervalInMilliseconds?: pulumi.Input<string>;
+    /**
+     * Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+     */
     hbLostThreshold?: pulumi.Input<number>;
+    /**
+     * Heartbeat interfaces. Must be the same for all members.
+     */
     hbdev?: pulumi.Input<string>;
+    /**
+     * Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+     */
     hcEthType?: pulumi.Input<string>;
+    /**
+     * Time to wait before changing from hello to work state (5 - 300 sec).
+     */
     helloHolddown?: pulumi.Input<number>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+     */
     httpProxyThreshold?: pulumi.Input<string>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+     */
     imapProxyThreshold?: pulumi.Input<string>;
+    /**
+     * Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+     */
     interClusterSessionSync?: pulumi.Input<string>;
+    /**
+     * IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+     */
+    ipsecPhase2Proposal?: pulumi.Input<string>;
+    /**
+     * key
+     */
     key?: pulumi.Input<string>;
+    /**
+     * Telnet session HA heartbeat packet Ethertype (4-digit hex).
+     */
     l2epEthType?: pulumi.Input<string>;
+    /**
+     * Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+     */
     linkFailedSignal?: pulumi.Input<string>;
+    /**
+     * Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+     */
     loadBalanceAll?: pulumi.Input<string>;
+    /**
+     * Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+     */
     logicalSn?: pulumi.Input<string>;
+    /**
+     * Enable/disable memory based failover. Valid values: `enable`, `disable`.
+     */
     memoryBasedFailover?: pulumi.Input<string>;
+    /**
+     * Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+     */
     memoryCompatibleMode?: pulumi.Input<string>;
+    /**
+     * Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+     */
     memoryFailoverFlipTimeout?: pulumi.Input<number>;
+    /**
+     * Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+     */
     memoryFailoverMonitorPeriod?: pulumi.Input<number>;
+    /**
+     * Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+     */
     memoryFailoverSampleRate?: pulumi.Input<number>;
+    /**
+     * Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+     */
     memoryFailoverThreshold?: pulumi.Input<number>;
+    /**
+     * Dynamic weighted load balancing memory usage weight and high and low thresholds.
+     */
     memoryThreshold?: pulumi.Input<string>;
+    /**
+     * HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * Interfaces to check for port monitoring (or link failure).
+     */
     monitor?: pulumi.Input<string>;
+    /**
+     * HA multicast TTL on master (5 - 3600 sec).
+     */
     multicastTtl?: pulumi.Input<number>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+     */
     nntpProxyThreshold?: pulumi.Input<string>;
+    /**
+     * Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+     */
     override?: pulumi.Input<string>;
+    /**
+     * Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+     */
     overrideWaitTime?: pulumi.Input<number>;
+    /**
+     * Cluster password. Must be the same for all members.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * Remote IP monitoring failover threshold (0 - 50).
+     */
     pingserverFailoverThreshold?: pulumi.Input<number>;
+    /**
+     * Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+     */
     pingserverFlipTimeout?: pulumi.Input<number>;
+    /**
+     * Interfaces to check for remote IP monitoring.
+     */
     pingserverMonitorInterface?: pulumi.Input<string>;
+    /**
+     * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+     */
     pingserverSecondaryForceReset?: pulumi.Input<string>;
+    /**
+     * Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+     */
     pingserverSlaveForceReset?: pulumi.Input<string>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+     */
     pop3ProxyThreshold?: pulumi.Input<string>;
+    /**
+     * Increase the priority to select the primary unit (0 - 255).
+     */
     priority?: pulumi.Input<number>;
+    /**
+     * Time to wait between routing table updates to the cluster (0 - 3600 sec).
+     */
     routeHold?: pulumi.Input<number>;
+    /**
+     * TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+     */
     routeTtl?: pulumi.Input<number>;
+    /**
+     * Time to wait before sending new routes to the cluster (0 - 3600 sec).
+     */
     routeWait?: pulumi.Input<number>;
+    /**
+     * Type of A-A load balancing. Use none if you have external load balancers.
+     */
     schedule?: pulumi.Input<string>;
+    /**
+     * Configure virtual cluster 2. The structure of `secondaryVcluster` block is documented below.
+     */
     secondaryVcluster?: pulumi.Input<inputs.system.HaSecondaryVcluster>;
+    /**
+     * Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+     */
     sessionPickup?: pulumi.Input<string>;
+    /**
+     * Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+     */
     sessionPickupConnectionless?: pulumi.Input<string>;
+    /**
+     * Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+     */
     sessionPickupDelay?: pulumi.Input<string>;
+    /**
+     * Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+     */
     sessionPickupExpectation?: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+     */
     sessionPickupNat?: pulumi.Input<string>;
+    /**
+     * Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+     */
     sessionSyncDev?: pulumi.Input<string>;
+    /**
+     * Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+     */
     smtpProxyThreshold?: pulumi.Input<string>;
+    /**
+     * Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+     */
     ssdFailover?: pulumi.Input<string>;
+    /**
+     * Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+     */
     standaloneConfigSync?: pulumi.Input<string>;
+    /**
+     * Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+     */
     standaloneMgmtVdom?: pulumi.Input<string>;
+    /**
+     * Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+     */
     syncConfig?: pulumi.Input<string>;
+    /**
+     * Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+     */
     syncPacketBalance?: pulumi.Input<string>;
+    /**
+     * Default route gateway for unicast interface.
+     */
     unicastGateway?: pulumi.Input<string>;
+    /**
+     * Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+     */
     unicastHb?: pulumi.Input<string>;
+    /**
+     * Unicast heartbeat netmask.
+     */
     unicastHbNetmask?: pulumi.Input<string>;
+    /**
+     * Unicast heartbeat peer IP.
+     */
     unicastHbPeerip?: pulumi.Input<string>;
+    /**
+     * Number of unicast peers. The structure of `unicastPeers` block is documented below.
+     */
     unicastPeers?: pulumi.Input<pulumi.Input<inputs.system.HaUnicastPeer>[]>;
+    /**
+     * Enable/disable unicast connection. Valid values: `enable`, `disable`.
+     */
     unicastStatus?: pulumi.Input<string>;
+    /**
+     * Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+     */
     uninterruptiblePrimaryWait?: pulumi.Input<number>;
+    /**
+     * Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+     */
     uninterruptibleUpgrade?: pulumi.Input<string>;
+    /**
+     * The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+     */
+    upgradeMode?: pulumi.Input<string>;
+    /**
+     * Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+     */
     vcluster2?: pulumi.Input<string>;
+    /**
+     * Cluster ID.
+     */
     vclusterId?: pulumi.Input<number>;
+    /**
+     * Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+     */
     vclusterStatus?: pulumi.Input<string>;
+    /**
+     * Virtual cluster table. The structure of `vcluster` block is documented below.
+     */
     vclusters?: pulumi.Input<pulumi.Input<inputs.system.HaVcluster>[]>;
+    /**
+     * VDOMs in virtual cluster 1.
+     */
     vdom?: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
+     */
     weight?: pulumi.Input<string>;
 }

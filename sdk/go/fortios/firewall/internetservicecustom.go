@@ -39,6 +39,8 @@ type Internetservicecustom struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
 	Entries InternetservicecustomEntryArrayOutput `pulumi:"entries"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Internet Service name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Reputation level of the custom Internet Service.
@@ -83,6 +85,8 @@ type internetservicecustomState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
 	Entries []InternetservicecustomEntry `pulumi:"entries"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Internet Service name.
 	Name *string `pulumi:"name"`
 	// Reputation level of the custom Internet Service.
@@ -98,6 +102,8 @@ type InternetservicecustomState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
 	Entries InternetservicecustomEntryArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Internet Service name.
 	Name pulumi.StringPtrInput
 	// Reputation level of the custom Internet Service.
@@ -117,6 +123,8 @@ type internetservicecustomArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
 	Entries []InternetservicecustomEntry `pulumi:"entries"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Internet Service name.
 	Name *string `pulumi:"name"`
 	// Reputation level of the custom Internet Service.
@@ -133,6 +141,8 @@ type InternetservicecustomArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
 	Entries InternetservicecustomEntryArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Internet Service name.
 	Name pulumi.StringPtrInput
 	// Reputation level of the custom Internet Service.
@@ -241,6 +251,11 @@ func (o InternetservicecustomOutput) DynamicSortSubtable() pulumi.StringPtrOutpu
 // Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
 func (o InternetservicecustomOutput) Entries() InternetservicecustomEntryArrayOutput {
 	return o.ApplyT(func(v *Internetservicecustom) InternetservicecustomEntryArrayOutput { return v.Entries }).(InternetservicecustomEntryArrayOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o InternetservicecustomOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Internetservicecustom) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Internet Service name.

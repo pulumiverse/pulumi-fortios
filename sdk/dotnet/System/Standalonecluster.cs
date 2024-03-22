@@ -35,6 +35,12 @@ namespace Pulumiverse.Fortios.System
     public partial class Standalonecluster : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+        /// </summary>
+        [Output("asymmetricTrafficControl")]
+        public Output<string> AsymmetricTrafficControl { get; private set; } = null!;
+
+        /// <summary>
         /// Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `cluster_peer` block is documented below.
         /// </summary>
         [Output("clusterPeers")]
@@ -51,6 +57,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("encryption")]
         public Output<string> Encryption { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Cluster member ID (0 - 3).
@@ -139,6 +151,12 @@ namespace Pulumiverse.Fortios.System
 
     public sealed class StandaloneclusterArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+        /// </summary>
+        [Input("asymmetricTrafficControl")]
+        public Input<string>? AsymmetricTrafficControl { get; set; }
+
         [Input("clusterPeers")]
         private InputList<Inputs.StandaloneclusterClusterPeerArgs>? _clusterPeers;
 
@@ -162,6 +180,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("encryption")]
         public Input<string>? Encryption { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Cluster member ID (0 - 3).
@@ -217,6 +241,12 @@ namespace Pulumiverse.Fortios.System
 
     public sealed class StandaloneclusterState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+        /// </summary>
+        [Input("asymmetricTrafficControl")]
+        public Input<string>? AsymmetricTrafficControl { get; set; }
+
         [Input("clusterPeers")]
         private InputList<Inputs.StandaloneclusterClusterPeerGetArgs>? _clusterPeers;
 
@@ -240,6 +270,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("encryption")]
         public Input<string>? Encryption { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Cluster member ID (0 - 3).

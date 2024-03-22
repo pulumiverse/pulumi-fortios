@@ -95,12 +95,16 @@ type Group struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Service objects contained within the group. The structure of `member` block is documented below.
 	Members GroupMemberArrayOutput `pulumi:"members"`
 	// Address group name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Enable/disable web proxy service group. Valid values: `enable`, `disable`.
 	Proxy pulumi.StringOutput `pulumi:"proxy"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -143,12 +147,16 @@ type groupState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Service objects contained within the group. The structure of `member` block is documented below.
 	Members []GroupMember `pulumi:"members"`
 	// Address group name.
 	Name *string `pulumi:"name"`
 	// Enable/disable web proxy service group. Valid values: `enable`, `disable`.
 	Proxy *string `pulumi:"proxy"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -162,12 +170,16 @@ type GroupState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Service objects contained within the group. The structure of `member` block is documented below.
 	Members GroupMemberArrayInput
 	// Address group name.
 	Name pulumi.StringPtrInput
 	// Enable/disable web proxy service group. Valid values: `enable`, `disable`.
 	Proxy pulumi.StringPtrInput
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -185,12 +197,16 @@ type groupArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Service objects contained within the group. The structure of `member` block is documented below.
 	Members []GroupMember `pulumi:"members"`
 	// Address group name.
 	Name *string `pulumi:"name"`
 	// Enable/disable web proxy service group. Valid values: `enable`, `disable`.
 	Proxy *string `pulumi:"proxy"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -205,12 +221,16 @@ type GroupArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Service objects contained within the group. The structure of `member` block is documented below.
 	Members GroupMemberArrayInput
 	// Address group name.
 	Name pulumi.StringPtrInput
 	// Enable/disable web proxy service group. Valid values: `enable`, `disable`.
 	Proxy pulumi.StringPtrInput
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -322,6 +342,11 @@ func (o GroupOutput) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o GroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Service objects contained within the group. The structure of `member` block is documented below.
 func (o GroupOutput) Members() GroupMemberArrayOutput {
 	return o.ApplyT(func(v *Group) GroupMemberArrayOutput { return v.Members }).(GroupMemberArrayOutput)
@@ -335,6 +360,11 @@ func (o GroupOutput) Name() pulumi.StringOutput {
 // Enable/disable web proxy service group. Valid values: `enable`, `disable`.
 func (o GroupOutput) Proxy() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Proxy }).(pulumi.StringOutput)
+}
+
+// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+func (o GroupOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

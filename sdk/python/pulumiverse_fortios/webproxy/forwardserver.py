@@ -19,6 +19,8 @@ class ForwardserverArgs:
                  fqdn: Optional[pulumi.Input[str]] = None,
                  healthcheck: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 ipv6: Optional[pulumi.Input[str]] = None,
+                 masquerade: Optional[pulumi.Input[str]] = None,
                  monitor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -28,11 +30,13 @@ class ForwardserverArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Forwardserver resource.
-        :param pulumi.Input[str] addr_type: Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+        :param pulumi.Input[str] addr_type: Address type of the forwarding proxy server: IP or FQDN.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] fqdn: Forward server Fully Qualified Domain Name (FQDN).
         :param pulumi.Input[str] healthcheck: Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ip: Forward proxy server IP address.
+        :param pulumi.Input[str] ipv6: Forward proxy server IPv6 address.
+        :param pulumi.Input[str] masquerade: Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
         :param pulumi.Input[str] monitor: URL for forward server health check monitoring (default = http://www.google.com).
         :param pulumi.Input[str] name: Server name.
         :param pulumi.Input[str] password: HTTP authentication password.
@@ -51,6 +55,10 @@ class ForwardserverArgs:
             pulumi.set(__self__, "healthcheck", healthcheck)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if ipv6 is not None:
+            pulumi.set(__self__, "ipv6", ipv6)
+        if masquerade is not None:
+            pulumi.set(__self__, "masquerade", masquerade)
         if monitor is not None:
             pulumi.set(__self__, "monitor", monitor)
         if name is not None:
@@ -70,7 +78,7 @@ class ForwardserverArgs:
     @pulumi.getter(name="addrType")
     def addr_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+        Address type of the forwarding proxy server: IP or FQDN.
         """
         return pulumi.get(self, "addr_type")
 
@@ -125,6 +133,30 @@ class ForwardserverArgs:
     @ip.setter
     def ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip", value)
+
+    @property
+    @pulumi.getter
+    def ipv6(self) -> Optional[pulumi.Input[str]]:
+        """
+        Forward proxy server IPv6 address.
+        """
+        return pulumi.get(self, "ipv6")
+
+    @ipv6.setter
+    def ipv6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6", value)
+
+    @property
+    @pulumi.getter
+    def masquerade(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "masquerade")
+
+    @masquerade.setter
+    def masquerade(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "masquerade", value)
 
     @property
     @pulumi.getter
@@ -219,6 +251,8 @@ class _ForwardserverState:
                  fqdn: Optional[pulumi.Input[str]] = None,
                  healthcheck: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 ipv6: Optional[pulumi.Input[str]] = None,
+                 masquerade: Optional[pulumi.Input[str]] = None,
                  monitor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -228,11 +262,13 @@ class _ForwardserverState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Forwardserver resources.
-        :param pulumi.Input[str] addr_type: Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+        :param pulumi.Input[str] addr_type: Address type of the forwarding proxy server: IP or FQDN.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] fqdn: Forward server Fully Qualified Domain Name (FQDN).
         :param pulumi.Input[str] healthcheck: Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ip: Forward proxy server IP address.
+        :param pulumi.Input[str] ipv6: Forward proxy server IPv6 address.
+        :param pulumi.Input[str] masquerade: Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
         :param pulumi.Input[str] monitor: URL for forward server health check monitoring (default = http://www.google.com).
         :param pulumi.Input[str] name: Server name.
         :param pulumi.Input[str] password: HTTP authentication password.
@@ -251,6 +287,10 @@ class _ForwardserverState:
             pulumi.set(__self__, "healthcheck", healthcheck)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if ipv6 is not None:
+            pulumi.set(__self__, "ipv6", ipv6)
+        if masquerade is not None:
+            pulumi.set(__self__, "masquerade", masquerade)
         if monitor is not None:
             pulumi.set(__self__, "monitor", monitor)
         if name is not None:
@@ -270,7 +310,7 @@ class _ForwardserverState:
     @pulumi.getter(name="addrType")
     def addr_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+        Address type of the forwarding proxy server: IP or FQDN.
         """
         return pulumi.get(self, "addr_type")
 
@@ -325,6 +365,30 @@ class _ForwardserverState:
     @ip.setter
     def ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip", value)
+
+    @property
+    @pulumi.getter
+    def ipv6(self) -> Optional[pulumi.Input[str]]:
+        """
+        Forward proxy server IPv6 address.
+        """
+        return pulumi.get(self, "ipv6")
+
+    @ipv6.setter
+    def ipv6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6", value)
+
+    @property
+    @pulumi.getter
+    def masquerade(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "masquerade")
+
+    @masquerade.setter
+    def masquerade(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "masquerade", value)
 
     @property
     @pulumi.getter
@@ -421,6 +485,8 @@ class Forwardserver(pulumi.CustomResource):
                  fqdn: Optional[pulumi.Input[str]] = None,
                  healthcheck: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 ipv6: Optional[pulumi.Input[str]] = None,
+                 masquerade: Optional[pulumi.Input[str]] = None,
                  monitor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -469,11 +535,13 @@ class Forwardserver(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] addr_type: Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+        :param pulumi.Input[str] addr_type: Address type of the forwarding proxy server: IP or FQDN.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] fqdn: Forward server Fully Qualified Domain Name (FQDN).
         :param pulumi.Input[str] healthcheck: Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ip: Forward proxy server IP address.
+        :param pulumi.Input[str] ipv6: Forward proxy server IPv6 address.
+        :param pulumi.Input[str] masquerade: Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
         :param pulumi.Input[str] monitor: URL for forward server health check monitoring (default = http://www.google.com).
         :param pulumi.Input[str] name: Server name.
         :param pulumi.Input[str] password: HTTP authentication password.
@@ -546,6 +614,8 @@ class Forwardserver(pulumi.CustomResource):
                  fqdn: Optional[pulumi.Input[str]] = None,
                  healthcheck: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 ipv6: Optional[pulumi.Input[str]] = None,
+                 masquerade: Optional[pulumi.Input[str]] = None,
                  monitor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -567,6 +637,8 @@ class Forwardserver(pulumi.CustomResource):
             __props__.__dict__["fqdn"] = fqdn
             __props__.__dict__["healthcheck"] = healthcheck
             __props__.__dict__["ip"] = ip
+            __props__.__dict__["ipv6"] = ipv6
+            __props__.__dict__["masquerade"] = masquerade
             __props__.__dict__["monitor"] = monitor
             __props__.__dict__["name"] = name
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
@@ -591,6 +663,8 @@ class Forwardserver(pulumi.CustomResource):
             fqdn: Optional[pulumi.Input[str]] = None,
             healthcheck: Optional[pulumi.Input[str]] = None,
             ip: Optional[pulumi.Input[str]] = None,
+            ipv6: Optional[pulumi.Input[str]] = None,
+            masquerade: Optional[pulumi.Input[str]] = None,
             monitor: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
@@ -605,11 +679,13 @@ class Forwardserver(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] addr_type: Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+        :param pulumi.Input[str] addr_type: Address type of the forwarding proxy server: IP or FQDN.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] fqdn: Forward server Fully Qualified Domain Name (FQDN).
         :param pulumi.Input[str] healthcheck: Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ip: Forward proxy server IP address.
+        :param pulumi.Input[str] ipv6: Forward proxy server IPv6 address.
+        :param pulumi.Input[str] masquerade: Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
         :param pulumi.Input[str] monitor: URL for forward server health check monitoring (default = http://www.google.com).
         :param pulumi.Input[str] name: Server name.
         :param pulumi.Input[str] password: HTTP authentication password.
@@ -627,6 +703,8 @@ class Forwardserver(pulumi.CustomResource):
         __props__.__dict__["fqdn"] = fqdn
         __props__.__dict__["healthcheck"] = healthcheck
         __props__.__dict__["ip"] = ip
+        __props__.__dict__["ipv6"] = ipv6
+        __props__.__dict__["masquerade"] = masquerade
         __props__.__dict__["monitor"] = monitor
         __props__.__dict__["name"] = name
         __props__.__dict__["password"] = password
@@ -640,7 +718,7 @@ class Forwardserver(pulumi.CustomResource):
     @pulumi.getter(name="addrType")
     def addr_type(self) -> pulumi.Output[str]:
         """
-        Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+        Address type of the forwarding proxy server: IP or FQDN.
         """
         return pulumi.get(self, "addr_type")
 
@@ -675,6 +753,22 @@ class Forwardserver(pulumi.CustomResource):
         Forward proxy server IP address.
         """
         return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def ipv6(self) -> pulumi.Output[str]:
+        """
+        Forward proxy server IPv6 address.
+        """
+        return pulumi.get(self, "ipv6")
+
+    @property
+    @pulumi.getter
+    def masquerade(self) -> pulumi.Output[str]:
+        """
+        Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "masquerade")
 
     @property
     @pulumi.getter

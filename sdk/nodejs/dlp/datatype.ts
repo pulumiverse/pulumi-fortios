@@ -66,6 +66,18 @@ export class Datatype extends pulumi.CustomResource {
      */
     public readonly lookBack!: pulumi.Output<number>;
     /**
+     * Number of characters behind for match-around (1 - 4096, default = 1).
+     */
+    public readonly matchAhead!: pulumi.Output<number>;
+    /**
+     * Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+     */
+    public readonly matchAround!: pulumi.Output<string>;
+    /**
+     * Number of characters in front for match-around (1 - 4096, default = 1).
+     */
+    public readonly matchBack!: pulumi.Output<number>;
+    /**
      * Name of table containing the data type.
      */
     public readonly name!: pulumi.Output<string>;
@@ -85,6 +97,10 @@ export class Datatype extends pulumi.CustomResource {
      * Regular expression pattern string used to verify the data type.
      */
     public readonly verify!: pulumi.Output<string>;
+    /**
+     * Extra regular expression pattern string used to verify the data type.
+     */
+    public readonly verify2!: pulumi.Output<string>;
     /**
      * Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
      */
@@ -106,22 +122,30 @@ export class Datatype extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["lookAhead"] = state ? state.lookAhead : undefined;
             resourceInputs["lookBack"] = state ? state.lookBack : undefined;
+            resourceInputs["matchAhead"] = state ? state.matchAhead : undefined;
+            resourceInputs["matchAround"] = state ? state.matchAround : undefined;
+            resourceInputs["matchBack"] = state ? state.matchBack : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["pattern"] = state ? state.pattern : undefined;
             resourceInputs["transform"] = state ? state.transform : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["verify"] = state ? state.verify : undefined;
+            resourceInputs["verify2"] = state ? state.verify2 : undefined;
             resourceInputs["verifyTransformedPattern"] = state ? state.verifyTransformedPattern : undefined;
         } else {
             const args = argsOrState as DatatypeArgs | undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["lookAhead"] = args ? args.lookAhead : undefined;
             resourceInputs["lookBack"] = args ? args.lookBack : undefined;
+            resourceInputs["matchAhead"] = args ? args.matchAhead : undefined;
+            resourceInputs["matchAround"] = args ? args.matchAround : undefined;
+            resourceInputs["matchBack"] = args ? args.matchBack : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["pattern"] = args ? args.pattern : undefined;
             resourceInputs["transform"] = args ? args.transform : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["verify"] = args ? args.verify : undefined;
+            resourceInputs["verify2"] = args ? args.verify2 : undefined;
             resourceInputs["verifyTransformedPattern"] = args ? args.verifyTransformedPattern : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -146,6 +170,18 @@ export interface DatatypeState {
      */
     lookBack?: pulumi.Input<number>;
     /**
+     * Number of characters behind for match-around (1 - 4096, default = 1).
+     */
+    matchAhead?: pulumi.Input<number>;
+    /**
+     * Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+     */
+    matchAround?: pulumi.Input<string>;
+    /**
+     * Number of characters in front for match-around (1 - 4096, default = 1).
+     */
+    matchBack?: pulumi.Input<number>;
+    /**
      * Name of table containing the data type.
      */
     name?: pulumi.Input<string>;
@@ -165,6 +201,10 @@ export interface DatatypeState {
      * Regular expression pattern string used to verify the data type.
      */
     verify?: pulumi.Input<string>;
+    /**
+     * Extra regular expression pattern string used to verify the data type.
+     */
+    verify2?: pulumi.Input<string>;
     /**
      * Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
      */
@@ -188,6 +228,18 @@ export interface DatatypeArgs {
      */
     lookBack?: pulumi.Input<number>;
     /**
+     * Number of characters behind for match-around (1 - 4096, default = 1).
+     */
+    matchAhead?: pulumi.Input<number>;
+    /**
+     * Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported).
+     */
+    matchAround?: pulumi.Input<string>;
+    /**
+     * Number of characters in front for match-around (1 - 4096, default = 1).
+     */
+    matchBack?: pulumi.Input<number>;
+    /**
      * Name of table containing the data type.
      */
     name?: pulumi.Input<string>;
@@ -207,6 +259,10 @@ export interface DatatypeArgs {
      * Regular expression pattern string used to verify the data type.
      */
     verify?: pulumi.Input<string>;
+    /**
+     * Extra regular expression pattern string used to verify the data type.
+     */
+    verify2?: pulumi.Input<string>;
     /**
      * Enable/disable verification for transformed pattern. Valid values: `enable`, `disable`.
      */

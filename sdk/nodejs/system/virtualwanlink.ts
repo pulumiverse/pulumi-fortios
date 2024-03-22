@@ -83,6 +83,10 @@ export class Virtualwanlink extends pulumi.CustomResource {
      */
     public readonly failDetect!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
      */
     public readonly healthChecks!: pulumi.Output<outputs.system.VirtualwanlinkHealthCheck[] | undefined>;
@@ -143,6 +147,7 @@ export class Virtualwanlink extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["failAlertInterfaces"] = state ? state.failAlertInterfaces : undefined;
             resourceInputs["failDetect"] = state ? state.failDetect : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["healthChecks"] = state ? state.healthChecks : undefined;
             resourceInputs["loadBalanceMode"] = state ? state.loadBalanceMode : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
@@ -159,6 +164,7 @@ export class Virtualwanlink extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["failAlertInterfaces"] = args ? args.failAlertInterfaces : undefined;
             resourceInputs["failDetect"] = args ? args.failDetect : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["healthChecks"] = args ? args.healthChecks : undefined;
             resourceInputs["loadBalanceMode"] = args ? args.loadBalanceMode : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
@@ -192,6 +198,10 @@ export interface VirtualwanlinkState {
      * Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
      */
     failDetect?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
      */
@@ -254,6 +264,10 @@ export interface VirtualwanlinkArgs {
      * Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
      */
     failDetect?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
      */

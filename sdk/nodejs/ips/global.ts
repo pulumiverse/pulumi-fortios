@@ -84,6 +84,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly anomalyMode!: pulumi.Output<string>;
     /**
+     * Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+     */
+    public readonly avMemLimit!: pulumi.Output<number>;
+    /**
      * IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
      */
     public readonly cpAccelMode!: pulumi.Output<string>;
@@ -92,7 +96,7 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly database!: pulumi.Output<string>;
     /**
-     * Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+     * Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
      */
     public readonly deepAppInspDbLimit!: pulumi.Output<number>;
     /**
@@ -104,13 +108,17 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly engineCount!: pulumi.Output<number>;
     /**
-     * Excluded signatures. Valid values: `none`, `industrial`.
+     * Excluded signatures.
      */
     public readonly excludeSignatures!: pulumi.Output<string>;
     /**
      * Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
      */
     public readonly failOpen!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
      */
@@ -140,7 +148,7 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly skypeClientPublicIpaddr!: pulumi.Output<string | undefined>;
     /**
-     * IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+     * IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
      */
     public readonly socketSize!: pulumi.Output<number>;
     /**
@@ -174,6 +182,7 @@ export class Global extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as GlobalState | undefined;
             resourceInputs["anomalyMode"] = state ? state.anomalyMode : undefined;
+            resourceInputs["avMemLimit"] = state ? state.avMemLimit : undefined;
             resourceInputs["cpAccelMode"] = state ? state.cpAccelMode : undefined;
             resourceInputs["database"] = state ? state.database : undefined;
             resourceInputs["deepAppInspDbLimit"] = state ? state.deepAppInspDbLimit : undefined;
@@ -181,6 +190,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["engineCount"] = state ? state.engineCount : undefined;
             resourceInputs["excludeSignatures"] = state ? state.excludeSignatures : undefined;
             resourceInputs["failOpen"] = state ? state.failOpen : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["intelligentMode"] = state ? state.intelligentMode : undefined;
             resourceInputs["ipsReserveCpu"] = state ? state.ipsReserveCpu : undefined;
             resourceInputs["ngfwMaxScanRange"] = state ? state.ngfwMaxScanRange : undefined;
@@ -196,6 +206,7 @@ export class Global extends pulumi.CustomResource {
         } else {
             const args = argsOrState as GlobalArgs | undefined;
             resourceInputs["anomalyMode"] = args ? args.anomalyMode : undefined;
+            resourceInputs["avMemLimit"] = args ? args.avMemLimit : undefined;
             resourceInputs["cpAccelMode"] = args ? args.cpAccelMode : undefined;
             resourceInputs["database"] = args ? args.database : undefined;
             resourceInputs["deepAppInspDbLimit"] = args ? args.deepAppInspDbLimit : undefined;
@@ -203,6 +214,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["engineCount"] = args ? args.engineCount : undefined;
             resourceInputs["excludeSignatures"] = args ? args.excludeSignatures : undefined;
             resourceInputs["failOpen"] = args ? args.failOpen : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["intelligentMode"] = args ? args.intelligentMode : undefined;
             resourceInputs["ipsReserveCpu"] = args ? args.ipsReserveCpu : undefined;
             resourceInputs["ngfwMaxScanRange"] = args ? args.ngfwMaxScanRange : undefined;
@@ -230,6 +242,10 @@ export interface GlobalState {
      */
     anomalyMode?: pulumi.Input<string>;
     /**
+     * Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+     */
+    avMemLimit?: pulumi.Input<number>;
+    /**
      * IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
      */
     cpAccelMode?: pulumi.Input<string>;
@@ -238,7 +254,7 @@ export interface GlobalState {
      */
     database?: pulumi.Input<string>;
     /**
-     * Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+     * Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
      */
     deepAppInspDbLimit?: pulumi.Input<number>;
     /**
@@ -250,13 +266,17 @@ export interface GlobalState {
      */
     engineCount?: pulumi.Input<number>;
     /**
-     * Excluded signatures. Valid values: `none`, `industrial`.
+     * Excluded signatures.
      */
     excludeSignatures?: pulumi.Input<string>;
     /**
      * Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
      */
     failOpen?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
      */
@@ -286,7 +306,7 @@ export interface GlobalState {
      */
     skypeClientPublicIpaddr?: pulumi.Input<string>;
     /**
-     * IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+     * IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
      */
     socketSize?: pulumi.Input<number>;
     /**
@@ -316,6 +336,10 @@ export interface GlobalArgs {
      */
     anomalyMode?: pulumi.Input<string>;
     /**
+     * Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+     */
+    avMemLimit?: pulumi.Input<number>;
+    /**
      * IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
      */
     cpAccelMode?: pulumi.Input<string>;
@@ -324,7 +348,7 @@ export interface GlobalArgs {
      */
     database?: pulumi.Input<string>;
     /**
-     * Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+     * Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
      */
     deepAppInspDbLimit?: pulumi.Input<number>;
     /**
@@ -336,13 +360,17 @@ export interface GlobalArgs {
      */
     engineCount?: pulumi.Input<number>;
     /**
-     * Excluded signatures. Valid values: `none`, `industrial`.
+     * Excluded signatures.
      */
     excludeSignatures?: pulumi.Input<string>;
     /**
      * Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
      */
     failOpen?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
      */
@@ -372,7 +400,7 @@ export interface GlobalArgs {
      */
     skypeClientPublicIpaddr?: pulumi.Input<string>;
     /**
-     * IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+     * IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
      */
     socketSize?: pulumi.Input<number>;
     /**

@@ -14,13 +14,13 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
     public sealed class ProfileprotocoloptionsSshArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
+        /// Number of bytes to send in each transmission for client comforting (bytes).
         /// </summary>
         [Input("comfortAmount")]
         public Input<int>? ComfortAmount { get; set; }
 
         /// <summary>
-        /// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+        /// Interval between successive transmissions of data for client comforting (seconds).
         /// </summary>
         [Input("comfortInterval")]
         public Input<int>? ComfortInterval { get; set; }
@@ -32,7 +32,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? Options { get; set; }
 
         /// <summary>
-        /// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        /// Maximum in-memory file size that can be scanned (MB).
         /// </summary>
         [Input("oversizeLimit")]
         public Input<int>? OversizeLimit { get; set; }
@@ -50,7 +50,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? SslOffloaded { get; set; }
 
         /// <summary>
-        /// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+        /// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
         /// </summary>
         [Input("streamBasedUncompressedLimit")]
         public Input<int>? StreamBasedUncompressedLimit { get; set; }
@@ -86,7 +86,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<int>? UncompressedNestLimit { get; set; }
 
         /// <summary>
-        /// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        /// Maximum in-memory uncompressed file size that can be scanned (MB).
         /// </summary>
         [Input("uncompressedOversizeLimit")]
         public Input<int>? UncompressedOversizeLimit { get; set; }

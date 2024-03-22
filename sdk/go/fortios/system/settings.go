@@ -109,6 +109,8 @@ type Settings struct {
 	DefaultVoipAlgMode pulumi.StringOutput `pulumi:"defaultVoipAlgMode"`
 	// Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
 	DenyTcpWithIcmp pulumi.StringOutput `pulumi:"denyTcpWithIcmp"`
+	// Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+	DetectUnknownEsp pulumi.StringOutput `pulumi:"detectUnknownEsp"`
 	// Interface to use for management access for NAT mode.
 	Device pulumi.StringOutput `pulumi:"device"`
 	// DHCPv6 server IPv6 address.
@@ -143,6 +145,8 @@ type Settings struct {
 	Gateway pulumi.StringOutput `pulumi:"gateway"`
 	// Transparent mode IPv4 default gateway IP address.
 	Gateway6 pulumi.StringOutput `pulumi:"gateway6"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
 	GuiAdvancedPolicy pulumi.StringOutput `pulumi:"guiAdvancedPolicy"`
 	// Enable/disable advanced wireless features in GUI. Valid values: `enable`, `disable`.
@@ -155,12 +159,16 @@ type Settings struct {
 	GuiApProfile pulumi.StringOutput `pulumi:"guiApProfile"`
 	// Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
 	GuiApplicationControl pulumi.StringOutput `pulumi:"guiApplicationControl"`
+	// Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+	GuiCasb pulumi.StringOutput `pulumi:"guiCasb"`
 	// Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
 	GuiDefaultPolicyColumns SettingsGuiDefaultPolicyColumnArrayOutput `pulumi:"guiDefaultPolicyColumns"`
 	// Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
 	GuiDhcpAdvanced pulumi.StringOutput `pulumi:"guiDhcpAdvanced"`
 	// Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
 	GuiDlp pulumi.StringOutput `pulumi:"guiDlp"`
+	// Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+	GuiDlpProfile pulumi.StringOutput `pulumi:"guiDlpProfile"`
 	// Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
 	GuiDnsDatabase pulumi.StringOutput `pulumi:"guiDnsDatabase"`
 	// Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
@@ -169,6 +177,8 @@ type Settings struct {
 	GuiDomainIpReputation pulumi.StringOutput `pulumi:"guiDomainIpReputation"`
 	// Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
 	GuiDosPolicy pulumi.StringOutput `pulumi:"guiDosPolicy"`
+	// Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+	GuiDynamicDeviceOsId pulumi.StringOutput `pulumi:"guiDynamicDeviceOsId"`
 	// Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
 	GuiDynamicProfileDisplay pulumi.StringOutput `pulumi:"guiDynamicProfileDisplay"`
 	// Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
@@ -221,12 +231,18 @@ type Settings struct {
 	GuiPolicyDisclaimer pulumi.StringOutput `pulumi:"guiPolicyDisclaimer"`
 	// Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
 	GuiPolicyLearning pulumi.StringOutput `pulumi:"guiPolicyLearning"`
+	// Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+	GuiProxyInspection pulumi.StringOutput `pulumi:"guiProxyInspection"`
 	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
 	GuiReplacementMessageGroups pulumi.StringOutput `pulumi:"guiReplacementMessageGroups"`
+	// Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+	GuiRouteTagAddressCreation pulumi.StringOutput `pulumi:"guiRouteTagAddressCreation"`
 	// Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
 	GuiSecurityProfileGroup pulumi.StringOutput `pulumi:"guiSecurityProfileGroup"`
 	// Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
 	GuiSpamfilter pulumi.StringOutput `pulumi:"guiSpamfilter"`
+	// Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+	GuiSslvpn pulumi.StringOutput `pulumi:"guiSslvpn"`
 	// Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
 	GuiSslvpnPersonalBookmarks pulumi.StringOutput `pulumi:"guiSslvpnPersonalBookmarks"`
 	// Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
@@ -239,6 +255,8 @@ type Settings struct {
 	GuiTrafficShaping pulumi.StringOutput `pulumi:"guiTrafficShaping"`
 	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
 	GuiVideofilter pulumi.StringOutput `pulumi:"guiVideofilter"`
+	// Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+	GuiVirtualPatchProfile pulumi.StringOutput `pulumi:"guiVirtualPatchProfile"`
 	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
 	GuiVoipProfile pulumi.StringOutput `pulumi:"guiVoipProfile"`
 	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
@@ -273,10 +291,14 @@ type Settings struct {
 	IkeQuickCrashDetect pulumi.StringOutput `pulumi:"ikeQuickCrashDetect"`
 	// Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
 	IkeSessionResume pulumi.StringOutput `pulumi:"ikeSessionResume"`
+	// TCP port for IKE/IPsec traffic (default 4500).
+	IkeTcpPort pulumi.IntOutput `pulumi:"ikeTcpPort"`
 	// Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
 	ImplicitAllowDns pulumi.StringOutput `pulumi:"implicitAllowDns"`
 	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
 	InspectionMode pulumi.StringOutput `pulumi:"inspectionMode"`
+	// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+	InternetServiceDatabaseCache pulumi.StringOutput `pulumi:"internetServiceDatabaseCache"`
 	// IP address and netmask.
 	Ip pulumi.StringOutput `pulumi:"ip"`
 	// IPv6 address prefix for NAT mode.
@@ -433,6 +455,8 @@ type settingsState struct {
 	DefaultVoipAlgMode *string `pulumi:"defaultVoipAlgMode"`
 	// Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
 	DenyTcpWithIcmp *string `pulumi:"denyTcpWithIcmp"`
+	// Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+	DetectUnknownEsp *string `pulumi:"detectUnknownEsp"`
 	// Interface to use for management access for NAT mode.
 	Device *string `pulumi:"device"`
 	// DHCPv6 server IPv6 address.
@@ -467,6 +491,8 @@ type settingsState struct {
 	Gateway *string `pulumi:"gateway"`
 	// Transparent mode IPv4 default gateway IP address.
 	Gateway6 *string `pulumi:"gateway6"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
 	GuiAdvancedPolicy *string `pulumi:"guiAdvancedPolicy"`
 	// Enable/disable advanced wireless features in GUI. Valid values: `enable`, `disable`.
@@ -479,12 +505,16 @@ type settingsState struct {
 	GuiApProfile *string `pulumi:"guiApProfile"`
 	// Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
 	GuiApplicationControl *string `pulumi:"guiApplicationControl"`
+	// Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+	GuiCasb *string `pulumi:"guiCasb"`
 	// Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
 	GuiDefaultPolicyColumns []SettingsGuiDefaultPolicyColumn `pulumi:"guiDefaultPolicyColumns"`
 	// Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
 	GuiDhcpAdvanced *string `pulumi:"guiDhcpAdvanced"`
 	// Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
 	GuiDlp *string `pulumi:"guiDlp"`
+	// Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+	GuiDlpProfile *string `pulumi:"guiDlpProfile"`
 	// Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
 	GuiDnsDatabase *string `pulumi:"guiDnsDatabase"`
 	// Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
@@ -493,6 +523,8 @@ type settingsState struct {
 	GuiDomainIpReputation *string `pulumi:"guiDomainIpReputation"`
 	// Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
 	GuiDosPolicy *string `pulumi:"guiDosPolicy"`
+	// Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+	GuiDynamicDeviceOsId *string `pulumi:"guiDynamicDeviceOsId"`
 	// Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
 	GuiDynamicProfileDisplay *string `pulumi:"guiDynamicProfileDisplay"`
 	// Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
@@ -545,12 +577,18 @@ type settingsState struct {
 	GuiPolicyDisclaimer *string `pulumi:"guiPolicyDisclaimer"`
 	// Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
 	GuiPolicyLearning *string `pulumi:"guiPolicyLearning"`
+	// Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+	GuiProxyInspection *string `pulumi:"guiProxyInspection"`
 	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
 	GuiReplacementMessageGroups *string `pulumi:"guiReplacementMessageGroups"`
+	// Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+	GuiRouteTagAddressCreation *string `pulumi:"guiRouteTagAddressCreation"`
 	// Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
 	GuiSecurityProfileGroup *string `pulumi:"guiSecurityProfileGroup"`
 	// Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
 	GuiSpamfilter *string `pulumi:"guiSpamfilter"`
+	// Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+	GuiSslvpn *string `pulumi:"guiSslvpn"`
 	// Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
 	GuiSslvpnPersonalBookmarks *string `pulumi:"guiSslvpnPersonalBookmarks"`
 	// Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
@@ -563,6 +601,8 @@ type settingsState struct {
 	GuiTrafficShaping *string `pulumi:"guiTrafficShaping"`
 	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
 	GuiVideofilter *string `pulumi:"guiVideofilter"`
+	// Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+	GuiVirtualPatchProfile *string `pulumi:"guiVirtualPatchProfile"`
 	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
 	GuiVoipProfile *string `pulumi:"guiVoipProfile"`
 	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
@@ -597,10 +637,14 @@ type settingsState struct {
 	IkeQuickCrashDetect *string `pulumi:"ikeQuickCrashDetect"`
 	// Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
 	IkeSessionResume *string `pulumi:"ikeSessionResume"`
+	// TCP port for IKE/IPsec traffic (default 4500).
+	IkeTcpPort *int `pulumi:"ikeTcpPort"`
 	// Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
 	ImplicitAllowDns *string `pulumi:"implicitAllowDns"`
 	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
 	InspectionMode *string `pulumi:"inspectionMode"`
+	// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+	InternetServiceDatabaseCache *string `pulumi:"internetServiceDatabaseCache"`
 	// IP address and netmask.
 	Ip *string `pulumi:"ip"`
 	// IPv6 address prefix for NAT mode.
@@ -728,6 +772,8 @@ type SettingsState struct {
 	DefaultVoipAlgMode pulumi.StringPtrInput
 	// Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
 	DenyTcpWithIcmp pulumi.StringPtrInput
+	// Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+	DetectUnknownEsp pulumi.StringPtrInput
 	// Interface to use for management access for NAT mode.
 	Device pulumi.StringPtrInput
 	// DHCPv6 server IPv6 address.
@@ -762,6 +808,8 @@ type SettingsState struct {
 	Gateway pulumi.StringPtrInput
 	// Transparent mode IPv4 default gateway IP address.
 	Gateway6 pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
 	GuiAdvancedPolicy pulumi.StringPtrInput
 	// Enable/disable advanced wireless features in GUI. Valid values: `enable`, `disable`.
@@ -774,12 +822,16 @@ type SettingsState struct {
 	GuiApProfile pulumi.StringPtrInput
 	// Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
 	GuiApplicationControl pulumi.StringPtrInput
+	// Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+	GuiCasb pulumi.StringPtrInput
 	// Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
 	GuiDefaultPolicyColumns SettingsGuiDefaultPolicyColumnArrayInput
 	// Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
 	GuiDhcpAdvanced pulumi.StringPtrInput
 	// Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
 	GuiDlp pulumi.StringPtrInput
+	// Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+	GuiDlpProfile pulumi.StringPtrInput
 	// Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
 	GuiDnsDatabase pulumi.StringPtrInput
 	// Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
@@ -788,6 +840,8 @@ type SettingsState struct {
 	GuiDomainIpReputation pulumi.StringPtrInput
 	// Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
 	GuiDosPolicy pulumi.StringPtrInput
+	// Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+	GuiDynamicDeviceOsId pulumi.StringPtrInput
 	// Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
 	GuiDynamicProfileDisplay pulumi.StringPtrInput
 	// Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
@@ -840,12 +894,18 @@ type SettingsState struct {
 	GuiPolicyDisclaimer pulumi.StringPtrInput
 	// Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
 	GuiPolicyLearning pulumi.StringPtrInput
+	// Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+	GuiProxyInspection pulumi.StringPtrInput
 	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
 	GuiReplacementMessageGroups pulumi.StringPtrInput
+	// Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+	GuiRouteTagAddressCreation pulumi.StringPtrInput
 	// Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
 	GuiSecurityProfileGroup pulumi.StringPtrInput
 	// Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
 	GuiSpamfilter pulumi.StringPtrInput
+	// Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+	GuiSslvpn pulumi.StringPtrInput
 	// Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
 	GuiSslvpnPersonalBookmarks pulumi.StringPtrInput
 	// Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
@@ -858,6 +918,8 @@ type SettingsState struct {
 	GuiTrafficShaping pulumi.StringPtrInput
 	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
 	GuiVideofilter pulumi.StringPtrInput
+	// Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+	GuiVirtualPatchProfile pulumi.StringPtrInput
 	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
 	GuiVoipProfile pulumi.StringPtrInput
 	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
@@ -892,10 +954,14 @@ type SettingsState struct {
 	IkeQuickCrashDetect pulumi.StringPtrInput
 	// Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
 	IkeSessionResume pulumi.StringPtrInput
+	// TCP port for IKE/IPsec traffic (default 4500).
+	IkeTcpPort pulumi.IntPtrInput
 	// Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
 	ImplicitAllowDns pulumi.StringPtrInput
 	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
 	InspectionMode pulumi.StringPtrInput
+	// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+	InternetServiceDatabaseCache pulumi.StringPtrInput
 	// IP address and netmask.
 	Ip pulumi.StringPtrInput
 	// IPv6 address prefix for NAT mode.
@@ -1027,6 +1093,8 @@ type settingsArgs struct {
 	DefaultVoipAlgMode *string `pulumi:"defaultVoipAlgMode"`
 	// Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
 	DenyTcpWithIcmp *string `pulumi:"denyTcpWithIcmp"`
+	// Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+	DetectUnknownEsp *string `pulumi:"detectUnknownEsp"`
 	// Interface to use for management access for NAT mode.
 	Device *string `pulumi:"device"`
 	// DHCPv6 server IPv6 address.
@@ -1061,6 +1129,8 @@ type settingsArgs struct {
 	Gateway *string `pulumi:"gateway"`
 	// Transparent mode IPv4 default gateway IP address.
 	Gateway6 *string `pulumi:"gateway6"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
 	GuiAdvancedPolicy *string `pulumi:"guiAdvancedPolicy"`
 	// Enable/disable advanced wireless features in GUI. Valid values: `enable`, `disable`.
@@ -1073,12 +1143,16 @@ type settingsArgs struct {
 	GuiApProfile *string `pulumi:"guiApProfile"`
 	// Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
 	GuiApplicationControl *string `pulumi:"guiApplicationControl"`
+	// Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+	GuiCasb *string `pulumi:"guiCasb"`
 	// Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
 	GuiDefaultPolicyColumns []SettingsGuiDefaultPolicyColumn `pulumi:"guiDefaultPolicyColumns"`
 	// Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
 	GuiDhcpAdvanced *string `pulumi:"guiDhcpAdvanced"`
 	// Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
 	GuiDlp *string `pulumi:"guiDlp"`
+	// Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+	GuiDlpProfile *string `pulumi:"guiDlpProfile"`
 	// Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
 	GuiDnsDatabase *string `pulumi:"guiDnsDatabase"`
 	// Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
@@ -1087,6 +1161,8 @@ type settingsArgs struct {
 	GuiDomainIpReputation *string `pulumi:"guiDomainIpReputation"`
 	// Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
 	GuiDosPolicy *string `pulumi:"guiDosPolicy"`
+	// Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+	GuiDynamicDeviceOsId *string `pulumi:"guiDynamicDeviceOsId"`
 	// Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
 	GuiDynamicProfileDisplay *string `pulumi:"guiDynamicProfileDisplay"`
 	// Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
@@ -1139,12 +1215,18 @@ type settingsArgs struct {
 	GuiPolicyDisclaimer *string `pulumi:"guiPolicyDisclaimer"`
 	// Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
 	GuiPolicyLearning *string `pulumi:"guiPolicyLearning"`
+	// Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+	GuiProxyInspection *string `pulumi:"guiProxyInspection"`
 	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
 	GuiReplacementMessageGroups *string `pulumi:"guiReplacementMessageGroups"`
+	// Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+	GuiRouteTagAddressCreation *string `pulumi:"guiRouteTagAddressCreation"`
 	// Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
 	GuiSecurityProfileGroup *string `pulumi:"guiSecurityProfileGroup"`
 	// Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
 	GuiSpamfilter *string `pulumi:"guiSpamfilter"`
+	// Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+	GuiSslvpn *string `pulumi:"guiSslvpn"`
 	// Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
 	GuiSslvpnPersonalBookmarks *string `pulumi:"guiSslvpnPersonalBookmarks"`
 	// Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
@@ -1157,6 +1239,8 @@ type settingsArgs struct {
 	GuiTrafficShaping *string `pulumi:"guiTrafficShaping"`
 	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
 	GuiVideofilter *string `pulumi:"guiVideofilter"`
+	// Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+	GuiVirtualPatchProfile *string `pulumi:"guiVirtualPatchProfile"`
 	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
 	GuiVoipProfile *string `pulumi:"guiVoipProfile"`
 	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
@@ -1191,10 +1275,14 @@ type settingsArgs struct {
 	IkeQuickCrashDetect *string `pulumi:"ikeQuickCrashDetect"`
 	// Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
 	IkeSessionResume *string `pulumi:"ikeSessionResume"`
+	// TCP port for IKE/IPsec traffic (default 4500).
+	IkeTcpPort *int `pulumi:"ikeTcpPort"`
 	// Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
 	ImplicitAllowDns *string `pulumi:"implicitAllowDns"`
 	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
 	InspectionMode *string `pulumi:"inspectionMode"`
+	// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+	InternetServiceDatabaseCache *string `pulumi:"internetServiceDatabaseCache"`
 	// IP address and netmask.
 	Ip *string `pulumi:"ip"`
 	// IPv6 address prefix for NAT mode.
@@ -1323,6 +1411,8 @@ type SettingsArgs struct {
 	DefaultVoipAlgMode pulumi.StringPtrInput
 	// Enable/disable denying TCP by sending an ICMP communication prohibited packet. Valid values: `enable`, `disable`.
 	DenyTcpWithIcmp pulumi.StringPtrInput
+	// Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+	DetectUnknownEsp pulumi.StringPtrInput
 	// Interface to use for management access for NAT mode.
 	Device pulumi.StringPtrInput
 	// DHCPv6 server IPv6 address.
@@ -1357,6 +1447,8 @@ type SettingsArgs struct {
 	Gateway pulumi.StringPtrInput
 	// Transparent mode IPv4 default gateway IP address.
 	Gateway6 pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
 	GuiAdvancedPolicy pulumi.StringPtrInput
 	// Enable/disable advanced wireless features in GUI. Valid values: `enable`, `disable`.
@@ -1369,12 +1461,16 @@ type SettingsArgs struct {
 	GuiApProfile pulumi.StringPtrInput
 	// Enable/disable application control on the GUI. Valid values: `enable`, `disable`.
 	GuiApplicationControl pulumi.StringPtrInput
+	// Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+	GuiCasb pulumi.StringPtrInput
 	// Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
 	GuiDefaultPolicyColumns SettingsGuiDefaultPolicyColumnArrayInput
 	// Enable/disable advanced DHCP options on the GUI. Valid values: `enable`, `disable`.
 	GuiDhcpAdvanced pulumi.StringPtrInput
 	// Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
 	GuiDlp pulumi.StringPtrInput
+	// Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+	GuiDlpProfile pulumi.StringPtrInput
 	// Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
 	GuiDnsDatabase pulumi.StringPtrInput
 	// Enable/disable DNS Filtering on the GUI. Valid values: `enable`, `disable`.
@@ -1383,6 +1479,8 @@ type SettingsArgs struct {
 	GuiDomainIpReputation pulumi.StringPtrInput
 	// Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
 	GuiDosPolicy pulumi.StringPtrInput
+	// Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+	GuiDynamicDeviceOsId pulumi.StringPtrInput
 	// Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
 	GuiDynamicProfileDisplay pulumi.StringPtrInput
 	// Enable/disable dynamic routing on the GUI. Valid values: `enable`, `disable`.
@@ -1435,12 +1533,18 @@ type SettingsArgs struct {
 	GuiPolicyDisclaimer pulumi.StringPtrInput
 	// Enable/disable firewall policy learning mode on the GUI. Valid values: `enable`, `disable`.
 	GuiPolicyLearning pulumi.StringPtrInput
+	// Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+	GuiProxyInspection pulumi.StringPtrInput
 	// Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
 	GuiReplacementMessageGroups pulumi.StringPtrInput
+	// Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+	GuiRouteTagAddressCreation pulumi.StringPtrInput
 	// Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
 	GuiSecurityProfileGroup pulumi.StringPtrInput
 	// Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
 	GuiSpamfilter pulumi.StringPtrInput
+	// Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+	GuiSslvpn pulumi.StringPtrInput
 	// Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
 	GuiSslvpnPersonalBookmarks pulumi.StringPtrInput
 	// Enable/disable SSL-VPN realms on the GUI. Valid values: `enable`, `disable`.
@@ -1453,6 +1557,8 @@ type SettingsArgs struct {
 	GuiTrafficShaping pulumi.StringPtrInput
 	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
 	GuiVideofilter pulumi.StringPtrInput
+	// Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+	GuiVirtualPatchProfile pulumi.StringPtrInput
 	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
 	GuiVoipProfile pulumi.StringPtrInput
 	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
@@ -1487,10 +1593,14 @@ type SettingsArgs struct {
 	IkeQuickCrashDetect pulumi.StringPtrInput
 	// Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
 	IkeSessionResume pulumi.StringPtrInput
+	// TCP port for IKE/IPsec traffic (default 4500).
+	IkeTcpPort pulumi.IntPtrInput
 	// Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
 	ImplicitAllowDns pulumi.StringPtrInput
 	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
 	InspectionMode pulumi.StringPtrInput
+	// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+	InternetServiceDatabaseCache pulumi.StringPtrInput
 	// IP address and netmask.
 	Ip pulumi.StringPtrInput
 	// IPv6 address prefix for NAT mode.
@@ -1770,6 +1880,11 @@ func (o SettingsOutput) DenyTcpWithIcmp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.DenyTcpWithIcmp }).(pulumi.StringOutput)
 }
 
+// Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+func (o SettingsOutput) DetectUnknownEsp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.DetectUnknownEsp }).(pulumi.StringOutput)
+}
+
 // Interface to use for management access for NAT mode.
 func (o SettingsOutput) Device() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.Device }).(pulumi.StringOutput)
@@ -1855,6 +1970,11 @@ func (o SettingsOutput) Gateway6() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.Gateway6 }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SettingsOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
 func (o SettingsOutput) GuiAdvancedPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiAdvancedPolicy }).(pulumi.StringOutput)
@@ -1885,6 +2005,11 @@ func (o SettingsOutput) GuiApplicationControl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiApplicationControl }).(pulumi.StringOutput)
 }
 
+// Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+func (o SettingsOutput) GuiCasb() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiCasb }).(pulumi.StringOutput)
+}
+
 // Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
 func (o SettingsOutput) GuiDefaultPolicyColumns() SettingsGuiDefaultPolicyColumnArrayOutput {
 	return o.ApplyT(func(v *Settings) SettingsGuiDefaultPolicyColumnArrayOutput { return v.GuiDefaultPolicyColumns }).(SettingsGuiDefaultPolicyColumnArrayOutput)
@@ -1898,6 +2023,11 @@ func (o SettingsOutput) GuiDhcpAdvanced() pulumi.StringOutput {
 // Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
 func (o SettingsOutput) GuiDlp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiDlp }).(pulumi.StringOutput)
+}
+
+// Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+func (o SettingsOutput) GuiDlpProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiDlpProfile }).(pulumi.StringOutput)
 }
 
 // Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
@@ -1918,6 +2048,11 @@ func (o SettingsOutput) GuiDomainIpReputation() pulumi.StringOutput {
 // Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
 func (o SettingsOutput) GuiDosPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiDosPolicy }).(pulumi.StringOutput)
+}
+
+// Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+func (o SettingsOutput) GuiDynamicDeviceOsId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiDynamicDeviceOsId }).(pulumi.StringOutput)
 }
 
 // Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
@@ -2050,9 +2185,19 @@ func (o SettingsOutput) GuiPolicyLearning() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiPolicyLearning }).(pulumi.StringOutput)
 }
 
+// Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+func (o SettingsOutput) GuiProxyInspection() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiProxyInspection }).(pulumi.StringOutput)
+}
+
 // Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
 func (o SettingsOutput) GuiReplacementMessageGroups() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiReplacementMessageGroups }).(pulumi.StringOutput)
+}
+
+// Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+func (o SettingsOutput) GuiRouteTagAddressCreation() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiRouteTagAddressCreation }).(pulumi.StringOutput)
 }
 
 // Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
@@ -2063,6 +2208,11 @@ func (o SettingsOutput) GuiSecurityProfileGroup() pulumi.StringOutput {
 // Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
 func (o SettingsOutput) GuiSpamfilter() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiSpamfilter }).(pulumi.StringOutput)
+}
+
+// Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+func (o SettingsOutput) GuiSslvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiSslvpn }).(pulumi.StringOutput)
 }
 
 // Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
@@ -2093,6 +2243,11 @@ func (o SettingsOutput) GuiTrafficShaping() pulumi.StringOutput {
 // Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
 func (o SettingsOutput) GuiVideofilter() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiVideofilter }).(pulumi.StringOutput)
+}
+
+// Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+func (o SettingsOutput) GuiVirtualPatchProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.GuiVirtualPatchProfile }).(pulumi.StringOutput)
 }
 
 // Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
@@ -2180,6 +2335,11 @@ func (o SettingsOutput) IkeSessionResume() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.IkeSessionResume }).(pulumi.StringOutput)
 }
 
+// TCP port for IKE/IPsec traffic (default 4500).
+func (o SettingsOutput) IkeTcpPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.IkeTcpPort }).(pulumi.IntOutput)
+}
+
 // Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
 func (o SettingsOutput) ImplicitAllowDns() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.ImplicitAllowDns }).(pulumi.StringOutput)
@@ -2188,6 +2348,11 @@ func (o SettingsOutput) ImplicitAllowDns() pulumi.StringOutput {
 // Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
 func (o SettingsOutput) InspectionMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.InspectionMode }).(pulumi.StringOutput)
+}
+
+// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+func (o SettingsOutput) InternetServiceDatabaseCache() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.InternetServiceDatabaseCache }).(pulumi.StringOutput)
 }
 
 // IP address and netmask.

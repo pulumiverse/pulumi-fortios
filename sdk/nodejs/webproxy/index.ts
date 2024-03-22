@@ -15,6 +15,11 @@ export type Explicit = import("./explicit").Explicit;
 export const Explicit: typeof import("./explicit").Explicit = null as any;
 utilities.lazyLoad(exports, ["Explicit"], () => require("./explicit"));
 
+export { FastfallbackArgs, FastfallbackState } from "./fastfallback";
+export type Fastfallback = import("./fastfallback").Fastfallback;
+export const Fastfallback: typeof import("./fastfallback").Fastfallback = null as any;
+utilities.lazyLoad(exports, ["Fastfallback"], () => require("./fastfallback"));
+
 export { ForwardserverArgs, ForwardserverState } from "./forwardserver";
 export type Forwardserver = import("./forwardserver").Forwardserver;
 export const Forwardserver: typeof import("./forwardserver").Forwardserver = null as any;
@@ -54,6 +59,8 @@ const _module = {
                 return new Debugurl(name, <any>undefined, { urn })
             case "fortios:webproxy/explicit:Explicit":
                 return new Explicit(name, <any>undefined, { urn })
+            case "fortios:webproxy/fastfallback:Fastfallback":
+                return new Fastfallback(name, <any>undefined, { urn })
             case "fortios:webproxy/forwardserver:Forwardserver":
                 return new Forwardserver(name, <any>undefined, { urn })
             case "fortios:webproxy/forwardservergroup:Forwardservergroup":
@@ -73,6 +80,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("fortios", "webproxy/debugurl", _module)
 pulumi.runtime.registerResourceModule("fortios", "webproxy/explicit", _module)
+pulumi.runtime.registerResourceModule("fortios", "webproxy/fastfallback", _module)
 pulumi.runtime.registerResourceModule("fortios", "webproxy/forwardserver", _module)
 pulumi.runtime.registerResourceModule("fortios", "webproxy/forwardservergroup", _module)
 pulumi.runtime.registerResourceModule("fortios", "webproxy/global", _module)

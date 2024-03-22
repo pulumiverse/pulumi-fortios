@@ -125,6 +125,10 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly flowBased!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Gmail. The structure of `gmail` block is documented below.
      */
     public readonly gmail!: pulumi.Output<outputs.filter.spam.ProfileGmail>;
@@ -221,6 +225,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["external"] = state ? state.external : undefined;
             resourceInputs["flowBased"] = state ? state.flowBased : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gmail"] = state ? state.gmail : undefined;
             resourceInputs["imap"] = state ? state.imap : undefined;
             resourceInputs["mapi"] = state ? state.mapi : undefined;
@@ -246,6 +251,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["external"] = args ? args.external : undefined;
             resourceInputs["flowBased"] = args ? args.flowBased : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gmail"] = args ? args.gmail : undefined;
             resourceInputs["imap"] = args ? args.imap : undefined;
             resourceInputs["mapi"] = args ? args.mapi : undefined;
@@ -288,6 +294,10 @@ export interface ProfileState {
      * Enable/disable flow-based spam filtering. Valid values: `enable`, `disable`.
      */
     flowBased?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Gmail. The structure of `gmail` block is documented below.
      */
@@ -386,6 +396,10 @@ export interface ProfileArgs {
      * Enable/disable flow-based spam filtering. Valid values: `enable`, `disable`.
      */
     flowBased?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Gmail. The structure of `gmail` block is documented below.
      */

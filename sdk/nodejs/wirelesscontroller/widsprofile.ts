@@ -104,6 +104,14 @@ export class Widsprofile extends pulumi.CustomResource {
      */
     public readonly apScan!: pulumi.Output<string>;
     /**
+     * Selected ap scan channel list for 2.4G and 5G bands. The structure of `apScanChannelList2g5g` block is documented below.
+     */
+    public readonly apScanChannelList2g5gs!: pulumi.Output<outputs.wirelesscontroller.WidsprofileApScanChannelList2g5g[] | undefined>;
+    /**
+     * Selected ap scan channel list for 6G band. The structure of `apScanChannelList6g` block is documented below.
+     */
+    public readonly apScanChannelList6gs!: pulumi.Output<outputs.wirelesscontroller.WidsprofileApScanChannelList6g[] | undefined>;
+    /**
      * Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
      */
     public readonly apScanPassive!: pulumi.Output<string>;
@@ -228,6 +236,10 @@ export class Widsprofile extends pulumi.CustomResource {
      */
     public readonly eapolSuccThresh!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
      */
     public readonly invalidMacOui!: pulumi.Output<string>;
@@ -257,6 +269,8 @@ export class Widsprofile extends pulumi.CustomResource {
     public readonly spoofedDeauth!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     *
+     * The `apScanChannelList2g5g` block supports:
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     /**
@@ -293,6 +307,8 @@ export class Widsprofile extends pulumi.CustomResource {
             resourceInputs["apBgscanReportIntv"] = state ? state.apBgscanReportIntv : undefined;
             resourceInputs["apFgscanReportIntv"] = state ? state.apFgscanReportIntv : undefined;
             resourceInputs["apScan"] = state ? state.apScan : undefined;
+            resourceInputs["apScanChannelList2g5gs"] = state ? state.apScanChannelList2g5gs : undefined;
+            resourceInputs["apScanChannelList6gs"] = state ? state.apScanChannelList6gs : undefined;
             resourceInputs["apScanPassive"] = state ? state.apScanPassive : undefined;
             resourceInputs["apScanThreshold"] = state ? state.apScanThreshold : undefined;
             resourceInputs["asleapAttack"] = state ? state.asleapAttack : undefined;
@@ -324,6 +340,7 @@ export class Widsprofile extends pulumi.CustomResource {
             resourceInputs["eapolSuccFlood"] = state ? state.eapolSuccFlood : undefined;
             resourceInputs["eapolSuccIntv"] = state ? state.eapolSuccIntv : undefined;
             resourceInputs["eapolSuccThresh"] = state ? state.eapolSuccThresh : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["invalidMacOui"] = state ? state.invalidMacOui : undefined;
             resourceInputs["longDurationAttack"] = state ? state.longDurationAttack : undefined;
             resourceInputs["longDurationThresh"] = state ? state.longDurationThresh : undefined;
@@ -348,6 +365,8 @@ export class Widsprofile extends pulumi.CustomResource {
             resourceInputs["apBgscanReportIntv"] = args ? args.apBgscanReportIntv : undefined;
             resourceInputs["apFgscanReportIntv"] = args ? args.apFgscanReportIntv : undefined;
             resourceInputs["apScan"] = args ? args.apScan : undefined;
+            resourceInputs["apScanChannelList2g5gs"] = args ? args.apScanChannelList2g5gs : undefined;
+            resourceInputs["apScanChannelList6gs"] = args ? args.apScanChannelList6gs : undefined;
             resourceInputs["apScanPassive"] = args ? args.apScanPassive : undefined;
             resourceInputs["apScanThreshold"] = args ? args.apScanThreshold : undefined;
             resourceInputs["asleapAttack"] = args ? args.asleapAttack : undefined;
@@ -379,6 +398,7 @@ export class Widsprofile extends pulumi.CustomResource {
             resourceInputs["eapolSuccFlood"] = args ? args.eapolSuccFlood : undefined;
             resourceInputs["eapolSuccIntv"] = args ? args.eapolSuccIntv : undefined;
             resourceInputs["eapolSuccThresh"] = args ? args.eapolSuccThresh : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["invalidMacOui"] = args ? args.invalidMacOui : undefined;
             resourceInputs["longDurationAttack"] = args ? args.longDurationAttack : undefined;
             resourceInputs["longDurationThresh"] = args ? args.longDurationThresh : undefined;
@@ -448,6 +468,14 @@ export interface WidsprofileState {
      */
     apScan?: pulumi.Input<string>;
     /**
+     * Selected ap scan channel list for 2.4G and 5G bands. The structure of `apScanChannelList2g5g` block is documented below.
+     */
+    apScanChannelList2g5gs?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.WidsprofileApScanChannelList2g5g>[]>;
+    /**
+     * Selected ap scan channel list for 6G band. The structure of `apScanChannelList6g` block is documented below.
+     */
+    apScanChannelList6gs?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.WidsprofileApScanChannelList6g>[]>;
+    /**
      * Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
      */
     apScanPassive?: pulumi.Input<string>;
@@ -572,6 +600,10 @@ export interface WidsprofileState {
      */
     eapolSuccThresh?: pulumi.Input<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
      */
     invalidMacOui?: pulumi.Input<string>;
@@ -601,6 +633,8 @@ export interface WidsprofileState {
     spoofedDeauth?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     *
+     * The `apScanChannelList2g5g` block supports:
      */
     vdomparam?: pulumi.Input<string>;
     /**
@@ -666,6 +700,14 @@ export interface WidsprofileArgs {
      */
     apScan?: pulumi.Input<string>;
     /**
+     * Selected ap scan channel list for 2.4G and 5G bands. The structure of `apScanChannelList2g5g` block is documented below.
+     */
+    apScanChannelList2g5gs?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.WidsprofileApScanChannelList2g5g>[]>;
+    /**
+     * Selected ap scan channel list for 6G band. The structure of `apScanChannelList6g` block is documented below.
+     */
+    apScanChannelList6gs?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.WidsprofileApScanChannelList6g>[]>;
+    /**
      * Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
      */
     apScanPassive?: pulumi.Input<string>;
@@ -790,6 +832,10 @@ export interface WidsprofileArgs {
      */
     eapolSuccThresh?: pulumi.Input<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
      */
     invalidMacOui?: pulumi.Input<string>;
@@ -819,6 +865,8 @@ export interface WidsprofileArgs {
     spoofedDeauth?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     *
+     * The `apScanChannelList2g5g` block supports:
      */
     vdomparam?: pulumi.Input<string>;
     /**

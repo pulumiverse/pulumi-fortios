@@ -15,6 +15,7 @@ __all__ = [
     'ExplicitPacPolicyDstaddr',
     'ExplicitPacPolicySrcaddr6',
     'ExplicitPacPolicySrcaddr',
+    'ExplicitSecureWebProxyCert',
     'ForwardservergroupServerList',
     'GlobalLearnClientIpSrcaddr6',
     'GlobalLearnClientIpSrcaddr',
@@ -203,6 +204,25 @@ class ExplicitPacPolicySrcaddr(dict):
 
 
 @pulumi.output_type
+class ExplicitSecureWebProxyCert(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Certificate list.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Certificate list.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class ForwardservergroupServerList(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None,
@@ -303,7 +323,7 @@ class ProfileHeader(dict):
                  name: Optional[str] = None,
                  protocol: Optional[str] = None):
         """
-        :param str action: Action when the HTTP header is forwarded. Valid values: `add-to-request`, `add-to-response`, `remove-from-request`, `remove-from-response`.
+        :param str action: Action when the HTTP header is forwarded.
         :param str add_option: Configure options to append content to existing HTTP header or add new HTTP header. Valid values: `append`, `new-on-not-found`, `new`.
         :param str base64_encoding: Enable/disable use of base64 encoding of HTTP content. Valid values: `disable`, `enable`.
         :param str content: HTTP header content.
@@ -336,7 +356,7 @@ class ProfileHeader(dict):
     @pulumi.getter
     def action(self) -> Optional[str]:
         """
-        Action when the HTTP header is forwarded. Valid values: `add-to-request`, `add-to-response`, `remove-from-request`, `remove-from-response`.
+        Action when the HTTP header is forwarded.
         """
         return pulumi.get(self, "action")
 

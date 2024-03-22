@@ -199,7 +199,7 @@ class Fortindr(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure FortiNDR. Applies to FortiOS Version `>= 7.2.0`.
+        Configure FortiNDR. Applies to FortiOS Version `>= 7.0.8`.
 
         ## Import
 
@@ -234,7 +234,7 @@ class Fortindr(pulumi.CustomResource):
                  args: Optional[FortindrArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure FortiNDR. Applies to FortiOS Version `>= 7.2.0`.
+        Configure FortiNDR. Applies to FortiOS Version `>= 7.0.8`.
 
         ## Import
 

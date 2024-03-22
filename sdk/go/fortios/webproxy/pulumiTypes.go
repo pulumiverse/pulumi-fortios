@@ -464,6 +464,103 @@ func (o ExplicitPacPolicySrcaddrArrayOutput) Index(i pulumi.IntInput) ExplicitPa
 	}).(ExplicitPacPolicySrcaddrOutput)
 }
 
+type ExplicitSecureWebProxyCert struct {
+	// Certificate list.
+	Name *string `pulumi:"name"`
+}
+
+// ExplicitSecureWebProxyCertInput is an input type that accepts ExplicitSecureWebProxyCertArgs and ExplicitSecureWebProxyCertOutput values.
+// You can construct a concrete instance of `ExplicitSecureWebProxyCertInput` via:
+//
+//	ExplicitSecureWebProxyCertArgs{...}
+type ExplicitSecureWebProxyCertInput interface {
+	pulumi.Input
+
+	ToExplicitSecureWebProxyCertOutput() ExplicitSecureWebProxyCertOutput
+	ToExplicitSecureWebProxyCertOutputWithContext(context.Context) ExplicitSecureWebProxyCertOutput
+}
+
+type ExplicitSecureWebProxyCertArgs struct {
+	// Certificate list.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (ExplicitSecureWebProxyCertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExplicitSecureWebProxyCert)(nil)).Elem()
+}
+
+func (i ExplicitSecureWebProxyCertArgs) ToExplicitSecureWebProxyCertOutput() ExplicitSecureWebProxyCertOutput {
+	return i.ToExplicitSecureWebProxyCertOutputWithContext(context.Background())
+}
+
+func (i ExplicitSecureWebProxyCertArgs) ToExplicitSecureWebProxyCertOutputWithContext(ctx context.Context) ExplicitSecureWebProxyCertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExplicitSecureWebProxyCertOutput)
+}
+
+// ExplicitSecureWebProxyCertArrayInput is an input type that accepts ExplicitSecureWebProxyCertArray and ExplicitSecureWebProxyCertArrayOutput values.
+// You can construct a concrete instance of `ExplicitSecureWebProxyCertArrayInput` via:
+//
+//	ExplicitSecureWebProxyCertArray{ ExplicitSecureWebProxyCertArgs{...} }
+type ExplicitSecureWebProxyCertArrayInput interface {
+	pulumi.Input
+
+	ToExplicitSecureWebProxyCertArrayOutput() ExplicitSecureWebProxyCertArrayOutput
+	ToExplicitSecureWebProxyCertArrayOutputWithContext(context.Context) ExplicitSecureWebProxyCertArrayOutput
+}
+
+type ExplicitSecureWebProxyCertArray []ExplicitSecureWebProxyCertInput
+
+func (ExplicitSecureWebProxyCertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExplicitSecureWebProxyCert)(nil)).Elem()
+}
+
+func (i ExplicitSecureWebProxyCertArray) ToExplicitSecureWebProxyCertArrayOutput() ExplicitSecureWebProxyCertArrayOutput {
+	return i.ToExplicitSecureWebProxyCertArrayOutputWithContext(context.Background())
+}
+
+func (i ExplicitSecureWebProxyCertArray) ToExplicitSecureWebProxyCertArrayOutputWithContext(ctx context.Context) ExplicitSecureWebProxyCertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExplicitSecureWebProxyCertArrayOutput)
+}
+
+type ExplicitSecureWebProxyCertOutput struct{ *pulumi.OutputState }
+
+func (ExplicitSecureWebProxyCertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExplicitSecureWebProxyCert)(nil)).Elem()
+}
+
+func (o ExplicitSecureWebProxyCertOutput) ToExplicitSecureWebProxyCertOutput() ExplicitSecureWebProxyCertOutput {
+	return o
+}
+
+func (o ExplicitSecureWebProxyCertOutput) ToExplicitSecureWebProxyCertOutputWithContext(ctx context.Context) ExplicitSecureWebProxyCertOutput {
+	return o
+}
+
+// Certificate list.
+func (o ExplicitSecureWebProxyCertOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExplicitSecureWebProxyCert) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ExplicitSecureWebProxyCertArrayOutput struct{ *pulumi.OutputState }
+
+func (ExplicitSecureWebProxyCertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExplicitSecureWebProxyCert)(nil)).Elem()
+}
+
+func (o ExplicitSecureWebProxyCertArrayOutput) ToExplicitSecureWebProxyCertArrayOutput() ExplicitSecureWebProxyCertArrayOutput {
+	return o
+}
+
+func (o ExplicitSecureWebProxyCertArrayOutput) ToExplicitSecureWebProxyCertArrayOutputWithContext(ctx context.Context) ExplicitSecureWebProxyCertArrayOutput {
+	return o
+}
+
+func (o ExplicitSecureWebProxyCertArrayOutput) Index(i pulumi.IntInput) ExplicitSecureWebProxyCertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExplicitSecureWebProxyCert {
+		return vs[0].([]ExplicitSecureWebProxyCert)[vs[1].(int)]
+	}).(ExplicitSecureWebProxyCertOutput)
+}
+
 type ForwardservergroupServerList struct {
 	// Forward server name.
 	Name *string `pulumi:"name"`
@@ -765,7 +862,7 @@ func (o GlobalLearnClientIpSrcaddrArrayOutput) Index(i pulumi.IntInput) GlobalLe
 }
 
 type ProfileHeader struct {
-	// Action when the HTTP header is forwarded. Valid values: `add-to-request`, `add-to-response`, `remove-from-request`, `remove-from-response`.
+	// Action when the HTTP header is forwarded.
 	Action *string `pulumi:"action"`
 	// Configure options to append content to existing HTTP header or add new HTTP header. Valid values: `append`, `new-on-not-found`, `new`.
 	AddOption *string `pulumi:"addOption"`
@@ -797,7 +894,7 @@ type ProfileHeaderInput interface {
 }
 
 type ProfileHeaderArgs struct {
-	// Action when the HTTP header is forwarded. Valid values: `add-to-request`, `add-to-response`, `remove-from-request`, `remove-from-response`.
+	// Action when the HTTP header is forwarded.
 	Action pulumi.StringPtrInput `pulumi:"action"`
 	// Configure options to append content to existing HTTP header or add new HTTP header. Valid values: `append`, `new-on-not-found`, `new`.
 	AddOption pulumi.StringPtrInput `pulumi:"addOption"`
@@ -868,7 +965,7 @@ func (o ProfileHeaderOutput) ToProfileHeaderOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Action when the HTTP header is forwarded. Valid values: `add-to-request`, `add-to-response`, `remove-from-request`, `remove-from-response`.
+// Action when the HTTP header is forwarded.
 func (o ProfileHeaderOutput) Action() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileHeader) *string { return v.Action }).(pulumi.StringPtrOutput)
 }
@@ -1136,6 +1233,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ExplicitPacPolicySrcaddr6ArrayInput)(nil)).Elem(), ExplicitPacPolicySrcaddr6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExplicitPacPolicySrcaddrInput)(nil)).Elem(), ExplicitPacPolicySrcaddrArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExplicitPacPolicySrcaddrArrayInput)(nil)).Elem(), ExplicitPacPolicySrcaddrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExplicitSecureWebProxyCertInput)(nil)).Elem(), ExplicitSecureWebProxyCertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExplicitSecureWebProxyCertArrayInput)(nil)).Elem(), ExplicitSecureWebProxyCertArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ForwardservergroupServerListInput)(nil)).Elem(), ForwardservergroupServerListArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ForwardservergroupServerListArrayInput)(nil)).Elem(), ForwardservergroupServerListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalLearnClientIpSrcaddr6Input)(nil)).Elem(), GlobalLearnClientIpSrcaddr6Args{})
@@ -1156,6 +1255,8 @@ func init() {
 	pulumi.RegisterOutputType(ExplicitPacPolicySrcaddr6ArrayOutput{})
 	pulumi.RegisterOutputType(ExplicitPacPolicySrcaddrOutput{})
 	pulumi.RegisterOutputType(ExplicitPacPolicySrcaddrArrayOutput{})
+	pulumi.RegisterOutputType(ExplicitSecureWebProxyCertOutput{})
+	pulumi.RegisterOutputType(ExplicitSecureWebProxyCertArrayOutput{})
 	pulumi.RegisterOutputType(ForwardservergroupServerListOutput{})
 	pulumi.RegisterOutputType(ForwardservergroupServerListArrayOutput{})
 	pulumi.RegisterOutputType(GlobalLearnClientIpSrcaddr6Output{})

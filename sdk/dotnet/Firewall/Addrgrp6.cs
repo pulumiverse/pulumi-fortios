@@ -94,10 +94,28 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("exclude")]
+        public Output<string> Exclude { get; private set; } = null!;
+
+        /// <summary>
+        /// Address6 exclusion member. The structure of `exclude_member` block is documented below.
+        /// </summary>
+        [Output("excludeMembers")]
+        public Output<ImmutableArray<Outputs.Addrgrp6ExcludeMember>> ExcludeMembers { get; private set; } = null!;
+
+        /// <summary>
         /// Security Fabric global object setting. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("fabricObject")]
         public Output<string> FabricObject { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Address objects contained within the group. The structure of `member` block is documented below.
@@ -201,10 +219,34 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
+        /// Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("exclude")]
+        public Input<string>? Exclude { get; set; }
+
+        [Input("excludeMembers")]
+        private InputList<Inputs.Addrgrp6ExcludeMemberArgs>? _excludeMembers;
+
+        /// <summary>
+        /// Address6 exclusion member. The structure of `exclude_member` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Addrgrp6ExcludeMemberArgs> ExcludeMembers
+        {
+            get => _excludeMembers ?? (_excludeMembers = new InputList<Inputs.Addrgrp6ExcludeMemberArgs>());
+            set => _excludeMembers = value;
+        }
+
+        /// <summary>
         /// Security Fabric global object setting. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("fabricObject")]
         public Input<string>? FabricObject { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("members", required: true)]
         private InputList<Inputs.Addrgrp6MemberArgs>? _members;
@@ -281,10 +323,34 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
+        /// Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("exclude")]
+        public Input<string>? Exclude { get; set; }
+
+        [Input("excludeMembers")]
+        private InputList<Inputs.Addrgrp6ExcludeMemberGetArgs>? _excludeMembers;
+
+        /// <summary>
+        /// Address6 exclusion member. The structure of `exclude_member` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Addrgrp6ExcludeMemberGetArgs> ExcludeMembers
+        {
+            get => _excludeMembers ?? (_excludeMembers = new InputList<Inputs.Addrgrp6ExcludeMemberGetArgs>());
+            set => _excludeMembers = value;
+        }
+
+        /// <summary>
         /// Security Fabric global object setting. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("fabricObject")]
         public Input<string>? FabricObject { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("members")]
         private InputList<Inputs.Addrgrp6MemberGetArgs>? _members;

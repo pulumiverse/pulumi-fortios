@@ -119,7 +119,7 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly int Logid;
         /// <summary>
-        /// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
+        /// Log IDs to trigger event. The structure of `logid_block` block is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAutomationtriggerLogidBlockResult> LogidBlocks;
         /// <summary>

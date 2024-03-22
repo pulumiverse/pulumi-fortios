@@ -80,6 +80,10 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly fullArchiveProto!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
      */
     public readonly nacQuarLog!: pulumi.Output<string>;
@@ -123,6 +127,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
             resourceInputs["fullArchiveProto"] = state ? state.fullArchiveProto : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["nacQuarLog"] = state ? state.nacQuarLog : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
@@ -137,6 +142,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
             resourceInputs["fullArchiveProto"] = args ? args.fullArchiveProto : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["nacQuarLog"] = args ? args.nacQuarLog : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
@@ -177,6 +183,10 @@ export interface ProfileState {
      * Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
      */
     fullArchiveProto?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
      */
@@ -231,6 +241,10 @@ export interface ProfileArgs {
      * Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
      */
     fullArchiveProto?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
      */

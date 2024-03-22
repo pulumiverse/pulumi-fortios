@@ -21,13 +21,16 @@ class GetOnetimeResult:
     """
     A collection of values returned by getOnetime.
     """
-    def __init__(__self__, color=None, end=None, expiration_days=None, fabric_object=None, id=None, name=None, start=None, vdomparam=None):
+    def __init__(__self__, color=None, end=None, end_utc=None, expiration_days=None, fabric_object=None, id=None, name=None, start=None, start_utc=None, vdomparam=None):
         if color and not isinstance(color, int):
             raise TypeError("Expected argument 'color' to be a int")
         pulumi.set(__self__, "color", color)
         if end and not isinstance(end, str):
             raise TypeError("Expected argument 'end' to be a str")
         pulumi.set(__self__, "end", end)
+        if end_utc and not isinstance(end_utc, str):
+            raise TypeError("Expected argument 'end_utc' to be a str")
+        pulumi.set(__self__, "end_utc", end_utc)
         if expiration_days and not isinstance(expiration_days, int):
             raise TypeError("Expected argument 'expiration_days' to be a int")
         pulumi.set(__self__, "expiration_days", expiration_days)
@@ -43,6 +46,9 @@ class GetOnetimeResult:
         if start and not isinstance(start, str):
             raise TypeError("Expected argument 'start' to be a str")
         pulumi.set(__self__, "start", start)
+        if start_utc and not isinstance(start_utc, str):
+            raise TypeError("Expected argument 'start_utc' to be a str")
+        pulumi.set(__self__, "start_utc", start_utc)
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
@@ -62,6 +68,14 @@ class GetOnetimeResult:
         Schedule end date and time, format hh:mm yyyy/mm/dd.
         """
         return pulumi.get(self, "end")
+
+    @property
+    @pulumi.getter(name="endUtc")
+    def end_utc(self) -> str:
+        """
+        Schedule end date and time, in epoch format.
+        """
+        return pulumi.get(self, "end_utc")
 
     @property
     @pulumi.getter(name="expirationDays")
@@ -104,6 +118,14 @@ class GetOnetimeResult:
         return pulumi.get(self, "start")
 
     @property
+    @pulumi.getter(name="startUtc")
+    def start_utc(self) -> str:
+        """
+        Schedule start date and time, in epoch format.
+        """
+        return pulumi.get(self, "start_utc")
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[str]:
         return pulumi.get(self, "vdomparam")
@@ -117,11 +139,13 @@ class AwaitableGetOnetimeResult(GetOnetimeResult):
         return GetOnetimeResult(
             color=self.color,
             end=self.end,
+            end_utc=self.end_utc,
             expiration_days=self.expiration_days,
             fabric_object=self.fabric_object,
             id=self.id,
             name=self.name,
             start=self.start,
+            start_utc=self.start_utc,
             vdomparam=self.vdomparam)
 
 
@@ -144,11 +168,13 @@ def get_onetime(name: Optional[str] = None,
     return AwaitableGetOnetimeResult(
         color=pulumi.get(__ret__, 'color'),
         end=pulumi.get(__ret__, 'end'),
+        end_utc=pulumi.get(__ret__, 'end_utc'),
         expiration_days=pulumi.get(__ret__, 'expiration_days'),
         fabric_object=pulumi.get(__ret__, 'fabric_object'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         start=pulumi.get(__ret__, 'start'),
+        start_utc=pulumi.get(__ret__, 'start_utc'),
         vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 

@@ -25,7 +25,9 @@ class CentralsnatmapArgs:
                  srcintfs: pulumi.Input[Sequence[pulumi.Input['CentralsnatmapSrcintfArgs']]],
                  comments: Optional[pulumi.Input[str]] = None,
                  dst_addr6s: Optional[pulumi.Input[Sequence[pulumi.Input['CentralsnatmapDstAddr6Args']]]] = None,
+                 dst_port: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat46: Optional[pulumi.Input[str]] = None,
                  nat64: Optional[pulumi.Input[str]] = None,
                  nat_ippool6s: Optional[pulumi.Input[Sequence[pulumi.Input['CentralsnatmapNatIppool6Args']]]] = None,
@@ -43,17 +45,19 @@ class CentralsnatmapArgs:
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapDstintfArgs']]] dstintfs: Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapOrigAddrArgs']]] orig_addrs: Original address. The structure of `orig_addr` block is documented below.
-        :param pulumi.Input[str] orig_port: Original TCP port (0 to 65535).
+        :param pulumi.Input[str] orig_port: Original TCP port (1 to 65535, 0 means any port).
         :param pulumi.Input[int] protocol: Integer value for the protocol type (0 - 255).
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapSrcintfArgs']]] srcintfs: Source interface name from available interfaces. The structure of `srcintf` block is documented below.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapDstAddr6Args']]] dst_addr6s: IPv6 Destination address. The structure of `dst_addr6` block is documented below.
+        :param pulumi.Input[str] dst_port: Destination port or port range (1 to 65535, 0 means any port).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapNatIppool6Args']]] nat_ippool6s: IPv6 pools to be used for source NAT. The structure of `nat_ippool6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapNatIppoolArgs']]] nat_ippools: Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `nat_ippool` block is documented below.
-        :param pulumi.Input[str] nat_port: Translated port or port range (0 to 65535).
+        :param pulumi.Input[str] nat_port: Translated port or port range (0 to 65535, 0 means any port).
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapOrigAddr6Args']]] orig_addr6s: IPv6 Original address. The structure of `orig_addr6` block is documented below.
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[str] status: Enable/disable the active status of this policy. Valid values: `enable`, `disable`.
@@ -72,8 +76,12 @@ class CentralsnatmapArgs:
             pulumi.set(__self__, "comments", comments)
         if dst_addr6s is not None:
             pulumi.set(__self__, "dst_addr6s", dst_addr6s)
+        if dst_port is not None:
+            pulumi.set(__self__, "dst_port", dst_port)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if nat46 is not None:
             pulumi.set(__self__, "nat46", nat46)
         if nat64 is not None:
@@ -149,7 +157,7 @@ class CentralsnatmapArgs:
     @pulumi.getter(name="origPort")
     def orig_port(self) -> pulumi.Input[str]:
         """
-        Original TCP port (0 to 65535).
+        Original TCP port (1 to 65535, 0 means any port).
         """
         return pulumi.get(self, "orig_port")
 
@@ -206,6 +214,18 @@ class CentralsnatmapArgs:
         pulumi.set(self, "dst_addr6s", value)
 
     @property
+    @pulumi.getter(name="dstPort")
+    def dst_port(self) -> Optional[pulumi.Input[str]]:
+        """
+        Destination port or port range (1 to 65535, 0 means any port).
+        """
+        return pulumi.get(self, "dst_port")
+
+    @dst_port.setter
+    def dst_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dst_port", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -216,6 +236,18 @@ class CentralsnatmapArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -269,7 +301,7 @@ class CentralsnatmapArgs:
     @pulumi.getter(name="natPort")
     def nat_port(self) -> Optional[pulumi.Input[str]]:
         """
-        Translated port or port range (0 to 65535).
+        Translated port or port range (0 to 65535, 0 means any port).
         """
         return pulumi.get(self, "nat_port")
 
@@ -356,8 +388,10 @@ class _CentralsnatmapState:
                  comments: Optional[pulumi.Input[str]] = None,
                  dst_addr6s: Optional[pulumi.Input[Sequence[pulumi.Input['CentralsnatmapDstAddr6Args']]]] = None,
                  dst_addrs: Optional[pulumi.Input[Sequence[pulumi.Input['CentralsnatmapDstAddrArgs']]]] = None,
+                 dst_port: Optional[pulumi.Input[str]] = None,
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input['CentralsnatmapDstintfArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
                  nat46: Optional[pulumi.Input[str]] = None,
                  nat64: Optional[pulumi.Input[str]] = None,
@@ -379,17 +413,19 @@ class _CentralsnatmapState:
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapDstAddr6Args']]] dst_addr6s: IPv6 Destination address. The structure of `dst_addr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapDstAddrArgs']]] dst_addrs: Destination address name from available addresses. The structure of `dst_addr` block is documented below.
+        :param pulumi.Input[str] dst_port: Destination port or port range (1 to 65535, 0 means any port).
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapDstintfArgs']]] dstintfs: Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapNatIppool6Args']]] nat_ippool6s: IPv6 pools to be used for source NAT. The structure of `nat_ippool6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapNatIppoolArgs']]] nat_ippools: Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `nat_ippool` block is documented below.
-        :param pulumi.Input[str] nat_port: Translated port or port range (0 to 65535).
+        :param pulumi.Input[str] nat_port: Translated port or port range (0 to 65535, 0 means any port).
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapOrigAddr6Args']]] orig_addr6s: IPv6 Original address. The structure of `orig_addr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapOrigAddrArgs']]] orig_addrs: Original address. The structure of `orig_addr` block is documented below.
-        :param pulumi.Input[str] orig_port: Original TCP port (0 to 65535).
+        :param pulumi.Input[str] orig_port: Original TCP port (1 to 65535, 0 means any port).
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[int] protocol: Integer value for the protocol type (0 - 255).
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapSrcintfArgs']]] srcintfs: Source interface name from available interfaces. The structure of `srcintf` block is documented below.
@@ -404,10 +440,14 @@ class _CentralsnatmapState:
             pulumi.set(__self__, "dst_addr6s", dst_addr6s)
         if dst_addrs is not None:
             pulumi.set(__self__, "dst_addrs", dst_addrs)
+        if dst_port is not None:
+            pulumi.set(__self__, "dst_port", dst_port)
         if dstintfs is not None:
             pulumi.set(__self__, "dstintfs", dstintfs)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if nat is not None:
             pulumi.set(__self__, "nat", nat)
         if nat46 is not None:
@@ -478,6 +518,18 @@ class _CentralsnatmapState:
         pulumi.set(self, "dst_addrs", value)
 
     @property
+    @pulumi.getter(name="dstPort")
+    def dst_port(self) -> Optional[pulumi.Input[str]]:
+        """
+        Destination port or port range (1 to 65535, 0 means any port).
+        """
+        return pulumi.get(self, "dst_port")
+
+    @dst_port.setter
+    def dst_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dst_port", value)
+
+    @property
     @pulumi.getter
     def dstintfs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CentralsnatmapDstintfArgs']]]]:
         """
@@ -500,6 +552,18 @@ class _CentralsnatmapState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -565,7 +629,7 @@ class _CentralsnatmapState:
     @pulumi.getter(name="natPort")
     def nat_port(self) -> Optional[pulumi.Input[str]]:
         """
-        Translated port or port range (0 to 65535).
+        Translated port or port range (0 to 65535, 0 means any port).
         """
         return pulumi.get(self, "nat_port")
 
@@ -601,7 +665,7 @@ class _CentralsnatmapState:
     @pulumi.getter(name="origPort")
     def orig_port(self) -> Optional[pulumi.Input[str]]:
         """
-        Original TCP port (0 to 65535).
+        Original TCP port (1 to 65535, 0 means any port).
         """
         return pulumi.get(self, "orig_port")
 
@@ -702,8 +766,10 @@ class Centralsnatmap(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  dst_addr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstAddr6Args']]]]] = None,
                  dst_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstAddrArgs']]]]] = None,
+                 dst_port: Optional[pulumi.Input[str]] = None,
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstintfArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
                  nat46: Optional[pulumi.Input[str]] = None,
                  nat64: Optional[pulumi.Input[str]] = None,
@@ -776,17 +842,19 @@ class Centralsnatmap(pulumi.CustomResource):
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstAddr6Args']]]] dst_addr6s: IPv6 Destination address. The structure of `dst_addr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstAddrArgs']]]] dst_addrs: Destination address name from available addresses. The structure of `dst_addr` block is documented below.
+        :param pulumi.Input[str] dst_port: Destination port or port range (1 to 65535, 0 means any port).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstintfArgs']]]] dstintfs: Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapNatIppool6Args']]]] nat_ippool6s: IPv6 pools to be used for source NAT. The structure of `nat_ippool6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapNatIppoolArgs']]]] nat_ippools: Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `nat_ippool` block is documented below.
-        :param pulumi.Input[str] nat_port: Translated port or port range (0 to 65535).
+        :param pulumi.Input[str] nat_port: Translated port or port range (0 to 65535, 0 means any port).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapOrigAddr6Args']]]] orig_addr6s: IPv6 Original address. The structure of `orig_addr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapOrigAddrArgs']]]] orig_addrs: Original address. The structure of `orig_addr` block is documented below.
-        :param pulumi.Input[str] orig_port: Original TCP port (0 to 65535).
+        :param pulumi.Input[str] orig_port: Original TCP port (1 to 65535, 0 means any port).
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[int] protocol: Integer value for the protocol type (0 - 255).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapSrcintfArgs']]]] srcintfs: Source interface name from available interfaces. The structure of `srcintf` block is documented below.
@@ -869,8 +937,10 @@ class Centralsnatmap(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  dst_addr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstAddr6Args']]]]] = None,
                  dst_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstAddrArgs']]]]] = None,
+                 dst_port: Optional[pulumi.Input[str]] = None,
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstintfArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
                  nat46: Optional[pulumi.Input[str]] = None,
                  nat64: Optional[pulumi.Input[str]] = None,
@@ -901,10 +971,12 @@ class Centralsnatmap(pulumi.CustomResource):
             if dst_addrs is None and not opts.urn:
                 raise TypeError("Missing required property 'dst_addrs'")
             __props__.__dict__["dst_addrs"] = dst_addrs
+            __props__.__dict__["dst_port"] = dst_port
             if dstintfs is None and not opts.urn:
                 raise TypeError("Missing required property 'dstintfs'")
             __props__.__dict__["dstintfs"] = dstintfs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if nat is None and not opts.urn:
                 raise TypeError("Missing required property 'nat'")
             __props__.__dict__["nat"] = nat
@@ -944,8 +1016,10 @@ class Centralsnatmap(pulumi.CustomResource):
             comments: Optional[pulumi.Input[str]] = None,
             dst_addr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstAddr6Args']]]]] = None,
             dst_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstAddrArgs']]]]] = None,
+            dst_port: Optional[pulumi.Input[str]] = None,
             dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstintfArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             nat: Optional[pulumi.Input[str]] = None,
             nat46: Optional[pulumi.Input[str]] = None,
             nat64: Optional[pulumi.Input[str]] = None,
@@ -972,17 +1046,19 @@ class Centralsnatmap(pulumi.CustomResource):
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstAddr6Args']]]] dst_addr6s: IPv6 Destination address. The structure of `dst_addr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstAddrArgs']]]] dst_addrs: Destination address name from available addresses. The structure of `dst_addr` block is documented below.
+        :param pulumi.Input[str] dst_port: Destination port or port range (1 to 65535, 0 means any port).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstintfArgs']]]] dstintfs: Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapNatIppool6Args']]]] nat_ippool6s: IPv6 pools to be used for source NAT. The structure of `nat_ippool6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapNatIppoolArgs']]]] nat_ippools: Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `nat_ippool` block is documented below.
-        :param pulumi.Input[str] nat_port: Translated port or port range (0 to 65535).
+        :param pulumi.Input[str] nat_port: Translated port or port range (0 to 65535, 0 means any port).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapOrigAddr6Args']]]] orig_addr6s: IPv6 Original address. The structure of `orig_addr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapOrigAddrArgs']]]] orig_addrs: Original address. The structure of `orig_addr` block is documented below.
-        :param pulumi.Input[str] orig_port: Original TCP port (0 to 65535).
+        :param pulumi.Input[str] orig_port: Original TCP port (1 to 65535, 0 means any port).
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[int] protocol: Integer value for the protocol type (0 - 255).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapSrcintfArgs']]]] srcintfs: Source interface name from available interfaces. The structure of `srcintf` block is documented below.
@@ -998,8 +1074,10 @@ class Centralsnatmap(pulumi.CustomResource):
         __props__.__dict__["comments"] = comments
         __props__.__dict__["dst_addr6s"] = dst_addr6s
         __props__.__dict__["dst_addrs"] = dst_addrs
+        __props__.__dict__["dst_port"] = dst_port
         __props__.__dict__["dstintfs"] = dstintfs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["nat"] = nat
         __props__.__dict__["nat46"] = nat46
         __props__.__dict__["nat64"] = nat64
@@ -1043,6 +1121,14 @@ class Centralsnatmap(pulumi.CustomResource):
         return pulumi.get(self, "dst_addrs")
 
     @property
+    @pulumi.getter(name="dstPort")
+    def dst_port(self) -> pulumi.Output[str]:
+        """
+        Destination port or port range (1 to 65535, 0 means any port).
+        """
+        return pulumi.get(self, "dst_port")
+
+    @property
     @pulumi.getter
     def dstintfs(self) -> pulumi.Output[Sequence['outputs.CentralsnatmapDstintf']]:
         """
@@ -1057,6 +1143,14 @@ class Centralsnatmap(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -1102,7 +1196,7 @@ class Centralsnatmap(pulumi.CustomResource):
     @pulumi.getter(name="natPort")
     def nat_port(self) -> pulumi.Output[str]:
         """
-        Translated port or port range (0 to 65535).
+        Translated port or port range (0 to 65535, 0 means any port).
         """
         return pulumi.get(self, "nat_port")
 
@@ -1126,7 +1220,7 @@ class Centralsnatmap(pulumi.CustomResource):
     @pulumi.getter(name="origPort")
     def orig_port(self) -> pulumi.Output[str]:
         """
-        Original TCP port (0 to 65535).
+        Original TCP port (1 to 65535, 0 means any port).
         """
         return pulumi.get(self, "orig_port")
 

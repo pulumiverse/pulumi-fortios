@@ -13,6 +13,7 @@ from .bfd import *
 from .bfd6 import *
 from .bgp import *
 from .communitylist import *
+from .extcommunitylist import *
 from .get_accesslist import *
 from .get_accesslist6 import *
 from .get_accesslist6list import *

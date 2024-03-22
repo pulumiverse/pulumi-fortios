@@ -19,6 +19,7 @@ class VirtualwanlinkArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['VirtualwanlinkFailAlertInterfaceArgs']]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input['VirtualwanlinkHealthCheckArgs']]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['VirtualwanlinkMemberArgs']]]] = None,
@@ -35,6 +36,7 @@ class VirtualwanlinkArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input['VirtualwanlinkFailAlertInterfaceArgs']]] fail_alert_interfaces: Physical interfaces that will be alerted. The structure of `fail_alert_interfaces` block is documented below.
         :param pulumi.Input[str] fail_detect: Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['VirtualwanlinkHealthCheckArgs']]] health_checks: SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `health_check` block is documented below.
         :param pulumi.Input[str] load_balance_mode: Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
         :param pulumi.Input[Sequence[pulumi.Input['VirtualwanlinkMemberArgs']]] members: Physical FortiGate interfaces added to the virtual-wan-link. The structure of `members` block is documented below.
@@ -53,6 +55,8 @@ class VirtualwanlinkArgs:
             pulumi.set(__self__, "fail_alert_interfaces", fail_alert_interfaces)
         if fail_detect is not None:
             pulumi.set(__self__, "fail_detect", fail_detect)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if health_checks is not None:
             pulumi.set(__self__, "health_checks", health_checks)
         if load_balance_mode is not None:
@@ -111,6 +115,18 @@ class VirtualwanlinkArgs:
     @fail_detect.setter
     def fail_detect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fail_detect", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="healthChecks")
@@ -251,6 +267,7 @@ class _VirtualwanlinkState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['VirtualwanlinkFailAlertInterfaceArgs']]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input['VirtualwanlinkHealthCheckArgs']]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['VirtualwanlinkMemberArgs']]]] = None,
@@ -267,6 +284,7 @@ class _VirtualwanlinkState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input['VirtualwanlinkFailAlertInterfaceArgs']]] fail_alert_interfaces: Physical interfaces that will be alerted. The structure of `fail_alert_interfaces` block is documented below.
         :param pulumi.Input[str] fail_detect: Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['VirtualwanlinkHealthCheckArgs']]] health_checks: SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `health_check` block is documented below.
         :param pulumi.Input[str] load_balance_mode: Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
         :param pulumi.Input[Sequence[pulumi.Input['VirtualwanlinkMemberArgs']]] members: Physical FortiGate interfaces added to the virtual-wan-link. The structure of `members` block is documented below.
@@ -285,6 +303,8 @@ class _VirtualwanlinkState:
             pulumi.set(__self__, "fail_alert_interfaces", fail_alert_interfaces)
         if fail_detect is not None:
             pulumi.set(__self__, "fail_detect", fail_detect)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if health_checks is not None:
             pulumi.set(__self__, "health_checks", health_checks)
         if load_balance_mode is not None:
@@ -343,6 +363,18 @@ class _VirtualwanlinkState:
     @fail_detect.setter
     def fail_detect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fail_detect", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="healthChecks")
@@ -485,6 +517,7 @@ class Virtualwanlink(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkFailAlertInterfaceArgs']]]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkHealthCheckArgs']]]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkMemberArgs']]]]] = None,
@@ -537,6 +570,7 @@ class Virtualwanlink(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkFailAlertInterfaceArgs']]]] fail_alert_interfaces: Physical interfaces that will be alerted. The structure of `fail_alert_interfaces` block is documented below.
         :param pulumi.Input[str] fail_detect: Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkHealthCheckArgs']]]] health_checks: SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `health_check` block is documented below.
         :param pulumi.Input[str] load_balance_mode: Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkMemberArgs']]]] members: Physical FortiGate interfaces added to the virtual-wan-link. The structure of `members` block is documented below.
@@ -608,6 +642,7 @@ class Virtualwanlink(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkFailAlertInterfaceArgs']]]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkHealthCheckArgs']]]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkMemberArgs']]]]] = None,
@@ -631,6 +666,7 @@ class Virtualwanlink(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fail_alert_interfaces"] = fail_alert_interfaces
             __props__.__dict__["fail_detect"] = fail_detect
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["health_checks"] = health_checks
             __props__.__dict__["load_balance_mode"] = load_balance_mode
             __props__.__dict__["members"] = members
@@ -655,6 +691,7 @@ class Virtualwanlink(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkFailAlertInterfaceArgs']]]]] = None,
             fail_detect: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkHealthCheckArgs']]]]] = None,
             load_balance_mode: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkMemberArgs']]]]] = None,
@@ -676,6 +713,7 @@ class Virtualwanlink(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkFailAlertInterfaceArgs']]]] fail_alert_interfaces: Physical interfaces that will be alerted. The structure of `fail_alert_interfaces` block is documented below.
         :param pulumi.Input[str] fail_detect: Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkHealthCheckArgs']]]] health_checks: SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `health_check` block is documented below.
         :param pulumi.Input[str] load_balance_mode: Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualwanlinkMemberArgs']]]] members: Physical FortiGate interfaces added to the virtual-wan-link. The structure of `members` block is documented below.
@@ -695,6 +733,7 @@ class Virtualwanlink(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fail_alert_interfaces"] = fail_alert_interfaces
         __props__.__dict__["fail_detect"] = fail_detect
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["health_checks"] = health_checks
         __props__.__dict__["load_balance_mode"] = load_balance_mode
         __props__.__dict__["members"] = members
@@ -731,6 +770,14 @@ class Virtualwanlink(pulumi.CustomResource):
         Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "fail_detect")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="healthChecks")

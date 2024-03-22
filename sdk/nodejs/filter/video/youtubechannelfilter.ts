@@ -7,7 +7,7 @@ import * as outputs from "../../types/output";
 import * as utilities from "../../utilities";
 
 /**
- * Configure YouTube channel filter. Applies to FortiOS Version `>= 7.0.1`.
+ * Configure YouTube channel filter. Applies to FortiOS Version `7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7,7.0.8,7.0.9,7.0.10,7.0.11,7.0.12,7.0.13,7.2.0,7.2.1,7.2.2,7.2.3,7.2.4,7.2.6,7.4.0,7.4.1`.
  *
  * ## Import
  *
@@ -76,6 +76,10 @@ export class Youtubechannelfilter extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Eanble/disable logging. Valid values: `enable`, `disable`.
      */
     public readonly log!: pulumi.Output<string>;
@@ -110,6 +114,7 @@ export class Youtubechannelfilter extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = state ? state.entries : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["log"] = state ? state.log : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["overrideCategory"] = state ? state.overrideCategory : undefined;
@@ -121,6 +126,7 @@ export class Youtubechannelfilter extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = args ? args.entries : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["log"] = args ? args.log : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["overrideCategory"] = args ? args.overrideCategory : undefined;
@@ -155,6 +161,10 @@ export interface YoutubechannelfilterState {
      * ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Eanble/disable logging. Valid values: `enable`, `disable`.
      */
@@ -197,6 +207,10 @@ export interface YoutubechannelfilterArgs {
      * ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Eanble/disable logging. Valid values: `enable`, `disable`.
      */

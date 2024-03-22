@@ -30,13 +30,16 @@ from .csf import *
 from .customlanguage import *
 from .ddns import *
 from .dedicatedmgmt import *
+from .deviceupgrade import *
 from .dns import *
 from .dns64 import *
 from .dnsdatabase import *
 from .dnsserver import *
 from .dscpbasedpriority import *
 from .emailserver import *
+from .evpn import *
 from .externalresource import *
+from .fabricvpn import *
 from .federatedupgrade import *
 from .fipscc import *
 from .fm import *
@@ -185,6 +188,7 @@ from .ntp import *
 from .objecttagging import *
 from .passwordpolicy import *
 from .passwordpolicyguestadmin import *
+from .pcpserver import *
 from .physicalswitch import *
 from .pppoeinterface import *
 from .proberesponse import *
@@ -195,6 +199,7 @@ from .replacemsgimage import *
 from .resourcelimits import *
 from .saml import *
 from .sdnconnector import *
+from .sdnproxy import *
 from .sdwan import *
 from .sessionhelper import *
 from .sessionttl import *
@@ -207,8 +212,10 @@ from .sittunnel import *
 from .smsserver import *
 from .speedtestschedule import *
 from .speedtestserver import *
+from .speedtestsetting import *
 from .ssoadmin import *
 from .ssoforticloudadmin import *
+from .ssofortigatecloudadmin import *
 from .standalonecluster import *
 from .storage import *
 from .stp import *

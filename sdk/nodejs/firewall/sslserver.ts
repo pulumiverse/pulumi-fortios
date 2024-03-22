@@ -103,7 +103,7 @@ export class Sslserver extends pulumi.CustomResource {
      */
     public readonly sslAlgorithm!: pulumi.Output<string>;
     /**
-     * Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+     * Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
      */
     public readonly sslCert!: pulumi.Output<string>;
     /**
@@ -228,7 +228,7 @@ export interface SslserverState {
      */
     sslAlgorithm?: pulumi.Input<string>;
     /**
-     * Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+     * Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
      */
     sslCert?: pulumi.Input<string>;
     /**
@@ -294,7 +294,7 @@ export interface SslserverArgs {
      */
     sslAlgorithm?: pulumi.Input<string>;
     /**
-     * Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+     * Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
      */
     sslCert: pulumi.Input<string>;
     /**

@@ -96,9 +96,21 @@ export class Addrgrp6 extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+     */
+    public readonly exclude!: pulumi.Output<string>;
+    /**
+     * Address6 exclusion member. The structure of `excludeMember` block is documented below.
+     */
+    public readonly excludeMembers!: pulumi.Output<outputs.firewall.Addrgrp6ExcludeMember[] | undefined>;
+    /**
      * Security Fabric global object setting. Valid values: `enable`, `disable`.
      */
     public readonly fabricObject!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Address objects contained within the group. The structure of `member` block is documented below.
      */
@@ -140,7 +152,10 @@ export class Addrgrp6 extends pulumi.CustomResource {
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["exclude"] = state ? state.exclude : undefined;
+            resourceInputs["excludeMembers"] = state ? state.excludeMembers : undefined;
             resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["taggings"] = state ? state.taggings : undefined;
@@ -155,7 +170,10 @@ export class Addrgrp6 extends pulumi.CustomResource {
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["exclude"] = args ? args.exclude : undefined;
+            resourceInputs["excludeMembers"] = args ? args.excludeMembers : undefined;
             resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["taggings"] = args ? args.taggings : undefined;
@@ -185,9 +203,21 @@ export interface Addrgrp6State {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+     */
+    exclude?: pulumi.Input<string>;
+    /**
+     * Address6 exclusion member. The structure of `excludeMember` block is documented below.
+     */
+    excludeMembers?: pulumi.Input<pulumi.Input<inputs.firewall.Addrgrp6ExcludeMember>[]>;
+    /**
      * Security Fabric global object setting. Valid values: `enable`, `disable`.
      */
     fabricObject?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Address objects contained within the group. The structure of `member` block is documented below.
      */
@@ -231,9 +261,21 @@ export interface Addrgrp6Args {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+     */
+    exclude?: pulumi.Input<string>;
+    /**
+     * Address6 exclusion member. The structure of `excludeMember` block is documented below.
+     */
+    excludeMembers?: pulumi.Input<pulumi.Input<inputs.firewall.Addrgrp6ExcludeMember>[]>;
+    /**
      * Security Fabric global object setting. Valid values: `enable`, `disable`.
      */
     fabricObject?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Address objects contained within the group. The structure of `member` block is documented below.
      */

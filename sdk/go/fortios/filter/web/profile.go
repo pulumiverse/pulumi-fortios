@@ -143,6 +143,8 @@ type Profile struct {
 	FileFilter ProfileFileFilterOutput `pulumi:"fileFilter"`
 	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
 	FtgdWf ProfileFtgdWfOutput `pulumi:"ftgdWf"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
 	HttpsReplacemsg pulumi.StringOutput `pulumi:"httpsReplacemsg"`
 	// Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
@@ -191,6 +193,8 @@ type Profile struct {
 	WebFilterUnknownLog pulumi.StringOutput `pulumi:"webFilterUnknownLog"`
 	// Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
 	WebFilterVbsLog pulumi.StringOutput `pulumi:"webFilterVbsLog"`
+	// Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+	WebFlowLogEncoding pulumi.StringOutput `pulumi:"webFlowLogEncoding"`
 	// Enable/disable logging rating errors. Valid values: `enable`, `disable`.
 	WebFtgdErrLog pulumi.StringOutput `pulumi:"webFtgdErrLog"`
 	// Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
@@ -255,6 +259,8 @@ type profileState struct {
 	FileFilter *ProfileFileFilter `pulumi:"fileFilter"`
 	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
 	FtgdWf *ProfileFtgdWf `pulumi:"ftgdWf"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
 	HttpsReplacemsg *string `pulumi:"httpsReplacemsg"`
 	// Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
@@ -303,6 +309,8 @@ type profileState struct {
 	WebFilterUnknownLog *string `pulumi:"webFilterUnknownLog"`
 	// Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
 	WebFilterVbsLog *string `pulumi:"webFilterVbsLog"`
+	// Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+	WebFlowLogEncoding *string `pulumi:"webFlowLogEncoding"`
 	// Enable/disable logging rating errors. Valid values: `enable`, `disable`.
 	WebFtgdErrLog *string `pulumi:"webFtgdErrLog"`
 	// Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
@@ -338,6 +346,8 @@ type ProfileState struct {
 	FileFilter ProfileFileFilterPtrInput
 	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
 	FtgdWf ProfileFtgdWfPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
 	HttpsReplacemsg pulumi.StringPtrInput
 	// Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
@@ -386,6 +396,8 @@ type ProfileState struct {
 	WebFilterUnknownLog pulumi.StringPtrInput
 	// Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
 	WebFilterVbsLog pulumi.StringPtrInput
+	// Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+	WebFlowLogEncoding pulumi.StringPtrInput
 	// Enable/disable logging rating errors. Valid values: `enable`, `disable`.
 	WebFtgdErrLog pulumi.StringPtrInput
 	// Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
@@ -425,6 +437,8 @@ type profileArgs struct {
 	FileFilter *ProfileFileFilter `pulumi:"fileFilter"`
 	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
 	FtgdWf *ProfileFtgdWf `pulumi:"ftgdWf"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
 	HttpsReplacemsg *string `pulumi:"httpsReplacemsg"`
 	// Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
@@ -473,6 +487,8 @@ type profileArgs struct {
 	WebFilterUnknownLog *string `pulumi:"webFilterUnknownLog"`
 	// Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
 	WebFilterVbsLog *string `pulumi:"webFilterVbsLog"`
+	// Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+	WebFlowLogEncoding *string `pulumi:"webFlowLogEncoding"`
 	// Enable/disable logging rating errors. Valid values: `enable`, `disable`.
 	WebFtgdErrLog *string `pulumi:"webFtgdErrLog"`
 	// Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
@@ -509,6 +525,8 @@ type ProfileArgs struct {
 	FileFilter ProfileFileFilterPtrInput
 	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
 	FtgdWf ProfileFtgdWfPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
 	HttpsReplacemsg pulumi.StringPtrInput
 	// Web filtering inspection mode. Valid values: `proxy`, `flow-based`.
@@ -557,6 +575,8 @@ type ProfileArgs struct {
 	WebFilterUnknownLog pulumi.StringPtrInput
 	// Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
 	WebFilterVbsLog pulumi.StringPtrInput
+	// Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+	WebFlowLogEncoding pulumi.StringPtrInput
 	// Enable/disable logging rating errors. Valid values: `enable`, `disable`.
 	WebFtgdErrLog pulumi.StringPtrInput
 	// Enable/disable logging daily quota usage. Valid values: `enable`, `disable`.
@@ -699,6 +719,11 @@ func (o ProfileOutput) FtgdWf() ProfileFtgdWfOutput {
 	return o.ApplyT(func(v *Profile) ProfileFtgdWfOutput { return v.FtgdWf }).(ProfileFtgdWfOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
 func (o ProfileOutput) HttpsReplacemsg() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.HttpsReplacemsg }).(pulumi.StringOutput)
@@ -817,6 +842,11 @@ func (o ProfileOutput) WebFilterUnknownLog() pulumi.StringOutput {
 // Enable/disable logging VBS scripts. Valid values: `enable`, `disable`.
 func (o ProfileOutput) WebFilterVbsLog() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.WebFilterVbsLog }).(pulumi.StringOutput)
+}
+
+// Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
+func (o ProfileOutput) WebFlowLogEncoding() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.WebFlowLogEncoding }).(pulumi.StringOutput)
 }
 
 // Enable/disable logging rating errors. Valid values: `enable`, `disable`.

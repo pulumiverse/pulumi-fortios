@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
-// FortiExtender extender profile configuration. Applies to FortiOS Version `7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.2.0`.
+// FortiExtender extender profile configuration. Applies to FortiOS Version `7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7,7.0.8,7.0.9,7.0.10,7.0.11,7.0.12,7.0.13,7.2.0`.
 //
 // ## Import
 //
@@ -45,13 +45,15 @@ type Extenderprofile struct {
 	Extension pulumi.StringOutput `pulumi:"extension"`
 	// id
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension ExtenderprofileLanExtensionOutput `pulumi:"lanExtension"`
 	// Set the managed extender's administrator password.
 	LoginPassword pulumi.StringPtrOutput `pulumi:"loginPassword"`
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
 	LoginPasswordChange pulumi.StringOutput `pulumi:"loginPasswordChange"`
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+	// Model.
 	Model pulumi.StringOutput `pulumi:"model"`
 	// FortiExtender profile name
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -101,13 +103,15 @@ type extenderprofileState struct {
 	Extension *string `pulumi:"extension"`
 	// id
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension *ExtenderprofileLanExtension `pulumi:"lanExtension"`
 	// Set the managed extender's administrator password.
 	LoginPassword *string `pulumi:"loginPassword"`
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
 	LoginPasswordChange *string `pulumi:"loginPasswordChange"`
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+	// Model.
 	Model *string `pulumi:"model"`
 	// FortiExtender profile name
 	Name *string `pulumi:"name"`
@@ -128,13 +132,15 @@ type ExtenderprofileState struct {
 	Extension pulumi.StringPtrInput
 	// id
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension ExtenderprofileLanExtensionPtrInput
 	// Set the managed extender's administrator password.
 	LoginPassword pulumi.StringPtrInput
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
 	LoginPasswordChange pulumi.StringPtrInput
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+	// Model.
 	Model pulumi.StringPtrInput
 	// FortiExtender profile name
 	Name pulumi.StringPtrInput
@@ -159,13 +165,15 @@ type extenderprofileArgs struct {
 	Extension *string `pulumi:"extension"`
 	// id
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension *ExtenderprofileLanExtension `pulumi:"lanExtension"`
 	// Set the managed extender's administrator password.
 	LoginPassword *string `pulumi:"loginPassword"`
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
 	LoginPasswordChange *string `pulumi:"loginPasswordChange"`
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+	// Model.
 	Model *string `pulumi:"model"`
 	// FortiExtender profile name
 	Name *string `pulumi:"name"`
@@ -187,13 +195,15 @@ type ExtenderprofileArgs struct {
 	Extension pulumi.StringPtrInput
 	// id
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension ExtenderprofileLanExtensionPtrInput
 	// Set the managed extender's administrator password.
 	LoginPassword pulumi.StringPtrInput
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
 	LoginPasswordChange pulumi.StringPtrInput
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+	// Model.
 	Model pulumi.StringPtrInput
 	// FortiExtender profile name
 	Name pulumi.StringPtrInput
@@ -318,6 +328,11 @@ func (o ExtenderprofileOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Extenderprofile) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ExtenderprofileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Extenderprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 func (o ExtenderprofileOutput) LanExtension() ExtenderprofileLanExtensionOutput {
 	return o.ApplyT(func(v *Extenderprofile) ExtenderprofileLanExtensionOutput { return v.LanExtension }).(ExtenderprofileLanExtensionOutput)
@@ -333,7 +348,7 @@ func (o ExtenderprofileOutput) LoginPasswordChange() pulumi.StringOutput {
 	return o.ApplyT(func(v *Extenderprofile) pulumi.StringOutput { return v.LoginPasswordChange }).(pulumi.StringOutput)
 }
 
-// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+// Model.
 func (o ExtenderprofileOutput) Model() pulumi.StringOutput {
 	return o.ApplyT(func(v *Extenderprofile) pulumi.StringOutput { return v.Model }).(pulumi.StringOutput)
 }

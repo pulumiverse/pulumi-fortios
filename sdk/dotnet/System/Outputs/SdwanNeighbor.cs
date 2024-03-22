@@ -27,6 +27,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly int? Member;
         /// <summary>
+        /// Member sequence number list. The structure of `member_block` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.SdwanNeighborMemberBlock> MemberBlocks;
+        /// <summary>
         /// Minimum number of members which meet SLA when the neighbor is preferred.
         /// </summary>
         public readonly int? MinimumSlaMeetMembers;
@@ -38,6 +42,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// Role of neighbor. Valid values: `standalone`, `primary`, `secondary`.
         /// </summary>
         public readonly string? Role;
+        /// <summary>
+        /// SD-WAN service ID to work with the neighbor.
+        /// </summary>
+        public readonly int? ServiceId;
         /// <summary>
         /// SLA ID.
         /// </summary>
@@ -51,20 +59,26 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             int? member,
 
+            ImmutableArray<Outputs.SdwanNeighborMemberBlock> memberBlocks,
+
             int? minimumSlaMeetMembers,
 
             string? mode,
 
             string? role,
 
+            int? serviceId,
+
             int? slaId)
         {
             HealthCheck = healthCheck;
             Ip = ip;
             Member = member;
+            MemberBlocks = memberBlocks;
             MinimumSlaMeetMembers = minimumSlaMeetMembers;
             Mode = mode;
             Role = role;
+            ServiceId = serviceId;
             SlaId = slaId;
         }
     }

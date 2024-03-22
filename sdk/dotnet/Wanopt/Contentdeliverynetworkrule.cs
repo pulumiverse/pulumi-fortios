@@ -86,6 +86,12 @@ namespace Pulumiverse.Fortios.Wanopt
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Suffix portion of the fully qualified domain name (eg. fortinet.com in "www.fortinet.com"). The structure of `host_domain_name_suffix` block is documented below.
         /// </summary>
         [Output("hostDomainNameSuffixes")]
@@ -210,6 +216,12 @@ namespace Pulumiverse.Fortios.Wanopt
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
 
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
         [Input("hostDomainNameSuffixes")]
         private InputList<Inputs.ContentdeliverynetworkruleHostDomainNameSuffixArgs>? _hostDomainNameSuffixes;
 
@@ -307,6 +319,12 @@ namespace Pulumiverse.Fortios.Wanopt
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("hostDomainNameSuffixes")]
         private InputList<Inputs.ContentdeliverynetworkruleHostDomainNameSuffixGetArgs>? _hostDomainNameSuffixes;

@@ -96,6 +96,8 @@ type Chart struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Favorite. Valid values: `no`, `yes`.
 	Favorite pulumi.StringOutput `pulumi:"favorite"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
 	GraphType pulumi.StringOutput `pulumi:"graphType"`
 	// Enable/Disable Legend area. Valid values: `enable`, `disable`.
@@ -184,6 +186,8 @@ type chartState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Favorite. Valid values: `no`, `yes`.
 	Favorite *string `pulumi:"favorite"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
 	GraphType *string `pulumi:"graphType"`
 	// Enable/Disable Legend area. Valid values: `enable`, `disable`.
@@ -237,6 +241,8 @@ type ChartState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Favorite. Valid values: `no`, `yes`.
 	Favorite pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
 	GraphType pulumi.StringPtrInput
 	// Enable/Disable Legend area. Valid values: `enable`, `disable`.
@@ -294,6 +300,8 @@ type chartArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Favorite. Valid values: `no`, `yes`.
 	Favorite *string `pulumi:"favorite"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
 	GraphType *string `pulumi:"graphType"`
 	// Enable/Disable Legend area. Valid values: `enable`, `disable`.
@@ -348,6 +356,8 @@ type ChartArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Favorite. Valid values: `no`, `yes`.
 	Favorite pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
 	GraphType pulumi.StringPtrInput
 	// Enable/Disable Legend area. Valid values: `enable`, `disable`.
@@ -518,6 +528,11 @@ func (o ChartOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Favorite. Valid values: `no`, `yes`.
 func (o ChartOutput) Favorite() pulumi.StringOutput {
 	return o.ApplyT(func(v *Chart) pulumi.StringOutput { return v.Favorite }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ChartOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Chart) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.

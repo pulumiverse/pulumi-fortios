@@ -76,6 +76,8 @@ type Multicastaddress struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Final IPv4 address (inclusive) in the range for the address.
 	EndIp pulumi.StringOutput `pulumi:"endIp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Multicast address name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// First IPv4 address (inclusive) in the range for the address.
@@ -132,6 +134,8 @@ type multicastaddressState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Final IPv4 address (inclusive) in the range for the address.
 	EndIp *string `pulumi:"endIp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Multicast address name.
 	Name *string `pulumi:"name"`
 	// First IPv4 address (inclusive) in the range for the address.
@@ -159,6 +163,8 @@ type MulticastaddressState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Final IPv4 address (inclusive) in the range for the address.
 	EndIp pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Multicast address name.
 	Name pulumi.StringPtrInput
 	// First IPv4 address (inclusive) in the range for the address.
@@ -190,6 +196,8 @@ type multicastaddressArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Final IPv4 address (inclusive) in the range for the address.
 	EndIp *string `pulumi:"endIp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Multicast address name.
 	Name *string `pulumi:"name"`
 	// First IPv4 address (inclusive) in the range for the address.
@@ -218,6 +226,8 @@ type MulticastaddressArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Final IPv4 address (inclusive) in the range for the address.
 	EndIp pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Multicast address name.
 	Name pulumi.StringPtrInput
 	// First IPv4 address (inclusive) in the range for the address.
@@ -344,6 +354,11 @@ func (o MulticastaddressOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Final IPv4 address (inclusive) in the range for the address.
 func (o MulticastaddressOutput) EndIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Multicastaddress) pulumi.StringOutput { return v.EndIp }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o MulticastaddressOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Multicastaddress) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Multicast address name.

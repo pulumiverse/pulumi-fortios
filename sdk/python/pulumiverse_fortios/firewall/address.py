@@ -31,6 +31,9 @@ class AddressArgs:
                  filter: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['AddressFssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 hw_model: Optional[pulumi.Input[str]] = None,
+                 hw_vendor: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input['AddressListArgs']]]] = None,
                  macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['AddressMacaddrArgs']]]] = None,
@@ -40,7 +43,9 @@ class AddressArgs:
                  obj_tag: Optional[pulumi.Input[str]] = None,
                  obj_type: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
+                 os: Optional[pulumi.Input[str]] = None,
                  policy_group: Optional[pulumi.Input[str]] = None,
+                 route_tag: Optional[pulumi.Input[int]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
                  sdn_addr_type: Optional[pulumi.Input[str]] = None,
                  sdn_tag: Optional[pulumi.Input[str]] = None,
@@ -49,6 +54,7 @@ class AddressArgs:
                  sub_type: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 sw_version: Optional[pulumi.Input[str]] = None,
                  tag_detection_level: Optional[pulumi.Input[str]] = None,
                  tag_type: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['AddressTaggingArgs']]]] = None,
@@ -76,6 +82,9 @@ class AddressArgs:
         :param pulumi.Input[str] filter: Match criteria filter.
         :param pulumi.Input[str] fqdn: Fully Qualified Domain Name address.
         :param pulumi.Input[Sequence[pulumi.Input['AddressFssoGroupArgs']]] fsso_groups: FSSO group(s). The structure of `fsso_group` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] hw_model: Dynamic address matching hardware model.
+        :param pulumi.Input[str] hw_vendor: Dynamic address matching hardware vendor.
         :param pulumi.Input[str] interface: Name of interface whose IP address is to be used.
         :param pulumi.Input[Sequence[pulumi.Input['AddressListArgs']]] lists: IP address list. The structure of `list` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['AddressMacaddrArgs']]] macaddrs: Multiple MAC address ranges. The structure of `macaddr` block is documented below.
@@ -85,7 +94,9 @@ class AddressArgs:
         :param pulumi.Input[str] obj_tag: Tag of dynamic address object.
         :param pulumi.Input[str] obj_type: Object type. Valid values: `ip`, `mac`.
         :param pulumi.Input[str] organization: Organization domain name (Syntax: organization/domain).
+        :param pulumi.Input[str] os: Dynamic address matching operating system.
         :param pulumi.Input[str] policy_group: Policy group name.
+        :param pulumi.Input[int] route_tag: route-tag address.
         :param pulumi.Input[str] sdn: SDN.
         :param pulumi.Input[str] sdn_addr_type: Type of addresses to collect. Valid values: `private`, `public`, `all`.
         :param pulumi.Input[str] sdn_tag: SDN Tag.
@@ -94,6 +105,7 @@ class AddressArgs:
         :param pulumi.Input[str] sub_type: Sub-type of address.
         :param pulumi.Input[str] subnet: IP address and subnet mask of address.
         :param pulumi.Input[str] subnet_name: Subnet name.
+        :param pulumi.Input[str] sw_version: Dynamic address matching software version.
         :param pulumi.Input[str] tag_detection_level: Tag detection level of dynamic address object.
         :param pulumi.Input[str] tag_type: Tag type of dynamic address object.
         :param pulumi.Input[Sequence[pulumi.Input['AddressTaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -135,6 +147,12 @@ class AddressArgs:
             pulumi.set(__self__, "fqdn", fqdn)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if hw_model is not None:
+            pulumi.set(__self__, "hw_model", hw_model)
+        if hw_vendor is not None:
+            pulumi.set(__self__, "hw_vendor", hw_vendor)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if lists is not None:
@@ -153,8 +171,12 @@ class AddressArgs:
             pulumi.set(__self__, "obj_type", obj_type)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
+        if os is not None:
+            pulumi.set(__self__, "os", os)
         if policy_group is not None:
             pulumi.set(__self__, "policy_group", policy_group)
+        if route_tag is not None:
+            pulumi.set(__self__, "route_tag", route_tag)
         if sdn is not None:
             pulumi.set(__self__, "sdn", sdn)
         if sdn_addr_type is not None:
@@ -171,6 +193,8 @@ class AddressArgs:
             pulumi.set(__self__, "subnet", subnet)
         if subnet_name is not None:
             pulumi.set(__self__, "subnet_name", subnet_name)
+        if sw_version is not None:
+            pulumi.set(__self__, "sw_version", sw_version)
         if tag_detection_level is not None:
             pulumi.set(__self__, "tag_detection_level", tag_detection_level)
         if tag_type is not None:
@@ -373,6 +397,42 @@ class AddressArgs:
         pulumi.set(self, "fsso_groups", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="hwModel")
+    def hw_model(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic address matching hardware model.
+        """
+        return pulumi.get(self, "hw_model")
+
+    @hw_model.setter
+    def hw_model(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hw_model", value)
+
+    @property
+    @pulumi.getter(name="hwVendor")
+    def hw_vendor(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic address matching hardware vendor.
+        """
+        return pulumi.get(self, "hw_vendor")
+
+    @hw_vendor.setter
+    def hw_vendor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hw_vendor", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         """
@@ -481,6 +541,18 @@ class AddressArgs:
         pulumi.set(self, "organization", value)
 
     @property
+    @pulumi.getter
+    def os(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic address matching operating system.
+        """
+        return pulumi.get(self, "os")
+
+    @os.setter
+    def os(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "os", value)
+
+    @property
     @pulumi.getter(name="policyGroup")
     def policy_group(self) -> Optional[pulumi.Input[str]]:
         """
@@ -491,6 +563,18 @@ class AddressArgs:
     @policy_group.setter
     def policy_group(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy_group", value)
+
+    @property
+    @pulumi.getter(name="routeTag")
+    def route_tag(self) -> Optional[pulumi.Input[int]]:
+        """
+        route-tag address.
+        """
+        return pulumi.get(self, "route_tag")
+
+    @route_tag.setter
+    def route_tag(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "route_tag", value)
 
     @property
     @pulumi.getter
@@ -587,6 +671,18 @@ class AddressArgs:
     @subnet_name.setter
     def subnet_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subnet_name", value)
+
+    @property
+    @pulumi.getter(name="swVersion")
+    def sw_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic address matching software version.
+        """
+        return pulumi.get(self, "sw_version")
+
+    @sw_version.setter
+    def sw_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sw_version", value)
 
     @property
     @pulumi.getter(name="tagDetectionLevel")
@@ -727,6 +823,9 @@ class _AddressState:
                  filter: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['AddressFssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 hw_model: Optional[pulumi.Input[str]] = None,
+                 hw_vendor: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input['AddressListArgs']]]] = None,
                  macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['AddressMacaddrArgs']]]] = None,
@@ -736,7 +835,9 @@ class _AddressState:
                  obj_tag: Optional[pulumi.Input[str]] = None,
                  obj_type: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
+                 os: Optional[pulumi.Input[str]] = None,
                  policy_group: Optional[pulumi.Input[str]] = None,
+                 route_tag: Optional[pulumi.Input[int]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
                  sdn_addr_type: Optional[pulumi.Input[str]] = None,
                  sdn_tag: Optional[pulumi.Input[str]] = None,
@@ -745,6 +846,7 @@ class _AddressState:
                  sub_type: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 sw_version: Optional[pulumi.Input[str]] = None,
                  tag_detection_level: Optional[pulumi.Input[str]] = None,
                  tag_type: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['AddressTaggingArgs']]]] = None,
@@ -772,6 +874,9 @@ class _AddressState:
         :param pulumi.Input[str] filter: Match criteria filter.
         :param pulumi.Input[str] fqdn: Fully Qualified Domain Name address.
         :param pulumi.Input[Sequence[pulumi.Input['AddressFssoGroupArgs']]] fsso_groups: FSSO group(s). The structure of `fsso_group` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] hw_model: Dynamic address matching hardware model.
+        :param pulumi.Input[str] hw_vendor: Dynamic address matching hardware vendor.
         :param pulumi.Input[str] interface: Name of interface whose IP address is to be used.
         :param pulumi.Input[Sequence[pulumi.Input['AddressListArgs']]] lists: IP address list. The structure of `list` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['AddressMacaddrArgs']]] macaddrs: Multiple MAC address ranges. The structure of `macaddr` block is documented below.
@@ -781,7 +886,9 @@ class _AddressState:
         :param pulumi.Input[str] obj_tag: Tag of dynamic address object.
         :param pulumi.Input[str] obj_type: Object type. Valid values: `ip`, `mac`.
         :param pulumi.Input[str] organization: Organization domain name (Syntax: organization/domain).
+        :param pulumi.Input[str] os: Dynamic address matching operating system.
         :param pulumi.Input[str] policy_group: Policy group name.
+        :param pulumi.Input[int] route_tag: route-tag address.
         :param pulumi.Input[str] sdn: SDN.
         :param pulumi.Input[str] sdn_addr_type: Type of addresses to collect. Valid values: `private`, `public`, `all`.
         :param pulumi.Input[str] sdn_tag: SDN Tag.
@@ -790,6 +897,7 @@ class _AddressState:
         :param pulumi.Input[str] sub_type: Sub-type of address.
         :param pulumi.Input[str] subnet: IP address and subnet mask of address.
         :param pulumi.Input[str] subnet_name: Subnet name.
+        :param pulumi.Input[str] sw_version: Dynamic address matching software version.
         :param pulumi.Input[str] tag_detection_level: Tag detection level of dynamic address object.
         :param pulumi.Input[str] tag_type: Tag type of dynamic address object.
         :param pulumi.Input[Sequence[pulumi.Input['AddressTaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -831,6 +939,12 @@ class _AddressState:
             pulumi.set(__self__, "fqdn", fqdn)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if hw_model is not None:
+            pulumi.set(__self__, "hw_model", hw_model)
+        if hw_vendor is not None:
+            pulumi.set(__self__, "hw_vendor", hw_vendor)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if lists is not None:
@@ -849,8 +963,12 @@ class _AddressState:
             pulumi.set(__self__, "obj_type", obj_type)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
+        if os is not None:
+            pulumi.set(__self__, "os", os)
         if policy_group is not None:
             pulumi.set(__self__, "policy_group", policy_group)
+        if route_tag is not None:
+            pulumi.set(__self__, "route_tag", route_tag)
         if sdn is not None:
             pulumi.set(__self__, "sdn", sdn)
         if sdn_addr_type is not None:
@@ -867,6 +985,8 @@ class _AddressState:
             pulumi.set(__self__, "subnet", subnet)
         if subnet_name is not None:
             pulumi.set(__self__, "subnet_name", subnet_name)
+        if sw_version is not None:
+            pulumi.set(__self__, "sw_version", sw_version)
         if tag_detection_level is not None:
             pulumi.set(__self__, "tag_detection_level", tag_detection_level)
         if tag_type is not None:
@@ -1069,6 +1189,42 @@ class _AddressState:
         pulumi.set(self, "fsso_groups", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="hwModel")
+    def hw_model(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic address matching hardware model.
+        """
+        return pulumi.get(self, "hw_model")
+
+    @hw_model.setter
+    def hw_model(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hw_model", value)
+
+    @property
+    @pulumi.getter(name="hwVendor")
+    def hw_vendor(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic address matching hardware vendor.
+        """
+        return pulumi.get(self, "hw_vendor")
+
+    @hw_vendor.setter
+    def hw_vendor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hw_vendor", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1177,6 +1333,18 @@ class _AddressState:
         pulumi.set(self, "organization", value)
 
     @property
+    @pulumi.getter
+    def os(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic address matching operating system.
+        """
+        return pulumi.get(self, "os")
+
+    @os.setter
+    def os(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "os", value)
+
+    @property
     @pulumi.getter(name="policyGroup")
     def policy_group(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1187,6 +1355,18 @@ class _AddressState:
     @policy_group.setter
     def policy_group(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy_group", value)
+
+    @property
+    @pulumi.getter(name="routeTag")
+    def route_tag(self) -> Optional[pulumi.Input[int]]:
+        """
+        route-tag address.
+        """
+        return pulumi.get(self, "route_tag")
+
+    @route_tag.setter
+    def route_tag(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "route_tag", value)
 
     @property
     @pulumi.getter
@@ -1283,6 +1463,18 @@ class _AddressState:
     @subnet_name.setter
     def subnet_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subnet_name", value)
+
+    @property
+    @pulumi.getter(name="swVersion")
+    def sw_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic address matching software version.
+        """
+        return pulumi.get(self, "sw_version")
+
+    @sw_version.setter
+    def sw_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sw_version", value)
 
     @property
     @pulumi.getter(name="tagDetectionLevel")
@@ -1425,6 +1617,9 @@ class Address(pulumi.CustomResource):
                  filter: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressFssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 hw_model: Optional[pulumi.Input[str]] = None,
+                 hw_vendor: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressListArgs']]]]] = None,
                  macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressMacaddrArgs']]]]] = None,
@@ -1434,7 +1629,9 @@ class Address(pulumi.CustomResource):
                  obj_tag: Optional[pulumi.Input[str]] = None,
                  obj_type: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
+                 os: Optional[pulumi.Input[str]] = None,
                  policy_group: Optional[pulumi.Input[str]] = None,
+                 route_tag: Optional[pulumi.Input[int]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
                  sdn_addr_type: Optional[pulumi.Input[str]] = None,
                  sdn_tag: Optional[pulumi.Input[str]] = None,
@@ -1443,6 +1640,7 @@ class Address(pulumi.CustomResource):
                  sub_type: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 sw_version: Optional[pulumi.Input[str]] = None,
                  tag_detection_level: Optional[pulumi.Input[str]] = None,
                  tag_type: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTaggingArgs']]]]] = None,
@@ -1511,6 +1709,9 @@ class Address(pulumi.CustomResource):
         :param pulumi.Input[str] filter: Match criteria filter.
         :param pulumi.Input[str] fqdn: Fully Qualified Domain Name address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressFssoGroupArgs']]]] fsso_groups: FSSO group(s). The structure of `fsso_group` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] hw_model: Dynamic address matching hardware model.
+        :param pulumi.Input[str] hw_vendor: Dynamic address matching hardware vendor.
         :param pulumi.Input[str] interface: Name of interface whose IP address is to be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressListArgs']]]] lists: IP address list. The structure of `list` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressMacaddrArgs']]]] macaddrs: Multiple MAC address ranges. The structure of `macaddr` block is documented below.
@@ -1520,7 +1721,9 @@ class Address(pulumi.CustomResource):
         :param pulumi.Input[str] obj_tag: Tag of dynamic address object.
         :param pulumi.Input[str] obj_type: Object type. Valid values: `ip`, `mac`.
         :param pulumi.Input[str] organization: Organization domain name (Syntax: organization/domain).
+        :param pulumi.Input[str] os: Dynamic address matching operating system.
         :param pulumi.Input[str] policy_group: Policy group name.
+        :param pulumi.Input[int] route_tag: route-tag address.
         :param pulumi.Input[str] sdn: SDN.
         :param pulumi.Input[str] sdn_addr_type: Type of addresses to collect. Valid values: `private`, `public`, `all`.
         :param pulumi.Input[str] sdn_tag: SDN Tag.
@@ -1529,6 +1732,7 @@ class Address(pulumi.CustomResource):
         :param pulumi.Input[str] sub_type: Sub-type of address.
         :param pulumi.Input[str] subnet: IP address and subnet mask of address.
         :param pulumi.Input[str] subnet_name: Subnet name.
+        :param pulumi.Input[str] sw_version: Dynamic address matching software version.
         :param pulumi.Input[str] tag_detection_level: Tag detection level of dynamic address object.
         :param pulumi.Input[str] tag_type: Tag type of dynamic address object.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -1616,6 +1820,9 @@ class Address(pulumi.CustomResource):
                  filter: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressFssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 hw_model: Optional[pulumi.Input[str]] = None,
+                 hw_vendor: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressListArgs']]]]] = None,
                  macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressMacaddrArgs']]]]] = None,
@@ -1625,7 +1832,9 @@ class Address(pulumi.CustomResource):
                  obj_tag: Optional[pulumi.Input[str]] = None,
                  obj_type: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
+                 os: Optional[pulumi.Input[str]] = None,
                  policy_group: Optional[pulumi.Input[str]] = None,
+                 route_tag: Optional[pulumi.Input[int]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
                  sdn_addr_type: Optional[pulumi.Input[str]] = None,
                  sdn_tag: Optional[pulumi.Input[str]] = None,
@@ -1634,6 +1843,7 @@ class Address(pulumi.CustomResource):
                  sub_type: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 sw_version: Optional[pulumi.Input[str]] = None,
                  tag_detection_level: Optional[pulumi.Input[str]] = None,
                  tag_type: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTaggingArgs']]]]] = None,
@@ -1668,6 +1878,9 @@ class Address(pulumi.CustomResource):
             __props__.__dict__["filter"] = filter
             __props__.__dict__["fqdn"] = fqdn
             __props__.__dict__["fsso_groups"] = fsso_groups
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["hw_model"] = hw_model
+            __props__.__dict__["hw_vendor"] = hw_vendor
             __props__.__dict__["interface"] = interface
             __props__.__dict__["lists"] = lists
             __props__.__dict__["macaddrs"] = macaddrs
@@ -1677,7 +1890,9 @@ class Address(pulumi.CustomResource):
             __props__.__dict__["obj_tag"] = obj_tag
             __props__.__dict__["obj_type"] = obj_type
             __props__.__dict__["organization"] = organization
+            __props__.__dict__["os"] = os
             __props__.__dict__["policy_group"] = policy_group
+            __props__.__dict__["route_tag"] = route_tag
             __props__.__dict__["sdn"] = sdn
             __props__.__dict__["sdn_addr_type"] = sdn_addr_type
             __props__.__dict__["sdn_tag"] = sdn_tag
@@ -1686,6 +1901,7 @@ class Address(pulumi.CustomResource):
             __props__.__dict__["sub_type"] = sub_type
             __props__.__dict__["subnet"] = subnet
             __props__.__dict__["subnet_name"] = subnet_name
+            __props__.__dict__["sw_version"] = sw_version
             __props__.__dict__["tag_detection_level"] = tag_detection_level
             __props__.__dict__["tag_type"] = tag_type
             __props__.__dict__["taggings"] = taggings
@@ -1721,6 +1937,9 @@ class Address(pulumi.CustomResource):
             filter: Optional[pulumi.Input[str]] = None,
             fqdn: Optional[pulumi.Input[str]] = None,
             fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressFssoGroupArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            hw_model: Optional[pulumi.Input[str]] = None,
+            hw_vendor: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressListArgs']]]]] = None,
             macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressMacaddrArgs']]]]] = None,
@@ -1730,7 +1949,9 @@ class Address(pulumi.CustomResource):
             obj_tag: Optional[pulumi.Input[str]] = None,
             obj_type: Optional[pulumi.Input[str]] = None,
             organization: Optional[pulumi.Input[str]] = None,
+            os: Optional[pulumi.Input[str]] = None,
             policy_group: Optional[pulumi.Input[str]] = None,
+            route_tag: Optional[pulumi.Input[int]] = None,
             sdn: Optional[pulumi.Input[str]] = None,
             sdn_addr_type: Optional[pulumi.Input[str]] = None,
             sdn_tag: Optional[pulumi.Input[str]] = None,
@@ -1739,6 +1960,7 @@ class Address(pulumi.CustomResource):
             sub_type: Optional[pulumi.Input[str]] = None,
             subnet: Optional[pulumi.Input[str]] = None,
             subnet_name: Optional[pulumi.Input[str]] = None,
+            sw_version: Optional[pulumi.Input[str]] = None,
             tag_detection_level: Optional[pulumi.Input[str]] = None,
             tag_type: Optional[pulumi.Input[str]] = None,
             taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTaggingArgs']]]]] = None,
@@ -1771,6 +1993,9 @@ class Address(pulumi.CustomResource):
         :param pulumi.Input[str] filter: Match criteria filter.
         :param pulumi.Input[str] fqdn: Fully Qualified Domain Name address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressFssoGroupArgs']]]] fsso_groups: FSSO group(s). The structure of `fsso_group` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] hw_model: Dynamic address matching hardware model.
+        :param pulumi.Input[str] hw_vendor: Dynamic address matching hardware vendor.
         :param pulumi.Input[str] interface: Name of interface whose IP address is to be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressListArgs']]]] lists: IP address list. The structure of `list` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressMacaddrArgs']]]] macaddrs: Multiple MAC address ranges. The structure of `macaddr` block is documented below.
@@ -1780,7 +2005,9 @@ class Address(pulumi.CustomResource):
         :param pulumi.Input[str] obj_tag: Tag of dynamic address object.
         :param pulumi.Input[str] obj_type: Object type. Valid values: `ip`, `mac`.
         :param pulumi.Input[str] organization: Organization domain name (Syntax: organization/domain).
+        :param pulumi.Input[str] os: Dynamic address matching operating system.
         :param pulumi.Input[str] policy_group: Policy group name.
+        :param pulumi.Input[int] route_tag: route-tag address.
         :param pulumi.Input[str] sdn: SDN.
         :param pulumi.Input[str] sdn_addr_type: Type of addresses to collect. Valid values: `private`, `public`, `all`.
         :param pulumi.Input[str] sdn_tag: SDN Tag.
@@ -1789,6 +2016,7 @@ class Address(pulumi.CustomResource):
         :param pulumi.Input[str] sub_type: Sub-type of address.
         :param pulumi.Input[str] subnet: IP address and subnet mask of address.
         :param pulumi.Input[str] subnet_name: Subnet name.
+        :param pulumi.Input[str] sw_version: Dynamic address matching software version.
         :param pulumi.Input[str] tag_detection_level: Tag detection level of dynamic address object.
         :param pulumi.Input[str] tag_type: Tag type of dynamic address object.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -1819,6 +2047,9 @@ class Address(pulumi.CustomResource):
         __props__.__dict__["filter"] = filter
         __props__.__dict__["fqdn"] = fqdn
         __props__.__dict__["fsso_groups"] = fsso_groups
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["hw_model"] = hw_model
+        __props__.__dict__["hw_vendor"] = hw_vendor
         __props__.__dict__["interface"] = interface
         __props__.__dict__["lists"] = lists
         __props__.__dict__["macaddrs"] = macaddrs
@@ -1828,7 +2059,9 @@ class Address(pulumi.CustomResource):
         __props__.__dict__["obj_tag"] = obj_tag
         __props__.__dict__["obj_type"] = obj_type
         __props__.__dict__["organization"] = organization
+        __props__.__dict__["os"] = os
         __props__.__dict__["policy_group"] = policy_group
+        __props__.__dict__["route_tag"] = route_tag
         __props__.__dict__["sdn"] = sdn
         __props__.__dict__["sdn_addr_type"] = sdn_addr_type
         __props__.__dict__["sdn_tag"] = sdn_tag
@@ -1837,6 +2070,7 @@ class Address(pulumi.CustomResource):
         __props__.__dict__["sub_type"] = sub_type
         __props__.__dict__["subnet"] = subnet
         __props__.__dict__["subnet_name"] = subnet_name
+        __props__.__dict__["sw_version"] = sw_version
         __props__.__dict__["tag_detection_level"] = tag_detection_level
         __props__.__dict__["tag_type"] = tag_type
         __props__.__dict__["taggings"] = taggings
@@ -1970,6 +2204,30 @@ class Address(pulumi.CustomResource):
         return pulumi.get(self, "fsso_groups")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="hwModel")
+    def hw_model(self) -> pulumi.Output[Optional[str]]:
+        """
+        Dynamic address matching hardware model.
+        """
+        return pulumi.get(self, "hw_model")
+
+    @property
+    @pulumi.getter(name="hwVendor")
+    def hw_vendor(self) -> pulumi.Output[Optional[str]]:
+        """
+        Dynamic address matching hardware vendor.
+        """
+        return pulumi.get(self, "hw_vendor")
+
+    @property
     @pulumi.getter
     def interface(self) -> pulumi.Output[Optional[str]]:
         """
@@ -2042,12 +2300,28 @@ class Address(pulumi.CustomResource):
         return pulumi.get(self, "organization")
 
     @property
+    @pulumi.getter
+    def os(self) -> pulumi.Output[Optional[str]]:
+        """
+        Dynamic address matching operating system.
+        """
+        return pulumi.get(self, "os")
+
+    @property
     @pulumi.getter(name="policyGroup")
     def policy_group(self) -> pulumi.Output[Optional[str]]:
         """
         Policy group name.
         """
         return pulumi.get(self, "policy_group")
+
+    @property
+    @pulumi.getter(name="routeTag")
+    def route_tag(self) -> pulumi.Output[Optional[int]]:
+        """
+        route-tag address.
+        """
+        return pulumi.get(self, "route_tag")
 
     @property
     @pulumi.getter
@@ -2112,6 +2386,14 @@ class Address(pulumi.CustomResource):
         Subnet name.
         """
         return pulumi.get(self, "subnet_name")
+
+    @property
+    @pulumi.getter(name="swVersion")
+    def sw_version(self) -> pulumi.Output[Optional[str]]:
+        """
+        Dynamic address matching software version.
+        """
+        return pulumi.get(self, "sw_version")
 
     @property
     @pulumi.getter(name="tagDetectionLevel")

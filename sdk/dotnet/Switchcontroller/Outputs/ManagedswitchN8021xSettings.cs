@@ -27,6 +27,26 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
         /// </summary>
         public readonly string? MabReauth;
         /// <summary>
+        /// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        public readonly string? MacCalledStationDelimiter;
+        /// <summary>
+        /// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        public readonly string? MacCallingStationDelimiter;
+        /// <summary>
+        /// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        /// </summary>
+        public readonly string? MacCase;
+        /// <summary>
+        /// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        public readonly string? MacPasswordDelimiter;
+        /// <summary>
+        /// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        public readonly string? MacUsernameDelimiter;
+        /// <summary>
         /// Maximum number of authentication attempts (0 - 15, default = 3).
         /// </summary>
         public readonly int? MaxReauthAttempt;
@@ -47,6 +67,16 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
 
             string? mabReauth,
 
+            string? macCalledStationDelimiter,
+
+            string? macCallingStationDelimiter,
+
+            string? macCase,
+
+            string? macPasswordDelimiter,
+
+            string? macUsernameDelimiter,
+
             int? maxReauthAttempt,
 
             int? reauthPeriod,
@@ -56,6 +86,11 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
             LinkDownAuth = linkDownAuth;
             LocalOverride = localOverride;
             MabReauth = mabReauth;
+            MacCalledStationDelimiter = macCalledStationDelimiter;
+            MacCallingStationDelimiter = macCallingStationDelimiter;
+            MacCase = macCase;
+            MacPasswordDelimiter = macPasswordDelimiter;
+            MacUsernameDelimiter = macUsernameDelimiter;
             MaxReauthAttempt = maxReauthAttempt;
             ReauthPeriod = reauthPeriod;
             TxPeriod = txPeriod;

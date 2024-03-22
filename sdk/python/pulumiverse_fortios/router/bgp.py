@@ -22,11 +22,14 @@ class BgpArgs:
                  additional_path_select: Optional[pulumi.Input[int]] = None,
                  additional_path_select6: Optional[pulumi.Input[int]] = None,
                  additional_path_select_vpnv4: Optional[pulumi.Input[int]] = None,
+                 additional_path_select_vpnv6: Optional[pulumi.Input[int]] = None,
                  additional_path_vpnv4: Optional[pulumi.Input[str]] = None,
+                 additional_path_vpnv6: Optional[pulumi.Input[str]] = None,
                  admin_distances: Optional[pulumi.Input[Sequence[pulumi.Input['BgpAdminDistanceArgs']]]] = None,
                  aggregate_address6s: Optional[pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddress6Args']]]] = None,
                  aggregate_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddressArgs']]]] = None,
                  always_compare_med: Optional[pulumi.Input[str]] = None,
+                 as_string: Optional[pulumi.Input[str]] = None,
                  bestpath_as_path_ignore: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_confed_aspath: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_routerid: Optional[pulumi.Input[str]] = None,
@@ -36,6 +39,7 @@ class BgpArgs:
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  confederation_identifier: Optional[pulumi.Input[int]] = None,
                  confederation_peers: Optional[pulumi.Input[Sequence[pulumi.Input['BgpConfederationPeerArgs']]]] = None,
+                 cross_family_conditional_adv: Optional[pulumi.Input[str]] = None,
                  dampening: Optional[pulumi.Input[str]] = None,
                  dampening_max_suppress_time: Optional[pulumi.Input[int]] = None,
                  dampening_reachability_half_life: Optional[pulumi.Input[int]] = None,
@@ -52,6 +56,7 @@ class BgpArgs:
                  ebgp_multipath: Optional[pulumi.Input[str]] = None,
                  enforce_first_as: Optional[pulumi.Input[str]] = None,
                  fast_external_failover: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graceful_end_on_timer: Optional[pulumi.Input[str]] = None,
                  graceful_restart: Optional[pulumi.Input[str]] = None,
                  graceful_restart_time: Optional[pulumi.Input[int]] = None,
@@ -91,11 +96,14 @@ class BgpArgs:
         :param pulumi.Input[int] additional_path_select: Number of additional paths to be selected for each IPv4 NLRI.
         :param pulumi.Input[int] additional_path_select6: Number of additional paths to be selected for each IPv6 NLRI.
         :param pulumi.Input[int] additional_path_select_vpnv4: Number of additional paths to be selected for each VPNv4 NLRI.
+        :param pulumi.Input[int] additional_path_select_vpnv6: Number of additional paths to be selected for each VPNv6 NLRI.
         :param pulumi.Input[str] additional_path_vpnv4: Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] additional_path_vpnv6: Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['BgpAdminDistanceArgs']]] admin_distances: Administrative distance modifications. The structure of `admin_distance` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddress6Args']]] aggregate_address6s: BGP IPv6 aggregate address table. The structure of `aggregate_address6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddressArgs']]] aggregate_addresses: BGP aggregate address table. The structure of `aggregate_address` block is documented below.
         :param pulumi.Input[str] always_compare_med: Enable/disable always compare MED. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] as_string: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
         :param pulumi.Input[str] bestpath_as_path_ignore: Enable/disable ignore AS path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_confed_aspath: Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_routerid: Enable/disable compare router ID for identical EBGP paths. Valid values: `enable`, `disable`.
@@ -105,6 +113,7 @@ class BgpArgs:
         :param pulumi.Input[str] cluster_id: Route reflector cluster ID.
         :param pulumi.Input[int] confederation_identifier: Confederation identifier.
         :param pulumi.Input[Sequence[pulumi.Input['BgpConfederationPeerArgs']]] confederation_peers: Confederation peers. The structure of `confederation_peers` block is documented below.
+        :param pulumi.Input[str] cross_family_conditional_adv: Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dampening: Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dampening_max_suppress_time: Maximum minutes a route can be suppressed.
         :param pulumi.Input[int] dampening_reachability_half_life: Reachability half-life time for penalty (min).
@@ -121,6 +130,7 @@ class BgpArgs:
         :param pulumi.Input[str] ebgp_multipath: Enable/disable EBGP multi-path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] enforce_first_as: Enable/disable enforce first AS for EBGP routes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fast_external_failover: Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] graceful_end_on_timer: Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] graceful_restart: Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] graceful_restart_time: Time needed for neighbors to restart (sec).
@@ -164,8 +174,12 @@ class BgpArgs:
             pulumi.set(__self__, "additional_path_select6", additional_path_select6)
         if additional_path_select_vpnv4 is not None:
             pulumi.set(__self__, "additional_path_select_vpnv4", additional_path_select_vpnv4)
+        if additional_path_select_vpnv6 is not None:
+            pulumi.set(__self__, "additional_path_select_vpnv6", additional_path_select_vpnv6)
         if additional_path_vpnv4 is not None:
             pulumi.set(__self__, "additional_path_vpnv4", additional_path_vpnv4)
+        if additional_path_vpnv6 is not None:
+            pulumi.set(__self__, "additional_path_vpnv6", additional_path_vpnv6)
         if admin_distances is not None:
             pulumi.set(__self__, "admin_distances", admin_distances)
         if aggregate_address6s is not None:
@@ -174,6 +188,8 @@ class BgpArgs:
             pulumi.set(__self__, "aggregate_addresses", aggregate_addresses)
         if always_compare_med is not None:
             pulumi.set(__self__, "always_compare_med", always_compare_med)
+        if as_string is not None:
+            pulumi.set(__self__, "as_string", as_string)
         if bestpath_as_path_ignore is not None:
             pulumi.set(__self__, "bestpath_as_path_ignore", bestpath_as_path_ignore)
         if bestpath_cmp_confed_aspath is not None:
@@ -192,6 +208,8 @@ class BgpArgs:
             pulumi.set(__self__, "confederation_identifier", confederation_identifier)
         if confederation_peers is not None:
             pulumi.set(__self__, "confederation_peers", confederation_peers)
+        if cross_family_conditional_adv is not None:
+            pulumi.set(__self__, "cross_family_conditional_adv", cross_family_conditional_adv)
         if dampening is not None:
             pulumi.set(__self__, "dampening", dampening)
         if dampening_max_suppress_time is not None:
@@ -224,6 +242,8 @@ class BgpArgs:
             pulumi.set(__self__, "enforce_first_as", enforce_first_as)
         if fast_external_failover is not None:
             pulumi.set(__self__, "fast_external_failover", fast_external_failover)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if graceful_end_on_timer is not None:
             pulumi.set(__self__, "graceful_end_on_timer", graceful_end_on_timer)
         if graceful_restart is not None:
@@ -360,6 +380,18 @@ class BgpArgs:
         pulumi.set(self, "additional_path_select_vpnv4", value)
 
     @property
+    @pulumi.getter(name="additionalPathSelectVpnv6")
+    def additional_path_select_vpnv6(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of additional paths to be selected for each VPNv6 NLRI.
+        """
+        return pulumi.get(self, "additional_path_select_vpnv6")
+
+    @additional_path_select_vpnv6.setter
+    def additional_path_select_vpnv6(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "additional_path_select_vpnv6", value)
+
+    @property
     @pulumi.getter(name="additionalPathVpnv4")
     def additional_path_vpnv4(self) -> Optional[pulumi.Input[str]]:
         """
@@ -370,6 +402,18 @@ class BgpArgs:
     @additional_path_vpnv4.setter
     def additional_path_vpnv4(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "additional_path_vpnv4", value)
+
+    @property
+    @pulumi.getter(name="additionalPathVpnv6")
+    def additional_path_vpnv6(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "additional_path_vpnv6")
+
+    @additional_path_vpnv6.setter
+    def additional_path_vpnv6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "additional_path_vpnv6", value)
 
     @property
     @pulumi.getter(name="adminDistances")
@@ -418,6 +462,18 @@ class BgpArgs:
     @always_compare_med.setter
     def always_compare_med(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "always_compare_med", value)
+
+    @property
+    @pulumi.getter(name="asString")
+    def as_string(self) -> Optional[pulumi.Input[str]]:
+        """
+        Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        """
+        return pulumi.get(self, "as_string")
+
+    @as_string.setter
+    def as_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "as_string", value)
 
     @property
     @pulumi.getter(name="bestpathAsPathIgnore")
@@ -526,6 +582,18 @@ class BgpArgs:
     @confederation_peers.setter
     def confederation_peers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BgpConfederationPeerArgs']]]]):
         pulumi.set(self, "confederation_peers", value)
+
+    @property
+    @pulumi.getter(name="crossFamilyConditionalAdv")
+    def cross_family_conditional_adv(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cross_family_conditional_adv")
+
+    @cross_family_conditional_adv.setter
+    def cross_family_conditional_adv(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cross_family_conditional_adv", value)
 
     @property
     @pulumi.getter
@@ -718,6 +786,18 @@ class BgpArgs:
     @fast_external_failover.setter
     def fast_external_failover(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fast_external_failover", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="gracefulEndOnTimer")
@@ -1100,12 +1180,15 @@ class _BgpState:
                  additional_path_select: Optional[pulumi.Input[int]] = None,
                  additional_path_select6: Optional[pulumi.Input[int]] = None,
                  additional_path_select_vpnv4: Optional[pulumi.Input[int]] = None,
+                 additional_path_select_vpnv6: Optional[pulumi.Input[int]] = None,
                  additional_path_vpnv4: Optional[pulumi.Input[str]] = None,
+                 additional_path_vpnv6: Optional[pulumi.Input[str]] = None,
                  admin_distances: Optional[pulumi.Input[Sequence[pulumi.Input['BgpAdminDistanceArgs']]]] = None,
                  aggregate_address6s: Optional[pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddress6Args']]]] = None,
                  aggregate_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddressArgs']]]] = None,
                  always_compare_med: Optional[pulumi.Input[str]] = None,
                  as_: Optional[pulumi.Input[int]] = None,
+                 as_string: Optional[pulumi.Input[str]] = None,
                  bestpath_as_path_ignore: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_confed_aspath: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_routerid: Optional[pulumi.Input[str]] = None,
@@ -1115,6 +1198,7 @@ class _BgpState:
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  confederation_identifier: Optional[pulumi.Input[int]] = None,
                  confederation_peers: Optional[pulumi.Input[Sequence[pulumi.Input['BgpConfederationPeerArgs']]]] = None,
+                 cross_family_conditional_adv: Optional[pulumi.Input[str]] = None,
                  dampening: Optional[pulumi.Input[str]] = None,
                  dampening_max_suppress_time: Optional[pulumi.Input[int]] = None,
                  dampening_reachability_half_life: Optional[pulumi.Input[int]] = None,
@@ -1131,6 +1215,7 @@ class _BgpState:
                  ebgp_multipath: Optional[pulumi.Input[str]] = None,
                  enforce_first_as: Optional[pulumi.Input[str]] = None,
                  fast_external_failover: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graceful_end_on_timer: Optional[pulumi.Input[str]] = None,
                  graceful_restart: Optional[pulumi.Input[str]] = None,
                  graceful_restart_time: Optional[pulumi.Input[int]] = None,
@@ -1169,12 +1254,15 @@ class _BgpState:
         :param pulumi.Input[int] additional_path_select: Number of additional paths to be selected for each IPv4 NLRI.
         :param pulumi.Input[int] additional_path_select6: Number of additional paths to be selected for each IPv6 NLRI.
         :param pulumi.Input[int] additional_path_select_vpnv4: Number of additional paths to be selected for each VPNv4 NLRI.
+        :param pulumi.Input[int] additional_path_select_vpnv6: Number of additional paths to be selected for each VPNv6 NLRI.
         :param pulumi.Input[str] additional_path_vpnv4: Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] additional_path_vpnv6: Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['BgpAdminDistanceArgs']]] admin_distances: Administrative distance modifications. The structure of `admin_distance` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddress6Args']]] aggregate_address6s: BGP IPv6 aggregate address table. The structure of `aggregate_address6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddressArgs']]] aggregate_addresses: BGP aggregate address table. The structure of `aggregate_address` block is documented below.
         :param pulumi.Input[str] always_compare_med: Enable/disable always compare MED. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] as_: Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+        :param pulumi.Input[str] as_string: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
         :param pulumi.Input[str] bestpath_as_path_ignore: Enable/disable ignore AS path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_confed_aspath: Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_routerid: Enable/disable compare router ID for identical EBGP paths. Valid values: `enable`, `disable`.
@@ -1184,6 +1272,7 @@ class _BgpState:
         :param pulumi.Input[str] cluster_id: Route reflector cluster ID.
         :param pulumi.Input[int] confederation_identifier: Confederation identifier.
         :param pulumi.Input[Sequence[pulumi.Input['BgpConfederationPeerArgs']]] confederation_peers: Confederation peers. The structure of `confederation_peers` block is documented below.
+        :param pulumi.Input[str] cross_family_conditional_adv: Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dampening: Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dampening_max_suppress_time: Maximum minutes a route can be suppressed.
         :param pulumi.Input[int] dampening_reachability_half_life: Reachability half-life time for penalty (min).
@@ -1200,6 +1289,7 @@ class _BgpState:
         :param pulumi.Input[str] ebgp_multipath: Enable/disable EBGP multi-path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] enforce_first_as: Enable/disable enforce first AS for EBGP routes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fast_external_failover: Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] graceful_end_on_timer: Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] graceful_restart: Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] graceful_restart_time: Time needed for neighbors to restart (sec).
@@ -1242,8 +1332,12 @@ class _BgpState:
             pulumi.set(__self__, "additional_path_select6", additional_path_select6)
         if additional_path_select_vpnv4 is not None:
             pulumi.set(__self__, "additional_path_select_vpnv4", additional_path_select_vpnv4)
+        if additional_path_select_vpnv6 is not None:
+            pulumi.set(__self__, "additional_path_select_vpnv6", additional_path_select_vpnv6)
         if additional_path_vpnv4 is not None:
             pulumi.set(__self__, "additional_path_vpnv4", additional_path_vpnv4)
+        if additional_path_vpnv6 is not None:
+            pulumi.set(__self__, "additional_path_vpnv6", additional_path_vpnv6)
         if admin_distances is not None:
             pulumi.set(__self__, "admin_distances", admin_distances)
         if aggregate_address6s is not None:
@@ -1254,6 +1348,8 @@ class _BgpState:
             pulumi.set(__self__, "always_compare_med", always_compare_med)
         if as_ is not None:
             pulumi.set(__self__, "as_", as_)
+        if as_string is not None:
+            pulumi.set(__self__, "as_string", as_string)
         if bestpath_as_path_ignore is not None:
             pulumi.set(__self__, "bestpath_as_path_ignore", bestpath_as_path_ignore)
         if bestpath_cmp_confed_aspath is not None:
@@ -1272,6 +1368,8 @@ class _BgpState:
             pulumi.set(__self__, "confederation_identifier", confederation_identifier)
         if confederation_peers is not None:
             pulumi.set(__self__, "confederation_peers", confederation_peers)
+        if cross_family_conditional_adv is not None:
+            pulumi.set(__self__, "cross_family_conditional_adv", cross_family_conditional_adv)
         if dampening is not None:
             pulumi.set(__self__, "dampening", dampening)
         if dampening_max_suppress_time is not None:
@@ -1304,6 +1402,8 @@ class _BgpState:
             pulumi.set(__self__, "enforce_first_as", enforce_first_as)
         if fast_external_failover is not None:
             pulumi.set(__self__, "fast_external_failover", fast_external_failover)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if graceful_end_on_timer is not None:
             pulumi.set(__self__, "graceful_end_on_timer", graceful_end_on_timer)
         if graceful_restart is not None:
@@ -1428,6 +1528,18 @@ class _BgpState:
         pulumi.set(self, "additional_path_select_vpnv4", value)
 
     @property
+    @pulumi.getter(name="additionalPathSelectVpnv6")
+    def additional_path_select_vpnv6(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of additional paths to be selected for each VPNv6 NLRI.
+        """
+        return pulumi.get(self, "additional_path_select_vpnv6")
+
+    @additional_path_select_vpnv6.setter
+    def additional_path_select_vpnv6(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "additional_path_select_vpnv6", value)
+
+    @property
     @pulumi.getter(name="additionalPathVpnv4")
     def additional_path_vpnv4(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1438,6 +1550,18 @@ class _BgpState:
     @additional_path_vpnv4.setter
     def additional_path_vpnv4(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "additional_path_vpnv4", value)
+
+    @property
+    @pulumi.getter(name="additionalPathVpnv6")
+    def additional_path_vpnv6(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "additional_path_vpnv6")
+
+    @additional_path_vpnv6.setter
+    def additional_path_vpnv6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "additional_path_vpnv6", value)
 
     @property
     @pulumi.getter(name="adminDistances")
@@ -1498,6 +1622,18 @@ class _BgpState:
     @as_.setter
     def as_(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "as_", value)
+
+    @property
+    @pulumi.getter(name="asString")
+    def as_string(self) -> Optional[pulumi.Input[str]]:
+        """
+        Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        """
+        return pulumi.get(self, "as_string")
+
+    @as_string.setter
+    def as_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "as_string", value)
 
     @property
     @pulumi.getter(name="bestpathAsPathIgnore")
@@ -1606,6 +1742,18 @@ class _BgpState:
     @confederation_peers.setter
     def confederation_peers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BgpConfederationPeerArgs']]]]):
         pulumi.set(self, "confederation_peers", value)
+
+    @property
+    @pulumi.getter(name="crossFamilyConditionalAdv")
+    def cross_family_conditional_adv(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cross_family_conditional_adv")
+
+    @cross_family_conditional_adv.setter
+    def cross_family_conditional_adv(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cross_family_conditional_adv", value)
 
     @property
     @pulumi.getter
@@ -1798,6 +1946,18 @@ class _BgpState:
     @fast_external_failover.setter
     def fast_external_failover(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fast_external_failover", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="gracefulEndOnTimer")
@@ -2182,12 +2342,15 @@ class Bgp(pulumi.CustomResource):
                  additional_path_select: Optional[pulumi.Input[int]] = None,
                  additional_path_select6: Optional[pulumi.Input[int]] = None,
                  additional_path_select_vpnv4: Optional[pulumi.Input[int]] = None,
+                 additional_path_select_vpnv6: Optional[pulumi.Input[int]] = None,
                  additional_path_vpnv4: Optional[pulumi.Input[str]] = None,
+                 additional_path_vpnv6: Optional[pulumi.Input[str]] = None,
                  admin_distances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAdminDistanceArgs']]]]] = None,
                  aggregate_address6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddress6Args']]]]] = None,
                  aggregate_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddressArgs']]]]] = None,
                  always_compare_med: Optional[pulumi.Input[str]] = None,
                  as_: Optional[pulumi.Input[int]] = None,
+                 as_string: Optional[pulumi.Input[str]] = None,
                  bestpath_as_path_ignore: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_confed_aspath: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_routerid: Optional[pulumi.Input[str]] = None,
@@ -2197,6 +2360,7 @@ class Bgp(pulumi.CustomResource):
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  confederation_identifier: Optional[pulumi.Input[int]] = None,
                  confederation_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpConfederationPeerArgs']]]]] = None,
+                 cross_family_conditional_adv: Optional[pulumi.Input[str]] = None,
                  dampening: Optional[pulumi.Input[str]] = None,
                  dampening_max_suppress_time: Optional[pulumi.Input[int]] = None,
                  dampening_reachability_half_life: Optional[pulumi.Input[int]] = None,
@@ -2213,6 +2377,7 @@ class Bgp(pulumi.CustomResource):
                  ebgp_multipath: Optional[pulumi.Input[str]] = None,
                  enforce_first_as: Optional[pulumi.Input[str]] = None,
                  fast_external_failover: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graceful_end_on_timer: Optional[pulumi.Input[str]] = None,
                  graceful_restart: Optional[pulumi.Input[str]] = None,
                  graceful_restart_time: Optional[pulumi.Input[int]] = None,
@@ -2362,12 +2527,15 @@ class Bgp(pulumi.CustomResource):
         :param pulumi.Input[int] additional_path_select: Number of additional paths to be selected for each IPv4 NLRI.
         :param pulumi.Input[int] additional_path_select6: Number of additional paths to be selected for each IPv6 NLRI.
         :param pulumi.Input[int] additional_path_select_vpnv4: Number of additional paths to be selected for each VPNv4 NLRI.
+        :param pulumi.Input[int] additional_path_select_vpnv6: Number of additional paths to be selected for each VPNv6 NLRI.
         :param pulumi.Input[str] additional_path_vpnv4: Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] additional_path_vpnv6: Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAdminDistanceArgs']]]] admin_distances: Administrative distance modifications. The structure of `admin_distance` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddress6Args']]]] aggregate_address6s: BGP IPv6 aggregate address table. The structure of `aggregate_address6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddressArgs']]]] aggregate_addresses: BGP aggregate address table. The structure of `aggregate_address` block is documented below.
         :param pulumi.Input[str] always_compare_med: Enable/disable always compare MED. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] as_: Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+        :param pulumi.Input[str] as_string: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
         :param pulumi.Input[str] bestpath_as_path_ignore: Enable/disable ignore AS path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_confed_aspath: Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_routerid: Enable/disable compare router ID for identical EBGP paths. Valid values: `enable`, `disable`.
@@ -2377,6 +2545,7 @@ class Bgp(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: Route reflector cluster ID.
         :param pulumi.Input[int] confederation_identifier: Confederation identifier.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpConfederationPeerArgs']]]] confederation_peers: Confederation peers. The structure of `confederation_peers` block is documented below.
+        :param pulumi.Input[str] cross_family_conditional_adv: Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dampening: Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dampening_max_suppress_time: Maximum minutes a route can be suppressed.
         :param pulumi.Input[int] dampening_reachability_half_life: Reachability half-life time for penalty (min).
@@ -2393,6 +2562,7 @@ class Bgp(pulumi.CustomResource):
         :param pulumi.Input[str] ebgp_multipath: Enable/disable EBGP multi-path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] enforce_first_as: Enable/disable enforce first AS for EBGP routes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fast_external_failover: Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] graceful_end_on_timer: Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] graceful_restart: Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] graceful_restart_time: Time needed for neighbors to restart (sec).
@@ -2561,12 +2731,15 @@ class Bgp(pulumi.CustomResource):
                  additional_path_select: Optional[pulumi.Input[int]] = None,
                  additional_path_select6: Optional[pulumi.Input[int]] = None,
                  additional_path_select_vpnv4: Optional[pulumi.Input[int]] = None,
+                 additional_path_select_vpnv6: Optional[pulumi.Input[int]] = None,
                  additional_path_vpnv4: Optional[pulumi.Input[str]] = None,
+                 additional_path_vpnv6: Optional[pulumi.Input[str]] = None,
                  admin_distances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAdminDistanceArgs']]]]] = None,
                  aggregate_address6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddress6Args']]]]] = None,
                  aggregate_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddressArgs']]]]] = None,
                  always_compare_med: Optional[pulumi.Input[str]] = None,
                  as_: Optional[pulumi.Input[int]] = None,
+                 as_string: Optional[pulumi.Input[str]] = None,
                  bestpath_as_path_ignore: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_confed_aspath: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_routerid: Optional[pulumi.Input[str]] = None,
@@ -2576,6 +2749,7 @@ class Bgp(pulumi.CustomResource):
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  confederation_identifier: Optional[pulumi.Input[int]] = None,
                  confederation_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpConfederationPeerArgs']]]]] = None,
+                 cross_family_conditional_adv: Optional[pulumi.Input[str]] = None,
                  dampening: Optional[pulumi.Input[str]] = None,
                  dampening_max_suppress_time: Optional[pulumi.Input[int]] = None,
                  dampening_reachability_half_life: Optional[pulumi.Input[int]] = None,
@@ -2592,6 +2766,7 @@ class Bgp(pulumi.CustomResource):
                  ebgp_multipath: Optional[pulumi.Input[str]] = None,
                  enforce_first_as: Optional[pulumi.Input[str]] = None,
                  fast_external_failover: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graceful_end_on_timer: Optional[pulumi.Input[str]] = None,
                  graceful_restart: Optional[pulumi.Input[str]] = None,
                  graceful_restart_time: Optional[pulumi.Input[int]] = None,
@@ -2637,7 +2812,9 @@ class Bgp(pulumi.CustomResource):
             __props__.__dict__["additional_path_select"] = additional_path_select
             __props__.__dict__["additional_path_select6"] = additional_path_select6
             __props__.__dict__["additional_path_select_vpnv4"] = additional_path_select_vpnv4
+            __props__.__dict__["additional_path_select_vpnv6"] = additional_path_select_vpnv6
             __props__.__dict__["additional_path_vpnv4"] = additional_path_vpnv4
+            __props__.__dict__["additional_path_vpnv6"] = additional_path_vpnv6
             __props__.__dict__["admin_distances"] = admin_distances
             __props__.__dict__["aggregate_address6s"] = aggregate_address6s
             __props__.__dict__["aggregate_addresses"] = aggregate_addresses
@@ -2645,6 +2822,7 @@ class Bgp(pulumi.CustomResource):
             if as_ is None and not opts.urn:
                 raise TypeError("Missing required property 'as_'")
             __props__.__dict__["as_"] = as_
+            __props__.__dict__["as_string"] = as_string
             __props__.__dict__["bestpath_as_path_ignore"] = bestpath_as_path_ignore
             __props__.__dict__["bestpath_cmp_confed_aspath"] = bestpath_cmp_confed_aspath
             __props__.__dict__["bestpath_cmp_routerid"] = bestpath_cmp_routerid
@@ -2654,6 +2832,7 @@ class Bgp(pulumi.CustomResource):
             __props__.__dict__["cluster_id"] = cluster_id
             __props__.__dict__["confederation_identifier"] = confederation_identifier
             __props__.__dict__["confederation_peers"] = confederation_peers
+            __props__.__dict__["cross_family_conditional_adv"] = cross_family_conditional_adv
             __props__.__dict__["dampening"] = dampening
             __props__.__dict__["dampening_max_suppress_time"] = dampening_max_suppress_time
             __props__.__dict__["dampening_reachability_half_life"] = dampening_reachability_half_life
@@ -2670,6 +2849,7 @@ class Bgp(pulumi.CustomResource):
             __props__.__dict__["ebgp_multipath"] = ebgp_multipath
             __props__.__dict__["enforce_first_as"] = enforce_first_as
             __props__.__dict__["fast_external_failover"] = fast_external_failover
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["graceful_end_on_timer"] = graceful_end_on_timer
             __props__.__dict__["graceful_restart"] = graceful_restart
             __props__.__dict__["graceful_restart_time"] = graceful_restart_time
@@ -2716,12 +2896,15 @@ class Bgp(pulumi.CustomResource):
             additional_path_select: Optional[pulumi.Input[int]] = None,
             additional_path_select6: Optional[pulumi.Input[int]] = None,
             additional_path_select_vpnv4: Optional[pulumi.Input[int]] = None,
+            additional_path_select_vpnv6: Optional[pulumi.Input[int]] = None,
             additional_path_vpnv4: Optional[pulumi.Input[str]] = None,
+            additional_path_vpnv6: Optional[pulumi.Input[str]] = None,
             admin_distances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAdminDistanceArgs']]]]] = None,
             aggregate_address6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddress6Args']]]]] = None,
             aggregate_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddressArgs']]]]] = None,
             always_compare_med: Optional[pulumi.Input[str]] = None,
             as_: Optional[pulumi.Input[int]] = None,
+            as_string: Optional[pulumi.Input[str]] = None,
             bestpath_as_path_ignore: Optional[pulumi.Input[str]] = None,
             bestpath_cmp_confed_aspath: Optional[pulumi.Input[str]] = None,
             bestpath_cmp_routerid: Optional[pulumi.Input[str]] = None,
@@ -2731,6 +2914,7 @@ class Bgp(pulumi.CustomResource):
             cluster_id: Optional[pulumi.Input[str]] = None,
             confederation_identifier: Optional[pulumi.Input[int]] = None,
             confederation_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpConfederationPeerArgs']]]]] = None,
+            cross_family_conditional_adv: Optional[pulumi.Input[str]] = None,
             dampening: Optional[pulumi.Input[str]] = None,
             dampening_max_suppress_time: Optional[pulumi.Input[int]] = None,
             dampening_reachability_half_life: Optional[pulumi.Input[int]] = None,
@@ -2747,6 +2931,7 @@ class Bgp(pulumi.CustomResource):
             ebgp_multipath: Optional[pulumi.Input[str]] = None,
             enforce_first_as: Optional[pulumi.Input[str]] = None,
             fast_external_failover: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             graceful_end_on_timer: Optional[pulumi.Input[str]] = None,
             graceful_restart: Optional[pulumi.Input[str]] = None,
             graceful_restart_time: Optional[pulumi.Input[int]] = None,
@@ -2790,12 +2975,15 @@ class Bgp(pulumi.CustomResource):
         :param pulumi.Input[int] additional_path_select: Number of additional paths to be selected for each IPv4 NLRI.
         :param pulumi.Input[int] additional_path_select6: Number of additional paths to be selected for each IPv6 NLRI.
         :param pulumi.Input[int] additional_path_select_vpnv4: Number of additional paths to be selected for each VPNv4 NLRI.
+        :param pulumi.Input[int] additional_path_select_vpnv6: Number of additional paths to be selected for each VPNv6 NLRI.
         :param pulumi.Input[str] additional_path_vpnv4: Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] additional_path_vpnv6: Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAdminDistanceArgs']]]] admin_distances: Administrative distance modifications. The structure of `admin_distance` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddress6Args']]]] aggregate_address6s: BGP IPv6 aggregate address table. The structure of `aggregate_address6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddressArgs']]]] aggregate_addresses: BGP aggregate address table. The structure of `aggregate_address` block is documented below.
         :param pulumi.Input[str] always_compare_med: Enable/disable always compare MED. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] as_: Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+        :param pulumi.Input[str] as_string: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
         :param pulumi.Input[str] bestpath_as_path_ignore: Enable/disable ignore AS path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_confed_aspath: Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_routerid: Enable/disable compare router ID for identical EBGP paths. Valid values: `enable`, `disable`.
@@ -2805,6 +2993,7 @@ class Bgp(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: Route reflector cluster ID.
         :param pulumi.Input[int] confederation_identifier: Confederation identifier.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpConfederationPeerArgs']]]] confederation_peers: Confederation peers. The structure of `confederation_peers` block is documented below.
+        :param pulumi.Input[str] cross_family_conditional_adv: Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dampening: Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dampening_max_suppress_time: Maximum minutes a route can be suppressed.
         :param pulumi.Input[int] dampening_reachability_half_life: Reachability half-life time for penalty (min).
@@ -2821,6 +3010,7 @@ class Bgp(pulumi.CustomResource):
         :param pulumi.Input[str] ebgp_multipath: Enable/disable EBGP multi-path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] enforce_first_as: Enable/disable enforce first AS for EBGP routes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fast_external_failover: Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] graceful_end_on_timer: Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] graceful_restart: Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] graceful_restart_time: Time needed for neighbors to restart (sec).
@@ -2862,12 +3052,15 @@ class Bgp(pulumi.CustomResource):
         __props__.__dict__["additional_path_select"] = additional_path_select
         __props__.__dict__["additional_path_select6"] = additional_path_select6
         __props__.__dict__["additional_path_select_vpnv4"] = additional_path_select_vpnv4
+        __props__.__dict__["additional_path_select_vpnv6"] = additional_path_select_vpnv6
         __props__.__dict__["additional_path_vpnv4"] = additional_path_vpnv4
+        __props__.__dict__["additional_path_vpnv6"] = additional_path_vpnv6
         __props__.__dict__["admin_distances"] = admin_distances
         __props__.__dict__["aggregate_address6s"] = aggregate_address6s
         __props__.__dict__["aggregate_addresses"] = aggregate_addresses
         __props__.__dict__["always_compare_med"] = always_compare_med
         __props__.__dict__["as_"] = as_
+        __props__.__dict__["as_string"] = as_string
         __props__.__dict__["bestpath_as_path_ignore"] = bestpath_as_path_ignore
         __props__.__dict__["bestpath_cmp_confed_aspath"] = bestpath_cmp_confed_aspath
         __props__.__dict__["bestpath_cmp_routerid"] = bestpath_cmp_routerid
@@ -2877,6 +3070,7 @@ class Bgp(pulumi.CustomResource):
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["confederation_identifier"] = confederation_identifier
         __props__.__dict__["confederation_peers"] = confederation_peers
+        __props__.__dict__["cross_family_conditional_adv"] = cross_family_conditional_adv
         __props__.__dict__["dampening"] = dampening
         __props__.__dict__["dampening_max_suppress_time"] = dampening_max_suppress_time
         __props__.__dict__["dampening_reachability_half_life"] = dampening_reachability_half_life
@@ -2893,6 +3087,7 @@ class Bgp(pulumi.CustomResource):
         __props__.__dict__["ebgp_multipath"] = ebgp_multipath
         __props__.__dict__["enforce_first_as"] = enforce_first_as
         __props__.__dict__["fast_external_failover"] = fast_external_failover
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["graceful_end_on_timer"] = graceful_end_on_timer
         __props__.__dict__["graceful_restart"] = graceful_restart
         __props__.__dict__["graceful_restart_time"] = graceful_restart_time
@@ -2967,12 +3162,28 @@ class Bgp(pulumi.CustomResource):
         return pulumi.get(self, "additional_path_select_vpnv4")
 
     @property
+    @pulumi.getter(name="additionalPathSelectVpnv6")
+    def additional_path_select_vpnv6(self) -> pulumi.Output[int]:
+        """
+        Number of additional paths to be selected for each VPNv6 NLRI.
+        """
+        return pulumi.get(self, "additional_path_select_vpnv6")
+
+    @property
     @pulumi.getter(name="additionalPathVpnv4")
     def additional_path_vpnv4(self) -> pulumi.Output[str]:
         """
         Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "additional_path_vpnv4")
+
+    @property
+    @pulumi.getter(name="additionalPathVpnv6")
+    def additional_path_vpnv6(self) -> pulumi.Output[str]:
+        """
+        Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "additional_path_vpnv6")
 
     @property
     @pulumi.getter(name="adminDistances")
@@ -3013,6 +3224,14 @@ class Bgp(pulumi.CustomResource):
         Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
         """
         return pulumi.get(self, "as_")
+
+    @property
+    @pulumi.getter(name="asString")
+    def as_string(self) -> pulumi.Output[str]:
+        """
+        Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        """
+        return pulumi.get(self, "as_string")
 
     @property
     @pulumi.getter(name="bestpathAsPathIgnore")
@@ -3085,6 +3304,14 @@ class Bgp(pulumi.CustomResource):
         Confederation peers. The structure of `confederation_peers` block is documented below.
         """
         return pulumi.get(self, "confederation_peers")
+
+    @property
+    @pulumi.getter(name="crossFamilyConditionalAdv")
+    def cross_family_conditional_adv(self) -> pulumi.Output[str]:
+        """
+        Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cross_family_conditional_adv")
 
     @property
     @pulumi.getter
@@ -3215,6 +3442,14 @@ class Bgp(pulumi.CustomResource):
         return pulumi.get(self, "fast_external_failover")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="gracefulEndOnTimer")
     def graceful_end_on_timer(self) -> pulumi.Output[str]:
         """
@@ -3304,7 +3539,7 @@ class Bgp(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="neighborGroups")
-    def neighbor_groups(self) -> pulumi.Output[Optional[Sequence['outputs.BgpNeighborGroup']]]:
+    def neighbor_groups(self) -> pulumi.Output[Sequence['outputs.BgpNeighborGroup']]:
         """
         BGP neighbor group table. The structure of `neighbor_group` block is documented below.
         """
@@ -3328,7 +3563,7 @@ class Bgp(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def neighbors(self) -> pulumi.Output[Optional[Sequence['outputs.BgpNeighbor']]]:
+    def neighbors(self) -> pulumi.Output[Sequence['outputs.BgpNeighbor']]:
         """
         BGP neighbor table. The structure of `neighbor` block is documented below.
         """

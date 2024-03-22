@@ -45,7 +45,9 @@ type LookupGroupResult struct {
 	// Address name.
 	Name string `pulumi:"name"`
 	// Enable/disable web proxy service group.
-	Proxy     string  `pulumi:"proxy"`
+	Proxy string `pulumi:"proxy"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid      string  `pulumi:"uuid"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -122,6 +124,11 @@ func (o LookupGroupResultOutput) Name() pulumi.StringOutput {
 // Enable/disable web proxy service group.
 func (o LookupGroupResultOutput) Proxy() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGroupResult) string { return v.Proxy }).(pulumi.StringOutput)
+}
+
+// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+func (o LookupGroupResultOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGroupResult) string { return v.Uuid }).(pulumi.StringOutput)
 }
 
 func (o LookupGroupResultOutput) Vdomparam() pulumi.StringPtrOutput {

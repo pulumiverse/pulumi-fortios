@@ -74,20 +74,24 @@ type Global struct {
 
 	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
 	AnomalyMode pulumi.StringOutput `pulumi:"anomalyMode"`
+	// Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+	AvMemLimit pulumi.IntOutput `pulumi:"avMemLimit"`
 	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
 	CpAccelMode pulumi.StringOutput `pulumi:"cpAccelMode"`
 	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
 	Database pulumi.StringOutput `pulumi:"database"`
-	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+	// Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
 	DeepAppInspDbLimit pulumi.IntOutput `pulumi:"deepAppInspDbLimit"`
 	// Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
 	DeepAppInspTimeout pulumi.IntOutput `pulumi:"deepAppInspTimeout"`
 	// Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
 	EngineCount pulumi.IntOutput `pulumi:"engineCount"`
-	// Excluded signatures. Valid values: `none`, `industrial`.
+	// Excluded signatures.
 	ExcludeSignatures pulumi.StringOutput `pulumi:"excludeSignatures"`
 	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
 	FailOpen pulumi.StringOutput `pulumi:"failOpen"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode pulumi.StringOutput `pulumi:"intelligentMode"`
 	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
@@ -102,7 +106,7 @@ type Global struct {
 	SessionLimitMode pulumi.StringOutput `pulumi:"sessionLimitMode"`
 	// Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
 	SkypeClientPublicIpaddr pulumi.StringPtrOutput `pulumi:"skypeClientPublicIpaddr"`
-	// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+	// IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
 	SocketSize pulumi.IntOutput `pulumi:"socketSize"`
 	// Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
 	SyncSessionTtl pulumi.StringOutput `pulumi:"syncSessionTtl"`
@@ -146,20 +150,24 @@ func GetGlobal(ctx *pulumi.Context,
 type globalState struct {
 	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
 	AnomalyMode *string `pulumi:"anomalyMode"`
+	// Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+	AvMemLimit *int `pulumi:"avMemLimit"`
 	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
 	CpAccelMode *string `pulumi:"cpAccelMode"`
 	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
 	Database *string `pulumi:"database"`
-	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+	// Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
 	DeepAppInspDbLimit *int `pulumi:"deepAppInspDbLimit"`
 	// Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
 	DeepAppInspTimeout *int `pulumi:"deepAppInspTimeout"`
 	// Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
 	EngineCount *int `pulumi:"engineCount"`
-	// Excluded signatures. Valid values: `none`, `industrial`.
+	// Excluded signatures.
 	ExcludeSignatures *string `pulumi:"excludeSignatures"`
 	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
 	FailOpen *string `pulumi:"failOpen"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode *string `pulumi:"intelligentMode"`
 	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
@@ -174,7 +182,7 @@ type globalState struct {
 	SessionLimitMode *string `pulumi:"sessionLimitMode"`
 	// Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
 	SkypeClientPublicIpaddr *string `pulumi:"skypeClientPublicIpaddr"`
-	// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+	// IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
 	SocketSize *int `pulumi:"socketSize"`
 	// Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
 	SyncSessionTtl *string `pulumi:"syncSessionTtl"`
@@ -189,20 +197,24 @@ type globalState struct {
 type GlobalState struct {
 	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
 	AnomalyMode pulumi.StringPtrInput
+	// Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+	AvMemLimit pulumi.IntPtrInput
 	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
 	CpAccelMode pulumi.StringPtrInput
 	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
 	Database pulumi.StringPtrInput
-	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+	// Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
 	DeepAppInspDbLimit pulumi.IntPtrInput
 	// Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
 	DeepAppInspTimeout pulumi.IntPtrInput
 	// Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
 	EngineCount pulumi.IntPtrInput
-	// Excluded signatures. Valid values: `none`, `industrial`.
+	// Excluded signatures.
 	ExcludeSignatures pulumi.StringPtrInput
 	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
 	FailOpen pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode pulumi.StringPtrInput
 	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
@@ -217,7 +229,7 @@ type GlobalState struct {
 	SessionLimitMode pulumi.StringPtrInput
 	// Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
 	SkypeClientPublicIpaddr pulumi.StringPtrInput
-	// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+	// IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
 	SocketSize pulumi.IntPtrInput
 	// Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
 	SyncSessionTtl pulumi.StringPtrInput
@@ -236,20 +248,24 @@ func (GlobalState) ElementType() reflect.Type {
 type globalArgs struct {
 	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
 	AnomalyMode *string `pulumi:"anomalyMode"`
+	// Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+	AvMemLimit *int `pulumi:"avMemLimit"`
 	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
 	CpAccelMode *string `pulumi:"cpAccelMode"`
 	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
 	Database *string `pulumi:"database"`
-	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+	// Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
 	DeepAppInspDbLimit *int `pulumi:"deepAppInspDbLimit"`
 	// Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
 	DeepAppInspTimeout *int `pulumi:"deepAppInspTimeout"`
 	// Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
 	EngineCount *int `pulumi:"engineCount"`
-	// Excluded signatures. Valid values: `none`, `industrial`.
+	// Excluded signatures.
 	ExcludeSignatures *string `pulumi:"excludeSignatures"`
 	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
 	FailOpen *string `pulumi:"failOpen"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode *string `pulumi:"intelligentMode"`
 	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
@@ -264,7 +280,7 @@ type globalArgs struct {
 	SessionLimitMode *string `pulumi:"sessionLimitMode"`
 	// Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
 	SkypeClientPublicIpaddr *string `pulumi:"skypeClientPublicIpaddr"`
-	// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+	// IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
 	SocketSize *int `pulumi:"socketSize"`
 	// Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
 	SyncSessionTtl *string `pulumi:"syncSessionTtl"`
@@ -280,20 +296,24 @@ type globalArgs struct {
 type GlobalArgs struct {
 	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
 	AnomalyMode pulumi.StringPtrInput
+	// Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+	AvMemLimit pulumi.IntPtrInput
 	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
 	CpAccelMode pulumi.StringPtrInput
 	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
 	Database pulumi.StringPtrInput
-	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+	// Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
 	DeepAppInspDbLimit pulumi.IntPtrInput
 	// Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
 	DeepAppInspTimeout pulumi.IntPtrInput
 	// Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
 	EngineCount pulumi.IntPtrInput
-	// Excluded signatures. Valid values: `none`, `industrial`.
+	// Excluded signatures.
 	ExcludeSignatures pulumi.StringPtrInput
 	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
 	FailOpen pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode pulumi.StringPtrInput
 	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
@@ -308,7 +328,7 @@ type GlobalArgs struct {
 	SessionLimitMode pulumi.StringPtrInput
 	// Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
 	SkypeClientPublicIpaddr pulumi.StringPtrInput
-	// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+	// IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
 	SocketSize pulumi.IntPtrInput
 	// Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
 	SyncSessionTtl pulumi.StringPtrInput
@@ -412,6 +432,11 @@ func (o GlobalOutput) AnomalyMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.AnomalyMode }).(pulumi.StringOutput)
 }
 
+// Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+func (o GlobalOutput) AvMemLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.AvMemLimit }).(pulumi.IntOutput)
+}
+
 // IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
 func (o GlobalOutput) CpAccelMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.CpAccelMode }).(pulumi.StringOutput)
@@ -422,7 +447,7 @@ func (o GlobalOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Database }).(pulumi.StringOutput)
 }
 
-// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+// Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
 func (o GlobalOutput) DeepAppInspDbLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.DeepAppInspDbLimit }).(pulumi.IntOutput)
 }
@@ -437,7 +462,7 @@ func (o GlobalOutput) EngineCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.EngineCount }).(pulumi.IntOutput)
 }
 
-// Excluded signatures. Valid values: `none`, `industrial`.
+// Excluded signatures.
 func (o GlobalOutput) ExcludeSignatures() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.ExcludeSignatures }).(pulumi.StringOutput)
 }
@@ -445,6 +470,11 @@ func (o GlobalOutput) ExcludeSignatures() pulumi.StringOutput {
 // Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
 func (o GlobalOutput) FailOpen() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.FailOpen }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o GlobalOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
@@ -482,7 +512,7 @@ func (o GlobalOutput) SkypeClientPublicIpaddr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.SkypeClientPublicIpaddr }).(pulumi.StringPtrOutput)
 }
 
-// IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+// IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
 func (o GlobalOutput) SocketSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.SocketSize }).(pulumi.IntOutput)
 }

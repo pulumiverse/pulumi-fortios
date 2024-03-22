@@ -23,7 +23,7 @@ class TableArgs:
         """
         The set of arguments for constructing a Table resource.
         :param pulumi.Input[str] ip: IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
-        :param pulumi.Input[str] mac: MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+        :param pulumi.Input[str] mac: MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
         :param pulumi.Input[str] name: Name of the pair (optional, default = no name).
         :param pulumi.Input[int] seq_num: Entry number.
         :param pulumi.Input[str] status: Enable/disable this IP-mac binding pair. Valid values: `enable`, `disable`.
@@ -57,7 +57,7 @@ class TableArgs:
     @pulumi.getter
     def mac(self) -> Optional[pulumi.Input[str]]:
         """
-        MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+        MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
         """
         return pulumi.get(self, "mac")
 
@@ -126,7 +126,7 @@ class _TableState:
         """
         Input properties used for looking up and filtering Table resources.
         :param pulumi.Input[str] ip: IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
-        :param pulumi.Input[str] mac: MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+        :param pulumi.Input[str] mac: MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
         :param pulumi.Input[str] name: Name of the pair (optional, default = no name).
         :param pulumi.Input[int] seq_num: Entry number.
         :param pulumi.Input[str] status: Enable/disable this IP-mac binding pair. Valid values: `enable`, `disable`.
@@ -161,7 +161,7 @@ class _TableState:
     @pulumi.getter
     def mac(self) -> Optional[pulumi.Input[str]]:
         """
-        MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+        MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
         """
         return pulumi.get(self, "mac")
 
@@ -269,7 +269,7 @@ class Table(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ip: IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
-        :param pulumi.Input[str] mac: MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+        :param pulumi.Input[str] mac: MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
         :param pulumi.Input[str] name: Name of the pair (optional, default = no name).
         :param pulumi.Input[int] seq_num: Entry number.
         :param pulumi.Input[str] status: Enable/disable this IP-mac binding pair. Valid values: `enable`, `disable`.
@@ -379,7 +379,7 @@ class Table(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ip: IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
-        :param pulumi.Input[str] mac: MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+        :param pulumi.Input[str] mac: MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
         :param pulumi.Input[str] name: Name of the pair (optional, default = no name).
         :param pulumi.Input[int] seq_num: Entry number.
         :param pulumi.Input[str] status: Enable/disable this IP-mac binding pair. Valid values: `enable`, `disable`.
@@ -409,7 +409,7 @@ class Table(pulumi.CustomResource):
     @pulumi.getter
     def mac(self) -> pulumi.Output[str]:
         """
-        MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+        MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
         """
         return pulumi.get(self, "mac")
 

@@ -89,6 +89,18 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> EmptyCertAction { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+        /// </summary>
+        [Output("httpSupportedMaxVersion")]
+        public Output<string> HttpSupportedMaxVersion { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("logBlockedTraffic")]
@@ -99,6 +111,30 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("svrPoolMultiplex")]
+        public Output<string> SvrPoolMultiplex { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+        /// </summary>
+        [Output("svrPoolServerMaxConcurrentRequest")]
+        public Output<int> SvrPoolServerMaxConcurrentRequest { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+        /// </summary>
+        [Output("svrPoolServerMaxRequest")]
+        public Output<int> SvrPoolServerMaxRequest { get; private set; } = null!;
+
+        /// <summary>
+        /// Time-to-live in the server pool for idle connections to servers.
+        /// </summary>
+        [Output("svrPoolTtl")]
+        public Output<int> SvrPoolTtl { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
@@ -232,6 +268,18 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? EmptyCertAction { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+        /// </summary>
+        [Input("httpSupportedMaxVersion")]
+        public Input<string>? HttpSupportedMaxVersion { get; set; }
+
+        /// <summary>
         /// Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("logBlockedTraffic")]
@@ -242,6 +290,30 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("svrPoolMultiplex")]
+        public Input<string>? SvrPoolMultiplex { get; set; }
+
+        /// <summary>
+        /// Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+        /// </summary>
+        [Input("svrPoolServerMaxConcurrentRequest")]
+        public Input<int>? SvrPoolServerMaxConcurrentRequest { get; set; }
+
+        /// <summary>
+        /// Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+        /// </summary>
+        [Input("svrPoolServerMaxRequest")]
+        public Input<int>? SvrPoolServerMaxRequest { get; set; }
+
+        /// <summary>
+        /// Time-to-live in the server pool for idle connections to servers.
+        /// </summary>
+        [Input("svrPoolTtl")]
+        public Input<int>? SvrPoolTtl { get; set; }
 
         /// <summary>
         /// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
@@ -336,6 +408,18 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? EmptyCertAction { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+        /// </summary>
+        [Input("httpSupportedMaxVersion")]
+        public Input<string>? HttpSupportedMaxVersion { get; set; }
+
+        /// <summary>
         /// Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("logBlockedTraffic")]
@@ -346,6 +430,30 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("svrPoolMultiplex")]
+        public Input<string>? SvrPoolMultiplex { get; set; }
+
+        /// <summary>
+        /// Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+        /// </summary>
+        [Input("svrPoolServerMaxConcurrentRequest")]
+        public Input<int>? SvrPoolServerMaxConcurrentRequest { get; set; }
+
+        /// <summary>
+        /// Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+        /// </summary>
+        [Input("svrPoolServerMaxRequest")]
+        public Input<int>? SvrPoolServerMaxRequest { get; set; }
+
+        /// <summary>
+        /// Time-to-live in the server pool for idle connections to servers.
+        /// </summary>
+        [Input("svrPoolTtl")]
+        public Input<int>? SvrPoolTtl { get; set; }
 
         /// <summary>
         /// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.

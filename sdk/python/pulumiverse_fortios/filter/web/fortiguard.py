@@ -15,9 +15,11 @@ __all__ = ['FortiguardArgs', 'Fortiguard']
 class FortiguardArgs:
     def __init__(__self__, *,
                  cache_mem_percent: Optional[pulumi.Input[int]] = None,
+                 cache_mem_permille: Optional[pulumi.Input[int]] = None,
                  cache_mode: Optional[pulumi.Input[str]] = None,
                  cache_prefix_match: Optional[pulumi.Input[str]] = None,
                  close_ports: Optional[pulumi.Input[str]] = None,
+                 embed_image: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_https: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_port: Optional[pulumi.Input[int]] = None,
                  ovrd_auth_port_http: Optional[pulumi.Input[int]] = None,
@@ -30,9 +32,11 @@ class FortiguardArgs:
         """
         The set of arguments for constructing a Fortiguard resource.
         :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] cache_mem_permille: Maximum permille of available memory allocated to caching (1 - 150).
         :param pulumi.Input[str] cache_mode: Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
         :param pulumi.Input[str] cache_prefix_match: Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] close_ports: Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] embed_image: Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ovrd_auth_https: Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ovrd_auth_port: Port to use for FortiGuard Web Filter override authentication.
         :param pulumi.Input[int] ovrd_auth_port_http: Port to use for FortiGuard Web Filter HTTP override authentication
@@ -45,12 +49,16 @@ class FortiguardArgs:
         """
         if cache_mem_percent is not None:
             pulumi.set(__self__, "cache_mem_percent", cache_mem_percent)
+        if cache_mem_permille is not None:
+            pulumi.set(__self__, "cache_mem_permille", cache_mem_permille)
         if cache_mode is not None:
             pulumi.set(__self__, "cache_mode", cache_mode)
         if cache_prefix_match is not None:
             pulumi.set(__self__, "cache_prefix_match", cache_prefix_match)
         if close_ports is not None:
             pulumi.set(__self__, "close_ports", close_ports)
+        if embed_image is not None:
+            pulumi.set(__self__, "embed_image", embed_image)
         if ovrd_auth_https is not None:
             pulumi.set(__self__, "ovrd_auth_https", ovrd_auth_https)
         if ovrd_auth_port is not None:
@@ -81,6 +89,18 @@ class FortiguardArgs:
     @cache_mem_percent.setter
     def cache_mem_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cache_mem_percent", value)
+
+    @property
+    @pulumi.getter(name="cacheMemPermille")
+    def cache_mem_permille(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum permille of available memory allocated to caching (1 - 150).
+        """
+        return pulumi.get(self, "cache_mem_permille")
+
+    @cache_mem_permille.setter
+    def cache_mem_permille(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cache_mem_permille", value)
 
     @property
     @pulumi.getter(name="cacheMode")
@@ -117,6 +137,18 @@ class FortiguardArgs:
     @close_ports.setter
     def close_ports(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "close_ports", value)
+
+    @property
+    @pulumi.getter(name="embedImage")
+    def embed_image(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "embed_image")
+
+    @embed_image.setter
+    def embed_image(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "embed_image", value)
 
     @property
     @pulumi.getter(name="ovrdAuthHttps")
@@ -231,9 +263,11 @@ class FortiguardArgs:
 class _FortiguardState:
     def __init__(__self__, *,
                  cache_mem_percent: Optional[pulumi.Input[int]] = None,
+                 cache_mem_permille: Optional[pulumi.Input[int]] = None,
                  cache_mode: Optional[pulumi.Input[str]] = None,
                  cache_prefix_match: Optional[pulumi.Input[str]] = None,
                  close_ports: Optional[pulumi.Input[str]] = None,
+                 embed_image: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_https: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_port: Optional[pulumi.Input[int]] = None,
                  ovrd_auth_port_http: Optional[pulumi.Input[int]] = None,
@@ -246,9 +280,11 @@ class _FortiguardState:
         """
         Input properties used for looking up and filtering Fortiguard resources.
         :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] cache_mem_permille: Maximum permille of available memory allocated to caching (1 - 150).
         :param pulumi.Input[str] cache_mode: Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
         :param pulumi.Input[str] cache_prefix_match: Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] close_ports: Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] embed_image: Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ovrd_auth_https: Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ovrd_auth_port: Port to use for FortiGuard Web Filter override authentication.
         :param pulumi.Input[int] ovrd_auth_port_http: Port to use for FortiGuard Web Filter HTTP override authentication
@@ -261,12 +297,16 @@ class _FortiguardState:
         """
         if cache_mem_percent is not None:
             pulumi.set(__self__, "cache_mem_percent", cache_mem_percent)
+        if cache_mem_permille is not None:
+            pulumi.set(__self__, "cache_mem_permille", cache_mem_permille)
         if cache_mode is not None:
             pulumi.set(__self__, "cache_mode", cache_mode)
         if cache_prefix_match is not None:
             pulumi.set(__self__, "cache_prefix_match", cache_prefix_match)
         if close_ports is not None:
             pulumi.set(__self__, "close_ports", close_ports)
+        if embed_image is not None:
+            pulumi.set(__self__, "embed_image", embed_image)
         if ovrd_auth_https is not None:
             pulumi.set(__self__, "ovrd_auth_https", ovrd_auth_https)
         if ovrd_auth_port is not None:
@@ -297,6 +337,18 @@ class _FortiguardState:
     @cache_mem_percent.setter
     def cache_mem_percent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cache_mem_percent", value)
+
+    @property
+    @pulumi.getter(name="cacheMemPermille")
+    def cache_mem_permille(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum permille of available memory allocated to caching (1 - 150).
+        """
+        return pulumi.get(self, "cache_mem_permille")
+
+    @cache_mem_permille.setter
+    def cache_mem_permille(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cache_mem_permille", value)
 
     @property
     @pulumi.getter(name="cacheMode")
@@ -333,6 +385,18 @@ class _FortiguardState:
     @close_ports.setter
     def close_ports(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "close_ports", value)
+
+    @property
+    @pulumi.getter(name="embedImage")
+    def embed_image(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "embed_image")
+
+    @embed_image.setter
+    def embed_image(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "embed_image", value)
 
     @property
     @pulumi.getter(name="ovrdAuthHttps")
@@ -449,9 +513,11 @@ class Fortiguard(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cache_mem_percent: Optional[pulumi.Input[int]] = None,
+                 cache_mem_permille: Optional[pulumi.Input[int]] = None,
                  cache_mode: Optional[pulumi.Input[str]] = None,
                  cache_prefix_match: Optional[pulumi.Input[str]] = None,
                  close_ports: Optional[pulumi.Input[str]] = None,
+                 embed_image: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_https: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_port: Optional[pulumi.Input[int]] = None,
                  ovrd_auth_port_http: Optional[pulumi.Input[int]] = None,
@@ -508,9 +574,11 @@ class Fortiguard(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] cache_mem_permille: Maximum permille of available memory allocated to caching (1 - 150).
         :param pulumi.Input[str] cache_mode: Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
         :param pulumi.Input[str] cache_prefix_match: Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] close_ports: Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] embed_image: Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ovrd_auth_https: Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ovrd_auth_port: Port to use for FortiGuard Web Filter override authentication.
         :param pulumi.Input[int] ovrd_auth_port_http: Port to use for FortiGuard Web Filter HTTP override authentication
@@ -586,9 +654,11 @@ class Fortiguard(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cache_mem_percent: Optional[pulumi.Input[int]] = None,
+                 cache_mem_permille: Optional[pulumi.Input[int]] = None,
                  cache_mode: Optional[pulumi.Input[str]] = None,
                  cache_prefix_match: Optional[pulumi.Input[str]] = None,
                  close_ports: Optional[pulumi.Input[str]] = None,
+                 embed_image: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_https: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_port: Optional[pulumi.Input[int]] = None,
                  ovrd_auth_port_http: Optional[pulumi.Input[int]] = None,
@@ -608,9 +678,11 @@ class Fortiguard(pulumi.CustomResource):
             __props__ = FortiguardArgs.__new__(FortiguardArgs)
 
             __props__.__dict__["cache_mem_percent"] = cache_mem_percent
+            __props__.__dict__["cache_mem_permille"] = cache_mem_permille
             __props__.__dict__["cache_mode"] = cache_mode
             __props__.__dict__["cache_prefix_match"] = cache_prefix_match
             __props__.__dict__["close_ports"] = close_ports
+            __props__.__dict__["embed_image"] = embed_image
             __props__.__dict__["ovrd_auth_https"] = ovrd_auth_https
             __props__.__dict__["ovrd_auth_port"] = ovrd_auth_port
             __props__.__dict__["ovrd_auth_port_http"] = ovrd_auth_port_http
@@ -631,9 +703,11 @@ class Fortiguard(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cache_mem_percent: Optional[pulumi.Input[int]] = None,
+            cache_mem_permille: Optional[pulumi.Input[int]] = None,
             cache_mode: Optional[pulumi.Input[str]] = None,
             cache_prefix_match: Optional[pulumi.Input[str]] = None,
             close_ports: Optional[pulumi.Input[str]] = None,
+            embed_image: Optional[pulumi.Input[str]] = None,
             ovrd_auth_https: Optional[pulumi.Input[str]] = None,
             ovrd_auth_port: Optional[pulumi.Input[int]] = None,
             ovrd_auth_port_http: Optional[pulumi.Input[int]] = None,
@@ -651,9 +725,11 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] cache_mem_permille: Maximum permille of available memory allocated to caching (1 - 150).
         :param pulumi.Input[str] cache_mode: Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
         :param pulumi.Input[str] cache_prefix_match: Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] close_ports: Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] embed_image: Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ovrd_auth_https: Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ovrd_auth_port: Port to use for FortiGuard Web Filter override authentication.
         :param pulumi.Input[int] ovrd_auth_port_http: Port to use for FortiGuard Web Filter HTTP override authentication
@@ -669,9 +745,11 @@ class Fortiguard(pulumi.CustomResource):
         __props__ = _FortiguardState.__new__(_FortiguardState)
 
         __props__.__dict__["cache_mem_percent"] = cache_mem_percent
+        __props__.__dict__["cache_mem_permille"] = cache_mem_permille
         __props__.__dict__["cache_mode"] = cache_mode
         __props__.__dict__["cache_prefix_match"] = cache_prefix_match
         __props__.__dict__["close_ports"] = close_ports
+        __props__.__dict__["embed_image"] = embed_image
         __props__.__dict__["ovrd_auth_https"] = ovrd_auth_https
         __props__.__dict__["ovrd_auth_port"] = ovrd_auth_port
         __props__.__dict__["ovrd_auth_port_http"] = ovrd_auth_port_http
@@ -690,6 +768,14 @@ class Fortiguard(pulumi.CustomResource):
         Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
         """
         return pulumi.get(self, "cache_mem_percent")
+
+    @property
+    @pulumi.getter(name="cacheMemPermille")
+    def cache_mem_permille(self) -> pulumi.Output[int]:
+        """
+        Maximum permille of available memory allocated to caching (1 - 150).
+        """
+        return pulumi.get(self, "cache_mem_permille")
 
     @property
     @pulumi.getter(name="cacheMode")
@@ -714,6 +800,14 @@ class Fortiguard(pulumi.CustomResource):
         Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "close_ports")
+
+    @property
+    @pulumi.getter(name="embedImage")
+    def embed_image(self) -> pulumi.Output[str]:
+        """
+        Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "embed_image")
 
     @property
     @pulumi.getter(name="ovrdAuthHttps")

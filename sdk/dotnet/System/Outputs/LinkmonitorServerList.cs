@@ -27,7 +27,7 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
+        /// Protocols used to monitor the server.
         /// </summary>
         public readonly string? Protocol;
         /// <summary>

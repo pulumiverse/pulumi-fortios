@@ -60,6 +60,10 @@ type LookupAddressResult struct {
 	Fqdn string `pulumi:"fqdn"`
 	// FSSO group(s). The structure of `fssoGroup` block is documented below.
 	FssoGroups []GetAddressFssoGroup `pulumi:"fssoGroups"`
+	// Dynamic address matching hardware model.
+	HwModel string `pulumi:"hwModel"`
+	// Dynamic address matching hardware vendor.
+	HwVendor string `pulumi:"hwVendor"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Name of interface whose IP address is to be used.
@@ -80,8 +84,12 @@ type LookupAddressResult struct {
 	ObjType string `pulumi:"objType"`
 	// Organization domain name (Syntax: organization/domain).
 	Organization string `pulumi:"organization"`
+	// Dynamic address matching operating system.
+	Os string `pulumi:"os"`
 	// Policy group name.
 	PolicyGroup string `pulumi:"policyGroup"`
+	// route-tag address.
+	RouteTag int `pulumi:"routeTag"`
 	// SDN.
 	Sdn string `pulumi:"sdn"`
 	// Type of addresses to collect.
@@ -98,6 +106,8 @@ type LookupAddressResult struct {
 	Subnet string `pulumi:"subnet"`
 	// Subnet name.
 	SubnetName string `pulumi:"subnetName"`
+	// Dynamic address matching software version.
+	SwVersion string `pulumi:"swVersion"`
 	// Tag detection level of dynamic address object.
 	TagDetectionLevel string `pulumi:"tagDetectionLevel"`
 	// Tag type of dynamic address object.
@@ -229,6 +239,16 @@ func (o LookupAddressResultOutput) FssoGroups() GetAddressFssoGroupArrayOutput {
 	return o.ApplyT(func(v LookupAddressResult) []GetAddressFssoGroup { return v.FssoGroups }).(GetAddressFssoGroupArrayOutput)
 }
 
+// Dynamic address matching hardware model.
+func (o LookupAddressResultOutput) HwModel() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAddressResult) string { return v.HwModel }).(pulumi.StringOutput)
+}
+
+// Dynamic address matching hardware vendor.
+func (o LookupAddressResultOutput) HwVendor() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAddressResult) string { return v.HwVendor }).(pulumi.StringOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupAddressResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAddressResult) string { return v.Id }).(pulumi.StringOutput)
@@ -279,9 +299,19 @@ func (o LookupAddressResultOutput) Organization() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAddressResult) string { return v.Organization }).(pulumi.StringOutput)
 }
 
+// Dynamic address matching operating system.
+func (o LookupAddressResultOutput) Os() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAddressResult) string { return v.Os }).(pulumi.StringOutput)
+}
+
 // Policy group name.
 func (o LookupAddressResultOutput) PolicyGroup() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAddressResult) string { return v.PolicyGroup }).(pulumi.StringOutput)
+}
+
+// route-tag address.
+func (o LookupAddressResultOutput) RouteTag() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupAddressResult) int { return v.RouteTag }).(pulumi.IntOutput)
 }
 
 // SDN.
@@ -322,6 +352,11 @@ func (o LookupAddressResultOutput) Subnet() pulumi.StringOutput {
 // Subnet name.
 func (o LookupAddressResultOutput) SubnetName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAddressResult) string { return v.SubnetName }).(pulumi.StringOutput)
+}
+
+// Dynamic address matching software version.
+func (o LookupAddressResultOutput) SwVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAddressResult) string { return v.SwVersion }).(pulumi.StringOutput)
 }
 
 // Tag detection level of dynamic address object.

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Configure Overlay Controller VPN settings. Applies to FortiOS Version `>= 6.2.4`.
+ * Configure Overlay Controller VPN settings. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7,7.0.8,7.0.9,7.0.10,7.0.11,7.0.12,7.0.13,7.2.0,7.2.1,7.2.2,7.2.3,7.2.4,7.2.6`.
  *
  * ## Import
  *
@@ -80,6 +80,10 @@ export class Ocvpn extends pulumi.CustomResource {
      */
     public readonly forticlientAccess!: pulumi.Output<outputs.vpn.OcvpnForticlientAccess>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Class B subnet reserved for private IP address assignment.
      */
     public readonly ipAllocationBlock!: pulumi.Output<string>;
@@ -143,6 +147,7 @@ export class Ocvpn extends pulumi.CustomResource {
             resourceInputs["eap"] = state ? state.eap : undefined;
             resourceInputs["eapUsers"] = state ? state.eapUsers : undefined;
             resourceInputs["forticlientAccess"] = state ? state.forticlientAccess : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ipAllocationBlock"] = state ? state.ipAllocationBlock : undefined;
             resourceInputs["multipath"] = state ? state.multipath : undefined;
             resourceInputs["nat"] = state ? state.nat : undefined;
@@ -162,6 +167,7 @@ export class Ocvpn extends pulumi.CustomResource {
             resourceInputs["eap"] = args ? args.eap : undefined;
             resourceInputs["eapUsers"] = args ? args.eapUsers : undefined;
             resourceInputs["forticlientAccess"] = args ? args.forticlientAccess : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ipAllocationBlock"] = args ? args.ipAllocationBlock : undefined;
             resourceInputs["multipath"] = args ? args.multipath : undefined;
             resourceInputs["nat"] = args ? args.nat : undefined;
@@ -207,6 +213,10 @@ export interface OcvpnState {
      * Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
      */
     forticlientAccess?: pulumi.Input<inputs.vpn.OcvpnForticlientAccess>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Class B subnet reserved for private IP address assignment.
      */
@@ -281,6 +291,10 @@ export interface OcvpnArgs {
      * Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
      */
     forticlientAccess?: pulumi.Input<inputs.vpn.OcvpnForticlientAccess>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Class B subnet reserved for private IP address assignment.
      */

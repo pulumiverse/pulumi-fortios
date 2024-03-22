@@ -49,6 +49,10 @@ export interface GetCentralsnatmapResult {
      */
     readonly dstAddrs: outputs.firewall.GetCentralsnatmapDstAddr[];
     /**
+     * Destination port or port range (1 to 65535, 0 means any port).
+     */
+    readonly dstPort: string;
+    /**
      * Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
      */
     readonly dstintfs: outputs.firewall.GetCentralsnatmapDstintf[];

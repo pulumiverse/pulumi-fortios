@@ -31,6 +31,7 @@ class EventfilterArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vpn: Optional[pulumi.Input[str]] = None,
                  wan_opt: Optional[pulumi.Input[str]] = None,
+                 webproxy: Optional[pulumi.Input[str]] = None,
                  wireless_activity: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Eventfilter resource.
@@ -51,6 +52,7 @@ class EventfilterArgs:
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vpn: Enable/disable VPN event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wan_opt: Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] webproxy: Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wireless_activity: Enable/disable wireless event logging. Valid values: `enable`, `disable`.
         """
         if cifs is not None:
@@ -87,6 +89,8 @@ class EventfilterArgs:
             pulumi.set(__self__, "vpn", vpn)
         if wan_opt is not None:
             pulumi.set(__self__, "wan_opt", wan_opt)
+        if webproxy is not None:
+            pulumi.set(__self__, "webproxy", webproxy)
         if wireless_activity is not None:
             pulumi.set(__self__, "wireless_activity", wireless_activity)
 
@@ -293,6 +297,18 @@ class EventfilterArgs:
     @wan_opt.setter
     def wan_opt(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "wan_opt", value)
+
+    @property
+    @pulumi.getter
+    def webproxy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "webproxy")
+
+    @webproxy.setter
+    def webproxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "webproxy", value)
 
     @property
     @pulumi.getter(name="wirelessActivity")
@@ -327,6 +343,7 @@ class _EventfilterState:
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vpn: Optional[pulumi.Input[str]] = None,
                  wan_opt: Optional[pulumi.Input[str]] = None,
+                 webproxy: Optional[pulumi.Input[str]] = None,
                  wireless_activity: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Eventfilter resources.
@@ -347,6 +364,7 @@ class _EventfilterState:
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vpn: Enable/disable VPN event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wan_opt: Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] webproxy: Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wireless_activity: Enable/disable wireless event logging. Valid values: `enable`, `disable`.
         """
         if cifs is not None:
@@ -383,6 +401,8 @@ class _EventfilterState:
             pulumi.set(__self__, "vpn", vpn)
         if wan_opt is not None:
             pulumi.set(__self__, "wan_opt", wan_opt)
+        if webproxy is not None:
+            pulumi.set(__self__, "webproxy", webproxy)
         if wireless_activity is not None:
             pulumi.set(__self__, "wireless_activity", wireless_activity)
 
@@ -589,6 +609,18 @@ class _EventfilterState:
     @wan_opt.setter
     def wan_opt(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "wan_opt", value)
+
+    @property
+    @pulumi.getter
+    def webproxy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "webproxy")
+
+    @webproxy.setter
+    def webproxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "webproxy", value)
 
     @property
     @pulumi.getter(name="wirelessActivity")
@@ -625,6 +657,7 @@ class Eventfilter(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vpn: Optional[pulumi.Input[str]] = None,
                  wan_opt: Optional[pulumi.Input[str]] = None,
+                 webproxy: Optional[pulumi.Input[str]] = None,
                  wireless_activity: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -689,6 +722,7 @@ class Eventfilter(pulumi.CustomResource):
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vpn: Enable/disable VPN event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wan_opt: Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] webproxy: Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wireless_activity: Enable/disable wireless event logging. Valid values: `enable`, `disable`.
         """
         ...
@@ -772,6 +806,7 @@ class Eventfilter(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vpn: Optional[pulumi.Input[str]] = None,
                  wan_opt: Optional[pulumi.Input[str]] = None,
+                 webproxy: Optional[pulumi.Input[str]] = None,
                  wireless_activity: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -799,6 +834,7 @@ class Eventfilter(pulumi.CustomResource):
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["vpn"] = vpn
             __props__.__dict__["wan_opt"] = wan_opt
+            __props__.__dict__["webproxy"] = webproxy
             __props__.__dict__["wireless_activity"] = wireless_activity
         super(Eventfilter, __self__).__init__(
             'fortios:log/eventfilter:Eventfilter',
@@ -827,6 +863,7 @@ class Eventfilter(pulumi.CustomResource):
             vdomparam: Optional[pulumi.Input[str]] = None,
             vpn: Optional[pulumi.Input[str]] = None,
             wan_opt: Optional[pulumi.Input[str]] = None,
+            webproxy: Optional[pulumi.Input[str]] = None,
             wireless_activity: Optional[pulumi.Input[str]] = None) -> 'Eventfilter':
         """
         Get an existing Eventfilter resource's state with the given name, id, and optional extra
@@ -852,6 +889,7 @@ class Eventfilter(pulumi.CustomResource):
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vpn: Enable/disable VPN event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wan_opt: Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] webproxy: Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wireless_activity: Enable/disable wireless event logging. Valid values: `enable`, `disable`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -875,6 +913,7 @@ class Eventfilter(pulumi.CustomResource):
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["vpn"] = vpn
         __props__.__dict__["wan_opt"] = wan_opt
+        __props__.__dict__["webproxy"] = webproxy
         __props__.__dict__["wireless_activity"] = wireless_activity
         return Eventfilter(resource_name, opts=opts, __props__=__props__)
 
@@ -1013,6 +1052,14 @@ class Eventfilter(pulumi.CustomResource):
         Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "wan_opt")
+
+    @property
+    @pulumi.getter
+    def webproxy(self) -> pulumi.Output[str]:
+        """
+        Enable/disable web proxy event logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "webproxy")
 
     @property
     @pulumi.getter(name="wirelessActivity")

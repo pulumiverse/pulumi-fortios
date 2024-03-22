@@ -14,6 +14,24 @@ namespace Pulumiverse.Fortios.System.Inputs
     public sealed class SdwanZoneArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Health check for ADVPN local overlay link quality.
+        /// </summary>
+        [Input("advpnHealthCheck")]
+        public Input<string>? AdvpnHealthCheck { get; set; }
+
+        /// <summary>
+        /// Enable/disable selection of ADVPN based on SDWAN information. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("advpnSelect")]
+        public Input<string>? AdvpnSelect { get; set; }
+
+        /// <summary>
+        /// Minimum number of members which meet SLA when the neighbor is preferred.
+        /// </summary>
+        [Input("minimumSlaMeetMembers")]
+        public Input<int>? MinimumSlaMeetMembers { get; set; }
+
+        /// <summary>
         /// Zone name.
         /// </summary>
         [Input("name")]

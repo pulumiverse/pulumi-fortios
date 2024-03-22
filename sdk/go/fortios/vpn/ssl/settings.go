@@ -97,6 +97,12 @@ type Settings struct {
 	DnsServer2 pulumi.StringOutput `pulumi:"dnsServer2"`
 	// DNS suffix used for SSL-VPN clients.
 	DnsSuffix pulumi.StringPtrOutput `pulumi:"dnsSuffix"`
+	// Number of missing heartbeats before the connection is considered dropped.
+	DtlsHeartbeatFailCount pulumi.IntOutput `pulumi:"dtlsHeartbeatFailCount"`
+	// Idle timeout before DTLS heartbeat is sent.
+	DtlsHeartbeatIdleTimeout pulumi.IntOutput `pulumi:"dtlsHeartbeatIdleTimeout"`
+	// Interval between DTLS heartbeat.
+	DtlsHeartbeatInterval pulumi.IntOutput `pulumi:"dtlsHeartbeatInterval"`
 	// SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
 	DtlsHelloTimeout pulumi.IntOutput `pulumi:"dtlsHelloTimeout"`
 	// DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
@@ -115,6 +121,8 @@ type Settings struct {
 	EncryptAndStorePassword pulumi.StringOutput `pulumi:"encryptAndStorePassword"`
 	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
 	ForceTwoFactorAuth pulumi.StringOutput `pulumi:"forceTwoFactorAuth"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor pulumi.StringOutput `pulumi:"headerXForwardedFor"`
 	// Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
@@ -155,6 +163,8 @@ type Settings struct {
 	RouteSourceInterface pulumi.StringOutput `pulumi:"routeSourceInterface"`
 	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
 	SamlRedirectPort pulumi.IntOutput `pulumi:"samlRedirectPort"`
+	// Server hostname for HTTPS. When set, will be used for SSL VPN web proxy host header for any redirection.
+	ServerHostname pulumi.StringOutput `pulumi:"serverHostname"`
 	// Name of the server certificate to be used for SSL-VPNs.
 	Servercert pulumi.StringOutput `pulumi:"servercert"`
 	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
@@ -279,6 +289,12 @@ type settingsState struct {
 	DnsServer2 *string `pulumi:"dnsServer2"`
 	// DNS suffix used for SSL-VPN clients.
 	DnsSuffix *string `pulumi:"dnsSuffix"`
+	// Number of missing heartbeats before the connection is considered dropped.
+	DtlsHeartbeatFailCount *int `pulumi:"dtlsHeartbeatFailCount"`
+	// Idle timeout before DTLS heartbeat is sent.
+	DtlsHeartbeatIdleTimeout *int `pulumi:"dtlsHeartbeatIdleTimeout"`
+	// Interval between DTLS heartbeat.
+	DtlsHeartbeatInterval *int `pulumi:"dtlsHeartbeatInterval"`
 	// SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
 	DtlsHelloTimeout *int `pulumi:"dtlsHelloTimeout"`
 	// DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
@@ -297,6 +313,8 @@ type settingsState struct {
 	EncryptAndStorePassword *string `pulumi:"encryptAndStorePassword"`
 	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
 	ForceTwoFactorAuth *string `pulumi:"forceTwoFactorAuth"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor *string `pulumi:"headerXForwardedFor"`
 	// Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
@@ -337,6 +355,8 @@ type settingsState struct {
 	RouteSourceInterface *string `pulumi:"routeSourceInterface"`
 	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
 	SamlRedirectPort *int `pulumi:"samlRedirectPort"`
+	// Server hostname for HTTPS. When set, will be used for SSL VPN web proxy host header for any redirection.
+	ServerHostname *string `pulumi:"serverHostname"`
 	// Name of the server certificate to be used for SSL-VPNs.
 	Servercert *string `pulumi:"servercert"`
 	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
@@ -432,6 +452,12 @@ type SettingsState struct {
 	DnsServer2 pulumi.StringPtrInput
 	// DNS suffix used for SSL-VPN clients.
 	DnsSuffix pulumi.StringPtrInput
+	// Number of missing heartbeats before the connection is considered dropped.
+	DtlsHeartbeatFailCount pulumi.IntPtrInput
+	// Idle timeout before DTLS heartbeat is sent.
+	DtlsHeartbeatIdleTimeout pulumi.IntPtrInput
+	// Interval between DTLS heartbeat.
+	DtlsHeartbeatInterval pulumi.IntPtrInput
 	// SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
 	DtlsHelloTimeout pulumi.IntPtrInput
 	// DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
@@ -450,6 +476,8 @@ type SettingsState struct {
 	EncryptAndStorePassword pulumi.StringPtrInput
 	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
 	ForceTwoFactorAuth pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor pulumi.StringPtrInput
 	// Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
@@ -490,6 +518,8 @@ type SettingsState struct {
 	RouteSourceInterface pulumi.StringPtrInput
 	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
 	SamlRedirectPort pulumi.IntPtrInput
+	// Server hostname for HTTPS. When set, will be used for SSL VPN web proxy host header for any redirection.
+	ServerHostname pulumi.StringPtrInput
 	// Name of the server certificate to be used for SSL-VPNs.
 	Servercert pulumi.StringPtrInput
 	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
@@ -589,6 +619,12 @@ type settingsArgs struct {
 	DnsServer2 *string `pulumi:"dnsServer2"`
 	// DNS suffix used for SSL-VPN clients.
 	DnsSuffix *string `pulumi:"dnsSuffix"`
+	// Number of missing heartbeats before the connection is considered dropped.
+	DtlsHeartbeatFailCount *int `pulumi:"dtlsHeartbeatFailCount"`
+	// Idle timeout before DTLS heartbeat is sent.
+	DtlsHeartbeatIdleTimeout *int `pulumi:"dtlsHeartbeatIdleTimeout"`
+	// Interval between DTLS heartbeat.
+	DtlsHeartbeatInterval *int `pulumi:"dtlsHeartbeatInterval"`
 	// SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
 	DtlsHelloTimeout *int `pulumi:"dtlsHelloTimeout"`
 	// DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
@@ -607,6 +643,8 @@ type settingsArgs struct {
 	EncryptAndStorePassword *string `pulumi:"encryptAndStorePassword"`
 	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
 	ForceTwoFactorAuth *string `pulumi:"forceTwoFactorAuth"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor *string `pulumi:"headerXForwardedFor"`
 	// Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
@@ -647,6 +685,8 @@ type settingsArgs struct {
 	RouteSourceInterface *string `pulumi:"routeSourceInterface"`
 	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
 	SamlRedirectPort *int `pulumi:"samlRedirectPort"`
+	// Server hostname for HTTPS. When set, will be used for SSL VPN web proxy host header for any redirection.
+	ServerHostname *string `pulumi:"serverHostname"`
 	// Name of the server certificate to be used for SSL-VPNs.
 	Servercert *string `pulumi:"servercert"`
 	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
@@ -743,6 +783,12 @@ type SettingsArgs struct {
 	DnsServer2 pulumi.StringPtrInput
 	// DNS suffix used for SSL-VPN clients.
 	DnsSuffix pulumi.StringPtrInput
+	// Number of missing heartbeats before the connection is considered dropped.
+	DtlsHeartbeatFailCount pulumi.IntPtrInput
+	// Idle timeout before DTLS heartbeat is sent.
+	DtlsHeartbeatIdleTimeout pulumi.IntPtrInput
+	// Interval between DTLS heartbeat.
+	DtlsHeartbeatInterval pulumi.IntPtrInput
 	// SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
 	DtlsHelloTimeout pulumi.IntPtrInput
 	// DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
@@ -761,6 +807,8 @@ type SettingsArgs struct {
 	EncryptAndStorePassword pulumi.StringPtrInput
 	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
 	ForceTwoFactorAuth pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor pulumi.StringPtrInput
 	// Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
@@ -801,6 +849,8 @@ type SettingsArgs struct {
 	RouteSourceInterface pulumi.StringPtrInput
 	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
 	SamlRedirectPort pulumi.IntPtrInput
+	// Server hostname for HTTPS. When set, will be used for SSL VPN web proxy host header for any redirection.
+	ServerHostname pulumi.StringPtrInput
 	// Name of the server certificate to be used for SSL-VPNs.
 	Servercert pulumi.StringPtrInput
 	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
@@ -1030,6 +1080,21 @@ func (o SettingsOutput) DnsSuffix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringPtrOutput { return v.DnsSuffix }).(pulumi.StringPtrOutput)
 }
 
+// Number of missing heartbeats before the connection is considered dropped.
+func (o SettingsOutput) DtlsHeartbeatFailCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.DtlsHeartbeatFailCount }).(pulumi.IntOutput)
+}
+
+// Idle timeout before DTLS heartbeat is sent.
+func (o SettingsOutput) DtlsHeartbeatIdleTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.DtlsHeartbeatIdleTimeout }).(pulumi.IntOutput)
+}
+
+// Interval between DTLS heartbeat.
+func (o SettingsOutput) DtlsHeartbeatInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.DtlsHeartbeatInterval }).(pulumi.IntOutput)
+}
+
 // SSLVPN maximum DTLS hello timeout (10 - 60 sec, default = 10).
 func (o SettingsOutput) DtlsHelloTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.DtlsHelloTimeout }).(pulumi.IntOutput)
@@ -1073,6 +1138,11 @@ func (o SettingsOutput) EncryptAndStorePassword() pulumi.StringOutput {
 // Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
 func (o SettingsOutput) ForceTwoFactorAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.ForceTwoFactorAuth }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SettingsOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
@@ -1173,6 +1243,11 @@ func (o SettingsOutput) RouteSourceInterface() pulumi.StringOutput {
 // SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
 func (o SettingsOutput) SamlRedirectPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.SamlRedirectPort }).(pulumi.IntOutput)
+}
+
+// Server hostname for HTTPS. When set, will be used for SSL VPN web proxy host header for any redirection.
+func (o SettingsOutput) ServerHostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.ServerHostname }).(pulumi.StringOutput)
 }
 
 // Name of the server certificate to be used for SSL-VPNs.

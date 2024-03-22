@@ -292,6 +292,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<ImmutableArray<Outputs.Policy6FssoGroup>> FssoGroups { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Label for the policy that appears when the GUI is in Global View mode.
         /// </summary>
         [Output("globalLabel")]
@@ -937,6 +943,12 @@ namespace Pulumiverse.Fortios.Firewall
             get => _fssoGroups ?? (_fssoGroups = new InputList<Inputs.Policy6FssoGroupArgs>());
             set => _fssoGroups = value;
         }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Label for the policy that appears when the GUI is in Global View mode.
@@ -1593,6 +1605,12 @@ namespace Pulumiverse.Fortios.Firewall
             get => _fssoGroups ?? (_fssoGroups = new InputList<Inputs.Policy6FssoGroupGetArgs>());
             set => _fssoGroups = value;
         }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Label for the policy that appears when the GUI is in Global View mode.

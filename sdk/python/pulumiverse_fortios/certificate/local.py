@@ -31,6 +31,14 @@ class LocalArgs:
                  comments: Optional[pulumi.Input[str]] = None,
                  csr: Optional[pulumi.Input[str]] = None,
                  enroll_protocol: Optional[pulumi.Input[str]] = None,
+                 est_ca_id: Optional[pulumi.Input[str]] = None,
+                 est_client_cert: Optional[pulumi.Input[str]] = None,
+                 est_http_password: Optional[pulumi.Input[str]] = None,
+                 est_http_username: Optional[pulumi.Input[str]] = None,
+                 est_server: Optional[pulumi.Input[str]] = None,
+                 est_server_cert: Optional[pulumi.Input[str]] = None,
+                 est_srp_password: Optional[pulumi.Input[str]] = None,
+                 est_srp_username: Optional[pulumi.Input[str]] = None,
                  ike_localid: Optional[pulumi.Input[str]] = None,
                  ike_localid_type: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
@@ -81,6 +89,22 @@ class LocalArgs:
             pulumi.set(__self__, "csr", csr)
         if enroll_protocol is not None:
             pulumi.set(__self__, "enroll_protocol", enroll_protocol)
+        if est_ca_id is not None:
+            pulumi.set(__self__, "est_ca_id", est_ca_id)
+        if est_client_cert is not None:
+            pulumi.set(__self__, "est_client_cert", est_client_cert)
+        if est_http_password is not None:
+            pulumi.set(__self__, "est_http_password", est_http_password)
+        if est_http_username is not None:
+            pulumi.set(__self__, "est_http_username", est_http_username)
+        if est_server is not None:
+            pulumi.set(__self__, "est_server", est_server)
+        if est_server_cert is not None:
+            pulumi.set(__self__, "est_server_cert", est_server_cert)
+        if est_srp_password is not None:
+            pulumi.set(__self__, "est_srp_password", est_srp_password)
+        if est_srp_username is not None:
+            pulumi.set(__self__, "est_srp_username", est_srp_username)
         if ike_localid is not None:
             pulumi.set(__self__, "ike_localid", ike_localid)
         if ike_localid_type is not None:
@@ -264,6 +288,78 @@ class LocalArgs:
         pulumi.set(self, "enroll_protocol", value)
 
     @property
+    @pulumi.getter(name="estCaId")
+    def est_ca_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_ca_id")
+
+    @est_ca_id.setter
+    def est_ca_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_ca_id", value)
+
+    @property
+    @pulumi.getter(name="estClientCert")
+    def est_client_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_client_cert")
+
+    @est_client_cert.setter
+    def est_client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_client_cert", value)
+
+    @property
+    @pulumi.getter(name="estHttpPassword")
+    def est_http_password(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_http_password")
+
+    @est_http_password.setter
+    def est_http_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_http_password", value)
+
+    @property
+    @pulumi.getter(name="estHttpUsername")
+    def est_http_username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_http_username")
+
+    @est_http_username.setter
+    def est_http_username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_http_username", value)
+
+    @property
+    @pulumi.getter(name="estServer")
+    def est_server(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_server")
+
+    @est_server.setter
+    def est_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_server", value)
+
+    @property
+    @pulumi.getter(name="estServerCert")
+    def est_server_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_server_cert")
+
+    @est_server_cert.setter
+    def est_server_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_server_cert", value)
+
+    @property
+    @pulumi.getter(name="estSrpPassword")
+    def est_srp_password(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_srp_password")
+
+    @est_srp_password.setter
+    def est_srp_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_srp_password", value)
+
+    @property
+    @pulumi.getter(name="estSrpUsername")
+    def est_srp_username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_srp_username")
+
+    @est_srp_username.setter
+    def est_srp_username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_srp_username", value)
+
+    @property
     @pulumi.getter(name="ikeLocalid")
     def ike_localid(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "ike_localid")
@@ -409,6 +505,14 @@ class _LocalState:
                  comments: Optional[pulumi.Input[str]] = None,
                  csr: Optional[pulumi.Input[str]] = None,
                  enroll_protocol: Optional[pulumi.Input[str]] = None,
+                 est_ca_id: Optional[pulumi.Input[str]] = None,
+                 est_client_cert: Optional[pulumi.Input[str]] = None,
+                 est_http_password: Optional[pulumi.Input[str]] = None,
+                 est_http_username: Optional[pulumi.Input[str]] = None,
+                 est_server: Optional[pulumi.Input[str]] = None,
+                 est_server_cert: Optional[pulumi.Input[str]] = None,
+                 est_srp_password: Optional[pulumi.Input[str]] = None,
+                 est_srp_username: Optional[pulumi.Input[str]] = None,
                  ike_localid: Optional[pulumi.Input[str]] = None,
                  ike_localid_type: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
@@ -459,6 +563,22 @@ class _LocalState:
             pulumi.set(__self__, "csr", csr)
         if enroll_protocol is not None:
             pulumi.set(__self__, "enroll_protocol", enroll_protocol)
+        if est_ca_id is not None:
+            pulumi.set(__self__, "est_ca_id", est_ca_id)
+        if est_client_cert is not None:
+            pulumi.set(__self__, "est_client_cert", est_client_cert)
+        if est_http_password is not None:
+            pulumi.set(__self__, "est_http_password", est_http_password)
+        if est_http_username is not None:
+            pulumi.set(__self__, "est_http_username", est_http_username)
+        if est_server is not None:
+            pulumi.set(__self__, "est_server", est_server)
+        if est_server_cert is not None:
+            pulumi.set(__self__, "est_server_cert", est_server_cert)
+        if est_srp_password is not None:
+            pulumi.set(__self__, "est_srp_password", est_srp_password)
+        if est_srp_username is not None:
+            pulumi.set(__self__, "est_srp_username", est_srp_username)
         if ike_localid is not None:
             pulumi.set(__self__, "ike_localid", ike_localid)
         if ike_localid_type is not None:
@@ -635,6 +755,78 @@ class _LocalState:
         pulumi.set(self, "enroll_protocol", value)
 
     @property
+    @pulumi.getter(name="estCaId")
+    def est_ca_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_ca_id")
+
+    @est_ca_id.setter
+    def est_ca_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_ca_id", value)
+
+    @property
+    @pulumi.getter(name="estClientCert")
+    def est_client_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_client_cert")
+
+    @est_client_cert.setter
+    def est_client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_client_cert", value)
+
+    @property
+    @pulumi.getter(name="estHttpPassword")
+    def est_http_password(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_http_password")
+
+    @est_http_password.setter
+    def est_http_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_http_password", value)
+
+    @property
+    @pulumi.getter(name="estHttpUsername")
+    def est_http_username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_http_username")
+
+    @est_http_username.setter
+    def est_http_username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_http_username", value)
+
+    @property
+    @pulumi.getter(name="estServer")
+    def est_server(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_server")
+
+    @est_server.setter
+    def est_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_server", value)
+
+    @property
+    @pulumi.getter(name="estServerCert")
+    def est_server_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_server_cert")
+
+    @est_server_cert.setter
+    def est_server_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_server_cert", value)
+
+    @property
+    @pulumi.getter(name="estSrpPassword")
+    def est_srp_password(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_srp_password")
+
+    @est_srp_password.setter
+    def est_srp_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_srp_password", value)
+
+    @property
+    @pulumi.getter(name="estSrpUsername")
+    def est_srp_username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_srp_username")
+
+    @est_srp_username.setter
+    def est_srp_username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_srp_username", value)
+
+    @property
     @pulumi.getter(name="ikeLocalid")
     def ike_localid(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "ike_localid")
@@ -791,6 +983,14 @@ class Local(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  csr: Optional[pulumi.Input[str]] = None,
                  enroll_protocol: Optional[pulumi.Input[str]] = None,
+                 est_ca_id: Optional[pulumi.Input[str]] = None,
+                 est_client_cert: Optional[pulumi.Input[str]] = None,
+                 est_http_password: Optional[pulumi.Input[str]] = None,
+                 est_http_username: Optional[pulumi.Input[str]] = None,
+                 est_server: Optional[pulumi.Input[str]] = None,
+                 est_server_cert: Optional[pulumi.Input[str]] = None,
+                 est_srp_password: Optional[pulumi.Input[str]] = None,
+                 est_srp_username: Optional[pulumi.Input[str]] = None,
                  ike_localid: Optional[pulumi.Input[str]] = None,
                  ike_localid_type: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
@@ -899,6 +1099,14 @@ class Local(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  csr: Optional[pulumi.Input[str]] = None,
                  enroll_protocol: Optional[pulumi.Input[str]] = None,
+                 est_ca_id: Optional[pulumi.Input[str]] = None,
+                 est_client_cert: Optional[pulumi.Input[str]] = None,
+                 est_http_password: Optional[pulumi.Input[str]] = None,
+                 est_http_username: Optional[pulumi.Input[str]] = None,
+                 est_server: Optional[pulumi.Input[str]] = None,
+                 est_server_cert: Optional[pulumi.Input[str]] = None,
+                 est_srp_password: Optional[pulumi.Input[str]] = None,
+                 est_srp_username: Optional[pulumi.Input[str]] = None,
                  ike_localid: Optional[pulumi.Input[str]] = None,
                  ike_localid_type: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
@@ -939,6 +1147,14 @@ class Local(pulumi.CustomResource):
             __props__.__dict__["comments"] = comments
             __props__.__dict__["csr"] = csr
             __props__.__dict__["enroll_protocol"] = enroll_protocol
+            __props__.__dict__["est_ca_id"] = est_ca_id
+            __props__.__dict__["est_client_cert"] = est_client_cert
+            __props__.__dict__["est_http_password"] = est_http_password
+            __props__.__dict__["est_http_username"] = est_http_username
+            __props__.__dict__["est_server"] = est_server
+            __props__.__dict__["est_server_cert"] = est_server_cert
+            __props__.__dict__["est_srp_password"] = est_srp_password
+            __props__.__dict__["est_srp_username"] = est_srp_username
             __props__.__dict__["ike_localid"] = ike_localid
             __props__.__dict__["ike_localid_type"] = ike_localid_type
             __props__.__dict__["last_updated"] = last_updated
@@ -984,6 +1200,14 @@ class Local(pulumi.CustomResource):
             comments: Optional[pulumi.Input[str]] = None,
             csr: Optional[pulumi.Input[str]] = None,
             enroll_protocol: Optional[pulumi.Input[str]] = None,
+            est_ca_id: Optional[pulumi.Input[str]] = None,
+            est_client_cert: Optional[pulumi.Input[str]] = None,
+            est_http_password: Optional[pulumi.Input[str]] = None,
+            est_http_username: Optional[pulumi.Input[str]] = None,
+            est_server: Optional[pulumi.Input[str]] = None,
+            est_server_cert: Optional[pulumi.Input[str]] = None,
+            est_srp_password: Optional[pulumi.Input[str]] = None,
+            est_srp_username: Optional[pulumi.Input[str]] = None,
             ike_localid: Optional[pulumi.Input[str]] = None,
             ike_localid_type: Optional[pulumi.Input[str]] = None,
             last_updated: Optional[pulumi.Input[int]] = None,
@@ -1027,6 +1251,14 @@ class Local(pulumi.CustomResource):
         __props__.__dict__["comments"] = comments
         __props__.__dict__["csr"] = csr
         __props__.__dict__["enroll_protocol"] = enroll_protocol
+        __props__.__dict__["est_ca_id"] = est_ca_id
+        __props__.__dict__["est_client_cert"] = est_client_cert
+        __props__.__dict__["est_http_password"] = est_http_password
+        __props__.__dict__["est_http_username"] = est_http_username
+        __props__.__dict__["est_server"] = est_server
+        __props__.__dict__["est_server_cert"] = est_server_cert
+        __props__.__dict__["est_srp_password"] = est_srp_password
+        __props__.__dict__["est_srp_username"] = est_srp_username
         __props__.__dict__["ike_localid"] = ike_localid
         __props__.__dict__["ike_localid_type"] = ike_localid_type
         __props__.__dict__["last_updated"] = last_updated
@@ -1123,6 +1355,46 @@ class Local(pulumi.CustomResource):
     @pulumi.getter(name="enrollProtocol")
     def enroll_protocol(self) -> pulumi.Output[str]:
         return pulumi.get(self, "enroll_protocol")
+
+    @property
+    @pulumi.getter(name="estCaId")
+    def est_ca_id(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "est_ca_id")
+
+    @property
+    @pulumi.getter(name="estClientCert")
+    def est_client_cert(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "est_client_cert")
+
+    @property
+    @pulumi.getter(name="estHttpPassword")
+    def est_http_password(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "est_http_password")
+
+    @property
+    @pulumi.getter(name="estHttpUsername")
+    def est_http_username(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "est_http_username")
+
+    @property
+    @pulumi.getter(name="estServer")
+    def est_server(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "est_server")
+
+    @property
+    @pulumi.getter(name="estServerCert")
+    def est_server_cert(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "est_server_cert")
+
+    @property
+    @pulumi.getter(name="estSrpPassword")
+    def est_srp_password(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "est_srp_password")
+
+    @property
+    @pulumi.getter(name="estSrpUsername")
+    def est_srp_username(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "est_srp_username")
 
     @property
     @pulumi.getter(name="ikeLocalid")
